@@ -67,7 +67,7 @@ A precise observer fit with $\mathcal R_{\mathrm{lift},k}$ absent remains `2` or
 | `EQ-14` | Schrodinger and Born-current continuity | $\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf J_{\mathrm{rec}}=0$ | Basin measure, record flow, Noether sea background | `2` | `3` | Derive probability-current behavior from deterministic branch and record dynamics. |  |
 | `EQ-15` | Klein-Gordon, Dirac, spinor, and spin-statistics equations | $(i\hbar\gamma^\mu\partial_\mu-mc)\psi=0$ as benchmark | Noether braid ordered-frame, spinor, exchange, and angular-momentum ledgers | `1` | `2` | Build the spinor and exchange record before importing relativistic wave equations. |  |
 | `EQ-16` | Gauge and Standard Model field equations | Yang-Mills and QED/QCD equations as benchmarks | Effective interaction sectors, reaction provenance, branch labels | `1` | `2` | Convert gauge behavior into sector-visible ledger projections and reaction closure. |  |
-| `EQ-16A` | Neutrino oscillation phase gaps and PMNS mixing | $\Delta\omega_{ij}\simeq\Delta m_{ij}^2c^4/(2E\hbar)$; $\lvert\nu_\alpha\rangle=\sum_iU_{\alpha i}\lvert\nu_i\rangle$ | Equal-frequency Noether braid three-binary candidate, neutral-lepton phase operator, weak-coupling readout | `2` | `3` | Factor a common hidden clock while deriving two independent observed phase gaps from one retained neutral-lepton branch. |  |
+| `EQ-16A` | Neutrino oscillation phase gaps and PMNS mixing | $\Delta\omega_{ij}\simeq\Delta m_{ij}^2c^4/(2E\hbar)$; $\lvert\nu_\alpha\rangle=\sum_iU_{\alpha i}\lvert\nu_i\rangle$ | Equal-frequency Noether braid candidate, neutral-lepton phase operator, weak-coupling readout | `2` | `3` | Factor a common hidden clock while deriving two independent observed phase gaps from one retained neutral-lepton branch. |  |
 | `EQ-17` | Redshift factorization | $1+z_X\approx \Gamma_{N,E}\mathcal P_{E\to R}/(\Gamma_{N,R}B_XD_v)$ | Endpoint cadence, launch geometry, source branch, path-history propagation | `4` | `4` | Close one signed frequency-transfer ledger across gravitational, Doppler, source, and cosmological cases. |  |
 | `EQ-18` | Effective FRW metric and scale factor | $ds_{\mathrm{FRW,eff}}^2=-c_0^2d\tau_c^2+a_{\mathrm{eff}}^2d\Sigma_k^2$ | Observer-level projection of evolving Noether sea | `3` | `3` | Extract $a_{\mathrm{eff}}$ from medium evolution, clock comparison, and transport records. |  |
 | `EQ-19` | Friedmann and cosmological continuity equations | $H_{\mathrm{eff}}^2=8\pi G_{\mathrm{eff}}\rho_{\mathrm{eff}}/(3c_0^2)-kc_0^2/a_{\mathrm{eff}}^2+\Lambda_{\mathrm{eff}}/3$ | Fixed-void Noether sea cosmology projection | `3` | `3` | Recover Friedmann-like bookkeeping without promoting void expansion. |  |
@@ -1225,7 +1225,7 @@ h_\Phi
 \pi \Omega_c A^2.
 $$
 
-If $h_\Phi$ varies smoothly under continuation while the frequency stays near $\Omega_c$, then the scalar retained orbit is disqualified as an action-unit source. That negative result would be useful: it would show why the physical $h_\vartheta$ target needs Noether braid three-binary locking, integer winding, or an exact Noether-charge row rather than a soft scalar amplitude.
+If $h_\Phi$ varies smoothly under continuation while the frequency stays near $\Omega_c$, then the scalar retained orbit is disqualified as an action-unit source. That negative result would be useful: it would show why the physical $h_\vartheta$ target needs Noether braid locking, integer winding, or an exact Noether-charge row rather than a soft scalar amplitude.
 
 For the causal-delay self-hit model, the primary finite-dimensional object is the Poincare return map and its monodromy spectrum. A variational advanced-plus-causal-delay replacement may later support a global Hessian or presymplectic row, but the first causal solver target should not require that structure. The action unit is the Poincare-Cartan orbit integral on the certified retained orbit:
 
@@ -1323,7 +1323,7 @@ $$
 {|h_\vartheta|+\varepsilon_h}.
 $$
 
-This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the three-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The open burden is no longer "prove integrality in raw history space" or "force a Hessian onto a causal self-hit equation." It is now split in two: first, run the scalar constant-delay continuation to test whether the apparent action period is only a tunable orbit area; second, seek the positive action-unit source in a mode-locked equal-frequency Noether braid three-binary branch whose integer winding and middle-binary speed pinning protect the common action unit.
+This is also the natural home for the $h$ unit of angular momentum: equal action per retained cycle must be reconciled with the three-binary phase and angular-momentum ledger before $h$ is treated as more than a measured conversion constant. The open burden is no longer "prove integrality in raw history space" or "force a Hessian onto a causal self-hit equation." It is now split in two: first, run the scalar constant-delay continuation to test whether the apparent action period is only a tunable orbit area; second, seek the positive action-unit source in a mode-locked equal-frequency Noether braid branch whose integer winding and middle-binary speed pinning protect the common action unit.
 
 The positive theorem target is therefore a Mode-Locked Three-Binary Action-Unit Lemma. A weak first version says: if the retained equal-frequency row set has
 
@@ -1392,7 +1392,7 @@ The row must recover:
 - a Poincare section and local Poincare-Cartan orbit integral row;
 - an energy-clock versus phase-loop readout certificate showing $h_E$ and $h_\Phi$ converge under refinement and Poincare-section relocation;
 - a scalar continuation result showing whether $h_\Phi$ is continuously rescalable under $g$ or $\mu$;
-- a locked equal-frequency Noether braid three-binary branch with middle-binary speed pinning, integer winding plateau, four-readout coincidence, and positive Floquet margin;
+- a locked equal-frequency Noether braid branch with middle-binary speed pinning, integer winding plateau, four-readout coincidence, and positive Floquet margin;
 - a history-energy throughput row whose numerical violation is $\mathcal H_{\mathrm{hist}}$;
 - a non-resonance certificate for Floquet/slaved history modes and three-binary frequency small divisors;
 - a geometry-derived action period, not an action period inferred from $\alpha$ data;
@@ -1402,7 +1402,7 @@ The row must recover:
 
 ### Agent Target
 
-Build the scalar falsifier first: solve the constant-delay Hopf equations, compute $\ell_1$, continue the bifurcated orbit to finite amplitude, compute the monodromy spectrum, and test whether $\oint p\,dq$ varies continuously while the frequency remains near the Hopf crossing. If that expected falsifier passes, move the positive action-unit search to the equal-frequency Noether braid three-binary branch: compute the winding plateau, four readouts $h_E,h_\Phi,h_p,h_J$, and Floquet margin on one retained branch with middle-binary speed pinning.
+Build the scalar falsifier first: solve the constant-delay Hopf equations, compute $\ell_1$, continue the bifurcated orbit to finite amplitude, compute the monodromy spectrum, and test whether $\oint p\,dq$ varies continuously while the frequency remains near the Hopf crossing. If that expected falsifier passes, move the positive action-unit search to the equal-frequency Noether braid branch: compute the winding plateau, four readouts $h_E,h_\Phi,h_p,h_J$, and Floquet margin on one retained branch with middle-binary speed pinning.
 
 ## EQ-14 Through EQ-16: Quantum Wave, Spinor, And Gauge Equations
 
@@ -1564,7 +1564,7 @@ $$
 
 The constituent-binary intuition belongs in $\delta\Omega_{\mathrm{bin}}$: it is the retained behavior of internal binary phase, lever-arm, wake/coupling, and exposure rows after the common near-photon phase has been factored out.
 
-The equal-frequency Noether braid three-binary candidate in [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md) is therefore a good match only if it has the form
+The equal-frequency Noether braid candidate in [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md) is therefore a good match only if it has the form
 
 $$
 H_{3B}^{(\nu)}
@@ -1671,7 +1671,7 @@ Small $R_{\nu,\mathrm{cancel}}$ is not enough. A neutral-lepton branch must also
 
 Current `6/23 b` score: `3`.
 
-The standard oscillation equations are precise, the local neutrino chapter already supplies a geometric phase-operator recovery target, and the equal-frequency packet now names the common-clock three-binary interpretation. The missing object is a retained neutral-lepton Noether braid three-binary branch that derives $H_{3B}^{(\nu)}$, $U_{\mathrm{PMNS}}$, and the two independent phase gaps from the same row set.
+The standard oscillation equations are precise, the local neutrino chapter already supplies a geometric phase-operator recovery target, and the equal-frequency packet now names the common-clock three-binary interpretation. The missing object is a retained neutral-lepton Noether braid branch that derives $H_{3B}^{(\nu)}$, $U_{\mathrm{PMNS}}$, and the two independent phase gaps from the same row set.
 
 Claim level: derivation-closure target. This is not a corpus claim that $(f,f,f)$ already explains PMNS data. It is a high-value equation-level benchmark because it tests exactly the structure the equal-frequency idea needs: one hidden shared clock plus residual splittings.
 
@@ -3205,7 +3205,7 @@ Context:
 - The current high-value bridge is:
   `Noether braid closure -> (xi, Gamma_N, chi_sea, rho_NS) -> g_eff -> (H_eff, z, D(z), P(k,z))`.
 - The collapse-scale compression bridge is now first-class. Use `reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md#collapse-scale-derivation-expansion-target` to flesh out Chandrasekhar support scaling, TOV pressure-gravity comparison, material Noether braid scale compression, compact-region energy/reaction ledgers, and the shared $\mathcal{S}_{\mathrm{mat}}\to\mathcal{S}_{\mathrm{metric}}$ projection from one retained carrier.
-- Stable Noether braid three-binary branch search uses role-assigned $I:M:O$ triples after generic binary labels are mapped. Active families include $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$. Treat these as search coordinates and consume the fail-closed solver-facing `equationBearing` residual payload before ranking them.
+- Stable Noether braid branch search uses role-assigned $I:M:O$ triples after generic binary labels are mapped. Active families include $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$. Treat these as search coordinates and consume the fail-closed solver-facing `equationBearing` residual payload before ranking them.
 - The immediate objective is not broad prose. It is one bidirectional closure packet per equation group: established equation, $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery map, inverse clues from the established formula back into native variables, assumptions, missing derivation, first proof/simulation step, failure mode, and promotion targets.
 - Multiple agents may be running at the same time. Treat the assignment list as a concurrency boundary: each worker owns only its assigned equation IDs unless the coordinator explicitly reassigns scope.
 

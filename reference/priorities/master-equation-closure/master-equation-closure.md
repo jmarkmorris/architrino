@@ -856,7 +856,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 ## Lorentz And GR Bridge Program
 
 - Treat the Lorentz / GR bridge as a two-stage theorem program:
-  1. prove that moving Noether braid three-binary branches in the Noether sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning;
+  1. prove that moving Noether braid branches in the Noether sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning;
   2. coarse-grain the same causal medium into a constitutive response that yields $g_{\mu\nu}^{\mathrm{eff}}$, weak-field PPN closure, and suppressed preferred-frame leakage.
 - Keep the two stages independent in proof order. The moving-assembly extraction uses the delayed root equations, branch admissibility, hierarchy averaging, and clock/ruler observables; weak-field PPN supplies downstream tests of the dressed medium response, not a prerequisite for extracting the homogeneous moving-assembly laws.
 - Close $d\tau/dt = F(v,\rho,\Phi)$ and the substrate-to-metric functional.
@@ -1205,7 +1205,7 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 3. Controlled kinetic or coarse-grained equation from the master law.
 4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of axial-layer details.
 5. Effective magnetic and Lorentz-force emergence from assemblies.
-6. Full attractor landscape for binaries and Noether braid three-binary branches.
+6. Full attractor landscape for binaries and Noether braid branches.
 7. Quantum closure from the master equation.
 
 ## Related Priorities

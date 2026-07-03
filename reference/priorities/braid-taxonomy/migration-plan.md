@@ -79,7 +79,7 @@ The taxonomy chapter should define the Noether braid architecture by independent
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Three-binary branch record | Whether three angular-momentum rows are retained | Noether braid three-binary chart, planar lower-rank chart |
+| Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
 | Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
 | Speed hierarchy | Relation of layer speeds to $c_f$ | sub-field, hinge, self-hit, nested `I:M:O` |
@@ -98,11 +98,11 @@ Use these replacement directions for reader-facing prose and priority workstream
 | --- | --- |
 | `Tri-Binary Configuration Space` | `Noether Braid Configuration Space` |
 | `tri-binary configuration space` | `Noether braid configuration space` |
-| `tri-binary branch` | `Noether braid three-binary branch` |
-| `tri-binary chart` | `Noether braid three-binary chart` |
-| `tri-binary lock` | `Noether braid three-binary lock` |
-| `tri-binary candidate` | `Noether braid three-binary candidate` |
-| `tri-binary minimality` | `Noether braid three-binary minimality` |
+| `tri-binary branch` | `rank-three Noether braid branch` |
+| `tri-binary chart` | `rank-three Noether braid chart` |
+| `tri-binary lock` | `Noether braid lock` |
+| `tri-binary candidate` | `Noether braid candidate` |
+| `tri-binary minimality` | `rank-three Noether braid minimality` |
 
 Do not replace these mechanically inside formulas, script identifiers, generated artifacts, archived legacy source summaries, or large proof-packet corpora where a separate focused pass is more appropriate. Inspect each hit in context. The default should be whole-repo terminology consistency unless a specific artifact has a reason to preserve the old wording.
 

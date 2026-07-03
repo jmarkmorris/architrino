@@ -26,7 +26,7 @@ No score changes.
 | Distinct support | `theta_gamma_packet` remains photon support, not the action-period carrier. |
 | Exact first blocker | `missing_accepted_retained_orbit_reduction_row` |
 | Shared photon-support blocker | `missing_accepted_theta_gamma_packet` |
-| Smallest accepted evidence object | One source-backed retained equal-frequency Noether braid three-binary branch with integer winding plateau, same-branch four-readout coincidence, and positive Floquet margin. |
+| Smallest accepted evidence object | One source-backed retained equal-frequency Noether braid branch with integer winding plateau, same-branch four-readout coincidence, and positive Floquet margin. |
 | Accepted-evidence condition | Accepted retained rows, durable source paths, no `attempt` row identities, no carrier split, and no hidden retune. |
 
 ## Smallest Accepted-Object Contract

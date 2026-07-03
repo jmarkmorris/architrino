@@ -79,8 +79,8 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
-- Output: the Noether braid three-binary becomes the proposed stable matter unit.
-- Proof burden: prove the slow-fast Noether braid three-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
+- Output: the Noether braid becomes the proposed stable matter unit.
+- Proof burden: prove the slow-fast Noether braid minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -362,7 +362,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 5. Photon gate C, vertices and transitions.
 6. Moving Noether braid deformation map with the $d_2=s_2=-1/2$ first coefficient test.
 7. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
-8. Slow-fast Noether braid three-binary minimality theorem, with universality only after admitted matter branches share the three-role law.
+8. Slow-fast Noether braid minimality theorem, with universality only after admitted matter branches share the three-role law.
 9. Momentum skew with Noether sea dressing tensor.
 10. Effective metric and Cartan connection reconstruction.
 11. Equivalence and weak-field GR matching.
@@ -378,7 +378,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Floquet stability functional | create task | `master-equation-closure`, `quantum-closure`, `simulations` |
 | $A_0$ reduced branch certificate | route as the first finite three-binary test case for Floquet and closure-graph diagnostics | `mass-map`, `simulations`, `master-equation-closure` |
 | Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
-| Slow-fast Noether braid three-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
+| Slow-fast Noether braid minimality theorem | create task | `mass-map`, `master-equation-closure` |
 | Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |
 | Moving Noether braid deformation map | create task | `master-equation-closure`, `simulations` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |

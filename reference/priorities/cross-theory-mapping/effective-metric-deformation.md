@@ -4,7 +4,7 @@ Status note: this source packet is a candidate deformation map, not a completed 
 
 ## Motivation
 
-In this candidate map, a Noether braid (three-binary) is modeled as occupying a physical exclusion volume that may deform from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). The assembly may also change size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, are proposed inputs to the local Noether sea state from which the effective metric experienced by propagating signals and assembly-based observers would have to be extracted.
+In this candidate map, a rank-three Noether braid is modeled as occupying a physical exclusion volume that may deform from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). The assembly may also change size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, are proposed inputs to the local Noether sea state from which the effective metric experienced by propagating signals and assembly-based observers would have to be extracted.
 
 This section surveys the standard GR constructions where ellipsoidal geometry plays a structural role, identifies what is absent from GR that the architrino framework supplies, and develops the two-parameter effective metric mapping in detail.
 

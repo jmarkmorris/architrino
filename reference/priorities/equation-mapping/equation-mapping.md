@@ -27,7 +27,7 @@ $$
 
 Here $\xi=R_{\parallel}/R_{\perp}$ is the Noether braid envelope shape ratio, $\Gamma_N$ is the Noether sea braid cadence-stretch diagnostic, $\chi_{\text{sea}}$ is the Noether sea delay factor, and $\rho_{\text{NS}}$ is the physical Noether braid density.
 
-The equation map now also feeds the stable Noether braid three-binary configuration search through [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md). Candidate frequency families are search coordinates, not acceptance criteria. A retained candidate should be judged by the same root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residual rows. Role-assigned frequency triples use $I:M:O$; raw generator labels remain generic until the solver supplies a nested-role map.
+The equation map now also feeds the stable Noether braid configuration search through [Equation-Map Bearing On Braid Configuration Search](../braid-retained-branch-closure/equation-map-bearing-on-braid-configuration-search.md). Candidate frequency families are search coordinates, not acceptance criteria. A retained candidate should be judged by the same root, geometry/energy, phase-operator, event-ledger, wake/recoil, stability, and observation residual rows. Role-assigned frequency triples use $I:M:O$; raw generator labels remain generic until the solver supplies a nested-role map.
 
 ## Objective
 

@@ -101,7 +101,7 @@ r_1:r_2:r_3
 $$
 when the same angular-frequency convention is used. Thus an equal-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the source trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
 
-This insight changes how the current candidates should be read. Dyadic locks, middle-hinge offsets, and equal-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid three-binary architecture. The equal-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
+This insight changes how the current candidates should be read. Dyadic locks, middle-hinge offsets, and equal-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid architecture. The equal-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
 
 The milestone is therefore both terminological and mathematical. `Noether braid` gives the six-body retained branch a name that matches the topology the proof program needs, while the generalized Noether braid configuration space prevents the notation from prejudging the solution. The next honest work is systematic search: scan broad $B_1:B_2:B_3$ configurations, preserve $S_3$ repeats, identify stable retained branches in a sea of like assemblies, compare their energy differentials, and then test where accessory architrinos can attach.
 
@@ -138,7 +138,7 @@ This milestone matters because it changes app computation from local demonstrati
 
 The benchmark side also became more disciplined. The widened emission-shell v0 stress envelope preserved oracle equality under larger replay pressure and introduced a threshold check that is not merely wall-clock timing. The result is developer-test readiness, not default replacement. In notebook terms, the accomplishment is the discipline: centralize the geometry solver, measure the bridge under stress, and keep opt-in strategies opt-in until breadth and parity evidence justify promotion.
 
-## 2026-06-20: Noether Braid Three-Binary Middle-Hinge Candidate Narrowing
+## 2026-06-20: Noether Braid Middle-Hinge Candidate Narrowing
 
 Relevant files:
 

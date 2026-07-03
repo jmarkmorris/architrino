@@ -235,7 +235,7 @@ If the overlap preimage is absent or inconsistent, the run is a split-domain or 
 
 ### Candidate Equation Form
 
-For a retained Noether braid three-binary candidate $\mathfrak a$ generated from a branch state $B_{3B}(q,v)$, route equation-map pressure into the branch-selection law through
+For a retained Noether braid candidate $\mathfrak a$ generated from a branch state $B_{3B}(q,v)$, route equation-map pressure into the branch-selection law through
 
 $$
 B_{3B}(q,v)
@@ -279,11 +279,11 @@ The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=
 
 ### Architectural Clarification
 
-This component keeps the solver general. The frequency family is an input coordinate; the architecture remains the velocity-deforming Noether braid three-binary branch state with effective lever arms, phase offsets, branch angular momenta, wake rows, principal-direction rows, and coupling rows. Flattened circular rows are projection views of that object, not the model itself.
+This component keeps the solver general. The frequency family is an input coordinate; the architecture remains the velocity-deforming Noether braid branch state with effective lever arms, phase offsets, branch angular momenta, wake rows, principal-direction rows, and coupling rows. Flattened circular rows are projection views of that object, not the model itself.
 
 ### Proof Or Simulation Burden
 
-The first executable hook is now an `equationBearing` payload on each Noether braid three-binary candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields fail closed unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
+The first executable hook is now an `equationBearing` payload on each Noether braid candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields fail closed unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
 
 ## Common Component 1: Same-Record / No-Hidden-Retune Residual
 
@@ -617,7 +617,7 @@ while still rejecting the all-zero residual case $\bar H_X=0$ when measured beat
 
 ### Equations It Connects
 
-- `EQ-16A`: equal-frequency Noether braid three-binary candidate, neutrino oscillation phase gaps, and PMNS readout.
+- `EQ-16A`: equal-frequency Noether braid candidate, neutrino oscillation phase gaps, and PMNS readout.
 - `EQ-08` and `EQ-17`: clock/cadence extraction and endpoint redshift.
 - `EQ-12` and `EQ-26`: photon frequency, atomic transition rates, and local clock/rate conversion.
 - `EQ-14` and `EQ-15`: record-facing phase evolution and spinor/ordered-frame rows when observer wave equations are used as downstream charts.

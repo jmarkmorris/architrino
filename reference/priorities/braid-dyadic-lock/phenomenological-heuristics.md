@@ -124,7 +124,7 @@ The strongest particle, strong-force, vacuum-pairing, black-hole-core, and toy-c
 
 ---
 
-The next subsection frames the Noether braid three-binary assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
+The next subsection frames the Noether braid assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
 
 ---
 
@@ -144,7 +144,7 @@ In the architrino architecture, they are proposed to be topologically homologous
 **The Isomorphism:**
 Let $\mathcal{M}$ be the manifold of a Three-Binary.
 *   **The Particle (Fermion):** A three-binary where the Inner Binary dominates energy dynamics (highest action-share branch in the self-hit regime), stabilized by self-hit.
-*   **The Black Hole:** A macroscopic aggregate of Noether braid three-binary branches where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. This is only a provenance analogy until same-source roots and ledger closure are certified.
+*   **The Black Hole:** A macroscopic aggregate of Noether braid branches where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. This is only a provenance analogy until same-source roots and ledger closure are certified.
 
 **The Map:**
 1.  **Inner Binary (self-hit-capable interior branch):** Corresponds to the **Singularity/Interior**. Super-field-speed history is a candidate marker, not an admission rule.

@@ -27,7 +27,7 @@ Each entry records a different kind of structure. Mixing the entries creates a c
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Three-binary branch record | Whether three angular-momentum rows are retained | Noether braid three-binary chart, planar lower-rank chart |
+| Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
 | Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
 | Speed hierarchy | Relation of layer speeds to $c_f$ | sub-field, hinge, self-hit, nested `I:M:O` |
@@ -88,7 +88,7 @@ D_{\mathrm{plane}}
 \ne 0.
 $$
 
-A planar lower-rank chart may still be dynamically meaningful, but it is not a promoted Noether braid three-binary chart until the three-row frame condition and its conditioning floor are supplied on the same retained record.
+A planar lower-rank chart may still be dynamically meaningful, but it is not a promoted rank-three Noether braid chart until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
 ## Polarity Support
 
@@ -160,7 +160,7 @@ The explored Noether braid configurations should be read as combinations of the 
 | neutral braid | Base inventory only. | Broad class before shell support or binary rows are certified. |
 | shell braid | Base inventory plus controlled radial support band. | Support geometry claim requiring radial rows. |
 | nested shell braid | Shell support plus ordered radial support bands. | Support geometry used by nested-shell dynamics, not proof of exact binaries by itself. |
-| Noether braid three-binary chart | Three retained angular-momentum rows and nondegenerate frame data. | Branch-record claim requiring $D_{\mathrm{plane}}$ and same-record ledger rows. |
+| rank-three Noether braid chart | Three retained angular-momentum rows and nondegenerate frame data. | Branch-record claim requiring $D_{\mathrm{plane}}$ and same-record ledger rows. |
 | dyadic `4:2:1` lock | Frequency family plus phase-return target. | Candidate family until the dyadic return map and stability rows close. |
 | axis-neutral support | Mixed polarity on every opposite axial pair. | Polarity-support decoration in an axial comparison chart. |
 | axis-polarized support | One positive pair, one negative pair, and one mixed pair. | Polarity-support decoration in an axial comparison chart. |

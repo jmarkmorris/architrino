@@ -154,7 +154,7 @@ $$
 
 Promotion note, 2026-05-20: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#reference-normalized-mass-ratio) now carries the reference-normalized mass-ratio invariant and its directional tensor extension. In a shared homogeneous isotropic response record, $\alpha_{\mathrm{m}}$ cancels from scalar mass ratios, so the hierarchy burden moves to $\zeta(A)E_{\text{internal}}(A)$ and its scalar exposure quotient rather than to another adjustable normalization. In anisotropic or pressure-dependent cells, the corresponding ratio uses $\hat v_a\mathsf{I}_{A}^{ab}\hat v_b$ and therefore keeps trace-free exposure and trace-free medium response visible.
 
-Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed Noether braid three-binary root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
+Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed Noether braid root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
 
 ### Receiver-Normal Constitutive Exposure Row
 
@@ -370,8 +370,8 @@ the static intake precheck passes.
 | Medium-response probe | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration/gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after closure, stability, energy, and shielding pass, with retained response-direction accounting for trace-free scalar-mass visibility. |
 | Mass-trace composition proof chain | [Mass-Trace Composition Proof Chain](mass-trace-composition-proof-chain.md) | Proof-synthesis packet that composes exposed-source descent, inertial-response trace, symmetric response, pressure response, composed trace quotient descent, response-direction projection, and packing-headroom limits into one mass-trace formula. |
 | Critical transport packet | [Condensed Matter and Medium Transport](condensed-matter-medium-transport.md) | Threshold gate separating reversible medium-dressed inertial response from dissipative transport, action shedding, radiation, or branch transition. |
-| Proof synthesis | [Braid](../braid-retained-branch-closure/braid-retained-branch-closure.md) | Active-development migration bridge from the Noether braid three-binary model to rest mass, inertia, proper time, photon behavior, and effective geometry. |
-| Proof-control ledger | [Nested Shell Braid Dependency Map](../braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast Noether braid three-binary minimality, and metric closure. |
+| Proof synthesis | [Braid](../braid-retained-branch-closure/braid-retained-branch-closure.md) | Active-development migration bridge from the Noether braid model to rest mass, inertia, proper time, photon behavior, and effective geometry. |
+| Proof-control ledger | [Nested Shell Braid Dependency Map](../braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md) | Open theorem burdens and deployment handoff routes, especially shielding, momentum skew, slow-fast Noether braid minimality, and metric closure. |
 | Quantitative mass workstream | This document | Control surface for the first derived mass map, shielding extraction, baseline electron-mass target, and hierarchy checks. |
 
 ## Mass Claim Maturity Buckets
@@ -385,11 +385,11 @@ the static intake precheck passes.
 
 ### Roadmap
 
-- Derive $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$ from a closed Noether braid three-binary root ledger rather than using it as a heuristic.
+- Derive $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$ from a closed Noether braid root ledger rather than using it as a heuristic.
 - Generalize $\zeta(A)$ into a sector exposure/quotient theorem that states $\mathcal{E}_S(A)=Q_S[\Pi_S\mathcal{L}_A]$ before weak, color, photon, or vector-corridor visibility is promoted.
 - Derive the first-order momentum skew that makes trapped internal energy behave as inertial mass under acceleration.
 - Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
-- Derive the slow-fast Noether braid three-binary minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
+- Derive the slow-fast Noether braid minimality theorem needed before claiming that three nested binaries are the universal stable matter unit.
 - Derive the $W/Z$ corridor mass scale as a localized recoupling and medium-response cost, distinct from both stable matter rest mass and photon masslessness.
 - Derive the scalar breathing-mode mass and detector-facing rate response as a downstream Higgs benchmark, including ATLAS mass, signal strength, channel-rate compatibility, and excluded-scalar-window pressure, without using those observables as inputs to the $A_0$ branch or shielding extraction.
 
@@ -419,7 +419,7 @@ the static intake precheck passes.
 
 The first mass-side calculation should not begin with a particle label. It should begin with the simplest stable Noether braid attractor family that can emit the data needed for a mass calculation.
 
-Define $A_0$ as a neutral, rest-branch Noether braid three-binary in a weak homogeneous Noether sea cell. The family contains three nested pro/anti binaries:
+Define $A_0$ as a neutral, rest-branch Noether braid in a weak homogeneous Noether sea cell. The family contains three nested pro/anti binaries:
 
 | Layer | Role | Baseline branch |
 | --- | --- | --- |
@@ -523,7 +523,7 @@ is the rest-frame gauge anchor; after symmetry modes are removed, an accepted re
 
 ### Multi-Scale Branch Search
 
-The reduced $A_0$ scan should not treat the attractor as three independent copies of the same circular two-body solution. Circular or elliptic carriers can be useful coordinate charts for extracting $R_\ell$, $\omega_\ell$, $\mathbf{n}_\ell$, handedness, and phase, but the accepted object is a coupled multi-scale Noether braid three-binary lock.
+The reduced $A_0$ scan should not treat the attractor as three independent copies of the same circular two-body solution. Circular or elliptic carriers can be useful coordinate charts for extracting $R_\ell$, $\omega_\ell$, $\mathbf{n}_\ell$, handedness, and phase, but the accepted object is a coupled multi-scale Noether braid lock.
 
 Let $s_\ell$ denote the characteristic member speed of layer $\ell$ relative to $\mathbf{C}_\ell$; for a symmetric binary $s_\ell = \|\mathbf{u}_\ell\|/2$. The speed ordering to test is:
 

@@ -25,7 +25,7 @@ The 2026-06-21 foundation and dynamics updates do not restart this H39/H38
 path. They reinforce the pause decision. The new non-degeneracy, branch-fold,
 joint path-history, and phase-bundle language makes the missing object more
 specific: a future H39 provider schema cannot be aggregate-only if it is meant
-to feed an assembly-response or Noether braid three-binary branch chart. Before aggregate $P$
+to feed an assembly-response or Noether braid branch chart. Before aggregate $P$
 is formed, the provider row must preserve same-domain branch identity, root
 stratum, branch-Jacobian or fold status, signed root-degree contribution,
 projection or pushforward weights, and any assembly-level framing, linking, or

@@ -107,7 +107,7 @@ No score changes follow from this pass. `EQ-12A` remains at `2`.
 The first blocker remains accepted retained evidence, but the interpretation changes:
 
 - the constant-delay checker is a scaffold and falsifier;
-- the positive route is a symmetry-stabilized equal-frequency Noether braid three-binary branch;
+- the positive route is a symmetry-stabilized equal-frequency Noether braid branch;
 - score movement requires solver-generated plateau evidence, four-readout coincidence, and positive Floquet margin on the same retained branch.
 
 ## Promotion Classification
@@ -116,4 +116,4 @@ Classification: `priority-only`.
 
 Promote now: no.
 
-Defer with blocker: promotion waits for either the scalar counterexample result or a retained locked Noether braid three-binary branch whose winding, action readouts, and Floquet margin are produced from one same branch record.
+Defer with blocker: promotion waits for either the scalar counterexample result or a retained locked Noether braid branch whose winding, action readouts, and Floquet margin are produced from one same branch record.
