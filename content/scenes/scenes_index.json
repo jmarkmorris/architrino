@@ -1899,6 +1899,11 @@
       "id": "validation_action_energy__well_posedness_regularization",
       "name": "Well-Posedness and Regularization",
       "path": "content/scenes/validation/well_posedness_regularization.json"
+    },
+    {
+      "id": "archie__presentations",
+      "name": "Presentations",
+      "path": "content/scenes/archie/presentations.json"
     }
   ]
 }

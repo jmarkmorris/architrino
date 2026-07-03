@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 585,
-      "edges": 1345,
-      "scenes": 380,
+      "nodes": 587,
+      "edges": 1347,
+      "scenes": 381,
       "markdownIndexes": 0,
       "markdownDocs": 192,
       "runtimeEdges": 476,
@@ -2429,6 +2429,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__presentations",
+      "name": "Presentations",
+      "path": "content/scenes/archie/presentations.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3940,6 +3946,15 @@
       "name": "Photon and Polarization Visualization App",
       "path": "content/scenes/archie/photon.json",
       "searchTarget": "content/scenes/archie/photon.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/presentations.json",
+      "nodeType": "scene",
+      "id": "archie__presentations",
+      "name": "Presentations",
+      "path": "content/scenes/archie/presentations.json",
+      "searchTarget": "content/scenes/archie/presentations.json",
       "implicit": false
     },
     {
@@ -8731,6 +8746,15 @@
       "implicit": false
     },
     {
+      "nodeId": "asset:content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
+      "name": "Npqg Fundamentals Paths",
+      "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
+      "searchTarget": "content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
+      "implicit": false
+    },
+    {
       "nodeId": "asset:content/generated/pdf/textbook/review-copies/architrino-textbook.pdf",
       "nodeType": "asset",
       "id": "content/generated/pdf/textbook/review-copies/architrino-textbook.pdf",
@@ -9176,18 +9200,25 @@
       "to": "scene:content/scenes/archie/legal_terms.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/people.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/presentations.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[2]"
@@ -9197,21 +9228,21 @@
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/values.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -18172,6 +18203,13 @@
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
       "field": "elementLegend:route"
+    },
+    {
+      "from": "scene:content/scenes/archie/presentations.json",
+      "to": "asset:content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/presentations.json",
+      "field": "npqg_fundamentals_paths.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",

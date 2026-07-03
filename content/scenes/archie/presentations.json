@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__presentations",
+    "title": "Presentations",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "layout": {
+      "type": "rings"
+    },
+    "wrapLabels": true,
+    "textbookToc": {
+      "hideChapterLabels": true
+    }
+  },
+  "objects": [
+    {
+      "id": "npqg_fundamentals_paths",
+      "title": "Architrino Paths and Causal Wakes",
+      "radius": 1.8,
+      "color": "#6a3c8f",
+      "labelTitle": "Paths and Causal Wakes",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "pdf",
+        "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf"
+      },
+      "view": {
+        "openMode": "new-tab"
+      }
+    }
+  ]
+}
