@@ -60,7 +60,8 @@ This document distinguishes three audience scopes:
 
 - Do not manually edit generated artifacts unless the generator is missing, stale, or broken and the manual edit is explicitly called out.
 - During ordinary edit batches, edit canonical source files first and run generator `--check` commands when validation is needed. Do not run generator `--write` commands after every small code, prose, or priority edit.
-- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, a required `--check` reports generated drift, the issue requires refreshed generated output, or the work is in the final branch/PR process described in [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md).
+- Run generator `--write` commands only when the operator/developer explicitly requests regeneration, explicitly asks to fix generated drift, or the work is in the final branch/PR process described in [reference/op/codex-pr-branch.md](reference/op/codex-pr-branch.md).
+- Outside an explicit regeneration/fix-drift request or the final branch/PR process, if a generator `--check` reports generated drift, report the drift and the exact `--write` command needed instead of running it.
 - If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
 
 ### Current Core Theory Focus
