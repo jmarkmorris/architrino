@@ -108,6 +108,8 @@ Do not replace these mechanically inside formulas, script identifiers, generated
 
 ## Phase 6: Link And Generated Artifact Handling
 
+Status: implemented 2026-07-03 for authored and priority link validation, source scene label cleanup, source index refresh, scene graph outputs, textbook TOC, and textbook reading-copy outputs. The remaining audit hits are intentional technical notation, script/schema identifiers, migration-history rows, archived source-mining summaries, dormant legacy notes, or the large shell-braid proof-packet corpus reserved for a separate focused pass.
+
 - Update authored relative links in `content/markdown/aaa/` and priority links in `reference/priorities/`.
 - Update source scene JSON and scene index membership through the source files first.
 - Regenerate `content/markdown/markdown_index.json` and `content/scenes/scenes_index.json` with `node scripts/validate-content.mjs --write`.

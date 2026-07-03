@@ -1,6 +1,6 @@
 # Spinor Holonomy Return Table Packet
 
-This proof packet supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md), especially the `spinor_closure` and `component_resolved_causal_writhe_bridge` tasks. It does not edit or canonize AAA prose. Its purpose is to make the first ordered-frame holonomy test executable on one stable separated-scale Noether braid branch.
+This proof packet supports [Angular Momentum and Spin Closure](priorities.md), especially the `spinor_closure` and `component_resolved_causal_writhe_bridge` tasks. It does not edit or canonize AAA prose. Its purpose is to make the first ordered-frame holonomy test executable on one stable separated-scale Noether braid branch.
 
 Claim level: provisional proof packet. A passing table would establish a first branch-local holonomy gate only. It would not by itself prove spin-$\tfrac{1}{2}$ behavior for every fermion-sector branch, recover measurement statistics, or close spin-statistics.
 

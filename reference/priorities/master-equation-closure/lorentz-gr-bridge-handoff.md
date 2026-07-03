@@ -4,7 +4,7 @@ Claim level: non-promotional dependency packet. This file prepares the Lorentz/G
 
 Source anchors inspected for this handoff:
 
-- [master-equation-closure.md](master-equation-closure.md)
+- [priorities.md](priorities.md)
 - [lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [emergent-metric.md](../../../content/markdown/aaa/spacetime/emergent-metric.md)
 - [proper-time-and-time-dilation.md](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)

@@ -1,7 +1,7 @@
 # Neutral Braid Finite-Mode Search
 
 Promotion status: `priority-only`. This packet closes the priority-specification gap for
-`neutral_braid_finite_mode_search` in [Braid](../braid-retained-branch-closure.md). It defines the first
+`neutral_braid_finite_mode_search` in [Braid](../priorities.md). It defines the first
 executable finite-mode search target for a free-support neutral braid with hollow
 support, bounded speed factors, and all-pairs delayed force rows.
 

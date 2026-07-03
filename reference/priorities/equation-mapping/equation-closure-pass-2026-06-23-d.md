@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Status: `complete`
 - Mode: `team-agent`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Score column updated: none
 - Claim level: score-neutral residual refinements and executable reducer targets
 

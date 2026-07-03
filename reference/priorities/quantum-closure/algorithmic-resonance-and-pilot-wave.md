@@ -1,6 +1,6 @@
 # Algorithmic Resonance and Pilot-Wave Closure
 
-This detailed priority file supports [Quantum Closure](quantum-closure.md). It covers [Algorithmic Resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) and [Pilot-Wave Character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+This detailed priority file supports [Quantum Closure](priorities.md). It covers [Algorithmic Resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) and [Pilot-Wave Character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
 ## Core Opportunity
 

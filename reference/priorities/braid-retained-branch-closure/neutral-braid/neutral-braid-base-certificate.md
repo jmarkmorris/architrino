@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet defines the
 `neutral_braid_base_certificate` proof object requested in
-[Braid](../braid-retained-branch-closure.md) and refines the general scaffold in
+[Braid](../priorities.md) and refines the general scaffold in
 [Neutral Braid Model](neutral-braid-model.md). It does not retain a branch,
 does not authorize migration into `content/markdown/aaa`, and does not promote
 any observer export.

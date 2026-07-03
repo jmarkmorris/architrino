@@ -1,6 +1,6 @@
 # Braid Partition and Spinor Closure
 
-This detailed priority file supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md). It preserves the Noether braid partition theorem target, solved minimal transition, ordered Noether braid frame, spinor proof obligations, and component-resolved causal-writhe hypothesis.
+This detailed priority file supports [Angular Momentum and Spin Closure](priorities.md). It preserves the Noether braid partition theorem target, solved minimal transition, ordered Noether braid frame, spinor proof obligations, and component-resolved causal-writhe hypothesis.
 
 ## Result 2026-05-12: Three-Binary Partition Theorem Target
 

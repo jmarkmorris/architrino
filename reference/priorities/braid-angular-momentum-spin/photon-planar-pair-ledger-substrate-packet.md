@@ -1,6 +1,6 @@
 # Photon Planar-Pair Ledger Substrate Packet
 
-Status. Priority proof packet for `photon_planar_pair_transverse_ledger` in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md). This packet replaces the ideal transverse input used by [ideal-analyzer-and-sg-residual-instance.md](ideal-analyzer-and-sg-residual-instance.md) with a substrate contract for the coaxial contra-rotating pro/anti planar pair. It does not edit reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
+Status. Priority proof packet for `photon_planar_pair_transverse_ledger` in [priorities.md](priorities.md). This packet replaces the ideal transverse input used by [ideal-analyzer-and-sg-residual-instance.md](ideal-analyzer-and-sg-residual-instance.md) with a substrate contract for the coaxial contra-rotating pro/anti planar pair. It does not edit reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 Claim level. Defer with blocker. The packet defines the exact ledger rows that a Gate A-admissible photon branch must supply before Gate B can claim transverse support, helicity $\pm1$, no physical free longitudinal mode, and analyzer handoff from the planar-pair substrate. It does not populate those rows from a simulation or branch certificate.
 

@@ -18,6 +18,7 @@ Use `dormant-deferred/aaa-journey/aaa-journey.md` for priority-stage reconstruct
 
 The current preferred style for live priority docs is:
 
+- name the main live tracker `priorities.md` in each active priority workstream directory;
 - keep priorities concise and code-verified;
 - use `Current` plus `Objective` rather than long migration diaries;
 - keep readable architecture notes, equation explanations, comparison matrices, conceptual maps, provisional insights, and draft corpus-promotable text in the sibling `brainstorming.md` file by default;

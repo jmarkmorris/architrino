@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `draft`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Claim level: just-in-time invariant-cell coframe-certificate review packet
 - Promotion status: priority-only

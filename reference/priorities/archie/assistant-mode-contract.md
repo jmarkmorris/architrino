@@ -6,7 +6,7 @@
 - Status: `active-baseline`
 - Claim level: `priority-only`
 - Owner: `Archie`
-- Parent priority: [archie.md](archie.md)
+- Parent priority: [priorities.md](priorities.md)
 - Current implementation status: contract only; no runtime answer generation is implemented here.
 
 ## Purpose

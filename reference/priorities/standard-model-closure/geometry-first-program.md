@@ -1,6 +1,6 @@
 # Standard Model Geometry-First Program
 
-This detailed priority file supports [Standard Model Closure](standard-model-closure.md). It is developer-facing source material for promotion into deployed $\mathbb{A}\mathbb{A}\mathbb{A}$ documents, not a second canonical textbook chapter.
+This detailed priority file supports [Standard Model Closure](priorities.md). It is developer-facing source material for promotion into deployed $\mathbb{A}\mathbb{A}\mathbb{A}$ documents, not a second canonical textbook chapter.
 
 The file gathers the geometry-first closure program for quark masses, CKM / PMNS mixing, confinement energetics, weak `V-A` chirality, and weak-corridor provenance. The main workstream file keeps rank, status, and queue control.
 

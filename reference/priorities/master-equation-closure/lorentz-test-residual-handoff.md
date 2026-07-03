@@ -20,7 +20,7 @@ The handoff is accepted as a contract only if it prevents three common failures:
 
 | Source | Signal retained for this packet |
 | --- | --- |
-| [master-equation-closure](master-equation-closure.md) | The Lorentz/GR bridge is two-stage: first moving-assembly contraction and clock retuning, then coarse-grained medium response and weak-field PPN closure. The existing control row already names RMS, PPN, and SME-style exports. |
+| [master-equation-closure](priorities.md) | The Lorentz/GR bridge is two-stage: first moving-assembly contraction and clock retuning, then coarse-grained medium response and weak-field PPN closure. The existing control row already names RMS, PPN, and SME-style exports. |
 | [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS rows separate Michelson-Morley, Kennedy-Thorndike, and Ives-Stilwell residuals, so two-way isotropy cannot hide clock/ruler coefficient splits. |
 | [closure-intersection-ledger](../validation-gates/closure-intersection-ledger.md) | Gravity closure requires one Noether sea response map for clock, ruler, effective signal-speed, weak-field metric, PPN, and preferred-frame rows. |
 | [gravitational-redshift-clock-tests](../cross-theory-mapping/gravitational-redshift-clock-tests.md) | Precision clock comparisons use the dressed observer speed $c_0=c_{\text{eff}}(\infty)$ unless a primitive branch calculation proves a special identification with $c_f$. |

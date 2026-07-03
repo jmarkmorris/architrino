@@ -4,7 +4,7 @@ Status: `closed-app-adapter`
 
 Kind: `solver-app-adapter-closeout`
 
-Source task: `ideal_braid_adapter` in [solver.md](solver.md)
+Source task: `ideal_braid_adapter` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

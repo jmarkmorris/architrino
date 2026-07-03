@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `closure-pass`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Detail source: [Equation Mapping Detail](equation.md)
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - Assigned IDs: `EQ-12A`, `EQ-22A`, `EQ-26A`

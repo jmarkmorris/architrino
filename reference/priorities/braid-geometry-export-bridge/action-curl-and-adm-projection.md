@@ -1,6 +1,6 @@
 # Action Curl And ADM Projection
 
-Promotion status: `priority-only`. This third geometry-bridge packet joins the branch-local response object to the action-compatibility test and then states the downstream ADM/Cartan projection that may consume a closed response record. It refines the `virtual_work_curl_test` and `adm_cartan_projection` rows in [braid-geometry-export-bridge.md](braid-geometry-export-bridge.md) without editing that bucket index.
+Promotion status: `priority-only`. This third geometry-bridge packet joins the branch-local response object to the action-compatibility test and then states the downstream ADM/Cartan projection that may consume a closed response record. It refines the `virtual_work_curl_test` and `adm_cartan_projection` rows in [priorities.md](priorities.md) without editing that bucket index.
 
 The theory advance is the level separation:
 

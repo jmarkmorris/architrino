@@ -4,7 +4,7 @@ Status: `closed-design-capture`
 
 Kind: `solver-acceleration-policy`
 
-Source task: `gpu_acceleration_deferral` in [solver.md](solver.md)
+Source task: `gpu_acceleration_deferral` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

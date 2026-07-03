@@ -91,8 +91,8 @@ Each implementation step should follow the same loop:
 
 ## Related Priorities
 
-- [app-simulation](../app-simulation/app-simulation.md)
-- [app-animator](animator.md)
+- [app-simulation](../app-simulation/priorities.md)
+- [app-animator](priorities.md)
 
 ## Related AAA Notes
 

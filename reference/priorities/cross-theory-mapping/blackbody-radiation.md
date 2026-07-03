@@ -213,7 +213,7 @@ sampled across $s<c_f$, $s\approx c_f$, and $s>c_f$ when those regimes are admis
 | --- | --- | --- |
 | This file | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Make blackbody recovery a Gate C benchmark. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Use thermal occupation as a basin-measure proof target. |
-| This file | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Require CMB blackbody claims to share local radiation ledger variables. |
+| This file | [cosmology-closure](../cosmology-closure/priorities.md) | Require CMB blackbody claims to share local radiation ledger variables. |
 
 ## Failure Modes
 

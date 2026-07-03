@@ -1,6 +1,6 @@
 # Core Angular-Momentum Ledger
 
-This detailed priority file supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md). It preserves the corpus audit, delayed Noether braid angular-momentum scaffold, active-root bookkeeping, torque functional, linearized transaction ledger, and open closure targets that feed the reusable angular-momentum ledger.
+This detailed priority file supports [Angular Momentum and Spin Closure](priorities.md). It preserves the corpus audit, delayed Noether braid angular-momentum scaffold, active-root bookkeeping, torque functional, linearized transaction ledger, and open closure targets that feed the reusable angular-momentum ledger.
 
 ## Current State
 

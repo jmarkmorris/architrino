@@ -158,9 +158,9 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 
 ## Related Priorities
 
-- [app-animator](../app-animator/animator.md)
-- [app-simulation](../app-simulation/app-simulation.md)
-- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [app-animator](../app-animator/priorities.md)
+- [app-simulation](../app-simulation/priorities.md)
+- [strong-field-closure](../strong-field-closure/priorities.md)
 
 ## Related AAA Notes
 

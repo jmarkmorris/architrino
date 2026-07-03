@@ -60,9 +60,9 @@ Thus gravitational redshift is a clock-rate comparison produced by Noether sea r
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [validation-gates](../validation-gates/validation-gates.md) | Add redshift as a gravity-sector benchmark with no separate clock-only coefficient. |
-| This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Route clock retuning through assembly dynamics and Noether sea response. |
-| This file | [cosmology-closure](../cosmology-closure/cosmology-closure.md) | Reuse the clock-channel map for cosmological redshift without importing fundamental expansion of the Euclidean void. |
+| This file | [validation-gates](../validation-gates/priorities.md) | Add redshift as a gravity-sector benchmark with no separate clock-only coefficient. |
+| This file | [master-equation-closure](../master-equation-closure/priorities.md) | Route clock retuning through assembly dynamics and Noether sea response. |
+| This file | [cosmology-closure](../cosmology-closure/priorities.md) | Reuse the clock-channel map for cosmological redshift without importing fundamental expansion of the Euclidean void. |
 
 ## Failure Modes
 

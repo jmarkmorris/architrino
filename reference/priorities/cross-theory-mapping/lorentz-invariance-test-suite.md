@@ -231,9 +231,9 @@ The common-mode criterion applies across the full table. A branch that passes th
 
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
-| This file | [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md) | Make Lorentz behavior consume moving-assembly deformation and clock/ruler retuning. |
-| This file | [master-equation-closure](../master-equation-closure/master-equation-closure.md) | Tie the cancellation to causal-root and Jacobian structure rather than postulated Minkowski geometry. |
-| This file | [validation-gates](../validation-gates/validation-gates.md) | Add preferred-frame leakage as a direct gravity/relativity acceptance predicate. |
+| This file | [braid](../braid-retained-branch-closure/priorities.md) | Make Lorentz behavior consume moving-assembly deformation and clock/ruler retuning. |
+| This file | [master-equation-closure](../master-equation-closure/priorities.md) | Tie the cancellation to causal-root and Jacobian structure rather than postulated Minkowski geometry. |
+| This file | [validation-gates](../validation-gates/priorities.md) | Add preferred-frame leakage as a direct gravity/relativity acceptance predicate. |
 
 ## Failure Modes
 

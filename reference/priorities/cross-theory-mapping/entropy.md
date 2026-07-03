@@ -12,13 +12,13 @@
 ## Task Queue
 
 1. `windowed_entropy_functional` - Promote the existing coarse-graining / access-window formula into a reusable entropy closure packet. Status: `draft`. Depends on: none.
-2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/quantum-closure.md).
-3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, the RT horizon-wrapping ratio $\eta_H(A;\theta)$, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption, coefficient derivation, and thermal-limit reduction pending. Depends on: [strong-field-closure](../strong-field-closure/strong-field-closure.md), `windowed_entropy_functional`.
-4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
+2. `record_locking_entropy` - Connect measurement-record entropy locking to the same coarse-grained entropy grammar. Status: `draft`. Depends on: `windowed_entropy_functional`, [quantum-closure](../quantum-closure/priorities.md).
+3. `horizon_label_entropy` - Route black-hole entropy through the horizon-interface label ensemble, its local block entropy density, the RT horizon-wrapping ratio $\eta_H(A;\theta)$, and the Page-curve release-channel target. Status: `kernel-handoff-ready`; terminal enumerator consumption, coefficient derivation, and thermal-limit reduction pending. Depends on: [strong-field-closure](../strong-field-closure/priorities.md), `windowed_entropy_functional`.
+4. `cosmology_entropy_balance` - State when Noether sea entropy, thermalization, redshift, and CMB blackbody recovery use one shared medium-state record. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/priorities.md), [validation-gates](../validation-gates/priorities.md).
 
 ## Scope
 
-This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [strong-field-closure](../strong-field-closure/strong-field-closure.md), [quantum-closure](../quantum-closure/quantum-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), or [Radiation](../../../content/markdown/aaa/reactions/radiation.md).
+This lane is a draft mapping surface for entropy. It is not a new reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ chapter and it does not replace [strong-field-closure](../strong-field-closure/priorities.md), [quantum-closure](../quantum-closure/priorities.md), [cosmology-closure](../cosmology-closure/priorities.md), or [Radiation](../../../content/markdown/aaa/reactions/radiation.md).
 
 The purpose is to keep the current theoretical meanings of entropy intact, then identify which parts can be recovered as effective limits of assembly dynamics, Noether sea state records, event-ledger routing, and finite observer access windows.
 
@@ -265,8 +265,8 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 | Task | Primary promotion target | Promotion gate |
 | --- | --- | --- |
 | `windowed_entropy_functional` | [theory-differentials](../../../content/markdown/aaa/philosophy-history/theory-differentials.md), [observer-framework](../../../content/markdown/aaa/spacetime/observer-framework.md), and [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md) | A finite coarse-graining, access window, state measure, and boundary-flux rule are defined without treating entropy as primitive ontology. |
-| `record_locking_entropy` | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) and [quantum-closure](../quantum-closure/quantum-closure.md) | The entropy-locking diagnostic is tied to a detector-response kernel and persistence window. |
-| `horizon_label_entropy` | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [strong-field-closure](../strong-field-closure/strong-field-closure.md) | The horizon-interface label ensemble and local block coefficient are derived from admissible $\Lambda_{\text{NS}}$ states and can be compared to area scaling and Page-curve behavior. |
+| `record_locking_entropy` | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) and [quantum-closure](../quantum-closure/priorities.md) | The entropy-locking diagnostic is tied to a detector-response kernel and persistence window. |
+| `horizon_label_entropy` | [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), and [strong-field-closure](../strong-field-closure/priorities.md) | The horizon-interface label ensemble and local block coefficient are derived from admissible $\Lambda_{\text{NS}}$ states and can be compared to area scaling and Page-curve behavior. |
 | `cosmology_entropy_balance` | [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [dark-energy](../../../content/markdown/aaa/cosmology/dark-energy.md), and [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Entropy production, thermalization depth, redshift handoff, and observer temperature use one shared Noether sea state record. |
 
 ## Failure Modes
@@ -284,11 +284,11 @@ The proof burden is to derive $\mathcal{L}_{\gamma_A}^{(O)}(t)$ from native hori
 ## Related Priorities
 
 - [temperature](temperature.md)
-- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [strong-field-closure](../strong-field-closure/priorities.md)
 - [holographic-entropy-boundary-data-benchmark](../strong-field-closure/holographic-entropy-boundary-data-benchmark.md)
-- [quantum-closure](../quantum-closure/quantum-closure.md)
-- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [validation-gates](../validation-gates/validation-gates.md)
+- [quantum-closure](../quantum-closure/priorities.md)
+- [cosmology-closure](../cosmology-closure/priorities.md)
+- [validation-gates](../validation-gates/priorities.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

@@ -1,6 +1,6 @@
 # Pair-Provenance Source-Model Packet
 
-Status. Proof packet for `pair_provenance_measure` in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md). This packet is priority material only. It defines the first worked singlet-like source-model scaffold that can be consumed by [photon-measurement-bell-gate-packet.md](photon-measurement-bell-gate-packet.md) and by the quantum-closure source-measure contract in [dynamic-pair-provenance-source-measure.md](../quantum-closure/dynamic-pair-provenance-source-measure.md). It does not edit reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
+Status. Proof packet for `pair_provenance_measure` in [priorities.md](priorities.md). This packet is priority material only. It defines the first worked singlet-like source-model scaffold that can be consumed by [photon-measurement-bell-gate-packet.md](photon-measurement-bell-gate-packet.md) and by the quantum-closure source-measure contract in [dynamic-pair-provenance-source-measure.md](../quantum-closure/dynamic-pair-provenance-source-measure.md). It does not edit reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 Claim level. The packet specifies source variables, two outgoing branch ledgers, total angular-momentum balance, local Stern-Gerlach-like apparatus-response inputs, measurement-independence and no-signaling residuals, and the Bell correlation residual target. It does not claim Bell success. The source variables below are a worked scaffold until an accepted substrate branch certificate supplies the retained source, wake, phase, and apparatus data.
 

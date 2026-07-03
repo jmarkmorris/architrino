@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-07-02 Tracker Partition Cleanup
 
-The tracker previously embedded the full closure-pass chronology and a broad related-material index. That status history is now routed here while [equation-mapping.md](equation-mapping.md) keeps the compact current queue, blockers, promotion routing, failure modes, and grouped support links.
+The tracker previously embedded the full closure-pass chronology and a broad related-material index. That status history is now routed here while [priorities.md](priorities.md) keeps the compact current queue, blockers, promotion routing, failure modes, and grouped support links.
 
 #### Chronological Closure-Pass History
 
@@ -109,3 +109,11 @@ The next `EQ-21` child consumer extends the populated halo/cluster child into a 
 The accepted run reports `status=populated`, `nextBlocker=null`, `scoreDecision=no_score_increase`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `parentGrowthTransferAccepted=true`, `parentMatterPowerTransferAccepted=true`, `parentLensingTransferAccepted=true`, `parentShearRsdTransferAccepted=true`, `parentHaloClusterTransferAccepted=true`, `hiddenRetuneNumericPass=true`, `modelDerivedPass=true`, `nonlinearGridResidualPass=true`, `sampleCount=3`, and `nonlinearGridNormalizedResidual=3.0204931705456123e-16`. The attempt fixture remains blocked at `missing_accepted_nonlinear_transfer_child`, and the priority-source negative control remains blocked with `sourceEvidenceFailureCount=20`, proving the child cannot be populated from priority prose.
 
 Focused validation passed with `node --test tests/eq21-nonlinear-transfer-child-residual.test.js` for 17 tests. No score changes follow from this child. The next accepted artifact is score-review observational transfer, CMB transfer/blackbody/acoustic child physics, BBN source-window physics, or predictive galaxy-response law from the accepted shared-observation evidence and populated `EQ-21` child chain.
+
+### 2026-07-03 EQ-32 Galaxy-Response Child
+
+The next `EQ-32` child consumer turns the accepted `RAR` projection and accepted `delta_a_star` output projection into a score-neutral predictive galaxy-response law without replacing the accepted shared-observation parent. The executable checker is `scripts/equation-mapping/eq32-galaxy-response-child-residual.mjs`, with accepted input `scripts/equation-mapping/eq32-galaxy-response-child-accepted.v1.json` and accepted evidence `scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json`. The helper `scripts/equation-mapping/eq32-galaxy-response-evidence.mjs` requires accepted child authorization, score-neutral status, accepted shared-observation parent identity, accepted output-projection identity, same inherited RAR shared keys, a computed RAR/BTFR/high-acceleration response model, zero hidden retune, and rejected priority/source-attempt paths.
+
+The accepted run reports `status=populated`, `nextBlocker=null`, `scoreDecision=no_score_increase`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `parentOutputProjectionAccepted=true`, `deltaAStarAccepted=true`, `hiddenRetuneNumericPass=true`, `rarGridResidualPass=true`, `btfrLowAccelerationPass=true`, `highAccelerationRecoveryPass=true`, `lensingDynamicsSplitPass=true`, `sampleCount=3`, `rarGridNormalizedResidual=0`, `btfrLowAccelerationResidual=0.00010000500012496971`, and `highAccelerationRecoveryResidual=0.000999001995013904`. The attempt fixture remains blocked at `missing_accepted_galaxy_response_child`, and the priority-source negative control remains blocked with a coordination-source rejection, proving the child cannot be populated from priority prose.
+
+Focused validation passed with `node --test tests/eq32-galaxy-response-child-residual.test.js` for 9 tests. No score changes follow from this child. The next accepted artifact is score-review observational transfer, CMB transfer/blackbody/acoustic child physics, or BBN source-window physics from the accepted shared-observation evidence and populated `EQ-21`/`EQ-32` child chain.

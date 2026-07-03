@@ -1,0 +1,283 @@
+{
+  "schema": "aaa-equation-map-eq32-galaxy-response-evidence/v1",
+  "evidenceStatus": "accepted",
+  "authorization": {
+    "acceptedGalaxyResponseChild": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "scoreDecision": "no_score_increase",
+  "claimLevel": "accepted score-neutral EQ-32 predictive galaxy-response evidence computing RAR/BTFR, lensing consistency, and high-acceleration recovery from the accepted shared-observation parent and delta_a_star output projection",
+  "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json",
+  "window": {
+    "galaxyResponseChildId": "eq32-galaxy-response-child-provider-backed-0001",
+    "thetaObsId": "theta_obs_provider_backed_no_retune_0001",
+    "providerWindowId": "theta-sea-density-compression-provider-0001",
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "outputProjection": {
+    "path": "scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json"
+  },
+  "rows": {
+    "galaxy_response_child": {
+      "status": "accepted",
+      "rowId": "eq32-galaxy-response-child-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "rar_response_row": {
+      "status": "accepted",
+      "rowId": "eq32-rar-response-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "btfr_response_row": {
+      "status": "accepted",
+      "rowId": "eq32-btfr-response-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "lensing_consistency_row": {
+      "status": "accepted",
+      "rowId": "eq32-lensing-consistency-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "high_acceleration_recovery_row": {
+      "status": "accepted",
+      "rowId": "eq32-high-acceleration-recovery-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "local_gravity_constraint_row": {
+      "status": "accepted",
+      "rowId": "eq32-local-gravity-constraint-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "delta_a_star_parent_row": {
+      "status": "accepted",
+      "rowId": "eq32-delta-a-star-parent-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "galaxy_response_grid": {
+      "status": "accepted",
+      "rowId": "eq32-galaxy-response-grid-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "eq32-galaxy-response-source-provenance-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "eq32-galaxy-response-no-hidden-retune-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    }
+  },
+  "sharedKeys": [
+    {
+      "key": "rho_NS",
+      "status": "accepted",
+      "value": 1,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "n",
+      "status": "accepted",
+      "value": 1,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "chi_sea",
+      "status": "accepted",
+      "value": 1.002,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "Gamma_N",
+      "status": "accepted",
+      "value": 1.0000010100010202,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "u_sea",
+      "status": "accepted",
+      "value": 0,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "M_sea_ab",
+      "status": "accepted",
+      "value": 1,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "rho_bar",
+      "status": "accepted",
+      "value": 0.05,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "rho_A",
+      "status": "accepted",
+      "value": 0.25,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "eta",
+      "status": "accepted",
+      "value": 6.1e-10,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "N_eff",
+      "status": "accepted",
+      "value": 3.046,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "Y_p",
+      "status": "accepted",
+      "value": 0.245,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "H_eff",
+      "status": "accepted",
+      "value": 3.424706202494149,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    {
+      "key": "a_eff",
+      "status": "accepted",
+      "value": 1,
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    }
+  ],
+  "model": {
+    "galaxyResponse": {
+      "status": "accepted",
+      "sourceFamily": "score-neutral predictive galaxy-response law",
+      "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json"
+    },
+    "formula": {
+      "g_response": "g_bar * (0.5 + sqrt(0.25 + a_star / g_bar))",
+      "a_star": "accepted delta_a_star output projection from theta_sea_rho_NS provider",
+      "BTFR_low_acceleration": "g_response^2 / (g_bar * a_star) -> 1",
+      "high_acceleration": "g_response / g_bar -> 1",
+      "lensing": "same g_response readout; no private lensing coefficient"
+    },
+    "a_star": 0.0012,
+    "G_eff": 1,
+    "samples": [
+      {
+        "sampleId": "GR_low_g1e-8",
+        "regime": "low_acceleration",
+        "g_bar": 1.2e-11
+      },
+      {
+        "sampleId": "GR_transition_g1",
+        "regime": "transition",
+        "g_bar": 0.0012
+      },
+      {
+        "sampleId": "GR_high_g1000",
+        "regime": "high_acceleration",
+        "g_bar": 1.2
+      }
+    ],
+    "derived": {
+      "response_law": "g_response = g_bar * (0.5 + sqrt(0.25 + a_star / g_bar))",
+      "a_star": 0.0012,
+      "G_eff": 1,
+      "sample_count": 3,
+      "rar_grid_normalized_residual": 0,
+      "btfr_low_acceleration_residual": 0.00010000500012486303,
+      "high_acceleration_recovery_residual": 0.000999001995013904,
+      "lensing_dynamics_split": 0,
+      "local_gravity_residual": 0.000999001995013904,
+      "samples": [
+        {
+          "sampleId": "GR_low_g1e-8",
+          "regime": "low_acceleration",
+          "g_bar": 1.2e-11,
+          "y": 1.0000000000000002e-8,
+          "response_factor": 10000.500012499999,
+          "g_response": 1.2000600015e-7,
+          "g_lensing": 1.2000600015e-7,
+          "btfr_ratio": 1.0001000050001249,
+          "btfr_residual": 0.00010000500012486303,
+          "high_acceleration_residual": 9999.5000125,
+          "rar_normalized_residual": 0,
+          "lensing_dynamics_split": 0
+        },
+        {
+          "sampleId": "GR_transition_g1",
+          "regime": "transition",
+          "g_bar": 0.0012,
+          "y": 1,
+          "response_factor": 1.618033988749895,
+          "g_response": 0.0019416407864998738,
+          "g_lensing": 0.0019416407864998738,
+          "btfr_ratio": 2.6180339887498953,
+          "btfr_residual": 1.6180339887498953,
+          "high_acceleration_residual": 0.6180339887498949,
+          "rar_normalized_residual": 0,
+          "lensing_dynamics_split": 0
+        },
+        {
+          "sampleId": "GR_high_g1000",
+          "regime": "high_acceleration",
+          "g_bar": 1.2,
+          "y": 1000,
+          "response_factor": 1.000999001995014,
+          "g_response": 1.2011988023940166,
+          "g_lensing": 1.2011988023940166,
+          "btfr_ratio": 1001.9990019950138,
+          "btfr_residual": 1000.9990019950138,
+          "high_acceleration_residual": 0.000999001995013904,
+          "rar_normalized_residual": 0,
+          "lensing_dynamics_split": 0
+        }
+      ]
+    }
+  },
+  "residualComponents": {
+    "rar_grid_normalized": 0,
+    "btfr_low_acceleration": 0.00010000500012486303,
+    "high_acceleration_recovery": 0.000999001995013904,
+    "lensing_dynamics_split": 0,
+    "S_retune": 0
+  },
+  "tolerances": {
+    "residual": 1e-12,
+    "btfr": 0.001,
+    "highAcceleration": 0.002,
+    "lensing": 1e-12,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  }
+}

@@ -4,7 +4,7 @@ Status: `closed-first-core-smoke`
 
 Kind: `solver-core-closeout`
 
-Source task: `minimal_causal_root_core` in [solver.md](solver.md)
+Source task: `minimal_causal_root_core` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

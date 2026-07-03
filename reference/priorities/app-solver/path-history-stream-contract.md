@@ -4,7 +4,7 @@ Status: `closed-schema-fixture-benchmark-baseline`
 
 Kind: `solver-storage-contract`
 
-Source task: `path_history_stream_contract` in [solver.md](solver.md)
+Source task: `path_history_stream_contract` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

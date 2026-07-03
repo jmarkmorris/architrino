@@ -1,6 +1,6 @@
 # Braid Proof Program And Decision Gate
 
-Terminology status: `quarantined-priority-history`. This gate map is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [Braid](../braid-retained-branch-closure.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
+Terminology status: `quarantined-priority-history`. This gate map is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [Braid](../priorities.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
 
 Promotion status: `priority-only`. This document coordinates the shell braid mathematics developed in this directory. It does not authorize migration into `content/markdown/aaa`. Retained-branch and architecture claims remain blocked until a live ledger and the required certificate rows close on one convention through the decision gate in [Braid Architecture](braid-architecture.md).
 

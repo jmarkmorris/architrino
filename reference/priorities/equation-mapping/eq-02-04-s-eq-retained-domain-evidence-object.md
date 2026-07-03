@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `draft`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
@@ -48,7 +48,7 @@ Here $B_N\subset\Sigma_N$ must be a positive-width invariant cell in the truncat
 | B | Retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ density-compression coefficient bundle with $\delta c_X^2$ and stress/strain output first. | Accepted provider-backed density and output-projection route; predictive downstream child physics open. | Already consumed by downstream Noether sea and shared-observation routes; still lower priority than the retained-domain carrier for this packet. |
 | C | Native Compton/recoil event packet on `eventId: "e_gamma_e_0"`. | `missing_accepted_photon_gate_A_input_output` | Defer. Strong second target; it should follow Bucket A unless the solver lane produces native event rows first. |
 | D | Finite-window statistical carrier $\mathcal C_{\mathrm{stat}}^{W,T}$ for probability, entropy, scattering, and resonance rows. | `missing_accepted_W` | Defer. Safe as a packet, but it still needs a retained window and refinement/cocycle source evidence. |
-| E | Shared observation record $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$. | Accepted score-neutral parent; predictive child physics open. | Consumed after Bucket B populated. The next work is predictive growth, CMB, BBN, or galaxy-response child physics without creating a private observation ledger. |
+| E | Shared observation record $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$. | Accepted score-neutral parent with populated growth, matter-power, lensing, shear/RSD, halo/cluster, nonlinear, and galaxy-response children. | Consumed after Bucket B populated. The next work is score-review transfer, CMB transfer/blackbody/acoustic, or BBN source-window physics without creating a private observation ledger. |
 
 No scores change. This packet still does not supply the Bucket A retained-domain evidence object; later Bucket B and Bucket E artifacts are downstream score-neutral successes, not score movement for this packet.
 
@@ -236,7 +236,7 @@ The 2026-06-26 overnight team-agent run found no accepted retained evidence obje
 | C | Native Compton/recoil event ledger on `eventId: "e_gamma_e_0"` with accepted Gate A photon input/output rows. | `missing_accepted_photon_gate_A_input_output` | Defer as second target. The comparison replay closes numerically, but Gate A remains attempt-level and source-backed photon packet rows are not accepted. |
 | B | Retained Noether sea density-compression bundle with accepted `rho_NS`, `n`, `u_sea`, `e_sea`, `theta_sea`, `f_N`, support, agreement, and zero-retune rows. | Accepted provider-backed density and output-projection route; predictive downstream child physics open. | Consumed by downstream `EQ-24`, `EQ-20`, `EQ-11`, `theta_W`, `delta_a_star`, and shared-observation routes without changing this packet's Bucket A priority. |
 | D | Source-backed finite-window statistical carrier family headed by accepted `W`. | `missing_accepted_W`; `EQ-25` also reports `missing_accepted_theta_therm` | Defer. The existing finite-window fixtures are toy or attempt carriers, even where numeric diagnostics pass. |
-| E | Shared observation record $\Theta_{\mathrm{obs}}$ with accepted projection families and shared keys. | Accepted score-neutral parent; predictive child physics open. | Consumed after Bucket B populated. The next work is predictive growth, CMB, BBN, or galaxy-response child physics without creating a private observation ledger. |
+| E | Shared observation record $\Theta_{\mathrm{obs}}$ with accepted projection families and shared keys. | Accepted score-neutral parent with populated growth, matter-power, lensing, shear/RSD, halo/cluster, nonlinear, and galaxy-response children. | Consumed after Bucket B populated. The next work is score-review transfer, CMB transfer/blackbody/acoustic, or BBN source-window physics without creating a private observation ledger. |
 
 The implemented artifact in this pass is this precise closure packet, not a score row. The first accepted-retained-evidence implementation remains the Bucket A source report described below: one durable source-backed positive-width invariant-cell evidence object whose accepted row bindings satisfy the executable producer, same-branch checker, and retained-record evaluator on the same carrier.
 

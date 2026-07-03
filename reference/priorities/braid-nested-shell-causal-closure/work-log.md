@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-07-02 A0 Fail-Closed And Field-Speed Boundary Notes
 
-Migrated from `braid-nested-shell-causal-closure.md` so the tracker can retain compact current state while preserving detailed failed-row diagnostics and the 2026-05-20 field-speed boundary note.
+Migrated from `priorities.md` so the tracker can retain compact current state while preserving detailed failed-row diagnostics and the 2026-05-20 field-speed boundary note.
 
 Current fail-closed note: the compact $A_0$ no-omitted-mode scalar Fourier correction has status `failed_direct_one_period_residuals`. It removes bulk center drift and improves some one-period residual scales, but it does not close the branch. The diagnostic row reports
 $$

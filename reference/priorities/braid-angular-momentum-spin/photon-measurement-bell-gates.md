@@ -1,6 +1,6 @@
 # Photon, Measurement, and Bell Gates
 
-This detailed priority file supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md). It preserves downstream consumer routing, photon Gate B dependencies, measurement-response focus areas, Bell placement, and near-term bridge work.
+This detailed priority file supports [Angular Momentum and Spin Closure](priorities.md). It preserves downstream consumer routing, photon Gate B dependencies, measurement-response focus areas, Bell placement, and near-term bridge work.
 
 ## Downstream Consumers Audit 2026-05-12
 

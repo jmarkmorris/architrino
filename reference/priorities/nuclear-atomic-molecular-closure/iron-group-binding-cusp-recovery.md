@@ -4,7 +4,7 @@
 
 - Kind: reduced recovery packet.
 - Status: candidate; not reader-facing canon.
-- Supports: [Nuclear Atomic Molecular Closure](nuclear-atomic-molecular-closure.md), [Nuclear Binding Closure](nuclear-binding-closure.md), and [Nuclear Atomic Molecular Brainstorming](brainstorming.md#worked-recovery-target-iron-group-binding-cusp).
+- Supports: [Nuclear Atomic Molecular Closure](priorities.md), [Nuclear Binding Closure](nuclear-binding-closure.md), and [Nuclear Atomic Molecular Brainstorming](brainstorming.md#worked-recovery-target-iron-group-binding-cusp).
 - Primary corpus destination: [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) after the recovery target has a derived or constrained model that passes the fail-closed rows below.
 
 ## Claim Level

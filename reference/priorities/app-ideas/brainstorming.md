@@ -7,25 +7,25 @@ The idea bank favors app concepts that make the theory's native mechanisms visib
 ## Routing Rules
 
 - Keep loose app concepts here until they have a concrete promotion target, claim level, and owner.
-- Promote material into [app-ideas.md](app-ideas.md) only when it becomes a selected app packet, implementation task, or document/app destination.
+- Promote material into [priorities.md](priorities.md) only when it becomes a selected app packet, implementation task, or document/app destination.
 - Keep app concepts candidate-level unless the underlying corpus already supplies a derivation.
 - Identify the existing or new document or app each concept may support when that route is known.
 
 ## App Ideas
 
-### 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/causal-delay-feedback-app.md)
+### 1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md)
 
 - Status: `promoted`.
 - The dedicated app packet owns the description, visualization, controls, diagnostics, and first-build requirements.
 - Summary: one main canvas shows a moving source, Virtual Observer, retained causal-delay paths, arriving pulses, and a contribution stack so users can see how active path-history changes the present Virtual Observer readout.
 
-### 2. [Assembly Configuration Explorer](../app-assembly-explorer/braid-assembly-explorer.md)
+### 2. [Assembly Configuration Explorer](../app-assembly-explorer/priorities.md)
 
 - Status: `promoted`.
 - The dedicated app packet owns the unquotiented three-binary dataset contract, comparison diagnostics, and solver-output adapter boundary.
 - Summary: inspect candidate rows from the unordered Noether braid configuration space, preserve $S_3$-equivalent repeats, compare speed regimes and energy differentials, and prepare stable-sector and accessory-capture views without replacing solver authority.
 
-### 3. [Equation Mapping App](../app-equation-mapping/equation-mapping-app.md)
+### 3. [Equation Mapping App](../app-equation-mapping/priorities.md)
 
 - Status: `promoted`.
 - The dedicated app packet owns the static equation layer, explanatory overlay comments, formula-section pointer lines, collapsible subject index, search menu, home control, and background settings.
@@ -369,7 +369,7 @@ Requirements:
 
 ## Immediate Next Build Candidates
 
-1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/causal-delay-feedback-app.md) - Best teaching bridge from causal-delay intuition into active path-history mechanics.
+1. [Causal Delay Feedback Depth](../app-causal-delay-feedback/priorities.md) - Best teaching bridge from causal-delay intuition into active path-history mechanics.
 2. `path_history_ledger` - Best reusable substrate for later delayed-hit, solver, photon, and self-hit apps.
 3. `self_hit_near_cf` - Best single-page correction for the common misconception that self-hit is decided by speed alone.
 4. `branch_geometry_explorer` - Best bridge from visual teaching into solver diagnostics.

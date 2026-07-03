@@ -17,7 +17,7 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ### Noether Sea And Noether Braid Equation Inventory
 
-Migrated from [equation-mapping.md](equation-mapping.md) on 2026-07-02 as part of the priority tracker / brainstorming partition. This is idea and promotion-routing material, not accepted equation-map score movement.
+Migrated from [priorities.md](priorities.md) on 2026-07-02 as part of the priority tracker / brainstorming partition. This is idea and promotion-routing material, not accepted equation-map score movement.
 
 The operator asked for the physics and cosmology equations that should tie directly to the Noether sea and the Noether braid. The immediate context was that special relativity, the energy-momentum equation, and the geometry of the changing ellipsoid had already been considered.
 

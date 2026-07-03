@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `draft`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
 - Claim level: team-agent row classification, closure packets, reusable building-block inventory, and score-neutral blocker merge

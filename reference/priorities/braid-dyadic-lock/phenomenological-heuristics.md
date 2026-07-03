@@ -186,9 +186,9 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 
 ## Related Priorities
 
-- [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md)
+- [dyadic-lock](../braid-dyadic-lock/priorities.md)
 - [strong-field brainstorming](../strong-field-closure/brainstorming.md)
-- [cosmology-closure](../cosmology-closure/cosmology-closure.md)
+- [cosmology-closure](../cosmology-closure/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

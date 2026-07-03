@@ -9,7 +9,7 @@
   "diagnostic_sources": [
     "scripts/nested-shell-braid/fixtures/a0-tier0-branch-search-minimal.json#candidates[0]",
     "reference/priorities/braid-mass-response-map/a0-reduced-branch-certificate.md#tier-1-diagnostic-state-adaptive-direct-root-horizon-ladder",
-    "reference/priorities/braid-mass-response-map/braid-mass-response-map.md#immediate-work-packet"
+    "reference/priorities/braid-mass-response-map/priorities.md#immediate-work-packet"
   ],
   "branch_source_frontier": {
     "source_status": "tier0_continuation_ready_not_accepted_history",

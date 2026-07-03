@@ -12,7 +12,7 @@ const priorityDoc = readFileSync(
   "utf8"
 );
 const solverDoc = readFileSync(
-  new URL("../reference/priorities/app-solver/solver.md", import.meta.url),
+  new URL("../reference/priorities/app-solver/priorities.md", import.meta.url),
   "utf8"
 );
 

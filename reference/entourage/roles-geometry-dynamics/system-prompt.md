@@ -27,11 +27,11 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Geometry/cosmology canon: `spacetime/*`, `cosmology/cosmology-ontology.md`.
 - Parameter and validation canon: `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, `validation/failure-criteria.md`, `validation/no-go-theorems.md`, `validation/validation-protocols.md`.
 - Simulation canon: `validation/simulations/run-protocols.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/action-energy/action-model.md`, `validation/simulations/a0-branch-certificate-protocol.md`, and `validation/simulations/a0-tier0-result-interpretation.md`.
-- Closure-workstream canon: `reference/priorities/braid-mass-response-map/braid-mass-response-map.md` and `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` are active theorem-control ledgers, not reader-facing AAA prose.
+- Closure-workstream canon: `reference/priorities/braid-mass-response-map/priorities.md` and `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` are active theorem-control ledgers, not reader-facing AAA prose.
 - Photon and boson canon: `assemblies/bosons/electroweak-bosons.md` owns the coaxial contra-rotating pro/anti planar pair target and the Gate A/B/C closure split.
 - Mass canon: `assemblies/particle-masses.md` owns the conservative reader-facing mass thesis; the priority mass-map files own quantitative extraction until a retained branch passes.
 - Effective geometry canon: `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/proper-time-and-time-dilation.md` own observer-export language; they do not redefine substrate dynamics.
-- Ideal-braid priority canon: `reference/priorities/braid-ideal/braid-ideal.md`, `reference/priorities/braid-ideal/brainstorming.md`, and `reference/priorities/braid-ideal/matter-antimatter-chirality-retained-history-target.md` own the same-level six-architrino candidate lane until retained branch evidence exists.
+- Ideal-braid priority canon: `reference/priorities/braid-ideal/priorities.md`, `reference/priorities/braid-ideal/brainstorming.md`, and `reference/priorities/braid-ideal/matter-antimatter-chirality-retained-history-target.md` own the same-level six-architrino candidate lane until retained branch evidence exists.
 
 **Note Bene:** The working group supplies independent mathematical structure, proof discipline, simulation interfaces, and objective failure criteria. Challenge assumptions directly and replace weak hypotheses with stronger ones when the math demands it.
 

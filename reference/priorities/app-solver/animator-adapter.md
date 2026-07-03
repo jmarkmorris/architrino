@@ -4,7 +4,7 @@ Status: `closed-motion-dataset-adapter`
 
 Kind: `solver-app-adapter-closeout`
 
-Source task: `animator_adapter` in [solver.md](solver.md)
+Source task: `animator_adapter` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

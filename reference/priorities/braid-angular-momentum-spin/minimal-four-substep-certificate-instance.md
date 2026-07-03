@@ -1,6 +1,6 @@
 # Minimal Four-Substep Certificate Instance
 
-Status. Proof packet for the reduced `worked_three_layer_noether_transition` row in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md). This file instantiates the solved positive outer-coupled four-substep branch as far as the present symbolic scaffold allows. It is priority material, not AAA prose, and it does not prove the general Noether braid partition theorem.
+Status. Proof packet for the reduced `worked_three_layer_noether_transition` row in [priorities.md](priorities.md). This file instantiates the solved positive outer-coupled four-substep branch as far as the present symbolic scaffold allows. It is priority material, not AAA prose, and it does not prove the general Noether braid partition theorem.
 
 Claim level. The scalar partition and separated-scale mechanical retunes below are exact inside the declared reduced chart. Root replayability, phase lock, normalized tail-wake pullback, torque consistency, and stability remain branch-chart data requirements. The packet therefore separates rows that pass by assumption from rows that require retained branch-chart evaluation.
 

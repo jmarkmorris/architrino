@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `priority-only`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Prior pass: [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
 - Claim level: second-pass common-architecture note for reusable equation components
@@ -1121,7 +1121,7 @@ The projection/refinement residual and finite-window statistical pushforward sho
 ## Recommended Coordinator Actions
 
 1. Treat `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20` as common-architecture rows before assigning them as isolated packets. `EQ-01` is the root dependency, `EQ-05` is the event-ledger equation, `EQ-11` is a metric/constitutive projection consumer, and `EQ-20` is a pressure/constitutive projection consumer.
-2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [equation-mapping.md](equation-mapping.md) while other agents are changing them.
+2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [priorities.md](priorities.md) while other agents are changing them.
 3. Instantiate the retained event or positive-width domain carrier $\mathfrak D_R$ first on $S_{\mathrm{eq}}$, $\mathsf e_{\gamma e}^{0}$, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$; the first successful instance should show which row binding is easiest to certify.
 4. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already declares clock, envelope, mass-shell, rest-invariance, and Noether sea response projection slots.
 5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score-change review.

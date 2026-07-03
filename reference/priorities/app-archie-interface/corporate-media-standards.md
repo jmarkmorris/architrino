@@ -5,7 +5,7 @@
 - Kind: `priority-policy`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](app-archie-interface.md)
+- Parent priority: [Archie Interface App](priorities.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)

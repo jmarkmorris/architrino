@@ -7,7 +7,7 @@
 - Scope: Photon, Ideal Braid, Animator
 - Status: `closed-inventory-capture`
 - Source inspection date: 2026-06-20
-- Edit boundary: created as source inspection; current notes also record the subsequent Animator delayed-hit descriptor migration. [solver.md](solver.md) records the inventory closeout.
+- Edit boundary: created as source inspection; current notes also record the subsequent Animator delayed-hit descriptor migration. [priorities.md](priorities.md) records the inventory closeout.
 
 ## Purpose
 
@@ -134,7 +134,7 @@ Centralization target: solver-owned observer-field sample buffers should expose 
 ## Completion Judgment
 
 `geometry_centralization_inventory` is complete as an inventory task and closed
-in [solver.md](solver.md). The duplicated and app-local solver geometry in
+in [priorities.md](priorities.md). The duplicated and app-local solver geometry in
 Photon, Ideal Braid, and Animator is identified, classified, and sequenced for
 safe removal. Animator's local delayed-hit shell/path solver has been replaced
 by solver-owned delayed-hit rows fed by stream-backed descriptors, receiver

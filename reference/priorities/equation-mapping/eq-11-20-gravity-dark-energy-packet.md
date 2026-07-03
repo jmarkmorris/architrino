@@ -7,7 +7,7 @@
 - Worker mode: `second-round priority packet`
 - Owned IDs: `EQ-11`, `EQ-20`
 - Owned output file: `reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md`
-- Source priority files: [Equation Mapping Internal Priority](equation-mapping.md), [Equation Mapping Detail](equation.md)
+- Source priority files: [Equation Mapping Internal Priority](priorities.md), [Equation Mapping Detail](equation.md)
 - Related packets: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md), [EQ-06, EQ-24, And EQ-25 Continuum, Medium, And Thermodynamic Closure Packet](eq-06-24-25-continuum-medium-thermo-packet.md)
 - Scope: priority-only; no reader-facing corpus edits in this packet
 - Claim level: internal/candidate

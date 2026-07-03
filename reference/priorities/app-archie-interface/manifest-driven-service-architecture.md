@@ -5,7 +5,7 @@
 - Kind: `priority-architecture`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](app-archie-interface.md)
+- Parent priority: [Archie Interface App](priorities.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)

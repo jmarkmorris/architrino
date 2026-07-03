@@ -1,6 +1,6 @@
 # Transfer-Operator and Basin-Measure Theorem Packet
 
-This packet defines the shared measure-theoretic grammar consumed by [Quantum Closure](quantum-closure.md), [Agency, Decision, and Decider Closure](agency-decision-and-decider.md), [Algorithmic Resonance and Pilot-Wave Closure](algorithmic-resonance-and-pilot-wave.md), [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md), and [Photon, Measurement, and Bell Gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md).
+This packet defines the shared measure-theoretic grammar consumed by [Quantum Closure](priorities.md), [Agency, Decision, and Decider Closure](agency-decision-and-decider.md), [Algorithmic Resonance and Pilot-Wave Closure](algorithmic-resonance-and-pilot-wave.md), [dyadic-lock](../braid-dyadic-lock/priorities.md), and [Photon, Measurement, and Bell Gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md).
 
 ## State Space And Coarse-Graining
 
@@ -458,10 +458,10 @@ This normal form does not prove the dyadic lock; it states the minimum basin-mea
 
 | Consumer packet | Local responsibility | Shared theorem burden consumed here |
 | --- | --- | --- |
-| [quantum-closure.md](quantum-closure.md) | Born-rule closure, detector kernels, pair provenance, Bell gate, and quantum rewrite handoff. | Owns the parent queue; consumes this packet for `transfer_operator` and `invariant_measure`. |
+| [priorities.md](priorities.md) | Born-rule closure, detector kernels, pair provenance, Bell gate, and quantum rewrite handoff. | Owns the parent queue; consumes this packet for `transfer_operator` and `invariant_measure`. |
 | [agency-decision-and-decider.md](agency-decision-and-decider.md) | Minimal bias-setting complex, work ledger, hold time, and measurable basin-weight shifts. | Uses this packet to treat agency as controlled movement of basin boundaries or measures under a shared $\mu_*$. |
 | [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | Pilot-wave-like guidance, basin amplitude, feedback terms, and register coherence-depth bounds. | Uses this packet to avoid a second pilot-wave ontology and to make algorithmic resonance a quantitative stress test. |
-| [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md) | Finite-$\eta$ reduced phase-amplitude map and stable `1:2` / `1:2:4` fixed-point diagnostics. | Provides a concrete reduced-map laboratory for transfer-operator stability, invariant or metastable measures, and basin gaps. |
+| [dyadic-lock](../braid-dyadic-lock/priorities.md) | Finite-$\eta$ reduced phase-amplitude map and stable `1:2` / `1:2:4` fixed-point diagnostics. | Provides a concrete reduced-map laboratory for transfer-operator stability, invariant or metastable measures, and basin gaps. |
 | [photon-measurement-bell-gates.md](../braid-angular-momentum-spin/photon-measurement-bell-gates.md) | Stern-Gerlach-like response, photon analyzer kernels, record-window quotients, and Bell placement. | Uses this packet for invariant analyzer measures, detector kernels, and basin-weight calculations after angular-momentum prerequisites exist. |
 
 ## Promotion Gate
@@ -496,13 +496,13 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 
 ## Related Priorities
 
-- [quantum-closure](quantum-closure.md)
+- [quantum-closure](priorities.md)
 - [agency-decision-and-decider](agency-decision-and-decider.md)
 - [algorithmic-resonance-and-pilot-wave](algorithmic-resonance-and-pilot-wave.md)
-- [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md)
-- [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
-- [app-simulation](../app-simulation/app-simulation.md)
-- [validation-gates](../validation-gates/validation-gates.md)
+- [dyadic-lock](../braid-dyadic-lock/priorities.md)
+- [angular-momentum-spin](../braid-angular-momentum-spin/priorities.md)
+- [app-simulation](../app-simulation/priorities.md)
+- [validation-gates](../validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

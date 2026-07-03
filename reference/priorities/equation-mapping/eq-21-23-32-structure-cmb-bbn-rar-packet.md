@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-detail`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Detail source: [Equation Mapping Detail](equation.md)
 - Assigned IDs: `EQ-21`, `EQ-22`, `EQ-23`, `EQ-32`
 - Status: `worker-packet`
@@ -12,7 +12,7 @@
 
 ## Local Source Basis
 
-- [Cosmology Transfer-Function Closure](../cosmology-closure/cosmology-closure.md) supplies the shared comparison record
+- [Cosmology Transfer-Function Closure](../cosmology-closure/priorities.md) supplies the shared comparison record
   $\theta_{\mathrm{sea}}=(\theta_{\mathrm{clock}},\theta_{\mathrm{prop}},\theta_{\mathrm{therm}},\theta_{\mathrm{ac}},\theta_{\mathrm{growth}},\theta_{\mathrm{frame}})$ and the residual rows for CMB, BAO, supernova/$H_0$, weak lensing/RSD, and kSZ force-law profiles.
 - [Closure Intersection Ledger](../validation-gates/closure-intersection-ledger.md) supplies the cross-sector guardrail: BBN photon loading, CMB thermalization, redshift handoff, frame correction, and structure growth must use compatible $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance rows.
 - [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md), and [Dark Matter](../../../content/markdown/aaa/cosmology/dark-matter.md) already contain the needed observer-level residual shapes. This packet keeps them internal to the equation-mapping priority and does not edit reader-facing files.
@@ -80,9 +80,9 @@ The last term is the split-state witness. It is zero only when growth, CMB, BBN,
 - Current score snapshot: `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32` are each recommended at score `3` in this packet. This pass does not update [equation.md](equation.md).
 - Closure driver: one retained observation-family record must bind growth, CMB, BBN, and low-acceleration galaxy projections through shared Noether sea, assembly, source, photon, baryon, neutrino, medium, and event-ledger rows.
 - Accepted route status: the refined [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md) now consumes accepted shared-observation evidence, the accepted `theta_cos` handoff, and accepted `delta_a_star` output projection. It reports `status=populated`, `nextBlocker=null`, and no hidden shared-key retune across BBN, CMB, growth, and RAR rows.
-- Remaining blocker boundary: no score change follows from the shared-observation carrier. Predictive growth transfer, CMB transfer, blackbody/acoustic rows, BBN source-window physics, and the galaxy-response law remain open.
-- Smallest accepted evidence object: [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json), consumed by [shared-observation-provider-backed-consumer-accepted.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json).
-- Smallest next artifact: one predictive child consumer that consumes the accepted shared-observation evidence without replacing it.
+- Remaining blocker boundary: no score change follows from the shared-observation carrier or its score-neutral growth, matter-power, lensing, shear/RSD, halo/cluster, nonlinear, and galaxy-response children. CMB transfer, blackbody/acoustic rows, BBN source-window physics, and score-review observational transfer remain open.
+- Smallest accepted evidence object: [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json), consumed by [shared-observation-provider-backed-consumer-accepted.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json), plus [eq32-galaxy-response-child-evidence.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json) for the accepted score-neutral galaxy-response child.
+- Smallest next artifact: one score-review observational transfer, CMB transfer/blackbody/acoustic, or BBN source-window child that consumes the accepted shared-observation evidence without replacing it.
 - Runnable handoff: use the accepted input plus the attempt and priority-source guards with [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs); the accepted route populates, while the attempt and priority-source negative control still block at `missing_accepted_theta_obs`.
 
 ```sh

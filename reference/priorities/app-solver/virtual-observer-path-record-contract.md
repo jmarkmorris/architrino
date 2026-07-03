@@ -4,7 +4,7 @@ Status: `closed-design-capture`
 
 Kind: `solver-contract`
 
-Source task: `virtual_observer_path_record_contract` in [solver.md](solver.md)
+Source task: `virtual_observer_path_record_contract` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

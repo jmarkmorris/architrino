@@ -36,7 +36,7 @@ This case can sharpen internal-state rotation and weak-sector exposure. The stan
 | --- | --- | --- |
 | This file | [standard-model-closure/weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md) | Use neutrino oscillation as a PMNS and weak-projection closure target. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Treat flavor outcome as detector basin projection after coherent propagation. |
-| This file | [validation-gates](../validation-gates/validation-gates.md) | Add baseline-energy and matter-effect constraints to weak/quantum intersection gates. |
+| This file | [validation-gates](../validation-gates/priorities.md) | Add baseline-energy and matter-effect constraints to weak/quantum intersection gates. |
 
 ## Failure Modes
 

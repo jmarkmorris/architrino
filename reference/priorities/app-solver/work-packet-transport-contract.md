@@ -4,7 +4,7 @@ Status: `closeout-complete`
 
 Kind: `contract-closeout`
 
-Source task: `work_packet_transport_contract` in [solver.md](solver.md)
+Source task: `work_packet_transport_contract` in [priorities.md](priorities.md)
 
 ## Purpose
 
@@ -175,10 +175,10 @@ This preserves one transport format while allowing later WebGPU, Metal, CUDA-lik
 | GPU backend | Deferred. | Keep packet fields GPU-compatible now; do not add GPU execution to the first solver core. |
 | Service backend | Deferred. | The packet header is service-portable today because it uses stable ids, byte spans, row spans, checksums, and deterministic merge keys. Service-specific handles must stay outside packet identity. |
 | Full scheduler contract | Split. | Scheduling policy belongs to threading, worker, process, service, or GPU execution plans. The packet contract only defines dispatch identity, ownership, payload references, output declarations, and merge semantics. |
-| Administrative queue update in `solver.md` | Complete. | [solver.md](solver.md) now lists `work_packet_transport_contract` under closed task artifacts and routes downstream consumers through this document. |
+| Administrative queue update in `priorities.md` | Complete. | [priorities.md](priorities.md) now lists `work_packet_transport_contract` under closed task artifacts and routes downstream consumers through this document. |
 
 ## Completion Judgment
 
-`work_packet_transport_contract` is complete as a contract artifact and closed in [solver.md](solver.md).
+`work_packet_transport_contract` is complete as a contract artifact and closed in [priorities.md](priorities.md).
 
 The live solver has packet headers, binary payload references, checksums, output layout declarations, range ownership, deterministic merge keys, worker/thread/process/service portability rules, future GPU compatibility constraints, packetized emission-shell broad-phase candidate scans, and packet-scoped exact-root refinement. The remaining work is implementation breadth: more packetized solver operations can adopt the same contract as the central solver grows, but they do not require a second transport format.

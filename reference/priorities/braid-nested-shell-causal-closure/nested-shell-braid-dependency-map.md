@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is the active-development workbench for [Nested Shell Braid Causal Closure](braid-nested-shell-causal-closure.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
+This is the active-development workbench for [Nested Shell Braid Causal Closure](priorities.md). Its job is to make the proof ladder explicit before the synthesis is promoted into deployed or textbook-facing material.
 
 The deployed dynamics baseline is [nested shell braid dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md). That chapter owns the mechanism definitions; this map owns the proof burdens that determine whether those mechanisms can carry the causal-closure synthesis.
 
@@ -390,7 +390,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Next Revision Pass
 
-The next pass over [Nested Shell Braid Causal Closure](braid-nested-shell-causal-closure.md) should check the chapter against this dependency map in order:
+The next pass over [Nested Shell Braid Causal Closure](priorities.md) should check the chapter against this dependency map in order:
 
 1. Confirm every section advances one dependency node.
 2. Move any sentence that belongs only to a proof burden into the theorem roadmap or this map.

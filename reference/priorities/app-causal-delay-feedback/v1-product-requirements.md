@@ -1,6 +1,6 @@
 # Causal Delay Feedback App V1 Product Requirements And Evidence Packet
 
-This focused sibling file preserves the detailed app requirements, accepted design decisions, solver-contract notes, browser proof artifacts, and implementation evidence that previously lived in the main tracker. The compact live queue remains in [causal-delay-feedback-app.md](causal-delay-feedback-app.md); provisional teaching ideas remain in [brainstorming.md](brainstorming.md); dated status and handoffs remain in [work-log.md](work-log.md).
+This focused sibling file preserves the detailed app requirements, accepted design decisions, solver-contract notes, browser proof artifacts, and implementation evidence that previously lived in the main tracker. The compact live queue remains in [priorities.md](priorities.md); provisional teaching ideas remain in [brainstorming.md](brainstorming.md); dated status and handoffs remain in [work-log.md](work-log.md).
 
 ## Workstream Metadata
 
@@ -153,7 +153,7 @@ For future direct editing, the canvas may show a lightweight preview path so the
 
 Contact sheet proofs may use representative mock solver-replay paths before the app has real solver integration. The proof goal is visual readability, not numerical correctness.
 
-[NPQG Fundamentals - Paths.pptx](NPQG Fundamentals - Paths.pptx) is a conceptual and geometry reference for path-history, expanding emissions, circular wake intersections, and action-at-intersection scenes. It is not the art-direction target. The contact sheet proofs should improve on the old slide aesthetic while preserving the useful causal-delay ideas.
+[NPQG Fundamentals - Paths.pptx](../../archie/presentations/NPQG Fundamentals - Paths.pptx) is a conceptual and geometry reference for path-history, expanding emissions, circular wake intersections, and action-at-intersection scenes. It is not the art-direction target. The contact sheet proofs should improve on the old slide aesthetic while preserving the useful causal-delay ideas.
 
 The legacy WordPress post [Determinism](https://architrino.wordpress.com/2022/08/21/determinism/) is a priority-only source lead for the simplest two-stage feedback explanation: one architrino's emitted causal wake reaches a later point on the partner path, changes that partner's later response, and the partner's later emitted wake reaches a later point on the first path. Use it only for replay or preset framing; do not import its NPQG free-will framing, Dirac-sphere terminology, point-charge ontology, or global indeterminism claim.
 
@@ -374,7 +374,7 @@ The settings popover should close when the user clicks outside it or selects a s
 
 ## Future iPhone App Integration
 
-The causal-delay feedback app should be designed so it can later integrate with the [iOS app](../app-ios/ios-app.md) as a post-v1 visualization.
+The causal-delay feedback app should be designed so it can later integrate with the [iOS app](../app-ios/priorities.md) as a post-v1 visualization.
 
 The iPhone/iPad version may start as an embedded web runtime if that preserves behavior fastest. A native SwiftUI/SceneKit/Canvas rewrite can follow only if the embedded route blocks quality, performance, or offline packaging.
 

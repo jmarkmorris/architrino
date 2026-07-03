@@ -4,7 +4,7 @@ Status: mined-source packet; priority-only; no corpus promotion.
 
 Date mined: June 30, 2026.
 
-Scope: CERN, ATLAS, and CMS detector, trigger, event-reconstruction, jet, missing-transverse-momentum, and uncertainty material. This packet strengthens the detector-provenance row in [Standard Model Closure](../standard-model-closure/standard-model-closure.md) without turning reconstructed objects into $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate products.
+Scope: CERN, ATLAS, and CMS detector, trigger, event-reconstruction, jet, missing-transverse-momentum, and uncertainty material. This packet strengthens the detector-provenance row in [Standard Model Closure](../standard-model-closure/priorities.md) without turning reconstructed objects into $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate products.
 
 ## Mining Result
 

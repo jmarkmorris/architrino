@@ -237,7 +237,7 @@ Do not import:
 Existing corpus homes:
 
 - [Transactional Interpretation](../../../../content/markdown/aaa/philosophy-history/theory-mapping.md#transactional-interpretation)
-- [quantum-closure](../../quantum-closure/quantum-closure.md)
+- [quantum-closure](../../quantum-closure/priorities.md)
 - [transfer-operator-basin-measure](../../quantum-closure/transfer-operator-basin-measure.md)
 - [measurement-ontology](../../../../content/markdown/aaa/quantum/measurement-ontology.md)
 - [bell-theorem](../../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
@@ -301,7 +301,7 @@ This priority tracks Ruth E. Kastner as a quantum-foundations source and compari
 
 Kastner is best known for work on the foundations of quantum mechanics, especially the Possibilist Transactional Interpretation (PTI), her extension of John G. Cramer's Transactional Interpretation of Quantum Mechanics. The useful $\mathbb{A}\mathbb{A}\mathbb{A}$ value is not to import PTI as ontology. The value is to sharpen comparison questions around source-absorber records, the measurement problem, Born-rule weights, quantum nonlocality, time-symmetric descriptions, and emergent-spacetime claims.
 
-The existing corpus already has a [Transactional Interpretation](../../../../content/markdown/aaa/philosophy-history/theory-mapping.md#transactional-interpretation) comparison entry. This priority should source-mine Kastner's PTI-specific contribution and decide whether that entry, [quantum-closure](../../quantum-closure/quantum-closure.md), or related measurement-ontology notes need a narrow update.
+The existing corpus already has a [Transactional Interpretation](../../../../content/markdown/aaa/philosophy-history/theory-mapping.md#transactional-interpretation) comparison entry. This priority should source-mine Kastner's PTI-specific contribution and decide whether that entry, [quantum-closure](../../quantum-closure/priorities.md), or related measurement-ontology notes need a narrow update.
 
 ## Task Queue
 
@@ -378,13 +378,13 @@ These themes overlap conceptually with live $\mathbb{A}\mathbb{A}\mathbb{A}$ que
 
 | Task | Source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `source_inventory` | Primary Kastner PTI sources | This priority and [source-mining](../../source-mining/source-mining.md) | Primary sources are listed with enough detail to distinguish PTI from generic Transactional Interpretation summaries. |
+| `source_inventory` | Primary Kastner PTI sources | This priority and [source-mining](../../source-mining/priorities.md) | Primary sources are listed with enough detail to distinguish PTI from generic Transactional Interpretation summaries. |
 | `pti_comparison_note` | Primary Kastner sources plus the existing theory-mapping entry | [theory-mapping.md](../../../../content/markdown/aaa/philosophy-history/theory-mapping.md#transactional-interpretation) | The comparison identifies PTI-specific claims without overwriting the broader Transactional Interpretation entry. |
-| `aaa_measurement_mapping` | PTI comparison note and [quantum-closure](../../quantum-closure/quantum-closure.md) | [quantum-summary](../../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../../content/markdown/aaa/quantum/measurement-ontology.md), and [bell-theorem](../../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) | The mapping names a concrete record-formation, Born-rule, or event-ledger question that already has an $\mathbb{A}\mathbb{A}\mathbb{A}$ consumer. |
+| `aaa_measurement_mapping` | PTI comparison note and [quantum-closure](../../quantum-closure/priorities.md) | [quantum-summary](../../../../content/markdown/aaa/quantum/quantum-summary.md), [measurement-ontology](../../../../content/markdown/aaa/quantum/measurement-ontology.md), and [bell-theorem](../../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) | The mapping names a concrete record-formation, Born-rule, or event-ledger question that already has an $\mathbb{A}\mathbb{A}\mathbb{A}$ consumer. |
 | `interpretation_comparison` | PTI, Many Worlds, Copenhagen, Pilot Wave, and $\mathbb{A}\mathbb{A}\mathbb{A}$ materials | Priority-only comparison note unless promoted later | The comparison preserves each framework's ontology, equation status, and measurement-record account without treating analogy as derivation. |
 
 ## Related Priorities
 
-- [quantum-closure](../../quantum-closure/quantum-closure.md)
-- [source-mining](../../source-mining/source-mining.md)
-- [angular-momentum-spin](../../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
+- [quantum-closure](../../quantum-closure/priorities.md)
+- [source-mining](../../source-mining/priorities.md)
+- [angular-momentum-spin](../../braid-angular-momentum-spin/priorities.md)

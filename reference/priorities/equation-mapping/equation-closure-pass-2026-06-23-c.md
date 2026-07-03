@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Status: `complete`
 - Mode: `team-agent`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Score column updated: remaining `6/23 b` cells in [Equation Mapping Detail](equation.md)
 - Claim level: priority-only closure packets, common-architecture equations, and score-pass recommendations
 

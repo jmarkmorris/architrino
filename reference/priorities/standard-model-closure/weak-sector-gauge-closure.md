@@ -1,6 +1,6 @@
 # Weak-Sector Gauge Closure
 
-This detailed priority file supports [Standard Model Closure](standard-model-closure.md). It covers [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md), and [Emergence of U(1)/SU(2)](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md).
+This detailed priority file supports [Standard Model Closure](priorities.md). It covers [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md), and [Emergence of U(1)/SU(2)](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md).
 
 ## Core Opportunity
 

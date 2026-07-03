@@ -92,7 +92,7 @@ If both margins are negative, the record windows are mutually outside $c_f$ caus
 | --- | --- | --- |
 | This file | [angular-momentum-spin/photon-measurement-bell-gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md) | Keep Bell downstream of spin/photon detector-response closure. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Make Bell a joint basin-measure and pair-provenance proof target. |
-| This file | [validation-gates](../validation-gates/validation-gates.md) | Add Bell/CHSH/Tsirelson as a replacement constraint with no-signaling. |
+| This file | [validation-gates](../validation-gates/priorities.md) | Add Bell/CHSH/Tsirelson as a replacement constraint with no-signaling. |
 
 ## Failure Modes
 

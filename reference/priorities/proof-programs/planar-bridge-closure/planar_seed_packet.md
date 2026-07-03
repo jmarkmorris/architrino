@@ -2,7 +2,7 @@
 
 ## Status
 
-This handoff is the first queued packet for [planar-bridge-closure](planar-bridge-closure.md). It prepares the reduced planar history space, rotational gauge, section transversality, and finite sector data needed by the next row, `cone_branch_regularity`.
+This handoff is the first queued packet for [planar-bridge-closure](priorities.md). It prepares the reduced planar history space, rotational gauge, section transversality, and finite sector data needed by the next row, `cone_branch_regularity`.
 
 It does not promote the planar bridge ahead of the active collinear certificate. The parent proof-program queue still gives `breather_certificate` priority over `planar_bridge`; this packet only fixes the mathematical handoff shape for use after the collinear finite-certificate gate passes, or after that gate fails with an explicit obstruction that the planar bridge is meant to resolve.
 

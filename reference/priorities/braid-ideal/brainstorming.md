@@ -1,6 +1,6 @@
 # Braid Ideal Brainstorming
 
-Status. Priority-only brainstorming packet under [braid-ideal](braid-ideal.md). This is not a theorem row, not a retained branch certificate, and not reader-facing canon.
+Status. Priority-only brainstorming packet under [braid-ideal](priorities.md). This is not a theorem row, not a retained branch certificate, and not reader-facing canon.
 
 Claim level. Speculation and derivation-closure target. The central candidate is that a Noether braid may have a same-level branch in which all six architrinos operate at basically the same branch energy/action level, with comparable relative speed magnitude and comparable distance from the dynamic center. The branch would maintain that configuration unless destructively perturbed and would exchange action/energy through $h$-scale transactions.
 

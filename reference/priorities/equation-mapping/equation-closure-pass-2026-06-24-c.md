@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `closure-pass`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Prior pass: [Equation Closure Pass 2026-06-24 B](equation-closure-pass-2026-06-24-b.md)
 - Source prompt: [henri-poincare-retained-orbit-reduction-2026-06-24.md](../../entourage/review-packets/henri-poincare-retained-orbit-reduction-2026-06-24.md)
 - Source response: [henri-poincare-retained-orbit-reduction-response-2026-06-24.md](../../entourage/review-packets/henri-poincare-retained-orbit-reduction-response-2026-06-24.md)
