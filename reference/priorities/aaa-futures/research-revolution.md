@@ -290,6 +290,8 @@ A credible transition would create both displacement and labor demand. Universit
 - departments are reorganized around recovery obligations rather than inherited subfield borders alone;
 - low-relevance research lines are sunset on a declared schedule rather than allowed to consume graduate admissions, lab space, and review authority indefinitely.
 
+The positive side of the rebuild is a possible productivity dividend. Once the shared review object is explicit, research effort can shift from diffuse narrative defense into simulation-backed recovery packets, benchmark comparisons, and failure-mode searches. Simulation competence becomes the first scalable labor market because every primitive-dynamics claim, branch chart, reaction-provenance account, and facility-triage decision needs runnable comparison against inherited benchmarks.
+
 Personnel decisions should use a functional test:
 
 - `retain`: the researcher is needed for baseline preservation, benchmark recovery, instrumentation, or skeptical review.
@@ -373,6 +375,7 @@ Collider programs should therefore receive a facility bill of materials:
 - capital and operating costs by scientific function;
 - workforce and regional economic dependencies;
 - safety, decommissioning, data-preservation, and reuse obligations;
+- lower-cost routes, such as archived data, smaller detector tests, targeted simulations, tabletop checks, or cross-domain benchmarks that could answer the same recovery or falsification question;
 - assumptions that would make the facility obsolete as a frontier-discovery instrument.
 
 The transition posture should be blunt: do not build another giant machine to protect an old narrative. If a facility cannot state which benchmark, recovery obligation, or falsification target it uniquely serves under the candidate implementation, it should not receive expansion funding. If its main value is legacy momentum, it should be sunset.
@@ -605,12 +608,18 @@ Corporate R&D is likely to enter early if the transition becomes credible, becau
 Near-term corporate opportunities:
 
 - simulation engines for path-history, retained-branch, and strong-field candidate testing;
+- domain-specific simulators for existing technologies where improved performance characteristics, reliability, efficiency, cost, signal quality, or safety depend on better low-level mechanism models;
 - reaction-provenance tools that track all primitive constituents, shielding-state changes, and detector-facing photon records through candidate events;
 - evidence and provenance systems for theory validation;
 - visualization tools for effective geometry versus underlying implementation;
 - AI-assisted proof search and evidence-mining pipelines;
 - translation software that maps nonstandard theory language into standard review obligations;
-- workforce platforms for short-cycle retraining, credential renewal, and cross-placement between university, national-lab, and corporate teams.
+- workforce platforms for short-cycle retraining, credential renewal, and cross-placement between university, national-lab, and corporate teams;
+- technology-formation programs that identify which candidate $\mathbb{A}\mathbb{A}\mathbb{A}$-enabled mechanisms could mature into products, services, and implementation platforms after validation.
+
+The first investor pull is likely talent, tooling, and technology formation, not mature reactors, materials, or other finished downstream applications. People who can translate the primitive basis into standard mathematical obligations, executable simulations, validation dashboards, and benchmark-facing software may become valuable before any application claim is validated. More importantly, teams that can establish candidate $\mathbb{A}\mathbb{A}\mathbb{A}$-enabled technology categories, then convert validated mechanisms into products and services, could become the main commercial bridge. That opportunity can accelerate proof conversion and application design, but it can also drain universities and reward overconfident promotion unless credential renewal and product investment are tied to reproducible deliverables.
+
+The work should not be imagined only as foundation-up development from primitive dynamics toward new applications. A second commercial entry point sits at the leading edge of existing technologies, where a company already knows which performance, cost, reliability, efficiency, signal-quality, or safety characteristic it wants to improve but lacks a good enough low-level model. In that setting, researchers may build many narrow simulators for particular technologies, devices, materials, detector channels, plasma regimes, manufacturing steps, or sensing problems. These niche simulators can be commercially useful as performance, cost, and failure-mode tools while remaining claim-limited: they should expose where $\mathbb{A}\mathbb{A}\mathbb{A}$-based modeling helps, where standard modeling is still sufficient, and where the candidate mechanism fails.
 
 Longer-term opportunities must remain conditional:
 
