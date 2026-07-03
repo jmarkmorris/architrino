@@ -15081,6 +15081,24 @@ Operationally, the metric background used in this equation is normally reconstru
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer. The $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
 
+##### Cosmological Scalar Comparison
+
+Quintessence is the standard scalar-field comparison for dynamical dark energy. Its useful sequence is narrow: choose a scalar amplitude $\phi$, assign a potential $V(\phi)$, let the homogeneous branch roll slowly enough that its stress-energy has $w \approx -1$, and test whether the resulting distance, CMB, lensing, and growth records outperform a pure cosmological constant. That sequence is retained as a comparison chart, not as a substrate claim.
+
+The particle-physics pressure on this chart is also useful. A dark-energy scalar with Hubble-scale mass is extraordinarily light, and generic couplings would mediate fifth forces or drift in Standard Model constants. Approximate shift symmetry,
+
+$$
+\phi \rightarrow \phi + c
+$$
+
+is the usual route to make such small masses and couplings technically natural. In pseudo-Nambu-Goldstone-boson versions, the allowed pseudoscalar coupling
+
+$$
+\phi\,\mathbf{E}\cdot\mathbf{B}
+$$
+
+can rotate the polarization angle of distant light. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a clean observational recovery target: any Noether sea scalar-response analogue that claims the same role must preserve the polarization-rotation, CMB, lensing, redshift, and growth records without importing a continuous scalar field as ontology.
+
 ##### Source Terms
 
 With a source term, the same equation can be written schematically as

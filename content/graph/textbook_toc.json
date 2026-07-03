@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1451
+      "sections": 1452
     }
   },
   "tocRoot": {
@@ -11899,6 +11899,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
                         "markdownSection": "Curved-Spacetime Equation",
                         "sectionKey": "curved spacetime equation",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Cosmological Scalar Comparison",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+                        "markdownSection": "Cosmological Scalar Comparison",
+                        "sectionKey": "cosmological scalar comparison",
                         "headingLevel": 2
                       },
                       {

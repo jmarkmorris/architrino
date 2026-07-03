@@ -67192,6 +67192,25 @@ $$
 
 The residual is not just numerical agreement with a preferred $\Lambda$. It is agreement between the claimed branch role and the data product that selected it. A constant introduced to repair a static branch cannot be reified as a medium density merely because a later accelerated-expansion fit also uses the symbol $\Lambda$.
 
+The Lemaître vacuum-energy reinterpretation adds a separate algebraic lesson. In the standard metric comparison,
+
+$$
+G_{\mu\nu}+\Lambda g_{\mu\nu}
+=
+\frac{8\pi G}{c^4}T_{\mu\nu}
+\quad\Longleftrightarrow\quad
+G_{\mu\nu}
+=
+\frac{8\pi G}{c^4}
+\left(T_{\mu\nu}+T_{\mu\nu}^{(\Lambda)}\right),
+\qquad
+T_{\mu\nu}^{(\Lambda)}
+=
+-\frac{c^4\Lambda}{8\pi G}g_{\mu\nu}
+$$
+
+Thus the geometric-$\Lambda$ and vacuum-stress readings are the same comparison model written with the term on different sides of the equation. That equivalence should be preserved in the inherited effective theory. It should not be promoted into the stronger claim that the Euclidean void itself carries energy.
+
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ##### The Void Does Not Expand
@@ -67593,6 +67612,16 @@ $$
 
 where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy densities of radiation-mode assemblies, matter assemblies (baryonic + neutral dark assemblies), and the Noether sea baseline/tension term respectively. In the standard limit, $G_{\mathrm{eff}} \to G_N$ and $\rho_{\mathrm{DE,eff}} \to \rho_\Lambda = \text{const}$, recovering $\Lambda\mathrm{CDM}$.
 
+If the dark-energy term dominates and remains effectively constant, then the comparison equation gives nearly constant $H$. The corresponding homogeneous observer variable has the exponential form
+
+$$
+a_{\mathrm{eff}}(t)
+\propto
+\exp(H_{\mathrm{eff}}t)
+$$
+
+This is the clean comparison reason that a constant density produces accelerated expansion. The negative-pressure statement is mathematically equivalent in the standard acceleration equation, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it should not be translated into a literal force that pushes on the Euclidean void.
+
 The effective dark-energy density evolves according to:
 
 $$
@@ -67616,6 +67645,16 @@ w(a) = w_0 + w_a(1-a)
 $$
 
 with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
+
+For a constant fitted $w$ with no explicit source term, the standard continuity equation gives
+
+$$
+\rho_{\mathrm{DE,fit}}(a)
+\propto
+a^{-3(1+w)}
+$$
+
+This compact scaling keeps the phenomenology legible. If $w=-1$, the fitted density is constant. If $w > -1$, it fades as the observer-level scale variable increases. If $w < -1$, the fitted density grows. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this last case is not promoted to a literal negative-kinetic-energy component. It is first a warning that the fit may be absorbing a source term, projection drift, scalar-tensor leakage, or an incomplete data-product model.
 
 ##### Observed Equation of State and Medium Accounting
 
@@ -67668,6 +67707,8 @@ The distances here are comparison metrics fixed by the data product being tested
 
 A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying outer-binary tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
 
+The practical inference rule is stronger than a verbal caution. A $w_{\mathrm{eff}} < -1$ preference must be rechecked against the theory space allowed in the fit: scalar-tensor drift in $G_{\mathrm{eff}}$, environment-dependent coupling, source-history loading, and changes in the projection from $\theta_{\mathrm{sea}}$ to the fitted density can all make a restricted comparison model report phantom-like behavior. The promoted object is therefore the shared SN/BAO/CMB/lensing/growth data product and its covariance record, not the phantom label itself.
+
 #### The Cosmological-Constant Problem
 
 ##### The Hierarchy as an Ontology Mismatch
@@ -67679,6 +67720,8 @@ $$
 $$
 
 which for $\Lambda_{\mathrm{UV}} = M_{\mathrm{Pl}}c$ exceeds the observed $\rho_\Lambda$ by $\sim 120$ orders of magnitude. This is the cosmological-constant problem.
+
+The comparison should be stated carefully. A single harmonic oscillator's zero-point term is an additive energy offset relative to a chosen classical normalization, and an ordinary nongravitating quantum field theory can renormalize the vacuum-energy constant. The crisis appears when gravity and cosmology ask what constant actually couples to the large-scale curvature channel. The problem is therefore not that the continuum mode sum literally proves an infinite energy in empty space; it is that natural changes in the effective vacuum constant appear vastly larger than the observed cosmological term.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
 
@@ -91150,6 +91193,24 @@ so scalar-field energy density, pressure, and gradients can affect curvature. Th
 Operationally, the metric background used in this equation is normally reconstructed through signal-mediated observations: clock synchronization, radar distance, redshift, lensing, null-cone timing, and later multi-messenger channels. The Klein-Gordon field need not itself be electromagnetic, but its spacetime stage is usually calibrated through Physical Observer readout.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer. The $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
+
+###### Cosmological Scalar Comparison
+
+Quintessence is the standard scalar-field comparison for dynamical dark energy. Its useful sequence is narrow: choose a scalar amplitude $\phi$, assign a potential $V(\phi)$, let the homogeneous branch roll slowly enough that its stress-energy has $w \approx -1$, and test whether the resulting distance, CMB, lensing, and growth records outperform a pure cosmological constant. That sequence is retained as a comparison chart, not as a substrate claim.
+
+The particle-physics pressure on this chart is also useful. A dark-energy scalar with Hubble-scale mass is extraordinarily light, and generic couplings would mediate fifth forces or drift in Standard Model constants. Approximate shift symmetry,
+
+$$
+\phi \rightarrow \phi + c
+$$
+
+is the usual route to make such small masses and couplings technically natural. In pseudo-Nambu-Goldstone-boson versions, the allowed pseudoscalar coupling
+
+$$
+\phi\,\mathbf{E}\cdot\mathbf{B}
+$$
+
+can rotate the polarization angle of distant light. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a clean observational recovery target: any Noether sea scalar-response analogue that claims the same role must preserve the polarization-rotation, CMB, lensing, redshift, and growth records without importing a continuous scalar field as ontology.
 
 ###### Source Terms
 
