@@ -39,6 +39,9 @@ Production rule:
 | Polarity A | Pure red | `#ff0000` | One intrinsic architrino polarity, red causal wakes, red-dominant influence. |
 | Polarity B | Pure blue | `#0000ff` | Other intrinsic architrino polarity, blue causal wakes, blue-dominant influence. |
 | Exact red-blue balance | Pure purple | `#800080` | Balanced red-blue contribution, neutralized interaction, stable midpoint in diagrams. |
+| Main webapp background | True purple (`TRUE_PURPLE`) | `#6A0DAD` | Standard main webapp shell background, including first-paint and scene background surfaces. |
+| Highlight accent | Electric purple (`ELECTRIC_PURPLE`) | `#8F00FF` | Optional bright highlight, web-style accent, or emphasis color when pure purple looks too flat. |
+| Highlight accent | Indigo (`INDIGO`) | `#4B0082` | Optional deep accent, legacy webapp purple, or high-contrast support color. |
 | Light neutral balance | Pale purple tint | `#d8b4ff` | Gentle neutral glow, child-facing quiet balance, Noether sea softness. |
 | Dark purple depth | Deep purple shade | `#220033` | Night scenes, shadowed neutral medium, high contrast backing. |
 | Page and neutral clarity | White | `#ffffff` | Page space, highlights, exact neutral centers, readable text ground. |

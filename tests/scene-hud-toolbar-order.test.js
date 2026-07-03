@@ -25,3 +25,13 @@ test("markdown toolbar controls grow left of persistent scene controls", () => {
   assert.ok(sceneNavHistoryIndex < navUpButtonIndex);
   assert.ok(navUpButtonIndex < navForwardButtonIndex);
 });
+
+test("main scene shell uses true purple as its first-paint background", () => {
+  const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+  const css = readFileSync(new URL("../style.css", import.meta.url), "utf8");
+
+  assert.match(html, /<html lang="en" style="background:#6A0DAD;color:#f5f7ff;">/u);
+  assert.match(html, /<meta name="theme-color" content="#6A0DAD" \/>/u);
+  assert.match(css, /--scene-background-base: #6A0DAD;/u);
+  assert.match(css, /--scene-background: #6A0DAD;/u);
+});
