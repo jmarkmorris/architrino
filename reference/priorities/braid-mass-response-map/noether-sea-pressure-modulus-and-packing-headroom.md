@@ -13,7 +13,7 @@ This priority packet derives a branch-conditional pressure modulus and packing-h
 
 - [Pressure-Dependent Noether sea Constitutive Response](pressure-dependent-noether-sea-constitutive-response.md) defines $\Pi_\ell=P_\ell/K_{\text{sea}}$ and the packing-limited density law.
 - [Pressure-Response Coefficient Closure](pressure-response-coefficient-closure.md) shows that pressure tests constrain coefficient combinations, not observable-local rows.
-- [Noether Braid Scaling and Packing Scaffold](../braid-dyadic-lock/noether-braid-scaling-and-packing.md) supplies $R_{\mathrm{excl}}$, $V_{\mathrm{cell}}^{\mathrm{sf}}$, $n_{\max}^{\mathrm{obl}}$, the support-function contact condition, and the packing-compliance diagnostic.
+- [Noether Braid Scaling and Packing Scaffold](../braid-doubling-frequency-lock/noether-braid-scaling-and-packing.md) supplies $R_{\mathrm{excl}}$, $V_{\mathrm{cell}}^{\mathrm{sf}}$, $n_{\max}^{\mathrm{obl}}$, the support-function contact condition, and the packing-compliance diagnostic.
 - [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) supplies the homogeneous tensor target that the modulus must not contradict.
 
 ## Receiver-Normal Branch-Source Blocker

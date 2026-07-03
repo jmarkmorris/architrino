@@ -1151,9 +1151,9 @@
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json"
     },
     {
-      "id": "noether_braid__dyadic_resonance_lock",
-      "name": "Noether Braid Dyadic Resonance Lock",
-      "path": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json"
+      "id": "noether_braid__doubling_frequency_resonance_lock",
+      "name": "Noether Braid Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json"
     },
     {
       "id": "noether_braid__overview",

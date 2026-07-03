@@ -2047,7 +2047,7 @@ p_b\Theta_a(T)-p_a\Theta_b(T)+\Phi_{ab}^{\text{root}}(T)
 2\pi k_{ab}
 $$
 
-The special dyadic candidate is therefore a possible selected lock, not an axiom: $k_O:k_M:k_I=1:m:n$, with $1:2:4$ only after the cancellation functional selects it.
+The special doubling-frequency candidate is therefore a possible selected lock, not an axiom: $k_O:k_M:k_I=1:m:n$, with $1:2:4$ only after the cancellation functional selects it.
 
 An accepted energy/action change should therefore move the core between admissible integer-and-root ledgers:
 

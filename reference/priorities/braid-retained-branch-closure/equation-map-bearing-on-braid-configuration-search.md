@@ -1,6 +1,6 @@
 # Equation-Map Bearing On Braid Configuration Search
 
-Status. Priority-only integration note under retained-branch configuration search, consuming `tri_binary_partition_rule`, [finite-branch-candidate-set-packet.md](../braid-angular-momentum-spin/finite-branch-candidate-set-packet.md), [branch-selection-law-packet.md](../braid-angular-momentum-spin/branch-selection-law-packet.md), and [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md). This file captures how the equation-mapping work should discipline the search of stable Noether braid configuration space. It is solver-facing priority material, not reader-facing corpus prose.
+Status. Priority-only integration note under retained-branch configuration search, consuming `tri_binary_partition_rule`, [finite-branch-candidate-set-packet.md](../braid-angular-momentum-spin/finite-branch-candidate-set-packet.md), [branch-selection-law-packet.md](../braid-angular-momentum-spin/branch-selection-law-packet.md), and [iso-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/iso-frequency-energy-radius-candidate.md). This file captures how the equation-mapping work should discipline the search of stable Noether braid configuration space. It is solver-facing priority material, not reader-facing corpus prose.
 
 Claim level. Solver-architecture and derivation-closure target. The equation-map rows should not be treated as a collection of later analogies. If they mature to score 4 or 5, they become direct residual channels for retained braid candidates.
 
@@ -17,7 +17,7 @@ The angular-momentum and branch-selection packets remain required dependency car
 - [branch-selection-law-packet.md](../braid-angular-momentum-spin/branch-selection-law-packet.md) for the candidate selection residual law.
 - [finite-branch-candidate-set-packet.md](../braid-angular-momentum-spin/finite-branch-candidate-set-packet.md) for finite retained candidate generation.
 - [minimal-candidate-set-instance.md](../braid-angular-momentum-spin/minimal-candidate-set-instance.md) for the currently populated minimal instance.
-- [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md) for the high-priority $(I,M,O)=(f,f,f)$ common-clock family.
+- [iso-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/iso-frequency-energy-radius-candidate.md) for the high-priority $(I,M,O)=(f,f,f)$ common-clock family.
 
 The related equation-map material lives in [../equation-mapping/equation.md](../equation-mapping/equation.md) and its packet files, but the stable braid search itself belongs here because it selects retained Noether braid branch states.
 
@@ -31,7 +31,7 @@ $$
 
 A frequency triple is only the entry label for a candidate family. The solver must evaluate whether a single retained Noether braid branch supplies the root ledger, phase operator, energy/radius placement, event ledger, wake/recoil routing, total angular-momentum ledger, stability, and observation-facing residuals.
 
-This is especially important for the equal-frequency family:
+This is especially important for the iso-frequency family:
 
 $$
 (I,M,O)=(f,f,f).
@@ -59,8 +59,8 @@ The current search candidates are:
 | --- | --- | --- |
 | Middle-hinge offset | $(I,M,O)=(f+2,f,f-1)$ | Current canonical offset candidate; keeps the middle binary on the $c_f$ edge while testing doubled inner burden through an index offset. |
 | Neighbor hinge offset | $(I,M,O)=(f+1,f,f-1)$ | Nearby reduced comparison family; useful for deciding whether the $+2$ inner burden is essential or an artifact of the present reduced row. |
-| Equal-frequency common clock | $(I,M,O)=(f,f,f)$ | Tests common clock plus phase offsets, energy/radius placement, and residual phase operators; high priority for neutrino-like cancellation and one-unit angular-momentum routing. |
-| Dyadic hierarchy | $(I,M,O)=(4f,2f,f)$ | Tests octave-like self-hit / resonance hierarchy and gives a clean ratio row for branch-generator breadth. |
+| Iso-frequency common clock | $(I,M,O)=(f,f,f)$ | Tests common clock plus phase offsets, energy/radius placement, and residual phase operators; high priority for neutrino-like cancellation and one-unit angular-momentum routing. |
+| Doubling-frequency hierarchy | $(I,M,O)=(4f,2f,f)$ | Tests octave-like self-hit / resonance hierarchy and gives a clean ratio row for branch-generator breadth. |
 | General integer hierarchy | $(I,M,O)=(nf,mf,f)$ | Keeps the solver general over positive integer families, with $n,m$ constrained by retained root, phase, energy, and stability rows rather than by a hand-ranked ratio. |
 
 The unordered binary generator should still be able to emit generic triples before role assignment. The role-assigned report, branch-selection comparison, and user-facing priority packet should use $I:M:O$.
@@ -121,7 +121,7 @@ $$
 
 with retained effective lever arms $\rho_a(v)$, phase offsets $\phi_a$, branch angular momenta $J_a$, branch energy, wake rows, principal-direction rows, and coupling rows. The flattened circular rows are projection views of this object, not the model itself.
 
-The equal-frequency target makes this architecture sharper. At fixed $\omega_f$, different branch energies may produce different effective lever arms and speeds:
+The iso-frequency target makes this architecture sharper. At fixed $\omega_f$, different branch energies may produce different effective lever arms and speeds:
 
 $$
 \omega_a=\omega_f,
@@ -138,7 +138,7 @@ Thus the solver must output energy/radius placement and phase-operator rows befo
 
 The executable three-binary runner now attaches an `equationBearing` payload to each candidate's branch-chart projection. The payload is fail-closed and remains `retainedBranchClaim: false`; it is a residual-routing hook, not a branch certificate. Minimal fields:
 
-- `candidateFamily`: one of `offset_f_plus_2_f_f_minus_1`, `offset_f_plus_1_f_f_minus_1`, `equal_frequency_f_f_f`, `dyadic_4f_2f_f`, or `integer_nf_mf_f`.
+- `candidateFamily`: one of `offset_f_plus_2_f_f_minus_1`, `offset_f_plus_1_f_f_minus_1`, `equal_frequency_f_f_f`, `doubling_frequency_4f_2f_f`, or `integer_nf_mf_f`.
 - `rawBinaryFrequencyRow`: the generic $1:2:3$ row before role assignment.
 - `roleFrequencyRowIMO`: the role-assigned $I:M:O$ row after branch role mapping.
 - `rootSignature`: active roots, same-root keys, Jacobian floors, inactive-gap margins, and retained-domain width.

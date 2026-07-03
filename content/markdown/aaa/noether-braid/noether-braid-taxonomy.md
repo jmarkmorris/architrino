@@ -14,6 +14,7 @@ $$
 \mathsf{Polarity},
 \mathsf{Handedness},
 \mathsf{Speed},
+\mathsf{Hinge},
 \mathsf{Frequency},
 \mathsf{Certificate}
 \right).
@@ -41,11 +42,12 @@ This chapter uses four evidence-level terms in a controlled way:
 | Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
 | Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
-| Speed hierarchy | Relation of layer speeds to $c_f$ | sub-field, hinge, self-hit, nested `I:M:O` |
-| Frequency family | Return or winding-frequency relation | dyadic `4:2:1`, equal-frequency, offset-hinge |
+| Speed regime | Relation of layer speed rows to $c_f$ | sub-field, field-speed, super-field, mixed |
+| Field-speed hinge occupancy | Which rows operate within a declared $c_f$ tolerance and how that affects root access | no hinge row, single-hinge, multi-hinge, terminal hinge |
+| Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
 | Certificate status | Evidential status of a branch claim | toy diagnostic, candidate, retained branch, eigen-braid candidate |
 
-The axes are intentionally independent. A nested shell braid may be studied with or without an exact three-binary chart. A dyadic frequency family may be studied on an axis-neutral or axis-polarized polarity support. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
+The axes are intentionally independent. A nested shell braid may be studied with or without an exact three-binary chart. A doubling-frequency family may be studied on an axis-neutral or axis-polarized polarity support. A row with field-speed hinge occupancy may or may not belong to an iso-frequency or integer-ratio family. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
 
 ## Base Inventory
 
@@ -135,19 +137,28 @@ $$
 
 When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, handedness is not assigned as a rank-three property. It may still have planar chirality, circulation signs, or other lower-rank orientation diagnostics, but those are separate rows.
 
-## Speed And Frequency Families
+## Speed, Hinge, And Frequency Families
 
-The speed hierarchy records how retained speed rows relate to the field speed $c_f$. Sub-field rows satisfy speeds below the local field-speed hinge; hinge rows sit at the transition scale; self-hit rows enter regimes where delayed self-interaction becomes available. In nested `I:M:O` notation, these rows are assigned only after the retained branch supplies the role map.
+The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field rows enter regimes where delayed self-interaction can become available. In nested `I:M:O` notation, these rows are assigned only after the retained branch supplies the role map.
 
-The frequency family records return or winding-frequency relations. The main examples are:
+Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from target-hit-only access toward target plus self-hit access, provided the same-source causal-root ledger and transversality rows also close.
 
-| Frequency value | Meaning |
+| Hinge value | Meaning |
 | --- | --- |
-| dyadic `4:2:1` | Candidate nested `I:M:O` family studied in [Noether Braid Dyadic Resonance Lock](noether-braid-dyadic-resonance-lock.md). |
-| equal-frequency | Candidate family with common return rate across the three retained rows. |
-| offset-hinge | Candidate family in which one layer is organized around the field-speed hinge while the other rows carry offset return data. |
+| no hinge row | No retained row is declared within the $c_f$ hinge tolerance. |
+| single-hinge | One row is organized around the field-speed hinge. |
+| multi-hinge | More than one row is organized around the field-speed hinge. |
+| terminal hinge | The branch approaches a terminal-alignment regime, such as the braid symmetry-breaking point, where hinge occupancy and loss of volumetric slack must be tested together. |
 
-Frequency labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch.
+The frequency-ratio family records return or winding-frequency relations. The main examples are:
+
+| Frequency-ratio value | Meaning |
+| --- | --- |
+| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. |
+| integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
+| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md). |
+
+Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
 ## Certificate Status
 
@@ -172,7 +183,9 @@ The explored Noether braid configurations should be read as combinations of the 
 | shell braid | Base inventory plus controlled radial support band. | Support geometry claim requiring radial rows. |
 | nested shell braid | Shell support plus ordered radial support bands. | Support geometry used by nested-shell dynamics, not proof of exact binaries by itself. |
 | rank-three Noether braid chart | Three retained angular-momentum rows and nondegenerate frame data. | Branch-record claim requiring $D_{\mathrm{plane}}$ and same-record ledger rows. |
-| dyadic `4:2:1` lock | Frequency family plus phase-return target. | Candidate family until the dyadic return map and stability rows close. |
+| iso-frequency braid | Frequency-ratio family with common return rate. | Candidate family until distinct energy, speed, phase, support, and ledger rows close. |
+| doubling-frequency `4:2:1` lock | Frequency-ratio family plus phase-return target. | Candidate family until the integer phase-return map and stability rows close. |
+| field-speed hinge occupancy | Speed-regime axis declaring one or more rows near $c_f$. | Candidate regime until the component speed, root-access, and transversality rows close. |
 | axis-neutral support | Mixed polarity on every opposite axial pair. | Polarity-support decoration in an axial comparison chart. |
 | axis-polarized support | One positive pair, one negative pair, and one mixed pair. | Polarity-support decoration in an axial comparison chart. |
 | positive-handed or negative-handed frame | Sign of the ordered rank-three angular-momentum frame. | Assigned only when the branch supplies a nondegenerate three-row frame. |

@@ -227,7 +227,7 @@ A primitive Switch may set $X_{\mathrm{mem}}=\varnothing$ if it only executes on
 
 ## Reduced-Map Proof Route
 
-The first calculation should instantiate the dyadic normal form from [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md). Let $s\in[0,1]$ be a reduced coordinate measuring distance across the metastable threshold section, with separatrix $b(u)$. For fixed boundary context $c_\Omega$, let $q_{c_\Omega,u}(s)\,ds$ be the unresolved-history measure before resolution. The two-outcome Switch weights are
+The first calculation should instantiate the doubling-frequency normal form from [transfer-operator-basin-measure.md](transfer-operator-basin-measure.md). Let $s\in[0,1]$ be a reduced coordinate measuring distance across the metastable threshold section, with separatrix $b(u)$. For fixed boundary context $c_\Omega$, let $q_{c_\Omega,u}(s)\,ds$ be the unresolved-history measure before resolution. The two-outcome Switch weights are
 $$
 p_0(u)
 =

@@ -1,4 +1,4 @@
-# Braid Dyadic Lock
+# Braid Doubling-Frequency Lock
 
 ## Workstream Metadata
 
@@ -18,27 +18,27 @@
 
 ## Scope
 
-Treat [dyadic-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md) as the live note for a candidate dyadic lock, not as proof that the full dynamics uniquely select `1:2:4`.
+Treat [doubling-frequency-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) as the live note for a candidate doubling-frequency lock, not as proof that the full dynamics uniquely select `1:2:4`.
 
-This workstream owns the reduced-map proof path for dyadic resonance selection. It should keep archive heuristics subordinate to finite-$\eta$ phase-amplitude stability tests and to the breather-certificate discipline described below.
+This workstream owns the reduced-map proof path for doubling-frequency resonance selection. It should keep archive heuristics subordinate to finite-$\eta$ phase-amplitude stability tests and to the breather-certificate discipline described below.
 
-When the reduced map is used as a probability or stability laboratory, this workstream consumes the shared [transfer-operator and basin-measure theorem](../quantum-closure/transfer-operator-basin-measure.md). Dyadic lock owns the finite-$\eta$ phase-amplitude map and fixed-point diagnostics; the shared quantum packet owns the invariant or metastable measure grammar that decides whether dyadic basins can support downstream probability claims.
+When the reduced map is used as a probability or stability laboratory, this workstream consumes the shared [transfer-operator and basin-measure theorem](../quantum-closure/transfer-operator-basin-measure.md). Doubling-frequency lock owns the finite-$\eta$ phase-amplitude map and fixed-point diagnostics; the shared quantum packet owns the invariant or metastable measure grammar that decides whether doubling-frequency basins can support downstream probability claims.
 
-Approved disposition 2026-06-23: [Noether Braid Scaling and Packing](noether-braid-scaling-and-packing.md) remains in this folder. It has mass-map and packing consumers, but its active proof role is dyadic return-map and resonance-selection discipline.
+Approved disposition 2026-06-23: [Noether Braid Scaling and Packing](noether-braid-scaling-and-packing.md) remains in this folder. It has mass-map and packing consumers, but its active proof role is doubling-frequency return-map and resonance-selection discipline.
 
 ## Detailed Priority Files
 
 | File | Role | Target AAA notes |
 | --- | --- | --- |
-| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) |
-| [Noether Braid Scaling and Packing](noether-braid-scaling-and-packing.md) | Priority scaffold for ideal Noether braid same-energy scaling, outer-binary radius/speed equations, and exclusion-envelope packing center density. | [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [nested-shell-braid-geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md) |
+| [phenomenological-heuristics.md](phenomenological-heuristics.md) | Preserved archive for conjectural geometry, scaling, and cosmology intuitions that should not drive the active derivation unless rederived from the reduced dynamics. | [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) |
+| [Noether Braid Scaling and Packing](noether-braid-scaling-and-packing.md) | Priority scaffold for ideal Noether braid same-energy scaling, outer-binary radius/speed equations, and exclusion-envelope packing center density. | [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [nested-shell-braid-geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [noether-sea](../../../content/markdown/aaa/spacetime/noether-sea.md) |
 
 ## What Is Solid
 
 - Exact periodic closure gives a rational resonance lattice.
 - Near-horizon self-similar closure gives the broader family $1:s:s^2$.
 - `1:2:4` is the minimal self-similar integer double-cover candidate in that family, not yet a theorem of the full master equation.
-- The theorem-level statements currently in hand are conditional kinematic radius identities, the binary signed-root-complex reading of $(N_s,M_p,D_{ij})$, the phase-return degree/holonomy reading of $(m,n)$, the canonical assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, the orbital-plane determinant $D_{\mathrm{plane}}$, and the caustic-weighted selection theorem target. The symbol $c_1$ is the established phase-entry slot, but in this workstream it means a return-map degree pair over the outer phase circle, not a literal first Chern class over an $S^1$ base. The $\mathbb{Z}_3$ dipole-cancellation identity is now assigned to the coplanar cyclic sector, not the near-orthogonal dyadic three-binary sector.
+- The theorem-level statements currently in hand are conditional kinematic radius identities, the binary signed-root-complex reading of $(N_s,M_p,D_{ij})$, the phase-return degree/holonomy reading of $(m,n)$, the canonical assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, the orbital-plane determinant $D_{\mathrm{plane}}$, and the caustic-weighted selection theorem target. The symbol $c_1$ is the established phase-entry slot, but in this workstream it means a return-map degree pair over the outer phase circle, not a literal first Chern class over an $S^1$ base. The $\mathbb{Z}_3$ dipole-cancellation identity is now assigned to the coplanar cyclic sector, not the near-orthogonal doubling-frequency three-binary sector.
 - The exact global invariants worth anchoring the reduction are total energy and total angular momentum, not branchwise action slices.
 
 ## What Remains Open
@@ -56,20 +56,20 @@ Approved disposition 2026-06-23: [Noether Braid Scaling and Packing](noether-bra
 - Whether the caustic-weighted cancellation score, holonomy-defect recurrence, and Floquet gap all select the same branch.
 - Whether the selected branch preserves the pulled-back memory-corrected symplectic form $\omega_0+\omega_{\mathrm{mem}}$ under return, rather than only passing phase-volume or scalar-frequency recurrence.
 - Whether the middle-caustic carrier and any embedded binary packet live in the same $\mathcal H_*=W^{1,\infty}$ finite-impulse history class with $C^1$ smooth arcs, rather than mixing incompatible caustic regularity assumptions.
-- Whether the $\mathbb{Z}_3$ organization belongs only to a planar cyclic sector or also reappears as a lower-dimensional degeneration of the three-binary bundle, and whether the $D_{\mathrm{plane}}=0$ wall is a genuine stability barrier between the near-orthogonal dyadic sector and coplanar cyclic sector.
+- Whether the $\mathbb{Z}_3$ organization belongs only to a planar cyclic sector or also reappears as a lower-dimensional degeneration of the three-binary bundle, and whether the $D_{\mathrm{plane}}=0$ wall is a genuine stability barrier between the near-orthogonal doubling-frequency sector and coplanar cyclic sector.
 - Whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 
 ## Promotion Map
 
 | Task | Detailed file | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `phase_bundle_return_map` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md) and [assembly-topological-charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) | A finite-$\eta$ return map with phase, amplitude/speed, signed binary root-complex rows $(N_s,M_p,D_{ij})$, $(m,n)$ return-map degree/holonomy, promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}$, $D_{\mathrm{plane}}$, Jacobian floors, caustic impulse rows, gluing-overlap rows, continuation-family cardinality, and starvation-scale status for any forward partner row. |
-| `caustic_weighted_selection_score` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md) | The exposed-leakage score and residual-curvature score use branch-derived caustic-weighted amplitudes, verify the polygon condition in the first all-layer block, and report a fold-exponent-based truncation/winner gap. |
-| `flat_moduli_floquet_test` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md) and [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | The candidate lock has holonomy-defect recurrence, zero flat-modulus exponent for quotiented directions, contraction off $G$, preservation of the pulled-back memory-corrected symplectic form, and nonzero $D_{\mathrm{plane}}$; otherwise the failure mode is recorded without promoting the heuristic branch ledger. |
+| `phase_bundle_return_map` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) and [assembly-topological-charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) | A finite-$\eta$ return map with phase, amplitude/speed, signed binary root-complex rows $(N_s,M_p,D_{ij})$, $(m,n)$ return-map degree/holonomy, promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}$, $D_{\mathrm{plane}}$, Jacobian floors, caustic impulse rows, gluing-overlap rows, continuation-family cardinality, and starvation-scale status for any forward partner row. |
+| `caustic_weighted_selection_score` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) | The exposed-leakage score and residual-curvature score use branch-derived caustic-weighted amplitudes, verify the polygon condition in the first all-layer block, and report a fold-exponent-based truncation/winner gap. |
+| `flat_moduli_floquet_test` | [phenomenological-heuristics.md](phenomenological-heuristics.md) as archive source only | [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) and [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | The candidate lock has holonomy-defect recurrence, zero flat-modulus exponent for quotiented directions, contraction off $G$, preservation of the pulled-back memory-corrected symplectic form, and nonzero $D_{\mathrm{plane}}$; otherwise the failure mode is recorded without promoting the heuristic branch ledger. |
 
 ## Breather Certificate Discipline
 
-The dyadic program should copy the breather distinction between integer closure and stable return-map closure. A candidate `1:2` or `1:2:4` ledger is only a branch label until the regularized phase-bundle return map reports finite active branches, the signed binary root-complex rows $(N_s,M_p,D_{ij})$, the promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, positive Jacobian floors, retained caustic impulse rows, holonomy-defect recurrence, memory-corrected symplectic recurrence, nonzero $D_{\mathrm{plane}}$, a non-symmetry stability gap off the flat moduli, and finite causal-root gluing across the local branch charts. If the collinear breather fails at branch-chart, monodromy, gluing, symplectic-recurrence, or continuation-cardinality rows, the dyadic map must treat the same failure class as blocking rather than as evidence for or against dyadic selection itself.
+The doubling-frequency program should copy the breather distinction between integer closure and stable return-map closure. A candidate `1:2` or `1:2:4` ledger is only a branch label until the regularized phase-bundle return map reports finite active branches, the signed binary root-complex rows $(N_s,M_p,D_{ij})$, the promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, positive Jacobian floors, retained caustic impulse rows, holonomy-defect recurrence, memory-corrected symplectic recurrence, nonzero $D_{\mathrm{plane}}$, a non-symmetry stability gap off the flat moduli, and finite causal-root gluing across the local branch charts. If the collinear breather fails at branch-chart, monodromy, gluing, symplectic-recurrence, or continuation-cardinality rows, the doubling-frequency map must treat the same failure class as blocking rather than as evidence for or against doubling-frequency selection itself.
 
 ## Inter-Layer Phase/Cadence Lock Residual
 
@@ -89,13 +89,13 @@ Here $\Delta\phi_{ab}$ is the retained phase offset, $n_a\omega_a-n_b\omega_b$ i
 
 ## Immediate Next Move
 
-1. Use [dyadic-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics](phenomenological-heuristics.md) as the scratch/archive notebook.
+1. Use [doubling-frequency-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) as the live dynamics note and keep [phenomenological-heuristics](phenomenological-heuristics.md) as the scratch/archive notebook.
 2. Build the regularized phase-bundle return map at fixed finite $\eta > 0$, not a pure phase-only or amplitude-only reduction.
 3. Add signed root-complex rows $(N_s,M_p,D_{ij})$, the promoted assembly topological charge fields $[\mathfrak B]_{\mathrm{top}}$, $D_{\mathrm{plane}}$, holonomy-defect $\Theta$, flat-moduli directions, negative-sheet eligibility, middle-caustic impulse rows, causal-root gluing-overlap rows, continuation-family cardinality, and starvation-scale status to the branch state.
-4. Use the causal-action circular tangency theorem target to compute signed-sheet self-hit degree parity or lower-bound rows for each candidate winding/frequency family, including equal-frequency candidates.
-5. Compute the caustic-weighted selection score and compare dyadic `1:2:4` against adjacent and self-similar integer covers, keeping topological overlap, dynamical polygon closure, and fold-tail truncation as separate rows.
+4. Use the causal-action circular tangency theorem target to compute signed-sheet self-hit degree parity or lower-bound rows for each candidate winding/frequency family, including iso-frequency candidates.
+5. Compute the caustic-weighted selection score and compare doubling-frequency `1:2:4` against adjacent and self-similar integer covers, keeping topological overlap, dynamical polygon closure, and fold-tail truncation as separate rows.
 6. Study the Floquet gap off the neutral moduli, the memory-corrected symplectic recurrence, and the caustic spectrum as $\eta \to 0^+$ before promoting archive material that can be rederived from the reduced dynamics.
-7. Test whether paths from the near-orthogonal dyadic sector to the coplanar $\mathbb{Z}_3$ sector must lose either the plane floor, the symplectic recurrence row, or the non-symmetry Floquet gap at $D_{\mathrm{plane}}=0$.
+7. Test whether paths from the near-orthogonal doubling-frequency sector to the coplanar $\mathbb{Z}_3$ sector must lose either the plane floor, the symplectic recurrence row, or the non-symmetry Floquet gap at $D_{\mathrm{plane}}=0$.
 
 ## Related Priorities
 
@@ -106,7 +106,7 @@ Here $\Delta\phi_{ab}$ is the retained phase offset, $n_a\omega_a-n_b\omega_b$ i
 
 ## Related AAA Notes
 
-- [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md)
+- [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md)
 - [assembly-topological-charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md)
 - [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md)
 - [mode-taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md)

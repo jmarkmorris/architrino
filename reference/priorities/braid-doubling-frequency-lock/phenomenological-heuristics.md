@@ -1,10 +1,10 @@
-# Dyadic Resonance Lock Archive
+# Doubling-Frequency Resonance Lock Archive
 
-The live mathematical backbone of this topic now lives in [dyadic-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
+The live mathematical backbone of this topic now lives in [doubling-frequency-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
 
 ## Status / Provenance Boundary
 
-This is a legacy heuristic packet, not reader-facing canon. It preserves early intuition about dyadic locks, Planck-scale mapping, and black-hole analogy only as priority provenance. Current corpus usage treats field-speed crossing as a regime indicator, not as a speed-only self-hit proof. A branch that uses self-hit must show same-source causal-root existence with nonzero delay, $H(0)=0$ coincidence exclusion, positive transversality/Jacobian floor, controlled distance or regularization data, inactive-root gaps, finite memory, and the relevant stability/action/ledger closure rows.
+This is a legacy heuristic packet, not reader-facing canon. It preserves early intuition about doubling-frequency locks, Planck-scale mapping, and black-hole analogy only as priority provenance. Current corpus usage treats field-speed crossing as a regime indicator, not as a speed-only self-hit proof. A branch that uses self-hit must show same-source causal-root existence with nonzero delay, $H(0)=0$ coincidence exclusion, positive transversality/Jacobian floor, controlled distance or regularization data, inactive-root gaps, finite memory, and the relevant stability/action/ledger closure rows.
 
 ## Preserved Intuitions from Reviewer Audit
 
@@ -83,7 +83,7 @@ The live analytical path is now:
 
 1.  Write the regularized two-layer map first, keeping both phase and amplitude/speed variables.
 2.  Identify a candidate Lyapunov-Krasovskii or cycle-averaged causal-work functional for that map.
-3.  Test whether the Jacobian wall near $v=c_f$ makes the dyadic fixed point locally attracting as $\beta \to 1$.
+3.  Test whether the Jacobian wall near $v=c_f$ makes the doubling-frequency fixed point locally attracting as $\beta \to 1$.
 4.  Only then lift the argument to the full three-binary chain and ask whether the stable extension is $1{:}2{:}4$.
 
 This 1:2:4 lock remains a plausible working candidate for a Planck-scale assembly configuration, but the available support is kinematic plus reduced-map conjecture, not a completed selection theorem.
@@ -186,13 +186,13 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 
 ## Related Priorities
 
-- [dyadic-lock](../braid-dyadic-lock/priorities.md)
+- [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md)
 - [strong-field brainstorming](../strong-field-closure/brainstorming.md)
 - [cosmology-closure](../cosmology-closure/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
-- [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md)
+- [doubling-frequency-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md)
 - [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)

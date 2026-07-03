@@ -9,8 +9,8 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 587,
-      "edges": 1347,
+      "nodes": 588,
+      "edges": 1348,
       "scenes": 381,
       "markdownIndexes": 0,
       "markdownDocs": 192,
@@ -1529,9 +1529,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_braid__dyadic_resonance_lock",
-      "name": "Noether Braid Dyadic Resonance Lock",
-      "path": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
+      "id": "noether_braid__doubling_frequency_resonance_lock",
+      "name": "Noether Braid Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "nodeType": "scene"
     },
     {
@@ -2915,9 +2915,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
-      "name": "Noether Braid Dyadic Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "id": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "name": "Noether Braid Doubling-Frequency Resonance Lock",
+      "path": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5668,12 +5668,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
+      "nodeId": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "nodeType": "scene",
-      "id": "noether_braid__dyadic_resonance_lock",
-      "name": "Noether Braid Dyadic Resonance Lock",
-      "path": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
-      "searchTarget": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
+      "id": "noether_braid__doubling_frequency_resonance_lock",
+      "name": "Noether Braid Doubling-Frequency Resonance Lock",
+      "path": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
+      "searchTarget": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "implicit": false
     },
     {
@@ -7738,12 +7738,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
-      "name": "Noether Braid Dyadic Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "id": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "name": "Noether Braid Doubling-Frequency Resonance Lock",
+      "path": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "implicit": false
     },
     {
@@ -8743,6 +8743,15 @@
       "name": "Validation Protocols",
       "path": "content/markdown/aaa/validation/validation-protocols.md",
       "searchTarget": "content/markdown/aaa/validation/validation-protocols.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "asset:content/generated/pdf/presentations/archie/npqg-assemblies-game-of-life.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/presentations/archie/npqg-assemblies-game-of-life.pdf",
+      "name": "Npqg Assemblies Game Of Life",
+      "path": "content/generated/pdf/presentations/archie/npqg-assemblies-game-of-life.pdf",
+      "searchTarget": "content/generated/pdf/presentations/archie/npqg-assemblies-game-of-life.pdf",
       "implicit": false
     },
     {
@@ -12347,7 +12356,7 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
+      "to": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[3]"
@@ -14068,10 +14077,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "from": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
+      "source": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "field": "scene.source.path"
     },
     {
@@ -18203,6 +18212,13 @@
       "edgeType": "runtime_generated",
       "source": "src/runtime/PeriodicOverlayRuntime.js",
       "field": "elementLegend:route"
+    },
+    {
+      "from": "scene:content/scenes/archie/presentations.json",
+      "to": "asset:content/generated/pdf/presentations/archie/npqg-assemblies-game-of-life.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/presentations.json",
+      "field": "npqg_assemblies_game_of_life.source.path"
     },
     {
       "from": "scene:content/scenes/archie/presentations.json",

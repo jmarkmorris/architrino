@@ -499,7 +499,7 @@ The current executable contract check is:
 node scripts/equation-mapping/check-emit-02-04-contract.mjs --input <tri-binary-solver-report.json> --summary --pretty
 ```
 
-The checker consumes `cases[].branchChartProjection.equationBearing`, maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$, and reports missing retained projection rows instead of converting current-proxy rows into Lorentz, energy-momentum, or mass-shell evidence. Against the 2026-06-23 equal-frequency smoke report, the summary is `blocked_not_evaluable`: 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`.
+The checker consumes `cases[].branchChartProjection.equationBearing`, maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$, and reports missing retained projection rows instead of converting current-proxy rows into Lorentz, energy-momentum, or mass-shell evidence. Against the 2026-06-23 iso-frequency smoke report, the summary is `blocked_not_evaluable`: 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`.
 
 The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current three-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned score-change review.
 
@@ -511,7 +511,7 @@ The same-row-set acceptance extractor is:
 node scripts/equation-mapping/check-same-branch-chart-identity.mjs --input <tri-binary-solver-report.json> --summary --pretty
 ```
 
-It consumes `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit`, especially the `retainedRowSetScaffold` and `retainedRowSetIdentityStructuralWitnessAudit` rows for $S_{\mathrm{eq}}$. Against the 2026-06-23 equal-frequency smoke report, it returns `blocked_current_proxy_only`, `scoreDecision=no_score_increase`, `retainedBranchClaim=false`, `currentProxyEvidencePopulatedCount=7`, `structuralWitnessCurrentPopulatedCount=15`, `acceptedRetainedIdentityRequirementCount=0` out of 14, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+It consumes `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit`, especially the `retainedRowSetScaffold` and `retainedRowSetIdentityStructuralWitnessAudit` rows for $S_{\mathrm{eq}}$. Against the 2026-06-23 iso-frequency smoke report, it returns `blocked_current_proxy_only`, `scoreDecision=no_score_increase`, `retainedBranchClaim=false`, `currentProxyEvidencePopulatedCount=7`, `structuralWitnessCurrentPopulatedCount=15`, `acceptedRetainedIdentityRequirementCount=0` out of 14, and `nextBlocker=missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 
 The same command now also accepts a direct retained-domain packet:
 
@@ -755,7 +755,7 @@ W_{\mathrm{hol}}
 \right),
 $$
 
-where $\Phi_{T^2}(u)$ is the holonomy of the equal-frequency three-binary phase bundle on $T^3/S^1\simeq T^2$. Free phase offsets are a tuning channel; phase offsets transported by the connection are admissible retained-row data.
+where $\Phi_{T^2}(u)$ is the holonomy of the iso-frequency three-binary phase bundle on $T^3/S^1\simeq T^2$. Free phase offsets are a tuning channel; phase offsets transported by the connection are admissible retained-row data.
 
 The current executable retained-record evaluator now includes a first score-neutral gamma-free coframe diagnostic. In the attempt fixture at $\beta_f=0.6$, the declared coframe row reports
 
@@ -822,7 +822,7 @@ The minimum fixture contract is:
 | `rowBindings.wake_tail_rows_bound_to_S_eq` | Accepted wake-tail rows on the same support. | $A_r$ |
 | `rowBindings.energy_action_rows_bound_to_S_eq` | Accepted energy/action rows on the same support. | $A_r$ |
 | `rowBindings.momentum_and_angular_momentum_rows_bound_to_S_eq` | Accepted momentum and angular-momentum rows on the same support. | $A_r$ |
-| `rowBindings.phase_rows_bound_to_S_eq` | Accepted phase rows on the same support, including the equal-frequency common-clock row and residual phase rows when present. | $A_r$ |
+| `rowBindings.phase_rows_bound_to_S_eq` | Accepted phase rows on the same support, including the iso-frequency common-clock row and residual phase rows when present. | $A_r$ |
 | `rowBindings.retained_plane_orientation_rows_bound_to_S_eq` | Accepted oriented-bivector sector rows on the same support, including local $\mathcal B_a$, effective lever arms $\rho_a$, Gram matrix $\ell_{ab}$, rank/conditioning, and derived normals only when a chart needs them. | $A_r$ |
 | `rowBindings.response_center_and_group_velocity_rows_bound_to_S_eq` | Accepted response-center and group-velocity rows on the same support. | $A_r$ |
 | `rowBindings.Noether_sea_record_bound_to_S_eq` | Accepted local Noether sea row bound to the same retained domain. | $A_r$ |
