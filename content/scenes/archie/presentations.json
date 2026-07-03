@@ -15,6 +15,21 @@
   },
   "objects": [
     {
+      "id": "npqg_fundamentals_time_and_space",
+      "title": "Absolute Time and Euclidean Void",
+      "radius": 1.8,
+      "color": "#6a3c8f",
+      "labelTitle": "Time and Space",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "pdf",
+        "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-time-and-space.pdf"
+      },
+      "view": {
+        "openMode": "new-tab"
+      }
+    },
+    {
       "id": "npqg_fundamentals_paths",
       "title": "Architrino Paths and Causal Wakes",
       "radius": 1.8,

@@ -39,7 +39,7 @@ This chapter uses four evidence-level terms in a controlled way:
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Rank-three branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
+| Angular-momentum frame | Whether three angular-momentum rows are retained | rank-three frame, planar lower-rank braid (`PL`) |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
 | Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
 | Speed regime | Relation of layer speed rows to $c_f$ | sub-field, field-speed, super-field, mixed |
@@ -101,7 +101,7 @@ D_{\mathrm{plane}}
 \ne 0.
 $$
 
-A planar lower-rank chart may still be dynamically meaningful, but it is not a promoted rank-three Noether braid chart until the three-row frame condition and its conditioning floor are supplied on the same retained record.
+A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid chart until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
 ## Polarity Support
 
@@ -190,6 +190,7 @@ The explored Noether braid configurations should be read as combinations of the 
 | axis-neutral support | Mixed polarity on every opposite axial pair. | Polarity-support decoration in an axial comparison chart. |
 | axis-polarized support | One positive pair, one negative pair, and one mixed pair. | Polarity-support decoration in an axial comparison chart. |
 | positive-handed or negative-handed frame | Sign of the ordered rank-three angular-momentum frame. | Assigned only when the branch supplies a nondegenerate three-row frame. |
+| planar lower-rank braid (`PL`) | Lower-rank angular-momentum frame with $D_{\mathrm{plane}}=0$ or no retained three-row frame. | Boundary or comparison family until the same-record ledgers decide whether it is retained, a degeneration of another family, or only a diagnostic toy. |
 
 This taxonomy is designed to keep the architecture extensible without turning every variation into a retained branch. A configuration becomes physically important only when its taxonomy record is joined to a retained branch certificate, a certified-braid theorem target, or a clearly marked lower-status search family.
 
