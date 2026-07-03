@@ -137,7 +137,7 @@ If work resumes:
 
 ## Related Priorities
 
-- [pdg](pdg.md)
+- [pdg](priorities.md)
 - [pdgsolve](pdgsolve.md)
 - [pdgedit](pdgedit.md)
 - [pdgfeed](pdgfeed.md)

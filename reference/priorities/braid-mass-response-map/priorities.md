@@ -692,7 +692,7 @@ The reduced branch certificate is the executable handoff between this workstream
 - [standard-model-closure](../standard-model-closure/priorities.md)
 - [master-equation-closure](../master-equation-closure/priorities.md)
 - [app-simulation](../app-simulation/priorities.md)
-- [3x3](../dormant-deferred/3x3/3x3.md)
+- [3x3](../dormant-deferred/3x3/priorities.md)
 
 ## Related AAA Notes
 

@@ -185,7 +185,7 @@ keep `U*` operator-triage ranks because they are not top-level scored priorities
 | 44 | [`aaa-futures`](../aaa-futures/priorities.md) | Can collect funding, institutional research, publishing, impact, and corporate R&D ideas while keeping them downstream of theory and validation closure. |
 | U10 | [`strong-field brainstorming`](../strong-field-closure/brainstorming.md) | Can stay as a watchlist under `strong-field-closure`, separate from quantitative closure. |
 | U11 | `dormant-deferred archive` | Archive indexing and parking-lot cleanup are organizational. Legacy product/outlook notes now route through [`source-mining`](../source-mining/priorities.md). |
-| U12 | [`3x3`](../dormant-deferred/3x3/3x3.md) | Deferred binary-slot matrix notes can remain parked unless a target corpus destination is chosen. |
+| U12 | [`3x3`](../dormant-deferred/3x3/priorities.md) | Deferred binary-slot matrix notes can remain parked unless a target corpus destination is chosen. |
 | U13 | [`phenomenological-heuristics`](../braid-dyadic-lock/phenomenological-heuristics.md) | Archive/source material for dyadic lock can stay sibling reference material rather than an active reduced-map proof. |
 
 ## Candidate And Archive References
@@ -222,8 +222,8 @@ unified table where a row is scored; unscored archive and deferred rows remain
 | 43 | `media-posts` | [brainstorming.md](../media-posts/brainstorming.md) | Brainstorming bucket for short-form posts, thread concepts, captions, audience notes, and publication hooks. | Scored low as loose media brainstorming until a concrete publication target, claim level, and owner exist. |
 | 44 | `aaa-futures` | [future-physics-cosmology.md](../aaa-futures/priorities.md) | Future physics and cosmology research-revolution ideas for funding, publishing, institutional strategy, impact, and corporate R&D. | Scored as a candidate strategy lane; keep downstream of theory and validation closure. |
 | U10 | `strong-field brainstorming` | [brainstorming.md](../strong-field-closure/brainstorming.md) | Strong-field and Noether braid hypothesis watchlist. | Merged under `strong-field-closure`; not a ranked top-level workstream. |
-| U11 | `dormant-deferred archive` | [README.md](../dormant-deferred/README.md), [priorities-legacy.md](../dormant-deferred/priorities-legacy.md), and sibling deferred notes | Archive and parking lot for non-current material; legacy product/outlook notes now route through [source-mining](../source-mining/priorities.md). | Indexed archive; promote selected material into a live priority directory before substantive work resumes. |
-| U12 | `3x3` | [3x3.md](../dormant-deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep dormant-deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
+| U11 | `dormant-deferred archive` | [priorities.md](../dormant-deferred/priorities.md), [priorities-legacy.md](../dormant-deferred/priorities-legacy.md), and sibling deferred notes | Archive and parking lot for non-current material; legacy product/outlook notes now route through [source-mining](../source-mining/priorities.md). | Indexed archive; promote selected material into a live priority directory before substantive work resumes. |
+| U12 | `3x3` | [priorities.md](../dormant-deferred/3x3/priorities.md) | Deferred binary-slot matrix note. | Keep dormant-deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
 | U13 | `phenomenological-heuristics` | [phenomenological-heuristics.md](../braid-dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
 
 ## Current Focus
