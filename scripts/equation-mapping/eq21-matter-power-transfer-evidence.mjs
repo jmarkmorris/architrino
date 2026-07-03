@@ -343,11 +343,16 @@ export function evaluateMatterPowerModel(rawModel, keyValues, growthChild) {
     return { computed: false, reason: "model.samples.benchmark_residuals_declared" };
   }
 
+  const {
+    f_sigma8_normalized_residual: _fSigma8ScalarResidual,
+    ...growthDerivedForMatter
+  } = growthBase.derived;
+
   return {
     computed: true,
     reason: "computed",
     derived: {
-      ...growthBase.derived,
+      ...growthDerivedForMatter,
       A_seed: aSeed,
       n_s: nS,
       k_pivot: kPivot,

@@ -26,6 +26,15 @@ export const REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS = Object.freez
   "same_record_accepted_evidence_package_artifact_hash",
 ]);
 
+const REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_ACCEPTED_REF_FIELDS = Object.freeze([
+  "same_record_accepted_evidence_package_ref",
+  "same_record_accepted_evidence_package_authority_ref",
+  "same_record_accepted_evidence_package_verification_ref",
+]);
+const ACCEPTED_EVIDENCE_PACKAGE_ARTIFACT_HASH_FIELD =
+  "same_record_accepted_evidence_package_artifact_hash";
+const SHA256_ARTIFACT_HASH_PATTERN = /^sha256:[0-9a-f]{64}$/u;
+
 const EXTERNAL_VERIFICATION_FIELD =
   "central_solver_retained_source_adapter.external_accepted_authority_verification_ref";
 const ACCEPTED_RETAINED_SOURCE_ADAPTER_REF_FIELD =
@@ -94,6 +103,11 @@ function stringRef(value) {
 function acceptedRef(value) {
   const ref = stringRef(value);
   return ref != null && ref.startsWith("accepted:") ? ref : null;
+}
+
+function sha256ArtifactHash(value) {
+  const ref = stringRef(value);
+  return ref != null && SHA256_ARTIFACT_HASH_PATTERN.test(ref) ? ref : null;
 }
 
 function makeAuthorization() {
@@ -308,12 +322,6 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
   if (hasAcceptedEvidenceInput && suppliedEvidencePackageSchema !== SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA) {
     missingFields.push("central_solver_retained_source_adapter.accepted_evidence.schema");
   }
-  if (
-    suppliedEvidencePackageSchema != null &&
-    suppliedEvidencePackageSchema !== SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA
-  ) {
-    missingFields.push("central_solver_retained_source_adapter.accepted_evidence.schema");
-  }
   if (adapter?.artifact_status !== "retained_source_adapter_present_acceptance_blocked") {
     missingFields.push("central_solver_retained_source_adapter.artifact_status");
   }
@@ -328,10 +336,15 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
   if (sourceRowId == null || suppliedSourceRowId !== sourceRowId) {
     missingFields.push("central_solver_retained_source_adapter.accepted_evidence.source_row_id");
   }
-  for (const field of REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS) {
-    if (stringRef(acceptedEvidence[field]) == null) {
+  for (const field of REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_ACCEPTED_REF_FIELDS) {
+    if (acceptedRef(acceptedEvidence[field]) == null) {
       missingFields.push(`central_solver_retained_source_adapter.accepted_evidence.${field}`);
     }
+  }
+  if (sha256ArtifactHash(acceptedEvidence[ACCEPTED_EVIDENCE_PACKAGE_ARTIFACT_HASH_FIELD]) == null) {
+    missingFields.push(
+      `central_solver_retained_source_adapter.accepted_evidence.${ACCEPTED_EVIDENCE_PACKAGE_ARTIFACT_HASH_FIELD}`
+    );
   }
   for (const field of REQUIRED_ACCEPTED_EVIDENCE_FIELDS) {
     if (acceptedRef(acceptedEvidence[field]) == null) {
@@ -345,7 +358,9 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     packageProvenance: Object.fromEntries(
       REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.map((field) => [
         field,
-        stringRef(acceptedEvidence[field]),
+        field === ACCEPTED_EVIDENCE_PACKAGE_ARTIFACT_HASH_FIELD
+          ? sha256ArtifactHash(acceptedEvidence[field])
+          : acceptedRef(acceptedEvidence[field]),
       ])
     ),
     refs: Object.fromEntries(

@@ -327,7 +327,7 @@ $$
 \lim_{\eta\to0^+}\int_{-\infty}^{t} f(t_0)\phi_\eta\!\big(g_{ij}(t,t_0)\big)\,dt_0
 =
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{f(t_0)}
+\frac{f(t_0)}{
 \left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
 $$
 provided the active roots are simple and separated from collision support.

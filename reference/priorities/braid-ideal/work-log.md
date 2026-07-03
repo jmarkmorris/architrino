@@ -6,6 +6,22 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-03 - Accepted-Evidence Package Provenance Class Tightened
+
+Tightened the retained-source adapter accepted-evidence package criterion so package provenance cannot be a ref-only shell. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now requires `same_record_accepted_evidence_package_ref`, `same_record_accepted_evidence_package_authority_ref`, and `same_record_accepted_evidence_package_verification_ref` to be accepted-class refs, and requires `same_record_accepted_evidence_package_artifact_hash` to be a `sha256:` artifact hash.
+
+Executable status: the current tree still has no real `central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0` outside the test fixture. The live contract still reports ten visible source values and zero accepted package fields: four upstream artifact or row ids are unverified, and six native/provider refs are still `candidate:` refs. The first missing field therefore remains `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence`.
+
+Decision: this does not authorize the adapter, the retained branch, chirality, Noether sea stabilization, return/stability, branch-chart/moving certificate, or score movement. It prevents a synthetic package-provenance shell from emitting the candidate adapter acceptance certificate while preserving the same acquisition target: a real accepted same-record package for the same retained record and source row.
+
+### 2026-07-02 - Same-Record Accepted-Evidence Package Provenance Tightened
+
+Closed a false-positive intake path in the retained-source adapter accepted-evidence criterion. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now requires the same-record accepted-evidence package to carry its own package provenance fields: `same_record_accepted_evidence_package_ref`, `same_record_accepted_evidence_package_authority_ref`, `same_record_accepted_evidence_package_verification_ref`, and `same_record_accepted_evidence_package_artifact_hash`. The criterion also rejects copied candidate refs in the ten accepted-evidence fields instead of treating any non-empty string as acceptable.
+
+Executable status: accepted-looking refs without package provenance remain source-acquisition blocked at `central_solver_retained_source_adapter.accepted_evidence.same_record_accepted_evidence_package_ref`; copied candidate source refs remain blocked at the copied field, for example `central_solver_retained_source_adapter.accepted_evidence.native_root_ledger_detail_rows_ref`. A complete declared package still emits only a candidate adapter acceptance-certificate ref and then stops at `central_solver_retained_source_adapter.external_accepted_authority_verification_ref`.
+
+Decision: this is not a new downstream gate and does not authorize accepted adapter evidence, retained branch output, chirality authorization, Noether sea stabilization, branch-chart/moving certificate, return/stability claim, or score movement. The active missing object remains a real same-record accepted-evidence package with package provenance plus accepted-class replacements for all ten mapped source fields.
+
 ### 2026-07-02 - Same-Record Accepted-Evidence Field Map Added
 
 Sharpened the retained-source adapter accepted-evidence contract from a blank package template into a provider-facing field map. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now includes `source_acquisition_summary` and `source_acquisition_field_map` in `central_solver_retained_source_adapter_same_record_accepted_evidence_contract.v0`, mapping each required package field to the current provider/source carrier path, observed ref count, observed ref class, and required accepted replacement.

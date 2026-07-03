@@ -14378,7 +14378,7 @@ $$
 \lim_{\eta\to0^+}\int_{-\infty}^{t} f(t_0)\phi_\eta\!\big(g_{ij}(t,t_0)\big)\,dt_0
 =
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{f(t_0)}
+\frac{f(t_0)}{
 \left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
 $$
 provided the active roots are simple and separated from collision support.
@@ -17794,7 +17794,7 @@ and let
 $$
 \hat{\mathbf{u}}_{\tau}(t,s)
 \equiv
-\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}
+\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}{
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|}
 $$
 be the associated chord direction whenever the denominator is nonzero. The active delayed roots over one candidate cycle should be studied only after the cycle is partitioned into a finite family of windows
@@ -47101,9 +47101,9 @@ Forward observables are
 $$
 \Delta t_{\text{Shap}}=140.80084\ \mu\mathrm{s},
 \quad
-\Delta\phi_{\text{Def}}=1.75001'',
+\Delta\phi_{\text{Def}}=1.75001\,\mathrm{arcsec},
 \quad
-\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy}
+\Delta\omega_{\text{Prec}}=42.9002\,\mathrm{arcsec}/\mathrm{cy}
 $$
 $$
 z_{\text{Red}}\approx 2.119997\times 10^{-6}
@@ -47112,9 +47112,9 @@ Propagated $1\sigma$ scales (diagonal approximation) are
 $$
 \sigma_{\text{Shap}}\approx 3.5\times 10^{-4}\ \mu\mathrm{s},
 \quad
-\sigma_{\text{Def}}\approx 4.3\times 10^{-6}'',
+\sigma_{\text{Def}}\approx 4.3\times 10^{-6}\,\mathrm{arcsec},
 \quad
-\sigma_{\text{Prec}}\approx 1.5\times 10^{-4}''/\mathrm{cy},
+\sigma_{\text{Prec}}\approx 1.5\times 10^{-4}\,\mathrm{arcsec}/\mathrm{cy},
 \quad
 \sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$
@@ -62193,18 +62193,16 @@ $$
 \mathbf{1}_{\mathrm{rec}}(k;\theta)
 =
 \mathbf{1}\!\left[
+\begin{array}{l}
 \tau_{\text{meas}}(B_k)<\infty,\quad
 \sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
-\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},\quad
+\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},\\
 \sup_{t_1,t_2\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
-\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},
-\right
-$$
-$$
-\left.
+\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},\\
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}},\quad
 \|\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e_k)\|\le\varepsilon_{\mathrm{evt}},\quad
 |\Delta E_{\mathrm{unrec}}(T;\theta,k)|\le\varepsilon_E
+\end{array}
 \right]
 $$
 Here $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger for energy, momentum, and angular momentum, while $\Delta E_{\mathrm{unrec}}$ is the unrecorded energy residual used in the [Measurement And Heating Residual](#measurement-and-heating-residual). This filter prevents a mere correlation, weak probe, or formal branch label from being counted as a measurement outcome before it has supplied a persistent record, closed the event ledger, and kept unrecorded energy below tolerance.

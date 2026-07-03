@@ -1519,18 +1519,16 @@ $$
 \mathbf{1}_{\mathrm{rec}}(k;\theta)
 =
 \mathbf{1}\!\left[
+\begin{array}{l}
 \tau_{\text{meas}}(B_k)<\infty,\quad
 \sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
-\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},\quad
+\Delta_{\mathrm{rec}}(t;k)\le\varepsilon_{\mathrm{rec}},\\
 \sup_{t_1,t_2\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
-\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},
-\right
-$$
-$$
-\left.
+\Delta_{\mathrm{div}}(t_0,t_1,t_2;\mathcal{Q},W)\le\varepsilon_{\mathrm{div}},\\
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}\ge S_{\mathrm{lock}},\quad
 \|\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e_k)\|\le\varepsilon_{\mathrm{evt}},\quad
 |\Delta E_{\mathrm{unrec}}(T;\theta,k)|\le\varepsilon_E
+\end{array}
 \right]
 $$
 Here $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the event ledger for energy, momentum, and angular momentum, while $\Delta E_{\mathrm{unrec}}$ is the unrecorded energy residual used in the [Measurement And Heating Residual](#measurement-and-heating-residual). This filter prevents a mere correlation, weak probe, or formal branch label from being counted as a measurement outcome before it has supplied a persistent record, closed the event ledger, and kept unrecorded energy below tolerance.

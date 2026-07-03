@@ -657,9 +657,9 @@ Forward observables are
 $$
 \Delta t_{\text{Shap}}=140.80084\ \mu\mathrm{s},
 \quad
-\Delta\phi_{\text{Def}}=1.75001'',
+\Delta\phi_{\text{Def}}=1.75001\,\mathrm{arcsec},
 \quad
-\Delta\omega_{\text{Prec}}=42.9002''/\mathrm{cy}
+\Delta\omega_{\text{Prec}}=42.9002\,\mathrm{arcsec}/\mathrm{cy}
 $$
 $$
 z_{\text{Red}}\approx 2.119997\times 10^{-6}
@@ -668,9 +668,9 @@ Propagated $1\sigma$ scales (diagonal approximation) are
 $$
 \sigma_{\text{Shap}}\approx 3.5\times 10^{-4}\ \mu\mathrm{s},
 \quad
-\sigma_{\text{Def}}\approx 4.3\times 10^{-6}'',
+\sigma_{\text{Def}}\approx 4.3\times 10^{-6}\,\mathrm{arcsec},
 \quad
-\sigma_{\text{Prec}}\approx 1.5\times 10^{-4}''/\mathrm{cy},
+\sigma_{\text{Prec}}\approx 1.5\times 10^{-4}\,\mathrm{arcsec}/\mathrm{cy},
 \quad
 \sigma_{\text{Red}}\approx 1.8\times 10^{-17}
 $$

@@ -33,10 +33,10 @@ const tocFixture = {
                 sectionKey: "purpose",
               },
               {
-                title: "Scope",
+                title: "Scope Detail",
                 markdownPath: "content/markdown/aaa/foundations/ontology.md",
-                markdownSection: "Scope",
-                sectionKey: "scope",
+                markdownSection: "Scope Detail",
+                sectionKey: "scope detail",
               },
             ],
           },
@@ -69,7 +69,7 @@ test("textbook TOC page sequence flattens markdown documents and sections in boo
 
   assert.deepEqual(
     sequence.pages.map((page) => page.title),
-    ["Ontology", "Purpose", "Scope", "Architrino", "Validation Protocols"]
+    ["Ontology", "Purpose", "Scope Detail", "Architrino", "Validation Protocols"]
   );
   assert.deepEqual(
     sequence.pages.map((page) => page.markdownPath),
@@ -92,7 +92,7 @@ test("textbook TOC page navigation resolves previous and next by markdown path",
   });
 
   assert.equal(navigation.current.title, "Architrino");
-  assert.equal(navigation.previous.title, "Scope");
+  assert.equal(navigation.previous.title, "Scope Detail");
   assert.equal(navigation.next.title, "Validation Protocols");
   assert.equal(navigation.index, 3);
   assert.equal(navigation.total, 5);
@@ -102,13 +102,11 @@ test("textbook TOC page navigation resolves previous and next by markdown sectio
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
   const navigation = resolveTextbookPageNavigation(sequence, {
     id: "runtime:markdown:reader:content/markdown/aaa/foundations/ontology.md::Purpose",
-    markdownPath: "content/markdown/aaa/foundations/ontology.md",
-    markdownSection: "Purpose",
   });
 
   assert.equal(navigation.current.title, "Purpose");
   assert.equal(navigation.previous.title, "Ontology");
-  assert.equal(navigation.next.title, "Scope");
+  assert.equal(navigation.next.title, "Scope Detail");
 });
 
 test("textbook TOC page navigation resolves current page by scene path", () => {
@@ -143,6 +141,10 @@ test("textbook TOC page entries prefer authored scenes and fall back to runtime 
   assert.equal(
     sequence.pages[1].targetPath,
     `${RUNTIME_MARKDOWN_READER_PREFIX}content/markdown/aaa/foundations/ontology.md::Purpose`
+  );
+  assert.equal(
+    sequence.pages[2].targetPath,
+    `${RUNTIME_MARKDOWN_READER_PREFIX}content/markdown/aaa/foundations/ontology.md::Scope%20Detail`
   );
   assert.equal(
     sequence.pages[3].targetPath,

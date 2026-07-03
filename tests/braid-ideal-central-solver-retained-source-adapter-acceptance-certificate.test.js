@@ -26,18 +26,19 @@ const SCRIPT_PATH = fileURLToPath(
 );
 const RETAINED_RECORD_ID = "retained-record:held-release-six-point:adapter-acceptance-certificate";
 const SOURCE_ROW_ID = "two-speed-preferred-row:u0.8:v0.2";
+const SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_HASH =
+  "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
 function makeAcceptedEvidence({ retainedRecordId = RETAINED_RECORD_ID, sourceRowId = SOURCE_ROW_ID } = {}) {
   return {
     schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
     same_record_accepted_evidence_package_ref:
-      `accepted-evidence-package:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
+      `accepted:same-record-evidence-package:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
     same_record_accepted_evidence_package_authority_ref:
-      `accepted-evidence-package-authority:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
+      `accepted:same-record-evidence-package-authority:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
     same_record_accepted_evidence_package_verification_ref:
-      `accepted-evidence-package-verification:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
-    same_record_accepted_evidence_package_artifact_hash:
-      `sha256:same-record-retained-source-adapter-evidence-package:${retainedRecordId}:${sourceRowId}`,
+      `accepted:same-record-evidence-package-verification:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
+    same_record_accepted_evidence_package_artifact_hash: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_HASH,
     accepted_same_record_retained_source_adapter_evidence: true,
     retained_record_id: retainedRecordId,
     source_row_id: sourceRowId,
@@ -179,6 +180,46 @@ test("central retained-source adapter acceptance certificate rejects accepted-lo
   assert.equal(
     artifact.same_record_accepted_evidence_criterion.first_missing_field,
     "central_solver_retained_source_adapter.accepted_evidence.same_record_accepted_evidence_package_ref"
+  );
+  assert.equal(artifact.adapter_acceptance_certificate_ref, null);
+  assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+});
+
+test("central retained-source adapter acceptance certificate rejects unaccepted package provenance shell", () => {
+  const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+    sameRecordAcceptedEvidence: {
+      ...makeAcceptedEvidence(),
+      same_record_accepted_evidence_package_ref:
+        `accepted-evidence-package:retained-source-adapter:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+      same_record_accepted_evidence_package_authority_ref:
+        `accepted-evidence-package-authority:retained-source-adapter:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+      same_record_accepted_evidence_package_verification_ref:
+        `accepted-evidence-package-verification:retained-source-adapter:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+      same_record_accepted_evidence_package_artifact_hash:
+        `sha256:same-record-retained-source-adapter-evidence-package:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+    },
+  });
+
+  assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, false);
+  assert.deepEqual(
+    [
+      "same_record_accepted_evidence_package_ref",
+      "same_record_accepted_evidence_package_authority_ref",
+      "same_record_accepted_evidence_package_verification_ref",
+      "same_record_accepted_evidence_package_artifact_hash",
+    ].filter((field) =>
+      artifact.same_record_accepted_evidence_criterion.missing_fields.includes(
+        `central_solver_retained_source_adapter.accepted_evidence.${field}`
+      )
+    ),
+    [
+      "same_record_accepted_evidence_package_ref",
+      "same_record_accepted_evidence_package_authority_ref",
+      "same_record_accepted_evidence_package_verification_ref",
+      "same_record_accepted_evidence_package_artifact_hash",
+    ]
   );
   assert.equal(artifact.adapter_acceptance_certificate_ref, null);
   assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);

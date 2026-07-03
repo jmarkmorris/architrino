@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-03T00:42:12.604Z",
+  "generated_at": "2026-07-03T00:46:38.293Z",
   "package_version": "1.0.0-c3dedd9c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -204,16 +204,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 24445081,
-      "sha256": "310828703e823e07f0e9ef41ddb30a8fd3226d5db91153734fb2cc28b68c5cdd"
+      "size": 24466584,
+      "sha256": "fd8aa84d26203b9f35580af89a88758b5dc4a8231250114f61342b39ada8ba04"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1383006,
-      "sha256": "a0af9ef44ed8be58b1f1dc71d138a46b91b0a4a3d7f053d0848f048a8738cdc8"
+      "size": 1383008,
+      "sha256": "100308bc1c92289c76b558920ded3bee09613f4c6637a6cca7001f1e6040e521"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -252,16 +252,16 @@
       "sourcePath": "__generated__/reading-copies/noether-sea-and-effective-spacetime.html",
       "role": "chapter",
       "type": "html",
-      "size": 7098897,
-      "sha256": "675b0ca9dbb9822be9eca2a2a15c470e3db0a4dd45646ea9e61fdd23e9299d9e"
+      "size": 7107635,
+      "sha256": "4ed1c7df1452cfbc2aeb51add838b56345f11643cb195dee54dcedf836d40799"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 474465,
-      "sha256": "12e31eb4c7aba271b9ca523e8abfe8acd15fe7f1a92f46ccf5f2131af5b10c10"
+      "size": 474525,
+      "sha256": "86bcfffb0688c2c70b12b72b1bd507c9c3f22d20706909c93261de42241f474d"
     },
     {
       "path": "reading-copies/philosophy-history.html",
@@ -284,16 +284,16 @@
       "sourcePath": "__generated__/reading-copies/quantum.html",
       "role": "chapter",
       "type": "html",
-      "size": 1813244,
-      "sha256": "24e9f9af1ef405352433970ca126dd56f13182323fc0713da9621bfd71815a7f"
+      "size": 1832785,
+      "sha256": "e77bda187b7ce20caf27604fa74677a81990912c3ccb6cd95593c5568ea14f34"
     },
     {
       "path": "reading-copies/quantum.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 176283,
-      "sha256": "627b3b988cd6c13334e7b22858829e2f3c77723833a9e2f3c252daba7a106ce3"
+      "size": 176291,
+      "sha256": "5cc1722c67f4f491ba6b18f567824112f2e92c78a5b7527a895ef12ff73ddab0"
     },
     {
       "path": "reading-copies/reactions.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9700995,
-      "sha256": "7271c331a60120ea916700dd8faad5a75979b270f413d885f0d0b2abec4c98b6"
+      "size": 9701061,
+      "sha256": "8f3d16785b003d6f48e01494a13f3d05b823b603ddfc2bafc7b2493149fe8e1a"
     }
   ],
   "links": []
