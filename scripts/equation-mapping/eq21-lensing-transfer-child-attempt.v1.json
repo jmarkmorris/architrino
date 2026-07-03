@@ -1,0 +1,56 @@
+{
+  "schema": "aaa-equation-map-eq21-lensing-transfer-child-input/v1",
+  "claimLevel": "EQ-21 CMB-lensing transfer child attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_eq21_lensing_transfer_child_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-lensing-transfer-child-attempt-0001",
+    "rows": {
+      "lensing_transfer_child": { "status": "attempt", "rowId": "eq21-lensing-transfer-child-attempt-0001", "sourcePath": "pending-lensing-transfer-source" },
+      "lensing_kernel_row": { "status": "attempt", "rowId": "eq21-lensing-kernel-attempt-0001", "sourcePath": "pending-lensing-transfer-source" },
+      "matter_power_parent_row": { "status": "attempt", "rowId": "eq21-lensing-matter-power-parent-attempt-0001", "sourcePath": "pending-lensing-transfer-source" },
+      "cmb_lensing_grid": { "status": "attempt", "rowId": "eq21-cmb-lensing-grid-attempt-0001", "sourcePath": "pending-lensing-transfer-source" },
+      "source_provenance": { "status": "attempt", "rowId": "eq21-lensing-source-provenance-attempt-0001", "sourcePath": "pending-lensing-transfer-source" },
+      "no_hidden_retune_witness": { "status": "attempt", "rowId": "eq21-lensing-no-hidden-retune-attempt-0001", "sourcePath": "pending-lensing-transfer-source" }
+    },
+    "sharedKeys": [
+      { "key": "rho_NS", "status": "attempt", "value": 1, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "n", "status": "attempt", "value": 1, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "chi_sea", "status": "attempt", "value": 1.002, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "Gamma_N", "status": "attempt", "value": 1.0000010100010202, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "M_sea_ab", "status": "attempt", "value": 1, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "rho_bar", "status": "attempt", "value": 0.05, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "rho_A", "status": "attempt", "value": 0.25, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "H_eff", "status": "attempt", "value": 3.424706202494149, "sourcePath": "pending-lensing-transfer-source" },
+      { "key": "a_eff", "status": "attempt", "value": 1, "sourcePath": "pending-lensing-transfer-source" }
+    ],
+    "model": {
+      "lensingKernel": { "status": "attempt", "A_lens": 10000, "z_source": 2, "sourcePath": "pending-lensing-transfer-source" },
+      "samples": [
+        { "sampleId": "L40_z1_k0p02", "ell": 40, "matterSampleId": "k0p02_z1", "benchmark": { "C_phi_phi_observed": 0.000016904375640702608, "sigma": 0.0000016904375640702608 } },
+        { "sampleId": "L200_z1_k0p1", "ell": 200, "matterSampleId": "k0p1_z1", "benchmark": { "C_phi_phi_observed": 1.3183340887463533e-7, "sigma": 1.3183340887463533e-8 } },
+        { "sampleId": "L800_z1_k0p5", "ell": 800, "matterSampleId": "k0p5_z1", "benchmark": { "C_phi_phi_observed": 1.989183516529119e-9, "sigma": 1.9891835165291191e-10 } }
+      ],
+      "derived": {
+        "A_lens": 10000,
+        "z_source": 2,
+        "samples": []
+      },
+      "residualComponents": { "cmb_lensing_grid_normalized": 0, "S_retune": 0 }
+    }
+  }
+}

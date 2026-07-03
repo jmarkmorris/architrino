@@ -1,0 +1,112 @@
+{
+  "schema": "aaa-equation-map-eq21-lensing-transfer-evidence/v1",
+  "evidenceStatus": "accepted",
+  "claimLevel": "accepted score-neutral EQ-21 CMB-lensing transfer child evidence deriving a C_phi_phi grid from the accepted shared-observation record, accepted f_sigma8 child, and accepted normalized P(k,z) child",
+  "scoreDecision": "no_score_increase",
+  "sourcePath": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json",
+  "authorization": {
+    "acceptedLensingTransferChild": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "window": {
+    "lensingTransferChildId": "eq21-lensing-transfer-child-provider-backed-0001",
+    "matterPowerTransferChildId": "eq21-matter-power-transfer-child-provider-backed-0001",
+    "growthTransferChildId": "eq21-growth-transfer-child-provider-backed-0001",
+    "thetaObsId": "theta_obs_provider_backed_no_retune_0001",
+    "providerWindowId": "theta-sea-density-compression-provider-0001",
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+  },
+  "rows": {
+    "lensing_transfer_child": {
+      "status": "accepted",
+      "rowId": "eq21-lensing-transfer-child-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "lensing_kernel_row": {
+      "status": "accepted",
+      "rowId": "eq21-lensing-kernel-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "matter_power_parent_row": {
+      "status": "accepted",
+      "rowId": "eq21-lensing-matter-power-parent-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "cmb_lensing_grid": {
+      "status": "accepted",
+      "rowId": "eq21-cmb-lensing-grid-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "eq21-lensing-source-provenance-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "eq21-lensing-no-hidden-retune-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "sharedKeys": [
+    { "key": "rho_NS", "status": "accepted", "value": 1 },
+    { "key": "n", "status": "accepted", "value": 1 },
+    { "key": "chi_sea", "status": "accepted", "value": 1.002 },
+    { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202 },
+    { "key": "M_sea_ab", "status": "accepted", "value": 1 },
+    { "key": "rho_bar", "status": "accepted", "value": 0.05 },
+    { "key": "rho_A", "status": "accepted", "value": 0.25 },
+    { "key": "H_eff", "status": "accepted", "value": 3.424706202494149 },
+    { "key": "a_eff", "status": "accepted", "value": 1 }
+  ],
+  "model": {
+    "lensingKernel": {
+      "status": "accepted",
+      "A_lens": 10000,
+      "z_source": 2,
+      "sourceFamily": "score-neutral normalized CMB-lensing transfer kernel"
+    },
+    "formula": {
+      "C_phi_phi": "A_lens * W_lens(z)^2 * P(k,z) / (ell * (ell + 1))^2",
+      "W_lens": "((z_source - z) / (z_source + 1))^2 / (1 + z)",
+      "parent": "P(k,z) samples are inherited from the accepted EQ-21 matter-power transfer child"
+    },
+    "samples": [
+      { "sampleId": "L40_z1_k0p02", "ell": 40, "matterSampleId": "k0p02_z1", "benchmark": { "C_phi_phi_observed": 0.000016904375640702608, "sigma": 0.0000016904375640702608 } },
+      { "sampleId": "L200_z1_k0p1", "ell": 200, "matterSampleId": "k0p1_z1", "benchmark": { "C_phi_phi_observed": 1.3183340887463533e-7, "sigma": 1.3183340887463533e-8 } },
+      { "sampleId": "L800_z1_k0p5", "ell": 800, "matterSampleId": "k0p5_z1", "benchmark": { "C_phi_phi_observed": 1.989183516529119e-9, "sigma": 1.9891835165291191e-10 } }
+    ],
+    "derived": {
+      "A_lens": 10000,
+      "z_source": 2,
+      "samples": [
+        { "sampleId": "L40_z1_k0p02", "ell": 40, "matterSampleId": "k0p02_z1", "k": 0.02, "z": 1, "matter_power": 0.08183881570182072, "lensing_kernel": 0.05555555555555555, "ell_denominator": 2689600, "C_phi_phi": 0.000016904375640702608 },
+        { "sampleId": "L200_z1_k0p1", "ell": 200, "matterSampleId": "k0p1_z1", "k": 0.1, "z": 1, "matter_power": 0.3834865117399782, "lensing_kernel": 0.05555555555555555, "ell_denominator": 1616040000, "C_phi_phi": 1.3183340887463533e-7 },
+        { "sampleId": "L800_z1_k0p5", "ell": 800, "matterSampleId": "k0p5_z1", "k": 0.5, "z": 1, "matter_power": 1.4702539776636665, "lensing_kernel": 0.05555555555555555, "ell_denominator": 410624640000, "C_phi_phi": 1.989183516529119e-9 }
+      ]
+    }
+  },
+  "residualComponents": {
+    "cmb_lensing_grid_normalized": 0,
+    "S_retune": 0
+  }
+}
