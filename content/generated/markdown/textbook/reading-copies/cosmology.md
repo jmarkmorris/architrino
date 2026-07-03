@@ -195,7 +195,11 @@ This decomposition prevents hidden dependency loops where one assumed foundation
 
 #### Big Bang Evidence Chain as Data-Product Pipeline
 
-The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints. The sequence is therefore:
+The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints.
+
+The label "Big Bang" itself must be kept at this same level of discipline. In standard use it can name the hot, dense early observer-era record, the singular boundary obtained by extrapolating classical GR, a reheating interface after an inflationary model, or the whole $\Lambda\mathrm{CDM}$ history. $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the hot, dense record as an observational recovery target and treats the stronger origin claims as model-dependent reconstructions. Bounce, cyclic, no-boundary, and pre-inflationary branches, along with models in which a universe emerges from a black hole, are comparison frameworks only after they supply declared data products, such as CMB spectra, BBN yields, structure-growth records, primordial-gravitational-wave bounds, or non-Gaussianity tests, from the same Noether sea and assembly record.
+
+The sequence is therefore:
 
 1. calibrated flux and distance ladder,
 2. spectral-line identity and redshift,
@@ -3405,6 +3409,8 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
+The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, BAO and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a MOND-like or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
+
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 #### The Noether Sea as Gravitational Medium
@@ -5699,6 +5705,8 @@ For $S_8$:
 ### DESI-Era Data-Product Gate
 
 The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 catalogue, and as of April 2026 DESI has completed the observations for its originally planned five-year survey. The first dark-energy results from the full five-year dataset are expected in 2027. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+
+Within that packet, Hubble-tension proposals split into two comparison routes. Late-time routes alter the inferred distance to last scattering, but BAO rows anchored by galaxy correlations tend to follow the CMB-inferred expansion record rather than the local ladder. Early-time routes shrink the physical sound horizon through early-dark-energy-like injection, but CMB and galaxy-survey scrutiny has narrowed the allowed model space. A DESI/DES $w(a)$ improvement that leaves $\Lambda\mathrm{CDM}$ acceptable, or that has no clear connection to the Hubble tension, should therefore remain a model-dependent fit comparison rather than a solved expansion mechanism. The neutrino-mass side belongs to the same discipline: DESI-era bounds on $\sum_i m_i$ constrain the joint matter inventory and growth fit, so they must be read with the same BAO, CMB, growth, and source-history record rather than as an isolated neutral-lepton ontology change.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether sea history can satisfy
 $$

@@ -556,6 +556,8 @@ $$
 $$
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
 
+Chiral gauge structure also constrains how this bridge may be regulated. A finite lattice, cutoff, or discrete branch approximation is not automatically a physical explanation of the Standard Model because weak handedness and gauge anomaly cancellation must survive the regulator. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a cutoff is admissible only as an approximation to one retained branch and observer-level gauge record. It fails if left-handed weak exposure, charge bookkeeping, anomaly cancellation, locality, and unitarity can be made compatible only by changing the underlying Noether sea state, axial inventory, or reaction provenance from row to row.
+
 When this vector is evaluated from a fermion table, all entries are counted generation-by-generation with the correct spectator multiplicities and left-handed conjugate fields. For example, color multiplicity contributes to weak-doublet counting and weak multiplicity contributes to color anomaly sums. A visually correct charge table that passes only after dropping these multiplicities has not passed the Standard Model recovery gate.
 
 #### Running-Coupling Bridge
@@ -2436,6 +2438,8 @@ P_{\nu_e\to\nu_\mu}(L,E)
 \sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right)
 $$
 using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
+
+The experimental implementation makes this split operational. A long-baseline beam creates a flavor-tagged neutrino through a weak reaction, lets the neutral branch propagate over a declared baseline, and reads the detector flavor from the charged products of the rare interaction that finally occurs. The beamline may be described as a muon-neutrino source, but in the propagation interval the retained state is not a flavor eigenstate; it is a superposition of mass-response eigencomponents whose relative phases change with $L/E$ and with the intervening matter record. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is therefore one event ledger with source, propagation, and detector rows: source flavor tag, energy spectrum, baseline, in-medium phase correction, detector flavor tag, recoil, and missing neutral-lepton row must all refer to the same near-photon branch history. Oscillation measurements then constrain eigenvalue gaps and ordering pressure, not the absolute mass scale by themselves.
 
 Matter correction enters through the Noether sea state:
 $$

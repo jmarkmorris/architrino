@@ -1,0 +1,130 @@
+{
+  "schema": "aaa-equation-map-eq21-shear-rsd-transfer-evidence/v1",
+  "evidenceStatus": "accepted",
+  "claimLevel": "accepted score-neutral EQ-21 shear/RSD transfer child evidence deriving shear-band and RSD growth readouts from the accepted shared-observation record, accepted f_sigma8 child, accepted normalized P(k,z) child, and accepted CMB-lensing child",
+  "scoreDecision": "no_score_increase",
+  "sourcePath": "scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json",
+  "authorization": {
+    "acceptedShearRsdTransferChild": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "lensingTransferChild": {
+    "path": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json"
+  },
+  "window": {
+    "shearRsdTransferChildId": "eq21-shear-rsd-transfer-child-provider-backed-0001",
+    "lensingTransferChildId": "eq21-lensing-transfer-child-provider-backed-0001",
+    "matterPowerTransferChildId": "eq21-matter-power-transfer-child-provider-backed-0001",
+    "growthTransferChildId": "eq21-growth-transfer-child-provider-backed-0001",
+    "thetaObsId": "theta_obs_provider_backed_no_retune_0001",
+    "providerWindowId": "theta-sea-density-compression-provider-0001",
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+  },
+  "rows": {
+    "shear_rsd_transfer_child": {
+      "status": "accepted",
+      "rowId": "eq21-shear-rsd-transfer-child-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "shear_kernel_row": {
+      "status": "accepted",
+      "rowId": "eq21-shear-kernel-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "rsd_growth_rate_row": {
+      "status": "accepted",
+      "rowId": "eq21-rsd-growth-rate-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "matter_power_parent_row": {
+      "status": "accepted",
+      "rowId": "eq21-shear-rsd-matter-power-parent-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "lensing_parent_row": {
+      "status": "accepted",
+      "rowId": "eq21-shear-rsd-lensing-parent-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "shear_rsd_grid": {
+      "status": "accepted",
+      "rowId": "eq21-shear-rsd-grid-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "eq21-shear-rsd-source-provenance-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "eq21-shear-rsd-no-hidden-retune-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "sharedKeys": [
+    { "key": "rho_NS", "status": "accepted", "value": 1 },
+    { "key": "n", "status": "accepted", "value": 1 },
+    { "key": "chi_sea", "status": "accepted", "value": 1.002 },
+    { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202 },
+    { "key": "M_sea_ab", "status": "accepted", "value": 1 },
+    { "key": "rho_bar", "status": "accepted", "value": 0.05 },
+    { "key": "rho_A", "status": "accepted", "value": 0.25 },
+    { "key": "H_eff", "status": "accepted", "value": 3.424706202494149 },
+    { "key": "a_eff", "status": "accepted", "value": 1 }
+  ],
+  "model": {
+    "shearRsdKernel": {
+      "status": "accepted",
+      "A_shear": 0.5,
+      "bias_eff": 1.4,
+      "sourceFamily": "score-neutral shear/RSD transfer kernel"
+    },
+    "formula": {
+      "shear_band_power": "A_shear * ell * (ell + 1) * C_phi_phi",
+      "f_sigma8_z": "growth_rate_f(z) * sigma8Seed * D_theta(z)",
+      "beta_RSD": "growth_rate_f(z) / bias_eff",
+      "parent": "C_phi_phi samples are inherited from the accepted EQ-21 CMB-lensing child; growth_rate_f and D_theta(z) are inherited from the accepted matter-power child"
+    },
+    "samples": [
+      { "sampleId": "SR_L40_z1_k0p02", "lensingSampleId": "L40_z1_k0p02", "matterSampleId": "k0p02_z1", "benchmark": { "shear_band_power_observed": 0.013861588025376138, "shear_sigma": 0.0013861588025376138, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } },
+      { "sampleId": "SR_L200_z1_k0p1", "lensingSampleId": "L200_z1_k0p1", "matterSampleId": "k0p1_z1", "benchmark": { "shear_band_power_observed": 0.00264985151838017, "shear_sigma": 0.000264985151838017, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } },
+      { "sampleId": "SR_L800_z1_k0p5", "lensingSampleId": "L800_z1_k0p5", "matterSampleId": "k0p5_z1", "benchmark": { "shear_band_power_observed": 0.0006373343986959297, "shear_sigma": 0.00006373343986959297, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } }
+    ],
+    "derived": {
+      "A_shear": 0.5,
+      "bias_eff": 1.4,
+      "sigma8Seed": 0.811,
+      "samples": [
+        { "sampleId": "SR_L40_z1_k0p02", "lensingSampleId": "L40_z1_k0p02", "ell": 40, "matterSampleId": "k0p02_z1", "k": 0.02, "z": 1, "matter_power": 0.08183881570182072, "C_phi_phi": 0.000016904375640702608, "shear_band_power": 0.013861588025376138, "growth_rate_f": 0.8652216163251953, "growth_factor": 0.5489620728530868, "f_sigma8_z": 0.38520379395186893, "beta_RSD": 0.6180154402322824 },
+        { "sampleId": "SR_L200_z1_k0p1", "lensingSampleId": "L200_z1_k0p1", "ell": 200, "matterSampleId": "k0p1_z1", "k": 0.1, "z": 1, "matter_power": 0.3834865117399782, "C_phi_phi": 1.3183340887463533e-7, "shear_band_power": 0.00264985151838017, "growth_rate_f": 0.8652216163251953, "growth_factor": 0.5489620728530868, "f_sigma8_z": 0.38520379395186893, "beta_RSD": 0.6180154402322824 },
+        { "sampleId": "SR_L800_z1_k0p5", "lensingSampleId": "L800_z1_k0p5", "ell": 800, "matterSampleId": "k0p5_z1", "k": 0.5, "z": 1, "matter_power": 1.4702539776636665, "C_phi_phi": 1.989183516529119e-9, "shear_band_power": 0.0006373343986959297, "growth_rate_f": 0.8652216163251953, "growth_factor": 0.5489620728530868, "f_sigma8_z": 0.38520379395186893, "beta_RSD": 0.6180154402322824 }
+      ]
+    }
+  },
+  "residualComponents": {
+    "shear_rsd_grid_normalized": 0,
+    "S_retune": 0
+  }
+}

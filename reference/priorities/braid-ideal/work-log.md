@@ -6,6 +6,21 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-03 - Seed-Path Acceptance Certificate Worker Cycle
+
+Ran the retained-source adapter accepted-evidence package continuation in team-agent/coordinator mode against the current retained record/source row:
+
+- `retained-record:held-release-six-point:adapter-acceptance-certificate`
+- `two-speed-preferred-row:u0.8:v0.2`
+
+Worker A confirmed that `held_release_seed_path_rows:5833f18e53586201` is reproducible from the repo-local builder, but remains `candidate_provider_backed_source_unaccepted`. Its direct first missing object/field is `held_release_seed_path_rows_acceptance_certificate` / `held_release_seed_path_rows.acceptance_certificate_ref`. The accepted-looking `accepted:seed-path-rows:*` value exists only inside the retained-source adapter acceptance-certificate test fixture.
+
+Worker B confirmed that the current provider provenance is still candidate-only. The provider object ref `candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327` and the provider/source carrier `central_solver_retained_history_provider_source_carrier:ba5a407d8e85bfc5` bind the retained record and source row, but do not provide an accepted provider provenance ref. The provider/source carrier remains blocked at `central_solver_retained_source_adapter.acceptance_certificate_ref`, while the accepted-evidence package still requires an accepted same-record `provider_provenance_ref`.
+
+Worker C confirmed that the native/app source bridge is real producer plumbing but remains candidate-only for all six native/provider package fields: durable path-history stream manifests, native root-ledger detail rows, causal-root replay rows, same-record action closure, retained wake history, and provider provenance. The current contract reports ten observed package fields and zero accepted package fields.
+
+Decision: no accepted same-record source certificate was produced in this cycle. The current first source-certificate blocker for the retained-source adapter accepted-evidence package remains `held_release_seed_path_rows_acceptance_certificate` / `held_release_seed_path_rows.acceptance_certificate_ref`. The package-level blocker remains `central_solver_retained_source_adapter_same_record_accepted_evidence_package` / `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence`. This does not authorize ideal-braid closure, retained branch output, chirality authorization, Noether sea stabilization, branch-chart/moving certificate, return/stability claim, or score movement.
+
 ### 2026-07-03 - Accepted-Evidence Package Provenance Class Tightened
 
 Tightened the retained-source adapter accepted-evidence package criterion so package provenance cannot be a ref-only shell. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now requires `same_record_accepted_evidence_package_ref`, `same_record_accepted_evidence_package_authority_ref`, and `same_record_accepted_evidence_package_verification_ref` to be accepted-class refs, and requires `same_record_accepted_evidence_package_artifact_hash` to be a `sha256:` artifact hash.

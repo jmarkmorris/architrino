@@ -74,6 +74,14 @@ $$
 
 not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
 
+### Laboratory Limit and Closed Cosmology
+
+Ordinary laboratory quantum mechanics is recovered in the limit where the apparatus and downstream observer can be treated as large, slow, cold, and externally controllable compared with the target. In that regime the observer can prepare a channel, let the target interact, collect many trials, and treat the apparatus as if it stood outside the measured system. $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves that practice as an observer-level approximation, not as an ontological cut. The "external observer" is a limiting description of a Physical Observer whose uncontrolled coupling, memory drift, and record tolerance $\epsilon_O$ are negligible for the declared experiment.
+
+Closed-system and cosmology comparisons do not have that limiting observer outside the system. A Physical Observer inside the universe is part of the same Noether sea, shares the same causal-wake history, and cannot take its own apparatus to an infinite-capacity boundary. In those settings a formal state for "the universe" is not by itself a measurement model. The comparison must declare which embedded observer, access region, finite record window, and apparatus kernel produce the retained records. Any quoted observer-entropy or finite-memory precision floor is therefore read as an access-limit diagnostic for that record channel, not as a new substrate indeterminism or a rule that a classical observer must be inserted into the ontology.
+
+This is the measurement-side version of the cosmology shared-record rule. If the same closed system is described with one quantum state for global bookkeeping but a different effective state for an embedded observer, the difference is admissible only when both descriptions project from one substrate flow and one retained boundary-data record. Otherwise the comparison has split into an outside-view calculation and an inside-view calculation without a declared physical handoff.
+
 ### Transfer-Operator Measure Contract
 
 The record packet above is a finite-window object. Let $\mathcal{H}_{\eta,h}(t)$ denote the retained causal-wake and branch-ledger history at resolution $\eta$ and memory depth $h$, and let the declared coarse state space be

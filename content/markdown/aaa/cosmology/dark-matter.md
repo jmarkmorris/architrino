@@ -12,6 +12,8 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
+The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, BAO and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a MOND-like or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Noether Sea as Gravitational Medium

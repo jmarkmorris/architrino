@@ -50267,6 +50267,8 @@ $$
 $$
 The second entry is the non-perturbative $SU(2)$ Witten check: the number of left-handed $SU(2)$ doublets must be even. Global anomalies that are part of known physics, such as axial-current violation and pion-to-photon anomaly matching, may be retained as observer-level recovery targets, but a gauge anomaly is a consistency failure rather than an optional correction.
 
+Chiral gauge structure also constrains how this bridge may be regulated. A finite lattice, cutoff, or discrete branch approximation is not automatically a physical explanation of the Standard Model because weak handedness and gauge anomaly cancellation must survive the regulator. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a cutoff is admissible only as an approximation to one retained branch and observer-level gauge record. It fails if left-handed weak exposure, charge bookkeeping, anomaly cancellation, locality, and unitarity can be made compatible only by changing the underlying Noether sea state, axial inventory, or reaction provenance from row to row.
+
 When this vector is evaluated from a fermion table, all entries are counted generation-by-generation with the correct spectator multiplicities and left-handed conjugate fields. For example, color multiplicity contributes to weak-doublet counting and weak multiplicity contributes to color anomaly sums. A visually correct charge table that passes only after dropping these multiplicities has not passed the Standard Model recovery gate.
 
 ##### Running-Coupling Bridge
@@ -52147,6 +52149,8 @@ P_{\nu_e\to\nu_\mu}(L,E)
 \sin^2\!\left(\frac{\Delta\lambda\,L}{4E}\right)
 $$
 using the same mass-squared-response eigenvalue gap convention as the three-flavor equation above. Any later conversion to ordinary mass language is a comparison-layer unit map; it must not replace the geometric eigenvalue derivation.
+
+The experimental implementation makes this split operational. A long-baseline beam creates a flavor-tagged neutrino through a weak reaction, lets the neutral branch propagate over a declared baseline, and reads the detector flavor from the charged products of the rare interaction that finally occurs. The beamline may be described as a muon-neutrino source, but in the propagation interval the retained state is not a flavor eigenstate; it is a superposition of mass-response eigencomponents whose relative phases change with $L/E$ and with the intervening matter record. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is therefore one event ledger with source, propagation, and detector rows: source flavor tag, energy spectrum, baseline, in-medium phase correction, detector flavor tag, recoil, and missing neutral-lepton row must all refer to the same near-photon branch history. Oscillation measurements then constrain eigenvalue gaps and ordering pressure, not the absolute mass scale by themselves.
 
 Matter correction enters through the Noether sea state:
 $$
@@ -61248,6 +61252,20 @@ a_n=\langle\phi_n|\psi\rangle_\theta,
 $$
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner product, the admissible operator, and the coefficients from the retained deterministic flow and apparatus kernel. If those objects are inserted independently of the record-forming dynamics, the formal Hilbert-space description has been assumed rather than recovered.
 
+##### Representation and Decomposition Discipline
+
+The state-vector contract also fixes what may not be imported from the notation. A representation such as $\psi(\mathbf{x},t)$, $\psi(\mathbf{p},t)$, or $\psi(q_1,\ldots,q_N)$ is a coordinate choice on the effective state, not a direct inventory of substrate contents. A position-space chart is physically licensed only when $\theta$ includes a projection from deterministic assembly, causal-wake, and apparatus data to the corresponding position records. A configuration-space wavefunction for many coordinates is therefore not a new physical arena layered over the Euclidean void; it is an observer-level bookkeeping chart over possible record tuples.
+
+The same rule applies to subsystem decomposition. Standard quantum mechanics often writes a composite channel as
+$$
+\mathcal{H}_{\theta}
+\simeq
+\mathcal{H}_S\otimes\mathcal{H}_A\otimes\mathcal{H}_E
+$$
+for system, apparatus, and environment. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this factorization is accepted only where the same retained flow supplies stable subsystem boundaries, local transport or bounded causal coupling, and record persistence for the apparatus channel. It is not enough to choose factors that look like objects or spatial cells after the fact. The chosen decomposition must be compatible with $\mathcal{K}_A$, $\mu_{*,T}$, the action-to-envelope residual, and the record-autonomy tests in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md).
+
+This keeps the useful part of Hilbert-space formalism while reversing its ontological priority. Bases, observables, and tensor-product factors are recovery products. If they are assumed before the branch record is derived, the calculation may still be a useful comparison, but it has not shown that the wavefunction is fundamental or that space, particles, systems, and environments have been recovered from substrate dynamics.
+
 ##### Virtual-Channel Comparison Contract
 
 Perturbative quantum field theory often describes loop corrections by saying that virtual particles appear as intermediate components of an interaction. In this chapter that language is admitted only as comparison-layer bookkeeping. Lamb-shift splittings, Casimir-force corrections, electroweak mass shifts, and similar loop-sensitive observables are real record statistics to recover, but the phrase "particles constantly popping in and out" is not substrate ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$.
@@ -61780,6 +61798,14 @@ p_k^{\mathrm{rec}}(\theta)=
 $$
 
 not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
+
+##### Laboratory Limit and Closed Cosmology
+
+Ordinary laboratory quantum mechanics is recovered in the limit where the apparatus and downstream observer can be treated as large, slow, cold, and externally controllable compared with the target. In that regime the observer can prepare a channel, let the target interact, collect many trials, and treat the apparatus as if it stood outside the measured system. $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves that practice as an observer-level approximation, not as an ontological cut. The "external observer" is a limiting description of a Physical Observer whose uncontrolled coupling, memory drift, and record tolerance $\epsilon_O$ are negligible for the declared experiment.
+
+Closed-system and cosmology comparisons do not have that limiting observer outside the system. A Physical Observer inside the universe is part of the same Noether sea, shares the same causal-wake history, and cannot take its own apparatus to an infinite-capacity boundary. In those settings a formal state for "the universe" is not by itself a measurement model. The comparison must declare which embedded observer, access region, finite record window, and apparatus kernel produce the retained records. Any quoted observer-entropy or finite-memory precision floor is therefore read as an access-limit diagnostic for that record channel, not as a new substrate indeterminism or a rule that a classical observer must be inserted into the ontology.
+
+This is the measurement-side version of the cosmology shared-record rule. If the same closed system is described with one quantum state for global bookkeeping but a different effective state for an embedded observer, the difference is admissible only when both descriptions project from one substrate flow and one retained boundary-data record. Otherwise the comparison has split into an outside-view calculation and an inside-view calculation without a declared physical handoff.
 
 ##### Transfer-Operator Measure Contract
 
@@ -63223,7 +63249,11 @@ This decomposition prevents hidden dependency loops where one assumed foundation
 
 ##### Big Bang Evidence Chain as Data-Product Pipeline
 
-The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints. The sequence is therefore:
+The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints.
+
+The label "Big Bang" itself must be kept at this same level of discipline. In standard use it can name the hot, dense early observer-era record, the singular boundary obtained by extrapolating classical GR, a reheating interface after an inflationary model, or the whole $\Lambda\mathrm{CDM}$ history. $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the hot, dense record as an observational recovery target and treats the stronger origin claims as model-dependent reconstructions. Bounce, cyclic, no-boundary, and pre-inflationary branches, along with models in which a universe emerges from a black hole, are comparison frameworks only after they supply declared data products, such as CMB spectra, BBN yields, structure-growth records, primordial-gravitational-wave bounds, or non-Gaussianity tests, from the same Noether sea and assembly record.
+
+The sequence is therefore:
 
 1. calibrated flux and distance ladder,
 2. spectral-line identity and redshift,
@@ -66433,6 +66463,8 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
+The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, BAO and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a MOND-like or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
+
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ##### The Noether Sea as Gravitational Medium
@@ -68727,6 +68759,8 @@ For $S_8$:
 #### DESI-Era Data-Product Gate
 
 The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 catalogue, and as of April 2026 DESI has completed the observations for its originally planned five-year survey. The first dark-energy results from the full five-year dataset are expected in 2027. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+
+Within that packet, Hubble-tension proposals split into two comparison routes. Late-time routes alter the inferred distance to last scattering, but BAO rows anchored by galaxy correlations tend to follow the CMB-inferred expansion record rather than the local ladder. Early-time routes shrink the physical sound horizon through early-dark-energy-like injection, but CMB and galaxy-survey scrutiny has narrowed the allowed model space. A DESI/DES $w(a)$ improvement that leaves $\Lambda\mathrm{CDM}$ acceptable, or that has no clear connection to the Hubble tension, should therefore remain a model-dependent fit comparison rather than a solved expansion mechanism. The neutrino-mass side belongs to the same discipline: DESI-era bounds on $\sum_i m_i$ constrain the joint matter inventory and growth fit, so they must be read with the same BAO, CMB, growth, and source-history record rather than as an isolated neutral-lepton ontology change.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether sea history can satisfy
 $$

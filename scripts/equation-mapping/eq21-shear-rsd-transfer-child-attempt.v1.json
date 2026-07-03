@@ -1,0 +1,62 @@
+{
+  "schema": "aaa-equation-map-eq21-shear-rsd-transfer-child-input/v1",
+  "claimLevel": "EQ-21 shear/RSD transfer child attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_eq21_shear_rsd_transfer_child_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "lensingTransferChild": {
+    "path": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-shear-rsd-transfer-child-attempt-0001",
+    "rows": {
+      "shear_rsd_transfer_child": { "status": "attempt", "rowId": "eq21-shear-rsd-transfer-child-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "shear_kernel_row": { "status": "attempt", "rowId": "eq21-shear-kernel-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "rsd_growth_rate_row": { "status": "attempt", "rowId": "eq21-rsd-growth-rate-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "matter_power_parent_row": { "status": "attempt", "rowId": "eq21-shear-rsd-matter-power-parent-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "lensing_parent_row": { "status": "attempt", "rowId": "eq21-shear-rsd-lensing-parent-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "shear_rsd_grid": { "status": "attempt", "rowId": "eq21-shear-rsd-grid-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "source_provenance": { "status": "attempt", "rowId": "eq21-shear-rsd-source-provenance-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" },
+      "no_hidden_retune_witness": { "status": "attempt", "rowId": "eq21-shear-rsd-no-hidden-retune-attempt-0001", "sourcePath": "pending-shear-rsd-transfer-source" }
+    },
+    "sharedKeys": [
+      { "key": "rho_NS", "status": "attempt", "value": 1, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "n", "status": "attempt", "value": 1, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "chi_sea", "status": "attempt", "value": 1.002, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "Gamma_N", "status": "attempt", "value": 1.0000010100010202, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "M_sea_ab", "status": "attempt", "value": 1, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "rho_bar", "status": "attempt", "value": 0.05, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "rho_A", "status": "attempt", "value": 0.25, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "H_eff", "status": "attempt", "value": 3.424706202494149, "sourcePath": "pending-shear-rsd-transfer-source" },
+      { "key": "a_eff", "status": "attempt", "value": 1, "sourcePath": "pending-shear-rsd-transfer-source" }
+    ],
+    "model": {
+      "shearRsdKernel": { "status": "attempt", "A_shear": 0.5, "bias_eff": 1.4, "sourcePath": "pending-shear-rsd-transfer-source" },
+      "samples": [
+        { "sampleId": "SR_L40_z1_k0p02", "lensingSampleId": "L40_z1_k0p02", "matterSampleId": "k0p02_z1", "benchmark": { "shear_band_power_observed": 0.013861588025376138, "shear_sigma": 0.0013861588025376138, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } },
+        { "sampleId": "SR_L200_z1_k0p1", "lensingSampleId": "L200_z1_k0p1", "matterSampleId": "k0p1_z1", "benchmark": { "shear_band_power_observed": 0.00264985151838017, "shear_sigma": 0.000264985151838017, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } },
+        { "sampleId": "SR_L800_z1_k0p5", "lensingSampleId": "L800_z1_k0p5", "matterSampleId": "k0p5_z1", "benchmark": { "shear_band_power_observed": 0.0006373343986959297, "shear_sigma": 0.00006373343986959297, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } }
+      ],
+      "derived": {
+        "A_shear": 0.5,
+        "bias_eff": 1.4,
+        "sigma8Seed": 0.811,
+        "samples": []
+      },
+      "residualComponents": { "shear_rsd_grid_normalized": 0, "S_retune": 0 }
+    }
+  }
+}
