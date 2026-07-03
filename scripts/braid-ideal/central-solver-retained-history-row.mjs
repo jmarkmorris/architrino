@@ -77,6 +77,12 @@ function normalizeStringRef(value) {
   return typeof value === "string" && value.length > 0 ? value : null;
 }
 
+function readCliOption(name) {
+  const prefix = `--${name}=`;
+  const arg = process.argv.find((entry) => entry.startsWith(prefix));
+  return arg == null ? null : arg.slice(prefix.length);
+}
+
 function formatIdPart(value) {
   return String(value)
     .replaceAll("+", "plus")
@@ -623,7 +629,11 @@ export function validateCentralSolverRetainedHistoryRow(row) {
 }
 
 function runCli() {
-  const row = buildCentralSolverRetainedHistoryRow();
+  const row = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId: readCliOption("retained-record-id"),
+    providerObjectRef: readCliOption("provider-object-ref"),
+    providerArtifactHash: readCliOption("provider-artifact-hash"),
+  });
   const errors = validateCentralSolverRetainedHistoryRow(row);
   if (errors.length > 0) {
     console.error(errors.join("\n"));

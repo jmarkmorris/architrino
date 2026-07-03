@@ -1,0 +1,176 @@
+{
+  "schema": "aaa-equation-map-eq21-halo-cluster-transfer-child-input/v1",
+  "claimLevel": "EQ-21 halo/cluster transfer child attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_eq21_halo_cluster_transfer_child_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "lensingTransferChild": {
+    "path": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json"
+  },
+  "shearRsdTransferChild": {
+    "path": "scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-halo-cluster-transfer-child-attempt-0001",
+    "rows": {
+      "halo_cluster_transfer_child": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-transfer-child-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "halo_cluster_inversion_row": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-inversion-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "cluster_consistency_row": {
+        "status": "attempt",
+        "rowId": "eq21-cluster-consistency-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "matter_power_parent_row": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-matter-power-parent-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "lensing_parent_row": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-lensing-parent-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "shear_rsd_parent_row": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-shear-rsd-parent-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "halo_cluster_grid": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-grid-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-source-provenance-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "rowId": "eq21-halo-cluster-no-hidden-retune-attempt-0001",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "rho_NS",
+        "status": "attempt",
+        "value": 1,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "n",
+        "status": "attempt",
+        "value": 1,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "chi_sea",
+        "status": "attempt",
+        "value": 1.002,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "Gamma_N",
+        "status": "attempt",
+        "value": 1.0000010100010202,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "M_sea_ab",
+        "status": "attempt",
+        "value": 1,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "rho_bar",
+        "status": "attempt",
+        "value": 0.05,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "rho_A",
+        "status": "attempt",
+        "value": 0.25,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "H_eff",
+        "status": "attempt",
+        "value": 3.424706202494149,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      {
+        "key": "a_eff",
+        "status": "attempt",
+        "value": 1,
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      }
+    ],
+    "model": {
+      "haloClusterInversion": {
+        "status": "attempt",
+        "sourcePath": "pending-halo-cluster-transfer-source"
+      },
+      "formula": {
+        "P_lensing": "C_phi_phi * (ell * (ell + 1))^2 / (A_lens * W_lens)",
+        "P_shear": "shear_band_power * ell * (ell + 1) / (A_shear * A_lens * W_lens)",
+        "P_RSD": "seed_power * T_sea(k)^2 * (f_sigma8_z / (sigma8Seed * beta_RSD * bias_eff))^2",
+        "residual": "max relative mismatch among P_lensing, P_shear, P_RSD, and inherited P(k,z)",
+        "parent": "P(k,z), C_phi_phi, shear-band, and RSD readouts are inherited from the accepted matter-power, CMB-lensing, and shear/RSD EQ-21 children"
+      },
+      "samples": [
+        {
+          "sampleId": "HC_L40_z1_k0p02",
+          "shearRsdSampleId": "SR_L40_z1_k0p02",
+          "lensingSampleId": "L40_z1_k0p02",
+          "matterSampleId": "k0p02_z1"
+        },
+        {
+          "sampleId": "HC_L200_z1_k0p1",
+          "shearRsdSampleId": "SR_L200_z1_k0p1",
+          "lensingSampleId": "L200_z1_k0p1",
+          "matterSampleId": "k0p1_z1"
+        },
+        {
+          "sampleId": "HC_L800_z1_k0p5",
+          "shearRsdSampleId": "SR_L800_z1_k0p5",
+          "lensingSampleId": "L800_z1_k0p5",
+          "matterSampleId": "k0p5_z1"
+        }
+      ],
+      "derived": {
+        "A_lens": null,
+        "A_shear": null,
+        "bias_eff": null,
+        "sigma8Seed": null,
+        "samples": []
+      },
+      "residualComponents": {
+        "halo_cluster_grid_normalized": 0,
+        "S_retune": 0
+      }
+    }
+  }
+}

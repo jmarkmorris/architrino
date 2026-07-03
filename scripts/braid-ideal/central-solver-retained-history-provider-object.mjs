@@ -64,6 +64,48 @@ function stableHash(value) {
   return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
 }
 
+function normalizeStringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function formatRefPart(value) {
+  return String(value ?? "missing")
+    .replaceAll("+", "plus")
+    .replaceAll("-", "minus")
+    .replaceAll(":", "_")
+    .replaceAll(".", "_")
+    .replaceAll("/", "_");
+}
+
+function readCliOption(name) {
+  const prefix = `--${name}=`;
+  return process.argv.find((arg) => arg.startsWith(prefix))?.slice(prefix.length) ?? null;
+}
+
+function readCliOptions(name) {
+  const prefix = `--${name}=`;
+  return process.argv
+    .filter((arg) => arg.startsWith(prefix))
+    .map((arg) => arg.slice(prefix.length))
+    .filter((value) => value.length > 0);
+}
+
+function splitCliRefList(value) {
+  return normalizeStringRef(value)?.split(",").map((entry) => entry.trim()).filter(Boolean) ?? [];
+}
+
+function makeCandidateDurableManifestRefs(retainedRecordId) {
+  const retainedRecordRef = normalizeStringRef(retainedRecordId);
+  if (retainedRecordRef == null) {
+    return [];
+  }
+  const retainedPart = formatRefPart(retainedRecordRef);
+  return Array.from(
+    { length: 6 },
+    (_, index) => `candidate:native-app:path-history-stream-manifest:${retainedPart}:${index}`
+  );
+}
+
 function makeAuthorization() {
   return Object.fromEntries([
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
@@ -531,8 +573,59 @@ export function validateCentralSolverRetainedHistoryProviderObject(artifact) {
   return errors;
 }
 
+function buildCliProviderObject() {
+  const retainedRecordId = readCliOption("retained-record-id");
+  const cliDurableManifestRefs = [
+    ...readCliOptions("durable-manifest-ref"),
+    ...splitCliRefList(readCliOption("durable-manifest-refs")),
+  ];
+  const durableManifestRefs =
+    cliDurableManifestRefs.length > 0 || !process.argv.includes("--auto-durable-manifest-refs")
+      ? cliDurableManifestRefs
+      : makeCandidateDurableManifestRefs(retainedRecordId);
+  if (retainedRecordId == null) {
+    return buildCentralSolverRetainedHistoryProviderObject();
+  }
+  const baseSeedArtifact = buildHeldReleaseSeedPathRows({ retainedRecordId });
+  const baseManifestSet = buildHeldReleasePathHistoryStreamManifestSet({
+    seedArtifact: baseSeedArtifact,
+    durableManifestRefs,
+  });
+  const requestRow = buildCentralSolverRetainedHistoryRow({ retainedRecordId });
+  const providerShell = buildCentralSolverRetainedHistoryProviderObject({
+    seedArtifact: baseSeedArtifact,
+    manifestSetArtifact: baseManifestSet,
+    retainedHistoryRow: requestRow,
+  });
+  const providerObjectRef =
+    normalizeStringRef(readCliOption("provider-object-ref")) ?? providerShell.candidate_provider_object_ref;
+  const providerArtifactHash =
+    normalizeStringRef(readCliOption("provider-artifact-hash")) ?? providerShell.artifact_hash;
+  const seedArtifact = buildHeldReleaseSeedPathRows({
+    retainedRecordId,
+    providerObjectRef,
+    providerArtifactHash,
+  });
+  const manifestSet = buildHeldReleasePathHistoryStreamManifestSet({
+    seedArtifact,
+    providerObjectRef,
+    providerArtifactHash,
+    durableManifestRefs,
+  });
+  const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId,
+    providerObjectRef,
+    providerArtifactHash,
+  });
+  return buildCentralSolverRetainedHistoryProviderObject({
+    seedArtifact,
+    manifestSetArtifact: manifestSet,
+    retainedHistoryRow,
+  });
+}
+
 function runCli() {
-  const artifact = buildCentralSolverRetainedHistoryProviderObject();
+  const artifact = buildCliProviderObject();
   const errors = validateCentralSolverRetainedHistoryProviderObject(artifact);
   if (errors.length > 0) {
     console.error(errors.join("\n"));

@@ -1,5 +1,7 @@
-import test from "node:test";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import {
   FIRST_MISSING_FIELD,
@@ -16,6 +18,13 @@ import {
 } from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
 import { buildHeldReleaseSeedPathRows } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
 import { buildHeldReleasePathHistoryStreamManifestSet } from "../scripts/braid-ideal/held-release-path-history-stream-manifest-set.mjs";
+
+const SCRIPT_PATH = fileURLToPath(
+  new URL("../scripts/braid-ideal/central-solver-retained-history-provider-object.mjs", import.meta.url)
+);
+const RETAINED_RECORD_ID = "retained-record:held-release-six-point:adapter-acceptance-certificate";
+const PROVIDER_OBJECT_REF = "candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327";
+const PROVIDER_ARTIFACT_HASH = "7d4a8fe0a97923270179f2ca0b49b4bc0d6b6ba3251b26e82569bdb4bd1f91df";
 
 test("central solver retained-history provider object assembles one fail-closed provider object", () => {
   const artifact = buildCentralSolverRetainedHistoryProviderObject();
@@ -195,6 +204,48 @@ test("provider object can bind provider-backed source rows and durable stream re
     reason: "producer_does_not_authorize_accepted_provider_object_evidence",
     first_missing_field: "central_solver_retained_history_provider_object.acceptance_certificate_ref",
   });
+  assert.equal(artifact.authorization.central_solver_retained_history_provider_object, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(validateCentralSolverRetainedHistoryProviderObject(artifact), []);
+});
+
+test("provider object CLI emits provider-backed acceptance blocker", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      `--retained-record-id=${RETAINED_RECORD_ID}`,
+      "--auto-durable-manifest-refs",
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const artifact = JSON.parse(output);
+
+  assert.equal(artifact.artifact_id, "central_solver_retained_history_provider_object:7d4a8fe0a9792327");
+  assert.equal(artifact.candidate_provider_object_ref, PROVIDER_OBJECT_REF);
+  assert.equal(artifact.artifact_hash, PROVIDER_ARTIFACT_HASH);
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(
+    artifact.first_missing_object,
+    "central_solver_retained_history_provider_object_acceptance_certificate"
+  );
+  assert.equal(
+    artifact.first_missing_field,
+    "central_solver_retained_history_provider_object.acceptance_certificate_ref"
+  );
+  assert.equal(artifact.provider_provenance.provider_object_ref, PROVIDER_OBJECT_REF);
+  assert.equal(artifact.provider_provenance.provider_artifact_hash, PROVIDER_ARTIFACT_HASH);
+  assert.equal(artifact.path_segment_layout.durable_stream_count, 6);
+  assert.equal(
+    artifact.stream_manifest_refs.every(
+      (row, index) =>
+        row.provider_object_ref === PROVIDER_OBJECT_REF &&
+        row.durable_manifest_ref ===
+          `candidate:native-app:path-history-stream-manifest:retainedminusrecord_heldminusreleaseminussixminuspoint_adapterminusacceptanceminuscertificate:${index}`
+    ),
+    true
+  );
   assert.equal(artifact.authorization.central_solver_retained_history_provider_object, false);
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
   assert.deepEqual(validateCentralSolverRetainedHistoryProviderObject(artifact), []);

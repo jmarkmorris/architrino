@@ -1,0 +1,248 @@
+{
+  "schema": "aaa-equation-map-eq21-halo-cluster-transfer-child-input/v1",
+  "claimLevel": "EQ-21 halo/cluster transfer child priority-source negative control; accepted-looking rows are not retained evidence",
+  "residualId": "R_eq21_halo_cluster_transfer_child_priority_source_negative_control_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "lensingTransferChild": {
+    "path": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json"
+  },
+  "shearRsdTransferChild": {
+    "path": "scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-halo-cluster-transfer-child-priority-source-negative-control-0001",
+    "rows": {
+      "halo_cluster_transfer_child": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-transfer-child-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "halo_cluster_inversion_row": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-inversion-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "cluster_consistency_row": {
+        "status": "accepted",
+        "rowId": "eq21-cluster-consistency-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "matter_power_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-matter-power-parent-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "lensing_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-lensing-parent-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "shear_rsd_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-shear-rsd-parent-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "halo_cluster_grid": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-grid-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "source_provenance": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-source-provenance-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "no_hidden_retune_witness": {
+        "status": "accepted",
+        "rowId": "eq21-halo-cluster-no-hidden-retune-priority-source-control-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "rho_NS",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "n",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "chi_sea",
+        "status": "accepted",
+        "value": 1.002,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "Gamma_N",
+        "status": "accepted",
+        "value": 1.0000010100010202,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "M_sea_ab",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "rho_bar",
+        "status": "accepted",
+        "value": 0.05,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "rho_A",
+        "status": "accepted",
+        "value": 0.25,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "H_eff",
+        "status": "accepted",
+        "value": 3.424706202494149,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      {
+        "key": "a_eff",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      }
+    ],
+    "model": {
+      "haloClusterInversion": {
+        "status": "accepted",
+        "sourceFamily": "score-neutral halo/cluster parent-chain inversion readout",
+        "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md"
+      },
+      "formula": {
+        "P_lensing": "C_phi_phi * (ell * (ell + 1))^2 / (A_lens * W_lens)",
+        "P_shear": "shear_band_power * ell * (ell + 1) / (A_shear * A_lens * W_lens)",
+        "P_RSD": "seed_power * T_sea(k)^2 * (f_sigma8_z / (sigma8Seed * beta_RSD * bias_eff))^2",
+        "residual": "max relative mismatch among P_lensing, P_shear, P_RSD, and inherited P(k,z)",
+        "parent": "P(k,z), C_phi_phi, shear-band, and RSD readouts are inherited from the accepted matter-power, CMB-lensing, and shear/RSD EQ-21 children"
+      },
+      "samples": [
+        {
+          "sampleId": "HC_L40_z1_k0p02",
+          "shearRsdSampleId": "SR_L40_z1_k0p02",
+          "lensingSampleId": "L40_z1_k0p02",
+          "matterSampleId": "k0p02_z1"
+        },
+        {
+          "sampleId": "HC_L200_z1_k0p1",
+          "shearRsdSampleId": "SR_L200_z1_k0p1",
+          "lensingSampleId": "L200_z1_k0p1",
+          "matterSampleId": "k0p1_z1"
+        },
+        {
+          "sampleId": "HC_L800_z1_k0p5",
+          "shearRsdSampleId": "SR_L800_z1_k0p5",
+          "lensingSampleId": "L800_z1_k0p5",
+          "matterSampleId": "k0p5_z1"
+        }
+      ],
+      "derived": {
+        "A_lens": 10000,
+        "A_shear": 0.5,
+        "bias_eff": 1.4,
+        "sigma8Seed": 0.811,
+        "halo_cluster_grid_normalized_residual": 3.0204931705456123e-16,
+        "samples": [
+          {
+            "sampleId": "HC_L40_z1_k0p02",
+            "shearRsdSampleId": "SR_L40_z1_k0p02",
+            "lensingSampleId": "L40_z1_k0p02",
+            "ell": 40,
+            "matterSampleId": "k0p02_z1",
+            "k": 0.02,
+            "z": 1,
+            "matter_power": 0.08183881570182072,
+            "C_phi_phi": 0.000016904375640702608,
+            "lensing_kernel": 0.05555555555555555,
+            "shear_band_power": 0.013861588025376138,
+            "beta_RSD": 0.6180154402322824,
+            "f_sigma8_z": 0.38520379395186893,
+            "seed_power": 0.2716624418529052,
+            "transfer": 0.9998216286513482,
+            "growth_rate_from_rsd": 0.8652216163251953,
+            "growth_factor_from_rsd": 0.5489620728530868,
+            "P_lensing": 0.08183881570182072,
+            "P_shear": 0.08183881570182072,
+            "P_RSD": 0.08183881570182072,
+            "halo_cluster_normalized_residual": 0
+          },
+          {
+            "sampleId": "HC_L200_z1_k0p1",
+            "shearRsdSampleId": "SR_L200_z1_k0p1",
+            "lensingSampleId": "L200_z1_k0p1",
+            "ell": 200,
+            "matterSampleId": "k0p1_z1",
+            "k": 0.1,
+            "z": 1,
+            "matter_power": 0.3834865117399782,
+            "C_phi_phi": 1.3183340887463533e-7,
+            "lensing_kernel": 0.05555555555555555,
+            "shear_band_power": 0.00264985151838017,
+            "beta_RSD": 0.6180154402322824,
+            "f_sigma8_z": 0.38520379395186893,
+            "seed_power": 1.2839131714589986,
+            "transfer": 0.9955541312928102,
+            "growth_rate_from_rsd": 0.8652216163251953,
+            "growth_factor_from_rsd": 0.5489620728530868,
+            "P_lensing": 0.38348651173997816,
+            "P_shear": 0.38348651173997816,
+            "P_RSD": 0.3834865117399782,
+            "halo_cluster_normalized_residual": 1.4475385582504394e-16
+          },
+          {
+            "sampleId": "HC_L800_z1_k0p5",
+            "shearRsdSampleId": "SR_L800_z1_k0p5",
+            "lensingSampleId": "L800_z1_k0p5",
+            "ell": 800,
+            "matterSampleId": "k0p5_z1",
+            "k": 0.5,
+            "z": 1,
+            "matter_power": 1.4702539776636665,
+            "C_phi_phi": 1.989183516529119e-9,
+            "lensing_kernel": 0.05555555555555555,
+            "shear_band_power": 0.0006373343986959297,
+            "beta_RSD": 0.6180154402322824,
+            "f_sigma8_z": 0.38520379395186893,
+            "seed_power": 6.06794601639658,
+            "transfer": 0.8966707163458992,
+            "growth_rate_from_rsd": 0.8652216163251953,
+            "growth_factor_from_rsd": 0.5489620728530868,
+            "P_lensing": 1.4702539776636663,
+            "P_shear": 1.4702539776636663,
+            "P_RSD": 1.470253977663666,
+            "halo_cluster_normalized_residual": 3.0204931705456123e-16
+          }
+        ]
+      },
+      "residualComponents": {
+        "halo_cluster_grid_normalized": 3.0204931705456123e-16,
+        "S_retune": 0
+      }
+    }
+  }
+}

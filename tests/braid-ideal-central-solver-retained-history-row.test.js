@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import {
   FIRST_MISSING_SOURCE_PROOF_FIELD,
@@ -11,6 +14,11 @@ import {
   evaluateRetainedHistoryEvidenceCandidate,
   validateCentralSolverRetainedHistoryRow,
 } from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
+
+const SCRIPT_PATH = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../scripts/braid-ideal/central-solver-retained-history-row.mjs"
+);
 
 test("central solver retained-history row is deterministic and sharpens the first blocker", () => {
   const first = buildCentralSolverRetainedHistoryRow();
@@ -251,6 +259,33 @@ test("central solver retained-history row can carry candidate provider backing w
     reason: "adapter_does_not_authorize_retained_history_evidence",
     first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
   });
+});
+
+test("central solver retained-history row CLI emits provider-backed acceptance blocker", () => {
+  const retainedRecordId = "retained-record:braid-ideal:cli-provider-backed";
+  const providerObjectRef = "candidate:central_solver_retained_history_provider_object:cli";
+  const providerArtifactHash = "provider-hash-cli";
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      `--retained-record-id=${retainedRecordId}`,
+      `--provider-object-ref=${providerObjectRef}`,
+      `--provider-artifact-hash=${providerArtifactHash}`,
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const row = JSON.parse(output);
+
+  assert.equal(row.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(row.first_missing_object, "central_solver_retained_history_row_acceptance_certificate");
+  assert.equal(row.first_missing_field, "central_solver_retained_history_row.acceptance_certificate_ref");
+  assert.equal(row.retained_record_request.retained_record_id, retainedRecordId);
+  assert.equal(row.provider_provenance.provider_object_ref, providerObjectRef);
+  assert.equal(row.provider_provenance.provider_artifact_hash, providerArtifactHash);
+  assert.equal(row.authorization.central_solver_retained_history_row, false);
+  assert.equal(row.authorization.score_movement, "no_score_increase");
 });
 
 test("central solver retained-history evidence guard rejects non-evidence classes", () => {
