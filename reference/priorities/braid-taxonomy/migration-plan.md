@@ -79,13 +79,13 @@ The taxonomy chapter should define the Noether braid architecture by independent
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
+| Rank-three branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
-| Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
+| Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
 | Speed regime | Relation of layer speed rows to $c_f$ | sub-field, field-speed, super-field, mixed |
 | Field-speed hinge occupancy | Which rows operate within a declared $c_f$ tolerance and how that affects root access | no hinge row, single-hinge, multi-hinge, terminal hinge |
 | Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
-| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate, retained branch, eigen-braid candidate |
+| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate braid, retained branch, certified braid |
 
 The taxonomy chapter must not claim that all listed configurations are retained branches. It should separate explored support classes, candidate branch families, and accepted certificate statuses.
 

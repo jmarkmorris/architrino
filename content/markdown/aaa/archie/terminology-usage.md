@@ -140,6 +140,8 @@ Use `Noether braid` as the canonical reader-facing term for the neutral six-arch
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | the broad six-architrino neutral assembly class | `Noether braid` | `Noether core`, `Noether cluster`, or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
+| a proposed branch or branch family before all certificate rows close | `candidate braid` | treating the branch as retained or certified before the same-record rows close | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability rows close." |
+| a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability rows are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
 | the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
 | a one-band radial-support case | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
 | the three-band nested exact-binary candidate | `nested shell braid` | `exact three-binary`, `three exact binaries`, or `nested binary` unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |

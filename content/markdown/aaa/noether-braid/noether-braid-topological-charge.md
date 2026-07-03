@@ -32,7 +32,7 @@ where $D_s$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_
 
 This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
 
-In the terminology of [Noether Braid Configuration Space](noether-braid-configuration-space.md#eigen-braid-candidates), an eigen-braid candidate is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
+In the terminology of [Noether Braid Configuration Space](noether-braid-configuration-space.md#candidate-and-certified-braids), a candidate for certified-braid promotion is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
 
 ## Source Of The Three Entries
 

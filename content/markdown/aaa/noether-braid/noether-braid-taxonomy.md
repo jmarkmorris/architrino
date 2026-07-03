@@ -39,15 +39,15 @@ This chapter uses four evidence-level terms in a controlled way:
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
+| Rank-three branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
-| Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
+| Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
 | Speed regime | Relation of layer speed rows to $c_f$ | sub-field, field-speed, super-field, mixed |
 | Field-speed hinge occupancy | Which rows operate within a declared $c_f$ tolerance and how that affects root access | no hinge row, single-hinge, multi-hinge, terminal hinge |
 | Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
-| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate, retained branch, eigen-braid candidate |
+| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate braid, retained branch, certified braid |
 
-The axes are intentionally independent. A nested shell braid may be studied with or without an exact three-binary chart. A doubling-frequency family may be studied on an axis-neutral or axis-polarized polarity support. A row with field-speed hinge occupancy may or may not belong to an iso-frequency or integer-ratio family. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
+The axes are intentionally independent. A nested shell braid may be studied with or without an exact rank-three chart. A doubling-frequency family may be studied on an axis-neutral or axis-polarized polarity support. A row with field-speed hinge occupancy may or may not belong to an iso-frequency or integer-ratio family. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
 
 ## Base Inventory
 
@@ -75,11 +75,11 @@ Support geometry records how the six paths occupy their branch support.
 | nested shell braid | Shell braid with three ordered radial support bands. | Support class used by [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md). |
 | oblate envelope | Candidate support whose retained path envelope is flattened relative to a spherical shell. | Explored support variation, not a retained class by name alone. |
 
-Support geometry should not be confused with binary grouping. A branch may have shell support before it proves three persistent binary rows. Conversely, a three-binary chart may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid.
+Support geometry should not be confused with binary grouping. A branch may have shell support before it proves three persistent binary rows. Conversely, a rank-three chart may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid.
 
-## Three-Binary Branch Record
+## Rank-Three Branch Record
 
-The three-binary branch record asks whether the retained branch emits three angular-momentum rows. It is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md). The rows are ledger data extracted from the branch, not assumed circular orbits.
+The rank-three branch record asks whether the retained branch emits three angular-momentum rows. It is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md). The rows are ledger data extracted from the branch, not assumed circular orbits.
 
 For a rank-three chart, the branch record includes three angular-momentum two-form classes
 
@@ -124,7 +124,7 @@ These are support decorations, not force laws. They classify a polarity placemen
 
 ## Angular-Momentum Handedness
 
-Angular-momentum handedness records the orientation of the ordered three-binary frame when the frame exists. If the retained branch supplies ordered plane normals $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$, then the sign of $D_{\mathrm{plane}}$ gives the handedness of that ordered frame:
+Angular-momentum handedness records the orientation of the ordered rank-three frame when the frame exists. If the retained branch supplies ordered plane normals $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$, then the sign of $D_{\mathrm{plane}}$ gives the handedness of that ordered frame:
 
 $$
 \operatorname{sgn}(D_{\mathrm{plane}})
@@ -167,9 +167,11 @@ Certificate status prevents taxonomy names from being mistaken for results.
 | Status | Meaning |
 | --- | --- |
 | toy diagnostic | A simplified computation or visualization that tests a limited obstruction or analogy. |
-| candidate | A proposed branch family or configuration class whose required ledger rows are not all certified. |
+| candidate braid | A proposed branch family or configuration class whose required ledger rows are not all certified. |
 | retained branch | A branch whose inventory, causal-root, wake-tail, dynamics, action, event, stability, and convergence rows close on one retained record. |
-| eigen-braid candidate | A retained or near-retained branch record that returns under the delayed return map up to declared neutral symmetries. |
+| certified braid | A retained branch record that returns under the delayed return map up to declared neutral symmetries, preserves the required non-symmetry stability margins, and satisfies the observer-export rows required of a physical branch. |
+
+All certified braids must reproduce Lorentz deformation of space and time at the observer-export layer. In the homogeneous moving-branch regime, the same retained record must export a ruler row whose longitudinal-to-transverse deformation approaches $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, a clock row whose extracted rate approaches $d\tau/dt\to1/\gamma$, and bounded preferred-frame leakage through the declared $\epsilon_{\text{LV}}$ or two-way anisotropy diagnostic. The Ideal Braid lesson is one app-facing demonstration of this obligation; it is not a special exception that carries the Lorentz burden alone.
 
 The [Noether Braid Topological Charge](noether-braid-topological-charge.md) program adds topological labels only after the retained branch chart supplies the needed root-complex and phase-return data. A taxonomy value can point to where that proof should be attempted, but it cannot substitute for the proof.
 
@@ -190,4 +192,29 @@ The explored Noether braid configurations should be read as combinations of the 
 | axis-polarized support | One positive pair, one negative pair, and one mixed pair. | Polarity-support decoration in an axial comparison chart. |
 | positive-handed or negative-handed frame | Sign of the ordered rank-three angular-momentum frame. | Assigned only when the branch supplies a nondegenerate three-row frame. |
 
-This taxonomy is designed to keep the architecture extensible without turning every variation into a retained branch. A configuration becomes physically important only when its taxonomy record is joined to a retained branch certificate or a clearly marked theorem target.
+This taxonomy is designed to keep the architecture extensible without turning every variation into a retained branch. A configuration becomes physically important only when its taxonomy record is joined to a retained branch certificate, a certified-braid theorem target, or a clearly marked lower-status search family.
+
+## Coverage Decoder Table
+
+This decoder table lists the main braid variations currently used or previously examined. `Unknown` means the row must be supplied by a retained branch record before the label can be promoted.
+
+| Name / label | What the label decodes | Radii / velocity information? | Frequency-ratio value | Shell count | Axis situation | Hinge value | Energy-level relation | Status | Notes / missing rows |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| neutral braid | Base six-body polarity-neutral Noether braid inventory. | Not fixed by the label. | Not fixed. | Unknown or undeclared. | No rank-three frame implied. | Not fixed. | One branch energy ledger required, but no layer relation implied. | Broad candidate class. | Needs support, causal-root, wake, action, stability, and observer-export rows for promotion. |
+| shell braid | Neutral braid with controlled radial support band. | Radial support bounds required; speeds remain branch rows. | Not fixed. | One support band. | No rank-three frame implied. | Not fixed. | Not fixed by support label. | Support candidate or retained support class. | Needs radial-control rows and same-record retention. |
+| nested shell braid | Shell braid with ordered radial support bands. | Distinct support radii or bands required; speed rows solved per band. | Not fixed by nesting. | Three support bands. | Rank-three frame optional until supplied. | Not fixed. | Not automatically equal or ordered; energy/action rows must solve it. | Explored fermion-scaffold candidate. | Needs role map, support gluing, causal-root, energy, and stability closure. |
+| rank-three Noether braid chart | Three retained angular-momentum rows with nondegenerate frame data. | Each row carries $r_a$ and speed statistic $s_a$; circular charts may use $s_a=2\pi f_a r_a$. | Not fixed. | Independent of shell count. | Three nondegenerate plane normals with $D_{\mathrm{plane}}\ne0$. | Not fixed. | Three energy rows $E_a$ required. | Branch-record theorem target. | Needs same-record frame, momentum, phase, root, energy, and stability rows. |
+| planar lower-rank chart | Reduced coplanar or nearly coplanar diagnostic. | Row radii and speeds may be supplied by the reduced chart. | Not fixed. | Usually comparison support, not shell count. | $D_{\mathrm{plane}}=0$ or below rank-three floor. | Not fixed. | Energy rows may be diagnostic only. | Lower-rank candidate or toy diagnostic. | Must not be counted as a promoted rank-three branch. |
+| axis-neutral support | Polarity support with one positive and one negative endpoint on every opposite axial pair. | Axial placement only; no speed or radius law. | Not fixed. | Independent of shell count. | `-+`, `-+`, `-+` on the axial comparison chart. | Not fixed. | Not fixed. | Polarity-support decoration. | Needs branch retention before it becomes physical architecture. |
+| axis-polarized support | Polarity support with one positive pair, one negative pair, and one mixed pair. | Axial placement only; no speed or radius law. | Not fixed. | Independent of shell count. | `--`, `-+`, `++` on the axial comparison chart. | Not fixed. | Not fixed. | Polarity-support decoration. | Tests the second topological population class on the axial chart. |
+| positive-handed frame | Ordered rank-three angular-momentum frame with positive determinant. | Requires retained plane normals; no radius or speed law by itself. | Not fixed. | Independent of shell count. | $D_{\mathrm{plane}}>0$. | Not fixed. | Not fixed. | Orientation row after frame retention. | Requires ordering convention and same-record frame data. |
+| negative-handed frame | Ordered rank-three angular-momentum frame with negative determinant. | Requires retained plane normals; no radius or speed law by itself. | Not fixed. | Independent of shell count. | $D_{\mathrm{plane}}<0$. | Not fixed. | Not fixed. | Orientation row after frame retention. | Chirality must be separated from polarity support. |
+| iso-frequency braid | Frequency family with common return rate. | Radii and speeds remain solved rows; circular charts still require $s_a=2\pi f r_a$. | `1:1:1`. | Independent of shell count. | Axis-neutral, axis-polarized, or other support possible. | Not fixed. | Equal frequency does not imply equal energy. | Candidate frequency family. | Needs phase, support, energy, causal-root, and stability rows. |
+| integer-ratio braid | Frequency family with integer but non-doubling return rates. | Radii and speeds solved from the retained carrier chart. | Example `3:2:1`. | Independent of shell count. | Any retained axis support may be tested. | Not fixed. | Integer frequency does not imply integer energy. | Candidate frequency family. | Useful comparison family between iso-frequency and doubling-frequency locks. |
+| doubling-frequency lock | Nested role-assigned frequency family. | Requires role map; radii and speeds must satisfy carrier and energy rows. | `4:2:1` in `I:M:O` order. | Often studied with three nested bands. | Axis support not fixed by the frequency label. | Not fixed unless combined with field-speed rows. | No automatic equality; solve $E_I:E_M:E_O$ from action and wake ledgers. | Candidate lock family. | Needs integer phase-return map, role assignment, causal-root, and stability rows. |
+| field-speed hinge occupancy | Speed-regime row declaring one or more rows near $c_f$. | Yes: declares which transverse, orbital, or other speed statistic lies within the $c_f$ tolerance. | Not a frequency label. | Independent of shell count. | Any retained axis support may be tested. | no hinge row, single-hinge, multi-hinge, or terminal hinge. | Energy consequences must be solved from the same branch. | Candidate speed regime. | A hinge row is not automatically a self-hit row. |
+| braid symmetry-breaking point | Terminal-alignment threshold for a nested shell braid. | Yes: shorthand sector has $s_M=c_f$, $s_O\to c_f$, and $s_I>c_f$. | Not fixed by the name. | Usually nested three-band support. | Coplanarity, co-linearity, and loss of volumetric slack are tested together. | terminal hinge. | Equal radii, equal frequencies, or equal energies are not implied. | Terminal theorem target. | Needs precession, root-access, action, and stability closure. |
+| oblate envelope | Flattened branch envelope relative to spherical support. | Requires $R_{\parallel}$ and $R_{\perp}$; moving branches test $\xi=R_{\parallel}/R_{\perp}$. | Not fixed. | Support envelope, not shell count. | Drift axis supplied by momentum or response-center row. | Not fixed. | Energy row separate from geometric ratio. | Support variation and Lorentz-closure target. | The Lorentz content is the closure law, not the surface name. |
+| ideal braid | App-facing idealized Lorentz lesson for a Noether braid oblate envelope. | Yes: displays $\beta$, $\gamma$, $\xi$, clock/ruler deformation, and normalized energy readouts. | Usually not the primary row. | App display envelope, not a shell-count theorem. | Drift axis and oblate support are emphasized. | Not fixed unless paired with hinge controls. | Normalized lesson energy, not a certified branch energy ledger. | Demonstration and theorem-target surface. | Keeps the name for now; it does not alone certify a physical braid. |
+| candidate braid | Proposed branch or family before all certificate rows close. | Whatever the proposal declares; missing rows remain explicit. | Whatever the proposal declares. | Whatever the proposal declares. | Whatever the proposal declares. | Whatever the proposal declares. | Whatever the proposal declares. | Candidate status. | The default status for taxonomy combinations before retention. |
+| certified braid | Retained branch promoted through return-map, stability, alignment, and observer-export closure. | Must include branch transport and moving-export rows. | Must be part of the retained record if frequency is claimed. | Must be part of the retained record if support is claimed. | Declared symmetries, frame rows, and topological rows must close where claimed. | Must close if hinge occupancy is claimed. | Must close energy/action rows on the same record. | Certified theorem target. | Must reproduce Lorentz clock/ruler deformation and bounded preferred-frame leakage. |
