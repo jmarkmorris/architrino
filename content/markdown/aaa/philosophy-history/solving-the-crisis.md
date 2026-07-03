@@ -149,7 +149,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route avoids treating the Big Bang as creation from nothing. It frames the early hot state as a high-density transition in the Noether sea and assembly ledger: redshift, thermalization, expansion-like observer variables, and early structure emerge from a substrate state change rather than an absolute beginning of spacetime.
 
-**Resolution tests.** The chapter must preserve CMB blackbody constraints, acoustic peaks, BBN abundances, time dilation in light curves, and large-scale structure. Any alternative origin story that loses those records is excluded.
+**Resolution tests.** Resolution must preserve CMB blackbody constraints, acoustic peaks, BBN abundances, time dilation in light curves, and large-scale structure. Any alternative origin story that loses those records is excluded.
 
 **Claim level.** `direction-ready`, because the cosmology transfer-function and early-state ledger still need quantitative closure.
 
@@ -201,7 +201,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Resolution tests.** Use binary pulsar decay, waveform phase, propagation speed constraints, polarization limits, ringdown, recoil, and multi-messenger timing. Agreement with general relativity is a recovery requirement, not an optional analogy.
 
-**Claim level.** `architecture-ready` as a recovery chapter.
+**Claim level.** `architecture-ready` as a recovery route.
 
 ### Compact-Star Support And Dense-Matter Response
 
@@ -253,7 +253,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Resolution tests.** Use SPARC-like rotation-curve data, low-surface-brightness galaxies, dwarf spheroidals, galaxy clusters, and lensing maps. The falsifier is a baryonic response law that cannot scale across these systems with one response grammar.
 
-**Claim level.** `architecture-ready` as a test chapter.
+**Claim level.** `architecture-ready` as a test route.
 
 ### Dark Energy And Late Cosmic Acceleration
 
@@ -333,7 +333,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Resolution standard.** Resolution would require convergence of the measurement pipelines after systematic control, or a new mechanism that raises one inference route while remaining consistent with BAO, CMB, BBN, and late-time structure data.
 
-**Claim level.** `architecture-ready` as a diagnostic chapter; quantitative status remains `direction-ready`.
+**Claim level.** `architecture-ready` as a diagnostic route; quantitative status remains `direction-ready`.
 
 ### The $S_8$ Structure-Growth Tension
 
@@ -377,7 +377,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Standard repairs.** Standard repairs include single-field slow-roll models, multifield variants, axion and plateau models, and alternatives such as ekpyrotic or bounce scenarios. The field remains open because current data constrain broad classes without uniquely selecting the mechanism.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The paper can treat inflation as an effective comparison framework rather than a required ontology. Horizon and flatness become early-state connectivity, thermalization, causal-history, and Noether sea transition problems. A candidate stronger route interprets inflation-like behavior as rapid Noether sea disturbance and relaxation driven by maximal-curvature cores, but that mechanism remains a proof target until it recovers the perturbation spectrum and reheating record.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Inflation can be treated as an effective comparison framework rather than a required ontology. Horizon and flatness become early-state connectivity, thermalization, causal-history, and Noether sea transition problems. A candidate stronger route interprets inflation-like behavior as rapid Noether sea disturbance and relaxation driven by maximal-curvature cores, but that mechanism remains a proof target until it recovers the perturbation spectrum and reheating record.
 
 **Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, “inflation” is not driven by a separate inflaton field but by the dynamics of Noether braid assemblies inside supermassive black-hole cores. The interior of an SMBH maps naturally to an AdS-like region populated by maximal-curvature (self-hit) binaries; the event horizon is the AdS/CFT boundary where the middle binary layer locks to $v=c_f$ and mediates energy exchange with the exterior conformal spacetime. As infalling matter feeds the core, the inner binaries are compressed toward the smallest radii they can reach, pumping energy into the middle layer and forcing its radius to grow. Inside the black hole this manifests as coupled inflation/deflation cycles: outbound self-hit energy (inflation) paired with inbound partner energy (deflation), whereas outside the horizon the same energy release shows up as expansion versus contraction of ordinary Noether braid assembly distributions. Primordial inflation is therefore interpreted as the rapid outward propagation of Noether braid disturbances triggered when early-universe Planck cores were driven near their minimal size and then bled energy through the horizon, setting up the near-flat, homogeneous initial conditions without invoking a separate scalar potential $V(\phi)$. Gravitational-wave B-modes or non-Gaussian signatures would then trace back to episodic bursts of self-hit energy escaping the AdS core, providing a falsifiable handle on this black-hole-driven inflationary mechanism.
 
@@ -395,7 +395,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The CMB is the hard cosmology gate. It must be represented as a thermalized radiation and structure record from an early Noether sea and assembly state. Acoustic features become transfer-function constraints on the same variables used for redshift, growth, dark-sector response, and observer clock maps.
 
-**Resolution tests.** Use FIRAS blackbody limits, Planck/ACT/SPT spectra, polarization, lensing, damping tail, and cross-correlations. A chapter can be readable, but the test standard must be severe.
+**Resolution tests.** Use FIRAS blackbody limits, Planck/ACT/SPT spectra, polarization, lensing, damping tail, and cross-correlations. The test standard must remain severe even when the explanatory route is reader-friendly.
 
 **Claim level.** `architecture-ready` as a gate, `direction-ready` for the solution.
 
@@ -489,9 +489,9 @@ Standard repairs include Copenhagen-style collapse rules, decoherence-based appr
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route is not a naive local hidden-variable model. It uses pair provenance, path-history correlation, detector basins, source measures, and no-signaling constraints. Born weights should emerge from invariant or metastable measures over basins, while Bell correlations are reproduced through shared preparation and response structure.
 
-**Resolution tests.** Use loophole-free Bell tests, CHSH values, analyzer-angle dependence, Malus' law, delayed-choice variants, detector efficiencies, and source statistics. The chapter must show why the model does not allow controllable superluminal signaling.
+**Resolution tests.** Use loophole-free Bell tests, CHSH values, analyzer-angle dependence, Malus' law, delayed-choice variants, detector efficiencies, and source statistics. Closure must show why the model does not allow controllable superluminal signaling.
 
-**Claim level.** `architecture-ready`, with one of the hardest theorem burdens in the paper.
+**Claim level.** `architecture-ready`, with one of the hardest theorem burdens in this map.
 
 ### Entropy, Thermalization, And The Arrow Of Time
 
@@ -583,7 +583,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Detailed architecture route.** From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, the Hierarchy Problem is read as a scale-separation pressure created by extending point-particle, continuum-field integrals down to the Planck scale ($10^{-35}$ m). Standard Model point-particle labels are treated as effective descriptions of Noether braid assemblies and their axial structures, so the loop integrals of QFT must be recovered as finite assembly couplings with the background rather than accepted as literal infinite ontology. The candidate cutoff is the maximal-curvature radius (inner binary radius, $r_{inner}$), together with finite Noether braid density $\rho_{\text{NS}}$ and local energy-ledger saturation. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ would need to be replaced by a finite assembly cutoff fixed by geometry.
 
-**Resolution tests.** Use known particle masses, Higgs couplings, electroweak precision tests, weak mixing, collider bounds, and parameter-ledger constraints. The chapter must not claim mass-map closure before branch constants and exposure maps are certified.
+**Resolution tests.** Use known particle masses, Higgs couplings, electroweak precision tests, weak mixing, collider bounds, and parameter-ledger constraints. Mass-map closure cannot be claimed before branch constants and exposure maps are certified.
 
 **Resolution standard.** Resolution would require either direct evidence for a protection mechanism or a deeper derivation showing why the Higgs scale is finite and stable without the symmetry-based rescue structures that naturalness originally predicted.
 
@@ -867,7 +867,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Core non-closure.** Source, acceleration, heating, repetition, transport, and composition details remain unsettled, but many claims change rapidly with new surveys.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These are useful stress tests for radiation, plasma, magnetic, and medium-response ledgers, but most are not main-paper solution chapters yet. They should be grouped as appendix candidates unless a specific case gains a native mechanism with a discriminating observable.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These are useful stress tests for radiation, plasma, magnetic, and medium-response ledgers, but most are not central closure topics. They belong in the appendix unless a specific case gains a native mechanism with a discriminating observable.
 
 **Resolution tests.** Use source localization, spectra, polarization, repetition statistics, composition, arrival directions, magnetic-field constraints, and time-domain surveys. Keep rapidly changing data claims out of the main thesis.
 
@@ -881,7 +881,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Core non-closure.** Most are real modeling problems but not direct tests of the foundational architecture. They may depend more on local history, data quality, or complex environmental modeling than on substrate ontology.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These should not be sold as solved by a fundamental theory paper. They can be used as examples of how the ontology might discipline model-building, but they do not usually test the core architecture as directly as spacetime, quantum, Standard Model, strong-field, and cosmology problems.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These should not be presented as solved by a fundamental theory. They can be used as examples of how the ontology might discipline model-building, but they do not usually test the core architecture as directly as spacetime, quantum, Standard Model, strong-field, and cosmology problems.
 
 **Resolution tests.** Include only if a case touches a core mechanism: radiation ledger, medium response, angular momentum, structure formation, or source provenance. Otherwise leave it out.
 
@@ -905,11 +905,11 @@ Current reasoning does correctly register a mismatch between broad probabilistic
 
 Standard repairs include Great Filter arguments, self-destruction scenarios, zoo hypotheses, slow-colonization models, and claims that our searches are too narrow in band or timescale. None closes the problem because each depends on uncertain priors about life, technology, and detectability.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** This is not a central physics closure problem. A speculative signal-and-medium reading would ask whether advanced technologies couple to non-electromagnetic Noether sea channels, but that is astrobiological detection theory rather than a mature physics solution. It belongs outside the main paper unless the scope changes.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** This is not a central physics closure problem. A speculative signal-and-medium reading would ask whether advanced technologies couple to non-electromagnetic Noether sea channels, but that is astrobiological detection theory rather than a mature physics solution. It belongs outside the central physics scope unless the scope changes.
 
 **Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Fermi Paradox is reframed as a signal-and-medium problem: if advanced technologies manipulate or traverse the Noether sea via nested shell braid engineering, their emissions may not couple to standard electromagnetic channels or may dissipate into super-field-speed regimes that are invisible to our detectors. The architecture implies that high-energy manipulation could preferentially excite dark-photon or deformation-wave channels that leave little in the EM band, and that expansion strategies may exploit Noether sea corridors rather than broadcastable artifacts. If so, the paradox weakens as a detection-limited selection effect rather than a strong Bayesian constraint on the abundance of life; the falsifier would be a confirmed technosignature in the standard EM spectrum that cannot be reinterpreted through assembly-mediated channels.
 
-**Resolution tests.** A confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability would reshape the problem. It should not drive the current physics paper.
+**Resolution tests.** A confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability would reshape the problem. It should not drive the current physics scope.
 
 **Resolution standard.** Resolution would require either a confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability than we currently possess.
 

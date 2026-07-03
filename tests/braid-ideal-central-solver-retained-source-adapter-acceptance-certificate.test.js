@@ -11,7 +11,10 @@ import {
   FIRST_MISSING_FIELD,
   NEGATIVE_CONTROL_REASONS,
   SCHEMA,
+  SAME_RECORD_ACCEPTED_EVIDENCE_CONTRACT_SCHEMA,
   SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+  SAME_RECORD_ACCEPTED_EVIDENCE_REQUIREMENT_SCHEMA,
+  buildSameRecordAcceptedEvidencePackageContract,
   buildCentralSolverRetainedSourceAdapterAcceptanceCertificate,
   evaluateCentralSolverRetainedSourceAdapterAcceptanceCertificateEvidence,
   validateCentralSolverRetainedSourceAdapterAcceptanceCertificate,
@@ -139,6 +142,52 @@ test("central retained-source adapter acceptance certificate emits candidate cer
   assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
 });
 
+test("central retained-source adapter accepted-evidence contract names the exact package fields", () => {
+  const contract = buildSameRecordAcceptedEvidencePackageContract({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+  });
+
+  assert.equal(contract.schema, SAME_RECORD_ACCEPTED_EVIDENCE_CONTRACT_SCHEMA);
+  assert.equal(contract.accepted, false);
+  assert.equal(contract.source_status, "source_acquisition_contract");
+  assert.equal(contract.required_package_schema, SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA);
+  assert.equal(contract.package_template.accepted_same_record_retained_source_adapter_evidence, true);
+  assert.equal(contract.package_template.retained_record_id, RETAINED_RECORD_ID);
+  assert.equal(contract.package_template.source_row_id, SOURCE_ROW_ID);
+  assert.equal(
+    contract.first_missing_field,
+    "central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence"
+  );
+  assert.equal(
+    contract.next_after_package.field,
+    "central_solver_retained_source_adapter.external_accepted_authority_verification_ref"
+  );
+  assert.equal(contract.authorization.retained_branch_claim, false);
+});
+
+test("central retained-source adapter acceptance certificate CLI prints accepted-evidence contract", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      `--retained-record-id=${RETAINED_RECORD_ID}`,
+      `--source-row-id=${SOURCE_ROW_ID}`,
+      "--print-same-record-accepted-evidence-contract",
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const contract = JSON.parse(output);
+
+  assert.equal(contract.schema, SAME_RECORD_ACCEPTED_EVIDENCE_CONTRACT_SCHEMA);
+  assert.equal(contract.package_template.schema, SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA);
+  assert.equal(contract.same_record_binding.retained_record_id, RETAINED_RECORD_ID);
+  assert.equal(contract.same_record_binding.source_row_id, SOURCE_ROW_ID);
+  assert.equal(contract.required_accepted_evidence_fields.includes("provider_provenance_ref"), true);
+  assert.equal(contract.authorization.scoreMovement, "no_score_increase");
+});
+
 test("central retained-source adapter acceptance certificate CLI consumes same-record accepted evidence package JSON", () => {
   const tempDir = mkdtempSync(path.join(tmpdir(), "retained-source-adapter-evidence-"));
   const evidencePath = path.join(tempDir, "same-record-accepted-evidence.json");
@@ -183,6 +232,93 @@ test("central retained-source adapter acceptance certificate CLI consumes same-r
       "central_solver_retained_source_adapter.external_accepted_authority_verification_ref"
     );
     assert.equal(artifact.authorization.accepted_same_record_evidence, false);
+    assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+  } finally {
+    rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test("central retained-source adapter acceptance certificate CLI fails required evidence mode without package", () => {
+  let error;
+  try {
+    execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        `--retained-record-id=${RETAINED_RECORD_ID}`,
+        `--source-row-id=${SOURCE_ROW_ID}`,
+        "--require-same-record-accepted-evidence",
+        "--pretty",
+      ],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }
+    );
+  } catch (caught) {
+    error = caught;
+  }
+
+  assert.ok(error);
+  assert.equal(error.status, 1);
+  assert.equal(error.stdout, "");
+  const diagnostic = JSON.parse(error.stderr.toString());
+
+  assert.equal(diagnostic.schema, SAME_RECORD_ACCEPTED_EVIDENCE_REQUIREMENT_SCHEMA);
+  assert.equal(diagnostic.status, "same_record_accepted_evidence_missing");
+  assert.equal(diagnostic.accepted, false);
+  assert.equal(diagnostic.requirement_passed, false);
+  assert.equal(diagnostic.required_package_schema, SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA);
+  assert.equal(
+    diagnostic.first_missing_object,
+    "central_solver_retained_source_adapter_same_record_accepted_evidence_package"
+  );
+  assert.equal(
+    diagnostic.first_missing_field,
+    "central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence"
+  );
+  assert.equal(diagnostic.authorization.retained_branch_claim, false);
+});
+
+test("central retained-source adapter acceptance certificate CLI passes required evidence mode with package", () => {
+  const tempDir = mkdtempSync(path.join(tmpdir(), "retained-source-adapter-required-evidence-"));
+  const evidencePath = path.join(tempDir, "same-record-accepted-evidence.json");
+  writeFileSync(
+    evidencePath,
+    JSON.stringify(
+      {
+        schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+        evidence_package_ref: `accepted-evidence-package:retained-source-adapter:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+        ...makeAcceptedEvidence(),
+      },
+      null,
+      2
+    )
+  );
+
+  try {
+    const output = execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        `--retained-record-id=${RETAINED_RECORD_ID}`,
+        `--source-row-id=${SOURCE_ROW_ID}`,
+        `--same-record-accepted-evidence-json=${evidencePath}`,
+        "--require-same-record-accepted-evidence",
+        "--pretty",
+      ],
+      { encoding: "utf8" }
+    );
+    const artifact = JSON.parse(output);
+
+    assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, true);
+    assert.match(
+      artifact.adapter_acceptance_certificate_ref,
+      /^candidate:central_solver_retained_source_adapter_acceptance_certificate:[0-9a-f]{16}$/
+    );
+    assert.equal(
+      artifact.first_missing_field,
+      "central_solver_retained_source_adapter.external_accepted_authority_verification_ref"
+    );
+    assert.equal(artifact.authorization.accepted_same_record_evidence, false);
+    assert.equal(artifact.authorization.retained_branch_claim, false);
     assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
   } finally {
     rmSync(tempDir, { recursive: true, force: true });

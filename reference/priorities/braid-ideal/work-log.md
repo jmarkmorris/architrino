@@ -6,6 +6,22 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 - Same-Record Accepted-Evidence Requirement Gate Added
+
+Added a strict acquisition gate for the retained-source adapter evidence package. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now supports `--require-same-record-accepted-evidence`; without a complete same-record package it exits nonzero and emits `central_solver_retained_source_adapter_same_record_accepted_evidence_requirement.v0`, naming `central_solver_retained_source_adapter_same_record_accepted_evidence_package` and the first missing field `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence`.
+
+Executable status: with a complete `central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0`, the requirement gate passes and emits the candidate adapter acceptance certificate, but still advances only to `central_solver_retained_source_adapter.external_accepted_authority_verification_ref`. The gate does not authorize accepted adapter evidence, retained branch output, chirality authorization, Noether sea stabilization, branch-chart/moving certificate, return/stability claim, or score movement.
+
+Decision: Worker A now has a concrete provider-facing command that fails closed until the exact accepted same-record package exists. The active closure goal remains incomplete until a real accepted evidence package and a non-repo external accepted authority package are supplied for the same retained record and source row.
+
+### 2026-07-02 - Same-Record Accepted-Evidence Contract Added
+
+Added a machine-readable source-intake contract for the retained-source adapter evidence package. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now emits `central_solver_retained_source_adapter_same_record_accepted_evidence_contract.v0` with `--print-same-record-accepted-evidence-contract`, binding the expected retained record id, source row id, provider/source carrier id and hash, adapter id and hash, package schema, and all required accepted-evidence refs.
+
+Executable status: the contract is explicitly `source_acquisition_contract_not_accepted_evidence`; it does not set any authorization flag or produce an accepted retained-source adapter. It names the package needed to fill `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence` and the next downstream field `central_solver_retained_source_adapter.external_accepted_authority_verification_ref` after a complete package is supplied.
+
+Decision: the source acquisition surface is now explicit enough for a provider to construct the required `central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0` without relying on test fixtures. The active closure goal still requires a real accepted evidence package for the same retained record and source row.
+
 ### 2026-07-02 - Same-Record Accepted-Evidence JSON Intake Added
 
 Advanced the retained-source adapter certificate from programmatic-only evidence injection to a CLI source-intake path. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now recognizes `central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0` and accepts `--same-record-accepted-evidence-json=<path>` plus `--external-accepted-authority-verification-json=<path>` for source-package intake.

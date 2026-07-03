@@ -1,0 +1,103 @@
+{
+  "schema": "aaa-equation-map-eq21-growth-transfer-child-input/v1",
+  "claimLevel": "accepted score-neutral EQ-21 growth-transfer child input deriving f_sigma8 from the accepted shared-observation record",
+  "residualId": "R_eq21_growth_transfer_child_provider_backed_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-growth-transfer-child-provider-backed-0001",
+    "rows": {
+      "growth_transfer_child": {
+        "status": "accepted",
+        "rowId": "eq21-growth-transfer-child-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      },
+      "linear_growth_kernel": {
+        "status": "accepted",
+        "rowId": "eq21-linear-growth-kernel-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      },
+      "matter_loading_row": {
+        "status": "accepted",
+        "rowId": "eq21-matter-loading-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      },
+      "f_sigma8_prediction": {
+        "status": "accepted",
+        "rowId": "eq21-f-sigma8-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      },
+      "source_provenance": {
+        "status": "accepted",
+        "rowId": "eq21-growth-source-provenance-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "status": "accepted",
+        "rowId": "eq21-growth-no-hidden-retune-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      }
+    },
+    "sharedKeys": [
+      { "key": "rho_NS", "status": "accepted", "value": 1, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "n", "status": "accepted", "value": 1, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "chi_sea", "status": "accepted", "value": 1.002, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "M_sea_ab", "status": "accepted", "value": 1, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "rho_bar", "status": "accepted", "value": 0.05, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "rho_A", "status": "accepted", "value": 0.25, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "H_eff", "status": "accepted", "value": 3.424706202494149, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" },
+      { "key": "a_eff", "status": "accepted", "value": 1, "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json" }
+    ],
+    "model": {
+      "sigma8Seed": {
+        "status": "accepted",
+        "value": 0.811,
+        "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+      },
+      "evaluation": {
+        "a_eff": 1,
+        "z_eff": 0
+      },
+      "benchmark": {
+        "family": "score-neutral f_sigma8 comparison scalar",
+        "f_sigma8_observed": 0.44,
+        "sigma": 0.06
+      },
+      "derived": {
+        "omega_m_eff": 0.3,
+        "omega_de_eff": 0.7,
+        "E_eff": 1,
+        "Omega_m_a": 0.3,
+        "mu_growth": 0.9960119680798085,
+        "gamma_growth": 0.5500400101000102,
+        "growth_rate_f": 0.513641761398954,
+        "f_sigma8": 0.4165634684945517
+      },
+      "residualComponents": {
+        "growth_kernel": 0,
+        "f_sigma8_normalized": 0.39060885842413795,
+        "S_retune": 0
+      }
+    }
+  }
+}

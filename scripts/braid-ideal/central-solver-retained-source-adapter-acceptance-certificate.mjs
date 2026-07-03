@@ -11,6 +11,10 @@ import {
 export const SCHEMA = "central_solver_retained_source_adapter_acceptance_certificate.v0";
 export const SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA =
   "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0";
+export const SAME_RECORD_ACCEPTED_EVIDENCE_CONTRACT_SCHEMA =
+  "central_solver_retained_source_adapter_same_record_accepted_evidence_contract.v0";
+export const SAME_RECORD_ACCEPTED_EVIDENCE_REQUIREMENT_SCHEMA =
+  "central_solver_retained_source_adapter_same_record_accepted_evidence_requirement.v0";
 export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA =
   "central_solver_retained_source_adapter_external_accepted_authority_package.v0";
 export const FIRST_MISSING_OBJECT = "central_solver_retained_source_adapter_acceptance_certificate";
@@ -86,6 +90,137 @@ function makeAuthorization() {
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
     ["scoreMovement", "no_score_increase"],
   ]);
+}
+
+function normalizeRefList(value) {
+  if (Array.isArray(value)) {
+    return value.filter((entry) => typeof entry === "string" && entry.length > 0);
+  }
+  return stringRef(value) == null ? [] : [value];
+}
+
+function classifyObservedRefs(refs) {
+  if (refs.length === 0) {
+    return "missing";
+  }
+  if (refs.every((ref) => ref.startsWith("candidate:"))) {
+    return "candidate_ref_not_accepted";
+  }
+  if (refs.every((ref) => ref.startsWith("accepted:"))) {
+    return "accepted_ref_string_unverified";
+  }
+  return "unverified_ref_not_accepted";
+}
+
+function summarizeObservedRefs(value) {
+  const refs = normalizeRefList(value);
+  const observedRefClass = classifyObservedRefs(refs);
+  return {
+    observed_ref_class: observedRefClass,
+    observed_ref_count: refs.length,
+    observed_ref_sample: refs.slice(0, 3),
+    candidate_ref_count: refs.filter((ref) => ref.startsWith("candidate:")).length,
+    accepted_ref_string_count: refs.filter((ref) => ref.startsWith("accepted:")).length,
+    current_status:
+      observedRefClass === "missing"
+        ? "source_input_missing_before_evidence_package"
+        : observedRefClass === "accepted_ref_string_unverified"
+          ? "accepted_ref_string_present_requires_authority_verification"
+          : "candidate_or_unverified_source_present_requires_accepted_replacement",
+  };
+}
+
+function makeSourceFieldMapRow({ field, sourcePath, observedValue, requiredReplacement }) {
+  const summary = summarizeObservedRefs(observedValue);
+  return {
+    package_field: field,
+    current_source_path: sourcePath,
+    ...summary,
+    required_replacement: requiredReplacement,
+    accepted_for_package: false,
+  };
+}
+
+function makeSameRecordAcceptedEvidenceSourceFieldMap(carrier) {
+  const adapter = carrier?.central_solver_retained_source_adapter ?? {};
+  return [
+    makeSourceFieldMapRow({
+      field: "held_release_seed_path_rows_acceptance_certificate_ref",
+      sourcePath:
+        "provider_source_carrier.central_solver_retained_source_adapter.source_artifacts.held_release_seed_path_rows.consumed_artifact_id",
+      observedValue: adapter.source_artifacts?.held_release_seed_path_rows?.consumed_artifact_id,
+      requiredReplacement:
+        "accepted same-record held_release_seed_path_rows_acceptance_certificate_ref",
+    }),
+    makeSourceFieldMapRow({
+      field: "held_release_path_history_stream_manifest_set_acceptance_certificate_ref",
+      sourcePath:
+        "provider_source_carrier.central_solver_retained_source_adapter.source_artifacts.held_release_path_history_stream_manifest_set.consumed_artifact_id",
+      observedValue:
+        adapter.source_artifacts?.held_release_path_history_stream_manifest_set?.consumed_artifact_id,
+      requiredReplacement:
+        "accepted same-record held_release_path_history_stream_manifest_set_acceptance_certificate_ref",
+    }),
+    makeSourceFieldMapRow({
+      field: "central_solver_retained_history_row_acceptance_certificate_ref",
+      sourcePath:
+        "provider_source_carrier.central_solver_retained_source_adapter.source_artifacts.central_solver_retained_history_row.consumed_row_id",
+      observedValue: adapter.source_artifacts?.central_solver_retained_history_row?.consumed_row_id,
+      requiredReplacement:
+        "accepted same-record central_solver_retained_history_row_acceptance_certificate_ref",
+    }),
+    makeSourceFieldMapRow({
+      field: "central_solver_retained_history_provider_object_acceptance_certificate_ref",
+      sourcePath:
+        "provider_source_carrier.central_solver_retained_source_adapter.source_artifacts.central_solver_retained_history_provider_object.consumed_artifact_id",
+      observedValue:
+        adapter.source_artifacts?.central_solver_retained_history_provider_object?.consumed_artifact_id,
+      requiredReplacement:
+        "accepted same-record central_solver_retained_history_provider_object_acceptance_certificate_ref",
+    }),
+    makeSourceFieldMapRow({
+      field: "native_app_path_history_stream_manifest_set_ref",
+      sourcePath:
+        "provider_source_carrier.native_app_path_history_provenance.durable_stream_manifest_refs",
+      observedValue: carrier?.native_app_path_history_provenance?.durable_stream_manifest_refs,
+      requiredReplacement:
+        "accepted same-record native_app_path_history_stream_manifest_set_ref aggregating the durable stream manifests",
+    }),
+    makeSourceFieldMapRow({
+      field: "native_root_ledger_detail_rows_ref",
+      sourcePath:
+        "provider_source_carrier.native_app_root_ledger_provenance.native_root_ledger_detail_refs",
+      observedValue: carrier?.native_app_root_ledger_provenance?.native_root_ledger_detail_refs,
+      requiredReplacement:
+        "accepted same-record native_root_ledger_detail_rows_ref covering every required root replay row",
+    }),
+    makeSourceFieldMapRow({
+      field: "causal_root_replay_rows_ref",
+      sourcePath:
+        "provider_source_carrier.native_app_root_ledger_provenance.causal_root_replay_refs",
+      observedValue: carrier?.native_app_root_ledger_provenance?.causal_root_replay_refs,
+      requiredReplacement:
+        "accepted same-record causal_root_replay_rows_ref covering every required causal root replay row",
+    }),
+    makeSourceFieldMapRow({
+      field: "same_record_action_closure_ref",
+      sourcePath: "provider_source_carrier.same_record_action_closure_ref",
+      observedValue: carrier?.same_record_action_closure_ref,
+      requiredReplacement: "accepted same-record action closure ref",
+    }),
+    makeSourceFieldMapRow({
+      field: "retained_wake_history_ref",
+      sourcePath: "provider_source_carrier.retained_wake_history_ref",
+      observedValue: carrier?.retained_wake_history_ref,
+      requiredReplacement: "accepted same-record retained wake-history ref",
+    }),
+    makeSourceFieldMapRow({
+      field: "provider_provenance_ref",
+      sourcePath: "provider_source_carrier.same_record_binding.provider_object_ref",
+      observedValue: carrier?.same_record_binding?.provider_object_ref,
+      requiredReplacement: "accepted same-record provider provenance ref",
+    }),
+  ];
 }
 
 function makeCarrier(options) {
@@ -234,6 +369,60 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     first_missing_field: criterionPassed
       ? EXTERNAL_VERIFICATION_FIELD
       : (missingFields[0] ?? FIRST_MISSING_FIELD),
+  };
+}
+
+export function buildSameRecordAcceptedEvidencePackageContract(options = {}) {
+  const carrier = makeCarrier(options);
+  const adapter = carrier?.central_solver_retained_source_adapter ?? null;
+  const retainedRecordId = stringRef(carrier?.same_record_binding?.retained_record_id);
+  const sourceRowId = stringRef(carrier?.same_record_binding?.source_row_id);
+  const sourceAcquisitionFieldMap = makeSameRecordAcceptedEvidenceSourceFieldMap(carrier);
+  return {
+    schema: SAME_RECORD_ACCEPTED_EVIDENCE_CONTRACT_SCHEMA,
+    claim_level: "source_acquisition_contract_not_accepted_evidence",
+    accepted: false,
+    source_status: "source_acquisition_contract",
+    retained_record_id: retainedRecordId,
+    source_row_id: sourceRowId,
+    required_package_schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+    required_accepted_evidence_fields: [...REQUIRED_ACCEPTED_EVIDENCE_FIELDS],
+    same_record_binding: {
+      retained_record_id: retainedRecordId,
+      source_row_id: sourceRowId,
+      provider_source_carrier_id: carrier?.carrier_id ?? null,
+      provider_source_carrier_hash: carrier?.artifact_hash ?? null,
+      adapter_id: adapter?.adapter_id ?? null,
+      adapter_artifact_hash: adapter?.artifact_hash ?? null,
+      adapter_artifact_status: adapter?.artifact_status ?? null,
+    },
+    source_acquisition_summary: {
+      required_package_field_count: REQUIRED_ACCEPTED_EVIDENCE_FIELDS.length,
+      observed_source_field_count: sourceAcquisitionFieldMap.filter((row) => row.observed_ref_count > 0).length,
+      accepted_for_package_field_count: sourceAcquisitionFieldMap.filter((row) => row.accepted_for_package).length,
+      candidate_or_unverified_field_count: sourceAcquisitionFieldMap.filter(
+        (row) => row.observed_ref_count > 0 && !row.accepted_for_package
+      ).length,
+      missing_source_field_count: sourceAcquisitionFieldMap.filter((row) => row.observed_ref_count === 0).length,
+      current_status: "source_acquisition_contract_only_no_accepted_package_fields",
+    },
+    source_acquisition_field_map: sourceAcquisitionFieldMap,
+    package_template: {
+      schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+      evidence_package_ref: null,
+      accepted_same_record_retained_source_adapter_evidence: true,
+      retained_record_id: retainedRecordId,
+      source_row_id: sourceRowId,
+      ...Object.fromEntries(REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, null])),
+    },
+    first_missing_object: "central_solver_retained_source_adapter_same_record_accepted_evidence_package",
+    first_missing_field:
+      "central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence",
+    next_after_package: {
+      object: "central_solver_retained_source_adapter_external_accepted_authority_verification",
+      field: EXTERNAL_VERIFICATION_FIELD,
+    },
+    authorization: makeAuthorization(),
   };
 }
 
@@ -411,6 +600,24 @@ export function evaluateCentralSolverRetainedSourceAdapterAcceptanceCertificateE
   };
 }
 
+function makeSameRecordAcceptedEvidenceRequirementDiagnostic(artifact) {
+  const criterion = artifact?.same_record_accepted_evidence_criterion ?? {};
+  return {
+    schema: SAME_RECORD_ACCEPTED_EVIDENCE_REQUIREMENT_SCHEMA,
+    status: "same_record_accepted_evidence_missing",
+    accepted: false,
+    requirement_passed: false,
+    retained_record_id: artifact?.retained_record_id ?? null,
+    source_row_id: artifact?.source_row_id ?? null,
+    required_package_schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+    required_accepted_evidence_fields: [...REQUIRED_ACCEPTED_EVIDENCE_FIELDS],
+    first_missing_object: "central_solver_retained_source_adapter_same_record_accepted_evidence_package",
+    first_missing_field: criterion.first_missing_field ?? artifact?.first_missing_field ?? FIRST_MISSING_FIELD,
+    missing_fields: criterion.missing_fields ?? [criterion.first_missing_field ?? artifact?.first_missing_field ?? FIRST_MISSING_FIELD],
+    authorization: makeAuthorization(),
+  };
+}
+
 export function buildCentralSolverRetainedSourceAdapterAcceptanceCertificate(options = {}) {
   const carrier = makeCarrier(options);
   const sameRecordAcceptedEvidenceCriterion = makeSameRecordAcceptedEvidenceCriterion({
@@ -568,6 +775,16 @@ function runCli() {
     process.exitCode = 1;
     return;
   }
+  const pretty = process.argv.includes("--pretty");
+  const requireSameRecordAcceptedEvidence = process.argv.includes("--require-same-record-accepted-evidence");
+  if (process.argv.includes("--print-same-record-accepted-evidence-contract")) {
+    const contract = buildSameRecordAcceptedEvidencePackageContract({
+      retainedRecordId: cliStringOption("retained-record-id"),
+      sourceRowId: cliStringOption("source-row-id"),
+    });
+    console.log(JSON.stringify(contract, null, pretty ? 2 : 0));
+    return;
+  }
   const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
     retainedRecordId: cliStringOption("retained-record-id"),
     sourceRowId: cliStringOption("source-row-id"),
@@ -580,7 +797,16 @@ function runCli() {
     process.exitCode = 1;
     return;
   }
-  const pretty = process.argv.includes("--pretty");
+  if (
+    requireSameRecordAcceptedEvidence &&
+    artifact.same_record_accepted_evidence_criterion?.criterion_passed !== true
+  ) {
+    console.error(
+      JSON.stringify(makeSameRecordAcceptedEvidenceRequirementDiagnostic(artifact), null, pretty ? 2 : 0)
+    );
+    process.exitCode = 1;
+    return;
+  }
   console.log(JSON.stringify(artifact, null, pretty ? 2 : 0));
 }
 

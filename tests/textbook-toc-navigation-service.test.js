@@ -98,6 +98,17 @@ test("textbook TOC page navigation resolves current page by scene path", () => {
   assert.equal(navigation.next.title, "Architrino");
 });
 
+test("textbook TOC page navigation resolves current page by TOC id", () => {
+  const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
+  const navigation = resolveTextbookPageNavigation(sequence, {
+    id: "foundations__ontology",
+  });
+
+  assert.equal(navigation.current.title, "Ontology");
+  assert.equal(navigation.previous, null);
+  assert.equal(navigation.next.title, "Architrino");
+});
+
 test("textbook TOC page entries prefer authored scenes and fall back to runtime markdown", () => {
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
 

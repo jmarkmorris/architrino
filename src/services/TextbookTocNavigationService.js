@@ -18,11 +18,12 @@ function createPageEntry(node, index) {
   if (!markdownPath) {
     return null;
   }
+  const id = cleanText(node?.id);
   const scenePath = cleanText(node?.scenePath);
-  const title = cleanText(node?.title) ?? cleanText(node?.id) ?? markdownPath;
+  const title = cleanText(node?.title) ?? id ?? markdownPath;
   return {
     index,
-    id: cleanText(node?.id),
+    id,
     title,
     kind: cleanText(node?.kind),
     markdownPath,
@@ -39,7 +40,8 @@ function resolveLookupEntry(sequence, source, normalizePath) {
     .map((value) => cleanText(value))
     .filter(Boolean);
   for (const scenePath of sceneCandidates) {
-    const entry = sequence.byScenePath.get(normalizePath(scenePath));
+    const key = normalizePath(scenePath);
+    const entry = sequence.byScenePath.get(key) ?? sequence.byId.get(key);
     if (entry) {
       return entry;
     }
@@ -57,6 +59,7 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
   const pages = [];
   const byMarkdownPath = new Map();
   const byScenePath = new Map();
+  const byId = new Map();
 
   function addNodePage(node) {
     const entry = createPageEntry(node, pages.length);
@@ -69,6 +72,9 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
     }
     pages.push(entry);
     byMarkdownPath.set(markdownKey, entry);
+    if (entry.id) {
+      byId.set(normalizePath(entry.id), entry);
+    }
     if (entry.scenePath) {
       byScenePath.set(normalizePath(entry.scenePath), entry);
     }
@@ -92,6 +98,7 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
     pages,
     byMarkdownPath,
     byScenePath,
+    byId,
   };
 }
 

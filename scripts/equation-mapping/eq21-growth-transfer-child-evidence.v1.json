@@ -1,0 +1,111 @@
+{
+  "schema": "aaa-equation-map-eq21-growth-transfer-evidence/v1",
+  "evidenceStatus": "accepted",
+  "claimLevel": "accepted score-neutral EQ-21 growth-transfer child evidence deriving f_sigma8 from the accepted shared-observation record",
+  "scoreDecision": "no_score_increase",
+  "sourcePath": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json",
+  "authorization": {
+    "acceptedGrowthTransferChild": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "window": {
+    "growthTransferChildId": "eq21-growth-transfer-child-provider-backed-0001",
+    "thetaObsId": "theta_obs_provider_backed_no_retune_0001",
+    "providerWindowId": "theta-sea-density-compression-provider-0001",
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+  },
+  "rows": {
+    "growth_transfer_child": {
+      "status": "accepted",
+      "rowId": "eq21-growth-transfer-child-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "linear_growth_kernel": {
+      "status": "accepted",
+      "rowId": "eq21-linear-growth-kernel-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "matter_loading_row": {
+      "status": "accepted",
+      "rowId": "eq21-matter-loading-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "f_sigma8_prediction": {
+      "status": "accepted",
+      "rowId": "eq21-f-sigma8-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "eq21-growth-source-provenance-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "eq21-growth-no-hidden-retune-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "sharedKeys": [
+    { "key": "rho_NS", "status": "accepted", "value": 1 },
+    { "key": "n", "status": "accepted", "value": 1 },
+    { "key": "chi_sea", "status": "accepted", "value": 1.002 },
+    { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202 },
+    { "key": "M_sea_ab", "status": "accepted", "value": 1 },
+    { "key": "rho_bar", "status": "accepted", "value": 0.05 },
+    { "key": "rho_A", "status": "accepted", "value": 0.25 },
+    { "key": "H_eff", "status": "accepted", "value": 3.424706202494149 },
+    { "key": "a_eff", "status": "accepted", "value": 1 }
+  ],
+  "model": {
+    "sigma8Seed": {
+      "status": "accepted",
+      "value": 0.811,
+      "sourceFamily": "CMB-normalized seed amplitude inherited by the growth child"
+    },
+    "evaluation": {
+      "a_eff": 1,
+      "z_eff": 0
+    },
+    "formula": {
+      "omega_m_eff": "rho_bar + rho_A",
+      "mu_growth": "M_sea_ab / chi_sea^2",
+      "gamma_growth": "0.55 + 0.02 * (chi_sea - 1) + 0.01 * abs(Gamma_N - 1)",
+      "growth_rate_f": "mu_growth * Omega_m(a_eff)^gamma_growth",
+      "f_sigma8": "growth_rate_f * sigma8Seed"
+    },
+    "benchmark": {
+      "family": "score-neutral f_sigma8 comparison scalar",
+      "f_sigma8_observed": 0.44,
+      "sigma": 0.06
+    },
+    "derived": {
+      "omega_m_eff": 0.3,
+      "omega_de_eff": 0.7,
+      "E_eff": 1,
+      "Omega_m_a": 0.3,
+      "mu_growth": 0.9960119680798085,
+      "gamma_growth": 0.5500400101000102,
+      "growth_rate_f": 0.513641761398954,
+      "f_sigma8": 0.4165634684945517
+    }
+  },
+  "residualComponents": {
+    "growth_kernel": 0,
+    "f_sigma8_normalized": 0.39060885842413795,
+    "S_retune": 0
+  }
+}

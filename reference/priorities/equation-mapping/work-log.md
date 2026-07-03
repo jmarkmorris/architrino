@@ -61,3 +61,11 @@ The focused test run `node --test tests/shared-observation-residual.test.js` pas
 Migrated from `eq-02-04-lorentz-energy-packet.md` to keep the equation packet focused on the mathematical object while preserving the status-level supersession boundary.
 
 Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector becomes score-review eligible only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.
+
+### 2026-07-03 EQ-21 Growth-Transfer f-Sigma8 Child
+
+The first predictive `EQ-21` child consumer now sits on top of the accepted shared-observation parent instead of replacing it. The executable checker is `scripts/equation-mapping/eq21-growth-transfer-child-residual.mjs`, with accepted input `scripts/equation-mapping/eq21-growth-transfer-child-accepted.v1.json` and accepted evidence `scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json`. The helper `scripts/equation-mapping/eq21-growth-transfer-evidence.mjs` requires accepted child authorization, score-neutral status, same shared-observation parent identity, same growth shared-key values, a computed growth model, zero hidden retune, and rejected priority/source-attempt paths.
+
+The accepted run reports `status=populated`, `nextBlocker=null`, `scoreDecision=no_score_increase`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `hiddenRetuneNumericPass=true`, `modelDerivedPass=true`, `fSigma8ResidualPass=true`, and $f\sigma_8=0.4165634684945517$. The attempt fixture remains blocked at `missing_accepted_growth_transfer_child`, and the priority-source negative control remains blocked with `sourceEvidenceFailureCount=15`, proving the child cannot be populated from priority prose.
+
+No score changes follow from this child. The next accepted artifact is a full $P(k,z)$, CMB-lensing, lensing/shear/RSD, or halo/cluster transfer child that consumes the same accepted shared-observation evidence and preserves the no-private-retune witness.
