@@ -30,6 +30,21 @@
       }
     },
     {
+      "id": "npqg_fundamentals_point_potential",
+      "title": "Point Transceivers and Wake Strength",
+      "radius": 1.8,
+      "color": "#6a3c8f",
+      "labelTitle": "Point Potential",
+      "labelBadge": "pdf",
+      "source": {
+        "type": "pdf",
+        "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-point-potential.pdf"
+      },
+      "view": {
+        "openMode": "new-tab"
+      }
+    },
+    {
       "id": "npqg_fundamentals_paths",
       "title": "Architrino Paths and Causal Wakes",
       "radius": 1.8,
