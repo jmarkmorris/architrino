@@ -1,16 +1,17 @@
 {
   "schema": "aaa-equation-map-eq20-pressure-effective-lambda-input/v1",
-  "claimLevel": "provider-backed EQ-20 pressure/effective-Lambda slice; accepted theta_sea_rho_NS density carrier and retained delta_P_eff pressure projection consumed, with inherited theta_cos handoff still blocked",
+  "claimLevel": "provider-backed EQ-20 pressure/effective-Lambda slice; accepted theta_sea_rho_NS density carrier, retained delta_P_eff pressure projection, and accepted theta_cos FRW/cosmology handoff consumed",
   "residualId": "R_EQ20_provider_backed_pressure_effective_lambda_slice_0001",
   "providerBackedSlice": {
     "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
     "surfaceSlicePath": "scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json",
     "deltaPEffReportPath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
+    "thetaCosHandoffPath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
     "windowId": "theta-sea-density-compression-provider-0001",
     "ell": "ell_theta_sea_rho_ns_provider_0001",
     "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001",
     "deltaPEffStatus": "accepted_retained_pressure_projection_report",
-    "inheritedThetaCosBlocker": "missing_accepted_theta_cos"
+    "thetaCosHandoffStatus": "accepted_effective_frw_handoff"
   },
   "constants": {
     "c0": 1,
@@ -164,11 +165,11 @@
       "Lambda_eff": 17.59291886010284
     },
     "frwHandoff": {
-      "id": "frw-handoff-delta-P-eff-report-0001",
+      "id": "frw-handoff-theta-cos-FRW-0001",
       "status": "accepted",
-      "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
-      "thetaCosId": "theta_cos_delta_P_eff_pressure_projection_report_0001",
-      "inheritedBlocker": "missing_accepted_theta_cos",
+      "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+      "thetaCosId": "theta_cos_FRW_handoff_0001",
+      "deltaPEffReportPath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
       "P_eff_residual": 0,
       "G_eff_residual": 0,
       "Lambda_eff_residual": 0
@@ -219,8 +220,8 @@
           "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
         },
         {
-          "id": "theta_cos_delta_P_eff_pressure_projection_report_0001",
-          "kind": "inherited_theta_cos_handoff",
+          "id": "theta_cos_FRW_handoff_0001",
+          "kind": "accepted_theta_cos_handoff",
           "contribution": 0,
           "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
         }
@@ -239,10 +240,10 @@
         }
       },
       {
-        "id": "theta_cos_shared_key_delta_P_eff_report_0001",
+        "id": "theta_cos_shared_key_FRW_handoff_0001",
         "key": "theta_cos_id",
         "status": "accepted",
-        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
         "projectionValues": {
           "frw": 1,
           "pressure": 1

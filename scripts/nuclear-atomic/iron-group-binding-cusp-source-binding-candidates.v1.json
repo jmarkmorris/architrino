@@ -28,7 +28,7 @@
         "delta_E_corr_NN",
         "no_open_color_far_field"
       ],
-      "firstMissingObject": "missing_accepted_sigma_eff_extraction"
+      "firstMissingObject": "missing_accepted_color_singlet_nucleon_envelope"
     },
     {
       "id": "weak_channel_muon_projection_current",

@@ -1,0 +1,231 @@
+{
+  "schema": "aaa-equation-map-effective-metric-theta-w-evidence/v1",
+  "evidenceStatus": "accepted",
+  "claimLevel": "accepted theta_W weak-field effective-metric evidence consuming the shared EQ-11/EQ-20 constitutive record and provider-backed output projection; score-neutral",
+  "scoreDecision": "no_score_increase",
+  "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json",
+  "authorization": {
+    "acceptedThetaW": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "window": {
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "providerWindowId": "theta-sea-density-compression-provider-0001",
+    "commonCarrierId": "theta_W_static_weak_provider_backed_0001",
+    "windowId": "theta-sea-density-compression-provider-0001",
+    "ell": "ell_theta_sea_rho_ns_provider_0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001",
+    "theta1120Id": "theta_11_20_weak_gravity_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001"
+  },
+  "outputProjection": {
+    "path": "scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json"
+  },
+  "theta1120WeakGravity": {
+    "path": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+  },
+  "rows": {
+    "theta_W": {
+      "status": "accepted",
+      "rowId": "theta-W-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "noether_sea_cell": {
+      "status": "accepted",
+      "rowId": "theta-W-noether-sea-cell-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "constitutive_response": {
+      "status": "accepted",
+      "rowId": "theta-W-constitutive-response-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "metric_projection": {
+      "status": "accepted",
+      "rowId": "theta-W-metric-projection-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "lapse_row": {
+      "status": "accepted",
+      "rowId": "theta-W-lapse-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "drift_row": {
+      "status": "accepted",
+      "rowId": "theta-W-drift-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "spatial_compliance_row": {
+      "status": "accepted",
+      "rowId": "theta-W-spatial-compliance-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "signal_delay_row": {
+      "status": "accepted",
+      "rowId": "theta-W-signal-delay-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "cadence_row": {
+      "status": "accepted",
+      "rowId": "theta-W-cadence-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "weak_clock_row": {
+      "status": "accepted",
+      "rowId": "theta-W-weak-clock-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "redshift_row": {
+      "status": "accepted",
+      "rowId": "theta-W-redshift-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "shapiro_row": {
+      "status": "accepted",
+      "rowId": "theta-W-shapiro-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "lensing_row": {
+      "status": "accepted",
+      "rowId": "theta-W-lensing-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "acceleration_row": {
+      "status": "accepted",
+      "rowId": "theta-W-acceleration-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "ppn_decision_row": {
+      "status": "accepted",
+      "rowId": "theta-W-ppn-decision-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "null_eikonal_row": {
+      "status": "accepted",
+      "rowId": "theta-W-null-eikonal-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "geodesic_action_row": {
+      "status": "accepted",
+      "rowId": "theta-W-geodesic-action-row-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "theta-W-source-provenance-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "theta-W-no-hidden-retune-provider-backed-0001",
+      "carrierId": "theta_W_static_weak_provider_backed_0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "sharedKeys": [
+    {
+      "id": "theta-W-id-shared-key-provider-backed-0001",
+      "key": "theta_metric_id",
+      "status": "accepted",
+      "values": [
+        "theta_W_static_weak_provider_backed_0001",
+        "theta_W_static_weak_provider_backed_0001",
+        "theta_W_static_weak_provider_backed_0001"
+      ]
+    },
+    {
+      "id": "theta-W-provider-window-shared-key-0001",
+      "key": "provider_window_id",
+      "status": "accepted",
+      "values": [
+        "theta-sea-density-compression-provider-0001",
+        "theta-sea-density-compression-provider-0001"
+      ]
+    },
+    {
+      "id": "theta-W-theta-11-20-shared-key-0001",
+      "key": "theta_11_20_id",
+      "status": "accepted",
+      "values": [
+        "theta_11_20_weak_gravity_provider_backed_0001",
+        "theta_11_20_weak_gravity_provider_backed_0001"
+      ]
+    },
+    {
+      "id": "theta-W-theta-cos-shared-key-0001",
+      "key": "theta_cos_id",
+      "status": "accepted",
+      "values": [
+        "theta_cos_FRW_handoff_0001",
+        "theta_cos_FRW_handoff_0001"
+      ]
+    },
+    {
+      "id": "theta-W-chi-sea-shared-key-0001",
+      "key": "chi_sea",
+      "status": "accepted",
+      "values": [
+        1.002,
+        1.002,
+        1.002
+      ]
+    },
+    {
+      "id": "theta-W-gamma-N-shared-key-0001",
+      "key": "Gamma_N",
+      "status": "accepted",
+      "values": [
+        1.0000010100010202,
+        1.0000010100010202,
+        1.0000010100010202
+      ]
+    },
+    {
+      "id": "theta-W-gamma-PPN-shared-key-0001",
+      "key": "gamma_PPN",
+      "status": "accepted",
+      "values": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "id": "theta-W-G-eff-shared-key-0001",
+      "key": "G_eff",
+      "status": "accepted",
+      "values": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "numericResiduals": {
+    "staticResponse": 0,
+    "weakClock": 0,
+    "observables": 0,
+    "ppn": 0,
+    "sourceProvenance": 0,
+    "noHiddenRetune": 0
+  }
+}

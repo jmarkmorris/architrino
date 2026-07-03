@@ -2052,6 +2052,7 @@ function sourceRowEvidence(candidate, family, row) {
       status: sourceRow.status ?? null,
       currentEvidenceStatus: sourceRow.currentEvidenceStatus ?? null,
       acceptedEvidenceTrace: acceptedSourceRowEvidenceTrace(sourceRow),
+      ...acceptedSourceRowProofTargetEvidenceFields(candidate, row),
     };
   }
 
@@ -2069,6 +2070,8 @@ function sourceRowEvidence(candidate, family, row) {
       currentEvidenceStatus: acquisitionTarget.currentEvidenceStatus ?? null,
       sourceTargetPath: acquisitionTarget.sourceTargetPath ?? null,
       componentShapePass: acquisitionTarget.componentShapePass ?? null,
+      ...sourceAcquisitionRouteEvidenceFields(candidate, row, acquisitionTarget),
+      ...acceptedSourceRowProofTargetEvidenceFields(candidate, row),
     };
   }
 

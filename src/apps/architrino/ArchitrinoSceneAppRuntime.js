@@ -6991,6 +6991,7 @@ const textbookTocNavigationService = createTextbookTocNavigationService({
   fetchImpl: (...args) => fetch(...args),
   appendCacheBust,
   normalizeMarkdownPath,
+  normalizeMarkdownKey,
   logger: console,
 });
 const textbookPageNavigationRuntime = createTextbookPageNavigationRuntime({

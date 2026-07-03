@@ -353,21 +353,7 @@ This is a source-status population row, not a passed certificate. The $A_0$ pack
 | $\mathcal{M}_{\mathrm{sea},q}^{ab}$, $E_{\mathrm{internal}}(A_0)$, $\zeta(A_0)$ | Explicitly downstream Tier 2 / Tier 3 extraction objects after branch closure and stability. | Do not use them as inputs or fitted handles in this certificate row. |
 | $\mathfrak{S}^{(q)}(W)$ and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ | No sector event is active in the rest-branch seed row. | Keep null unless a routed transition, radiation event, measurement record, reaction, transport excitation, or strong-field release is being certified on the same branch. |
 
-Current fail-closed note: the compact $A_0$ no-omitted-mode scalar Fourier correction has status `failed_direct_one_period_residuals`. It removes bulk center drift and improves some one-period residual scales, but it does not close the branch. The diagnostic row reports
-$$
-R_{\text{state}}\approx1.008,
-\qquad
-\max R_{\text{root}}\approx23.49,
-\qquad
-R_{\text{speed}}\approx3.05,
-\qquad
-R_{\text{balance}}\approx0.993,
-\qquad
-\|\Delta\mathbf{C}_{A_0}\|_{\max}\approx8.96\times10^{-17}.
-$$
-The center-drift row passes, while state return, direct root closure, speed ordering, and residual balance fail; $\Delta_{\mathbf{k}}$ and the $\eta$ ladder remain uncomputed. This means the row is valuable as a source boundary for $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$, not as a causal-closure success. The next branch-native move is an equality-constrained basis split $B_{\rho,\ell,\sigma,\mu,\nu}(t)$ by relation class, receiver layer, polarity, root branch key, and radial / tangential projection channel, or else a stronger compact-fixture no-go.
-
-Field-speed boundary note, 2026-05-20: the collinear breather packet now contains a head-on $x_L=-1$, $x_R=+1$, $|v|=c_f$ in-flight wake audit and finite-history calculation. It shows that exact affine field-speed inbound history is not ordinary simple-root initial data: the partner wake is still in flight at the audit time, all affine partner source times co-arrive at the origin caustic, and same-source roots form a continuum with $J=0$. With the compact $C^1$ polynomial shell used in the finite-history fixture, the partner shell is exactly zero at $t=0$ because the partner support has not reached the receiver. The finite-history calculation sharpens the obstruction: fixed-regulator infinite history saturates, but the same-source self-continuum scales like $1/(\eta\epsilon_c)$ as the shell width and core scale are removed. Tri-binary middle-layer or horizon-interface uses of $v=c_f$ should therefore require finite-width, dephased, curved, held-release, or branch-certified history preparation before they are allowed to feed a clock, ruler, photon, or mass-response row.
+Historical fail-closed and field-speed boundary notes are preserved in [work-log.md](work-log.md#2026-07-02-a0-fail-closed-and-field-speed-boundary-notes). Compact current state: the corrected compact $A_0$ row remains source-status material, not a passed certificate; the next branch-native move is an equality-constrained basis split by relation class, receiver layer, polarity, root branch key, and radial / tangential projection channel, or a stronger compact-fixture no-go.
 
 ## Related Priorities
 

@@ -3,12 +3,13 @@
 ## Workstream Metadata
 
 - Kind: `priority-research`
-- Status: `investigate`
+- Status: `draft`
 - Claim level: `priority-only`
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - Service platform: [Archie Service Platform](../archie/service-platform.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
+- Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 
 ## Purpose
 
@@ -60,6 +61,77 @@ Use official sources first and refresh this list before implementation decisions
 4. [EU AI Act guidance](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) for transparency, AI-generated-content labeling, and general-purpose AI obligations that may influence global product expectations.
 5. Accessibility guidance and legal requirements that apply to captions, transcripts, alt text, controls, and status communication.
 6. Security and privacy guidance for prompt privacy, generated media, provider data use, logs, support records, and public issue handoff.
+
+## Standards Landscape
+
+Source refresh: 2026-07-02.
+
+The current standards direction supports a plain-language-first answer surface:
+
+1. EU AI generated-content guidance is moving toward clear user labels for deepfakes, AI-generated or AI-manipulated text on public-interest matters, and interactive AI systems such as chatbots. Archie should treat visible AI interaction disclosure and generated-media labels as a product baseline even before jurisdiction-specific legal review.
+2. NIST AI RMF remains the main risk-management frame for trustworthy AI design, development, use, and evaluation. Archie should use it as an internal discipline for risk, transparency, privacy, and monitoring, not as language shown to readers.
+3. ISO/IEC 42001 is useful as an organizational AI management-system frame: policies, objectives, traceability, transparency, and responsible operation. Archie should map it to internal governance, not user-facing proof claims.
+4. C2PA and Content Credentials are the strongest early candidate for media-origin records. Archie should use them where generated or edited media can carry provenance, while saying plainly that provenance records do not prove the scientific claim.
+5. WCAG 2.2 is the accessibility floor for status messages, non-text alternatives, captions, transcripts, controls, and assistive-technology behavior. Archie should require accessible text equivalents and programmatically available status messages for generated media, speech, receipts, and failures.
+6. Security and privacy guidance should be applied as a data-minimization rule: safe ids, classes, and summaries can support status, receipts, support, and issue mining; private prompts, private user media, provider secrets, raw provider payloads, and account history should remain out of user-facing logs and public handoffs.
+
+## Adoption Recommendation
+
+| Standard or guidance | Recommendation | User-facing behavior | Implementation-only detail | Smallest future target |
+| --- | --- | --- | --- | --- |
+| AI interaction disclosure | Adopt now | Tell users when they are asking an AI assistant. | Mode, model/provider class, system status, capability state. | Add the disclosure to the conversation surface and manifest rendering rules. |
+| AI-generated media labels | Adopt now | Mark generated or edited images, audio, diagrams, scripts, storyboards, and future video as AI-generated or AI-drafted. | Artifact type, purpose label, media-generation class, provenance support. | Require generated-media labels on every artifact record and preview. |
+| C2PA / Content Credentials | Adopt when media pipeline exists | Say that a record of origin is available when supported. | C2PA manifest, Content Credentials, signing/issuer metadata, media hash. | Add optional provenance fields to generated-media artifacts once provider and storage paths exist. |
+| Source and claim labeling | Adopt now | Show which sources support the answer and what claim level applies. | `source_context`, `claim_context`, freshness, System Card route. | Keep source chips and claim labels mandatory for rendered answers and artifacts. |
+| Accessibility guidance / WCAG 2.2 | Adopt now | Provide captions, transcripts, alt text, text fallback, and accessible status messages. | Caption/transcript artifacts, alt text fields, status roles, control state. | Require accessibility fields for audio, image, diagram, storyboard, receipt, and failure states. |
+| NIST AI RMF | Adopt internally now | Explain limits, risks, refusals, and safe fallbacks plainly. | Risk classes, control checks, validation state, incident/support routes. | Use as internal checklist for manifest validators and public-status copy. |
+| ISO/IEC 42001 | Monitor for governance | State service policy and user controls plainly. | AI management system controls, traceability, review cadence, policy owners. | Map to service-platform governance before public beta or paid launch. |
+| EU AI Act / EU labeling guidance | Monitor and align early | Use clear interaction and generated-content labels. | Jurisdictional legal review, label taxonomy, compliance evidence. | Keep labels product-level until counsel turns them into legal commitments. |
+| Agent/tool communication protocols | Defer for user-facing copy | Show actions and confirmations in normal language. | Tool call ids, agent protocol messages, action preflight state. | Use internally only after action broker needs interoperability. |
+
+## Plain-Language Copy Rules
+
+| Situation | User-facing phrase | Internal terms allowed only behind the boundary | Must not imply |
+| --- | --- | --- | --- |
+| AI assistant | You are asking an AI assistant. | mode, provider capability, model class, system card. | A human author, institutional endorsement, or source authority. |
+| Source-grounded answer | This answer is based on these sources and this claim level. | `source_context`, `claim_context`, source freshness, System Card route. | Proof stronger than the cited source supports. |
+| Generated or edited media | This media was generated or edited by AI to explain the answer. | artifact type, purpose label, generated-media class, C2PA state. | Real-world capture, evidence, proof, or endorsement. |
+| Provenance available | A record of origin is available for this media when supported. | C2PA manifest, Content Credentials, signature metadata. | That provenance proves the scientific claim is true. |
+| Spoken answer | High-quality speech is available with the same text shown on screen. | `speech_sync`, audio artifact, timed segments, fallback class. | A different answer, a persona, or added authority. |
+| Speech unavailable | High-quality speech is unavailable, so the answer is shown as text. | provider health, quality gate, fallback policy. | Medium- or low-quality speech as an acceptable substitute. |
+| Token cost | Your spending limit applies; the receipt shows estimate, hold, charge, refund, and cap state. | `token_receipt`, work units, cost class, cap status. | Hidden charges or paid proof authority. |
+| Privacy and retention | This material is private, retained, deleted, public, or saved as shown. | `privacy_state`, consent state, deletion/export state. | Retention beyond the stated policy. |
+| Public issue handoff | Review before anything is posted publicly. | `available_actions`, `issue_mining_context`, action preflight. | Hidden GitHub writes or credentialed action. |
+| Service status | This feature is available, degraded, unavailable, or using a safe fallback. | provider health, incident refs, observability refs, diagnostics redaction. | Exposure of private prompts, raw logs, or provider secrets. |
+| Accessibility | Captions, transcripts, alt text, or text fallback are available. | caption/transcript artifacts, alt text, status roles. | That inaccessible generated media is acceptable. |
+
+## Implementation Notes
+
+1. Store technical standard names and protocol fields only where they are useful for implementation, validation, support, or legal review.
+2. Render plain user-facing text before technical detail. A user should understand the answer, media label, cost, privacy state, issue handoff, and failure without reading schema names.
+3. Keep provenance metadata separate from claim authority. Media origin records can say where media came from; they cannot make an explanatory image or generated audio into evidence.
+4. Treat accessibility fields as required product behavior, not polish. Audio needs displayed text, captions or transcripts, and text fallback; visual artifacts need captions and alt text; status changes need assistive-technology-friendly messages.
+5. Keep receipts, issue-mining metadata, observability records, incidents, support summaries, and diagnostics free of private prompt expansion.
+6. Fail closed with a plain explanation when a standard-backed feature is unavailable. Examples: no C2PA support, no high-quality speech, stale public-issue notice, exceeded spending cap, or inaccessible generated media.
+
+## Implementation-Only Term Map
+
+| Implementation-only term | User-facing phrase |
+| --- | --- |
+| `provider_registry` | Available AI features and safe fallbacks. |
+| `provider_execution_context` | Which feature was used, blocked, or degraded. |
+| `speech_sync` | Speech matches the text shown on screen. |
+| `token_receipt` | Your usage receipt. |
+| `issue_mining_context` | Public feedback details used to find repeated issues. |
+| `observability_context` | Safe service-status and support records. |
+| `terms_acceptance_state` | Required notices or terms for this action. |
+| `action_preflight` | Review before the action runs. |
+| `fixture` | Future test case. |
+| `validator` | Safety and consistency check. |
+| `C2PA` or `Content Credentials` | Record of origin, when supported. |
+| `AI RMF` | Internal AI risk-management checklist. |
+| `ISO/IEC 42001` | Internal AI management-system guidance. |
+| `EU AI Act` | External legal guidance to monitor. |
 
 ## Adoption Standard
 

@@ -1,6 +1,6 @@
 {
   "schema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
-  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response source-acquisition rows accepted; top-level rows remain target-only and not accepted nuclear-binding recovery",
+  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, same_sigma_eff_domain, local open-color projection limit support, asymptotic_field_audit support, local color-singlet closure support, local color-singlet nucleon-envelope support, same-record branch-interface/confinement-functional support, sigma_eff_extraction, Delta_E_corr_NN_tail_limit, finite_range_residual, and no_free_color_asymptotic_state source-acquisition rows accepted; remaining top-level rows stay target-only and not accepted nuclear-binding recovery",
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "confinement_functional_source_target_0001",
@@ -15,7 +15,7 @@
     "currentStatus": "missing_accepted_confinement_functional_rows",
     "currentStructuralPass": true,
     "requiredEvidenceStatus": "accepted_non_fixture_source",
-    "firstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "firstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "currentSourceAcquisitionPass": false,
     "firstMissingSourceAcquisitionObject": "missing_accepted_accepted_proton_color_singlet_envelope"
   },
@@ -99,6 +99,21 @@
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
     },
+    "same_sigma_eff_domain": {
+      "id": "same_sigma_eff_domain_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted sigma_eff domain lock shared by the axis-exceptionality charge, sigma_eff extraction, finite envelope boundary, and Noether sea response inputs without accepting top envelope or no-free-color rows",
+      "requiredLedgerComponents": [
+        "axis_exceptionality_charge",
+        "accepted_sigma_eff_extraction",
+        "finite_envelope_boundary",
+        "same_record_noether_sea_response",
+        "source_path_tying_extraction_to_accepted_upstream_rows"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json"
+    },
     "proton_color_singlet_closure": {
       "id": "proton_color_singlet_closure_source_target_0001",
       "status": "accepted",
@@ -113,6 +128,21 @@
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
+    },
+    "neutron_color_singlet_closure": {
+      "id": "neutron_color_singlet_closure_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local neutron color-singlet closure support row for the accepted_neutron_color_singlet_envelope route without A-, Z-, isotope-, element-, or Fe/Ni-indexed tuning",
+      "requiredLedgerComponents": [
+        "Pi_singlet_X_ref",
+        "Pi_open_X_ref",
+        "W_locked_nX_ref",
+        "E_color_nX_bound",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json"
     },
     "finite_envelope_boundary": {
       "id": "finite_envelope_boundary_source_target_0001",
@@ -129,10 +159,124 @@
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
     },
+    "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response": {
+      "id": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted same-record support join tying sigma_eff extraction, local color-singlet closure support, branch-interface ledgers, Noether sea response, and tail-calculus support without accepting the top color-singlet envelope or no-open-color rows",
+      "requiredLedgerComponents": [
+        "accepted_sigma_eff_extraction",
+        "proton_color_singlet_closure",
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "same_sigma_eff_domain",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response",
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "O_NN_finite",
+        "exists_R0_C_lambda_exp_decay_tail",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json"
+    },
+    "lim_R_to_infty_sup_X_E_color_pX_R_eq_0": {
+      "id": "lim_R_to_infty_sup_X_E_color_pX_R_eq_0_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local proton open-color projection zero-limit support row for the no-free-color asymptotic audit; not accepted no-free-color evidence",
+      "requiredLedgerComponents": [
+        "proton_color_singlet_closure",
+        "finite_envelope_boundary",
+        "same_sigma_eff_domain",
+        "open_color_exterior_window",
+        "zero_limit_derivation",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/open-color-asymptotic-projection-limits-retained-evidence.v1.json"
+    },
+    "lim_R_to_infty_sup_X_E_color_nX_R_eq_0": {
+      "id": "lim_R_to_infty_sup_X_E_color_nX_R_eq_0_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local neutron open-color projection zero-limit support row for the no-free-color asymptotic audit; not accepted no-free-color evidence",
+      "requiredLedgerComponents": [
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "same_sigma_eff_domain",
+        "open_color_exterior_window",
+        "zero_limit_derivation",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/open-color-asymptotic-projection-limits-retained-evidence.v1.json"
+    },
+    "asymptotic_field_audit": {
+      "id": "asymptotic_field_audit_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local asymptotic field audit support row tying local proton/neutron color-singlet closure support, finite envelope boundary, sigma_eff domain, Noether sea response, branch-interface/confinement support, and open-color projection zero limits without accepting no-free-color or no-open-color",
+      "requiredLedgerComponents": [
+        "proton_color_singlet_closure",
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "same_sigma_eff_domain",
+        "same_record_noether_sea_response",
+        "same_record_branch_interface_confinement_functional_audit",
+        "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+        "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/asymptotic-field-audit-retained-evidence.v1.json"
+    },
+    "local_color_singlet_closure_support": {
+      "id": "local_color_singlet_closure_support_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local support row joining proton and neutron color-singlet closure support in the same sigma_eff, Noether sea, asymptotic-field, and branch-interface/confinement support domain without accepting top color_singlet_closure",
+      "requiredLedgerComponents": [
+        "proton_color_singlet_closure",
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "same_sigma_eff_domain",
+        "same_record_noether_sea_response",
+        "asymptotic_field_audit",
+        "same_record_branch_interface_confinement_functional_audit",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json"
+    },
+    "local_color_singlet_nucleon_envelope_support": {
+      "id": "local_color_singlet_nucleon_envelope_support_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local nucleon-envelope support row joining local color-singlet closure support, accepted sigma_eff extraction, accepted branch-interface ledgers, same-record conservation, and same-record Noether sea response without accepting the top color-singlet nucleon envelope",
+      "requiredLedgerComponents": [
+        "local_color_singlet_closure_support",
+        "proton_color_singlet_closure",
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "same_sigma_eff_domain",
+        "accepted_sigma_eff_extraction",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response",
+        "same_record_branch_interface_confinement_functional_audit",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/local-color-singlet-nucleon-envelope-support-retained-evidence.v1.json"
+    },
     "accepted_proton_color_singlet_envelope": {
       "id": "accepted_proton_color_singlet_envelope_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
+      "currentEvidenceStatus": "blocked_missing_same_record_branch_interface",
       "requiredScope": "accepted proton color-singlet envelope with finite boundary and no-free-color audit",
       "requiredLedgerComponents": [
         "proton_color_singlet_closure",
@@ -145,7 +289,7 @@
     "accepted_neutron_color_singlet_envelope": {
       "id": "accepted_neutron_color_singlet_envelope_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
+      "currentEvidenceStatus": "blocked_missing_same_record_branch_interface",
       "requiredScope": "accepted neutron color-singlet envelope with finite boundary and no-free-color audit",
       "requiredLedgerComponents": [
         "neutron_color_singlet_closure",
@@ -157,16 +301,16 @@
     },
     "no_free_color_asymptotic_state": {
       "id": "no_free_color_asymptotic_state_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_asymptotic_field_audit",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted no-free-color asymptotic-state row for color-singlet nucleon envelopes",
       "requiredLedgerComponents": [
-        "color_singlet_closure",
+        "local_color_singlet_closure_support",
         "asymptotic_field_audit",
         "finite_range_residual"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
-      "sourceTargetPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json"
+      "sourceTargetPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json"
     },
     "same_record_branch_interface": {
       "id": "same_record_branch_interface_source_target_0001",
@@ -184,8 +328,8 @@
     },
     "accepted_sigma_eff_extraction": {
       "id": "accepted_sigma_eff_extraction_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_sigma_eff_extraction_acceptance",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted sigma_eff extraction row with all upstream functional and Noether sea arguments",
       "requiredLedgerComponents": [
         "K_perp",
@@ -193,10 +337,13 @@
         "rho_NS",
         "chi_sea",
         "axis_exceptionality_charge",
-        "same_record_noether_sea_response"
+        "same_record_noether_sea_response",
+        "same_domain_minimizer_or_variational_certificate",
+        "refinement_stable_sigma_eff_row",
+        "source_path_tying_extraction_to_accepted_upstream_rows"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": "scripts/nuclear-atomic/accepted-sigma-eff-extraction-source-acquisition-blocker.v1.json"
+      "sourceTargetPath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json"
     },
     "accepted_color_singlet_nucleon_envelope": {
       "id": "accepted_color_singlet_nucleon_envelope_source_target_0001",
@@ -255,29 +402,114 @@
     },
     "Delta_E_corr_NN_tail_limit": {
       "id": "Delta_E_corr_NN_tail_limit_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_delta_E_corr_tail_limit_derivation",
-      "requiredScope": "accepted same-domain tail-limit row proving T_NN tends to zero for the Delta E_corr_NN residual without element-specific tuning",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted same-domain tail-limit row proving T_NN tends to zero for the Delta E_corr_NN residual over the accepted local nucleon-envelope support domain without element-specific tuning",
       "requiredLedgerComponents": [
+        "local_color_singlet_nucleon_envelope_support",
+        "accepted_sigma_eff_extraction",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response",
         "lim_R_to_infty_T_NN_R_eq_0",
         "O_NN_finite",
-        "exists_R0_C_lambda_exp_decay_tail"
+        "exists_R0_C_lambda_exp_decay_tail",
+        "coefficient_exclusion_audit"
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
-      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json"
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json"
+    },
+    "lim_R_to_infty_T_NN_R_eq_0": {
+      "id": "lim_R_to_infty_T_NN_R_eq_0_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted zero-limit support row for the normalized Delta_E_corr_NN tail-calculus route; not the top same-domain Delta_E_corr_NN_tail_limit row",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "R0",
+        "C",
+        "lambda",
+        "zero_limit_derivation",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
+    },
+    "O_NN_finite": {
+      "id": "O_NN_finite_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite weighted-overlap support row for the normalized Delta_E_corr_NN tail-calculus route; not the top same-domain Delta_E_corr_NN_tail_limit row",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "corridor_weight_bound",
+        "C_w",
+        "eta_lt_lambda_witness",
+        "finite_overlap_integral",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
+    },
+    "exists_R0_C_lambda_exp_decay_tail": {
+      "id": "exists_R0_C_lambda_exp_decay_tail_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted exponential-tail support row for the normalized Delta_E_corr_NN tail-calculus route; not the top same-domain Delta_E_corr_NN_tail_limit row",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "R0",
+        "C",
+        "lambda",
+        "lambda_positive",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
+    },
+    "bounded_residual_overlap": {
+      "id": "bounded_residual_overlap_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite-tail support alias from O_NN_finite for the finite_range_residual route; not the top finite_range_residual row",
+      "requiredLedgerComponents": [
+        "O_NN_finite",
+        "corridor_weight_ref",
+        "finite_overlap_integral",
+        "same_tail_support_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json"
+    },
+    "large_r_zero_limit": {
+      "id": "large_r_zero_limit_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite-tail support alias from lim_R_to_infty_T_NN_R_eq_0 for the finite_range_residual route; not no_open_color_far_field",
+      "requiredLedgerComponents": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "tail_envelope_bound",
+        "zero_limit_derivation",
+        "same_tail_support_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json"
     },
     "finite_range_residual": {
       "id": "finite_range_residual_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_delta_E_corr_tail_audit",
-      "requiredScope": "accepted finite-range residual row showing Delta E_corr_NN tends to zero at large separation",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite-range residual row joining the accepted Delta_E_corr_NN_tail_limit, bounded residual overlap, and large-r zero-limit rows in the same retained support domain",
       "requiredLedgerComponents": [
         "Delta_E_corr_NN_tail_limit",
         "bounded_residual_overlap",
         "large_r_zero_limit"
       ],
-      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json"
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json"
     },
     "color_singlet_closure": {
       "id": "color_singlet_closure_source_target_0001",
@@ -333,6 +565,24 @@
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json"
+    },
+    "same_record_branch_interface_confinement_functional_audit": {
+      "id": "same_record_branch_interface_confinement_functional_audit_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted same-record branch-interface/confinement-functional support audit tying accepted branch ledgers, sigma_eff/color-singlet support, Noether sea response, tail-calculus support, and open-color projection support without accepting no-open-color",
+      "requiredLedgerComponents": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "accepted_sigma_eff_extraction",
+        "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+        "bounded_open_color_projection_operator_norm",
+        "finite_open_color_surface_measure",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json"
     },
     "corridor_weight_growth_eta_lt_lambda": {
       "id": "corridor_weight_growth_eta_lt_lambda_source_target_0001",
@@ -507,7 +757,7 @@
       "requiredAcceptedSourceRowsBeforeUse": [
         "Delta_E_corr_NN_tail_limit",
         "accepted_sigma_eff_extraction",
-        "accepted_color_singlet_nucleon_envelope",
+        "local_color_singlet_nucleon_envelope_support",
         "accepted_proton_branch_interface_ledger",
         "accepted_neutron_branch_interface_ledger",
         "same_record_energy_momentum_angular_momentum_ledger",
@@ -516,7 +766,7 @@
       "requiredSameRecordRows": [
         "Delta_E_corr_NN_tail_limit",
         "accepted_sigma_eff_extraction",
-        "accepted_color_singlet_nucleon_envelope",
+        "local_color_singlet_nucleon_envelope_support",
         "accepted_proton_branch_interface_ledger",
         "accepted_neutron_branch_interface_ledger",
         "same_record_energy_momentum_angular_momentum_ledger",
@@ -585,8 +835,8 @@
   "rows": {
     "sigma_eff_extraction": {
       "id": "sigma_eff_extraction_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "priority_packet_only",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "targetEquation": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} 2*pi*int_0^a r[(K_perp/2)||Q||_F^2(df/dr)^2+V_exc(f(r)Q;Q,rho_NS,chi_sea)]dr",
       "requiredSourceRows": [
         "K_perp",
@@ -604,6 +854,7 @@
         "axis_exceptionality_charge",
         "same_record_noether_sea_response"
       ],
+      "sourceEvidencePath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     },
     "color_singlet_nucleon_envelope": {
@@ -628,6 +879,9 @@
         "accepted_color_singlet_nucleon_envelope",
         "accepted_branch_interface_rows",
         "finite_residual_corridor_overlap"
+      ],
+      "acceptedSourceRows": [
+        "accepted_sigma_eff_extraction"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     },

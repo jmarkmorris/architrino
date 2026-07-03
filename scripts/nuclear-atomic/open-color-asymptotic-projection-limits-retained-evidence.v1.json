@@ -1,0 +1,110 @@
+{
+  "schema": "aaa-nuclear-atomic-open-color-asymptotic-projection-limits-evidence/v1",
+  "claimLevel": "durable non-fixture open-color projection zero-limit support rows for the no-free-color asymptotic audit route; local proton and neutron limit support only; not accepted asymptotic_field_audit evidence, not no_free_color_asymptotic_state evidence, not finite_range_residual evidence, not no-open-color evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "open_color_asymptotic_projection_limits",
+  "sourceSupport": [
+    "no_free_color_asymptotic_state",
+    "asymptotic_field_audit",
+    "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+    "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+    "proton_color_singlet_closure",
+    "neutron_color_singlet_closure",
+    "finite_envelope_boundary",
+    "same_sigma_eff_domain"
+  ],
+  "evidenceSupports": [
+    "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+    "lim_R_to_infty_sup_X_E_color_nX_R_eq_0"
+  ],
+  "sourceIdentity": {
+    "openColorAsymptoticProjectionLimitsId": "open_color_asymptotic_projection_limits_0001",
+    "protonLimitSourceTargetId": "lim_R_to_infty_sup_X_E_color_pX_R_eq_0_source_target_0001",
+    "neutronLimitSourceTargetId": "lim_R_to_infty_sup_X_E_color_nX_R_eq_0_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "noFreeColorBlockerPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json",
+    "protonEnvelopeSupportPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "neutronEnvelopeSupportPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
+    "sameSigmaEffDomainPath": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "acceptedInputRows": {
+    "proton_color_singlet_closure": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "neutron_color_singlet_closure": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
+    "finite_envelope_boundary": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "same_sigma_eff_domain": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json"
+  },
+  "protonOpenColorProjectionZeroLimit": {
+    "rowId": "lim_R_to_infty_sup_X_E_color_pX_R_eq_0_0001",
+    "sourceRowId": "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+    "E_color_pX_R_definition": "E_color_pX(R)=sup_{X outside R} ||Pi_open,X W_locked_pX||_X/(||Pi_singlet,X W_locked_pX||_X + epsilon_pX)",
+    "protonClosureRef": "proton_color_singlet_closure_0001",
+    "finiteEnvelopeBoundaryRef": "finite_envelope_boundary_0001",
+    "sameSigmaEffDomainRef": "same_sigma_eff_domain_0001",
+    "R_p": 1,
+    "openColorExteriorWindowRef": "open_color_exterior_window_pX_R_ge_R_p_0001",
+    "supBoundForRGeRp": 0,
+    "limitValue": 0,
+    "zeroLimitDerivation": "The accepted local proton closure support has E_color_pX=0 in the retained normalized support domain, and the finite boundary R_p=1 defines the exterior window family; therefore sup_X E_color_pX(R)=0 for R>=R_p in this support row.",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "neutronOpenColorProjectionZeroLimit": {
+    "rowId": "lim_R_to_infty_sup_X_E_color_nX_R_eq_0_0001",
+    "sourceRowId": "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+    "E_color_nX_R_definition": "E_color_nX(R)=sup_{X outside R} ||Pi_open,X W_locked_nX||_X/(||Pi_singlet,X W_locked_nX||_X + epsilon_nX)",
+    "neutronClosureRef": "neutron_color_singlet_closure_0001",
+    "finiteEnvelopeBoundaryRef": "finite_envelope_boundary_0001",
+    "sameSigmaEffDomainRef": "same_sigma_eff_domain_0001",
+    "R_n": 1,
+    "openColorExteriorWindowRef": "open_color_exterior_window_nX_R_ge_R_n_0001",
+    "supBoundForRGeRn": 0,
+    "limitValue": 0,
+    "zeroLimitDerivation": "The accepted local neutron closure support has E_color_nX=0 in the retained normalized support domain, and the finite boundary R_n=1 defines the exterior window family; therefore sup_X E_color_nX(R)=0 for R>=R_n in this support row.",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+      "lim_R_to_infty_sup_X_E_color_nX_R_eq_0"
+    ],
+    "notAcceptedByThisEvidence": [
+      "asymptotic_field_audit",
+      "no_free_color_asymptotic_state",
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "same_record_branch_interface",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted rows only supply local proton and neutron open-color projection zero-limit support for the no-free-color asymptotic audit route.",
+    "The row does not itself accept asymptotic_field_audit; the separate asymptotic-field audit evidence consumes these limit rows with the local color-singlet, sigma_eff, Noether sea, and branch-interface/confinement support rows.",
+    "The row does not accept no_free_color_asymptotic_state, color_singlet_closure, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

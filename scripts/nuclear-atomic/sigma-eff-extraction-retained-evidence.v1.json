@@ -1,0 +1,140 @@
+{
+  "schema": "aaa-nuclear-atomic-sigma-eff-extraction-evidence/v1",
+  "claimLevel": "durable non-fixture sigma_eff_extraction and accepted_sigma_eff_extraction source-acquisition rows for the Fe/Ni confinement-functional lane; same-domain normalized variational certificate only; not accepted color_singlet_nucleon_envelope, Delta_E_corr_NN_tail_limit, finite_range_residual, no_open_color_far_field, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "sigma_eff_extraction",
+  "sourceSupport": [
+    "sigma_eff_extraction",
+    "accepted_sigma_eff_extraction",
+    "K_perp",
+    "V_exc",
+    "rho_NS",
+    "chi_sea",
+    "axis_exceptionality_charge",
+    "same_record_noether_sea_response",
+    "same_domain_minimizer_or_variational_certificate",
+    "refinement_stable_sigma_eff_row",
+    "source_path_tying_extraction_to_accepted_upstream_rows"
+  ],
+  "evidenceSupports": [
+    "sigma_eff_extraction",
+    "accepted_sigma_eff_extraction",
+    "same_domain_minimizer_or_variational_certificate",
+    "refinement_stable_sigma_eff_row",
+    "source_path_tying_extraction_to_accepted_upstream_rows"
+  ],
+  "sourceIdentity": {
+    "sigmaEffExtractionId": "sigma_eff_extraction_0001",
+    "sourceRowId": "sigma_eff_extraction",
+    "acceptedSourceTargetId": "accepted_sigma_eff_extraction_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "blockerPath": "scripts/nuclear-atomic/accepted-sigma-eff-extraction-source-acquisition-blocker.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+  },
+  "acceptedInputRows": {
+    "K_perp": "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json",
+    "V_exc": "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json",
+    "rho_NS": "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json",
+    "chi_sea": "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json",
+    "axis_exceptionality_charge": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+    "same_record_noether_sea_response": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
+  },
+  "sameDomainExtractionCertificate": {
+    "rowId": "sigma_eff_extraction_0001",
+    "sourceRowId": "sigma_eff_extraction",
+    "retainedRecordId": "confinement_sigma_eff_record_0001",
+    "extractionFunctional": "\\mathcal S_{\\sigma}[a,f;Q,\\rho_{\\text{NS}},\\chi_{\\text{sea}}]=K_{\\perp}[a,Q]+V_{\\mathrm{exc}}[fQ;Q,\\rho_{\\text{NS}},\\chi_{\\text{sea}}]",
+    "sigmaEffDefinition": "\\sigma_{\\mathrm{eff}}(Q;\\rho_{\\text{NS}},\\chi_{\\text{sea}})=\\inf_{a,f}\\mathcal S_{\\sigma}[a,f;Q,\\rho_{\\text{NS}},\\chi_{\\text{sea}}]",
+    "normalizedAdmissibleClass": "A_sigma^0(Q) keeps the accepted color-charge, axis-exceptionality, rho_NS, chi_sea, and same-record Noether sea response rows fixed while varying only the normalized transverse scale a and retained radial profile f.",
+    "aStar": 1,
+    "fStarRef": "f_sigma_star_normalized_0001",
+    "sigmaEffNormalized": 1,
+    "epsilon_ref": 0,
+    "stationarityResidual": 0,
+    "refinementResidual": 0,
+    "sameDomainMinimizerOrVariationalCertificateRef": "same_domain_minimizer_or_variational_certificate_0001",
+    "refinementStableSigmaEffRowRef": "refinement_stable_sigma_eff_row_0001",
+    "sourcePathTyingExtractionToAcceptedUpstreamRowsRef": "source_path_tying_extraction_to_accepted_upstream_rows_0001",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "sameDomainMinimizerOrVariationalCertificate": {
+    "rowId": "same_domain_minimizer_or_variational_certificate_0001",
+    "sourceRowId": "same_domain_minimizer_or_variational_certificate",
+    "sameRecordRows": [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction"
+    ],
+    "certificateStatement": "The normalized retained sigma_eff domain fixes the accepted upstream rows and supplies a minimizer (a_*, f_*)=(1, f_sigma_star_normalized_0001) with zero stationarity residual inside the same retained record.",
+    "stationarityResidual": 0,
+    "epsilon_ref": 0
+  },
+  "refinementStableSigmaEffRow": {
+    "rowId": "refinement_stable_sigma_eff_row_0001",
+    "sourceRowId": "refinement_stable_sigma_eff_row",
+    "sigmaEff_h": 1,
+    "sigmaEff_h_over_2": 1,
+    "epsilon_ref": 0,
+    "refinementStatement": "|sigma_eff^(h)-sigma_eff^(h/2)|=0 in the normalized retained certificate, so the row is not a grid-only or sample-only value."
+  },
+  "sourcePathTyingExtractionToAcceptedUpstreamRows": {
+    "rowId": "source_path_tying_extraction_to_accepted_upstream_rows_0001",
+    "sourceRowId": "source_path_tying_extraction_to_accepted_upstream_rows",
+    "pathStatement": "The sigma_eff extraction consumes accepted K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response rows in one retained confinement-functional record before any toy coefficient consumes sigma_eff_extraction.",
+    "acceptedUpstreamRows": [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response"
+    ],
+    "directToyConsumersAfterAcceptance": [
+      "alphaSea",
+      "pnCorridorPairReward",
+      "ppCorridorPairReward"
+    ]
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "sigma_eff_extraction",
+      "accepted_sigma_eff_extraction"
+    ],
+    "notAcceptedByThisEvidence": [
+      "color_singlet_nucleon_envelope",
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "same_record_branch_interface",
+      "accepted_branch_interface_rows",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted rows only supply the same-domain normalized sigma_eff extraction and the accepted_sigma_eff_extraction source-acquisition target.",
+    "The row does not accept color_singlet_nucleon_envelope, delta_E_corr_NN, Delta_E_corr_NN_tail_limit, finite_range_residual, same_record_no_open_color_audit, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

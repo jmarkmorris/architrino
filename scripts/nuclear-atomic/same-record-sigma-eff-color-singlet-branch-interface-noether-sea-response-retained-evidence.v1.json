@@ -1,0 +1,121 @@
+{
+  "schema": "aaa-nuclear-atomic-same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-evidence/v1",
+  "claimLevel": "durable non-fixture same-record support join for the Delta_E_corr_NN_tail_limit route; joins accepted support rows only; not accepted color-singlet nucleon envelope evidence, not accepted Delta_E_corr_NN_tail_limit evidence, not accepted finite_range_residual evidence, not no-open-color evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+  "sourceSupport": [
+    "Delta_E_corr_NN_tail_limit",
+    "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+    "accepted_sigma_eff_extraction",
+    "proton_color_singlet_closure",
+    "neutron_color_singlet_closure",
+    "finite_envelope_boundary",
+    "same_sigma_eff_domain",
+    "accepted_proton_branch_interface_ledger",
+    "accepted_neutron_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "same_record_noether_sea_response",
+    "lim_R_to_infty_T_NN_R_eq_0",
+    "O_NN_finite",
+    "exists_R0_C_lambda_exp_decay_tail"
+  ],
+  "evidenceSupports": [
+    "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"
+  ],
+  "sourceIdentity": {
+    "sameRecordSupportJoinId": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response_0001",
+    "sourceTargetId": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "tailLimitBlockerPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
+    "sigmaEffEvidencePath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
+    "sameSigmaEffDomainPath": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json",
+    "protonEnvelopeSupportPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "neutronEnvelopeSupportPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
+    "tailCalculusEvidencePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "acceptedInputRows": {
+    "accepted_sigma_eff_extraction": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
+    "proton_color_singlet_closure": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "neutron_color_singlet_closure": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
+    "finite_envelope_boundary": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "same_sigma_eff_domain": "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json",
+    "accepted_proton_branch_interface_ledger": "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",
+    "accepted_neutron_branch_interface_ledger": "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
+    "same_record_energy_momentum_angular_momentum_ledger": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+    "same_record_noether_sea_response": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json",
+    "lim_R_to_infty_T_NN_R_eq_0": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
+    "O_NN_finite": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
+    "exists_R0_C_lambda_exp_decay_tail": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
+    "coefficient_exclusion_audit": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json"
+  },
+  "sameRecordSupportJoin": {
+    "rowId": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response_0001",
+    "sourceRowId": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+    "retainedSupportRecordId": "sigma_eff_color_singlet_branch_noether_tail_support_record_0001",
+    "sigmaEffRecordRef": "confinement_sigma_eff_record_0001",
+    "sameSigmaEffDomainRef": "same_sigma_eff_domain_0001",
+    "protonColorSingletClosureRef": "proton_color_singlet_closure_0001",
+    "neutronColorSingletClosureRef": "neutron_color_singlet_closure_0001",
+    "finiteEnvelopeBoundaryRef": "finite_envelope_boundary_0001",
+    "protonBranchInterfaceLedgerRef": "L_BI_p_0001",
+    "neutronBranchInterfaceLedgerRef": "L_BI_n_0001",
+    "branchSameRecordLedgerRef": "L_EpJ_pn_pp_0001",
+    "sameRecordNoetherSeaResponseRef": "same_record_noether_sea_response_confinement_0001",
+    "tailCalculusRef": "delta_E_corr_NN_tail_calculus_0001",
+    "recordJoinStatement": "The normalized retained support record ties the accepted sigma_eff extraction, local proton and neutron color-singlet closure support, finite envelope boundary, accepted branch-interface ledgers, same-record E/p/J ledger, same-record Noether sea response, and normalized tail-calculus rows to one source-acquisition support domain.",
+    "recordEqualities": [
+      "record(sigmaEffRecordRef)=record(sameSigmaEffDomainRef)",
+      "record(sigmaEffRecordRef)=record(protonColorSingletClosureRef)",
+      "record(sigmaEffRecordRef)=record(neutronColorSingletClosureRef)",
+      "record(sigmaEffRecordRef)=record(finiteEnvelopeBoundaryRef)",
+      "record(sigmaEffRecordRef)=record(protonBranchInterfaceLedgerRef)",
+      "record(sigmaEffRecordRef)=record(neutronBranchInterfaceLedgerRef)",
+      "record(sigmaEffRecordRef)=record(branchSameRecordLedgerRef)",
+      "record(sigmaEffRecordRef)=record(sameRecordNoetherSeaResponseRef)",
+      "record(sigmaEffRecordRef)=record(tailCalculusRef)"
+    ],
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"
+    ],
+    "notAcceptedByThisEvidence": [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "asymptotic_field_audit",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_event_ledger",
+      "K_open_finite",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted row only supplies the same-record support join already named by the Delta_E_corr_NN_tail_limit blocker.",
+    "The row does not accept accepted_color_singlet_nucleon_envelope; the top proton/neutron envelope, no-free-color audit, and same-record branch-interface rows are still missing.",
+    "The row does not accept Delta_E_corr_NN_tail_limit, finite_range_residual, same_record_no_open_color_audit, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

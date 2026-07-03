@@ -318,6 +318,12 @@ test("current branch-interface target passes algebra but blocks accepted source 
     ),
     true,
   );
+  assert.equal(
+    blocker.candidateNoOpenColorFarFieldLemma.missingAcceptanceRows.includes(
+      "same_record_branch_interface_confinement_functional_audit",
+    ),
+    false,
+  );
   assert.deepEqual(
     blocker.candidateNoOpenColorFarFieldLemma.feedsRowsAfterAcceptance,
     [

@@ -121,6 +121,24 @@
       ],
       "boundary": "The retained projection-support evidence accepts only the projection norm and surface-measure support rows; residual tail, color-singlet closure, same-event ledger, K_open, and no-open-color remain unaccepted."
     },
+    "sameRecordBranchInterfaceConfinementFunctionalAuditSupport": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json",
+      "candidateRowId": "same_record_branch_interface_confinement_functional_audit_0001",
+      "acceptedRowsProvided": [
+        "same_record_branch_interface_confinement_functional_audit"
+      ],
+      "usableFor": [
+        "same-record branch-interface/confinement-functional support-domain lock",
+        "accepted support row consumed by the future same-record no-open-color audit"
+      ],
+      "notUsableFor": [
+        "accepted_same_event_ledger",
+        "accepted_K_open_finite",
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained support-domain audit accepts only the branch-interface/confinement-functional join row. It does not accept the same-event ledger, finite-K row, no-open audit row, or no-open-color far-field row."
+    },
     "confinementFunctionalNoOpenColorTarget": {
       "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/no_open_color_far_field",
       "usableFor": [
@@ -372,7 +390,6 @@
     ],
     "derivedRowsIfAccepted": [
       "same_record_no_open_color_audit",
-      "same_record_branch_interface_confinement_functional_audit",
       "N_open_R_le_K_open_T_NN_R_squared"
     ],
     "missingAcceptanceRows": [
@@ -380,8 +397,7 @@
       "finite_range_residual",
       "color_singlet_closure",
       "same_event_ledger",
-      "K_open_finite",
-      "same_record_branch_interface_confinement_functional_audit"
+      "K_open_finite"
     ],
     "feedsRowsAfterAcceptance": [
       "no_open_color_far_field",
@@ -576,13 +592,10 @@
       "N_open_R_le_K_open_T_NN_R_squared"
     ],
     "missingAcceptanceRows": [
-      "bounded_residual_overlap",
       "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
-      "same_event_ledger",
-      "bounded_open_color_projection_operator_norm",
-      "finite_open_color_surface_measure"
+      "same_event_ledger"
     ],
     "feedsRowsAfterAcceptance": [
       "same_record_no_open_color_audit",
@@ -597,7 +610,7 @@
       "Pi_open is evaluated in a different residual corridor or event record",
       "the projection operator norm depends on A, Z, isotope, element, or Fe/Ni-specific tuning",
       "the open-color surface measure is not finite in the retained record",
-      "bounded_residual_overlap remains target-only",
+      "bounded_residual_overlap remains a normalized support alias and is not joined to the same retained event record",
       "K_open_finite is used as accepted evidence before the projection-bound inputs are accepted"
     ]
   },
@@ -623,7 +636,7 @@
       "accepted_nuclear_binding_recovery"
     ],
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
-    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
     "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
     "scoreDecision": "no_score_increase"

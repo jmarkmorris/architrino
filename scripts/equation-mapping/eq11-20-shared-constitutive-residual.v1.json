@@ -1,0 +1,171 @@
+{
+  "schema": "aaa-equation-map-eq11-20-shared-constitutive-residual-input/v1",
+  "claimLevel": "provider-backed shared EQ-11/EQ-20 constitutive residual consuming accepted theta_11_20, theta_sea_rho_NS, delta_P_eff, and theta_cos records; score-neutral",
+  "residualId": "R_11_20_shared_constitutive_provider_backed_0001",
+  "tolerances": {
+    "source": 1e-12,
+    "sharedKey": 1e-12,
+    "identity": 1e-12,
+    "coupling": 1e-12,
+    "pressureLambda": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_11_20_shared_constitutive_provider_backed_0001",
+    "rows": {
+      "theta_11_20_weak_gravity": {
+        "id": "theta_11_20_weak_gravity_provider_backed_0001",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "eq20_pressure_effective_lambda": {
+        "id": "eq20_provider_backed_pressure_effective_lambda_slice_0001",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
+      },
+      "theta_sea_rho_NS_provider": {
+        "id": "theta_sea_rho_NS_provider_0001",
+        "status": "accepted",
+        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
+      },
+      "delta_P_eff_pressure_projection": {
+        "id": "eq20-delta-p-eff-pressure-projection-report-0001",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "theta_cos_handoff": {
+        "id": "theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "shared_coupling": {
+        "id": "shared_G_eff_theta_11_20_eq20_provider_backed_0001",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "shared_no_hidden_retune_witness": {
+        "id": "shared_no_hidden_retune_theta_11_20_eq20_provider_backed_0001",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      }
+    },
+    "evidenceSources": {
+      "theta1120WeakGravityPath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json",
+      "eq20PressureEffectiveLambdaSlicePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+      "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+      "deltaPEffReportPath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
+      "thetaCosHandoffPath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+    },
+    "sharedKeys": [
+      {
+        "id": "theta_11_20_id_shared_constitutive_provider_backed_0001",
+        "key": "theta_11_20_id",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": "theta_11_20_weak_gravity_provider_backed_0001",
+          "pressure": "theta_11_20_weak_gravity_provider_backed_0001"
+        }
+      },
+      {
+        "id": "provider_window_id_shared_constitutive_provider_backed_0001",
+        "key": "provider_window_id",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": "theta-sea-density-compression-provider-0001",
+          "pressure": "theta-sea-density-compression-provider-0001",
+          "density": "theta-sea-density-compression-provider-0001"
+        }
+      },
+      {
+        "id": "theta_cos_id_shared_constitutive_provider_backed_0001",
+        "key": "theta_cos_id",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": "theta_cos_FRW_handoff_0001",
+          "pressure": "theta_cos_FRW_handoff_0001",
+          "frw": "theta_cos_FRW_handoff_0001"
+        }
+      },
+      {
+        "id": "rho_NS_shared_constitutive_provider_backed_0001",
+        "key": "rho_NS",
+        "status": "accepted",
+        "projectionValues": {
+          "density": 1,
+          "pressure": 1,
+          "weak_gravity": 1
+        }
+      },
+      {
+        "id": "M_sea_ab_shared_constitutive_provider_backed_0001",
+        "key": "M_sea_ab",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": 1,
+          "pressure": 1,
+          "coupling": 1
+        }
+      },
+      {
+        "id": "G_eff_shared_constitutive_provider_backed_0001",
+        "key": "G_eff",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": 1,
+          "pressure": 1,
+          "frw": 1
+        }
+      },
+      {
+        "id": "p_DE_eff_shared_constitutive_provider_backed_0001",
+        "key": "p_DE_eff",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": -0.7,
+          "pressure": -0.7,
+          "frw": -0.7
+        }
+      },
+      {
+        "id": "Lambda_eff_shared_constitutive_provider_backed_0001",
+        "key": "Lambda_eff",
+        "status": "accepted",
+        "projectionValues": {
+          "weak_gravity": 17.59291886010284,
+          "pressure": 17.59291886010284,
+          "frw": 17.59291886010284
+        }
+      },
+      {
+        "id": "tau_rel_shared_constitutive_provider_backed_0001",
+        "key": "tau_rel",
+        "status": "accepted",
+        "projectionValues": {
+          "pressure": 1,
+          "weak_gravity": 1
+        }
+      }
+    ],
+    "residualComponents": {
+      "identity": {
+        "dTheta": 0,
+        "dC_NS": 0,
+        "dM_sea_ab": 0
+      },
+      "coupling": {
+        "G_eff_weak": 1,
+        "G_eff_pressure": 1,
+        "G_eff_frw": 1
+      },
+      "pressureLambda": {
+        "p_DE_eff_weak": -0.7,
+        "p_DE_eff_pressure": -0.7,
+        "Lambda_eff_weak": 17.59291886010284,
+        "Lambda_eff_pressure": 17.59291886010284
+      },
+      "noHiddenRetune": {
+        "residual": 0
+      }
+    }
+  }
+}

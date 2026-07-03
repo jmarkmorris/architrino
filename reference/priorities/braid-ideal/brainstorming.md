@@ -1943,6 +1943,23 @@ $$
 
 and the same post-provider root-margin inequality passes. In the executable six-slot test, $\mathbf e_x=[-0.02,0,0,0,0,0]$ and $\mathbf K_x$ maps that error to $\mathbf a_{\mathrm{RH}}=[0.1,0,0,0,0,0]$; the same margin-lift component $0.085$ then restores the reserve. This is still non-authorizing because the response matrices, retained path-error row, retained-root ledger, action-closure row, and provider provenance are not accepted central retained-solver rows. It does, however, make the replacement equation concrete: an accepted internal tangent authority must be a retained-history response whose tangent projection equals $\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}})$ and whose tangent-null component preserves the causal-root margin.
 
+The retained-history response now has a root-ledger differential carrier, not only a fitted gain matrix. For each retained source/receiver pair, the central row must expose the causal-root residual
+
+$$
+\Phi_{ab}(t,\tau;q)
+=\|\mathbf x_a(t;q)-\mathbf x_b(t-\tau;q)\|^2-c_f^2\tau^2
+=0,
+$$
+
+and, when the root Jacobian is away from zero, the sensitivity equation
+
+$$
+\partial_i\tau_{ab}
+=-\frac{\partial_i\Phi_{ab}}{\partial_\tau\Phi_{ab}}.
+$$
+
+This makes $\mathbf e_x$, $\mathbf e_v$, and $\mathbf G_\mu$ downstream of the same retained path-history rows and retained-root detail rows, not free diagnostic fits. The retained-root detail carrier must supply the root-detail identity, residual, `jacobian`, source-normal denominator, receiver-normal factor, branch weight, root kind, entry kind, status code, and state flags on the same retained record. Claim level: priority-only. The executable carrier sharpens the proof route, but it still requires accepted central root-detail, path-history, action, wake, provider-provenance, and acceptance-certificate refs before it can replace the assigned branch-clock lock.
+
 The response matrices need not be freely assigned. If the same-record retained path-error vector
 
 $$
@@ -1989,20 +2006,37 @@ A six-slot same-record fixture can pass the minimum-gain equation, recover $\mat
 The central retained-history request now exposes that fourth rung as an explicit solver contract. The row [central-solver-retained-history-row.mjs](../../../scripts/braid-ideal/central-solver-retained-history-row.mjs) emits `central_solver_internal_tangent_authority_vector_request.v0`, and the provider object passes it through unchanged. The request names the exact same-record row families consumed by the internal tangent-authority evaluator:
 
 1. `same_record_retained_path_error_row`;
-2. `retained_solver_tangent_target_vector_row`;
-3. `active_causal_margin_gradient_vector_row`;
-4. `post_provider_root_margin_row`;
-5. `same_record_closure_rows`.
+2. `same_record_retained_root_ledger_detail_rows`;
+3. `retained_solver_tangent_target_vector_row`;
+4. `active_causal_margin_gradient_vector_row`;
+5. `post_provider_root_margin_row`;
+6. `same_record_action_closure_row`;
+7. `same_record_closure_rows`.
 
-This is the current bridge between the preferred $(u,v_{\mathrm{orb}})$ curve and the retained solver. It asks the central solver to emit $\mathbf e_x$, $\mathbf e_v$, $\mathbf T$, $\mathbf G_\mu$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}$, $\Delta_T$, $\Delta_M$, and $\epsilon_\mu$ on one retained record so the minimum-gain evaluator can run against actual retained path history instead of fixtures. The request remains non-authorizing: `minimum_norm_retained_history_gain_witness_row_ref`, `retained_solver_vector_witness_row_ref`, and `accepted_internal_tangent_authority_ref` are all null. The first source target is still `same_record_retained_solver_vector_rows_for_internal_tangent_authority`; the specific missing field is `central_solver_retained_history_row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref`.
+This is the current bridge between the preferred $(u,v_{\mathrm{orb}})$ curve and the retained solver. It asks the central solver to emit $\mathbf e_x$, $\mathbf e_v$, retained-root detail rows, $\mathbf T$, $\mathbf G_\mu$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}$, $\Delta_T$, $\Delta_M$, $\epsilon_\mu$, and a same-record action closure row on one retained record so the minimum-gain evaluator can run against actual retained path history instead of fixtures. The request remains non-authorizing: `minimum_norm_retained_history_gain_witness_row_ref`, `retained_solver_vector_witness_row_ref`, and `accepted_internal_tangent_authority_ref` are all null. The first source target is still `same_record_retained_solver_vector_rows_for_internal_tangent_authority`; the specific missing field is `central_solver_retained_history_row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref`.
 
-The bridge is now executable as a separate fail-closed artifact. The script [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) consumes a central retained-history row plus candidate minimum-gain and retained-vector witness rows, binds them back to the request retained record, and runs the existing evaluators. This creates a concrete three-step source ladder:
+The action closure precondition is deliberately narrow:
+
+$$
+\left|
+\Delta A_{\mathrm{internal}}(q)
+-\Delta A_{\mathrm{clock}}(q)
+\right|
+\le
+\epsilon_A.
+$$
+
+It does not prove the retained solver has accepted action accounting. It prevents a false branch-clock replacement theorem in which $\mathbf a_{\mathrm{internal}}^\ast$ matches the tangent acceleration and preserves the positive root margin but changes the same-record action increment. The row is therefore another mathematical pass condition, not accepted evidence: it must share the retained record and `source_row_id` with the minimum-gain, retained-vector, preferred-curve, and retained-root detail rows.
+
+The bridge is now executable as a separate fail-closed artifact. The script [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) consumes a central retained-history row plus candidate minimum-gain, retained-vector witness, retained-root detail, same-record action closure, and preferred-curve rows, binds them back to the request retained record, and runs the existing evaluators. This creates a concrete five-step source ladder:
 
 1. a retained-history row emits `central_solver_internal_tangent_authority_vector_request.v0`;
 2. candidate same-record rows are evaluated by `central_solver_internal_tangent_authority_vector_rows.v0`;
-3. the internal tangent-authority certificate can consume the same rows and report whether the preferred-curve equation passes mathematically.
+3. retained-root detail rows are checked for the causal-root residual/sensitivity carrier, nonzero `jacobian`, nonzero source-normal denominator, and same-record binding;
+4. same-record action closure rows are checked for $\left|\Delta A_{\mathrm{internal}}-\Delta A_{\mathrm{clock}}\right|\le\epsilon_A$;
+5. the internal tangent-authority certificate can consume the same rows and report whether the preferred-curve equation passes mathematically.
 
-In the executable bridge fixture, the same retained record carries $\mathbf e_x=[-0.02,0,0,0,0,0]$, $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$. The bridge recovers the minimum-gain response, checks the retained-vector provider, and reports `same_record_internal_tangent_authority_vector_rows_mathematical_pass_acceptance_blocked`. That is a useful success marker under the existing proof route: the algebraic replacement can now be evaluated at the central-row boundary. It is not accepted internal tangent authority, because the bridge still lacks the central retained-history acceptance certificate, retained-root ledger, action closure, wake history, path history, and provider provenance required to replace the assigned branch-clock lock.
+In the executable bridge fixture, the same retained record carries $\mathbf e_x=[-0.02,0,0,0,0,0]$, $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$, plus retained-root detail rows with zero causal-root residual, nonzero `jacobian`, nonzero source-normal denominator, branch weight, receiver-normal factor, and the same `source_row_id` as the minimum-gain, retained-vector, preferred-curve, and action-closure rows. The bridge recovers the minimum-gain response, checks the retained-vector provider, checks the retained-root differential carrier, checks the action increment residual, and reports `same_record_preferred_curve_internal_tangent_authority_equation_mathematical_pass_acceptance_blocked`. If the preferred-curve math passes but root-detail rows are absent, it reports `preferred_curve_passed_retained_root_ledger_detail_rows_missing`; if action closure rows are absent, it reports `preferred_curve_passed_same_record_action_closure_rows_missing`; if retained-root detail rows or action closure rows use a different `source_row_id`, it reports `fail_closed_same_record_source_row_binding_missing`. That is a useful success marker under the existing proof route: the algebraic replacement can now be evaluated at the central-row boundary only when the root differential carrier and the action increment check are present on the same branch row. It is not accepted internal tangent authority, because the bridge still lacks the central retained-history acceptance certificate, retained-root ledger, accepted action closure, wake history, path history, and provider provenance required to replace the assigned branch-clock lock.
 
 The preferred-curve equation is now explicit and executable. The script [preferred-curve-internal-tangent-authority-equation.mjs](../../../scripts/braid-ideal/preferred-curve-internal-tangent-authority-equation.mjs) consumes a preferred near-edge finite-difference row plus a same-source minimum-gain retained-history witness row. It first derives the local preferred-curve tangent from the branch-objective stationarity condition. If $q=(u,v_{\mathrm{orb}})$ and $J(q)$ is the diagnostic branch objective, then the sampled preferred curve $v_\ast(u)$ obeys
 
@@ -2093,7 +2127,7 @@ This is the strongest current analytical form of the active target. It does not 
 
 The central retained-history request and vector-row bridge now require this preferred-curve equation rung. The request's equation map includes the stationarity equation $J_u+J_vv_\ast'(u)=0$, the slope $v_\ast'(u)=-J_u/J_v$, and the curve-parameterized internal provider $\mathbf a_{\mathrm{internal}}^\ast(q)=\mathbf a_{\mathrm{RH}}^\ast(q)+\mathbf n_\ast(q)$. The bridge [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) no longer treats a same-record minimum-gain row plus retained-vector row as enough to pass the full target. If those vector rows pass but no preferred-curve equation artifact is supplied, it reports `minimum_gain_and_vector_pass_preferred_curve_equation_missing`.
 
-With a preferred-curve equation artifact on the same retained record, the central bridge now reports `same_record_preferred_curve_internal_tangent_authority_equation_mathematical_pass_acceptance_blocked`. This is a sharper success marker than the previous vector-only pass. It says the candidate replacement has satisfied all currently executable mathematical checks: preferred-curve differential, same-source row binding, dynamic root-margin binding, retained-history minimum-gain response, retained-vector provider check, and positive-margin equation. It still remains non-authorizing because the central retained-history acceptance certificate and accepted same-record retained-root/action/wake/path/provider provenance are missing.
+With a preferred-curve equation artifact, retained-root detail rows, and action closure rows on the same retained record, the central bridge now reports `same_record_preferred_curve_internal_tangent_authority_equation_mathematical_pass_acceptance_blocked`. This is a sharper success marker than the previous vector-only pass. It says the candidate replacement has satisfied all currently executable mathematical checks: preferred-curve differential, same-source row binding across minimum-gain, vector, preferred-curve, root-detail, and action rows, dynamic root-margin binding, retained-root differential conditioning, same-record action-increment closure, retained-history minimum-gain response, retained-vector provider check, and positive-margin equation. It still remains non-authorizing because the central retained-history acceptance certificate and accepted same-record retained-root/action/wake/path/provider provenance are missing.
 
 The preferred-curve equation artifact now also emits `preferred_curve_branch_clock_lock_replacement_criterion.v0`. This is the conditional removal theorem for the assigned branch-clock lock: if the preferred-curve equation passes on one source row and the same retained record carries accepted refs for the central retained-history certificate, preferred-curve internal tangent-authority certificate, retained path-error row, tangent-target row, active causal-margin gradient row, post-provider root-margin row, retained-root ledger, action-closure row, wake-history row, path-history row, and provider provenance, then the assigned branch-clock lock is algebraically replaceable by $\mathbf a_{\mathrm{RH}}^\ast(q)+\mathbf n_\ast(q)$ while preserving the positive causal-root margin. The criterion deliberately keeps `candidate_artifact_authorizes_removal=false`; it can say the mathematical and evidence preconditions are present, but it cannot promote itself to accepted internal tangent authority.
 
@@ -2122,6 +2156,44 @@ $$
 $$
 
 and [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) refuses to report a full bridge pass unless the preferred-curve artifact also has `branch_clock_lock_replacement_residual_passed=true`. The bridge summary now separates `preferred_curve_equation_core_mathematical_pass_count` from `preferred_curve_equation_mathematical_pass_count`, where the latter means replacement-ready math rather than stationarity alone. This separates three cases that were previously too close: vector rows can pass the retained-history minimum-gain equation, preferred-curve stationarity can pass, and the branch-clock replacement residual can still fail. The negative-control bridge row uses the same retained record and the same vector provider but changes $A_{\mathrm{clock,rms}}$ from `0.1` to `0.12`; it reports `fail_closed_preferred_curve_branch_clock_lock_replacement_residual_failed`. The remaining accepted-evidence blocker is therefore sharper: the central retained solver must emit same-record vector rows whose tangent target matches the actual assigned clock-lock burden and whose provider preserves the causal-root margin.
+
+The central bridge also now emits `central_solver_internal_tangent_authority_accepted_bridge_criterion.v0`. This criterion does not authorize the bridge; it lists the exact accepted same-record refs required before the assigned branch-clock lock can be replaced at the central retained-solver boundary:
+
+- `central_retained_history_acceptance_certificate_ref`;
+- `central_internal_tangent_authority_vector_rows_acceptance_certificate_ref`;
+- `preferred_curve_internal_tangent_authority_acceptance_certificate_ref`;
+- `same_record_retained_path_error_row_ref`;
+- `minimum_norm_retained_history_gain_witness_row_ref`;
+- `retained_solver_vector_witness_row_ref`;
+- `retained_solver_tangent_target_vector_row_ref`;
+- `active_causal_margin_gradient_vector_row_ref`;
+- `same_record_provider_acceleration_vector_row_ref`;
+- `post_provider_root_margin_row_ref`;
+- `branch_clock_lock_replacement_residual_row_ref`;
+- `same_record_retained_root_ledger_ref`;
+- `same_record_retained_root_ledger_detail_rows_ref`;
+- `same_record_action_closure_row_ref`;
+- `same_record_wake_history_ref`;
+- `same_record_path_history_ref`;
+- `same_record_provider_provenance_ref`.
+
+A bridge row can now satisfy the mathematical route and still fail the accepted-evidence criterion. A fixture with all accepted refs supplied reports `accepted_bridge_criterion_conditionally_satisfied_by_declared_same_record_evidence`, while still keeping `accepted=false` and `candidate_artifact_authorizes_removal=false`. This makes the current blocker exact rather than narrative: the next central solver advance must provide those same-record accepted refs, not merely another diagnostic vector row.
+
+The accepted bridge criterion now also requires explicit same-record/source-row binding. The accepted-evidence bundle must carry `retained_record_id` equal to the retained request row, and `source_row_id` must be one of the source rows shared by a passing minimum-gain row, passing retained-vector row, passing preferred-curve equation artifact, passing retained-root detail row set, and passing action-closure row. This prevents an accepted-looking ref bundle from satisfying the criterion unless the refs are attached to the same retained record and the same two-speed branch row that actually passed the tangent-authority math. In proof terms, the accepted authority cannot be a cross-row collage: the row that supplies the retained path error, tangent target, margin gradient, provider vector, retained-root detail rows, action closure row, root/wake/path ledgers, provider provenance, and branch-clock replacement residual must be the row whose tangent equation and positive causal-margin equation passed.
+
+The producer boundary is now executable as `central_solver_retained_source_adapter.v0`. This adapter is not another tangent equation; it is the narrow source object that tries to turn the central solver's native path-history and root-ledger surfaces into one retained-record carrier for the bridge. Its required same-record bundle is:
+
+1. six held-release seed path rows with one retained record id;
+2. six durable path-history stream manifest refs using `path_segment.v1`;
+3. one central retained-history provider object ref;
+4. one preferred-curve `source_row_id`;
+5. thirty-six native root-ledger detail refs using `root_ledger_detail.v1`, covering six same-source self-hit requirements and thirty directed partner causal-root replay requirements;
+6. thirty-six causal-root replay refs for the same root requirements;
+7. one same-record action-closure ref;
+8. one retained wake-history ref;
+9. one adapter acceptance certificate.
+
+The adapter has three useful fail-closed states. With no retained record id it stops at `held_release_seed_path_rows[*].retained_record_id`. With a provider-backed retained record and six durable streams but no preferred-curve row, it stops at `central_solver_retained_source_adapter.same_record_binding.source_row_id`. With retained record, source row, durable streams, root detail refs, causal replay refs, action closure, and wake history present, it stops at `central_solver_retained_source_adapter.acceptance_certificate_ref`. This is the first source-side object in this lane that binds native path-history streams, native root-ledger detail, causal replay, action closure, wake history, provider provenance, retained record id, and the preferred-curve row identity before the central bridge consumes the rows. It still remains non-authorizing: `accepted_retained_source_adapter_ref=null`, every retained-branch authorization flag is false, and the schema cannot itself declare accepted internal tangent authority.
 
 The route rows are deliberately non-authorizing. They say that the preferred translation/orbital-velocity idea does play out as an interesting diagnostic curve, but the curve cannot become a stable Noether braid claim until one route supplies both the tangent authority and the causal-margin lift on a retained record. The ranked candidate routes are retained-history tangent projection, same-ledger action-measure tangent response, wake-ledger tangent response, angular-momentum plus shielding response, and Noether sea response.
 
@@ -2336,6 +2408,61 @@ Q\nabla_{\mathbf y}\Phi(\mathbf y_a).
 $$
 
 This is an artificial confinement model until $K_{\mathrm{sea}}$, $\Gamma_{\mathrm{sea}}$, or $\lambda_a$ are derived from a retained Noether sea response row. Its value is diagnostic: it can test whether a bounded oblate branch exists once support pressure is allowed, but it cannot by itself prove that the Noether sea supplies that pressure.
+
+### Local Noether Sea Braid Stabilization Target
+
+Claim level. Priority-only closure target. The optional pressure term above should not be read as a generic external wall around the ideal braid. If the Euclidean-void ideal braid keeps inflating after the first compression, the missing stabilizer may be the retained local Noether braid population in the surrounding Noether sea. In that case the relevant reduced equation is not
+
+$$
+\mathcal R_{\mathrm{ideal}}(B)=0
+$$
+
+in empty surroundings, but
+
+$$
+\mathcal R_{\mathrm{ideal}}
+\left(
+B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal H_{\partial\Omega}
+\right)=0,
+$$
+
+where $\Theta_{\mathrm{sea}}$ records the local Noether sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies and local Noether braid population data; and $\mathcal H_{\partial\Omega}$ records causal-wake and event data entering the local region through the boundary. The stabilizing acceleration should therefore have the form
+
+$$
+\mathbf a_a^{\mathrm{sea}}
+=
+\mathcal A_a^{\mathrm{sea}}
+\left(
+B,\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal H_{\partial\Omega}
+\right),
+$$
+
+not a freely fitted $K_{\mathrm{sea}}$, $\Gamma_{\mathrm{sea}}$, or $\lambda_a$.
+
+The first radial test is the post-turn return condition. If $t_\ast$ is the first compression-to-expansion turn and $R(t)$ is the common-sphere or spheroid support radius, the local Noether sea braid response must supply at least one same-record row after $t_\ast$ with
+
+$$
+\ddot R_{\mathrm{toy}}(t)
++
+\Pi_R\mathcal A^{\mathrm{sea}}(t)
+<0,
+\qquad t>t_\ast,
+$$
+
+or else a stable-radius row
+
+$$
+\dot R(t)=0,
+\qquad
+\ddot R_{\mathrm{toy}}(t)+\Pi_R\mathcal A^{\mathrm{sea}}(t)=0,
+\qquad
+\partial_R
+\left(
+\ddot R_{\mathrm{toy}}+\Pi_R\mathcal A^{\mathrm{sea}}
+\right)<0.
+$$
+
+The proof burden is same-record provenance. A passing row must bind the ideal braid record, the local Noether sea state, the nearby Noether braid population rows, the boundary wake record, and the action/exchange ledger. Without that binding, a pressure-looking term remains only a diagnostic support model. With that binding, the local Noether sea braid environment becomes a candidate closure mechanism for preventing ideal-braid expansion and turning the clean symmetry channel into a retained branch.
 
 ### Fixed-Frequency Solver Validation Target
 

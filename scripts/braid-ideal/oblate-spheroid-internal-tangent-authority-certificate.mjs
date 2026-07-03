@@ -1172,6 +1172,47 @@ function minimumGainSourceStatusFromWitnessEvaluations(evaluations) {
 
 function makeRetainedHistoryTangentResponseEquationTarget(minimumGainWitnessEvaluations = []) {
   const minimumGainStatus = minimumGainSourceStatusFromWitnessEvaluations(minimumGainWitnessEvaluations);
+  const rootLedgerDifferentialSource = {
+    schema: "retained_root_ledger_differential_source_target.v0",
+    scope_note:
+      "same-record retained-root ledger differential source for deriving retained path-error vectors; not accepted evidence",
+    causal_root_residual_equation:
+      "Phi_ab(t,tau;q)=||x_a(t;q)-x_b(t-tau;q)||^2-c_f^2 tau^2=0",
+    root_sensitivity_equation:
+      "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau",
+    retained_path_error_definition:
+      "e_x,e_v are tangent projections of same-record path-history displacement and velocity residuals derived from retained root-detail rows, not free fit inputs",
+    active_margin_gradient_source:
+      "G_mu is derived from the active retained-root margin channel among c_f-|v|, source-normal denominator, and receiver-normal factor on the same retained record",
+    required_root_detail_fields: [
+      "ledgerKey",
+      "sourceKey",
+      "receiverKey",
+      "rootKey",
+      "emissionTime",
+      "hitTime",
+      "delay",
+      "residual",
+      "jacobian",
+      "branchWeight",
+      "sourceNormalDenominator",
+      "receiverNormalFactor",
+      "entryKind",
+      "rootKind",
+      "statusCode",
+      "stateFlags",
+    ],
+    required_same_record_rows: [
+      "same_record_retained_root_ledger_detail_rows",
+      "same_record_path_history_rows",
+      "same_record_retained_path_error_row",
+      "active_causal_margin_gradient_vector_row",
+    ],
+    accepted_root_ledger_differential_ref: null,
+    accepted: false,
+    first_missing_object: "same_record_retained_root_ledger_differential_source",
+    first_missing_field: "retained_root_ledger_detail_rows[*].jacobian",
+  };
   return {
     schema: "retained_history_tangent_response_equation_target.v0",
     scope_note:
@@ -1188,6 +1229,8 @@ function makeRetainedHistoryTangentResponseEquationTarget(minimumGainWitnessEval
       "||a_RH - P_T(a_ansatz - a_wake - a_support)|| <= epsilon_vec",
     margin_reserve_condition:
       "m_dyn - Delta_T ||P_T a_provider^RH|| + Delta_M <a_provider^RH,G_mu> >= epsilon_mu",
+    causal_root_residual_equation: rootLedgerDifferentialSource.causal_root_residual_equation,
+    root_sensitivity_equation: rootLedgerDifferentialSource.root_sensitivity_equation,
     input_definitions: {
       e_x: "tangent projection of current position minus retained target position on the same branch record",
       e_v: "tangent projection of current velocity minus retained target velocity on the same branch record",
@@ -1195,11 +1238,13 @@ function makeRetainedHistoryTangentResponseEquationTarget(minimumGainWitnessEval
       K_v: "same-record retained-history velocity response matrix",
       G_mu: "active causal-margin gradient vector in the same global acceleration vector space",
     },
+    root_ledger_differential_source: rootLedgerDifferentialSource,
     evaluator_schema: RETAINED_HISTORY_TANGENT_RESPONSE_WITNESS_SCHEMA,
     minimum_gain_evaluator_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
     minimum_gain_witness_row_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_ROW_SCHEMA,
     required_same_record_rows: [
       "same_record_retained_path_error_row",
+      "same_record_retained_root_ledger_detail_rows",
       "same_record_retained_history_response_matrix_row",
       "retained_solver_tangent_target_vector_row",
       "active_causal_margin_gradient_vector_row",
@@ -2263,6 +2308,15 @@ export function validateOblateSpheroidInternalTangentAuthorityCertificate(artifa
     }
     if (row.retained_history_tangent_response_equation_target?.accepted !== false) {
       errors.push("retained-history tangent response equation target must remain non-authorizing");
+    }
+    if (row.retained_history_tangent_response_equation_target?.root_ledger_differential_source?.accepted !== false) {
+      errors.push("retained-root ledger differential source target must remain non-authorizing");
+    }
+    if (
+      row.retained_history_tangent_response_equation_target?.root_ledger_differential_source
+        ?.accepted_root_ledger_differential_ref !== null
+    ) {
+      errors.push("retained-root ledger differential source target must not claim an accepted ref");
     }
     if (row.retained_history_tangent_response_equation_target?.minimum_gain_source_target?.accepted !== false) {
       errors.push("minimum-gain retained-history source target must remain non-authorizing");

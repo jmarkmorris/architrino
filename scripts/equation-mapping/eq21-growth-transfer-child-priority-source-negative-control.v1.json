@@ -1,0 +1,52 @@
+{
+  "schema": "aaa-equation-map-eq21-growth-transfer-child-input/v1",
+  "claimLevel": "EQ-21 growth-transfer child priority-source negative control; accepted-looking rows are not retained evidence",
+  "residualId": "R_eq21_growth_transfer_child_priority_source_negative_control_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-growth-transfer-child-priority-source-negative-control-0001",
+    "rows": {
+      "growth_transfer_child": { "status": "accepted", "rowId": "eq21-growth-transfer-child-priority-source-control-0001", "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      "linear_growth_kernel": { "status": "accepted", "rowId": "eq21-linear-growth-kernel-priority-source-control-0001", "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      "matter_loading_row": { "status": "accepted", "rowId": "eq21-matter-loading-priority-source-control-0001", "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      "f_sigma8_prediction": { "status": "accepted", "rowId": "eq21-f-sigma8-priority-source-control-0001", "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      "source_provenance": { "status": "accepted", "rowId": "eq21-growth-source-provenance-priority-source-control-0001", "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      "no_hidden_retune_witness": { "status": "accepted", "rowId": "eq21-growth-no-hidden-retune-priority-source-control-0001", "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" }
+    },
+    "sharedKeys": [
+      { "key": "rho_NS", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "n", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "chi_sea", "status": "accepted", "value": 1.002, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "M_sea_ab", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "rho_bar", "status": "accepted", "value": 0.05, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "rho_A", "status": "accepted", "value": 0.25, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "H_eff", "status": "accepted", "value": 3.424706202494149, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "a_eff", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" }
+    ],
+    "model": {
+      "sigma8Seed": { "status": "accepted", "value": 0.811, "sourcePath": "reference/priorities/equation-mapping/eq-21-23-32-shared-observation-residual-packet.md" },
+      "evaluation": { "a_eff": 1, "z_eff": 0 },
+      "benchmark": { "family": "score-neutral f_sigma8 comparison scalar", "f_sigma8_observed": 0.44, "sigma": 0.06 },
+      "derived": {
+        "omega_m_eff": 0.3,
+        "omega_de_eff": 0.7,
+        "E_eff": 1,
+        "Omega_m_a": 0.3,
+        "mu_growth": 0.9960119680798085,
+        "gamma_growth": 0.5500400101000102,
+        "growth_rate_f": 0.513641761398954,
+        "f_sigma8": 0.4165634684945517
+      },
+      "residualComponents": { "growth_kernel": 0, "f_sigma8_normalized": 0.39060885842413795, "S_retune": 0 }
+    }
+  }
+}

@@ -2710,7 +2710,7 @@ and let
 $$
 \hat{\mathbf{u}}_{\tau}(t,s)
 \equiv
-\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}
+\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}{
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|}
 $$
 be the associated chord direction whenever the denominator is nonzero. The active delayed roots over one candidate cycle should be studied only after the cycle is partitioned into a finite family of windows

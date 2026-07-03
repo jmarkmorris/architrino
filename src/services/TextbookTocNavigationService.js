@@ -1,5 +1,6 @@
 const DEFAULT_TEXTBOOK_TOC_PATH = "content/graph/textbook_toc.json";
 const RUNTIME_MARKDOWN_DOC_PREFIX = "runtime:markdown:doc:";
+const RUNTIME_MARKDOWN_READER_PREFIX = "runtime:markdown:reader:";
 
 function defaultNormalizePath(path) {
   return String(path ?? "")
@@ -13,50 +14,124 @@ function cleanText(value) {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : null;
 }
 
+function defaultNormalizeKey(text) {
+  return String(text ?? "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function sectionLookupKey(markdownPath, sectionText, normalizePath, normalizeKey) {
+  const path = normalizePath(markdownPath);
+  const section = normalizeKey(sectionText);
+  return path && section ? `${path}::${section}` : null;
+}
+
+function sectionTargetPath(markdownPath, markdownSection) {
+  return `${RUNTIME_MARKDOWN_READER_PREFIX}${markdownPath}::${encodeURIComponent(markdownSection)}`;
+}
+
+function parseRuntimeMarkdownReaderTarget(target) {
+  if (typeof target !== "string" || !target.startsWith(RUNTIME_MARKDOWN_READER_PREFIX)) {
+    return null;
+  }
+  const raw = target.slice(RUNTIME_MARKDOWN_READER_PREFIX.length);
+  if (!raw) {
+    return null;
+  }
+  const sectionSep = raw.indexOf("::");
+  const markdownPath = sectionSep === -1 ? raw : raw.slice(0, sectionSep);
+  const encodedSection = sectionSep === -1 ? null : raw.slice(sectionSep + 2);
+  const markdownSection = encodedSection ? decodeURIComponent(encodedSection) : null;
+  return markdownPath ? { markdownPath, markdownSection } : null;
+}
+
 function createPageEntry(node, index) {
   const markdownPath = cleanText(node?.markdownPath);
   if (!markdownPath) {
     return null;
   }
+  const id = cleanText(node?.id);
   const scenePath = cleanText(node?.scenePath);
-  const title = cleanText(node?.title) ?? cleanText(node?.id) ?? markdownPath;
+  const title = cleanText(node?.title) ?? id ?? markdownPath;
   return {
     index,
-    id: cleanText(node?.id),
+    id,
     title,
     kind: cleanText(node?.kind),
     markdownPath,
     scenePath,
-    targetPath: `${RUNTIME_MARKDOWN_DOC_PREFIX}${markdownPath}`,
+    targetPath: scenePath ?? `${RUNTIME_MARKDOWN_DOC_PREFIX}${markdownPath}`,
   };
 }
 
-function resolveLookupEntry(sequence, source, normalizePath) {
+function createSectionEntry(section, index) {
+  const markdownPath = cleanText(section?.markdownPath);
+  const markdownSection =
+    cleanText(section?.markdownSection) ??
+    cleanText(section?.title) ??
+    cleanText(section?.sectionKey);
+  if (!markdownPath || !markdownSection) {
+    return null;
+  }
+  const title = cleanText(section?.title) ?? markdownSection;
+  return {
+    index,
+    id: null,
+    title,
+    kind: cleanText(section?.kind) ?? "markdown-section",
+    markdownPath,
+    markdownSection,
+    sectionKey: cleanText(section?.sectionKey),
+    targetPath: sectionTargetPath(markdownPath, markdownSection),
+  };
+}
+
+function resolveLookupEntry(sequence, source, normalizePath, normalizeKey) {
   if (!sequence || !source || typeof source !== "object") {
     return null;
   }
+  const runtimeReader = parseRuntimeMarkdownReaderTarget(source.id);
   const sceneCandidates = [source.id, source.scenePath, source.childScene]
     .map((value) => cleanText(value))
     .filter(Boolean);
   for (const scenePath of sceneCandidates) {
-    const entry = sequence.byScenePath.get(normalizePath(scenePath));
+    const key = normalizePath(scenePath);
+    const entry = sequence.byScenePath.get(key) ?? sequence.byId.get(key);
     if (entry) {
       return entry;
     }
   }
 
-  const markdownPath = cleanText(source.markdownPath);
+  const markdownPath = cleanText(source.markdownPath) ?? runtimeReader?.markdownPath;
   if (!markdownPath) {
     return null;
+  }
+  const markdownSection =
+    cleanText(source.markdownSection) ??
+    cleanText(source.sectionKey) ??
+    runtimeReader?.markdownSection;
+  if (markdownSection) {
+    const sectionEntry = sequence.byMarkdownSection.get(
+      sectionLookupKey(markdownPath, markdownSection, normalizePath, normalizeKey)
+    );
+    if (sectionEntry) {
+      return sectionEntry;
+    }
   }
   return sequence.byMarkdownPath.get(normalizePath(markdownPath)) ?? null;
 }
 
 function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
   const normalizePath = helpers.normalizeMarkdownPath ?? defaultNormalizePath;
+  const normalizeKey = helpers.normalizeMarkdownKey ?? defaultNormalizeKey;
   const pages = [];
   const byMarkdownPath = new Map();
+  const byMarkdownSection = new Map();
   const byScenePath = new Map();
+  const byId = new Map();
 
   function addNodePage(node) {
     const entry = createPageEntry(node, pages.length);
@@ -69,8 +144,40 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
     }
     pages.push(entry);
     byMarkdownPath.set(markdownKey, entry);
+    if (entry.id) {
+      byId.set(normalizePath(entry.id), entry);
+    }
     if (entry.scenePath) {
       byScenePath.set(normalizePath(entry.scenePath), entry);
+    }
+  }
+
+  function addSectionPage(section) {
+    const entry = createSectionEntry(section, pages.length);
+    if (!entry) {
+      return;
+    }
+    const sectionKey = sectionLookupKey(
+      entry.markdownPath,
+      entry.markdownSection,
+      normalizePath,
+      normalizeKey
+    );
+    if (!sectionKey || byMarkdownSection.has(sectionKey)) {
+      return;
+    }
+    pages.push(entry);
+    byMarkdownSection.set(sectionKey, entry);
+    [entry.sectionKey, entry.title]
+      .filter((value) => typeof value === "string" && value.trim().length > 0)
+      .forEach((sectionText) => {
+        const alias = sectionLookupKey(entry.markdownPath, sectionText, normalizePath, normalizeKey);
+        if (alias && !byMarkdownSection.has(alias)) {
+          byMarkdownSection.set(alias, entry);
+        }
+      });
+    if (Array.isArray(section.children)) {
+      section.children.forEach(addSectionPage);
     }
   }
 
@@ -79,6 +186,9 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
       return;
     }
     addNodePage(node);
+    if (Array.isArray(node.sections)) {
+      node.sections.forEach(addSectionPage);
+    }
     if (Array.isArray(node.children)) {
       node.children.forEach(walk);
     }
@@ -91,13 +201,16 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
   return {
     pages,
     byMarkdownPath,
+    byMarkdownSection,
     byScenePath,
+    byId,
   };
 }
 
 function resolveTextbookPageNavigation(sequence, source, helpers = {}) {
   const normalizePath = helpers.normalizeMarkdownPath ?? defaultNormalizePath;
-  const current = resolveLookupEntry(sequence, source, normalizePath);
+  const normalizeKey = helpers.normalizeMarkdownKey ?? defaultNormalizeKey;
+  const current = resolveLookupEntry(sequence, source, normalizePath, normalizeKey);
   if (!current) {
     return null;
   }
@@ -114,6 +227,7 @@ export function createTextbookTocNavigationService(deps = {}) {
   const fetchImpl = deps.fetchImpl;
   const appendCacheBust = typeof deps.appendCacheBust === "function" ? deps.appendCacheBust : (path) => path;
   const normalizeMarkdownPath = deps.normalizeMarkdownPath ?? defaultNormalizePath;
+  const normalizeMarkdownKey = deps.normalizeMarkdownKey ?? defaultNormalizeKey;
   const tocPath = deps.tocPath ?? DEFAULT_TEXTBOOK_TOC_PATH;
   const logger = deps.logger ?? console;
   let navigationPromise = null;
@@ -132,6 +246,7 @@ export function createTextbookTocNavigationService(deps = {}) {
           const data = await response.json();
           return buildTextbookTocPageSequence(data?.tocRoot, {
             normalizeMarkdownPath,
+            normalizeMarkdownKey,
           });
         })
         .catch((error) => {
@@ -149,6 +264,7 @@ export function createTextbookTocNavigationService(deps = {}) {
     }
     return resolveTextbookPageNavigation(navigation, source, {
       normalizeMarkdownPath,
+      normalizeMarkdownKey,
     });
   }
 
@@ -162,4 +278,5 @@ export {
   buildTextbookTocPageSequence,
   resolveTextbookPageNavigation,
   RUNTIME_MARKDOWN_DOC_PREFIX,
+  RUNTIME_MARKDOWN_READER_PREFIX,
 };

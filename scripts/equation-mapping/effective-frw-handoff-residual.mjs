@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { effectiveFrwHandoffEvidenceStatusForPath } from "./effective-frw-handoff-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
@@ -242,6 +243,7 @@ function evaluateEffectiveFrwHandoff(input, inputPath) {
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
           sourceReason: rowChecks[rowId].sourceReason ?? null,
+          handoffEvidence: rowChecks[rowId].handoffEvidence ?? null,
           rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
@@ -690,7 +692,21 @@ function evaluateAcceptedRow(row, inputPath = null) {
     }
     return { accepted: false, reason: sourceCheck.reason, sourceReason: sourceCheck.reason };
   }
-  return { accepted: true, reason: "accepted" };
+  const handoffEvidence = effectiveFrwHandoffEvidenceStatusForPath(
+    row.sourcePath ?? row.source,
+    {
+      repoRoot: REPO_ROOT,
+    },
+  );
+  if (!handoffEvidence.accepted) {
+    return {
+      accepted: false,
+      reason: `theta_cos_handoff_${handoffEvidence.reason}`,
+      sourceReason: handoffEvidence.reason,
+      handoffEvidence,
+    };
+  }
+  return { accepted: true, reason: "accepted", handoffEvidence };
 }
 
 function normalizeStatus(row) {

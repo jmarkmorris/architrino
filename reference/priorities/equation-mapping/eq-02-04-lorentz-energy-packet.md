@@ -324,7 +324,7 @@ with the error budget allocated to named causal-root features, Noether sea dress
 
 ## First Mathematical Object To Add Next
 
-Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector becomes score-review eligible only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.
+Historical supersession note is preserved in [work-log.md](work-log.md#2026-07-02-eq-02-04-supersession-note). Compact current state: the residual vector remains useful grammar, but the current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$.
 
 Add the residual definition `lorentz_mass_shell_common_branch_residual` as a priority-side theorem target:
 

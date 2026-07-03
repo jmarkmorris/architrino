@@ -61,9 +61,11 @@ test("provider object binds six seed rows and six stream manifests by same-run s
     artifact.internal_tangent_authority_vector_request.required_same_record_rows.map((request) => request.row),
     [
       "same_record_retained_path_error_row",
+      "same_record_retained_root_ledger_detail_rows",
       "retained_solver_tangent_target_vector_row",
       "active_causal_margin_gradient_vector_row",
       "post_provider_root_margin_row",
+      "same_record_action_closure_row",
       "same_record_closure_rows",
     ]
   );

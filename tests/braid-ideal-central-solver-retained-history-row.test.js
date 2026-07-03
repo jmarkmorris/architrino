@@ -98,6 +98,18 @@ test("central solver retained-history row carries all same-record request famili
     "abs(||T(q)|| - A_clock_rms(q)) <= epsilon_lock"
   );
   assert.equal(
+    row.internal_tangent_authority_vector_request.equations.causal_root_residual,
+    "Phi_ab(t,tau;q)=||x_a(t;q)-x_b(t-tau;q)||^2-c_f^2 tau^2=0"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.equations.causal_root_sensitivity,
+    "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.equations.action_closure,
+    "abs(Delta A_internal(q)-Delta A_clock(q)) <= epsilon_A"
+  );
+  assert.equal(
     row.internal_tangent_authority_vector_request.equations.minimum_gain,
     "K_x^*(q)=-T(q) e_x^T/(||e_x||^2+||e_v||^2), K_v^*(q)=-T(q) e_v^T/(||e_x||^2+||e_v||^2)"
   );
@@ -113,9 +125,11 @@ test("central solver retained-history row carries all same-record request famili
     row.internal_tangent_authority_vector_request.required_same_record_rows.map((request) => request.row),
     [
       "same_record_retained_path_error_row",
+      "same_record_retained_root_ledger_detail_rows",
       "retained_solver_tangent_target_vector_row",
       "active_causal_margin_gradient_vector_row",
       "post_provider_root_margin_row",
+      "same_record_action_closure_row",
       "same_record_closure_rows",
     ]
   );
@@ -127,6 +141,36 @@ test("central solver retained-history row carries all same-record request famili
     "path_history_ref",
     "tangent_position_error_vector",
     "tangent_velocity_error_vector",
+  ]);
+  assert.deepEqual(row.internal_tangent_authority_vector_request.required_same_record_rows[1].required_fields, [
+    "source_row_id",
+    "retained_record_id",
+    "ledgerKey",
+    "sourceKey",
+    "receiverKey",
+    "rootKey",
+    "emissionTime",
+    "hitTime",
+    "delay",
+    "residual",
+    "jacobian",
+    "branchWeight",
+    "sourceNormalDenominator",
+    "receiverNormalFactor",
+    "entryKind",
+    "rootKind",
+    "statusCode",
+    "stateFlags",
+  ]);
+  assert.deepEqual(row.internal_tangent_authority_vector_request.required_same_record_rows[5].required_fields, [
+    "source_row_id",
+    "retained_record_id",
+    "action_ledger_ref",
+    "assigned_clock_lock_action_increment",
+    "internal_replacement_action_increment",
+    "action_increment_residual",
+    "action_residual_tolerance",
+    "action_closure_passed",
   ]);
   assert.equal(
     row.internal_tangent_authority_vector_request.evaluator_binding.minimum_gain_evaluator_schema,

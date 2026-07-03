@@ -25,18 +25,21 @@
       ],
       "boundary": "The target equation is structurally checked, but it remains priority-packet-only and does not accept the residual row."
     },
-    "sigmaEffExtractionBlocker": {
-      "candidatePath": "scripts/nuclear-atomic/accepted-sigma-eff-extraction-source-acquisition-blocker.v1.json",
+    "sigmaEffExtractionEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "accepted_sigma_eff_extraction",
+        "sigma_eff_extraction"
+      ],
       "usableFor": [
-        "same sigma_eff extraction dependency shape",
+        "accepted same-domain sigma_eff extraction row",
         "accepted upstream K_perp, V_exc, rho_NS, chi_sea, axis-exceptionality, and Noether sea response rows",
         "same-domain sigma_eff extraction acceptance condition"
       ],
       "notUsableFor": [
-        "accepted_sigma_eff_extraction",
         "accepted_delta_E_corr_NN"
       ],
-      "boundary": "The sigma_eff blocker records the accepted input rows and the missing extraction certificate but explicitly accepts no source rows."
+      "boundary": "The sigma_eff retained evidence accepts the sigma row, but the Delta E_corr_NN residual still waits on accepted color-singlet envelope, branch-interface, and finite-overlap rows."
     },
     "colorSingletEnvelopeBundleBlocker": {
       "candidatePath": "scripts/nuclear-atomic/accepted-color-singlet-nucleon-envelope-source-acquisition-blocker.v1.json",
@@ -171,7 +174,7 @@
       "accepted_nuclear_binding_recovery"
     ],
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
-    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
     "expectedToyBindingFirstMissingObject": "missing_accepted_delta_E_corr_NN",
     "scoreDecision": "no_score_increase"

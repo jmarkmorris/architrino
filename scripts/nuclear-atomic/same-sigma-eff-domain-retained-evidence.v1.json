@@ -1,0 +1,91 @@
+{
+  "schema": "aaa-nuclear-atomic-same-sigma-eff-domain-evidence/v1",
+  "claimLevel": "durable non-fixture same_sigma_eff_domain source-acquisition row for the Fe/Ni confinement-functional lane; normalized domain lock only; not accepted proton or neutron envelope evidence, not no-free-color evidence, not finite_range_residual evidence, not no-open-color evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "same_sigma_eff_domain",
+  "sourceSupport": [
+    "confinement_functional",
+    "same_sigma_eff_domain",
+    "axis_exceptionality_charge",
+    "accepted_sigma_eff_extraction",
+    "finite_envelope_boundary",
+    "same_record_noether_sea_response",
+    "source_path_tying_extraction_to_accepted_upstream_rows"
+  ],
+  "evidenceSupports": [
+    "same_sigma_eff_domain"
+  ],
+  "sourceIdentity": {
+    "sameSigmaEffDomainId": "same_sigma_eff_domain_0001",
+    "sourceTargetId": "same_sigma_eff_domain_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "sigmaEffEvidencePath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
+    "axisExceptionalityEvidencePath": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+    "finiteEnvelopeBoundaryEvidencePath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "sameRecordNoetherSeaResponseEvidencePath": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "acceptedInputRows": {
+    "axis_exceptionality_charge": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+    "accepted_sigma_eff_extraction": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
+    "finite_envelope_boundary": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    "same_record_noether_sea_response": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json",
+    "source_path_tying_extraction_to_accepted_upstream_rows": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json"
+  },
+  "sameSigmaEffDomain": {
+    "rowId": "same_sigma_eff_domain_0001",
+    "sourceRowId": "same_sigma_eff_domain",
+    "normalizedDomainRef": "sigma_eff_domain_support_ref_0001",
+    "sigmaEffRecordRef": "confinement_sigma_eff_record_0001",
+    "axisExceptionalityChargeRef": "axis_exceptionality_charge_confinement_0001",
+    "finiteEnvelopeBoundaryRef": "finite_envelope_boundary_0001",
+    "sameRecordNoetherSeaResponseRef": "same_record_noether_sea_response_confinement_0001",
+    "sourcePathTyingExtractionToAcceptedUpstreamRowsRef": "source_path_tying_extraction_to_accepted_upstream_rows_0001",
+    "domainStatement": "The retained confinement-functional support uses the same normalized sigma_eff domain for the accepted H/M/L axis-exceptionality charge, the accepted sigma_eff extraction certificate, the finite proton/neutron envelope-boundary support, and the accepted same-record Noether sea response input.",
+    "domainLockChecks": [
+      "axis_exceptionality_charge consumes the same traceless H/M/L charge basis as the sigma_eff extraction",
+      "accepted_sigma_eff_extraction fixes the admissible class A_sigma^0(Q) while holding the accepted upstream rows fixed",
+      "finite_envelope_boundary references the same normalized sigma_eff support domain before any no-free-color or no-open-color audit is accepted",
+      "source_path_tying_extraction_to_accepted_upstream_rows records the accepted upstream rows consumed by sigma_eff_extraction"
+    ],
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "same_sigma_eff_domain"
+    ],
+    "notAcceptedByThisEvidence": [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "asymptotic_field_audit",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted row only supplies the same_sigma_eff_domain domain lock for already accepted confinement-functional support rows.",
+    "The row does not accept accepted_proton_color_singlet_envelope, accepted_neutron_color_singlet_envelope, no_free_color_asymptotic_state, finite_range_residual, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion.",
+    "The row does not assert same_record_branch_interface; that remains blocked until the branch-interface record includes no_open_color_far_field."
+  ]
+}

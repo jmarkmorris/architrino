@@ -1,0 +1,99 @@
+{
+  "schema": "aaa-nuclear-atomic-same-record-branch-interface-confinement-functional-audit-evidence/v1",
+  "claimLevel": "durable non-fixture same-record branch-interface/confinement-functional support audit for the no-open-color route; accepts only the support-domain join row; not accepted same_event_ledger, not accepted K_open_finite, not accepted same_record_no_open_color_audit, not accepted no_open_color_far_field, and not nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "same_record_branch_interface_confinement_functional_audit",
+  "sourceSupport": [
+    "same_record_no_open_color_audit",
+    "same_record_branch_interface_confinement_functional_audit",
+    "accepted_proton_branch_interface_ledger",
+    "accepted_neutron_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "accepted_sigma_eff_extraction",
+    "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+    "bounded_open_color_projection_operator_norm",
+    "finite_open_color_surface_measure",
+    "coefficient_exclusion_audit"
+  ],
+  "evidenceSupports": [
+    "same_record_branch_interface_confinement_functional_audit"
+  ],
+  "sourceIdentity": {
+    "sameRecordAuditSupportId": "same_record_branch_interface_confinement_functional_audit_0001",
+    "sourceTargetId": "same_record_branch_interface_confinement_functional_audit_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "sameRecordSupportJoinPath": "scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json",
+    "openColorProjectionSupportPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
+    "sameRecordAuditBlockerPath": "scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "acceptedInputRows": {
+    "accepted_proton_branch_interface_ledger": "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",
+    "accepted_neutron_branch_interface_ledger": "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
+    "same_record_energy_momentum_angular_momentum_ledger": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+    "accepted_sigma_eff_extraction": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
+    "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response": "scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json",
+    "bounded_open_color_projection_operator_norm": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
+    "finite_open_color_surface_measure": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
+    "coefficient_exclusion_audit": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json"
+  },
+  "sameRecordBranchInterfaceConfinementFunctionalAudit": {
+    "rowId": "same_record_branch_interface_confinement_functional_audit_0001",
+    "sourceRowId": "same_record_branch_interface_confinement_functional_audit",
+    "retainedSupportRecordId": "branch_interface_confinement_functional_support_record_0001",
+    "branchSameRecordLedgerRef": "L_EpJ_pn_pp_0001",
+    "protonBranchInterfaceLedgerRef": "L_BI_p_0001",
+    "neutronBranchInterfaceLedgerRef": "L_BI_n_0001",
+    "sigmaEffColorSingletBranchNoetherTailSupportRef": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response_0001",
+    "boundedOpenColorProjectionOperatorNormRef": "bounded_open_color_projection_operator_norm_0001",
+    "finiteOpenColorSurfaceMeasureRef": "finite_open_color_surface_measure_0001",
+    "recordJoinStatement": "The retained support record ties the accepted branch-interface ledgers, same-record E/p/J ledger, accepted sigma_eff/color-singlet/branch-interface/Noether-sea/tail support join, and open-color projection support rows into one no-open-audit support domain.",
+    "recordEqualities": [
+      "record(branchSameRecordLedgerRef)=record(protonBranchInterfaceLedgerRef)",
+      "record(branchSameRecordLedgerRef)=record(neutronBranchInterfaceLedgerRef)",
+      "record(branchSameRecordLedgerRef)=record(sigmaEffColorSingletBranchNoetherTailSupportRef)",
+      "record(branchSameRecordLedgerRef)=record(boundedOpenColorProjectionOperatorNormRef)",
+      "record(branchSameRecordLedgerRef)=record(finiteOpenColorSurfaceMeasureRef)"
+    ],
+    "auditBoundary": "This support audit binds already accepted support rows into one retained support domain. It does not accept the no-open-color same_event_ledger because Delta_E_corr_NN_tail_limit, finite_range_residual, and color_singlet_closure remain unaccepted.",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "same_record_branch_interface_confinement_functional_audit"
+    ],
+    "notAcceptedByThisEvidence": [
+      "same_event_ledger",
+      "K_open_finite",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted row only supplies the same-record branch-interface/confinement-functional support join named by the no-open audit blocker.",
+    "The row does not accept same_event_ledger, K_open_finite, N_open_R_le_K_open_T_NN_R_squared, same_record_no_open_color_audit, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

@@ -356,6 +356,29 @@ Product modules:
 
 The existing service-platform packet should own deployment choices for these modules.
 
+## Answer Artifact Manifest Communication Gate
+
+The Answer Artifact Manifest should remain the shared response envelope, but the user-facing rendering layer should obey the AI communication standards packet before exposing any service vocabulary.
+
+Plain-language rule for the manifest:
+
+| Manifest area | User should see first | Internal detail can track |
+| --- | --- | --- |
+| AI identity | You are asking an AI assistant. | mode, provider capability class, system status |
+| Source basis | This answer is based on these sources and this claim level. | `source_context`, `claim_context`, source freshness |
+| Displayed answer | This is the answer text shown to you. | `answer_body.display_text`, `verbatim_segments` |
+| Spoken answer | High-quality speech is available, synchronized with the displayed text; otherwise text is shown. | `speech_sync`, audio artifact state, fallback class |
+| Generated media | This image, diagram, script, storyboard, or other media was generated or drafted by AI to explain the answer. | artifact type, purpose label, provenance metadata, retention state |
+| Token cost | Your spending limit applies; the receipt shows the estimate, hold, charge, refund, and cap state. | `token_receipt`, work units, cost class |
+| Privacy | This material is private, retained, deleted, public, or saved as shown. | `privacy_state`, consent state, deletion/export state |
+| Public issue handoff | Review the issue preview before anything is posted publicly. | `available_actions`, `issue_mining_context`, action preflight |
+| Service status | This feature is available, degraded, unavailable, or using a safe fallback. | provider health, service status, incident refs, diagnostics redaction |
+| Accessibility | Captions, transcripts, alt text, or text fallback are provided when needed. | caption/transcript artifacts, alt text fields, accessibility coverage |
+
+The manifest can store implementation details, but the interface should not make users read terms such as provider registry, observability ref, service term gate, fixture class, or schema validator to understand what happened. Those terms belong in implementation packets, logs, validators, schemas, and developer-facing diagnostics.
+
+This gate should be applied before new fixture families or service-contract expansion. The next useful product question is whether each manifest-rendered thing has a normal user phrase, a clear failure phrase, and a private/public/paid/generated/source-grounded state.
+
 ## V1 Candidate
 
 A constrained first public beta could support:

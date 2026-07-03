@@ -19,6 +19,7 @@
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 - Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
@@ -53,7 +54,7 @@ The service should process a user request as a manifest-building pipeline:
 14. `observability_status` follows [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), records safe event classes, updates metrics, public-status state, incident/change-history candidates, and redaction state.
 15. `action_broker` follows [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), finalizes `available_actions`, confirmation requirements, side-effect preflights, and action results.
 16. `manifest_validator` rejects or downgrades any response that violates source authority, provider capability policy, generated-media policy, speech-sync requirements, token rules, privacy state, notebook/history rules, terms-policy rules, observability redaction, or action-confirmation rules.
-17. `conversation_surface` renders the validated manifest.
+17. `conversation_surface` renders the validated manifest through [ai-communication-standards.md](ai-communication-standards.md), explaining user-visible behavior before internal service terms appear.
 
 No component should emit user-visible answer content outside the manifest.
 
@@ -77,7 +78,19 @@ No component should emit user-visible answer content outside the manifest.
 | `observability_status` | manifest, validator dispositions, provider health, source misses, token receipt, privacy redaction state, issue metadata, incident policy | safe event classes, aggregate metrics, public-status state, incident/change-history candidates, support-summary redaction state | expose private prompts, provider secrets, raw logs, account history, or treat metrics as proof |
 | `action_broker` | manifest, available capabilities, confirmation rules, consent state, token state | final `available_actions`, confirmation text, action result state | perform durable, public, paid, retained, or credentialed action without confirmation |
 | `manifest_validator` | complete manifest | pass/fail result and downgrade/refusal reasons | silently repair proof status without recording the reason |
-| `conversation_surface` | validated manifest | rendered UI | invent fields outside the manifest |
+| `conversation_surface` | validated manifest | rendered UI with plain labels, accessible status, receipts, and confirmation text | invent fields outside the manifest or make users read implementation terms to understand what happened |
+
+## User-Facing Communication Boundary
+
+All service boundaries may use internal terms, but the rendered response must follow [ai-communication-standards.md](ai-communication-standards.md):
+
+1. show AI identity, source basis, claim label, generated-media status, cost, privacy, public-action state, service status, and accessibility state in normal language;
+2. keep `provider_registry`, `provider_execution_context`, `speech_sync`, `token_receipt`, `issue_mining_context`, `observability_context`, `terms_acceptance_state`, validators, fixtures, C2PA, NIST AI RMF, ISO/IEC 42001, and similar terms behind schemas, diagnostics, support, legal review, or implementation packets;
+3. present C2PA or Content Credentials as a record of origin when supported, not as proof of the scientific claim;
+4. state text-only fallback plainly when high-quality speech, generated media, provider capability, spending, privacy, accessibility, or public-action requirements fail;
+5. keep status, incident, support, receipt, and issue-mining records free of private prompt expansion, provider secrets, raw provider payloads, private user media, account history, and private saved notes.
+
+This boundary is architectural, not a new fixture family. Executable coverage should be added only when the accepted service implementation target needs it.
 
 ## Manifest Validators
 
@@ -275,9 +288,9 @@ The visual path should follow [visual-artifact-contract.md](visual-artifact-cont
 ## Implementation Handoff
 
 Closure goal:
-Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and contract-fixture implementation for the Archie question service.
+Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and rendering contracts for the Archie question service while keeping user-facing language plain.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) for the public site, browser client, service API, background job, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, smoke-test, rollback, schema package, and fixture boundary.
 
@@ -291,4 +304,5 @@ Task:
 - Define service terms, account-policy, terms-version, re-acceptance, feature-blocker, support-route, and legal-review boundaries before paid, durable, public, retained, generated-media, or credentialed features launch.
 - Map every V1 answer mode and artifact type to manifest fields.
 - Define endpoint contracts that always return a validated manifest or a refusal/error manifest.
+- Define rendering obligations that explain answer state, speech fallback, token receipt, issue preview, generated-media labels, service status, and accessibility in normal language before implementation terms appear.
 - Keep deployment provider choice, credentials, runtime AI calls, and public launch out of scope unless explicitly requested.

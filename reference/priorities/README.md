@@ -20,8 +20,11 @@ The current preferred style for live priority docs is:
 
 - keep priorities concise and code-verified;
 - use `Current` plus `Objective` rather than long migration diaries;
-- keep readable architecture notes, equation explanations, comparison matrices, and conceptual maps in the sibling `brainstorming.md` file by default;
-- let the priority/tracking document reference `brainstorming.md` items instead of embedding explanation-first material in the active queue, routing, ranking, blocker, or promotion sections;
+- keep readable architecture notes, equation explanations, comparison matrices, conceptual maps, provisional insights, and draft corpus-promotable text in the sibling `brainstorming.md` file by default;
+- keep chronological agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and communication updates in the sibling `work-log.md` file;
+- every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
+- let the priority/tracking document reference `brainstorming.md`, `work-log.md`, and focused support files instead of embedding explanation-first material, long status logs, or detailed proof packets in the active queue, routing, ranking, blocker, or promotion sections;
+- keep detailed proof packets, certificates, app specs, and requirement notes in focused sibling files when their structure deserves more than a dated log entry;
 - rerank based on real code state, not stale historical intent;
 - if a task is done, remove it and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.

@@ -19,7 +19,7 @@ The deployed route is `photon.html`. The dedicated runtime lives under `src/apps
 
 The reader-facing app guide is [Photon Guide](../../../content/markdown/aaa/archie/photon-guide.md). The visible Photon UI exposes Markdown buttons for the guide, [Photon Closure](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Polarization](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
-Promotion note: the named preset descriptions, Virtual Observer branch-sum equations, and analyzer-fit formulas have been promoted into the reader-facing Photon Guide. The remaining app-specific control ranges, verification checklist, and open work queue stay priority-only.
+Historical promotion note is preserved in [work-log.md](work-log.md#2026-07-02-photon-guide-promotion-note).
 
 ## Implemented Baseline
 

@@ -1,0 +1,87 @@
+# Equation Mapping Work Log
+
+This file is the chronological work log for the `equation-mapping` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
+
+Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use the main priority tracker in this directory for the compact current queue, blockers, promotion routing, and next action. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
+
+## Log Entries
+
+### 2026-07-02 Tracker Partition Cleanup
+
+The tracker previously embedded the full closure-pass chronology and a broad related-material index. That status history is now routed here while [equation-mapping.md](equation-mapping.md) keeps the compact current queue, blockers, promotion routing, failure modes, and grouped support links.
+
+#### Chronological Closure-Pass History
+
+- [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md) through [Equation Closure Pass 2026-06-23 AN](equation-closure-pass-2026-06-23-an.md) staged the score-neutral reducer/checker frontier, source-field maps, finite-window carrier checks, photon and observation carriers, and first-blocker reporting. These passes changed no scores because accepted retained evidence or accepted shared carriers remained missing.
+- [Equation Closure Pass 2026-06-24 A](equation-closure-pass-2026-06-24-a.md) through [Equation Closure Pass 2026-06-24 AA](equation-closure-pass-2026-06-24-aa.md) hardened the `EQ-02` through `EQ-04` retained-domain, coframe extraction, source evidence, gamma-free basis, refinement, connection, and holonomy-transport guardrails. These passes changed no scores because they isolated fail-closed evidence requirements without landing accepted source-backed support.
+- [Equation Closure Pass 2026-06-25 A](equation-closure-pass-2026-06-25-a.md) and [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md) classified the inventory into closure lanes and created the high-energy/cosmology suffix-packet route. They changed no scores and promoted no reader-facing canon.
+
+The current next action remains unchanged: land a source-backed positive-width `S_eq` retained-domain fixture whose first row is `raw_labeled_rows_preserved_on_retained_history`; after that support and row identity exist, define the minimum source-backed transport comparison behind $W_{\mathrm{hol}}$.
+
+### 2026-07-02 EQ-20 Provider-Backed Pressure Projection
+
+Paused `EQ-20` closure work is partitioned here as status and checker narrative. At this checkpoint, the accepted density-compression provider and provider-backed `EQ-24` surface slice were already complete. The provider-backed `EQ-20` pressure slice consumed `scripts/spacetime/noether-sea-density-compression-provider.v1.json` and `scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json`; the checker reported no missing pressure rows or shared keys, then stopped at `blocked_missing_frw_handoff` with `nextBlocker=missing_accepted_theta_cos`.
+
+The source-attempt route still blocked first at `missing_accepted_theta_sea_rho_NS`, preserving the negative control that attempt/source rows do not satisfy retained evidence. The next action was an accepted `theta_cos` FRW/cosmology handoff that consumes the same `delta_P_eff` report without retuning, followed by `EQ-11` metric/coupling rows and the `EQ-32` `delta_a_star` consumer as secondary downstream routes. No score change followed from the pressure projection by itself.
+
+### 2026-07-02 EQ-20 Accepted Theta-Cos Handoff
+
+The accepted handoff object is now `scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json`, with executable input `scripts/equation-mapping/effective-frw-handoff-theta-cos-accepted.v1.json`. The effective-FRW checker reports `status=populated`, `nextBlocker=null`, `sourceEvidenceFailureCount=0`, `missingSharedKeys=[]`, and zero Friedmann, continuity, fixed-void, pressure-handoff, and hidden-retune residuals for this handoff.
+
+The provider-backed `EQ-20` pressure/effective-$\Lambda$ slice in `scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json` now consumes the accepted `theta_cos` handoff and reports `status=populated`, `nextBlocker=null`, `frwHandoffAccepted=true`, `frwHandoffPass=true`, and `inheritedFrwBlocker=null`. The lower-level `eq20-delta-p-eff-pressure-projection-report.v1.json` still records the historical inherited `missing_accepted_theta_cos` blocker because it is the retained pressure-projection evidence object, not the final provider-backed `EQ-20` slice. No equation score changes follow from this accepted handoff.
+
+At that checkpoint, the remaining next action was the shared weak-gravity/dark-energy route: instantiate the `theta_11_20` metric/coupling rows and the shared local/cosmology no-hidden-retune residual without changing the accepted density, pressure, or `theta_cos` records. `EQ-32` still needed a same-window `delta_a_star` consumer.
+
+### 2026-07-02 EQ-11 Accepted Theta-11-20 And Shared EQ-11/EQ-20 Residual
+
+The accepted weak-gravity evidence object is now `scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json`, with executable input `scripts/equation-mapping/eq11-weak-gravity-constitutive-theta-11-20-accepted.v1.json`. The `EQ-11` checker now validates that accepted-looking weak-gravity rows cite this retained evidence object; priority packets, authored prose, attempt fixtures, source-contract shells, and generic durable sources remain rejected. The accepted input reports `status=populated`, `nextBlocker=null`, `missingRows=[]`, `missingSharedKeys=[]`, passing Poisson, curvature, effective-coupling continuity, PPN-handoff, source-provenance, no-hidden-retune, and four fail-closed packet controls, with `scoreDecision=no_score_increase`.
+
+The shared residual is now `scripts/equation-mapping/eq11-20-shared-constitutive-residual.mjs` with fixture `scripts/equation-mapping/eq11-20-shared-constitutive-residual.v1.json`. It consumes the accepted `theta_11_20` weak-gravity evidence, provider-backed `EQ-20` pressure/effective-$\Lambda$ slice, accepted `theta_sea_rho_NS` provider, retained `delta_P_eff` pressure projection report, and accepted `theta_cos` handoff. It reports `status=populated`, `sourceEvidenceFailureCount=0`, `missingSharedKeys=[]`, `sharedKeyMismatchCount=0`, and zero identity, coupling, pressure/$\Lambda$, and hidden-retune residuals. The focused test run `node --test tests/eq11-weak-gravity-constitutive-residual.test.js tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/effective-frw-handoff-residual.test.js` passed 20 tests.
+
+No score changes follow from this slice. The remaining downstream boundary is to carry the same record into `theta_W`, the `EQ-24` weak-gravity output rows `delta_N`, `delta_gamma_ij`, and `delta_G_eff`, the `EQ-32` `delta_a_star` consumer, and growth/CMB/low-acceleration no-retune consumers.
+
+### 2026-07-02 Theta-W And Downstream Output Projection
+
+The downstream output-projection evidence object is now `scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json`, with projected surface slice `scripts/spacetime/noether-sea-density-compression-provider-surface-slice-output-projection.v1.json`. The surface-slice checker now requires accepted output-projection evidence before downstream outputs can be consumed, while the original provider-backed density slice remains populated with `outputProjectionEvidenceStatus=not_required`. The output-projection slice reports `status=populated`, `nextBlocker=null`, accepted `delta_N`, `delta_gamma_ij`, `delta_G_eff`, and `delta_a_star` rows, `consumerReadiness.EQ11_weak_gravity.readiness=ready_for_consumer_review`, and `consumerReadiness.EQ32_low_acceleration.readiness=ready_for_consumer_review`; `delta_P_eff` remains the separate accepted pressure-report route rather than an output row in this slice.
+
+The accepted `theta_W` evidence object is now `scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json`, with executable input `scripts/equation-mapping/effective-metric-weak-field-theta-w-accepted.v1.json`. The effective-metric checker now requires accepted `theta_W` evidence for accepted-looking weak-field rows, rejects generic durable sources, and reports `status=populated`, `nextBlocker=null`, and `scoreDecision=no_score_increase` for the accepted input. The attempt fixture still blocks at `missing_accepted_theta_W`.
+
+The focused test run `node --test tests/effective-metric-weak-field-residual.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-density-compression-provider-intake.test.js tests/eq11-weak-gravity-constitutive-residual.test.js tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/effective-frw-handoff-residual.test.js` passed 31 tests. No accepted upstream density provider, pressure report, or `theta_cos` handoff object changed, and no equation score changes follow from these rows.
+
+### 2026-07-02 Shared-Observation No-Retune Consumer
+
+The shared-observation evidence object is now `scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json`, with executable input `scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json`. The shared-observation checker now requires accepted shared-observation evidence before accepted-looking `theta_obs`, source/readout/thermal/galaxy, projection-family, or shared-key rows can populate; generic durable JSON no longer satisfies the row ladder.
+
+The accepted input consumes the populated shared `EQ-11`/`EQ-20` residual, accepted `theta_W` evidence, accepted output-projection evidence, and accepted `theta_cos` handoff. It reports `status=populated`, `nextBlocker=null`, no missing projection families, no missing shared keys, `sourceEvidenceFailureCount=0`, `projectionFamiliesAccepted=true`, `hiddenRetuneNumericPass=true`, and `residualTotal=0.14` within the declared score-neutral residual tolerance. This carries the same record into `BBN`, `CMB`, `growth`, and `RAR` consumers without changing the accepted upstream provider, pressure report, `theta_cos`, `theta_11_20`, `theta_W`, or output-projection records.
+
+The focused test run `node --test tests/shared-observation-residual.test.js` passed 5 tests. No equation score changes follow from this consumer. The next boundary is deeper predictive transfer and source physics: `EQ-22B` recombination/acoustic carrier, `EQ-25` `theta_therm`, Planck blackbody/photon carrier inheritance, and score-review-grade observational residuals.
+
+### 2026-07-02 EQ-02-04 Supersession Note
+
+Migrated from `eq-02-04-lorentz-energy-packet.md` to keep the equation packet focused on the mathematical object while preserving the status-level supersession boundary.
+
+Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector becomes score-review eligible only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.
+
+### 2026-07-03 EQ-21 Growth-Transfer f-Sigma8 Child
+
+The first predictive `EQ-21` child consumer now sits on top of the accepted shared-observation parent instead of replacing it. The executable checker is `scripts/equation-mapping/eq21-growth-transfer-child-residual.mjs`, with accepted input `scripts/equation-mapping/eq21-growth-transfer-child-accepted.v1.json` and accepted evidence `scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json`. The helper `scripts/equation-mapping/eq21-growth-transfer-evidence.mjs` requires accepted child authorization, score-neutral status, same shared-observation parent identity, same growth shared-key values, a computed growth model, zero hidden retune, and rejected priority/source-attempt paths.
+
+The accepted run reports `status=populated`, `nextBlocker=null`, `scoreDecision=no_score_increase`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `hiddenRetuneNumericPass=true`, `modelDerivedPass=true`, `fSigma8ResidualPass=true`, and $f\sigma_8=0.4165634684945517$. The attempt fixture remains blocked at `missing_accepted_growth_transfer_child`, and the priority-source negative control remains blocked with `sourceEvidenceFailureCount=15`, proving the child cannot be populated from priority prose.
+
+At that checkpoint, no score changes followed from this child. The next accepted artifact was a full $P(k,z)$, CMB-lensing, lensing/shear/RSD, or halo/cluster transfer child that consumed the same accepted shared-observation evidence and preserved the no-private-retune witness.
+
+### 2026-07-03 EQ-21 Matter-Power P(k,z) Child
+
+The next `EQ-21` child consumer now extends the populated $f\sigma_8$ child into a score-neutral normalized $P(k,z)$ grid without replacing the accepted shared-observation parent. The executable checker is `scripts/equation-mapping/eq21-matter-power-transfer-child-residual.mjs`, with accepted input `scripts/equation-mapping/eq21-matter-power-transfer-child-accepted.v1.json` and accepted evidence `scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json`. The helper `scripts/equation-mapping/eq21-matter-power-transfer-evidence.mjs` requires accepted matter-power child authorization, score-neutral status, same shared-observation parent identity, same accepted $f\sigma_8$ child identity, same inherited growth shared keys, a computed transfer model, zero hidden retune, and rejected priority/source-attempt paths.
+
+The accepted run reports `status=populated`, `nextBlocker=null`, `scoreDecision=no_score_increase`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `parentGrowthTransferAccepted=true`, `hiddenRetuneNumericPass=true`, `modelDerivedPass=true`, `matterPowerGridResidualPass=true`, `sampleCount=6`, and `matterPowerGridNormalizedResidual=0`. The attempt fixture remains blocked at `missing_accepted_matter_power_transfer_child`, and the priority-source negative control remains blocked with `sourceEvidenceFailureCount=19`, proving the child cannot be populated from priority prose.
+
+Focused validation passed with `node --test tests/eq21-matter-power-transfer-child-residual.test.js tests/eq21-growth-transfer-child-residual.test.js tests/shared-observation-residual.test.js` for 19 tests. No score changes follow from this child. The next accepted artifact is CMB-lensing, shear/RSD, halo/cluster, nonlinear, or score-review observational transfer that consumes the same accepted shared-observation evidence, the populated $f\sigma_8$ child, and the populated normalized $P(k,z)$ child.
+
+### 2026-07-03 EQ-21 CMB-Lensing Transfer Child
+
+The next `EQ-21` child consumer extends the populated normalized $P(k,z)$ child into a score-neutral normalized $C_L^{\phi\phi}$ grid without replacing the accepted shared-observation parent. The executable checker is `scripts/equation-mapping/eq21-lensing-transfer-child-residual.mjs`, with accepted input `scripts/equation-mapping/eq21-lensing-transfer-child-accepted.v1.json` and accepted evidence `scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json`. The helper `scripts/equation-mapping/eq21-lensing-transfer-evidence.mjs` requires accepted CMB-lensing child authorization, score-neutral status, same shared-observation parent identity, same accepted $f\sigma_8$ child identity, same accepted matter-power child identity, same inherited shared keys, a computed lensing transfer model, zero hidden retune, and rejected priority/source-attempt paths.
+
+The accepted run reports `status=populated`, `nextBlocker=null`, `scoreDecision=no_score_increase`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `parentGrowthTransferAccepted=true`, `parentMatterPowerTransferAccepted=true`, `hiddenRetuneNumericPass=true`, `modelDerivedPass=true`, `cmbLensingGridResidualPass=true`, `sampleCount=3`, and `cmbLensingGridNormalizedResidual=0`. The attempt fixture remains blocked at `missing_accepted_lensing_transfer_child`, and the priority-source negative control remains blocked with `sourceEvidenceFailureCount=16`, proving the child cannot be populated from priority prose.
+
+Focused validation passed with `node --test tests/eq21-lensing-transfer-child-residual.test.js tests/eq21-matter-power-transfer-child-residual.test.js tests/eq21-growth-transfer-child-residual.test.js tests/shared-observation-residual.test.js` for 27 tests. No score changes follow from this child. The next accepted artifact is shear/RSD, halo/cluster, nonlinear, or score-review observational transfer that consumes the same accepted shared-observation evidence, the populated $f\sigma_8$ child, the populated normalized $P(k,z)$ child, and the populated normalized $C_L^{\phi\phi}$ child.

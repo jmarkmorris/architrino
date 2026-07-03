@@ -1,0 +1,70 @@
+{
+  "schema": "aaa-equation-map-eq21-matter-power-transfer-child-input/v1",
+  "claimLevel": "EQ-21 matter-power transfer child attempt skeleton; score-neutral and not accepted",
+  "residualId": "R_eq21_matter_power_transfer_child_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-matter-power-transfer-child-attempt-0001",
+    "rows": {
+      "matter_power_transfer_child": { "status": "attempt", "rowId": "eq21-matter-power-transfer-child-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" },
+      "seed_spectrum_row": { "status": "attempt", "rowId": "eq21-seed-spectrum-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" },
+      "transfer_kernel_row": { "status": "attempt", "rowId": "eq21-transfer-kernel-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" },
+      "growth_factor_grid": { "status": "attempt", "rowId": "eq21-growth-factor-grid-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" },
+      "matter_power_grid": { "status": "attempt", "rowId": "eq21-matter-power-grid-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" },
+      "source_provenance": { "status": "attempt", "rowId": "eq21-matter-power-source-provenance-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" },
+      "no_hidden_retune_witness": { "status": "attempt", "rowId": "eq21-matter-power-no-hidden-retune-attempt-0001", "sourcePath": "pending-matter-power-transfer-source" }
+    },
+    "sharedKeys": [
+      { "key": "rho_NS", "status": "attempt", "value": 1, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "n", "status": "attempt", "value": 1, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "chi_sea", "status": "attempt", "value": 1.002, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "Gamma_N", "status": "attempt", "value": 1.0000010100010202, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "M_sea_ab", "status": "attempt", "value": 1, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "rho_bar", "status": "attempt", "value": 0.05, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "rho_A", "status": "attempt", "value": 0.25, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "H_eff", "status": "attempt", "value": 3.424706202494149, "sourcePath": "pending-matter-power-transfer-source" },
+      { "key": "a_eff", "status": "attempt", "value": 1, "sourcePath": "pending-matter-power-transfer-source" }
+    ],
+    "model": {
+      "sigma8Seed": { "status": "attempt", "value": 0.811, "sourcePath": "pending-matter-power-transfer-source" },
+      "seedSpectrum": { "status": "attempt", "A_seed": 0.6577210000000001, "n_s": 0.965, "k_pivot": 0.05, "sourcePath": "pending-matter-power-transfer-source" },
+      "transferKernel": { "status": "attempt", "k_damp_base": 2.5, "sourcePath": "pending-matter-power-transfer-source" },
+      "samples": [
+        { "sampleId": "k0p02_z0", "k": 0.02, "z": 0, "benchmark": { "matter_power_observed": 0.2715655369039466, "sigma": 0.027156553690394663 } },
+        { "sampleId": "k0p1_z0", "k": 0.1, "z": 0, "benchmark": { "matter_power_observed": 1.2725223301804438, "sigma": 0.12725223301804438 } },
+        { "sampleId": "k0p5_z0", "k": 0.5, "z": 0, "benchmark": { "matter_power_observed": 4.878740086906143, "sigma": 0.4878740086906143 } },
+        { "sampleId": "k0p02_z1", "k": 0.02, "z": 1, "benchmark": { "matter_power_observed": 0.08183881570182072, "sigma": 0.008183881570182073 } },
+        { "sampleId": "k0p1_z1", "k": 0.1, "z": 1, "benchmark": { "matter_power_observed": 0.3834865117399782, "sigma": 0.03834865117399782 } },
+        { "sampleId": "k0p5_z1", "k": 0.5, "z": 1, "benchmark": { "matter_power_observed": 1.4702539776636665, "sigma": 0.14702539776636666 } }
+      ],
+      "derived": {
+        "omega_m_eff": 0.3,
+        "omega_de_eff": 0.7,
+        "E_eff": 1,
+        "Omega_m_a": 0.3,
+        "mu_growth": 0.9960119680798085,
+        "gamma_growth": 0.5500400101000102,
+        "growth_rate_f": 0.513641761398954,
+        "f_sigma8": 0.4165634684945517,
+        "A_seed": 0.6577210000000001,
+        "n_s": 0.965,
+        "k_pivot": 0.05,
+        "k_eq": 1.8720428596678365,
+        "k_damp": 2.4950099800399204,
+        "samples": []
+      },
+      "residualComponents": { "matter_power_grid_normalized": 0, "S_retune": 0 }
+    }
+  }
+}

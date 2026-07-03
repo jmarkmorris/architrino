@@ -22,6 +22,11 @@ Its job is to turn reviewed scripts and visual plans into generated or assembled
 - The initial direction is a recurring group of fictional AI characters who can appear in lifelike, illustrated, animated, or cosplay-style media.
 - The first priority media platform is YouTube 4K HD landscape. TikTok and the Architrino webapp remain later platform profiles.
 
+## Current Blocker And Next Action
+
+- Blocker: no first prototype can start until the pilot topic, 60-90 second script outline, visual style lock, voice/toolchain trial path, asset storage contract, and QC gate are selected.
+- Next action: choose the first YouTube 4K HD landscape pilot topic and draft the reviewed outline using the flexible character cast in [character-development.md](character-development.md).
+
 ## Task Queue
 
 1. `first_prototype_decision_stack` - Resolve the first YouTube 4K HD landscape prototype blockers: pilot topic, character identity sheets, visual style, voice style, script outline, asset storage, QC gate, and smallest toolchain trial. Status: `active`. Depends on: none.

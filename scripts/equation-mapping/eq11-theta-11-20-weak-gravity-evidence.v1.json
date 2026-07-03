@@ -1,0 +1,406 @@
+{
+  "schema": "aaa-equation-map-eq11-theta-11-20-weak-gravity-evidence/v1",
+  "claimLevel": "accepted theta_11_20 weak-gravity metric/coupling evidence consuming accepted density, pressure, and theta_cos records; score-neutral",
+  "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json",
+  "evidenceStatus": "accepted",
+  "scoreDecision": "no_score_increase",
+  "authorization": {
+    "acceptedTheta1120WeakGravity": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "provider": {
+    "path": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+    "surfaceSlicePath": "scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json"
+  },
+  "pressureProjection": {
+    "path": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+  },
+  "thetaCosHandoff": {
+    "path": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+  },
+  "window": {
+    "theta1120Id": "theta_11_20_weak_gravity_provider_backed_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "windowId": "theta-sea-density-compression-provider-0001",
+    "ell": "ell_theta_sea_rho_ns_provider_0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001",
+    "noetherSeaRecordId": "theta-sea-density-compression-provider-0001",
+    "sourceLoadingRecordId": "theta_src_weak_gravity_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001"
+  },
+  "rows": {
+    "theta_11_20": {
+      "status": "accepted",
+      "rowId": "theta_11_20_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "theta_sea": {
+      "status": "accepted",
+      "rowId": "theta-sea-provider-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "theta_src": {
+      "status": "accepted",
+      "rowId": "theta_src_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "constitutive_response": {
+      "status": "accepted",
+      "rowId": "C_NS_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "source_branch_ledger": {
+      "status": "accepted",
+      "rowId": "source_branch_ledger_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "wake_ledger": {
+      "status": "accepted",
+      "rowId": "wake_ledger_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "mass_loading_row": {
+      "status": "accepted",
+      "rowId": "mass_loading_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "metric_projection": {
+      "status": "accepted",
+      "rowId": "metric_projection_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "effective_coupling_row": {
+      "status": "accepted",
+      "rowId": "G-eff-delta-P-eff-report-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "poisson_handoff_row": {
+      "status": "accepted",
+      "rowId": "poisson_handoff_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "sea_stress_pressure_source_row": {
+      "status": "accepted",
+      "rowId": "T-sea-ab-delta-P-eff-report-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "curvature_readout_row": {
+      "status": "accepted",
+      "rowId": "curvature_readout_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "stress_energy_readout_row": {
+      "status": "accepted",
+      "rowId": "stress_energy_readout_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "effective_coupling_continuity_row": {
+      "status": "accepted",
+      "rowId": "effective_coupling_continuity_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "ppn_metric_handoff": {
+      "status": "accepted",
+      "rowId": "ppn_metric_handoff_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "source_provenance": {
+      "status": "accepted",
+      "rowId": "source_provenance_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "no_hidden_retune_weak_gravity_provider_backed_0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "sharedKeys": [
+    {
+      "id": "theta_11_20_shared_key_weak_gravity_provider_backed_0001",
+      "key": "theta_11_20_id",
+      "status": "accepted",
+      "projectionValues": {
+        "weak_gravity": 1,
+        "pressure": 1,
+        "lambda": 1
+      }
+    },
+    {
+      "id": "theta_W_shared_key_weak_gravity_provider_backed_0001",
+      "key": "theta_W_id",
+      "status": "accepted",
+      "projectionValues": {
+        "metric": 1,
+        "poisson": 1,
+        "ppn": 1
+      }
+    },
+    {
+      "id": "theta_cos_shared_key_weak_gravity_provider_backed_0001",
+      "key": "theta_cos_id",
+      "status": "accepted",
+      "projectionValues": {
+        "frw": 1,
+        "pressure": 1,
+        "weak_gravity_handoff": 1
+      }
+    },
+    {
+      "id": "rho_NS_shared_key_weak_gravity_provider_backed_0001",
+      "key": "rho_NS",
+      "status": "accepted",
+      "projectionValues": {
+        "density": 1,
+        "pressure": 1,
+        "weak_gravity": 1
+      }
+    },
+    {
+      "id": "n_shared_key_weak_gravity_provider_backed_0001",
+      "key": "n",
+      "status": "accepted",
+      "projectionValues": {
+        "density": 1,
+        "pressure": 1
+      }
+    },
+    {
+      "id": "chi_sea_shared_key_weak_gravity_provider_backed_0001",
+      "key": "chi_sea",
+      "status": "accepted",
+      "projectionValues": {
+        "pressure": 1,
+        "weak_gravity": 1
+      }
+    },
+    {
+      "id": "Gamma_N_shared_key_weak_gravity_provider_backed_0001",
+      "key": "Gamma_N",
+      "status": "accepted",
+      "projectionValues": {
+        "cadence": 1,
+        "weak_gravity": 1
+      }
+    },
+    {
+      "id": "u_sea_shared_key_weak_gravity_provider_backed_0001",
+      "key": "u_sea",
+      "status": "accepted",
+      "projectionValues": {
+        "density": 0,
+        "weak_gravity": 0
+      }
+    },
+    {
+      "id": "M_sea_ab_shared_key_weak_gravity_provider_backed_0001",
+      "key": "M_sea_ab",
+      "status": "accepted",
+      "projectionValues": {
+        "pressure": 1,
+        "metric": 1,
+        "coupling": 1
+      }
+    },
+    {
+      "id": "G_eff_shared_key_weak_gravity_provider_backed_0001",
+      "key": "G_eff",
+      "status": "accepted",
+      "projectionValues": {
+        "weak_gravity": 1,
+        "pressure": 1,
+        "frw": 1,
+        "growth_placeholder": 1
+      }
+    },
+    {
+      "id": "p_DE_eff_shared_key_weak_gravity_provider_backed_0001",
+      "key": "p_DE_eff",
+      "status": "accepted",
+      "projectionValues": {
+        "pressure": -0.7,
+        "frw": -0.7
+      }
+    },
+    {
+      "id": "Lambda_eff_shared_key_weak_gravity_provider_backed_0001",
+      "key": "Lambda_eff",
+      "status": "accepted",
+      "projectionValues": {
+        "lambda": 17.59291886010284,
+        "frw": 17.59291886010284
+      }
+    },
+    {
+      "id": "tau_rel_shared_key_weak_gravity_provider_backed_0001",
+      "key": "tau_rel",
+      "status": "accepted",
+      "projectionValues": {
+        "relaxation": 1,
+        "pressure": 1
+      }
+    }
+  ],
+  "weakGravity": {
+    "constants": {
+      "c0": 1
+    },
+    "poisson": {
+      "laplacian_phi_eff": 0.25232741228718347,
+      "G_eff": 1,
+      "rho_src_eff": 0.02,
+      "sea_source_phi": 0.001
+    },
+    "curvature": {
+      "G_tensor": [
+        0.1,
+        0.2,
+        0.3,
+        0.4
+      ],
+      "lambda_eff": 17.59291886010284,
+      "metric_tensor": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "G_eff": 1,
+      "T_eff": [
+        0.0039788735772973835,
+        0.007957747154594767,
+        0.01193662073189215,
+        0.015915494309189534
+      ]
+    },
+    "couplingContinuity": {
+      "projection": 1,
+      "rows": [
+        {
+          "id": "local",
+          "G_eff": 1,
+          "sigma": 0.01
+        },
+        {
+          "id": "cos",
+          "G_eff": 1,
+          "sigma": 0.01
+        },
+        {
+          "id": "growth",
+          "G_eff": 1,
+          "sigma": 0.01
+        },
+        {
+          "id": "CMBlens",
+          "G_eff": 1,
+          "sigma": 0.01
+        },
+        {
+          "id": "RAR",
+          "G_eff": 1,
+          "sigma": 0.01
+        }
+      ],
+      "provenanceResidual": 0
+    },
+    "ppnHandoff": {
+      "gamma_PPN": 1,
+      "beta_PPN": 1,
+      "alpha1": 0,
+      "alpha2": 0,
+      "alpha3": 0,
+      "bounds": {
+        "gamma_PPN_minus_1": 0.000023,
+        "beta_PPN_minus_1": 0.00008,
+        "alpha1": 0.00004,
+        "alpha2": 0.000000002,
+        "alpha3": 4e-20
+      }
+    },
+    "sourceProvenance": {
+      "residual": 0
+    },
+    "noHiddenRetune": {
+      "maxResidual": 0
+    }
+  },
+  "sourceProvenance": {
+    "status": "accepted",
+    "residual": 0,
+    "rows": [
+      {
+        "id": "theta_sea_rho_NS_provider_0001",
+        "kind": "accepted_density_provider",
+        "contribution": 1,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "delta_P_eff_pressure_projection_0001",
+        "kind": "retained_delta_P_eff_pressure_projection",
+        "contribution": -0.7,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "theta_cos_FRW_handoff_0001",
+        "kind": "accepted_theta_cos_handoff",
+        "contribution": 0,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "metric_projection_weak_gravity_provider_backed_0001",
+        "kind": "weak_gravity_metric_projection",
+        "contribution": 0,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "source_branch_ledger_weak_gravity_provider_backed_0001",
+        "kind": "source_branch_ledger",
+        "contribution": 0,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "wake_ledger_weak_gravity_provider_backed_0001",
+        "kind": "wake_ledger",
+        "contribution": 0,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "theta_src_weak_gravity_provider_backed_0001",
+        "kind": "source_loading_record",
+        "contribution": 0.02,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      },
+      {
+        "id": "no_hidden_retune_weak_gravity_provider_backed_0001",
+        "kind": "no_hidden_retune",
+        "contribution": 0,
+        "provenanceId": "source_provenance_weak_gravity_provider_backed_0001"
+      }
+    ]
+  },
+  "noHiddenRetune": {
+    "status": "accepted",
+    "witnessId": "no_hidden_retune_weak_gravity_provider_backed_0001",
+    "residual": 0,
+    "changedRows": []
+  }
+}

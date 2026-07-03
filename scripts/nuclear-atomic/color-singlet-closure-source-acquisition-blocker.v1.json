@@ -52,6 +52,25 @@
       ],
       "boundary": "The no-free-color blocker records the asymptotic audit burden but explicitly accepts no source rows."
     },
+    "localColorSingletClosureSupportEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json",
+      "candidateRowId": "local_color_singlet_closure_support_0001",
+      "acceptedRowsProvided": [
+        "local_color_singlet_closure_support"
+      ],
+      "usableFor": [
+        "accepted local proton/neutron color-singlet support join",
+        "same-domain local closure support before top color_singlet_closure"
+      ],
+      "notUsableFor": [
+        "accepted_color_singlet_closure",
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "accepted_no_free_color_asymptotic_state",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained support accepts only local_color_singlet_closure_support. It does not accept the top color_singlet_closure row because accepted proton/neutron envelopes, no_free_color_asymptotic_state, same_record_branch_interface, and finite_range_residual remain unaccepted."
+    },
     "acceptedColorSingletNucleonEnvelopeBlocker": {
       "candidatePath": "scripts/nuclear-atomic/accepted-color-singlet-nucleon-envelope-source-acquisition-blocker.v1.json",
       "usableFor": [
@@ -137,7 +156,11 @@
   },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
+    "acceptedRowsAvailableFromEvidence": [
+      "local_color_singlet_closure_support"
+    ],
     "notAcceptedByThisPacket": [
+      "local_color_singlet_closure_support",
       "color_singlet_closure",
       "accepted_color_singlet_closure",
       "accepted_proton_color_singlet_envelope",
@@ -155,7 +178,7 @@
       "accepted_nuclear_binding_recovery"
     ],
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
-    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
     "scoreDecision": "no_score_increase"
   },
@@ -179,6 +202,7 @@
   "failClosedNotes": [
     "This packet is not accepted source evidence.",
     "This packet exists to prevent nucleon-structure prose, proton/neutron envelope blockers, no-free-color blocker text, or row-shape toy passes from being mistaken for accepted color_singlet_closure evidence.",
+    "The separate local color-singlet support evidence accepts only local_color_singlet_closure_support; this packet still prevents that support row from being treated as top color_singlet_closure, accepted proton/neutron envelope evidence, no_free_color_asymptotic_state, finite_range_residual, or no_open_color_far_field.",
     "Fe/Ni promotion remains blocked until color_singlet_closure, accepted proton and neutron color-singlet envelopes, no_free_color_asymptotic_state, no_open_color_far_field, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
   ]
 }

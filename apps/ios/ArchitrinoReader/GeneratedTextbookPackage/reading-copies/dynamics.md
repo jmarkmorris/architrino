@@ -9470,10 +9470,9 @@ The plane-orientation nondegeneracy measure is
 $$
 D_{\mathrm{plane}}
 =
-\det
-\left[
+\det\!\begin{bmatrix}
 \hat{\mathbf n}_1 & \hat{\mathbf n}_2 & \hat{\mathbf n}_3
-\right].
+\end{bmatrix}.
 $$
 The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the tri-binary degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
 
@@ -11317,7 +11316,7 @@ $$
 \lim_{\eta\to0^+}\int_{-\infty}^{t} f(t_0)\phi_\eta\!\big(g_{ij}(t,t_0)\big)\,dt_0
 =
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{f(t_0)}
+\frac{f(t_0)}{
 \left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
 $$
 provided the active roots are simple and separated from collision support.
@@ -14733,7 +14732,7 @@ and let
 $$
 \hat{\mathbf{u}}_{\tau}(t,s)
 \equiv
-\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}
+\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}{
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|}
 $$
 be the associated chord direction whenever the denominator is nonzero. The active delayed roots over one candidate cycle should be studied only after the cycle is partitioned into a finite family of windows
