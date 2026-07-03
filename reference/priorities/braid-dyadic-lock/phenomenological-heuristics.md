@@ -1,6 +1,6 @@
 # Dyadic Resonance Lock Archive
 
-The live mathematical backbone of this topic now lives in [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
+The live mathematical backbone of this topic now lives in [dyadic-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
 
 ## Status / Provenance Boundary
 
@@ -192,7 +192,7 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
-- [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
+- [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md)
 - [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)

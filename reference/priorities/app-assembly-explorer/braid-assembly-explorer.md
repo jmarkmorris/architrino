@@ -15,7 +15,7 @@ The Assembly Configuration Explorer is the app-side surface for inspecting tri-b
 
 ## Search Semantics
 
-The explorer must preserve the general tri-binary search domain from [Tri-Binary Configuration Space](../../../content/markdown/aaa/dynamics/tri-binary-configuration-space.md):
+The explorer must preserve the general tri-binary search domain from [Tri-Binary Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md):
 
 $$
 \widetilde{\mathcal C}_{3B}

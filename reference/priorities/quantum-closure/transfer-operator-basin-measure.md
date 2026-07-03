@@ -513,5 +513,5 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
 - [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md)
 - [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md)
+- [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md)
 - [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)

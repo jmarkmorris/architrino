@@ -26,7 +26,7 @@ The repository now carries extracted blog material for further mining, and the p
 Relevant files:
 
 - [Master Equation](../dynamics/master-equation.md)
-- [Tri-Binary Configuration Space](../dynamics/tri-binary-configuration-space.md#eigen-braid-candidates)
+- [Tri-Binary Configuration Space](../noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates)
 
 This entry records a major oversight in the definition of the Master Equation of Motion. The important distinction is that the exact EOM is the microscopic dynamical law, while much of the higher architecture is a recovery program above that law. The architecture asks whether delayed path-history dynamics can select retained branches, whether those retained branches can become eigen-braid candidates, and whether effective geometry, mass response, quantum records, and observer-level physics can be recovered from those branch records. A correction to the EOM can therefore be serious without invalidating the whole conceptual ladder.
 
@@ -41,9 +41,9 @@ The standing burden is precise. Conceptual resilience does not license automatic
 Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
-- [Tri-Binary Configuration Space](../dynamics/tri-binary-configuration-space.md)
-- [Dyadic Resonance Lock](../dynamics/dyadic-resonance-lock.md)
-- [Assembly Topological Charge](../dynamics/assembly-topological-charge.md)
+- [Tri-Binary Configuration Space](../noether-braid/noether-braid-configuration-space.md)
+- [Dyadic Resonance Lock](../noether-braid/noether-braid-dyadic-resonance-lock.md)
+- [Assembly Topological Charge](../noether-braid/noether-braid-topological-charge.md)
 
 The terminology shifted from `swarm` to `braid` because the older word suggested an unstructured collective. It described many objects in motion, but it did not carry the mathematical discipline now needed by the theory. The new word points directly at intertwined path histories, retained ordering, exchange, phase winding, and topological invariants. A Noether braid is not just a cloud of architrinos. It is a candidate six-body polarity-neutral retained branch, built from three positrinos and three electrinos, whose causal-root ledger, phase record, wake history, energy/action rows, and angular-momentum rows can be followed through delayed dynamics.
 
@@ -336,7 +336,7 @@ Key victories inside this milestone:
 
 ## 2026-03-14: Dyadic Resonance Lock
 
-Today the dyadic-lock note, [dyadic-resonance-lock.md](../dynamics/dyadic-resonance-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
+Today the dyadic-lock note, [dyadic-resonance-lock.md](../noether-braid/noether-braid-dyadic-resonance-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
 $$
 v_k=2\pi f_k r_k=\beta_k c_f
 $$

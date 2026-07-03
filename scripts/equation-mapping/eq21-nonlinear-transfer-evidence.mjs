@@ -7,6 +7,7 @@ import {
 } from "./eq21-matter-power-transfer-evidence.mjs";
 import { lensingTransferEvidenceStatusForPath } from "./eq21-lensing-transfer-evidence.mjs";
 import { shearRsdTransferEvidenceStatusForPath } from "./eq21-shear-rsd-transfer-evidence.mjs";
+import { haloClusterTransferEvidenceStatusForPath } from "./eq21-halo-cluster-transfer-evidence.mjs";
 import {
   sharedObservationEvidenceStatusForPath,
   sharedObservationSourcePathRejectionReason,
@@ -17,11 +18,12 @@ export const EQ21_NONLINEAR_TRANSFER_EVIDENCE_SCHEMA =
 
 export const EQ21_NONLINEAR_TRANSFER_ROWS = Object.freeze([
   "nonlinear_transfer_child",
-  "nonlinear_inversion_row",
-  "cluster_consistency_row",
+  "dimensionless_power_row",
+  "nonlinear_response_row",
   "matter_power_parent_row",
   "lensing_parent_row",
   "shear_rsd_parent_row",
+  "halo_cluster_parent_row",
   "nonlinear_grid",
   "source_provenance",
   "no_hidden_retune_witness",
@@ -97,6 +99,7 @@ export function evaluateNonlinearTransferEvidenceObject(
   const window = raw.window ?? {};
   for (const field of [
     "nonlinearTransferChildId",
+    "haloClusterTransferChildId",
     "shearRsdTransferChildId",
     "lensingTransferChildId",
     "matterPowerTransferChildId",
@@ -178,6 +181,19 @@ export function evaluateNonlinearTransferEvidenceObject(
   const shearRsdWindow = shearRsdChild?.window ?? {};
   const shearRsdChildKeys = sharedKeyValues(shearRsdChild?.sharedKeys);
 
+  const haloClusterPath =
+    raw.haloClusterTransferChild?.path ?? raw.haloClusterTransferChildPath;
+  const haloCluster =
+    repoRoot && haloClusterPath
+      ? haloClusterTransferEvidenceStatusForPath(haloClusterPath, { repoRoot })
+      : { accepted: false, reason: "missing_halo_cluster_transfer_child_path" };
+  if (!haloCluster.accepted) {
+    missing.push(`haloClusterTransferChild.${haloCluster.reason}`);
+  }
+  const haloClusterChild = readJsonOrNull(haloClusterPath, repoRoot);
+  const haloClusterWindow = haloClusterChild?.window ?? {};
+  const haloClusterChildKeys = sharedKeyValues(haloClusterChild?.sharedKeys);
+
   for (const [localField, parentField] of [
     ["thetaObsId", "thetaObsId"],
     ["providerWindowId", "providerWindowId"],
@@ -221,6 +237,13 @@ export function evaluateNonlinearTransferEvidenceObject(
     ) {
       missing.push(`shearRsdTransferChild.${localField}_matches_parent`);
     }
+    if (
+      concreteString(window[localField]) &&
+      concreteString(haloClusterWindow[parentField]) &&
+      window[localField] !== haloClusterWindow[parentField]
+    ) {
+      missing.push(`haloClusterTransferChild.${localField}_matches_parent`);
+    }
   }
   if (
     concreteString(window.growthTransferChildId) &&
@@ -250,6 +273,13 @@ export function evaluateNonlinearTransferEvidenceObject(
   ) {
     missing.push("shearRsdTransferChild.shearRsdTransferChildId_matches_parent");
   }
+  if (
+    concreteString(window.haloClusterTransferChildId) &&
+    concreteString(haloClusterWindow.haloClusterTransferChildId) &&
+    window.haloClusterTransferChildId !== haloClusterWindow.haloClusterTransferChildId
+  ) {
+    missing.push("haloClusterTransferChild.haloClusterTransferChildId_matches_parent");
+  }
 
   const rows = raw.rows ?? {};
   for (const row of EQ21_NONLINEAR_TRANSFER_ROWS) {
@@ -275,6 +305,7 @@ export function evaluateNonlinearTransferEvidenceObject(
       matterChildKeys,
       lensingChildKeys,
       shearRsdChildKeys,
+      haloClusterChildKeys,
       keyValues,
     });
   }
@@ -284,6 +315,7 @@ export function evaluateNonlinearTransferEvidenceObject(
     matterChild,
     lensingChild,
     shearRsdChild,
+    haloClusterChild,
   );
   if (!model.computed) {
     missing.push(model.reason);
@@ -318,18 +350,26 @@ export function evaluateNonlinearTransferEvidenceObject(
     matterPowerTransferChildId: window.matterPowerTransferChildId ?? null,
     lensingTransferChildId: window.lensingTransferChildId ?? null,
     shearRsdTransferChildId: window.shearRsdTransferChildId ?? null,
+    haloClusterTransferChildId: window.haloClusterTransferChildId ?? null,
     nonlinearTransferChildId: window.nonlinearTransferChildId ?? null,
     sharedObservation,
     growthTransfer,
     matterPower,
     lensing,
     shearRsd,
+    haloCluster,
     model,
     sourcePath,
   };
 }
 
-export function evaluateNonlinearTransferModel(rawModel, matterChild, lensingChild, shearRsdChild) {
+export function evaluateNonlinearTransferModel(
+  rawModel,
+  matterChild,
+  lensingChild,
+  shearRsdChild,
+  haloClusterChild,
+) {
   const matterSamples = new Map(
     (Array.isArray(matterChild?.model?.derived?.samples)
       ? matterChild.model.derived.samples
@@ -357,42 +397,29 @@ export function evaluateNonlinearTransferModel(rawModel, matterChild, lensingChi
   if (shearRsdSamples.size === 0) {
     return { computed: false, reason: "model.shearRsdTransferChild.samples_present" };
   }
+  const haloClusterSamples = new Map(
+    (Array.isArray(haloClusterChild?.model?.derived?.samples)
+      ? haloClusterChild.model.derived.samples
+      : []
+    ).map((sample) => [sample.sampleId, sample]),
+  );
+  if (haloClusterSamples.size === 0) {
+    return { computed: false, reason: "model.haloClusterTransferChild.samples_present" };
+  }
 
-  const inversion = rawModel.nonlinearInversion ?? {};
-  if (!ACCEPTED_STATUSES.has(inversion.status ?? null)) {
-    return { computed: false, reason: "model.nonlinearInversion.status_accepted" };
-  }
-  const aLens =
-    finiteNumberOrNull(lensingChild?.model?.lensingKernel?.A_lens) ??
-    finiteNumberOrNull(lensingChild?.model?.derived?.A_lens);
-  const aShear =
-    finiteNumberOrNull(shearRsdChild?.model?.shearRsdKernel?.A_shear) ??
-    finiteNumberOrNull(shearRsdChild?.model?.derived?.A_shear);
-  const biasEff =
-    finiteNumberOrNull(shearRsdChild?.model?.shearRsdKernel?.bias_eff) ??
-    finiteNumberOrNull(shearRsdChild?.model?.derived?.bias_eff);
-  const sigma8Seed =
-    finiteNumberOrNull(shearRsdChild?.model?.derived?.sigma8Seed) ??
-    finiteNumberOrNull(matterChild?.model?.sigma8Seed?.value);
-  if (aLens === null || aLens <= 0) {
-    return { computed: false, reason: "model.nonlinearInversion.A_lens_positive" };
-  }
-  if (aShear === null || aShear <= 0) {
-    return { computed: false, reason: "model.nonlinearInversion.A_shear_positive" };
-  }
-  if (biasEff === null || biasEff <= 0) {
-    return { computed: false, reason: "model.nonlinearInversion.bias_eff_positive" };
-  }
-  if (sigma8Seed === null || sigma8Seed <= 0) {
-    return { computed: false, reason: "model.nonlinearInversion.sigma8_seed_positive" };
+  const nonlinearTransfer = rawModel.nonlinearTransfer ?? {};
+  if (!ACCEPTED_STATUSES.has(nonlinearTransfer.status ?? null)) {
+    return { computed: false, reason: "model.nonlinearTransfer.status_accepted" };
   }
 
   const samples = Array.isArray(rawModel.samples) ? rawModel.samples : [];
-  const uniqueShearRsdSamples = new Set(samples.map((sample) => sample.shearRsdSampleId));
+  const uniqueHaloClusterSamples = new Set(
+    samples.map((sample) => sample.haloClusterSampleId),
+  );
   if (
     samples.length < 3 ||
-    uniqueShearRsdSamples.size < 3 ||
-    uniqueShearRsdSamples.has(undefined)
+    uniqueHaloClusterSamples.size < 3 ||
+    uniqueHaloClusterSamples.has(undefined)
   ) {
     return { computed: false, reason: "model.samples.nonlinear_grid_minimum" };
   }
@@ -401,6 +428,9 @@ export function evaluateNonlinearTransferModel(rawModel, matterChild, lensingChi
   const residuals = [];
   for (const sample of samples) {
     const sampleId = concreteString(sample.sampleId) ? sample.sampleId : null;
+    const haloClusterSampleId = concreteString(sample.haloClusterSampleId)
+      ? sample.haloClusterSampleId
+      : null;
     const shearRsdSampleId = concreteString(sample.shearRsdSampleId)
       ? sample.shearRsdSampleId
       : null;
@@ -410,34 +440,47 @@ export function evaluateNonlinearTransferModel(rawModel, matterChild, lensingChi
     const lensingSampleId = concreteString(sample.lensingSampleId)
       ? sample.lensingSampleId
       : null;
-    if (!sampleId || !shearRsdSampleId) {
+    if (!sampleId || !haloClusterSampleId) {
       return { computed: false, reason: "model.samples.valid_nonlinear_sample" };
     }
-    const shearRsdSample = shearRsdSamples.get(shearRsdSampleId);
-    if (!shearRsdSample) {
-      return { computed: false, reason: "model.samples.shear_rsd_sample_exists" };
+    const haloClusterSample = haloClusterSamples.get(haloClusterSampleId);
+    if (!haloClusterSample) {
+      return { computed: false, reason: "model.samples.halo_cluster_sample_exists" };
     }
-    const parentLensingSampleId = concreteString(shearRsdSample.lensingSampleId)
-      ? shearRsdSample.lensingSampleId
+    const parentShearRsdSampleId = concreteString(haloClusterSample.shearRsdSampleId)
+      ? haloClusterSample.shearRsdSampleId
       : null;
-    if (!parentLensingSampleId) {
-      return { computed: false, reason: "model.samples.shear_rsd_parent_lensing_sample" };
+    const parentLensingSampleId = concreteString(haloClusterSample.lensingSampleId)
+      ? haloClusterSample.lensingSampleId
+      : null;
+    const parentMatterSampleId = concreteString(haloClusterSample.matterSampleId)
+      ? haloClusterSample.matterSampleId
+      : null;
+    if (!parentShearRsdSampleId || !parentLensingSampleId || !parentMatterSampleId) {
+      return { computed: false, reason: "model.samples.halo_cluster_parent_links" };
+    }
+    if (shearRsdSampleId && shearRsdSampleId !== parentShearRsdSampleId) {
+      return { computed: false, reason: "model.samples.shear_rsd_halo_cluster_parent_match" };
     }
     if (lensingSampleId && lensingSampleId !== parentLensingSampleId) {
-      return { computed: false, reason: "model.samples.lensing_shear_rsd_parent_match" };
+      return { computed: false, reason: "model.samples.lensing_halo_cluster_parent_match" };
+    }
+    if (matterSampleId && matterSampleId !== parentMatterSampleId) {
+      return { computed: false, reason: "model.samples.matter_halo_cluster_parent_match" };
+    }
+    const shearRsdSample = shearRsdSamples.get(parentShearRsdSampleId);
+    if (!shearRsdSample) {
+      return { computed: false, reason: "model.samples.shear_rsd_sample_exists" };
     }
     const lensingSample = lensingSamples.get(parentLensingSampleId);
     if (!lensingSample) {
       return { computed: false, reason: "model.samples.lensing_sample_exists" };
     }
-    const parentMatterSampleId = concreteString(lensingSample.matterSampleId)
-      ? lensingSample.matterSampleId
-      : null;
-    if (!parentMatterSampleId) {
-      return { computed: false, reason: "model.samples.lensing_parent_matter_sample" };
-    }
-    if (matterSampleId && matterSampleId !== parentMatterSampleId) {
-      return { computed: false, reason: "model.samples.matter_lensing_parent_match" };
+    if (
+      concreteString(shearRsdSample.lensingSampleId) &&
+      shearRsdSample.lensingSampleId !== parentLensingSampleId
+    ) {
+      return { computed: false, reason: "model.samples.lensing_shear_rsd_parent_match" };
     }
     if (
       concreteString(shearRsdSample.matterSampleId) &&
@@ -445,85 +488,77 @@ export function evaluateNonlinearTransferModel(rawModel, matterChild, lensingChi
     ) {
       return { computed: false, reason: "model.samples.matter_shear_rsd_parent_match" };
     }
+    if (
+      concreteString(lensingSample.matterSampleId) &&
+      lensingSample.matterSampleId !== parentMatterSampleId
+    ) {
+      return { computed: false, reason: "model.samples.matter_lensing_parent_match" };
+    }
     const matterSample = matterSamples.get(parentMatterSampleId);
     if (!matterSample) {
       return { computed: false, reason: "model.samples.matter_sample_exists" };
     }
-    const ell = finiteNumberOrNull(lensingSample.ell);
-    const lensingKernel = finiteNumberOrNull(lensingSample.lensing_kernel);
-    const cPhiPhi = finiteNumberOrNull(lensingSample.C_phi_phi);
-    const k = finiteNumberOrNull(matterSample.k);
-    const z = finiteNumberOrNull(matterSample.z);
-    const matterPower = finiteNumberOrNull(matterSample.matter_power);
-    const seedPower = finiteNumberOrNull(matterSample.seed_power);
-    const transfer = finiteNumberOrNull(matterSample.transfer);
-    const shearBandPower = finiteNumberOrNull(shearRsdSample.shear_band_power);
-    const betaRSD = finiteNumberOrNull(shearRsdSample.beta_RSD);
-    const fSigma8Z = finiteNumberOrNull(shearRsdSample.f_sigma8_z);
+    const k = finiteNumberOrNull(haloClusterSample.k);
+    const z = finiteNumberOrNull(haloClusterSample.z);
+    const matterPower = finiteNumberOrNull(haloClusterSample.matter_power);
+    const parentMatterPower = finiteNumberOrNull(matterSample.matter_power);
+    const pFromLensing = finiteNumberOrNull(haloClusterSample.P_lensing);
+    const pFromShear = finiteNumberOrNull(haloClusterSample.P_shear);
+    const pFromRsd = finiteNumberOrNull(haloClusterSample.P_RSD);
+    const inheritedResidual = finiteNumberOrNull(
+      haloClusterSample.halo_cluster_normalized_residual,
+    );
     if (
-      ell === null ||
-      ell <= 0 ||
-      lensingKernel === null ||
-      lensingKernel <= 0 ||
-      cPhiPhi === null ||
-      cPhiPhi < 0 ||
       k === null ||
       k <= 0 ||
       z === null ||
       z < 0 ||
       matterPower === null ||
       matterPower < 0 ||
-      seedPower === null ||
-      seedPower < 0 ||
-      transfer === null ||
-      transfer < 0 ||
-      shearBandPower === null ||
-      shearBandPower < 0 ||
-      betaRSD === null ||
-      betaRSD < 0 ||
-      fSigma8Z === null ||
-      fSigma8Z < 0
+      parentMatterPower === null ||
+      parentMatterPower < 0 ||
+      pFromLensing === null ||
+      pFromLensing < 0 ||
+      pFromShear === null ||
+      pFromShear < 0 ||
+      pFromRsd === null ||
+      pFromRsd < 0 ||
+      inheritedResidual === null ||
+      inheritedResidual < 0
     ) {
       return { computed: false, reason: "model.samples.matter_sample_valid" };
     }
-    const ellFactor = ell * (ell + 1);
-    const pFromLensing = (cPhiPhi * ellFactor * ellFactor) / (aLens * lensingKernel);
-    const pFromShear =
-      (shearBandPower * ellFactor) / (aShear * aLens * lensingKernel);
-    const growthRateFromRsd = betaRSD * biasEff;
-    if (growthRateFromRsd <= 0) {
-      return { computed: false, reason: "model.samples.growth_rate_from_rsd_positive" };
-    }
-    const growthFactorFromRsd = fSigma8Z / (sigma8Seed * growthRateFromRsd);
-    const pFromRsd =
-      seedPower * transfer * transfer * growthFactorFromRsd * growthFactorFromRsd;
-    const normalizedResidual = Math.max(
+    const parentConsensusResidual = Math.max(
+      inheritedResidual,
+      relativeDelta(parentMatterPower, matterPower),
       relativeDelta(pFromLensing, matterPower),
       relativeDelta(pFromShear, matterPower),
       relativeDelta(pFromRsd, matterPower),
     );
+    const pConsensus = (matterPower + pFromLensing + pFromShear + pFromRsd) / 4;
+    const deltaL2 = (k * k * k * pConsensus) / (2 * Math.PI * Math.PI);
+    const nonlinearBoost = 1 + deltaL2;
+    const pNonlinear = pConsensus * nonlinearBoost;
+    const normalizedResidual = parentConsensusResidual;
     residuals.push(normalizedResidual);
     derivedSamples.push({
       sampleId,
-      shearRsdSampleId,
-      lensingSampleId,
-      ell,
+      haloClusterSampleId,
+      shearRsdSampleId: parentShearRsdSampleId,
+      lensingSampleId: parentLensingSampleId,
       matterSampleId: parentMatterSampleId,
       k,
       z,
-      matter_power: matterPower,
-      C_phi_phi: cPhiPhi,
-      lensing_kernel: lensingKernel,
-      shear_band_power: shearBandPower,
-      beta_RSD: betaRSD,
-      f_sigma8_z: fSigma8Z,
-      seed_power: seedPower,
-      transfer,
-      growth_rate_from_rsd: growthRateFromRsd,
-      growth_factor_from_rsd: growthFactorFromRsd,
+      P_linear: matterPower,
+      P_parent_matter: parentMatterPower,
       P_lensing: pFromLensing,
       P_shear: pFromShear,
       P_RSD: pFromRsd,
+      P_linear_consensus: pConsensus,
+      Delta_L2: deltaL2,
+      nonlinear_boost: nonlinearBoost,
+      P_nonlinear: pNonlinear,
+      parent_consensus_residual: parentConsensusResidual,
       nonlinear_normalized_residual: normalizedResidual,
     });
   }
@@ -532,10 +567,7 @@ export function evaluateNonlinearTransferModel(rawModel, matterChild, lensingChi
     computed: true,
     reason: "computed",
     derived: {
-      A_lens: aLens,
-      A_shear: aShear,
-      bias_eff: biasEff,
-      sigma8Seed,
+      nonlinear_order: 1,
       nonlinear_grid_normalized_residual: Math.max(...residuals),
       samples: derivedSamples,
     },
@@ -600,6 +632,7 @@ function requireAcceptedSharedKey({
   matterChildKeys,
   lensingChildKeys,
   shearRsdChildKeys,
+  haloClusterChildKeys,
   keyValues,
 }) {
   if (!acceptedRow(value)) {
@@ -651,6 +684,14 @@ function requireAcceptedSharedKey({
   }
   if (Math.abs(number - shearRsdChildValue) > DEFAULT_TOLERANCE) {
     missing.push(`sharedKeys.${key}.matches_shear_rsd_child_value`);
+  }
+  const haloClusterChildValue = haloClusterChildKeys.get(key);
+  if (haloClusterChildValue === null || haloClusterChildValue === undefined) {
+    missing.push(`sharedKeys.${key}.halo_cluster_child_value`);
+    return;
+  }
+  if (Math.abs(number - haloClusterChildValue) > DEFAULT_TOLERANCE) {
+    missing.push(`sharedKeys.${key}.matches_halo_cluster_child_value`);
   }
 }
 

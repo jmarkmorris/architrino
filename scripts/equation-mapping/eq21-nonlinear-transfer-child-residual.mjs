@@ -12,6 +12,7 @@ import {
 import { matterPowerTransferEvidenceStatusForPath } from "./eq21-matter-power-transfer-evidence.mjs";
 import { lensingTransferEvidenceStatusForPath } from "./eq21-lensing-transfer-evidence.mjs";
 import { shearRsdTransferEvidenceStatusForPath } from "./eq21-shear-rsd-transfer-evidence.mjs";
+import { haloClusterTransferEvidenceStatusForPath } from "./eq21-halo-cluster-transfer-evidence.mjs";
 import { sharedObservationEvidenceStatusForPath } from "./shared-observation-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
@@ -89,7 +90,8 @@ Options:
 This checker evaluates the score-neutral EQ-21 nonlinear transfer child.
 It consumes the accepted shared-observation parent, accepted f-sigma8 child,
 accepted normalized P(k,z) child, accepted CMB-lensing child, and accepted
-shear/RSD child; it does not raise equation scores.`);
+shear/RSD child, and accepted halo/cluster child; it does not raise equation
+scores.`);
 }
 
 function readJson(filePath) {
@@ -134,6 +136,9 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
   const shearRsdChild = evaluateShearRsdTransferParent(
     input.shearRsdTransferChild ?? packet.shearRsdTransferChild ?? {},
   );
+  const haloClusterChild = evaluateHaloClusterTransferParent(
+    input.haloClusterTransferChild ?? packet.haloClusterTransferChild ?? {},
+  );
   const sharedKeys = evaluateSharedKeys(
     packet.sharedKeys ?? [],
     parent,
@@ -141,6 +146,7 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
     matterChild,
     lensingChild,
     shearRsdChild,
+    haloClusterChild,
     tolerances,
   );
   const model = evaluateModel(
@@ -148,6 +154,7 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
     matterChild.raw,
     lensingChild.raw,
     shearRsdChild.raw,
+    haloClusterChild.raw,
     tolerances,
   );
   const sourceEvidence = evaluateSourceEvidence({
@@ -163,6 +170,7 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
     matterChild,
     lensingChild,
     shearRsdChild,
+    haloClusterChild,
     sharedKeys,
     model,
   });
@@ -175,6 +183,7 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
     matterChild,
     lensingChild,
     shearRsdChild,
+    haloClusterChild,
     sharedKeys,
     model,
   });
@@ -193,7 +202,7 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
       row: "EQ-21",
       childConsumer: "nonlinear_transfer",
       claimLevel:
-        "score-neutral nonlinear transfer child; accepted shared-observation, growth, matter-power, CMB-lensing, and shear/RSD child evidence are required before score review",
+        "score-neutral nonlinear transfer child; accepted shared-observation, growth, matter-power, CMB-lensing, shear/RSD, and halo/cluster child evidence are required before score review",
     },
     tolerances,
     summary: {
@@ -212,6 +221,7 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
         matterChild,
         lensingChild,
         shearRsdChild,
+        haloClusterChild,
         sharedKeys,
         model,
       }),
@@ -230,6 +240,8 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
       parentLensingTransferReason: lensingChild.reason,
       parentShearRsdTransferAccepted: shearRsdChild.accepted,
       parentShearRsdTransferReason: shearRsdChild.reason,
+      parentHaloClusterTransferAccepted: haloClusterChild.accepted,
+      parentHaloClusterTransferReason: haloClusterChild.reason,
       sharedKeysAccepted: sharedKeys.accepted,
       hiddenRetuneNumericPass: sharedKeys.hiddenRetuneNumericPass,
       modelComputed: model.computed,
@@ -278,6 +290,12 @@ function evaluateEq21NonlinearTransferChild(input, inputPath) {
       sourcePath: shearRsdChild.sourcePath,
       shearRsdTransferChildId: shearRsdChild.shearRsdTransferChildId,
     },
+    parentHaloClusterTransfer: {
+      accepted: haloClusterChild.accepted,
+      reason: haloClusterChild.reason,
+      sourcePath: haloClusterChild.sourcePath,
+      haloClusterTransferChildId: haloClusterChild.haloClusterTransferChildId,
+    },
     sharedKeys,
     sourceEvidence,
     nonlinearModel: model,
@@ -302,6 +320,7 @@ function summarizeOutput(output) {
     parentMatterPowerTransfer: output.parentMatterPowerTransfer,
     parentLensingTransfer: output.parentLensingTransfer,
     parentShearRsdTransfer: output.parentShearRsdTransfer,
+    parentHaloClusterTransfer: output.parentHaloClusterTransfer,
     sharedKeys: {
       accepted: output.sharedKeys.accepted,
       missingSharedKeys: output.sharedKeys.missingSharedKeys,
@@ -454,6 +473,34 @@ function evaluateShearRsdTransferParent(rawParent) {
   };
 }
 
+function evaluateHaloClusterTransferParent(rawParent) {
+  const sourcePath = rawParent.path ?? rawParent.sourcePath ?? null;
+  if (!concreteString(sourcePath)) {
+    return {
+      accepted: false,
+      reason: "missing_halo_cluster_transfer_child_path",
+      sourcePath,
+    };
+  }
+  const status = haloClusterTransferEvidenceStatusForPath(sourcePath, {
+    repoRoot: process.cwd(),
+  });
+  const raw = readJsonOrNull(sourcePath);
+  const sharedKeyValues = Object.fromEntries(
+    (Array.isArray(raw?.sharedKeys) ? raw.sharedKeys : []).map((row) => [
+      row.key,
+      finiteNumberOrNull(row.value),
+    ]),
+  );
+  return {
+    ...status,
+    sourcePath,
+    raw,
+    sharedKeyValues,
+    haloClusterTransferChildId: raw?.window?.haloClusterTransferChildId ?? null,
+  };
+}
+
 function readJsonOrNull(value) {
   if (!concreteString(value)) {
     return null;
@@ -475,6 +522,7 @@ function evaluateSharedKeys(
   matterChild,
   lensingChild,
   shearRsdChild,
+  haloClusterChild,
   tolerances,
 ) {
   const keyRows = new Map(
@@ -490,6 +538,9 @@ function evaluateSharedKeys(
       const matterChildValue = finiteNumberOrNull(matterChild.sharedKeyValues?.[key]);
       const lensingChildValue = finiteNumberOrNull(lensingChild.sharedKeyValues?.[key]);
       const shearRsdChildValue = finiteNumberOrNull(shearRsdChild.sharedKeyValues?.[key]);
+      const haloClusterChildValue = finiteNumberOrNull(
+        haloClusterChild.sharedKeyValues?.[key],
+      );
       const parentMismatch =
         check.accepted &&
         value !== null &&
@@ -515,6 +566,11 @@ function evaluateSharedKeys(
         value !== null &&
         shearRsdChildValue !== null &&
         Math.abs(value - shearRsdChildValue) > tolerances.sharedKey;
+      const haloClusterChildMismatch =
+        check.accepted &&
+        value !== null &&
+        haloClusterChildValue !== null &&
+        Math.abs(value - haloClusterChildValue) > tolerances.sharedKey;
       return [
         key,
         {
@@ -527,12 +583,14 @@ function evaluateSharedKeys(
           matterChildValue,
           lensingChildValue,
           shearRsdChildValue,
+          haloClusterChildValue,
           mismatch:
             parentMismatch ||
             growthChildMismatch ||
             matterChildMismatch ||
             lensingChildMismatch ||
-            shearRsdChildMismatch,
+            shearRsdChildMismatch ||
+            haloClusterChildMismatch,
           mismatchSource: parentMismatch
             ? "shared_observation_parent"
             : growthChildMismatch
@@ -543,7 +601,9 @@ function evaluateSharedKeys(
                   ? "lensing_transfer_child"
                   : shearRsdChildMismatch
                     ? "shear_rsd_transfer_child"
-                : null,
+                    : haloClusterChildMismatch
+                      ? "halo_cluster_transfer_child"
+                      : null,
           maxDelta:
             value !== null
               ? Math.max(
@@ -552,6 +612,9 @@ function evaluateSharedKeys(
                   matterChildValue !== null ? Math.abs(value - matterChildValue) : 0,
                   lensingChildValue !== null ? Math.abs(value - lensingChildValue) : 0,
                   shearRsdChildValue !== null ? Math.abs(value - shearRsdChildValue) : 0,
+                  haloClusterChildValue !== null
+                    ? Math.abs(value - haloClusterChildValue)
+                    : 0,
                 )
               : null,
           sourcePath: row?.sourcePath ?? row?.source ?? null,
@@ -574,6 +637,7 @@ function evaluateSharedKeys(
       matterChildValue: value.matterChildValue,
       lensingChildValue: value.lensingChildValue,
       shearRsdChildValue: value.shearRsdChildValue,
+      haloClusterChildValue: value.haloClusterChildValue,
     }));
   return {
     accepted: missingSharedKeys.length === 0,
@@ -591,12 +655,20 @@ function evaluateSharedKeys(
   };
 }
 
-function evaluateModel(rawModel, matterChildRaw, lensingChildRaw, shearRsdChildRaw, tolerances) {
+function evaluateModel(
+  rawModel,
+  matterChildRaw,
+  lensingChildRaw,
+  shearRsdChildRaw,
+  haloClusterChildRaw,
+  tolerances,
+) {
   const base = evaluateNonlinearTransferModel(
     rawModel,
     matterChildRaw,
     lensingChildRaw,
     shearRsdChildRaw,
+    haloClusterChildRaw,
   );
   if (!base.computed) {
     return {
@@ -704,10 +776,10 @@ function evaluateSourceEvidence({ rows, sharedKeys, model }) {
   const modelEntries = [
     evaluateSourceEvidenceEntry({
       scope: "model_input",
-      id: "nonlinearInversion",
-      status: model.nonlinearInversion?.status ?? null,
+      id: "nonlinearTransfer",
+      status: model.nonlinearTransfer?.status ?? null,
       sourcePath:
-        model.nonlinearInversion?.sourcePath ?? model.nonlinearInversion?.source ?? null,
+        model.nonlinearTransfer?.sourcePath ?? model.nonlinearTransfer?.source ?? null,
     }),
   ];
   const entries = [...rowEntries, ...keyEntries, ...modelEntries];
@@ -753,6 +825,7 @@ function decideStatus({
   matterChild,
   lensingChild,
   shearRsdChild,
+  haloClusterChild,
   sharedKeys,
   model,
 }) {
@@ -776,6 +849,9 @@ function decideStatus({
   }
   if (!shearRsdChild.accepted) {
     return "blocked_parent_shear_rsd_transfer_child";
+  }
+  if (!haloClusterChild.accepted) {
+    return "blocked_parent_halo_cluster_transfer_child";
   }
   if (!sharedKeys.accepted) {
     return "blocked_missing_shared_keys";
@@ -807,6 +883,7 @@ function firstBlocker({
   matterChild,
   lensingChild,
   shearRsdChild,
+  haloClusterChild,
   sharedKeys,
   model,
 }) {
@@ -833,6 +910,9 @@ function firstBlocker({
   }
   if (!shearRsdChild.accepted) {
     return `parent_shear_rsd_transfer_${shearRsdChild.reason}`;
+  }
+  if (!haloClusterChild.accepted) {
+    return `parent_halo_cluster_transfer_${haloClusterChild.reason}`;
   }
   if (!sharedKeys.accepted) {
     return `missing_accepted_shared_key_${sharedKeys.missingSharedKeys[0]}`;
@@ -866,6 +946,7 @@ function firstBlockerDetails({
   matterChild,
   lensingChild,
   shearRsdChild,
+  haloClusterChild,
   sharedKeys,
   model,
 }) {
@@ -909,6 +990,9 @@ function firstBlockerDetails({
   }
   if (nextBlocker.startsWith("parent_shear_rsd_transfer_")) {
     return shearRsdChild;
+  }
+  if (nextBlocker.startsWith("parent_halo_cluster_transfer_")) {
+    return haloClusterChild;
   }
   if (nextBlocker.startsWith("missing_accepted_shared_key_")) {
     const key = nextBlocker.replace("missing_accepted_shared_key_", "");

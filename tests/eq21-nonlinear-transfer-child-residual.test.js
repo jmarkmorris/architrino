@@ -51,7 +51,7 @@ function setAllSourcePaths(fixture, sourcePath) {
   for (const key of fixture.packet.sharedKeys) {
     key.sourcePath = sourcePath;
   }
-  fixture.packet.model.nonlinearInversion.sourcePath = sourcePath;
+  fixture.packet.model.nonlinearTransfer.sourcePath = sourcePath;
 }
 
 test("EQ-21 nonlinear transfer evidence is accepted", () => {
@@ -78,10 +78,15 @@ test("EQ-21 nonlinear transfer evidence is accepted", () => {
     "eq21-shear-rsd-transfer-child-provider-backed-0001",
   );
   assert.equal(
+    status.haloClusterTransferChildId,
+    "eq21-halo-cluster-transfer-child-provider-backed-0001",
+  );
+  assert.equal(
     status.nonlinearTransferChildId,
     "eq21-nonlinear-transfer-child-provider-backed-0001",
   );
   assert.equal(status.model.derived.samples.length, 3);
+  assert.equal(status.model.derived.nonlinear_order, 1);
   assert.ok(status.model.derived.nonlinear_grid_normalized_residual <= 1e-12);
 });
 
@@ -98,6 +103,7 @@ test("accepted EQ-21 nonlinear child populates nonlinear grid", () => {
   assert.equal(report.summary.parentMatterPowerTransferAccepted, true);
   assert.equal(report.summary.parentLensingTransferAccepted, true);
   assert.equal(report.summary.parentShearRsdTransferAccepted, true);
+  assert.equal(report.summary.parentHaloClusterTransferAccepted, true);
   assert.equal(report.summary.sourceEvidenceAccepted, true);
   assert.equal(report.summary.hiddenRetuneNumericPass, true);
   assert.equal(report.summary.modelDerivedPass, true);
@@ -124,7 +130,7 @@ test("EQ-21 nonlinear priority-source control is rejected as non-evidence", () =
     report.rows.nonlinear_transfer_child.reason,
     "nonlinear_coordination_source_path",
   );
-  assert.equal(report.sourceEvidence.failureCount, 19);
+  assert.equal(report.sourceEvidence.failureCount, 20);
 });
 
 test("accepted-looking EQ-21 nonlinear rows must cite nonlinear evidence", () => {
@@ -228,9 +234,23 @@ test("EQ-21 nonlinear child requires the accepted shear/RSD parent", () => {
   assert.equal(report.summary.parentShearRsdTransferAccepted, false);
 });
 
+test("EQ-21 nonlinear child requires the accepted halo/cluster parent", () => {
+  const fixture = loadAcceptedFixture();
+  fixture.haloClusterTransferChild.path =
+    "scripts/equation-mapping/eq21-halo-cluster-transfer-child-attempt.v1.json";
+
+  const report = runNonlinearChild(
+    writeTempFixture(fixture, "missing-halo-cluster-parent.json"),
+  );
+
+  assert.equal(report.summary.status, "blocked_parent_halo_cluster_transfer_child");
+  assert.match(report.summary.nextBlocker, /^parent_halo_cluster_transfer_/);
+  assert.equal(report.summary.parentHaloClusterTransferAccepted, false);
+});
+
 test("EQ-21 nonlinear child rejects derived-grid mismatches", () => {
   const fixture = loadAcceptedFixture();
-  fixture.packet.model.derived.samples[0].P_lensing = 0;
+  fixture.packet.model.derived.samples[0].P_nonlinear = 0;
 
   const report = runNonlinearChild(
     writeTempFixture(fixture, "derived-mismatch.json"),
@@ -239,24 +259,39 @@ test("EQ-21 nonlinear child rejects derived-grid mismatches", () => {
   assert.equal(report.summary.status, "blocked_nonlinear_model_derived_mismatch");
   assert.equal(
     report.summary.nextBlocker,
-    "nonlinear_model_derived_mismatch_samples.HC_L40_z1_k0p02.P_lensing",
+    "nonlinear_model_derived_mismatch_samples.NL_L40_z1_k0p02.P_nonlinear",
   );
   assert.equal(report.summary.modelDerivedPass, false);
 });
 
-test("EQ-21 nonlinear child requires declared shear/RSD samples to exist", () => {
+test("EQ-21 nonlinear child requires declared halo/cluster samples to exist", () => {
   const fixture = loadAcceptedFixture();
-  fixture.packet.model.samples[0].shearRsdSampleId = "SR_missing";
+  fixture.packet.model.samples[0].haloClusterSampleId = "HC_missing";
 
   const report = runNonlinearChild(
-    writeTempFixture(fixture, "missing-shear-rsd-sample.json"),
+    writeTempFixture(fixture, "missing-halo-cluster-sample.json"),
   );
 
   assert.equal(report.summary.status, "blocked_nonlinear_model_not_computed");
-  assert.equal(report.summary.nextBlocker, "model.samples.shear_rsd_sample_exists");
+  assert.equal(report.summary.nextBlocker, "model.samples.halo_cluster_sample_exists");
 });
 
-test("EQ-21 nonlinear child requires lensing links to match shear/RSD parent", () => {
+test("EQ-21 nonlinear child requires shear/RSD links to match halo/cluster parent", () => {
+  const fixture = loadAcceptedFixture();
+  fixture.packet.model.samples[0].shearRsdSampleId = "SR_L200_z1_k0p1";
+
+  const report = runNonlinearChild(
+    writeTempFixture(fixture, "wrong-shear-rsd-parent-link.json"),
+  );
+
+  assert.equal(report.summary.status, "blocked_nonlinear_model_not_computed");
+  assert.equal(
+    report.summary.nextBlocker,
+    "model.samples.shear_rsd_halo_cluster_parent_match",
+  );
+});
+
+test("EQ-21 nonlinear child requires lensing links to match halo/cluster parent", () => {
   const fixture = loadAcceptedFixture();
   fixture.packet.model.samples[0].lensingSampleId = "L200_z1_k0p1";
 
@@ -265,10 +300,13 @@ test("EQ-21 nonlinear child requires lensing links to match shear/RSD parent", (
   );
 
   assert.equal(report.summary.status, "blocked_nonlinear_model_not_computed");
-  assert.equal(report.summary.nextBlocker, "model.samples.lensing_shear_rsd_parent_match");
+  assert.equal(
+    report.summary.nextBlocker,
+    "model.samples.lensing_halo_cluster_parent_match",
+  );
 });
 
-test("EQ-21 nonlinear child requires matter links to match lensing parent", () => {
+test("EQ-21 nonlinear child requires matter links to match halo/cluster parent", () => {
   const fixture = loadAcceptedFixture();
   fixture.packet.model.samples[0].matterSampleId = "k0p1_z1";
 
@@ -277,5 +315,8 @@ test("EQ-21 nonlinear child requires matter links to match lensing parent", () =
   );
 
   assert.equal(report.summary.status, "blocked_nonlinear_model_not_computed");
-  assert.equal(report.summary.nextBlocker, "model.samples.matter_lensing_parent_match");
+  assert.equal(
+    report.summary.nextBlocker,
+    "model.samples.matter_halo_cluster_parent_match",
+  );
 });
