@@ -86,7 +86,7 @@
       "sourceFamily": "score-neutral normalized CMB-lensing transfer kernel"
     },
     "formula": {
-      "C_phi_phi": "A_lens * W_lens(z)^2 * P(k,z) / (ell * (ell + 1))^2",
+      "C_phi_phi": "A_lens * W_lens(z) * P(k,z) / (ell * (ell + 1))^2",
       "W_lens": "((z_source - z) / (z_source + 1))^2 / (1 + z)",
       "parent": "P(k,z) samples are inherited from the accepted EQ-21 matter-power transfer child"
     },
