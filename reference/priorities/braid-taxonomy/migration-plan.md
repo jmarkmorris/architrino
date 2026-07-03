@@ -10,7 +10,11 @@ Gather Noether-braid-specific chapters into the Noether braid markdown directory
 
 - Move the first source batch into `content/markdown/aaa/noether-braid/` rather than leaving Noether-braid branch-architecture chapters under `content/markdown/aaa/dynamics/`.
 - Replace reader-facing `tri-binary` wording broadly with Noether-braid wording.
+- Include priority workstream prose in the first broad `tri-binary` replacement pass, not only authored `content/markdown/aaa` prose and active links.
+- Prefer whole-repo terminology consistency unless a local artifact has a good reason to retain historical or technical wording, such as generated output, script identifiers, archived source summaries, or large proof-packet corpora where hundreds of packets make a separate focused pass more appropriate.
 - Preserve technical three-binary notation temporarily when formulas, retained branch rows, or active proof packets still need it.
+- Treat `axis-neutral` and `axis-polarized` as final taxonomy terms for the polarity-support axis.
+- Rename migrated scene ids immediately to the Noether-braid scene-id family rather than preserving old Dynamics ids for an intermediate checkpoint.
 - Treat `Binary Dynamics`, `Master Equation`, `Energy`, `Effective Lagrangian`, and `Causal Action Functional` as general dynamics chapters that remain under `content/markdown/aaa/dynamics/`.
 - Leave unrelated dirty equation-mapping work untouched during this migration.
 
@@ -37,7 +41,9 @@ After each move, update all authored relative links that point to the moved path
 
 ## Phase 3: Scene Migration
 
-Move the matching scene markdown views into `content/scenes/noether-braid/`:
+Status: implemented 2026-07-03 for the three existing markdown scene views, source paths, scene ids, and parent scene membership. The `Noether Braid Taxonomy` scene-order slot remains deferred until Phase 4 creates `content/markdown/aaa/noether-braid/noether-braid-taxonomy.md` and `content/scenes/noether-braid/noether_braid_taxonomy.json`.
+
+Moved the matching scene markdown views into `content/scenes/noether-braid/`:
 
 | Current scene | Target scene | Target scene id |
 | --- | --- | --- |
@@ -45,7 +51,7 @@ Move the matching scene markdown views into `content/scenes/noether-braid/`:
 | `content/scenes/dynamics/dyadic_resonance_lock.json` | `content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json` | `noether_braid__dyadic_resonance_lock` |
 | `content/scenes/dynamics/assembly_topological_charge.json` | `content/scenes/noether-braid/noether_braid_topological_charge.json` | `noether_braid__topological_charge` |
 
-Update `content/scenes/noether-braid/noether_braid.json` so the Noether braid scene order becomes:
+When Phase 4 creates the taxonomy scene, update `content/scenes/noether-braid/noether_braid.json` so the Noether braid scene order becomes:
 
 1. Noether Braid
 2. Noether Braid Taxonomy
@@ -82,7 +88,7 @@ The taxonomy chapter must not claim that all listed configurations are retained 
 
 ## Phase 5: Terminology Migration
 
-Use these replacement directions for reader-facing prose:
+Use these replacement directions for reader-facing prose and priority workstream prose in the first broad pass:
 
 | Current wording | Preferred direction |
 | --- | --- |
@@ -94,7 +100,7 @@ Use these replacement directions for reader-facing prose:
 | `tri-binary candidate` | `Noether braid three-binary candidate` |
 | `tri-binary minimality` | `Noether braid three-binary minimality` |
 
-Do not replace these mechanically inside formulas, script identifiers, archived legacy source summaries, or priority packets that intentionally record historical terminology. Inspect each hit in context.
+Do not replace these mechanically inside formulas, script identifiers, generated artifacts, archived legacy source summaries, or large proof-packet corpora where a separate focused pass is more appropriate. Inspect each hit in context. The default should be whole-repo terminology consistency unless a specific artifact has a reason to preserve the old wording.
 
 ## Phase 6: Link And Generated Artifact Handling
 
@@ -135,6 +141,3 @@ Each remaining hit should be classified as:
 ## Open Refinement Questions
 
 1. Whether `Noether Braid Topological Charge` should remain the title of the moved assembly-topological-charge chapter or whether the title should stay `Assembly Topological Charge` while only the path and scene move.
-2. Whether `axis-neutral` and `axis-polarized` are final taxonomy terms or provisional terms in the first taxonomy chapter.
-3. Whether the broad `tri-binary` replacement should include priority workstream prose in the first pass or only authored `content/markdown/aaa` prose plus active priority links.
-4. Whether scene ids should be renamed immediately or path/title changes should land first with stable scene ids preserved for one migration checkpoint.

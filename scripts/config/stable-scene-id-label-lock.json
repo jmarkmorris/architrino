@@ -53,8 +53,19 @@
         "effective_lagrangian": "Effective Lagrangian",
         "kinetic_and_potential_energy": "Energy",
         "master_equation_of_motion": "Master Equation",
-        "proof_programs": "Proof Programs",
-        "dyadic_resonance_lock": "Dyadic Resonance Lock"
+        "proof_programs": "Proof Programs"
+      }
+    },
+    "content/scenes/noether-braid/noether_braid.json": {
+      "sceneId": "noether_braid",
+      "sceneName": "Noether Braid",
+      "objects": {
+        "nested_shell_braid_dynamics": "Nested Shell Braid Dynamics",
+        "nested_shell_braid_geometry": "Nested Shell Braid Geometry",
+        "noether_braid_configuration_space": "Noether Braid Configuration Space",
+        "noether_braid_dyadic_resonance_lock": "Noether Braid Dyadic Resonance Lock",
+        "noether_braid_overview": "Noether Braid",
+        "noether_braid_topological_charge": "Noether Braid Topological Charge"
       }
     },
     "content/scenes/foundations/foundations.json": {
