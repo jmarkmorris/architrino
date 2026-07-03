@@ -39,10 +39,9 @@ The plane-orientation nondegeneracy measure is
 $$
 D_{\mathrm{plane}}
 =
-\det
-\left[
+\det\!\begin{bmatrix}
 \hat{\mathbf n}_1 & \hat{\mathbf n}_2 & \hat{\mathbf n}_3
-\right].
+\end{bmatrix}.
 $$
 The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the tri-binary degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
 

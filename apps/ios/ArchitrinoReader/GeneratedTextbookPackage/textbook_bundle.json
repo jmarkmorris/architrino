@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-02T18:27:54.087Z",
+  "generated_at": "2026-07-03T00:42:12.604Z",
   "package_version": "1.0.0-c3dedd9c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -204,16 +204,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 24438397,
-      "sha256": "5045cf980423a57042c3b29631299b8bd8f2a2559f6d087307696936998ec50d"
+      "size": 24445081,
+      "sha256": "310828703e823e07f0e9ef41ddb30a8fd3226d5db91153734fb2cc28b68c5cdd"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1382990,
-      "sha256": "7ea82d13c97219f0aac2ff1b9e8819ab5d25ade7891ab609b9456b2fa4c8747d"
+      "size": 1383006,
+      "sha256": "a0af9ef44ed8be58b1f1dc71d138a46b91b0a4a3d7f053d0848f048a8738cdc8"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 10665712,
-      "sha256": "fcfbdf50d3983f29afff0952963bc9e0fd8886f985b6118c0f57eea599f9bf12"
+      "size": 10655564,
+      "sha256": "1da2279b0572cfac1191b06eea505fcea0d59b91e6fb74e752a1c3b8185ba934"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1997855,
-      "sha256": "2ac12029fa6131df2fff19da0d581477a2994f528f6e75b4f6efb9ad27fe7593"
+      "size": 1988824,
+      "sha256": "149d98b133e1764c8c2fcf2eebf4c7a31ed9b55b873fd6d335e046b0da31d357"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9709856,
-      "sha256": "69c6111dd2ce63f421fcda68c52752dae434d40ddf09fd99a7c2a94360fdb8ab"
+      "size": 9700995,
+      "sha256": "7271c331a60120ea916700dd8faad5a75979b270f413d885f0d0b2abec4c98b6"
     }
   ],
   "links": []

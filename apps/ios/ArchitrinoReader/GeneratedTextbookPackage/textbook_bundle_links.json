@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-02T18:27:54.087Z",
-  "total_links": 1587,
+  "generated_at": "2026-07-03T00:42:12.604Z",
+  "total_links": 1585,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -7569,22 +7569,6 @@
       "target": "#simulation-modeling-and-computability-limits",
       "kind": "anchor",
       "status": "skip_anchor",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_astronomy",
-      "kind": "external",
-      "status": "external",
-      "targetBundlePath": ""
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics",
-      "kind": "external",
-      "status": "external",
       "targetBundlePath": ""
     },
     {

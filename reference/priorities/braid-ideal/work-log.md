@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 - Same-Record Accepted-Evidence Field Map Added
+
+Sharpened the retained-source adapter accepted-evidence contract from a blank package template into a provider-facing field map. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now includes `source_acquisition_summary` and `source_acquisition_field_map` in `central_solver_retained_source_adapter_same_record_accepted_evidence_contract.v0`, mapping each required package field to the current provider/source carrier path, observed ref count, observed ref class, and required accepted replacement.
+
+Executable status: for the current retained record and source row, all ten package fields have a visible current source value, but zero fields are accepted for the package. The first four fields are unverified artifact or row ids, while native path-history, native root-ledger detail, causal-root replay, same-record action closure, retained wake history, and provider provenance are candidate refs. The accepted package is therefore still absent, and the first missing field remains `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence`.
+
+Decision: this does not create a new closure gate and does not authorize adapter evidence. It makes the acquisition boundary concrete: replace each mapped candidate or unverified carrier value with an accepted same-record package field, then rerun `--require-same-record-accepted-evidence`.
+
 ### 2026-07-02 - Same-Record Accepted-Evidence Requirement Gate Added
 
 Added a strict acquisition gate for the retained-source adapter evidence package. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now supports `--require-same-record-accepted-evidence`; without a complete same-record package it exits nonzero and emits `central_solver_retained_source_adapter_same_record_accepted_evidence_requirement.v0`, naming `central_solver_retained_source_adapter_same_record_accepted_evidence_package` and the first missing field `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence`.

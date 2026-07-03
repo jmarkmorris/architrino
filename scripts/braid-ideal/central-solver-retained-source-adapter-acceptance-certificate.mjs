@@ -19,6 +19,12 @@ export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA =
   "central_solver_retained_source_adapter_external_accepted_authority_package.v0";
 export const FIRST_MISSING_OBJECT = "central_solver_retained_source_adapter_acceptance_certificate";
 export const FIRST_MISSING_FIELD = "central_solver_retained_source_adapter.acceptance_certificate_ref";
+export const REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS = Object.freeze([
+  "same_record_accepted_evidence_package_ref",
+  "same_record_accepted_evidence_package_authority_ref",
+  "same_record_accepted_evidence_package_verification_ref",
+  "same_record_accepted_evidence_package_artifact_hash",
+]);
 
 const EXTERNAL_VERIFICATION_FIELD =
   "central_solver_retained_source_adapter.external_accepted_authority_verification_ref";
@@ -83,6 +89,11 @@ function stableHash(value) {
 
 function stringRef(value) {
   return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function acceptedRef(value) {
+  const ref = stringRef(value);
+  return ref != null && ref.startsWith("accepted:") ? ref : null;
 }
 
 function makeAuthorization() {
@@ -267,7 +278,11 @@ function normalizeSameRecordAcceptedEvidenceInput(evidence = {}) {
         packageObject.evidence_package_ref,
     };
   }
-  return evidence;
+  return {
+    ...evidence,
+    same_record_accepted_evidence_package_ref:
+      evidence.same_record_accepted_evidence_package_ref ?? evidence.evidence_package_ref,
+  };
 }
 
 function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
@@ -283,9 +298,15 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     acceptedEvidence.accepted_same_record_retained_source_adapter_evidence === true ||
     acceptedEvidence.accepted_same_record_evidence === true;
   const suppliedEvidencePackageSchema = stringRef(acceptedEvidence.schema);
+  const hasAcceptedEvidenceInput = Object.keys(acceptedEvidence).some(
+    (key) => acceptedEvidence[key] != null
+  );
   const missingFields = [];
   if (carrier?.schema !== PROVIDER_SOURCE_CARRIER_SCHEMA) {
     missingFields.push("central_solver_retained_history_provider_source_carrier.schema");
+  }
+  if (hasAcceptedEvidenceInput && suppliedEvidencePackageSchema !== SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA) {
+    missingFields.push("central_solver_retained_source_adapter.accepted_evidence.schema");
   }
   if (
     suppliedEvidencePackageSchema != null &&
@@ -307,8 +328,13 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
   if (sourceRowId == null || suppliedSourceRowId !== sourceRowId) {
     missingFields.push("central_solver_retained_source_adapter.accepted_evidence.source_row_id");
   }
-  for (const field of REQUIRED_ACCEPTED_EVIDENCE_FIELDS) {
+  for (const field of REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS) {
     if (stringRef(acceptedEvidence[field]) == null) {
+      missingFields.push(`central_solver_retained_source_adapter.accepted_evidence.${field}`);
+    }
+  }
+  for (const field of REQUIRED_ACCEPTED_EVIDENCE_FIELDS) {
+    if (acceptedRef(acceptedEvidence[field]) == null) {
       missingFields.push(`central_solver_retained_source_adapter.accepted_evidence.${field}`);
     }
   }
@@ -316,8 +342,14 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     retainedRecordId: suppliedRetainedRecordId,
     sourceRowId: suppliedSourceRowId,
     acceptedSameRecordEvidence,
+    packageProvenance: Object.fromEntries(
+      REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.map((field) => [
+        field,
+        stringRef(acceptedEvidence[field]),
+      ])
+    ),
     refs: Object.fromEntries(
-      REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, stringRef(acceptedEvidence[field])])
+      REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, acceptedRef(acceptedEvidence[field])])
     ),
   });
   const criterionPassed = missingFields.length === 0;
@@ -338,6 +370,15 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     accepted: false,
     candidate_artifact_authorizes_adapter_acceptance: false,
     adapter_acceptance_certificate_ref: adapterAcceptanceCertificateRef,
+    required_accepted_evidence_package_provenance_fields: [
+      ...REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS,
+    ],
+    supplied_accepted_evidence_package_provenance_refs: Object.fromEntries(
+      REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.map((field) => [
+        field,
+        stringRef(acceptedEvidence[field]),
+      ])
+    ),
     required_accepted_evidence_fields: [...REQUIRED_ACCEPTED_EVIDENCE_FIELDS],
     supplied_accepted_evidence_refs: Object.fromEntries(
       REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, stringRef(acceptedEvidence[field])])
@@ -386,6 +427,9 @@ export function buildSameRecordAcceptedEvidencePackageContract(options = {}) {
     retained_record_id: retainedRecordId,
     source_row_id: sourceRowId,
     required_package_schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+    required_accepted_evidence_package_provenance_fields: [
+      ...REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS,
+    ],
     required_accepted_evidence_fields: [...REQUIRED_ACCEPTED_EVIDENCE_FIELDS],
     same_record_binding: {
       retained_record_id: retainedRecordId,
@@ -409,7 +453,7 @@ export function buildSameRecordAcceptedEvidencePackageContract(options = {}) {
     source_acquisition_field_map: sourceAcquisitionFieldMap,
     package_template: {
       schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
-      evidence_package_ref: null,
+      ...Object.fromEntries(REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.map((field) => [field, null])),
       accepted_same_record_retained_source_adapter_evidence: true,
       retained_record_id: retainedRecordId,
       source_row_id: sourceRowId,
@@ -610,6 +654,9 @@ function makeSameRecordAcceptedEvidenceRequirementDiagnostic(artifact) {
     retained_record_id: artifact?.retained_record_id ?? null,
     source_row_id: artifact?.source_row_id ?? null,
     required_package_schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+    required_accepted_evidence_package_provenance_fields: [
+      ...REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS,
+    ],
     required_accepted_evidence_fields: [...REQUIRED_ACCEPTED_EVIDENCE_FIELDS],
     first_missing_object: "central_solver_retained_source_adapter_same_record_accepted_evidence_package",
     first_missing_field: criterion.first_missing_field ?? artifact?.first_missing_field ?? FIRST_MISSING_FIELD,

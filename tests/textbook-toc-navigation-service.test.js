@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   RUNTIME_MARKDOWN_DOC_PREFIX,
+  RUNTIME_MARKDOWN_READER_PREFIX,
   buildTextbookTocPageSequence,
   createTextbookTocNavigationService,
   resolveTextbookPageNavigation,
@@ -28,6 +29,14 @@ const tocFixture = {
               {
                 title: "Purpose",
                 markdownPath: "content/markdown/aaa/foundations/ontology.md",
+                markdownSection: "Purpose",
+                sectionKey: "purpose",
+              },
+              {
+                title: "Scope",
+                markdownPath: "content/markdown/aaa/foundations/ontology.md",
+                markdownSection: "Scope",
+                sectionKey: "scope",
               },
             ],
           },
@@ -55,16 +64,18 @@ const tocFixture = {
   },
 };
 
-test("textbook TOC page sequence flattens markdown documents in book order", () => {
+test("textbook TOC page sequence flattens markdown documents and sections in book order", () => {
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
 
   assert.deepEqual(
     sequence.pages.map((page) => page.title),
-    ["Ontology", "Architrino", "Validation Protocols"]
+    ["Ontology", "Purpose", "Scope", "Architrino", "Validation Protocols"]
   );
   assert.deepEqual(
     sequence.pages.map((page) => page.markdownPath),
     [
+      "content/markdown/aaa/foundations/ontology.md",
+      "content/markdown/aaa/foundations/ontology.md",
       "content/markdown/aaa/foundations/ontology.md",
       "content/markdown/aaa/foundations/architrino.md",
       "content/markdown/aaa/validation/validation-protocols.md",
@@ -81,10 +92,23 @@ test("textbook TOC page navigation resolves previous and next by markdown path",
   });
 
   assert.equal(navigation.current.title, "Architrino");
-  assert.equal(navigation.previous.title, "Ontology");
+  assert.equal(navigation.previous.title, "Scope");
   assert.equal(navigation.next.title, "Validation Protocols");
-  assert.equal(navigation.index, 1);
-  assert.equal(navigation.total, 3);
+  assert.equal(navigation.index, 3);
+  assert.equal(navigation.total, 5);
+});
+
+test("textbook TOC page navigation resolves previous and next by markdown section", () => {
+  const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
+  const navigation = resolveTextbookPageNavigation(sequence, {
+    id: "runtime:markdown:reader:content/markdown/aaa/foundations/ontology.md::Purpose",
+    markdownPath: "content/markdown/aaa/foundations/ontology.md",
+    markdownSection: "Purpose",
+  });
+
+  assert.equal(navigation.current.title, "Purpose");
+  assert.equal(navigation.previous.title, "Ontology");
+  assert.equal(navigation.next.title, "Scope");
 });
 
 test("textbook TOC page navigation resolves current page by scene path", () => {
@@ -95,7 +119,7 @@ test("textbook TOC page navigation resolves current page by scene path", () => {
 
   assert.equal(navigation.current.title, "Ontology");
   assert.equal(navigation.previous, null);
-  assert.equal(navigation.next.title, "Architrino");
+  assert.equal(navigation.next.title, "Purpose");
 });
 
 test("textbook TOC page navigation resolves current page by TOC id", () => {
@@ -106,7 +130,7 @@ test("textbook TOC page navigation resolves current page by TOC id", () => {
 
   assert.equal(navigation.current.title, "Ontology");
   assert.equal(navigation.previous, null);
-  assert.equal(navigation.next.title, "Architrino");
+  assert.equal(navigation.next.title, "Purpose");
 });
 
 test("textbook TOC page entries prefer authored scenes and fall back to runtime markdown", () => {
@@ -118,10 +142,14 @@ test("textbook TOC page entries prefer authored scenes and fall back to runtime 
   );
   assert.equal(
     sequence.pages[1].targetPath,
+    `${RUNTIME_MARKDOWN_READER_PREFIX}content/markdown/aaa/foundations/ontology.md::Purpose`
+  );
+  assert.equal(
+    sequence.pages[3].targetPath,
     "content/scenes/foundations/architrino.json"
   );
   assert.equal(
-    sequence.pages[2].targetPath,
+    sequence.pages[4].targetPath,
     `${RUNTIME_MARKDOWN_DOC_PREFIX}content/markdown/aaa/validation/validation-protocols.md`
   );
 });

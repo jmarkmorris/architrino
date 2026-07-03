@@ -10,6 +10,7 @@ import {
   EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
   FIRST_MISSING_FIELD,
   NEGATIVE_CONTROL_REASONS,
+  REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS,
   SCHEMA,
   SAME_RECORD_ACCEPTED_EVIDENCE_CONTRACT_SCHEMA,
   SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
@@ -28,6 +29,15 @@ const SOURCE_ROW_ID = "two-speed-preferred-row:u0.8:v0.2";
 
 function makeAcceptedEvidence({ retainedRecordId = RETAINED_RECORD_ID, sourceRowId = SOURCE_ROW_ID } = {}) {
   return {
+    schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+    same_record_accepted_evidence_package_ref:
+      `accepted-evidence-package:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
+    same_record_accepted_evidence_package_authority_ref:
+      `accepted-evidence-package-authority:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
+    same_record_accepted_evidence_package_verification_ref:
+      `accepted-evidence-package-verification:retained-source-adapter:${retainedRecordId}:${sourceRowId}`,
+    same_record_accepted_evidence_package_artifact_hash:
+      `sha256:same-record-retained-source-adapter-evidence-package:${retainedRecordId}:${sourceRowId}`,
     accepted_same_record_retained_source_adapter_evidence: true,
     retained_record_id: retainedRecordId,
     source_row_id: sourceRowId,
@@ -45,6 +55,14 @@ function makeAcceptedEvidence({ retainedRecordId = RETAINED_RECORD_ID, sourceRow
     retained_wake_history_ref: `accepted:retained-wake-history:${retainedRecordId}:${sourceRowId}`,
     provider_provenance_ref: `accepted:provider-provenance:${retainedRecordId}:${sourceRowId}`,
   };
+}
+
+function makeAcceptedEvidenceWithoutPackageProvenance(options = {}) {
+  const evidence = makeAcceptedEvidence(options);
+  for (const field of REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS) {
+    delete evidence[field];
+  }
+  return evidence;
 }
 
 function makeExternalVerification({ certificateArtifact }) {
@@ -142,6 +160,57 @@ test("central retained-source adapter acceptance certificate emits candidate cer
   assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
 });
 
+test("central retained-source adapter acceptance certificate rejects accepted-looking refs without package provenance", () => {
+  const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+    sameRecordAcceptedEvidence: makeAcceptedEvidenceWithoutPackageProvenance(),
+  });
+
+  assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, false);
+  assert.deepEqual(
+    REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.filter((field) =>
+      artifact.same_record_accepted_evidence_criterion.missing_fields.includes(
+        `central_solver_retained_source_adapter.accepted_evidence.${field}`
+      )
+    ),
+    REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS
+  );
+  assert.equal(
+    artifact.same_record_accepted_evidence_criterion.first_missing_field,
+    "central_solver_retained_source_adapter.accepted_evidence.same_record_accepted_evidence_package_ref"
+  );
+  assert.equal(artifact.adapter_acceptance_certificate_ref, null);
+  assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+});
+
+test("central retained-source adapter acceptance certificate rejects copied candidate source refs", () => {
+  const candidateEvidence = {
+    ...makeAcceptedEvidence(),
+    native_root_ledger_detail_rows_ref: "candidate:native-root-ledger-detail:not-accepted",
+  };
+  const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+    sameRecordAcceptedEvidence: candidateEvidence,
+  });
+
+  assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, false);
+  assert.equal(
+    artifact.same_record_accepted_evidence_criterion.missing_fields.includes(
+      "central_solver_retained_source_adapter.accepted_evidence.native_root_ledger_detail_rows_ref"
+    ),
+    true
+  );
+  assert.equal(
+    artifact.same_record_accepted_evidence_criterion.supplied_accepted_evidence_refs
+      .native_root_ledger_detail_rows_ref,
+    "candidate:native-root-ledger-detail:not-accepted"
+  );
+  assert.equal(artifact.adapter_acceptance_certificate_ref, null);
+  assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+});
+
 test("central retained-source adapter accepted-evidence contract names the exact package fields", () => {
   const contract = buildSameRecordAcceptedEvidencePackageContract({
     retainedRecordId: RETAINED_RECORD_ID,
@@ -152,9 +221,39 @@ test("central retained-source adapter accepted-evidence contract names the exact
   assert.equal(contract.accepted, false);
   assert.equal(contract.source_status, "source_acquisition_contract");
   assert.equal(contract.required_package_schema, SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA);
+  assert.deepEqual(
+    contract.required_accepted_evidence_package_provenance_fields,
+    REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS
+  );
+  assert.deepEqual(
+    REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.map((field) => contract.package_template[field]),
+    REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS.map(() => null)
+  );
   assert.equal(contract.package_template.accepted_same_record_retained_source_adapter_evidence, true);
   assert.equal(contract.package_template.retained_record_id, RETAINED_RECORD_ID);
   assert.equal(contract.package_template.source_row_id, SOURCE_ROW_ID);
+  assert.equal(contract.source_acquisition_summary.required_package_field_count, 10);
+  assert.equal(contract.source_acquisition_summary.observed_source_field_count, 10);
+  assert.equal(contract.source_acquisition_summary.accepted_for_package_field_count, 0);
+  assert.equal(contract.source_acquisition_summary.candidate_or_unverified_field_count, 10);
+  assert.equal(contract.source_acquisition_field_map.length, 10);
+  assert.deepEqual(
+    contract.source_acquisition_field_map.map((row) => row.package_field),
+    contract.required_accepted_evidence_fields
+  );
+  assert.equal(
+    contract.source_acquisition_field_map.find(
+      (row) => row.package_field === "native_root_ledger_detail_rows_ref"
+    )?.observed_ref_count,
+    36
+  );
+  assert.equal(
+    contract.source_acquisition_field_map.find(
+      (row) => row.package_field === "native_root_ledger_detail_rows_ref"
+    )?.observed_ref_class,
+    "candidate_ref_not_accepted"
+  );
+  assert.equal(contract.source_acquisition_field_map.every((row) => row.accepted_for_package === false), true);
   assert.equal(
     contract.first_missing_field,
     "central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence"
@@ -185,6 +284,16 @@ test("central retained-source adapter acceptance certificate CLI prints accepted
   assert.equal(contract.same_record_binding.retained_record_id, RETAINED_RECORD_ID);
   assert.equal(contract.same_record_binding.source_row_id, SOURCE_ROW_ID);
   assert.equal(contract.required_accepted_evidence_fields.includes("provider_provenance_ref"), true);
+  assert.deepEqual(
+    contract.required_accepted_evidence_package_provenance_fields,
+    REQUIRED_ACCEPTED_EVIDENCE_PACKAGE_PROVENANCE_FIELDS
+  );
+  assert.equal(contract.source_acquisition_summary.accepted_for_package_field_count, 0);
+  assert.equal(
+    contract.source_acquisition_field_map.find((row) => row.package_field === "provider_provenance_ref")
+      ?.observed_ref_class,
+    "candidate_ref_not_accepted"
+  );
   assert.equal(contract.authorization.scoreMovement, "no_score_increase");
 });
 
@@ -330,8 +439,8 @@ test("central retained-source adapter acceptance certificate rejects wrong accep
     retainedRecordId: RETAINED_RECORD_ID,
     sourceRowId: SOURCE_ROW_ID,
     sameRecordAcceptedEvidence: {
-      schema: "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v99",
       ...makeAcceptedEvidence(),
+      schema: "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v99",
     },
   });
 
