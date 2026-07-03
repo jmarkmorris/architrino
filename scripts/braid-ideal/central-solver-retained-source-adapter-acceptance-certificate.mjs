@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import {
@@ -8,6 +9,8 @@ import {
 } from "./central-solver-retained-history-provider-source-carrier.mjs";
 
 export const SCHEMA = "central_solver_retained_source_adapter_acceptance_certificate.v0";
+export const SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA =
+  "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0";
 export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA =
   "central_solver_retained_source_adapter_external_accepted_authority_package.v0";
 export const FIRST_MISSING_OBJECT = "central_solver_retained_source_adapter_acceptance_certificate";
@@ -117,18 +120,43 @@ function makeCertificateRef({ retainedRecordId, sourceRowId, adapterArtifactHash
   return `candidate:central_solver_retained_source_adapter_acceptance_certificate:${digest.slice(0, 16)}`;
 }
 
+function normalizeSameRecordAcceptedEvidenceInput(evidence = {}) {
+  const packageObject = evidence.same_record_accepted_evidence_package ?? null;
+  if (packageObject != null && typeof packageObject === "object") {
+    return {
+      ...packageObject,
+      same_record_accepted_evidence_package_ref:
+        evidence.same_record_accepted_evidence_package_ref ??
+        evidence.evidence_package_ref ??
+        packageObject.same_record_accepted_evidence_package_ref ??
+        packageObject.evidence_package_ref,
+    };
+  }
+  return evidence;
+}
+
 function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
+  const acceptedEvidence = normalizeSameRecordAcceptedEvidenceInput(evidence);
   const adapter = carrier?.central_solver_retained_source_adapter ?? null;
   const retainedRecordId = stringRef(carrier?.same_record_binding?.retained_record_id);
   const sourceRowId = stringRef(carrier?.same_record_binding?.source_row_id);
-  const suppliedRetainedRecordId = stringRef(evidence.retained_record_id ?? evidence.same_record_retained_record_id);
-  const suppliedSourceRowId = stringRef(evidence.source_row_id ?? evidence.same_record_source_row_id);
+  const suppliedRetainedRecordId = stringRef(
+    acceptedEvidence.retained_record_id ?? acceptedEvidence.same_record_retained_record_id
+  );
+  const suppliedSourceRowId = stringRef(acceptedEvidence.source_row_id ?? acceptedEvidence.same_record_source_row_id);
   const acceptedSameRecordEvidence =
-    evidence.accepted_same_record_retained_source_adapter_evidence === true ||
-    evidence.accepted_same_record_evidence === true;
+    acceptedEvidence.accepted_same_record_retained_source_adapter_evidence === true ||
+    acceptedEvidence.accepted_same_record_evidence === true;
+  const suppliedEvidencePackageSchema = stringRef(acceptedEvidence.schema);
   const missingFields = [];
   if (carrier?.schema !== PROVIDER_SOURCE_CARRIER_SCHEMA) {
     missingFields.push("central_solver_retained_history_provider_source_carrier.schema");
+  }
+  if (
+    suppliedEvidencePackageSchema != null &&
+    suppliedEvidencePackageSchema !== SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA
+  ) {
+    missingFields.push("central_solver_retained_source_adapter.accepted_evidence.schema");
   }
   if (adapter?.artifact_status !== "retained_source_adapter_present_acceptance_blocked") {
     missingFields.push("central_solver_retained_source_adapter.artifact_status");
@@ -145,7 +173,7 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     missingFields.push("central_solver_retained_source_adapter.accepted_evidence.source_row_id");
   }
   for (const field of REQUIRED_ACCEPTED_EVIDENCE_FIELDS) {
-    if (stringRef(evidence[field]) == null) {
+    if (stringRef(acceptedEvidence[field]) == null) {
       missingFields.push(`central_solver_retained_source_adapter.accepted_evidence.${field}`);
     }
   }
@@ -153,7 +181,9 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     retainedRecordId: suppliedRetainedRecordId,
     sourceRowId: suppliedSourceRowId,
     acceptedSameRecordEvidence,
-    refs: Object.fromEntries(REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, stringRef(evidence[field])])),
+    refs: Object.fromEntries(
+      REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, stringRef(acceptedEvidence[field])])
+    ),
   });
   const criterionPassed = missingFields.length === 0;
   const adapterAcceptanceCertificateRef = criterionPassed
@@ -175,8 +205,13 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
     adapter_acceptance_certificate_ref: adapterAcceptanceCertificateRef,
     required_accepted_evidence_fields: [...REQUIRED_ACCEPTED_EVIDENCE_FIELDS],
     supplied_accepted_evidence_refs: Object.fromEntries(
-      REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, stringRef(evidence[field])])
+      REQUIRED_ACCEPTED_EVIDENCE_FIELDS.map((field) => [field, stringRef(acceptedEvidence[field])])
     ),
+    same_record_accepted_evidence_package_schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+    supplied_same_record_accepted_evidence_package_ref: stringRef(
+      acceptedEvidence.same_record_accepted_evidence_package_ref ?? acceptedEvidence.evidence_package_ref
+    ),
+    supplied_same_record_accepted_evidence_package_schema: suppliedEvidencePackageSchema,
     same_record_binding: {
       retained_record_id: {
         expected: retainedRecordId,
@@ -514,10 +549,30 @@ function cliStringOption(name) {
   return process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? null;
 }
 
+function cliJsonOption(name) {
+  const path = cliStringOption(name);
+  if (path == null) {
+    return null;
+  }
+  return JSON.parse(fs.readFileSync(path, "utf8"));
+}
+
 function runCli() {
+  let sameRecordAcceptedEvidence = {};
+  let externalAcceptedAuthorityVerification = {};
+  try {
+    sameRecordAcceptedEvidence = cliJsonOption("same-record-accepted-evidence-json") ?? {};
+    externalAcceptedAuthorityVerification = cliJsonOption("external-accepted-authority-verification-json") ?? {};
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+    return;
+  }
   const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
     retainedRecordId: cliStringOption("retained-record-id"),
     sourceRowId: cliStringOption("source-row-id"),
+    sameRecordAcceptedEvidence,
+    externalAcceptedAuthorityVerification,
   });
   const errors = validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact);
   if (errors.length > 0) {

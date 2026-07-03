@@ -1,16 +1,25 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import {
   EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
   FIRST_MISSING_FIELD,
   NEGATIVE_CONTROL_REASONS,
   SCHEMA,
+  SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
   buildCentralSolverRetainedSourceAdapterAcceptanceCertificate,
   evaluateCentralSolverRetainedSourceAdapterAcceptanceCertificateEvidence,
   validateCentralSolverRetainedSourceAdapterAcceptanceCertificate,
 } from "../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs";
 
+const SCRIPT_PATH = fileURLToPath(
+  new URL("../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs", import.meta.url)
+);
 const RETAINED_RECORD_ID = "retained-record:held-release-six-point:adapter-acceptance-certificate";
 const SOURCE_ROW_ID = "two-speed-preferred-row:u0.8:v0.2";
 
@@ -127,6 +136,77 @@ test("central retained-source adapter acceptance certificate emits candidate cer
   });
   assert.equal(artifact.authorization.central_solver_retained_source_adapter_acceptance_certificate, false);
   assert.equal(artifact.authorization.retained_branch_claim, false);
+  assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+});
+
+test("central retained-source adapter acceptance certificate CLI consumes same-record accepted evidence package JSON", () => {
+  const tempDir = mkdtempSync(path.join(tmpdir(), "retained-source-adapter-evidence-"));
+  const evidencePath = path.join(tempDir, "same-record-accepted-evidence.json");
+  writeFileSync(
+    evidencePath,
+    JSON.stringify(
+      {
+        schema: SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA,
+        evidence_package_ref: `accepted-evidence-package:retained-source-adapter:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+        ...makeAcceptedEvidence(),
+      },
+      null,
+      2
+    )
+  );
+
+  try {
+    const output = execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        `--retained-record-id=${RETAINED_RECORD_ID}`,
+        `--source-row-id=${SOURCE_ROW_ID}`,
+        `--same-record-accepted-evidence-json=${evidencePath}`,
+        "--pretty",
+      ],
+      { encoding: "utf8" }
+    );
+    const artifact = JSON.parse(output);
+
+    assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, true);
+    assert.equal(
+      artifact.same_record_accepted_evidence_criterion.supplied_same_record_accepted_evidence_package_schema,
+      SAME_RECORD_ACCEPTED_EVIDENCE_PACKAGE_SCHEMA
+    );
+    assert.match(
+      artifact.adapter_acceptance_certificate_ref,
+      /^candidate:central_solver_retained_source_adapter_acceptance_certificate:[0-9a-f]{16}$/
+    );
+    assert.equal(
+      artifact.first_missing_field,
+      "central_solver_retained_source_adapter.external_accepted_authority_verification_ref"
+    );
+    assert.equal(artifact.authorization.accepted_same_record_evidence, false);
+    assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+  } finally {
+    rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test("central retained-source adapter acceptance certificate rejects wrong accepted-evidence package schema", () => {
+  const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+    sameRecordAcceptedEvidence: {
+      schema: "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v99",
+      ...makeAcceptedEvidence(),
+    },
+  });
+
+  assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, false);
+  assert.equal(
+    artifact.same_record_accepted_evidence_criterion.missing_fields.includes(
+      "central_solver_retained_source_adapter.accepted_evidence.schema"
+    ),
+    true
+  );
+  assert.equal(artifact.adapter_acceptance_certificate_ref, null);
   assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
 });
 

@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 - Same-Record Accepted-Evidence JSON Intake Added
+
+Advanced the retained-source adapter certificate from programmatic-only evidence injection to a CLI source-intake path. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) now recognizes `central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0` and accepts `--same-record-accepted-evidence-json=<path>` plus `--external-accepted-authority-verification-json=<path>` for source-package intake.
+
+Executable status: with no evidence package it still stops at `central_solver_retained_source_adapter.accepted_evidence.accepted_same_record_retained_source_adapter_evidence`; with a complete same-record accepted-evidence package it emits a candidate `central_solver_retained_source_adapter_acceptance_certificate` ref and advances to `central_solver_retained_source_adapter.external_accepted_authority_verification_ref`. A wrong accepted-evidence package schema fails closed. The repo artifact still does not authorize accepted adapter evidence, retained branch output, chirality authorization, Noether sea stabilization, branch-chart/moving certificate, return/stability claim, or score movement.
+
+Decision: the hard artifact moved from a test-only accepted-evidence bundle to a reusable source-intake path. The active closure goal is still incomplete until a real accepted same-record evidence package and non-repo external accepted authority package are supplied for the same retained record and source row.
+
 ### 2026-07-02 - Retained-Source Adapter Acceptance-Certificate Target Added
 
 Implemented the next fail-closed certificate boundary for the retained-source adapter. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) emits `central_solver_retained_source_adapter_acceptance_certificate.v0`, consumes the bound provider/source carrier, checks that same-record accepted evidence is declared for the retained record and source row, and rejects cross-record evidence before emitting a candidate adapter acceptance-certificate ref.

@@ -98,12 +98,16 @@ test("textbook TOC page navigation resolves current page by scene path", () => {
   assert.equal(navigation.next.title, "Architrino");
 });
 
-test("textbook TOC page entries target runtime markdown documents", () => {
+test("textbook TOC page entries prefer authored scenes and fall back to runtime markdown", () => {
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
 
   assert.equal(
     sequence.pages[0].targetPath,
-    `${RUNTIME_MARKDOWN_DOC_PREFIX}content/markdown/aaa/foundations/ontology.md`
+    "content/scenes/foundations/ontology.json"
+  );
+  assert.equal(
+    sequence.pages[1].targetPath,
+    "content/scenes/foundations/architrino.json"
   );
   assert.equal(
     sequence.pages[2].targetPath,
