@@ -41,6 +41,18 @@ const packageArtifacts = [
     packageTarget: "browser-app-runtime",
   },
   {
+    role: "deployed-wasm-loader",
+    kind: "emscripten-es-module-loader",
+    path: "src/solver/wasm/runtime/architrino_solver_wasm_smoke.mjs",
+    packageTarget: "browser-app-runtime",
+  },
+  {
+    role: "deployed-wasm-binary",
+    kind: "webassembly-binary",
+    path: "src/solver/wasm/runtime/architrino_solver_wasm_smoke.wasm",
+    packageTarget: "browser-app-runtime",
+  },
+  {
     role: "app-bridge-runtime",
     kind: "javascript-module",
     path: "src/solver/app/SolverAppBridge.mjs",
@@ -256,6 +268,8 @@ function buildManifest(packageCapabilities) {
     entrypoints: {
       wasmLoader: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs",
       wasmBinary: ".tmp/solver-build/wasm/architrino_solver_wasm_smoke.wasm",
+      deployedWasmLoader: "src/solver/wasm/runtime/architrino_solver_wasm_smoke.mjs",
+      deployedWasmBinary: "src/solver/wasm/runtime/architrino_solver_wasm_smoke.wasm",
       appBridgeModule: "src/solver/app/SolverAppBridge.mjs",
       appBridgeClientResolverModule: "src/solver/app/SolverAppBridgeClientResolver.mjs",
       workerBridgeModule: "src/solver/app/SolverAppWorkerBridge.mjs",

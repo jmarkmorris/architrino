@@ -1,6 +1,6 @@
 const DEFAULT_SOLVER_WASM_RELATIVE_URL =
-  "../../../.tmp/solver-build/wasm/architrino_solver_wasm_smoke.mjs";
-const DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL = "../../../.tmp/solver-build/wasm/";
+  "../../solver/wasm/runtime/architrino_solver_wasm_smoke.mjs";
+const DEFAULT_SOLVER_WASM_BASE_RELATIVE_URL = "../../solver/wasm/runtime/";
 const DEFAULT_SOLVER_WORKER_RELATIVE_URL = "./PhotonSolverBridgeWorker.js";
 const DEFAULT_SOLVER_WASM_CACHE_TAG = "photon-solver-wasm-v1";
 const DEFAULT_WASM_FACTORY_EXPORTS = Object.freeze([

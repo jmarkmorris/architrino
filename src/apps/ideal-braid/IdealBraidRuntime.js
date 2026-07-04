@@ -1503,9 +1503,10 @@ function appendIdealBraidCacheBust(path, token) {
 
 export function navigateIdealBraidHome(
   locationLike = globalThis.window?.location,
-  href = IDEAL_BRAID_NAVIGATOR_HREF
+  href = IDEAL_BRAID_NAVIGATOR_HREF,
+  options = {}
 ) {
-  return navigateStandaloneAppHome(locationLike, href);
+  return navigateStandaloneAppHome(locationLike, href, options);
 }
 
 function createIdealBraidMarkdownRenderer(windowLike) {
@@ -2367,7 +2368,9 @@ export function mountIdealBraid(options = {}) {
     syncControls();
   });
   dom.homeButton.addEventListener("click", () => {
-    navigateIdealBraidHome(windowLike?.location, homeHref);
+    navigateIdealBraidHome(windowLike?.location, homeHref, {
+      windowLike,
+    });
   });
   dom.resetButton.addEventListener("click", () => {
     resetRotation();

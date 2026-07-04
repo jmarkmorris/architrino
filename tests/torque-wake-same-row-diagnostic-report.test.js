@@ -8,6 +8,8 @@ import { fileURLToPath } from "node:url";
 
 import {
   buildReport,
+  buildRetainedActiveRowBranchCertificateAcceptanceReport,
+  retainedActiveRowBranchCertificateAcceptanceErrors,
   validationErrors,
 } from "../scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs";
 
@@ -48,6 +50,89 @@ function producerTargetField(report, field) {
 
 function missingAcceptedRef(target, field) {
   return target.missing_accepted_refs.find((entry) => entry.field === field);
+}
+
+function receiverRowsFor(rowIds) {
+  return rowIds.map((rowId, index) => {
+    const sourceNormalDenominator = index + 2;
+    const receiverNormalNumerator = 1;
+    const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+    return {
+      rowId,
+      sourceNormalDenominator,
+      receiverNormalNumerator,
+      receiverNormalFactor,
+      unsignedReceiverNormalFactor: Math.abs(receiverNormalFactor),
+      branchWeight: Math.abs(receiverNormalFactor),
+    };
+  });
+}
+
+function acceptedNsh421EvidenceObjectFor(fixture) {
+  const rows = fixture.sampled_active_row_ids.map((rowId) =>
+    rowId.replace("index-ratio:f2", "index-ratio:dyadic-lock-4-2-1:f2")
+  );
+  const retainedRecordId = "retained-record:nsh-421:index-ratio-dyadic-lock-4-2-1-f2";
+  const branchCertificateRef = "accepted-branch-certificate:nsh-421:index-ratio-dyadic-lock-4-2-1-f2";
+  const acceptedBranchChartRef = "accepted-branch-chart:nsh-421:index-ratio-dyadic-lock-4-2-1-f2";
+  const movingCertificateRef = "moving-retained-branch-certificate:nsh-421:index-ratio-dyadic-lock-4-2-1-f2";
+  const activeRootLedgerHash = "route-root-key:2856731379702547500";
+  const conservationPullbackHash =
+    "sha256:2222222222222222222222222222222222222222222222222222222222222222";
+  const negativeControlRef = "negative-control:nsh-421:source-normal-jacobian-rejected";
+
+  return {
+    schema: "torque_wake_retained_active_row_branch_certificate_evidence_object/v0",
+    proof_id: "NSH-421",
+    family_id: "dyadic-lock-4-2-1",
+    role_assigned_integer_ratio: "4:2:1",
+    source_report_ref: "accepted-report:nsh-421:tri-binary-dyadic-lock-4-2-1-f2",
+    selected_case_id: "index-ratio:dyadic-lock-4-2-1:f2",
+    route_root_key: "2856731379702547500",
+    sampled_active_row_ids: rows,
+    branch_certificate_ref: branchCertificateRef,
+    same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: receiverRowsFor(rows),
+    retained_branch: true,
+    accepted_branch_chart_ref: acceptedBranchChartRef,
+    moving_retained_branch_certificate_ref: movingCertificateRef,
+    same_record_identity: {
+      branch_label: "branch:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      extraction_window_id: "window:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      active_root_ledger_hash: activeRootLedgerHash,
+      accepted_branch_chart_ref: acceptedBranchChartRef,
+      separator_chart_ref: "separator-chart:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      positive_gap_record_ref: "positive-gap:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      memory_depth_record_ref: "memory-depth:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      active_wave_vector_gap_ref: "active-wave-vector-gap:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+    },
+    active_root_ledger_hash: activeRootLedgerHash,
+    conservation_pullback_hash: conservationPullbackHash,
+    negative_control_ref: negativeControlRef,
+    retained_source_binding: {
+      retained_record_id: retainedRecordId,
+      retained_source_ref: "accepted-source:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      source_artifact_hash:
+        "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      source_status: "accepted_non_fixture_source",
+    },
+    provider_provenance: {
+      provider_object_ref: "accepted-provider-object:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+      provider_source_status: "accepted_non_fixture_source",
+      proof_object_provenance_ref:
+        "proof-provenance:nsh-421:index-ratio-dyadic-lock-4-2-1-f2",
+    },
+    same_record_binding: {
+      retained_record_id: retainedRecordId,
+      branch_certificate_ref: branchCertificateRef,
+      same_retained_active_row_ids: rows,
+      accepted_branch_chart_ref: acceptedBranchChartRef,
+      moving_retained_branch_certificate_ref: movingCertificateRef,
+      active_root_ledger_hash: activeRootLedgerHash,
+      conservation_pullback_hash: conservationPullbackHash,
+      negative_control_ref: negativeControlRef,
+    },
+  };
 }
 
 test("torque/wake same-row diagnostic records useful rows but blocks all authorization", () => {
@@ -220,6 +305,10 @@ test("torque/wake same-row diagnostic records useful rows but blocks all authori
   assert.equal(
     producerTargetField(report, "same_record_binding.same_retained_active_row_ids").failure_code,
     "same_record_binding_same_retained_active_row_ids_missing"
+  );
+  assert.equal(
+    producerTargetField(report, "receiver_normal_branch_rows").failure_code,
+    "receiver_normal_branch_rows_missing"
   );
   assert.equal(
     report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
@@ -520,6 +609,7 @@ test("torque/wake branch-certificate audit rejects proxy and synthetic same-reco
     retained_branch: false,
     branch_certificate_ref: "accepted-branch-certificate:index-ratio:f2",
     same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: receiverRowsFor(rows),
     accepted_branch_chart_ref: "proxy:accepted-branch-chart-ref-not-issued",
     moving_retained_branch_certificate_ref: "synthetic:moving-certificate:index-ratio:f2",
     same_record_identity: {
@@ -587,6 +677,7 @@ test("torque/wake branch-certificate provider target rejects reference-complete 
     action_increment_row_id: "action-row:index-ratio:f2",
     branch_certificate_ref: "accepted-branch-certificate:index-ratio:f2",
     same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: receiverRowsFor(rows),
     same_record_identity: {
       branch_label: "branch:index-ratio:f2",
       extraction_window_id: "window:index-ratio:f2",
@@ -637,6 +728,148 @@ test("torque/wake branch-certificate provider target rejects reference-complete 
     false
   );
   assert.equal(report.branch_certificate_provider_object_target.authorization.retained_branch, false);
+});
+
+test("torque/wake provider target requires same-row receiver-normal branch weights", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const rows = fixture.sampled_active_row_ids;
+  const invalidReceiverRows = receiverRowsFor(rows);
+  invalidReceiverRows[1] = {
+    ...invalidReceiverRows[1],
+    branchWeight: invalidReceiverRows[1].branchWeight * 2,
+  };
+  const report = buildReport({
+    ...fixture,
+    retained_branch: false,
+    accepted_transition_source_ref: "accepted-transition-source:index-ratio:f2",
+    action_increment_row_id: "action-row:index-ratio:f2",
+    branch_certificate_ref: "accepted-branch-certificate:index-ratio:f2",
+    same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: invalidReceiverRows,
+    same_record_identity: {
+      branch_label: "branch:index-ratio:f2",
+      extraction_window_id: "window:index-ratio:f2",
+      active_root_ledger_hash: fixture.active_root_ledger_hash,
+      accepted_branch_chart_ref: "accepted-branch-chart:index-ratio:f2",
+      separator_chart_ref: "separator-chart:index-ratio:f2",
+      positive_gap_record_ref: "positive-gap:index-ratio:f2",
+      memory_depth_record_ref: "memory-depth:index-ratio:f2",
+      active_wave_vector_gap_ref: "active-wave-vector-gap:index-ratio:f2",
+    },
+    accepted_branch_chart_ref: "accepted-branch-chart:index-ratio:f2",
+    moving_retained_branch_certificate_ref: "moving-retained-branch-certificate:index-ratio:f2",
+  });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(
+    providerField(report, "receiver_normal_branch_rows").failure_code,
+    "receiver_normal_branch_weight_equation_failed"
+  );
+  assert.equal(
+    sameStepProviderField(report, "receiver_normal_branch_rows").failure_code,
+    "receiver_normal_branch_weight_equation_failed"
+  );
+  assert.equal(
+    report.retained_active_row_certificate_contract.receiver_normal_branch_rows_contract.pass,
+    false
+  );
+  assert.equal(report.branch_certificate_provider_object_target.provider_object_ready, false);
+  assert.equal(report.authorization.candidate_h_recovery, false);
+  assert.equal(report.authorization.moving_retained_branch_certificate, false);
+});
+
+test("NSH-421 retained active-row evidence object can satisfy the acceptance contract", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const evidenceObject = acceptedNsh421EvidenceObjectFor(fixture);
+  const report = buildRetainedActiveRowBranchCertificateAcceptanceReport(evidenceObject);
+
+  assert.deepEqual(retainedActiveRowBranchCertificateAcceptanceErrors(report), []);
+  assert.equal(
+    report.schema,
+    "torque_wake_retained_active_row_branch_certificate_acceptance_report/v0"
+  );
+  assert.equal(report.accepted_retained_active_row_branch_certificate, true);
+  assert.equal(report.first_failure, null);
+  assert.equal(report.proof_id, "NSH-421");
+  assert.equal(report.family_id, "dyadic-lock-4-2-1");
+  assert.equal(report.role_assigned_integer_ratio, "4:2:1");
+  assert.equal(report.producer_target.producer_ready, true);
+  assert.equal(report.receiver_normal_branch_rows_contract.pass, true);
+  assert.deepEqual(report.required_same_retained_active_row_ids, evidenceObject.sampled_active_row_ids);
+  assert.deepEqual(
+    report.observed_same_retained_active_row_ids,
+    evidenceObject.same_retained_active_row_ids
+  );
+  assert.equal(report.downstream_authorization.accepted_transition_source_ref, false);
+  assert.equal(report.downstream_authorization.moving_retained_branch_certificate, false);
+  assert.equal(report.downstream_authorization.observer_export, false);
+});
+
+test("NSH-421 retained active-row evidence object preserves branch certificate as first blocker", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const evidenceObject = acceptedNsh421EvidenceObjectFor(fixture);
+  evidenceObject.branch_certificate_ref = null;
+  evidenceObject.same_record_binding.branch_certificate_ref = null;
+
+  const report = buildRetainedActiveRowBranchCertificateAcceptanceReport(evidenceObject);
+
+  assert.deepEqual(retainedActiveRowBranchCertificateAcceptanceErrors(report), []);
+  assert.equal(report.accepted_retained_active_row_branch_certificate, false);
+  assert.equal(report.first_failure, "branch_certificate_ref_missing");
+  assert.equal(report.producer_target.producer_ready, false);
+  assert.equal(
+    report.producer_target.field_results.find((row) => row.field === "branch_certificate_ref")
+      .failure_code,
+    "branch_certificate_ref_missing"
+  );
+});
+
+test("NSH-421 retained active-row evidence object rejects source-normal-only rows", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const evidenceObject = acceptedNsh421EvidenceObjectFor(fixture);
+  evidenceObject.receiver_normal_branch_rows = evidenceObject.sampled_active_row_ids.map((rowId) => ({
+    rowId,
+    sourceNormalDenominator: 2,
+    jacobian: 0.5,
+    etaMinusTwoJacobianWeight: 0.25,
+  }));
+
+  const report = buildRetainedActiveRowBranchCertificateAcceptanceReport(evidenceObject);
+
+  assert.deepEqual(retainedActiveRowBranchCertificateAcceptanceErrors(report), []);
+  assert.equal(report.accepted_retained_active_row_branch_certificate, false);
+  assert.equal(report.first_failure, "missing_receiver_normal_branch_row_fields");
+  assert.equal(report.receiver_normal_branch_rows_contract.pass, false);
+  assert.deepEqual(
+    report.receiver_normal_branch_rows_contract.row_results[0].missing_fields,
+    [
+      "receiverNormalNumerator",
+      "receiverNormalFactor",
+      "unsignedReceiverNormalFactor",
+      "branchWeight",
+    ]
+  );
+});
+
+test("torque/wake CLI evaluates an NSH-421 retained active-row evidence object", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "torque-wake-evidence-object-"));
+  const objectPath = path.join(tempDir, "evidence-object.json");
+  fs.writeFileSync(
+    objectPath,
+    `${JSON.stringify(acceptedNsh421EvidenceObjectFor(fixture), null, 2)}\n`
+  );
+
+  const report = JSON.parse(
+    execFileSync(process.execPath, [SCRIPT_PATH, "--evidence-object", objectPath, "--pretty"], {
+      encoding: "utf8",
+    })
+  );
+
+  assert.equal(report.valid_report, true);
+  assert.equal(report.accepted_retained_active_row_branch_certificate, true);
+  assert.equal(report.first_failure, null);
+  assert.equal(report.producer_target.producer_ready, true);
 });
 
 test("torque/wake same-row diagnostic CLI emits and validates current fixture report", () => {

@@ -1173,7 +1173,9 @@ export function createPdgeditAppRuntime({
 
     homeButtonElement.replaceChildren(createHomeIconSvg(documentLike));
     homeButtonElement.addEventListener("click", () => {
-      navigateStandalonePdgeditHome(windowLike?.location, homeHref);
+      navigateStandalonePdgeditHome(windowLike?.location, homeHref, {
+        windowLike,
+      });
     });
 
     documentTriggerElement.addEventListener("click", (event) => {

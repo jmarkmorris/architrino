@@ -82,6 +82,10 @@ import {
   PHOTON_SOURCE_HISTORY_PROVIDER_ID,
 } from "../src/apps/photon/PhotonSourceHistoryRuntime.js";
 import {
+  createPhotonDefaultSolverWasmBaseUrl,
+  createPhotonDefaultSolverWasmLoaderUrl,
+} from "../src/apps/photon/PhotonSolverBridgeOptions.js";
+import {
   advancePhotonModelTime,
   getPhotonRuntimeTimes,
   shouldHandlePhotonSpaceToggle,
@@ -761,6 +765,8 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
   assert.equal(request.sourceHistoryProvider.providerId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
   assert.equal(request.sourceHistoryProvider.providerKind, "constrained_architrino_motion");
   assert.deepEqual(request.solverBoundary, PHOTON_SOURCE_HISTORY_BOUNDARY);
+  assert.ok(request.receiver.startTime <= request.hitTime);
+  assert.ok(request.receiver.endTime >= request.hitTime);
   const client = createSolverAppBridgeClient();
   await client.init(createPhotonTestSolverInitRequest());
 
@@ -843,6 +849,15 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
     "solver-moving-circular-observer-field-f64.v1"
   );
   await client.dispose();
+});
+
+test("Photon solver bridge default WASM path is deployable by GitHub Pages", () => {
+  assert.ok(
+    createPhotonDefaultSolverWasmLoaderUrl().endsWith(
+      "/src/solver/wasm/runtime/architrino_solver_wasm_smoke.mjs"
+    )
+  );
+  assert.ok(createPhotonDefaultSolverWasmBaseUrl().endsWith("/src/solver/wasm/runtime/"));
 });
 
 test("Photon absolute-history source roots route through the moving-circular solver bridge", async () => {

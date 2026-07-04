@@ -17,6 +17,7 @@ Use this file as the staging ledger before broad cleanup of Noether braid markdo
 5. Topological charge, spin, mass response, photon gates, Lorentz export, GR export, and measurement rows attach to a retained branch record. They do not create a base Proof ID by themselves.
 6. Large proof-packet corpora remain unmapped until inspected. A filename match is not sufficient evidence for assignment.
 7. If the support base is not declared, assign a provisional row and record the missing support evidence instead of forcing the packet into `NB`, `SH`, or `NSH`.
+8. Receiver-normal screening is required for any retained-branch, force/action, stability, observer-export, pressure, or mass-response use. Source-normal, Jacobian-only, quotient, fixture, frozen-ledger, or cross-row evidence remains diagnostic unless the same branch record supplies $D_s$, $D_t$, $W^{\mathrm{rec}}$ / `branchWeight`, and the consumed action/event/stability rows.
 
 ## Proof ID Vocabulary
 

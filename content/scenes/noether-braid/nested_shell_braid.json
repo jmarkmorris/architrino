@@ -3,11 +3,19 @@
   "scene": {
     "id": "noether_braid__nested_shell_braid",
     "title": "Nested Shell Braid",
-    "type": "Scene-Diagram",
+    "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "rings"
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": true
     }
   },
   "objects": []

@@ -13,6 +13,8 @@ const BRANCH_CERTIFICATE_REF_SOURCE_AVAILABILITY_AUDIT_SCHEMA =
   "torque_wake_branch_certificate_ref_source_availability_audit/v0";
 const NEXT_RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA =
   "torque_wake_retained_active_row_branch_certificate_evidence_object/v0";
+const RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_ACCEPTANCE_REPORT_SCHEMA =
+  "torque_wake_retained_active_row_branch_certificate_acceptance_report/v0";
 const RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_TARGET_SCHEMA =
   "torque_wake_retained_active_row_branch_certificate_producer_target/v0";
 const RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_BRIDGE_TARGET_SCHEMA =
@@ -25,6 +27,9 @@ const NEAREST_PARTIAL_BRANCH_CERTIFICATE_REF =
   "candidate:branch-chart-ref-with-partial-same-record-identity";
 const NEAREST_PARTIAL_ACCEPTED_BRANCH_CHART_REF =
   "proxy:accepted-branch-chart-ref-not-issued";
+const NSH421_PROOF_ID = "NSH-421";
+const NSH421_FAMILY_ID = "dyadic-lock-4-2-1";
+const NSH421_ROLE_ASSIGNED_INTEGER_RATIO = "4:2:1";
 
 const DISALLOWED_REFERENCE_PREFIXES = [
   "priority-only:",
@@ -69,6 +74,15 @@ const SAME_RECORD_IDENTITY_REQUIRED_FIELDS = [
   "same_record_identity.active_wave_vector_gap_ref",
 ];
 
+const RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS = [
+  "rowId",
+  "sourceNormalDenominator",
+  "receiverNormalNumerator",
+  "receiverNormalFactor",
+  "unsignedReceiverNormalFactor",
+  "branchWeight",
+];
+
 const RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS = [
   "source_report_ref",
   "selected_case_id",
@@ -76,6 +90,7 @@ const RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS = [
   "sampled_active_row_ids",
   "branch_certificate_ref",
   "same_retained_active_row_ids",
+  "receiver_normal_branch_rows",
   "retained_branch",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
@@ -113,6 +128,7 @@ const BRANCH_CERTIFICATE_REF_SOURCE_AUDIT_FIELDS = [
   "branch_certificate_ref",
   "same_retained_active_row_ids",
   "same_retained_active_row_id_binding",
+  "receiver_normal_branch_rows",
   "retained_branch",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
@@ -141,6 +157,7 @@ const BRANCH_CERTIFICATE_PROVIDER_OBJECT_FIELDS = [
   "retained_branch",
   "branch_certificate_ref",
   "same_retained_active_row_ids",
+  "receiver_normal_branch_rows",
   "same_record_identity.branch_label",
   "same_record_identity.extraction_window_id",
   "same_record_identity.active_root_ledger_hash",
@@ -162,6 +179,7 @@ const SAME_STEP_RETAINED_TORQUE_WAKE_PROVIDER_FIELDS = [
   "retained_branch",
   "branch_certificate_ref",
   "same_retained_active_row_ids",
+  "receiver_normal_branch_rows",
   "same_record_identity.accepted_branch_chart_ref",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
@@ -175,6 +193,7 @@ function parseArgs(argv) {
     input: null,
     out: null,
     validate: null,
+    evidenceObject: null,
     pretty: false,
     help: false,
   };
@@ -187,6 +206,8 @@ function parseArgs(argv) {
       args.out = argv[++index];
     } else if (arg === "--validate") {
       args.validate = argv[++index];
+    } else if (arg === "--evidence-object") {
+      args.evidenceObject = argv[++index];
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--help" || arg === "-h") {
@@ -203,16 +224,19 @@ function printHelp() {
   console.log(`Usage: node scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs [options]
 
 Options:
-  --input PATH       Candidate torque/wake same-row diagnostic JSON.
-  --validate PATH    Validate an emitted report.
-  --out PATH         Write JSON output to a file instead of stdout.
-  --pretty           Pretty-print JSON output.
-  --help             Show this help.
+  --input PATH            Candidate torque/wake same-row diagnostic JSON.
+  --evidence-object PATH  Candidate retained active-row branch-certificate evidence object.
+  --validate PATH         Validate an emitted diagnostic report.
+  --out PATH              Write JSON output to a file instead of stdout.
+  --pretty                Pretty-print JSON output.
+  --help                  Show this help.
 
 This is a fail-closed priority-side bridge report. It records whether the
 angular-momentum torque/wake diagnostic uses the same sampled active rows needed
-by rank 2 and rank 6, but it never promotes candidate_h_recovery, a moving
-retained branch certificate, a bounded-speed live ledger, or observer export.`);
+by rank 2 and rank 6. With --evidence-object it also checks the exact
+NSH-421 retained active-row branch-certificate acceptance contract. It never
+promotes candidate_h_recovery, a moving retained branch certificate, a
+bounded-speed live ledger, or observer export.`);
 }
 
 function readJson(filePath) {
@@ -279,6 +303,111 @@ function sameOrderedStrings(left, right) {
     return false;
   }
   return left.every((value, index) => value === right[index]);
+}
+
+function finiteNumber(value) {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function closeScaled(left, right, tolerance = 1e-9) {
+  if (!finiteNumber(left) || !finiteNumber(right)) {
+    return false;
+  }
+  const scale = Math.max(1, Math.abs(left), Math.abs(right));
+  return Math.abs(left - right) <= tolerance * scale;
+}
+
+function receiverNormalBranchRows(candidate) {
+  return Array.isArray(candidate.receiver_normal_branch_rows)
+    ? candidate.receiver_normal_branch_rows.filter((row) => isObject(row))
+    : [];
+}
+
+function evaluateReceiverNormalBranchRows(candidate, sampledRows) {
+  const rows = receiverNormalBranchRows(candidate);
+  const rowIds = rows.map((row) => row.rowId).filter((rowId) => nonemptyString(rowId));
+  const rowIdBinding =
+    rows.length > 0 &&
+    rowIds.length === rows.length &&
+    sameOrderedStrings(sampledRows, rowIds);
+  const rowResults = rows.map((row, index) => {
+    const missingFields = RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS.filter((field) => !present(row[field]));
+    const sourceNormalDenominator = row.sourceNormalDenominator;
+    const receiverNormalNumerator = row.receiverNormalNumerator;
+    const receiverNormalFactor = row.receiverNormalFactor;
+    const unsignedReceiverNormalFactor = row.unsignedReceiverNormalFactor;
+    const branchWeight = row.branchWeight;
+    const finiteFields = [
+      "sourceNormalDenominator",
+      "receiverNormalNumerator",
+      "receiverNormalFactor",
+      "unsignedReceiverNormalFactor",
+      "branchWeight",
+    ].filter((field) => finiteNumber(row[field]));
+    const expectedReceiverNormalFactor =
+      finiteNumber(receiverNormalNumerator) &&
+      finiteNumber(sourceNormalDenominator) &&
+      Math.abs(sourceNormalDenominator) > 1e-12
+        ? receiverNormalNumerator / sourceNormalDenominator
+        : null;
+    const equationsPass =
+      expectedReceiverNormalFactor !== null &&
+      closeScaled(receiverNormalFactor, expectedReceiverNormalFactor) &&
+      closeScaled(unsignedReceiverNormalFactor, Math.abs(receiverNormalFactor)) &&
+      closeScaled(branchWeight, unsignedReceiverNormalFactor);
+    const status =
+      missingFields.length > 0
+        ? "missing_receiver_normal_branch_row_fields"
+        : finiteFields.length !== 5
+          ? "nonfinite_receiver_normal_branch_row_fields"
+          : Math.abs(sourceNormalDenominator) <= 1e-12
+            ? "source_normal_denominator_floor_failed"
+            : !equationsPass
+              ? "receiver_normal_branch_weight_equation_failed"
+              : "passed";
+    return {
+      index,
+      rowId: row.rowId ?? null,
+      status,
+      missing_fields: missingFields,
+      finite_fields: finiteFields,
+      expectedReceiverNormalFactor,
+      receiver_normal_equations_passed: equationsPass,
+    };
+  });
+  const firstFailedRow = rowResults.find((row) => row.status !== "passed") ?? null;
+  const rowsPass = rows.length > 0 && firstFailedRow === null;
+  const pass = rowIdBinding && rowsPass;
+  const failureCode =
+    rows.length === 0
+      ? "receiver_normal_branch_rows_missing"
+      : !rowIdBinding
+        ? "receiver_normal_branch_row_id_mismatch"
+        : firstFailedRow
+          ? firstFailedRow.status
+          : null;
+  return {
+    schema: "receiver_normal_branch_rows_same_record_contract/v0",
+    required_fields: RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS,
+    required_same_retained_active_row_ids: sampledRows,
+    observed_row_ids: rowIds,
+    row_id_binding: rowIdBinding,
+    row_count: rows.length,
+    rows_pass: rowsPass,
+    pass,
+    first_failure: failureCode,
+    row_results: rowResults,
+  };
+}
+
+function receiverNormalBranchRowsTargetField(candidate, sampledRows) {
+  const contract = evaluateReceiverNormalBranchRows(candidate, sampledRows);
+  return providerTargetField(
+    "receiver_normal_branch_rows",
+    contract.pass,
+    contract.first_failure,
+    contract
+  );
 }
 
 function missingFields(candidate) {
@@ -507,6 +636,9 @@ function retainedActiveRowBranchCertificateProducerTarget(candidate, sampledRows
         }
       );
     }
+    if (field === "receiver_normal_branch_rows") {
+      return receiverNormalBranchRowsTargetField(candidate, sampledRows);
+    }
     if (field === "retained_branch") {
       return providerTargetField(
         field,
@@ -661,6 +793,8 @@ function nextRetainedActiveRowEvidenceObject(candidate, sampledRows) {
     selected_case_id: candidate.selected_case_id ?? null,
     required_fields: RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS,
     required_same_retained_active_row_ids: sampledRows,
+    receiver_normal_branch_rows_required_fields: RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS,
+    receiver_normal_branch_rows_contract: evaluateReceiverNormalBranchRows(candidate, sampledRows),
     same_record_identity_required_fields: SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
     reference_rejection_policy: referenceRejectionPolicy(),
     negative_control_contract: retainedActiveRowNegativeControlContract(candidate),
@@ -696,6 +830,7 @@ function computeFirstFailure(candidate, binding, missing) {
 
 function buildRetainedActiveRowCertificateContract(candidate, binding) {
   const sameRetainedRows = stringArray(candidate.same_retained_active_row_ids);
+  const receiverNormalBranchRowsContract = evaluateReceiverNormalBranchRows(candidate, binding.activeRows);
   const missingRetainedFields = RETAINED_ACTIVE_ROW_REQUIRED_FIELDS.filter((field) => !present(candidate[field]));
   const sameRetainedRowBinding =
     binding.same_row_id_binding &&
@@ -731,6 +866,7 @@ function buildRetainedActiveRowCertificateContract(candidate, binding) {
     next_retained_active_row_evidence_object: nextRetainedActiveRowEvidenceObject(candidate, binding.activeRows),
     sampled_same_row_id_binding: binding.same_row_id_binding,
     same_retained_active_row_id_binding: sameRetainedRowBinding,
+    receiver_normal_branch_rows_contract: receiverNormalBranchRowsContract,
     branch_certificate_ref_present: present(candidate.branch_certificate_ref),
     accepted_branch_chart_ref_present: present(candidate.accepted_branch_chart_ref),
     moving_retained_branch_certificate_ref_present: present(candidate.moving_retained_branch_certificate_ref),
@@ -738,6 +874,7 @@ function buildRetainedActiveRowCertificateContract(candidate, binding) {
       ...missingRetainedFields,
       ...(binding.same_row_id_binding ? [] : ["sampled_same_row_id_binding"]),
       ...(sameRetainedRowBinding ? [] : ["same_retained_active_row_id_binding"]),
+      ...(receiverNormalBranchRowsContract.pass ? [] : ["receiver_normal_branch_rows"]),
     ],
     same_retained_active_row_ids_status: present(candidate.branch_certificate_ref)
       ? sameRetainedRows.length > 0
@@ -853,6 +990,7 @@ function buildBranchCertificateProviderObjectTarget(candidate, binding, retained
         sampled_active_row_ids: sampledRows,
       }
     ),
+    receiverNormalBranchRowsTargetField(candidate, sampledRows),
     ...[
       "same_record_identity.branch_label",
       "same_record_identity.extraction_window_id",
@@ -904,7 +1042,7 @@ function buildBranchCertificateProviderObjectTarget(candidate, binding, retained
     },
     next_retained_active_row_evidence_object: nextRetainedActiveRowEvidenceObject(candidate, sampledRows),
     next_source_object:
-      "one non-fixture retained active-row provider object for selected_case_id=index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids equal to the sampled active rows, same_record_identity branch-chart fields, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
+      "one non-fixture retained active-row provider object for selected_case_id=index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids equal to the sampled active rows, receiver_normal_branch_rows carrying D_s, D_t, Wrec on the same row ids, same_record_identity branch-chart fields, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
   };
 }
 
@@ -956,7 +1094,7 @@ function buildSameStepRetainedTorqueWakeBranchCertificateProviderTarget(
       candidate_h_recovery: false,
     },
     smallest_next_source_object:
-      "non-fixture same-step retained torque/wake branch certificate provider for index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids, accepted branch-chart refs, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref on one retained record",
+      "non-fixture same-step retained torque/wake branch certificate provider for index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids, receiver_normal_branch_rows carrying D_s, D_t, Wrec on the same row ids, accepted branch-chart refs, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref on one retained record",
   };
 }
 
@@ -1009,6 +1147,7 @@ function buildBranchCertificateRefSourceAvailabilityAudit(candidate, binding, re
         same_retained_active_row_ids: sameRetainedRows,
       }
     ),
+    receiverNormalBranchRowsTargetField(candidate, sampledRows),
     providerTargetField(
       "retained_branch",
       candidate.retained_branch === true,
@@ -1068,7 +1207,7 @@ function buildBranchCertificateRefSourceAvailabilityAudit(candidate, binding, re
     next_retained_active_row_evidence_object: nextRetainedActiveRowEvidenceObject(candidate, sampledRows),
     fail_closed_bridge_target: retainedActiveRowBranchCertificateBridgeTarget(candidate, sampledRows),
     smallest_next_evidence_object:
-      "one retained active-row branch_certificate_ref for torque_wake_same_row_diagnostic:index-ratio:f2 with source_report_ref, selected_case_id, route_root_key, sampled_active_row_ids, same_retained_active_row_ids equal to those sampled rows, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, same_record_identity branch-label/window/active-root/accepted-chart/separator/positive-gap/memory-depth/active-wave-vector-gap fields, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
+      "one retained active-row branch_certificate_ref for torque_wake_same_row_diagnostic:index-ratio:f2 with source_report_ref, selected_case_id, route_root_key, sampled_active_row_ids, same_retained_active_row_ids equal to those sampled rows, receiver_normal_branch_rows carrying D_s, D_t, Wrec on the same row ids, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, same_record_identity branch-label/window/active-root/accepted-chart/separator/positive-gap/memory-depth/active-wave-vector-gap fields, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
     authorization: {
       accepted_transition_source: false,
       candidate_h_recovery: false,
@@ -1108,6 +1247,138 @@ function consumerStatus(firstFailure, retainedBranch) {
       note: "The diagnostic is explicitly below retained-branch and bounded-speed live-ledger closure.",
     },
   };
+}
+
+function evidenceIdentityField(field, value, expectedValue) {
+  const pass = value === expectedValue;
+  return providerTargetField(field, pass, pass ? null : `${field}_mismatch_or_missing`, {
+    value: value ?? null,
+    expected_value: expectedValue,
+  });
+}
+
+function selectedCaseFamilyBindingField(candidate) {
+  const selectedCaseId = normalizedString(candidate.selected_case_id);
+  const pass = selectedCaseId !== null && selectedCaseId.includes(NSH421_FAMILY_ID);
+  return providerTargetField(
+    "selected_case_id_family_binding",
+    pass,
+    pass ? null : "selected_case_id_not_nsh421_dyadic_family",
+    {
+      value: selectedCaseId,
+      required_family_id: NSH421_FAMILY_ID,
+    }
+  );
+}
+
+export function buildRetainedActiveRowBranchCertificateAcceptanceReport(candidate, options = {}) {
+  if (!isObject(candidate)) {
+    throw new Error("Candidate retained active-row branch certificate must be a JSON object.");
+  }
+
+  const sampledRows = stringArray(candidate.sampled_active_row_ids);
+  const producerTarget = retainedActiveRowBranchCertificateProducerTarget(candidate, sampledRows);
+  const receiverNormalBranchRowsContract = evaluateReceiverNormalBranchRows(candidate, sampledRows);
+  const identityFieldResults = [
+    providerTargetField(
+      "schema",
+      candidate.schema === NEXT_RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA,
+      "evidence_object_schema_mismatch",
+      {
+        value: candidate.schema ?? null,
+        expected_value: NEXT_RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA,
+      }
+    ),
+    evidenceIdentityField("proof_id", candidate.proof_id, NSH421_PROOF_ID),
+    evidenceIdentityField("family_id", candidate.family_id, NSH421_FAMILY_ID),
+    evidenceIdentityField(
+      "role_assigned_integer_ratio",
+      candidate.role_assigned_integer_ratio,
+      NSH421_ROLE_ASSIGNED_INTEGER_RATIO
+    ),
+    selectedCaseFamilyBindingField(candidate),
+  ];
+  const identityFailure = identityFieldResults.find((row) => row.status !== "passed") ?? null;
+  const producerFailure = producerTarget.field_results.find((row) => row.status !== "passed") ?? null;
+  const firstFailure = identityFailure?.failure_code ?? producerFailure?.failure_code ?? null;
+  const accepted = firstFailure === null;
+
+  return {
+    schema: RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_ACCEPTANCE_REPORT_SCHEMA,
+    source_ref: options.sourceRef ?? candidate.source_ref ?? null,
+    evidence_object_schema: candidate.schema ?? null,
+    proof_id: candidate.proof_id ?? null,
+    family_id: candidate.family_id ?? null,
+    role_assigned_integer_ratio: candidate.role_assigned_integer_ratio ?? null,
+    selected_case_id: candidate.selected_case_id ?? null,
+    route_root_key: candidate.route_root_key ?? null,
+    acceptance_scope:
+      "NSH-421 retained active-row branch certificate only; downstream rank-2 transition, moving certificate, retained-branch closure, bounded-speed live ledger, and observer export remain separately checked.",
+    accepted_retained_active_row_branch_certificate: accepted,
+    first_failure: firstFailure,
+    identity_field_results: identityFieldResults,
+    producer_target: producerTarget,
+    receiver_normal_branch_rows_contract: receiverNormalBranchRowsContract,
+    required_same_retained_active_row_ids: sampledRows,
+    observed_same_retained_active_row_ids: stringArray(candidate.same_retained_active_row_ids),
+    reference_rejection_policy: referenceRejectionPolicy(),
+    downstream_authorization: {
+      accepted_transition_source_ref: false,
+      field_speed_action_self_hit_scan: false,
+      moving_retained_branch_certificate: false,
+      retained_branch_closure: false,
+      bounded_speed_live_ledger: false,
+      observer_export: false,
+    },
+  };
+}
+
+export function retainedActiveRowBranchCertificateAcceptanceErrors(report) {
+  const errors = [];
+  if (!isObject(report)) {
+    return ["acceptance report must be an object"];
+  }
+  if (report.schema !== RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_ACCEPTANCE_REPORT_SCHEMA) {
+    errors.push(`schema must be ${RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_ACCEPTANCE_REPORT_SCHEMA}`);
+  }
+  if (typeof report.accepted_retained_active_row_branch_certificate !== "boolean") {
+    errors.push("accepted_retained_active_row_branch_certificate must be boolean");
+  }
+  if (report.accepted_retained_active_row_branch_certificate === true && report.first_failure !== null) {
+    errors.push("accepted certificate report must not carry a first_failure");
+  }
+  if (report.accepted_retained_active_row_branch_certificate === false && !nonemptyString(report.first_failure)) {
+    errors.push("blocked certificate report must carry a first_failure");
+  }
+  if (!Array.isArray(report.identity_field_results)) {
+    errors.push("identity_field_results must be an array");
+  }
+  if (!isObject(report.producer_target)) {
+    errors.push("producer_target must be an object");
+  } else {
+    validateProducerTarget(errors, "producer_target", report.producer_target);
+  }
+  if (!isObject(report.receiver_normal_branch_rows_contract)) {
+    errors.push("receiver_normal_branch_rows_contract must be an object");
+  } else if (
+    report.receiver_normal_branch_rows_contract.schema !==
+    "receiver_normal_branch_rows_same_record_contract/v0"
+  ) {
+    errors.push("receiver_normal_branch_rows_contract schema mismatch");
+  }
+  for (const field of [
+    "accepted_transition_source_ref",
+    "field_speed_action_self_hit_scan",
+    "moving_retained_branch_certificate",
+    "retained_branch_closure",
+    "bounded_speed_live_ledger",
+    "observer_export",
+  ]) {
+    if (report.downstream_authorization?.[field] !== false) {
+      errors.push(`${field} authorization must remain false`);
+    }
+  }
+  return errors;
 }
 
 export function buildReport(candidate, options = {}) {
@@ -1537,8 +1808,25 @@ function main() {
     process.exitCode = errors.length === 0 ? 0 : 1;
     return;
   }
+  if (args.evidenceObject) {
+    const candidate = readJson(args.evidenceObject);
+    const report = buildRetainedActiveRowBranchCertificateAcceptanceReport(candidate, {
+      sourceRef: args.evidenceObject,
+    });
+    const errors = retainedActiveRowBranchCertificateAcceptanceErrors(report);
+    writeOutput(
+      {
+        valid_report: errors.length === 0,
+        errors,
+        ...report,
+      },
+      args,
+    );
+    process.exitCode = errors.length === 0 ? 0 : 1;
+    return;
+  }
   if (!args.input) {
-    throw new Error("--input is required unless --validate is used.");
+    throw new Error("--input is required unless --validate or --evidence-object is used.");
   }
   const candidate = readJson(args.input);
   writeOutput(buildReport(candidate, { sourceRef: args.input }), args);

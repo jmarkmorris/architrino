@@ -9,11 +9,30 @@ import {
 import {
   APPLICATIONS_SCENE_PATH,
   STANDALONE_APP_HOME_HREF,
+  STANDALONE_APP_HOME_RETURN_STORAGE_KEY,
+  consumeStandaloneAppHomeReturn,
+  navigateStandaloneAppHome,
+  recordStandaloneAppHomeReturn,
   resolveStandaloneAppHomeHref,
 } from "../src/apps/navigator/StandaloneAppHomeRuntime.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
+}
+
+function createSessionStorageMock() {
+  const values = new Map();
+  return {
+    getItem(key) {
+      return values.has(key) ? values.get(key) : null;
+    },
+    setItem(key, value) {
+      values.set(key, String(value));
+    },
+    removeItem(key) {
+      values.delete(key);
+    },
+  };
 }
 
 test("work-in-progress public app scenes resolve to standalone app paths", () => {
@@ -85,14 +104,62 @@ test("standalone app home href returns to the Applications scene", () => {
   );
 });
 
+test("standalone app home navigation records a one-shot return href", () => {
+  const assigned = [];
+  const windowLike = {
+    location: {
+      href: "http://127.0.0.1:5173/photon.html",
+      assign: (href) => assigned.push(href),
+    },
+    sessionStorage: createSessionStorageMock(),
+  };
+  const homeHref = resolveStandaloneAppHomeHref(windowLike.location.href);
+
+  assert.equal(
+    navigateStandaloneAppHome(windowLike.location, homeHref, {
+      windowLike,
+    }),
+    true
+  );
+  assert.deepEqual(assigned, [homeHref]);
+  assert.notEqual(
+    windowLike.sessionStorage.getItem(STANDALONE_APP_HOME_RETURN_STORAGE_KEY),
+    null
+  );
+  assert.deepEqual(consumeStandaloneAppHomeReturn(windowLike), {
+    href: windowLike.location.href,
+  });
+  assert.equal(
+    windowLike.sessionStorage.getItem(STANDALONE_APP_HOME_RETURN_STORAGE_KEY),
+    null
+  );
+});
+
+test("standalone app home return storage rejects cross-origin hrefs", () => {
+  const windowLike = {
+    location: {
+      href: "http://127.0.0.1:5173/photon.html",
+    },
+    sessionStorage: createSessionStorageMock(),
+  };
+
+  assert.equal(
+    recordStandaloneAppHomeReturn(windowLike, "https://example.com/photon.html"),
+    false
+  );
+  assert.equal(consumeStandaloneAppHomeReturn(windowLike), null);
+});
+
 test("standalone app home controls avoid bare index navigation", () => {
   const appRuntimes = [
     "src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js",
     "src/apps/equation-mapping/EquationMappingRuntime.js",
     "src/apps/photon/PhotonRuntime.js",
+    "src/apps/molecule/MoleculeRuntime.js",
     "src/apps/website-stats/WebsiteStatsRuntime.js",
     "src/apps/animator/AnimatorAppModeRuntime.js",
     "src/apps/pdgedit/PdgeditAppModeRuntime.js",
+    "src/apps/pdgedit/PdgeditAppRuntime.js",
     "src/apps/ideal-braid/IdealBraidRuntime.js",
   ];
 

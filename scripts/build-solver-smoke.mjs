@@ -59,6 +59,7 @@ if (target === "wasm" || target === "all") {
   configureWasm();
   build("wasm");
   await verifyWasmSmoke();
+  syncWasmRuntimeArtifacts();
   runChecked("node", ["scripts/build-solver-package-manifest.mjs", "--write"], { env });
   runChecked("node", ["scripts/build-solver-package-manifest.mjs", "--check"], { env });
   runChecked("node", ["scripts/check-solver-app-bridge.mjs"], { env });
@@ -148,6 +149,22 @@ async function verifyWasmSmoke() {
     }
   }
   console.log("WebAssembly smoke calls passed.");
+}
+
+function syncWasmRuntimeArtifacts() {
+  const wasmDir = path.join(buildRoot, "wasm");
+  const runtimeDir = path.join(rootDir, "src", "solver", "wasm", "runtime");
+  const artifacts = [
+    "architrino_solver_wasm_smoke.mjs",
+    "architrino_solver_wasm_smoke.wasm",
+  ];
+  fs.mkdirSync(runtimeDir, { recursive: true });
+  for (const artifact of artifacts) {
+    const sourcePath = path.join(wasmDir, artifact);
+    assertExists(sourcePath);
+    fs.copyFileSync(sourcePath, path.join(runtimeDir, artifact));
+  }
+  console.log("synced WebAssembly runtime artifacts.");
 }
 
 function runChecked(command, commandArgs, options = {}) {

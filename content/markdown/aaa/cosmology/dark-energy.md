@@ -184,6 +184,8 @@ $$
 
 Here $\hat{\mathbf{n}}$ is the line of sight, $\mathcal{E}$ denotes source and host environment, $A_\mu\hat{\mathbf{d}}_\mu$ is a possible dipolar component, $\delta\mu_{\mathrm{cal}}$ records standardization and population-evolution corrections, $\delta\mu_{\mathrm{sea}}$ records Noether sea state contributions, and $\epsilon_\mu$ is the remaining noise term. A Noether sea acceleration or relaxation claim is promotable only after the dipole, calibration, and environment terms are either bounded below the claimed effect or derived from the same medium variables used elsewhere.
 
+The Type Ia progenitor-age dispute is a concrete example of this rule. One branch of the literature treats host or progenitor age as an unremoved redshift-dependent luminosity correction large enough to alter the inferred acceleration history; rebuttals argue that standard host-mass corrections and better host-to-progenitor age mapping already absorb or bound that effect. The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson does not depend on choosing a winner in that dispute. The lesson is that a claimed acceleration-to-deceleration flip remains a source-calibration and population-evolution result until the residual survives after mass, dust, metallicity, progenitor age, selection, endpoint, and path-history terms are separated in one shared Noether sea record.
+
 The isotropic acceleration term is therefore a residual inference, not the first variable to name. A useful comparison packet should expose
 $$
 \mathcal{R}_{\mathrm{iso\text{-}acc}}

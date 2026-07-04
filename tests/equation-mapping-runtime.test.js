@@ -25,6 +25,9 @@ import {
   createEquationMappingHomeHref,
   createPointerLineGeometry,
   EquationMappingRuntime,
+  resolveCalloutRowLayout,
+  resolveEquationLineClearancePx,
+  resolveEquationVerticalShift,
 } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -47,6 +50,22 @@ function createFakeStyle() {
   };
 }
 
+function createFakeFormulaChild(width, className = "") {
+  return {
+    classList: {
+      contains(name) {
+        return className.split(/\s+/u).includes(name);
+      },
+    },
+    scrollWidth: width,
+    offsetWidth: width,
+    clientWidth: width,
+    getBoundingClientRect() {
+      return { width };
+    },
+  };
+}
+
 test("equation mapping seed document carries static layer anchors and comments", () => {
   const documents = createSeedEquationMapDocuments();
   assert.equal(documents.length, 10);
@@ -60,8 +79,9 @@ test("equation mapping seed document carries static layer anchors and comments",
     ["acceleration", "polarity", "inverseSquare", "branchStrength", "direction"]
   );
   assert.equal(document.formulaParts.some((part) => part.anchorId === "branchStrength"), true);
-  assert.equal(document.overlays.length, 4);
+  assert.equal(document.overlays.length, 5);
   assert.equal(document.overlays[0].targetAnchorId, "acceleration");
+  assert.equal(document.overlays.some((overlay) => overlay.targetAnchorId === "polarity"), true);
   assert.equal(document.overlays[0].content.some((block) => block.type === "math"), true);
   assert.equal(documents.some((entry) => entry.id === "eq-17-redshift-factorization"), true);
 });
@@ -88,6 +108,23 @@ test("equation mapping search includes subject, formula text, anchors, and overl
   assert.equal(filterEquationMapDocuments(documents, "receiver-normal").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
+});
+
+test("equation mapping can target an inner EQ-02 marker without splitting the fraction", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-02-lorentz-clock-rate"
+  );
+  const driftSpeedPart = document.formulaParts.find((part) => part.id === "driftSpeed");
+
+  assert.equal(
+    driftSpeedPart.tex,
+    "\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}"
+  );
+  assert.deepEqual(driftSpeedPart.sectionMarker, { left: 42, width: 24 });
+  assert.equal(
+    document.overlays.find((overlay) => overlay.id === "drift-through-sea").targetAnchorId,
+    "driftSpeed"
+  );
 });
 
 test("equation mapping keeps same-side seed callouts ordered with their target terms", () => {
@@ -120,16 +157,91 @@ test("equation mapping places EQ-07 upper-row callouts above and drift callout b
     document.overlays.map((overlay) => [overlay.id, overlay.sectionLinePlacement])
   );
 
-  assert.equal(document.formulaTeX.includes("\\gamma_{ij}("), true);
-  assert.equal(document.formulaTeX.includes("\\gamma_{ij}\\cdot("), false);
+  assert.equal(
+    document.formulaTeX,
+    "ds_{\\mathrm{eff}}^2=\\gamma_{ij}^{\\mathrm{eff}}(dx_{\\mathrm{eff}}^i-u^i_{\\mathrm{sea,eff}}dt_{\\mathrm{eff}})(dx_{\\mathrm{eff}}^j-u^j_{\\mathrm{sea,eff}}dt_{\\mathrm{eff}})-N^2c_0^2dt_{\\mathrm{eff}}^2"
+  );
+  assert.equal(document.formulaTeX.includes("=-N^2"), false);
+  assert.equal(document.formulaTeX.includes("\\gamma_{ij}^{\\mathrm{eff}}\\cdot("), false);
   assert.equal(
     document.formulaParts.some((part) => part.id === "spatialProduct" || part.tex === "\\cdot"),
     false
+  );
+  assert.deepEqual(
+    document.formulaParts
+      .filter((part) => part.anchorId)
+      .map((part) => part.anchorId),
+    ["lineElement", "spatialCompliance", "drift", "lapse"]
+  );
+  assert.equal(
+    document.formulaParts.some((part) => part.id === "minus" && part.text === " - "),
+    true
   );
   assert.equal(placementByOverlayId.get("observer-level"), "above");
   assert.equal(placementByOverlayId.get("clock-channel"), "above");
   assert.equal(placementByOverlayId.get("spatial-channel"), "above");
   assert.equal(placementByOverlayId.get("drift-channel"), "below");
+});
+
+test("equation mapping gives EQ-03 perpendicular radius its own callout", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-03-oblate-spheroidal-envelope"
+  );
+
+  assert.equal(
+    document.overlays.some(
+      (overlay) =>
+        overlay.id === "transverse-radius" &&
+        overlay.targetAnchorId === "perpendicularRadius"
+    ),
+    true
+  );
+  assert.equal(
+    document.overlays.some(
+      (overlay) =>
+        overlay.targetAnchorId === "perpendicularRadius" &&
+        overlay.searchText.includes("radius across the motion") &&
+        overlay.searchText.includes("reference radius")
+    ),
+    true
+  );
+});
+
+test("equation mapping EQ-04 adds corrected motion relation and rest-mass solve row", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-04-energy-momentum-rest-energy"
+  );
+  const motionOverlay = document.overlays.find((overlay) => overlay.id === "motion-response");
+
+  assert.equal(
+    document.overlays.every((overlay) => overlay.sectionLinePlacement === "above"),
+    true
+  );
+  assert.equal(
+    motionOverlay.content.some(
+      (block) =>
+        block.type === "math" &&
+        block.tex ===
+          "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2"
+    ),
+    true
+  );
+  assert.equal(
+    document.formulaParts.some(
+      (part) => part.id === "rest-mass-solve-break" && part.kind === "break"
+    ),
+    true
+  );
+  assert.equal(
+    document.formulaParts.some(
+      (part) =>
+        part.id === "restMassSolve" &&
+        part.anchorId === "" &&
+        part.tex ===
+          "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}"
+    ),
+    true
+  );
 });
 
 test("equation mapping pointer geometry attaches comments to section line edges", () => {
@@ -139,17 +251,118 @@ test("equation mapping pointer geometry attaches comments to section line edges"
   const rightComment = { left: 680, top: 360, right: 840, bottom: 470, width: 160, height: 110 };
 
   assert.deepEqual(createPointerLineGeometry(stageRect, targetRect, leftComment, "above"), {
-    x1: 240,
-    y1: 255,
+    x1: 222,
+    y1: 280,
     x2: 400,
-    y2: 224,
+    y2: 214,
   });
   assert.deepEqual(createPointerLineGeometry(stageRect, targetRect, rightComment, "below"), {
-    x1: 580,
+    x1: 598,
     y1: 310,
     x2: 400,
-    y2: 277,
+    y2: 294,
   });
+});
+
+test("equation mapping compact callout layout stays near the equation until width requires edges", () => {
+  const layout = resolveCalloutRowLayout({
+    stageWidth: 1400,
+    stageHeight: 900,
+    equationRect: { left: 500, top: 420, right: 900, bottom: 500, width: 400, height: 80 },
+    titleRect: { bottom: 70 },
+    placement: "below",
+    items: [
+      { id: "left", width: 260, height: 120, targetCenterX: 520 },
+      { id: "middle", width: 260, height: 120, targetCenterX: 700 },
+      { id: "right", width: 260, height: 120, targetCenterX: 880 },
+    ],
+  });
+
+  assert.equal(layout.get("middle").y, 528);
+  assert.equal(layout.get("left").x > 200, true);
+  assert.equal(layout.get("right").x < 940, true);
+  assert.equal(layout.get("middle").x >= layout.get("left").x + 260 + 24, true);
+  assert.equal(layout.get("right").x >= layout.get("middle").x + 260 + 24, true);
+});
+
+test("equation mapping callout layout can reserve one full equation line", () => {
+  const equationRect = { left: 500, top: 420, right: 900, bottom: 500, width: 400, height: 80 };
+  const titleRect = { bottom: 70 };
+  const aboveLayout = resolveCalloutRowLayout({
+    stageWidth: 1400,
+    stageHeight: 900,
+    equationRect,
+    titleRect,
+    placement: "above",
+    equationGapPx: 96,
+    items: [{ id: "above", width: 260, height: 120, targetCenterX: 700 }],
+  });
+  const belowLayout = resolveCalloutRowLayout({
+    stageWidth: 1400,
+    stageHeight: 900,
+    equationRect,
+    titleRect,
+    placement: "below",
+    equationGapPx: 96,
+    items: [{ id: "below", width: 260, height: 120, targetCenterX: 700 }],
+  });
+
+  assert.equal(aboveLayout.get("above").y, 204);
+  assert.equal(belowLayout.get("below").y, 596);
+});
+
+test("equation mapping derives callout clearance from the tallest equation row", () => {
+  assert.equal(
+    resolveEquationLineClearancePx([{ height: 64 }, { height: 112 }], 72),
+    112
+  );
+  assert.equal(resolveEquationLineClearancePx([], 78), 78);
+  assert.equal(resolveEquationLineClearancePx([], 0), 28);
+});
+
+test("equation mapping shifts explicit formula rows below a top callout row", () => {
+  assert.equal(
+    resolveEquationVerticalShift({
+      stageHeight: 900,
+      equationShellRect: { top: 390, bottom: 650, height: 260 },
+      rowRects: [
+        { top: 470, bottom: 560 },
+        { top: 635, bottom: 730 },
+      ],
+      aboveCalloutRects: [
+        { top: 80, bottom: 360 },
+        { top: 80, bottom: 420 },
+      ],
+      belowCalloutRects: [],
+    }),
+    165
+  );
+  assert.equal(
+    resolveEquationVerticalShift({
+      stageHeight: 900,
+      equationShellRect: { top: 390, bottom: 650, height: 260 },
+      rowRects: [
+        { top: 650, bottom: 740 },
+        { top: 815, bottom: 890 },
+      ],
+      aboveCalloutRects: [{ top: 80, bottom: 420 }],
+      belowCalloutRects: [],
+    }),
+    0
+  );
+  assert.equal(
+    resolveEquationVerticalShift({
+      stageHeight: 900,
+      equationShellRect: { top: 390, bottom: 650, height: 260 },
+      rowRects: [
+        { top: 470, bottom: 560 },
+        { top: 635, bottom: 730 },
+      ],
+      aboveCalloutRects: [{ top: 80, bottom: 420 }],
+      belowCalloutRects: [{ top: 700, bottom: 820 }],
+    }),
+    0
+  );
 });
 
 test("equation mapping auto-fit shrinks long equations before wrapping", () => {
@@ -237,6 +450,42 @@ test("equation mapping runtime applies fitted font size before enabling wrap", (
   assert.equal(equationStyle.flexWrap, "wrap");
 });
 
+test("equation mapping runtime keeps explicit solve rows centered instead of measuring one long row", () => {
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      getComputedStyle() {
+        return { fontSize: "60px" };
+      },
+    },
+  });
+  const equationStyle = createFakeStyle();
+  runtime.equationElement = {
+    children: [
+      createFakeFormulaChild(260),
+      createFakeFormulaChild(120),
+      createFakeFormulaChild(210),
+      createFakeFormulaChild(900, "equation-mapping-formula-break"),
+      createFakeFormulaChild(520),
+    ],
+    dataset: {},
+    scrollWidth: 1110,
+    style: equationStyle,
+  };
+  runtime.equationShellElement = {
+    clientWidth: 900,
+    getBoundingClientRect() {
+      return { width: 900 };
+    },
+  };
+
+  const fit = runtime.applyEquationAutoFit();
+
+  assert.equal(fit.mode, "base");
+  assert.equal(equationStyle.flexWrap, "wrap");
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "");
+});
+
 test("equation mapping page loads KaTeX assets and focused runtime module", () => {
   const html = readRepoFile("equation-mapping.html");
   assert.equal(html.includes("ReaderAssets/katex/katex.min.css"), true);
@@ -285,7 +534,8 @@ test("equation mapping uses one foreground ink color per background family", () 
     false
   );
   assert.match(html, /border: 1px solid var\(--line-ink\);/u);
-  assert.match(html, /stroke: var\(--line-ink\);/u);
+  assert.match(html, /--marker-ink: rgba\(232, 226, 236, 0\.58\);/u);
+  assert.equal(html.includes(".equation-mapping-pointer-line.is-active"), false);
 });
 
 test("equation mapping settings control uses a gear icon", () => {
@@ -374,6 +624,10 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   );
   assert.match(
     html,
+    /\.equation-mapping-equation-shell \{[\s\S]*?top: var\(--equation-layout-y, 50%\);/u
+  );
+  assert.match(
+    html,
     /\.equation-mapping-equation \{[\s\S]*?font-size: var\(--equation-fit-font-size, clamp\(30px, 4\.6vw, 62px\)\);/u
   );
   assert.match(
@@ -390,12 +644,29 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   );
   assert.match(
     html,
-    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="above"\]::before \{[\s\S]*?top: -6px;/u
+    /\.equation-mapping-formula-break \{[\s\S]*?flex: 0 0 100%;[\s\S]*?height: clamp\(5px, 0\.8vw, 12px\);/u
   );
   assert.match(
     html,
-    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="below"\]::after \{[\s\S]*?bottom: 3px;/u
+    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="above"\]::before \{[\s\S]*?top: -16px;/u
   );
+  assert.match(
+    html,
+    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="below"\]::after \{[\s\S]*?bottom: -14px;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="above"\]::before,[\s\S]*?left: var\(--section-marker-left, max\(8px, 18%\)\);[\s\S]*?background: var\(--marker-ink\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-pointer-line \{[\s\S]*?stroke: var\(--marker-ink\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-comment \{[\s\S]*?left: var\(--overlay-layout-x, calc\(var\(--overlay-x\) \* 1%\)\);[\s\S]*?top: var\(--overlay-layout-y, calc\(var\(--overlay-y\) \* 1%\)\);/u
+  );
+  assert.match(html, /\.equation-mapping-comment \{[\s\S]*?width: min\(calc\(var\(--overlay-width\) \* 1%\), 390px\);/u);
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);

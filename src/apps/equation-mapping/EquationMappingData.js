@@ -90,15 +90,26 @@ function normalizeAnchor(anchor = {}, index = 0) {
 }
 
 function normalizeFormulaPart(part = {}, index = 0) {
-  const kind = part.kind === "text" ? "text" : "math";
+  const kind = part.kind === "break" ? "break" : part.kind === "text" ? "text" : "math";
   const text = kind === "text" ? String(part.text ?? "") : "";
   const tex = kind === "math" ? normalizeText(part.tex, "?") : "";
+  const markerLeft = Number(part.sectionMarker?.left);
+  const markerWidth = Number(part.sectionMarker?.width);
+  const normalizedMarkerLeft = Math.min(94, Math.max(0, markerLeft));
+  const sectionMarker =
+    Number.isFinite(markerLeft) && Number.isFinite(markerWidth)
+      ? {
+          left: normalizedMarkerLeft,
+          width: Math.min(100 - normalizedMarkerLeft, Math.max(6, markerWidth)),
+        }
+      : null;
   return {
     id: normalizeText(part.id, `part-${index + 1}`),
     kind,
     text,
     tex,
     anchorId: normalizeOptionalText(part.anchorId),
+    ...(sectionMarker ? { sectionMarker } : {}),
   };
 }
 
@@ -190,12 +201,16 @@ function anchor(id, label, searchText = label) {
   return { id, label, searchText };
 }
 
-function mathPart(id, tex, anchorId = id) {
-  return { id, kind: "math", tex, anchorId };
+function mathPart(id, tex, anchorId = id, sectionMarker = null) {
+  return { id, kind: "math", tex, anchorId, ...(sectionMarker ? { sectionMarker } : {}) };
 }
 
 function textPart(id, text) {
   return { id, kind: "text", text };
+}
+
+function breakPart(id) {
+  return { id, kind: "break" };
 }
 
 function overlay(
@@ -251,35 +266,43 @@ const scoreFiveAndFourEquationMapDocuments = [
     overlays: [
       overlay(
         "native-root",
-        "Native root",
+        "Acceleration response",
         "acceleration",
-        "This left side is the per-hit acceleration response; downstream maps must still consume active roots and event ledgers.",
+        "Start with the left side: this is acceleration, the receiver's change in velocity. In AAA, one causal root reaches the receiver, and this symbol is the receiver's response to that hit.",
         "\\mathbf a_{o'\\leftarrow o}",
-        { x: 7, y: 8, width: 25, line: "above" }
+        { x: 5, y: 8, width: 30, line: "above" }
+      ),
+      overlay(
+        "polarity-coupling",
+        "Sign and coupling",
+        "polarity",
+        "A force law needs two things before distance matters: which way the effect points, and how strongly it couples. In AAA, this term stores the ordered source-receiver sign and coupling for the active root.",
+        "\\kappa\\sigma_{q_oq_{o'}}",
+        { x: 35, y: 8, width: 30, line: "above" }
       ),
       overlay(
         "wake-dilution",
         "Wake dilution",
         "inverseSquare",
-        "The familiar inverse-square section is read as causal wake spread, not as a standalone field postulate.",
+        "This is the distance part. The same influence spreads over a larger sphere as r grows, so the strength falls like 1/r squared. In AAA, that spreading is the finite-speed wake from the source.",
         "r^{-2}",
-        { x: 67, y: 22, width: 25, line: "above" }
+        { x: 65, y: 22, width: 30, line: "above" }
       ),
       overlay(
         "receiver-normal",
         "History factor",
         "branchStrength",
-        "This factor carries source-normal and receiver-normal history into the per-hit law.",
+        "A delayed signal can arrive after its timing has been stretched, compressed, or weighted by the path. In AAA, this factor tells the receiver how source history and receiver history change the hit.",
         "W^{\\mathrm{rec}}=\\left|D_t/D_s\\right|",
-        { x: 7, y: 68, width: 25, line: "below" }
+        { x: 6, y: 68, width: 34, line: "below" }
       ),
       overlay(
         "line-of-action",
         "Line of action",
         "direction",
-        "The direction term keeps force geometry tied to the active causal root.",
+        "The unit vector is the arrow part of the law. It says, 'the acceleration points along this line.' In AAA, the direction comes from the same source-to-receiver causal root as the strength.",
         "\\hat{\\mathbf r}",
-        { x: 67, y: 82, width: 25, line: "below" }
+        { x: 60, y: 82, width: 34, line: "below" }
       ),
     ],
   },
@@ -289,43 +312,49 @@ const scoreFiveAndFourEquationMapDocuments = [
     subject: "Relativity and effective metric",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "\\gamma_\\star(\\mathbf w)=\\frac{1}{\\sqrt{1-\\lVert\\mathbf w\\rVert^2/c_\\star^2}},\\quad d\\tau/dt=1/\\gamma_\\star",
+    formulaTeX:
+      "\\gamma_\\star(\\mathbf w_{\\mathrm{eff}})=\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}},\\quad d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
     anchors: [
       anchor("gammaFactor", "Lorentz factor", "gamma clock ruler factor"),
       anchor("driftSpeed", "drift speed", "motion through local Noether sea"),
       anchor("clockRate", "clock rate", "moving clock readout"),
     ],
     formulaParts: [
-      mathPart("gammaFactor", "\\gamma_\\star(\\mathbf w)", "gammaFactor"),
+      mathPart("gammaFactor", "\\gamma_\\star(\\mathbf w_{\\mathrm{eff}})", "gammaFactor"),
       textPart("eq", " = "),
-      mathPart("driftSpeed", "\\frac{1}{\\sqrt{1-\\lVert\\mathbf w\\rVert^2/c_\\star^2}}", "driftSpeed"),
+      mathPart(
+        "driftSpeed",
+        "\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}",
+        "driftSpeed",
+        { left: 42, width: 24 }
+      ),
       mathPart("comma", ",\\quad", ""),
-      mathPart("clockRate", "d\\tau/dt=1/\\gamma_\\star", "clockRate"),
+      mathPart("clockRate", "d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star", "clockRate"),
     ],
     overlays: [
       overlay(
         "drift-through-sea",
         "Drift through sea",
         "driftSpeed",
-        "Read the speed term as drift through the local Noether sea, not as motion through substrate spacetime.",
-        "\\mathbf w=\\mathbf V_{\\mathrm{cm}}-\\mathbf u_{\\mathrm{sea}}",
-        { x: 7, y: 8, width: 26, line: "above" }
+        "This is the speed used inside gamma. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, AAA subtracts that flow first.",
+        "\\mathbf w_{\\mathrm{eff}}=\\mathbf V_{\\mathrm{cm,eff}}-\\mathbf u_{\\mathrm{sea,eff}}",
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "clock-consumer",
-        "Clock consumer",
+        "Clock rate",
         "clockRate",
-        "The clock row is a consumer of the same retained branch ledger that must also support ruler behavior.",
-        "d\\tau/dt=1/\\gamma_\\star",
-        { x: 67, y: 68, width: 25, line: "below" }
+        "The right equation says the moving clock advances by 1/gamma compared with the observer's time. In AAA, clock ticking is one readout of the same stored branch history that also explains rulers and envelopes.",
+        "d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
+        { x: 58, y: 68, width: 34, line: "below" }
       ),
       overlay(
         "branch-blocker",
-        "Shared branch row",
+        "One Lorentz factor",
         "gammaFactor",
-        "The gamma factor is only useful if one retained branch row binds clock, ruler, and envelope behavior together.",
+        "Gamma is the Lorentz factor. Moving clocks use 1/gamma, lengths along the motion use 1/gamma, and momentum-energy uses gamma. In AAA, one stored branch history produces all three readouts.",
         "\\gamma_\\star\\rightarrow S_{\\mathrm{eq}}",
-        { x: 8, y: 82, width: 25, line: "below" }
+        { x: 8, y: 82, width: 34, line: "below" }
       ),
     ],
   },
@@ -335,7 +364,8 @@ const scoreFiveAndFourEquationMapDocuments = [
     subject: "Relativity and effective metric",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "\\xi(v)\\equiv\\frac{R_{\\parallel}(v)}{R_{\\perp}(v)}\\to\\frac{1}{\\gamma_{\\mathrm{eff}}(v)}",
+    formulaTeX:
+      "\\xi(v_{\\mathrm{eff}})\\equiv\\frac{R_{\\parallel}(v_{\\mathrm{eff}})}{R_{\\perp}(v_{\\mathrm{eff}})}\\to\\frac{1}{\\gamma_{\\mathrm{eff}}(v_{\\mathrm{eff}})}",
     anchors: [
       anchor("shapeRatio", "shape ratio", "Noether braid envelope xi"),
       anchor("parallelRadius", "parallel radius", "R parallel moving envelope"),
@@ -343,38 +373,46 @@ const scoreFiveAndFourEquationMapDocuments = [
       anchor("gammaEff", "effective gamma", "weak homogeneous Lorentz target"),
     ],
     formulaParts: [
-      mathPart("shapeRatio", "\\xi(v)", "shapeRatio"),
+      mathPart("shapeRatio", "\\xi(v_{\\mathrm{eff}})", "shapeRatio"),
       mathPart("equiv", "\\equiv", ""),
-      mathPart("parallelRadius", "R_{\\parallel}(v)", "parallelRadius"),
+      mathPart("parallelRadius", "R_{\\parallel}(v_{\\mathrm{eff}})", "parallelRadius"),
       textPart("slash", " / "),
-      mathPart("perpendicularRadius", "R_{\\perp}(v)", "perpendicularRadius"),
+      mathPart("perpendicularRadius", "R_{\\perp}(v_{\\mathrm{eff}})", "perpendicularRadius"),
       mathPart("arrow", "\\to", ""),
-      mathPart("gammaEff", "\\frac{1}{\\gamma_{\\mathrm{eff}}(v)}", "gammaEff"),
+      mathPart("gammaEff", "\\frac{1}{\\gamma_{\\mathrm{eff}}(v_{\\mathrm{eff}})}", "gammaEff"),
     ],
     overlays: [
       overlay(
         "envelope-readout",
         "Envelope readout",
         "shapeRatio",
-        "The shape ratio asks whether moving Noether braid geometry exposes the Lorentz contraction channel directly.",
+        "This ratio compares size along the motion with size across the motion. In ordinary relativity, the along-motion size is the one that shrinks. In AAA, the moving Noether braid envelope makes that shrinkage.",
         "\\xi=R_{\\parallel}/R_{\\perp}",
-        { x: 7, y: 8, width: 25, line: "above" }
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "return-cycle",
-        "Return cycle",
+        "Lorentz target",
         "gammaEff",
-        "The visual match is not enough; the return-cycle ledger has to produce the ratio without a private fit.",
+        "The right side is the target: 1/gamma_eff. That means the along-motion radius is smaller by the Lorentz contraction factor. AAA gets this from return-cycle history, not from a new scale knob.",
         "\\xi\\to\\gamma_{\\mathrm{eff}}^{-1}",
-        { x: 67, y: 68, width: 25, line: "below" }
+        { x: 66, y: 68, width: 30, line: "below" }
+      ),
+      overlay(
+        "transverse-radius",
+        "Perpendicular radius",
+        "perpendicularRadius",
+        "This is the radius across the motion. Relativity leaves the crosswise direction as the reference radius. In AAA, R_perp is the comparison radius while R_parallel carries the contraction.",
+        "R_{\\perp}(v_{\\mathrm{eff}})",
+        { x: 35, y: 68, width: 30, line: "below" }
       ),
       overlay(
         "scale-separation",
-        "Shape, not scale",
+        "Parallel radius",
         "parallelRadius",
-        "Keep this separate from the independent scale channel; the envelope shape is the target here.",
-        "\\lambda(v,E,n)\\neq\\xi(v)",
-        { x: 8, y: 82, width: 25, line: "below" }
+        "This is the radius along the motion. It is the part expected to shrink. In AAA, that shape change stays separate from any overall growth or shrinkage of the whole envelope.",
+        "R_{\\parallel}(v_{\\mathrm{eff}})",
+        { x: 6, y: 68, width: 30, line: "below" }
       ),
     ],
   },
@@ -384,7 +422,8 @@ const scoreFiveAndFourEquationMapDocuments = [
     subject: "Relativity and effective metric",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4",
+    formulaTeX:
+      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
     anchors: [
       anchor("energy", "energy", "observer exposed energy"),
       anchor("momentum", "momentum term", "momentum response"),
@@ -398,39 +437,45 @@ const scoreFiveAndFourEquationMapDocuments = [
       mathPart("effectiveSpeed", "c_{\\mathrm{eff}}^2", "effectiveSpeed"),
       textPart("plus", " + "),
       mathPart("restMass", "M_0^2c_{\\mathrm{eff}}^4", "restMass"),
+      breakPart("rest-mass-solve-break"),
+      mathPart(
+        "restMassSolve",
+        "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
+        ""
+      ),
     ],
     overlays: [
       overlay(
         "energy-readout",
         "Energy readout",
         "energy",
-        "Energy is the exposed conserved readout of branch history, internal storage, and Noether sea response.",
+        "E squared is the total-energy side of the relation. In special relativity, energy includes motion energy plus rest energy. In AAA, this readout comes from conserved branch history, internal storage, and Noether sea response.",
         "E^2",
-        { x: 7, y: 8, width: 24, line: "above" }
+        { x: 4, y: 8, width: 22, line: "above" }
       ),
       overlay(
         "motion-response",
         "Motion response",
         "momentum",
-        "The motion term must use the same branch ledger and effective speed channel as the rest side.",
-        "p^2c_{\\mathrm{eff}}^2",
-        { x: 67, y: 22, width: 25, line: "above" }
+        "This is the motion-energy part. Momentum from moving rest mass uses the same effective speed and gamma story as the rest side. In AAA, this is where the motion row meets the mass row.",
+        "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2",
+        { x: 26, y: 8, width: 25, line: "above" }
       ),
       overlay(
         "mass-response",
         "Mass response",
         "restMass",
-        "Mass maps to trapped internal causal history, shielding, and Noether sea coupling.",
+        "M0 is rest mass: the energy an object carries even when it is not moving in this frame. In AAA, that mass is read as trapped internal causal history plus shielding and coupling to the Noether sea.",
         "M_0^2c_{\\mathrm{eff}}^4",
-        { x: 67, y: 68, width: 26, line: "below" }
+        { x: 73, y: 8, width: 22, line: "above" }
       ),
       overlay(
         "speed-role",
         "Speed role",
         "effectiveSpeed",
-        "This speed is a declared effective channel; changing it per observable would be hidden retuning.",
+        "c_eff is the conversion speed in this map. It lets momentum and mass be compared as energy. In AAA, c_eff is declared once for the row, not quietly changed to fit each observation.",
         "c_{\\mathrm{eff}}",
-        { x: 7, y: 82, width: 24, line: "below" }
+        { x: 51, y: 8, width: 22, line: "above" }
       ),
     ],
   },
@@ -440,7 +485,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     subject: "AAA native rows",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "\\frac{dE_{\\mathrm{tot}}}{dt}=0,\\quad \\mathbf P_{\\mathrm{tot}}=\\mathbf P_{\\mathrm{mech}}+\\mathbf P_{\\mathrm{wake}}",
+    formulaTeX: "\\frac{dE_{\\mathrm{tot}}}{dT}=0,\\quad \\mathbf P_{\\mathrm{tot}}=\\mathbf P_{\\mathrm{mech}}+\\mathbf P_{\\mathrm{wake}}",
     anchors: [
       anchor("energyConservation", "energy conservation", "finite-window total energy"),
       anchor("totalMomentum", "total momentum", "finite-window total momentum"),
@@ -448,7 +493,7 @@ const scoreFiveAndFourEquationMapDocuments = [
       anchor("wakeMomentum", "wake momentum", "wake boundary flux history"),
     ],
     formulaParts: [
-      mathPart("energyConservation", "\\frac{dE_{\\mathrm{tot}}}{dt}=0", "energyConservation"),
+      mathPart("energyConservation", "\\frac{dE_{\\mathrm{tot}}}{dT}=0", "energyConservation"),
       mathPart("comma", ",\\quad", ""),
       mathPart("totalMomentum", "\\mathbf P_{\\mathrm{tot}}", "totalMomentum"),
       textPart("eq", " = "),
@@ -459,27 +504,27 @@ const scoreFiveAndFourEquationMapDocuments = [
     overlays: [
       overlay(
         "finite-window-total",
-        "Finite-window total",
+        "Energy conserved",
         "energyConservation",
-        "The conserved total has to include local mechanics, delay history, wake storage, and boundary flux.",
-        "dE_{\\mathrm{tot}}/dt=0",
-        { x: 7, y: 8, width: 26, line: "above" }
+        "This says total energy in the chosen window is not changing. If one part gains energy, another part or the wake must lose it. In AAA, the accounting window is finite and uses absolute time T.",
+        "dE_{\\mathrm{tot}}/dT=0",
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "mechanical-side",
         "Mechanical side",
         "mechanicalMomentum",
-        "Mechanical momentum is only one row in the conserved finite-window ledger.",
+        "P_mech is the momentum carried by the visible moving pieces. In ordinary physics this is the part you would compute from masses and velocities. In AAA, it is only one row of the total momentum ledger.",
         "\\mathbf P_{\\mathrm{mech}}",
-        { x: 8, y: 68, width: 25, line: "below" }
+        { x: 8, y: 68, width: 34, line: "below" }
       ),
       overlay(
         "wake-side",
         "Wake side",
         "wakeMomentum",
-        "The wake term is momentum stored or carried by delayed causal response, not ordinary mechanical momentum.",
+        "P_wake is the balance not carried by the visible pieces. Think field momentum or delayed-signal momentum. In AAA, the delayed causal wake carries that balance so total momentum can still close.",
         "\\mathbf P_{\\mathrm{wake}}",
-        { x: 67, y: 82, width: 25, line: "below" }
+        { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],
   },
@@ -489,7 +534,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     subject: "Statistical mechanics and thermodynamics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "\\partial_t\\rho_{\\mathrm{NS}}+\\nabla\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})=S_{\\rho}+r_{\\rho}",
+    formulaTeX: "\\partial_T\\rho_{\\mathrm{NS}}+\\nabla_{\\mathbf X}\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})=S_{\\rho}+r_{\\rho}",
     anchors: [
       anchor("densityChange", "density change", "Noether sea density time derivative"),
       anchor("flowDivergence", "flow divergence", "Noether sea transport flow"),
@@ -497,9 +542,9 @@ const scoreFiveAndFourEquationMapDocuments = [
       anchor("residual", "residual", "moment closure residual"),
     ],
     formulaParts: [
-      mathPart("densityChange", "\\partial_t\\rho_{\\mathrm{NS}}", "densityChange"),
+      mathPart("densityChange", "\\partial_T\\rho_{\\mathrm{NS}}", "densityChange"),
       textPart("plus", " + "),
-      mathPart("flowDivergence", "\\nabla\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})", "flowDivergence"),
+      mathPart("flowDivergence", "\\nabla_{\\mathbf X}\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})", "flowDivergence"),
       textPart("eq", " = "),
       mathPart("sourceTerm", "S_{\\rho}", "sourceTerm"),
       textPart("plus-2", " + "),
@@ -510,25 +555,25 @@ const scoreFiveAndFourEquationMapDocuments = [
         "density-row",
         "Density row",
         "densityChange",
-        "Use the physical Noether sea density row; this is not a generic fluid-density placeholder.",
-        "\\rho_{\\mathrm{NS}}(\\mathbf x,t)",
-        { x: 7, y: 8, width: 25, line: "above" }
+        "This is the 'how much is here' term changing with time. In a continuity equation, density cannot simply vanish; changes must come from flow, sources, or a leftover error. In AAA, rho_NS is the Noether sea density.",
+        "\\rho_{\\mathrm{NS}}(\\mathbf X,T)",
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "transport-row",
         "Transport row",
         "flowDivergence",
-        "The flow term should be a low-moment projection of retained Noether braid population dynamics.",
-        "\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}}",
-        { x: 67, y: 22, width: 25, line: "above" }
+        "This is the flow part: density being carried into or out of a region. The divergence operator measures net in-versus-out. In AAA, the flow is Noether sea transport in native coordinates.",
+        "\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}}(\\mathbf X,T)",
+        { x: 60, y: 22, width: 34, line: "above" }
       ),
       overlay(
         "source-residual",
-        "Source and residual",
+        "Source loading",
         "sourceTerm",
-        "The source row must load declared events; the residual row shows unresolved moment closure instead of hiding it.",
-        "S_{\\rho}+r_{\\rho}",
-        { x: 7, y: 68, width: 26, line: "below" }
+        "S_rho is where declared events add or remove density. The separate r_rho term is the leftover error if the simple model has not explained everything yet. In AAA, that residual is a blocker, not something to hide.",
+        "S_{\\rho}",
+        { x: 7, y: 68, width: 36, line: "below" }
       ),
     ],
   },
@@ -539,7 +584,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "ds_{\\mathrm{eff}}^2=-N^2c_0^2dt^2+\\gamma_{ij}(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)",
+      "ds_{\\mathrm{eff}}^2=\\gamma_{ij}^{\\mathrm{eff}}(dx_{\\mathrm{eff}}^i-u^i_{\\mathrm{sea,eff}}dt_{\\mathrm{eff}})(dx_{\\mathrm{eff}}^j-u^j_{\\mathrm{sea,eff}}dt_{\\mathrm{eff}})-N^2c_0^2dt_{\\mathrm{eff}}^2",
     anchors: [
       anchor("lineElement", "effective line element", "observer-level effective metric"),
       anchor("lapse", "lapse", "clock channel lapse"),
@@ -549,43 +594,47 @@ const scoreFiveAndFourEquationMapDocuments = [
     formulaParts: [
       mathPart("lineElement", "ds_{\\mathrm{eff}}^2", "lineElement"),
       textPart("eq", " = "),
-      mathPart("lapse", "-N^2c_0^2dt^2", "lapse"),
-      textPart("plus", " + "),
-      mathPart("spatialCompliance", "\\gamma_{ij}", "spatialCompliance"),
-      mathPart("drift", "(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)", "drift"),
+      mathPart("spatialCompliance", "\\gamma_{ij}^{\\mathrm{eff}}", "spatialCompliance"),
+      mathPart(
+        "drift",
+        "(dx_{\\mathrm{eff}}^i-u^i_{\\mathrm{sea,eff}}dt_{\\mathrm{eff}})(dx_{\\mathrm{eff}}^j-u^j_{\\mathrm{sea,eff}}dt_{\\mathrm{eff}})",
+        "drift"
+      ),
+      textPart("minus", " - "),
+      mathPart("lapse", "N^2c_0^2dt_{\\mathrm{eff}}^2", "lapse"),
     ],
     overlays: [
       overlay(
         "observer-level",
         "Observer-level metric",
         "lineElement",
-        "This is an effective observer metric, not substrate geometry replacing the Euclidean void.",
+        "A line element tells an observer how to measure intervals between nearby events. This one is effective: it describes what clocks and rulers see. In AAA, it is built from response rows, not treated as the underlying substrate.",
         "ds_{\\mathrm{eff}}^2",
-        { x: 4, y: 6, width: 30, line: "above" }
+        { x: 3, y: 6, width: 30, line: "above" }
       ),
       overlay(
         "clock-channel",
         "Clock channel",
         "lapse",
-        "The lapse term is the clock/cadence channel of the same Noether sea response used by ruler and signal rows.",
-        "N",
-        { x: 35, y: 7, width: 33, line: "above" }
+        "The lapse term is the clock part of the metric. It tells how fast local clock time runs compared with the chosen time coordinate. In AAA, that cadence must come from the same Noether sea response as rulers and signals.",
+        "N^2c_0^2dt_{\\mathrm{eff}}^2",
+        { x: 68, y: 7, width: 30, line: "above" }
       ),
       overlay(
         "spatial-channel",
         "Spatial channel",
         "spatialCompliance",
-        "Spatial compliance multiplies the lower-row displacement product; scalar-delay-only maps tend to miss it.",
-        "\\gamma_{ij}",
-        { x: 72, y: 7, width: 25, line: "above" }
+        "gamma_ij is the ruler part of the metric. It tells how spatial distances are measured in different directions. In AAA, this is the spatial-compliance row; a scalar delay-only story would miss it.",
+        "\\gamma_{ij}^{\\mathrm{eff}}",
+        { x: 34, y: 7, width: 30, line: "above" }
       ),
       overlay(
         "drift-channel",
         "Drift channel",
         "drift",
-        "The drift term inserts local Noether sea flow into the displacement product for paths, clocks, and weak fields.",
-        "u^i_{\\mathrm{sea}}",
-        { x: 67, y: 82, width: 25, line: "below" }
+        "The parentheses say: measure motion after subtracting the local sea flow. That is like using velocity relative to a moving current. In AAA, projected Noether sea drift affects paths, clocks, and weak-field readings.",
+        "u^i_{\\mathrm{sea,eff}}",
+        { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],
   },
@@ -595,45 +644,45 @@ const scoreFiveAndFourEquationMapDocuments = [
     subject: "Relativity and effective metric",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "d\\tau/dt\\approx1+\\Phi_N/c_0^2-\\lVert\\mathbf w\\rVert^2/(2c_0^2)",
+    formulaTeX: "d\\tau/dt_{\\mathrm{eff}}\\approx1+\\Phi_N/c_0^2-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/(2c_0^2)",
     anchors: [
       anchor("clockRate", "clock rate", "weak-field proper time readout"),
       anchor("potentialTerm", "potential term", "Newtonian potential cadence"),
       anchor("motionTerm", "motion term", "velocity clock correction"),
     ],
     formulaParts: [
-      mathPart("clockRate", "d\\tau/dt", "clockRate"),
+      mathPart("clockRate", "d\\tau/dt_{\\mathrm{eff}}", "clockRate"),
       mathPart("approx", "\\approx", ""),
       mathPart("one", "1", ""),
       textPart("plus", " + "),
       mathPart("potentialTerm", "\\Phi_N/c_0^2", "potentialTerm"),
       textPart("minus", " - "),
-      mathPart("motionTerm", "\\lVert\\mathbf w\\rVert^2/(2c_0^2)", "motionTerm"),
+      mathPart("motionTerm", "\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/(2c_0^2)", "motionTerm"),
     ],
     overlays: [
       overlay(
         "cadence-readout",
         "Cadence readout",
         "clockRate",
-        "The clock rate should be extracted from Noether sea cadence, density, delay, and potential response.",
-        "\\Gamma_N\\rightarrow d\\tau/dt",
-        { x: 7, y: 8, width: 26, line: "above" }
+        "This left side is clock time per observer time. A value below 1 means the local clock is running slow relative to the observer coordinate. In AAA, that rate is read from Noether sea cadence, density, delay, and potential response.",
+        "\\Gamma_N\\rightarrow d\\tau/dt_{\\mathrm{eff}}",
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "potential-response",
         "Potential response",
         "potentialTerm",
-        "The potential term is the weak-field cadence projection from the shared response record, not a private fit.",
+        "Phi_N over c0 squared is the weak-gravity term. Near a gravitational potential, clock rates shift. In AAA, that shift comes from the same response record that also controls acceleration and path bending.",
         "\\Phi_N/c_0^2",
-        { x: 8, y: 68, width: 25, line: "below" }
+        { x: 8, y: 68, width: 34, line: "below" }
       ),
       overlay(
         "moving-clock",
         "Moving clock",
         "motionTerm",
-        "The velocity correction must share the Lorentz branch row instead of becoming a private clock fit.",
-        "\\lVert\\mathbf w\\rVert^2/(2c_0^2)",
-        { x: 67, y: 82, width: 25, line: "below" }
+        "This is the speed correction: a moving clock runs slower. It is the low-speed version of the gamma effect. In AAA, it uses the same stored branch history as gamma and ruler contraction.",
+        "\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/(2c_0^2)",
+        { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],
   },
@@ -663,25 +712,25 @@ const scoreFiveAndFourEquationMapDocuments = [
         "lensing-readout",
         "Lensing readout",
         "deflection",
-        "The deflection readout tests the null-path projection of the effective metric.",
+        "Delta theta is the bend angle of a light path. In standard gravity, mass changes the path that light follows. In AAA, this is the null-path projection of the effective metric.",
         "\\Delta\\theta",
-        { x: 7, y: 8, width: 25, line: "above" }
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "ppn-handoff",
-        "PPN handoff",
+        "Curvature factor",
         "ppn",
-        "The PPN coefficient must be read from the same response record as Shapiro, acceleration, and redshift.",
+        "gamma_PPN is the standard weak-gravity factor for how much spatial curvature contributes to light bending. In AAA, the same response record also explains Shapiro delay, acceleration, and redshift.",
         "\\gamma_{\\mathrm{PPN}}",
-        { x: 67, y: 22, width: 25, line: "above" }
+        { x: 58, y: 22, width: 34, line: "above" }
       ),
       overlay(
         "path-geometry",
         "Path geometry",
         "impact",
-        "The impact term keeps path geometry explicit; scalar-delay-only maps fail when spatial compliance is absent.",
+        "b is the impact distance: how close the light ray passes to the mass. c0 squared sets the light-speed scale. In AAA, this denominator keeps spatial compliance in the path geometry, not only clock delay.",
         "b c_0^2",
-        { x: 7, y: 68, width: 26, line: "below" }
+        { x: 7, y: 68, width: 34, line: "below" }
       ),
     ],
   },
@@ -713,33 +762,33 @@ const scoreFiveAndFourEquationMapDocuments = [
         "factor-budget",
         "Frequency budget",
         "redshift",
-        "The left side is the observed frequency ratio; the right side must account for endpoint, source, motion, and path history.",
+        "1+z_X is the redshift factor: received wavelength compared with emitted wavelength. If it is bigger than 1, the light arrives redder. In AAA, the full product must account for endpoint clocks, source behavior, motion, and path history.",
         "1+z_X",
-        { x: 7, y: 8, width: 26, line: "above" }
+        { x: 6, y: 8, width: 34, line: "above" }
       ),
       overlay(
         "endpoint-cadence",
         "Endpoint cadence",
         "emitterCadence",
-        "Emitter and receiver clock rows must stay on one signed transfer ledger.",
+        "The emitter clock and receiver clock both affect frequency. If either clock runs differently, the comparison changes. In AAA, both cadence terms live on one signed transfer ledger.",
         "\\Gamma_{N,E}/\\Gamma_{N,R}",
-        { x: 67, y: 22, width: 25, line: "above" }
+        { x: 58, y: 22, width: 34, line: "above" }
       ),
       overlay(
         "path-history",
         "Path history",
         "pathTransfer",
-        "The path term carries propagation history through the Noether sea before any cosmology comparison.",
+        "This factor is what happens during the trip from emitter to receiver. It is not an endpoint clock and not simple Doppler motion. In AAA, it records Noether sea path transfer before any cosmology comparison.",
         "\\mathcal P_{E\\to R}",
-        { x: 7, y: 68, width: 26, line: "below" }
+        { x: 7, y: 68, width: 34, line: "below" }
       ),
       overlay(
         "source-motion",
         "Source and motion",
         "sourceDoppler",
-        "Source-branch and velocity factors must not be retuned independently of the endpoint and path rows.",
+        "B_X is the source behavior factor, and D_v is the Doppler motion factor. They are familiar places where redshift can enter. In AAA, they are tied to endpoint cadence and path history, not fitted alone.",
         "B_XD_v",
-        { x: 67, y: 82, width: 25, line: "below" }
+        { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],
   },

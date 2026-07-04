@@ -39,11 +39,23 @@ export class AppDirector {
       typeof captureHistoryEntry === "function"
     ) {
       const previousEntry = popBackEntry();
+      if (previousEntry?.href) {
+        const navigateExternalHref = this.deps.navigateExternalHref;
+        if (typeof navigateExternalHref !== "function") {
+          return false;
+        }
+        const currentEntry = captureHistoryEntry();
+        if (currentEntry?.levelId || currentEntry?.href) {
+          pushForwardEntry(currentEntry);
+        }
+        navigateExternalHref(previousEntry.href);
+        return true;
+      }
       if (!previousEntry?.levelId) {
         return false;
       }
       const currentEntry = captureHistoryEntry();
-      if (currentEntry?.levelId) {
+      if (currentEntry?.levelId || currentEntry?.href) {
         pushForwardEntry(currentEntry);
       }
       await this.deps.jumpToScene(previousEntry.levelId, {
@@ -106,11 +118,23 @@ export class AppDirector {
       return false;
     }
     const nextEntry = popForwardEntry();
+    if (nextEntry?.href) {
+      const navigateExternalHref = this.deps.navigateExternalHref;
+      if (typeof navigateExternalHref !== "function") {
+        return false;
+      }
+      const currentEntry = captureHistoryEntry();
+      if (currentEntry?.levelId || currentEntry?.href) {
+        pushBackEntry(currentEntry);
+      }
+      navigateExternalHref(nextEntry.href);
+      return true;
+    }
     if (!nextEntry?.levelId) {
       return false;
     }
     const currentEntry = captureHistoryEntry();
-    if (currentEntry?.levelId) {
+    if (currentEntry?.levelId || currentEntry?.href) {
       pushBackEntry(currentEntry);
     }
     await this.deps.jumpToScene(nextEntry.levelId, {

@@ -16,7 +16,8 @@ export function isStandalonePdgeditAppMode(appMode = "") {
 
 export function navigateStandalonePdgeditHome(
   locationLike = globalThis.window?.location,
-  href = STANDALONE_PDGEDIT_NAVIGATOR_HREF
+  href = STANDALONE_PDGEDIT_NAVIGATOR_HREF,
+  options = {}
 ) {
-  return navigateStandaloneAppHome(locationLike, href);
+  return navigateStandaloneAppHome(locationLike, href, options);
 }

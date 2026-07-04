@@ -44,6 +44,7 @@
         --control-right: max(18px, env(safe-area-inset-right));
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
+        --marker-ink: rgba(75, 0, 130, 0.44);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -63,6 +64,7 @@
       .equation-mapping-shell[data-background="architrinoPurple"] {
         --equation-ink: #ffffff;
         --line-ink: #ffffff;
+        --marker-ink: rgba(232, 226, 236, 0.58);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.22);
@@ -76,6 +78,7 @@
       .equation-mapping-shell[data-background="warm"] {
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
+        --marker-ink: rgba(75, 0, 130, 0.44);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -89,6 +92,7 @@
       .equation-mapping-shell[data-background="dark"] {
         --equation-ink: #ffffff;
         --line-ink: #ffffff;
+        --marker-ink: rgba(226, 232, 240, 0.58);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.2);
@@ -442,7 +446,7 @@
 
       .equation-mapping-equation-shell {
         position: absolute;
-        top: 50%;
+        top: var(--equation-layout-y, 50%);
         left: 50%;
         z-index: 2;
         width: min(96vw, 1320px);
@@ -509,22 +513,29 @@
         white-space: pre;
       }
 
+      .equation-mapping-formula-break {
+        flex: 0 0 100%;
+        width: 100%;
+        height: clamp(5px, 0.8vw, 12px);
+      }
+
       .equation-mapping-formula-part.is-targeted[data-section-line="above"]::before,
       .equation-mapping-formula-part.is-targeted[data-section-line="below"]::after {
         position: absolute;
-        left: 3px;
-        right: 3px;
+        left: var(--section-marker-left, max(8px, 18%));
+        right: var(--section-marker-right, max(8px, 18%));
+        width: var(--section-marker-width, auto);
         height: 1px;
-        background: var(--line-ink);
+        background: var(--marker-ink);
         content: "";
       }
 
       .equation-mapping-formula-part.is-targeted[data-section-line="above"]::before {
-        top: -6px;
+        top: -16px;
       }
 
       .equation-mapping-formula-part.is-targeted[data-section-line="below"]::after {
-        bottom: 3px;
+        bottom: -14px;
       }
 
       .equation-mapping-formula-part.is-editor-selected-anchor {
@@ -540,9 +551,9 @@
 
       .equation-mapping-comment {
         position: absolute;
-        left: calc(var(--overlay-x) * 1%);
-        top: calc(var(--overlay-y) * 1%);
-        width: min(calc(var(--overlay-width) * 1%), 330px);
+        left: var(--overlay-layout-x, calc(var(--overlay-x) * 1%));
+        top: var(--overlay-layout-y, calc(var(--overlay-y) * 1%));
+        width: min(calc(var(--overlay-width) * 1%), 390px);
         min-width: 220px;
         padding: 10px;
         border: 1px solid var(--line-ink);
@@ -606,13 +617,9 @@
       }
 
       .equation-mapping-pointer-line {
-        stroke: var(--line-ink);
+        stroke: var(--marker-ink);
         stroke-width: 1;
         vector-effect: non-scaling-stroke;
-      }
-
-      .equation-mapping-pointer-line.is-active {
-        stroke: var(--line-ink);
       }
 
       .equation-mapping-math-fallback {

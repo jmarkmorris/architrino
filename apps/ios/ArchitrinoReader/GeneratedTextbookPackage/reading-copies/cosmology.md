@@ -877,6 +877,8 @@ $$
 
 where $\Pi_E S(t_E)$ is the local source-assembly and environment record that determines whether the transition remains on the clean reference branch.
 
+The same separation applies when the source observable is a luminosity standard rather than a single spectral line. For Type Ia supernovae, light-curve shape, color, dust, metallicity, host mass, and progenitor-age effects belong in the source and calibration analogue of $B_X(E)$ before any remaining redshift-distance curvature is assigned to path-history propagation. A correction that moves an effective fit from acceleration toward deceleration changes the calibrated source row first; it is not, by itself, evidence that the Euclidean void expands, stops expanding, or contracts. The propagation coefficient must be recomputed only after the source row, endpoint cadence, launch geometry, and catalogue selection terms have been declared.
+
 Launch geometry is the homogeneous-reference replay of the same source and receiver worldlines:
 
 $$
@@ -4367,6 +4369,8 @@ A_\mu(z)\,\hat{\mathbf{n}}\cdot\hat{\mathbf{d}}_\mu
 $$
 
 Here $\hat{\mathbf{n}}$ is the line of sight, $\mathcal{E}$ denotes source and host environment, $A_\mu\hat{\mathbf{d}}_\mu$ is a possible dipolar component, $\delta\mu_{\mathrm{cal}}$ records standardization and population-evolution corrections, $\delta\mu_{\mathrm{sea}}$ records Noether sea state contributions, and $\epsilon_\mu$ is the remaining noise term. A Noether sea acceleration or relaxation claim is promotable only after the dipole, calibration, and environment terms are either bounded below the claimed effect or derived from the same medium variables used elsewhere.
+
+The Type Ia progenitor-age dispute is a concrete example of this rule. One branch of the literature treats host or progenitor age as an unremoved redshift-dependent luminosity correction large enough to alter the inferred acceleration history; rebuttals argue that standard host-mass corrections and better host-to-progenitor age mapping already absorb or bound that effect. The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson does not depend on choosing a winner in that dispute. The lesson is that a claimed acceleration-to-deceleration flip remains a source-calibration and population-evolution result until the residual survives after mass, dust, metallicity, progenitor age, selection, endpoint, and path-history terms are separated in one shared Noether sea record.
 
 The isotropic acceleration term is therefore a residual inference, not the first variable to name. A useful comparison packet should expose
 $$

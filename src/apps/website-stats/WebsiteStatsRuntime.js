@@ -3,7 +3,10 @@ import {
   setWebsiteAnalyticsOptOut,
   WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY,
 } from "./WebsiteAnalyticsOptOutRuntime.js";
-import { STANDALONE_APP_HOME_HREF } from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  STANDALONE_APP_HOME_HREF,
+  navigateStandaloneAppHome,
+} from "../navigator/StandaloneAppHomeRuntime.js";
 
 const DEFAULT_PERIOD_LABEL = "Aggregate Window";
 const BREAKDOWN_COLORS = ["#ff0000", "#4b0082", "#0000ff"];
@@ -312,6 +315,14 @@ function renderShell(data, options = {}) {
 function createNavLink(href, label) {
   const link = createElement("a", "website-stats-link");
   link.href = href;
+  if (label === "Home") {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      navigateStandaloneAppHome(globalThis.window?.location, href, {
+        windowLike: globalThis.window,
+      });
+    });
+  }
   link.appendChild(createNavIcon(label));
   link.appendChild(createElement("span", "", label));
   return link;

@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-04 - arXiv AI response-sidecar recommendation integrated
+
+- Operator proposed recommending an arXiv platform change: an AI-generated $\mathbb{A}\mathbb{A}\mathbb{A}$ response to every affected paper that states what remains correct, what appears incorrect under $\mathbb{A}\mathbb{A}\mathbb{A}$ obligations, and why.
+- Integrated the idea into [research-revolution.md](research-revolution.md) under `Publishing And Review` as an arXiv-linked response sidecar, with direct professional critique, provenance and claim-level labels, author rebuttal paths, and action-ladder placement.
+- Claim level unchanged: priority-only planning material, not a public announcement, arXiv proposal, or corpus promotion.
+
 ### 2026-07-03 - Research-revolution transition-language triage
 
 - Operator supplied compact transition language about rebuilding particle physics and cosmology, simulation-heavy resource allocation, facility reassessment, and technology-investor demand for early expertise.

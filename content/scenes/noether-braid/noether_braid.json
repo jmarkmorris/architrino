@@ -18,8 +18,24 @@
         "scenePath": "content/scenes/noether-braid/noether_braid_overview.json"
       },
       {
+        "nodeId": "neutral_braid",
+        "scenePath": "content/scenes/noether-braid/neutral_braid.json"
+      },
+      {
+        "nodeId": "shell_braid",
+        "scenePath": "content/scenes/noether-braid/shell_braid.json"
+      },
+      {
+        "nodeId": "nested_shell_braid",
+        "scenePath": "content/scenes/noether-braid/nested_shell_braid.json"
+      },
+      {
         "nodeId": "noether_braid_taxonomy",
         "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json"
+      },
+      {
+        "nodeId": "noether_braid_proof_map",
+        "scenePath": "content/scenes/noether-braid/noether_braid_proof_map.json"
       },
       {
         "nodeId": "noether_braid_configuration_space",
@@ -30,16 +46,16 @@
         "scenePath": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json"
       },
       {
-        "nodeId": "noether_braid_topological_charge",
-        "scenePath": "content/scenes/noether-braid/noether_braid_topological_charge.json"
-      },
-      {
         "nodeId": "nested_shell_braid_dynamics",
         "scenePath": "content/scenes/noether-braid/nested_shell_braid_dynamics.json"
       },
       {
         "nodeId": "nested_shell_braid_geometry",
         "scenePath": "content/scenes/noether-braid/nested_shell_braid_geometry.json"
+      },
+      {
+        "nodeId": "noether_braid_topological_charge",
+        "scenePath": "content/scenes/noether-braid/noether_braid_topological_charge.json"
       }
     ]
   },
@@ -53,11 +69,43 @@
       "labelBadge": "doc"
     },
     {
+      "id": "neutral_braid",
+      "title": "Neutral Braid",
+      "radius": 2.05,
+      "color": "#4f6276",
+      "labelTitle": "Neutral Braid",
+      "labelBadge": "family"
+    },
+    {
+      "id": "shell_braid",
+      "title": "Shell Braid",
+      "radius": 2.05,
+      "color": "#4f7466",
+      "labelTitle": "Shell Braid",
+      "labelBadge": "family"
+    },
+    {
+      "id": "nested_shell_braid",
+      "title": "Nested Shell Braid",
+      "radius": 2.05,
+      "color": "#655c7d",
+      "labelTitle": "Nested Shell Braid",
+      "labelBadge": "family"
+    },
+    {
       "id": "noether_braid_taxonomy",
       "title": "Noether Braid Taxonomy",
       "radius": 2.05,
       "color": "#6f5a2f",
       "labelTitle": "Noether Braid Taxonomy",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "noether_braid_proof_map",
+      "title": "Noether Braid Proof Map",
+      "radius": 2.05,
+      "color": "#5a5f7a",
+      "labelTitle": "Noether Braid Proof Map",
       "labelBadge": "doc"
     },
     {
@@ -77,14 +125,6 @@
       "labelBadge": "doc"
     },
     {
-      "id": "noether_braid_topological_charge",
-      "title": "Noether Braid Topological Charge",
-      "radius": 2.05,
-      "color": "#315f4d",
-      "labelTitle": "Noether Braid Topological Charge",
-      "labelBadge": "doc"
-    },
-    {
       "id": "nested_shell_braid_dynamics",
       "title": "Nested Shell Braid Dynamics",
       "radius": 2.05,
@@ -98,6 +138,14 @@
       "radius": 2.05,
       "color": "#2f4f7a",
       "labelTitle": "Nested Shell Braid Geometry",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "noether_braid_topological_charge",
+      "title": "Noether Braid Topological Charge",
+      "radius": 2.05,
+      "color": "#315f4d",
+      "labelTitle": "Noether Braid Topological Charge",
       "labelBadge": "doc"
     }
   ]
