@@ -127,6 +127,24 @@ test("equation mapping can target an inner EQ-02 marker without splitting the fr
   );
 });
 
+test("equation mapping gives EQ-06 residual its own callout", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-06-noether-sea-continuity"
+  );
+  const residualOverlay = document.overlays.find(
+    (overlay) => overlay.targetAnchorId === "residual"
+  );
+
+  assert.equal(
+    document.formulaParts.some(
+      (part) => part.id === "residual" && part.tex === "r_{\\rho}"
+    ),
+    true
+  );
+  assert.equal(residualOverlay?.id, "density-residual");
+  assert.equal(residualOverlay?.sectionLinePlacement, "below");
+});
+
 test("equation mapping keeps same-side seed callouts ordered with their target terms", () => {
   createSeedEquationMapDocuments().forEach((document) => {
     const anchorOrder = new Map();
@@ -251,13 +269,13 @@ test("equation mapping pointer geometry attaches comments to section line edges"
   const rightComment = { left: 680, top: 360, right: 840, bottom: 470, width: 160, height: 110 };
 
   assert.deepEqual(createPointerLineGeometry(stageRect, targetRect, leftComment, "above"), {
-    x1: 222,
+    x1: 208,
     y1: 280,
     x2: 400,
     y2: 214,
   });
   assert.deepEqual(createPointerLineGeometry(stageRect, targetRect, rightComment, "below"), {
-    x1: 598,
+    x1: 612,
     y1: 310,
     x2: 400,
     y2: 294,
@@ -644,7 +662,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   );
   assert.match(
     html,
-    /\.equation-mapping-formula-break \{[\s\S]*?flex: 0 0 100%;[\s\S]*?height: clamp\(5px, 0\.8vw, 12px\);/u
+    /\.equation-mapping-formula-break \{[\s\S]*?flex: 0 0 100%;[\s\S]*?height: clamp\(28px, 3\.2vw, 52px\);/u
   );
   assert.match(
     html,

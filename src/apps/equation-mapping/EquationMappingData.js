@@ -449,7 +449,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "energy-readout",
         "Energy readout",
         "energy",
-        "E squared is the total-energy side of the relation. In special relativity, energy includes motion energy plus rest energy. In AAA, this readout comes from conserved branch history, internal storage, and Noether sea response.",
+        "E squared is total energy squared. It combines motion energy and rest energy. In AAA, this is the conserved energy readout of the branch history.",
         "E^2",
         { x: 4, y: 8, width: 22, line: "above" }
       ),
@@ -457,7 +457,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "motion-response",
         "Motion response",
         "momentum",
-        "This is the motion-energy part. Momentum from moving rest mass uses the same effective speed and gamma story as the rest side. In AAA, this is where the motion row meets the mass row.",
+        "p squared c_eff squared is the motion-energy term. It turns momentum into energy units. In AAA, the motion row must match the same mass and speed rows.",
         "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2",
         { x: 26, y: 8, width: 25, line: "above" }
       ),
@@ -465,7 +465,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "mass-response",
         "Mass response",
         "restMass",
-        "M0 is rest mass: the energy an object carries even when it is not moving in this frame. In AAA, that mass is read as trapped internal causal history plus shielding and coupling to the Noether sea.",
+        "M0 is rest mass: energy carried even when the object is not moving in this frame. In AAA, rest mass reads as trapped internal causal history coupled to the Noether sea.",
         "M_0^2c_{\\mathrm{eff}}^4",
         { x: 73, y: 8, width: 22, line: "above" }
       ),
@@ -473,7 +473,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "speed-role",
         "Speed role",
         "effectiveSpeed",
-        "c_eff is the conversion speed in this map. It lets momentum and mass be compared as energy. In AAA, c_eff is declared once for the row, not quietly changed to fit each observation.",
+        "c_eff is the conversion speed. It lets momentum and mass be compared as energy. In AAA, this speed is declared once for the row.",
         "c_{\\mathrm{eff}}",
         { x: 51, y: 8, width: 22, line: "above" }
       ),
@@ -571,9 +571,17 @@ const scoreFiveAndFourEquationMapDocuments = [
         "source-residual",
         "Source loading",
         "sourceTerm",
-        "S_rho is where declared events add or remove density. The separate r_rho term is the leftover error if the simple model has not explained everything yet. In AAA, that residual is a blocker, not something to hide.",
+        "S_rho is the known source term. It marks density being added or removed by declared events before we compare with the measured change. In AAA, these are the sources we count directly.",
         "S_{\\rho}",
         { x: 7, y: 68, width: 36, line: "below" }
+      ),
+      overlay(
+        "density-residual",
+        "Leftover term",
+        "residual",
+        "r_rho is the leftover after density change, flow, and known sources are counted. If it is not zero, the continuity row still needs another carrier or response term. In AAA, the leftover is shown instead of hidden.",
+        "r_{\\rho}",
+        { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],
   },
