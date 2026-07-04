@@ -68,7 +68,7 @@ function createFakeFormulaChild(width, className = "") {
 
 test("equation mapping seed document carries static layer anchors and comments", () => {
   const documents = createSeedEquationMapDocuments();
-  assert.equal(documents.length, 10);
+  assert.equal(documents.length, 21);
   const [document] = documents;
   assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
   assert.equal(document.schema, "equation-map-document.v1");
@@ -84,9 +84,29 @@ test("equation mapping seed document carries static layer anchors and comments",
   assert.equal(document.overlays.some((overlay) => overlay.targetAnchorId === "polarity"), true);
   assert.equal(document.overlays[0].content.some((block) => block.type === "math"), true);
   assert.equal(documents.some((entry) => entry.id === "eq-17-redshift-factorization"), true);
+  assert.equal(documents.some((entry) => entry.id === "eq-19-friedmann-continuity-lcdm"), true);
+  assert.equal(documents.some((entry) => entry.id === "eq-22-planck-blackbody-occupancy"), true);
+  assert.equal(
+    documents.every((entry) => !/^EQ-\d+/u.test(entry.title)),
+    true
+  );
   assert.deepEqual(
-    documents.map((entry) => entry.title.match(/^EQ-\d+/u)?.[0]),
-    ["EQ-01", "EQ-02", "EQ-03", "EQ-04", "EQ-05", "EQ-06", "EQ-07", "EQ-08", "EQ-09", "EQ-10"]
+    documents.slice(0, 4).map((entry) => entry.title),
+    [
+      "Causal Wake Master Equation",
+      "Lorentz Factor And Clock Rate",
+      "Oblate Spheroidal Envelope",
+      "Energy Momentum And Rest Energy",
+    ]
+  );
+  assert.deepEqual(
+    documents.slice(0, 4).map((entry) => entry.id),
+    [
+      "eq-01-causal-wake-master-equation",
+      "eq-02-lorentz-clock-rate",
+      "eq-03-oblate-spheroidal-envelope",
+      "eq-04-energy-momentum-rest-energy",
+    ]
   );
 });
 
@@ -114,7 +134,7 @@ test("equation mapping search includes subject, formula text, anchors, and overl
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
 });
 
-test("equation mapping can target an inner EQ-02 marker without splitting the fraction", () => {
+test("equation mapping can target an inner Lorentz marker without splitting the fraction", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-02-lorentz-clock-rate"
   );
@@ -163,7 +183,7 @@ test("equation mapping callout prose avoids underscore notation", () => {
   });
 });
 
-test("equation mapping gives EQ-06 residual its own callout", () => {
+test("equation mapping gives Noether sea continuity residual its own callout", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-06-noether-sea-continuity"
   );
@@ -203,7 +223,7 @@ test("equation mapping keeps same-side seed callouts ordered with their target t
   });
 });
 
-test("equation mapping places EQ-07 upper-row callouts above and drift callout below", () => {
+test("equation mapping places effective-metric upper-row callouts above and drift callout below", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-07-effective-metric-adm-cartan"
   );
@@ -237,7 +257,7 @@ test("equation mapping places EQ-07 upper-row callouts above and drift callout b
   assert.equal(placementByOverlayId.get("drift-channel"), "below");
 });
 
-test("equation mapping gives EQ-03 perpendicular radius its own callout", () => {
+test("equation mapping gives oblate-envelope perpendicular radius its own callout", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-03-oblate-spheroidal-envelope"
   );
@@ -261,7 +281,7 @@ test("equation mapping gives EQ-03 perpendicular radius its own callout", () => 
   );
 });
 
-test("equation mapping EQ-04 adds corrected motion relation and rest-mass solve row", () => {
+test("equation mapping energy-momentum map adds corrected motion relation and rest-mass solve row", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-04-energy-momentum-rest-energy"
   );
@@ -656,11 +676,11 @@ test("equation mapping arrow keys navigate through the visible equation list", (
   runtime.activeDocumentId = "eq-04-energy-momentum-rest-energy";
 
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowRight")), true);
-  assert.equal(runtime.activeDocumentId, "eq-05-noether-conservation");
+  assert.equal(runtime.activeDocumentId, "eq-07-effective-metric-adm-cartan");
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowDown")), true);
-  assert.equal(runtime.activeDocumentId, "eq-06-noether-sea-continuity");
+  assert.equal(runtime.activeDocumentId, "eq-08-weak-field-clock-redshift");
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowLeft")), true);
-  assert.equal(runtime.activeDocumentId, "eq-05-noether-conservation");
+  assert.equal(runtime.activeDocumentId, "eq-07-effective-metric-adm-cartan");
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowUp")), true);
   assert.equal(runtime.activeDocumentId, "eq-04-energy-momentum-rest-energy");
   assert.equal(renderCount, 4);
@@ -694,6 +714,53 @@ test("equation mapping arrow keys ignore text-entry targets", () => {
   assert.equal(didNavigate, false);
   assert.equal(prevented, false);
   assert.equal(runtime.activeDocumentId, "eq-04-energy-momentum-rest-energy");
+});
+
+test("equation mapping resolves semantic hashes without renaming stable document ids", () => {
+  const replaceCalls = [];
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      location: {
+        href: "http://127.0.0.1:5173/equation-mapping.html#lorentz-clock-rate",
+        hash: "#lorentz-clock-rate",
+      },
+      history: {
+        state: null,
+        replaceState(...args) {
+          replaceCalls.push(args);
+        },
+      },
+      localStorage: {
+        getItem() {
+          return null;
+        },
+        setItem() {},
+      },
+    },
+  });
+  runtime.render = () => {};
+
+  assert.equal(runtime.activeDocumentId, "eq-02-lorentz-clock-rate");
+  runtime.setActiveDocument("eq-19-friedmann-continuity-lcdm");
+  assert.equal(replaceCalls.length, 1);
+  assert.equal(
+    replaceCalls[0][2],
+    "http://127.0.0.1:5173/equation-mapping.html#friedmann-continuity-lcdm"
+  );
+});
+
+test("equation mapping subject selector defaults to folded groups", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+  assert.equal(runtime.includes("groupEquationMapDocumentsBySubject(this.getVisibleDocumentList())"), true);
+  assert.equal(runtime.includes("this.expandedSubjectIds = normalizeExpandedSubjectIds"), true);
+  assert.equal(runtime.includes("expandedSubjectIds: [...this.expandedSubjectIds]"), true);
+  assert.equal(runtime.includes('group.dataset.expanded = isExpanded ? "true" : "false"'), true);
+  assert.match(
+    html,
+    /\.equation-mapping-index-group\[data-expanded="false"\] \.equation-mapping-index-items \{[\s\S]*?display: none;/u
+  );
 });
 
 test("equation mapping resets stale saved sizing into the new medium defaults", () => {
@@ -795,7 +862,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
-  assert.match(html, /\.equation-mapping-index-group h2 \{[\s\S]*?font-size: 20px;/u);
+  assert.match(html, /\.equation-mapping-index-group-toggle strong \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-index-item span \{[\s\S]*?font-size: 21px;/u);
   assert.match(html, /\.equation-mapping-index-item small \{[\s\S]*?font-size: 15px;/u);
   assert.equal(html.includes(".equation-mapping-equation-title span"), false);
@@ -830,6 +897,20 @@ test("equation mapping keeps overlay status out of visible comment labels", () =
   assert.equal(runtime.includes('"Status", "overlay-status"'), false);
   assert.equal(data.includes("overlay.title} ${overlay.status}"), false);
   assert.equal(editor.includes('normalizePlainText(draft.status, "candidate")'), false);
+});
+
+test("equation mapping supports cabernet geometry-note callouts", () => {
+  const documents = createSeedEquationMapDocuments();
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+  assert.equal(
+    documents.some((document) => document.overlays.some((overlay) => overlay.tone === "geometry")),
+    true
+  );
+  assert.equal(runtime.includes("comment.dataset.tone = overlay.tone ?? \"standard\""), true);
+  assert.equal(runtime.includes("line.dataset.tone = overlay.tone ?? \"standard\""), true);
+  assert.match(html, /--geometry-note-ink: rgba\(190, 85, 98, 0\.82\);/u);
+  assert.match(html, /\.equation-mapping-pointer-line\[data-tone="geometry"\] \{[\s\S]*?stroke: var\(--geometry-note-ink\);/u);
 });
 
 test("equation mapping defaults to medium comment font size", () => {

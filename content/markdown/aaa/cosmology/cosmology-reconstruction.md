@@ -30,7 +30,7 @@ The first layer is the observation. The second layer is a disciplined map. The t
 
 ## Why Lambda-CDM Is Strong
 
-Lambda-CDM is strong because it compresses many observation channels into a small effective model. It uses a homogeneous and isotropic metric background, a scale factor $a(t)$, cold dark matter, baryons, radiation, neutrinos, and a dark-energy term close to a cosmological constant.
+Lambda-CDM is strong because it compresses many observation channels into a small effective model. In standard comparison form it uses a homogeneous and isotropic metric background, a scale factor $a_{\mathrm{std}}(t)$, cold dark matter, baryons, radiation, neutrinos, and a dark-energy term close to a cosmological constant. The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge maps that row to $a_{\mathrm{eff}}(\tau_c)$ or $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the observer-era clock map has been declared.
 
 With that package it fits:
 
@@ -339,7 +339,7 @@ Once redshift and distance are treated as ledgers, the dark sector changes meani
 
 | Lambda-CDM object | Standard role | $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation |
 | --- | --- | --- |
-| $a(t)$ | Scale factor of the metric universe. | Effective summary of Noether sea and assembly history. |
+| $a_{\mathrm{std}}(t)$ | Standard comparison scale factor of the metric universe. | Maps to $a_{\mathrm{eff}}(\tau_c)$ or $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ after the observer-era clock map is declared. |
 | $H(z)$ | Expansion rate at redshift $z$. | Corrected redshift-transfer slope after source, endpoint, motion, and path terms are separated. |
 | $\Omega_\Lambda$ | Dark-energy density fraction, often near a cosmological constant. | Effective pressure and energy projection of Noether sea state and relaxation history. |
 | $w(z)$ | Equation-of-state parameter for dark energy. | Coarse-grained response curve of the Noether sea contribution assigned to the expansion-equivalent ledger. |

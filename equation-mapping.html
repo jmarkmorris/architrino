@@ -45,6 +45,7 @@
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
         --marker-ink: rgba(75, 0, 130, 0.44);
+        --geometry-note-ink: rgba(127, 29, 29, 0.72);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -65,6 +66,7 @@
         --equation-ink: #ffffff;
         --line-ink: #ffffff;
         --marker-ink: rgba(232, 226, 236, 0.58);
+        --geometry-note-ink: rgba(190, 85, 98, 0.82);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.22);
@@ -79,6 +81,7 @@
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
         --marker-ink: rgba(75, 0, 130, 0.44);
+        --geometry-note-ink: rgba(127, 29, 29, 0.72);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -93,6 +96,7 @@
         --equation-ink: #ffffff;
         --line-ink: #ffffff;
         --marker-ink: rgba(226, 232, 240, 0.58);
+        --geometry-note-ink: rgba(190, 85, 98, 0.82);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.2);
@@ -148,12 +152,63 @@
         padding: 18px;
       }
 
-      .equation-mapping-index-group h2 {
-        margin: 0 0 10px;
+      .equation-mapping-index-group {
+        display: grid;
+        gap: 8px;
+      }
+
+      .equation-mapping-index-group-toggle {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 10px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: transparent;
         color: var(--muted);
-        font-size: 20px;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .equation-mapping-index-group-toggle:hover,
+      .equation-mapping-index-group-toggle:focus-visible {
+        border-color: var(--strong-rule);
+        outline: none;
+      }
+
+      .equation-mapping-index-group-toggle strong {
+        overflow-wrap: anywhere;
+        font-size: 18px;
         font-weight: 760;
         line-height: 1.1;
+      }
+
+      .equation-mapping-index-group-toggle small {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 760;
+      }
+
+      .equation-mapping-index-group-chevron {
+        font-size: 22px;
+        line-height: 1;
+        transition: transform 140ms ease;
+      }
+
+      .equation-mapping-index-group[data-expanded="true"] .equation-mapping-index-group-chevron {
+        transform: rotate(90deg);
+      }
+
+      .equation-mapping-index-group[data-expanded="false"] .equation-mapping-index-items {
+        display: none;
+      }
+
+      .equation-mapping-index-items {
+        display: grid;
+        gap: 4px;
       }
 
       .equation-mapping-index-item {
@@ -546,6 +601,11 @@
         bottom: -14px;
       }
 
+      .equation-mapping-formula-part.is-targeted[data-section-tone="geometry"]::before,
+      .equation-mapping-formula-part.is-targeted[data-section-tone="geometry"]::after {
+        background: var(--geometry-note-ink);
+      }
+
       .equation-mapping-formula-part.is-editor-selected-anchor {
         color: var(--equation-ink);
       }
@@ -574,6 +634,10 @@
 
       .equation-mapping-comment.is-active {
         border-color: var(--line-ink);
+      }
+
+      .equation-mapping-comment[data-tone="geometry"] {
+        border-color: var(--geometry-note-ink);
       }
 
       .equation-mapping-comment-header {
@@ -642,6 +706,10 @@
         stroke: var(--marker-ink);
         stroke-width: 1;
         vector-effect: non-scaling-stroke;
+      }
+
+      .equation-mapping-pointer-line[data-tone="geometry"] {
+        stroke: var(--geometry-note-ink);
       }
 
       .equation-mapping-math-fallback {

@@ -23,6 +23,7 @@ function cloneOverlay(overlay = {}) {
     id: overlay.id,
     title: overlay.title,
     status: overlay.status,
+    tone: overlay.tone,
     targetAnchorId: overlay.targetAnchorId,
     sectionLinePlacement: overlay.sectionLinePlacement,
     position: {

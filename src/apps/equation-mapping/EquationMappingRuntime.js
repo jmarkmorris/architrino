@@ -8,6 +8,7 @@ import {
   createSeedEquationMapDocuments,
   filterEquationMapDocuments,
   getCanvasColorById,
+  groupEquationMapDocumentsBySubject,
   normalizeBackgroundId,
   normalizeCommentFontSize,
   normalizeEquationMapDocument,
@@ -481,6 +482,81 @@ function saveSettings(windowLike, settings) {
   }
 }
 
+function normalizeExpandedSubjectIds(value) {
+  if (!Array.isArray(value)) {
+    return new Set();
+  }
+  return new Set(value.map((entry) => String(entry ?? "").trim()).filter(Boolean));
+}
+
+function createStableSlug(value, fallback = "") {
+  const slug = String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/gu, "-")
+    .replace(/^-+|-+$/gu, "");
+  return slug || fallback;
+}
+
+function removeEquationIdPrefix(documentId = "") {
+  return String(documentId).replace(/^eq-\d+[a-z]?-/u, "");
+}
+
+function getDocumentHashId(document = {}) {
+  const semanticId = removeEquationIdPrefix(document.id);
+  return semanticId && semanticId !== document.id
+    ? semanticId
+    : createStableSlug(document.title, document.id);
+}
+
+function getDocumentHashAliases(document = {}) {
+  return new Set(
+    [
+      document.id,
+      getDocumentHashId(document),
+      createStableSlug(document.title),
+    ].filter(Boolean)
+  );
+}
+
+function readLocationHashId(windowLike) {
+  const hash = String(windowLike?.location?.hash ?? "").replace(/^#/u, "").trim();
+  if (!hash) {
+    return "";
+  }
+  try {
+    return decodeURIComponent(hash);
+  } catch {
+    return hash;
+  }
+}
+
+function resolveDocumentId(documents = [], requestedId = "") {
+  const normalizedId = String(requestedId ?? "").replace(/^#/u, "").trim();
+  if (!normalizedId) {
+    return "";
+  }
+  return documents.find((document) => getDocumentHashAliases(document).has(normalizedId))?.id ?? "";
+}
+
+function replaceLocationHashForDocument(windowLike, document) {
+  const hashId = getDocumentHashId(document);
+  if (!hashId || !windowLike?.location) {
+    return;
+  }
+  const nextHash = `#${encodeURIComponent(hashId)}`;
+  if (windowLike.location.hash === nextHash) {
+    return;
+  }
+  if (typeof windowLike.history?.replaceState === "function" && windowLike.location.href) {
+    const url = new URL(windowLike.location.href);
+    url.hash = hashId;
+    windowLike.history.replaceState(windowLike.history.state ?? null, "", url.href);
+    return;
+  }
+  windowLike.location.hash = nextHash;
+}
+
 function createIconSvg(name) {
   switch (name) {
     case "home":
@@ -552,10 +628,13 @@ export class EquationMappingRuntime {
       options.documents ?? mergeSeedAndSavedDocuments(seedDocuments, savedDocuments)
     );
     const savedSettings = readSavedSettings(this.window);
+    const requestedDocumentId =
+      options.initialDocumentId ||
+      readLocationHashId(this.window) ||
+      savedSettings.activeDocumentId;
     this.activeDocumentId =
-      options.initialDocumentId ??
-      savedSettings.activeDocumentId ??
-      this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ??
+      resolveDocumentId(this.documents, requestedDocumentId) ||
+      this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ||
       this.documents[0].id;
     this.activeOverlayId = savedSettings.activeOverlayId ?? this.activeDocument.overlays[0]?.id ?? "";
     this.activeAnchorId = savedSettings.activeAnchorId ?? this.activeDocument.anchors[0]?.id ?? "";
@@ -572,6 +651,9 @@ export class EquationMappingRuntime {
         (savedSizeSettingsAreCurrent ? savedSettings.commentFontSize : DEFAULT_COMMENT_FONT_SIZE)
     );
     this.indexCollapsed = Boolean(options.indexCollapsed ?? savedSettings.indexCollapsed ?? false);
+    this.expandedSubjectIds = normalizeExpandedSubjectIds(
+      options.expandedSubjectIds ?? savedSettings.expandedSubjectIds
+    );
     this.searchOpen = false;
     this.settingsOpen = false;
     this.editorOpen = false;
@@ -627,6 +709,7 @@ export class EquationMappingRuntime {
       commentFontSize: this.commentFontSize,
       sizeCalibrationVersion: SIZE_CALIBRATION_VERSION,
       indexCollapsed: this.indexCollapsed,
+      expandedSubjectIds: [...this.expandedSubjectIds],
     });
   }
 
@@ -664,6 +747,7 @@ export class EquationMappingRuntime {
       this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ?? this.documents[0].id;
     this.activeAnchorId = this.activeDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = this.activeDocument.overlays[0]?.id ?? "";
+    this.expandedSubjectIds = new Set();
     this.persistSettings();
     this.render();
   }
@@ -676,6 +760,8 @@ export class EquationMappingRuntime {
     this.activeDocumentId = nextDocument.id;
     this.activeAnchorId = nextDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
+    this.expandedSubjectIds.add(nextDocument.subject);
+    replaceLocationHashForDocument(this.window, nextDocument);
     this.persistSettings();
     this.render();
   }
@@ -829,20 +915,39 @@ export class EquationMappingRuntime {
     });
     header.append(title, collapse);
     const groups = createElement(this.document, "div", "equation-mapping-index-groups");
-    const group = createElement(this.document, "section", "equation-mapping-index-group");
-    group.append(createElement(this.document, "h2", "", "Physics sequence"));
-    this.getVisibleDocumentList().forEach((entry) => {
-      const button = createElement(this.document, "button", "equation-mapping-index-item");
-      button.type = "button";
-      button.classList.toggle("is-active", entry.id === this.activeDocument.id);
-      button.append(
-        createElement(this.document, "span", "", entry.title),
-        createElement(this.document, "small", "", entry.subject)
+    groupEquationMapDocumentsBySubject(this.getVisibleDocumentList()).forEach(([subject, entries]) => {
+      const group = createElement(this.document, "section", "equation-mapping-index-group");
+      const isExpanded = this.expandedSubjectIds.has(subject);
+      group.dataset.expanded = isExpanded ? "true" : "false";
+      const toggle = createElement(this.document, "button", "equation-mapping-index-group-toggle");
+      toggle.type = "button";
+      toggle.setAttribute("aria-expanded", String(isExpanded));
+      toggle.append(
+        createElement(this.document, "span", "equation-mapping-index-group-chevron", "›"),
+        createElement(this.document, "strong", "", subject),
+        createElement(this.document, "small", "", String(entries.length))
       );
-      button.addEventListener("click", () => this.setActiveDocument(entry.id));
-      group.append(button);
+      toggle.addEventListener("click", () => {
+        if (this.expandedSubjectIds.has(subject)) {
+          this.expandedSubjectIds.delete(subject);
+        } else {
+          this.expandedSubjectIds.add(subject);
+        }
+        this.persistSettings();
+        this.render();
+      });
+      const itemList = createElement(this.document, "div", "equation-mapping-index-items");
+      entries.forEach((entry) => {
+        const button = createElement(this.document, "button", "equation-mapping-index-item");
+        button.type = "button";
+        button.classList.toggle("is-active", entry.id === this.activeDocument.id);
+        button.append(createElement(this.document, "span", "", entry.title));
+        button.addEventListener("click", () => this.setActiveDocument(entry.id));
+        itemList.append(button);
+      });
+      group.append(toggle, itemList);
+      groups.append(group);
     });
-    groups.append(group);
     index.append(header, groups);
     return index;
   }
@@ -1151,6 +1256,9 @@ export class EquationMappingRuntime {
         overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT,
       ])
     );
+    const targetToneByAnchor = new Map(
+      document.overlays.map((overlay) => [overlay.targetAnchorId, overlay.tone ?? "standard"])
+    );
     document.formulaParts.forEach((part) => {
       if (part.kind === "break") {
         equation.append(createElement(this.document, "span", "equation-mapping-formula-break"));
@@ -1174,6 +1282,7 @@ export class EquationMappingRuntime {
         if (targetPlacementByAnchor.has(part.anchorId)) {
           partElement.classList.add("is-targeted");
           partElement.dataset.sectionLine = targetPlacementByAnchor.get(part.anchorId);
+          partElement.dataset.sectionTone = targetToneByAnchor.get(part.anchorId) ?? "standard";
         }
         if (part.anchorId === activeTargetId) {
           partElement.classList.add("is-active-target");
@@ -1198,6 +1307,7 @@ export class EquationMappingRuntime {
     this.activeDocument.overlays.forEach((overlay) => {
       const comment = createElement(this.document, "article", "equation-mapping-comment");
       comment.dataset.overlayId = overlay.id;
+      comment.dataset.tone = overlay.tone ?? "standard";
       comment.classList.toggle("is-active", overlay.id === this.activeOverlay?.id);
       comment.style.setProperty("--overlay-x", String(overlay.position.x));
       comment.style.setProperty("--overlay-y", String(overlay.position.y));
@@ -1433,6 +1543,7 @@ export class EquationMappingRuntime {
       );
       const line = createSvgElement(this.document, "line");
       line.classList.add("equation-mapping-pointer-line");
+      line.dataset.tone = overlay.tone ?? "standard";
       line.classList.toggle("is-active", overlay.id === this.activeOverlay?.id);
       line.setAttribute("x1", String(geometry.x1));
       line.setAttribute("y1", String(geometry.y1));

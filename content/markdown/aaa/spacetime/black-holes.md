@@ -242,7 +242,7 @@ $$
 
 This definition depends on the full future development of the effective spacetime. It is therefore not a local surface that a finite-time observer or one simulation slice can identify by inspection. In dynamical collapse, accretion, or merger cases, the event horizon can be located only by the global escape structure of null trajectories.
 
-The apparent horizon is the more local comparison surface. On a chosen spatial slice $\Sigma_t$, it is the outer boundary of the trapped region, with outgoing null expansion at the boundary and ingoing null expansion still inward,
+The apparent horizon is the more local comparison surface. In layer-explicit comparison notation, the chosen GR slice is $\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$, not an absolute slice $\Sigma_T$. On that effective spatial slice it is the outer boundary of the trapped region, with outgoing null expansion at the boundary and ingoing null expansion still inward,
 $$
 \theta_+^{\mathrm{eff}}=0,
 \qquad
@@ -254,7 +254,7 @@ $$
 F_H(\theta_{\Omega,W})=0
 \quad\Longrightarrow\quad
 \left(
-\mathcal{H}_{\mathrm{app}}^{\mathrm{eff}}(\Sigma_t;\theta_{\Omega,W}),
+\mathcal{H}_{\mathrm{app}}^{\mathrm{eff}}(\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}};\theta_{\Omega,W}),
 \mathcal{H}_{\mathrm{event}}^{\mathrm{eff}}(\theta_{\Omega,W})
 \right)
 $$

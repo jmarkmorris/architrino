@@ -13,30 +13,32 @@ The [Euclidean void](../foundations/euclidean-void.md) does not expand. What evo
 Define an effective scale history from medium structure:
 
 $$
-a(t)\propto \frac{\langle L_{\text{core}}(t)\rangle}{\langle L_{\text{core}}(t_{\text{ref}})\rangle}
+a_{\mathrm{eff}}(T)\propto
+\frac{\langle L_{\text{core}}(T)\rangle}
+{\langle L_{\text{core}}(T_{\mathrm{ref}})\rangle}
 $$
 
 where $L_{\text{core}}$ is a representative assembly-separation scale.
 
-This $a(t)$ is a summary of medium evolution inside fixed $(x,y,z)$, not geometric stretching of the container.
+This $a_{\mathrm{eff}}(T)$ is a summary of medium evolution inside fixed $\mathbf X$, not geometric stretching of the container. When projected into a homogeneous observer comparison, the same row may be reported as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ or $a_{\mathrm{eff}}(\tau_c)$ after the clock map has been declared.
 
 Equivalent bookkeeping choices can be used in the same ontology:
 
 $$
-a(t)\ \leftrightarrow\ \langle R_{\text{core}}(t)\rangle
+a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{core}}(T)\rangle
 \quad\text{or}\quad
-a(t)\propto u_{\text{sea}}(t)^{-1/3}
+a_{\mathrm{eff}}(T)\propto u_{\text{sea}}(T)^{-1/3}
 $$
 
 These are effective parameterizations of Noether sea state, not independent geometric claims.
 
 Quasi-steady and cyclical comparison families may use an oscillatory effective scale history such as
 $$
-a_{\mathrm{eff},X}(t)
+a_{\mathrm{eff},X}(t_{\mathrm{eff}})
 =
-e^{t/P}
+e^{t_{\mathrm{eff}}/P}
 \left[
-1+\alpha\cos\left(\frac{2\pi t}{Q}+\varphi\right)
+1+\alpha\cos\left(\frac{2\pi t_{\mathrm{eff}}}{Q}+\varphi\right)
 \right],
 \qquad
 P\gg Q
@@ -47,7 +49,7 @@ In this framework that expression is only a projection of Noether sea state recu
 
 The de Sitter and steady-state comparison family often uses a spatially flat exponential scale history,
 $$
-a_{\mathrm{eff}}(t)=a_0 e^{H_*t},
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0 e^{H_*t_{\mathrm{eff}}},
 \qquad
 H_{\mathrm{eff}}=H_*
 $$
@@ -70,16 +72,25 @@ Cosmological redshift is treated as cumulative propagation through a changing me
 Use the proper-time map from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md):
 
 $$
-\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right)
+\frac{d\tau}{dt_{\mathrm{eff}}}
+=
+F\!\left(
+\mathbf{w},
+\rho_{\text{NS}}(\mathbf X,T),
+n(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T),
+\Phi_{\text{eff}},
+\text{clock geometry}
+\right)
 $$
 
-A photon that traverses regions with different $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates. The observed $z$ is then an emergent comparison of those rates along the path-history record.
+A photon that traverses regions with different $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, and $\Phi_{\text{eff}}$ is read by clocks with different local rates after projection into the observer chart. The observed $z$ is then an emergent comparison of those rates along the path-history record.
 
 Operationally:
 
 $$
 1+z = \frac{\nu_e}{\nu_o}
-= \frac{(d\tau/dt)_o}{(d\tau/dt)_e}
+= \frac{(d\tau/dt_{\mathrm{eff}})_o}{(d\tau/dt_{\mathrm{eff}})_e}
 $$
 
 so redshift is treated as path-integrated medium evolution plus endpoint clock-rate comparison.
@@ -1473,7 +1484,7 @@ Conceptually, this layer is adjacent to inhomogeneous/clock-calibration cosmolog
 
 The fixed-void cosmology branch can currently claim the transport constraints that any successful redshift mechanism must satisfy. Because the Euclidean void does not expand, the redshift explanation must act through endpoint clock cadence, source-branch state, launch geometry, and path-history transport through the Noether sea. A viable transport redshift must therefore preserve the standard observational rows normally packaged by an FRW scale factor: Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, and CMB temperature scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record.
 
-These rows are form-level constraints, not a derived $\Lambda\mathrm{CDM}$ mechanism. A scalar $a_{\mathrm{eff}}(t)$ is admissible only after statistical homogeneity and isotropy of the retained Noether sea record have been established; otherwise the honest output is a local tensorial $g^{\mathrm{eff}}_{\mu\nu}(\mathbf{x},t)$ or anisotropic scale response. The Friedmann-like equations below remain comparison-layer summaries until the same Noether sea response law derives $a_{\mathrm{eff}}(t)$, $G_{\mathrm{eff}}$, the effective equation of state, and the transport coefficients from one retained record.
+These rows are form-level constraints, not a derived $\Lambda\mathrm{CDM}$ mechanism. A scalar $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ is admissible only after statistical homogeneity and isotropy of the retained Noether sea record have been established; otherwise the honest output is a local tensorial $g^{\mathrm{eff}}_{\mu\nu}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ or anisotropic scale response. The Friedmann-like equations below remain comparison-layer summaries until the same Noether sea response law derives $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $G_{\mathrm{eff}}$, the effective equation of state, and the transport coefficients from one retained record.
 
 ## Effective Friedmann Bridge (Comparison Layer)
 
@@ -1487,7 +1498,7 @@ H_{\mathrm{eff}}^2
 -\frac{k_{\text{eff}}c_0^2}{a_{\mathrm{eff}}^2}
 $$
 
-with $a_{\mathrm{eff}}(t)$ interpreted as a Noether sea state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-Noether sea response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
+with $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ interpreted as a Noether sea state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-Noether sea response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
 $$
 \dot\rho_{\mathrm{eff}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
@@ -1502,5 +1513,5 @@ This equation is a comparison layer for the homogeneous and isotropic limit. It 
 In the modular cosmology map, this page provides:
 
 - ontic inputs: medium density/stress state, clock-rate map, and transport environment,
-- effective outputs: inferred $a(t)$, $H(z)$, and redshift-distance behavior,
+- effective outputs: inferred $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(z)$, and redshift-distance behavior,
 - shared bridge variables used by [dark-energy.md](./dark-energy.md), [hubble-s8-tensions.md](./hubble-s8-tensions.md), and [CMB.md](./CMB.md).
