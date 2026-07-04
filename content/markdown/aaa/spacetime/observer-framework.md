@@ -115,16 +115,16 @@ This distinction protects several recurring claims:
 
 For the quantum side of this distinction, see [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md).
 
-Formal note: a local subsystem is not generally closed under the primitive dynamics. Let $\Omega\subset\Sigma_t$ be the spatial region resolved by a Physical Observer, let $X_\Omega(t)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<t}$ be the path-history data for the relevant architrino trajectories and causal wakes before $t$. The missing exterior influence can be represented as boundary wake data
+Formal note: a local subsystem is not generally closed under the primitive dynamics. Let $\Omega\subset\Sigma_T$ be the spatial region resolved by a Physical Observer, let $X_\Omega(T)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<T}$ be the path-history data for the relevant architrino trajectories and causal wakes before $T$. The missing exterior influence can be represented as boundary wake data
 $$
-\mathcal{B}_{\partial\Omega}(t)
+\mathcal{B}_{\partial\Omega}(T)
 =
 \left\{
-(j,t_0,\mathbf{s}_j(t_0),q_j)
+(j,T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),q_j)
 \;:\;
-t_0<t,\quad
-\|\mathbf{x}-\mathbf{s}_j(t_0)\|=c_f(t-t_0),\quad
-\mathbf{x}\in\partial\Omega
+T_{\mathrm{em}}<T,\quad
+\|\mathbf X-\mathbf X_j(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}}),\quad
+\mathbf X\in\partial\Omega
 \right\}
 $$
 
@@ -276,12 +276,12 @@ $$
 $$
 are simultaneous exactly when
 $$
-t_1=t_2
+T_1=T_2
 $$
 
 The simultaneity slice is
 $$
-\Sigma_t=\{t\}\times\mathbb{R}^3
+\Sigma_T=\{T\}\times\mathbb{R}^3
 $$
 
 This is a statement about the substrate foliation of absolute timespace, not about what any Physical Observer can operationally reconstruct.
@@ -290,7 +290,7 @@ Physical Observers define simultaneity through clocks, rulers, and signal exchan
 
 The disagreement is epistemic rather than ontological:
 
-- The $\mathbb{U}_{\text{now}}$ universe-state perspective has one absolute slice $\Sigma_t$.
+- The $\mathbb{U}_{\text{now}}$ universe-state perspective has one absolute slice $\Sigma_T$.
 - Physical Observers recover only operational synchronization conventions.
 - In validated regimes, those operational conventions must reproduce Lorentz-consistent clock, ruler, and two-way signal phenomenology while bounding preferred-frame leakage below observational limits.
 

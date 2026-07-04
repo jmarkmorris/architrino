@@ -13,7 +13,7 @@ $$
 W_{ij}^{\mathrm{rec}}(t;t_0)
 =
 \left|
-\frac{D_{t,ij}(t;t_0)}{D_{s,ij}(t;t_0)}
+\frac{D_{T,ij}(t;t_0)}{D_{s,ij}(t;t_0)}
 \right|,
 $$
 with
@@ -22,7 +22,7 @@ D_{s,ij}
 =
 c_f-\mathbf v_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0),
 \qquad
-D_{t,ij}
+D_{T,ij}
 =
 c_f-\mathbf v_i(t)\cdot\hat{\mathbf r}_{ij}(t;t_0).
 $$
@@ -30,7 +30,7 @@ $$
 A branch record that contains only $D_s$ is incomplete for current force/action
 use. $D_s$ remains the source-normal transversality denominator for root
 existence, caustic routing, and inactive-gap diagnostics. Force, action, power,
-wake-history charge, mass-response, and conservation rows require $D_t$ on the
+wake-history charge, mass-response, and conservation rows require $D_T$ on the
 same retained record.
 
 ## Core Functional Definitions
@@ -109,7 +109,7 @@ $$
 This notation records signed causal-locus crossings or linkages in the retained
 record. It does not supply force strength. Any use of $Wr_c$ in spin,
 chirality, confinement, or horizon-interface arguments must also state the
-branch record on which $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are available.
+branch record on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
 
 ## Circular Benchmark as a Branch-Count Theorem
 
@@ -124,11 +124,11 @@ A current circular benchmark must emit:
 | --- | --- |
 | retained roots | partner/self labels and windows |
 | $D_s$ | nonzero denominator floor or declared caustic route |
-| $D_t$ | receiver-normal numerator interval |
+| $D_T$ | receiver-normal numerator interval |
 | $W^{\mathrm{rec}}$ | same-record branch strength interval |
 | vector residual | radial and tangential Master EOM residuals |
 | scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
-| negative control | fail-closed result when $D_t$ is absent or mismatched |
+| negative control | fail-closed result when $D_T$ is absent or mismatched |
 
 Until those rows exist, circular material is not evidence for action closure.
 
@@ -160,7 +160,7 @@ A branch certificate that consumes this chapter must report:
 | Certificate row | Required content |
 | --- | --- |
 | branch identity | retained roots, inactive gaps, finite memory |
-| receiver-normal strength | same-box $D_s$, $D_t$, and $W^{\mathrm{rec}}$ |
+| receiver-normal strength | same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ |
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
 | Noether pullback | energy, momentum, and angular-momentum wake-history rows |
@@ -175,6 +175,6 @@ The current action-functional lane is a receiver-normal rebuild target. It keeps
 causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete receiver-normal branch records.
 The next useful mathematical artifact is one retained branch packet
-that binds root topology, $D_s$, $D_t$, $W^{\mathrm{rec}}$, vector residuals,
+that binds root topology, $D_s$, $D_T$, $W^{\mathrm{rec}}$, vector residuals,
 scalar statistic, Noether pullback, and fail-closed negative controls on the
 same record.

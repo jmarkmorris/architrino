@@ -58,7 +58,7 @@ T_p^{\mathrm{src}}
 \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
 \quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. This is not a canonical force verdict. The receiver-normal row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
+where $\delta_p$ is the partner delay angle. This is not a canonical force verdict. The receiver-normal row must recompute the partner contribution with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
 
 -  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
@@ -182,7 +182,7 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 Receiver-normal restart notice. The circular MCB branch topology, root labels,
 and source-normal Jacobian formulas remain useful geometry. Force components,
 stability criteria, action rows, and any branch-weighted verdicts in this
-section must be redriven with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+section must be redriven with $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ before
 they can serve as canonical Master EOM evidence.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
@@ -527,7 +527,7 @@ Define **inward radial** as positive (toward center) and **tangential** as posit
 The projections in this subsection are source-normal circular diagnostics. They
 record branch orientation and root geometry, but they are not canonical Master EOM
 acceleration rows until the same retained branches are recomputed with
-$D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
+$D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$.
 
 **Chord lengths**:
 $$
@@ -651,7 +651,7 @@ T_{\mathrm{net}}
 \sum_{m\in\mathcal{M}_s} w_{s,m} T_{s,m}
 >0
 $$
-where $w_{p,m},w_{s,m}\ge 0$ are same-row receiver-normal branch weights induced by $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
+where $w_{p,m},w_{s,m}\ge 0$ are same-row receiver-normal branch weights induced by $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
 *Proof.*  
 For any active partner branch, the tangential contribution is
@@ -719,7 +719,7 @@ strengths:
 $$
 A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{W_p^{\mathrm{rec}}}{\cos(\delta_p / 2)} - \frac{W_s^{\mathrm{rec}}}{\sin(\delta_s / 2)} \right),
 \qquad
-W_{\bullet}^{\mathrm{rec}}=\left|\frac{D_{t,\bullet}}{D_{s,\bullet}}\right|.
+W_{\bullet}^{\mathrm{rec}}=\left|\frac{D_{T,\bullet}}{D_{s,\bullet}}\right|.
 $$
 
 **Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial force**. This occurs when:
@@ -1518,7 +1518,7 @@ $$
 $$
 so causal-root times are unchanged. Unit directions transform covariantly:
 $\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. The dot products defining
-$D_s$, $D_t$, and $W^{\mathrm{rec}}$ are preserved by the same spatial
+$D_s$, $D_T$, and $W^{\mathrm{rec}}$ are preserved by the same spatial
 isometry. Therefore each force term transforms as
 $\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
 $$

@@ -116,7 +116,7 @@ The local corpus already gives a coherent first map.
 
 ## Draft $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
-Entropy is not primitive ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The ontic object is the complete state $\mathbb{U}_{\text{now}}\equiv S(t)$, including architrino positions, velocities, polarities, Noether braid labels, causal-root ledgers, path-history, and Noether sea state variables. Entropy appears only after a finite observer, calculation, or effective theory forgets part of that state.
+Entropy is not primitive ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The ontic object is the complete state $\mathbb{U}_{\text{now}}\equiv S(T)$, including architrino positions, velocities, polarities, Noether braid labels, causal-root ledgers, path-history, and Noether sea state variables. Entropy appears only after a finite observer, calculation, or effective theory forgets part of that state.
 
 The reusable draft object is a windowed state count. For a coarse-graining $\mathcal{Q}$, retained region $W(t)$, and measure $\mu$ on the compatible reduced state space, the corpus already suggests
 

@@ -83,54 +83,54 @@ Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated w
 From the canonical per-hit law
 
 $$
-\mathbf{a}_{o'\leftarrow o}(t; t_0)
+\mathbf A_{o'\leftarrow o}(T;T_{\mathrm{em}})
 =
 \kappa\,\sigma_{q_o q_{o'}}\,
 \frac{|q_o q_{o'}|}{r^2}
-W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)\,\hat{\mathbf{r}}
+W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}
 $$
 
 where
 $$
-D_{s,o'\leftarrow o}(t;t_0)
+D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})
 \equiv
-c_f-\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}},
+c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}},
 \qquad
-D_{t,o'\leftarrow o}(t;t_0)
+D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})
 \equiv
-c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}},
+c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}},
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)
+W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 \equiv
 \left|
-\frac{D_{t,o'\leftarrow o}(t;t_0)}
-{D_{s,o'\leftarrow o}(t;t_0)}
+\frac{D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})}
+{D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})}
 \right|
 $$
 is the receiver-normal branch strength. The source-normal denominator $D_s$
-is the causal-root transversality diagnostic; the numerator $D_t$ records how
+is the causal-root transversality diagnostic; the numerator $D_T$ records how
 the receiver cuts through the emitted causal wake sequence.
 
 Decompose the receiver's velocity into radial and transverse components:
 
-$$\mathbf{v}_{o'} = v_r \hat{\mathbf{r}} + \mathbf{v}_\perp, \quad v_r=\mathbf{v}_{o'}\cdot\hat{\mathbf{r}}.$$
+$$\mathbf V_{o'} = V_r \hat{\mathbf{r}} + \mathbf V_\perp, \quad V_r=\mathbf V_{o'}\cdot\hat{\mathbf{r}}.$$
 
-Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
+Because $\mathbf A_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
 
 - The **instantaneous work rate** from this hit is
   
   $$
-  \frac{dK_\mu}{dt}\bigg|_{\text{hit}}
+  \frac{dK_\mu}{dT}\bigg|_{\text{hit}}
   =
-  \mu_{\text{arch}}\mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
+  \mu_{\text{arch}}\mathbf A_{o'\leftarrow o}\cdot\mathbf V_{o'}
   =
   \mu_{\text{arch}}\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|
-  \frac{W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)}{r^2}\,v_r
+  \frac{W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})}{r^2}\,V_r
   $$
 
-  Only $v_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_{o'}\|)$.
+  Only $V_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_{o'}\|)$.
 
-- A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf{v}_\perp$ is unchanged instantaneously.
+- A hit only changes the **along-the-line** component of velocity; sideways motion $\mathbf V_\perp$ is unchanged instantaneously.
 
 ---
 
@@ -140,11 +140,11 @@ Potential energy arises from the interaction of an architrino with the **net cau
 
 ### Net Causal-Wake Potential
 
-At a point $\mathbf{s}$ and time $t$, the net potential is the **superposition** of contributions from all sources:
+At a point $\mathbf X$ and time $T$, the net potential is the **superposition** of contributions from all sources:
 
-$$\Phi_{\text{net}}(\mathbf{s},t) = \sum_o \Phi_o(\mathbf{s},t).$$
+$$\Phi_{\text{net}}(\mathbf X,T) = \sum_o \Phi_o(\mathbf X,T).$$
 
-Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the architrino section. In the mollified representation with causal-surface width $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf{s},t)$; in the ideal limit $\eta\to 0$ it becomes a measure-valued distribution supported on causal isochrons.
+Each $\Phi_o$ is built from the expanding causal isochrons emitted by source $o$, using the measure-valued or mollified emission density described in the architrino section. In the mollified representation with causal-surface width $\eta>0$, $\Phi_{\text{net}}$ is a smooth function of $(\mathbf X,T)$; in the ideal limit $\eta\to 0$ it becomes a measure-valued distribution supported on causal isochrons.
 
 ### Potential Availability Is Geometric
 
@@ -153,25 +153,25 @@ The phrase "an architrino emits potential" should not be read as a source contin
 Potential energy is therefore relational. It is assigned when a receiver is placed in a source's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the source-normal root denominator, the receiver-normal branch factor, and the receiver's radial motion through the line of action. In the general per-hit law the source-normal denominator is
 
 $$
-D_{s,o'\leftarrow o}(t;t_0)
+D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})
 =
-c_f-\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}
+c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}
 $$
 
 and the receiver-normal numerator is
 
 $$
-D_{t,o'\leftarrow o}(t;t_0)
+D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})
 =
-c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}}.
+c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}.
 $$
 
-The branch strength is $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, while the instantaneous power delivered to the receiver is controlled by
+The branch strength is $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, while the instantaneous power delivered to the receiver is controlled by
 
 $$
-\mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
+\mathbf A_{o'\leftarrow o}\cdot\mathbf V_{o'}
 =
-\|\mathbf{a}_{o'\leftarrow o}\|\,v_r
+\|\mathbf A_{o'\leftarrow o}\|\,V_r
 $$
 
 On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+\dot{x}/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
@@ -180,17 +180,17 @@ Thus the potential to do work is broadly available wherever causal wakes pass, b
 
 ### Potential Energy
 
-For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf{s}_{o'}(t)$, the potential energy $U_{o'}(t)$ is the fixed-history bookkeeping value assigned to the current configuration against the causal path-history wake record:
+For a receiver architrino $o'$ with polarity $q_{o'}$ at position $\mathbf X_{o'}(T)$, the potential energy $U_{o'}(T)$ is the fixed-history bookkeeping value assigned to the current configuration against the causal path-history wake record:
 
-$$U_{o'}(t) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf{s}_{o'}(t),t\big).$$
+$$U_{o'}(T) = q_{o'}\,\Phi_{\text{net}}[\text{history}]\big(\mathbf X_{o'}(T),T\big).$$
 
 The sign of $\Phi_{\text{net}}$ is not a sign on total energy. A negative causal-wake potential contribution from an electrino source is a polarity-signed interaction record; it becomes energy bookkeeping only after the receiver polarity, active causal root, line-of-action geometry, source-normal denominator, receiver-normal branch factor, and receiver radial motion are specified. Work can therefore occur relative to a negative potential without introducing a negative-energy substance or a negative total-energy reservoir.
 
-Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf{s}_{o'}(t)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
+Unlike electrostatics, $\Phi_{\text{net}}$ is not a function of instantaneous source positions but a functional of their past worldlines intercepted by the backward causal-wake record of $\mathbf X_{o'}(T)$. The gradient $\nabla\Phi_{\text{net}}$ is taken with respect to the receiver's spatial coordinates on the fixed background, holding the causal history fixed. In the idealized picture, $\Phi$ is a distribution supported on causal isochrons, not a smooth continuum field.
 
 When we work with the mollified effective potential $\Phi_\eta$, we can also write the fixed-history, force-like relation:
 
-$$\mathbf{F}_{o'}(t) = -\nabla_{\mathbf{s}_{o'}}U_{o'}(t) = -q_{o'} \nabla_{\mathbf{s}_{o'}} \Phi_\eta[\text{history}]\big(\mathbf{s}_{o'}(t),t\big),$$
+$$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
 
 and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf{F}_{o'}=\mu_{\text{arch}}\mathbf{a}_{o'}$ or the appropriate $\mu_K\mathbf{a}_{o'}$, has been declared.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
@@ -233,7 +233,7 @@ Classical virial language is recovered only at branch level. The familiar compar
 
 For a single architrino:
 
-$$\Delta E_k = \int \mathbf{F}\cdot d\mathbf{s} = -\Delta U$$
+$$\Delta E_k = \int \mathbf F\cdot d\mathbf X = -\Delta U$$
 
 (when we restrict attention to its interactions with a fixed set of sources). For an **isolated system** of architrinos and their wakes, the total energy is:
 
@@ -322,7 +322,7 @@ U_{\text{int}}(t)
 E_{\text{wake}}(t)
 $$
 
-This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_t$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
+This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.
 
 In working models the exact claim is conditional. If the mollifier, history window, self-branch cutoff, or characteristic-tail repair is inserted only at the equation-of-motion level, then the same expression is a diagnostic to monitor, not a proved Noether charge. Exact conservation is promoted only when the same regularized action supplies both the force row and the energy row, and when the energy residual in this section vanishes under refinement. The formal construction routes, crosswalk residual, and promotion conditions for $E_{\text{wake}}$ are isolated in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
@@ -332,55 +332,55 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 ### Wake Escapement
 
-For a finite local window $W\subset\Sigma_t$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $t_0$, define the causal isochron at later time $t$ by
+For a finite local window $W\subset\Sigma_T$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $T_{\mathrm{em}}$, define the causal isochron at later time $T$ by
 $$
-C_a(t;t_0)
+C_a(T;T_{\mathrm{em}})
 =
 \left\{
-\mathbf{y}\in\Sigma_t:
-\left\|\mathbf{y}-\mathbf{x}_a(t_0)\right\|
+\mathbf Y\in\Sigma_T:
+\left\|\mathbf Y-\mathbf X_a(T_{\mathrm{em}})\right\|
 =
-c_f(t-t_0)
+c_f(T-T_{\mathrm{em}})
 \right\}
 $$
 The emitted isochron belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
 $$
-C_a(t_{\partial W};t_0)\cap\partial W\ne\varnothing
+C_a(T_{\partial W};T_{\mathrm{em}})\cap\partial W\ne\varnothing
 $$
 and there is no retained receiver hit before that crossing:
 $$
-\nexists\, b,t_r
+\nexists\, b,T_r
 \quad
 \text{with}
 \quad
-t_0<t_r<t_{\partial W},
+T_{\mathrm{em}}<T_r<T_{\partial W},
 \quad
-\mathbf{x}_b(t_r)\in W,
+\mathbf X_b(T_r)\in W,
 \quad
-\mathbf{x}_b(t_r)\in C_a(t_r;t_0)
+\mathbf X_b(T_r)\in C_a(T_r;T_{\mathrm{em}})
 $$
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
 
-For a finite spatial window $W\subset\Sigma_t$, conservation is a balance law rather than a claim that the window is isolated. This is the conservation-law upgrade relative to instantaneous mechanics: energy, momentum, and angular momentum are not generally conserved equal-time particle snapshots, but finite-window history functionals whose apparent deficits must be carried by causal-wake fluxes or by an explicit residual. Write
+For a finite spatial window $W\subset\Sigma_T$, conservation is a balance law rather than a claim that the window is isolated. This is the conservation-law upgrade relative to instantaneous mechanics: energy, momentum, and angular momentum are not generally conserved equal-time particle snapshots, but finite-window history functionals whose apparent deficits must be carried by causal-wake fluxes or by an explicit residual. Write
 $$
-E_W(t)
+E_W(T)
 =
-\sum_{a:\mathbf{s}_a(t)\in W}K_a(t)
+\sum_{a:\mathbf X_a(T)\in W}K_a(T)
 +
-U_{\mathrm{int},W}(t)
+U_{\mathrm{int},W}(T)
 +
-E_{\mathrm{wake},W}(t)
+E_{\mathrm{wake},W}(T)
 $$
 where the terms include only the kinetic, interaction, and wake-history content retained by the declared window record. The finite-window energy balance should take the residual form
 $$
-\frac{dE_W}{dt}
+\frac{dE_W}{dT}
 +
 \int_{\partial W}\mathbf{J}_E\cdot\hat{\mathbf{n}}\,dA
 =
 P_{\mathrm{ext},W}
 +
-\mathcal{R}_E(\eta,\Delta t,W)
+\mathcal{R}_E(\eta,\Delta T,W)
 $$
 Here $\mathbf{J}_E$ is the boundary flux of causal-wake energy bookkeeping, including any wake escapement through $\partial W$; $P_{\mathrm{ext},W}$ is declared external work through sources or controls not included in $W$; and $\mathcal{R}_E$ records mollifier, timestep, and omitted-boundary-history error. A finite-window conservation claim is mature only when $\mathcal{R}_E\to0$ under the same regularized causal action used for the local equation of motion.
 
@@ -396,34 +396,34 @@ on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not va
 
 The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$
-\frac{dP_W^i}{dt}
+\frac{dP_W^i}{dT}
 +
 \int_{\partial W}\Pi^{ij}\hat{n}_j\,dA
 =
 F_{\mathrm{ext},W}^i
 +
-\mathcal{R}_P^i(\eta,\Delta t,W)
+\mathcal{R}_P^i(\eta,\Delta T,W)
 $$
-For a declared origin $\mathbf{x}_0$, the corresponding angular-momentum history functional has the schematic form
+For a declared origin $\mathbf X_0$, the corresponding angular-momentum history functional has the schematic form
 $$
-\mathbf{L}_W(t)
+\mathbf{L}_W(T)
 =
-\sum_{a:\mathbf{s}_a(t)\in W}
-\big(\mathbf{s}_a(t)-\mathbf{x}_0\big)\times\mathbf{p}_a(t)
+\sum_{a:\mathbf X_a(T)\in W}
+\big(\mathbf X_a(T)-\mathbf X_0\big)\times\mathbf p_a(T)
 +
-\mathbf{L}_{\mathrm{wake},W}(t)
+\mathbf{L}_{\mathrm{wake},W}(T)
 $$
-where $\mathbf{p}_a$ is the declared mechanical momentum proxy for the chosen kinetic bookkeeping. Its finite-window balance target is
+where $\mathbf p_a$ is the declared mechanical momentum proxy for the chosen kinetic bookkeeping. Its finite-window balance target is
 $$
-\frac{dL_W^i}{dt}
+\frac{dL_W^i}{dT}
 +
 \int_{\partial W}\Lambda^{ij}\hat{n}_j\,dA
 =
 \tau_{\mathrm{ext},W}^i
 +
-\mathcal{R}_L^i(\eta,\Delta t,W)
+\mathcal{R}_L^i(\eta,\Delta T,W)
 $$
-Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf{x}_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
+Here $\Pi^{ij}$ and $\Lambda^{ij}$ are finite-window flux diagnostics for retained causal wakes and assembly crossings, not new substrate fields. $\tau_{\mathrm{ext},W}^i$ is the external torque about the same origin $\mathbf X_0$. If the energy, momentum, and angular-momentum residuals can be made small only by changing the window measure, boundary wake record, or regularization separately for each observable, the calculation has fitted separate summaries rather than demonstrated one causal-history conservation law.
 
 Cosmological inventory comparisons add one more finite-window caution. A gravitational binding contribution is negative relative to dispersed matter in the declared window, but the sign is meaningful only after the boundary and coarse-graining are fixed. In this chapter, $G_{\mathrm{eff}}$ in the binding line is a provisional external comparison input until the mass map and Noether sea response tensor independently derive it. For a component inventory over $W$,
 $$
@@ -473,15 +473,15 @@ $$
 where $G_{\mathrm{eff}}^{\mathrm{bind}}$ is the value used in the inventory comparison and $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$ is the value derived from shielding, exposed response, and the Noether sea response tensor. Until $\mathcal{R}_{G\text{-consist},W}$ is reported on the same window, the cosmological binding line is comparison bookkeeping only, not a derived inventory contribution. This keeps gravitational binding from being used as an adjustable bookkeeping sign that can repair the cosmic energy inventory without specifying the same window, boundary wake history, and effective $G_{\mathrm{eff}}$ used by the rest of the cosmology branch.
 The stronger same-record requirement is that $G_{\mathrm{eff}}^{(\zeta,\mathcal{M})}$, the response-speed tensor that supplies $c_{\text{eff}}$, and the ruler/metric response consumed by the effective geometry chapter all be read from one Noether sea response record. If those quantities require separate sea records or separately tuned response tensors, the gravity, clock, and ruler sectors have been fitted independently rather than derived from one exposed-energy and medium-response ledger.
 
-**Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_t$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(t)$, the replacement target is to prove that there is a response center $\mathbf{X}_{\mathrm{resp}}(t)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
+**Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_T$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(T)$, the replacement target is to prove that there is a response center $\mathbf X_{\mathrm{resp}}(T)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
 $$
-\frac{d}{dt}\left(M_A^{ij}\dot{X}_{\mathrm{resp},j}\right)
+\frac{d}{dT}\left(M_A^{ij}\dot{X}_{\mathrm{resp},j}\right)
 =
 F_{\mathrm{ext},W_A}^i
 -
 \int_{\partial W_A}\Pi^{ij}\hat{n}_j\,dA
 +
-\mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta t,W_A)
+\mathcal{R}_{\mathrm{resp}}^i(\eta,\Delta T,W_A)
 $$
 The pair $(\mathbf{X}_{\mathrm{resp}},M_A^{ij})$ is not free to be chosen after the balance is fitted. The response center must be pinned independently by the exposed internal-energy ledger,
 $$
@@ -507,7 +507,7 @@ In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^
 
 ## Entropy, Free Energy, and Coarse Residuals
 
-Entropy and free-energy language belongs to coarse-grained records, not to empty Euclidean void. It is useful when a simulation or continuum reduction groups many microhistories into the same retained macrostate. For a declared coarse map $\mathcal Q:S(t)\mapsto z$ with cell probabilities $p_\alpha$ over the retained histories, the entropy diagnostic is
+Entropy and free-energy language belongs to coarse-grained records, not to empty Euclidean void. It is useful when a simulation or continuum reduction groups many microhistories into the same retained macrostate. For a declared coarse map $\mathcal Q:S(T)\mapsto z$ with cell probabilities $p_\alpha$ over the retained histories, the entropy diagnostic is
 $$
 S_{\mathcal Q}
 =

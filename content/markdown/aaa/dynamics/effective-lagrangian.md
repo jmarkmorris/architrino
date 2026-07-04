@@ -3,7 +3,7 @@
 Receiver-normal restart notice. Any variational scaffold in this chapter that
 does not produce receiver-normal branch strength is invalid as closure evidence.
 The current target is to vary a path-history functional whose branch-reduced
-force law carries $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same retained
+force law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained
 roots as the Master EOM. Source-normal denominators remain transversality
 diagnostics until paired with the receiver-normal numerator and checked by the
 stated residuals.
@@ -313,7 +313,7 @@ W_{ij}^{\mathrm{rec}}(t;t_0)\,
 }
 {r_{ij}(t;t_0)^2}
 $$
-where $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
+where $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
 including self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since

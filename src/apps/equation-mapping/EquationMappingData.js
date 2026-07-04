@@ -179,7 +179,7 @@ export function normalizeEquationMapDocument(document = {}, index = 0) {
   return {
     schema: EQUATION_MAP_SCHEMA,
     id,
-    title: normalizeText(document.title, "Equation"),
+    title: normalizeSequencedEquationTitle(document.title, index),
     subject: normalizeText(document.subject, SUBJECT_GROUPS[0]),
     formulaTeX: normalizeText(document.formulaTeX, formulaParts.map((part) => part.tex || part.text).join("")),
     formulaParts,
@@ -197,13 +197,7 @@ function normalizeSequencedEquationTitle(title, index) {
 }
 
 export function normalizeEquationMapDocuments(documents = []) {
-  const normalized = documents.map((document, index) => {
-    const normalizedDocument = normalizeEquationMapDocument(document, index);
-    return {
-      ...normalizedDocument,
-      title: normalizeSequencedEquationTitle(normalizedDocument.title, index),
-    };
-  });
+  const normalized = documents.map((document, index) => normalizeEquationMapDocument(document, index));
   if (normalized.length === 0) {
     throw new Error("Equation Mapping requires at least one equation-map document.");
   }

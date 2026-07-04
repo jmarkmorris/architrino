@@ -60,14 +60,14 @@ The relevant contrast with a simple mechanical body is therefore structural. A n
 
 This distinction also keeps ontological and epistemic claims separate. Ontologically, the system evolves through physical dynamics. Epistemically, a Physical Observer may not have enough access to the microstate, wake-phase history, and threshold geometry to predict which attractor will be selected.
 
-The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_t$, write its resolved internal state as $X_\Omega(t)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<t}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(t)$. Its effective subsystem evolution has the form
+The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_T$, write its resolved internal state as $X_\Omega(T)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<T}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(T)$. Its effective subsystem evolution has the form
 $$
-\frac{dX_\Omega}{dt}
+\frac{dX_\Omega}{dT}
 =
 F_\Omega\!\left(
-X_\Omega(t),
-\mathcal{H}_{\Omega}^{<t},
-\mathcal{B}_{\partial\Omega}(t),
+X_\Omega(T),
+\mathcal{H}_{\Omega}^{<T},
+\mathcal{B}_{\partial\Omega}(T),
 N_{\text{sea}}|_{\Omega}(t)
 \right)
 $$

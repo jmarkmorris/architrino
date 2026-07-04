@@ -12,12 +12,12 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 
 ## Ontological Picture
 
-- **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
+- **Substrate**: A fixed Euclidean 3D void with absolute time $T$. A chosen chart $(X,Y,Z)$ represents fixed void locations; the labels never move or curve.
 - **Noether sea**: The [Noether sea](noether-sea.md), a pervasive population of coupled pro/anti Noether braids. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
-  - The full architrino microstate $S(t)$,
-  - The instantaneous state of the Noether sea (density $\rho_{\text{NS}}(\mathbf{x},t)$, alignment, stress),
-  - The effective potential field $\Phi_{\text{eff}}(\mathbf{x},t)$ and its gradients.
+  - The full architrino microstate $S(T)$,
+  - The instantaneous state of the Noether sea (density $\rho_{\text{NS}}(\mathbf X,T)$, alignment, stress),
+  - The effective potential field $\Phi_{\text{eff}}(\mathbf X,T)$ and its gradients.
 
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
@@ -27,12 +27,12 @@ From this bookkeeping perspective, there is only:
 
 Use the following symbols consistently across spacetime chapters:
 
-- $n(\mathbf{x},t)$: normalized Noether braid density.
-- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether braid density.
-- $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether sea delay factor.
+- $n(\mathbf X,T)$: normalized Noether braid density.
+- $\rho_{\text{NS}}(\mathbf X,T)=\rho_{\text{NS},0}\,n(\mathbf X,T)$: physical Noether braid density.
+- $\chi_{\text{sea}}(\mathbf X,T)=c_f/c_{\text{eff}}(\mathbf X,T)$: Noether sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
-- $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.
-- $\Phi_N(\mathbf{x},t)$: Newtonian benchmark potential used for weak-field matching.
+- $\Phi_{\text{eff}}(\mathbf X,T)$: constitutive potential inferred from the clock channel.
+- $\Phi_N(\mathbf X,T)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
 - $N(\mathbf{x},t)$: observer-level lapse or clock-rate field reconstructed from Noether sea state.
 - $u^i_{\mathrm{sea,eff}}(\mathbf{x},t)$: Noether sea drift field in the observer-level bookkeeping map.
@@ -412,7 +412,7 @@ The spacetime-condensate comparison makes the same point in hydrodynamic languag
 $$
 \Pi_{\mathrm{hydro}}:
 \left(
-S(t),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}
+S(T),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}
 \right)
 \longrightarrow
 g_{\mu\nu}^{\mathrm{eff}}
@@ -425,7 +425,7 @@ $$
 \left\|
 g_{\mu\nu}^{\mathrm{eff}}(\theta)
 -
-\Pi_{\mathrm{hydro}}[S(t),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}]
+\Pi_{\mathrm{hydro}}[S(T),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}]
 \right\|
 }{\epsilon_g}
 $$

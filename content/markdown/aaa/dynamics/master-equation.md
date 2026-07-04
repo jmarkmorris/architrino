@@ -12,11 +12,11 @@ The chapter is long because it plays several roles at once: foundational law, th
 
 This document presents the **Master Equation of Motion (EOM)** governing the lawful evolution of all architrinos in the Euclidean void and absolute time. It is the microscopic dynamics input for later closure programs: assemblies, effective continuum descriptions, observer-level geometry, quantum behavior, and gravity must be recovered from this law only after the corresponding assembly, coarse-graining, and validation burdens are met. The chapter keeps $c_f$ explicit in formulas; setting $c_f=1$ is a nondimensional convention, not a change in the causal law.
 
-Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $t$. Causal roots, Jacobians, history integrals, and accelerations are all parameterized by $t$ and by emission times $t_0<t$. Clock readouts, time-dilation language, and effective metric comparisons belong only to later observer-inference chapters after the assembly dynamics have supplied a branch-certified period record.
+Proper time $\tau$ does not exist at this layer. The EOM is integrated exclusively over absolute substrate time $T$. Causal roots, Jacobians, history integrals, and accelerations are all parameterized by $T$ and by emission times $T_{\mathrm{em}}<T$. Clock readouts, time-dilation language, and effective metric comparisons belong only to later observer-inference chapters after the assembly dynamics have supplied a branch-certified period record.
 
 The Master EOM is:
 
-- **Deterministic**: Given complete initial conditions at $t_0$, the future is determined, with **deterministic multistability** at threshold regimes.
+- **Deterministic**: Given complete initial conditions at $T_\ast$, the future is determined, with **deterministic multistability** at threshold regimes.
 - **Non-Markovian**: Depends on full path history, not just instantaneous state.
 - **Event-local at the receiver**: Only delayed causal intersections at the receiver event contribute to acceleration (no action-at-a-distance).
 - **Causal**: All influences propagate at finite field speed $c_f$.
@@ -37,11 +37,11 @@ The level distinction used throughout the chapter is:
 
 **Receiver-local relevance principle:**
 
-> The only substrate-level contributions to $\mathbf{a}_i(t)$ are causal wake intersections at the receiver event.
+> The only substrate-level contributions to $\mathbf A_i(T)$ are causal wake intersections at the receiver event.
 
-At time $t$, the acceleration of architrino $i$ at position $\mathbf{x}_i(t)$ depends only on causal wake surfaces that intersect its current location.
+At time $T$, the acceleration of architrino $i$ at position $\mathbf X_i(T)$ depends only on causal wake surfaces that intersect its current location.
 
-- **Substrate event**: $\mathbf{x}_i(t)$ coincides with an expanding causal isochron emitted by some source at some past time $t_0<t$.
+- **Substrate event**: $\mathbf X_i(T)$ coincides with an expanding causal isochron emitted by some source at some past time $T_{\mathrm{em}}<T$.
 - **Path-history input**: the source worldline determines which emission times solve the causal constraint.
 - **Effective reconstruction**: a potential or field value away from the receiver is useful only after one has declared a continuum or diagnostic representation.
 - **Inference layer**: source identity, distance, and emission velocity may be reconstructed from additional records, but they are not directly supplied by a single hit.
@@ -58,16 +58,16 @@ The Master Equation of Motion (abstract level):
 
 $$
 \boxed{
-\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_{j \neq i} \mathbf{a}_{ij}(\text{causal history}) + \mathbf{a}_{ii}(\text{self-hit})
+\frac{d^2 \mathbf X_i}{dT^2} = \sum_{j \neq i} \mathbf A_{ij}(\text{causal history}) + \mathbf A_{ii}(\text{self-hit})
 }
 $$
 
 where:
 
-- $\mathbf{a}_{ij}(\text{causal history})$: Sum of all per-hit accelerations from source $j \neq i$ arriving at receiver $i$ at time $t$
-- $\mathbf{a}_{ii}(\text{self-hit})$: Sum of all self-hit acceleration contributions (architrino $i$ intersecting its own past emissions)
+- $\mathbf A_{ij}(\text{causal history})$: Sum of all per-hit accelerations from source $j \neq i$ arriving at receiver $i$ at time $T$
+- $\mathbf A_{ii}(\text{self-hit})$: Sum of all self-hit acceleration contributions (architrino $i$ intersecting its own past emissions)
 
-(The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is defined below in canonical form. The substrate law is acceleration-first. If a force-like bookkeeping symbol is desired, introduce one universal conversion constant $\mu_{\text{arch}}$ and define $\mathbf{F}_{ij} \equiv \mu_{\text{arch}} \mathbf{a}_{ij}$.)
+(The per-hit acceleration $\mathbf A_{ij}(T;T_{\mathrm{em}})$ is defined below in canonical form. The substrate law is acceleration-first. If a force-like bookkeeping symbol is desired, introduce one universal conversion constant $\mu_{\text{arch}}$ and define $\mathbf F_{ij} \equiv \mu_{\text{arch}}\mathbf A_{ij}$.)
 
 **Key insight:** Both terms have the same functional form: a radial inverse-square law modulated by the receiver-normal crossing of a causal wake branch. They differ only in source identity ($j = i$ vs $j \neq i$). The source-normal Jacobian remains the transversality floor that makes the causal root legal; the receiver-normal numerator says how the receiver path cuts through the emitted wake sequence.
 
@@ -78,61 +78,61 @@ The Master EOM is most naturally understood as a **path-history branch sum**: al
 In integral form, the same branch-sum law can be written as
 
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2}
+\frac{d^2 \mathbf X_i}{dT^2}
 = \sum_j \kappa\,\sigma_{ij}\,|q_i q_j|
-\int_{-\infty}^t \mathrm{d}t_0 \;
-\frac{\hat{\mathbf{r}}_{ij}(t; t_0)}{r_{ij}^2(t; t_0)}
-\delta\!\Big(g_{ij}(t; t_0)\Big)
+\int_{-\infty}^T \mathrm{d}T_{\mathrm{em}} \;
+\frac{\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})}{r_{ij}^2(T;T_{\mathrm{em}})}
+\delta\!\Big(g_{ij}(T;T_{\mathrm{em}})\Big)
 $$
 
 where
 
-- $r_{ij}(t; t_0) = \|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|$,
-- $\hat{\mathbf{r}}_{ij} = (\mathbf{x}_i(t) - \mathbf{x}_j(t_0))/r_{ij}$,
-- $g_{ij}(t;t_0) = r_{ij}(t;t_0) - c_f(t-t_0)$,
-- $\partial_{t_0} g_{ij}(t;t_0) = c_f - \hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)$,
+- $r_{ij}(T;T_{\mathrm{em}}) = \|\mathbf X_i(T) - \mathbf X_j(T_{\mathrm{em}})\|$,
+- $\hat{\mathbf{r}}_{ij} = (\mathbf X_i(T) - \mathbf X_j(T_{\mathrm{em}}))/r_{ij}$,
+- $g_{ij}(T;T_{\mathrm{em}}) = r_{ij}(T;T_{\mathrm{em}}) - c_f(T-T_{\mathrm{em}})$,
+- $\partial_{T_{\mathrm{em}}} g_{ij}(T;T_{\mathrm{em}}) = c_f - \hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})$,
 - $\delta(\cdot)$ enforces the causal constraint $g_{ij}=0$, and
 - $\sigma_{ij} = \mathrm{sign}(q_i q_j)$ encodes attraction/repulsion.
 
 The causal delta collapses with the standard source-normal root Jacobian, so the source-time part of the integral evaluates to
 $$
-\int_{-\infty}^{t}\mathrm{d}t_0\;
-\! f(t_0)\,\delta\!\big(g_{ij}(t;t_0)\big)
+\int_{-\infty}^{T}\mathrm{d}T_{\mathrm{em}}\;
+\! f(T_{\mathrm{em}})\,\delta\!\big(g_{ij}(T;T_{\mathrm{em}})\big)
 =
-\sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{f(t_0)}
-{\left|\partial_{t_0} g_{ij}(t;t_0)\right|}
+\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
+\frac{f(T_{\mathrm{em}})}
+{\left|\partial_{T_{\mathrm{em}}} g_{ij}(T;T_{\mathrm{em}})\right|}
 $$
-provided the active roots are simple. This source-time collapse supplies the root-selection denominator. The full receiver-time branch row must also account for how the receiver path crosses the same emitted wake sequence. For a simple branch $t_0=t_\ell(t)$, define
+provided the active roots are simple. This source-time collapse supplies the root-selection denominator. The full receiver-time branch row must also account for how the receiver path crosses the same emitted wake sequence. For a simple branch $T_{\mathrm{em}}=T_\ell(T)$, define
 $$
 D_{s,ij}
 \equiv
-c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_j(t_\ell),
+c_f-\hat{\mathbf{r}}_{ij}(T;T_\ell)\cdot\mathbf V_j(T_\ell),
 \qquad
-D_{t,ij}
+D_{T,ij}
 \equiv
-c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_i(t)
+c_f-\hat{\mathbf{r}}_{ij}(T;T_\ell)\cdot\mathbf V_i(T)
 $$
 and
 $$
 m_{ij}
 \equiv
-\frac{D_{t,ij}}{D_{s,ij}},
+\frac{D_{T,ij}}{D_{s,ij}},
 \qquad
 W_{ij}
 \equiv
 \left|m_{ij}\right|.
 $$
-Here $m_{ij}=dt_\ell/dt$ is the signed branch-orientation factor, while $W_{ij}$ is the unsigned receiver-normal branch strength used in the acceleration magnitude. Acceleration at $t$ therefore depends on causal contributions selected by the source worldline and on the receiver's normal crossing of those contributions, with no contribution from noncausal points on that worldline.
+Here $m_{ij}=dT_\ell/dT$ is the signed branch-orientation factor, while $W_{ij}$ is the unsigned receiver-normal branch strength used in the acceleration magnitude. Acceleration at $T$ therefore depends on causal contributions selected by the source worldline and on the receiver's normal crossing of those contributions, with no contribution from noncausal points on that worldline.
 
 For a certified branch chart, simplicity is recorded as a transversality floor:
 $$
 \left|
-\partial_{t_0}g_{ij}(t;t_0)
+\partial_{T_{\mathrm{em}}}g_{ij}(T;T_{\mathrm{em}})
 \right|
 =
 \left|
-c_f-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)
+c_f-\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})
 \right|
 \ge
 \kappa_{\mathrm{hit}}>0
@@ -186,7 +186,7 @@ $$
 \mathbf{a}_{ij,+}(t)
 +
 \mathbf{a}_{ij,-}(t)
-\right\|dt
+\right\|dT
 \le
 4C\sqrt{\varepsilon}
 $$
@@ -205,101 +205,101 @@ The word "set" in $\mathcal{C}_{ij}(t)$ should therefore be read as a root set e
 
 Writing
 $$
-D_{s,ij}(t;t_0)
+D_{s,ij}(T;T_{\mathrm{em}})
 \equiv
-c_f-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0),
+c_f-\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}}),
 \qquad
-D_{t,ij}(t;t_0)
+D_{T,ij}(T;T_{\mathrm{em}})
 \equiv
-c_f-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_i(t)
+c_f-\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_i(T)
 $$
 and
 $$
-J_{ij}^{\mathrm{src}}(t;t_0)
+J_{ij}^{\mathrm{src}}(T;T_{\mathrm{em}})
 \equiv
-\frac{D_{s,ij}(t;t_0)}{c_f},
+\frac{D_{s,ij}(T;T_{\mathrm{em}})}{c_f},
 \qquad
-W_{ij}^{\mathrm{rec}}(t;t_0)
+W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 \equiv
 \left|
-\frac{D_{t,ij}(t;t_0)}
-{D_{s,ij}(t;t_0)}
+\frac{D_{T,ij}(T;T_{\mathrm{em}})}
+{D_{s,ij}(T;T_{\mathrm{em}})}
 \right|,
 $$
 one obtains the exact branch-resolved form
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2}
+\frac{d^2 \mathbf X_i}{dT^2}
 =
-\sum_j \sum_{t_0\in\mathcal{C}_{ij}(t)}
+\sum_j \sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\,\sigma_{ij}\,
 \frac{|q_i q_j|}
-{r_{ij}^2(t;t_0)}
-W_{ij}^{\mathrm{rec}}(t;t_0)
-\hat{\mathbf{r}}_{ij}(t;t_0)
+{r_{ij}^2(T;T_{\mathrm{em}})}
+W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})
 $$
-Since $\partial_{t_0}g_{ij}(t;t_0)=D_{s,ij}(t;t_0)=c_fJ_{ij}^{\mathrm{src}}(t;t_0)$, the source-time collapse supplies the source-normal denominator. The receiver-time crossing of the same branch supplies the receiver-normal numerator $D_{t,ij}$. Constant factors of $c_f$ are absorbed into $\kappa$ by convention.
+Since $\partial_{T_{\mathrm{em}}}g_{ij}(T;T_{\mathrm{em}})=D_{s,ij}(T;T_{\mathrm{em}})=c_fJ_{ij}^{\mathrm{src}}(T;T_{\mathrm{em}})$, the source-time collapse supplies the source-normal denominator. The receiver-time crossing of the same branch supplies the receiver-normal numerator $D_{T,ij}$. Constant factors of $c_f$ are absorbed into $\kappa$ by convention.
 An architrino emits potential at a constant rate per unit absolute time, but a moving source and a moving receiver together determine how that steady output is sampled. The received branch strength is therefore velocity dependent through the receiver-normal branch factor $W_{ij}^{\mathrm{rec}}$: source motion compresses or dilates the emitted wake sequence, while receiver-normal motion changes the rate at which the receiver crosses that sequence. This factor is part of the fundamental branch law, not an optional correction.
 
 Numerical implementations discretize this representation by sampling candidate emission times and solving for the active roots. The familiar “sum over spherical wake surfaces” is therefore a numerical realization of the same branch-selection rule, not a separate physical mechanism.
 
 **Simple-root transport lemma.** Let
 $$
-F_{ij}(t,s)=\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
+F_{ij}(T,S)=\|\mathbf X_i(T)-\mathbf X_j(S)\|-c_f(T-S)
 $$
-and suppose $F_{ij}(t,s(t))=0$ on an interval where the active root is simple. Then $s(t)$ is differentiable and
+and suppose $F_{ij}(T,S(T))=0$ on an interval where the active root is simple. Then $S(T)$ is differentiable and
 $$
-\frac{ds}{dt}
+\frac{dS}{dT}
 =
-\frac{c_f-\hat{\mathbf{r}}_{ij}(t;s)\cdot\mathbf{v}_i(t)}
-{c_f-\hat{\mathbf{r}}_{ij}(t;s)\cdot\mathbf{v}_j(s)}
+\frac{c_f-\hat{\mathbf{r}}_{ij}(T;S)\cdot\mathbf V_i(T)}
+{c_f-\hat{\mathbf{r}}_{ij}(T;S)\cdot\mathbf V_j(S)}
 =
-\frac{1-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_i/c_f}{J_{ij}(t;s)}
+\frac{1-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i/c_f}{J_{ij}(T;S)}
 $$
 Thus a simple causal root moves continuously with receiver time as long as the denominator stays away from zero. Simulations should track this root-transport residual alongside the root residual and the $J$ floor; failure of the transport equation is a branch-chart failure, not an ordinary force fluctuation.
 
 #### Source-Normal Roots, Receiver-Normal Branch Strength, and Action Residual
 
-For a retained branch row $(i,j,t,t_0)$, keep the source-normal root floor, receiver-normal branch strength, and action residual as separate equations.
+For a retained branch row $(i,j,T,T_{\mathrm{em}})$, keep the source-normal root floor, receiver-normal branch strength, and action residual as separate equations.
 
 **Source-normal root floor.** The source, i.e. the emitting architrino, enters the root-selection denominator through the delay-map Jacobian
 $$
-J_{ij}^{\mathrm{src}}(t;t_0)
+J_{ij}^{\mathrm{src}}(T;T_{\mathrm{em}})
 =
-1-\frac{\hat{\mathbf r}_{ij}(t;t_0)\cdot\mathbf v_j(t_0)}{c_f},
+1-\frac{\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})}{c_f},
 \qquad
-D_{s,ij}(t;t_0)
+D_{s,ij}(T;T_{\mathrm{em}})
 =
-c_fJ_{ij}^{\mathrm{src}}(t;t_0).
+c_fJ_{ij}^{\mathrm{src}}(T;T_{\mathrm{em}}).
 $$
 Only the source velocity projection along $\hat{\mathbf r}_{ij}$ appears in this transversality floor. Tangential source motion still matters through the source worldline, active root set, separation vector, and inactive-root gaps, but it is not a second instantaneous multiplier.
 
 **Receiver-normal branch strength.** The receiver velocity controls how the same causal root moves as receiver time advances:
 $$
-\frac{ds}{dt}
+\frac{dT_\ell}{dT}
 =
-\frac{1-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t)/c_f}
-{1-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s)/c_f}.
+\frac{1-\hat{\mathbf r}_{ij}(T;T_\ell)\cdot\mathbf V_i(T)/c_f}
+{1-\hat{\mathbf r}_{ij}(T;T_\ell)\cdot\mathbf V_j(T_\ell)/c_f}.
 $$
 Thus receiver motion belongs in the branch strength row through
 $$
-W_{ij}^{\mathrm{rec}}(t;s)
+W_{ij}^{\mathrm{rec}}(T;T_\ell)
 =
 \left|
-\frac{c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t)}
-{c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s)}
+\frac{c_f-\hat{\mathbf r}_{ij}(T;T_\ell)\cdot\mathbf V_i(T)}
+{c_f-\hat{\mathbf r}_{ij}(T;T_\ell)\cdot\mathbf V_j(T_\ell)}
 \right|.
 $$
 A chart that changes receiver-normal velocity can change the action magnitude even when the source-normal root denominator is unchanged.
 
 **Action residual.** The variational-action question adds an independent proof burden. On a regularized action chart,
 $$
-\mu_{\text{arch}}\mathbf a_i(t)
+\mu_{\text{arch}}\mathbf A_i(T)
 =
 \sum_j\kappa\,\sigma_{ij}|q_iq_j|
 \left(
-\mathbf F_{ij,\mathrm{scale}}^{(\eta)}(t)
+\mathbf F_{ij,\mathrm{scale}}^{(\eta)}(T)
 +
-\mathbf C_{ij}^{(\eta)}(t)
+\mathbf C_{ij}^{(\eta)}(T)
 \right),
 $$
 and the scale-only action scaffold derives the canonical branch law only when
@@ -308,7 +308,7 @@ $$
 \int_W
 \left\|
 \sum_j\kappa\,\sigma_{ij}|q_iq_j|
-\mathbf C_{ij}^{(\eta)}(t)
+\mathbf C_{ij}^{(\eta)}(T)
 \right\|dt
 =
 0
@@ -926,7 +926,7 @@ D_{s,ij}(t;t_0)
 \equiv
 c_f-\mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-D_{t,ij}(t;t_0)
+D_{T,ij}(t;t_0)
 \equiv
 c_f-\mathbf{v}_i(t)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)
 $$
@@ -935,7 +935,7 @@ $$
 W_{ij}^{\mathrm{rec}}(t;t_0)
 \equiv
 \left|
-\frac{D_{t,ij}(t;t_0)}
+\frac{D_{T,ij}(t;t_0)}
 {D_{s,ij}(t;t_0)}
 \right|
 $$
@@ -964,7 +964,7 @@ where:
 - $r_{ij}$: distance from emission point to reception point
 - $\hat{\mathbf{r}}_{ij}$: radial direction from emission to reception
 - $D_{s,ij}$: source-normal denominator controlling root transversality and emitted-wake compression/dilation
-- $D_{t,ij}$: receiver-normal numerator controlling how the receiver crosses the emitted wake sequence
+- $D_{T,ij}$: receiver-normal numerator controlling how the receiver crosses the emitted wake sequence
 - $W_{ij}^{\mathrm{rec}}$: unsigned receiver-normal branch strength
 
 **Note on interaction structure:** The per-hit acceleration $\mathbf{a}_{ij}(t; t_0)$ is **radial in direction**: it points along the line of action $\hat{\mathbf{r}}_{ij}$ from the source's past position to the receiver's current position. There are **no velocity-dependent cross-product terms** (no $\mathbf{v}_i \times \mathbf{B}$-like contributions) in the fundamental interaction kernel. However, the force magnitude is not purely $1/r^2$; it is modulated by the receiver-normal branch factor $W_{ij}^{\mathrm{rec}}$. Constant emission per unit absolute time at the source is sampled by the receiver at a rate set by both source-normal and receiver-normal motion.
@@ -1146,7 +1146,7 @@ $$
 
 The **emitted potential pattern in space** is not speed independent: a moving source lays down successive wake surfaces from different points on its worldline. The **received** force magnitude is therefore not purely a function of $r_{ij}$. It is modulated by $W_{ij}^{\mathrm{rec}}$, which measures how source-normal emission spacing and receiver-normal crossing cadence combine on the active branch.
 
-The receiver's velocity $\mathbf{v}_i(t)$ appears directly through $D_{t,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_i$. It also influences:
+The receiver's velocity $\mathbf{v}_i(t)$ appears directly through $D_{T,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_i$. It also influences:
 
 1. The **branch strength** through $W_{ij}^{\mathrm{rec}}$.
 2. The **instantaneous power** through $\mathbf{F} \cdot \mathbf{v} = \|\mathbf{F}\| v_r$.
@@ -1515,7 +1515,7 @@ canonical proof row.
 
 **Solution structure:** The slow, single-branch calibration has the same
 quadrature structure as Keplerian radial fall. A promoted branch must keep the
-same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row.
+same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ row.
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
@@ -1528,7 +1528,7 @@ same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row.
 **Partner contribution:** The circular source-normal geometry nominates an
 inward radial diagnostic and a tangential-sign diagnostic. In the canonical
 Master EOM, those rows are not force verdicts until the same partner branch
-emits $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
+emits $D_s$, $D_T$, and $W^{\mathrm{rec}}$.
 
 **Result:** The source-normal circular sign row is a restart diagnostic, not a
 no-go. A constant-speed circular conclusion requires the receiver-normal
@@ -1569,7 +1569,7 @@ $$
 \frac{W_{ii}^{\mathrm{rec}}(t;t_0)}{r_{ii}^2(t;t_0)}
 $$
 
-Hence as $D_{s,ii}\to 0^+$ with bounded nonzero $D_{t,ii}$, the ideal branch-resolved pointwise response diverges, producing a restoring barrier that blocks naive continuation into a collapsing branch. This divergence should not be treated as a literal state pinned at infinite force. Across a simple caustic transit, [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) shows that the integrated velocity change can remain finite; with finite numerical regularization $\eta > 0$, the event appears as a large but finite impulse that sharpens as $\eta\to 0$.
+Hence as $D_{s,ii}\to 0^+$ with bounded nonzero $D_{T,ii}$, the ideal branch-resolved pointwise response diverges, producing a restoring barrier that blocks naive continuation into a collapsing branch. This divergence should not be treated as a literal state pinned at infinite force. Across a simple caustic transit, [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) shows that the integrated velocity change can remain finite; with finite numerical regularization $\eta > 0$, the event appears as a large but finite impulse that sharpens as $\eta\to 0$.
 
 This null-separatrix is therefore an **amplitude wall** for the self branch only after the receiver-normal numerator is controlled. It is not, by itself, a theorem of circular closure. The same receiver-normal branch factor multiplies every projection of the self-hit force, including the tangential component, so contact with $D_{s,ii}=0$ obstructs collapse but does not by itself establish a periodic orbit or zero net cycle-averaged power.
 
@@ -2133,7 +2133,7 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > =
 > -\frac{J_{n,\pm}}{\beta},
 > $$
-> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the receiver-normal law this source-normal scaling is not a force/action certificate by itself; it must be combined with the same-row receiver-normal numerator through $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before any action or force row is promoted.
+> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the receiver-normal law this source-normal scaling is not a force/action certificate by itself; it must be combined with the same-row receiver-normal numerator through $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ before any action or force row is promoted.
 >
 > Consequently the circular self-hit combinatorics remain linearly bounded in $\beta$. A one-sign subchart has
 > $$
@@ -2176,9 +2176,9 @@ We will not get a *closed‑form sum*, but:
 - We can show convergence of the self‑force series away from source-normal degenerate roots ($D_s=0$) when the receiver-normal numerator is bounded,
 - And redrive asymptotic radial/tangential components as functions of $v/c_f$.
 
-Near the null-separatrix condition $D_s\to 0$, the exact branch weight carries the denominator singularity inside $W_n^{\mathrm{rec}}$ when $D_t$ is bounded away from zero, so this toy model also captures the geometric-wall limit.
+Near the null-separatrix condition $D_s\to 0$, the exact branch weight carries the denominator singularity inside $W_n^{\mathrm{rec}}$ when $D_T$ is bounded away from zero, so this toy model also captures the geometric-wall limit.
 
-This is again an amplitude statement, not a closure theorem. A circular self branch born on $D_s=0$ is born with singular receiver-normal weight when $D_t$ is nonzero, but the same singular factor multiplies tangential as well as radial projections. The null wall therefore obstructs continuation through the branch boundary without, by itself, proving an exactly locked circular orbit.
+This is again an amplitude statement, not a closure theorem. A circular self branch born on $D_s=0$ is born with singular receiver-normal weight when $D_T$ is nonzero, but the same singular factor multiplies tangential as well as radial projections. The null wall therefore obstructs continuation through the branch boundary without, by itself, proving an exactly locked circular orbit.
 
 So: **strong analytic handle**, though not “closed form in elementary functions.”
 
@@ -2205,7 +2205,7 @@ C=\frac{\kappa q^2}{4R^2}
 $$
 and retained-branch strength
 $$
-W_s^{\mathrm{rec}}(\xi)=\left|\frac{D_t(\xi)}{D_s(\xi)}\right|,
+W_s^{\mathrm{rec}}(\xi)=\left|\frac{D_T(\xi)}{D_s(\xi)}\right|,
 $$
 the branchwise self-hit projections are therefore
 $$
@@ -2481,7 +2481,7 @@ J_{12}
 $$
 The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
 For force rows the source-normal denominator is not the branch strength; use
-$W_p^{\mathrm{rec}}(\theta,\Delta)=\lvert D_{t,p}/D_{s,p}\rvert$ on the same
+$W_p^{\mathrm{rec}}(\theta,\Delta)=\lvert D_{T,p}/D_{s,p}\rvert$ on the same
 retained partner root.
 
 For opposite polarities, the branch acceleration is
@@ -2618,9 +2618,9 @@ so the normalized turn row is
 $$
 \Gamma+B_r^{\mathrm{rec}}(\theta_\ast)>0
 $$
-The retained branch chart must emit same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before $B_r^{\mathrm{rec}}$ exists as force evidence. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval after the receiver-normal branch sum exists or report the radial row as blocked.
+The retained branch chart must emit same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows before $B_r^{\mathrm{rec}}$ exists as force evidence. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval after the receiver-normal branch sum exists or report the radial row as blocked.
 
-A fixed retained-chart benchmark is a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not canonical Master EOM evidence until the same retained boxes emit $D_t/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
+A fixed retained-chart benchmark is a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not canonical Master EOM evidence until the same retained boxes emit $D_T/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
 
 If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the local kinematic targets become
 $$
@@ -3051,7 +3051,7 @@ $$
 \frac{c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_i(t)}
 {c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_j(t_\ell)}
 $$
-Therefore a source-emission cadence mapped onto a moving receiver path carries a receiver-normal numerator in addition to the source-normal Jacobian denominator. The action, power, wake-history, and finite-window conservation rows must consume the receiver-normal branch measure on the same retained branch chart. Rows that omit $D_t$ are not canonical force/action rows; fixed-receiver reductions must be obtained by direct substitution in $W_{ij}^{\mathrm{rec}}$.
+Therefore a source-emission cadence mapped onto a moving receiver path carries a receiver-normal numerator in addition to the source-normal Jacobian denominator. The action, power, wake-history, and finite-window conservation rows must consume the receiver-normal branch measure on the same retained branch chart. Rows that omit $D_T$ are not canonical force/action rows; fixed-receiver reductions must be obtained by direct substitution in $W_{ij}^{\mathrm{rec}}$.
 
 ##### Variation and line-of-action forces
 
@@ -3783,7 +3783,7 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 The Master Equation is a state-dependent delay system: acceleration at time $t$ depends on the path-history segment over $[t-h,t]$. In this setting, conservation laws are not functions of the instantaneous state $(\mathbf{x},\mathbf{v})$ alone. Instead, they are **functionals on path history** that track "in-flight" wake contributions.
 
-The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the force law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_t$, $W^{\mathrm{rec}}$, and wake-history ledger.
+The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the force law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_T$, $W^{\mathrm{rec}}$, and wake-history ledger.
 
 This section makes the symmetry group explicit and states the corresponding conserved functionals for isolated systems with $\eta > 0$.
 
@@ -3989,10 +3989,10 @@ $$
 W_{ij,\ell}^{\mathrm{rec}}(t)
 =
 \left|
-\frac{D_{t,ij,\ell}(t)}{D_{s,ij,\ell}(t)}
+\frac{D_{T,ij,\ell}(t)}{D_{s,ij,\ell}(t)}
 \right|
 $$
-where $D_s=c_f-\hat{\mathbf r}\cdot\mathbf v_j(s)$ and $D_t=c_f-\hat{\mathbf r}\cdot\mathbf v_i(t)$. A branch-reduced constrained scaffold on a window $W$ must therefore be redriven in the form
+where $D_s=c_f-\hat{\mathbf r}\cdot\mathbf v_j(s)$ and $D_T=c_f-\hat{\mathbf r}\cdot\mathbf v_i(t)$. A branch-reduced constrained scaffold on a window $W$ must therefore be redriven in the form
 $$
 S_{\mathfrak{B}}^{(\eta)}
 =

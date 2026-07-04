@@ -509,7 +509,7 @@ The long-term relevance of this episode is permanent until the field/particle di
 
 What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
 $$
-a_{\mathrm{eff}}(t)=a_0e^{H_*t},
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t},
 \qquad
 \dot{\rho}_{m,\mathrm{eff}}=0
 $$
@@ -534,7 +534,7 @@ What was occluded was a disciplined source-provenance analysis. A cosmological c
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(T)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
 
 ### Recovery Target
 

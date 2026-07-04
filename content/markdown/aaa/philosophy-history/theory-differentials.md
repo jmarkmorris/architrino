@@ -2793,7 +2793,7 @@ The clearest limiting tension for Steady State Cosmology is that its explanatory
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(T)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
 
 ---
 
