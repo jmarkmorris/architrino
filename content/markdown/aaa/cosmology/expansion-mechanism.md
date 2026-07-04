@@ -25,7 +25,7 @@ This $a_{\mathrm{eff}}(T)$ is a summary of medium evolution inside fixed $\mathb
 Equivalent bookkeeping choices can be used in the same ontology:
 
 $$
-a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{core}}(T)\rangle
+a_{\mathrm{eff}}(T)\ \leftrightarrow\ \langle R_{\text{braid}}(T)\rangle
 \quad\text{or}\quad
 a_{\mathrm{eff}}(T)\propto u_{\text{sea}}(T)^{-1/3}
 $$
@@ -766,13 +766,13 @@ $$
 =
 a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
 +a_n^X\,\frac{1}{c_\gamma}\,\partial_t\ln n
-+a_R^X\,\frac{1}{c_\gamma}\,\partial_t\ln R_{\text{core}}
++a_R^X\,\frac{1}{c_\gamma}\,\partial_t\ln R_{\text{braid}}
 +a_u^X\,\frac{\nabla\cdot\mathbf{u}_{\text{sea}}}{c_0}
 +a_S^X\,\frac{\hat{\mathbf{k}}^i\hat{\mathbf{k}}^j S_{ij}}{c_0}
 +\mathcal{R}_{\mathrm{prop},X}
 $$
 
-Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{core}}(\mathbf{x},t)$ denote normalized Noether braid density and a representative local Noether braid scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether sea flow velocity, and
+Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{braid}}(\mathbf{x},t)$ denote normalized Noether braid density and a representative local Noether braid scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether sea flow velocity, and
 
 $$
 S_{ij}
@@ -829,7 +829,7 @@ $$
 =
 a_\chi^X\,\frac{\dot{\bar\chi}_\gamma}{c_\gamma\bar\chi_\gamma}
 +a_n^X\,\frac{\dot{\bar n}}{c_\gamma\bar n}
-+a_R^X\,\frac{\dot{\bar R}_{\text{core}}}{c_\gamma\bar R_{\text{core}}}
++a_R^X\,\frac{\dot{\bar R}_{\text{braid}}}{c_\gamma\bar R_{\text{braid}}}
 +a_u^X\,\frac{\nabla\cdot\bar{\mathbf{u}}_{\text{sea}}}{c_0}
 +\bar{\mathcal R}_{\mathrm{prop},X}
 $$
@@ -966,7 +966,7 @@ $$
 \left(
 \ln\chi_\gamma,\,
 \ln n,\,
-\ln R_{\text{core}}
+\ln R_{\text{braid}}
 \right)
 $$
 
@@ -979,13 +979,13 @@ $$
 =
 a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
 +a_n^X\,\frac{1}{c_\gamma}\,\partial_t\ln n
-+a_R^X\,\frac{1}{c_\gamma}\,\partial_t\ln R_{\text{core}}
++a_R^X\,\frac{1}{c_\gamma}\,\partial_t\ln R_{\text{braid}}
 +a_u^X\,\frac{\nabla\cdot\mathbf{u}_{\text{sea}}}{c_0}
 +a_S^X\,\frac{\hat{\mathbf{k}}^i\hat{\mathbf{k}}^j S_{ij}}{c_0}
 +\mathcal{R}_{\mathrm{prop},X}
 $$
 
-which reproduces the candidate $\alpha_{\mathrm{prop},X}$ when $dY_X/d\ell=\alpha_{\mathrm{prop},X}$. The coefficients are the linear-response derivatives of the transport map at the static homogeneous no-flow reference state. For example, for $q\in\{\ln\chi_\gamma,\ln n,\ln R_{\text{core}}\}$,
+which reproduces the candidate $\alpha_{\mathrm{prop},X}$ when $dY_X/d\ell=\alpha_{\mathrm{prop},X}$. The coefficients are the linear-response derivatives of the transport map at the static homogeneous no-flow reference state. For example, for $q\in\{\ln\chi_\gamma,\ln n,\ln R_{\text{braid}}\}$,
 
 $$
 a_q^X
@@ -1035,7 +1035,7 @@ a_\chi^X & a_n^X & a_R^X
 \mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}
 $$
 
-This bridge keeps the level distinction explicit. The effective quantities $\rho_{\mathrm{DE,eff}}$ and $w_{\mathrm{eff}}$ remain observer-side summaries of medium relaxation. They affect redshift only insofar as the underlying Noether sea response changes $\chi_\gamma$, $n$, $R_{\text{core}}$, flow, or strain along the path. A fit that assigns $H(z)$ directly while bypassing this handoff is a comparison model, not a completed $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
+This bridge keeps the level distinction explicit. The effective quantities $\rho_{\mathrm{DE,eff}}$ and $w_{\mathrm{eff}}$ remain observer-side summaries of medium relaxation. They affect redshift only insofar as the underlying Noether sea response changes $\chi_\gamma$, $n$, $R_{\text{braid}}$, flow, or strain along the path. A fit that assigns $H(z)$ directly while bypassing this handoff is a comparison model, not a completed $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
 For the homogeneous first-order branch, define the transport-facing row
 
@@ -1340,7 +1340,7 @@ $$
 \left(
 \chi_{\gamma,j},\,
 n_j,\,
-R_{\text{core},j},\,
+R_{\text{braid},j},\,
 \mathbf{u}_{\text{sea},j},\,
 f_{N,j},\,
 J_{\nu,j},\,

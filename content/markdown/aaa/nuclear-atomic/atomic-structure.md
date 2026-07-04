@@ -353,7 +353,7 @@ This resolves the scale question in layered form:
 
 | Layer | What is being resolved | Boundary meaning |
 | --- | --- | --- |
-| Fermion core | One Noether braid plus axial layer | Closure-ledger membership and dynamic exclusion envelope |
+| Fermion braid scaffold | One Noether braid plus axial layer | Closure-ledger membership and dynamic exclusion envelope |
 | Proton | Three quark fermion assemblies in color-singlet closure | Shared strong-sector envelope, not three isolated quark surfaces |
 | Hydrogen atom | Proton closure plus electron assembly resonance | Electron orbital envelope around the nuclear causal-wake source |
 | Local spacetime | Coarse-grained Noether sea response | Medium variables averaged over ambient Noether braids, with matter assemblies acting as defects and sources |

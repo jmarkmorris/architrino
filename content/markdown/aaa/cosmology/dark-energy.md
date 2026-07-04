@@ -79,7 +79,7 @@ Late-time cosmological acceleration, in this picture, is a statement about how t
 
 ### Baseline Energy of the Noether Sea
 
-In the nested shell case, each Noether braid in the Noether sea carries internal binding energy distributed across its three binary tiers:
+In the nested shell case, each Noether braid in the Noether sea carries internal binding energy distributed across its three support tiers:
 
 - **Inner binary** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
 - **Middle binary** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
@@ -88,10 +88,10 @@ In the nested shell case, each Noether braid in the Noether sea carries internal
 The baseline energy density of the Noether sea is
 
 $$
-u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{core}} \rangle
+u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{braid}} \rangle
 $$
 
-where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
+where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{braid}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
 
 $$
 \rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{outer-binary state})
@@ -661,7 +661,7 @@ $$
 \left(
 \ln\chi_\gamma,\,
 \ln n,\,
-\ln R_{\text{core}}
+\ln R_{\text{braid}}
 \right)
 $$
 

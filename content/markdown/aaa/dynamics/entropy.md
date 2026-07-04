@@ -760,7 +760,7 @@ $$
 
 This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
 
-The label set is not arbitrary. At terminal alignment the three-binary collapses its orbital-plane normals onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
+The label set is not arbitrary. At terminal alignment the nested shell braid collapses its orbital-plane normals onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
 
 $$
 \left|

@@ -443,7 +443,7 @@ The useful ledger split is:
 Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
+- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested shell braid rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
 - **Shielding:** The pro/anti structure of the [Noether braid](../noether-braid/noether-braid.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
@@ -736,7 +736,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same core-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same braid-scaffold-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, Generation-II shielding, and Generation-III shielding branches is more constrained than a generic monotone hierarchy.
 
 The conservative use of Koide here is therefore:
 

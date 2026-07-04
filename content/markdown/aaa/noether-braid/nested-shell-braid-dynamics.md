@@ -1874,7 +1874,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 ## Working Hypotheses
 
-1. The formed nested shell braid has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
+1. The formed nested shell braid has stable invariants ($R_{\text{braid}}$, $\omega_{\text{braid}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
 3. High group velocity may produce an oblate causal envelope that drives planar alignment in the terminal rung; this remains a working hypothesis until the swept-volume and branch-stability tests close.
 4. High gravitational gradient modifies phase closure through tidal or differential delay effects, shifting or destabilizing rungs.
@@ -2023,7 +2023,7 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 
 ### Nested Shell Braid Baseline (Inner + Middle Fixed)
 
-**Focus:** Treat the inner and middle binaries as a formed subsystem with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any subsystem element rides $\|\mathbf{v}\| = c_f$ continuously.
+**Focus:** Treat the inner and middle binaries as a formed subsystem with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{braid}}$, $\omega_{\text{braid}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any subsystem element rides $\|\mathbf{v}\| = c_f$ continuously.
 
 ### Outer-Binary Delay Loop Model with Formed Subsystem
 
@@ -2093,7 +2093,7 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 ## Observables and Diagnostics (Summary)
 
-- Compatibility scale invariants: $R_{\text{core}}$, $\omega_{\text{core}}$, phase offsets.
+- Compatibility scale invariants: $R_{\text{braid}}$, $\omega_{\text{braid}}$, phase offsets.
 - Ladder records: $R_{\text{out}}(t)$, $\omega_{\text{out}}(t)$, plateau stability.
 - Geometry records: anisotropy ratio $A = R_\parallel/R_\perp$, forward vs backward delay ratio.
 - Orientation records: inter-plane angles, precession cone angle.

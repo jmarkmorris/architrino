@@ -20,7 +20,7 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 The relevant object is the nested shell braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
 
-In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
+In the low-apparent-energy matter regime, the nested shell braid support rows maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
 This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion.
 

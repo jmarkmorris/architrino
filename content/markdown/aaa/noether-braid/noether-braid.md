@@ -14,7 +14,7 @@ These definitions name case structure, not retained-branch existence. A neutral 
 
 The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](noether-braid-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, and **nested shell braid** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
 ## Document Role
 

@@ -632,7 +632,7 @@ $$
 Q\in\{E,R\}
 $$
 
-where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
+where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{braid}}/R_{\text{braid},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
 
 $$
 D_v
@@ -799,7 +799,7 @@ $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
 \ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
-\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
+\ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}=a_R\frac{U}{c_0^2},
 \qquad
 U\equiv-\Phi_N
 $$
@@ -850,7 +850,7 @@ A_\chi^{-1},\,
 \right)
 $$
 
-For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{core}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
+For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{braid}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
 
 The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak record with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $B_X(E)=1$, and $\mathcal K_{X,j}=0$ for every segment,
 

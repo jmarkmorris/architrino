@@ -276,7 +276,7 @@ We propose an effective spin/statistics mapping via a reduction in configuration
 In the low-energy / weak-alignment regime:
 
 - Inner, Middle, and Outer binaries occupy **non-coplanar planes**.
-- Total angular momentum **J** is fixed (no external torque), but the normals of the three binary planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
+- Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
 > **Hypothesis:** The effective orientation space of such a nested shell braid behaves like an $SU(2)$-type double cover of spatial rotations:

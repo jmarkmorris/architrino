@@ -247,7 +247,7 @@ $$
 \mathcal T_a=(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal L_a)
 \right\}.
 $$
-The symmetric group $S_3$ acts on this space by permuting the three binary records:
+The symmetric group $S_3$ acts on this space by permuting the three support-row records:
 $$
 \pi\cdot(\mathcal T_1,\mathcal T_2,\mathcal T_3)
 =
@@ -364,9 +364,9 @@ The classification is topological only where the entries are invariant under bra
 
 ## Accessory-Architrino Capture
 
-After a stable rank-three core has been retained, the next search level asks whether ordinary architrinos can become bound to that core without destroying the core ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained core branch.
+After a stable rank-three braid has been retained, the next search level asks whether ordinary architrinos can become bound to that braid without destroying the braid ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained braid branch.
 
-For a core branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
+For a braid branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
 $$
 \mathcal{C}_{\mathrm{cap}}(B)
 =
@@ -375,16 +375,16 @@ $$
 \mathrm{Retain}_{\mathrm{acc}}(B;\mathbf{x},\mathbf{v},q,\phi)=1
 \right\}.
 $$
-The capture predicate must use the same causal-root, action, energy, and return-map conventions as the core branch. A site is not merely a low potential region. It must preserve the core ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
+The capture predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. A site is not merely a low potential region. It must preserve the braid ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
 
-Topologically, capture preserves the assembly topological charge of the core branch while augmenting it with an accessory row. If $B_{\mathrm{core}}$ has assembly topological charge $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$, then an admissible captured branch should have
+Topologically, capture preserves the assembly topological charge of the braid branch while augmenting it with an accessory row. If $B_{\mathrm{braid}}$ has assembly topological charge $[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}$, then an admissible captured branch should have
 $$
-[\mathfrak B_{\mathrm{core}}\cup\mathrm{acc}]_{\mathrm{top}}
+[\mathfrak B_{\mathrm{braid}}\cup\mathrm{acc}]_{\mathrm{top}}
 =
-[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}
+[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}
 +\Delta_{\mathrm{acc}},
 $$
-where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the core entries are unchanged. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a core reconfiguration through a fold, reconnection, or branch surgery.
+where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the braid entries are unchanged. If the braid values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
 
 The architectural question is therefore:
 $$

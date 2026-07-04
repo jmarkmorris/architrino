@@ -15,8 +15,8 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 | Branch | Shielding-coherence class | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
 | $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6\epsilon_-$ | reference charged-lepton branch |
-| $\mu^-$ | $(1,1,0)$ | bi-binary shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
-| $\tau^-$ | $(1,0,0)$ | uni-binary shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
+| $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
+| $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
 The corresponding antileptons use anti-braid orientation and $6\epsilon_+$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 

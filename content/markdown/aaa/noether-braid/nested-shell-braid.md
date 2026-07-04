@@ -394,7 +394,7 @@ The same nested shell braid motion that supplies shielding also sweeps out a per
 The broader assembly program suggests reading the nested shell braid hierarchy as a natural hierarchy of fermion shielding tiers:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
--   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
+-   **Two-support-row shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
 -   **Nested shell braid:** the fully shielded three-tier braid, corresponding to the Generation-I shielding tier.
 
 On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).

@@ -53,14 +53,14 @@ In this model, the gluon is not a fundamental point particle but an emergent met
 - **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient nested shell braids carrying the open color corridor between exceptional-axis sectors.
 - **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether sea to its isotropic ground state.
 
-This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
+This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored braids therefore remain open at their poles unless another braid accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
 
 ### The Gluon as an Axis-Reconfiguration Braid
 
 A gluon is a propagating disturbance in the Noether braid assembly network that reconfigures axis exceptionality within the quark color basis.
 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
-- **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
+- **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the quark braids and carries the topology required to move exceptionality from one axis sector to another.
 
 ### Color-Corridor Provenance Target
 

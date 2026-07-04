@@ -51,7 +51,7 @@ For a Gen‑I baryon (3 quarks):
 - 18 axial architrinos  
 - **36 architrinos** total.
 
-We use “nested shell braid” for the three-binary structure and “Noether braid” when emphasizing the broader conserved-quantity-bearing class.
+We use “nested shell braid” for the nested shell-support structure and “Noether braid” when emphasizing the broader conserved-quantity-bearing class.
 
 
 

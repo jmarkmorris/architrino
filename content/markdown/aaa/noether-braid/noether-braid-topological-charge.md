@@ -149,7 +149,7 @@ $$
 $$
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
-The phase entry is also conditional on the three binary planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
+The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
 $$
 D_{\mathrm{plane}}
 =

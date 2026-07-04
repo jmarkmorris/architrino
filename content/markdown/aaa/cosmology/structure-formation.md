@@ -25,7 +25,7 @@ Define a spatially averaged Noether sea state at absolute time $t$:
 - $u_{\text{sea}}(t)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf{x},t)$,
 - $\rho_m(t)$: mean energy density of matter assemblies (baryonic + neutral/dark),
 - $\bar{\rho}_{\text{NS}}(t)$: mean Noether braid density in physical units,
-- $\bar{R}_{\text{core}}(t)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
+- $\bar{R}_{\text{braid}}(t)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
 
 An effective Hubble-like parameter $H(t)$ is defined operationally through the rate of change of the Noether sea's bulk properties. Specifically, if one defines an effective scale variable $a(t)$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H = \dot{a}/a$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
 
@@ -43,7 +43,7 @@ Each symbol carries a specific medium-level meaning:
 
 - **$G_{\text{eff}}(t, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
   - the local Noether braid density $\bar{\rho}_{\text{NS}}(t)$, which sets Noether sea stiffness,
-  - the outer-binary radius $\bar{R}_{\text{core}}(t)$, which controls the compliance of Noether sea assemblies to deformation,
+  - the outer-binary radius $\bar{R}_{\text{braid}}(t)$, which controls the compliance of Noether sea assemblies to deformation,
   - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
 

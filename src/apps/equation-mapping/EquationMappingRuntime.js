@@ -569,6 +569,10 @@ function createIconSvg(name) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4.5L19 9.5 14.5 5 4 15.5V20Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m13.5 6 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
     case "collapse":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6 9 12l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    case "previous":
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    case "next":
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     default:
       return "";
   }
@@ -630,14 +634,17 @@ export class EquationMappingRuntime {
     const savedSettings = readSavedSettings(this.window);
     const requestedDocumentId =
       options.initialDocumentId ||
-      readLocationHashId(this.window) ||
-      savedSettings.activeDocumentId;
+      readLocationHashId(this.window);
     this.activeDocumentId =
       resolveDocumentId(this.documents, requestedDocumentId) ||
       this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ||
       this.documents[0].id;
-    this.activeOverlayId = savedSettings.activeOverlayId ?? this.activeDocument.overlays[0]?.id ?? "";
-    this.activeAnchorId = savedSettings.activeAnchorId ?? this.activeDocument.anchors[0]?.id ?? "";
+    this.activeOverlayId = this.activeDocument.overlays.some((overlay) => overlay.id === savedSettings.activeOverlayId)
+      ? savedSettings.activeOverlayId
+      : this.activeDocument.overlays[0]?.id ?? "";
+    this.activeAnchorId = this.activeDocument.anchors.some((anchor) => anchor.id === savedSettings.activeAnchorId)
+      ? savedSettings.activeAnchorId
+      : this.activeDocument.anchors[0]?.id ?? "";
     this.backgroundId = normalizeBackgroundId(
       options.backgroundId ?? savedSettings.backgroundId ?? this.activeDocument.backgroundId ?? DEFAULT_BACKGROUND_ID
     );
@@ -770,17 +777,25 @@ export class EquationMappingRuntime {
     return this.documents;
   }
 
-  navigateActiveDocumentByOffset(offset) {
+  getDocumentByOffset(offset) {
     const list = this.getVisibleDocumentList();
     const currentIndex = list.findIndex((document) => document.id === this.activeDocument.id);
     if (currentIndex < 0) {
-      return false;
+      return null;
     }
     const nextIndex = currentIndex + offset;
     if (nextIndex < 0 || nextIndex >= list.length) {
+      return null;
+    }
+    return list[nextIndex];
+  }
+
+  navigateActiveDocumentByOffset(offset) {
+    const nextDocument = this.getDocumentByOffset(offset);
+    if (!nextDocument) {
       return false;
     }
-    this.setActiveDocument(list[nextIndex].id);
+    this.setActiveDocument(nextDocument.id);
     return true;
   }
 
@@ -954,8 +969,37 @@ export class EquationMappingRuntime {
 
   renderCanvas() {
     const canvas = createElement(this.document, "main", "equation-mapping-canvas");
-    canvas.append(this.renderControls(), this.renderStage());
+    canvas.append(this.renderControls(), this.renderEquationCarousel(), this.renderStage());
     return canvas;
+  }
+
+  renderEquationCarousel() {
+    const carousel = createElement(this.document, "nav", "equation-mapping-carousel");
+    carousel.setAttribute("aria-label", "Equation navigation");
+    carousel.append(
+      this.renderCarouselButton("previous", -1, "Previous equation"),
+      this.renderCarouselButton("next", 1, "Next equation")
+    );
+    return carousel;
+  }
+
+  renderCarouselButton(iconName, offset, fallbackLabel) {
+    const targetDocument = this.getDocumentByOffset(offset);
+    const button = createElement(
+      this.document,
+      "button",
+      `equation-mapping-carousel-button is-${iconName}`
+    );
+    button.type = "button";
+    button.disabled = !targetDocument;
+    const label = targetDocument ? `${fallbackLabel}: ${targetDocument.title}` : fallbackLabel;
+    button.title = label;
+    button.setAttribute("aria-label", label);
+    button.innerHTML = createIconSvg(iconName);
+    button.addEventListener("click", () => {
+      this.navigateActiveDocumentByOffset(offset);
+    });
+    return button;
   }
 
   renderControls() {

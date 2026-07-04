@@ -1423,7 +1423,7 @@ $$
 \mathbf u_a(t)\times\mathbf v_a(t)=\hat{\mathbf n}_a(t)
 $$
 
-The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
+The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three support roles, not two different triads.
 
 For a closed ordered frame, use the reduced branch label
 

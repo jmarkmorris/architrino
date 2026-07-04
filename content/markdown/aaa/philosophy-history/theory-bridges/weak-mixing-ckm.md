@@ -61,7 +61,7 @@ $$
 The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), bi-binary (IM-), and uni-binary (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
 
 ### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that transforms quark types (down ↔ up, strange ↔ charm, etc.).
@@ -76,7 +76,7 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
 ## Minimal premises
-- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
+- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II shielding branch (c,s), Gen III shielding branch (t,b).
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../assemblies/particle-masses.md).
 

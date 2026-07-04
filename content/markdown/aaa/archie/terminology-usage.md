@@ -145,21 +145,21 @@ Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space
 
 ## Noether Braid Usage
 
-Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three positrinos and three electrinos. The term is broader than exact three-binary motion: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
+Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three positrinos and three electrinos. The term is broader than an exact-binary nested-shell branch: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the broad six-architrino neutral assembly class | `Noether braid` | `Noether core`, `Noether cluster`, or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
+| the broad six-architrino neutral assembly class | `Noether braid` | legacy neutral-scaffold labels or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
 | a proposed branch or branch family before all certificate rows close | `candidate braid` | treating the branch as retained or certified before the same-record rows close | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability rows close." |
 | a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability rows are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
 | the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
 | a one-band radial-support case | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
-| the three-band nested exact-binary candidate | `nested shell braid` | `exact three-binary`, `three exact binaries`, or `nested binary` unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |
+| the three-band nested shell-support candidate | `nested shell braid` | binary-first labels unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |
 | a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge row closes." |
 
 The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, framed self-linking parity, flat phase-bundle holonomy, or the full assembly topological charge.
 
-Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`. Treat those strings as stable implementation identifiers, not as preferred prose or source-title guidance. Do not invent alternate synonyms such as `Noether nucleus`, `Noether cluster`, or `Noether core` unless a later canon decision explicitly changes the taxonomy.
+Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`. Treat those strings as stable implementation identifiers, not as preferred prose or source-title guidance. Do not invent alternate non-braid aliases unless a later canon decision explicitly changes the taxonomy.
 
 ## Oblate Spheroidal Envelope, Spheroid, and Ellipsoid
 
@@ -276,7 +276,7 @@ Use `Noether braid` for the neutral six-architrino scaffold. Use `particle` main
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the neutral six-architrino scaffold of a fermion | `Noether braid` | `core` or vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether braid." |
+| the neutral six-architrino scaffold of a fermion | `Noether braid` | legacy central-scaffold wording when the scaffold itself is meant | "The axial layer is bound to the Noether braid." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
 

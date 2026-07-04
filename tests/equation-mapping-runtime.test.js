@@ -687,6 +687,39 @@ test("equation mapping arrow keys navigate through the visible equation list", (
   assert.equal(preventDefaultCount, 4);
 });
 
+test("equation mapping renders left and right carousel controls for equations", () => {
+  const runtimeSource = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      location: {
+        href: "http://127.0.0.1:5173/equation-mapping.html",
+        hash: "",
+      },
+      localStorage: {
+        getItem() {
+          return null;
+        },
+        setItem() {},
+      },
+    },
+  });
+
+  assert.equal(runtime.getDocumentByOffset(-1), null);
+  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-02-lorentz-clock-rate");
+  runtime.activeDocumentId = "eq-02-lorentz-clock-rate";
+  assert.equal(runtime.getDocumentByOffset(-1)?.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
+  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-03-oblate-spheroidal-envelope");
+  assert.equal(runtimeSource.includes("renderEquationCarousel()"), true);
+  assert.equal(runtimeSource.includes('this.renderCarouselButton("previous", -1, "Previous equation")'), true);
+  assert.equal(runtimeSource.includes('this.renderCarouselButton("next", 1, "Next equation")'), true);
+  assert.match(html, /\.equation-mapping-carousel-button \{[\s\S]*?width: 58px;[\s\S]*?height: 96px;/u);
+  assert.match(html, /\.equation-mapping-carousel-button\.is-previous \{[\s\S]*?left: 10px;/u);
+  assert.match(html, /\.equation-mapping-carousel-button\.is-next \{[\s\S]*?right: 10px;/u);
+  assert.match(html, /\.equation-mapping-carousel-button:disabled \{[\s\S]*?opacity: 0\.18;/u);
+});
+
 test("equation mapping arrow keys ignore text-entry targets", () => {
   const runtime = new EquationMappingRuntime({
     document: {},
@@ -748,6 +781,33 @@ test("equation mapping resolves semantic hashes without renaming stable document
     replaceCalls[0][2],
     "http://127.0.0.1:5173/equation-mapping.html#friedmann-continuity-lcdm"
   );
+});
+
+test("equation mapping defaults to the AAA master equation instead of saved document state", () => {
+  const staleSettings = JSON.stringify({
+    activeDocumentId: "eq-02-lorentz-clock-rate",
+    activeOverlayId: "clock-consumer",
+    activeAnchorId: "clockRate",
+  });
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      location: {
+        href: "http://127.0.0.1:5173/equation-mapping.html",
+        hash: "",
+      },
+      localStorage: {
+        getItem(key) {
+          return key === "architrino.equationMapping.settings.v7" ? staleSettings : null;
+        },
+        setItem() {},
+      },
+    },
+  });
+
+  assert.equal(runtime.activeDocumentId, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
+  assert.equal(runtime.activeOverlayId, "native-root");
+  assert.equal(runtime.activeAnchorId, "acceleration");
 });
 
 test("equation mapping subject selector defaults to folded groups", () => {

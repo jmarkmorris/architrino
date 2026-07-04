@@ -4,24 +4,24 @@
 
 This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
 
-At the substrate level, a quark is a Noether braid assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 The chapter uses axis strings and tables so the catalog is explicit without depending on artwork.
 
 ## Architecture
 
-### Core and axial split
+### Braid and axial split
 
 The quark construction used here follows the same Noether braid-plus-axial split already used in the fermion mapping chapters:
 
-- The **Noether braid** is the neutral binary scaffold.
+- The **Noether braid** is the neutral braid scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the core is a **pro-braid**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the braid scaffold is a **pro-braid**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
 
 - **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
-- **Generation II:** bi-binary shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
-- **Generation III:** uni-binary shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
+- **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
+- **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
 
 The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
@@ -29,13 +29,13 @@ The axial layer stays six sites wide in all three generations. Each site is occu
 
 The total constituent count of a quark is therefore
 $$
-N_{\text{quark}} = N_{\text{core}} + 6
+N_{\text{quark}} = N_{\text{braid}} + 6
 $$
 with
 $$
-N_{\text{core}} \in \{6,4,2\}
+N_{\text{braid}} \in \{6,4,2\}
 $$
-for Generations I, II, and III respectively. Here $N_{\text{core}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
+for Generations I, II, and III respectively. Here $N_{\text{braid}}$ counts coherent shielding-scaffold architrinos in the promoted branch, not every transient residue of an ablated or relocking tier. This gives:
 
 - Generation I quark: 12 architrinos.
 - Generation II quark: 10 architrinos.
@@ -43,7 +43,7 @@ for Generations I, II, and III respectively. Here $N_{\text{core}}$ counts coher
 
 ### Axis notation
 
-To describe color and axial geometry compactly, use the three core axes $(H,M,L)$ and the following polarity-dyad classes:
+To describe color and axial geometry compactly, use the three Noether braid axes $(H,M,L)$ and the following polarity-dyad classes:
 
 - $(\epsilon_+,\epsilon_+)$: an axis whose two polar sites are both positive-polarity.
 - $(\epsilon_-,\epsilon_-)$: an axis whose two polar sites are both negative-polarity.
@@ -264,40 +264,40 @@ This should still be treated cautiously. The image supports a candidate mapping 
 
 ### Canonical flavor table
 
-| Flavor | Type | Generation | Core architecture | Core architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
+| Flavor | Type | Generation | Braid scaffold | Braid architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
 | $u$ | up-type | I | pro nested shell braid | 6 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 12 | one mixed dyad, two positive-polarity dyads |
 | $d$ | down-type | I | pro nested shell braid | 6 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 12 | selected family $F_\star$: one positive-polarity dyad with two negative-polarity dyads if $F_\star=I$, or one negative-polarity dyad with two mixed dyads if $F_\star=II$ |
-| $c$ | up-type | II | pro bi-binary | 4 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 10 | same up-type color template on a Generation-II core |
-| $s$ | down-type | II | pro bi-binary | 4 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 10 | same selected-family rule on a Generation-II core |
-| $t$ | up-type | III | pro uni-binary | 2 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 8 | same up-type color template on a Generation-III core |
-| $b$ | down-type | III | pro uni-binary | 2 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 8 | same selected-family rule on a Generation-III core |
+| $c$ | up-type | II | pro Generation-II shielding branch | 4 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 10 | same up-type color template on a Generation-II braid scaffold |
+| $s$ | down-type | II | pro Generation-II shielding branch | 4 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 10 | same selected-family rule on a Generation-II braid scaffold |
+| $t$ | up-type | III | pro Generation-III shielding branch | 2 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 8 | same up-type color template on a Generation-III braid scaffold |
+| $b$ | down-type | III | pro Generation-III shielding branch | 2 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 8 | same selected-family rule on a Generation-III braid scaffold |
 
 ### Flavor-by-flavor notes
 
 #### Up quark
 
-The up quark is the ground-state up-type quark. It uses the full pro nested shell braid core and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes.
+The up quark is the ground-state up-type quark. It uses the full pro nested shell braid scaffold and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes.
 
 #### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid core, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
+The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid scaffold, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 #### Charm quark
 
-The charm quark keeps the up-type axial pattern but sheds the outer shielding binary. In this bookkeeping it is therefore a Generation-II up-type core with the same visible charge geometry as the up quark but a more exposed core.
+The charm quark keeps the up-type axial pattern but sheds the outer shielding support tier. In this bookkeeping it is therefore a Generation-II up-type braid scaffold with the same visible charge geometry as the up quark but a more exposed braid scaffold.
 
 #### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a bi-binary core rather than a nested shell braid core, with the same selected-family branch rule applied after the shielding tier is fixed.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a Generation-II braid scaffold rather than a nested shell braid scaffold, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 #### Top quark
 
-The top quark is the most exposed up-type branch in the present catalog. It carries the same $5\epsilon_+,1\epsilon_-$ axial inventory as the lighter up-type quarks but only a uni-binary core. Its total count is therefore only 8 architrinos. This is the most exposed quark branch and, correspondingly, the least stable.
+The top quark is the most exposed up-type branch in the present catalog. It carries the same $5\epsilon_+,1\epsilon_-$ axial inventory as the lighter up-type quarks but only a Generation-III braid scaffold. Its total count is therefore only 8 architrinos. This is the most exposed quark branch and, correspondingly, the least stable.
 
 #### Bottom quark
 
-The bottom quark is the Generation-III down-type branch. It carries the down-type $2\epsilon_+,4\epsilon_-$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type selected-family sector remains a separate branch-selection target.
+The bottom quark is the Generation-III down-type branch. It carries the down-type $2\epsilon_+,4\epsilon_-$ axial pattern on a Generation-III braid scaffold. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type selected-family sector remains a separate branch-selection target.
 
 ## Color assignments
 

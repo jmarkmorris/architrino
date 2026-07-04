@@ -19,8 +19,8 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 
 ### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
 At the finest scale, the photon unit is a composite assembly:
-*   **Planar cores:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
-*   **The pair:** Two planar cores form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
+*   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
+*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
@@ -29,7 +29,7 @@ At the finest scale, the photon unit is a composite assembly:
 
 The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized pro/anti Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired pro/anti balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
-The reduced bridge is the planar Noether braid chart. In that chart, the same three binary ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating pro/anti planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
+The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating pro/anti planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
 This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating pro/anti planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
 
@@ -76,7 +76,7 @@ The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gau
 
 #### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar core $L$ and trailing planar core $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$
@@ -441,7 +441,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Spatial Extent ($\ell$):** A few $d_0$ (the minimal binary radius).
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
-    *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination cores.
+    *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination braids.
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
@@ -501,7 +501,7 @@ The same event record must also recover low-energy weak rates after the corridor
 
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
-| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3\epsilon_+$ and active $3\epsilon_-$; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral core provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3\epsilon_+\to3\epsilon_-$, while emitting $W^-$ balances a source-side $3\epsilon_-\to3\epsilon_+$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3\epsilon_+$ and active $3\epsilon_-$. The shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral braid provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3\epsilon_+\to3\epsilon_-$, while emitting $W^-$ balances a source-side $3\epsilon_-\to3\epsilon_+$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
 | Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3\epsilon_-\leftrightarrow3\epsilon_+$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether braids provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad transition and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether sea recoil must all be accounted for in the full reaction ledger. |
 | Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3\epsilon_+\leftrightarrow3\epsilon_-$ charged transition. | The participating assemblies keep their neutral Noether braid provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether sea recoil while preserving electric charge and axial inventory. |
 
@@ -519,7 +519,7 @@ The distinction between photon helicity and massive-vector spin should remain ex
     *   This kick ejects a "corridor of influence" that nucleates from the superposition of the constituent architrinos' delayed wakes.
 *   **Selection Rules (Phase History):**
     *   Coupling is not "magic"; it requires geometric compatibility.
-    *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's nested binaries. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
+    *   **Chirality:** Allowed couplings follow from the **Path-History Geometry**. The corridor's internal spiral must match the phase structure of the target's nested shell braid support rows. "Wrong-handed" targets present a phase mismatch, preventing the tether from locking on.
 *   **Absorption:** The corridor is re-captured by a target binary, integrating its payload and updating the target's internal mode energy.
 
 ### Low-Energy Four-Fermi Limit
