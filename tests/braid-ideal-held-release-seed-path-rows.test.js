@@ -16,6 +16,7 @@ import {
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  SURFACE_VELOCITY_PATTERN,
   buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement,
   buildHeldReleaseSeedPathRows,
   evaluateHeldReleaseSeedPathRowsAcceptanceCertificate,
@@ -30,6 +31,14 @@ const RETAINED_RECORD_ID = "retained-record:held-release-six-point:adapter-accep
 const SOURCE_ROW_ID = "two-speed-preferred-row:u0.8:v0.2";
 const PROVIDER_OBJECT_REF = "candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327";
 const PROVIDER_ARTIFACT_HASH = "7d4a8fe0a97923270179f2ca0b49b4bc0d6b6ba3251b26e82569bdb4bd1f91df";
+
+function dot(left, right) {
+  return left.reduce((sum, value, index) => sum + value * right[index], 0);
+}
+
+function norm(vector) {
+  return Math.hypot(...vector);
+}
 
 function stableHash(value) {
   return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
@@ -240,6 +249,94 @@ test("held-release seed path rows CLI emits the current provider-backed source a
   assert.equal(artifact.authorization.held_release_seed_path_rows, false);
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
   assert.deepEqual(validateHeldReleaseSeedPathRows(artifact), []);
+});
+
+test("held-release seed path rows emit run-matrix metadata and transverse surface velocities", () => {
+  const artifact = buildHeldReleaseSeedPathRows({
+    proofId: "SH-0",
+    runHandle: "sh0-g0-vt080-moving-prehistory",
+    sourceRowId: "diagnostic-source-row:sh0-g0-vt080-moving-prehistory",
+    groupVelocity: [0, 0, 0],
+    surfaceSpeedFraction: 0.8,
+    prehistoryMode: "moving-prehistory",
+    retainedRecordId: RETAINED_RECORD_ID,
+    providerObjectRef: PROVIDER_OBJECT_REF,
+    providerArtifactHash: PROVIDER_ARTIFACT_HASH,
+  });
+
+  assert.equal(artifact.artifact_id.startsWith("held_release_seed_path_rows:"), true);
+  assert.notEqual(artifact.artifact_id, "held_release_seed_path_rows:5833f18e53586201");
+  assert.equal(artifact.artifact_hash.length, 64);
+  assert.equal(artifact.run_matrix_metadata.schema, "sh_shell_braid_run_matrix_metadata.v0");
+  assert.equal(artifact.run_matrix_metadata.proof_id, "SH-0");
+  assert.equal(artifact.run_matrix_metadata.run_handle, "sh0-g0-vt080-moving-prehistory");
+  assert.equal(
+    artifact.run_matrix_metadata.source_row_id,
+    "diagnostic-source-row:sh0-g0-vt080-moving-prehistory"
+  );
+  assert.deepEqual(artifact.run_matrix_metadata.target_center_group_velocity, [0, 0, 0]);
+  assert.equal(artifact.run_matrix_metadata.surface_speed_fraction, 0.8);
+  assert.equal(artifact.run_matrix_metadata.surface_velocity_pattern, SURFACE_VELOCITY_PATTERN);
+  assert.equal(artifact.run_matrix_metadata.prehistory_mode, "moving-prehistory");
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(artifact.evidence_status.accepted, false);
+  assert.equal(artifact.evidence_status.source_artifact_id, artifact.artifact_id);
+  assert.equal(artifact.evidence_status.source_artifact_hash, artifact.artifact_hash);
+  assert.equal(
+    artifact.evidence_status.source_row_id,
+    "diagnostic-source-row:sh0-g0-vt080-moving-prehistory"
+  );
+  assert.equal(artifact.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(artifact.first_missing_field, "held_release_seed_path_rows.acceptance_certificate_ref");
+
+  for (const row of artifact.rows) {
+    const velocity = row.solver_path_history_row_f64.velocity;
+    assert.equal(Math.abs(norm(velocity) - 0.8) < 1e-12, true);
+    assert.equal(Math.abs(dot(row.solver_path_history_row_f64.start, velocity)) < 1e-12, true);
+    assert.equal(row.dynamic_replay_metadata.run_handle, "sh0-g0-vt080-moving-prehistory");
+    assert.deepEqual(row.dynamic_replay_metadata.target_center_group_velocity, [0, 0, 0]);
+    assert.equal(row.dynamic_replay_metadata.surface_speed_fraction, 0.8);
+    assert.equal(row.dynamic_replay_metadata.prehistory_mode, "moving-prehistory");
+    assert.deepEqual(row.dynamic_replay_metadata.prehistory_velocity, velocity);
+  }
+
+  assert.deepEqual(validateHeldReleaseSeedPathRows(artifact), []);
+});
+
+test("held-release seed path rows CLI accepts run-matrix diagnostic options", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      "--proof-id=SH-0",
+      "--run-handle=sh0-g0-vt050-kick-at-release",
+      "--source-row-id=diagnostic-source-row:sh0-g0-vt050-kick-at-release",
+      "--target-center-group-velocity=0,0,0",
+      "--surface-speed-fraction=0.5",
+      "--prehistory-mode=kick-at-release",
+      `--retained-record-id=${RETAINED_RECORD_ID}`,
+      `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+      `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const artifact = JSON.parse(output);
+
+  assert.equal(artifact.run_matrix_metadata.run_handle, "sh0-g0-vt050-kick-at-release");
+  assert.equal(artifact.run_matrix_metadata.prehistory_mode, "kick-at-release");
+  assert.equal(artifact.run_matrix_metadata.surface_speed_fraction, 0.5);
+  assert.deepEqual(artifact.run_matrix_metadata.target_center_group_velocity, [0, 0, 0]);
+  assert.equal(
+    artifact.evidence_status.accepted_evidence_status,
+    "candidate_provider_backed_source_unaccepted"
+  );
+  assert.equal(artifact.authorization.held_release_seed_path_rows, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.equal(
+    artifact.rows.every((row) => row.dynamic_replay_metadata.prehistory_velocity.every((entry) => entry === 0)),
+    true
+  );
 });
 
 test("seed path acceptance-certificate requirement names the exact non-repo authority object", () => {

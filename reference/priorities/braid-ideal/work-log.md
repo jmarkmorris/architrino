@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-04 - Shell-Braid Run Matrix Runner Options
+
+Implemented diagnostic run-matrix metadata for the shell-braid variants in [Shell-Braid Run Matrix](sh-run-matrix.md). [held-release-seed-path-rows.mjs](../../../scripts/braid-ideal/held-release-seed-path-rows.mjs) now accepts Proof ID, run handle, source row id, target-center group velocity, transverse surface-speed fraction, and prehistory mode options, and emits source artifact id/hash plus fail-closed evidence status. [sh-0-sea-diagnostic-candidate-model.mjs](../../../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs) now passes the same metadata through for embedded `SH-0-sea` rows.
+
+Decision: the new options implement diagnostic/candidate run tracking only. They do not produce an accepted seed-path certificate, retained force/action closure, Noether sea response closure, stability row, branch chart, moving certificate, observer export, or score movement. The accepted-evidence blocker remains `held_release_seed_path_rows_acceptance_certificate.v0` at `held_release_seed_path_rows.acceptance_certificate_ref`, followed by the matching external accepted-authority package, repo authorization, retained-source adapter package, and same-record receiver-normal root-detail rows.
+
 ### 2026-07-04 - SH-0 Retained-History Evidence Audit
 
 Audited the `SH-0` retained-history evidence handles against the live owner scripts and captured the result in [SH-0 Retained-History Evidence Audit](sh-0-retained-history-evidence-audit.md). The audit separates the fresh/default construction from the active provider-backed acquisition path. Fresh/default seed-path and stream-manifest artifacts still fail at `held_release_seed_path_rows[*].retained_record_id`, but the active provider-backed path for `held_release_seed_path_rows:5833f18e53586201` is sharper: it is blocked at `held_release_seed_path_rows_acceptance_certificate` / `held_release_seed_path_rows.acceptance_certificate_ref`.

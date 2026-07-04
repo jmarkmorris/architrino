@@ -570,14 +570,26 @@
 
       .equation-mapping-comment-header {
         display: flex;
-        align-items: center;
+        flex-wrap: wrap;
+        align-items: baseline;
         justify-content: space-between;
         gap: 8px;
         margin-bottom: 6px;
       }
 
       .equation-mapping-comment-header strong {
+        flex: 1 1 auto;
         font-size: 21px;
+      }
+
+      .equation-mapping-comment-target {
+        flex: 0 1 auto;
+        max-width: 100%;
+        margin-left: auto;
+        color: var(--text);
+        font-size: 21px;
+        line-height: 1.1;
+        text-align: right;
       }
 
       .equation-mapping-comment-body {
@@ -593,11 +605,13 @@
       }
 
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-target,
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-body {
         font-size: 18px;
       }
 
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-target,
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-body {
         font-size: 24px;
       }

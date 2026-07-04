@@ -313,7 +313,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "\\gamma_\\star(\\mathbf w_{\\mathrm{eff}})=\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}},\\quad d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
+      "\\gamma_\\star(\\mathbf w_{\\mathrm{eff}})=\\frac{1}{\\rule{0pt}{1.06em}\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}},\\quad d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
     anchors: [
       anchor("gammaFactor", "Lorentz factor", "gamma clock ruler factor"),
       anchor("driftSpeed", "drift speed", "motion through local Noether sea"),
@@ -324,7 +324,7 @@ const scoreFiveAndFourEquationMapDocuments = [
       textPart("eq", " = "),
       mathPart(
         "driftSpeed",
-        "\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}",
+        "\\frac{1}{\\rule{0pt}{1.06em}\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}",
         "driftSpeed",
         { left: 42, width: 24 }
       ),
@@ -336,7 +336,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "drift-through-sea",
         "Drift through sea",
         "driftSpeed",
-        "This is the speed used inside gamma. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, AAA subtracts that flow first.",
+        "This is the speed used inside γ. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, AAA subtracts that flow first.",
         "\\mathbf w_{\\mathrm{eff}}=\\mathbf V_{\\mathrm{cm,eff}}-\\mathbf u_{\\mathrm{sea,eff}}",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -344,7 +344,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "clock-consumer",
         "Clock rate",
         "clockRate",
-        "The right equation says the moving clock advances by 1/gamma compared with the observer's time. In AAA, clock ticking is one readout of the same stored branch history that also explains rulers and envelopes.",
+        "The right equation says the moving clock advances by 1/γ compared with the observer's time. In AAA, absolute time is steady and linear; the clock's tick rate is the local readout that changes.",
         "d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
         { x: 58, y: 68, width: 34, line: "below" }
       ),
@@ -352,7 +352,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "branch-blocker",
         "One Lorentz factor",
         "gammaFactor",
-        "Gamma is the Lorentz factor. Moving clocks use 1/gamma, lengths along the motion use 1/gamma, and momentum-energy uses gamma. In AAA, one stored branch history produces all three readouts.",
+        "γ is the Lorentz factor. Moving clocks use 1/γ, lengths along the motion use 1/γ, and momentum-energy uses γ. In AAA, one stored branch history produces all three readouts.",
         "\\gamma_\\star\\rightarrow S_{\\mathrm{eq}}",
         { x: 8, y: 82, width: 34, line: "below" }
       ),
@@ -394,7 +394,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "return-cycle",
         "Lorentz target",
         "gammaEff",
-        "The right side is the target: 1/gamma_eff. That means the along-motion radius is smaller by the Lorentz contraction factor. AAA gets this from return-cycle history, not from a new scale knob.",
+        "The target is 1 over effective γ. That means the along-motion radius is smaller by the Lorentz contraction factor. AAA gets this from return-cycle history, not from a new scale knob.",
         "\\xi\\to\\gamma_{\\mathrm{eff}}^{-1}",
         { x: 66, y: 68, width: 30, line: "below" }
       ),
@@ -402,7 +402,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "transverse-radius",
         "Perpendicular radius",
         "perpendicularRadius",
-        "This is the radius across the motion. Relativity leaves the crosswise direction as the reference radius. In AAA, R_perp is the comparison radius while R_parallel carries the contraction.",
+        "This is the radius across the motion. Relativity leaves the crosswise direction as the reference radius. In AAA, R⊥ is the comparison radius while R∥ carries the contraction.",
         "R_{\\perp}(v_{\\mathrm{eff}})",
         { x: 35, y: 68, width: 30, line: "below" }
       ),
@@ -423,7 +423,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
+      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
     anchors: [
       anchor("energy", "energy", "observer exposed energy"),
       anchor("momentum", "momentum term", "momentum response"),
@@ -440,7 +440,7 @@ const scoreFiveAndFourEquationMapDocuments = [
       breakPart("rest-mass-solve-break"),
       mathPart(
         "restMassSolve",
-        "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
+        "M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
         ""
       ),
     ],
@@ -457,7 +457,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "motion-response",
         "Motion response",
         "momentum",
-        "p squared c_eff squared is the motion-energy term. It turns momentum into energy units. In AAA, the motion row must match the same mass and speed rows.",
+        "p includes M₀ through p = effective γ times M₀ times effective v. That is why the solve row uses effective γ, not a separate p. In AAA, motion, mass, and speed stay in one row.",
         "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2",
         { x: 26, y: 8, width: 25, line: "above" }
       ),
@@ -473,7 +473,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "speed-role",
         "Speed role",
         "effectiveSpeed",
-        "c_eff is the conversion speed. It lets momentum and mass be compared as energy. In AAA, this speed is declared once for the row.",
+        "Effective c is the conversion speed. It lets momentum and mass be compared as energy. In AAA, this speed is declared once for the row.",
         "c_{\\mathrm{eff}}",
         { x: 51, y: 8, width: 22, line: "above" }
       ),
@@ -514,7 +514,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "mechanical-side",
         "Mechanical side",
         "mechanicalMomentum",
-        "P_mech is the momentum carried by the visible moving pieces. In ordinary physics this is the part you would compute from masses and velocities. In AAA, it is only one row of the total momentum ledger.",
+        "Mechanical momentum is carried by the visible moving pieces. In ordinary physics this is the part you would compute from masses and velocities. In AAA, it is only one row of the total momentum ledger.",
         "\\mathbf P_{\\mathrm{mech}}",
         { x: 8, y: 68, width: 34, line: "below" }
       ),
@@ -522,7 +522,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "wake-side",
         "Wake side",
         "wakeMomentum",
-        "P_wake is the balance not carried by the visible pieces. Think field momentum or delayed-signal momentum. In AAA, the delayed causal wake carries that balance so total momentum can still close.",
+        "Wake momentum is the balance not carried by the visible pieces. Think field momentum or delayed-signal momentum. In AAA, the delayed causal wake carries that balance so total momentum can still close.",
         "\\mathbf P_{\\mathrm{wake}}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -555,7 +555,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "density-row",
         "Density row",
         "densityChange",
-        "This is the 'how much is here' term changing with time. In a continuity equation, density cannot simply vanish; changes must come from flow, sources, or a leftover error. In AAA, rho_NS is the Noether sea density.",
+        "ρₙₛ is the Noether sea density: how much sea is here. This term asks how that amount changes with time. The rest of the equation explains the change by flow, sources, and leftover.",
         "\\rho_{\\mathrm{NS}}(\\mathbf X,T)",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -563,7 +563,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "transport-row",
         "Transport row",
         "flowDivergence",
-        "This is the flow part: density being carried into or out of a region. The divergence operator measures net in-versus-out. In AAA, the flow is Noether sea transport in native coordinates.",
+        "This is density carried by sea flow. The divergence operator compares flow in versus flow out. In AAA, uₛₑₐ is the Noether sea flow in native coordinates.",
         "\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}}(\\mathbf X,T)",
         { x: 60, y: 22, width: 34, line: "above" }
       ),
@@ -571,7 +571,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "source-residual",
         "Source loading",
         "sourceTerm",
-        "S_rho is the known source term. It marks density being added or removed by declared events before we compare with the measured change. In AAA, these are the sources we count directly.",
+        "Sᵨ is the known source term. It marks declared events that add or remove Noether sea density. In AAA, these sources are counted directly before the leftover term is read.",
         "S_{\\rho}",
         { x: 7, y: 68, width: 36, line: "below" }
       ),
@@ -579,7 +579,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "density-residual",
         "Leftover term",
         "residual",
-        "r_rho is the leftover after density change, flow, and known sources are counted. If it is not zero, the continuity row still needs another carrier or response term. In AAA, the leftover is shown instead of hidden.",
+        "rᵨ is what remains after density change, flow, and known sources are counted. If it is not zero, AAA shows the missing carrier or response row instead of hiding it.",
         "r_{\\rho}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -632,7 +632,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "spatial-channel",
         "Spatial channel",
         "spatialCompliance",
-        "gamma_ij is the ruler part of the metric. It tells how spatial distances are measured in different directions. In AAA, this is the spatial-compliance row; a scalar delay-only story would miss it.",
+        "γᵢⱼ is the ruler part of the metric. It tells how spatial distances are measured in different directions. In AAA, this is the spatial-compliance row; a scalar delay-only story would miss it.",
         "\\gamma_{ij}^{\\mathrm{eff}}",
         { x: 34, y: 7, width: 30, line: "above" }
       ),
@@ -680,7 +680,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "potential-response",
         "Potential response",
         "potentialTerm",
-        "Phi_N over c0 squared is the weak-gravity term. Near a gravitational potential, clock rates shift. In AAA, that shift comes from the same response record that also controls acceleration and path bending.",
+        "Φₙ over c₀ squared is the weak-gravity term. Near a gravitational potential, clock rates shift. In AAA, that shift comes from the same response record that also controls acceleration and path bending.",
         "\\Phi_N/c_0^2",
         { x: 8, y: 68, width: 34, line: "below" }
       ),
@@ -688,7 +688,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "moving-clock",
         "Moving clock",
         "motionTerm",
-        "This is the speed correction: a moving clock runs slower. It is the low-speed version of the gamma effect. In AAA, it uses the same stored branch history as gamma and ruler contraction.",
+        "This is the speed correction: a moving clock runs slower. It is the low-speed version of the γ effect. In AAA, it uses the same stored branch history as γ and ruler contraction.",
         "\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/(2c_0^2)",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -728,7 +728,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "ppn-handoff",
         "Curvature factor",
         "ppn",
-        "gamma_PPN is the standard weak-gravity factor for how much spatial curvature contributes to light bending. In AAA, the same response record also explains Shapiro delay, acceleration, and redshift.",
+        "γₚₚₙ is the standard weak-gravity factor for how much spatial curvature contributes to light bending. In AAA, the same response record also explains Shapiro delay, acceleration, and redshift.",
         "\\gamma_{\\mathrm{PPN}}",
         { x: 58, y: 22, width: 34, line: "above" }
       ),
@@ -770,7 +770,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "factor-budget",
         "Frequency budget",
         "redshift",
-        "1+z_X is the redshift factor: received wavelength compared with emitted wavelength. If it is bigger than 1, the light arrives redder. In AAA, the full product must account for endpoint clocks, source behavior, motion, and path history.",
+        "1+zₓ is the redshift factor: received wavelength compared with emitted wavelength. If it is bigger than 1, the light arrives redder. In AAA, the full product must account for endpoint clocks, source behavior, motion, and path history.",
         "1+z_X",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -794,7 +794,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "source-motion",
         "Source and motion",
         "sourceDoppler",
-        "B_X is the source behavior factor, and D_v is the Doppler motion factor. They are familiar places where redshift can enter. In AAA, they are tied to endpoint cadence and path history, not fitted alone.",
+        "Bₓ is the source behavior factor, and Dᵥ is the Doppler motion factor. They are familiar places where redshift can enter. In AAA, they are tied to endpoint cadence and path history, not fitted alone.",
         "B_XD_v",
         { x: 58, y: 82, width: 34, line: "below" }
       ),

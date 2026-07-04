@@ -118,13 +118,45 @@ test("equation mapping can target an inner EQ-02 marker without splitting the fr
 
   assert.equal(
     driftSpeedPart.tex,
-    "\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}"
+    "\\frac{1}{\\rule{0pt}{1.06em}\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}"
   );
   assert.deepEqual(driftSpeedPart.sectionMarker, { left: 42, width: 24 });
   assert.equal(
     document.overlays.find((overlay) => overlay.id === "drift-through-sea").targetAnchorId,
     "driftSpeed"
   );
+});
+
+test("equation mapping callout prose uses the gamma symbol", () => {
+  createSeedEquationMapDocuments().forEach((document) => {
+    document.overlays.forEach((overlay) => {
+      overlay.content
+        .filter((block) => block.type === "text")
+        .forEach((block) => {
+          assert.equal(
+            block.text.toLowerCase().includes("gamma"),
+            false,
+            `${document.id} ${overlay.id} should use γ in rendered callout prose`
+          );
+        });
+    });
+  });
+});
+
+test("equation mapping callout prose avoids underscore notation", () => {
+  createSeedEquationMapDocuments().forEach((document) => {
+    document.overlays.forEach((overlay) => {
+      overlay.content
+        .filter((block) => block.type === "text")
+        .forEach((block) => {
+          assert.equal(
+            /_[A-Za-z0-9]/u.test(block.text),
+            false,
+            `${document.id} ${overlay.id} should use subscripted prose symbols`
+          );
+        });
+    });
+  });
 });
 
 test("equation mapping gives EQ-06 residual its own callout", () => {
@@ -255,8 +287,7 @@ test("equation mapping EQ-04 adds corrected motion relation and rest-mass solve 
       (part) =>
         part.id === "restMassSolve" &&
         part.anchorId === "" &&
-        part.tex ===
-          "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}"
+        part.tex === "M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}"
     ),
     true
   );
@@ -589,6 +620,78 @@ test("equation mapping home button targets the Applications scene without replac
   assert.equal(runtime.includes("createEquationMappingHomeHref(this.window)"), true);
 });
 
+test("equation mapping arrow keys navigate through the visible equation list", () => {
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      localStorage: {
+        getItem() {
+          return null;
+        },
+        setItem() {},
+      },
+    },
+  });
+  let renderCount = 0;
+  let preventDefaultCount = 0;
+  const arrowEvent = (key) => ({
+    key,
+    target: {
+      tagName: "DIV",
+      closest() {
+        return null;
+      },
+    },
+    preventDefault() {
+      preventDefaultCount += 1;
+    },
+  });
+  runtime.render = () => {
+    renderCount += 1;
+  };
+  runtime.activeDocumentId = "eq-04-energy-momentum-rest-energy";
+
+  assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowRight")), true);
+  assert.equal(runtime.activeDocumentId, "eq-07-effective-metric-adm-cartan");
+  assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowDown")), true);
+  assert.equal(runtime.activeDocumentId, "eq-08-weak-field-clock-redshift");
+  assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowLeft")), true);
+  assert.equal(runtime.activeDocumentId, "eq-07-effective-metric-adm-cartan");
+  assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowUp")), true);
+  assert.equal(runtime.activeDocumentId, "eq-04-energy-momentum-rest-energy");
+  assert.equal(renderCount, 4);
+  assert.equal(preventDefaultCount, 4);
+});
+
+test("equation mapping arrow keys ignore text-entry targets", () => {
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      localStorage: {
+        getItem() {
+          return null;
+        },
+        setItem() {},
+      },
+    },
+  });
+  runtime.render = () => {};
+  runtime.activeDocumentId = "eq-04-energy-momentum-rest-energy";
+  let prevented = false;
+
+  const didNavigate = runtime.handleDocumentKeyDown({
+    key: "ArrowRight",
+    target: { tagName: "INPUT" },
+    preventDefault() {
+      prevented = true;
+    },
+  });
+
+  assert.equal(didNavigate, false);
+  assert.equal(prevented, false);
+  assert.equal(runtime.activeDocumentId, "eq-04-energy-momentum-rest-energy");
+});
+
 test("equation mapping resets stale saved sizing into the new medium defaults", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
   assert.equal(runtime.includes('SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7"'), true);
@@ -692,16 +795,19 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(html, /\.equation-mapping-index-item span \{[\s\S]*?font-size: 21px;/u);
   assert.equal(html.includes(".equation-mapping-equation-title span"), false);
   assert.equal(html.includes(".equation-mapping-index-item small"), false);
-  assert.equal(html.includes(".equation-mapping-comment-header span"), false);
   assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?font-size: 21px;/u);
+  assert.match(
+    html,
+    /\.equation-mapping-comment-target \{[\s\S]*?margin-left: auto;[\s\S]*?text-align: right;/u
+  );
   assert.match(html, /\.equation-mapping-comment-body \{[\s\S]*?font-size: 21px;/u);
   assert.match(
     html,
-    /\.equation-mapping-shell\[data-comment-font-size="small"\] \.equation-mapping-comment-header strong,[\s\S]*?font-size: 18px;/u
+    /\.equation-mapping-shell\[data-comment-font-size="small"\] \.equation-mapping-comment-header strong,[\s\S]*?\.equation-mapping-comment-target,[\s\S]*?font-size: 18px;/u
   );
   assert.match(
     html,
-    /\.equation-mapping-shell\[data-comment-font-size="large"\] \.equation-mapping-comment-header strong,[\s\S]*?font-size: 24px;/u
+    /\.equation-mapping-shell\[data-comment-font-size="large"\] \.equation-mapping-comment-header strong,[\s\S]*?\.equation-mapping-comment-target,[\s\S]*?font-size: 24px;/u
   );
 });
 

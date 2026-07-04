@@ -77,6 +77,17 @@ function getRectCenter(rect) {
   };
 }
 
+function isTextEntryTarget(target) {
+  const tagName = String(target?.tagName ?? "").toLowerCase();
+  return (
+    tagName === "input" ||
+    tagName === "textarea" ||
+    tagName === "select" ||
+    Boolean(target?.isContentEditable) ||
+    Boolean(target?.closest?.("[contenteditable='true'], [contenteditable='plaintext-only']"))
+  );
+}
+
 function getLocalRect(rect, stageRect) {
   return {
     left: rect.left - stageRect.left,
@@ -572,6 +583,7 @@ export class EquationMappingRuntime {
     this.equationShellElement = null;
     this.equationElement = null;
     this.equationTitleElement = null;
+    this.handleKeyDown = null;
   }
 
   get activeDocument() {
@@ -594,13 +606,16 @@ export class EquationMappingRuntime {
       throw new Error("Missing #equation-mapping-app");
     }
     this.handleResize = () => this.scheduleEquationLayout();
+    this.handleKeyDown = (event) => this.handleDocumentKeyDown(event);
     this.window?.addEventListener?.("resize", this.handleResize);
+    this.window?.addEventListener?.("keydown", this.handleKeyDown);
     this.render();
     return this;
   }
 
   destroy() {
     this.window?.removeEventListener?.("resize", this.handleResize);
+    this.window?.removeEventListener?.("keydown", this.handleKeyDown);
   }
 
   persistSettings() {
@@ -664,6 +679,51 @@ export class EquationMappingRuntime {
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
     this.persistSettings();
     this.render();
+  }
+
+  getVisibleDocumentList() {
+    return groupEquationMapDocumentsBySubject(this.documents).flatMap(([, entries]) => entries);
+  }
+
+  navigateActiveDocumentByOffset(offset) {
+    const list = this.getVisibleDocumentList();
+    const currentIndex = list.findIndex((document) => document.id === this.activeDocument.id);
+    if (currentIndex < 0) {
+      return false;
+    }
+    const nextIndex = currentIndex + offset;
+    if (nextIndex < 0 || nextIndex >= list.length) {
+      return false;
+    }
+    this.setActiveDocument(list[nextIndex].id);
+    return true;
+  }
+
+  handleDocumentKeyDown(event) {
+    if (
+      event?.defaultPrevented ||
+      event?.altKey ||
+      event?.ctrlKey ||
+      event?.metaKey ||
+      isTextEntryTarget(event?.target)
+    ) {
+      return false;
+    }
+    const offsetByKey = {
+      ArrowRight: 1,
+      ArrowDown: 1,
+      ArrowLeft: -1,
+      ArrowUp: -1,
+    };
+    const offset = offsetByKey[event?.key];
+    if (!offset) {
+      return false;
+    }
+    const didNavigate = this.navigateActiveDocumentByOffset(offset);
+    if (didNavigate) {
+      event.preventDefault?.();
+    }
+    return didNavigate;
   }
 
   setActiveOverlay(overlayId) {
@@ -1145,12 +1205,14 @@ export class EquationMappingRuntime {
       const header = createElement(this.document, "header", "equation-mapping-comment-header");
       header.append(createElement(this.document, "strong", "", overlay.title));
       const body = createElement(this.document, "div", "equation-mapping-comment-body");
+      const mathBlocks = overlay.content.filter((block) => block.type === "math");
+      mathBlocks.forEach((block) => {
+        const mathElement = createElement(this.document, "span", "equation-mapping-comment-math equation-mapping-comment-target");
+        renderMath(this.window, mathElement, block.tex, { displayMode: false });
+        header.append(mathElement);
+      });
       overlay.content.forEach((block) => {
-        if (block.type === "math") {
-          const mathElement = createElement(this.document, block.displayMode ? "div" : "span", "equation-mapping-comment-math");
-          renderMath(this.window, mathElement, block.tex, { displayMode: block.displayMode });
-          body.append(mathElement);
-        } else {
+        if (block.type === "text") {
           body.append(createElement(this.document, "p", "", block.text));
         }
       });

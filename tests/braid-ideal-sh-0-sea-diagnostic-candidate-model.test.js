@@ -89,3 +89,54 @@ test("SH-0-sea diagnostic candidate model CLI emits JSON", () => {
   assert.equal(model.accepted_evidence_blocker.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
   assert.equal(model.accepted_evidence_blocker.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
 });
+
+test("SH-0-sea diagnostic candidate model CLI emits embedded run-matrix metadata", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      "--run-handle=sh0sea-g0-vt080-moving-prehistory",
+      "--embedded-central-run-handle=sh0-g0-vt080-moving-prehistory",
+      "--source-row-id=diagnostic-source-row:sh0-g0-vt080-moving-prehistory",
+      "--target-center-group-velocity=0,0,0",
+      "--surface-speed-fraction=0.8",
+      "--prehistory-mode=moving-prehistory",
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const model = JSON.parse(output);
+  const targetRow = rowById(model, "target_source_row");
+
+  assert.equal(model.schema, SCHEMA);
+  assert.equal(model.run_matrix_metadata.proof_id, "SH-0-sea");
+  assert.equal(model.run_matrix_metadata.run_handle, "sh0sea-g0-vt080-moving-prehistory");
+  assert.equal(model.run_matrix_metadata.embedded_central_run_handle, "sh0-g0-vt080-moving-prehistory");
+  assert.equal(model.run_matrix_metadata.source_artifact_id, model.target_artifact_id);
+  assert.equal(model.run_matrix_metadata.source_artifact_hash, model.target_artifact_hash);
+  assert.equal(
+    model.run_matrix_metadata.source_row_id,
+    "diagnostic-source-row:sh0-g0-vt080-moving-prehistory"
+  );
+  assert.deepEqual(model.run_matrix_metadata.target_center_group_velocity, [0, 0, 0]);
+  assert.equal(model.run_matrix_metadata.surface_speed_fraction, 0.8);
+  assert.equal(model.run_matrix_metadata.prehistory_mode, "moving-prehistory");
+  assert.equal(
+    model.run_matrix_metadata.evidence_status,
+    "candidate_provider_backed_source_unaccepted"
+  );
+  assert.equal(targetRow.run_matrix_metadata.run_handle, "sh0-g0-vt080-moving-prehistory");
+  assert.equal(targetRow.candidate_artifact_id, model.target_artifact_id);
+  assert.equal(
+    targetRow.source_row_id,
+    "diagnostic-source-row:sh0-g0-vt080-moving-prehistory"
+  );
+  assert.equal(targetRow.evidence_status.accepted, false);
+  assert.equal(model.evidence_status.accepted, false);
+  assert.equal(model.authorization.accepted_retained_evidence, false);
+  assert.equal(model.authorization.scoreMovement, "no_score_increase");
+  assert.equal(
+    model.accepted_evidence_blocker.required_certificate_ref_prefix,
+    "accepted:held-release-seed-path-rows:retained-record:held-release-six-point:adapter-acceptance-certificate:diagnostic-source-row:sh0-g0-vt080-moving-prehistory:"
+  );
+});

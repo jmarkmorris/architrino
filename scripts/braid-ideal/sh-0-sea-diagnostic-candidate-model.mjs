@@ -40,6 +40,26 @@ function stableHash(value) {
   return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
 }
 
+function normalizeStringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function normalizeNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+function normalizeVector(value, fallback = null) {
+  if (!Array.isArray(value) || value.length !== 3) {
+    return fallback == null ? undefined : [...fallback];
+  }
+  const vector = value.map((entry) => Number(entry));
+  if (vector.some((entry) => !Number.isFinite(entry))) {
+    return fallback == null ? undefined : [...fallback];
+  }
+  return vector;
+}
+
 function makeAuthorization() {
   return Object.fromEntries([
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
@@ -51,8 +71,24 @@ function readNoetherSeaProvider() {
   return JSON.parse(fs.readFileSync(PROVIDER_PATH, "utf8"));
 }
 
-function buildTargetSourceArtifact() {
+function buildTargetSourceArtifact(options = {}) {
+  const targetRunOptionsActive =
+    normalizeStringRef(options.embeddedCentralRunHandle) != null ||
+    normalizeStringRef(options.proofId) != null ||
+    normalizeVector(options.targetCenterGroupVelocity) != null ||
+    options.surfaceSpeedFraction != null ||
+    normalizeStringRef(options.prehistoryMode) != null;
   return buildHeldReleaseSeedPathRows({
+    ...(targetRunOptionsActive
+      ? {
+          proofId: "SH-0",
+          runHandle: normalizeStringRef(options.embeddedCentralRunHandle),
+          sourceRowId: normalizeStringRef(options.targetSourceRowId) ?? TARGET_SOURCE_ROW_ID,
+          groupVelocity: normalizeVector(options.targetCenterGroupVelocity),
+          surfaceSpeedFraction: normalizeNumber(options.surfaceSpeedFraction, 0),
+          prehistoryMode: normalizeStringRef(options.prehistoryMode),
+        }
+      : {}),
     retainedRecordId: TARGET_RETAINED_RECORD_ID,
     providerObjectRef: TARGET_PROVIDER_OBJECT_REF,
     providerArtifactHash: TARGET_PROVIDER_ARTIFACT_HASH,
@@ -85,14 +121,16 @@ function buildTargetSourceRow(artifact) {
     target_role: "central candidate target identity",
     candidate_artifact_id: artifact.artifact_id,
     candidate_artifact_hash: artifact.artifact_hash,
+    run_matrix_metadata: artifact.run_matrix_metadata ?? null,
     seed_id: artifact.seed_id,
     route_id: artifact.route_id,
     retained_record_id: TARGET_RETAINED_RECORD_ID,
-    source_row_id: TARGET_SOURCE_ROW_ID,
+    source_row_id: artifact.source_row_id ?? TARGET_SOURCE_ROW_ID,
     provider_object_ref: TARGET_PROVIDER_OBJECT_REF,
     provider_artifact_hash: TARGET_PROVIDER_ARTIFACT_HASH,
     source_run_identity: artifact.source_run_identity,
     dynamic_replay_requirements: artifact.dynamic_replay_requirements,
+    evidence_status: artifact.evidence_status,
     path_rows: summarizeTargetRows(artifact),
     accepted: false,
     first_missing_object: "held_release_seed_path_rows_acceptance_certificate",
@@ -276,13 +314,15 @@ function buildReceiverNormalRequirementRow() {
   };
 }
 
-function buildAcceptedEvidenceBlocker() {
+function buildAcceptedEvidenceBlocker(targetArtifact) {
+  const sourceRowId = targetArtifact?.source_row_id ?? TARGET_SOURCE_ROW_ID;
   return {
     first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
     first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
-    candidate_artifact_id: TARGET_ARTIFACT_ID,
+    candidate_artifact_id: targetArtifact?.artifact_id ?? TARGET_ARTIFACT_ID,
+    candidate_artifact_hash: targetArtifact?.artifact_hash ?? TARGET_ARTIFACT_HASH,
     required_certificate_ref_prefix:
-      "accepted:held-release-seed-path-rows:retained-record:held-release-six-point:adapter-acceptance-certificate:two-speed-preferred-row:u0.8:v0.2:",
+      `accepted:held-release-seed-path-rows:${TARGET_RETAINED_RECORD_ID}:${sourceRowId}:`,
     next_external_authority_package:
       "held_release_seed_path_rows_external_accepted_authority_package.v0",
     later_requirements: [
@@ -298,8 +338,32 @@ function buildAcceptedEvidenceBlocker() {
   };
 }
 
-export function buildSh0SeaDiagnosticCandidateModel() {
-  const targetArtifact = buildTargetSourceArtifact();
+function buildRunMatrixMetadata({ options, targetArtifact }) {
+  const runHandle = normalizeStringRef(options.runHandle);
+  if (runHandle == null && targetArtifact?.run_matrix_metadata == null) {
+    return null;
+  }
+  return {
+    schema: "sh_0_sea_run_matrix_metadata.v0",
+    proof_id: "SH-0-sea",
+    run_handle: runHandle,
+    embedded_central_run_handle: targetArtifact?.run_matrix_metadata?.run_handle ?? null,
+    embedded_central_proof_id: "SH-0",
+    source_artifact_id: targetArtifact?.artifact_id ?? null,
+    source_artifact_hash: targetArtifact?.artifact_hash ?? null,
+    source_row_id: targetArtifact?.source_row_id ?? TARGET_SOURCE_ROW_ID,
+    target_center_group_velocity:
+      targetArtifact?.run_matrix_metadata?.target_center_group_velocity ??
+      targetArtifact?.dynamic_replay_requirements?.group_velocity ??
+      null,
+    surface_speed_fraction: targetArtifact?.run_matrix_metadata?.surface_speed_fraction ?? 0,
+    prehistory_mode: targetArtifact?.run_matrix_metadata?.prehistory_mode ?? "stationary-held-release",
+    evidence_status: targetArtifact?.evidence_status?.accepted_evidence_status ?? null,
+  };
+}
+
+export function buildSh0SeaDiagnosticCandidateModel(options = {}) {
+  const targetArtifact = buildTargetSourceArtifact(options);
   const provider = readNoetherSeaProvider();
   const rows = [
     buildTargetSourceRow(targetArtifact),
@@ -315,13 +379,26 @@ export function buildSh0SeaDiagnosticCandidateModel() {
   const core = {
     schema: SCHEMA,
     proof_id: "SH-0-sea",
+    ...(buildRunMatrixMetadata({ options, targetArtifact }) == null
+      ? {}
+      : { run_matrix_metadata: buildRunMatrixMetadata({ options, targetArtifact }) }),
     authority_class: AUTHORITY_CLASS,
     claim_level: "diagnostic/candidate model construction only",
     target_artifact_id: targetArtifact.artifact_id,
     target_artifact_hash: targetArtifact.artifact_hash,
+    target_source_row_id: targetArtifact.source_row_id ?? TARGET_SOURCE_ROW_ID,
     row_count: rows.length,
     rows,
-    accepted_evidence_blocker: buildAcceptedEvidenceBlocker(),
+    evidence_status: {
+      accepted: false,
+      accepted_evidence_status: "diagnostic_candidate_model_not_accepted_evidence",
+      source_artifact_id: targetArtifact.artifact_id,
+      source_artifact_hash: targetArtifact.artifact_hash,
+      source_row_id: targetArtifact.source_row_id ?? TARGET_SOURCE_ROW_ID,
+      first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+      first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+    },
+    accepted_evidence_blocker: buildAcceptedEvidenceBlocker(targetArtifact),
     authorization: makeAuthorization(),
   };
   return {
@@ -347,13 +424,37 @@ export function evaluateSh0SeaDiagnosticCandidateModelEvidence(candidate) {
 }
 
 function parseArgs(args) {
+  const stringOption = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? null;
+  const numberOption = (name) => {
+    const value = stringOption(name);
+    return value == null ? undefined : Number(value);
+  };
+  const vectorOption = (name) => {
+    const value = stringOption(name);
+    if (value == null) {
+      return undefined;
+    }
+    const vector = value.split(",").map((entry) => Number(entry.trim()));
+    if (vector.length !== 3 || vector.some((entry) => !Number.isFinite(entry))) {
+      throw new TypeError(`--${name} must be a comma-separated vector with three finite numbers`);
+    }
+    return vector;
+  };
   return {
     pretty: args.includes("--pretty"),
+    runHandle: stringOption("run-handle"),
+    embeddedCentralRunHandle: stringOption("embedded-central-run-handle"),
+    targetSourceRowId: stringOption("source-row-id"),
+    targetCenterGroupVelocity: vectorOption("target-center-group-velocity") ?? vectorOption("group-velocity"),
+    surfaceSpeedFraction: numberOption("surface-speed-fraction") ?? numberOption("surface-speed"),
+    prehistoryMode: stringOption("prehistory-mode"),
   };
 }
 
 function printUsage() {
-  console.log(`Usage: node ${fileURLToPath(import.meta.url)} [--pretty]`);
+  console.log(
+    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory]`
+  );
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
@@ -362,6 +463,6 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     process.exit(0);
   }
   const options = parseArgs(process.argv.slice(2));
-  const model = buildSh0SeaDiagnosticCandidateModel();
+  const model = buildSh0SeaDiagnosticCandidateModel(options);
   console.log(JSON.stringify(model, null, options.pretty ? 2 : 0));
 }
