@@ -367,7 +367,7 @@ At nuclear scales, the nucleon is seen as one composite hadronic assembly with:
 
 ## Spin and Magnetic-Moment Expectations
 
-The nucleon chapter does not yet contain a full proton spin decomposition, but it can still state the minimal closure picture. This section is downstream of the core ledger in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
+The nucleon chapter does not yet contain a full proton spin decomposition, but it can still state the minimal closure picture. This section is downstream of the braid ledger in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
 
 ### Spin
 

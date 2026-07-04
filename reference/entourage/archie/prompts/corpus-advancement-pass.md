@@ -188,7 +188,7 @@ Standing advancement programs to watch for when relevant:
 - Photon ontology: use the canonical description `coaxial contra-rotating pro/anti planar pair`; avoid weaker variants such as `photon planar-pair`, `photon planar pair`, or `photon-like planar pair` unless quoted as a stale phrase to fix.
 - Mass and inertia: mass is the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling. Ordinary dissipative drag is a failure channel or transport effect, not the mass mechanism.
 - Lorentz behavior: Lorentz symmetry, time dilation, length contraction, and invariant signal speed are theorem/closure targets. The closure ladder should name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded preferred-frame leakage.
-- Tri-binary minimality: treat as a theorem target unless a local derivation is present.
+- Nested shell braid minimality: treat as a theorem target unless a local derivation is present.
 - Reaction provenance: weak reactions, pair production, bremsstrahlung, synchrotron, and CKM mappings should expose where participating architrinos, Noether braids, energy, charge, and polarity enter and exit.
 - Cosmology ontology: the Euclidean void does not expand. `a(t)`, `H(t)`, redshift, temperature, and CMB summaries are effective observer variables for Noether sea evolution, transport, and clock-rate comparison.
 
@@ -434,12 +434,12 @@ Lane C: Missing-material and stub scan
 
 Lane D: Drift and canonicalization scan
 - Secondary hygiene lane. Search for recurring stale phrases and notation drift when those issues obstruct theory clarity or the randomized pass selects this lane.
-- Start with known drift classes: Noether sea usage, density/delay notation, photon ontology, mass/inertia language, Lorentz closure language, tri-binary minimality, reaction provenance, and cosmology ontology.
+- Start with known drift classes: Noether sea usage, density/delay notation, photon ontology, mass/inertia language, Lorentz closure language, nested shell braid minimality, reaction provenance, and cosmology ontology.
 - Propose new automated audit patterns when a drift class appears in multiple files.
 
 Lane E: Closure-target ledger scan
 - Search for repeated claims that need to be converted into theorem targets or proof paths.
-- Prioritize Lorentz closure, mass/inertia closure, tri-binary minimality, photon stability, reaction provenance, emergent metric closure, and cosmology observer-variable closure.
+- Prioritize Lorentz closure, mass/inertia closure, nested shell braid minimality, photon stability, reaction provenance, emergent metric closure, and cosmology observer-variable closure.
 - For each target, identify:
   - claim statement,
   - mathematical objects and variables that must be defined,
@@ -620,7 +620,7 @@ Important constraints:
 - Distinguish ontological claims, dynamical or symmetry-based derivations, effective summaries, and speculative extensions.
 - Keep foundational insights strong, but name their scope and what still requires separate argument.
 - Surface leaps of intuition as discussion items for Op before canonizing them or asking shard agents to treat them as established.
-- Treat Lorentz behavior, tri-binary minimality, and similar closure claims as theorem targets unless the local derivation is present.
+- Treat Lorentz behavior, nested shell braid minimality, and similar closure claims as theorem targets unless the local derivation is present.
 - Treat mass/inertia as externally exposed response of trapped internal causal history, shielding, and Noether sea coupling; do not recast it as ordinary dissipative drag.
 - Keep Noether sea as the ontology term and spacetime medium as a bridge term.
 - Shard agents must not edit files. The coordinator may edit only when Op explicitly grants team-agent edit authority or selects a follow-up edit-batch prompt.
