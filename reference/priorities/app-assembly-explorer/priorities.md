@@ -77,7 +77,7 @@ The explorer should consume solver and script outputs before it requests live ru
 ## Next Work
 
 1. Add import support for packet JSON files and local run manifests.
-2. Add a solver-output adapter for `tri-binary-offset-family-runner.mjs` and equal-frequency candidate outputs.
+2. Add a solver-output adapter for `tri-binary-offset-family-runner.mjs` and iso-frequency candidate outputs.
 3. Add a stable-sector atlas view that plots rows by energy differential, speed regime, $D_{\mathrm{plane}}$, and assembly topological charge.
 4. Add accessory-architrino capture packet rendering after the capture scanner emits retained rows.
 5. Add an optional quotient-sector view that groups by permutation-canonical key while preserving repeated raw rows.

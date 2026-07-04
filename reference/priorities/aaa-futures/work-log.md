@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-03 - Research-revolution transition-language triage
+
+- Operator supplied compact transition language about rebuilding particle physics and cosmology, simulation-heavy resource allocation, facility reassessment, and technology-investor demand for early expertise.
+- Integrated the non-duplicative insight into [research-revolution.md](research-revolution.md): the productive upside is a simulation-backed rebuild labor market, existing facilities should be compared against cheaper valid benchmark routes, and corporate pull should include $\mathbb{A}\mathbb{A}\mathbb{A}$-enabled technology formation, product development, service development, and many niche simulators at the interface of existing technologies without capturing validation authority.
+- Claim level unchanged: priority-only planning material, not a public announcement or corpus promotion.
+
 ### 2026-07-02 - Research-revolution outreach send record synced
 
 - Operator reported that the three black-hole/cosmology outreach letters were sent on 2026-07-01.

@@ -34,7 +34,7 @@ Moved the first Noether-braid-specific source batch:
 | Previous path | Target path | Target title |
 | --- | --- | --- |
 | `content/markdown/aaa/dynamics/tri-binary-configuration-space.md` | `content/markdown/aaa/noether-braid/noether-braid-configuration-space.md` | Noether Braid Configuration Space |
-| `content/markdown/aaa/dynamics/dyadic-resonance-lock.md` | `content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md` | Noether Braid Dyadic Resonance Lock |
+| `content/markdown/aaa/dynamics/doubling-frequency-resonance-lock.md` | `content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md` | Noether Braid Doubling-Frequency Resonance Lock |
 | `content/markdown/aaa/dynamics/assembly-topological-charge.md` | `content/markdown/aaa/noether-braid/noether-braid-topological-charge.md` | Noether Braid Topological Charge |
 
 After each move, update all authored relative links that point to the moved path. Preserve anchors where the moved document keeps the same section title. If a section title is renamed, update incoming anchor links in the same batch.
@@ -48,7 +48,7 @@ Moved the matching scene markdown views into `content/scenes/noether-braid/`:
 | Current scene | Target scene | Target scene id |
 | --- | --- | --- |
 | `content/scenes/dynamics/tri_binary_configuration_space.json` | `content/scenes/noether-braid/noether_braid_configuration_space.json` | `noether_braid__configuration_space` |
-| `content/scenes/dynamics/dyadic_resonance_lock.json` | `content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json` | `noether_braid__dyadic_resonance_lock` |
+| former dynamics resonance-lock scene view | `content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json` | `noether_braid__doubling_frequency_resonance_lock` |
 | `content/scenes/dynamics/assembly_topological_charge.json` | `content/scenes/noether-braid/noether_braid_topological_charge.json` | `noether_braid__topological_charge` |
 
 When Phase 4 creates the taxonomy scene, update `content/scenes/noether-braid/noether_braid.json` so the Noether braid scene order becomes:
@@ -56,7 +56,7 @@ When Phase 4 creates the taxonomy scene, update `content/scenes/noether-braid/no
 1. Noether Braid
 2. Noether Braid Taxonomy
 3. Noether Braid Configuration Space
-4. Noether Braid Dyadic Resonance Lock
+4. Noether Braid Doubling-Frequency Resonance Lock
 5. Noether Braid Topological Charge
 6. Nested Shell Braid Dynamics
 7. Nested Shell Braid Geometry
@@ -79,12 +79,13 @@ The taxonomy chapter should define the Noether braid architecture by independent
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
+| Rank-three branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
 | Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
-| Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
-| Speed hierarchy | Relation of layer speeds to $c_f$ | sub-field, hinge, self-hit, nested `I:M:O` |
-| Frequency family | Return or winding-frequency relation | dyadic `4:2:1`, equal-frequency, offset-hinge |
-| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate, retained branch, eigen-braid candidate |
+| Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
+| Speed regime | Relation of layer speed rows to $c_f$ | sub-field, field-speed, super-field, mixed |
+| Field-speed hinge occupancy | Which rows operate within a declared $c_f$ tolerance and how that affects root access | no hinge row, single-hinge, multi-hinge, terminal hinge |
+| Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
+| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate braid, retained branch, certified braid |
 
 The taxonomy chapter must not claim that all listed configurations are retained branches. It should separate explored support classes, candidate branch families, and accepted certificate statuses.
 
@@ -134,7 +135,7 @@ node scripts/build-textbook-md-pdf.mjs --check
 Then audit remaining references:
 
 ```bash
-rg -n "tri-binary|Tri-Binary|tri_binary|dyadic-resonance-lock|assembly-topological-charge" content/markdown/aaa content/scenes reference/priorities
+rg -n "tri-binary|Tri-Binary|tri_binary|doubling-frequency-resonance-lock|assembly-topological-charge" content/markdown/aaa content/scenes reference/priorities
 ```
 
 Each remaining hit should be classified as:
@@ -144,6 +145,6 @@ Each remaining hit should be classified as:
 - source/script identifier outside the current rename scope,
 - or a stale reader-facing reference to fix.
 
-## Open Refinement Questions
+## Refinement Decisions
 
-1. Whether `Noether Braid Topological Charge` should remain the title of the moved assembly-topological-charge chapter or whether the title should stay `Assembly Topological Charge` while only the path and scene move.
+1. `Noether Braid Topological Charge` remains the title of the moved assembly-topological-charge chapter. The path and scene stay in the Noether braid area, and active priority/control prose should use the visible chapter title when linking to that chapter. The mathematical classifier may still be described locally as the assembly topological charge when the prose is naming $[\mathfrak B]_{\mathrm{top}}$ itself.

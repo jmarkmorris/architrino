@@ -1,13 +1,13 @@
 # Noether Braid Scaling and Packing Scaffold
 
-This priority packet captures the 2026-05-17 operator discussion on ideal Noether braid scaling, outer-binary radius/speed equations, and same-level pool packing. It is priority material, not reader-facing canon. Its purpose is to preserve the concrete equations and proof burdens until the branch constants can be extracted from the Master Equation, dyadic-lock reduction, or a finite-$\eta$ simulation.
+This priority packet captures the 2026-05-17 operator discussion on ideal Noether braid scaling, outer-binary radius/speed equations, and same-level pool packing. It is priority material, not reader-facing canon. Its purpose is to preserve the concrete equations and proof burdens until the branch constants can be extracted from the Master Equation, doubling-frequency-lock reduction, or a finite-$\eta$ simulation.
 
 ## Claim Level
 
 - **Status:** derivation scaffold.
 - **Main claim:** for a group-velocity-zero Noether braid at integer rest level $N$, the fixed $Nh$ action ledger determines the outer product $r_O v_O\propto Nh$. It does not by itself determine separate functions $r_O(N)$ and $v_O(N)$.
 - **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed closure, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart. The former $r_O\propto Nh$ law is only the fixed-speed branch subcase.
-- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
+- **Promotion targets:** [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
 
 ## Notation Discipline
 
@@ -418,9 +418,9 @@ $$
 
 This $r_O\propto (Nh)^2$ result is not the same as the fixed-speed rest-level subcase. It is the leading bare radial-balance result when the only speed-determining term is the partner-root inverse-square channel. The tension is useful: it says the observed scaling exponent depends on whether $\beta_O$ is branch-fixed, energy-projected, or solved from the bare radial force law.
 
-## Relation to Dyadic Layer Ratios
+## Relation to Doubling-frequency Layer Ratios
 
-The live dyadic-lock note supplies the exact kinematic layer identities under a middle-pinned integer lock:
+The live doubling-frequency-lock note supplies the exact kinematic layer identities under a middle-pinned integer lock:
 
 $$
 f_O:f_M:f_I=1:m:n,
@@ -436,7 +436,7 @@ r_M=\frac{r_O}{m\beta_O},
 r_I=\frac{\beta_I}{n\beta_O}r_O.
 $$
 
-For the dyadic candidate $m=2$, $n=4$,
+For the doubling-frequency candidate $m=2$, $n=4$,
 
 $$
 r_O:r_M:r_I
@@ -1101,5 +1101,5 @@ For a branch-chart calculation:
 2. Decide whether the rest-level closure should use the core-cadence energy $E_N$, the outer-channel energy $E_O$, or a declared projection $E_O=\chi_O^{(q)}E_N$.
 3. Compute the first toy curves for $r_O(N)$, $v_O(N)$, and $n_{\max}(N)$ under three branch choices:
    - fixed $\beta_O$,
-   - middle-pinned dyadic branch with $\beta_O\to1$,
+   - middle-pinned doubling-frequency branch with $\beta_O\to1$,
    - root-ledger implicit branch with $\mathcal{B}_O(\beta)/\beta$.

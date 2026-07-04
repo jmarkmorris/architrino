@@ -269,7 +269,7 @@ This vector is a solver-routing object, not a new score gate. Its job is to prev
 
 - `EQ-01` and `EQ-05`: same-root identity, active-root coverage, Jacobian floors, finite-window conservation, and event-ledger checks.
 - `EQ-02` through `EQ-04`: clock period, oblate geometry, two-way leakage, exposed mass, energy/radius, mass-shell, and retune rows.
-- `EQ-16A`: common clock plus residual phase-operator checks for the equal-frequency candidate.
+- `EQ-16A`: common clock plus residual phase-operator checks for the iso-frequency candidate.
 - `EQ-12`, `EQ-28`, and `EQ-29`: photon, recoil, radiation, wake, and same-event energy-routing rows.
 - `EQ-15`, `EQ-27`, `EQ-30`, and `EQ-31`: later spinor, magnetic, scattering, and branch-stability discriminators once the root and event rows survive.
 
@@ -617,18 +617,18 @@ while still rejecting the all-zero residual case $\bar H_X=0$ when measured beat
 
 ### Equations It Connects
 
-- `EQ-16A`: equal-frequency Noether braid candidate, neutrino oscillation phase gaps, and PMNS readout.
+- `EQ-16A`: iso-frequency Noether braid candidate, neutrino oscillation phase gaps, and PMNS readout.
 - `EQ-08` and `EQ-17`: clock/cadence extraction and endpoint redshift.
 - `EQ-12` and `EQ-26`: photon frequency, atomic transition rates, and local clock/rate conversion.
 - `EQ-14` and `EQ-15`: record-facing phase evolution and spinor/ordered-frame rows when observer wave equations are used as downstream charts.
 
 ### AAA Carrier Variables
 
-The carriers are retained equal-frequency row set $S_{\mathrm{eq}}$, common frequency $\omega_f$, phase offsets $\phi_a$, effective lever arms $\rho_a$, retained weights $W_a$, wake/coupling angular-momentum transfer, causal-root ledger, $\Gamma_N$, $f_N$, $\chi_{\text{sea}}$, weak-coupling exposure, PMNS readout, and local Noether sea matter response $V_{\mathrm{sea}}(n(\mathbf x,t))$.
+The carriers are retained iso-frequency row set $S_{\mathrm{eq}}$, common frequency $\omega_f$, phase offsets $\phi_a$, effective lever arms $\rho_a$, retained weights $W_a$, wake/coupling angular-momentum transfer, causal-root ledger, $\Gamma_N$, $f_N$, $\chi_{\text{sea}}$, weak-coupling exposure, PMNS readout, and local Noether sea matter response $V_{\mathrm{sea}}(n(\mathbf x,t))$.
 
 ### Architectural Clarification
 
-This component distinguishes common phase or clock rows from observable beat rows. It protects the equal-frequency idea from three errors: treating three absolute clocks as observables, allowing exact cancellation to erase the residual phase operator needed for measured gaps, or confusing static phase offsets with phase-rate gaps.
+This component distinguishes common phase or clock rows from observable beat rows. It protects the iso-frequency idea from three errors: treating three absolute clocks as observables, allowing exact cancellation to erase the residual phase operator needed for measured gaps, or confusing static phase offsets with phase-rate gaps.
 
 ### Proof Or Simulation Burden
 

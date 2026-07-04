@@ -153,7 +153,7 @@ For future direct editing, the canvas may show a lightweight preview path so the
 
 Contact sheet proofs may use representative mock solver-replay paths before the app has real solver integration. The proof goal is visual readability, not numerical correctness.
 
-[NPQG Fundamentals - Paths.pptx](../../archie/presentations/NPQG Fundamentals - Paths.pptx) is a conceptual and geometry reference for path-history, expanding emissions, circular wake intersections, and action-at-intersection scenes. It is not the art-direction target. The contact sheet proofs should improve on the old slide aesthetic while preserving the useful causal-delay ideas.
+[Fundamentals - Paths.pptx](../../archie/presentations/Fundamentals - Paths.pptx) is a conceptual and geometry reference for path-history, expanding emissions, circular wake intersections, and action-at-intersection scenes. It is not the art-direction target. The contact sheet proofs should improve on the old slide aesthetic while preserving the useful causal-delay ideas.
 
 The legacy WordPress post [Determinism](https://architrino.wordpress.com/2022/08/21/determinism/) is a priority-only source lead for the simplest two-stage feedback explanation: one architrino's emitted causal wake reaches a later point on the partner path, changes that partner's later response, and the partner's later emitted wake reaches a later point on the first path. Use it only for replay or preset framing; do not import its NPQG free-will framing, Dirac-sphere terminology, point-charge ontology, or global indeterminism claim.
 

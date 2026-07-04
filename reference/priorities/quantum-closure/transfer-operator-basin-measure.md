@@ -1,6 +1,6 @@
 # Transfer-Operator and Basin-Measure Theorem Packet
 
-This packet defines the shared measure-theoretic grammar consumed by [Quantum Closure](priorities.md), [Agency, Decision, and Decider Closure](agency-decision-and-decider.md), [Algorithmic Resonance and Pilot-Wave Closure](algorithmic-resonance-and-pilot-wave.md), [dyadic-lock](../braid-dyadic-lock/priorities.md), and [Photon, Measurement, and Bell Gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md).
+This packet defines the shared measure-theoretic grammar consumed by [Quantum Closure](priorities.md), [Agency, Decision, and Decider Closure](agency-decision-and-decider.md), [Algorithmic Resonance and Pilot-Wave Closure](algorithmic-resonance-and-pilot-wave.md), [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md), and [Photon, Measurement, and Bell Gates](../braid-angular-momentum-spin/photon-measurement-bell-gates.md).
 
 ## State Space And Coarse-Graining
 
@@ -35,7 +35,7 @@ U,
 \gamma=(x,\ell,w,z,u)\in\Gamma.
 $$
 
-The factor $\Gamma_{\mathrm{asm}}$ retains assembly variables such as reduced positions, velocities, phase coordinates, resonance-band labels, and action or angular-momentum ledger coordinates. The factor $\Gamma_{\mathrm{wake}}$ retains causal-wake history through active root branches, self-hit status, Jacobian floors, and path-history summaries. The factor $\Gamma_{\mathrm{sea}}$ retains Noether sea context, including $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, local stress or compliance summaries, and unresolved causal-wake background variables. The factor $\Gamma_{\mathrm{reg}}$ retains apparatus, detector, register, pointer, record-window, and readout variables. The factor $U$ retains controlled bias variables such as Decider settings, analyzer settings, gate-control settings, or dyadic tuning parameters.
+The factor $\Gamma_{\mathrm{asm}}$ retains assembly variables such as reduced positions, velocities, phase coordinates, resonance-band labels, and action or angular-momentum ledger coordinates. The factor $\Gamma_{\mathrm{wake}}$ retains causal-wake history through active root branches, self-hit status, Jacobian floors, and path-history summaries. The factor $\Gamma_{\mathrm{sea}}$ retains Noether sea context, including $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, local stress or compliance summaries, and unresolved causal-wake background variables. The factor $\Gamma_{\mathrm{reg}}$ retains apparatus, detector, register, pointer, record-window, and readout variables. The factor $U$ retains controlled bias variables such as Decider settings, analyzer settings, gate-control settings, or doubling-frequency tuning parameters.
 
 The coarse-graining map is
 $$
@@ -111,7 +111,7 @@ R(\gamma)=\Phi_{\tau_\Sigma(\gamma)}(\gamma),
 \qquad
 \mathcal{R}\rho=R_*\rho.
 $$
-Dyadic locks, analyzer material cycles, Stern-Gerlach-like record cycles, and register gate cycles may use $\mathcal{R}$ only after the section, return time, and excluded failure boundary are explicit.
+Doubling-frequency locks, analyzer material cycles, Stern-Gerlach-like record cycles, and register gate cycles may use $\mathcal{R}$ only after the section, return time, and excluded failure boundary are explicit.
 
 ## Measures And Basin Partitions
 
@@ -362,9 +362,9 @@ $$
 
 Proof route: the record map sends each initial coarse state outside the separatrix-null set into exactly one basin; therefore the outcome indicator is $\mathbf{1}_{B_i}$. Invariance makes the integral of this indicator independent of the chosen return slice, and metastability bounds the finite-window drift. Any assigned weight $w_i\ne\mu_*(B_i)$ introduces a different measure, an untracked kernel, a nonmeasurable partition, or an external interpretive rule.
 
-## Worked Abstract Case: Dyadic Reduced-Map Normal Form
+## Worked Abstract Case: Doubling-frequency Reduced-Map Normal Form
 
-Let $s=\sigma(\gamma)\in[0,1]$ be a scalar coordinate on a dyadic phase-amplitude return section, with $s=0$ denoting the candidate dyadic-lock attractor and $s=1$ denoting an alternate returned branch. Let $u\in U$ be a controlled bias or tuning parameter that moves the separatrix through a smooth function $b(u)\in(0,1)$.
+Let $s=\sigma(\gamma)\in[0,1]$ be a scalar coordinate on a doubling-frequency phase-amplitude return section, with $s=0$ denoting the candidate doubling-frequency-lock attractor and $s=1$ denoting an alternate returned branch. Let $u\in U$ be a controlled bias or tuning parameter that moves the separatrix through a smooth function $b(u)\in(0,1)$.
 
 The abstract reduced return map is
 $$
@@ -438,7 +438,7 @@ q(b(u))\,b'(u).
 $$
 If $b'(u)=0$ and $q_u=q$ for the tested update, the bias has no basin-measure effect.
 
-This normal form does not prove the dyadic lock; it states the minimum basin-measure structure that the dyadic reduced phase-amplitude packet must instantiate with its actual finite-$\eta$ return map, Jacobian eigenvalues, branch ledger, and stability gap.
+This normal form does not prove the doubling-frequency lock; it states the minimum basin-measure structure that the doubling-frequency reduced phase-amplitude packet must instantiate with its actual finite-$\eta$ return map, Jacobian eigenvalues, branch ledger, and stability gap.
 
 ## Required Contract
 
@@ -461,7 +461,7 @@ This normal form does not prove the dyadic lock; it states the minimum basin-mea
 | [priorities.md](priorities.md) | Born-rule closure, detector kernels, pair provenance, Bell gate, and quantum rewrite handoff. | Owns the parent queue; consumes this packet for `transfer_operator` and `invariant_measure`. |
 | [agency-decision-and-decider.md](agency-decision-and-decider.md) | Minimal bias-setting complex, work ledger, hold time, and measurable basin-weight shifts. | Uses this packet to treat agency as controlled movement of basin boundaries or measures under a shared $\mu_*$. |
 | [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | Pilot-wave-like guidance, basin amplitude, feedback terms, and register coherence-depth bounds. | Uses this packet to avoid a second pilot-wave ontology and to make algorithmic resonance a quantitative stress test. |
-| [dyadic-lock](../braid-dyadic-lock/priorities.md) | Finite-$\eta$ reduced phase-amplitude map and stable `1:2` / `1:2:4` fixed-point diagnostics. | Provides a concrete reduced-map laboratory for transfer-operator stability, invariant or metastable measures, and basin gaps. |
+| [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md) | Finite-$\eta$ reduced phase-amplitude map and stable `1:2` / `1:2:4` fixed-point diagnostics. | Provides a concrete reduced-map laboratory for transfer-operator stability, invariant or metastable measures, and basin gaps. |
 | [photon-measurement-bell-gates.md](../braid-angular-momentum-spin/photon-measurement-bell-gates.md) | Stern-Gerlach-like response, photon analyzer kernels, record-window quotients, and Bell placement. | Uses this packet for invariant analyzer measures, detector kernels, and basin-weight calculations after angular-momentum prerequisites exist. |
 
 ## Promotion Gate
@@ -482,7 +482,7 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - Assumed detector law: a detector kernel contains $\cos^2(\alpha/2)$, $\cos^2\theta$, or $|\psi|^2$ as an input law rather than as the value of a basin integral.
 - Interpretive Born weights: $p_i$ is assigned without computing $\mu_*(B_i)$ or an explicitly equivalent pushforward integral.
 - Decider label shift without weight shift: $u_0\to u_1$ changes names, registers, or thresholds while $\Delta p_i=0$ for every outcome.
-- Dyadic instability: the candidate dyadic return map has $\mu_*(R^{-1}B_{\mathrm{lock}}\triangle B_{\mathrm{lock}})$ above tolerance, lacks a non-symmetry stability gap, or has an attracting claim with spectral radius $\ge1$ after quotienting neutral symmetries.
+- Doubling-frequency instability: the candidate doubling-frequency return map has $\mu_*(R^{-1}B_{\mathrm{lock}}\triangle B_{\mathrm{lock}})$ above tolerance, lacks a non-symmetry stability gap, or has an attracting claim with spectral radius $\ge1$ after quotienting neutral symmetries.
 - Second pilot ontology: the guidance law requires an independent $\Psi_{\mathrm{pilot}}$ not constructed from assembly variables, causal-wake history, Noether sea context, and $\mu_*$.
 - Algorithmic-resonance overclaim: period extraction is asserted while $D_{\max}(\varepsilon)$ or an equivalent coherence-depth bound is absent or below the claimed operation depth.
 - No-signaling failure: for spacelike-separated detector settings $\alpha,\beta$ before causal-wake contact,
@@ -499,7 +499,7 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - [quantum-closure](priorities.md)
 - [agency-decision-and-decider](agency-decision-and-decider.md)
 - [algorithmic-resonance-and-pilot-wave](algorithmic-resonance-and-pilot-wave.md)
-- [dyadic-lock](../braid-dyadic-lock/priorities.md)
+- [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md)
 - [angular-momentum-spin](../braid-angular-momentum-spin/priorities.md)
 - [app-simulation](../app-simulation/priorities.md)
 - [validation-gates](../validation-gates/priorities.md)
@@ -513,5 +513,5 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md)
 - [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md)
 - [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
-- [dyadic-resonance-lock](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md)
+- [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md)
 - [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)

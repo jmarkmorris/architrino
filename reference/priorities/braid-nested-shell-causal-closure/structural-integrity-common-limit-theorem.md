@@ -310,7 +310,7 @@ The minimum `branch_certificate_ref` object for this packet is:
 
 ## First Proof Sequence
 
-1. Fix the retained branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ with positive gap rows and no hidden branch transition. This step is inherited from the shared branch certificate contract.
+1. Fix the retained branch certificate $\mathcal{C}_{\mathrm{NSH}}^{(q)}(W)$ with positive gap rows and no hidden branch transition. This step is inherited from the shared branch certificate contract.
 2. Extract the moving material deformation map $v\mapsto(a_{\parallel,q},a_{\perp,q},T_q)$ from the same return section, identify the candidate generator $K_q$ for $\mathcal{D}_q(v)=\exp(vK_q)$, and prove the $R_{\xi}$ and $R_T$ bounds before any photon or PPN row is used.
 3. Define $c_{\mathrm{mat},q}^{\mathrm{lim}}$ from the persistence boundary of the same retained moving branch: the branch limit is where the stability gap, inactive-root gap, ledger transversality floor, or retained signed root index $\chi_{\mathrm{root},q}$ fails, not where a fitted Lorentz formula is declared singular.
 4. Derive the weak homogeneous Noether sea dressing row that maps primitive wake speed $c_f$ to $c_{\text{eff},q}^{\mathrm{hom}}$ and fixes the observer calibration $c_0$. This row must preserve the distinction between $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$.

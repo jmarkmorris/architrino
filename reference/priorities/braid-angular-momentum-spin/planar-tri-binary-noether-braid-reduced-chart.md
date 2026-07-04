@@ -14,7 +14,7 @@ Promotion decision. Defer with blocker. Promote only after a retained branch rep
 
 The current corpus now canonizes the **braid symmetry-breaking point** as the whole-assembly threshold where the middle binary remains on the $c_f$ hinge, the outer binary is driven toward $c_f$, and the inner binary remains in the self-hit interior row. The planar chart is the simplest reduced geometry for studying that transition because it keeps phase, frequency, circulation, and interface alignment visible before the full three-dimensional retained branch is solved.
 
-This packet also consumes the live equal-frequency search. The equal-frequency candidate already shows that the current flattened-limit chart can populate common frequency, effective lever arms, speed rows, and planar $\mathbb{Z}_3$ phase rows. That evidence is useful, but it remains current-proxy evidence rather than retained acceptance.
+This packet also consumes the live iso-frequency search. The iso-frequency candidate already shows that the current flattened-limit chart can populate common frequency, effective lever arms, speed rows, and planar $\mathbb{Z}_3$ phase rows. That evidence is useful, but it remains current-proxy evidence rather than retained acceptance.
 
 ## Reduced Branch Record
 
@@ -70,9 +70,9 @@ The rows are:
 
 The residual should be evaluated for at least three families:
 
-- offset families such as role-assigned $(I,M,O)=(f+2,f,f-1)$;
-- equal-frequency families such as raw $(f_1,f_2,f_3)=(f,f,f)$;
-- dyadic or integer-lock controls such as role-assigned $4:2:1$ and $n:m:1$.
+- role-assigned middle-hinge frequency candidates such as $(I,M,O)=(f+2,f,f-1)$;
+- iso-frequency families such as raw $(f_1,f_2,f_3)=(f,f,f)$;
+- doubling-frequency or integer-lock controls such as role-assigned $4:2:1$ and $n:m:1$.
 
 ## Triadic Phase-Residual Follow-Up
 
@@ -80,7 +80,7 @@ The legacy `Noether Cores and Quantum Spin` source raises a useful
 priority-only question: whether the three binary phase offsets favor a
 $2\pi/3$ cyclic pattern. This is not an $SU(3)$ claim and not retained-branch
 evidence by itself. It is a separate phase-residual diagnostic for the
-coplanar cyclic sector and equal-frequency candidate.
+coplanar cyclic sector and iso-frequency candidate.
 
 For a planar row with phase entries $(\phi_1,\phi_2,\phi_3)$, define the
 triadic phase residual
@@ -115,7 +115,7 @@ weights are available, rerun the residual with those weights and report
 whether the same cyclic sector remains preferred.
 
 The follow-up replay should report $d_{2\pi/3}$ beside $d_{\Theta}$ and
-$d_{\mathrm{plane}}$ for the equal-frequency, offset, dyadic, and finite
+$d_{\mathrm{plane}}$ for the iso-frequency, role-assigned middle-hinge, doubling-frequency, and finite
 $m:n$ candidate families. A small $d_{2\pi/3}$ may nominate a cyclic phase
 sector, but it must not replace retained row-set identity, planar-sector
 support, branch weights, wake/action routing, return-period closure, or

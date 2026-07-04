@@ -19,7 +19,7 @@ Scoring system:
 | 2 | Noether braid stability, shielding, parameter ledger, and first mass map | 10 | 4 | 2.50 |
 | 3 | Scene system, animator, PDG solver, applications, and later enhancements | 9 | 4 | 2.25 |
 | 4 | Tractable master-equation stack for Lorentz / GR bridge, quantum, and core closure | 10 | 5 | 2.00 |
-| 5 | Dyadic resonance lock reduced-map program | 7 | 4 | 1.75 |
+| 5 | Doubling-frequency resonance lock reduced-map program | 7 | 4 | 1.75 |
 | 6 | Remaining Standard Model assembly gaps, flavor mixing, and confinement | 8 | 5 | 1.60 |
 | 7 | Simulations, regularization, and shell numerics | 8 | 5 | 1.60 |
 | 8 | Remaining black-hole / strong-field quantitative closure | 4 | 5 | 0.80 |
@@ -289,26 +289,26 @@ Scoring system:
   6. full attractor landscape for binaries and tri-binaries;
   7. quantum closure from the master equation.
 
-### 5. Advance the dyadic resonance lock reduced-map program
+### 5. Advance the doubling-frequency resonance lock reduced-map program
 - Value `7`, Cost `4`, ROI `1.75`.
-- dyadic-resonance-lock.md should now be treated as the live note for a **candidate** dyadic lock, not as a proof that the full dynamics uniquely select `1:2:4`.
+- doubling-frequency-resonance-lock.md should now be treated as the live note for a **candidate** doubling-frequency lock, not as a proof that the full dynamics uniquely select `1:2:4`.
 - What is now solid enough to build on:
   - exact periodic closure gives a rational resonance lattice rather than an arbitrary hierarchy,
   - self-similar near-horizon closure gives the broader family $1:s:s^2$,
-  - the dyadic member $1:2:4$ appears as the minimal integer member of that family, not yet as a theorem of the full master equation,
-  - the theorem-level statements currently established are conditional kinematic radius identities under the dyadic assumptions plus the $\mathbb{Z}_3$ dipole-cancellation identity,
+  - the doubling-frequency member $1:2:4$ appears as the minimal integer member of that family, not yet as a theorem of the full master equation,
+  - the theorem-level statements currently established are conditional kinematic radius identities under the doubling-frequency assumptions plus the $\mathbb{Z}_3$ dipole-cancellation identity,
   - the exact global invariants worth anchoring the reduction are total energy and total angular momentum rather than branchwise action slices.
 - What remains open:
-  - whether the dynamical system actually selects the dyadic member $s=2$ rather than some other rational or self-similar lock,
+  - whether the dynamical system actually selects the doubling-frequency member $s=2$ rather than some other rational or self-similar lock,
   - whether the common-speed and self-similar assumptions are valid only near the horizon or across a wider operating range,
-  - whether a Lyapunov-Krasovskii, phase-slip, or cycle-averaged causal-work functional can contract the reduced map toward the dyadic fixed point,
+  - whether a Lyapunov-Krasovskii, phase-slip, or cycle-averaged causal-work functional can contract the reduced map toward the doubling-frequency fixed point,
   - whether the $\mathbb{Z}_3$ organization is only radiative-stealth bookkeeping or a genuine adiabatic stabilizer,
   - whether any old `1:1:2` branch ledger emerges only on an attractor rather than belonging in the foundation.
 - Immediate next move:
-  1. Use dyadic-resonance-lock.md as the live dynamics note and keep phenomenological-heuristics.md as the scratch/archive notebook.
+  1. Use doubling-frequency-resonance-lock.md as the live dynamics note and keep phenomenological-heuristics.md as the scratch/archive notebook.
   2. Build the regularized two-layer phase-amplitude return map at fixed finite $\eta > 0$, not a pure phase-only reduction.
   3. Prove or numerically demonstrate a stable `1:2` fixed point in that reduction, then examine whether chaining the second layer yields a stable `1:2:4` state.
-  4. Study the Jacobian and eigenvalues near the suspected dyadic fixed point as $\beta \to 1$.
+  4. Study the Jacobian and eigenvalues near the suspected doubling-frequency fixed point as $\beta \to 1$.
   5. Only after that revisit $\eta \to 0^+$ and promote archive material that can be rederived from the reduced dynamics.
 
 ### 6. Close the remaining Standard Model assembly gaps, flavor mixing, and confinement where the leverage is best

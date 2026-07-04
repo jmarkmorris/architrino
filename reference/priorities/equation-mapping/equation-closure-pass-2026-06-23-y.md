@@ -18,7 +18,7 @@ This pass adds a score-neutral neutrino common-clock/residual-phase checker:
 - [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs)
 - [neutrino-common-clock-phase-attempt.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-attempt.v1.json)
 
-The checker evaluates $\Theta_{\nu,16A}$ as a common clock plus residual phase-operator packet. It protects the `(f,f,f)` candidate from being overread as three observed absolute clocks. The common clock is allowed to be equal-frequency, but the observable benchmark must come from nonzero residual phase-rate gaps, weak-domain readout, same-domain matter correction, and cancellation without erasing $\bar H_{\nu}^{\mathrm{res}}$.
+The checker evaluates $\Theta_{\nu,16A}$ as a common clock plus residual phase-operator packet. It protects the `(f,f,f)` candidate from being overread as three observed absolute clocks. The common clock is allowed to be iso-frequency, but the observable benchmark must come from nonzero residual phase-rate gaps, weak-domain readout, same-domain matter correction, and cancellation without erasing $\bar H_{\nu}^{\mathrm{res}}$.
 
 The current attempt fixture deliberately has the desired numeric shape:
 

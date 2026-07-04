@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This packet sharpens the neutrino oscillation row as a common-clock residual phase-operator target. The immediate goal is not to claim that the equal-frequency Noether braid candidate already explains PMNS data. The goal is to state the smallest mathematical object that would let the equation map test that claim without mistaking hidden common frequency for three observed absolute clocks.
+This packet sharpens the neutrino oscillation row as a common-clock residual phase-operator target. The immediate goal is not to claim that the iso-frequency Noether braid candidate already explains PMNS data. The goal is to state the smallest mathematical object that would let the equation map test that claim without mistaking hidden common frequency for three observed absolute clocks.
 
 The target belongs inside the equation-map architecture because it reuses three patterns that also appear outside neutrinos:
 
@@ -24,7 +24,7 @@ The active source signals are:
 
 - [equation.md](equation.md): `EQ-16A` is scored as a partial map whose closure driver is to factor a common hidden clock while deriving two independent observed phase gaps from one retained neutral-lepton branch.
 - [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md): the reader-facing chapter already states the geometric phase-operator target $H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger$ and keeps flavor-basis preparation/detection separate from propagation-basis evolution.
-- [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md): the equal-frequency candidate supplies current-proxy evidence for `(f,f,f)` with phase offsets and different effective lever-arm / speed relations, but retained row-set acceptance is still missing.
+- [iso-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/iso-frequency-energy-radius-candidate.md): the iso-frequency candidate supplies current-proxy evidence for `(f,f,f)` with phase offsets and different effective lever-arm / speed relations, but retained row-set acceptance is still missing.
 - [neutrino-oscillations.md](../cross-theory-mapping/neutrino-oscillations.md): the cross-theory packet names the phase, weak projection, PMNS import, and matter-effect failure modes.
 - [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md): PMNS recovery must use the same weak-exposure domain as `V-A`, CKM overlap, and weak-reaction provenance.
 - J Mark Morris, [Implementation of the Weak Nuclear Force](https://architrino.wordpress.com/2022/06/20/implementation-of-the-weak-nuclear-force/): legacy NPQG source suggesting that neutrino handedness may be a survival/stability discriminator near the photon-boundary geometry; this packet keeps that signal priority-only and translates it into a branch-stability test, not a neutrino doctrine.
@@ -41,7 +41,7 @@ H_{\nu}^{\mathrm{eff}}
 H_{\nu}^{\mathrm{res}}.
 $$
 
-Here $\omega_f C_0\mathbf 1$ is the common-clock term inherited from the equal-frequency branch row, and $H_{\nu}^{\mathrm{res}}$ is the part that can affect oscillation probabilities. The residual term may include geometric, weak-exposure, and Noether sea contributions, but they must share one declared branch and weak-domain record:
+Here $\omega_f C_0\mathbf 1$ is the common-clock term inherited from the iso-frequency branch row, and $H_{\nu}^{\mathrm{res}}$ is the part that can affect oscillation probabilities. The residual term may include geometric, weak-exposure, and Noether sea contributions, but they must share one declared branch and weak-domain record:
 
 $$
 H_{\nu}^{\mathrm{res}}
@@ -73,7 +73,7 @@ The first factor is a common phase. It cancels from transition probabilities. Th
 
 ## f:f:f Candidate Reading
 
-The equal-frequency candidate should be read first in unordered row labels:
+The iso-frequency candidate should be read first in unordered row labels:
 
 $$
 (f_1,f_2,f_3)=(f,f,f).
@@ -277,7 +277,7 @@ $$
 \bar H_{\nu}^{\mathrm{res}}=0.
 $$
 
-Thus the equal-frequency row must pass two conditions at once:
+Thus the iso-frequency row must pass two conditions at once:
 
 - common-clock cancellation: $\omega_f C_0\mathbf 1$ drops out of probabilities;
 - residual survival: $\bar H_{\nu}^{\mathrm{res}}$ has one small solar-scale gap and one atmospheric-scale gap.
@@ -378,7 +378,7 @@ Here $r_{\mathrm{atm/sol}}$ is the updateable atmospheric-to-solar gap benchmark
 | --- | --- |
 | Current equation-inventory score | `3` |
 | Closure driver | Factor the common hidden clock while deriving two independent observed phase-rate gaps from one retained neutral-lepton branch and one weak-exposure readout domain. |
-| Primary carrier | $\Theta_{\nu,16A}$ with retained branch $B_{3B}^{(\nu)}$, equal-frequency row set $S_{\mathrm{eq}}$, residual operator, weak-domain readout, matter correction, cancellation row, and event ledger. |
+| Primary carrier | $\Theta_{\nu,16A}$ with retained branch $B_{3B}^{(\nu)}$, iso-frequency row set $S_{\mathrm{eq}}$, residual operator, weak-domain readout, matter correction, cancellation row, and event ledger. |
 | Smallest accepted evidence object | Accepted retained `neutral_lepton_retained_branch` plus accepted `s_eq`, common-clock, residual-operator, phase-gap, spectrum-shape, PMNS-readout, weak-domain, matter-correction, cancellation, and event-ledger rows bound to one branch/domain record. |
 | Exact first blocker | `missing_accepted_neutral_lepton_retained_branch`; inherited `S_eq` blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. |
 | Smallest next artifact | Replace the neutral-lepton source-attempt shell with one durable retained-branch source that binds $S_{\mathrm{eq}}$, common clock, residual operator, weak-domain readout, matter correction, cancellation, and event ledger to one branch/domain record. The `EQ-16` muon ledger artifact is a useful weak-domain consumer clue, but it does not satisfy this neutral-lepton retained-branch object. |
@@ -449,7 +449,7 @@ The existing domain-split negative control remains a fail-closed diagnostic: wit
 
 The retained branch must provide:
 
-1. a retained equal-frequency row set $S_{\mathrm{eq}}$ or a fail-closed replacement row set;
+1. a retained iso-frequency row set $S_{\mathrm{eq}}$ or a fail-closed replacement row set;
 2. a branch return-period or locked-harmonic certificate for $\omega_f$ rather than inferring frequency only from $s_a/\rho_a$;
 3. effective lever-arm, speed, phase, bivector Gram sector, braid-closure linking, and binary-to-binary phase-history rows on the same branch record;
 4. a nonzero traceless residual operator with exactly two independent phase-rate gaps;

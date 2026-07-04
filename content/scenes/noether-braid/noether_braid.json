@@ -26,8 +26,8 @@
         "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
       },
       {
-        "nodeId": "noether_braid_dyadic_resonance_lock",
-        "scenePath": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json"
+        "nodeId": "noether_braid_doubling_frequency_resonance_lock",
+        "scenePath": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json"
       },
       {
         "nodeId": "noether_braid_topological_charge",
@@ -69,11 +69,11 @@
       "labelBadge": "doc"
     },
     {
-      "id": "noether_braid_dyadic_resonance_lock",
-      "title": "Noether Braid Dyadic Resonance Lock",
+      "id": "noether_braid_doubling_frequency_resonance_lock",
+      "title": "Noether Braid Doubling-Frequency Resonance Lock",
       "radius": 2.05,
       "color": "#6c4f8d",
-      "labelTitle": "Noether Braid Dyadic Resonance Lock",
+      "labelTitle": "Noether Braid Doubling-Frequency Resonance Lock",
       "labelBadge": "doc"
     },
     {

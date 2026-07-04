@@ -77,7 +77,7 @@ Unassigned in this pass: `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20`. Their `6/23 b` 
 
 - `EQ-04`: compute $E_{\text{internal}}$, $\zeta(A)$, $\mathcal M_{\text{sea}}^{ab}$, and $M_0$ for an accepted retained branch.
 - `EQ-09`: derive PPN coefficients from the same ADM/Cartan row instead of declaring them as comparison rows.
-- `EQ-16A`: derive $\delta H_{3B}$ from a retained neutral-lepton equal-frequency row without erasing the residual phase gaps.
+- `EQ-16A`: derive $\delta H_{3B}$ from a retained neutral-lepton iso-frequency row without erasing the residual phase gaps.
 - `EQ-21` through `EQ-23` and `EQ-32`: populate the shared growth/CMB/BBN/RAR residual on one Noether sea and assembly record.
 - `EQ-24`: extract one acoustic or stress-strain coefficient from a retained Noether sea response rather than a packet-level map.
 - `EQ-25`: derive a concrete Boltzmann-like operator or entropy-production law from finite-window deterministic pushforward.
@@ -87,7 +87,7 @@ Unassigned in this pass: `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20`. Their `6/23 b` 
 
 1. `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20`: cover the unassigned rows so every line item has a `6/23 b` decision.
 2. `EQ-02` through `EQ-04`: instantiate `lorentz_mass_shell_common_branch_residual` on the translating binary benchmark.
-3. `EQ-16A`: build the retained neutral-lepton phase-operator packet and test whether the equal-frequency row can produce one small solar residual gap and one atmospheric residual gap.
+3. `EQ-16A`: build the retained neutral-lepton phase-operator packet and test whether the iso-frequency row can produce one small solar residual gap and one atmospheric residual gap.
 4. `EQ-21` through `EQ-23` plus `EQ-32`: populate $\mathcal R_{21\text{-}23\text{-}32}$ on one shared Noether sea state and report which projections split.
 5. `EQ-26` through `EQ-31`: choose one precision row, preferably Compton/recoil or hydrogen Rydberg, and turn the residual grammar into a replayable event calculation.
 

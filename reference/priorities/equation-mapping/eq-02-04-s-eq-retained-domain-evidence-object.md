@@ -273,7 +273,7 @@ The `S_eq` identity packet is not populated until these row bindings are accepte
 | `wake_tail_rows_bound_to_S_eq` | Binds wake-tail rows to the same support. |
 | `energy_action_rows_bound_to_S_eq` | Binds energy/action rows to the same support. |
 | `momentum_and_angular_momentum_rows_bound_to_S_eq` | Binds momentum and angular-momentum rows to the same support. |
-| `phase_rows_bound_to_S_eq` | Binds phase rows, including equal-frequency common-clock rows where present, to the same support. |
+| `phase_rows_bound_to_S_eq` | Binds phase rows, including iso-frequency common-clock rows where present, to the same support. |
 | `retained_plane_orientation_rows_bound_to_S_eq` | Binds oriented-bivector sector rows, Gram data, conditioning, and derived normals when needed. |
 | `response_center_and_group_velocity_rows_bound_to_S_eq` | Binds response-center and group-velocity rows to the same support. |
 | `Noether_sea_record_bound_to_S_eq` | Binds the local Noether sea row to the same retained domain. |
