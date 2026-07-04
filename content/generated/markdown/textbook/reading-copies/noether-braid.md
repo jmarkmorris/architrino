@@ -16,7 +16,7 @@ These definitions name case structure, not retained-branch existence. A neutral 
 
 The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, and **nested shell braid** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 ### Document Role
 
@@ -604,7 +604,7 @@ The same nested shell braid motion that supplies shielding also sweeps out a per
 The broader assembly program suggests reading the nested shell braid hierarchy as a natural hierarchy of fermion shielding tiers:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
--   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
+-   **Two-support-row shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
 -   **Nested shell braid:** the fully shielded three-tier braid, corresponding to the Generation-I shielding tier.
 
 On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md).
@@ -693,7 +693,7 @@ The required branch is expected to satisfy the following obligations:
 | Noether sea stability | The branch remains coherent when embedded among like Noether braid assemblies. A Euclidean-void fixture may be used first as a reduced test, but failure to retain in the void case is not by itself a final rejection if the missing stabilizer is the surrounding Noether sea. | A physical Noether braid should be stable in the medium it helps populate, not only in an isolated calculation. |
 | Volume exclusion | The branch creates a finite exclusion envelope, support band, or nested support structure that prevents ordinary overlap and supplies a geometric occupancy boundary. | Matter-like assemblies need a way to occupy volume instead of being only pointlike ledger entries. |
 | Lorentz clock/ruler deformation | A moving retained branch exports the observer clock and ruler law: the envelope geometry supplies a longitudinal-to-transverse ratio approaching $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, the extracted clock row approaches $d\tau/dt\to1/\gamma$, and preferred-frame leakage stays bounded as $v\to c_f$. | This is the route by which the assembly can recover Lorentz-compatible observer kinematics. |
-| Accessory-charge coupling | The branch can couple to charge-carrying rows or axial architrino structures without losing its retained record. The location is still open: inside the support, on polar sites, at axial poles, or through an external attachment row. | Fermion and electroweak bookkeeping need a retained core that can host or couple to additional charge structure. |
+| Accessory-charge coupling | The branch can couple to charge-carrying rows or axial architrino structures without losing its retained record. The location is still open: inside the support, on polar sites, at axial poles, or through an external attachment row. | Fermion and electroweak bookkeeping need a retained braid scaffold that can host or couple to additional charge structure. |
 | Generation behavior | The branch supplies a controlled path from generation I to generation II and III behavior. In the current nested shell candidate route, generation II and III behavior is modeled by destabilizing one retained binary row or two retained binary rows while preserving a disciplined transition record. | The braid cannot be only a rest object; it must explain why the same broad architecture can support the observed fermion family pattern. |
 | Action and energy closure | The action, energy, wake, and event ledgers close on the same branch record under the declared finite-memory window. | A visually stable configuration is not enough if it cannot conserve or route the quantities needed by later reactions. |
 | Angular-momentum and orientation rows | The branch either supplies a retained rank-three angular-momentum frame, supplies a retained lower-rank alternative, or explains why the frame row is not required for that branch. | Spin, handedness, topological charge, and reduced planar charts need a disciplined orientation record. |
@@ -1526,7 +1526,7 @@ $$
 \mathcal T_a=(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal L_a)
 \right\}.
 $$
-The symmetric group $S_3$ acts on this space by permuting the three binary records:
+The symmetric group $S_3$ acts on this space by permuting the three support-row records:
 $$
 \pi\cdot(\mathcal T_1,\mathcal T_2,\mathcal T_3)
 =
@@ -1643,9 +1643,9 @@ The classification is topological only where the entries are invariant under bra
 
 ### Accessory-Architrino Capture
 
-After a stable rank-three core has been retained, the next search level asks whether ordinary architrinos can become bound to that core without destroying the core ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained core branch.
+After a stable rank-three braid has been retained, the next search level asks whether ordinary architrinos can become bound to that braid without destroying the braid ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained braid branch.
 
-For a core branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
+For a braid branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
 $$
 \mathcal{C}_{\mathrm{cap}}(B)
 =
@@ -1654,16 +1654,16 @@ $$
 \mathrm{Retain}_{\mathrm{acc}}(B;\mathbf{x},\mathbf{v},q,\phi)=1
 \right\}.
 $$
-The capture predicate must use the same causal-root, action, energy, and return-map conventions as the core branch. A site is not merely a low potential region. It must preserve the core ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
+The capture predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. A site is not merely a low potential region. It must preserve the braid ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
 
-Topologically, capture preserves the assembly topological charge of the core branch while augmenting it with an accessory row. If $B_{\mathrm{core}}$ has assembly topological charge $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$, then an admissible captured branch should have
+Topologically, capture preserves the assembly topological charge of the braid branch while augmenting it with an accessory row. If $B_{\mathrm{braid}}$ has assembly topological charge $[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}$, then an admissible captured branch should have
 $$
-[\mathfrak B_{\mathrm{core}}\cup\mathrm{acc}]_{\mathrm{top}}
+[\mathfrak B_{\mathrm{braid}}\cup\mathrm{acc}]_{\mathrm{top}}
 =
-[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}
+[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}
 +\Delta_{\mathrm{acc}},
 $$
-where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the core entries are unchanged. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a core reconfiguration through a fold, reconnection, or branch surgery.
+where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the braid entries are unchanged. If the braid values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
 
 The architectural question is therefore:
 $$
@@ -4257,7 +4257,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 ### Working Hypotheses
 
-1. The formed nested shell braid has stable invariants ($R_{\text{core}}$, $\omega_{\text{core}}$, fixed phase offsets).
+1. The formed nested shell braid has stable invariants ($R_{\text{braid}}$, $\omega_{\text{braid}}$, fixed phase offsets).
 2. The outer-binary delay loop yields discrete plateaus and a terminal aligned mode under increasing stress.
 3. High group velocity may produce an oblate causal envelope that drives planar alignment in the terminal rung; this remains a working hypothesis until the swept-volume and branch-stability tests close.
 4. High gravitational gradient modifies phase closure through tidal or differential delay effects, shifting or destabilizing rungs.
@@ -4406,7 +4406,7 @@ Geometrically, $\beta_f$ is the primitive axis-squash control: as $\beta_f \to 1
 
 #### Nested Shell Braid Baseline (Inner + Middle Fixed)
 
-**Focus:** Treat the inner and middle binaries as a formed subsystem with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{core}}$, $\omega_{\text{core}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any subsystem element rides $\|\mathbf{v}\| = c_f$ continuously.
+**Focus:** Treat the inner and middle binaries as a formed subsystem with fixed (or slowly varying) center of mass. Track convergence of phase relations and extract $R_{\text{braid}}$, $\omega_{\text{braid}}$, and stable phase offsets. Check repeatability across nearby initial conditions and whether any subsystem element rides $\|\mathbf{v}\| = c_f$ continuously.
 
 #### Outer-Binary Delay Loop Model with Formed Subsystem
 
@@ -4476,7 +4476,7 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 ### Observables and Diagnostics (Summary)
 
-- Compatibility scale invariants: $R_{\text{core}}$, $\omega_{\text{core}}$, phase offsets.
+- Compatibility scale invariants: $R_{\text{braid}}$, $\omega_{\text{braid}}$, phase offsets.
 - Ladder records: $R_{\text{out}}(t)$, $\omega_{\text{out}}(t)$, plateau stability.
 - Geometry records: anisotropy ratio $A = R_\parallel/R_\perp$, forward vs backward delay ratio.
 - Orientation records: inter-plane angles, precession cone angle.
@@ -5540,7 +5540,7 @@ $$
 $$
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
 
-The phase entry is also conditional on the three binary planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
+The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
 $$
 D_{\mathrm{plane}}
 =

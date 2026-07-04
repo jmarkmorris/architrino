@@ -2,69 +2,94 @@
 
 ## Ontology
 
-This chapter states the bedrock ontology of $\mathbb{A}\mathbb{A}\mathbb{A}$. It identifies what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must remain level-aware for the rest of the corpus to stay coherent.
+Ontology asks a simple question: what is actually there before an observer names it, measures it, or compresses it into a model?
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the answer has layers. At the bottom are absolute time, the Euclidean void, and architrinos. Above that are assemblies, causal wakes, and the Noether sea. Above that are effective fields, particles, clocks, rulers, metrics, and observer records. The main rule of this chapter is that those layers must not be mixed.
+
+This chapter is the bedrock map. It says what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must stay level-aware for the rest of the corpus to remain coherent.
 
 ---
 
 ### Purpose and Scope
 
-This document establishes the **ontological bedrock** of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what is operationally reconstructed by observers. It defines:
+This document establishes the ontological bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.
 
-1. **The Substrate** ([absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md))
-2. **The Fundamental Entity** ([architrino](../../../../markdown/aaa/foundations/architrino.md): point transceiver of potential-bearing causal wakes)
-3. **The Physical Medium** ([Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md): emergent physical medium formed by coupled neutral Noether braid assemblies)
-4. **The Observer Framework** ([complete-state vs Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md))
-5. **Terminology Discipline** ([canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md))
-6. **Parameter Ledger** ([fundamental postulates vs derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md))
+It defines six foundation routes:
 
-All subsequent dynamical laws, assembly mappings, and emergent phenomena depend on these foundations. A contradiction or ambiguity at this level propagates through the entire $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus; therefore, this document is maintained with maximal rigor and clarity.
+1. **The Substrate**: [absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md).
+2. **The Fundamental Entity**: [architrino](../../../../markdown/aaa/foundations/architrino.md), the point transceiver of potential-bearing causal wakes.
+3. **The Physical Medium**: [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), the emergent physical medium formed by coupled neutral Noether braid assemblies.
+4. **The Observer Framework**: [complete-state versus Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md).
+5. **Terminology Discipline**: [canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md).
+6. **Parameter Ledger**: [fundamental postulates versus derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md).
 
-The teaching order is controlled by four levels. Substrate ontology names absolute time, the Euclidean void, and architrino identities. Assembly and medium behavior names organized architrino configurations and the Noether sea. Effective description names the metric, field, particle, and clock language reconstructed from those dynamics. Observer inference names the records available to embedded Physical Observers, not the complete state itself.
+The point is not to make every later result true by definition. The point is to keep the starting inventory clean. Dynamics, assembly mappings, particle families, effective spacetime, and cosmology all depend on these foundations. If the level assignment is wrong here, the error propagates everywhere else.
 
-This ontology also has a boundary. It states the internal bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$; it does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied. The corpus should therefore distinguish substrate explanation from ultimate-origin speculation: deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is a different claim from explaining why the substrate itself exists.
+The teaching order uses four levels:
+
+| Level | Plain meaning | Typical examples |
+|:---|:---|:---|
+| Substrate ontology | What exists before observer reconstruction. | Absolute time, Euclidean void, architrino identities, intrinsic polarity, causal-wake support. |
+| Assembly and medium behavior | What organized architrino configurations do. | Noether braids, stable branches, Noether sea density, stress, flow, and response. |
+| Effective description | What observers can summarize as familiar physics. | Metric, field, particle, mass, charge, clock, ruler, and potential language. |
+| Observer inference | What embedded Physical Observers can actually record. | Detector records, clock readings, coincidence windows, spectra, quantum states, and coarse histories. |
+
+This ontology also has a boundary. It states the internal bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied.
+
+That distinction matters. Deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is one kind of explanation. Explaining why the substrate itself exists is a different kind of claim.
 
 The same level discipline can be read through the canonical symbol map:
 
 | Level | Canonical variables or records | Owning chapters |
 |:---|:---|:---|
-| Substrate ontology | $t$, $\Sigma_t$, $h_{ij}$, $\mathbf{s}_a(t)$, $q_a$, causal-wake support | [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md) |
-| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{sea}}(\mathbf{x},t)$, $\mathbf{u}_{\text{sea}}(\mathbf{x},t)$ | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |
-| Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\text{sea}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| Observer inference | $\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) |
+| Substrate ontology | $T$, $\Sigma_T$, $h_{ij}$, $\mathbf X_a(T)$, $q_a$, causal-wake support | [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md) |
+| Assembly and medium behavior | assembly branch records, $\Lambda_{\text{NS}}$, $\rho_{\text{NS}}(\mathbf X,T)$, $\Sigma_{\text{sea}}(\mathbf X,T)$, $\mathbf u_{\text{sea}}(\mathbf X,T)$ | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |
+| Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\mathrm{sea,eff}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
+| Observer inference | $\Pi_{\mathrm{obs}}:S(T)\to\bar S(T)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) |
 
 Equivalently, the four levels form a filtration of forgetting maps:
 $$
-S(t)
+S(T)
 \xrightarrow{\Pi_{\mathrm{assembly}}}
-\mathfrak B(t)
+\mathfrak B(T)
 \xrightarrow{\Pi_{\mathrm{eff}}}
 \big(A,B_{ij},g^{\mathrm{eff}},\Phi_{\mathrm{eff}}\big)
 \xrightarrow{\Pi_{\mathrm{obs}}}
-\bar S(t).
+\bar S(T).
 $$
-Here $\mathfrak B(t)$ denotes the retained assembly and branch records. Each map discards some complete-state data: individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, or apparatus-inaccessible records. A residual at any level measures a failure of a proposed quantity to be constant on the fibers of the corresponding projection. Examples include provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, and clock-universality residuals $\epsilon_{\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline: it is the rule that determines which invariants survive each quotient.
+Here $\mathfrak B(T)$ denotes the retained assembly and branch records. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.
 
-Many of these forgetting maps also use the same regularity pattern. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\partial_s F|\ge\kappa_{\mathrm{hit}}>0$; frame construction uses a basis-conditioning floor such as $\sin\theta_{\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number. The shared theorem target is a reconstruction-regularity lemma: away from the codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior, while at the floor failure the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing the smooth chart.
+A quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, and clock-universality residuals $\epsilon_{\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.
 
-Two category distinctions govern the rest of this hub. First, fundamental material is not the same as emergent matter: the architrino is primitive substance, while matter begins only as assembly-level behavior with mass, exclusion, and persistent organization. Second, physical reality is not the same as autonomous material inventory: causal wakes are physically real, finite-speed, potential-bearing causal records, but their substrate-level content is fixed by source identity, polarity, and path history rather than by an additional material ingredient in the void.
+Many projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor. The root chart uses $|\partial_s F|\ge\kappa_{\mathrm{hit}}>0$; frame construction uses a basis-conditioning floor such as $\sin\theta_{\min}>0$; wake-center reconstruction uses a finite solid-angle floor; basin partitions use separatrix regularity; and clock extraction requires a retained hyperbolic limit cycle with a unique rotation number.
+
+The shared theorem target is a reconstruction-regularity lemma: away from the codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior. At the floor failure, the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing a smooth chart.
+
+Two distinctions govern the rest of this hub.
+
+First, primitive substance is not the same as emergent matter. The architrino is primitive substance. Matter begins only when assemblies acquire mass, exclusion, persistence, and organized branch behavior.
+
+Second, physical reality is not the same as independent material inventory. Causal wakes are physically real, finite-speed, potential-bearing causal records. They are not an extra material ingredient floating in the void. Their content is fixed by source identity, polarity, and path history.
 
 A conservative entry criterion for emergent matter status is therefore two-part. A stable assembly $A$ must carry a nonzero closed internal causal-history ledger, $E_{\text{internal}}(A) > 0$, and it must carry an assembly-level exclusion record protected by retained curve-configuration topology plus a branch-preserving action or energy barrier. The Euclidean void supplies no ambient topological superselection. The protected data must be carried by the assembly itself, for example by an oblate spheroidal exclusion envelope together with the ordered-frame, framed linking, or causal-writhe data needed for fermionic matter, and by a nonzero barrier $\Delta E_{\mathrm{excl}}>0$ against deformation through the forbidden branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.
 
-### The Substrate (What Exists Fundamentally)
+### The Substrate
+
+The substrate is what $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as fundamental. It is not what a local observer necessarily sees. It is the underlying stage and primitive inventory from which observer-level physics must be reconstructed.
 
 #### Absolute Time
 
-[Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) is the canonical substrate-level specification of the universal time parameter $t$. It defines time as a one-dimensional, continuous, oriented, non-dynamical continuum $\mathbb{R}$ with absolute event ordering, no kinematic time dilation, no relativity of simultaneity, and no reparametrization freedom at the fundamental level.
+[Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) is the canonical substrate-level specification of the universal time parameter $T$. It defines time as a one-dimensional, continuous, oriented, non-dynamical continuum $\mathbb{R}$ with absolute event ordering, no kinematic time dilation, no relativity of simultaneity, and no reparametrization freedom at the fundamental level.
 
 In this ontology hub, the key commitment is:
 
-> **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, uniform advancement, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $t$.
+> **Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, uniform advancement, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $T$.
 
-This is a substrate claim, not a claim about what embedded clocks report. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.
+This postulate is not a claim that embedded clocks all read the same rate. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.
 
 For the argumentative case, see [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
-#### Absolute Space (Euclidean Void)
+#### Euclidean Void
 
 [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) is the canonical substrate-level specification of the fixed spatial container. It defines three-dimensional space as flat, homogeneous, isotropic, non-dynamical $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$, fixed coordinate identity, Euclidean distance, spatial operators, and Euclidean symmetry group $E(3)$.
 
@@ -72,49 +97,53 @@ In this ontology hub, the key commitment is:
 
 > **Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim, not a denial that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+This is a container claim. It does not deny that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
-#### Absolute Timespace (The Product Structure)
+#### Absolute Timespace
 
-[Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) is the canonical product-structure specification for the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated clock-form/spatial-metric data $(dt,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.
+[Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) is the canonical product-structure specification for the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated clock-form/spatial-metric data $(dT,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.
 
 In this ontology hub, the key commitment is:
 
-> **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_t$. The background is non-dynamical and non-curved; causality is ordered by $t$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure while the interaction law selects a preferred rest frame dynamically.
+> **Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure while the interaction law selects a preferred rest frame dynamically.
 
-The product notation packages the substrate clock and spatial container; it does not introduce a non-degenerate four-dimensional metric as primitive ontology. Relativistic spacetime language enters only after medium response, clock/ruler behavior, and signal reconstruction have been derived or modeled.
+The product notation packages the substrate clock and the spatial container. It does not introduce a non-degenerate four-dimensional metric as primitive ontology. Relativistic spacetime language enters only after medium response, clock/ruler behavior, and signal reconstruction have been derived or modeled.
 
 For the factor-level specifications, see [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). For the observer-level metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 ---
 
-### The Fundamental Entity (Architrino)
+### The Fundamental Entity
 
 [Architrino](../../../../markdown/aaa/foundations/architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
 
-The architrino is the sole primitive material substance of the theory. This does not make an isolated architrino a matter particle: rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties.
+The architrino is the sole primitive material substance of the theory. That does not make an isolated architrino a matter particle. Rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties.
 
-Likewise, fermion and boson exchange behavior is an assembly-level recovery target rather than an inserted projector postulate. Any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell braid closure label $\Lambda_{\text{NS}}$, whose $\chi_c$ entry names the candidate topological carrier through ordered-frame chirality, $Wr_c$, multi-component causal-writhe parity, or framed linking data rather than a hand-selected exchange sign. The hard wall is the two-assembly exchange loop: an exchange of two identical braids is a loop in the configuration space of retained assembly configurations, not in the topology of the ambient void. The fermionic route must exhibit a nontrivial generator of that framed two-assembly configuration space whose holonomy acts as $-1$ on the recovered effective state. If the realized component is simply connected after the allowed quotient, or if its exchange-loop holonomy is trivial, then the antisymmetric projector has not been recovered from assembly dynamics and would have to be inserted at the effective level.
+The same caution applies to exchange behavior. Fermion and boson exchange labels are assembly-level recovery targets, not inserted projector postulates. Any effective antisymmetric or symmetric exchange label must be routed through a retained branch record, currently the ordered-frame spinor program and the nested shell braid closure label $\Lambda_{\text{NS}}$.
 
-The architrino's intrinsic polarity is likewise not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response. The emitted causal wake is not another primitive substance, but it is not unreal or merely verbal. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
+The hard wall is the two-assembly exchange loop. An exchange of two identical braids is a loop in the configuration space of retained assembly configurations, not in the topology of the ambient void. The fermionic route must exhibit a nontrivial generator of that framed two-assembly configuration space whose holonomy acts as $-1$ on the recovered effective state. If the realized component is simply connected after the allowed quotient, or if its exchange-loop holonomy is trivial, then the antisymmetric projector has not been recovered from assembly dynamics and would have to be inserted at the effective level.
 
-For an architrino $a$ with worldline $\mathbf{s}_a(t)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
+The architrino's intrinsic polarity is also not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response.
+
+The emitted causal wake is not another primitive substance, but it is real. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
+
+For an architrino $a$ with worldline $\mathbf X_a(T)$ on time domain $I_a$ and polarity $q_a$, the wake may be read schematically as a functional of that source history:
 $$
-\mathcal{W}_a(\mathbf{x},t)
+\mathcal{W}_a(\mathbf X,T)
 =
-\int_{\{s\in I_a:\ s<t\}}
+\int_{\{T_{\mathrm{em}}\in I_a:\ T_{\mathrm{em}}<T\}}
 q_a\,
-K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
-\,ds,
+K\!\left(\mathbf X,T;\mathbf X_a(T_{\mathrm{em}}),T_{\mathrm{em}}\right)
+\,dT_{\mathrm{em}},
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
+\left\{\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\right\}
 $$
 
-The $ds$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf{x},t;s)=\|\mathbf{x}-\mathbf{s}_a(s)\|-c_f(t-s)$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $|\partial_sF_a| \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional.
+The $dT_{\mathrm{em}}$ integral is schematic because the support condition selects causal roots of $F_a(\mathbf X,T;T_{\mathrm{em}})=\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})$ rather than an ordinary interval of source times. In the Master Equation this is implemented by a surface-delta or root-sum expression with the simple-root transversality floor $\lvert\partial_{T_{\mathrm{em}}}F_a\rvert \ge \kappa_{\mathrm{hit}} > 0$; if that floor fails, the contribution belongs to branch-chart or regularization analysis rather than to this ontology-level functional.
 
-This formula is a level assignment, not a replacement for the Master Equation. It states the ontological dependency: once the source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many such wake contributions, but the substrate account remains source-provenanced causal-wake history.
+This formula is a level assignment, not a replacement for the Master Equation. It states the dependency: once source identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
 
 In this ontology hub, the key commitment is:
 
@@ -124,11 +153,11 @@ For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/fo
 
 ---
 
-### The Physical Medium (Noether Sea)
+### The Physical Medium
 
 [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void.
 
-This section marks the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
+This is the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
 In this ontology hub, the key commitment is:
 
@@ -142,41 +171,49 @@ The routing boundary is:
 - [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
 - [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.
 
-### The Observer Framework (Ontic vs Epistemic)
+### The Observer Framework
 
 [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) is the canonical page for the $\mathbb{U}_{\text{now}}$ universe-state perspective, Physical Observers, the ontic/epistemic distinction, and absolute-versus-operational simultaneity.
 
-The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(t)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by the same assembly and Noether sea dynamics.
+The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(T)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by assembly and Noether sea dynamics.
 
 In this ontology hub, the key commitment is:
 
 > **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
 
-There is no observer outside the ledger. A Physical Observer's records are themselves entries inside $S(t)$, so inference means an internal subsystem reconstructing a coarse description from its own accessible records, not a second-level spectator reading the complete state without constraint.
+There is no observer outside the ledger. A Physical Observer's records are themselves entries inside $S(T)$. Inference is therefore an internal subsystem reconstructing a coarse description from its own accessible records, not a second-level spectator reading the complete state without constraint.
 
-The resulting observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions, not replacements for the substrate and assembly account.
+Observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions. They do not replace the substrate and assembly account.
 
 #### Bell Nonlocality Placement
 
-Bell-family experiments are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer. They are treated as a hard observer-level correlation constraint on any deterministic completion. The complete state on $\Sigma_t$ remains definite in the $\mathbb{U}_{\text{now}}$ universe-state perspective, while a Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.
+Bell-family experiments are treated as a hard observer-level correlation constraint on any deterministic completion. They are not treated as evidence by themselves for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer.
+
+The complete state on $\Sigma_T$ remains definite in the $\mathbb{U}_{\text{now}}$ universe-state perspective. A Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.
 
 The no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must choose and declare which Bell assumption fails. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.
 
-The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism. A $c_f$-mediated option is a substantive hierarchy claim: the primitive coordination channel must lie outside the observer photon cone, so $c_f > c_0$ after the low-energy photon speed $c_0$ is calibrated, and any stronger hierarchy such as $c_f \gg c_0$ must be reconciled with photon dressing, moving-assembly Lorentz closure, and clock/ruler universality. It must also evade the finite-speed hidden-influence obstruction: finite superluminal influences with $c_0 < v < \infty$ can become operationally signaling in multipartite Bell scenarios. The observer-level compression must fail the factorizable local-response form
+The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism.
+
+A $c_f$-mediated option is a substantive hierarchy claim. The primitive coordination channel must lie outside the observer photon cone, so $c_f > c_0$ after the low-energy photon speed $c_0$ is calibrated. Any stronger hierarchy such as $c_f \gg c_0$ must be reconciled with photon dressing, moving-assembly Lorentz closure, and clock/ruler universality. It must also evade the finite-speed hidden-influence obstruction: finite superluminal influences with $c_0 < v < \infty$ can become operationally signaling in multipartite Bell scenarios.
+
+The observer-level compression must fail the factorizable local-response form
 $$
 P(a,b\mid \hat{m}_A,\hat{m}_B,\lambda)
 =
 P(a\mid \hat{m}_A,\lambda)\,
 P(b\mid \hat{m}_B,\lambda)
 $$
-without adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence. These options are mutually exclusive at the bridge level:
+without adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence.
+
+These options are mutually exclusive at the bridge level:
 
 - **Substrate nonseparability:** retain strict measurement independence and no-signaling; Bell violation is recovered through nonfactorizable pair-provenance and apparatus-response coupling.
 - **Controlled relaxation of measurement independence:** relax measurement independence in the declared substrate response variables; the relaxation must be bounded to prevent macroscopic backward causation or signaling claims.
 
-Working selection, still provisional until the Bell derivation closes: $\mathbb{A}\mathbb{A}\mathbb{A}$ follows the substrate-nonseparability route, meaning measurement independence and no-signaling are retained while the completed pair-provenance and apparatus-response law must fail product screening. Controlled measurement-independence relaxation remains a comparison or failure route, not the active ontology-hub selection.
+Working selection, still provisional until the Bell derivation closes: $\mathbb{A}\mathbb{A}\mathbb{A}$ follows the substrate-nonseparability route. That means measurement independence and no-signaling are retained, while the completed pair-provenance and apparatus-response law must fail product screening. Controlled measurement-independence relaxation remains a comparison or failure route, not the active ontology-hub selection.
 
-A mere shared-source story is not enough: if the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The active nonseparability route must therefore be carried by a joint pair-provenance invariant of the emitted and separated pair, such as a framed pair-braid or linking record that survives the observer quotient but is not accessible as a steerable one-wing variable. In functional terms, the coordination record may correlate two outcomes only by factoring through the joint pair-provenance class; it must not factor through either wing's detector setting alone. If the joint invariant trivializes into wing-local factors after the retained record is supplied, the Bell account fails by product screening rather than by a small numerical residual. The detailed derivation and residual tests belong to [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).
+A mere shared-source story is not enough. If the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. The active nonseparability route must therefore be carried by a joint pair-provenance invariant of the emitted and separated pair, such as a framed pair-braid or linking record that survives the observer quotient but is not accessible as a steerable one-wing variable. In functional terms, the coordination record may correlate two outcomes only by factoring through the joint pair-provenance class; it must not factor through either wing's detector setting alone. If the joint invariant trivializes into wing-local factors after the retained record is supplied, the Bell account fails by product screening rather than by a small numerical residual. The detailed derivation and residual tests belong to [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).
 
 The routing boundary is:
 
@@ -187,7 +224,7 @@ The routing boundary is:
 - [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.
 - [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, pair-provenance closure tests, and the Bancal finite-speed-influence no-signaling obstruction.
 
-### Terminology Discipline (Locked Definitions)
+### Terminology Discipline
 
 Terminology discipline is controlled by the Archie canon, not by this hub. The relevant references are:
 
@@ -200,7 +237,7 @@ This ontology hub keeps only the global rule:
 
 > Use substrate-native terms for substrate ontology, medium terms for Noether sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
 
-### Parameter Ledger (Foundation Level)
+### Parameter Ledger
 
 The canonical parameter accounting lives in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md). This ontology hub does not own tables of numerical inputs, closure targets, naturalness tests, or simulation regulators.
 
@@ -227,16 +264,14 @@ For the current pressure ledger, see:
 
 ### Summary
 
-#### What This Document Establishes
+This ontology hub establishes six commitments:
 
-This Foundational Ontology defines:
-
-1. **The Substrate**: absolute time and Euclidean void organized as absolute timespace, the fixed non-dynamical product background.
-2. **The Fundamental Entity**: architrino as the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **The Physical Medium**: Noether sea as emergent physical content formed by coupled neutral Noether braid assemblies inside the Euclidean void.
-4. **The Observer Framework**: complete-state bookkeeping versus Physical Observer access.
-5. **Terminology Discipline**: level-aware wording routed to the Archie canon.
-6. **Validation Routing**: parameters, closure burdens, and open questions routed to validation and branch chapters.
+1. **Substrate:** absolute time and Euclidean void form the fixed non-dynamical product background called absolute timespace.
+2. **Primitive entity:** the architrino is the fixed-identity primitive point transceiver with polarity and persistent identity.
+3. **Causal record:** causal wakes are real source-provenanced path-history records, not extra substances in the void.
+4. **Medium:** the Noether sea is emergent physical content formed by coupled neutral Noether braid assemblies inside the Euclidean void.
+5. **Observer framework:** complete-state bookkeeping is distinct from Physical Observer access.
+6. **Routing discipline:** terminology, parameters, closure burdens, and open validation questions belong to their owning chapters once the topic moves beyond ontology.
 
 All subsequent chapters build on these foundations. This hub intentionally points outward once a topic becomes dynamics, assembly structure, observer-clock extraction, terminology canon, parameter closure, or validation pressure.
 
@@ -244,7 +279,7 @@ All subsequent chapters build on these foundations. This hub intentionally point
 
 This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes: each architrino continuously emits source-provenanced wake history, universally receives causal-wake intersections, and responds through receiver-local acceleration; effective equilibration appears only as a collective assembly response built from those received wakes. The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
 
-Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time $t$ together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
+Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time $T$ together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
 
 The teaching order in this chapter is therefore deliberately narrow. First it fixes the primitive ontology, then it separates polarity from observer-level charge bookkeeping, and only then does it mark the boundary with dynamics and effective reconstruction. The aim is not to derive particle phenomenology here, but to state what must be present before any assembly-level derivation can begin.
 
@@ -254,7 +289,7 @@ An **architrino** is the sole fundamental entity in $\mathbb{A}\mathbb{A}\mathbb
 
 It is:
 
-- A point transceiver located at position $\mathbf{s}_a(t)$ in the Euclidean void.
+- A point transceiver located at position $\mathbf X_a(T)$ in the Euclidean void.
 - Always active: it continuously emits a causal wake and continuously receives wakes according to the dynamics branch.
 - Polarity-bearing: it has definite positive or negative polarity, represented in electric bookkeeping by $q_a=\pm\epsilon$.
 - Persistent: it has a continuous identity-bearing worldline through absolute timespace.
@@ -271,13 +306,13 @@ W_{ij}^{\mathrm{rec}}\hat{\mathbf{r}}_{ij},
 \qquad
 W_{ij}^{\mathrm{rec}}
 =
-\left|\frac{D_{t,ij}}{D_{s,ij}}\right|
+\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
 $$
-Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j(t_0)$ is the source-normal denominator and $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_i(t)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_s F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
+Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_{\mathrm{em}})$ is the source-normal denominator and $D_{T,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}} F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
 $$
-\Sigma_{ij}=\{F_{ij}=0,\ \partial_s F_{ij}=0\},
+\Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_{\mathrm{em}}} F_{ij}=0\},
 $$
-while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the corresponding simple-root floor, for example $\lvert\partial_{t_0}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
+while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the corresponding simple-root floor, for example $\lvert\partial_{T_{\mathrm{em}}}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
 
 In dimensional form $\kappa$ has units
 $$
@@ -351,7 +386,7 @@ Provenance does not replace Noether reasoning. Energy conservation still depends
 
 Observer-level indistinguishability is therefore a quotient, not erasure of substrate identity. Let
 $$
-\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)
+\Pi_{\mathrm{obs}}:S(T)\to\bar S(T)
 $$
 denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
 $$
@@ -381,16 +416,16 @@ Its emitted structure is a potential-bearing **causal wake**. The wake is physic
 
 Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
 $$
-\mathcal{W}_a(\mathbf{x},t)
+\mathcal{W}_a(\mathbf X,T)
 =
-\int_{\{s\in I_a:\ s<t\}}
+\int_{\{T_{\mathrm{em}}\in I_a:\ T_{\mathrm{em}}<T\}}
 q_a\,
-K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
-\,ds,
+K\!\left(\mathbf X,T;\mathbf X_a(T_{\mathrm{em}}),T_{\mathrm{em}}\right)
+\,dT_{\mathrm{em}},
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
+\left\{\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\right\}
 $$
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, source-normal denominators, receiver-normal branch strengths, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
@@ -414,9 +449,9 @@ This chapter stops before the exact acceleration law. Exact causal wake surfaces
 
 Each architrino traces a worldline
 $$
-\mathbf{s}_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
+\mathbf X_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
 \qquad
-t\mapsto\mathbf{s}_a(t)
+T\mapsto\mathbf X_a(T)
 $$
 where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
 $$
@@ -425,7 +460,7 @@ $$
 
 The worldline is at least absolutely continuous so that
 $$
-\mathbf{v}_a(t)=\frac{d\mathbf{s}_a}{dt}
+\mathbf V_a(T)=\frac{d\mathbf X_a}{dT}
 $$
 exists almost everywhere and is piecewise continuous in regular regimes.
 
@@ -453,7 +488,7 @@ The canonical homes are:
 
 - [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, source-normal denominators, receiver-normal branch strengths, received acceleration, and branch topology.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) for coupled nested shell braid speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
 
 ### Determinism and Multistability
@@ -821,23 +856,23 @@ This gives the postulate a hard failure wall. Postulate 1 fails if any accepted 
 
 A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
 
-At time $t$, an architrino at position $\mathbf{x}(t)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $t' < t$; through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $T$, an architrino at position $\mathbf X(T)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $T' < T$; through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
-Because $t$ is universal and absolute, the past (all $t' < t$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
+Because $T$ is universal and absolute, the past (all $T' < T$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
 
 ### Provenance and Identity Through Time
 
-Each architrino carries a unique **provenance** record tied to its worldline history. That provenance is strictly monotone in $t$: exchanging records is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
+Each architrino carries a unique **provenance** record tied to its worldline history. That provenance is strictly monotone in $T$: exchanging records is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
 
 Consequently, an exact global flip or permutation of architrinos is not a substrate symmetry unless it preserves the full path-history and causal-wake record. Schematically, if a universe state is written as
 
 $$
-\mathbb{U}_{\text{now}}\equiv S(t)
+\mathbb{U}_{\text{now}}\equiv S(T)
 =
-\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i,H_i(t))\}_i
+\{(\mathbf X_i(T),\mathbf V_i(T),q_i,H_i(T))\}_i
 $$
 
-where $H_i(t)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(t)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
+where $H_i(T)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(T)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
 
 For same-polarity exchange and downstream fermionic-statistics claims, the history record must be read jointly, not as a set of independent single-worldline ledgers. A braid can preserve endpoint data while changing the relative framing or linking class of the exchanged worldlines. Exact exchange therefore requires preservation of the joint path-history record, including relative framing, linking, and any protected framed self-linking row such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when that row is part of the branch certificate. If the joint framed or linking class changes, the exchange is a different substrate branch, not a hidden exact permutation symmetry.
 
@@ -1004,18 +1039,18 @@ Unlike General Relativity, where coordinates may function as gauge labels under 
 This gives fixed spatial identity:
 
 - The point $(x_0,y_0,z_0)$ is the same spatial location at every absolute time $t$.
-- The events $(t_1,x_0,y_0,z_0)$ and $(t_2,x_0,y_0,z_0)$ occur at the same spatial location at two different instants.
+- The events $(T_1,X_0,Y_0,Z_0)$ and $(T_2,X_0,Y_0,Z_0)$ occur at the same spatial location at two different instants.
 - Local Noether sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
 
 This fixed identity is important for self-hit diagnostics, path-history bookkeeping, and simulations that must track where a wake was emitted and where it is later received.
 
 For a received wake contribution, the provenance record consists of the source identity, emission time, emission location, receiver identity, reception time, and reception location:
 $$
-(j,t_0,\mathbf{s}_j(t_0),o',t,\mathbf{s}_{o'}(t))
+(j,T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),o',T,\mathbf X_{o'}(T))
 $$
 The causal-root condition is then
 $$
-\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|_h=c_f(t-t_0)
+\|\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})\|_h=c_f(T-T_{\mathrm{em}})
 $$
 This condition is invariant under Euclidean translations and rotations of the chosen coordinate chart. The chart may be changed for calculation, but the underlying void point where emission occurred is not moved by that relabeling.
 
@@ -1238,15 +1273,15 @@ The Euclidean void is strictly empty of material substance. It is not a material
 
 Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
 
-For a point $(\mathbf{x},t)$, define the wake-support index set
+For a point $(\mathbf X,T)$, define the wake-support index set
 $$
-\mathcal{P}(\mathbf{x},t)
+\mathcal{P}(\mathbf X,T)
 =
-\{(a,s):s<t,\ \|\mathbf{x}-\mathbf{s}_a(s)\|_h=c_f(t-s)\}.
+\{(a,T_{\mathrm{em}}):T_{\mathrm{em}}<T,\ \|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|_h=c_f(T-T_{\mathrm{em}})\}.
 $$
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field: it has no independent state variables, stress, density, energy, or equation of motion.
 
-Equivalently, $\mathcal{P}(\mathbf{x},t)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf{x},t)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
+Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
 
@@ -1314,48 +1349,48 @@ The product structure is fundamental. It is not an approximation to a deeper 4D 
 
 ### Foliation and Simultaneity Slices
 
-Each instant $t=t_0$ defines a global simultaneity slice
+Each instant $T=T_\ast$ defines a global simultaneity slice
 $$
-\Sigma_{t_0}=\{t_0\}\times\mathbb{R}^3\cong\mathbb{R}^3
+\Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
-Every event $(t,\mathbf{x})$ belongs to exactly one slice $\Sigma_t$. This foliation is absolute and frame-independent.
+Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent.
 
 An object or assembly traces a worldline through the product background:
 $$
 \gamma:I\subset\mathbb{R}\to\mathcal{M},
 \qquad
-t\mapsto(t,\mathbf{x}(t))
+T\mapsto(T,\mathbf X(T))
 $$
 
-For any alternate curve parameter $s$, admissible worldlines must satisfy
+For any alternate curve parameter $\lambda$, admissible worldlines must satisfy
 $$
-\frac{dt}{ds}>0
+\frac{dT}{d\lambda}>0
 $$
 
 There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the absolute time parameter.
 
-> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $t$. A worldline passes through one slice at each instant.
+> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $T$. A worldline passes through one slice at each instant.
 
 On a fixed slice, the canonical universe-now notation is
 $$
-\mathbb{U}_{\text{now}} \equiv S(t)
+\mathbb{U}_{\text{now}} \equiv S(T)
 $$
 
-This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
+This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
 Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
 $$
-S(t)
+S(T)
 =
 \big(
-X(t),
-H_t,
-\mathcal{N}_{\mathrm{sea}}(t,\cdot),
-\mathcal{B}_t
+X(T),
+H_T,
+\mathcal{N}_{\mathrm{sea}}(T,\cdot),
+\mathcal{B}_T
 \big)
 $$
-Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ### Newton-Cartan Data
 
@@ -1363,30 +1398,30 @@ The background geometry is encoded by a pair of structures rather than by a sing
 
 The substrate clock 1-form is the exact form
 $$
-dt
+dT
 $$
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$.
+This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_{\mathrm{em}}$, and causal delay is written $\Delta_{ij}=T-T_{\mathrm{em}}$.
 
 The spatial metric on each slice is
 $$
-h=dx^2+dy^2+dz^2
+h=dX^2+dY^2+dZ^2
 $$
 with Cartesian components
 $$
 h_{ij}=\delta_{ij}
 $$
 
-The metric $h$ acts only on spatial vectors tangent to $\Sigma_t$. Time and space are therefore encoded separately by $(dt,h)$.
+The metric $h$ acts only on spatial vectors tangent to $\Sigma_T$. Time and space are therefore encoded separately by $(dT,h)$.
 
 A flat, torsion-free connection $\nabla$ satisfies
 $$
-\nabla dt=0,
+\nabla dT=0,
 \qquad
 \nabla h=0
 $$
 
-These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dt,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dt,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
+These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dT,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dT,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
 $$
 \Gamma^\lambda_{\mu\nu}=0
 $$
@@ -1755,7 +1790,7 @@ with a single generator $K$ producing both the envelope ratio and the clock-phas
 Allowed substrate coordinates preserve the product structure:
 
 - $t$ remains the absolute time parameter.
-- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_t$.
+- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_T$.
 - Spatial coordinate changes may rewrite $h_{ij}$ but do not curve the Euclidean void.
 
 Forbidden at the substrate level:
@@ -1876,22 +1911,22 @@ The effective metric used in GR-style recovery is a downstream constitutive obje
 $$
 d\tau^2
 =
-A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt_{\mathrm{eff}}^2
 -
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
-with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x^0=c_0t$ gives the component export
+with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ gives the component export
 $$
 g^{\mathrm{eff}}_{00}
 =
--A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}},
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}},
 \qquad
 g^{\mathrm{eff}}_{0i}
 =
--\frac{1}{c_0}B_{ij}u^j_{\text{sea}},
+-\frac{1}{c_0}B_{ij}u^j_{\mathrm{sea,eff}},
 \qquad
 g^{\mathrm{eff}}_{ij}
 =
@@ -1919,49 +1954,49 @@ This chapter states the case for absolute time as the fundamental evolution para
 
 The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution on those simultaneity slices. Only after those claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
-### The Case for Absolute Time ($t$)
+### The Case for Absolute Time ($T$)
 
-1. **Fundamental evolution parameter**: Absolute time $t$ is the unique evolution parameter of the master equation.
-2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with clock projection $\pi_t:\mathcal{M}\to\mathbb{R}$.
-3. **Unique foliation**: The simultaneity slice at fixed $t_0$ is the level set
+1. **Fundamental evolution parameter**: Absolute time $T$ is the unique evolution parameter of the master equation.
+2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with clock projection $\pi_T:\mathcal{M}\to\mathbb{R}$.
+3. **Unique foliation**: The simultaneity slice at fixed $T_\ast$ is the level set
    $$
-   \Sigma_{t_0} = \pi_t^{-1}(\{t_0\}) = \{t_0\}\times \mathbb{R}^3
+   \Sigma_{T_\ast} = \pi_T^{-1}(\{T_\ast\}) = \{T_\ast\}\times \mathbb{R}^3
    $$
-4. **Substrate clock form**: The substrate clock form $dt$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $t$, it fixes the tangent planes to the slices $\Sigma_t$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
+4. **Substrate clock form**: The substrate clock form $dT$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $T$, it fixes the tangent planes to the slices $\Sigma_T$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell braid internal phase dynamics.
 
-The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_t$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
+The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_T$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
 
-A useful comparison with relativistic block-universe arguments is the distinction between absolute time, the substrate-level simultaneity slice, and the observer-readable present. Absolute time $t$ is fundamental. The complete slice $\mathbb{U}_{\text{now}}\equiv S(t)$ is substrate-level: it is the full universe state at one value of $t$, not a clock reading available to embedded observers. Special relativity correctly removes any observer-accessible global three-space: a Physical Observer cannot synchronize distant records into one public present without using clocks, rulers, and signal conventions that must themselves satisfy Lorentz tests. The observer-facing obligation is therefore to show why attempts to read the absolute foliation through matter clocks, photon synchronization, CMB rest-frame comparison, or gravitational channels collapse to an effective Lorentz or metric reconstruction with preferred-frame leakage below the declared bounds.
+A useful comparison with relativistic block-universe arguments is the distinction between absolute time, the substrate-level simultaneity slice, and the observer-readable present. Absolute time $T$ is fundamental. The complete slice $\mathbb{U}_{\text{now}}\equiv S(T)$ is substrate-level: it is the full universe state at one value of $T$, not a clock reading available to embedded observers. Special relativity correctly removes any observer-accessible global three-space: a Physical Observer cannot synchronize distant records into one public present without using clocks, rulers, and signal conventions that must themselves satisfy Lorentz tests. The observer-facing obligation is therefore to show why attempts to read the absolute foliation through matter clocks, photon synchronization, CMB rest-frame comparison, or gravitational channels collapse to an effective Lorentz or metric reconstruction with preferred-frame leakage below the declared bounds.
 
 A cosmological frame such as the CMB rest frame can be a useful effective foliation for data reduction, but it is not absolute time itself and does not expose the substrate clock form. It supplies a large-scale observer record only after photon transport, source evolution, and receiver cadence are modeled; it cannot by itself license an exact observer-readable global present.
 
 ### Absolute Time, Global Foliation, and Proper Time
 
-**Absolute time $t$ and universe state**
-- The $\mathbb{U}_{\text{now}}$ perspective indexes the exact microstate as $S(t)$ on each slice $\Sigma_t$.
-- On each $\Sigma_t$, the spatial metric is Euclidean: $h_{ij}=\delta_{ij}$.
+**Absolute time $T$ and universe state**
+- The $\mathbb{U}_{\text{now}}$ perspective indexes the exact microstate as $S(T)$ on each slice $\Sigma_T$.
+- On each $\Sigma_T$, the spatial metric is Euclidean: $h_{ij}=\delta_{ij}$.
 - Absolute time is substrate structure, not a coordinate gauge choice.
 
-At this level, $\mathbb{U}_{\text{now}}\equiv S(t)$ is not an observer's reconstruction of events. It is the complete ontic universe state on a simultaneity slice, including constituent positions, velocities, polarities, path-history data, and any branch information required by the delayed dynamics. Observers may infer only a coarse-grained portion of this state through clocks, rulers, signals, and records.
+At this level, $\mathbb{U}_{\text{now}}\equiv S(T)$ is not an observer's reconstruction of events. It is the complete ontic universe state on a simultaneity slice, including constituent positions, velocities, polarities, path-history data, and any branch information required by the delayed dynamics. Observers may infer only a coarse-grained portion of this state through clocks, rulers, signals, and records.
 
 Because the master equation is path-history dependent, the complete state on a slice is not merely an instantaneous Markov projection. The precise schematic form is
 $$
-S(t)
+S(T)
 =
 \big(
-X(t),
-H_t,
-\mathcal{N}_{\mathrm{sea}}(t,\cdot),
-\mathcal{B}_t
+X(T),
+H_T,
+\mathcal{N}_{\mathrm{sea}}(T,\cdot),
+\mathcal{B}_T
 \big)
 $$
-where $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
+where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
-The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_t$ is ontic only insofar as it records which attractor basin, active causal-root labels, and regularization regime the deterministic history $H_t$ actually occupies. A different analyst may choose different coordinates for describing that branch, but cannot choose a different occupied basin without changing $S(t)$ itself.
+The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records which attractor basin, active causal-root labels, and regularization regime the deterministic history $H_T$ actually occupies. A different analyst may choose different coordinates for describing that branch, but cannot choose a different occupied basin without changing $S(T)$ itself.
 
 **Deterministic evolution and basin selection**
-- The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(t_0)$, including the required path-history and provenance ledger, generates a unique trajectory $S(t)$ for $t>t_0$.
+- The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(T_\ast)$, including the required path-history and provenance ledger, generates a unique trajectory $S(T)$ for $T>T_\ast$.
 - Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different attractor basins.
 - Therefore the correct statement is basin selection under deterministic flow, not a "distribution of allowed configurations" from one exact state.
 
@@ -2260,12 +2295,12 @@ The clock/ruler handoff to effective metric language can be written locally as
 $$
 d\tau^2
 =
-A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt_{\mathrm{eff}}^2
 -
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 The metric handoff is admissible only on branches where
 $$
@@ -2314,16 +2349,16 @@ Define the Lorentzian observer metric by
 $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
-With $x^0=c_0t$, the exported components are
+With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the exported components are
 $$
 g^{\mathrm{eff}}_{00}
 =
--A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}}
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}}
 $$
 $$
 g^{\mathrm{eff}}_{0i}
 =
--\frac{1}{c_0}B_{ij}u^j_{\text{sea}}
+-\frac{1}{c_0}B_{ij}u^j_{\mathrm{sea,eff}}
 $$
 and
 $$
@@ -2333,9 +2368,9 @@ B_{ij}
 $$
 Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
 $$
-\dot x^i
+\frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
 =
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 +
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
@@ -2344,7 +2379,7 @@ c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
 \frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}
 $$
-The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\text{sea}}\to0$.
+The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\mathrm{sea,eff}}\to0$.
 
 The same-record rule is stricter than using one symbol $\mathcal{N}_{\mathrm{sea}}$ in several equations. The clock/ruler map must consume the same Noether sea response record that supplies $G_{\mathrm{eff}}$ in the gravity inventory, $c_{\text{eff}}$ in the matter limiting-speed and mass-shell rows, and $c_\gamma$ in the photon channel:
 $$
@@ -2441,7 +2476,7 @@ $$
 W_a(s;t)
 =
 \left\{
-\mathbf{y}\in\Sigma_t:
+\mathbf Y\in\Sigma_T:
 \|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
 \right\}
 $$

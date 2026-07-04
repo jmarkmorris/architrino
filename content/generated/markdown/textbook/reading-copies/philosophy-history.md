@@ -1678,7 +1678,7 @@ reverse collapse into expansion.
 $$
 H = 0,\quad \dot H > 0
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature nested shell braid cores. A cosmological bounce would correspond to the point where further contraction of the Noether braid assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether sea-level transition.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ naturally replaces singularities with maximum-curvature nested shell braid scaffolds. A cosmological bounce would correspond to the point where further contraction of the Noether braid assembly network becomes dynamically forbidden (due to self-hit limits or assembly instability), triggering a re-expansion phase; $H=0$, $\dot H>0$ is the effective description of this Noether sea-level transition.
 
 **What Still Works:** Bounce Cosmologies (Generic) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -4835,7 +4835,7 @@ The clearest limiting tension for Steady State Cosmology is that its explanatory
 
 ###### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(T)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
 
 ---
 
@@ -7189,8 +7189,8 @@ chapters still own their local details.
 
 | Inherited concept family | Current corpus use | Transfer class | Scope discipline |
 | --- | --- | --- | --- |
-| Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_t$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
-| Absolute-time parameterization | Global time $t$, worldlines, causal emission times $t_0$, and $\mathbb{U}_{\text{now}}\equiv S(t)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
+| Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_T$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
+| Absolute-time parameterization | Global time $T$, worldlines, causal emission times $T_{\mathrm{em}}$, and $\mathbb{U}_{\text{now}}\equiv S(T)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
 | Distributional causal surfaces | Delta functions, Heaviside support, mollification, branch integrals, and weak limits | Direct mathematical tool | The distribution is a formal representation of causal wake support, not a continuum field substance |
 | Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | A root ledger records admissible delayed channels; it is not itself a force law or stability proof |
 | Inverse-square surface dilution | Causal wake density over expanding surfaces | Native dynamics component | It supplies the microscopic kernel but still owes effective recovery of observer-level field laws |
@@ -7235,17 +7235,17 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 
 | Formula family | Foundational expression | Current status | What it does not license |
 | --- | --- | --- | --- |
-| Absolute timespace: absolute time + Euclidean void | $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, $\Sigma_t=\{t\}\times\mathbb{R}^3$ | Native substrate commitment | A fundamental 4D metric, spacetime curvature, or relativistic interval |
-| Substrate clock and Euclidean metric | $dt$, $h_{ij}=\delta_{ij}$, $\nabla dt=0$, $\nabla h=0$ | Native substrate commitment plus direct mathematical tool | Curvature of the Euclidean void or observer proper time as a substrate interval |
-| Worldline kinematics | $\mathbf{s}_a(t)$, $\mathbf{v}_a=d\mathbf{s}_a/dt$, $\mathbf{a}_a=d\mathbf{v}_a/dt$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
-| Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(t)$ with history ledger $H_t$ and branch data $\mathcal{B}_t$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
+| Absolute timespace: absolute time + Euclidean void | $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, $\Sigma_T=\{T\}\times\mathbb{R}^3$ | Native substrate commitment | A fundamental 4D metric, spacetime curvature, or relativistic interval |
+| Substrate clock and Euclidean metric | $dT$, $h_{ij}=\delta_{ij}$, $\nabla dT=0$, $\nabla h=0$ | Native substrate commitment plus direct mathematical tool | Curvature of the Euclidean void or observer proper time as a substrate interval |
+| Worldline kinematics | $\mathbf X_a(T)$, $\mathbf V_a=d\mathbf X_a/dT$, $\mathbf A_a=d\mathbf V_a/dT$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
+| Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(T)$ with history ledger $H_T$ and branch data $\mathcal{B}_T$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
 | Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
 | Causal wake support | $\lVert\mathbf{x}-\mathbf{x}_0\rVert=c_f(t-t_0)$ with $t>t_0$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
 | Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
 | Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
 | Root Jacobian and transversality | $D_{s,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct source-normal branch-analysis tool in the native law | Replacing branch strength by source-normal data alone, speed magnitude, or ignoring caustic/fold regimes |
-| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
 | Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
@@ -7309,7 +7309,7 @@ Risk scores:
 | Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
 | Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
 | Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
-| Source-normal transversality and receiver-normal strength | 4 | The source-normal denominator is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_s$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for force/action strength |
+| Source-normal transversality and receiver-normal strength | 4 | The source-normal denominator is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_s$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ for force/action strength |
 | Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
 | Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
 | Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |
@@ -7681,15 +7681,15 @@ This condition keeps positive geometry in its proper role: a powerful comparison
 
 ##### Hilbert-Representation Invariance Guardrail
 
-Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. For
+Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. In layer-explicit effective comparison notation, the time parameter is $t_{\mathrm{eff}}$:
 $$
-|\psi'\rangle=U(t)|\psi\rangle,
+|\psi'\rangle=U_\theta(t_{\mathrm{eff}})|\psi\rangle,
 \qquad
-\widehat O'_a=U(t)\widehat O_aU^\dagger(t)
+\widehat O'_a=U_\theta(t_{\mathrm{eff}})\widehat O_aU_\theta^\dagger(t_{\mathrm{eff}})
 $$
 the Hamiltonian transforms as
 $$
-H'=UHU^\dagger+i\hbar\,\dot U\,U^\dagger
+H'=U_\theta H U_\theta^\dagger+i\hbar\,\partial_{t_{\mathrm{eff}}}U_\theta\,U_\theta^\dagger
 $$
 
 A substrate interpretation of an effective operator model must therefore be invariant under this representational freedom:
@@ -8171,7 +8171,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
-* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
+* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf X,T)$ or normalized density $n(\mathbf X,T)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ##### Statistical Measure and the Born Rule Emergence
 While the trajectory of a single nested shell braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
@@ -8234,7 +8234,7 @@ The continuous loss of path-history coherence must be formalized as a transport 
 
 * **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the nested shell braid orientation evolves according to an effective Fokker-Planck equation.
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor.
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell braid, but a measure of the local Noether sea entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf X,T)$ or $n(\mathbf X,T)$. It is not an intrinsic property of the nested shell braid, but a measure of the local Noether sea entropy production rate during the operation.
 
 ##### Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.
@@ -8472,7 +8472,7 @@ I_\ell
 I_\ell\hat{\mathbf{n}}_\ell
 $$
 
-where $\hat{\mathbf{n}}_\ell$ is the layer's oriented plane normal. This is not yet the exact Noether charge; it is the layer projection of the rotational ledger. The core-level accounting target is
+where $\hat{\mathbf{n}}_\ell$ is the layer's oriented plane normal. This is not yet the exact Noether charge; it is the layer projection of the rotational ledger. The braid-level accounting target is
 
 $$
 \mathbf{J}_{\text{core}}
@@ -9665,7 +9665,7 @@ $$
 \mathbf u_a(t)\times\mathbf v_a(t)=\hat{\mathbf n}_a(t)
 $$
 
-The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
+The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three support roles, not two different triads.
 
 For a closed ordered frame, use the reduced branch label
 
@@ -11168,7 +11168,7 @@ $$
 \right)
 $$
 
-where $\mathbf{n}_{\ell}$ denotes the layer plane normal, $\phi_{\ell}$ the phase, $\omega_{\ell}$ the layer frequency, $I_{\ell}$ the radian-normalized rotational-action variable, $\mathcal{R}_{\ell}$ the active causal-root ledger, $\mathbf{L}_{\text{wake},\text{core}}$ the in-flight causal-wake contribution associated with the target core, and $\mathcal{H}_{\text{self}}$ the relevant self-hit history. This package is still a reduction of the full architrino state. It is nevertheless the minimum kind of ledger a spin apparatus can couple to, because a single classical axis would erase the phase, root, and wake-history information that the measurement interaction is supposed to test.
+where $\mathbf{n}_{\ell}$ denotes the layer plane normal, $\phi_{\ell}$ the phase, $\omega_{\ell}$ the layer frequency, $I_{\ell}$ the radian-normalized rotational-action variable, $\mathcal{R}_{\ell}$ the active causal-root ledger, $\mathbf{L}_{\text{wake},\text{braid}}$ the in-flight causal-wake contribution associated with the target braid, and $\mathcal{H}_{\text{self}}$ the relevant self-hit history. This package is still a reduction of the full architrino state. It is nevertheless the minimum kind of ledger a spin apparatus can couple to, because a single classical axis would erase the phase, root, and wake-history information that the measurement interaction is supposed to test.
 
 The apparatus couples first through the externally exposed layers of the assembly, but the result is not determined by the outer layer alone. During the interval $T_{\text{int}}$, the apparatus gradient exerts a distributed torque on the target constituents,
 
@@ -11181,9 +11181,9 @@ $$
 \mathbf{F}^{\text{app}}_i(t)
 $$
 
-where $\mathbf{F}^{\text{app}}_i$ is the apparatus-induced force bookkeeping term reconstructed from the local causal-wake hits, and $\mathbf{X}_{\text{core}}$ is the target core center used for the reduced ledger. The torque deforms the outer response channel, retunes the middle hinge, and can alter the admissible self-hit branch history of the inner layer. The measured response is therefore a coupled redistribution of $\Delta I_O$, $\Delta I_M$, $\Delta I_I$, and $\Delta I_{\text{wake}}$, not a direct lookup of an already chosen sign.
+where $\mathbf{F}^{\text{app}}_i$ is the apparatus-induced force bookkeeping term reconstructed from the local causal-wake hits, and $\mathbf{X}_{\text{braid}}$ is the target braid center used for the reduced ledger. The torque deforms the outer response channel, retunes the middle hinge, and can alter the admissible self-hit branch history of the inner layer. The measured response is therefore a coupled redistribution of $\Delta I_O$, $\Delta I_M$, $\Delta I_I$, and $\Delta I_{\text{wake}}$, not a direct lookup of an already chosen sign.
 
-Angular momentum must be conserved across the whole interaction window. For the target core $C$, apparatus $A$, exchange wakes, and local Noether sea recoil, the required ledger is
+Angular momentum must be conserved across the whole interaction window. For the target braid $C$, apparatus $A$, exchange wakes, and local Noether sea recoil, the required ledger is
 
 $$
 \Delta \mathbf{J}_{C}
@@ -11370,7 +11370,7 @@ $$
 \delta_{\eta}\!\left(r_{ia}(t,s)-c_f(t-s)\right)\,ds
 $$
 
-The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the core-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
+The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the braid-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
 
 $$
 \boxed{
@@ -12829,7 +12829,7 @@ The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A
 
 The existence of absolute time $t$ is essential to the consistency of this picture. In the standard relativistic framework, the absence of a preferred foliation means that "which measurement happened first" is frame-dependent for spacelike-separated events. This makes it difficult to tell a coherent story about how correlations are maintained without invoking some form of action at a distance.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $t$, the complete microstate $\Gamma(t)$ is defined on a global simultaneity surface $\Sigma_t$. The shared source event fixes a nonseparable pair-provenance domain for $A$ and $B$, carried in their internal configurations and path histories for $t > t_0$. The measurement at $A$ (occurring at some absolute time $t_A$) resolves $A$'s configuration into a definite local basin; the measurement at $B$ (at $t_B$) does the same for $B$. Whether $t_A < t_B$ or $t_B < t_A$ is an objective fact, but it does not by itself solve Bell's theorem. The closure is earned only when the pushed-forward joint response kernel preserves no-signaling and measurement independence while failing product screening.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective temporal ordering. At any absolute time $T$, the complete microstate $\Gamma(T)$ is defined on a global simultaneity surface $\Sigma_T$. The shared source event fixes a nonseparable pair-provenance domain for $A$ and $B$, carried in their internal configurations and path histories for $T > T_{\mathrm{em}}$. The measurement at $A$ (occurring at some absolute time $T_A$) resolves $A$'s configuration into a definite local basin; the measurement at $B$ (at $T_B$) does the same for $B$. Whether $T_A < T_B$ or $T_B < T_A$ is an objective fact, but it does not by itself solve Bell's theorem. The closure is earned only when the pushed-forward joint response kernel preserves no-signaling and measurement independence while failing product screening.
 
 This structure avoids the conceptual difficulties of standard nonlocality:
 
@@ -13804,7 +13804,7 @@ Special relativity gives the observer-level invariant bookkeeping for clocks, ru
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether sea dynamics.
 
-The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three support layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
 ##### Ownership Boundary
 
@@ -14212,7 +14212,7 @@ The same Lorentz factor appears in clock, ruler, momentum, and energy formulas b
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,
-2. stable phase closure across nested binaries,
+2. stable phase closure across nested shell braid support rows,
 3. deformation of the dynamic exclusion envelope,
 4. clock-frequency extraction from internal cycles,
 5. and medium-dressed response to acceleration.
@@ -14246,11 +14246,11 @@ To promote this bridge from mapping to derivation, the following targets must cl
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
 9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
-10. Prove that the outer-envelope oblation is the observable projection of an all-three-binary branch update, not an independently assigned deformation law.
+10. Prove that the outer-envelope oblation is the observable projection of a whole-braid branch update, not an independently assigned deformation law.
 
 ##### Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three support layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
 
 #### Return-Cycle Lorentz Quantization
 
@@ -14672,7 +14672,7 @@ The bridge should cover the major mathematical families rather than only modern 
 | General-relativistic metric spacetime | Dynamic metric geometry, curvature, geodesics, Einstein equation, and PPN observables. | The strongest tested observer-level gravitational target. | Detailed mapping belongs in the spacetime lane; this bridge records only the comparison interface. |
 | Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native hidden coordinate or fiber variable is derived from assembly state. |
 | Metric-affine, torsion, and Einstein-Cartan programs | Independent connection, torsion, spin coupling, and generalized geometric variables. | A structured way to ask whether spin, torsion, or nonmetricity survive as effective observer-level residues. | Possible deviation channels in the ADM/Cartan handoff, not primitive geometry of the Euclidean void. |
-| ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$. |
 | Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
 | Jacobson thermodynamic spacetime | Einstein equation as an equation of state from local horizon thermodynamics, boost-energy flux, and the Clausius relation. | Thermodynamic and equation-of-state pressure on any emergent metric theory. | A high-value comparison for deriving GR-like limits from Noether sea entropy, stress, energy exchange, and finite-boundary observer data. |
 | Analog gravity and acoustic metrics | Effective Lorentzian metrics for perturbations in fluids or condensates. | Concrete examples where signal propagation in a medium carries metric form. | Useful if it sharpens the signal-channel map; insufficient if it only supplies scalar speed. |
@@ -14699,13 +14699,13 @@ A third comparison lesson concerns discreteness and symmetry. Causal-set work us
 
 | Inherited model | What it preserves | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer | Forbidden inference | Closure target |
 | --- | --- | --- | --- | --- |
-| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_t$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
+| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_T$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
 | Newtonian gravity | Low-speed potential mechanics and inverse-square weak-field limits. | $\Phi_N$ remains a benchmark potential; the substrate mechanism is delayed causal-wake summation plus medium response. | Instantaneous action-at-a-distance is fundamental. | Recover Newtonian acceleration as the leading observer-level limit of the delayed ledger and effective metric map. |
 | Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
 | Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
 | General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether sea state to ADM/Cartan fields that recovers GR in tested regimes. |
 | Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether braid population dynamics and identify their valid averaging scale. |
-| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$. |
 | Kaluza-Klein, compact extra-dimensional, and string compactification models | Geometry can generate quantized modes, effective gauge bookkeeping, momentum/winding sectors, dual descriptions, and low-energy spectra. | Comparison for hidden-coordinate or internal-cycle bookkeeping only if a native assembly-state or Noether sea variable supplies the coordinate and its excitation spectrum. | A mathematically allowed compactification, T-dual description, or landscape member is a physical explanation. | Recover the observed spectrum and constants from one shared record, keep all extra modes above observational bounds, and provide a no-hidden-retune witness across the null results and recovered low-energy channels. |
 | Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
 | Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
@@ -14837,7 +14837,7 @@ followed by the ADM/Cartan reconstruction target
 $$
 \mathcal{X}_{\text{sea}}
 \longrightarrow
-\left(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\right)
+\left(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}}\right)
 \longrightarrow
 g^{\text{eff}}_{\mu\nu}
 $$
@@ -14845,16 +14845,16 @@ $$
 The resulting observer-level line element has the shared target form
 
 $$
-ds_{\rm eff}^2
+ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
+This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
 
 For superfluid comparisons, a second optional handoff is required before the analogy can become technical:
 
@@ -15024,13 +15024,24 @@ In standard QFT, one increment of that ladder is called one particle of the corr
 
 ##### Flat-Spacetime Equation
 
-The flat-spacetime Klein-Gordon equation is
+The flat-spacetime Klein-Gordon standard comparison form is
 $$
 \left(\Box - \frac{m^2c^2}{\hbar^2}\right)\phi = 0,
 \qquad
 \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
 $$
 in the mostly-plus metric convention.
+
+The layer-explicit effective bridge keeps the same operator pattern but maps $t\mapsto t_{\mathrm{eff}}$, the spatial chart to $x_{\mathrm{eff}}^i$, and $\phi\mapsto\phi_{\mathrm{eff}}$:
+$$
+\left(\Box_{\mathrm{eff}}-\frac{m_{\mathrm{eff}}^2c_{\mathrm{eff}}^2}{\hbar_{\mathrm{eff}}^2}\right)\phi_{\mathrm{eff}}=0,
+\qquad
+\Box_{\mathrm{eff}}
+=
+-\frac{1}{c_{\mathrm{eff}}^2}
+\frac{\partial^2}{\partial t_{\mathrm{eff}}^2}
++\Delta_{\mathrm{eff}}.
+$$
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form
 $$
@@ -15054,13 +15065,13 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a recovery equation, not an ontolo
 
 ##### Curved-Spacetime Equation
 
-The curved-spacetime scalar-field equation with optional curvature coupling is
+The curved-spacetime scalar-field standard comparison form with optional curvature coupling is
 $$
 \left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0
 $$
 Here $\nabla^\mu\nabla_\mu$ is the metric wave operator, $R$ is scalar curvature, and $\xi$ controls nonminimal coupling between the scalar mode and curvature.
 
-The corresponding curved-spacetime action is commonly written:
+The layer-explicit reading is that $g_{\mu\nu}$, $R$, $d^4x$, and the covariant derivative are effective observer-geometry objects: $g_{\mu\nu}^{\mathrm{eff}}$, $R_{\mathrm{eff}}$, $d^4x_{\mathrm{eff}}$, and $\nabla_{\mathrm{eff}}$. The corresponding curved-spacetime action is commonly written in standard comparison notation:
 $$
 S_\phi =
 \int d^4x\,\sqrt{-g}\,
@@ -15110,13 +15121,13 @@ Here $J$ may be an ordinary source density, a distributional point or surface so
 
 ##### Variational Scalar Closure Benchmark
 
-The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated as
+The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In native $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated on an absolute slice as
 $$
 \mathcal{F}_{\mathrm{eff}}[\phi]
 =
-\int_{\Sigma_t}
+\int_{\Sigma_T}
 \left[
-\frac{K_\phi}{2}\|\nabla\phi\|^2
+\frac{K_\phi}{2}\|\nabla_{\mathbf X}\phi\|^2
 +V_{\mathrm{eff}}(\phi)
 \right]\,dV
 $$
@@ -15134,7 +15145,7 @@ V_{\mathrm{eff}}'(\phi_\ast)=0
 $$
 Linearizing gives
 $$
-\partial_t^2\delta\phi
+\partial_T^2\delta\phi
 \approx
 c_{\mathrm{eff}}^2\Delta\delta\phi
 -\omega_0^2\delta\phi,
@@ -15200,7 +15211,7 @@ Long-term relevance is as a benchmark continuum limit: the mature stack should d
 To promote this bridge from mapping to derivation, the following targets must close:
 
 1. Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
-2. Derive normal coordinates $Q_k(t)$ for Noether braid cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
+2. Derive normal coordinates $Q_k(T)$ for Noether braid cluster modes so that $\phi(\mathbf X,T)\approx\sum_k Q_k(T)u_k(\mathbf X)$ in the continuum limit.
 3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
 4. Show when linearization around a homogeneous Noether sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.
@@ -15275,7 +15286,7 @@ $$
 The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), bi-binary (IM-), and uni-binary (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
 
 ###### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that transforms quark types (down ↔ up, strange ↔ charm, etc.).
@@ -15290,12 +15301,12 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
 ##### Minimal premises
-- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
+- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II shielding branch (c,s), Gen III shielding branch (t,b).
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 
 Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
-Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where cores are unshadowed and available to couple.
+Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
 
 Noether sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
@@ -15778,7 +15789,7 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating pro/anti planar pair.
   - Noether sea: hypothesized as paired pro/anti Noether braids; a local interaction could draw neutral braid content to participate while preserving recorded provenance.
-- **Architrino budget example:** reacting with a Noether sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
+- **Architrino budget example:** reacting with a Noether sea super-assembly (4 braids) × (6 architrinos/braid) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating braids/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
 
 ###### Illustrative Candidate Ledger Rows
@@ -16146,7 +16157,7 @@ We propose an effective spin/statistics mapping via a reduction in configuration
 In the low-energy / weak-alignment regime:
 
 - Inner, Middle, and Outer binaries occupy **non-coplanar planes**.
-- Total angular momentum **J** is fixed (no external torque), but the normals of the three binary planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
+- Total angular momentum **J** is fixed (no external torque), but the normals of the three support-row planes wobble: their composite orientation precesses around **J**, often following small-circle, Lissajous, or figure-8 paths in orientation space (not a rigid cone).
 - The full causal configuration (including self-hit history and relative plane orientations) is not restored by a simple $2\pi$ spatial rotation.
 
 > **Hypothesis:** The effective orientation space of such a nested shell braid behaves like an $SU(2)$-type double cover of spatial rotations:
@@ -16388,16 +16399,16 @@ g^{\text{eff}}_{\mu\nu}
 \mathcal{G}_{\text{metric}}
 \left(
 h_{ij},
-S(t),
+S(T),
 n,
 \chi_{\text{sea}},
 \sigma^{ab}_{\text{sea}},
-u^i_{\text{sea}},
+u^i_{\mathrm{sea,eff}},
 e^a{}_i,
 \Pi_{\text{obs}}
 \right)
 $$
-Here $S(t)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\text{sea}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
+Here $S(T)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\mathrm{sea,eff}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
 
 ### Geometry-Layer Map
 
@@ -18213,7 +18224,7 @@ Religious origin and end-state images are useful only at this comparative level.
 
 The most important contrast for $\mathbb{A}\mathbb{A}\mathbb{A}$ is that it does not require a terminal cosmic state carrying moral or salvific completion. It also does not require dissolution into a higher metaphysical principle. Its future-facing picture is open-ended transformation under lawful dynamics. In this respect it stands furthest from judgment-centered eschatology and somewhat closer in style to non-apocalyptic process traditions.
 
-A living body makes this distinction concrete. In this framework, a body is an assembly-level organization whose architrino membership changes over time. Biological death may end the organism-level organization, record-making capacity, and agency carried by that organization, but it does not remove the participating architrinos from the substrate inventory. Those architrinos remain provenance-bearing entities in $\mathbb{U}_{\text{now}}\equiv S(t)$ and continue along later worldlines wherever subsequent dynamics carry them. The comparison therefore cuts between personal survival and constituent persistence: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not infer soul survival, resurrection, or reincarnation after biological death, but it does make the material provenance of the former body literal rather than merely poetic.
+A living body makes this distinction concrete. In this framework, a body is an assembly-level organization whose architrino membership changes over time. Biological death may end the organism-level organization, record-making capacity, and agency carried by that organization, but it does not remove the participating architrinos from the substrate inventory. Those architrinos remain provenance-bearing entities in $\mathbb{U}_{\text{now}}\equiv S(T)$ and continue along later worldlines wherever subsequent dynamics carry them. The comparison therefore cuts between personal survival and constituent persistence: $\mathbb{A}\mathbb{A}\mathbb{A}$ does not infer soul survival, resurrection, or reincarnation after biological death, but it does make the material provenance of the former body literal rather than merely poetic.
 
 This does not render $\mathbb{A}\mathbb{A}\mathbb{A}$ equivalent to those traditions. It means only that, at the level of cosmological grammar, $\mathbb{A}\mathbb{A}\mathbb{A}$ belongs more closely to non-creator, non-teleological, process-centered accounts than to one-time creation narratives culminating in final redemption.
 
@@ -18865,14 +18876,14 @@ The relevant contrast with a simple mechanical body is therefore structural. A n
 
 This distinction also keeps ontological and epistemic claims separate. Ontologically, the system evolves through physical dynamics. Epistemically, a Physical Observer may not have enough access to the microstate, wake-phase history, and threshold geometry to predict which attractor will be selected.
 
-The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_t$, write its resolved internal state as $X_\Omega(t)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<t}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(t)$. Its effective subsystem evolution has the form
+The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_T$, write its resolved internal state as $X_\Omega(T)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<T}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(T)$. Its effective subsystem evolution has the form
 $$
-\frac{dX_\Omega}{dt}
+\frac{dX_\Omega}{dT}
 =
 F_\Omega\!\left(
-X_\Omega(t),
-\mathcal{H}_{\Omega}^{<t},
-\mathcal{B}_{\partial\Omega}(t),
+X_\Omega(T),
+\mathcal{H}_{\Omega}^{<T},
+\mathcal{B}_{\partial\Omega}(T),
 N_{\text{sea}}|_{\Omega}(t)
 \right)
 $$
@@ -19441,7 +19452,7 @@ The long-term relevance of this episode is permanent until the field/particle di
 
 What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
 $$
-a_{\mathrm{eff}}(t)=a_0e^{H_*t},
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t},
 \qquad
 \dot{\rho}_{m,\mathrm{eff}}=0
 $$
@@ -19466,7 +19477,7 @@ What was occluded was a disciplined source-provenance analysis. A cosmological c
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(T)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
 
 #### Recovery Target
 
@@ -20907,7 +20918,7 @@ Standard repairs include horizontal symmetries, Froggatt-Nielsen textures, textu
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Generations and mixing are routed to branch families, internal geometry, overlap integrals, axial-frame relations, weak-corridor exposure, and detector-level reconstruction. Three generations are candidate stable assembly attractor families, with mass hierarchy arising from different coupling to the middle binary layer. CKM versus PMNS structure should follow from geometric overlap in quark versus lepton assemblies, not from arbitrary matrix insertion.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, flavor is attributed to **resonant harmonics** of the nested shell braid structure. Three generations arise as three stable assembly attractor families (Ground State, First Excited, Second Excited) with distinct internal phase-windings. The observed mass hierarchy reflects how strongly each family couples to the middle binary layer. CKM versus PMNS structure follows from the **geometric overlap** between these harmonic shapes in quark versus lepton composites. Crucially, the CP-violating phase ($\delta_{CP}$) arises not from an arbitrary parameter but from the **interference of internal winding modes** (spirograph-like patterns), which generates a complex phase factor in the effective Hamiltonian. The falsifier is direct: if precision flavor data and mixing angles can be derived from the geometric ratios of nested binary radii (e.g., $m_\mu/m_e$) without free parameters, $\mathbb{A}\mathbb{A}\mathbb{A}$ is validated.
+**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, flavor is attributed to **resonant harmonics** of the nested shell braid structure. Three generations arise as three stable assembly attractor families (Ground State, First Excited, Second Excited) with distinct internal phase-windings. The observed mass hierarchy reflects how strongly each family couples to the middle support layer. CKM versus PMNS structure follows from the **geometric overlap** between these harmonic shapes in quark versus lepton composites. Crucially, the CP-violating phase ($\delta_{CP}$) arises not from an arbitrary parameter but from the **interference of internal winding modes** (spirograph-like patterns), which generates a complex phase factor in the effective Hamiltonian. The falsifier is direct: if precision flavor data and mixing angles can be derived from the geometric ratios of nested shell braid radii (e.g., $m_\mu/m_e$) without free parameters, $\mathbb{A}\mathbb{A}\mathbb{A}$ is validated.
 
 **Resolution tests.** Use quark masses, lepton masses, CKM/PMNS data, CP violation, neutrino oscillations, rare decays, and collider flavor constraints. The falsifier is an arbitrary matrix relabeling without branch-derived structure.
 

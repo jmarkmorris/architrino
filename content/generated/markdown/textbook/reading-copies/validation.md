@@ -710,7 +710,7 @@ These quantities belong to Noether braid architecture, shielding, branch structu
 | --- | --- | --- | --- | --- | --- |
 | G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Energy](../../../../markdown/aaa/dynamics/energy.md) |
 | G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](../../../../markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested binaries in the Noether braid | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) |
+| G1 | $R_{\text{inner}},R_{\text{middle}},R_{\text{outer}}$ | Geometric closure target | Open | characteristic radii of the nested shell braid support rows in the Noether braid | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) |
 | G2 | $\omega_{\text{inner}},\omega_{\text{middle}},\omega_{\text{outer}}$ | Geometric closure target | Open | characteristic binary frequencies associated with the nested radii | [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | outer-binary alignment radius in the terminal Planck-alignment map | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
 | G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md) |
@@ -4807,7 +4807,7 @@ $$
 \Delta\mathbf L_{\mathrm{wake},\partial}
 \right)
 $$
-Here $\mathbf T_\ell$ is the layer torque reconstructed from causal-wake forces on the architrinos in layer $\ell$, and $\Delta\mathbf L_{\mathrm{wake},\partial}$ is the angular momentum still carried across the chosen core boundary at the end of the transition window.
+Here $\mathbf T_\ell$ is the layer torque reconstructed from causal-wake forces on the architrinos in layer $\ell$, and $\Delta\mathbf L_{\mathrm{wake},\partial}$ is the angular momentum still carried across the chosen braid boundary at the end of the transition window.
 
 ##### Branch-Chart Conservation Pullback
 
@@ -5136,7 +5136,7 @@ $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
 \ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
-\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2}
+\ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}=a_R\frac{U}{c_0^2}
 $$
 
 The cadence-stretch row must satisfy
@@ -5454,7 +5454,7 @@ b_\chi(2)=1,
 b_\chi(0.6)=1
 $$
 
-The current validation status is therefore conditional. Nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ are not required by the endpoint row itself. They become necessary only if an independent branch record, such as hydrogen spectral refinement or pressure-response replay, supplies non-$\chi_{\text{sea}}$ response that must share the same $\Gamma_N$ row. The next proof obligation is to replace the toy nonzero entries with branch-derived density, envelope-scale, or $R_{\text{core}}$ response rather than treating them as fit parameters.
+The current validation status is therefore conditional. Nonzero static endpoint coefficients $a_n$, $a_\lambda$, and $a_R$ are not required by the endpoint row itself. They become necessary only if an independent branch record, such as hydrogen spectral refinement or pressure-response replay, supplies non-$\chi_{\text{sea}}$ response that must share the same $\Gamma_N$ row. The next proof obligation is to replace the toy nonzero entries with branch-derived density, envelope-scale, or $R_{\text{braid}}$ response rather than treating them as fit parameters.
 
 The hydrogen spectral toy scan may replay this compensated row as a scaffold, but that replay is not evidence that the gravitational endpoint has acquired nonzero $a_n$, $a_\lambda$, or $a_R$. Those entries become promotable only when the hydrogen branch or another declared branch derives the same component split for the same Noether sea cell.
 
@@ -5703,7 +5703,7 @@ $$
 =0
 $$
 
-so both records give the same $\ln\Gamma_{N,\mathrm H}=0.001$ while preserving separate $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{core}}$ entries. By contrast, the shared-delay-only control row
+so both records give the same $\ln\Gamma_{N,\mathrm H}=0.001$ while preserving separate $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{braid}}$ entries. By contrast, the shared-delay-only control row
 
 $$
 \left(
@@ -5742,7 +5742,7 @@ $$
 \ln\chi_{\text{sea},\mathrm H}^{(\ell)},\,
 \ln\lambda_{\mathrm H}^{(\ell)},\,
 -\ln\xi_{\mathrm H}^{(\ell)},\,
-\ln\frac{R_{\text{core},\mathrm H}^{(\ell)}}{R_{\text{core},0}}
+\ln\frac{R_{\text{braid},\mathrm H}^{(\ell)}}{R_{\text{braid},0}}
 \right)^T
 $$
 
@@ -6024,7 +6024,7 @@ For each Physical Observer $O$, effective-horizon patch $\partial\Omega$, and fi
 
 | Channel | Required content | Failure prevented |
 | --- | --- | --- |
-| Noether sea state | $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
+| Noether sea state | $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
 | Physical Observer | worldline, clock-rate record, access region, reference resources, and observer acceleration $a_O$ derived from the metric channel | importing an external observer or a free Rindler frame |
 | Boundary patch | $\partial\Omega$, effective patch area $A_{\partial\Omega}^{\mathrm{eff}}$, orientation, and signed crossing convention | hiding the area comparison in an undefined horizon surface |
 | Boundary wake labels | retained label set $\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)$ with emitter identity, emission time, receiver or sensor identity, reception time, channel, and persistence criterion | counting unrecorded or inaccessible microstates |
@@ -6099,7 +6099,7 @@ $$
 \qquad
 a_O^2
 =
-\gamma_{ij}a_O^i a_O^j
+\gamma_{ij}^{\mathrm{eff}}a_O^i a_O^j
 $$
 
 The continuum flux estimator is
@@ -7152,7 +7152,7 @@ The score is still held below modern operational closure by the same central blo
 
 The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
 
-The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and core rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
+The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and braid-scale rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
 
 Formula, parameter, and empirical rows remain the main drag on the total. The corpus still lacks a single accepted native record that supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, weak-mixing and CKM/PMNS values, Standard Model mass formulas, radiation benchmarks, and shared cosmology residual fits. The Parameter Ledger improves the bookkeeping of primitive constants, geometric closure targets, constitutive closure targets, CODATA benchmark rows, and null-result discipline, but most decisive symbols remain open or branch-dependent rather than fixed outputs.
 

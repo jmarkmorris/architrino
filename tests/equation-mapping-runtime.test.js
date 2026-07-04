@@ -25,6 +25,7 @@ import {
   createEquationMappingHomeHref,
   createPointerLineGeometry,
   EquationMappingRuntime,
+  resolveCalloutPlacements,
   resolveCalloutRowLayout,
   resolveEquationLineClearancePx,
   resolveEquationVerticalShift,
@@ -198,38 +199,84 @@ test("equation mapping gives Noether sea continuity residual its own callout", (
     true
   );
   assert.equal(residualOverlay?.id, "density-residual");
-  assert.equal(residualOverlay?.sectionLinePlacement, "below");
+  assert.equal(resolveCalloutPlacements(document).get(residualOverlay.id), "below");
 });
 
-test("equation mapping keeps same-side seed callouts ordered with their target terms", () => {
-  createSeedEquationMapDocuments().forEach((document) => {
-    const anchorOrder = new Map();
-    document.formulaParts.forEach((part, index) => {
-      if (part.anchorId && !anchorOrder.has(part.anchorId)) {
-        anchorOrder.set(part.anchorId, index);
-      }
-    });
-    ["above", "below"].forEach((placement) => {
-      const targetOrderByBoxPosition = document.overlays
-        .filter((overlay) => overlay.sectionLinePlacement === placement)
-        .sort((left, right) => left.position.x - right.position.x)
-        .map((overlay) => anchorOrder.get(overlay.targetAnchorId));
-      assert.deepEqual(
-        targetOrderByBoxPosition,
-        [...targetOrderByBoxPosition].sort((left, right) => left - right),
-        `${document.id} ${placement} callouts should not cross target order`
-      );
-    });
+test("equation mapping computes callout placement from formula order instead of seed line choices", () => {
+  const placementByOverlayId = resolveCalloutPlacements({
+    formulaParts: [
+      { kind: "math", anchorId: "first" },
+      { kind: "math", anchorId: "second" },
+      { kind: "math", anchorId: "third" },
+      { kind: "math", anchorId: "fourth" },
+    ],
+    overlays: [
+      { id: "fourth-note", targetAnchorId: "fourth", sectionLinePlacement: "above" },
+      { id: "first-note", targetAnchorId: "first", sectionLinePlacement: "below" },
+      { id: "third-note", targetAnchorId: "third", sectionLinePlacement: "below" },
+      { id: "second-note", targetAnchorId: "second", sectionLinePlacement: "above" },
+    ],
   });
+
+  assert.deepEqual([...placementByOverlayId.entries()], [
+    ["first-note", "above"],
+    ["second-note", "below"],
+    ["third-note", "above"],
+    ["fourth-note", "below"],
+  ]);
 });
 
-test("equation mapping places effective-metric upper-row callouts above and drift callout below", () => {
+test("equation mapping places explicit formula rows by row instead of per-equation tuning", () => {
+  const placementByOverlayId = resolveCalloutPlacements({
+    formulaParts: [
+      { kind: "math", anchorId: "topLeft" },
+      { kind: "math", anchorId: "topRight" },
+      { kind: "break" },
+      { kind: "math", anchorId: "bottomLeft" },
+      { kind: "math", anchorId: "bottomRight" },
+    ],
+    overlays: [
+      { id: "bottom-right-note", targetAnchorId: "bottomRight", sectionLinePlacement: "above" },
+      { id: "top-right-note", targetAnchorId: "topRight", sectionLinePlacement: "below" },
+      { id: "bottom-left-note", targetAnchorId: "bottomLeft", sectionLinePlacement: "above" },
+      { id: "top-left-note", targetAnchorId: "topLeft", sectionLinePlacement: "below" },
+    ],
+  });
+
+  assert.deepEqual([...placementByOverlayId.entries()], [
+    ["bottom-right-note", "below"],
+    ["top-right-note", "above"],
+    ["bottom-left-note", "below"],
+    ["top-left-note", "above"],
+  ]);
+});
+
+test("equation mapping computes staggered master-equation callouts by target order", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID
+  );
+  const placementByOverlayId = resolveCalloutPlacements(document);
+
+  assert.deepEqual(
+    document.overlays.map((overlay) => [
+      overlay.targetAnchorId,
+      placementByOverlayId.get(overlay.id),
+    ]),
+    [
+      ["acceleration", "above"],
+      ["polarity", "below"],
+      ["inverseSquare", "above"],
+      ["branchStrength", "below"],
+      ["direction", "above"],
+    ]
+  );
+});
+
+test("equation mapping uses generated alternating placement for single-row maps", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-07-effective-metric-adm-cartan"
   );
-  const placementByOverlayId = new Map(
-    document.overlays.map((overlay) => [overlay.id, overlay.sectionLinePlacement])
-  );
+  const placementByOverlayId = resolveCalloutPlacements(document);
 
   assert.equal(
     document.formulaTeX,
@@ -252,9 +299,9 @@ test("equation mapping places effective-metric upper-row callouts above and drif
     true
   );
   assert.equal(placementByOverlayId.get("observer-level"), "above");
-  assert.equal(placementByOverlayId.get("clock-channel"), "above");
-  assert.equal(placementByOverlayId.get("spatial-channel"), "above");
-  assert.equal(placementByOverlayId.get("drift-channel"), "below");
+  assert.equal(placementByOverlayId.get("spatial-channel"), "below");
+  assert.equal(placementByOverlayId.get("drift-channel"), "above");
+  assert.equal(placementByOverlayId.get("clock-channel"), "below");
 });
 
 test("equation mapping gives oblate-envelope perpendicular radius its own callout", () => {
@@ -287,10 +334,7 @@ test("equation mapping energy-momentum map adds corrected motion relation and re
   );
   const motionOverlay = document.overlays.find((overlay) => overlay.id === "motion-response");
 
-  assert.equal(
-    document.overlays.every((overlay) => overlay.sectionLinePlacement === "above"),
-    true
-  );
+  assert.equal([...resolveCalloutPlacements(document).values()].every((placement) => placement === "above"), true);
   assert.equal(
     motionOverlay.content.some(
       (block) =>
@@ -625,7 +669,8 @@ test("equation mapping settings omit the global section-line control", () => {
   assert.equal(runtime.includes("this.sectionLinePlacement ="), false);
   assert.equal(runtime.includes("sectionLinePlacement: this.sectionLinePlacement"), false);
   assert.equal(runtime.includes("normalizeSectionLinePlacement"), false);
-  assert.equal(runtime.includes('this.renderEditorSelect("Line"'), true);
+  assert.equal(runtime.includes('this.renderEditorSelect("Line"'), false);
+  assert.equal(runtime.includes('name="overlay-line"'), false);
   assert.equal(requirements.includes("section-line placement: above or below formula section"), false);
 });
 

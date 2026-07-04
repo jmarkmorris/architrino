@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 595,
+      "nodes": 596,
       "edges": 1358,
       "scenes": 382,
       "markdownIndexes": 0,
-      "markdownDocs": 196,
+      "markdownDocs": 197,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2774,6 +2774,12 @@
       "id": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "name": "Cosmology Ontology",
       "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "name": "Cosmology Reconstruction",
+      "path": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7558,6 +7564,15 @@
       "name": "Cosmology Ontology",
       "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "searchTarget": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "name": "Cosmology Reconstruction",
+      "path": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "searchTarget": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
       "implicit": false
     },
     {

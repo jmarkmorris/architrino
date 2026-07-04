@@ -44,50 +44,50 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Substrate (What Exists Fundamentally)",
+                "title": "The Substrate",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Substrate (What Exists Fundamentally)",
-                "sectionKey": "the substrate what exists fundamentally",
+                "markdownSection": "The Substrate",
+                "sectionKey": "the substrate",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Fundamental Entity (Architrino)",
+                "title": "The Fundamental Entity",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Fundamental Entity (Architrino)",
-                "sectionKey": "the fundamental entity architrino",
+                "markdownSection": "The Fundamental Entity",
+                "sectionKey": "the fundamental entity",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Physical Medium (Noether Sea)",
+                "title": "The Physical Medium",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Physical Medium (Noether Sea)",
-                "sectionKey": "the physical medium noether sea",
+                "markdownSection": "The Physical Medium",
+                "sectionKey": "the physical medium",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Observer Framework (Ontic vs Epistemic)",
+                "title": "The Observer Framework",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "The Observer Framework (Ontic vs Epistemic)",
-                "sectionKey": "the observer framework ontic vs epistemic",
+                "markdownSection": "The Observer Framework",
+                "sectionKey": "the observer framework",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Terminology Discipline (Locked Definitions)",
+                "title": "Terminology Discipline",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Terminology Discipline (Locked Definitions)",
-                "sectionKey": "terminology discipline locked definitions",
+                "markdownSection": "Terminology Discipline",
+                "sectionKey": "terminology discipline",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Parameter Ledger (Foundation Level)",
+                "title": "Parameter Ledger",
                 "markdownPath": "content/markdown/aaa/foundations/ontology.md",
-                "markdownSection": "Parameter Ledger (Foundation Level)",
-                "sectionKey": "parameter ledger foundation level",
+                "markdownSection": "Parameter Ledger",
+                "sectionKey": "parameter ledger",
                 "headingLevel": 2
               },
               {
@@ -638,9 +638,9 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Case for Absolute Time ($t$)",
+                "title": "The Case for Absolute Time ($T$)",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
-                "markdownSection": "The Case for Absolute Time ($t$)",
+                "markdownSection": "The Case for Absolute Time ($T$)",
                 "sectionKey": "the case for absolute time t",
                 "headingLevel": 2
               },

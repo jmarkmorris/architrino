@@ -54,6 +54,7 @@ This document distinguishes three audience scopes:
 - The operator does not use git worktrees for this repo because they do not meet the workflow requirements. Do not propose or request a git worktree as the default isolation strategy unless the operator explicitly asks for one.
 - At the start of work, inspect `git status --short --untracked-files=all`, then keep the write set scoped to the files the current task owns. Report unrelated dirty files only when they block the task, create overwrite risk, affect validation, or matter for staging, committing, pushing, or PR publication.
 - In closeouts, distinguish scoped edits from ambient multi-agent worktree state. Avoid generic warnings such as "the broader working tree has additional user changes" unless those changes alter the next action.
+- Treat operator/developer implementation input as a request for an across-the-board, reproducible feature or rule across the relevant app, renderer, corpus path, or workflow class. Do not satisfy such input with one-off local customization unless the operator/developer explicitly scopes it that way; any exception, per-item override, or special case must be negotiated with the operator/developer before implementation.
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 

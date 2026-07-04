@@ -26,19 +26,19 @@ Here, geodetic precession means the de Sitter precession of a carried gyroscope:
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the Euclidean straight-line anchor supplied by the $\mathbb{U}_{\text{now}}$ state record.
 2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether sea response near the Sun, expressed by the Noether sea delay factor $\chi_{\text{sea}}$.
-3. **Comparison**: Contrast $\Delta t_{\text{arch}}$ with the GR weak-field form.
+3. **Comparison**: Contrast $\Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
 ## Explicit Weak-Field Noether Sea Delay Map (PPN $\gamma$)
 
 Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether braid medium:
 $$
-\bar{\chi}_{\text{sea}}(\mathbf{x})
+\bar{\chi}_{\text{sea}}(\mathbf X,T)
 \equiv
-\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_0}{c_{\text{eff}}(\mathbf X,T)}
 =
-\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
-= 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
+\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf X,T)
+= 1 - (1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf X,T)}{c_0^2}
 + \mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 with $\Phi_N<0$ near a mass source. For a point mass $M$,
@@ -51,12 +51,13 @@ $$
 
 For a one-way signal along a Euclidean straight path $\Gamma$ (the $\mathbb{U}_{\text{now}}$ anchor),
 $$
-t_{\text{arch}}=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
-=\frac{R}{c_0}+\Delta t_{\text{arch}}
+t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
+=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf X,T)\,ds
+=\frac{R}{c_0}+\Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
 $$
 where $R=\int_\Gamma ds$ is Euclidean path length and
 $$
-\Delta t_{\text{arch}}
+\Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
 =\frac{1}{c_0}\int_\Gamma (\bar{\chi}_{\text{sea}}-1)\,ds
 =\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}\int_\Gamma \frac{ds}{r(s)}
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
@@ -64,7 +65,7 @@ $$
 
 Evaluating the line integral for endpoint radii $r_1,r_2$ and Euclidean endpoint separation $R$ gives
 $$
-\Delta t_{\text{arch}}
+\Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}
 =\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
 +\mathcal{O}\!\left(\frac{G^2M^2}{c_0^5}\right)
@@ -104,7 +105,7 @@ When this residual vanishes, Shapiro delay and gravitational clock redshift are 
 
 ### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
-* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Measures the refractive response of the [Noether sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf{x})$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
+* **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Measures the refractive response of the [Noether sea](noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf X,T)$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
 
 The light-bending half-test makes the same point numerically. A lapse-only weak-field map gives the Newtonian-scale deflection
@@ -126,13 +127,13 @@ In the forward projection below, the missing half is precisely the $\gamma_{\tex
 * **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether sea constitutive nonlinearity.
 * **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
 $$
-\frac{d\tau}{dt}\bigg|_{v=0}
+\frac{d\tau}{dt_{\mathrm{eff}}}\bigg|_{v=0}
 =
 1-\frac{U}{c_0^2}
 +C_2(a,k)\frac{U^2}{c_0^4}
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
-Since $-g_{00}=(d\tau/dt)^2$ for a static observer,
+Since $-g_{00}=(d\tau/dt_{\mathrm{eff}})^2$ for a static observer,
 $$
 g_{00}
 =
@@ -184,7 +185,7 @@ $$
 $$
 without additional fit freedom.
 
-Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt$ in this subclass. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
+Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt_{\mathrm{eff}}$ in this subclass. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
 
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
 When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.
@@ -438,7 +439,7 @@ with
 $$
 R_{\mathrm{acc}}
 =
-\frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
+\frac{\left\|\frac{d^2\mathbf x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}+\nabla\Phi_{\text{eff}}\right\|_W}
 {\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.

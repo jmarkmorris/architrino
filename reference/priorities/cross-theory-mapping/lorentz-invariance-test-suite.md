@@ -45,7 +45,7 @@ In priority terms this is an invariant-provenance packet, not only a null-test c
 
 The same single-response discipline makes a sharper coefficient prediction. RMS offsets and SME-style coefficients should not be tuned as independent rows if the branch is real; a toy Noether sea constitutive response should project them onto a constrained coefficient submanifold. The useful calculation is therefore not only whether each row is individually small, but whether any nonzero residuals carry the correlated pattern forced by one common-mode branch rather than the full free SME coefficient space.
 
-This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf{x},t)$ row used by the Lorentz clock map and preferred-frame leakage budget must be the same Noether sea response row consumed by cosmological transport, redshift, CMB transfer, lensing, and growth. A branch that hides the preferred frame only by choosing a Lorentz-specific $\chi_{\text{sea}}$, while the cosmology module uses a different transport row, has failed the implementation-economy claim even if each sector fits its own observables.
+This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf X,T)$ row used by the Lorentz clock map and preferred-frame leakage budget must be the same Noether sea response row consumed by cosmological transport, redshift, CMB transfer, lensing, and growth. A branch that hides the preferred frame only by choosing a Lorentz-specific $\chi_{\text{sea}}$, while the cosmology module uses a different transport row, has failed the implementation-economy claim even if each sector fits its own observables.
 
 ## Task Queue
 
@@ -54,7 +54,7 @@ This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf{x},t)
 3. `clock_ruler_retuning` — Show that clock frequency, ruler length, and signal synchronization use one closure record. Status: `draft`.
 4. `leakage_bound` — Define $\epsilon_{\mathrm{LV}}$ against modern test-suite bounds without making the bound itself an input coefficient. Status: `draft`.
 5. `gw_photon_common_speed` — Show that the effective gravitational channel and photon channel share a limiting speed to the GW170817-class tolerance in the tested weak-field transport regime. Status: `draft`.
-6. `clock_map_velocity_potential` — Derive one clock map $d\tau/dt=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$ whose velocity sector recovers special-relativistic time dilation and whose potential sector recovers weak-field gravitational redshift and PPN clock/curvature constraints. Status: `draft`.
+6. `clock_map_velocity_potential` — Derive one clock map $d\tau/dt_{\mathrm{eff}}=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$ whose velocity sector recovers special-relativistic time dilation and whose potential sector recovers weak-field gravitational redshift and PPN clock/curvature constraints. Status: `draft`.
 7. `coefficient_submanifold` — Project one toy Noether sea constitutive response into RMS and low-order SME-style residual rows and test whether the induced coefficients occupy a correlated submanifold rather than independent fit dimensions. Status: `draft`.
 8. `cross_sector_chi_sea` — Verify that the $\chi_{\text{sea}}$ row used for Lorentz hiding is the same response row used by cosmological redshift, CMB transfer, lensing, and growth, not a sector-specific tuning. Status: `draft`.
 
@@ -62,7 +62,7 @@ This single-response claim is cross-sector. The $\chi_{\text{sea}}(\mathbf{x},t)
 
 - Preferred-frame leakage: $\epsilon_{\mathrm{LV}}$.
 - Two-way anisotropy diagnostic: $\Delta_{\mathrm{tw}}(\beta)$.
-- Clock map: $d\tau/dt=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$.
+- Clock map: $d\tau/dt_{\mathrm{eff}}=f_{\tau}(\beta,n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{assembly state})$.
 - Clock-map residuals: $R_{\tau v}$ and $R_{\tau\Phi}$.
 - Shape ratio: $\xi=R_{\parallel}/R_{\perp}$.
 - Clock observable: $\omega_{\text{clk}}/\omega_0$.
@@ -102,7 +102,7 @@ c_{\gamma,\rightarrow}(\beta,\hat{\mathbf n};\mathcal{S})-c_0
 $$
 where $\mathcal{S}$ is the clock-synchronization convention physically realized by the same assembly branch. This residual is not a Michelson-Morley observable by itself. The operational requirement is that $\mathcal{S}$ pushes any substrate one-way anisotropy into unobservable convention dependence while the measurable residual vector remains bounded.
 
-The conditional reabsorption calculation in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#conditional-synchronization-reabsorption-lemma) is the local closure template for this row. If one branch supplies $L_{\parallel}=L_0/\gamma_\gamma$ and $d\tau/dt=\gamma_\gamma^{-1}$ for the photon-channel comparison, the forward and return one-way legs remain asymmetric in absolute time while the moving clock records $\tau_{\mathrm{rt}}=2L_0/c_\gamma$. The calculation does not derive the square-root response; it converts the remaining obligation into the measurable residuals $R_{\tau v}$, $\Delta_{\mathrm{tw}}$, and the matter/photon/GW common-speed rows.
+The conditional reabsorption calculation in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#conditional-synchronization-reabsorption-lemma) is the local closure template for this row. If one branch supplies $L_{\parallel}=L_0/\gamma_\gamma$ and $d\tau/dt_{\mathrm{eff}}=\gamma_\gamma^{-1}$ for the photon-channel comparison, the forward and return one-way legs remain asymmetric in absolute time while the moving clock records $\tau_{\mathrm{rt}}=2L_0/c_\gamma$. The calculation does not derive the square-root response; it converts the remaining obligation into the measurable residuals $R_{\tau v}$, $\Delta_{\mathrm{tw}}$, and the matter/photon/GW common-speed rows.
 
 A later wake-bound binary derivation attempt strengthens the deformation row but does not close it. In the closed-return benchmark, requiring a material clock to have no orientation-dependent period selects the axial law $g(\beta)=\sqrt{1-\beta^2}$ as the unique zero-leakage deformation among simple axial contraction laws. This is a contraction-selection lemma, not a completed dynamics theorem. The unresolved step is to prove that the boosted delay force law relaxes to that contracted branch as a stable attractor, and that the same branch supplies the clock, ruler, and signal-channel rows rather than only a kinematic compatibility condition.
 
@@ -116,13 +116,13 @@ and report the leading order at which each residual first appears. A budget that
 
 The clock branch must be represented by a substrate-to-observer map,
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 =
 f_{\tau}\!\left(
 \beta,\,
-n(\mathbf{x},t),\,
-\chi_{\text{sea}}(\mathbf{x},t),\,
-\Phi_{\text{eff}}(\mathbf{x},t),\,
+n(\mathbf X,T),\,
+\chi_{\text{sea}}(\mathbf X,T),\,
+\Phi_{\text{eff}}(\mathbf X,T),\,
 \text{assembly state}
 \right),
 \qquad
@@ -132,14 +132,14 @@ The velocity sector is constrained by
 $$
 R_{\tau v}(\beta)
 \equiv
-\left.\frac{d\tau}{dt}\right|_{\nabla n=0,\ \nabla\Phi_{\text{eff}}=0}
+\left.\frac{d\tau}{dt_{\mathrm{eff}}}\right|_{\nabla n=0,\ \nabla\Phi_{\text{eff}}=0}
 -\sqrt{1-\beta^2},
 $$
 and must match time-dilation tests, including Ives-Stilwell and storage-ring comparisons, at the experiment-specific precision. The potential sector is constrained by
 $$
 R_{\tau\Phi}
 \equiv
-\left.\frac{d\tau}{dt}\right|_{\beta=0}
+\left.\frac{d\tau}{dt_{\mathrm{eff}}}\right|_{\beta=0}
 -\left(1+\frac{\Phi_{\text{eff}}}{c_{\text{eff}}^2}+O\!\left(\frac{\Phi_{\text{eff}}^2}{c_{\text{eff}}^4}\right)\right),
 $$
 with the $\Phi_{\text{eff}}$ sign convention declared. This row consumes gravitational-redshift tests and the weak-field PPN target $\gamma_{\mathrm{PPN}}\to1$ at the Cassini-class scale. Passing one sector by fitting a separate clock law does not count; both sectors must be restrictions of the same $f_{\tau}$.

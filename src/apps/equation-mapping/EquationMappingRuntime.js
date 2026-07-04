@@ -267,6 +267,67 @@ export function resolveEquationVerticalShift({
   return Math.min(rowAdvancePx, maxShiftPx);
 }
 
+function getFormulaAnchorPositions(document = {}) {
+  const anchorPositions = new Map();
+  let rowIndex = 0;
+  let partIndex = 0;
+  (document.formulaParts ?? []).forEach((part) => {
+    if (part.kind === "break") {
+      rowIndex += 1;
+      return;
+    }
+    if (part.anchorId && !anchorPositions.has(part.anchorId)) {
+      anchorPositions.set(part.anchorId, { rowIndex, partIndex });
+    }
+    partIndex += 1;
+  });
+  return {
+    anchorPositions,
+    rowCount: rowIndex + 1,
+  };
+}
+
+function getOverlayTargetPosition(overlay, anchorPositions, fallbackIndex) {
+  return anchorPositions.get(overlay.targetAnchorId) ?? {
+    rowIndex: 0,
+    partIndex: Number.MAX_SAFE_INTEGER + fallbackIndex,
+  };
+}
+
+export function resolveCalloutPlacements(document = {}) {
+  const overlays = document.overlays ?? [];
+  const { anchorPositions, rowCount } = getFormulaAnchorPositions(document);
+  const placementByOverlayId = new Map();
+
+  if (rowCount > 1) {
+    const topRowLimit = (rowCount - 1) / 2;
+    overlays.forEach((overlay, index) => {
+      const targetPosition = getOverlayTargetPosition(overlay, anchorPositions, index);
+      placementByOverlayId.set(
+        overlay.id,
+        targetPosition.rowIndex <= topRowLimit ? "above" : "below"
+      );
+    });
+    return placementByOverlayId;
+  }
+
+  overlays
+    .map((overlay, index) => ({
+      overlay,
+      index,
+      targetPosition: getOverlayTargetPosition(overlay, anchorPositions, index),
+    }))
+    .sort((left, right) =>
+      left.targetPosition.partIndex - right.targetPosition.partIndex ||
+      left.index - right.index
+    )
+    .forEach(({ overlay }, index) => {
+      placementByOverlayId.set(overlay.id, index % 2 === 0 ? "above" : "below");
+    });
+
+  return placementByOverlayId;
+}
+
 function resolveHorizontalCalloutPositions({
   stageWidth = 0,
   equationRect = null,
@@ -879,7 +940,6 @@ export class EquationMappingRuntime {
     const nextDocument = updateEquationOverlay(this.activeDocument, activeOverlay.id, {
       title: sectionElement.querySelector('[name="overlay-title"]')?.value,
       targetAnchorId: sectionElement.querySelector('[name="overlay-target"]')?.value,
-      sectionLinePlacement: sectionElement.querySelector('[name="overlay-line"]')?.value,
       text: sectionElement.querySelector('[name="overlay-text"]')?.value,
       mathTex: sectionElement.querySelector('[name="overlay-math"]')?.value,
       position: {
@@ -1149,10 +1209,6 @@ export class EquationMappingRuntime {
         activeOverlay?.targetAnchorId ?? "",
         this.activeDocument.anchors.map((anchor) => ({ value: anchor.id, label: anchor.label }))
       ),
-      this.renderEditorSelect("Line", "overlay-line", activeOverlay?.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT, [
-        { value: "above", label: "above" },
-        { value: "below", label: "below" },
-      ]),
       this.renderEditorInput("Left", "overlay-x", activeOverlay?.position?.x ?? 18, "number"),
       this.renderEditorInput("Top", "overlay-y", activeOverlay?.position?.y ?? 32, "number"),
       this.renderEditorInput("Width", "overlay-width", activeOverlay?.position?.width ?? 26, "number"),
@@ -1294,10 +1350,11 @@ export class EquationMappingRuntime {
     equation.setAttribute("role", "img");
     equation.setAttribute("aria-label", document.formulaTeX);
     const activeTargetId = this.activeOverlay?.targetAnchorId ?? "";
+    const placementByOverlayId = resolveCalloutPlacements(document);
     const targetPlacementByAnchor = new Map(
       document.overlays.map((overlay) => [
         overlay.targetAnchorId,
-        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT,
+        placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT,
       ])
     );
     const targetToneByAnchor = new Map(
@@ -1470,6 +1527,7 @@ export class EquationMappingRuntime {
       ["above", []],
       ["below", []],
     ]);
+    const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const anchorElement = this.anchorElements.get(overlay.targetAnchorId);
       const commentElement = this.overlayElements.get(overlay.id);
@@ -1484,7 +1542,7 @@ export class EquationMappingRuntime {
       }
       const commentRect = commentElement.getBoundingClientRect();
       const targetRect = getLocalRect(anchorElement.getBoundingClientRect(), stageRect);
-      const placement = overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT;
+      const placement = placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT;
       const items = itemsByPlacement.get(placement);
       if (!items) {
         return;
@@ -1534,13 +1592,14 @@ export class EquationMappingRuntime {
     const rowRects = measureEquationRowRects(this.equationElement, stageRect);
     const aboveCalloutRects = [];
     const belowCalloutRects = [];
+    const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const commentElement = this.overlayElements.get(overlay.id);
       if (!commentElement) {
         return;
       }
       const rect = getLocalRect(commentElement.getBoundingClientRect(), stageRect);
-      const placement = overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT;
+      const placement = placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT;
       if (placement === "above") {
         aboveCalloutRects.push(rect);
       } else {
@@ -1573,6 +1632,7 @@ export class EquationMappingRuntime {
     this.pointerSvg.setAttribute("viewBox", `0 0 ${Math.max(stageRect.width, 1)} ${Math.max(stageRect.height, 1)}`);
     this.pointerSvg.textContent = "";
     this.pointerLines = [];
+    const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const anchorElement = this.anchorElements.get(overlay.targetAnchorId);
       const commentElement = this.overlayElements.get(overlay.id);
@@ -1583,7 +1643,7 @@ export class EquationMappingRuntime {
         stageRect,
         getSectionMarkerTargetRect(anchorElement),
         commentElement.getBoundingClientRect(),
-        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
+        placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT
       );
       const line = createSvgElement(this.document, "line");
       line.classList.add("equation-mapping-pointer-line");

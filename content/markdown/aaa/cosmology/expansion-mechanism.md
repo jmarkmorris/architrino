@@ -126,7 +126,7 @@ where absolute time $T$ indexes definite architrino positions, velocities, assem
 | Layer | Substrate role in redshift |
 | --- | --- |
 | Euclidean void | The container does not expand or curve; spatial points keep their identity. |
-| Absolute time | $t$ does not dilate; it orders the emission, propagation, and reception events. |
+| Absolute time | $T$ does not dilate; it orders the emission, propagation, and reception events. |
 | Noether sea | The Noether sea deforms, flows, polarizes, relaxes, and changes cadence. |
 | Emitter | A local assembly changes branch and releases a photon-channel packet. |
 | Photon packet | The packet carries a definite path-history record through the Noether sea. |
@@ -137,14 +137,14 @@ The central distinction is that nothing happens to absolute time itself. What ch
 
 ### Noether Sea Braid Factorization Target
 
-A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether sea braid cadence itself. Let $\Omega_N(\mathbf{x},t)$ denote a representative local Noether sea braid cadence and $T_N(\mathbf{x},t)=2\pi/\Omega_N(\mathbf{x},t)$ its cycle period. Relative to a weak homogeneous reference core, define
+A sharper closure target rewrites the endpoint clock-rate comparison in terms of the local Noether sea braid cadence itself. Let $\Omega_N(\mathbf X,T)$ denote a representative local Noether sea braid cadence and $T_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$ its cycle period. Relative to a weak homogeneous reference core, define
 
 $$
-\Gamma_N(\mathbf{x},t)
+\Gamma_N(\mathbf X,T)
 \equiv
-\frac{T_N(\mathbf{x},t)}{T_{N0}}
+\frac{T_N(\mathbf X,T)}{T_{N0}}
 =
-\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)}
+\frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)}
 $$
 
 The factor $\Gamma_N$ is not a new time variable. It records how strongly the local Noether sea braid cadence is stretched relative to the weak homogeneous reference. In a validated homogeneous Lorentz-closure branch, $\Gamma_N$ should reduce to the corresponding moving Noether braid deformation factor; outside that limit it remains a Noether sea state diagnostic to be derived from Noether braid geometry and clock extraction. The endpoint extraction target is stated in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target), where the moving Noether braid limit fixes the coefficient of $-\ln\xi$ and the weak-field endpoint limit fixes one isotropic Noether sea response combination.
@@ -217,7 +217,7 @@ $$
 +\Delta E_{\mathrm{sea},\Omega}
 +\Delta E_{\mathrm{src/rem},\Omega}
 +\Delta E_{\mathrm{recoil},\Omega}
-+\int_{\partial\Omega}\mathcal{F}_E\,dA\,dt
++\int_{\partial\Omega}\mathcal{F}_E\,dA\,dT
 \right|
 }{\epsilon_E}
 $$
@@ -229,29 +229,29 @@ The signs follow the same retained path-history record: $\Delta E_{\gamma,\Omega
 The finite-window residual above is the operational form of a stronger absolute-time target. Because the Euclidean void does not expand, the architecture cannot let cosmological redshift energy disappear into expansion bookkeeping. The substrate time-translation symmetry nominates a scalar universe-state ledger
 
 $$
-E_{\mathrm{tot}}(t)
+E_{\mathrm{tot}}(T)
 =
-E_{\mathrm{arch}}(t)
-+E_{\mathrm{wake}}(t)
-+E_{\mathrm{sea}}(t),
+E_{\mathrm{arch}}(T)
++E_{\mathrm{wake}}(T)
++E_{\mathrm{sea}}(T),
 \qquad
-\frac{dE_{\mathrm{tot}}}{dt}=0
+\frac{dE_{\mathrm{tot}}}{dT}=0
 $$
 
 where $E_{\mathrm{arch}}$ collects architrino kinetic and configuration energy, $E_{\mathrm{wake}}$ collects causal-wake energy in flight, and $E_{\mathrm{sea}}$ collects Noether sea constitutive energy. This is a conservation target rather than a proved theorem until the delayed action or a quasi-Noether replacement supplies the required invariant.
 
-The speed rows must stay separated inside this ledger. The transparent record-bearing bundle propagates as the dressed photon channel at $c_\gamma(\mathbf{x},t)$, as used in the path-time integral below. Primitive causal wakes and Noether sea exchange remain constrained by $c_f$ and enter the sink bookkeeping through $E_{\mathrm{wake}}$ and $E_{\mathrm{sea}}$. Observer clock and ruler reconstruction belongs to $c_{\text{eff}}$, while $c_0$ is only the weak homogeneous calibration value. A redshift branch therefore cannot use $c_f$ as the observed photon-channel speed, nor can it let the energy sink induce an unbounded or frequency-dependent $c_\gamma(\omega)$ residual without failing image sharpness and time-of-flight constraints.
+The speed rows must stay separated inside this ledger. The transparent record-bearing bundle propagates as the dressed photon channel at $c_\gamma(\mathbf X,T)$, as used in the path-time integral below. Primitive causal wakes and Noether sea exchange remain constrained by $c_f$ and enter the sink bookkeeping through $E_{\mathrm{wake}}$ and $E_{\mathrm{sea}}$. Observer clock and ruler reconstruction belongs to $c_{\text{eff}}$, while $c_0$ is only the weak homogeneous calibration value. A redshift branch therefore cannot use $c_f$ as the observed photon-channel speed, nor can it let the energy sink induce an unbounded or frequency-dependent $c_\gamma(\omega)$ residual without failing image sharpness and time-of-flight constraints.
 
-The global form also assumes that the total energy on the constant-$t$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
+The global form also assumes that the total energy on the constant-$T$ leaf is finite or convergently summable. If an unbounded populated Noether sea does not admit that sum, the operational conservation statement is local continuity on bounded regions:
 
 $$
-\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+\partial_T\rho_E+\nabla\cdot\mathbf{S}_E=0
 $$
 
 and, for a finite comparison window $\Omega$,
 
 $$
-\frac{dE_{\Omega}}{dt}
+\frac{dE_{\Omega}}{dT}
 +\int_{\partial\Omega}\mathbf{S}_E\cdot\hat{\mathbf n}\,dA
 =0
 $$
@@ -349,7 +349,7 @@ The factor $D_v$ is not an independent ontology. It is the low-speed endpoint of
 
 ### Absolute-Record Transport Map
 
-The first proof scaffold is to define one extraction map from the absolute record. For a line family $X$, emission event $E=(\mathbf{x}_E,t_E)$, reception event $R=(\mathbf{x}_R,t_R)$, and declared photon-channel path $\gamma_{E\to R}$, let
+The first proof scaffold is to define one extraction map from the absolute record. For a line family $X$, emission event $E=(\mathbf X_E,T_E)$, reception event $R=(\mathbf X_R,T_R)$, and declared photon-channel path $\gamma_{E\to R}$, let
 
 $$
 \mathcal{S}_{X,E\to R}
@@ -403,21 +403,21 @@ $$
 \Gamma_{N,A}
 =
 \frac{\Omega_{N0}}
-{\Omega_N(\mathbf{x}_A,t_A;\Pi_N S(t_A))},
+{\Omega_N(\mathbf X_A,T_A;\Pi_N S(T_A))},
 \qquad
 A\in\{E,R\}
 $$
 
-where $\Pi_N S(t_A)$ is the local Noether sea braid record near endpoint $A$. Source-branch shift is read before propagation:
+where $\Pi_N S(T_A)$ is the local Noether sea braid record near endpoint $A$. Source-branch shift is read before propagation:
 
 $$
 B_X(E)
 =
-\frac{\nu_{X,\mathrm{emit}}(E;\Pi_E S(t_E))}
+\frac{\nu_{X,\mathrm{emit}}(E;\Pi_E S(T_E))}
 {\nu_{X,0}}
 $$
 
-where $\Pi_E S(t_E)$ is the local source-assembly and environment record that determines whether the transition remains on the clean reference branch.
+where $\Pi_E S(T_E)$ is the local source-assembly and environment record that determines whether the transition remains on the clean reference branch.
 
 The same separation applies when the source observable is a luminosity standard rather than a single spectral line. For Type Ia supernovae, light-curve shape, color, dust, metallicity, host mass, and progenitor-age effects belong in the source and calibration analogue of $B_X(E)$ before any remaining redshift-distance curvature is assigned to path-history propagation. A correction that moves an effective fit from acceleration toward deceleration changes the calibrated source row first; it is not, by itself, evidence that the Euclidean void expands, stops expanding, or contracts. The propagation coefficient must be recomputed only after the source row, endpoint cadence, launch geometry, and catalogue selection terms have been declared.
 
@@ -427,7 +427,7 @@ $$
 D_v
 \equiv
 \left.
-\frac{dN_\phi/dt_R}{dN_\phi/dt_E}
+\frac{dN_\phi/dT_R}{dN_\phi/dT_E}
 \right|_{\theta_{\mathrm{sea}}=\theta_0,\;\Gamma_N=1,\;B_X=1}
 $$
 
@@ -449,7 +449,7 @@ Y_{X,E\to R}
 \int_{\gamma_{E\to R}}
 \mathcal{C}_X
 \!\left(
-\Pi_\gamma S(t(\ell)),
+\Pi_\gamma S(T(\ell)),
 \hat{\mathbf{k}}(\ell)
 \right)d\ell
 $$
@@ -457,14 +457,14 @@ $$
 with
 
 $$
-\Pi_\gamma S(t(\ell))
+\Pi_\gamma S(T(\ell))
 =
 \left(
 \boldsymbol{\theta}_\gamma,\,
 \mathbf{u}_{\text{sea}},\,
 S_{ij},\,
 \mathcal{H}_{\mathrm{wake}}
-\right)_{\gamma(\ell),t(\ell)}
+\right)_{\gamma(\ell),T(\ell)}
 $$
 
 This makes the proof obligation explicit. A gravitational endpoint redshift is the special case $B_X=1$, $D_v=1$, and $Y_X\approx0$, with $\Gamma_N$ supplying the weak-field benchmark. A homogeneous relative-motion redshift is the special case $\Gamma_{N,E}=\Gamma_{N,R}=1$, $B_X=1$, and $Y_X=0$, with $D_v$ supplying the shift. A deep-space propagation redshift is the special case where endpoint and launch terms are controlled while $Y_X$ accumulates from the path-history Noether sea record.
@@ -478,13 +478,13 @@ $$
 
 If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.
 
-The same response record also touches the Lorentz sector. The $\chi_{\text{sea}}(\mathbf{x},t)$ row that appears in cosmological clock and transport comparisons is not allowed to take sector-specific values when the theory turns to clock/ruler retuning, photon-channel timing, or preferred-frame leakage. A candidate cosmology closure must therefore remain compatible with the Lorentz common-mode response: one Noether sea record should support redshift, CMB transfer, lensing, growth, clock export, and preferred-frame hiding rather than fitting each sector with a private medium law.
+The same response record also touches the Lorentz sector. The $\chi_{\text{sea}}(\mathbf X,T)$ row that appears in cosmological clock and transport comparisons is not allowed to take sector-specific values when the theory turns to clock/ruler retuning, photon-channel timing, or preferred-frame leakage. A candidate cosmology closure must therefore remain compatible with the Lorentz common-mode response: one Noether sea record should support redshift, CMB transfer, lensing, growth, clock export, and preferred-frame hiding rather than fitting each sector with a private medium law.
 
 ### Coherent Photon-Channel Bundle Transport
 
 The transparent-path part of the redshift map cannot be an ordinary thermalizing loss process. Thermalization can prepare a radiation bath before the free-streaming record is fixed, and source/release regions can exchange energy with photon-channel packets. But once a photon bundle is being used as a transparent cosmological record, the admissible transport is a coherent rescaling map.
 
-Let $\lambda_{E\to R,X}\equiv \mathcal{P}_{E\to R,X}=e^{Y_{X,E\to R}}$ be the path-history scaling factor after endpoint cadence, source-branch shift, and launch geometry have been separated. For a transported photon-channel bundle $\mathcal{B}$, write $\mathfrak{n}_\gamma(\nu,\hat{\mathbf{k}};\mathcal{B})$ for its dimensionless occupation-shape function; this is not the normalized Noether braid density $n(\mathbf{x},t)$. The transparent transport target is
+Let $\lambda_{E\to R,X}\equiv \mathcal{P}_{E\to R,X}=e^{Y_{X,E\to R}}$ be the path-history scaling factor after endpoint cadence, source-branch shift, and launch geometry have been separated. For a transported photon-channel bundle $\mathcal{B}$, write $\mathfrak{n}_\gamma(\nu,\hat{\mathbf{k}};\mathcal{B})$ for its dimensionless occupation-shape function; this is not the normalized Noether braid density $n(\mathbf X,T)$. The transparent transport target is
 
 $$
 \nu_R=\frac{\nu_E}{\lambda_{E\to R,X}},
@@ -528,7 +528,7 @@ for the declared path-depth and Noether sea state. In words: the path term may s
 
 The current candidate for the gentle deep-space term is a Noether braid equilibrium transport law. In this reading, a weak-field path does not accumulate redshift because the photon loses energy as it scatters. It accumulates a phase-cadence path-history term because the photon packet traverses a Noether sea population whose braid-cadence distribution evolves in absolute time.
 
-Let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether braid cadence states, with representative braid energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a braid's cadence-scale closure rather than sliding a continuous single-braid frequency. The continuum current should therefore be read as the ensemble flux
+Let $f_N(\nu,\mathbf X,T)$ be the local distribution of Noether braid cadence states, with representative braid energy $E_N=h\nu_N$. At the discrete level, each accepted $h$-scale transaction retunes a braid's cadence-scale closure rather than sliding a continuous single-braid frequency. The continuum current should therefore be read as the ensemble flux
 
 $$
 J_\nu
@@ -542,7 +542,7 @@ $$
 with the average taken over accepted branch changes inside the coarse-graining cell. A provisional transport packet is
 
 $$
-\partial_t f_N
+\partial_T f_N
 +\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
@@ -562,7 +562,7 @@ J_\nu,\,
 S_{\mathrm{BH}},\,
 S_{\mathrm{GW}},\,
 R_{\mathrm{eq}};
-\mathbf{x},t,\hat{\mathbf{k}}
+\mathbf X,T,\hat{\mathbf{k}}
 \right]
 $$
 
@@ -571,17 +571,17 @@ This is a closure target. If $J_\nu$ vanishes after coarse-graining, or if the s
 In a weak field sourced by masses $M_a$, the Newtonian benchmark potential is
 
 $$
-\Phi_N(\mathbf{x})
+\Phi_N(\mathbf X)
 \approx
--\sum_a \frac{G M_a}{\|\mathbf{x}-\mathbf{x}_a\|}
+-\sum_a \frac{G M_a}{\|\mathbf X-\mathbf X_a\|}
 $$
 
 and the endpoint cadence recovery target gives
 
 $$
-\Gamma_N(\mathbf{x})
+\Gamma_N(\mathbf X)
 \approx
-1-\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-\frac{\Phi_N(\mathbf X)}{c_0^2}
 $$
 
 For one approximately isolated mass $M$, this becomes
@@ -764,15 +764,15 @@ A minimal candidate form is
 $$
 \alpha_{\mathrm{prop},X}
 =
-a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
-+a_n^X\,\frac{1}{c_\gamma}\,\partial_t\ln n
-+a_R^X\,\frac{1}{c_\gamma}\,\partial_t\ln R_{\text{braid}}
+a_\chi^X\,\frac{1}{c_\gamma}\,\partial_T\ln\chi_\gamma
++a_n^X\,\frac{1}{c_\gamma}\,\partial_T\ln n
++a_R^X\,\frac{1}{c_\gamma}\,\partial_T\ln R_{\text{braid}}
 +a_u^X\,\frac{\nabla\cdot\mathbf{u}_{\text{sea}}}{c_0}
 +a_S^X\,\frac{\hat{\mathbf{k}}^i\hat{\mathbf{k}}^j S_{ij}}{c_0}
 +\mathcal{R}_{\mathrm{prop},X}
 $$
 
-Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf{x},t)\equiv c_0/c_\gamma(\mathbf{x},t)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf{x},t)$ and $R_{\text{braid}}(\mathbf{x},t)$ denote normalized Noether braid density and a representative local Noether braid scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether sea flow velocity, and
+Here all quantities are evaluated at the path point crossed by the photon packet. The photon-channel speed is $c_\gamma$, and $\chi_\gamma(\mathbf X,T)\equiv c_0/c_\gamma(\mathbf X,T)$ is used only when the photon channel is the explicit transport subject. The symbols $n(\mathbf X,T)$ and $R_{\text{braid}}(\mathbf X,T)$ denote normalized Noether braid density and a representative local Noether braid scale. The vector $\mathbf{u}_{\text{sea}}$ is an effective Noether sea flow velocity, and
 
 $$
 S_{ij}
@@ -943,7 +943,7 @@ $$
 \frac{d}{d\ell}
 \equiv
 \hat{\mathbf{k}}^i\partial_i
-+\frac{1}{c_\gamma}\partial_t
++\frac{1}{c_\gamma}\partial_T
 $$
 
 The minimal transport closure target is
@@ -952,7 +952,7 @@ $$
 \frac{dY_X}{d\ell}
 =
 \mathcal{C}_X\!\left(
-\partial_t\boldsymbol{\theta}_\gamma,
+\partial_T\boldsymbol{\theta}_\gamma,
 \nabla\mathbf{u}_{\text{sea}},
 \hat{\mathbf{k}}
 \right)
@@ -977,9 +977,9 @@ Euclidean rotational symmetry allows the first-order scalar expansion
 $$
 \mathcal{C}_X
 =
-a_\chi^X\,\frac{1}{c_\gamma}\,\partial_t\ln\chi_\gamma
-+a_n^X\,\frac{1}{c_\gamma}\,\partial_t\ln n
-+a_R^X\,\frac{1}{c_\gamma}\,\partial_t\ln R_{\text{braid}}
+a_\chi^X\,\frac{1}{c_\gamma}\,\partial_T\ln\chi_\gamma
++a_n^X\,\frac{1}{c_\gamma}\,\partial_T\ln n
++a_R^X\,\frac{1}{c_\gamma}\,\partial_T\ln R_{\text{braid}}
 +a_u^X\,\frac{\nabla\cdot\mathbf{u}_{\text{sea}}}{c_0}
 +a_S^X\,\frac{\hat{\mathbf{k}}^i\hat{\mathbf{k}}^j S_{ij}}{c_0}
 +\mathcal{R}_{\mathrm{prop},X}
@@ -992,7 +992,7 @@ a_q^X
 =
 \left.
 \frac{\partial \mathcal{C}_X}
-{\partial\left[(1/c_\gamma)\partial_t q\right]}
+{\partial\left[(1/c_\gamma)\partial_T q\right]}
 \right|_0
 $$
 
@@ -1000,14 +1000,14 @@ The same closure must show that the phase-frequency rate and the arrival-cadence
 
 ### Dark-Energy Handoff to Transport
 
-The [Dark Energy](./dark-energy.md) module can feed the transport map only by supplying a Noether sea state history. In the redshift budget, its native entry point is the time derivative of $\boldsymbol{\theta}_\gamma$, plus any associated flow and strain terms. With the dark-energy handoff written as
+The [Dark Energy](./dark-energy.md) module can feed the transport map only by supplying a Noether sea state history. In the redshift budget, its native entry point is the absolute-time derivative of $\boldsymbol{\theta}_\gamma$, plus any associated flow and strain terms. With the dark-energy handoff written as
 
 $$
-\partial_t\boldsymbol{\theta}_\gamma
+\partial_T\boldsymbol{\theta}_\gamma
 =
 \mathbf{J}_{\mathrm{DE}}\mathbf{q}_{\mathrm{DE}}
 +
-\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}
+\partial_T\boldsymbol{\theta}_{\gamma,\mathrm{local}}
 $$
 
 where
@@ -1016,8 +1016,8 @@ $$
 \mathbf{q}_{\mathrm{DE}}
 \equiv
 \begin{pmatrix}
-\partial_t\ln\rho_{\mathrm{DE,eff}}\\
-\partial_t w_{\mathrm{eff}}\\
+\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}\\
+\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}\\
 \mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
 \mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
 \end{pmatrix}
@@ -1066,7 +1066,7 @@ $$
 \right)
 $$
 
-with $q_\rho=\partial_t\ln\rho_{\mathrm{DE,eff}}$, $q_w=\partial_t w_{\mathrm{eff}}$, $q_{\mathrm{sea}}=\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$, and $q_{\mathrm{BH}}=\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}$. If the same homogeneous branch also obeys the effective continuity identity
+with $q_\rho=\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}$, $q_w=\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}$, $q_{\mathrm{sea}}=\mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$, and $q_{\mathrm{BH}}=\mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}$. If the same homogeneous branch also obeys the effective continuity identity
 
 $$
 q_\rho
@@ -1084,7 +1084,7 @@ H_{\mathrm{eff},X}^{\mathrm{DE}}
 \frac{
 \frac{c_0}{c_\gamma}
 \left[
-\lambda_w^X\,\partial_t w_{\mathrm{eff}}
+\lambda_w^X\,\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}
 +(\lambda_\rho^X+\lambda_{\mathrm{sea}}^X)\frac{\mathcal{S}_{\mathrm{sea}}}{\rho_{\mathrm{DE,eff}}}
 +(\lambda_\rho^X+\lambda_{\mathrm{BH}}^X)\frac{\mathcal{S}_{\mathrm{BH}}}{\rho_{\mathrm{DE,eff}}}
 \right]
@@ -1175,14 +1175,14 @@ In the fixed-void reading, $H_{0,\mathrm{eff}}$ and $q_{0,\mathrm{eff}}$ are coe
 
 ### Local Redshift-Transfer Curve
 
-The corrected propagation residual should be modeled as a local transfer curve before it is averaged into any Hubble-like number. Let the receiver event be $R=(\mathbf{x}_R,t_R)$, and let $\hat{\mathbf{k}}$ point from emitter to receiver. Measure Euclidean path distance $s$ backward from the receiver toward the emitter:
+The corrected propagation residual should be modeled as a local transfer curve before it is averaged into any Hubble-like number. Let the receiver event be $R=(\mathbf X_R,T_R)$, and let $\hat{\mathbf{k}}$ point from emitter to receiver. Measure Euclidean path distance $s$ backward from the receiver toward the emitter:
 
 $$
-\mathbf{x}(s)=\mathbf{x}_R-s\hat{\mathbf{k}},
+\mathbf X(s)=\mathbf X_R-s\hat{\mathbf{k}},
 \qquad
-t(s)
+T(s)
 =
-t_R-\int_0^s\frac{d\ell}{c_\gamma(\mathbf{x}(\ell),t(\ell))}
+T_R-\int_0^s\frac{d\ell}{c_\gamma(\mathbf X(\ell),T(\ell))}
 $$
 
 For a source at corrected Euclidean path length $D$, the propagation residual is
@@ -1193,8 +1193,8 @@ Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 \int_0^D
 \alpha_{\mathrm{prop},X}
 \!\left(
-\mathbf{x}(s),
-t(s),
+\mathbf X(s),
+T(s),
 \hat{\mathbf{k}},
 \theta_{\mathrm{sea}}(s)
 \right)\,ds
@@ -1220,8 +1220,8 @@ $$
 \equiv
 \alpha_{\mathrm{prop},X}
 \!\left(
-\mathbf{x}_R,
-t_R,
+\mathbf X_R,
+T_R,
 \hat{\mathbf{k}},
 \theta_{\mathrm{sea},R}
 \right)
@@ -1237,7 +1237,7 @@ $$
 \right|_{D=0}
 =
 -\hat{\mathbf{k}}^i\partial_i\alpha_{\mathrm{prop},X}\big|_R
--\frac{1}{c_{\gamma,R}}\partial_t\alpha_{\mathrm{prop},X}\big|_R
+-\frac{1}{c_{\gamma,R}}\partial_T\alpha_{\mathrm{prop},X}\big|_R
 $$
 
 Thus the local curve has the expansion
@@ -1249,7 +1249,7 @@ Z_{\mathrm{prop},X}(D,\hat{\mathbf{k}})
 +
 \frac{1}{2}\mathcal{K}_{X}(R,\hat{\mathbf{k}})D^2
 +
-O(D^3\nabla^2\theta_{\mathrm{sea}},D^3\partial_t^2\theta_{\mathrm{sea}})
+O(D^3\nabla^2\theta_{\mathrm{sea}},D^3\partial_T^2\theta_{\mathrm{sea}})
 $$
 
 The ordinary constant-$H_0$ approximation is the special case in which $\alpha_{R,X}$ is independent of direction, line family, environment, and observation time, while $\mathcal{K}_{X}$ and higher derivatives remain negligible over the fitted distance range. In the general $\mathbb{A}\mathbb{A}\mathbb{A}$ case, $\alpha_{R,X}$ and $\mathcal{K}_{X}$ are observables of the local Noether sea state, not universal constants.
@@ -1257,11 +1257,11 @@ The ordinary constant-$H_0$ approximation is the special case in which $\alpha_{
 For environment-resolved modeling, a catalogue should first separate sources by the Noether sea path they sample. For an environment family $\mathcal{E}$, define
 
 $$
-\alpha_{\mathcal{E},X}(t,\hat{\mathbf{k}})
+\alpha_{\mathcal{E},X}(T,\hat{\mathbf{k}})
 \equiv
 \left\langle
 \alpha_{\mathrm{prop},X}
-\right\rangle_{\mathcal{E},t,\hat{\mathbf{k}}},
+\right\rangle_{\mathcal{E},T,\hat{\mathbf{k}}},
 \qquad
 \sigma_{\mathcal{E},X}^2
 \equiv
@@ -1271,7 +1271,7 @@ $$
 -
 \alpha_{\mathcal{E},X}
 \right)^2
-\right\rangle_{\mathcal{E},t,\hat{\mathbf{k}}}
+\right\rangle_{\mathcal{E},T,\hat{\mathbf{k}}}
 $$
 
 The useful first question is whether local voids, filaments, clusters, galaxy halos, and strong-source recycling environments share one $\alpha_{\mathcal{E},X}$ within tolerance after endpoint cadence, launch geometry, and source-branch factors have been removed. If they do not, a single all-sky $H_0$ is a lossy summary of distinct redshift-transfer environments.
@@ -1315,7 +1315,7 @@ This residual should be read as a comparison diagnostic, not as evidence that th
 
 ### Minimal Redshift-Budget Toy Model
 
-The first numerical model should be a bookkeeping simulator for the factorized redshift record, not a claim of empirical recovery. Divide a Euclidean path of length $D$ into $N$ segments with points $(\mathbf{x}_j,t_j)$, direction $\hat{\mathbf{k}}$, and segment lengths $\Delta s_j$. The input record is
+The first numerical model should be a bookkeeping simulator for the factorized redshift record, not a claim of empirical recovery. Divide a Euclidean path of length $D$ into $N$ segments with points $(\mathbf X_j,T_j)$, direction $\hat{\mathbf{k}}$, and segment lengths $\Delta s_j$. The input record is
 
 $$
 \mathcal{I}_X
@@ -1360,7 +1360,7 @@ Y_{X,j}
 +
 \alpha_{\mathrm{prop},X}
 \!\left(
-\mathbf{x}_j,t_j,\hat{\mathbf{k}},\theta_{\mathrm{sea},j}
+\mathbf X_j,T_j,\hat{\mathbf{k}},\theta_{\mathrm{sea},j}
 \right)\Delta s_j
 $$
 
