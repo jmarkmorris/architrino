@@ -10,9 +10,9 @@ Purpose: Define a single, canonical mathematical and geometrical dialect for the
   $$
   \mathcal{M} = \mathbb{R}\times \mathbb{R}^3
   $$
-  with coordinates $(t, x, y, z)$.
+  with native absolute coordinates $(T, X, Y, Z)$.
   $$
-  \Sigma_t = \{t\}\times \mathbb{R}^3
+  \Sigma_T = \{T\}\times \mathbb{R}^3
   $$
   are simultaneity slices (Euclidean 3-space snapshots).
 - Vectors and norms:
@@ -22,22 +22,81 @@ Purpose: Define a single, canonical mathematical and geometrical dialect for the
 - Indices:
   - Components indexed by $i, j \in \{1,2,3\}$ with $\delta_{ij}$.
 
-Plain language: One global clock t and ordinary 3D space; we write vectors in bold, unit directions with hats, and lengths with double bars.
+Plain language: One global clock $T$ and ordinary 3D space; we write vectors in bold, unit directions with hats, and lengths with double bars.
+
+---
+
+## Coordinate and Time Layers
+
+Every equation must declare which coordinate layer it uses. This is now a
+core notation rule, not a cosmetic preference, because $\mathbb{A}\mathbb{A}\mathbb{A}$
+uses an ontological absolute frame while many bridge equations use an
+observer-level effective geometry. The same dimensional unit can appear in both
+layers without naming the same object.
+
+- Native absolute layer:
+  - Use $T$ for absolute time.
+  - Use $\mathbf X=(X^1,X^2,X^3)$ for position in the Euclidean void.
+  - Use $dT$, $dX^i$, $\partial_T$, and $\nabla_{\mathbf X}$ for native differentials and operators.
+  - Use worldlines $\mathbf X_i(T)$ and native velocities $\mathbf V_i=d\mathbf X_i/dT$.
+- Effective observer or GR-comparison layer:
+  - Use $t_{\mathrm{eff}}$ for effective observer coordinate time.
+  - Use $x_{\mathrm{eff}}^i$ for effective spatial chart coordinates.
+  - Use $dt_{\mathrm{eff}}$, $dx_{\mathrm{eff}}^i$, and $\partial_{t_{\mathrm{eff}}}$ for effective-chart differentials and operators.
+  - Use $g_{\mu\nu}^{\mathrm{eff}}$, $\gamma_{ij}^{\mathrm{eff}}$, and projected drift terms such as $u_{\mathrm{sea,eff}}^i$ when writing metric or ADM-style rows.
+- Proper time:
+  - Use $\tau$ only for derived clock time, meaning the readout of a physical clock.
+  - Write $d\tau/dt_{\mathrm{eff}}$ for an observer-coordinate clock-rate comparison.
+  - Write $d\tau/dT$ only when a native clock-map derivation has been declared.
+- Pure comparison equations:
+  - In student-facing textbook prose, the displayed working equation must use layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ notation.
+  - A standard GR, SR, QM, or QFT equation may appear first only as a labeled `standard comparison form` for recognition or source matching.
+  - Immediately follow that recognition form with the translated form using $T,\mathbf X$ or $t_{\mathrm{eff}},x_{\mathrm{eff}}^i$ before any interpretation, diagramming, or term-by-term map.
+  - Do not rely on a paragraph disclaimer alone. Bare symbols such as $t$, $x^i$, $dt$, and $dx^i$ must not carry forward as the working notation in native or bridge derivations.
+  - Preferred teaching pattern: standard comparison form, layer-explicit translated form, then a short map explaining which symbols changed and why.
+
+Pitfall: bare $t$, $\mathbf x$, $dt$, or $dx^i$ can make a valid-looking
+equation that silently switches paradigms. The result may pass a dimensional
+check while failing a layer check. For example, $dX^i$ and $dx_{\mathrm{eff}}^i$
+both have units of length, but one belongs to the Euclidean void and the other
+belongs to an effective observer chart. Treating them as identical hides the
+constitutive map that still has to be derived.
+
+When a derivation moves between layers, introduce an explicit map before
+substituting variables:
+
+$$
+(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)
+=
+\chi_{\mathrm{eff}}(T,\mathbf X,\mathcal N_{\mathrm{sea}},\text{observer record}).
+$$
+
+This map is a closure target unless the local document has already derived the
+needed row. It must not be smuggled in by reusing the same letters on both
+sides. In programs and app data, the same rule applies to field names and
+labels: native solver state, display coordinates, and effective observer
+coordinates must not share one undifferentiated symbol when a calculation or
+claim depends on the distinction.
+
+Plain language: first ask which layer the math is using. Native equations use
+the absolute clock and Euclidean void. Effective equations use the coordinates
+an observer reconstruction would assign. Proper time is a clock readout, not
+the native clock.
 
 ---
 
 ## Kinematics (Newton–Cartan/Galilean background)
 
-- Absolute time $t$ is universal and oriented; durations are
+- Absolute time $T$ is universal and oriented; durations are
 
   $$
-  \Delta t = |\,t_2 - t_1\,|
+  \Delta T = |\,T_2 - T_1\,|
   $$
 
 - Space is Euclidean with metric
 
   $$
-  h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_t
+  h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_T
   $$
 
   Notation: We use $h_{ij}$ exclusively for the spatial metric; do not use $g_{ij}$.
@@ -47,7 +106,7 @@ Plain language: One global clock t and ordinary 3D space; we write vectors in bo
   In Cartesian frames, $\Gamma^{i}{}_{jk}=0$, so covariant derivatives equal partial derivatives and geodesics are straight; curvature vanishes identically. In curvilinear coordinates (e.g., spherical), $h_{ij}$ takes the flat-space form $\mathrm{diag}(1, r^2, r^2\sin^2\theta)$, still representing the same flat geometry.
 - There is no 4D non-degenerate metric; we do not mix time and space into a single line element.
 - Worldlines:
-  - $\mathbf{x}: I \subset \mathbb{R} \to \mathbb{R}^3,\ t \mapsto \mathbf{x}(t)$, absolutely continuous; $\mathbf{v} = d\mathbf{x}/dt$, $\mathbf{a} = d\mathbf{v}/dt$.
+  - $\mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3,\ T \mapsto \mathbf X(T)$, absolutely continuous; $\mathbf V = d\mathbf X/dT$, $\mathbf A = d\mathbf V/dT$.
 
 Plain language: Objects move as dots in 3D through successive instants; speeds and distances are measured separately from time.
 

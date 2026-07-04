@@ -10,8 +10,12 @@ import {
   calculateMoleculeLedger,
   formatLedgerNumber,
 } from "./MoleculeLedgerRuntime.js";
+import {
+  APPLICATIONS_SCENE_PATH,
+  navigateStandaloneAppHome,
+  resolveStandaloneAppHomeHref,
+} from "../navigator/StandaloneAppHomeRuntime.js";
 
-const APPLICATIONS_SCENE_PATH = "content/scenes/archie/applications.json";
 const DEFAULT_PRESET_ID = "water";
 const BOND_RADIUS = 0.055;
 const MULTI_BOND_RADIUS = 0.036;
@@ -1494,11 +1498,13 @@ export function createMoleculeRuntime(options = {}) {
   }
 
   function navigateHome() {
-    const href = buildHashUrl({
-      windowLike,
-      scenePath: APPLICATIONS_SCENE_PATH,
-    });
-    windowLike.location.assign(href);
+    navigateStandaloneAppHome(
+      windowLike.location,
+      resolveStandaloneAppHomeHref(windowLike?.location?.href),
+      {
+        windowLike,
+      }
+    );
   }
 
   function init() {

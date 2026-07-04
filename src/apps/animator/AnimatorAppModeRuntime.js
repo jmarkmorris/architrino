@@ -28,9 +28,10 @@ export function getAnimatorInitialScenePath({
 
 export function navigateStandaloneAnimatorHome(
   locationLike = globalThis.window?.location,
-  href = STANDALONE_ANIMATOR_NAVIGATOR_HREF
+  href = STANDALONE_ANIMATOR_NAVIGATOR_HREF,
+  options = {}
 ) {
-  return navigateStandaloneAppHome(locationLike, href);
+  return navigateStandaloneAppHome(locationLike, href, options);
 }
 
 export {

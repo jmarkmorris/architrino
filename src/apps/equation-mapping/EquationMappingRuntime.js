@@ -24,7 +24,10 @@ import {
   updateEquationAnchor,
   updateEquationOverlay,
 } from "./EquationMappingEditor.js";
-import { resolveStandaloneAppHomeHref } from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  navigateStandaloneAppHome,
+  resolveStandaloneAppHomeHref,
+} from "../navigator/StandaloneAppHomeRuntime.js";
 
 const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
 const SIZE_CALIBRATION_VERSION = 3;
@@ -36,9 +39,17 @@ const EQUATION_AUTO_FIT_MIN_FONT_SIZE = Object.freeze({
   large: 15,
 });
 const SECTION_LINE_OFFSET_PX = Object.freeze({
-  above: -6,
-  below: 3,
+  above: -16,
+  below: -14,
 });
+const SECTION_MARKER_DEFAULT_INSET_RATIO = 0.18;
+const SECTION_MARKER_MIN_INSET_PX = 8;
+const COMMENT_CONNECTOR_INSET_PX = 18;
+const CALLOUT_LAYOUT_MARGIN_PX = 32;
+const CALLOUT_LAYOUT_EQUATION_GAP_PX = 28;
+const CALLOUT_LAYOUT_ITEM_GAP_PX = 24;
+const CALLOUT_LAYOUT_BAND_PADDING_PX = 150;
+const CALLOUT_LAYOUT_TITLE_GAP_PX = 18;
 
 function createElement(documentLike, tag, className = "", textContent) {
   const element = documentLike.createElement(tag);
@@ -64,6 +75,306 @@ function getRectCenter(rect) {
     x: rect.left + rect.width / 2,
     y: rect.top + rect.height / 2,
   };
+}
+
+function getLocalRect(rect, stageRect) {
+  return {
+    left: rect.left - stageRect.left,
+    top: rect.top - stageRect.top,
+    right: rect.right - stageRect.left,
+    bottom: rect.bottom - stageRect.top,
+    width: rect.width,
+    height: rect.height,
+  };
+}
+
+function getSectionMarkerTargetRect(anchorElement) {
+  const rect = anchorElement.getBoundingClientRect();
+  const markerLeftPercent = Number(anchorElement.dataset.sectionMarkerLeft);
+  const markerWidthPercent = Number(anchorElement.dataset.sectionMarkerWidth);
+  if (Number.isFinite(markerLeftPercent) && Number.isFinite(markerWidthPercent)) {
+    const left = rect.left + (rect.width * markerLeftPercent) / 100;
+    const width = (rect.width * markerWidthPercent) / 100;
+    return {
+      left,
+      top: rect.top,
+      right: left + width,
+      bottom: rect.bottom,
+      width,
+      height: rect.height,
+    };
+  }
+  const insetPx = Math.max(SECTION_MARKER_MIN_INSET_PX, rect.width * SECTION_MARKER_DEFAULT_INSET_RATIO);
+  const width = Math.max(1, rect.width - insetPx * 2);
+  return {
+    left: rect.left + insetPx,
+    top: rect.top,
+    right: rect.left + insetPx + width,
+    bottom: rect.bottom,
+    width,
+    height: rect.height,
+  };
+}
+
+function isFormulaBreakElement(element) {
+  return Boolean(element?.classList?.contains?.("equation-mapping-formula-break"));
+}
+
+function getMeasuredElementWidth(element) {
+  const rect = element?.getBoundingClientRect?.();
+  return Math.max(
+    Number(element?.scrollWidth) || 0,
+    Number(element?.offsetWidth) || 0,
+    Number(element?.clientWidth) || 0,
+    Number(rect?.width) || 0
+  );
+}
+
+function hasExplicitFormulaBreak(equation) {
+  return Array.from(equation?.children ?? []).some(isFormulaBreakElement);
+}
+
+function measureEquationNaturalWidth(equation) {
+  const children = Array.from(equation?.children ?? []);
+  if (!children.length) {
+    return Number(equation?.scrollWidth) || 0;
+  }
+  let maxLineWidth = 0;
+  let currentLineWidth = 0;
+  let sawBreak = false;
+  children.forEach((child) => {
+    if (isFormulaBreakElement(child)) {
+      sawBreak = true;
+      maxLineWidth = Math.max(maxLineWidth, currentLineWidth);
+      currentLineWidth = 0;
+      return;
+    }
+    currentLineWidth += getMeasuredElementWidth(child);
+  });
+  maxLineWidth = Math.max(maxLineWidth, currentLineWidth);
+  return sawBreak ? maxLineWidth : Number(equation?.scrollWidth) || maxLineWidth;
+}
+
+function getUnionRect(rects = []) {
+  const measuredRects = rects.filter(
+    (rect) =>
+      rect &&
+      Number.isFinite(rect.left + rect.top + rect.right + rect.bottom)
+  );
+  if (!measuredRects.length) {
+    return null;
+  }
+  const left = Math.min(...measuredRects.map((rect) => rect.left));
+  const top = Math.min(...measuredRects.map((rect) => rect.top));
+  const right = Math.max(...measuredRects.map((rect) => rect.right));
+  const bottom = Math.max(...measuredRects.map((rect) => rect.bottom));
+  return {
+    left,
+    top,
+    right,
+    bottom,
+    width: right - left,
+    height: bottom - top,
+  };
+}
+
+function measureEquationRowRects(equation, stageRect) {
+  const children = Array.from(equation?.children ?? []);
+  const rows = [];
+  let currentRow = [];
+  children.forEach((child) => {
+    if (isFormulaBreakElement(child)) {
+      const rowRect = getUnionRect(
+        currentRow.map((element) => getLocalRect(element.getBoundingClientRect(), stageRect))
+      );
+      if (rowRect) {
+        rows.push(rowRect);
+      }
+      currentRow = [];
+      return;
+    }
+    currentRow.push(child);
+  });
+  const finalRowRect = getUnionRect(
+    currentRow.map((element) => getLocalRect(element.getBoundingClientRect(), stageRect))
+  );
+  if (finalRowRect) {
+    rows.push(finalRowRect);
+  }
+  return rows;
+}
+
+export function resolveEquationLineClearancePx(
+  rowRects = [],
+  fallbackPx = CALLOUT_LAYOUT_EQUATION_GAP_PX
+) {
+  const measuredRowHeight = rowRects.reduce((maxHeight, rect) => {
+    const height = Number(rect?.height);
+    return Number.isFinite(height) && height > 0
+      ? Math.max(maxHeight, height)
+      : maxHeight;
+  }, 0);
+  const fallback = Number(fallbackPx);
+  return Math.max(
+    CALLOUT_LAYOUT_EQUATION_GAP_PX,
+    measuredRowHeight,
+    Number.isFinite(fallback) && fallback > 0 ? fallback : 0
+  );
+}
+
+export function resolveEquationVerticalShift({
+  stageHeight = 0,
+  equationShellRect = null,
+  rowRects = [],
+  aboveCalloutRects = [],
+  belowCalloutRects = [],
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+} = {}) {
+  if (
+    stageHeight <= 0 ||
+    !equationShellRect ||
+    rowRects.length < 2 ||
+    aboveCalloutRects.length === 0 ||
+    belowCalloutRects.length > 0
+  ) {
+    return 0;
+  }
+  const firstRow = rowRects[0];
+  const secondRow = rowRects[1];
+  const rowAdvancePx = secondRow.top - firstRow.top;
+  if (!Number.isFinite(rowAdvancePx) || rowAdvancePx <= 0) {
+    return 0;
+  }
+  const maxAboveBottom = Math.max(...aboveCalloutRects.map((rect) => rect.bottom));
+  if (firstRow.top >= maxAboveBottom + rowAdvancePx) {
+    return 0;
+  }
+  const maxShiftPx = Math.max(
+    0,
+    stageHeight - marginPx - equationShellRect.bottom
+  );
+  return Math.min(rowAdvancePx, maxShiftPx);
+}
+
+function resolveHorizontalCalloutPositions({
+  stageWidth = 0,
+  equationRect = null,
+  items = [],
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  itemGapPx = CALLOUT_LAYOUT_ITEM_GAP_PX,
+  bandPaddingPx = CALLOUT_LAYOUT_BAND_PADDING_PX,
+} = {}) {
+  const sortedItems = [...items].sort(
+    (left, right) => left.targetCenterX - right.targetCenterX
+  );
+  if (!sortedItems.length || !equationRect || stageWidth <= 0) {
+    return new Map();
+  }
+  const hardLeft = marginPx;
+  const hardRight = Math.max(hardLeft, stageWidth - marginPx);
+  const hardWidth = hardRight - hardLeft;
+  const widthSum = sortedItems.reduce((sum, item) => sum + item.width, 0);
+  const gapCount = Math.max(0, sortedItems.length - 1);
+  const gapPx =
+    gapCount > 0 && widthSum + itemGapPx * gapCount > hardWidth
+      ? Math.max(8, (hardWidth - widthSum) / gapCount)
+      : itemGapPx;
+  const totalWidth = Math.min(hardWidth, widthSum + gapPx * gapCount);
+  const equationCenter = equationRect.left + equationRect.width / 2;
+  const preferredBandWidth = Math.max(
+    totalWidth,
+    equationRect.width + bandPaddingPx * 2
+  );
+  const bandWidth = Math.min(hardWidth, preferredBandWidth);
+  const bandLeft = clamp(
+    equationCenter - bandWidth / 2,
+    hardLeft,
+    hardRight - bandWidth
+  );
+  const bandRight = bandLeft + bandWidth;
+  const positioned = sortedItems.map((item) => ({
+    item,
+    x: clamp(item.targetCenterX - item.width / 2, bandLeft, bandRight - item.width),
+  }));
+
+  for (let index = 1; index < positioned.length; index += 1) {
+    const previous = positioned[index - 1];
+    const current = positioned[index];
+    current.x = Math.max(current.x, previous.x + previous.item.width + gapPx);
+  }
+
+  const last = positioned[positioned.length - 1];
+  const overflowRight = last.x + last.item.width - bandRight;
+  if (overflowRight > 0) {
+    positioned.forEach((entry) => {
+      entry.x -= overflowRight;
+    });
+  }
+
+  const underflowLeft = bandLeft - positioned[0].x;
+  if (underflowLeft > 0) {
+    positioned.forEach((entry) => {
+      entry.x += underflowLeft;
+    });
+  }
+
+  return new Map(
+    positioned.map(({ item, x }) => [
+      item.id,
+      {
+        x: clamp(x, hardLeft, Math.max(hardLeft, hardRight - item.width)),
+      },
+    ])
+  );
+}
+
+export function resolveCalloutRowLayout({
+  stageWidth = 0,
+  stageHeight = 0,
+  equationRect = null,
+  titleRect = null,
+  items = [],
+  placement = DEFAULT_SECTION_LINE_PLACEMENT,
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  equationGapPx = CALLOUT_LAYOUT_EQUATION_GAP_PX,
+  itemGapPx = CALLOUT_LAYOUT_ITEM_GAP_PX,
+  bandPaddingPx = CALLOUT_LAYOUT_BAND_PADDING_PX,
+} = {}) {
+  const horizontalPositions = resolveHorizontalCalloutPositions({
+    stageWidth,
+    equationRect,
+    items,
+    marginPx,
+    itemGapPx,
+    bandPaddingPx,
+  });
+  if (!horizontalPositions.size || !equationRect || stageHeight <= 0) {
+    return new Map();
+  }
+  const maxHeight = Math.max(...items.map((item) => item.height));
+  const titleBottom = Number.isFinite(titleRect?.bottom)
+    ? titleRect.bottom + CALLOUT_LAYOUT_TITLE_GAP_PX
+    : marginPx;
+  const safeTop = Math.max(marginPx, titleBottom);
+  const safeBottom = Math.max(safeTop, stageHeight - marginPx);
+  const unclampedY =
+    placement === "above"
+      ? equationRect.top - equationGapPx - maxHeight
+      : equationRect.bottom + equationGapPx;
+  const y =
+    placement === "above"
+      ? clamp(unclampedY, safeTop, Math.max(safeTop, equationRect.top - maxHeight))
+      : clamp(unclampedY, equationRect.bottom, Math.max(equationRect.bottom, safeBottom - maxHeight));
+
+  return new Map(
+    items.map((item) => [
+      item.id,
+      {
+        x: horizontalPositions.get(item.id)?.x ?? item.targetCenterX - item.width / 2,
+        y,
+      },
+    ])
+  );
 }
 
 export function calculateEquationAutoFit({
@@ -108,11 +419,16 @@ export function createPointerLineGeometry(
   sectionLineOffsetPx = SECTION_LINE_OFFSET_PX[placement] ?? 0
 ) {
   const targetCenter = getRectCenter(targetRect);
-  const commentCenter = getRectCenter(commentRect);
   const targetY = placement === "above" ? targetRect.top + sectionLineOffsetPx : targetRect.bottom - sectionLineOffsetPx;
   const targetX = clamp(targetCenter.x, targetRect.left, targetRect.right);
-  const sourceX = commentCenter.x <= targetX ? commentRect.right : commentRect.left;
-  const sourceY = clamp(targetCenter.y, commentRect.top, commentRect.bottom);
+  const sourceLeft = Math.min(commentRect.right, commentRect.left + COMMENT_CONNECTOR_INSET_PX);
+  const sourceRight = Math.max(sourceLeft, commentRect.right - COMMENT_CONNECTOR_INSET_PX);
+  const sourceX = clamp(
+    targetX,
+    sourceLeft,
+    sourceRight
+  );
+  const sourceY = placement === "above" ? commentRect.bottom : commentRect.top;
   return {
     x1: sourceX - stageRect.left,
     y1: sourceY - stageRect.top,
@@ -255,6 +571,7 @@ export class EquationMappingRuntime {
     this.pointerLines = [];
     this.equationShellElement = null;
     this.equationElement = null;
+    this.equationTitleElement = null;
   }
 
   get activeDocument() {
@@ -480,7 +797,13 @@ export class EquationMappingRuntime {
     const controls = createElement(this.document, "div", "equation-mapping-controls");
     controls.append(
       this.renderIconButton("home", "Go to home", () => {
-        this.window?.location?.assign?.(createEquationMappingHomeHref(this.window));
+        navigateStandaloneAppHome(
+          this.window?.location,
+          createEquationMappingHomeHref(this.window),
+          {
+            windowLike: this.window,
+          }
+        );
       }),
       this.renderIconButton("search", "Search equations", () => {
         this.searchOpen = !this.searchOpen;
@@ -748,6 +1071,7 @@ export class EquationMappingRuntime {
 
   renderEquationTitle() {
     const title = createElement(this.document, "div", "equation-mapping-equation-title");
+    this.equationTitleElement = title;
     title.append(createElement(this.document, "strong", "", this.activeDocument.title));
     return title;
   }
@@ -768,6 +1092,10 @@ export class EquationMappingRuntime {
       ])
     );
     document.formulaParts.forEach((part) => {
+      if (part.kind === "break") {
+        equation.append(createElement(this.document, "span", "equation-mapping-formula-break"));
+        return;
+      }
       const partElement = createElement(
         this.document,
         "span",
@@ -775,6 +1103,13 @@ export class EquationMappingRuntime {
       );
       if (part.anchorId) {
         partElement.dataset.anchorId = part.anchorId;
+        if (part.sectionMarker) {
+          partElement.dataset.sectionMarkerLeft = String(part.sectionMarker.left);
+          partElement.dataset.sectionMarkerWidth = String(part.sectionMarker.width);
+          partElement.style.setProperty("--section-marker-left", `${part.sectionMarker.left}%`);
+          partElement.style.setProperty("--section-marker-right", "auto");
+          partElement.style.setProperty("--section-marker-width", `${part.sectionMarker.width}%`);
+        }
         this.anchorElements.set(part.anchorId, partElement);
         if (targetPlacementByAnchor.has(part.anchorId)) {
           partElement.classList.add("is-targeted");
@@ -829,7 +1164,10 @@ export class EquationMappingRuntime {
 
   scheduleEquationLayout() {
     const run = () => {
+      this.resetEquationVerticalLayout();
       this.applyEquationAutoFit();
+      this.applyCalloutLayout();
+      this.applyEquationVerticalClearance();
       this.updatePointerLines();
     };
     if (typeof this.window?.requestAnimationFrame === "function") {
@@ -848,11 +1186,12 @@ export class EquationMappingRuntime {
     equation.style.removeProperty("--equation-fit-font-size");
     equation.dataset.fitMode = "measuring";
     equation.style.flexWrap = "nowrap";
+    const shouldPreserveFormulaBreaks = hasExplicitFormulaBreak(equation);
     const computedStyle = this.window?.getComputedStyle?.(equation);
     const baseFontSize = Number.parseFloat(computedStyle?.fontSize ?? "");
     const shellRect = shell.getBoundingClientRect();
     const availableWidth = shell.clientWidth || shellRect.width;
-    const naturalWidth = equation.scrollWidth;
+    const naturalWidth = measureEquationNaturalWidth(equation);
     const fit = calculateEquationAutoFit({
       availableWidth,
       naturalWidth,
@@ -862,16 +1201,152 @@ export class EquationMappingRuntime {
     });
     if (fit.mode === "unmeasured") {
       equation.style.removeProperty("--equation-fit-font-size");
-      equation.style.removeProperty("flex-wrap");
+      if (shouldPreserveFormulaBreaks) {
+        equation.style.flexWrap = "wrap";
+      } else {
+        equation.style.removeProperty("flex-wrap");
+      }
       equation.dataset.fitMode = "unmeasured";
       return fit;
     }
     if (fit.fontSize < baseFontSize) {
       equation.style.setProperty("--equation-fit-font-size", `${fit.fontSize.toFixed(2)}px`);
     }
-    equation.style.flexWrap = fit.shouldWrap ? "wrap" : "nowrap";
+    equation.style.flexWrap = fit.shouldWrap || shouldPreserveFormulaBreaks ? "wrap" : "nowrap";
     equation.dataset.fitMode = fit.mode;
     return fit;
+  }
+
+  resetEquationVerticalLayout() {
+    this.equationShellElement?.style?.removeProperty?.("--equation-layout-y");
+  }
+
+  measureEquationLineClearance(stageRect) {
+    const equation = this.equationElement;
+    if (!equation) {
+      return CALLOUT_LAYOUT_EQUATION_GAP_PX;
+    }
+    const computedStyle = this.window?.getComputedStyle?.(equation);
+    const lineHeight = Number.parseFloat(computedStyle?.lineHeight ?? "");
+    const fontSize = Number.parseFloat(computedStyle?.fontSize ?? "");
+    const fallbackPx = Number.isFinite(lineHeight)
+      ? lineHeight
+      : Number.isFinite(fontSize)
+        ? fontSize * 1.25
+        : CALLOUT_LAYOUT_EQUATION_GAP_PX;
+    return resolveEquationLineClearancePx(
+      measureEquationRowRects(equation, stageRect),
+      fallbackPx
+    );
+  }
+
+  applyCalloutLayout() {
+    if (!this.stageElement || !this.equationElement) {
+      return [];
+    }
+    const stageRect = this.stageElement.getBoundingClientRect();
+    const equationRect = getLocalRect(this.equationElement.getBoundingClientRect(), stageRect);
+    const equationGapPx = this.measureEquationLineClearance(stageRect);
+    const titleRect = this.equationTitleElement
+      ? getLocalRect(this.equationTitleElement.getBoundingClientRect(), stageRect)
+      : null;
+    const itemsByPlacement = new Map([
+      ["above", []],
+      ["below", []],
+    ]);
+    this.activeDocument.overlays.forEach((overlay) => {
+      const anchorElement = this.anchorElements.get(overlay.targetAnchorId);
+      const commentElement = this.overlayElements.get(overlay.id);
+      if (!anchorElement || !commentElement) {
+        return;
+      }
+      const computedStyle = this.window?.getComputedStyle?.(commentElement);
+      if (computedStyle?.position && computedStyle.position !== "absolute") {
+        commentElement.style.removeProperty("--overlay-layout-x");
+        commentElement.style.removeProperty("--overlay-layout-y");
+        return;
+      }
+      const commentRect = commentElement.getBoundingClientRect();
+      const targetRect = getLocalRect(anchorElement.getBoundingClientRect(), stageRect);
+      const placement = overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT;
+      const items = itemsByPlacement.get(placement);
+      if (!items) {
+        return;
+      }
+      items.push({
+        id: overlay.id,
+        element: commentElement,
+        width: commentRect.width,
+        height: commentRect.height,
+        targetCenterX: targetRect.left + targetRect.width / 2,
+      });
+    });
+
+    const placements = [];
+    itemsByPlacement.forEach((items, placement) => {
+      const layout = resolveCalloutRowLayout({
+        stageWidth: stageRect.width,
+        stageHeight: stageRect.height,
+        equationRect,
+        titleRect,
+        items,
+        placement,
+        equationGapPx,
+      });
+      items.forEach((item) => {
+        const position = layout.get(item.id);
+        if (!position) {
+          return;
+        }
+        item.element.style.setProperty("--overlay-layout-x", `${position.x.toFixed(1)}px`);
+        item.element.style.setProperty("--overlay-layout-y", `${position.y.toFixed(1)}px`);
+        placements.push({ id: item.id, placement, ...position });
+      });
+    });
+    return placements;
+  }
+
+  applyEquationVerticalClearance() {
+    if (!this.stageElement || !this.equationShellElement || !this.equationElement) {
+      return null;
+    }
+    const stageRect = this.stageElement.getBoundingClientRect();
+    const equationShellRect = getLocalRect(
+      this.equationShellElement.getBoundingClientRect(),
+      stageRect
+    );
+    const rowRects = measureEquationRowRects(this.equationElement, stageRect);
+    const aboveCalloutRects = [];
+    const belowCalloutRects = [];
+    this.activeDocument.overlays.forEach((overlay) => {
+      const commentElement = this.overlayElements.get(overlay.id);
+      if (!commentElement) {
+        return;
+      }
+      const rect = getLocalRect(commentElement.getBoundingClientRect(), stageRect);
+      const placement = overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT;
+      if (placement === "above") {
+        aboveCalloutRects.push(rect);
+      } else {
+        belowCalloutRects.push(rect);
+      }
+    });
+    const shiftPx = resolveEquationVerticalShift({
+      stageHeight: stageRect.height,
+      equationShellRect,
+      rowRects,
+      aboveCalloutRects,
+      belowCalloutRects,
+    });
+    if (shiftPx <= 0) {
+      return { shiftPx: 0 };
+    }
+    const nextCenterY = equationShellRect.top + equationShellRect.height / 2 + shiftPx;
+    this.equationShellElement.style.setProperty(
+      "--equation-layout-y",
+      `${nextCenterY.toFixed(1)}px`
+    );
+    return { shiftPx, nextCenterY };
   }
 
   updatePointerLines() {
@@ -890,7 +1365,7 @@ export class EquationMappingRuntime {
       }
       const geometry = createPointerLineGeometry(
         stageRect,
-        anchorElement.getBoundingClientRect(),
+        getSectionMarkerTargetRect(anchorElement),
         commentElement.getBoundingClientRect(),
         overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
       );

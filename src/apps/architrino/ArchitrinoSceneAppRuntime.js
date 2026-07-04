@@ -135,6 +135,7 @@ import {
   isStandaloneAnimatorAppMode,
   navigateStandaloneAnimatorHome,
 } from "../animator/AnimatorAppModeRuntime.js";
+import { consumeStandaloneAppHomeReturn } from "../navigator/StandaloneAppHomeRuntime.js";
 import {
   ANIMATOR_MEDIA_ASSET_DIRECTORIES as animatorMediaAssetDirectories,
   ANIMATOR_SUPPORTED_MEDIA_EXTENSIONS as animatorSupportedMediaExtensions,
@@ -7078,29 +7079,70 @@ function areNavigationStacksEqual(a, b) {
 }
 
 function areHistoryEntriesEqual(a, b) {
+  if (a?.href || b?.href) {
+    return a?.href === b?.href;
+  }
   return (
     a?.levelId === b?.levelId &&
     areNavigationStacksEqual(a?.navigationStack ?? [], b?.navigationStack ?? [])
   );
 }
 
-function pushBrowserHistoryEntry(stack, entry) {
-  if (!Array.isArray(stack) || !entry?.levelId) {
-    return;
+function normalizeExternalHistoryHref(href) {
+  const rawHref = String(href ?? "").trim();
+  if (!rawHref) {
+    return "";
   }
-  const normalizedEntry = {
+  try {
+    const baseHref = globalThis.window?.location?.href || "http://localhost/";
+    const currentOrigin = new URL(baseHref).origin;
+    const url = new URL(rawHref, baseHref);
+    if (url.origin !== currentOrigin) {
+      return "";
+    }
+    return url.href;
+  } catch {
+    return "";
+  }
+}
+
+function normalizeBrowserHistoryEntry(entry) {
+  const href = normalizeExternalHistoryHref(entry?.href);
+  if (href) {
+    return { href };
+  }
+  if (!entry?.levelId) {
+    return null;
+  }
+  return {
     levelId: entry.levelId,
     navigationStack: cloneNavigationStackEntries(entry.navigationStack),
   };
+}
+
+function pushBrowserHistoryEntry(stack, entry) {
+  if (!Array.isArray(stack)) {
+    return;
+  }
+  const normalizedEntry = normalizeBrowserHistoryEntry(entry);
+  if (!normalizedEntry) {
+    return;
+  }
   const lastEntry = stack[stack.length - 1];
-  if (
-    lastEntry &&
-    lastEntry.levelId === normalizedEntry.levelId &&
-    areNavigationStacksEqual(lastEntry.navigationStack, normalizedEntry.navigationStack)
-  ) {
+  if (lastEntry && areHistoryEntriesEqual(lastEntry, normalizedEntry)) {
     return;
   }
   stack.push(normalizedEntry);
+}
+
+function hydrateStandaloneAppReturnHistory() {
+  const returnEntry = consumeStandaloneAppHomeReturn(globalThis.window);
+  if (!returnEntry?.href) {
+    return false;
+  }
+  pushBrowserHistoryEntry(browserBackStack, returnEntry);
+  browserForwardStack.length = 0;
+  return true;
 }
 
 function requestSceneHashHistoryPush() {
@@ -7183,7 +7225,9 @@ async function resetToRootScene(options = {}) {
   }
   if (
     isStandaloneAnimatorApp &&
-    navigateStandaloneAnimatorHome(globalThis.window?.location, standaloneNavigatorHref)
+    navigateStandaloneAnimatorHome(globalThis.window?.location, standaloneNavigatorHref, {
+      windowLike: globalThis.window,
+    })
   ) {
     return;
   }
@@ -8654,7 +8698,9 @@ const animatorAppRuntime = createAnimatorAppRuntime({
     exitAnimator: () => {
       if (
         isStandaloneAnimatorApp &&
-        navigateStandaloneAnimatorHome(globalThis.window?.location, standaloneNavigatorHref)
+        navigateStandaloneAnimatorHome(globalThis.window?.location, standaloneNavigatorHref, {
+          windowLike: globalThis.window,
+        })
       ) {
         return;
       }
@@ -9221,6 +9267,7 @@ async function init() {
       });
     }
   }
+  hydrateStandaloneAppReturnHistory();
   updateSceneLabel();
   updateSceneMarkdown();
   syncSceneImageGalleryLevel(currentLevel);
@@ -9249,6 +9296,9 @@ appDirector = new AppDirector({
   },
   pushHistoryForwardEntry: (entry) => {
     pushBrowserHistoryEntry(browserForwardStack, entry);
+  },
+  navigateExternalHref: (href) => {
+    globalThis.window?.location?.assign?.(href);
   },
   getTransitionState: () => transitionState,
   getNavigationStack: () => navigationStack,

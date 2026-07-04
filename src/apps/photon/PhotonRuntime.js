@@ -37,7 +37,10 @@ import {
   createSolverAppWorkerClient,
 } from "../../solver/app/SolverAppWorkerBridge.mjs";
 import { createPhotonSolverBridgeOptions } from "./PhotonSolverBridgeOptions.js";
-import { STANDALONE_APP_HOME_HREF } from "../navigator/StandaloneAppHomeRuntime.js";
+import {
+  STANDALONE_APP_HOME_HREF,
+  navigateStandaloneAppHome,
+} from "../navigator/StandaloneAppHomeRuntime.js";
 
 const PHOTON_DOCS = {
   guide: {
@@ -1160,7 +1163,9 @@ export function createPhotonRuntime({
       onImportSearchResults: importSearchResults,
     });
     homeButton.addEventListener("click", () => {
-      windowLike.location.assign(homeHref);
+      navigateStandaloneAppHome(windowLike.location, homeHref, {
+        windowLike,
+      });
     });
     guideDocButton.addEventListener("click", () => {
       markdownRuntime.showMarkdownPanel(PHOTON_DOCS.guide);

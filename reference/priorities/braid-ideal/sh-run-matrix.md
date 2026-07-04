@@ -1,0 +1,98 @@
+# Shell-Braid Run Matrix
+
+Status: priority run matrix, 2026-07-04.
+
+Scope: consolidated diagnostic/candidate run matrix for shell-braid Proof IDs in the braid-ideal lane. This file tracks controlled run variations under Proof IDs such as `SH-0`, `SH-0-sea`, and `SH-L`; it does not create accepted retained evidence, change proof status, or promote any branch.
+
+## Matrix Granularity Decision
+
+Use one consolidated shell-braid run matrix while the rows share the same source-object and retained-evidence blockers.
+
+Use per-ID sections inside this file:
+
+- `SH-0` for isolated one-band/common-shell rest target runs;
+- `SH-0-sea` for the same central target embedded in surrounding like-braid Noether sea rows;
+- `SH-L` for moving observer-export rows after a retained shell branch exists.
+
+Split a section into its own matrix only when it gets a distinct runner, accepted-source object, validator, or evidence package large enough that the consolidated matrix stops being readable.
+
+## ID Rule
+
+Proof IDs name branch targets. Run handles name controlled variations.
+
+Do not mint a new Proof ID for every surface-speed, prehistory, or release variation. A run handle should travel with the runner output, source artifact hash, retained record, source row, and evidence status. For example, `SH-0` remains the Proof ID, while `sh0-g0-vt080-moving-prehistory` is a diagnostic run handle under that Proof ID.
+
+All rows below are priority-level diagnostic/candidate targets unless they later bind to accepted source rows, same-record receiver-normal root-detail rows, action/wake/event/support rows, and any required Noether sea response rows.
+
+## Shared Conventions
+
+| Field | Meaning |
+| --- | --- |
+| Proof ID | Branch target or downstream consumer being exercised. |
+| Run handle | Stable local run/evidence handle, not a Proof ID. |
+| Group velocity | Target-center group velocity for the diagnostic run. Existing candidate source rows may carry raw replay drift; record that separately in the runner output. |
+| Surface speed | Tangential speed magnitude on the common shell, reported as a fraction of field speed `$c_f$`. |
+| Prehistory mode | How the retained-history window is primed before the release or measurement. |
+| Evidence status | Current allowed claim level for the row. |
+
+The held-release rows are history-primed: the source history is generated during a hold interval, then the release or diagnostic perturbation is measured. A `kick-at-release` row intentionally changes velocity after the held history has been primed, so it tests the velocity factor as a diagnostic mismatch. A `moving-prehistory` row primes the path history with the same transverse surface motion it uses at release, so it is the history-consistent version if transverse motion survives the first screen.
+
+## SH-0 Isolated Rest Target
+
+`SH-0` is the isolated one-band/common-shell rest target: six architrinos on the shell, diametrically opposed binaries, and the axis-neutral angular-momentum frame. These rows test whether group-zero surface motion changes the isolated diagnostic behavior. They do not claim retained closure.
+
+| Run handle | Group velocity | Surface speed | Prehistory mode | Purpose | Evidence status |
+| --- | --- | ---: | --- | --- | --- |
+| `sh0-g0-vt000-held-release` | `0` | `0.00 c_f` | stationary held release | Baseline target identity and restart control for the provider-backed seed-path route. | diagnostic/candidate; retained evidence blocked at `held_release_seed_path_rows_acceptance_certificate.v0`. |
+| `sh0-g0-vt025-kick-at-release` | `0` | `0.25 c_f` | stationary hold, transverse kick at release | Low transverse-speed diagnostic isolating velocity-factor sensitivity from history priming. | diagnostic only until runner and accepted-source route exist. |
+| `sh0-g0-vt050-kick-at-release` | `0` | `0.50 c_f` | stationary hold, transverse kick at release | Mid transverse-speed kick screen. | diagnostic only until runner and accepted-source route exist. |
+| `sh0-g0-vt080-kick-at-release` | `0` | `0.80 c_f` | stationary hold, transverse kick at release | High but sub-field transverse-speed kick screen. | diagnostic only until runner and accepted-source route exist. |
+| `sh0-g0-vt095-kick-at-release` | `0` | `0.95 c_f` | stationary hold, transverse kick at release | Near-field-speed kick screen for root-margin and return-response sensitivity. | diagnostic only until runner and accepted-source route exist. |
+| `sh0-g0-vt099-kick-at-release` | `0` | `0.99 c_f` | stationary hold, transverse kick at release | Near-edge kick screen before the exact field-speed limit. | diagnostic only until runner and accepted-source route exist. |
+| `sh0-g0-vt100-kick-at-release` | `0` | `1.00 c_f` | stationary hold, transverse kick at release | Exact field-speed surface-motion edge diagnostic; expect causal-root margin risk. | diagnostic edge case only. |
+| `sh0-g0-vt025-moving-prehistory` | `0` | `0.25 c_f` | transverse moving prehistory | Low transverse-speed history-consistent release. | diagnostic/candidate only. |
+| `sh0-g0-vt050-moving-prehistory` | `0` | `0.50 c_f` | transverse moving prehistory | Mid transverse-speed history-consistent release. | diagnostic/candidate only. |
+| `sh0-g0-vt080-moving-prehistory` | `0` | `0.80 c_f` | transverse moving prehistory | High sub-field history-consistent release and first likely comparison to the current `u0.8:v0.2` source-row route. | diagnostic/candidate only. |
+| `sh0-g0-vt095-moving-prehistory` | `0` | `0.95 c_f` | transverse moving prehistory | Near-field-speed history-consistent release. | diagnostic/candidate only. |
+| `sh0-g0-vt099-moving-prehistory` | `0` | `0.99 c_f` | transverse moving prehistory | Near-edge history-consistent release before the exact limit. | diagnostic/candidate only. |
+| `sh0-g0-vt100-moving-prehistory` | `0` | `1.00 c_f` | transverse moving prehistory | Exact field-speed history-consistent surface-motion limit. | diagnostic edge case only; do not treat as accepted retained evidence. |
+
+## SH-0-Sea Embedded Target
+
+`SH-0-sea` inherits the central `SH-0` target identity, then adds surrounding like-braid Noether sea rows, a local target-sea frame, boundary-condition rows, candidate sea-response rows, support/envelope variables, action/exchange variables, and receiver-normal evidence requirements.
+
+The sea rows should consume the `SH-0` run handle they embed. They remain diagnostic/candidate until the central target/source record is accepted and same-record receiver-normal accounting exists.
+
+| Run handle | Embedded central run | Group velocity | Surface speed | Prehistory mode | Purpose | Evidence status |
+| --- | --- | --- | ---: | --- | --- | --- |
+| `sh0sea-g0-vt000-held-release` | `sh0-g0-vt000-held-release` | `0` | `0.00 c_f` | stationary held release | First candidate Noether sea stabilization row around the central target. | diagnostic/candidate; accepted evidence blocked at the central seed-path certificate and later sea-response rows. |
+| `sh0sea-g0-vt050-kick-at-release` | `sh0-g0-vt050-kick-at-release` | `0` | `0.50 c_f` | stationary hold, transverse kick at release | Medium-response check for a surface-kicked central target. | diagnostic only. |
+| `sh0sea-g0-vt080-kick-at-release` | `sh0-g0-vt080-kick-at-release` | `0` | `0.80 c_f` | stationary hold, transverse kick at release | High sub-field response check for velocity-factor sensitivity in the sea environment. | diagnostic only. |
+| `sh0sea-g0-vt080-moving-prehistory` | `sh0-g0-vt080-moving-prehistory` | `0` | `0.80 c_f` | transverse moving prehistory | First history-consistent moving-surface sea stabilization check if the isolated row remains numerically meaningful. | diagnostic/candidate only. |
+| `sh0sea-g0-vt095-moving-prehistory` | `sh0-g0-vt095-moving-prehistory` | `0` | `0.95 c_f` | transverse moving prehistory | Near-field-speed sea stabilization check. | diagnostic/candidate only. |
+| `sh0sea-g0-vt100-moving-prehistory` | `sh0-g0-vt100-moving-prehistory` | `0` | `1.00 c_f` | transverse moving prehistory | Exact field-speed embedded edge diagnostic. | diagnostic edge case only. |
+
+## SH-L Downstream Moving Export
+
+`SH-L` is not a surface-speed sweep of an unretained `SH-0` row. It is the downstream moving observer-export consumer after a retained `SH-0` or retained `SH-0-sea` branch exists.
+
+| Run handle | Source branch requirement | Group velocity | Surface speed | Purpose | Evidence status |
+| --- | --- | --- | ---: | --- | --- |
+| `shl-from-retained-sh0` | retained `SH-0` branch | `>0` | inherited from retained branch | Test moving shell export only after isolated shell retention closes. | blocked; no retained `SH-0` branch exists. |
+| `shl-from-retained-sh0sea` | retained `SH-0-sea` branch | `>0` | inherited from retained branch | Test moving shell export after sea-stabilized shell retention closes. | blocked; no retained `SH-0-sea` branch exists. |
+
+## First Executable Gap
+
+The current first accepted-evidence blocker is unchanged:
+
+- object: `held_release_seed_path_rows_acceptance_certificate.v0`;
+- field: `held_release_seed_path_rows.acceptance_certificate_ref`;
+- candidate artifact: `held_release_seed_path_rows:5833f18e53586201`.
+
+The first run-matrix implementation gap is smaller and diagnostic:
+
+1. add runner options or a new diagnostic runner that can set target-center group velocity `0`, transverse surface speed, and prehistory mode;
+2. emit the Proof ID, run handle, source artifact id/hash, retained record id, source row id, runner version, and evidence status in every output;
+3. keep `kick-at-release` and `moving-prehistory` outputs separate because they answer different questions about history priming.
+
+Only after the accepted seed-path certificate, matching external accepted-authority package, repo authorization, retained-source adapter package, and same-record receiver-normal root-detail rows exist can any row in this matrix be used for retained force/action or stability closure.
