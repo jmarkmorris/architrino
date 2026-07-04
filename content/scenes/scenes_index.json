@@ -1904,6 +1904,11 @@
       "id": "archie__presentations",
       "name": "Presentations",
       "path": "content/scenes/archie/presentations.json"
+    },
+    {
+      "id": "noether_braid__proof_map",
+      "name": "Noether Braid Proof Map",
+      "path": "content/scenes/noether-braid/noether_braid_proof_map.json"
     }
   ]
 }
