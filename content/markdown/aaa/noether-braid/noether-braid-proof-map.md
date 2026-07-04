@@ -18,6 +18,17 @@ The ID alone never supplies disposition. A rejected `NB-0` diagnostic, an open `
 
 Some proof efforts also carry local fixture or artifact labels. Those labels are stable evidence handles, not new base Proof IDs. A group-zero, axis-neutral, common-sphere held-release six-point fixture is `SH-0` row evidence because it declares one shell support band at rest. That classification does not make the branch retained. The result still depends on the current disposition, proof-stack role, accepted-source status, stability row, and Noether sea response row.
 
+## Proof Burden Order
+
+The Proof IDs name configurations, but the proof burden closes in ordered rows. A packet can supply evidence for one row while leaving the next row open.
+
+| Proof burden | What must close on the same record | First IDs that exercise it | Promotion effect |
+| --- | --- | --- | --- |
+| Rest branch retention | Inventory, support, causal-root, wake-tail, dynamics, action, event, stability, and convergence rows in the declared rest environment. | `NB-0`, `SH-0`, `NSH-0`, `PL-NB-0`, `PL-SH-0`, `PL-NSH-0` | Candidate branch becomes a retained branch only in that declared environment. |
+| Noether sea embedded retention | The rest retention rows plus the local Noether sea population-response row from like assemblies. | `SH-0-sea`; later `NB-0-sea`, `NSH-0-sea`, or `PL-*-sea` packets if declared. | Isolation-only diagnostics become medium-stability evidence when the environment row closes. |
+| Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame leakage rows for $\mathbf{V}_{\mathrm{grp}}>0$. | `NB-L`, `SH-L`, `NSH-L`, `PL-NB-L`, `PL-SH-L`, `PL-NSH-L` | Retained branch can be promoted toward certified braid status only if Lorentz-compatible export closes. |
+| Assembly consumer rows | Topological charge, photon channel, mass response, accessory-architrino capture, generation behavior, GR/effective-metric export, and app-runtime packets consume the retained branch record. | Downstream packets tied back to the relevant retained Proof ID. | Consumer success classifies or exports a retained branch; it does not retroactively prove branch retention. |
+
 ## Current Work Index
 
 In this index, work status is a proof-map status, not a certification claim. `Started` means at least one inspected proof packet, diagnostic, row-evidence packet, chart-boundary packet, or downstream export packet is mapped to the Proof ID. `Not started` means no inspected proof packet is currently mapped to the Proof ID. `Unassigned` means likely related material exists, but it has not been inspected enough to map without overclaiming.
@@ -44,7 +55,7 @@ In this index, work status is a proof-map status, not a certification claim. `St
 | `PL-NSH-0` | planar lower-rank nested shell braid, rest | Chart-boundary started | Planar-chart and $D_{\mathrm{plane}} = 0$ wall evidence exists; no retained lower-rank branch is claimed. | Is the lower-rank case retained, terminal, or only diagnostic? |
 | `PL-NSH-L` | planar lower-rank nested shell braid, moving export | Not started | Blocked until a retained `PL-NSH-0` branch exists. | Can a retained lower-rank nested branch export observer rows? |
 
-The proof records use the same decoder fields for each Proof ID: fixed effort, group velocity, support or shell count, angular-momentum frame, axis setting, frequency ratio, hinge value, energy-level relation, Noether sea environment, Lorentz deformation, and success condition.
+The detailed records below use the configuration decoder fields for each Proof ID: fixed effort, group velocity, support or shell count, angular-momentum frame, axis setting, frequency ratio, hinge value, energy-level relation, Noether sea environment, Lorentz deformation, and success condition. Proof-stack role, work status, and current disposition remain attached to inspected packets, fixture bullets, and the current work index rather than to the ID alone.
 
 ## Neutral Braid Proof IDs
 
@@ -92,8 +103,8 @@ The proof records use the same decoder fields for each Proof ID: fixed effort, g
 - Lorentz deformation: Not tested.
 - Success condition: Retain the shell support rows on the same branch record.
 - Started fixture / evidence handles: group-zero, axis-neutral, common-sphere held-release six-point fixture; rigid fixed-speed octahedral root-ledger and no-go diagnostics when their declared chart includes one common shell support.
-- Current fixture disposition: The held-release fixture preserves center-zero, common-sphere, common-speed, and antipodal-pair symmetry under the declared symmetry assumptions, then shows a single compression-to-expansion turn without a retained return response. It remains non-promoted diagnostic row evidence. The current accepted-source blocker is the missing same-record seed-path acceptance certificate, followed by the matching external authority package and repo authorization before return, stability, and Noether sea rows can count as retention evidence.
-- Next environment round: `SH-0-sea`.
+- Current fixture disposition: The held-release fixture preserves center-zero, common-sphere, common-speed, and antipodal-pair symmetry under the declared symmetry assumptions, then shows a single compression-to-expansion turn without a retained return response. It remains non-promoted diagnostic row evidence. The current evidence blocker is the missing same-record seed-path acceptance certificate and accepted retained-history provenance; without those rows, return, stability, and Noether sea response cannot count as retention evidence.
+- Next environment round: `SH-0-sea`, with an explicit like-assembly population record, boundary condition, and sea-response row tied to the same target branch.
 
 **`SH-0-sea` -- Noether sea embedded shell braid rest qualification**
 
