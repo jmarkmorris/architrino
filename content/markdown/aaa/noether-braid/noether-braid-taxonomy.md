@@ -212,6 +212,16 @@ This table is a proof map, not only a taxonomy decoder. A proof ID names a speci
 
 A negative diagnostic remains scoped to the branch chart and assumptions that produced it. A photon, mass-response, Lorentz-export, topological-charge, GR-export, measurement, or app-runtime packet is downstream of branch retention unless the same retained record supplies the rows being exported. A planar reduced chart is a chart unless the local calculation is actually testing a planar lower-rank branch or the terminal hinge. The ideal braid remains a fixture overlay on the relevant rest-branch Proof ID, not a Proof ID of its own.
 
+Read every proof packet with three independent labels:
+
+| Label | Question it answers | Example values |
+| --- | --- | --- |
+| Proof ID | Which branch configuration is being tested? | `NB-0`, `SH-0`, `NSH-421`, `PL-NSH-0` |
+| Proof-stack role | How does this packet relate to that branch configuration? | branch target, row evidence, diagnostic/rejection, fixture, chart, downstream consumer |
+| Current disposition | What is the present result under the packet's declared assumptions? | candidate, not tested, blocked, rejected, `not_retained`, retained |
+
+The Proof ID alone never supplies the current disposition. A rejected `NB-0` diagnostic, an open `NSH-421` row-evidence packet, and a retained `SH-0` branch target would have different proof meanings even though all three use the same naming grammar.
+
 The base and frame-modifier codes are:
 
 | Code | Base family or modifier | Meaning |
