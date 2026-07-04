@@ -22,6 +22,10 @@
         "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json"
       },
       {
+        "nodeId": "noether_braid_proof_map",
+        "scenePath": "content/scenes/noether-braid/noether_braid_proof_map.json"
+      },
+      {
         "nodeId": "noether_braid_configuration_space",
         "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
       },
@@ -58,6 +62,14 @@
       "radius": 2.05,
       "color": "#6f5a2f",
       "labelTitle": "Noether Braid Taxonomy",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "noether_braid_proof_map",
+      "title": "Noether Braid Proof Map",
+      "radius": 2.05,
+      "color": "#5a5f7a",
+      "labelTitle": "Noether Braid Proof Map",
       "labelBadge": "doc"
     },
     {
