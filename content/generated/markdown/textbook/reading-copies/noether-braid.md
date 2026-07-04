@@ -18,6 +18,12 @@ The word **braid** names the six retained worldline strands together with their 
 
 Canonical reader-facing prose uses **Noether braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
+### Document Role
+
+This chapter is the broad branch-definition and retention-predicate chapter for the Noether braid stack. It owns the neutral braid, shell braid, and nested shell braid definitions; the six-worldline branch ledger; and the retained-branch predicate used before any proof packet promotes a candidate braid.
+
+It does not select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here: [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md) decodes configuration axes and Proof IDs, [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) studies the rank-three angular-momentum-frame sublocus, [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) tests the nested shell braid mechanism, [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) studies the `NSH-421` candidate family, [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) classifies retained branch charts, and [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md) supplies the envelope/export interface.
+
 ### Neutral Braid
 
 A **neutral braid** is the base six-architrino case. It contains three positrinos and three electrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
@@ -627,7 +633,7 @@ $$
 \left(
 \mathsf{Inventory},
 \mathsf{Support},
-\mathsf{Rows}_{3B},
+\mathsf{AngularMomentumFrame},
 \mathsf{Polarity},
 \mathsf{Handedness},
 \mathsf{Speed},
@@ -638,6 +644,21 @@ $$
 $$
 
 Each entry records a different kind of structure. Mixing the entries creates a candidate configuration; it does not by itself prove that the delayed dynamics admit a stable branch. Retention still belongs to the branch ledger, causal-root rows, action and energy rows, gluing status, and stability margin described in the surrounding Noether braid chapters.
+
+### Document Role
+
+This chapter is the decoder and proof map for Noether braid configuration language. It owns the shared axes, local evidence-level terms, Proof ID grammar, and table that tell a reader what a branch proof packet is testing.
+
+It does not prove branch retention by itself. A Proof ID names a branch-configuration effort; the proof-stack role and current disposition must still be stated before any success, rejection, fixture, chart, or downstream-consumer claim is made.
+
+| Chapter | Role in the stack | Boundary |
+| --- | --- | --- |
+| [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) | Broad branch definitions and retained-branch predicate. | Defines neutral, shell, and nested shell braid cases without selecting a proof-map outcome. |
+| [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) | Rank-three angular-momentum-frame search sublocus. | Supplies search variables and frame rows without making exact binaries universal. |
+| [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | Nested shell braid mechanism and certificate target. | Tests coupled shell dynamics without turning downstream exports into base branch IDs. |
+| [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) | Specialized `NSH-421` candidate family. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
+| [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) | Downstream classifier for retained branch charts. | Computes a topological label only after a same-record branch chart supplies the required rows. |
+| [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md) | Envelope and export interface. | Describes exclusion, deformation, and envelope rows without certifying dynamics or metric recovery alone. |
 
 ### Local Terms
 
@@ -656,15 +677,15 @@ This chapter uses four evidence-level terms in a controlled way:
 | --- | --- | --- |
 | Base inventory | Six-body polarity-neutral branch structure | neutral braid |
 | Support geometry | How the six paths occupy branch support | shell braid, nested shell braid, oblate envelope |
-| Three-binary branch record | Whether three angular-momentum rows are retained | rank-three Noether braid chart, planar lower-rank chart |
-| Polarity support | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
-| Angular-momentum handedness | Orientation of the ordered three-binary frame | positive-handed, negative-handed |
+| Angular-momentum frame | Whether three angular-momentum rows are retained | rank-three frame, planar lower-rank braid (`PL`) |
+| Polarity placement | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
+| Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
 | Speed regime | Relation of layer speed rows to $c_f$ | sub-field, field-speed, super-field, mixed |
 | Field-speed hinge occupancy | Which rows operate within a declared $c_f$ tolerance and how that affects root access | no hinge row, single-hinge, multi-hinge, terminal hinge |
 | Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
-| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate, retained branch, eigen-braid candidate |
+| Certificate status | Evidential status of a branch claim | toy diagnostic, candidate braid, retained branch, certified braid |
 
-The axes are intentionally independent. A nested shell braid may be studied with or without an exact three-binary chart. A doubling-frequency family may be studied on an axis-neutral or axis-polarized polarity support. A row with field-speed hinge occupancy may or may not belong to an iso-frequency or integer-ratio family. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
+The axes are intentionally independent. A nested shell braid may be studied with or without an exact rank-three frame. A doubling-frequency family may be studied on an axis-neutral or axis-polarized polarity placement. A row with field-speed hinge occupancy may or may not belong to an iso-frequency or integer-ratio family. A positive-handed angular-momentum frame may be a candidate diagnostic without yet being a retained branch certificate.
 
 ### Base Inventory
 
@@ -692,13 +713,19 @@ Support geometry records how the six paths occupy their branch support.
 | nested shell braid | Shell braid with three ordered radial support bands. | Support class used by [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md) and [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md). |
 | oblate envelope | Candidate support whose retained path envelope is flattened relative to a spherical shell. | Explored support variation, not a retained class by name alone. |
 
-Support geometry should not be confused with binary grouping. A branch may have shell support before it proves three persistent binary rows. Conversely, a three-binary chart may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid.
+Support geometry should not be confused with binary grouping. A branch may have shell support before it proves three persistent binary rows. Conversely, a rank-three frame may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid.
 
-### Three-Binary Branch Record
+### Angular-Momentum Frame
 
-The three-binary branch record asks whether the retained branch emits three angular-momentum rows. It is developed in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md). The rows are ledger data extracted from the branch, not assumed circular orbits.
+The angular-momentum-frame axis asks whether the retained branch emits enough angular-momentum rows to define a volumetric internal frame. The rows are ledger data extracted from the branch, not assumed circular orbits. The three-row or rank-three sublocus is developed in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md), but it remains a sublocus of the broader Noether braid taxonomy rather than the definition of every Noether braid.
 
-For a rank-three chart, the branch record includes three angular-momentum two-form classes
+| Frame value | Meaning | What it does not prove |
+| --- | --- | --- |
+| not assigned | The branch has not yet supplied retained angular-momentum rows. | It does not reject the branch; it only leaves the frame axis open. |
+| rank-three frame | The branch supplies three retained angular-momentum rows with nonzero frame determinant. | It does not by itself prove shell support, frequency lock, polarity placement, or certification. |
+| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because $D_{\mathrm{plane}}=0$ or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal nested-shell boundary. |
+
+For a rank-three frame, the branch record includes three angular-momentum two-form classes
 
 $$
 [\omega_J^{(a)}],
@@ -718,11 +745,13 @@ D_{\mathrm{plane}}
 \ne 0.
 $$
 
-A planar lower-rank chart may still be dynamically meaningful, but it is not a promoted rank-three Noether braid chart until the three-row frame condition and its conditioning floor are supplied on the same retained record.
+A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
-### Polarity Support
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. Such a chart may represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating pro/anti planar pair. It should therefore be named as a chart, not used as a base-family name.
 
-Polarity support records how the three positive-polarity and three negative-polarity architrinos populate opposite axial pairs in an axial comparison chart. Let an axial chart have three opposite coordinate pairs
+### Polarity Placement
+
+Polarity placement records how the three positive-polarity and three negative-polarity architrinos populate opposite axial pairs in an axial comparison chart. Let an axial chart have three opposite coordinate pairs
 
 $$
 A_k=\{+\hat{\mathbf e}_k,-\hat{\mathbf e}_k\},
@@ -730,18 +759,18 @@ A_k=\{+\hat{\mathbf e}_k,-\hat{\mathbf e}_k\},
 k\in\{1,2,3\}.
 $$
 
-The two final polarity-support terms are:
+The two final polarity-placement terms are:
 
 | Term | Axial population pattern | Meaning |
 | --- | --- | --- |
 | axis-neutral | Each opposite axial pair contains one positive and one negative endpoint. | The schematic polarity row is `-+`, `-+`, `-+`, up to axis and endpoint relabeling. |
 | axis-polarized | One opposite axial pair contains two positives, one contains two negatives, and one remains mixed. | The schematic polarity row is `--`, `-+`, `++`, up to axis and endpoint relabeling. |
 
-These are support decorations, not force laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
+These are polarity placements, not force laws. They classify a polarity placement on a chosen axial comparison chart. They do not decide whether the underlying paths are axial, circular, or retained by the delayed dynamics.
 
 ### Angular-Momentum Handedness
 
-Angular-momentum handedness records the orientation of the ordered three-binary frame when the frame exists. If the retained branch supplies ordered plane normals $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$, then the sign of $D_{\mathrm{plane}}$ gives the handedness of that ordered frame:
+Angular-momentum handedness records the orientation of the ordered rank-three frame when the frame exists. If the retained branch supplies ordered plane normals $\hat{\mathbf n}_1,\hat{\mathbf n}_2,\hat{\mathbf n}_3$, then the sign of $D_{\mathrm{plane}}$ gives the handedness of that ordered frame:
 
 $$
 \operatorname{sgn}(D_{\mathrm{plane}})
@@ -784,9 +813,13 @@ Certificate status prevents taxonomy names from being mistaken for results.
 | Status | Meaning |
 | --- | --- |
 | toy diagnostic | A simplified computation or visualization that tests a limited obstruction or analogy. |
-| candidate | A proposed branch family or configuration class whose required ledger rows are not all certified. |
+| candidate braid | A proposed branch family or configuration class whose required ledger rows are not all certified. |
 | retained branch | A branch whose inventory, causal-root, wake-tail, dynamics, action, event, stability, and convergence rows close on one retained record. |
-| eigen-braid candidate | A retained or near-retained branch record that returns under the delayed return map up to declared neutral symmetries. |
+| certified braid | A retained branch record that returns under the delayed return map up to declared neutral symmetries, preserves the required non-symmetry stability margins, and satisfies the observer-export rows required of a physical branch. |
+
+All certified braids must reproduce Lorentz-compatible clock and ruler deformation at the observer-export layer when they are tested in a homogeneous moving-branch regime. The same retained record must then export a ruler row whose longitudinal-to-transverse deformation approaches $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, a clock row whose extracted rate approaches $d\tau/dt\to1/\gamma$, and bounded preferred-frame leakage through the declared $\epsilon_{\text{LV}}$ or two-way anisotropy diagnostic.
+
+The ideal braid is a proof-fixture label, not a base family. In this chapter it means a highly symmetric rest-branch qualification fixture with $\mathbf{V}_{\mathrm{grp}}=0$ and declared support, frame, frequency, axis, and hinge assumptions. Because the fixture has group velocity $0$, no moving-envelope deformation is present there. Lorentz deformation is a separate moving-export certification obligation, not a burden carried only by that test object.
 
 The [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program adds topological labels only after the retained branch chart supplies the needed root-complex and phase-return data. A taxonomy value can point to where that proof should be attempted, but it cannot substitute for the proof.
 
@@ -799,21 +832,88 @@ The explored Noether braid configurations should be read as combinations of the 
 | neutral braid | Base inventory only. | Broad class before shell support or binary rows are certified. |
 | shell braid | Base inventory plus controlled radial support band. | Support geometry claim requiring radial rows. |
 | nested shell braid | Shell support plus ordered radial support bands. | Support geometry used by nested-shell dynamics, not proof of exact binaries by itself. |
-| rank-three Noether braid chart | Three retained angular-momentum rows and nondegenerate frame data. | Branch-record claim requiring $D_{\mathrm{plane}}$ and same-record ledger rows. |
 | iso-frequency braid | Frequency-ratio family with common return rate. | Candidate family until distinct energy, speed, phase, support, and ledger rows close. |
 | doubling-frequency `4:2:1` lock | Frequency-ratio family plus phase-return target. | Candidate family until the integer phase-return map and stability rows close. |
 | field-speed hinge occupancy | Speed-regime axis declaring one or more rows near $c_f$. | Candidate regime until the component speed, root-access, and transversality rows close. |
-| axis-neutral support | Mixed polarity on every opposite axial pair. | Polarity-support decoration in an axial comparison chart. |
-| axis-polarized support | One positive pair, one negative pair, and one mixed pair. | Polarity-support decoration in an axial comparison chart. |
+| axis-neutral placement | Mixed polarity on every opposite axial pair. | Polarity-placement decoration in an axial comparison chart. |
+| axis-polarized placement | One positive pair, one negative pair, and one mixed pair. | Polarity-placement decoration in an axial comparison chart. |
 | positive-handed or negative-handed frame | Sign of the ordered rank-three angular-momentum frame. | Assigned only when the branch supplies a nondegenerate three-row frame. |
+| planar lower-rank braid (`PL`) | Lower-rank angular-momentum frame with $D_{\mathrm{plane}}=0$ or no retained three-row frame. | Boundary or comparison family until the same-record ledgers decide whether it is retained, a degeneration of another family, or only a diagnostic toy. |
+| planar reduced chart | Proof or simulation representation in a common plane or near-plane. | Chart label only; it may represent `PL`, a terminal nested-shell boundary, or a photon-channel bridge. |
+| ideal braid | Rest-branch proof fixture with declared idealizing assumptions. | Fixture label only; not a base braid family and not the sole carrier of Lorentz-export obligations. |
 
-This taxonomy is designed to keep the architecture extensible without turning every variation into a retained branch. A configuration becomes physically important only when its taxonomy record is joined to a retained branch certificate or a clearly marked theorem target.
+This taxonomy is designed to keep the architecture extensible without turning every variation into a retained branch. A configuration becomes physically important only when its taxonomy record is joined to a retained branch certificate, a certified-braid theorem target, or a clearly marked lower-status search family.
+
+### Proof Map Table
+
+This table is a proof map, not only a taxonomy decoder. A proof ID names a specific branch-configuration effort and does not assert success. It is not a label for every app surface, downstream observable, diagnostic packet, reduced chart, or proof fixture. Row evidence, diagnostics, fixtures, charts, and downstream physics packets should name the branch Proof ID they test or consume only after the support base, group-velocity regime, and local variation are declared.
+
+A negative diagnostic remains scoped to the branch chart and assumptions that produced it. A photon, mass-response, Lorentz-export, topological-charge, GR-export, measurement, or app-runtime packet is downstream of branch retention unless the same retained record supplies the rows being exported. A planar reduced chart is a chart unless the local calculation is actually testing a planar lower-rank branch or the terminal hinge. The ideal braid remains a fixture overlay on the relevant rest-branch Proof ID, not a Proof ID of its own.
+
+Read every proof packet with three independent labels:
+
+| Label | Question it answers | Example values |
+| --- | --- | --- |
+| Proof ID | Which branch configuration is being tested? | `NB-0`, `SH-0`, `NSH-421`, `PL-NSH-0` |
+| Proof-stack role | How does this packet relate to that branch configuration? | branch target, row evidence, diagnostic/rejection, fixture, chart, downstream consumer |
+| Current disposition | What is the present result under the packet's declared assumptions? | candidate, not tested, blocked, rejected, `not_retained`, retained |
+
+The Proof ID alone never supplies the current disposition. A rejected `NB-0` diagnostic, an open `NSH-421` row-evidence packet, and a retained `SH-0` branch target would have different proof meanings even though all three use the same naming grammar.
+
+The base and frame-modifier codes are:
+
+| Code | Base family or modifier | Meaning |
+| --- | --- | --- |
+| `NB` | neutral braid | Broad six-worldline $3:3$ polarity-neutral candidate before shell support is certified. |
+| `SH` | shell braid | Neutral braid with one controlled radial support band. |
+| `NSH` | nested shell braid | Shell braid with three ordered support bands. This is separate from plain shell work. |
+| `PL` | planar lower-rank modifier | Lower-rank angular-momentum-frame modifier: the branch has $D_{\mathrm{plane}}=0$ or no retained three-row frame. It must be paired with a support base such as `NB`, `SH`, or `NSH` before it is used as a proof ID. |
+
+The suffix names the proof regime or variation:
+
+| Suffix | Meaning |
+| --- | --- |
+| `0` | Rest-branch qualification with $\mathbf{V}_{\mathrm{grp}}=0$. |
+| `L` | Moving-branch continuation with $\mathbf{V}_{\mathrm{grp}}>0$ and Lorentz clock/ruler export. |
+| `AX` | Axis-population comparison across axis-neutral and axis-polarized placements. |
+| `ISO` | Iso-frequency family, `1:1:1`. |
+| `321` | Integer-ratio family, example `3:2:1`. |
+| `421` | Doubling-frequency lock, `4:2:1` in role-assigned `I:M:O` order. |
+| `HINGE` | Field-speed hinge occupancy. |
+| `TERM` | Terminal hinge / braid symmetry-breaking point. |
+
+| Proof ID | Base configuration | What is fixed by this effort | Group velocity | Support / shell count | Angular-momentum frame | Axis setting | Frequency ratio | Hinge value | Energy-level relation | Lorentz deformation | Proof stage / success condition |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `NB-0` | neutral braid | Six-worldline $3:3$ inventory and one shared causal-return record. | $\mathbf{V}_{\mathrm{grp}}=0$ | No shell support fixed. | Not assigned. | Not assigned. | Not fixed. | Not fixed. | One branch energy ledger required. | Not tested. | Retain the broad neutral branch record before any support reduction. |
+| `NB-L` | neutral braid | Moving continuation of a retained neutral branch. | $\mathbf{V}_{\mathrm{grp}}>0$ | Inherited from `NB-0`, if any. | Inherited or still unassigned. | Not assigned unless added. | Inherited if claimed. | Inherited if claimed. | Moving energy/action export required. | Required if the neutral branch is promoted toward certification. | Show moving continuation, clock/ruler export, and bounded preferred-frame leakage. |
+| `SH-0` | shell braid | One controlled radial support band around a branch center. | $\mathbf{V}_{\mathrm{grp}}=0$ | One support band. | Not assigned by shell support. | Not assigned unless an axial chart is added. | Not fixed. | Not fixed. | Shell support does not fix energy levels. | Not tested. | Retain the shell support rows on the same branch record. |
+| `SH-L` | shell braid | Moving continuation of a retained one-band shell. | $\mathbf{V}_{\mathrm{grp}}>0$ | One support band under transport. | Optional; must be stated if used. | Optional. | Inherited if claimed. | Inherited if claimed. | Moving shell energy/action export required. | Required for certification in the moving regime. | Prove the shell survives transport and exports Lorentz-compatible clock/ruler rows. |
+| `NSH-0` | nested shell braid | Three ordered support bands in a rest branch. | $\mathbf{V}_{\mathrm{grp}}=0$ | Three support bands. | Must be solved: rank-three or lower-rank is not assumed. | Optional axis-neutral or axis-polarized placement. | Not fixed. | Not fixed. | Energy/action rows $E_I,E_M,E_O$ or unordered $E_a$ must close if claimed. | Not tested in the rest qualification. | Retain the nested support, role map, causal-root, energy, frame, and stability rows. An ideal braid rest fixture belongs here only when its declared fixture assumptions include nested support. |
+| `NSH-L` | nested shell braid | Moving continuation of a retained nested shell branch. | $\mathbf{V}_{\mathrm{grp}}>0$ | Three transported support bands. | Inherited from `NSH-0` or solved during continuation. | Inherited if claimed. | Inherited if claimed. | Inherited if claimed. | Moving nested-shell energy/action export required. | Required. | Recover $\xi\to1/\gamma$, $d\tau/dt\to1/\gamma$, and bounded preferred-frame leakage from the same branch record. |
+| `NSH-AX` | nested shell braid | Axis-population comparison. | Start at $\mathbf{V}_{\mathrm{grp}}=0$. | Usually three support bands. | Must be solved separately. | Compare axis-neutral `-+`, `-+`, `-+` with axis-polarized `--`, `-+`, `++`. | Not fixed. | Not fixed. | Not fixed by axis population. | Not tested. | Decide whether either or both axis settings survive the same-record branch tests. |
+| `NSH-ISO` | nested shell braid | Common return-rate family. | Start at $\mathbf{V}_{\mathrm{grp}}=0$. | Usually three support bands. | Must be solved separately. | Optional. | `1:1:1`. | Not fixed. | Equal frequency does not imply equal energy. | Not tested. | Test phase, root, support, frame, energy, and stability rows for the iso-frequency family. |
+| `NSH-321` | nested shell braid | Non-doubling integer frequency family. | Start at $\mathbf{V}_{\mathrm{grp}}=0$. | Usually three support bands. | Must be solved separately. | Optional. | Example `3:2:1`. | Not fixed. | Integer frequency does not imply integer energy. | Not tested. | Compare against iso-frequency and doubling-frequency families without assuming repeated doubling. |
+| `NSH-421` | nested shell braid | Doubling-frequency lock in role-assigned order. | Start at $\mathbf{V}_{\mathrm{grp}}=0$. | Usually three support bands. | Must be solved separately. | Optional. | `4:2:1` in `I:M:O` order. | Not fixed unless paired with hinge rows. | No automatic equality; solve $E_I:E_M:E_O$ from the branch ledger. | Not tested. | Close the integer phase-return map, role assignment, causal-root rows, frame rows, and stability rows. |
+| `NSH-HINGE` | nested shell braid | One or more rows operating near the field-speed hinge. | Usually rest-branch carrier test first. | Usually three support bands. | Must be solved separately. | Optional. | Inherited if claimed. | no hinge row, single-hinge, or multi-hinge. | Energy consequences must be solved on the same branch. | Not tested by the hinge row itself. | Show which speed statistic is at $c_f$, which roots become accessible, and whether transversality survives. |
+| `NSH-TERM` | nested shell braid | Terminal hinge / braid symmetry-breaking point. | Usually terminal carrier regime, not observer transport by itself. | Usually three support bands approaching loss of volumetric slack. | Lower-rank or degenerating frame expected at the boundary. | Coplanarity and co-linearity tested together. | Not fixed by the name. | terminal hinge. | Equal radii, equal frequencies, and equal energies are not implied. | Not tested by the terminal row itself. | Identify the boundary where precession, root-access, action, and stability closure fail or reorganize. |
+| `PL-NB-0` | planar lower-rank neutral braid | Rest-branch lower-rank comparison on the neutral-braid support base. | $\mathbf{V}_{\mathrm{grp}}=0$ | No shell support fixed. | Lower-rank: $D_{\mathrm{plane}}=0$ or no retained three-row frame. | Optional. | Optional. | Optional. | Energy rows may be diagnostic unless retained. | Not tested. | Decide whether lower-rank behavior belongs to a retained neutral branch or remains only a diagnostic toy. |
+| `PL-NB-L` | planar lower-rank neutral braid | Moving continuation of a retained lower-rank neutral branch. | $\mathbf{V}_{\mathrm{grp}}>0$ | Inherited from `PL-NB-0`. | Lower-rank. | Inherited if claimed. | Inherited if claimed. | Inherited if claimed. | Moving energy/action export required if retained. | Conditional: required only if the lower-rank neutral branch is promoted toward certification. | Test whether a lower-rank neutral branch can export observer rows without masquerading as rank-three Lorentz closure. |
+| `PL-SH-0` | planar lower-rank shell braid | Rest-branch lower-rank comparison on one support band. | $\mathbf{V}_{\mathrm{grp}}=0$ | One support band. | Lower-rank. | Optional. | Optional. | Optional. | Shell energy/action rows must close if retained. | Not tested. | Decide whether shell support can retain without a rank-three frame. |
+| `PL-SH-L` | planar lower-rank shell braid | Moving continuation of a retained lower-rank shell branch. | $\mathbf{V}_{\mathrm{grp}}>0$ | Inherited from `PL-SH-0`. | Lower-rank. | Inherited if claimed. | Inherited if claimed. | Inherited if claimed. | Moving shell energy/action export required if retained. | Conditional: required only if the lower-rank shell branch is promoted toward certification. | Test whether a lower-rank shell branch can export observer rows without masquerading as rank-three Lorentz closure. |
+| `PL-NSH-0` | planar lower-rank nested shell braid | Rest-branch lower-rank or terminal-boundary comparison on nested support. | $\mathbf{V}_{\mathrm{grp}}=0$ | Three support bands or declared terminal nested support. | Lower-rank or degenerating frame. | Optional; coplanarity and co-linearity may be active near the terminal row. | Optional. | Optional or terminal hinge. | Nested energy/action rows must close if retained. | Not tested. | Decide whether lower-rank behavior is a retained nested branch, a terminal boundary of `NSH`, or only a planar reduced-chart diagnostic. |
+| `PL-NSH-L` | planar lower-rank nested shell braid | Moving continuation of a retained lower-rank nested shell branch. | $\mathbf{V}_{\mathrm{grp}}>0$ | Inherited from `PL-NSH-0`. | Lower-rank or degenerating frame. | Inherited if claimed. | Inherited if claimed. | Inherited if claimed. | Moving nested-shell energy/action export required if retained. | Conditional: required only if the lower-rank nested shell branch is promoted toward certification. | Test whether a lower-rank nested shell branch can export observer rows without masquerading as rank-three Lorentz closure. |
 
 ## Noether Braid Configuration Space
 
-This chapter gives the general Noether-braid search space for the three-binary sublocus. It comes before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within that sublocus, a Noether braid branch is a three-layer retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the Noether braid search space for the rank-three angular-momentum-frame sublocus. It comes after the broad branch definitions in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within that sublocus, a Noether braid branch is a three-layer retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
-This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which of those branches are eigen-braid candidates, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
+This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
+
+### Document Role
+
+This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
+
+It does not exhaust the full Noether braid class, certify nested shell support, or make `I:M:O`, `4:2:1`, iso-frequency, or field-speed hinge assumptions the default. Those are specializations that must declare their support base and same-record branch rows before they can be mapped onto a Proof ID in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md).
 
 ### Scope Of The Hypothesis
 
@@ -854,7 +954,7 @@ D_{\mathrm{plane}}
 \hat{\mathbf n}_1 & \hat{\mathbf n}_2 & \hat{\mathbf n}_3
 \end{bmatrix}.
 $$
-The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the three-binary degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
+The branch is genuinely three-dimensional only when $D_{\mathrm{plane}}\ne0$. Near $|D_{\mathrm{plane}}|=1$, the three planes are close to mutually orthogonal. Near $D_{\mathrm{plane}}=0$, the rank-three frame degenerates toward a coplanar or lower-dimensional support. This determinant is therefore a natural order parameter for the transition between a volumetric Noether braid branch and a planar or horizon-aligned branch.
 
 For promotion work this becomes a nondegeneracy floor:
 $$
@@ -862,7 +962,7 @@ $$
 \ge
 \delta_{\mathrm{plane}}>0.
 $$
-It is the frame-bundle analogue of the Jacobian and separatrix floors used elsewhere: the map from three retained plane normals to an oriented internal frame loses conditioning when this determinant approaches zero. The wall $D_{\mathrm{plane}}=0$ is therefore the coplanar or horizon-aligned stratum where the three-binary frame ceases to be rank three. In current sector language, this is the boundary between a volumetric near-orthogonal sector and a planar cyclic sector; the solver must determine which side a retained branch actually occupies.
+It is the frame-bundle analogue of the Jacobian and separatrix floors used elsewhere: the map from three retained plane normals to an oriented internal frame loses conditioning when this determinant approaches zero. The wall $D_{\mathrm{plane}}=0$ is therefore the coplanar or horizon-aligned stratum where the frame ceases to be rank three. In current sector language, this is the boundary between a volumetric near-orthogonal sector and a planar cyclic sector; the solver must determine which side a retained branch actually occupies.
 
 This is a statement about a derived orientation frame, not a claim that the constituent architrino paths are axial. The actual six paths may be braided, quasiperiodic, chaotic, shell-supported, or otherwise noncircular while still emitting retained angular-momentum rows from which principal directions can be extracted. Axis language in this chapter therefore means a ledger or envelope direction derived from the branch record, not a primitive path pattern.
 
@@ -929,17 +1029,17 @@ where $\mathbf{P}_{\mathfrak B}$ and $\mathbf{J}_{\mathfrak B}$ are the branch-t
 
 This distinction matters for the equivalence-principle and Lorentz-closure programs. In a validated low-energy regime, uniform group velocity should not become an observable composition-dependent force merely because two assemblies carry different internal plane orientations. That is an effective recovery target: the moving branch must retune its clock, ruler, and signal rows so that preferred-frame leakage stays below the declared bounds. It is not a reason to omit $\mathbf{V}_{\mathrm{grp}}$ from the dynamics. The correct statement is that $\mathbf{V}_{\mathrm{grp}}$ is a separate branch-transport variable whose observable leakage must be suppressed by common-channel closure.
 
-This variable is unambiguous only when the response-center theorem target closes on the same branch. The exposed-energy response center, inertial response center, and wake-momentum boundary ledger must agree up to the declared response residual $\mathcal R_{\mathrm{resp}}$. If they do not, the phrase "group velocity of the branch" can point to different moment maps, and the candidate is not ready for eigen-braid promotion. Thus $\mathbf{V}_{\mathrm{grp}}$ is part of the retained record, but its use as a single transport velocity is conditional on center-of-response closure.
+This variable is unambiguous only when the response-center theorem target closes on the same branch. The exposed-energy response center, inertial response center, and wake-momentum boundary ledger must agree up to the declared response residual $\mathcal R_{\mathrm{resp}}$. If they do not, the phrase "group velocity of the branch" can point to different moment maps, and the candidate is not ready for certified-braid promotion. Thus $\mathbf{V}_{\mathrm{grp}}$ is part of the retained record, but its use as a single transport velocity is conditional on center-of-response closure.
 
-### Eigen-Braid Candidates
+### Candidate And Certified Braids
 
-An **eigen-braid** is a theorem-target status for a Noether braid branch, not a new primitive substance. A branch is an eigen-braid candidate when its full retained record returns to itself under the delayed dynamics, up to declared symmetries. Since the dynamics are nonlinear and path-history dependent, `eigen` here means a relative fixed point or relative periodic orbit of the branch return map, not an eigenvector of a linear quantum operator.
+A **candidate braid** is a proposed Noether braid branch or branch family whose certificate rows have not all closed. A **certified braid** is a theorem-target status for a Noether braid branch, not a new primitive substance. A branch is certified only when its full retained record returns to itself under the delayed dynamics, up to declared symmetries, and its required stability, alignment, and observer-export rows close on the same record.
 
 The retained record is not an arbitrary internal diary and it is not an arbitrary collection of architrinos. It is the finite branch chart for one Noether braid: the six-body polarity-neutral inventory of three positive-polarity and three negative-polarity architrinos, together with the path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, plane-orientation data, response-center data, group-velocity row, and Noether sea record that can still affect the next delayed update of that same six-body branch. A path-history segment belongs to the retained record only while it can still enter a self-hit, partner-hit, wake-tail, boundary, or branch-return row on the declared memory window.
 
-Let $P_T^{(\mathbf{V})}$ be the finite-memory return map over one branch period $T$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, rigid spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is an eigen-braid candidate when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
+Let $P_T^{(\mathbf{V})}$ be the finite-memory return map over one branch period $T$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, rigid spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
 $$
-\mathcal R_{\mathrm{eig}}
+\mathcal R_{\mathrm{cert}}
 =
 d_{\mathfrak B}
 \left(
@@ -947,13 +1047,25 @@ P_T^{(\mathbf{V})}(B_{3B}),\,
 g\cdot B_{3B}
 \right)
 \le
-\epsilon_{\mathrm{eig}},
+\epsilon_{\mathrm{cert}},
 $$
 on the same retained branch chart $\mathfrak B$, with the non-symmetry return directions carrying a positive stability margin. The metric $d_{\mathfrak B}$ must compare the same branch rows: causal-root ledger, energy/action ledger, angular-momentum rows, phase data, plane-orientation data, response-center motion, group velocity, Noether sea record, and assembly topological charge.
 
-The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing rank-three Noether braid chart is not quotiented. In that sense, the eigen-braid certificate is the branch-symplectic-promotion test evaluated on the retained branch chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction.
+The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing rank-three Noether braid chart is not quotiented. In that sense, the certified-braid certificate is the branch-symplectic-promotion test evaluated on the retained branch chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction.
 
-This definition keeps Lorentz behavior downstream. The branch-intrinsic conserved record may later be exported to observer components through a derived moving-assembly map,
+The branch-intrinsic conserved record must also export Lorentz-compatible observer rows before certification. In the homogeneous moving-branch regime, the same retained record must recover the ruler and clock deformation laws,
+$$
+\xi
+=
+\frac{R_{\parallel}}{R_{\perp}}
+\to
+\frac{1}{\gamma},
+\qquad
+\frac{d\tau}{dt}
+\to
+\frac{1}{\gamma},
+$$
+with preferred-frame leakage bounded by the declared $\epsilon_{\mathrm{LV}}$ or two-way anisotropy diagnostic. The observer components are produced through a derived moving-assembly map,
 $$
 C_{\mathrm{obs}}
 =
@@ -965,11 +1077,11 @@ C_{\mathrm{obs}}
 C_{\mathrm{branch}}
 +O(\epsilon_{\mathrm{LV}}),
 $$
-when Lorentz closure applies. The export may dress energy-momentum, angular-momentum components, clock rates, and ruler geometry, but it does not define the eigen-braid itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
+when Lorentz closure applies. The export may dress energy-momentum, angular-momentum components, clock rates, and ruler geometry, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
 
 ### Momentum And Principal-Direction Decomposition
 
-An eigen-braid candidate should also say how its three retained rows align with the conserved momentum ledgers. A branch whose retained record returns but whose axes do not align with branch-total momentum and angular momentum remains a return-map candidate, not a promoted eigen-braid. The branch-total momentum and angular momentum should be computed on the same finite window as the return map:
+A candidate for certified-braid promotion should also say how its three retained rows align with the conserved momentum ledgers. A branch whose retained record returns but whose axes do not align with branch-total momentum and angular momentum remains a return-map candidate, not a promoted certified braid. The branch-total momentum and angular momentum should be computed on the same finite window as the return map:
 $$
 \mathbf{P}_{\mathfrak B}
 =
@@ -997,7 +1109,7 @@ $$
 =
 \frac{\mathbf{J}_{\mathfrak B}}{\|\mathbf{J}_{\mathfrak B}\|}
 $$
-is the branch's total angular-momentum axis. The three-binary plane normals $\hat{\mathbf n}_a$ should then be read as a principal-direction decomposition of $\mathbf{J}_{\mathfrak B}$, not as arbitrary visual decoration and not as a claim that the paths themselves lie on axes. A simple diagnostic is the angular-momentum closure vector
+is the branch's total angular-momentum axis. The three retained plane normals $\hat{\mathbf n}_a$ should then be read as a principal-direction decomposition of $\mathbf{J}_{\mathfrak B}$, not as arbitrary visual decoration and not as a claim that the paths themselves lie on axes. A simple diagnostic is the angular-momentum closure vector
 $$
 \mathcal{R}_{J\mathrm{-axis}}
 =
@@ -1027,7 +1139,7 @@ $$
 \qquad
 R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
-while the same internal angular-momentum ledger remains retained. Thus the three-binary picture is also a disciplined way to visualize an oblate spheroidal Noether braid: the three retained rows decompose the internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis.
+while the same internal angular-momentum ledger remains retained. Thus the retained-row picture is also a disciplined way to visualize an oblate spheroidal Noether braid: the three retained rows decompose the internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis.
 
 ### Unordered Layer Semantics
 
@@ -1064,7 +1176,7 @@ $$
 \frac{|S_3|}
 {|\operatorname{Stab}_{S_3}(B)|}.
 $$
-The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$ or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct eigen-braids.
+The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$ or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct certified braids.
 
 The general configuration ratios are
 $$
@@ -1190,7 +1302,7 @@ B
 \Delta E_{\mathrm{capture}}
 \right).
 $$
-This gives the next level of search after core rank-three Noether braid stability: how many accessory architrinos can couple to the retained branch, which phase windows and polar regions they occupy, and how their capture changes the energy ledger. If the captured population becomes the six-site fermion organization, the canonical language is axial architrino, axial layer, polar site, polar dyad, and axial inventory.
+This gives the next level of search after core rank-three stability: how many accessory architrinos can couple to the retained branch, which phase windows and polar regions they occupy, and how their capture changes the energy ledger. If the captured population becomes the six-site fermion organization, the canonical language is axial architrino, axial layer, polar site, polar dyad, and axial inventory.
 
 The six-site axial-layer target should therefore be read as a derived capture pattern, not as an assumed geometry of the core. The search question is whether there is a maximal accessory population whose capture preserves $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$ and organizes into a protected axial inventory. The arrangement may be axial, polar-dyad-based, planar-degenerate, or another retained capture architecture until the branch certificate decides it.
 
@@ -1247,6 +1359,12 @@ The level distinctions matter throughout. Ontologically, the inner, middle, and 
 
 This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{v}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
+### Document Role
+
+This chapter is the specialized `NSH-421` candidate-family chapter. It owns the `4:2:1` frequency-lock analysis when a nested shell braid chart declares `I:M:O` roles and tests a doubling-frequency branch under explicit support, hinge, phase-return, and stability assumptions.
+
+It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
+
 ### General Noether Braid Branch State
 
 Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, a Noether braid branch is a three-layer retained state. The general search program is defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
@@ -1287,7 +1405,7 @@ f_1=f_2=f_3
 $$
 still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
 
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader Noether braid branch state; it is not the default assumption for all stable three-binary configurations.
+For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader Noether braid branch state; it is not the default assumption for all stable branch configurations.
 
 ### Status and Assumptions
 
@@ -1801,14 +1919,14 @@ $$
 \phi_{IO}(t)-\phi_{IO}^\ast
 \right)
 $$
-has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the three-binary version of the embedded-binary warning in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
+has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
 
 If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the doubling-frequency hierarchy would be a derived selection result rather than a starting assumption.
 
 In the invariant language of [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md), the reduced theorem target is to find an admissible topological sector
 
 $$
-[\mathfrak B]_{\mathrm{tri}}
+[\mathfrak B]_{\mathrm{freq}}
 =
 \left(
 N_s,\,
@@ -1864,7 +1982,7 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal three-binary bundle studied in this chapter. In compact form:
+This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal rank-three bundle studied in this chapter. In compact form:
 
 $$
 \mathbb{Z}_3\ \text{stealth}
@@ -1923,7 +2041,13 @@ where $D_s$ and $D_p$ are signed root degrees. The unsigned counts $N_s$ and $M_
 
 This is a definition and closure target, not a completed classification theorem. It becomes a physical assembly label only after the same retained branch chart supplies positive root floors, finite memory, finite local-to-global gluing, stable return data, and a closed wake-history boundary ledger.
 
-In the terminology of [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates), an eigen-braid candidate is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
+In the terminology of [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids), a candidate for certified-braid promotion is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
+
+### Document Role
+
+This chapter is the downstream classifier for retained Noether braid branch charts. It owns $[\mathfrak B]_{\mathrm{top}}$, the signed-degree refinement, invariance conditions, allowed transitions, and simulation extraction order for the topological label.
+
+It does not certify branch retention by itself and does not create a base Proof ID. It consumes a same-record branch chart from the neutral, shell, nested shell, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
 
 ### Source Of The Three Entries
 
@@ -2001,7 +2125,7 @@ $$
 $$
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
 
-The third entry comes from the phase-return chart of a resonance-locked three-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
+The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
 $$
 \theta_O(t+T_O)=\theta_O(t)+2\pi,
 $$
@@ -2057,7 +2181,7 @@ For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge 
 3. Positive transversality floors away from declared finite caustic transits.
 4. Finite memory depth and positive inactive-root gaps.
 5. A finite local-to-global gluing result for the branch chart, or an explicit finite multistability family.
-6. For a three-binary, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
+6. For a rank-three branch, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
 7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
 8. If the middle layer is treated as a caustic-grazing carrier, regulator-stable middle-caustic rows showing that the reported root degrees and phase-return entry do not depend on the finite-$\eta$ convention in the promoted limit.
 
@@ -2190,9 +2314,15 @@ The chapter should therefore be read as the canonical definition and proof targe
 
 This chapter formulates nested shell braid dynamics by extending the two-body delayed causal-wake system to a nested shell braid with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
 
-It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), and [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
+It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), and [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
-This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md).
+This chapter is the canonical dynamics home for coupled speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md).
+
+### Document Role
+
+This chapter is the nested shell braid mechanism and certificate-target chapter. It owns the coupled shell dynamics, speed-regime conventions, field-speed hinge response, causal-root ledgers, gradient response, stability/alignment diagnostics, and same-record certificate target for promoting a nested shell chart.
+
+It does not prove that every Noether braid is a nested shell braid, select the general taxonomy, or turn downstream mass, photon, Lorentz, GR, or topological rows into independent branch IDs. Those rows are certification consumers unless the same retained nested shell braid record supplies them.
 
 ### Relation to Causal Closure
 
@@ -2219,7 +2349,7 @@ The chapter should therefore be read as the stable dynamics layer beneath the ca
 The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. Retention is the conclusion of the certificate, not an assumption made before the rows are checked. For a candidate nested shell braid chart $q$ over a test window $W$, the shared certificate target is
 
 $$
-\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+\mathcal{C}_{\mathrm{NSH}}^{(q)}(W)
 =
 \left(
 \mathcal{A}_q,
@@ -2266,7 +2396,7 @@ $$
 The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive Jacobian floor, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
 
 $$
-\mathcal{U}_{\mathrm{tri}}^{(q)}(W)
+\mathcal{U}_{\mathrm{NSH}}^{(q)}(W)
 =
 \max\left(
 \frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
@@ -2379,6 +2509,8 @@ This chart is a reduced proof bridge, not a replacement for the full three-dimen
 - the $x:y:z$ frequency-pattern search, including iso-frequency, integer-ratio, and doubling-frequency families;
 - the braid symmetry-breaking point, where the planar chart becomes the terminal-alignment slice of the nested shell braid;
 - the photon channel, where two planarized pro/anti braid records form the coaxial contra-rotating pro/anti planar pair.
+
+Taxonomically, this remains a chart label. It becomes `PL-NSH-0` evidence only when the local calculation is testing lower-rank nested shell retention on a declared branch record. It becomes `NSH-TERM` evidence only when the local calculation is the terminal hinge or braid symmetry-breaking boundary. In the photon-channel use, it is bridge evidence consumed by photon closure; it does not certify a Noether braid branch by itself.
 
 The first planar discriminator is the reduced residual
 
@@ -4027,7 +4159,7 @@ $$
 $$
 The terminal label is conserved only when the increments of all three totals vanish within the declared branch tolerance, after subtracting the Euler-residual and endpoint-leakage terms. The projected action increment $\Delta I_{\mathrm{ME}}$ and any torque integral remain numerical diagnostics until these three totals close on the same $\mathcal{B}_{\mathrm{term}}(\lambda)$ rows.
 
-This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
+This scaffold identifies the smallest missing dynamics. The delayed equations must enumerate $\Lambda_{\theta}^{\mathrm{loc}}$ and derive the edge maps $\mathcal{E}_{\nu}^{\pm}$ from the terminal aligned branch. [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) supplies the candidate integer phase lattice, and [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics) supplies the self-hit and partner-hit root vocabulary, but neither document yet computes the terminal aligned edge projections from the full three-layer dynamics.
 
 The local-horizon coefficient requires the area-normalized terminal density
 $$
@@ -4255,7 +4387,7 @@ These diagnostics belong here as observational quantities for the dynamics chapt
 
 Each dynamics scan should output the substrate records needed by later reconstruction chapters without forming an effective line element in this file. The scan-level packet is
 $$
-\mathcal{D}_{\mathrm{tri}}(W)
+\mathcal{D}_{\mathrm{NSH}}(W)
 =
 \left(
 N_{\text{hits},q},
@@ -4296,9 +4428,9 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet:
 $$
-\mathcal{D}_{\mathrm{tri}}^{\mathrm{accel}}(W)
+\mathcal{D}_{\mathrm{NSH}}^{\mathrm{accel}}(W)
 \sim
-\mathcal{D}_{\mathrm{tri}}^{\mathrm{grad}}(W)
+\mathcal{D}_{\mathrm{NSH}}^{\mathrm{grad}}(W)
 $$
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 
@@ -4369,9 +4501,9 @@ This chapter is the canonical home for the geometric footprint of the nested she
 
 The nested shell braid is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell braid's effective exclusion envelope.
 
-### Ownership Boundary
+### Document Role
 
-This chapter owns:
+This chapter is the envelope and export-interface chapter for nested shell braid geometry. It owns:
 
 - the dynamic exclusion-envelope interpretation of a nested shell braid,
 - the oblate spheroidal form of the low-energy nested shell braid envelope,
@@ -4385,6 +4517,8 @@ This chapter does not own:
 - exact delay-root dynamics; see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+
+The role boundary is practical: [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) tests whether a branch is retained; this chapter describes the envelope rows and deformation variables that a retained branch can emit into Noether sea, packing, clock/ruler, and effective-metric consumers.
 
 ### Dynamic Exclusion Envelope
 
@@ -5086,7 +5220,7 @@ $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 +O(\epsilon_{\mathrm{LV}})
 $$
-The envelope is therefore the visible projection of the three-binary causal-root ledger, not an independently assigned Lorentz surface.
+The envelope is therefore the visible projection of the retained causal-root ledger, not an independently assigned Lorentz surface.
 
 ### Retuning Projection to Envelope Variables
 
@@ -5182,4 +5316,4 @@ For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/n
 
 > **Nested Shell Braid Geometry Commitment:** A nested shell braid has an oblate spheroidal exclusion envelope generated by the path history of its shell binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
 
-> **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a three-binary causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.
+> **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.

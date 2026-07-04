@@ -9,8 +9,8 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 588,
-      "edges": 1348,
+      "nodes": 590,
+      "edges": 1350,
       "scenes": 381,
       "markdownIndexes": 0,
       "markdownDocs": 192,
@@ -8761,6 +8761,24 @@
       "name": "Npqg Fundamentals Paths",
       "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
       "searchTarget": "content/generated/pdf/presentations/archie/npqg-fundamentals-paths.pdf",
+      "implicit": false
+    },
+    {
+      "nodeId": "asset:content/generated/pdf/presentations/archie/npqg-fundamentals-point-potential.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/presentations/archie/npqg-fundamentals-point-potential.pdf",
+      "name": "Npqg Fundamentals Point Potential",
+      "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-point-potential.pdf",
+      "searchTarget": "content/generated/pdf/presentations/archie/npqg-fundamentals-point-potential.pdf",
+      "implicit": false
+    },
+    {
+      "nodeId": "asset:content/generated/pdf/presentations/archie/npqg-fundamentals-time-and-space.pdf",
+      "nodeType": "asset",
+      "id": "content/generated/pdf/presentations/archie/npqg-fundamentals-time-and-space.pdf",
+      "name": "Npqg Fundamentals Time And Space",
+      "path": "content/generated/pdf/presentations/archie/npqg-fundamentals-time-and-space.pdf",
+      "searchTarget": "content/generated/pdf/presentations/archie/npqg-fundamentals-time-and-space.pdf",
       "implicit": false
     },
     {
@@ -18226,6 +18244,20 @@
       "edgeType": "asset",
       "source": "content/scenes/archie/presentations.json",
       "field": "npqg_fundamentals_paths.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/presentations.json",
+      "to": "asset:content/generated/pdf/presentations/archie/npqg-fundamentals-point-potential.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/presentations.json",
+      "field": "npqg_fundamentals_point_potential.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/presentations.json",
+      "to": "asset:content/generated/pdf/presentations/archie/npqg-fundamentals-time-and-space.pdf",
+      "edgeType": "asset",
+      "source": "content/scenes/archie/presentations.json",
+      "field": "npqg_fundamentals_time_and_space.source.path"
     },
     {
       "from": "scene:content/scenes/archie/textbook_pdf_snapshots.json",

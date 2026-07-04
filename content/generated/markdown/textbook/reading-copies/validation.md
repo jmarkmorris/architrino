@@ -4743,7 +4743,7 @@ A future closure packet becomes promotable only if:
 
 #### Nested Shell Braid Action-Increment Protocol
 
-This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
+This protocol defines the simulation-facing test for deriving or falsifying the one-cycle action increment used by the quantum closure program. It specializes [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md) and [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md) to the question left open by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md).
 
 The target is narrow. The run must compute the smallest accepted Master-Equation projected action increment from candidate nested shell braid branch transitions whose stability rows pass. It may compare the resulting scale to the observer-level `$h,\hbar$` benchmark after the computation. It may not insert $\hbar$ as an input step size.
 
@@ -7092,7 +7092,7 @@ Architectural coherence and ontic logic remain explicit criteria because they ma
 
 ### Current Form-Level Recoveries
 
-Several mappings are now reproducible as forms, while their coefficients remain blocked by the absence of a certified eigen-braid and a derived Noether sea response tensor. They should be credited as formula scaffolds and closure interfaces, not as empirical or coefficient-level closure.
+Several mappings are now reproducible as forms, while their coefficients remain blocked by the absence of a certified braid and a derived Noether sea response tensor. They should be credited as formula scaffolds and closure interfaces, not as empirical or coefficient-level closure.
 
 | Sector | Reproducible now | Still blocked |
 | :--- | :--- | :--- |
@@ -7100,7 +7100,7 @@ Several mappings are now reproducible as forms, while their coefficients remain 
 | Quantum envelope bridge | The retained phase-amplitude chart reproduces the Madelung/Hamilton-Jacobi residual with $Q_{\mathrm{env}}=-(\hbar_{\mathrm{eff}}^2/(2m_{\mathrm{eff}}))\nabla^2\sqrt{\rho_{\mathrm{env}}}/\sqrt{\rho_{\mathrm{env}}}$, and resonance-locked single-valuedness supplies the Bohr-Sommerfeld integer. | Born-rule recovery, spin-$\tfrac{1}{2}$ exchange, and fermionic antisymmetry remain blocked by the basin-measure pushforward and the polarity-domain-wall $\mathbb{Z}_2$ holonomy wall. |
 | Fixed-void cosmology | No-expanding-void discipline forces transport-redshift rows that must recover Tolman $(1+z)^{-4}$, light-curve time dilation $(1+z)$, and $T_{\mathrm{CMB}}(z)=T_0(1+z)$ rather than tired-light energy loss. | No derived $a_{\mathrm{eff}}(t)$, Friedmann analogue, sea equation of state, or shared cosmology fit exists until the mass map and Noether sea response coefficients are branch-derived. |
 
-These form-level recoveries should not raise Parameter+Scale Closure, Empirical Precision+Benchmark Validation, or coefficient-recovery scores by themselves. They can raise interface readiness or formula-structure scores only when the document explicitly preserves the same-record blocker and the closure-inheritance dependency on the first certified eigen-braid.
+These form-level recoveries should not raise Parameter+Scale Closure, Empirical Precision+Benchmark Validation, or coefficient-recovery scores by themselves. They can raise interface readiness or formula-structure scores only when the document explicitly preserves the same-record blocker and the closure-inheritance dependency on the first certified braid.
 
 ### Assessment Table
 
@@ -7146,7 +7146,7 @@ Formula and cross-regime scores rise because the equation-mapping work now cover
 
 Parameter+Scale Closure rises modestly because the Parameter Ledger now separates primitive substrate parameters, regulators, geometric closure targets, constitutive closure targets, state variables, and CODATA benchmark rows more rigorously, including exact-SI versus adjusted-measurement residual discipline and the Layer-I two-body scale reduction. The decisive quantities remain open: $A_0$, $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, $G_{\mathrm{eff}}$, $\alpha$, mass ratios, weak-mixing values, photon-channel coefficients, and cosmology fit parameters are still closure outputs rather than accepted recovered values.
 
-The score is still held below modern operational closure by the same central blockers. No single accepted native record yet supplies the first retained eigen-braid, the mass map, Lorentz/PPN coefficients, Born/Bell measures, Standard Model mixing and mass rows, radiation spectra, public gravitational-wave residuals, BBN/CMB/growth fits, or a shared cosmology observation record inside declared tolerances. The recent work makes the failure boundary more explicit and the proof route more mathematical; it does not erase the need for one branch-derived, same-record coefficient and benchmark recovery stack.
+The score is still held below modern operational closure by the same central blockers. No single accepted native record yet supplies the first certified braid, the mass map, Lorentz/PPN coefficients, Born/Bell measures, Standard Model mixing and mass rows, radiation spectra, public gravitational-wave residuals, BBN/CMB/growth fits, or a shared cosmology observation record inside declared tolerances. The recent work makes the failure boundary more explicit and the proof route more mathematical; it does not erase the need for one branch-derived, same-record coefficient and benchmark recovery stack.
 
 ### 2026-06-20 Assessment Notes
 

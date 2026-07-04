@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 181,
-      "sections": 1462
+      "sections": 1469
     }
   },
   "tocRoot": {
@@ -2208,6 +2208,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Neutral Braid",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
                 "markdownSection": "Neutral Braid",
@@ -2330,6 +2338,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Local Terms",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
                 "markdownSection": "Local Terms",
@@ -2362,18 +2378,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Three-Binary Branch Record",
+                "title": "Angular-Momentum Frame",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Three-Binary Branch Record",
-                "sectionKey": "three binary branch record",
+                "markdownSection": "Angular-Momentum Frame",
+                "sectionKey": "angular momentum frame",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Polarity Support",
+                "title": "Polarity Placement",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
-                "markdownSection": "Polarity Support",
-                "sectionKey": "polarity support",
+                "markdownSection": "Polarity Placement",
+                "sectionKey": "polarity placement",
                 "headingLevel": 2
               },
               {
@@ -2407,6 +2423,14 @@
                 "markdownSection": "Reading The Explored Configurations",
                 "sectionKey": "reading the explored configurations",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proof Map Table",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Proof Map Table",
+                "sectionKey": "proof map table",
+                "headingLevel": 2
               }
             ]
           },
@@ -2418,6 +2442,14 @@
             "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json",
             "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Scope Of The Hypothesis",
@@ -2452,10 +2484,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Eigen-Braid Candidates",
+                "title": "Candidate And Certified Braids",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Eigen-Braid Candidates",
-                "sectionKey": "eigen braid candidates",
+                "markdownSection": "Candidate And Certified Braids",
+                "sectionKey": "candidate and certified braids",
                 "headingLevel": 2
               },
               {
@@ -2532,6 +2564,14 @@
             "scenePath": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
             "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "General Noether Braid Branch State",
@@ -2624,6 +2664,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Source Of The Three Entries",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
                 "markdownSection": "Source Of The Three Entries",
@@ -2680,6 +2728,14 @@
             "scenePath": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
             "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Document Role",
+                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Relation to Causal Closure",
@@ -2892,10 +2948,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Ownership Boundary",
+                "title": "Document Role",
                 "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-                "markdownSection": "Ownership Boundary",
-                "sectionKey": "ownership boundary",
+                "markdownSection": "Document Role",
+                "sectionKey": "document role",
                 "headingLevel": 2
               },
               {

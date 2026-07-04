@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-03T16:49:57.891Z",
-  "total_links": 1594,
+  "generated_at": "2026-07-04T00:58:43.735Z",
+  "total_links": 1610,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -2406,26 +2406,26 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3718,7 +3718,7 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
@@ -4510,6 +4510,30 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#local-black-hole-duality-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4550,10 +4574,18 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4582,7 +4614,7 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
@@ -4590,42 +4622,106 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md#exact-integer-phase-closure",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md#exact-integer-phase-closure",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4658,6 +4754,38 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6038,10 +6166,10 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -11102,10 +11230,10 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
     },
     {
       "sourceChapterId": "validation",
