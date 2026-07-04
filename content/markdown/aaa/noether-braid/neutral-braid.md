@@ -35,7 +35,7 @@ X_i(t)=Y_i(\lambda_i(t)),
 0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty
 $$
 
-The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral braid must still return to a closed causal ledger within the branch's recovery tolerance. The neutral braid therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to three exact binaries.
+The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral braid must still return to a closed causal ledger within the branch's recovery tolerance. The neutral braid therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows.
 
 ## Retained-Branch Certificate Target
 

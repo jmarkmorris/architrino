@@ -178,9 +178,9 @@ the middle and outer binaries can share the same threshold speed while retaining
 
 At the braid symmetry-breaking point, the outer binary stops functioning as an ordinary sub-field-speed shielding envelope and becomes part of the interface row. The middle binary remains the hinge. The inner binary does not need to "reach" the hinge because it is already beyond it: it supplies the self-hit, maximal-curvature, history-supported row. This is why the threshold is the natural local precursor to horizon-interface language rather than a mere three-frequency coincidence.
 
-## Planar Tri-Binary Noether Braid Reduced Chart
+## Planar Reduced Noether Braid Chart
 
-The **planar tri-binary Noether braid reduced chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects the three binary ledgers into a common plane or near-plane and records, for each binary $a\in\{1,2,3\}$ before role assignment,
+The **planar reduced Noether braid chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects the branch's three retained rows into a common plane or near-plane and records, for each row $a\in\{1,2,3\}$ before role assignment,
 
 $$
 \Pi_{\mathrm{pl}}(B_{3B})
@@ -228,7 +228,7 @@ The nested shell braid should also be read as carrying the local black-hole dual
 | Middle binary | $s_M=c_f$ in the accepted threshold limit | horizon-interface and symmetry-breaking row |
 | Outer binary | $s_O<c_f$ in ordinary operation, with $s_O\to c_f$ under terminal strong-field alignment | exterior coupling row driven toward the interface during collapse |
 
-In this precise sense, a Noether braid contains a primordial black-hole analogue: a finite local version of the horizon/interior split before that split is amplified into an observer-level compact object. The middle binary supplies the threshold interface, while the inner self-hit binary supplies the beyond-threshold interior row. The phrase "primordial black-hole analogue" is therefore a statement about nested shell braid ontology, not a claim that the standard primordial-black-hole model supplies the source mechanism.
+In this precise sense, a nested shell braid contains a primordial black-hole analogue: a finite local version of the horizon/interior split before that split is amplified into an observer-level compact object. The middle binary supplies the threshold interface, while the inner self-hit binary supplies the beyond-threshold interior row. The phrase "primordial black-hole analogue" is therefore a statement about nested shell braid ontology, not a claim that the standard primordial-black-hole model supplies the source mechanism.
 
 The exact-duality theorem target is to construct a map from one retained branch record to one strong-field horizon record,
 
@@ -1970,7 +1970,7 @@ This expression belongs to the primitive branch chart; downstream dressed-channe
 **Implication:** Outer-binary precession sweeps an exclusion region that is larger than a static orbit. The effective exclusion volume is the union of the orbit's causal envelope over a precession cycle, not just a single instantaneous envelope.
 This union geometry sets packing and overlap limits by construction, rather than relying on point-particle exclusion rules.
 
-**Modeling at $v>0$:** Use the oblate envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
+**Modeling at $v>0$:** Use the oblate spheroidal envelope as a time-dependent exclusion region whose axis precesses. The exclusion volume becomes anisotropic and typically increases with precession cone angle.
 
 **As $v_{\text{trans}} \to c_f$:** The envelope flattens toward a disk, so the exclusion volume becomes a thin, swept annulus dominated by the equatorial plane. This tends to amplify planar alignment constraints and reduce accessible 3D configurations.
 At sufficiently high stress, this suggests the terminal-rung failure mode to test: further increases may fail to support a stable 3D mode and may force a planar aligned state.

@@ -651,7 +651,7 @@ For the oblate spheroidal exclusion envelope, use $R_{\parallel}$ for the semiax
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
-so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate envelope compressed along the parallel axis.
+so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis.
 
 Use
 $$
@@ -663,7 +663,7 @@ Observer clock behavior is a downstream readout, not the definition of either ge
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma}
 $$
-but this is a closure target linking the clock channel to the oblate envelope. It should not be used to define $\xi$.
+but this is a closure target linking the clock channel to the oblate spheroidal envelope. It should not be used to define $\xi$.
 
 ## Lorentz Projection Role
 
@@ -806,7 +806,7 @@ For the special-relativity-facing comparison of this deformation channel, see [t
 
 For local assembly modeling, use this page as the geometric source for:
 
-- an oblate envelope boundary,
+- an oblate spheroidal envelope boundary,
 - principal axes set by nested shell braid orientation,
 - deformation of the outer-binary envelope under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.

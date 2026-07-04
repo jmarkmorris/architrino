@@ -14,9 +14,9 @@ This chapter is the specialized `NSH-421` candidate-family chapter. It owns the 
 
 It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
 
-## General Noether Braid Branch State
+## General Rank-Three Branch State
 
-Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, a Noether braid branch is a three-layer retained state. The general search program is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
+Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, the rank-three search branch is represented by three retained rows. The general search program is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
 $$
 \mathcal{T}_{3B}
 =
@@ -54,7 +54,7 @@ f_1=f_2=f_3
 $$
 still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
 
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader Noether braid branch state; it is not the default assumption for all stable branch configurations.
+For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader rank-three branch state; it is not the default assumption for all stable branch configurations.
 
 ## Status and Assumptions
 
