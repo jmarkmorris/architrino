@@ -16,6 +16,12 @@ The word **braid** names the six retained worldline strands together with their 
 
 Canonical reader-facing prose uses **Noether braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
 
+## Document Role
+
+This chapter is the broad branch-definition and retention-predicate chapter for the Noether braid stack. It owns the neutral braid, shell braid, and nested shell braid definitions; the six-worldline branch ledger; and the retained-branch predicate used before any proof packet promotes a candidate braid.
+
+It does not select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here: [Noether Braid Taxonomy](noether-braid-taxonomy.md) decodes configuration axes and Proof IDs, [Noether Braid Configuration Space](noether-braid-configuration-space.md) studies the rank-three angular-momentum-frame sublocus, [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) tests the nested shell braid mechanism, [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) studies the `NSH-421` candidate family, [Noether Braid Topological Charge](noether-braid-topological-charge.md) classifies retained branch charts, and [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) supplies the envelope/export interface.
+
 ## Neutral Braid
 
 A **neutral braid** is the base six-architrino case. It contains three positrinos and three electrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying

@@ -4,9 +4,9 @@ This chapter is the canonical home for the geometric footprint of the nested she
 
 The nested shell braid is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell braid's effective exclusion envelope.
 
-## Ownership Boundary
+## Document Role
 
-This chapter owns:
+This chapter is the envelope and export-interface chapter for nested shell braid geometry. It owns:
 
 - the dynamic exclusion-envelope interpretation of a nested shell braid,
 - the oblate spheroidal form of the low-energy nested shell braid envelope,
@@ -20,6 +20,8 @@ This chapter does not own:
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
+
+The role boundary is practical: [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) tests whether a branch is retained; this chapter describes the envelope rows and deformation variables that a retained branch can emit into Noether sea, packing, clock/ruler, and effective-metric consumers.
 
 ## Dynamic Exclusion Envelope
 

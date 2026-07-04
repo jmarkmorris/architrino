@@ -1,8 +1,14 @@
 # Noether Braid Configuration Space
 
-This chapter gives the general Noether-braid search space for the three-binary sublocus. It comes before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within that sublocus, a Noether braid branch is a three-layer retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the Noether braid search space for the rank-three angular-momentum-frame sublocus. It comes after the broad branch definitions in [Noether Braid](noether-braid.md) and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within that sublocus, a Noether braid branch is a three-layer retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
+
+## Document Role
+
+This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
+
+It does not exhaust the full Noether braid class, certify nested shell support, or make `I:M:O`, `4:2:1`, iso-frequency, or field-speed hinge assumptions the default. Those are specializations that must declare their support base and same-record branch rows before they can be mapped onto a Proof ID in [Noether Braid Taxonomy](noether-braid-taxonomy.md).
 
 ## Scope Of The Hypothesis
 

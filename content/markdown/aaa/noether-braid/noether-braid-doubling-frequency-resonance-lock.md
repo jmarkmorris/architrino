@@ -8,6 +8,12 @@ The level distinctions matter throughout. Ontologically, the inner, middle, and 
 
 This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{v}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
+## Document Role
+
+This chapter is the specialized `NSH-421` candidate-family chapter. It owns the `4:2:1` frequency-lock analysis when a nested shell braid chart declares `I:M:O` roles and tests a doubling-frequency branch under explicit support, hinge, phase-return, and stability assumptions.
+
+It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
+
 ## General Noether Braid Branch State
 
 Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, a Noether braid branch is a three-layer retained state. The general search program is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are

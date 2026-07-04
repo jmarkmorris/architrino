@@ -22,6 +22,21 @@ $$
 
 Each entry records a different kind of structure. Mixing the entries creates a candidate configuration; it does not by itself prove that the delayed dynamics admit a stable branch. Retention still belongs to the branch ledger, causal-root rows, action and energy rows, gluing status, and stability margin described in the surrounding Noether braid chapters.
 
+## Document Role
+
+This chapter is the decoder and proof map for Noether braid configuration language. It owns the shared axes, local evidence-level terms, Proof ID grammar, and table that tell a reader what a branch proof packet is testing.
+
+It does not prove branch retention by itself. A Proof ID names a branch-configuration effort; the proof-stack role and current disposition must still be stated before any success, rejection, fixture, chart, or downstream-consumer claim is made.
+
+| Chapter | Role in the stack | Boundary |
+| --- | --- | --- |
+| [Noether Braid](noether-braid.md) | Broad branch definitions and retained-branch predicate. | Defines neutral, shell, and nested shell braid cases without selecting a proof-map outcome. |
+| [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Rank-three angular-momentum-frame search sublocus. | Supplies search variables and frame rows without making exact binaries universal. |
+| [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) | Nested shell braid mechanism and certificate target. | Tests coupled shell dynamics without turning downstream exports into base branch IDs. |
+| [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) | Specialized `NSH-421` candidate family. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
+| [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Downstream classifier for retained branch charts. | Computes a topological label only after a same-record branch chart supplies the required rows. |
+| [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) | Envelope and export interface. | Describes exclusion, deformation, and envelope rows without certifying dynamics or metric recovery alone. |
+
 ## Local Terms
 
 This chapter uses four evidence-level terms in a controlled way:

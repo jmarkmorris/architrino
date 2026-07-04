@@ -34,6 +34,12 @@ This is a definition and closure target, not a completed classification theorem.
 
 In the terminology of [Noether Braid Configuration Space](noether-braid-configuration-space.md#candidate-and-certified-braids), a candidate for certified-braid promotion is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
 
+## Document Role
+
+This chapter is the downstream classifier for retained Noether braid branch charts. It owns $[\mathfrak B]_{\mathrm{top}}$, the signed-degree refinement, invariance conditions, allowed transitions, and simulation extraction order for the topological label.
+
+It does not certify branch retention by itself and does not create a base Proof ID. It consumes a same-record branch chart from the neutral, shell, nested shell, rank-three, or lower-rank proof effort; the label becomes physical only after the causal-root, phase-return, gluing, wake-boundary, and stability rows close on that same record.
+
 ## Source Of The Three Entries
 
 The first two entries come from the causal-root complex of the Master Equation. On a retained branch chart, active roots are split by source identity and by Jacobian sign. For the self-hit sector,

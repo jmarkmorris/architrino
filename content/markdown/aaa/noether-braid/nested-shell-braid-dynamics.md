@@ -6,6 +6,12 @@ It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md
 
 This chapter is the canonical dynamics home for coupled speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
 
+## Document Role
+
+This chapter is the nested shell braid mechanism and certificate-target chapter. It owns the coupled shell dynamics, speed-regime conventions, field-speed hinge response, causal-root ledgers, gradient response, stability/alignment diagnostics, and same-record certificate target for promoting a nested shell chart.
+
+It does not prove that every Noether braid is a nested shell braid, select the general taxonomy, or turn downstream mass, photon, Lorentz, GR, or topological rows into independent branch IDs. Those rows are certification consumers unless the same retained nested shell braid record supplies them.
+
 ## Relation to Causal Closure
 
 This chapter owns the dynamics baseline: the nested shell braid roles, speed-regime conventions, delay-envelope geometry, gradient response, local cycle-period diagnostics, and stability tests that define the nested shell braid mechanism. It does not try to close the full rest-mass, photon, or observer-inference proof program.
