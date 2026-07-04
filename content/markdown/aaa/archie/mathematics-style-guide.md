@@ -50,8 +50,9 @@ layers without naming the same object.
   - Write $d\tau/dT$ only when a native clock-map derivation has been declared.
 - Pure comparison equations:
   - In student-facing textbook prose, the displayed working equation must use layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ notation.
-  - A standard GR, SR, QM, or QFT equation may appear first only as a labeled `standard comparison form` for recognition or source matching.
+  - A standard GR, SR, QM, QFT, QED, QCD, Standard Model, or $\Lambda\mathrm{CDM}$-era equation may appear first only as a labeled `standard comparison form` for recognition, source matching, or benchmark recovery.
   - Immediately follow that recognition form with the translated form using $T,\mathbf X$ or $t_{\mathrm{eff}},x_{\mathrm{eff}}^i$ before any interpretation, diagramming, or term-by-term map.
+  - Some standard equations already use dimension-bearing time, distance, scale, coupling, or renormalization variables. That helps the translation but does not remove the layer obligation: when the map is mostly a case or subscript change, such as $t\mapsto T$, $\mathbf x\mapsto\mathbf X$, or $t\mapsto t_{\mathrm{eff}}$, say so explicitly in the symbol map.
   - Do not rely on a paragraph disclaimer alone. Bare symbols such as $t$, $x^i$, $dt$, and $dx^i$ must not carry forward as the working notation in native or bridge derivations.
   - Preferred teaching pattern: standard comparison form, layer-explicit translated form, then a short map explaining which symbols changed and why.
 

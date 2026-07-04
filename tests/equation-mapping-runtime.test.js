@@ -118,7 +118,7 @@ test("equation mapping can target an inner EQ-02 marker without splitting the fr
 
   assert.equal(
     driftSpeedPart.tex,
-    "\\frac{1}{\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}"
+    "\\frac{1}{\\mathstrut\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}"
   );
   assert.deepEqual(driftSpeedPart.sectionMarker, { left: 42, width: 24 });
   assert.equal(
@@ -200,7 +200,8 @@ test("equation mapping gives EQ-03 perpendicular radius its own callout", () => 
     document.overlays.some(
       (overlay) =>
         overlay.targetAnchorId === "perpendicularRadius" &&
-        overlay.searchText.includes("transverse envelope row")
+        overlay.searchText.includes("radius across the motion") &&
+        overlay.searchText.includes("reference radius")
     ),
     true
   );
@@ -665,6 +666,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
     html,
     /\.equation-mapping-comment \{[\s\S]*?left: var\(--overlay-layout-x, calc\(var\(--overlay-x\) \* 1%\)\);[\s\S]*?top: var\(--overlay-layout-y, calc\(var\(--overlay-y\) \* 1%\)\);/u
   );
+  assert.match(html, /\.equation-mapping-comment \{[\s\S]*?width: min\(calc\(var\(--overlay-width\) \* 1%\), 390px\);/u);
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
