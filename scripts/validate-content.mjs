@@ -22,6 +22,10 @@ const REPO_MARKDOWN_AUDIT_IGNORED_DIRS = new Set([".git", "node_modules", "__pyc
 const REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES = [
   "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/",
 ];
+const DISALLOWED_THEORY_ABBREVIATIONS = [
+  { label: "A^3", regex: /A\^3/g },
+  { label: "A³", regex: /A³/g },
+];
 const ALLOWED_SCENE_TYPES = new Set([
   "Scene-Index",
   "Scene-Markdown-View",
@@ -797,6 +801,67 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
   }
 }
 
+function stripMarkdownFencedCodeBlocks(markdownText) {
+  let fencedCodeBlock = false;
+  return String(markdownText)
+    .split(/\r?\n/)
+    .map((line) => {
+      if (/^\s*(```|~~~)/.test(line)) {
+        fencedCodeBlock = !fencedCodeBlock;
+        return "";
+      }
+      if (fencedCodeBlock) {
+        return "";
+      }
+      return line;
+    })
+    .join("\n");
+}
+
+function lineNumberAtIndex(text, index) {
+  return text.slice(0, index).split(/\r?\n/).length;
+}
+
+function lineAtIndex(text, index) {
+  const lineStart = text.lastIndexOf("\n", index - 1) + 1;
+  const lineEnd = text.indexOf("\n", index);
+  return text.slice(lineStart, lineEnd === -1 ? text.length : lineEnd);
+}
+
+function isAllowedDisallowedTheoryAbbreviationMention(markdownPath, line) {
+  if (markdownPath === "AGENTS.md") {
+    return line.includes("Do not use") && line.includes("theory abbreviations");
+  }
+  if (markdownPath === "content/markdown/aaa/archie/terminology-usage.md") {
+    return line.includes("disallowed variants") && line.includes("not optional visual marks");
+  }
+  return false;
+}
+
+function auditDisallowedTheoryAbbreviations(markdownPaths, markdownTextByPath) {
+  for (const markdownPath of markdownPaths) {
+    const markdownText = markdownTextByPath.get(markdownPath);
+    if (typeof markdownText !== "string") {
+      continue;
+    }
+    const searchableText = stripMarkdownFencedCodeBlocks(markdownText);
+    for (const pattern of DISALLOWED_THEORY_ABBREVIATIONS) {
+      pattern.regex.lastIndex = 0;
+      let match;
+      while ((match = pattern.regex.exec(searchableText))) {
+        const lineNumber = lineNumberAtIndex(searchableText, match.index);
+        const line = lineAtIndex(searchableText, match.index);
+        if (isAllowedDisallowedTheoryAbbreviationMention(markdownPath, line)) {
+          continue;
+        }
+        errors.push(
+          `${markdownPath}:${lineNumber}: disallowed theory abbreviation "${pattern.label}"; use Architrino, Architrino Assembly Architecture, AAA only where interoperability requires it, or $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ in formal prose and math`
+        );
+      }
+    }
+  }
+}
+
 function readStableIdLabelLock() {
   const parsed = readJson(STABLE_ID_LABEL_LOCK_PATH);
   if (!parsed.ok) {
@@ -1140,6 +1205,7 @@ for (const markdownPath of repoMarkdownAuditFiles) {
 }
 
 auditMarkdownRelativeLinks(repoMarkdownAuditFiles, markdownTextByPath);
+auditDisallowedTheoryAbbreviations(repoMarkdownAuditFiles, markdownTextByPath);
 
 const scenePathBySceneId = new Map();
 for (const scenePath of sceneConfigs) {

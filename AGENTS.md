@@ -23,6 +23,7 @@ This document distinguishes three audience scopes:
 - Do not place `$$...$$` display math inline inside sentences, headings, list labels, callouts, or preview text; those contexts must use inline-safe math.
 - For inline inequalities or expressions containing `<` or `>` inside prose, keep them in `$...$` with spaces around the operators (for example `$1 < m < n$`).
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
+- Do not use `A^3`, `A³`, or `$A^3$` as theory abbreviations, visual marks, badges, search keys, handles, or citation labels. Use `Architrino`, `Architrino Assembly Architecture`, `AAA` only in the limited interoperability cases, or `$\mathbb{A}\mathbb{A}\mathbb{A}$` in formal prose and math.
 
 ### Operator/Developer Communication
 

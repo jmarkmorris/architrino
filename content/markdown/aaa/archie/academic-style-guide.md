@@ -212,7 +212,7 @@ When referring to the theory in prose or math, use the stylized form `$\mathbb{A
 
 Do not replace it with plain-text variants except in literal file paths or code identifiers.
 
-For compact app labels, search keys, parenthetical abbreviations, and visual mark usage, follow the narrower policy in [terminology-usage.md](./terminology-usage.md#architrino-architecture-aaa-and-visual-marks).
+For compact uses of `AAA`, follow the narrower policy in [terminology-usage.md](./terminology-usage.md#architrino-architecture-aaa-and-disallowed-variants). A-cubed forms are disallowed everywhere, including artwork, icons, badges, and title graphics; do not treat them as visual marks.
 
 ### TeX preservation
 
