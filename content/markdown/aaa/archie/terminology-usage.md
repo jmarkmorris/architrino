@@ -27,6 +27,16 @@ Treat terminology maintenance as a theory-protective cleanup discipline, not as 
 - When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
 - Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
 
+## Architrino Architecture, AAA, and Visual Marks
+
+Use `Architrino` as the public project, product, repository, and app identity. Use `Architrino Assembly Architecture` when the full theory name is needed.
+
+For reader-facing prose, first establish the full name before using any shortened form. After that, prefer `the Architrino architecture` when clarity matters and `the architecture` only when the local antecedent is unambiguous. In formal textbook prose and math, follow [academic-style-guide.md](./academic-style-guide.md): use `$\mathbb{A}\mathbb{A}\mathbb{A}$` for the theory name rather than plain-text variants.
+
+Plain `AAA` is allowed only where literal text brevity or interoperability is the point: compact app labels, search keys, code identifiers, file names, generated indices, or an explicit parenthetical abbreviation after the full name. Do not use `AAA` as the standalone public brand.
+
+`A^3`, rendered `A³`, and `$A^3$` are not canonical theory abbreviations. Treat A-cubed forms as optional visual marks for artwork, icons, covers, title-card graphics, or very tight badges after Architrino context is already established. Do not use them as ordinary prose replacements, URL/email/social handles, search keys, or citation labels. When a visual mark is displayed, keep nearby readable/searchable text as `Architrino`, `Architrino Assembly Architecture`, or the locally appropriate canonical form.
+
 ## Axial and Polar Usage
 
 Use `axial` for the six-site system-level organization and `polar` for the local site geometry.

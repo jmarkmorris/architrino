@@ -212,6 +212,8 @@ When referring to the theory in prose or math, use the stylized form `$\mathbb{A
 
 Do not replace it with plain-text variants except in literal file paths or code identifiers.
 
+For compact app labels, search keys, parenthetical abbreviations, and visual mark usage, follow the narrower policy in [terminology-usage.md](./terminology-usage.md#architrino-architecture-aaa-and-visual-marks).
+
 ### TeX preservation
 
 Preserve TeX delimiters and content exactly:

@@ -54,7 +54,7 @@ A precise observer fit with $\mathcal R_{\mathrm{lift},k}$ absent remains `2` or
 | `EQ-04A` | Koide charged-lepton mass relation | $\frac{(\sqrt{m_e}+\sqrt{m_\mu}+\sqrt{m_\tau})^2}{m_e+m_\mu+m_\tau}=\frac{3}{2}$ | Charged-lepton generation-by-shielding ladder and exposed mass response | `1` | `1` | Test whether one charged-lepton mass map lands near the Koide surface without fitting to it. |  |
 | `EQ-05` | Noether conservation laws | $dE_{\mathrm{tot}}/dt=0$; $\mathbf{P}_{\mathrm{tot}}=\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ | Delay action, wake channels, event ledgers | `3` | `4` | Construct finite-window conserved totals with boundary flux and residuals. |  |
 | `EQ-06` | Noether sea continuity and moment closure | $\partial_t\rho_{\mathrm{NS}}+\nabla\cdot(\rho_{\mathrm{NS}}\mathbf u_{\mathrm{sea}})=S_{\rho}+r_{\rho}$ | Noether sea density, flow, energy, cadence, orientation | `4` | `4` | Derive continuum rows as low-moment projections of braid population dynamics. |  |
-| `EQ-07` | Effective metric ADM/Cartan map | $ds_{\rm eff}^2=-N^2c_0^2dt^2+\gamma_{ij}(dx^i-u^i_{\mathrm{sea}}dt)(dx^j-u^j_{\mathrm{sea}}dt)$ | Noether sea lapse, drift, spatial compliance | `4` | `4` | Derive one constitutive map into clock, ruler, and signal channels. |  |
+| `EQ-07` | Effective metric ADM/Cartan map | $ds_{\mathrm{eff}}^2=-N^2c_0^2dt_{\mathrm{eff}}^2+\gamma_{ij}^{\mathrm{eff}}(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}})(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}})$ | Noether sea lapse, drift, spatial compliance | `4` | `4` | Derive one constitutive map into clock, ruler, and signal channels. |  |
 | `EQ-07A` | Compact-star support and collapse scale residual | $P_{e,\mathrm{nr}}\propto\rho^{5/3}$; $P_{e,\mathrm{rel}}\propto\rho^{4/3}$; $M_{\mathrm{Ch}}\propto Y_e^2M_\odot$ | Compact-region Noether braid packing, reaction ledger, Noether sea response, and metric compliance | `2` | `2` | Build one compact-region carrier that recovers support scaling, reaction inventory, material scale compression, and effective spatial compliance without hidden retuning. |  |
 | `EQ-08` | Weak-field clock and gravitational redshift | $d\tau/dt\approx1+\Phi_N/c_0^2-\lVert\mathbf w\rVert^2/(2c_0^2)$ | Noether sea cadence $\Gamma_N$, moving clock channel | `4` | `4` | Extract $\Gamma_N$ from braid cadence, density, delay, and potential response. |  |
 | `EQ-09` | Shapiro delay, lensing, and PPN rows | $\Delta\theta=2(1+\gamma_{\mathrm{PPN}})GM/(bc_0^2)$ | Shared effective metric projection | `3` | `4` | Force redshift, Shapiro, lensing, precession, acceleration, and preferred-frame rows through one record. |  |
@@ -686,13 +686,13 @@ Pick one moment family, preferably density and cadence, and derive the minimal b
 The effective ADM/Cartan line element target is
 
 $$
-ds_{\rm eff}^2
+ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right).
 $$
 
 The weak clock target is
@@ -721,9 +721,9 @@ $$
 The Noether sea must supply:
 
 - lapse or clock-rate channel $N$;
-- drift field $u^i_{\text{sea}}$;
+- drift field $u^i_{\mathrm{sea,eff}}$;
 - frame field $e^a{}_i$;
-- spatial compliance $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$;
+- spatial compliance $\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j$;
 - signal delay $\chi_{\text{sea}}$;
 - cadence stretch $\Gamma_N$;
 - effective potential $\Phi_{\mathrm{eff}}$.
@@ -762,7 +762,7 @@ $$
 \theta_W
 \longmapsto
 \left(
-N,u^i_{\mathrm{sea}},e^a{}_i,\gamma_{ij},
+N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},
 \Phi_{\mathrm{eff}},\chi_{\text{sea}}
 \right),
 $$

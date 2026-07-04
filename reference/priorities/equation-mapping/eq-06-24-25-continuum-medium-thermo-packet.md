@@ -281,7 +281,7 @@ Coefficient translation:
 | $\rho_0$ | $\rho_{\text{NS}}$ or $n\rho_{\text{NS},0}$ for the declared window. |
 | $\mathbf u$ | $\mathbf u_{\mathrm{sea}}$ in the retained medium-flow row. |
 | $c_s$ | Declared perturbation-channel speed from the constitutive response; for signal rows this must be compatible with $c_{\text{eff}}=c_f/\chi_{\text{sea}}$. |
-| $h_{ij}$ | Euclidean metric for substrate spatial calculations; observer-level compliance uses $e^a{}_i$ and $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$. |
+| $h_{ij}$ | Euclidean metric for substrate spatial calculations; observer-level compliance uses $e^a{}_i$ and $\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j$. |
 | $\rho_0/c_s$ conformal prefactor | Missing normalization row fixed by energy density, response amplitude, and channel calibration; must not be refit per observable. |
 | $C_{ij}{}^{kl}$ | Branch-derived response kernel from density, orientation, strain, pressure, and $\mathcal M_{\mathrm{sea}}^{ab}$ rows. |
 | stress or noise fluctuations | $\Sigma_{\mathrm{sea},X}^{ab}$ and correlation projections from unresolved deterministic histories. |
@@ -329,7 +329,7 @@ $$
 - $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$.
 - $\chi_{\text{sea}}$, $c_{\text{eff}}$, $\Gamma_N$, $f_N$, and $J_\nu$.
 - Stress/compliance tensor rows, including $\Sigma_{\mathrm{sea},X}^{ab}$ and $\mathcal M_{\mathrm{sea}}^{ab}$ where the channel uses metric or pressure response.
-- ADM/Cartan readout fields $N$, $u^i_{\mathrm{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ for observer-level metric comparisons.
+- ADM/Cartan readout fields $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ for observer-level metric comparisons.
 
 ### Rows Needed
 
@@ -337,7 +337,7 @@ $$
 - `speed_row`: derives $c_X$ or states the missing coefficient; signal rows must respect $c_{\text{eff}}=c_f/\chi_{\text{sea}}$.
 - `stress_strain_row`: maps $\delta X_B$ to $\delta Y_A$ through one response kernel $\chi_{AB}$.
 - `causality_row`: delayed support or $\mathcal R_{\mathrm{KK}}$ for the response kernel.
-- `metric_embedding_row`: embeds scalar delay or perturbation speed into $N$, $u^i_{\mathrm{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ when a metric claim is made.
+- `metric_embedding_row`: embeds scalar delay or perturbation speed into $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ when a metric claim is made.
 - `correlation_row`: supplies $C_{AB}^{\theta}(x,y)$ from retained deterministic histories instead of an independent stochastic field.
 
 ### `6/23 b` Score Recommendation
@@ -536,7 +536,7 @@ with both values read from the same $\Theta_{\mathrm{sea}}^{(\ell,W)}$, the same
 
 ### Failure Mode
 
-EQ-24 fails if the acoustic metric is imported as a visual analogy, if $c_s$ is replaced by an unconstrained fitted speed, if scalar $\chi_{\text{sea}}$ is treated as a full metric without $N$, $u^i_{\mathrm{sea}}$, $e^a{}_i$, and $\gamma_{ij}$, if stress-strain coefficients are tuned per material/observable, or if the response kernel violates delayed support.
+EQ-24 fails if the acoustic metric is imported as a visual analogy, if $c_s$ is replaced by an unconstrained fitted speed, if scalar $\chi_{\text{sea}}$ is treated as a full metric without $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$, if stress-strain coefficients are tuned per material/observable, or if the response kernel violates delayed support.
 
 ### Promotion Targets
 

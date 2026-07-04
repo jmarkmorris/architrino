@@ -1080,7 +1080,7 @@ $$
 \mathcal{K}_{\mathrm{med}}:
 (h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}),
+(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}}),
 $$
 and it is admissible only if the same coefficients predict clock redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
 
@@ -1103,7 +1103,7 @@ N
 +O(c_0^{-6},\epsilon_{\mathrm{LV}}),
 $$
 $$
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 =
 h_{ij}
 \left(
@@ -1116,13 +1116,13 @@ h_{ij}
 +O(c_0^{-4},\epsilon_{\mathrm{LV}}),
 $$
 $$
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 =
 B^i{}_j w^j\frac{U}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}),
 $$
 $$
-\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
+\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j.
 $$
 Here $w^i$ is the medium drift relative to the comparison frame and $U$ is the positive PPN potential. The lapse row supplies the clock-redshift and $\beta_{\mathrm{PPN}}$ coefficients, the spatial-compliance row supplies the shared Shapiro/lensing $\gamma_{\mathrm{PPN}}$ coefficient, and the shift row supplies the preferred-frame leakage coefficients. These rows remain theorem targets until derived from the same continuum Noether sea record that fixes $n$, $\chi_{\text{sea}}$, $\Phi_{\text{eff}}$, and stress.
 
@@ -1132,9 +1132,9 @@ $$
 :\qquad
 ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}\big(dx^i-u^i_{\text{sea}}dt\big)\big(dx^j-u^j_{\text{sea}}dt\big),
+\gamma_{ij}^{\mathrm{eff}}\big(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\big)\big(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\big),
 $$
 with weak-field acceptance condition
 $$

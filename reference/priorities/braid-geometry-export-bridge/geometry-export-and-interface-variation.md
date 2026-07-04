@@ -9,7 +9,7 @@
 
 ## Target Advance
 
-This packet supplies the missing intermediate geometry object between branch-local response and full observer-level metric recovery. A retained branch response does not need to reconstruct $N$, $u^i_{\text{sea}}$, $e^a{}_i$, or $\gamma_{ij}$ before it can move an assembly boundary. It only needs the branch response of the clock-period row, shape row, exposure row, Noether sea response row, preferred-frame leakage row, and ledger residual row.
+This packet supplies the missing intermediate geometry object between branch-local response and full observer-level metric recovery. A retained branch response does not need to reconstruct $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, or $\gamma_{ij}^{\mathrm{eff}}$ before it can move an assembly boundary. It only needs the branch response of the clock-period row, shape row, exposure row, Noether sea response row, preferred-frame leakage row, and ledger residual row.
 
 The advance is therefore:
 
@@ -600,7 +600,7 @@ The middle object is not a placeholder for metric recovery. It is a substrate-sp
 | `quotient-visible-exposure-residue` | $\mathcal{R}_{Z,Q}^{ab}$ exceeds tolerance | $\mathcal{Z}^{ab}$ is not a well-defined geometry-facing exposure tensor |
 | `ledger-residual-leakage` | $\delta\mathcal{R}_{\mathrm{ledger}}$ exceeds the declared tolerance | branch response cannot be exported as a single geometry packet |
 | `interface-critical-point` | $\nabla D_{a,X}=0$ at the tested interface point | normal displacement is not determined by first-order level-set calculus |
-| `metric-premature` | $N$, $u^i_{\text{sea}}$, $e^a{}_i$, or $\gamma_{ij}$ are used to construct $\delta s_X$ | the packet has skipped the intermediate geometry object |
+| `metric-premature` | $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, or $\gamma_{ij}^{\mathrm{eff}}$ are used to construct $\delta s_X$ | the packet has skipped the intermediate geometry object |
 
 ## Promotion Note
 

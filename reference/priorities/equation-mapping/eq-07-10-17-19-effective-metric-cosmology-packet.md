@@ -55,9 +55,9 @@ $$
 \mapsto
 \left(
 N,\,
-u^i_{\text{sea}},\,
+u^i_{\mathrm{sea,eff}},\,
 e^a{}_i,\,
-\gamma_{ij},\,
+\gamma_{ij}^{\mathrm{eff}},\,
 \Phi_{\mathrm{eff}},\,
 \chi_{\text{sea}},\,
 \Gamma_N
@@ -106,7 +106,7 @@ The same $\theta$ must supply the weak-field metric rows, the endpoint/source/la
 
 | ID | Standard equation / regime | Comparison status |
 | --- | --- | --- |
-| `EQ-07` | ADM/Cartan effective metric: $ds_{\rm eff}^2=-N^2c_0^2dt^2+\gamma_{ij}(dx^i-u^i_{\text{sea}}dt)(dx^j-u^j_{\text{sea}}dt)$ | Observer-level metric reconstruction from Noether sea state; not substrate curvature. |
+| `EQ-07` | ADM/Cartan effective metric: $ds_{\mathrm{eff}}^2=-N^2c_0^2dt_{\mathrm{eff}}^2+\gamma_{ij}^{\mathrm{eff}}(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}})(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}})$ | Observer-level metric reconstruction from Noether sea state; not substrate curvature. |
 | `EQ-08` | Weak-field clock / redshift: $d\tau/dt\approx1+\Phi_N/c_0^2-\|\mathbf w\|^2/(2c_0^2)$ | Endpoint clock and cadence-stretch benchmark; $\Gamma_N$ extraction must be derived. |
 | `EQ-09` | Shapiro, lensing, PPN rows: $\Delta\theta=2(1+\gamma_{\mathrm{PPN}})GM/(bc_0^2)+O(c_0^{-4})$ | Weak-field precision benchmark requiring lapse plus spatial compliance, not scalar delay alone. |
 | `EQ-10` | Timelike clock action and null/geodesic benchmarks: $S_{\mathrm{clk}}=-mc_0^2\int d\tau$ | Observer-level variational projection of clock, ruler, matter, and signal records. |
@@ -118,7 +118,7 @@ The same $\theta$ must supply the weak-field metric rows, the endpoint/source/la
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| ADM/Cartan effective metric $g_{\mu\nu}^{\mathrm{eff}}$ | Lapse $N$, Noether sea drift $u^i_{\text{sea}}$, triad $e^a{}_i$, spatial metric $\gamma_{ij}$, and connection rows read from one Noether sea state. | Accepted `theta_W` carrier with retained lapse, drift, spatial-compliance, signal-delay, cadence, and source-provenance rows. | The same `theta_W` id must appear on redshift, Shapiro, lensing, acceleration, PPN, null/eikonal, and geodesic-action rows. | `equation_map.hidden_retune`, `metric.scalar_delay_half_test`, and `ppn.preferred_frame_leakage`. | One retained weak-window source packet proving `theta_W` plus its row provenance is accepted evidence, not a priority/authored source. |
+| ADM/Cartan effective metric $g_{\mu\nu}^{\mathrm{eff}}$ | Lapse $N$, Noether sea drift $u^i_{\mathrm{sea,eff}}$, triad $e^a{}_i$, spatial metric $\gamma_{ij}^{\mathrm{eff}}$, and connection rows read from one Noether sea state. | Accepted `theta_W` carrier with retained lapse, drift, spatial-compliance, signal-delay, cadence, and source-provenance rows. | The same `theta_W` id must appear on redshift, Shapiro, lensing, acceleration, PPN, null/eikonal, and geodesic-action rows. | `equation_map.hidden_retune`, `metric.scalar_delay_half_test`, and `ppn.preferred_frame_leakage`. | One retained weak-window source packet proving `theta_W` plus its row provenance is accepted evidence, not a priority/authored source. |
 | Weak-field clock/redshift $d\tau/dt$ | Endpoint cadence extraction $\Gamma_N$, local potential readout $\Phi_N$, and relative Noether sea drift contribution $\|\mathbf w\|^2/(2c_0^2)$. | Accepted weak-clock row inside `theta_W`. | Clock extraction must use the same $\Gamma_N$, $\chi_{\text{sea}}$, $\xi$, and branch label as the metric rows. | `clock_signal_split` and hidden $\mathbf{b}_N$ coefficient retuning. | Retained weak-clock extraction row with source-backed coefficients for $\Gamma_N=1$, Lorentz limit, and weak-gravity limit. |
 | Shapiro, lensing, acceleration, and PPN rows | Signal-delay, spatial-compliance, null/eikonal, acceleration, and preferred-frame residuals projected from $g_{\mu\nu}^{\mathrm{eff}}$. | Accepted weak-field residual rows under `theta_W`. | Shapiro delay and light bending must share the same lapse and spatial-compliance rows; acceleration and PPN rows cannot use separately tuned coefficients. | `metric.scalar_delay_half_test`, `ppn.preferred_frame_leakage`, and negative controls in `effective-metric-weak-field-residual.mjs`. | Retained weak-field benchmark row where Shapiro, lensing, acceleration, and PPN checks pass from the same accepted `theta_W`. |
 | Signed redshift factorization $1+z_X$ | Endpoint cadence terms, source branch term $B_X(E)$, launch geometry $D_v$, and path-history exchange $Y_{X,E\to R}$ as separate readouts. | Accepted `theta_transfer` carrier with receiver/source/path segment rows. | `theta_transfer` must bind emitter, receiver, launch, path-history, and segment energy-exchange rows on one absolute record. | `redshift.factor_collapse` and `path_history.tired_light_failure`. | Source-backed retained `theta_transfer` object whose signed ledger survives image-sharpness, chromaticity, spectral-coherence, and time-dilation controls. |
@@ -144,9 +144,9 @@ n,\,
 \Rightarrow
 \left(
 N,\,
-u^i_{\text{sea}},\,
+u^i_{\mathrm{sea,eff}},\,
 e^a{}_i,\,
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 \right)
 \Rightarrow
 g_{\mu\nu}^{\mathrm{eff}}.
@@ -166,7 +166,7 @@ N
 $$
 
 $$
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 =
 h_{ij}
 \left(
@@ -180,7 +180,7 @@ h_{ij}
 $$
 
 $$
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 =
 B^i{}_j w^j\frac{U}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}).
@@ -247,7 +247,7 @@ Here $\mathcal{S}_{\mathrm{eff}}$ is allowed only when it is a projection of ass
 | $\lambda_A=R_{\perp,A}/R_{\perp,A,0}$ | Assembly-specific material scale-compression row for dense matter and collapse windows; must remain source-bound to the same branch ledger as the metric projection. |
 | $\Omega_N(\mathbf{x},t)$ and $T_N=2\pi/\Omega_N$ | Local Noether sea braid cadence from which $\Gamma_N=\Omega_{N0}/\Omega_N$ is extracted. |
 | Branch label $q$ and retained root ledger | Carries the causal-root, clock/ruler, and branch-history data behind the effective metric row. |
-| Noether braid orientation, stress, and envelope deformation rows | Feed $e^a{}_i$, $\gamma_{ij}$, $S_{ij}$, anisotropic residuals, and preferred-frame leakage checks. |
+| Noether braid orientation, stress, and envelope deformation rows | Feed $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $S_{ij}$, anisotropic residuals, and preferred-frame leakage checks. |
 | Internal clock phase and event ledger | Required for $d\tau/dt$, $S_{\mathrm{clk}}$, source-branch factor $B_X(E)$, and receiver frequency readout. |
 
 ## Required Noether Sea Variables
@@ -268,7 +268,7 @@ Here $\mathcal{S}_{\mathrm{eff}}$ is allowed only when it is a projection of ass
 
 | Row family | Required rows | Immediate closure use |
 | --- | --- | --- |
-| Metric assembly | $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $g_{\mu\nu}^{\mathrm{eff}}$, $\Gamma^\lambda_{\mu\nu}(g^{\mathrm{eff}})$ | Build one effective metric for clock, signal, ruler, acceleration, and PPN projections. |
+| Metric assembly | $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $g_{\mu\nu}^{\mathrm{eff}}$, $\Gamma^\lambda_{\mu\nu}(g^{\mathrm{eff}})$ | Build one effective metric for clock, signal, ruler, acceleration, and PPN projections. |
 | Weak-field residual | $R_{\mathrm{red}}$, $R_{\mathrm{Shap}}$, $R_{\mathrm{lens}}$, $R_{\mathrm{acc}}$, $\gamma_{\mathrm{PPN}}-1$, $\beta_{\mathrm{PPN}}-1$, $\alpha_1$, $\alpha_2$, $\alpha_3$ | Prevent scalar-delay-only, redshift-only, or lensing-only closure claims. |
 | Clock/cadence extraction | $\mathbf{g}_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$, $\mathbf{b}_N$, $\mathcal{R}_{\Gamma}$ | Derive $\Gamma_N=1$, $\Gamma_N\to1/\xi$, and $\Gamma_N\approx1-\Phi_N/c_0^2$ from one extraction row. |
 | Redshift factorization | $\Gamma_{N,E}$, $\Gamma_{N,R}$, $B_X(E)$, $D_v$, $Y_{X,E\to R}=\ln\mathcal{P}_{E\to R,X}$ | Separate endpoint, source, launch, and path-history terms without moving terms between factors. |
@@ -303,7 +303,7 @@ $$
 \left\langle
 \frac{1}{6}
 \ln
-\frac{\det\gamma_{ij}(\mathbf{x},t)}
+\frac{\det\gamma_{ij}^{\mathrm{eff}}(\mathbf{x},t)}
 {\det h_{ij}}
 \right\rangle_{\Omega}
 $$
@@ -480,7 +480,7 @@ The priority-only [EQ-10 Theta-W Source-Field Map](eq-10-theta-w-source-field-ma
 | Failure mode | Falsifier |
 | --- | --- |
 | `equation_map.hidden_retune` | Redshift, Shapiro delay, lensing, acceleration, or FRW variables pass only after changing $\theta$, $\mathbf{b}_N$, $\chi_{\text{sea}}$, or spatial-compliance coefficients per observable. |
-| `metric.scalar_delay_half_test` | The map matches Shapiro delay or Newtonian acceleration but supplies only $\Delta\theta=2GM/(bc_0^2)$ for light bending because $\gamma_{ij}$ or spatial compliance is absent. |
+| `metric.scalar_delay_half_test` | The map matches Shapiro delay or Newtonian acceleration but supplies only $\Delta\theta=2GM/(bc_0^2)$ for light bending because $\gamma_{ij}^{\mathrm{eff}}$ or spatial compliance is absent. |
 | `clock_signal_split` | $a_\chi^{\mathrm{clk}}\ne a_\chi^{\mathrm{sig}}$ and the residual is hidden instead of reported across redshift, Shapiro, pressure-response, and cosmology comparisons. |
 | `redshift.factor_collapse` | $B_X(E)$, $D_v$, $\Gamma_N$, and $Y_{X,E\to R}$ are folded into one redshift factor without separate extraction rules. |
 | `path_history.tired_light_failure` | A nonzero $Y_{X,E\to R}$ violates image sharpness, spectral coherence, chromaticity, or $(1+z)$ time-dilation consistency. |
@@ -509,7 +509,7 @@ Promote only after the shared residual above is populated for at least one decla
 
 | Packet part | Candidate reader-facing promotion target | Promotion condition |
 | --- | --- | --- |
-| Effective metric map | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | One $\theta$ supplies $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, Shapiro, lensing, acceleration, and PPN rows without retuning. |
+| Effective metric map | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | One $\theta$ supplies $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, Shapiro, lensing, acceleration, and PPN rows without retuning. |
 | Clock and cadence extraction | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) | $\mathbf{b}_N$ derives $\Gamma_N=1$, $\Gamma_N\to1/\xi$, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in declared limits. |
 | Strong-collapse scale compression | [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md) | One retained record maps material Noether braid scale compression to effective spatial compliance and horizon-interface continuation without a separate metric retune. |
 | Redshift factorization | [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md), [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md) | Endpoint cadence, source branch, launch geometry, and path-history terms close as separate projections of one absolute record. |

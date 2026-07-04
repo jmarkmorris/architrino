@@ -283,9 +283,9 @@ $$
 \mapsto
 \left(
 N,\,
-u^i_{\mathrm{sea}},\,
+u^i_{\mathrm{sea,eff}},\,
 e^a{}_i,\,
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 \right)
 $$
 
@@ -308,7 +308,7 @@ O(\mathcal{R}_{\mathrm{ledger}}),
 $$
 
 $$
-u^i_{\mathrm{sea}}
+u^i_{\mathrm{sea,eff}}
 =
 B^i_T\,\delta\ln T_B
 +
@@ -346,7 +346,7 @@ $$
 The spatial compliance metric is then assembled by the Cartan frame:
 
 $$
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 =
 \delta_{ab}e^a{}_i e^b{}_j.
 $$
@@ -356,11 +356,11 @@ The observer-level line element read from this projection is
 $$
 ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\mathrm{sea}}dt\right)
-\left(dx^j-u^j_{\mathrm{sea}}dt\right).
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right).
 $$
 
 This line element is a reconstruction surface for clocks, rulers, and signal paths. It is not substrate geometry. The Euclidean void remains the primitive bookkeeping space in which the branch roots and response rows were computed.
@@ -405,7 +405,7 @@ $$
 \mathcal{K}_{B}^{\mathrm{geom}}
 \xrightarrow[\mathrm{if\ curl/Noether\ close}]{\Pi_{\mathrm{ADM/Cartan}}}
 \left(
-N,u^i_{\mathrm{sea}},e^a{}_i,\gamma_{ij}
+N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}}
 \right),
 $$
 

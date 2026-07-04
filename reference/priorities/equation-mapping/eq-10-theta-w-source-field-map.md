@@ -45,8 +45,8 @@ $$
 \mathcal C_{\mathrm{sea}},
 \Pi_{\mathrm{metric}},
 N,
-u^i_{\text{sea}},
-\gamma_{ij},
+u^i_{\mathrm{sea,eff}},
+\gamma_{ij}^{\mathrm{eff}},
 \chi_{\text{sea}},
 \Gamma_N,
 \mathbf p_{\mathrm{PPN}},
@@ -63,7 +63,7 @@ Required rows on one `commonCarrierId`:
 | `theta_W` | Accepted weak-field carrier id, retained window, durable source path, and support for `EQ-07` through `EQ-10`. |
 | `noether_sea_cell` | Same window and carrier, with $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, drift, strain/stress, and cadence inputs declared. |
 | `constitutive_response` | One response vector or tensor that feeds clock, signal, spatial compliance, and PPN rows without per-observable retuning. |
-| `metric_projection` | $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, and $g_{\mu\nu}^{\mathrm{eff}}$ projected from the same carrier. |
+| `metric_projection` | $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, and $g_{\mu\nu}^{\mathrm{eff}}$ projected from the same carrier. |
 | `lapse_row`, `drift_row`, `spatial_compliance_row`, `signal_delay_row` | The weak-field metric coefficients that jointly support redshift, Shapiro delay, lensing, acceleration, and null propagation. |
 | `cadence_row`, `weak_clock_row`, `redshift_row` | Shared $\Gamma_N$ and endpoint-clock extraction, not a separate redshift-only carrier. |
 | `shapiro_row`, `lensing_row`, `acceleration_row`, `ppn_decision_row` | Same $\gamma_{\mathrm{PPN}}$ and preferred-frame bound vector used across weak-field observables. |

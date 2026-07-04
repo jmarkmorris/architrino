@@ -368,27 +368,27 @@ Cross-chapter integration:
 
 ## ADM/Cartan Extraction Equations
 
-The PPN vector must be extracted from the same ADM/Cartan fields used by the effective metric map, not from observable-specific fits. With $x^0=c_0t$, the line element
+The PPN vector must be extracted from the same ADM/Cartan fields used by the effective metric map, not from observable-specific fits. With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the line element
 $$
-ds_{\rm eff}^2
+ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 gives the observer-sector metric components
 $$
 g_{00}^{\mathrm{eff}}
 =
--N^2+\frac{\gamma_{ij}u^i_{\text{sea}}u^j_{\text{sea}}}{c_0^2},
+-N^2+\frac{\gamma_{ij}^{\mathrm{eff}}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}}}{c_0^2},
 \qquad
 g_{0i}^{\mathrm{eff}}
 =
--\frac{\gamma_{ij}u^j_{\text{sea}}}{c_0},
+-\frac{\gamma_{ij}^{\mathrm{eff}}u^j_{\mathrm{sea,eff}}}{c_0},
 \qquad
-g_{ij}^{\mathrm{eff}}=\gamma_{ij}
+g_{ij}^{\mathrm{eff}}=\gamma_{ij}^{\mathrm{eff}}
 $$
 
 In the local Noether sea rest weak-field row, write
@@ -405,7 +405,7 @@ $$
 =
 \frac{c_0^2}{2U_{\Phi}}
 \left(
-\frac{h^{ij}\gamma_{ij}}{3}-1
+\frac{h^{ij}\gamma_{ij}^{\mathrm{eff}}}{3}-1
 \right)
 +O(U_{\Phi}/c_0^2,\epsilon_{\mathrm{LV}}),
 \qquad

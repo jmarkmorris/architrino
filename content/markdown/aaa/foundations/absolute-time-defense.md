@@ -345,12 +345,12 @@ The clock/ruler handoff to effective metric language can be written locally as
 $$
 d\tau^2
 =
-A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt_{\mathrm{eff}}^2
 -
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 The metric handoff is admissible only on branches where
 $$
@@ -399,16 +399,16 @@ Define the Lorentzian observer metric by
 $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
-With $x^0=c_0t$, the exported components are
+With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the exported components are
 $$
 g^{\mathrm{eff}}_{00}
 =
--A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}}
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}}
 $$
 $$
 g^{\mathrm{eff}}_{0i}
 =
--\frac{1}{c_0}B_{ij}u^j_{\text{sea}}
+-\frac{1}{c_0}B_{ij}u^j_{\mathrm{sea,eff}}
 $$
 and
 $$
@@ -418,9 +418,9 @@ B_{ij}
 $$
 Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
 $$
-\dot x^i
+\frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
 =
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 +
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
@@ -429,7 +429,7 @@ c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
 \frac{c_0A}{\sqrt{B_{ij}\hat k^i\hat k^j}}
 $$
-The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\text{sea}}\to0$.
+The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\mathrm{sea,eff}}\to0$.
 
 The same-record rule is stricter than using one symbol $\mathcal{N}_{\mathrm{sea}}$ in several equations. The clock/ruler map must consume the same Noether sea response record that supplies $G_{\mathrm{eff}}$ in the gravity inventory, $c_{\text{eff}}$ in the matter limiting-speed and mass-shell rows, and $c_\gamma$ in the photon channel:
 $$
