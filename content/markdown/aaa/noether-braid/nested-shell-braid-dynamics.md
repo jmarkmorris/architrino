@@ -4,7 +4,7 @@ This chapter formulates nested shell braid dynamics by extending the two-body de
 
 It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Noether Braid](noether-braid.md), and [Nested Shell Braid Geometry](nested-shell-braid-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
-This chapter is the canonical dynamics home for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
+This chapter is the canonical dynamics home for coupled speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
 
 ## Relation to Causal Closure
 
@@ -31,7 +31,7 @@ The chapter should therefore be read as the stable dynamics layer beneath the ca
 The rest-mass, moving-deformation, photon, observer-export, and event-ledger rows should be populated by one retained branch record, not by separately tuned fits. Retention is the conclusion of the certificate, not an assumption made before the rows are checked. For a candidate nested shell braid chart $q$ over a test window $W$, the shared certificate target is
 
 $$
-\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+\mathcal{C}_{\mathrm{NSH}}^{(q)}(W)
 =
 \left(
 \mathcal{A}_q,
@@ -78,7 +78,7 @@ $$
 The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive Jacobian floor, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
 
 $$
-\mathcal{U}_{\mathrm{tri}}^{(q)}(W)
+\mathcal{U}_{\mathrm{NSH}}^{(q)}(W)
 =
 \max\left(
 \frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
@@ -191,6 +191,8 @@ This chart is a reduced proof bridge, not a replacement for the full three-dimen
 - the $x:y:z$ frequency-pattern search, including iso-frequency, integer-ratio, and doubling-frequency families;
 - the braid symmetry-breaking point, where the planar chart becomes the terminal-alignment slice of the nested shell braid;
 - the photon channel, where two planarized pro/anti braid records form the coaxial contra-rotating pro/anti planar pair.
+
+Taxonomically, this remains a chart label. It becomes `PL-NSH-0` evidence only when the local calculation is testing lower-rank nested shell retention on a declared branch record. It becomes `NSH-TERM` evidence only when the local calculation is the terminal hinge or braid symmetry-breaking boundary. In the photon-channel use, it is bridge evidence consumed by photon closure; it does not certify a Noether braid branch by itself.
 
 The first planar discriminator is the reduced residual
 
@@ -2067,7 +2069,7 @@ These diagnostics belong here as observational quantities for the dynamics chapt
 
 Each dynamics scan should output the substrate records needed by later reconstruction chapters without forming an effective line element in this file. The scan-level packet is
 $$
-\mathcal{D}_{\mathrm{tri}}(W)
+\mathcal{D}_{\mathrm{NSH}}(W)
 =
 \left(
 N_{\text{hits},q},
@@ -2108,9 +2110,9 @@ The spacetime and observer-inference chapters may convert this packet into lapse
 
 The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet:
 $$
-\mathcal{D}_{\mathrm{tri}}^{\mathrm{accel}}(W)
+\mathcal{D}_{\mathrm{NSH}}^{\mathrm{accel}}(W)
 \sim
-\mathcal{D}_{\mathrm{tri}}^{\mathrm{grad}}(W)
+\mathcal{D}_{\mathrm{NSH}}^{\mathrm{grad}}(W)
 $$
 with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
 

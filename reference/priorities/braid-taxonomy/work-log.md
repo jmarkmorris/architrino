@@ -6,4 +6,12 @@ Use [brainstorming.md](brainstorming.md) for provisional ideas and draft corpus-
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-04 Proof ID Crosswalk
+
+Created [proof-id-crosswalk.md](proof-id-crosswalk.md) as the priority-only routing ledger for assigning existing Noether braid proof work to taxonomy Proof IDs before braid-document cleanup. The ledger keeps Proof IDs scoped to branch-configuration targets and explicitly separates branch targets, row evidence, diagnostics/rejections, fixtures, charts, downstream consumers, app/runtime support, and uninspected proof corpora. It maps the current high-confidence lanes for `NB-0`, `SH-0`, `NSH-0`, `NSH-L`, `NSH-ISO`, `NSH-421`, `NSH-HINGE`, `NSH-TERM`, and `PL-*` while leaving large shell-braid and proof-program corpora inspect-before-relabeling.
+
+### 2026-07-04 Crosswalk-Gated Braid Markdown Cleanup
+
+Used [proof-id-crosswalk.md](proof-id-crosswalk.md) as the gate for a scoped authored-corpus cleanup pass. The pass promoted only reader-facing proof discipline: Proof IDs name branch-configuration efforts; diagnostics remain scoped; planar reduced charts remain chart labels unless the local work tests `PL-*` or `NSH-TERM`; ideal braid remains a fixture overlay; downstream Lorentz, mass, photon, topology, GR, measurement, and app/runtime rows consume retained branch records rather than creating base Proof IDs. It also replaced redundant `three-binary` prose in already-established Noether braid contexts and renamed the nested-shell shared certificate handles from `\mathcal{C}_{\mathrm{tri}}` / `\mathcal{U}_{\mathrm{tri}}` to `\mathcal{C}_{\mathrm{NSH}}` / `\mathcal{U}_{\mathrm{NSH}}` in inspected causal-closure priority prose. Large shell-braid proof packets and proof-program corpora remain inspect-before-relabeling.
+
+Validation: `git diff --check`, targeted trailing-whitespace scan, and `node scripts/validate-content.mjs --check --strict` passed. `node scripts/build-scene-graph.mjs --check --strict` and `node scripts/build-textbook-md-pdf.mjs --check` reported generated drift in graph/TOC and textbook reading-copy outputs; no generator `--write` was run in this cleanup pass.

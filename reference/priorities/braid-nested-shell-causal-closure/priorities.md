@@ -60,9 +60,9 @@ Completed map-cleanup items are recorded in `Completed State` above. The live pr
 
 ## Lorentz-Test Residual Interface
 
-The Living Reviews and SME source family sharpens the three-binary relativity burden. A branch that visually produces the Lorentz envelope ratio is insufficient unless the same causal-root ledger also retunes clocks and closed signal paths. The export object for this workstream is
+The Living Reviews and SME source family sharpens the branch-level relativity burden. A branch that visually produces the Lorentz envelope ratio is insufficient unless the same causal-root ledger also retunes clocks and closed signal paths. The export object for this workstream is
 $$
-\mathcal{E}_{\mathrm{tri\text{-}Lor}}^{(q)}(\beta)
+\mathcal{E}_{\mathrm{NSH\text{-}Lor}}^{(q)}(\beta)
 =
 \left(
 \xi^{(q)}(\beta)-\gamma^{-1},
@@ -206,7 +206,7 @@ The Lorentz packet, GR-recovery packet, photon-gate rows, and residual-routing e
 
 For a retained branch class $q$ over a test window $W$, define
 $$
-\mathcal{C}_{\mathrm{tri}}^{(q)}(W)
+\mathcal{C}_{\mathrm{NSH}}^{(q)}(W)
 =
 \left(
 q,
@@ -306,7 +306,7 @@ h_{\mathrm{mem}}^{(q)}\le h_{\max}<\infty,\qquad
 $$
 the normalized closure residual is
 $$
-\mathcal{U}_{\mathrm{tri}}^{(q)}(W)
+\mathcal{U}_{\mathrm{NSH}}^{(q)}(W)
 =
 \max\left(
 \frac{d_{\mathcal{A}}^{(q)}}{\epsilon_{\mathcal{A}}},
@@ -319,7 +319,7 @@ R_{\mathrm{coeff}}^{(q)},
 \frac{\left\|\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}\right\|_W}{\epsilon_{\mathrm{led}}}
 \right).
 $$
-The certificate is promotable only when the gap inequalities hold and $\mathcal{U}_{\mathrm{tri}}^{(q)}(W)\le1$ without retuning clock, ruler, photon, metric, or event-ledger coefficients between rows.
+The certificate is promotable only when the gap inequalities hold and $\mathcal{U}_{\mathrm{NSH}}^{(q)}(W)\le1$ without retuning clock, ruler, photon, metric, or event-ledger coefficients between rows.
 
 Failure modes:
 
@@ -333,7 +333,7 @@ Failure modes:
 
 ### First $A_0$ Seed Population Status
 
-The first available seed for $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ is the reduced $A_0$ branch-search packet, with
+The first available seed for $\mathcal{C}_{\mathrm{NSH}}^{(q)}(W)$ is the reduced $A_0$ branch-search packet, with
 $$
 q=A_0^{\mathrm{red}}(\Lambda),
 \qquad

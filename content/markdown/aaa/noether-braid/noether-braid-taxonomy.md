@@ -208,7 +208,11 @@ This taxonomy is designed to keep the architecture extensible without turning ev
 
 ## Proof Map Table
 
-This table is a proof map, not only a taxonomy decoder. A proof ID names a specific effort and does not assert success. The base and frame-modifier codes are:
+This table is a proof map, not only a taxonomy decoder. A proof ID names a specific branch-configuration effort and does not assert success. It is not a label for every app surface, downstream observable, diagnostic packet, reduced chart, or proof fixture. Row evidence, diagnostics, fixtures, charts, and downstream physics packets should name the branch Proof ID they test or consume only after the support base, group-velocity regime, and local variation are declared.
+
+A negative diagnostic remains scoped to the branch chart and assumptions that produced it. A photon, mass-response, Lorentz-export, topological-charge, GR-export, measurement, or app-runtime packet is downstream of branch retention unless the same retained record supplies the rows being exported. A planar reduced chart is a chart unless the local calculation is actually testing a planar lower-rank branch or the terminal hinge. The ideal braid remains a fixture overlay on the relevant rest-branch Proof ID, not a Proof ID of its own.
+
+The base and frame-modifier codes are:
 
 | Code | Base family or modifier | Meaning |
 | --- | --- | --- |

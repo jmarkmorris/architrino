@@ -48,7 +48,7 @@ f_1=f_2=f_3
 $$
 still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
 
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader Noether braid branch state; it is not the default assumption for all stable three-binary configurations.
+For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader Noether braid branch state; it is not the default assumption for all stable branch configurations.
 
 ## Status and Assumptions
 
@@ -562,14 +562,14 @@ $$
 \phi_{IO}(t)-\phi_{IO}^\ast
 \right)
 $$
-has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the three-binary version of the embedded-binary warning in [Binary Dynamics](../dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
+has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
 
 If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the doubling-frequency hierarchy would be a derived selection result rather than a starting assumption.
 
 In the invariant language of [Noether Braid Topological Charge](noether-braid-topological-charge.md), the reduced theorem target is to find an admissible topological sector
 
 $$
-[\mathfrak B]_{\mathrm{tri}}
+[\mathfrak B]_{\mathrm{freq}}
 =
 \left(
 N_s,\,
@@ -625,7 +625,7 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal three-binary bundle studied in this chapter. In compact form:
+This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal rank-three bundle studied in this chapter. In compact form:
 
 $$
 \mathbb{Z}_3\ \text{stealth}

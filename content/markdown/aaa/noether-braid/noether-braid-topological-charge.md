@@ -110,7 +110,7 @@ $$
 $$
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
 
-The third entry comes from the phase-return chart of a resonance-locked three-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
+The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
 $$
 \theta_O(t+T_O)=\theta_O(t)+2\pi,
 $$
@@ -166,7 +166,7 @@ For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge 
 3. Positive transversality floors away from declared finite caustic transits.
 4. Finite memory depth and positive inactive-root gaps.
 5. A finite local-to-global gluing result for the branch chart, or an explicit finite multistability family.
-6. For a three-binary, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
+6. For a rank-three branch, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
 7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
 8. If the middle layer is treated as a caustic-grazing carrier, regulator-stable middle-caustic rows showing that the reported root degrees and phase-return entry do not depend on the finite-$\eta$ convention in the promoted limit.
 
