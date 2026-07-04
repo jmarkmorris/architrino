@@ -13,7 +13,7 @@
 
 This lane is the priority-stage control surface for Noether braid taxonomy migration. The focused migration packet is [migration-plan.md](migration-plan.md). The proof-work routing ledger is [proof-id-crosswalk.md](proof-id-crosswalk.md).
 
-Use the proof-work routing ledger as the standing gate for braid-document cleanup. The `braid_document_role_alignment` pass is complete; the authored Noether braid chapters now state their document roles without changing proof status.
+Use the proof-work routing ledger as the standing gate for braid-document cleanup. The `braid_document_role_alignment`, title-decision, and remaining-hit audit passes are complete. The authored Noether braid chapters now state their document roles without changing proof status, and the title [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) is final for the moved topological-charge chapter.
 
 Keep provisional taxonomy ideas in [brainstorming.md](brainstorming.md). Keep dated migration status and validation handoffs in [work-log.md](work-log.md).
 
@@ -23,8 +23,7 @@ Maintain a compact queue for taxonomy migration and terminology cleanup without 
 
 ## Task Queue
 
-1. `taxonomy_open_question_review` - Decide whether `Noether Braid Topological Charge` should remain the title of the moved assembly-topological-charge chapter or whether the title should stay `Assembly Topological Charge` while only the path and scene move. Status: `pending`. Source: [migration-plan.md](migration-plan.md#open-refinement-questions).
-2. `remaining_taxonomy_hit_audit` - Recheck any remaining `tri-binary`, moved-path, scene-id, or generated-artifact references only when a follow-up migration pass is selected. Status: `pending`. Source: [migration-plan.md](migration-plan.md#validation-plan).
+No open migration-control tasks are currently queued. Add the next braid-document organization pass here when a new scoped cleanup objective is selected.
 
 ## Detailed Priority Files
 

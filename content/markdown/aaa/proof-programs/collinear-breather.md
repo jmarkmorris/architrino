@@ -10761,4 +10761,4 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 - [binary-dynamics.md](../dynamics/binary-dynamics.md)
 - [causal-action-functional.md](../dynamics/causal-action-functional.md)
 - [energy.md](../dynamics/energy.md)
-- [doubling-frequency-resonance-lock.md](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md)
+- [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md)

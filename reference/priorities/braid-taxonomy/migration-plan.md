@@ -145,6 +145,6 @@ Each remaining hit should be classified as:
 - source/script identifier outside the current rename scope,
 - or a stale reader-facing reference to fix.
 
-## Open Refinement Questions
+## Refinement Decisions
 
-1. Whether `Noether Braid Topological Charge` should remain the title of the moved assembly-topological-charge chapter or whether the title should stay `Assembly Topological Charge` while only the path and scene move.
+1. `Noether Braid Topological Charge` remains the title of the moved assembly-topological-charge chapter. The path and scene stay in the Noether braid area, and active priority/control prose should use the visible chapter title when linking to that chapter. The mathematical classifier may still be described locally as the assembly topological charge when the prose is naming $[\mathfrak B]_{\mathrm{top}}$ itself.
