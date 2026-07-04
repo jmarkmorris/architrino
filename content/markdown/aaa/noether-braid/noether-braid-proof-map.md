@@ -29,6 +29,19 @@ The Proof IDs name configurations, but the proof burden closes in ordered rows. 
 | Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame leakage rows for $\mathbf{V}_{\mathrm{grp}}>0$. | `NB-L`, `SH-L`, `NSH-L`, `PL-NB-L`, `PL-SH-L`, `PL-NSH-L` | Retained branch can be promoted toward certified braid status only if Lorentz-compatible export closes. |
 | Assembly consumer rows | Topological charge, photon channel, mass response, accessory-architrino capture, generation behavior, GR/effective-metric export, and app-runtime packets consume the retained branch record. | Downstream packets tied back to the relevant retained Proof ID. | Consumer success classifies or exports a retained branch; it does not retroactively prove branch retention. |
 
+## Evidence-Handle Cleanup Decisions
+
+This pass separates three cases that should not be cleaned up the same way:
+an active diagnostic packet with missing accepted-source rows, a planned
+environment round with no inspected packet yet, and a candidate theorem family
+whose diagnostics must not be consumed as branch proof.
+
+| Proof ID | Existing evidence handles | Cleanup decision | First evidence blocker |
+| --- | --- | --- | --- |
+| `SH-0` | Held-release common-sphere fixture; octahedral root-ledger and no-go diagnostics when the declared chart has one common shell support. | Source/evidence cleanup is needed before any retention read. Keep the handles as diagnostic row evidence until seed-path, retained-history, return-response, stability, and provenance rows bind to one accepted record. | Missing `held_release_seed_path_rows[*].retained_record_id`; the next blockers are accepted provider provenance and durable retained-history stream references. |
+| `SH-0-sea` | No inspected embedded packet is currently mapped; the row is the next environment round after isolated `SH-0` did not retain. | No legacy packet cleanup is available yet. The next work is first-packet construction: inherit the `SH-0` target branch and add like-assembly population, boundary-condition, and sea-response rows. | The target `SH-0` retained-history source row is not accepted yet, so the embedded response cannot bind to an accepted branch record. |
+| `NSH-421` | Doubling-frequency chapter; phase-bundle, caustic-score, Floquet, and torque/wake same-row diagnostics where used. | Source/evidence cleanup is needed to keep candidate row evidence separate from retained branch proof. The packet can remain a candidate-family theorem target until accepted branch-certificate and same-row active-ID refs exist. | Missing accepted `branch_certificate_ref`; downstream blockers include `same_retained_active_row_ids`, accepted branch chart, moving retained branch certificate, accepted transition source, and action-increment row. |
+
 ## Current Work Index
 
 In this index, work status is a proof-map status, not a certification claim. `Started` means at least one inspected proof packet, diagnostic, row-evidence packet, chart-boundary packet, or downstream export packet is mapped to the Proof ID. `Not started` means no inspected proof packet is currently mapped to the Proof ID. `Unassigned` means likely related material exists, but it has not been inspected enough to map without overclaiming.
@@ -104,6 +117,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 - Success condition: Retain the shell support rows on the same branch record.
 - Started fixture / evidence handles: group-zero, axis-neutral, common-sphere held-release six-point fixture; rigid fixed-speed octahedral root-ledger and no-go diagnostics when their declared chart includes one common shell support.
 - Current fixture disposition: The held-release fixture preserves center-zero, common-sphere, common-speed, and antipodal-pair symmetry under the declared symmetry assumptions, then shows a single compression-to-expansion turn without a retained return response. It remains non-promoted diagnostic row evidence. The current evidence blocker is the missing same-record seed-path acceptance certificate and accepted retained-history provenance; without those rows, return, stability, and Noether sea response cannot count as retention evidence.
+- Evidence cleanup decision: Clean this packet family before any retention read. The held-release and octahedral handles may support the `SH-0` diagnostic story, but retention requires the seed-path rows, retained-history provenance, return-response row, stability row, and later sea-response row to bind to one accepted record.
 - Next environment round: `SH-0-sea`, with an explicit like-assembly population record, boundary condition, and sea-response row tied to the same target branch.
 
 **`SH-0-sea` -- Noether sea embedded shell braid rest qualification**
@@ -120,6 +134,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 - Lorentz deformation: Not tested.
 - Success condition: Retain the shell support rows and the Noether sea response row on the same branch record, showing that the embedded environment supplies stability missing from the isolated `SH-0` round without changing the base shell classification.
 - Relationship to `SH-0`: Environment-qualified continuation after isolated `SH-0` did not supply a retained row; not a new support family and not a certification claim.
+- Evidence cleanup decision: This is a first-packet construction target, not cleanup of an old embedded proof packet. The embedded round should reuse the target `SH-0` branch identity and then add the like-assembly population, boundary-condition, and sea-response rows needed to test whether the surrounding Noether sea supplies the missing stability.
 
 **`SH-L` -- Moving shell braid continuation**
 
@@ -220,6 +235,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 - Noether sea environment: Inherited or declared by the packet.
 - Lorentz deformation: Not tested.
 - Success condition: Close the integer phase-return map, role assignment, causal-root rows, frame rows, and stability rows.
+- Evidence cleanup decision: Clean the candidate proof handles before treating this as branch evidence. Phase-bundle, caustic-score, Floquet, torque/wake, and rank-join diagnostics may identify useful row targets, but they cannot authorize retained-branch consumption until an accepted `branch_certificate_ref`, same retained active-row IDs, accepted branch chart, moving certificate, transition source, and action-increment row close on the same record.
 
 **`NSH-HINGE` -- Nested shell braid field-speed hinge occupancy**
 
