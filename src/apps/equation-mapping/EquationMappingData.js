@@ -258,6 +258,14 @@ const scoreFiveAndFourEquationMapDocuments = [
         { x: 7, y: 8, width: 25, line: "above" }
       ),
       overlay(
+        "polarity-coupling",
+        "Sign and coupling",
+        "polarity",
+        "This term sets the ordered source-receiver polarity and coupling for the active causal root.",
+        "\\kappa\\sigma_{q_oq_{o'}}",
+        { x: 38, y: 8, width: 23, line: "above" }
+      ),
+      overlay(
         "wake-dilution",
         "Wake dilution",
         "inverseSquare",

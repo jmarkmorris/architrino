@@ -60,8 +60,9 @@ test("equation mapping seed document carries static layer anchors and comments",
     ["acceleration", "polarity", "inverseSquare", "branchStrength", "direction"]
   );
   assert.equal(document.formulaParts.some((part) => part.anchorId === "branchStrength"), true);
-  assert.equal(document.overlays.length, 4);
+  assert.equal(document.overlays.length, 5);
   assert.equal(document.overlays[0].targetAnchorId, "acceleration");
+  assert.equal(document.overlays.some((overlay) => overlay.targetAnchorId === "polarity"), true);
   assert.equal(document.overlays[0].content.some((block) => block.type === "math"), true);
   assert.equal(documents.some((entry) => entry.id === "eq-17-redshift-factorization"), true);
 });

@@ -74,6 +74,26 @@ For `index-ratio:dyadic-lock-4-2-1:f2`, the active and torque rows carry:
 
 The first current NSH-421 retained-row blocker in the dyadic branch projection is `row_set_identity`: force, torque, normalized tail-wake, and partition residuals have not yet been proven to use the same retained active rows on one accepted record. This is the NSH-421-specific version of the same bridge failure that the torque/wake same-row diagnostic exposes as `branch_certificate_ref_missing`.
 
+### Accepted-Certificate Continuation Screen
+
+The follow-up target was to produce the first accepted NSH-421 retained active-row branch certificate with same-record `D_s`, `D_t`, `W^{rec}`, accepted `branch_certificate_ref`, and matching `same_retained_active_row_ids`. Current repo evidence still cannot emit that accepted certificate.
+
+The dyadic 4:2:1 runner output supplies the receiver-normal numeric part of the target on both surviving diagnostic cases. For each sampled active row, the active-row and torque-row payloads agree on `rowId`, `D_s`, `D_t`, `receiverNormalFactor`, `unsignedReceiverNormalFactor`, and `branchWeight`. That is necessary evidence for the eventual certificate schema, but it is not sufficient because the same rows remain diagnostic samples rather than an accepted retained record.
+
+The current source search found no `proof_id: NSH-421` evidence object and no non-fixture accepted instance of `torque_wake_retained_active_row_branch_certificate_evidence_object/v0`. The closest branch-provider candidate remains `tri-binary-torque-wake-same-row-diagnostic` in `scripts/solver-audits/fixtures/branch-provider-current-candidates.json`; it is explicitly `provider_source_status: solver_proxy_diagnostic`, has `branch_certificate_ref: null`, and notes that the diagnostic leaves `retainedBranchClaim=false`.
+
+Therefore no valid edit can truthfully set `retained_branch: true`, populate `branch_certificate_ref`, or promote `same_retained_active_row_ids` from target-required row ids to accepted retained row ids. Doing so with the current rows would manufacture the certificate from diagnostic evidence and would violate the receiver-normal retained-record standard.
+
+The first current accepted-certificate blocker is:
+
+`branch_certificate_ref_missing`
+
+The first producer target remains:
+
+`torque_wake_retained_active_row_branch_certificate_producer_target/v0`
+
+The first source object that must become real is one accepted non-fixture same-record retained active-row provider for the NSH-421 / torque-wake route. It must bind `proof_id: NSH-421`, the dyadic `4:2:1` labels, accepted non-fixture source provenance, `branch_certificate_ref`, `same_retained_active_row_ids`, `receiver_normal_branch_rows`, same-record branch-chart identity, accepted branch chart, moving retained branch certificate, active-root ledger hash, conservation-pullback hash, and negative control on one record. The coordinating same-branch intake name already used by the neighboring structural-integrity packet is `same_record_accepted_branch_chart_intake_for_q_index_ratio_f2`; that intake is a route target until its accepted branch-chart and certificate refs are populated by source evidence.
+
 ## Minimum Accepted Retained-Record Schema
 
 The minimum NSH-421 retained record must be a single accepted record, not a stitched set of rows from different diagnostics. It must include:
@@ -114,13 +134,13 @@ The corresponding first evidence-object schema is:
 
 The first checker/report to rerun against the produced object is:
 
-`../../../scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs`
+`../../../scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs --evidence-object <path>`
 
-with the current priority input:
+The older blocker-path diagnostic mode remains:
 
 `../../../scripts/nested-shell-braid/fixtures/torque-wake-same-row-diagnostic-priority-target.json`
 
-Reason: this is the current checker family that already binds sampled force, partition, torque, and wake rows, now requires `receiver_normal_branch_rows`, and names the first retained-branch blocker before same retained active-row IDs can be accepted: `branch_certificate_ref_missing`. The current priority input is a blocker-path diagnostic, not an NSH-421 retained certificate.
+Reason: this is the current checker family that already binds sampled force, partition, torque, and wake rows, now requires `receiver_normal_branch_rows`, and names the first retained-branch blocker before same retained active-row IDs can be accepted: `branch_certificate_ref_missing`. The direct `--evidence-object` mode now checks the NSH-421 retained active-row branch-certificate acceptance contract. The current priority input is still only a blocker-path diagnostic, not an NSH-421 retained certificate.
 
 The follow-on checkers are not the first restart target. They become meaningful only after the accepted branch certificate exists:
 
@@ -140,6 +160,7 @@ As of this screen, the relevant checkers are fail-closed:
 - accepted branch-chart source scout: valid, `candidate_count: 9`, `accepted_count: 0`, `first_failure: accepted_same_record_branch_chart_absent`, `first_rejection_code: branch_certificate_ref_missing`
 - rank2/rank6 branch-source join report: valid, `same_branch_source_join: false`, `first_failure: source_row_binding_open`
 - tri-binary dyadic `4:2:1` run: diagnostic receiver-normal fields present on active and torque rows for the `phase-lock` and `index-ratio` dyadic cases, but both remain `retainedBranchClaim: false` and `promotionReady: false`
+- NSH-421 evidence-object acceptance mode: executable in `torque-wake-same-row-diagnostic-report.mjs --evidence-object`; it requires `proof_id: NSH-421`, `family_id: dyadic-lock-4-2-1`, `role_assigned_integer_ratio: 4:2:1`, accepted non-fixture source/provenance rows, exact same retained active-row IDs, and same-row receiver-normal equations. A contract-complete test object passes the checker, while a branch-certificate-missing object fails first at `branch_certificate_ref_missing` and source-normal-only rows fail at `missing_receiver_normal_branch_row_fields`.
 
 Interpretation: the downstream join and transition-source rows are still open, but they are not the first restart target. The branch-certificate row remains first because `same_retained_active_row_ids` cannot be accepted before an accepted retained active-row `branch_certificate_ref` exists.
 

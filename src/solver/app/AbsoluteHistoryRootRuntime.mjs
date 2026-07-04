@@ -141,6 +141,32 @@ export function evaluateLinearHistoryPoint(segment = {}, timeSeconds = 0) {
   return add(vector(segment.positionAtStart), scale(vector(segment.velocity), dt));
 }
 
+function normalizeLinearReceiverHistoryForHit(receiver = {}, hitTime = 0, errorBoundFallback = 0) {
+  const safeHitTime = finiteNumber(hitTime);
+  const receiverStartTime = finiteNumber(receiver.startTime);
+  const receiverEndTime = Number.isFinite(Number(receiver.endTime))
+    ? Number(receiver.endTime)
+    : safeHitTime;
+  const velocity = vector(receiver.velocity);
+  const positionAtStart = vector(receiver.positionAtStart);
+  if (receiverStartTime <= safeHitTime) {
+    return {
+      startTime: receiverStartTime,
+      endTime: Math.max(receiverEndTime, safeHitTime),
+      positionAtStart,
+      velocity,
+      errorBound: finiteNumber(receiver.errorBound, errorBoundFallback),
+    };
+  }
+  return {
+    startTime: safeHitTime,
+    endTime: Math.max(receiverEndTime, safeHitTime),
+    positionAtStart: add(positionAtStart, scale(velocity, safeHitTime - receiverStartTime)),
+    velocity,
+    errorBound: finiteNumber(receiver.errorBound, errorBoundFallback),
+  };
+}
+
 function movingCircularResidual(request, emissionTime) {
   const hitTime = finiteNumber(request.hitTime);
   const signalSpeed = positiveNumber(request.signalSpeed, 1);
@@ -427,6 +453,7 @@ export function createMovingCircularSourceRootRequest({
   const safeSourceStart = Number.isFinite(Number(sourceStartTime))
     ? Math.min(Number(sourceStartTime), safeSourceEnd)
     : safeSourceEnd - 1;
+  const receiverHistory = normalizeLinearReceiverHistoryForHit(receiver, safeHitTime);
   return {
     sourceRef,
     sourceHistoryKind: "moving-circular-source",
@@ -440,13 +467,7 @@ export function createMovingCircularSourceRootRequest({
       epochTime: finiteNumber(source?.epochTime),
       errorBound: finiteNumber(source?.errorBound),
     },
-    receiver: {
-      startTime: finiteNumber(receiver?.startTime),
-      endTime: Number.isFinite(Number(receiver?.endTime)) ? Number(receiver.endTime) : safeHitTime,
-      positionAtStart: vector(receiver?.positionAtStart),
-      velocity: vector(receiver?.velocity),
-      errorBound: finiteNumber(receiver?.errorBound),
-    },
+    receiver: receiverHistory,
     hitTime: safeHitTime,
     signalSpeed: positiveNumber(signalSpeed, 1),
     sourceStartTime: safeSourceStart,
@@ -756,15 +777,12 @@ export function createMovingCircularSourceLinearizedRootRequests({
   const duration = Math.max(EPSILON, safeSourceEnd - safeSourceStart);
   const safeSegmentCount = positiveInteger(segmentCount, 24);
   const safeSignalSpeed = positiveNumber(signalSpeed, 1);
-  const receiverVelocity = vector(receiver?.velocity);
-  const receiverStartTime = finiteNumber(receiver?.startTime);
-  const receiverBase = {
-    startTime: receiverStartTime,
-    endTime: Number.isFinite(Number(receiver?.endTime)) ? Number(receiver.endTime) : safeHitTime,
-    positionAtStart: vector(receiver?.positionAtStart),
-    velocity: receiverVelocity,
-    errorBound: finiteNumber(receiver?.errorBound, receiverErrorBound),
-  };
+  const receiverBase = normalizeLinearReceiverHistoryForHit(
+    receiver,
+    safeHitTime,
+    receiverErrorBound
+  );
+  const receiverVelocity = receiverBase.velocity;
   const sourceHistory = {
     kind: "moving-circular-source-linearized",
     sourceRef,
