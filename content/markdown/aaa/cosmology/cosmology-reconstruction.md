@@ -1,53 +1,75 @@
 # Cosmology Reconstruction
 
-This chapter states the conversion problem between standard Lambda-CDM cosmology and $\mathbb{A}\mathbb{A}\mathbb{A}$. The data record is not being dismissed. Galaxy spectra, supernova light curves, the CMB, BAO, weak lensing, cluster catalogs, and abundance histories are real observational achievements. The issue is the layer assignment. Standard cosmology treats the photon record as if it has already been translated into metric expansion, cosmic age, source distance, and dark-sector densities. $\mathbb{A}\mathbb{A}\mathbb{A}$ treats the same record as a physical transport ledger moving through an evolving Noether sea inside a fixed Euclidean void.
+Start with the thing a telescope actually gives us. It gives us changed light. It gives spectra, colors, line shifts, fluxes, angular images, polarization, arrival times, correlations, and maps. It does not hand us distance, age, expansion, dark energy, or a metric. Those are reconstructions.
 
-The central rule is simple: no metric expansion of the Euclidean void is allowed. What evolves is the Noether sea, the assemblies embedded in it, and the path-history records carried by photon-channel packets. Standard expansion variables may still be recovered as effective summaries, but they are not the underlying motion.
+This chapter states the reconstruction problem between standard Lambda-CDM cosmology and $\mathbb{A}\mathbb{A}\mathbb{A}$. The data record is not being dismissed. Galaxy spectra, supernova light curves, the CMB, BAO, weak lensing, cluster catalogs, and abundance histories are real observational achievements. The issue is what physical layer gets credit for the pattern.
+
+Lambda-CDM treats the photon record as if it has already been translated into metric expansion, cosmic age, source distance, and dark-sector densities. $\mathbb{A}\mathbb{A}\mathbb{A}$ treats the same record as a transported physical ledger moving through an evolving Noether sea inside a fixed Euclidean void.
+
+The central rule is simple: the Euclidean void does not expand. What evolves is the Noether sea, the assemblies embedded in it, and the path-history records carried by photon-channel packets. Expansion variables may still be recovered as useful effective summaries. They are not the underlying motion.
 
 For surrounding context, see [Cosmology Ontology](./cosmology-ontology.md), [Expansion Mechanism](./expansion-mechanism.md), [Dark Energy](./dark-energy.md), [Dark Matter](./dark-matter.md), [Structure Formation](./structure-formation.md), [CMB](./CMB.md), and [Hubble and S8 Tensions](./hubble-s8-tensions.md).
 
-## Why The Standard Package Is Strong
+## The Simple Picture
 
-Lambda-CDM is powerful because it compresses many observation channels into a small effective model. It uses a homogeneous and isotropic metric background, a scale factor $a(t)$, cold dark matter, baryons, radiation, neutrinos, and a dark-energy term close to a cosmological constant. With that package it fits:
+Imagine receiving a message after it crossed a very large, changing ocean. The paper matters. The sender matters. The receiver matters. But the trip also matters. If the ink is stretched, dimmed, delayed, or distorted, the message is still real; it is just not direct access to the sender.
 
-- the Hubble redshift-distance relation,
-- supernova dimming and time dilation,
-- the CMB blackbody spectrum and anisotropy peaks,
-- BAO distance ladders,
-- weak-lensing correlations,
-- large-scale structure growth,
-- primordial light-element abundances,
+Cosmology is mostly like that, except the message is a photon record. The record carries information about the emitting source, but it also carries information about the environment near the source, the path through the Noether sea, the receiver clock, and the receiver apparatus.
+
+Standard cosmology is powerful because it found a compact way to organize those records. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not throw that organization away. It asks whether the compact variables are being mistaken for the machinery that produced them.
+
+The difference can be stated as a layer split:
+
+| Layer | What is received or fitted | What must be explained |
+| --- | --- | --- |
+| Photon record | Spectra, flux, polarization, arrival times, angular images, CMB maps, lensing correlations. | How a physical photon-channel packet carries those records through the Noether sea. |
+| Effective variables | Redshift $z$, luminosity distance $d_L$, angular-diameter distance $d_A$, $H(z)$, $\Omega_m$, $\Omega_\Lambda$, $w(z)$. | Why these variables compress the received record so well. |
+| Ontology | Expanding metric space, fundamental spacetime, fundamental photon field, dark energy, dark matter. | Which parts are real assemblies, which parts are Noether sea response, and which parts are reconstruction bookkeeping. |
+
+The first layer is the observation. The second layer is a disciplined map. The third layer is where $\mathbb{A}\mathbb{A}\mathbb{A}$ relocates the physical explanation.
+
+## Why Lambda-CDM Is Strong
+
+Lambda-CDM is strong because it compresses many observation channels into a small effective model. It uses a homogeneous and isotropic metric background, a scale factor $a(t)$, cold dark matter, baryons, radiation, neutrinos, and a dark-energy term close to a cosmological constant.
+
+With that package it fits:
+
+- the Hubble redshift-distance relation;
+- supernova dimming and time dilation;
+- the CMB blackbody spectrum and anisotropy peaks;
+- BAO distance ladders;
+- weak-lensing correlations;
+- large-scale structure growth;
+- primordial light-element abundances;
 - cluster and galaxy population histories.
 
-That success matters. $\mathbb{A}\mathbb{A}\mathbb{A}$ cannot replace Lambda-CDM by refusing its data products. It must explain why the Lambda-CDM compression works over the domains where it works, and where its inferred ontology has overrun what the photon record alone establishes.
+That success is the recovery target. $\mathbb{A}\mathbb{A}\mathbb{A}$ cannot replace Lambda-CDM by refusing its data products. It must explain why the Lambda-CDM compression works over the domains where it works, and where its inferred ontology has gone beyond what the photon record alone establishes.
 
-The conversion therefore begins by separating three layers that Lambda-CDM often bundles together:
+The clean way to read Lambda-CDM is therefore:
 
-1. **Observed photon records:** spectra, fluxes, angular images, polarization, arrival times, CMB temperature maps, and line ratios.
-2. **Effective inference variables:** redshift $z$, luminosity distance $d_L$, angular-diameter distance $d_A$, $H(z)$, $\Omega_m$, $\Omega_\Lambda$, $w(z)$, and source histories.
-3. **Ontological claims:** metric expansion of space, a fundamental spacetime manifold, a fundamental photon field, dark energy as vacuum energy, and dark matter as a separate collisionless matter species.
+1. It is an excellent effective fit pipeline.
+2. It is not a final implementation of photons.
+3. It is not a final implementation of spacetime.
+4. It uses photons traveling through spacetime to infer source objects and source reactions.
+5. Therefore the physical implementation of photon, effective spacetime, source, and transport cannot be skipped.
 
-The first layer is observational. The second layer is a disciplined reconstruction. The third layer is where $\mathbb{A}\mathbb{A}\mathbb{A}$ relocates the explanation.
+This is not a small technical quibble. Precision cosmology is mostly photon-mediated. Supernovae, galaxies, quasars, BAO tracers, the CMB, lensing shear maps, metallicity estimates, reionization histories, and star-formation histories are reconstructed primarily from light received after long propagation.
 
-## Photon, Effective Spacetime, And Source Dependency
+Lambda-CDM borrows the photon abstraction from quantum field theory and the metric abstraction from general relativity. That is valid as an effective pipeline when the abstractions are stable enough. $\mathbb{A}\mathbb{A}\mathbb{A}$ says the same pipeline becomes incomplete when its borrowed photon and spacetime layers are treated as finished physical implementations.
 
-Nearly all precision cosmology is photon-mediated. Supernovae, galaxies, quasars, BAO tracers, the CMB, lensing shear maps, metallicity estimates, reionization histories, and star-formation histories are reconstructed primarily from photon records. Even when the final claim is about matter density, cosmic age, dark energy, or large-scale geometry, the dominant input is light received after long propagation through the assumed spacetime.
+## What Redshift Is
 
-That creates a hidden three-part dependency:
+Redshift is the main handle. A spectral line has a calibrated rest frequency. When we receive it at a lower frequency, the received light is redshifted. In ordinary observational language,
 
-| Layer | Standard cosmology usually assumes | $\mathbb{A}\mathbb{A}\mathbb{A}$ relocation |
-| --- | --- | --- |
-| Messenger | A photon is a massless field quantum moving on null geodesics. | A photon-channel packet is a physical transported assembly state whose frequency, phase, polarization, and path-history response must be carried by the Noether sea. |
-| Stage | Spacetime is a metric manifold whose scale factor expands. | Effective spacetime is reconstructed from Noether sea response in a fixed Euclidean void with absolute time. |
-| Source | The received photon record can be inverted into source composition, reaction type, luminosity, temperature, distance, and age after calibration. | The received record is a deconvolution problem involving source branch, local environment, endpoint clock rates, relative motion, and path-history transport. |
+$$
+1+z
+=
+\frac{\lambda_{\mathrm{obs}}}{\lambda_{\mathrm{emit}}}
+=
+\frac{\nu_{\mathrm{emit}}}{\nu_{\mathrm{obs}}}.
+$$
 
-This is the most important philosophical and technical pressure point. Lambda-CDM, as a cosmological fit package, does not by itself supply a final physical implementation of either the photon or spacetime. It imports the photon abstraction from quantum field theory and the spacetime abstraction from general relativity, then uses photons traveling through that spacetime to infer the properties of source objects and source reactions. That is a valid effective pipeline only if the photon, effective spacetime, and source calibrations remain stable under the intended inference. $\mathbb{A}\mathbb{A}\mathbb{A}$ says those three layers are exactly where the physical implementation must be reopened.
-
-This is not a rejection of the received light. It is a refusal to let the received light be treated as direct access to a source without accounting for the medium and clock history between source and receiver.
-
-## Standard Redshift Use In Lambda-CDM
-
-In Lambda-CDM the central redshift relation is
+That much is direct bookkeeping. The extra Lambda-CDM step is to identify the same ratio with the scale factor:
 
 $$
 1+z
@@ -59,7 +81,9 @@ $$
 \frac{a(t_{\mathrm{obs}})}{a(t_{\mathrm{emit}})}.
 $$
 
-The observed frequency shift is therefore interpreted as a ratio of scale factors. Once a cosmological model supplies $H(z)$, the same $z$ becomes a coordinate for distance, lookback time, volume, source population, and evolutionary era. A common comparison chain is:
+This is the big conversion. A frequency ratio becomes a scale-factor ratio. Once that conversion is accepted, $z$ becomes more than a line shift. It becomes the coordinate used to infer distance, lookback time, source volume, population history, matter density, dark energy, curvature, neutrino masses, and the age of the observable universe.
+
+In a standard comparison model,
 
 $$
 H(z)
@@ -95,7 +119,7 @@ t_L(z)
 \frac{dz'}{(1+z')H(z')}.
 $$
 
-In a flat comparison model, the luminosity distance is summarized by
+In a flat comparison model, luminosity distance is summarized by
 
 $$
 d_L(z)
@@ -111,13 +135,13 @@ F
 \frac{L}{4\pi d_L^2}.
 $$
 
-This is the operational ladder. A measured spectral shift becomes $z$. The model turns $z$ into $H(z)$, $d_L(z)$, $d_A(z)$, lookback time, source volume, and population history. The resulting fitted parameters then support statements about cosmic acceleration, dark energy, matter density, curvature, neutrino masses, and the age of the observable universe.
+This is why redshift is so important. A measured line shift becomes $z$. The model turns $z$ into $H(z)$, $d_L(z)$, $d_A(z)$, lookback time, source volume, and population history. The fitted parameters then support statements about cosmic acceleration, dark energy, matter density, curvature, neutrino masses, and cosmic age.
 
-The mathematical efficiency is real. The ontological risk is that the same received photon record is being used several times: first to define redshift, then to infer distance, then to infer source luminosity or event class, then to infer the expansion history that is used to interpret the same source population.
+The power is real. The danger is also real: the same received photon record can be used first to define redshift, then to infer distance, then to infer source luminosity or event class, then to infer the expansion history used to interpret the same source population.
 
 ## What Redshift Means In $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ redshift is not first a scale-factor ratio. It is a signed frequency-transfer ledger between an emission event $E$ and a reception event $R$:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, redshift is not first a scale-factor ratio. It is a signed frequency-transfer ledger between an emission event $E$ and a reception event $R$:
 
 $$
 Z_X^{E\to R}
@@ -150,15 +174,15 @@ Y_{X,E\to R}
 \ln D_v.
 $$
 
-The terms have different physical jobs:
+Each term answers a plain question:
 
-- $\Gamma_{N,E}$ is the Noether sea clock-rate factor at emission.
-- $\Gamma_{N,R}$ is the Noether sea clock-rate factor at reception.
-- $Y_{X,E\to R}$ is the path-history transport contribution accumulated by the photon-channel packet.
-- $B_X(E)$ is the source-branch calibration for the emitting reaction or object class.
-- $D_v$ is the relative-motion factor between source and receiver.
+- $\Gamma_{N,E}$ asks how the Noether sea clock rate at emission compares with the reference.
+- $\Gamma_{N,R}$ asks how the Noether sea clock rate at reception compares with the reference.
+- $Y_{X,E\to R}$ asks what the photon-channel packet accumulated along its path.
+- $B_X(E)$ asks whether the emitting source branch was calibrated correctly.
+- $D_v$ asks how relative motion between source and receiver changed the received frequency.
 
-This split is the key distinction. In Lambda-CDM the redshift is assigned to scale-factor history first, and other effects are corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the measured redshift is a total ledger. The expansion-like part is whatever remains after endpoint clock rates, source branch, relative motion, and physical path-history transport have been declared.
+This split is the core difference. Lambda-CDM assigns the redshift to scale-factor history first, then treats other effects as corrections. $\mathbb{A}\mathbb{A}\mathbb{A}$ starts with the measured redshift as a total ledger. The expansion-like part is only whatever remains after endpoint clock rates, source branch, relative motion, and path-history transport have been separated.
 
 The corresponding propagation residual is
 
@@ -186,31 +210,39 @@ $$
 
 This $H_{\mathrm{eff}}$ is not the expansion rate of the Euclidean void. It is the observer-level slope of the corrected redshift-transfer ledger after the local channel, source, endpoint, and path terms have been separated as far as the data allow.
 
+The short version is: redshift is a receipt, not a ruler by itself. Lambda-CDM reads the receipt as expansion history. $\mathbb{A}\mathbb{A}\mathbb{A}$ first asks what was paid by the source, what was paid by the path, what was paid by motion, and what was paid by the receiver clock.
+
 ## Noether Sea Evolution Is Not Universal Expansion
 
-Noether sea assemblies can change their radii, frequencies, coupling stiffness, and local density as they exchange energy with surrounding structures. A relaxing Noether sea region may contain assemblies whose outer-binary radii grow while their characteristic frequencies decrease. That can produce an expansion-like redshift trend without implying that the Euclidean void itself expands.
+The universe-level container does not stretch in $\mathbb{A}\mathbb{A}\mathbb{A}$. The Euclidean void remains the fixed setting. The Noether sea inside it can still evolve.
 
-The important point is that the universe-level container is not stretching. Many subassemblies and many Noether sea regions can have their own phase histories, energy histories, and clock-rate factors. A galaxy cluster, a low-density void, a filament, a young star-forming region, a strong-field environment, and the line of sight between them need not share one primitive scale factor. They may still project to a smooth $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ when averaged over the large and well-calibrated photon record.
+That distinction matters because Noether sea assemblies can change their radii, frequencies, coupling stiffness, and local density as they exchange energy with surrounding structures. A relaxing Noether sea region may contain assemblies whose outer-binary radii grow while their characteristic frequencies decrease. That can produce an expansion-like redshift trend without metric expansion of the void.
 
-The effective scale factor is therefore a compression of Noether sea state history, not a fundamental coordinate of the Euclidean void. It is useful when the averaged ledger is close to homogeneous and isotropic. It becomes misleading when source evolution, endpoint clock-rate differences, anisotropic path histories, or late Noether sea relaxation are forced into a single global expansion variable.
+The cosmos is also not one uniform clock. A galaxy cluster, a low-density void, a filament, a young star-forming region, a strong-field environment, and the line of sight between them can have different Noether sea histories. Many subassemblies can have repeatable motion. Repeatable motion gives phase histories. A photon-channel packet crossing the cosmos samples many such histories before it is received.
 
-## From Photon Record To Source Claim
+When the average is smooth enough, those many histories can project to a simple effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$. That is why the Lambda-CDM compression can work. The mistake is to promote the average summary into the primitive motion of space itself.
 
-Every cosmological source claim should be read as a chain of physical transformations:
+The effective scale factor is therefore a compression of Noether sea state history, not a fundamental coordinate of the Euclidean void. It is useful when the averaged ledger is close to homogeneous and isotropic. It becomes misleading when source evolution, endpoint clock-rate differences, anisotropic path histories, or late Noether sea relaxation are forced into one global expansion variable.
+
+## Source Claims Are Reconstructed
+
+Every cosmological source claim should be read as a chain:
 
 1. A source reaction or assembly transition emits a photon-channel packet with a channel-dependent initial record.
 2. The source environment modifies the outgoing packet through local fields, plasma, density, motion, composition, and branch history.
-3. The packet propagates through the Noether sea, accumulating path-history response.
+3. The packet propagates through the Noether sea and accumulates path-history response.
 4. The receiver samples the packet through a local Noether sea clock-rate factor, apparatus calibration, and observer motion.
 5. The observer reconstructs a source label, redshift, distance, luminosity, and physical interpretation.
 
-In standard practice, the last step is often presented as if the source property has been read from the sky. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is a reconstruction from a transported record. A spectral line is still a powerful source identifier, but its received frequency is not only a source property. A supernova light curve is still a powerful standardization channel, but its inferred distance depends on the source-branch calibration, endpoint clock rates, and path transport. A CMB photon is still a high-value fossil record, but its temperature anisotropy is not automatically a direct photograph of a metric scale factor.
+In standard practice, the last step is often described as if the source property has been read directly from the sky. In $\mathbb{A}\mathbb{A}\mathbb{A}$, it is a reconstruction from a transported record.
+
+A spectral line is still a powerful source identifier, but its received frequency is not only a source property. A supernova light curve is still a powerful standardization channel, but its inferred distance depends on source-branch calibration, endpoint clock rates, and path transport. A CMB photon is still a high-value early-state record, but its temperature anisotropy is not automatically a direct photograph of metric scale factor.
 
 The source claim is licensed only after the photon record, effective spacetime assumption, and source calibration have been accounted for.
 
 ## Why The Lambda-CDM Age Is Not The Same Question
 
-In Lambda-CDM the age of the observable universe is tied to the expansion integral:
+In Lambda-CDM, the age of the observable universe is tied to the expansion integral:
 
 $$
 t_0
@@ -219,15 +251,17 @@ t_0
 \frac{dz}{(1+z)H(z)}.
 $$
 
-This works because $z$ is interpreted as a scale-factor coordinate and $H(z)$ as the expansion rate of the metric background. The model age is then the elapsed effective time along the fitted expansion history.
+This works inside Lambda-CDM because $z$ is interpreted as a scale-factor coordinate and $H(z)$ as the expansion rate of the metric background. The model age is the elapsed effective time along the fitted expansion history.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same operation does not compute the age of the Euclidean void and does not automatically compute the age of the full Noether sea. It computes an effective observer-era interval only after the redshift ledger has been compressed into $H_{\mathrm{eff}}(z)$. If redshift contains endpoint clock-rate terms, source-branch terms, and path-history transport terms, then the mapping from $z$ to absolute time is not unique without the native ledger.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the same operation does not compute the age of the Euclidean void. It also does not automatically compute the age of the full Noether sea. It computes an effective observer-era interval only after the redshift ledger has been compressed into $H_{\mathrm{eff}}(z)$.
 
-This is why a recovered 13-14 billion year observer-era scale, if recovered, has a narrower meaning. It marks the calibrated history of the photon-accessible effective cosmological state. It is not a primitive creation time for the Euclidean void. It is not proof that all Noether sea regions share one global expansion clock. It is the age assigned by one effective reconstruction pipeline after its redshift, distance, and source-population assumptions have been fixed.
+That is why redshift in $\mathbb{A}\mathbb{A}\mathbb{A}$ does not automatically lead to the same age as Lambda-CDM. Lambda-CDM first says, "this redshift is scale-factor history." $\mathbb{A}\mathbb{A}\mathbb{A}$ first says, "this redshift is a total frequency-transfer ledger." Those are different questions.
 
-## Distance Inference Is Also A Ledger
+If redshift contains endpoint clock-rate terms, source-branch terms, relative-motion terms, and path-history transport terms, then the mapping from $z$ to absolute time is not unique without the native ledger. A recovered 13-14 billion year observer-era scale, if recovered, would have a narrower meaning: it would mark the calibrated history of the photon-accessible effective cosmological state. It would not be a primitive creation time for the Euclidean void, and it would not prove that all Noether sea regions share one global expansion clock.
 
-Redshift alone is not distance. Lambda-CDM can treat redshift as distance because the model supplies a global relation between $z$, $H(z)$, and the metric distance functions. In $\mathbb{A}\mathbb{A}\mathbb{A}$ distance is reconstructed after the channel budget is declared.
+## Distance Is Also A Ledger
+
+Redshift alone is not distance. Lambda-CDM can treat redshift as distance because the model supplies a global relation between $z$, $H(z)$, and metric distance functions. $\mathbb{A}\mathbb{A}\mathbb{A}$ reconstructs distance after the channel budget is declared.
 
 For a source with intrinsic luminosity calibration $L_X(E)$ and received flux $F_X(R)$, the observer can still define an effective luminosity distance:
 
@@ -239,11 +273,13 @@ d_{L,X}^{\mathrm{eff}}
 \right)^{1/2}.
 $$
 
-But this quantity is not automatically a geometric radius in an expanding metric. It includes source calibration, arrival-rate changes, photon-channel transport, beam geometry, absorption or scattering where present, and receiver calibration. Standard cosmology packages those effects into $d_L(z)$ and then fits the expansion history. $\mathbb{A}\mathbb{A}\mathbb{A}$ asks which parts of $d_{L,X}^{\mathrm{eff}}$ are geometry, which parts are source branch, which parts are Noether sea transport, and which parts are endpoint clock comparison.
+But this quantity is not automatically a geometric radius in an expanding metric. It includes source calibration, arrival-rate changes, photon-channel transport, beam geometry, absorption or scattering where present, and receiver calibration.
 
-The same caution applies to angular-diameter distance, BAO scales, lensing kernels, and inferred comoving volume. They are not discarded. They are promoted to cross-checks on whether one Noether sea state history can recover all effective distance ladders without treating the Euclidean void as expanding.
+Standard cosmology packages those effects into $d_L(z)$ and fits an expansion history. $\mathbb{A}\mathbb{A}\mathbb{A}$ asks which parts of $d_{L,X}^{\mathrm{eff}}$ are geometry, which parts are source branch, which parts are Noether sea transport, and which parts are endpoint clock comparison.
 
-### Redshift-Distance Comparison Table
+The same caution applies to angular-diameter distance, BAO scales, lensing kernels, and inferred comoving volume. They are not discarded. They become cross-checks on whether one Noether sea state history can recover all effective distance ladders without treating the Euclidean void as expanding.
+
+## Redshift And Distance: A Worked Comparison
 
 A useful first table compares the standard Lambda-CDM luminosity distance with the simplest fixed-void $\mathbb{A}\mathbb{A}\mathbb{A}$ benchmark. The Lambda-CDM column below uses a flat Planck-like comparison model with $H_0=67.4\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$, $\Omega_m=0.315$, $\Omega_r=9.2\times10^{-5}$, and $\Omega_\Lambda=1-\Omega_m-\Omega_r$:
 
@@ -293,11 +329,13 @@ $$
 | $20$ | $229{,}867$ | $284{,}380$ | $23.7\%$ |
 | $1100$ | $15{,}266{,}752$ | $34{,}299{,}885$ | $124.7\%$ |
 
-The table should be read as a calibration stress test. A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology does not have to keep the constant-slope benchmark. It must replace that row with the integrated Noether sea record, using the same endpoint cadence, source branch, launch geometry, transparent transport, CMB, BAO, lensing, and growth constraints described above. The large high-redshift difference is therefore not a failure by itself; it marks how much nonconstant Noether sea history the native redshift ledger must explain if it is to recover the Lambda-CDM-era distance products without metric expansion of the Euclidean void.
+This table is a calibration stress test. The first few rows show why a simple fixed-void transfer slope can look close at low redshift. The middle rows show that the difference is not a constant offset. The high-redshift row shows why the CMB regime cannot be handled by a naive constant-slope rule.
+
+A mature $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology does not have to keep the constant-slope benchmark. It must replace that row with the integrated Noether sea record, using the same endpoint cadence, source branch, launch geometry, transparent transport, CMB, BAO, lensing, and growth constraints described above. The large high-redshift difference marks how much nonconstant Noether sea history the native redshift ledger must explain if it is to recover the Lambda-CDM-era distance products without metric expansion of the Euclidean void.
 
 ## Dark-Sector Reclassification
 
-Once redshift and distance are treated as ledgers, the dark-sector interpretation changes.
+Once redshift and distance are treated as ledgers, the dark sector changes meaning.
 
 | Lambda-CDM object | Standard role | $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation |
 | --- | --- | --- |
@@ -309,11 +347,13 @@ Once redshift and distance are treated as ledgers, the dark-sector interpretatio
 | Curvature $k$ | Spatial curvature parameter of the metric background. | Effective geometry coefficient in the observer reconstruction, not curvature of the Euclidean void. |
 | Cosmic age | Integral over the fitted expansion history. | Effective observer-era interval, not primitive age of the Euclidean void or full Noether sea. |
 
-The dark sector is therefore not a list of mysterious substances added to an otherwise known stage. It is a sign that the photon record has been compressed through a stage whose physical implementation was left open. Some components may still correspond to real neutral assemblies. Some may be Noether sea response. Some may be source-history or propagation bookkeeping that was forced into a global expansion fit.
+The dark sector is therefore not a list of mysterious substances added to an otherwise known setting. It is a sign that the photon record has been compressed through a spacetime model whose physical implementation was left open.
+
+Some components may correspond to real neutral assemblies. Some may be Noether sea response. Some may be source-history or propagation bookkeeping that was forced into a global expansion fit. The task is to sort those contributions without losing the observational successes that made the Lambda-CDM fit powerful.
 
 ## Required Recovery Tests
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ reconstruction is not free to call every redshift a medium effect. It must recover the constraints that make naive tired-light models fail. In particular, the native ledger must preserve or explain:
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is not free to call every redshift a medium effect. It must recover the constraints that make naive tired-light models fail. In particular, the native ledger must preserve or explain:
 
 - supernova time dilation;
 - spectral-line coherence and line-ratio consistency;
@@ -330,7 +370,9 @@ These are not optional patches. They are the reason the standard package became 
 
 ## Summary
 
-Lambda-CDM turns photon redshift into a scale-factor history and then uses that history to infer distances, ages, dark-sector densities, and source evolution. $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the photon record but reopens the implementation. A received photon-channel packet is not direct source access. It is a transported record whose frequency, phase, polarization, intensity, and arrival profile have passed through a changing Noether sea and a receiver clock environment.
+Lambda-CDM turns photon redshift into scale-factor history and then uses that history to infer distances, ages, dark-sector densities, and source evolution. $\mathbb{A}\mathbb{A}\mathbb{A}$ keeps the photon record but reopens the implementation.
+
+A received photon-channel packet is not direct source access. It is a transported record whose frequency, phase, polarization, intensity, and arrival profile have passed through a changing Noether sea and a receiver clock environment.
 
 The conversion is therefore:
 

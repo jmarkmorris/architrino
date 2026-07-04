@@ -84,6 +84,10 @@ test("equation mapping seed document carries static layer anchors and comments",
   assert.equal(document.overlays.some((overlay) => overlay.targetAnchorId === "polarity"), true);
   assert.equal(document.overlays[0].content.some((block) => block.type === "math"), true);
   assert.equal(documents.some((entry) => entry.id === "eq-17-redshift-factorization"), true);
+  assert.deepEqual(
+    documents.map((entry) => entry.title.match(/^EQ-\d+/u)?.[0]),
+    ["EQ-01", "EQ-02", "EQ-03", "EQ-04", "EQ-05", "EQ-06", "EQ-07", "EQ-08", "EQ-09", "EQ-10"]
+  );
 });
 
 test("equation mapping rejects overlays that do not target a formula section", () => {
@@ -652,11 +656,11 @@ test("equation mapping arrow keys navigate through the visible equation list", (
   runtime.activeDocumentId = "eq-04-energy-momentum-rest-energy";
 
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowRight")), true);
-  assert.equal(runtime.activeDocumentId, "eq-07-effective-metric-adm-cartan");
+  assert.equal(runtime.activeDocumentId, "eq-05-noether-conservation");
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowDown")), true);
-  assert.equal(runtime.activeDocumentId, "eq-08-weak-field-clock-redshift");
+  assert.equal(runtime.activeDocumentId, "eq-06-noether-sea-continuity");
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowLeft")), true);
-  assert.equal(runtime.activeDocumentId, "eq-07-effective-metric-adm-cartan");
+  assert.equal(runtime.activeDocumentId, "eq-05-noether-conservation");
   assert.equal(runtime.handleDocumentKeyDown(arrowEvent("ArrowUp")), true);
   assert.equal(runtime.activeDocumentId, "eq-04-energy-momentum-rest-energy");
   assert.equal(renderCount, 4);
@@ -793,8 +797,8 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-group h2 \{[\s\S]*?font-size: 20px;/u);
   assert.match(html, /\.equation-mapping-index-item span \{[\s\S]*?font-size: 21px;/u);
+  assert.match(html, /\.equation-mapping-index-item small \{[\s\S]*?font-size: 15px;/u);
   assert.equal(html.includes(".equation-mapping-equation-title span"), false);
-  assert.equal(html.includes(".equation-mapping-index-item small"), false);
   assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?font-size: 21px;/u);
   assert.match(
     html,

@@ -401,7 +401,7 @@ $$
 \mathcal{S}_{m,\mathrm{eff}}
 -
 \Pi_m\!\left[
-S(t);
+S(T);
 \mathcal{H}_{\mathrm{assoc}},
 \mathcal{H}_{\mathrm{diss}},
 \mathcal{H}_{\mathrm{BH}},

@@ -165,7 +165,7 @@ $$
 \quad
 \text{for constant }\rho_{m,\mathrm{eff}}
 $$
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether sea exchange already present in the absolute record $S(t)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
+From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm{eff}}$ cannot mean matter produced by the Euclidean void. It must be a projection of assembly association, dissociation, recycling, transport, or Noether sea exchange already present in the absolute record $S(T)$. If no such provenance route is supplied, the model is only an effective parameter fit and fails as cosmology closure.
 
 For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
 $$
@@ -269,7 +269,7 @@ W_S=\sum_{i\in S}w_i
 $$
 This diagnostic protects the fixed-void ontology in both directions. If the best-fit template is insignificant or survey-dependent, the rotation story is rejected. If a stable double-sine, dipole, quadrupole, or higher directional pattern remains, it must be derived from the same $\theta_{\mathrm{sea}}$ that also fits expansion, CMB transfer, BBN, growth, lensing, and calibration; it cannot be absorbed silently into $H(z)$, $w(z)$, or a new global-rotation premise.
 
-A scale-neutral homogeneity check should also be part of the shared ledger. For a large comparison window $W\subset\Sigma_t$ with resolved tracer index set $I_W(t)$ and $N_W=\lvert I_W(t)\rvert$, define the root-mean-square separation scale
+A scale-neutral homogeneity check should also be part of the shared ledger. For a large comparison window $W\subset\Sigma_T$ with resolved tracer index set $I_W(T)$ and $N_W=\lvert I_W(T)\rvert$, define the root-mean-square separation scale
 $$
 L_W^2(t)=\frac{2}{N_W(N_W-1)}
 \sum_{i<j\in I_W(t)}

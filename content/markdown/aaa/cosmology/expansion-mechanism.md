@@ -107,10 +107,10 @@ The inferred distance is a fourth observer-level output, not an input identity. 
 The substrate record is not a collection of observer frames. It is the evolving universe state
 
 $$
-\mathbb{U}_{\text{now}}=S(t)
+\mathbb{U}_{\text{now}}=S(T)
 $$
 
-where absolute time $t$ indexes definite architrino positions, velocities, assemblies, causal wakes, Noether sea state variables, and path-history ledgers in the fixed Euclidean void. Redshift must therefore be read as an observer-level extraction from that absolute record, not as a primitive change in space or time.
+where absolute time $T$ indexes definite architrino positions, velocities, assemblies, causal wakes, Noether sea state variables, and path-history ledgers in the fixed Euclidean void. Redshift must therefore be read as an observer-level extraction from that absolute record, not as a primitive change in space or time.
 
 | Layer | Substrate role in redshift |
 | --- | --- |
@@ -332,7 +332,7 @@ $$
 
 This is not an additional energy-loss term. The local emission ledger is carried by $\nu_{X,0}B_X(E)$, while the receiver reads that packet through endpoint cadence, launch geometry, and path-history propagation.
 
-The hard closure question is therefore not which observer frame carries the true photon energy. It is whether one absolute Noether sea transport law can compute $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ from $S(t)$ without switching explanations between gravitational, relative-motion, and deep-space redshift cases.
+The hard closure question is therefore not which observer frame carries the true photon energy. It is whether one absolute Noether sea transport law can compute $\Gamma_N$, $D_v$, and $\mathcal{P}_{E\to R}$ from $S(T)$ without switching explanations between gravitational, relative-motion, and deep-space redshift cases.
 
 The factor $D_v$ is not an independent ontology. It is the low-speed endpoint of the source/receiver launch-geometry term $\mathcal{L}_{E\to R}(\hat{\mathbf{k}})$.
 
@@ -343,10 +343,10 @@ The first proof scaffold is to define one extraction map from the absolute recor
 $$
 \mathcal{S}_{X,E\to R}
 \equiv
-S(t)\big|_{\{E,R,X,\gamma_{E\to R},\theta_{\mathrm{sea}},\mathcal{H}_{\mathrm{wake}}\}}
+S(T)\big|_{\{E,R,X,\gamma_{E\to R},\theta_{\mathrm{sea}},\mathcal{H}_{\mathrm{wake}}\}}
 $$
 
-denote the restricted record containing the source assembly branch, receiver assembly branch, path-history wake ledger, Noether sea state variables, and photon-channel path data needed for the comparison. This is not an observer frame; it is the part of $\mathbb{U}_{\text{now}}\equiv S(t)$ consumed by the redshift calculation.
+denote the restricted record containing the source assembly branch, receiver assembly branch, path-history wake ledger, Noether sea state variables, and photon-channel path data needed for the comparison. This is not an observer frame; it is the part of $\mathbb{U}_{\text{now}}\equiv S(T)$ consumed by the redshift calculation.
 
 The transport map target is
 
@@ -462,7 +462,7 @@ The one-map closure condition is therefore
 
 $$
 \mathfrak{T}_X[\mathcal{S}_{X,E\to R}]
-\quad\text{uses one }S(t)\text{ restriction and one coefficient record.}
+\quad\text{uses one }S(T)\text{ restriction and one coefficient record.}
 $$
 
 If the endpoint, launch, and propagation terms can be made to fit only by changing $\Pi_N S$, $\Pi_E S$, $\Pi_\gamma S$, or the coefficient row independently for each observational family, then the factorization is a useful diagnostic but not yet an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation.

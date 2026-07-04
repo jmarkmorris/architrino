@@ -8,7 +8,6 @@ import {
   createSeedEquationMapDocuments,
   filterEquationMapDocuments,
   getCanvasColorById,
-  groupEquationMapDocumentsBySubject,
   normalizeBackgroundId,
   normalizeCommentFontSize,
   normalizeEquationMapDocument,
@@ -682,7 +681,7 @@ export class EquationMappingRuntime {
   }
 
   getVisibleDocumentList() {
-    return groupEquationMapDocumentsBySubject(this.documents).flatMap(([, entries]) => entries);
+    return this.documents;
   }
 
   navigateActiveDocumentByOffset(offset) {
@@ -830,19 +829,20 @@ export class EquationMappingRuntime {
     });
     header.append(title, collapse);
     const groups = createElement(this.document, "div", "equation-mapping-index-groups");
-    groupEquationMapDocumentsBySubject(this.documents).forEach(([subject, entries]) => {
-      const group = createElement(this.document, "section", "equation-mapping-index-group");
-      group.append(createElement(this.document, "h2", "", subject));
-      entries.forEach((entry) => {
-        const button = createElement(this.document, "button", "equation-mapping-index-item");
-        button.type = "button";
-        button.classList.toggle("is-active", entry.id === this.activeDocument.id);
-        button.append(createElement(this.document, "span", "", entry.title));
-        button.addEventListener("click", () => this.setActiveDocument(entry.id));
-        group.append(button);
-      });
-      groups.append(group);
+    const group = createElement(this.document, "section", "equation-mapping-index-group");
+    group.append(createElement(this.document, "h2", "", "Physics sequence"));
+    this.getVisibleDocumentList().forEach((entry) => {
+      const button = createElement(this.document, "button", "equation-mapping-index-item");
+      button.type = "button";
+      button.classList.toggle("is-active", entry.id === this.activeDocument.id);
+      button.append(
+        createElement(this.document, "span", "", entry.title),
+        createElement(this.document, "small", "", entry.subject)
+      );
+      button.addEventListener("click", () => this.setActiveDocument(entry.id));
+      group.append(button);
     });
+    groups.append(group);
     index.append(header, groups);
     return index;
   }

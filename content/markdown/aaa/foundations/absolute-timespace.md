@@ -41,48 +41,48 @@ The product structure is fundamental. It is not an approximation to a deeper 4D 
 
 ## Foliation and Simultaneity Slices
 
-Each instant $t=t_0$ defines a global simultaneity slice
+Each instant $T=T_\ast$ defines a global simultaneity slice
 $$
-\Sigma_{t_0}=\{t_0\}\times\mathbb{R}^3\cong\mathbb{R}^3
+\Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
-Every event $(t,\mathbf{x})$ belongs to exactly one slice $\Sigma_t$. This foliation is absolute and frame-independent.
+Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent.
 
 An object or assembly traces a worldline through the product background:
 $$
 \gamma:I\subset\mathbb{R}\to\mathcal{M},
 \qquad
-t\mapsto(t,\mathbf{x}(t))
+T\mapsto(T,\mathbf X(T))
 $$
 
-For any alternate curve parameter $s$, admissible worldlines must satisfy
+For any alternate curve parameter $\lambda$, admissible worldlines must satisfy
 $$
-\frac{dt}{ds}>0
+\frac{dT}{d\lambda}>0
 $$
 
 There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the absolute time parameter.
 
-> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $t$. A worldline passes through one slice at each instant.
+> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $T$. A worldline passes through one slice at each instant.
 
 On a fixed slice, the canonical universe-now notation is
 $$
-\mathbb{U}_{\text{now}} \equiv S(t)
+\mathbb{U}_{\text{now}} \equiv S(T)
 $$
 
-This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
+This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
 Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
 $$
-S(t)
+S(T)
 =
 \big(
-X(t),
-H_t,
-\mathcal{N}_{\mathrm{sea}}(t,\cdot),
-\mathcal{B}_t
+X(T),
+H_T,
+\mathcal{N}_{\mathrm{sea}}(T,\cdot),
+\mathcal{B}_T
 \big)
 $$
-Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ## Newton-Cartan Data
 
@@ -90,30 +90,30 @@ The background geometry is encoded by a pair of structures rather than by a sing
 
 The substrate clock 1-form is the exact form
 $$
-dt
+dT
 $$
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$.
+This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_{\mathrm{em}}$, and causal delay is written $\Delta_{ij}=T-T_{\mathrm{em}}$.
 
 The spatial metric on each slice is
 $$
-h=dx^2+dy^2+dz^2
+h=dX^2+dY^2+dZ^2
 $$
 with Cartesian components
 $$
 h_{ij}=\delta_{ij}
 $$
 
-The metric $h$ acts only on spatial vectors tangent to $\Sigma_t$. Time and space are therefore encoded separately by $(dt,h)$.
+The metric $h$ acts only on spatial vectors tangent to $\Sigma_T$. Time and space are therefore encoded separately by $(dT,h)$.
 
 A flat, torsion-free connection $\nabla$ satisfies
 $$
-\nabla dt=0,
+\nabla dT=0,
 \qquad
 \nabla h=0
 $$
 
-These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dt,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dt,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
+These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dT,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dT,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
 $$
 \Gamma^\lambda_{\mu\nu}=0
 $$
@@ -482,7 +482,7 @@ with a single generator $K$ producing both the envelope ratio and the clock-phas
 Allowed substrate coordinates preserve the product structure:
 
 - $t$ remains the absolute time parameter.
-- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_t$.
+- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_T$.
 - Spatial coordinate changes may rewrite $h_{ij}$ but do not curve the Euclidean void.
 
 Forbidden at the substrate level:

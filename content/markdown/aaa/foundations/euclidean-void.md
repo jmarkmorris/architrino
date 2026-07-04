@@ -127,18 +127,18 @@ Unlike General Relativity, where coordinates may function as gauge labels under 
 This gives fixed spatial identity:
 
 - The point $(x_0,y_0,z_0)$ is the same spatial location at every absolute time $t$.
-- The events $(t_1,x_0,y_0,z_0)$ and $(t_2,x_0,y_0,z_0)$ occur at the same spatial location at two different instants.
+- The events $(T_1,X_0,Y_0,Z_0)$ and $(T_2,X_0,Y_0,Z_0)$ occur at the same spatial location at two different instants.
 - Local Noether sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
 
 This fixed identity is important for self-hit diagnostics, path-history bookkeeping, and simulations that must track where a wake was emitted and where it is later received.
 
 For a received wake contribution, the provenance record consists of the source identity, emission time, emission location, receiver identity, reception time, and reception location:
 $$
-(j,t_0,\mathbf{s}_j(t_0),o',t,\mathbf{s}_{o'}(t))
+(j,T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),o',T,\mathbf X_{o'}(T))
 $$
 The causal-root condition is then
 $$
-\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|_h=c_f(t-t_0)
+\|\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})\|_h=c_f(T-T_{\mathrm{em}})
 $$
 This condition is invariant under Euclidean translations and rotations of the chosen coordinate chart. The chart may be changed for calculation, but the underlying void point where emission occurred is not moved by that relabeling.
 
@@ -361,15 +361,15 @@ The Euclidean void is strictly empty of material substance. It is not a material
 
 Nevertheless, a coordinate location in the full universe should not be treated as relationally empty. Because architrinos continuously emit expanding causal isochrons, a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents; they form the delayed relational ledger through which later architrino intersections can be computed.
 
-For a point $(\mathbf{x},t)$, define the wake-support index set
+For a point $(\mathbf X,T)$, define the wake-support index set
 $$
-\mathcal{P}(\mathbf{x},t)
+\mathcal{P}(\mathbf X,T)
 =
-\{(a,s):s<t,\ \|\mathbf{x}-\mathbf{s}_a(s)\|_h=c_f(t-s)\}.
+\{(a,T_{\mathrm{em}}):T_{\mathrm{em}}<T,\ \|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|_h=c_f(T-T_{\mathrm{em}})\}.
 $$
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field: it has no independent state variables, stress, density, energy, or equation of motion.
 
-Equivalently, $\mathcal{P}(\mathbf{x},t)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf{x},t)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
+Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
 

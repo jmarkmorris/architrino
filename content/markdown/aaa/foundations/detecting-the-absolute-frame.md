@@ -73,7 +73,7 @@ $$
 W_a(s;t)
 =
 \left\{
-\mathbf{y}\in\Sigma_t:
+\mathbf Y\in\Sigma_T:
 \|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
 \right\}
 $$

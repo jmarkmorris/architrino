@@ -2,7 +2,7 @@
 
 This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes: each architrino continuously emits source-provenanced wake history, universally receives causal-wake intersections, and responds through receiver-local acceleration; effective equilibration appears only as a collective assembly response built from those received wakes. The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
 
-Architrinos live in [absolute timespace](absolute-timespace.md): absolute time $t$ together with the [Euclidean void](euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
+Architrinos live in [absolute timespace](absolute-timespace.md): absolute time $T$ together with the [Euclidean void](euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
 
 The teaching order in this chapter is therefore deliberately narrow. First it fixes the primitive ontology, then it separates polarity from observer-level charge bookkeeping, and only then does it mark the boundary with dynamics and effective reconstruction. The aim is not to derive particle phenomenology here, but to state what must be present before any assembly-level derivation can begin.
 
@@ -12,7 +12,7 @@ An **architrino** is the sole fundamental entity in $\mathbb{A}\mathbb{A}\mathbb
 
 It is:
 
-- A point transceiver located at position $\mathbf{s}_a(t)$ in the Euclidean void.
+- A point transceiver located at position $\mathbf X_a(T)$ in the Euclidean void.
 - Always active: it continuously emits a causal wake and continuously receives wakes according to the dynamics branch.
 - Polarity-bearing: it has definite positive or negative polarity, represented in electric bookkeeping by $q_a=\pm\epsilon$.
 - Persistent: it has a continuous identity-bearing worldline through absolute timespace.
@@ -29,13 +29,13 @@ W_{ij}^{\mathrm{rec}}\hat{\mathbf{r}}_{ij},
 \qquad
 W_{ij}^{\mathrm{rec}}
 =
-\left|\frac{D_{t,ij}}{D_{s,ij}}\right|
+\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
 $$
-Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j(t_0)$ is the source-normal denominator and $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_i(t)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_s F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
+Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_{\mathrm{em}})$ is the source-normal denominator and $D_{T,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}} F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
 $$
-\Sigma_{ij}=\{F_{ij}=0,\ \partial_s F_{ij}=0\},
+\Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_{\mathrm{em}}} F_{ij}=0\},
 $$
-while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the corresponding simple-root floor, for example $\lvert\partial_{t_0}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
+while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the corresponding simple-root floor, for example $\lvert\partial_{T_{\mathrm{em}}}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
 
 In dimensional form $\kappa$ has units
 $$
@@ -109,7 +109,7 @@ Provenance does not replace Noether reasoning. Energy conservation still depends
 
 Observer-level indistinguishability is therefore a quotient, not erasure of substrate identity. Let
 $$
-\Pi_{\mathrm{obs}}:S(t)\to\bar S(t)
+\Pi_{\mathrm{obs}}:S(T)\to\bar S(T)
 $$
 denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
 $$
@@ -139,16 +139,16 @@ Its emitted structure is a potential-bearing **causal wake**. The wake is physic
 
 Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
 $$
-\mathcal{W}_a(\mathbf{x},t)
+\mathcal{W}_a(\mathbf X,T)
 =
-\int_{\{s\in I_a:\ s<t\}}
+\int_{\{T_{\mathrm{em}}\in I_a:\ T_{\mathrm{em}}<T\}}
 q_a\,
-K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
-\,ds,
+K\!\left(\mathbf X,T;\mathbf X_a(T_{\mathrm{em}}),T_{\mathrm{em}}\right)
+\,dT_{\mathrm{em}},
 \qquad
 \operatorname{supp}K
 \subseteq
-\left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
+\left\{\|\mathbf X-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\right\}
 $$
 The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, source-normal denominators, receiver-normal branch strengths, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
@@ -172,9 +172,9 @@ This chapter stops before the exact acceleration law. Exact causal wake surfaces
 
 Each architrino traces a worldline
 $$
-\mathbf{s}_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
+\mathbf X_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
 \qquad
-t\mapsto\mathbf{s}_a(t)
+T\mapsto\mathbf X_a(T)
 $$
 where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
 $$
@@ -183,7 +183,7 @@ $$
 
 The worldline is at least absolutely continuous so that
 $$
-\mathbf{v}_a(t)=\frac{d\mathbf{s}_a}{dt}
+\mathbf V_a(T)=\frac{d\mathbf X_a}{dT}
 $$
 exists almost everywhere and is piecewise continuous in regular regimes.
 

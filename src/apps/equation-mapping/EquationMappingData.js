@@ -13,12 +13,13 @@ export const CANVAS_COLORS = Object.freeze([
 ]);
 
 export const SUBJECT_GROUPS = Object.freeze([
+  "AAA native rows",
   "Classical mechanics",
   "Relativity and effective metric",
-  "Quantum and QFT",
-  "Statistical mechanics and thermodynamics",
+  "Conservation and Noether structure",
   "Cosmology and astrophysics",
-  "AAA native rows",
+  "Statistical mechanics and thermodynamics",
+  "Quantum and QFT",
 ]);
 
 export const CLAIM_LEVELS = Object.freeze([
@@ -189,8 +190,20 @@ export function normalizeEquationMapDocument(document = {}, index = 0) {
   };
 }
 
+function normalizeSequencedEquationTitle(title, index) {
+  const sequenceLabel = `EQ-${String(index + 1).padStart(2, "0")}`;
+  const titleBody = normalizeText(title, "Equation").replace(/^EQ-\d+\s+/u, "");
+  return `${sequenceLabel} ${titleBody}`;
+}
+
 export function normalizeEquationMapDocuments(documents = []) {
-  const normalized = documents.map((document, index) => normalizeEquationMapDocument(document, index));
+  const normalized = documents.map((document, index) => {
+    const normalizedDocument = normalizeEquationMapDocument(document, index);
+    return {
+      ...normalizedDocument,
+      title: normalizeSequencedEquationTitle(normalizedDocument.title, index),
+    };
+  });
   if (normalized.length === 0) {
     throw new Error("Equation Mapping requires at least one equation-map document.");
   }
@@ -482,7 +495,7 @@ const scoreFiveAndFourEquationMapDocuments = [
   {
     id: "eq-05-noether-conservation",
     title: "EQ-05 Noether Conservation Rows",
-    subject: "AAA native rows",
+    subject: "Conservation and Noether structure",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX: "\\frac{dE_{\\mathrm{tot}}}{dT}=0,\\quad \\mathbf P_{\\mathrm{tot}}=\\mathbf P_{\\mathrm{mech}}+\\mathbf P_{\\mathrm{wake}}",
@@ -531,7 +544,7 @@ const scoreFiveAndFourEquationMapDocuments = [
   {
     id: "eq-06-noether-sea-continuity",
     title: "EQ-06 Noether Sea Continuity",
-    subject: "Statistical mechanics and thermodynamics",
+    subject: "Conservation and Noether structure",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX: "\\partial_T\\rho_{\\mathrm{NS}}+\\nabla_{\\mathbf X}\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})=S_{\\rho}+r_{\\rho}",
@@ -744,7 +757,7 @@ const scoreFiveAndFourEquationMapDocuments = [
   },
   {
     id: "eq-17-redshift-factorization",
-    title: "EQ-17 Redshift Factorization",
+    title: "EQ-10 Redshift Factorization",
     subject: "Cosmology and astrophysics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
