@@ -69,6 +69,15 @@ const SAME_RECORD_IDENTITY_REQUIRED_FIELDS = [
   "same_record_identity.active_wave_vector_gap_ref",
 ];
 
+const RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS = [
+  "rowId",
+  "sourceNormalDenominator",
+  "receiverNormalNumerator",
+  "receiverNormalFactor",
+  "unsignedReceiverNormalFactor",
+  "branchWeight",
+];
+
 const RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS = [
   "source_report_ref",
   "selected_case_id",
@@ -76,6 +85,7 @@ const RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS = [
   "sampled_active_row_ids",
   "branch_certificate_ref",
   "same_retained_active_row_ids",
+  "receiver_normal_branch_rows",
   "retained_branch",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
@@ -113,6 +123,7 @@ const BRANCH_CERTIFICATE_REF_SOURCE_AUDIT_FIELDS = [
   "branch_certificate_ref",
   "same_retained_active_row_ids",
   "same_retained_active_row_id_binding",
+  "receiver_normal_branch_rows",
   "retained_branch",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
@@ -141,6 +152,7 @@ const BRANCH_CERTIFICATE_PROVIDER_OBJECT_FIELDS = [
   "retained_branch",
   "branch_certificate_ref",
   "same_retained_active_row_ids",
+  "receiver_normal_branch_rows",
   "same_record_identity.branch_label",
   "same_record_identity.extraction_window_id",
   "same_record_identity.active_root_ledger_hash",
@@ -162,6 +174,7 @@ const SAME_STEP_RETAINED_TORQUE_WAKE_PROVIDER_FIELDS = [
   "retained_branch",
   "branch_certificate_ref",
   "same_retained_active_row_ids",
+  "receiver_normal_branch_rows",
   "same_record_identity.accepted_branch_chart_ref",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
@@ -279,6 +292,111 @@ function sameOrderedStrings(left, right) {
     return false;
   }
   return left.every((value, index) => value === right[index]);
+}
+
+function finiteNumber(value) {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function closeScaled(left, right, tolerance = 1e-9) {
+  if (!finiteNumber(left) || !finiteNumber(right)) {
+    return false;
+  }
+  const scale = Math.max(1, Math.abs(left), Math.abs(right));
+  return Math.abs(left - right) <= tolerance * scale;
+}
+
+function receiverNormalBranchRows(candidate) {
+  return Array.isArray(candidate.receiver_normal_branch_rows)
+    ? candidate.receiver_normal_branch_rows.filter((row) => isObject(row))
+    : [];
+}
+
+function evaluateReceiverNormalBranchRows(candidate, sampledRows) {
+  const rows = receiverNormalBranchRows(candidate);
+  const rowIds = rows.map((row) => row.rowId).filter((rowId) => nonemptyString(rowId));
+  const rowIdBinding =
+    rows.length > 0 &&
+    rowIds.length === rows.length &&
+    sameOrderedStrings(sampledRows, rowIds);
+  const rowResults = rows.map((row, index) => {
+    const missingFields = RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS.filter((field) => !present(row[field]));
+    const sourceNormalDenominator = row.sourceNormalDenominator;
+    const receiverNormalNumerator = row.receiverNormalNumerator;
+    const receiverNormalFactor = row.receiverNormalFactor;
+    const unsignedReceiverNormalFactor = row.unsignedReceiverNormalFactor;
+    const branchWeight = row.branchWeight;
+    const finiteFields = [
+      "sourceNormalDenominator",
+      "receiverNormalNumerator",
+      "receiverNormalFactor",
+      "unsignedReceiverNormalFactor",
+      "branchWeight",
+    ].filter((field) => finiteNumber(row[field]));
+    const expectedReceiverNormalFactor =
+      finiteNumber(receiverNormalNumerator) &&
+      finiteNumber(sourceNormalDenominator) &&
+      Math.abs(sourceNormalDenominator) > 1e-12
+        ? receiverNormalNumerator / sourceNormalDenominator
+        : null;
+    const equationsPass =
+      expectedReceiverNormalFactor !== null &&
+      closeScaled(receiverNormalFactor, expectedReceiverNormalFactor) &&
+      closeScaled(unsignedReceiverNormalFactor, Math.abs(receiverNormalFactor)) &&
+      closeScaled(branchWeight, unsignedReceiverNormalFactor);
+    const status =
+      missingFields.length > 0
+        ? "missing_receiver_normal_branch_row_fields"
+        : finiteFields.length !== 5
+          ? "nonfinite_receiver_normal_branch_row_fields"
+          : Math.abs(sourceNormalDenominator) <= 1e-12
+            ? "source_normal_denominator_floor_failed"
+            : !equationsPass
+              ? "receiver_normal_branch_weight_equation_failed"
+              : "passed";
+    return {
+      index,
+      rowId: row.rowId ?? null,
+      status,
+      missing_fields: missingFields,
+      finite_fields: finiteFields,
+      expectedReceiverNormalFactor,
+      receiver_normal_equations_passed: equationsPass,
+    };
+  });
+  const firstFailedRow = rowResults.find((row) => row.status !== "passed") ?? null;
+  const rowsPass = rows.length > 0 && firstFailedRow === null;
+  const pass = rowIdBinding && rowsPass;
+  const failureCode =
+    rows.length === 0
+      ? "receiver_normal_branch_rows_missing"
+      : !rowIdBinding
+        ? "receiver_normal_branch_row_id_mismatch"
+        : firstFailedRow
+          ? firstFailedRow.status
+          : null;
+  return {
+    schema: "receiver_normal_branch_rows_same_record_contract/v0",
+    required_fields: RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS,
+    required_same_retained_active_row_ids: sampledRows,
+    observed_row_ids: rowIds,
+    row_id_binding: rowIdBinding,
+    row_count: rows.length,
+    rows_pass: rowsPass,
+    pass,
+    first_failure: failureCode,
+    row_results: rowResults,
+  };
+}
+
+function receiverNormalBranchRowsTargetField(candidate, sampledRows) {
+  const contract = evaluateReceiverNormalBranchRows(candidate, sampledRows);
+  return providerTargetField(
+    "receiver_normal_branch_rows",
+    contract.pass,
+    contract.first_failure,
+    contract
+  );
 }
 
 function missingFields(candidate) {
@@ -507,6 +625,9 @@ function retainedActiveRowBranchCertificateProducerTarget(candidate, sampledRows
         }
       );
     }
+    if (field === "receiver_normal_branch_rows") {
+      return receiverNormalBranchRowsTargetField(candidate, sampledRows);
+    }
     if (field === "retained_branch") {
       return providerTargetField(
         field,
@@ -661,6 +782,8 @@ function nextRetainedActiveRowEvidenceObject(candidate, sampledRows) {
     selected_case_id: candidate.selected_case_id ?? null,
     required_fields: RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS,
     required_same_retained_active_row_ids: sampledRows,
+    receiver_normal_branch_rows_required_fields: RECEIVER_NORMAL_BRANCH_ROW_REQUIRED_FIELDS,
+    receiver_normal_branch_rows_contract: evaluateReceiverNormalBranchRows(candidate, sampledRows),
     same_record_identity_required_fields: SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
     reference_rejection_policy: referenceRejectionPolicy(),
     negative_control_contract: retainedActiveRowNegativeControlContract(candidate),
@@ -696,6 +819,7 @@ function computeFirstFailure(candidate, binding, missing) {
 
 function buildRetainedActiveRowCertificateContract(candidate, binding) {
   const sameRetainedRows = stringArray(candidate.same_retained_active_row_ids);
+  const receiverNormalBranchRowsContract = evaluateReceiverNormalBranchRows(candidate, binding.activeRows);
   const missingRetainedFields = RETAINED_ACTIVE_ROW_REQUIRED_FIELDS.filter((field) => !present(candidate[field]));
   const sameRetainedRowBinding =
     binding.same_row_id_binding &&
@@ -731,6 +855,7 @@ function buildRetainedActiveRowCertificateContract(candidate, binding) {
     next_retained_active_row_evidence_object: nextRetainedActiveRowEvidenceObject(candidate, binding.activeRows),
     sampled_same_row_id_binding: binding.same_row_id_binding,
     same_retained_active_row_id_binding: sameRetainedRowBinding,
+    receiver_normal_branch_rows_contract: receiverNormalBranchRowsContract,
     branch_certificate_ref_present: present(candidate.branch_certificate_ref),
     accepted_branch_chart_ref_present: present(candidate.accepted_branch_chart_ref),
     moving_retained_branch_certificate_ref_present: present(candidate.moving_retained_branch_certificate_ref),
@@ -738,6 +863,7 @@ function buildRetainedActiveRowCertificateContract(candidate, binding) {
       ...missingRetainedFields,
       ...(binding.same_row_id_binding ? [] : ["sampled_same_row_id_binding"]),
       ...(sameRetainedRowBinding ? [] : ["same_retained_active_row_id_binding"]),
+      ...(receiverNormalBranchRowsContract.pass ? [] : ["receiver_normal_branch_rows"]),
     ],
     same_retained_active_row_ids_status: present(candidate.branch_certificate_ref)
       ? sameRetainedRows.length > 0
@@ -853,6 +979,7 @@ function buildBranchCertificateProviderObjectTarget(candidate, binding, retained
         sampled_active_row_ids: sampledRows,
       }
     ),
+    receiverNormalBranchRowsTargetField(candidate, sampledRows),
     ...[
       "same_record_identity.branch_label",
       "same_record_identity.extraction_window_id",
@@ -904,7 +1031,7 @@ function buildBranchCertificateProviderObjectTarget(candidate, binding, retained
     },
     next_retained_active_row_evidence_object: nextRetainedActiveRowEvidenceObject(candidate, sampledRows),
     next_source_object:
-      "one non-fixture retained active-row provider object for selected_case_id=index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids equal to the sampled active rows, same_record_identity branch-chart fields, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
+      "one non-fixture retained active-row provider object for selected_case_id=index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids equal to the sampled active rows, receiver_normal_branch_rows carrying D_s, D_t, Wrec on the same row ids, same_record_identity branch-chart fields, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
   };
 }
 
@@ -956,7 +1083,7 @@ function buildSameStepRetainedTorqueWakeBranchCertificateProviderTarget(
       candidate_h_recovery: false,
     },
     smallest_next_source_object:
-      "non-fixture same-step retained torque/wake branch certificate provider for index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids, accepted branch-chart refs, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref on one retained record",
+      "non-fixture same-step retained torque/wake branch certificate provider for index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids, receiver_normal_branch_rows carrying D_s, D_t, Wrec on the same row ids, accepted branch-chart refs, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref on one retained record",
   };
 }
 
@@ -1009,6 +1136,7 @@ function buildBranchCertificateRefSourceAvailabilityAudit(candidate, binding, re
         same_retained_active_row_ids: sameRetainedRows,
       }
     ),
+    receiverNormalBranchRowsTargetField(candidate, sampledRows),
     providerTargetField(
       "retained_branch",
       candidate.retained_branch === true,
@@ -1068,7 +1196,7 @@ function buildBranchCertificateRefSourceAvailabilityAudit(candidate, binding, re
     next_retained_active_row_evidence_object: nextRetainedActiveRowEvidenceObject(candidate, sampledRows),
     fail_closed_bridge_target: retainedActiveRowBranchCertificateBridgeTarget(candidate, sampledRows),
     smallest_next_evidence_object:
-      "one retained active-row branch_certificate_ref for torque_wake_same_row_diagnostic:index-ratio:f2 with source_report_ref, selected_case_id, route_root_key, sampled_active_row_ids, same_retained_active_row_ids equal to those sampled rows, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, same_record_identity branch-label/window/active-root/accepted-chart/separator/positive-gap/memory-depth/active-wave-vector-gap fields, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
+      "one retained active-row branch_certificate_ref for torque_wake_same_row_diagnostic:index-ratio:f2 with source_report_ref, selected_case_id, route_root_key, sampled_active_row_ids, same_retained_active_row_ids equal to those sampled rows, receiver_normal_branch_rows carrying D_s, D_t, Wrec on the same row ids, accepted_branch_chart_ref, moving_retained_branch_certificate_ref, same_record_identity branch-label/window/active-root/accepted-chart/separator/positive-gap/memory-depth/active-wave-vector-gap fields, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref",
     authorization: {
       accepted_transition_source: false,
       candidate_h_recovery: false,

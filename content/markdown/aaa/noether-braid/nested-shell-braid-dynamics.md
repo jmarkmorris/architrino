@@ -180,7 +180,7 @@ At the braid symmetry-breaking point, the outer binary stops functioning as an o
 
 ## Planar Reduced Noether Braid Chart
 
-The **planar reduced Noether braid chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects the branch's three retained rows into a common plane or near-plane and records, for each row $a\in\{1,2,3\}$ before role assignment,
+The **planar reduced Noether braid chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects three declared branch rows into a common plane or near-plane and records, for each row $a\in\{1,2,3\}$ before role assignment,
 
 $$
 \Pi_{\mathrm{pl}}(B_{3B})
@@ -190,7 +190,7 @@ f_a,\phi_a,\rho_a,s_a,\sigma_a^{\mathrm{plane}},\mathcal{B}_a
 \right)_{a=1}^{3}
 $$
 
-together with the causal-root, wake, angular-momentum, energy-routing, and stability ledgers that made the projection admissible. Here $f_a$ is a frequency or integer phase-lock row, $\phi_a$ is the phase offset, $\rho_a$ is the retained effective lever arm, $s_a=\omega_a\rho_a$ is the local speed row, $\sigma_a^{\mathrm{plane}}$ is the planar circulation sign, and $\mathcal{B}_a$ is the oriented plane bivector used for sector classification.
+together with the causal-root, receiver-normal branch-strength, wake, angular-momentum, energy-routing, and stability ledgers that would make the projection admissible. Here $f_a$ is a frequency or integer phase-lock row, $\phi_a$ is the phase offset, $\rho_a$ is the effective lever arm, $s_a=\omega_a\rho_a$ is the local speed row, $\sigma_a^{\mathrm{plane}}$ is the planar circulation sign, and $\mathcal{B}_a$ is the oriented plane bivector used for sector classification.
 
 This chart is a reduced proof bridge, not a replacement for the full three-dimensional branch. It connects three active searches:
 
@@ -216,7 +216,7 @@ d_{\mathrm{stab}}
 \right),
 $$
 
-where $d_{\mathrm{plane}}$ measures coplanar sector support from the bivector Gram matrix, $d_{\mathrm{root}}$ measures same-row causal-root identity, $d_{\Theta}$ measures retained phase-bundle or return-period closure, $d_{\mathbf{J}}$ measures angular-momentum ledger closure, $d_E$ measures energy/action routing, $d_{\mathrm{wake}}$ measures causal-wake pullback and provenance closure, and $d_{\mathrm{stab}}$ measures branch stability over the declared event or positive-width retained domain. A planar frequency pattern is only a candidate until this residual closes on one retained row set.
+where $d_{\mathrm{plane}}$ measures coplanar sector support from the bivector Gram matrix, $d_{\mathrm{root}}$ measures same-row causal-root identity, $d_{\Theta}$ measures phase-bundle or return-period closure, $d_{\mathbf{J}}$ measures angular-momentum ledger closure, $d_E$ measures energy/action routing, $d_{\mathrm{wake}}$ measures causal-wake pullback and provenance closure, and $d_{\mathrm{stab}}$ measures branch stability over the declared event or positive-width branch domain. A planar frequency pattern is only a candidate until this residual closes on one retained row set.
 
 ## Local Black-Hole Duality Target
 

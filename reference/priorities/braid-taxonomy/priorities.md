@@ -11,7 +11,7 @@
 
 ## Current
 
-This lane is the priority-stage control surface for Noether braid taxonomy migration. The focused migration packet is [migration-plan.md](migration-plan.md). The proof-work routing ledger is [proof-id-crosswalk.md](proof-id-crosswalk.md).
+This lane is the priority-stage control surface for Noether braid taxonomy migration. The focused migration packet is [migration-plan.md](migration-plan.md). The proof-work routing ledger is [proof-id-crosswalk.md](proof-id-crosswalk.md), with the receiver-normal Proof ID screen in [receiver-normal-proof-id-screen.md](receiver-normal-proof-id-screen.md).
 
 Use the proof-work routing ledger as the standing gate for braid-document cleanup. The `braid_document_role_alignment`, title-decision, and remaining-hit audit passes are complete. The authored Noether braid chapters now state their document roles without changing proof status, and the title [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) is final for the moved topological-charge chapter.
 
@@ -31,3 +31,4 @@ No open migration-control tasks are currently queued. Add the next braid-documen
 | --- | --- |
 | [migration-plan.md](migration-plan.md) | Priority-only migration control packet for Noether braid taxonomy, source moves, scene migration, terminology migration, generated artifact handling, and validation. |
 | [proof-id-crosswalk.md](proof-id-crosswalk.md) | Priority-only crosswalk ledger mapping existing proof work to Proof IDs while preserving diagnostic, fixture, chart, downstream-consumer, and uninspected-corpus boundaries. |
+| [receiver-normal-proof-id-screen.md](receiver-normal-proof-id-screen.md) | Priority-only audit packet screening `NB-0`, `NSH-0`, and `PL-*` retained-branch language against the receiver-normal branch-strength standard. |

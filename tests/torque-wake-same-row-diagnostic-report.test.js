@@ -50,6 +50,22 @@ function missingAcceptedRef(target, field) {
   return target.missing_accepted_refs.find((entry) => entry.field === field);
 }
 
+function receiverRowsFor(rowIds) {
+  return rowIds.map((rowId, index) => {
+    const sourceNormalDenominator = index + 2;
+    const receiverNormalNumerator = 1;
+    const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+    return {
+      rowId,
+      sourceNormalDenominator,
+      receiverNormalNumerator,
+      receiverNormalFactor,
+      unsignedReceiverNormalFactor: Math.abs(receiverNormalFactor),
+      branchWeight: Math.abs(receiverNormalFactor),
+    };
+  });
+}
+
 test("torque/wake same-row diagnostic records useful rows but blocks all authorization", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
   const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
@@ -220,6 +236,10 @@ test("torque/wake same-row diagnostic records useful rows but blocks all authori
   assert.equal(
     producerTargetField(report, "same_record_binding.same_retained_active_row_ids").failure_code,
     "same_record_binding_same_retained_active_row_ids_missing"
+  );
+  assert.equal(
+    producerTargetField(report, "receiver_normal_branch_rows").failure_code,
+    "receiver_normal_branch_rows_missing"
   );
   assert.equal(
     report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
@@ -520,6 +540,7 @@ test("torque/wake branch-certificate audit rejects proxy and synthetic same-reco
     retained_branch: false,
     branch_certificate_ref: "accepted-branch-certificate:index-ratio:f2",
     same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: receiverRowsFor(rows),
     accepted_branch_chart_ref: "proxy:accepted-branch-chart-ref-not-issued",
     moving_retained_branch_certificate_ref: "synthetic:moving-certificate:index-ratio:f2",
     same_record_identity: {
@@ -587,6 +608,7 @@ test("torque/wake branch-certificate provider target rejects reference-complete 
     action_increment_row_id: "action-row:index-ratio:f2",
     branch_certificate_ref: "accepted-branch-certificate:index-ratio:f2",
     same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: receiverRowsFor(rows),
     same_record_identity: {
       branch_label: "branch:index-ratio:f2",
       extraction_window_id: "window:index-ratio:f2",
@@ -637,6 +659,54 @@ test("torque/wake branch-certificate provider target rejects reference-complete 
     false
   );
   assert.equal(report.branch_certificate_provider_object_target.authorization.retained_branch, false);
+});
+
+test("torque/wake provider target requires same-row receiver-normal branch weights", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const rows = fixture.sampled_active_row_ids;
+  const invalidReceiverRows = receiverRowsFor(rows);
+  invalidReceiverRows[1] = {
+    ...invalidReceiverRows[1],
+    branchWeight: invalidReceiverRows[1].branchWeight * 2,
+  };
+  const report = buildReport({
+    ...fixture,
+    retained_branch: false,
+    accepted_transition_source_ref: "accepted-transition-source:index-ratio:f2",
+    action_increment_row_id: "action-row:index-ratio:f2",
+    branch_certificate_ref: "accepted-branch-certificate:index-ratio:f2",
+    same_retained_active_row_ids: rows,
+    receiver_normal_branch_rows: invalidReceiverRows,
+    same_record_identity: {
+      branch_label: "branch:index-ratio:f2",
+      extraction_window_id: "window:index-ratio:f2",
+      active_root_ledger_hash: fixture.active_root_ledger_hash,
+      accepted_branch_chart_ref: "accepted-branch-chart:index-ratio:f2",
+      separator_chart_ref: "separator-chart:index-ratio:f2",
+      positive_gap_record_ref: "positive-gap:index-ratio:f2",
+      memory_depth_record_ref: "memory-depth:index-ratio:f2",
+      active_wave_vector_gap_ref: "active-wave-vector-gap:index-ratio:f2",
+    },
+    accepted_branch_chart_ref: "accepted-branch-chart:index-ratio:f2",
+    moving_retained_branch_certificate_ref: "moving-retained-branch-certificate:index-ratio:f2",
+  });
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(
+    providerField(report, "receiver_normal_branch_rows").failure_code,
+    "receiver_normal_branch_weight_equation_failed"
+  );
+  assert.equal(
+    sameStepProviderField(report, "receiver_normal_branch_rows").failure_code,
+    "receiver_normal_branch_weight_equation_failed"
+  );
+  assert.equal(
+    report.retained_active_row_certificate_contract.receiver_normal_branch_rows_contract.pass,
+    false
+  );
+  assert.equal(report.branch_certificate_provider_object_target.provider_object_ready, false);
+  assert.equal(report.authorization.candidate_h_recovery, false);
+  assert.equal(report.authorization.moving_retained_branch_certificate, false);
 });
 
 test("torque/wake same-row diagnostic CLI emits and validates current fixture report", () => {

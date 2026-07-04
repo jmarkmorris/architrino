@@ -6,6 +6,12 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-04 - SH-0 Retained-History Evidence Audit
+
+Audited the `SH-0` retained-history evidence handles against the live owner scripts and captured the result in [SH-0 Retained-History Evidence Audit](sh-0-retained-history-evidence-audit.md). The audit separates the fresh/default construction from the active provider-backed acquisition path. Fresh/default seed-path and stream-manifest artifacts still fail at `held_release_seed_path_rows[*].retained_record_id`, but the active provider-backed path for `held_release_seed_path_rows:5833f18e53586201` is sharper: it is blocked at `held_release_seed_path_rows_acceptance_certificate` / `held_release_seed_path_rows.acceptance_certificate_ref`.
+
+Decision: `SH-0` has useful diagnostic and contract evidence, but no accepted retained-history evidence. The next cleanup target is a non-circular `held_release_seed_path_rows_acceptance_certificate.v0` plus its matching external accepted-authority package and repo authorization. Retained branch output, return/stability rows, Noether sea stabilization, branch-chart/moving certificate, observer export, and score movement remain unauthorized.
+
 ### 2026-07-03 - GitHub Actions Run Artifact Seed-Path Certificate Sweep
 
 Continued the active seed-path source-acquisition goal by checking the remaining GitHub Actions run surface for a real accepted same-record seed-path certificate or matching external authority package. The current branch is `codex/despina` in `jmarkmorris/architrino`. Recent run metadata showed only the `Content Integrity` workflow with a single `validate-content` job shape for the current branch, PR #200, the #200 main merge, PR #199, and the #199 main merge; no job step advertised an artifact-producing certificate issuer.
