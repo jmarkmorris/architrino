@@ -11,12 +11,11 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "path": "content/markdown/aaa/noether-braid/shell-braid.md"
     },
     "view": {
       "columns": 1,
-      "autoOpen": true,
-      "section": "Shell Braid"
+      "autoOpen": true
     }
   },
   "objects": []

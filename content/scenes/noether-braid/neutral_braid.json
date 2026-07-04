@@ -11,12 +11,11 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "path": "content/markdown/aaa/noether-braid/neutral-braid.md"
     },
     "view": {
       "columns": 1,
-      "autoOpen": true,
-      "section": "Neutral Braid"
+      "autoOpen": true
     }
   },
   "objects": []

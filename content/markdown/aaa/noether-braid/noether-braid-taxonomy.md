@@ -40,7 +40,10 @@ It does not prove branch retention by itself. A Proof ID names a branch-configur
 
 | Chapter | Role in the stack | Boundary |
 | --- | --- | --- |
-| [Noether Braid](noether-braid.md) | Defines the main branch types and what it would mean for one branch to be retained. | Defines neutral, shell, and nested shell braid cases without deciding which proof outcome has succeeded. |
+| [Noether Braid](noether-braid.md) | Provides the overview and base-family map for the Noether braid stack. | Names the family sequence without carrying each family derivation. |
+| [Neutral Braid](neutral-braid.md) | Defines the base six-body branch inventory and retained-branch certificate target. | Establishes the broad case before shell support, exact binary grouping, or nested ordering. |
+| [Shell Braid](shell-braid.md) | Defines the one-band radial-support family. | Adds shell support without promoting the branch to nested shell structure. |
+| [Nested Shell Braid](nested-shell-braid.md) | Defines the three-band nested support family and its branch-label scaffold. | Names the nested family without certifying dynamics or observer export by itself. |
 | [Noether Braid Proof Map](noether-braid-proof-map.md) | Tracks current Proof IDs, work status, detailed proof records, and environment-qualified rounds. | Records proof work without redefining the configuration taxonomy. |
 | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Searches the cases where three retained angular-momentum rows may form a full internal 3D frame. | Supplies search variables and frame rows without saying every Noether braid must have exact binaries. |
 | [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) | Tests whether nested shell braid motion can actually stay closed and stable. | Tests coupled shell dynamics without turning downstream exports into base branch IDs. |
@@ -87,7 +90,7 @@ The axes are intentionally independent. A nested shell braid may be studied with
 
 ## Base Inventory
 
-The base inventory is the neutral six-architrino case described in [Noether Braid](noether-braid.md). It contains three positive-polarity architrinos and three negative-polarity architrinos:
+The base inventory is the neutral six-architrino case described in [Neutral Braid](neutral-braid.md). It contains three positive-polarity architrinos and three negative-polarity architrinos:
 
 $$
 \#\{i:\sigma_i=+1\}
@@ -108,7 +111,7 @@ Support geometry records how the six paths occupy their branch support. These la
 | --- | --- | --- |
 | no declared shell support | Candidate branch whose base inventory has not declared a controlled radial band or common shell. | Absence of a support claim, not proof of branch failure. |
 | shell braid | Neutral braid with one declared controlled radial support band or common shell. | Support class requiring radial control rows for retention. |
-| nested shell braid | Shell braid with three ordered radial support bands. | Support class used by [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md). |
+| nested shell braid | Shell braid with three ordered radial support bands. | Support class defined in [Nested Shell Braid](nested-shell-braid.md) and used by [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md). |
 | oblate envelope | Candidate support or envelope geometry whose path-history boundary is flattened relative to a spherical shell. In the canonical geometry language this is an oblate spheroidal envelope when the two transverse semiaxes are treated as equal. | Explored support variation, not a retained class by name alone and not proof of Lorentz deformation. |
 
 Support geometry should not be confused with binary grouping or with Lorentz deformation. A branch may have shell support before it proves three persistent binary rows. Conversely, a rank-three frame may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid. An oblate envelope is a geometry label: it records a branch-envelope axis ratio such as $\xi=R_{\parallel}/R_{\perp} < 1$ on the declared chart. Lorentz deformation is tested separately as a moving-branch clock/ruler export law.

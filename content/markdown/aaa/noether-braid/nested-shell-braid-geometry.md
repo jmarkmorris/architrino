@@ -1,6 +1,6 @@
 # Nested Shell Braid Geometry
 
-This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Noether Braid](noether-braid.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Nested Shell Braid](nested-shell-braid.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md).
 
 The nested shell braid is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell braid's effective exclusion envelope.
 
@@ -16,7 +16,7 @@ This chapter is the envelope and export-interface chapter for nested shell braid
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the nested shell braid scaffold; see [Noether Braid](noether-braid.md),
+- the nested shell braid scaffold; see [Nested Shell Braid](nested-shell-braid.md),
 - exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
