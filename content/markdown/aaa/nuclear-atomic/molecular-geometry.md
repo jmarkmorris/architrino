@@ -18,14 +18,14 @@ At the constituent level this points back to [Electron](../assemblies/fermions/e
 
 ## Binding Corridors and Angle Selection
 
-The molecular-bonding problem is not only an electron-sharing problem. In this framework, a bond is an effective corridor in which two or more atomic assemblies lower their combined energy by sharing wake structure, exclusion geometry, and local Noether sea response. Bond length is the radial equilibrium of that corridor; bond angle is the angular equilibrium after neighboring corridors compete for exclusion volume and phase compatibility.
+The molecular-bonding problem is not only an electron-sharing problem. In this framework, a bond is an effective corridor in which two or more atomic assemblies lower their combined energy by sharing wake structure, exclusion geometry, and local Noether sea response. The corridor is not a Noether-sea-free gap: the local Noether sea response is present around the electron assemblies, between electron assemblies and nuclei, and through the interstitial bonding region. Exclusion measures the cost of forcing phase-locked matter ledgers and their surrounding medium response into incompatible corridor, packing, or penetration states. Bond length is the radial equilibrium of that corridor; bond angle is the angular equilibrium after neighboring corridors compete for exclusion stress and phase compatibility.
 
 A first useful decomposition is:
 
 - **corridor attraction:** the energy decrease from shared wake and resonance structure,
-- **exclusion cost:** the rise in energy when electron assemblies or nucleon envelopes over-compress,
+- **exclusion cost:** the rise in energy when electron assemblies, nucleon envelopes, and their surrounding Noether sea response over-compress or demand incompatible branch occupancy,
 - **phase compatibility:** the condition that coupled electron resonances remain stable over repeated cycles,
-- **medium response:** the local Noether sea density and delay contribution to stiffness and shielding.
+- **medium response:** the local Noether sea density, delay, and tensor-response contribution to corridor stiffness and shielding.
 
 This decomposition can organize molecular shape before the spin proof is complete, but it cannot close molecular occupancy by itself. The exclusion-cost term must eventually inherit Pauli/statistics closure, while phase compatibility must eventually be connected to the completed atomic spin and orbital ledger.
 
