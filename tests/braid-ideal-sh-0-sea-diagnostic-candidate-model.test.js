@@ -7,11 +7,15 @@ import {
   ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
   AUTHORITY_CLASS,
+  DEFAULT_RESPONSE_DEADBAND,
+  RESPONSE_RUN_SCHEMA,
   REQUIRED_INWARD_RESPONSE_FLOOR,
   SCHEMA,
   TARGET_ARTIFACT_ID,
   buildSh0SeaDiagnosticCandidateModel,
+  buildSh0SeaDiagnosticResponseRun,
   evaluateSh0SeaDiagnosticCandidateModelEvidence,
+  evaluateSh0SeaDiagnosticResponseRunEvidence,
 } from "../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs";
 
 const SCRIPT_PATH = fileURLToPath(
@@ -20,6 +24,13 @@ const SCRIPT_PATH = fileURLToPath(
 
 function rowById(model, suffix) {
   return model.rows.find((row) => row.row_id === `sh_0_sea_model:${suffix}`);
+}
+
+function assertAlmostEqual(actual, expected, epsilon = 1e-12) {
+  assert.ok(
+    Math.abs(actual - expected) <= epsilon,
+    `expected ${actual} to be within ${epsilon} of ${expected}`
+  );
 }
 
 test("SH-0-sea diagnostic candidate model binds the candidate central target", () => {
@@ -139,4 +150,63 @@ test("SH-0-sea diagnostic candidate model CLI emits embedded run-matrix metadata
     model.accepted_evidence_blocker.required_certificate_ref_prefix,
     "accepted:held-release-seed-path-rows:retained-record:held-release-six-point:adapter-acceptance-certificate:diagnostic-source-row:sh0-g0-vt080-moving-prehistory:"
   );
+});
+
+test("SH-0-sea diagnostic response run uses provider-seeded probe and does not cross the floor by default", () => {
+  const run = buildSh0SeaDiagnosticResponseRun();
+
+  assert.equal(run.schema, RESPONSE_RUN_SCHEMA);
+  assert.equal(run.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(run.response_probe.K_NS_diag, 2.49);
+  assert.equal(run.response_probe.Phi_probe, 0.008);
+  assert.equal(run.response_probe.Gamma_NS_diag, 0);
+  assert.equal(run.response_probe.W_boundary_projection, 0);
+  assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.01992);
+  assert.equal(
+    run.floor_evaluation.required_projected_response_floor,
+    REQUIRED_INWARD_RESPONSE_FLOOR - DEFAULT_RESPONSE_DEADBAND
+  );
+  assert.equal(run.floor_evaluation.crosses_inward_response_floor, false);
+  assert.equal(run.floor_evaluation.post_turn_return_condition_passed, false);
+  assert.ok(run.floor_evaluation.additional_inward_projection_needed > 0);
+  assert.ok(run.floor_evaluation.required_Phi_multiplier_vs_current_probe > 4);
+  assert.equal(run.evidence_status.accepted, false);
+  assert.equal(run.authorization.accepted_retained_evidence, false);
+  assert.deepEqual(evaluateSh0SeaDiagnosticResponseRunEvidence(run), {
+    accepted: false,
+    reason: "diagnostic_response_run_not_accepted_retained_evidence",
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+  });
+});
+
+test("SH-0-sea diagnostic response run can cross the floor only as a non-authorizing parameter probe", () => {
+  const run = buildSh0SeaDiagnosticResponseRun({
+    responseAmplitude: 0.04,
+    responseRunHandle: "sh0sea-provider-stiffness-crossing-probe",
+  });
+
+  assert.equal(run.response_probe.probe_id, "sh0sea-provider-stiffness-crossing-probe");
+  assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.0996);
+  assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
+  assert.equal(run.floor_evaluation.post_turn_return_condition_passed, true);
+  assert.equal(run.floor_evaluation.additional_inward_projection_needed, 0);
+  assert.equal(run.evidence_status.accepted, false);
+  assert.equal(run.authorization.accepted_noether_sea_response_closure, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+});
+
+test("SH-0-sea diagnostic response run CLI emits JSON without authorizing evidence", () => {
+  const output = execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--response-run", "--response-amplitude=0.04", "--pretty"],
+    { encoding: "utf8" }
+  );
+  const run = JSON.parse(output);
+
+  assert.equal(run.schema, RESPONSE_RUN_SCHEMA);
+  assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
+  assert.equal(run.evidence_status.accepted, false);
+  assert.equal(run.accepted_evidence_blocker.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
+  assert.equal(run.accepted_evidence_blocker.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
 });

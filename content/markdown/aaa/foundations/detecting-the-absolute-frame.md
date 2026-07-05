@@ -10,12 +10,12 @@ This argument sits between [Euclidean Void](euclidean-void.md), which states the
 
 ## The Fundamental Challenge
 
-The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "t = 0."
+The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "$T = 0$."
 
 This presents an apparent paradox:
-- We claim architrinos have **definite positions** $\mathbf{x}(t)$ and **definite velocities** $\mathbf{v}(t)$ in the Euclidean void as indexed by absolute time.
+- We claim architrinos have **definite positions** $\mathbf X(T)$ and **definite velocities** $\mathbf V(T)$ in the Euclidean void as indexed by absolute time.
 - Yet the Euclidean void is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
-- How can the theory internally distinguish absolute rest ($\mathbf{v} = \mathbf{0}$) from absolute motion ($\mathbf{v} \neq \mathbf{0}$) without reference coordinates?
+- How can the theory internally distinguish absolute rest ($\mathbf V = \mathbf{0}$) from absolute motion ($\mathbf V \neq \mathbf{0}$) without reference coordinates?
 
 This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity lack complete-state content and become only an imposed coordinate convention.
 
@@ -27,7 +27,7 @@ The diagnostic rests on the theory's **finite wake-speed** postulate: architrino
 
 ### The Nature of Causal Wakes
 
-Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $t_0$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time, that emitted isochron has radius $r = c_f \Delta t$ centered on the point where it was emitted.
+Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $T_{\mathrm{em}}$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time $T$, that emitted isochron has radius $r = c_f \Delta T$ centered on the point where it was emitted.
 
 The crucial point is that this expanding causal isochron carries source-tagged information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It continues expanding from its emission point in the Euclidean void.
 
@@ -39,19 +39,19 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 3. The geometric centers of all emitted and expanding causal wake surfaces,
 4. The absolute emission times associated with those wake surfaces.
 
-**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every source-tagged expanding causal isochron it has ever emitted during the rest interval.
+**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf V = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every source-tagged expanding causal isochron it has ever emitted during the rest interval.
 
 **The Physical Basis:**
-- At time $t_0$, the architrino emits potential from position $\mathbf{x}_0$, creating a causal isochron.
-- This causal isochron expands at speed $c_f$ relative to the void, centered on $\mathbf{x}_0$.
-- If the architrino is stationary, at later time $t_1 = t_0 + \Delta t$, it remains at $\mathbf{x}_0$.
-- The causal isochron has expanded to radius $r = c_f \Delta t$, but its center remains $\mathbf{x}_0$.
+- At time $T_{\mathrm{em}}$, the architrino emits potential from position $\mathbf X_{\mathrm{em}}$, creating a causal isochron.
+- This causal isochron expands at speed $c_f$ relative to the void, centered on $\mathbf X_{\mathrm{em}}$.
+- If the architrino is stationary, at later time $T_1 = T_{\mathrm{em}} + \Delta T$, it remains at $\mathbf X_{\mathrm{em}}$.
+- The causal isochron has expanded to radius $r = c_f \Delta T$, but its center remains $\mathbf X_{\mathrm{em}}$.
 - All successive emissions create perfectly **concentric causal isochrons**: nested potential distributions sharing a common geometric center.
 
 **If the architrino moves:**
-- At $t_0$, emission occurs at $\mathbf{x}_0$.
-- On a uniform segment, at $t_1$ the architrino has displaced to $\mathbf{x}_1 = \mathbf{x}_0 + \mathbf{v} \Delta t$.
-- The first causal isochron remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
+- At $T_{\mathrm{em}}$, emission occurs at $\mathbf X_{\mathrm{em}}$.
+- On a uniform segment, at $T_1$ the architrino has displaced to $\mathbf X_1 = \mathbf X_{\mathrm{em}} + \mathbf V \Delta T$.
+- The first causal isochron remains centered on $\mathbf X_{\mathrm{em}}$ with radius $c_f \Delta T$.
 - Subsequent causal isochrons are centered on displaced positions along the trajectory.
 - The emitted centers are **non-coincident**; the source-tagged wake stream is **non-concentric**.
 - The architrino lies closer to the expanding wake front in its direction of motion, producing the geometric asymmetry that later appears as Doppler-like structure at the observer level.
@@ -63,57 +63,57 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 **Step 2:** Test for spatial coincidence of these centers.
 
 **Result:**
-- **All centers coincident** means $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
-- **Centers form a trajectory** means $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
+- **All centers coincident** means $\mathbf V_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
+- **Centers form a trajectory** means $\mathbf V_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf X$ per unit time $\Delta T$ yields the absolute velocity: $\mathbf V_{\text{abs}} = \Delta \mathbf X / \Delta T$.
 
 This is definitionally a complete-state test. It assumes the individual source identity, emission time, and isochron support are already available in the provenance-bearing state. A physical apparatus receiving only the summed potential cannot recover the source-tagged centers by a clever superposition-resolving operation unless it already has access to the very provenance data the diagnostic assumes.
 
-**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $s$ and inspected at time $t>s$ have support
+**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $T_{\mathrm{em}}$ and inspected at time $T>T_{\mathrm{em}}$ have support
 $$
-W_a(s;t)
+W_a(T_{\mathrm{em}};T)
 =
 \left\{
 \mathbf Y\in\Sigma_T:
-\|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
+\|\mathbf Y-\mathbf Z_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})
 \right\}
 $$
-In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(s;t)$ is known as a source-tagged support, its emission center $\mathbf{z}_a(s)$ is geometrically reconstructible without first assigning coordinates to the void.
+In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(T_{\mathrm{em}};T)$ is known as a source-tagged support, its emission center $\mathbf Z_a(T_{\mathrm{em}})$ is geometrically reconstructible without first assigning coordinates to the void.
 
 Equivalently, Euclidean geometry gives a bijection between nondegenerate metric spheres and center-radius pairs:
 $$
-W_a(s;t)\longleftrightarrow
-\left(\mathbf{z}_a(s),\,c_f(t-s)\right)
+W_a(T_{\mathrm{em}};T)\longleftrightarrow
+\left(\mathbf Z_a(T_{\mathrm{em}}),\,c_f(T-T_{\mathrm{em}})\right)
 $$
-for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf{y}_0,\ldots,\mathbf{y}_3$ whose displacement Gram determinant is bounded away from zero:
+for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ whose displacement Gram determinant is bounded away from zero:
 $$
 \Delta_{\mathrm{sph}}
 =
 \det
 \left[
-(\mathbf{y}_\alpha-\mathbf{y}_0)\cdot(\mathbf{y}_\beta-\mathbf{y}_0)
+(\mathbf Y_\alpha-\mathbf Y_0)\cdot(\mathbf Y_\beta-\mathbf Y_0)
 \right]_{\alpha,\beta=1}^{3}
 >
 0
 $$
-with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(t-s)$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
+with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(T-T_{\mathrm{em}})$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
 
-For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(s;t)\subset W_a(s;t)$, so the inverse-center problem needs its own conditioning floor. Let
+For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(T_{\mathrm{em}};T)\subset W_a(T_{\mathrm{em}};T)$, so the inverse-center problem needs its own conditioning floor. Let
 $$
-\omega_a(s;t)
+\omega_a(T_{\mathrm{em}};T)
 =
 \operatorname{area}_{S^2}
 \left\{
-\frac{\mathbf{y}-\mathbf{z}_a(s)}{\|\mathbf{y}-\mathbf{z}_a(s)\|}:
-\mathbf{y}\in U_a(s;t)
+\frac{\mathbf Y-\mathbf Z_a(T_{\mathrm{em}})}{\|\mathbf Y-\mathbf Z_a(T_{\mathrm{em}})\|}:
+\mathbf Y\in U_a(T_{\mathrm{em}};T)
 \right\}
 $$
 The reconstructed center is admissible only when
 $$
-\omega_a(s;t)\ge \omega_{\min} > 0
+\omega_a(T_{\mathrm{em}};T)\ge \omega_{\min} > 0
 $$
 on the declared support window. Below that solid-angle floor, the center may remain formally unique in the full-support idealization while the finite inverse problem becomes ill-conditioned.
 
-The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf{y}_k-\mathbf{z})/\|\mathbf{y}_k-\mathbf{z}\|$ with positive weights $w_k$, define the direction design matrix
+The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf Y_k-\mathbf Z)/\|\mathbf Y_k-\mathbf Z\|$ with positive weights $w_k$, define the direction design matrix
 $$
 G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
 $$

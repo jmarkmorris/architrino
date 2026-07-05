@@ -1,6 +1,6 @@
 # SH-0-Sea Diagnostic Candidate Model
 
-Status: diagnostic/candidate model packet, 2026-07-04.
+Status: diagnostic/candidate model packet, 2026-07-04. Updated with diagnostic response-run result, 2026-07-05.
 
 Proof ID: `SH-0-sea`.
 
@@ -230,6 +230,70 @@ $$
 
 for at least one post-turn row, with `\epsilon_R>0` chosen as the diagnostic deadband. This is a model target only; it is not retained evidence.
 
+## Diagnostic Response Run Result
+
+The executable response-run mode is:
+
+```bash
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --pretty
+```
+
+This instantiates the first provider-seeded diagnostic response probe:
+
+$$
+K_{\mathrm{NS}}^{\mathrm{diag}}
+=C1111_X\,\rho_{\text{NS}}\,n
+=2.49,
+\qquad
+\Phi_{\mathrm{probe}}=e_{\mathrm{sea}}=0.008,
+\qquad
+\Gamma_{\mathrm{NS}}^{\mathrm{diag}}=0,
+\qquad
+W_{\partial\Omega}^{R}=0.
+$$
+
+The projected sea response is
+
+$$
+\Pi_R\mathcal A^{\mathrm{sea}}
+=
+-K_{\mathrm{NS}}^{\mathrm{diag}}\Phi_{\mathrm{probe}}
+-\Gamma_{\mathrm{NS}}^{\mathrm{diag}}\dot\Phi_{\mathrm{probe}}
++W_{\partial\Omega}^{R}
+=-0.019920000000000004.
+$$
+
+With the diagnostic deadband `\epsilon_R=10^{-9}`, the required inward projected-response floor is
+
+$$
+-0.0934863484737535-10^{-9}
+=-0.0934863494737535.
+$$
+
+Therefore the provider-seeded response run does not cross the floor:
+
+| Quantity | Value |
+| --- | ---: |
+| `Pi_R_A_sea` | `-0.019920000000000004` |
+| Required projected-response floor | `-0.0934863494737535` |
+| Total post-turn radial acceleration | `0.0735663484737535` |
+| Crosses inward response floor | `false` |
+| Post-turn return condition passed | `false` |
+| Additional inward projection needed | `0.0735663494737535` |
+| Required `Phi_probe` at current coefficients | `0.03754471866415803` |
+| Required multiplier over current `Phi_probe` | `4.693089833019754` |
+
+A non-authorizing parameter probe with `--response-amplitude=0.04` crosses the same diagnostic floor:
+
+$$
+\Pi_R\mathcal A^{\mathrm{sea}}=-0.09960000000000001,
+\qquad
+\ddot R_{\mathrm{toy}}+\Pi_R\mathcal A^{\mathrm{sea}}
+=-0.006113651526246502.
+$$
+
+That crossing is only a parameter sensitivity result. It does not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+
 ## Action And Exchange Variables
 
 The diagnostic action/exchange row records how the candidate sea response would appear in a same-record action ledger later:
@@ -303,7 +367,7 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 
 ## Next Executable Diagnostic Target
 
-The next diagnostic run should instantiate this model with:
+The response run now instantiates this model with:
 
 1. the central target row from `held_release_seed_path_rows:5833f18e53586201`;
 2. a paired local population of like Noether braid assemblies around the target;
@@ -311,4 +375,6 @@ The next diagnostic run should instantiate this model with:
 4. a boundary row `\mathcal H_{\partial\Omega}` carrying candidate wake/event input from the surrounding population;
 5. a response functional that reports `\Pi_R\mathcal A^{\mathrm{sea}}(t)` and checks whether it crosses the diagnostic inward floor.
 
-Passing that diagnostic would justify a sharper retained-source request. It would still not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, and same-record receiver-normal rows exist.
+The first provider-seeded result does not cross the floor. The next executable proof target is a same-record response producer, not another free parameter probe: bind a candidate boundary-wake or pressure/tension response row to the same target/source identity and rerun the floor test while preserving the accepted-evidence blocker.
+
+Passing a later diagnostic would justify a sharper retained-source request. It would still not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.

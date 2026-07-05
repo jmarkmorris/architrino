@@ -20,6 +20,8 @@ export const TARGET_ARTIFACT_HASH =
 export const ACCEPTED_EVIDENCE_BLOCKER_OBJECT = "held_release_seed_path_rows_acceptance_certificate.v0";
 export const ACCEPTED_EVIDENCE_BLOCKER_FIELD = "held_release_seed_path_rows.acceptance_certificate_ref";
 export const REQUIRED_INWARD_RESPONSE_FLOOR = -0.0934863484737535;
+export const RESPONSE_RUN_SCHEMA = "sh_0_sea_diagnostic_response_run.v0";
+export const DEFAULT_RESPONSE_DEADBAND = 1e-9;
 
 const PROVIDER_PATH = new URL("../spacetime/noether-sea-density-compression-provider.v1.json", import.meta.url);
 
@@ -60,11 +62,96 @@ function normalizeVector(value, fallback = null) {
   return vector;
 }
 
+function cleanNumber(value) {
+  const number = normalizeNumber(value, null);
+  return number == null || Object.is(number, -0) ? 0 : number;
+}
+
 function makeAuthorization() {
   return Object.fromEntries([
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
     ["scoreMovement", "no_score_increase"],
   ]);
+}
+
+function rowBySuffix(model, suffix) {
+  return model.rows.find((row) => row.row_id === `sh_0_sea_model:${suffix}`) ?? null;
+}
+
+function buildDiagnosticResponseProbe({ model, options }) {
+  const seaStateRow = rowBySuffix(model, "theta_sea_state_row");
+  const thetaSea = seaStateRow?.theta_sea_rho_NS ?? {};
+  const responseInputs = seaStateRow?.response_inputs ?? {};
+  const rhoNs = normalizeNumber(thetaSea.rho_NS, 1);
+  const normalizedDensity = normalizeNumber(thetaSea.n, 1);
+  const eSea = normalizeNumber(thetaSea.e_sea, 0);
+  const c1111 = normalizeNumber(responseInputs.C1111_X, 0);
+  const providerStiffness = c1111 * rhoNs * normalizedDensity;
+  return {
+    schema: "sh_0_sea_diagnostic_response_probe.v0",
+    probe_id:
+      normalizeStringRef(options.responseRunHandle) ??
+      `${model.run_matrix_metadata?.run_handle ?? "sh0sea-default"}:theta-sea-provider-e-sea-probe`,
+    coefficient_source: "theta_sea_rho_NS provider row",
+    stiffness_source: "C1111_X * rho_NS * n",
+    radial_displacement_source:
+      options.responseAmplitude == null ? "theta_sea_rho_NS.e_sea" : "cli:response-amplitude",
+    radial_rate_source: options.responseRate == null ? "default_zero_radial_rate_probe" : "cli:response-rate",
+    boundary_wake_source:
+      options.boundaryWakeProjection == null
+        ? "default_zero_boundary_wake_projection"
+        : "cli:boundary-wake-projection",
+    rho_NS: cleanNumber(rhoNs),
+    n: cleanNumber(normalizedDensity),
+    e_sea: cleanNumber(eSea),
+    C1111_X: cleanNumber(c1111),
+    K_NS_diag: cleanNumber(normalizeNumber(options.responseStiffness, providerStiffness)),
+    Gamma_NS_diag: cleanNumber(normalizeNumber(options.responseDamping, 0)),
+    Phi_probe: cleanNumber(normalizeNumber(options.responseAmplitude, eSea)),
+    dot_Phi_probe: cleanNumber(normalizeNumber(options.responseRate, 0)),
+    W_boundary_projection: cleanNumber(normalizeNumber(options.boundaryWakeProjection, 0)),
+  };
+}
+
+function projectDiagnosticSeaResponse(probe) {
+  return cleanNumber(
+    -probe.K_NS_diag * probe.Phi_probe -
+      probe.Gamma_NS_diag * probe.dot_Phi_probe +
+      probe.W_boundary_projection
+  );
+}
+
+function buildResponseFloorEvaluation({ probe, piRASea, options }) {
+  const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
+  const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
+  const weakestToyAcceleration = cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR);
+  const totalPostTurnAcceleration = cleanNumber(weakestToyAcceleration + piRASea);
+  const crosses = piRASea < requiredProjection;
+  const additionalInwardProjectionNeeded = cleanNumber(Math.max(0, piRASea - requiredProjection));
+  const denominator = probe.K_NS_diag;
+  const numerator =
+    weakestToyAcceleration +
+    deadband -
+    probe.Gamma_NS_diag * probe.dot_Phi_probe +
+    probe.W_boundary_projection;
+  const requiredPhi =
+    denominator > 0 ? cleanNumber(Math.max(0, numerator / denominator)) : null;
+  const multiplier =
+    requiredPhi != null && probe.Phi_probe > 0 ? cleanNumber(requiredPhi / probe.Phi_probe) : null;
+  return {
+    schema: "sh_0_sea_response_floor_evaluation.diagnostic.v0",
+    weakest_outward_post_turn_ddot_R_toy: weakestToyAcceleration,
+    inward_deadband: deadband,
+    required_projected_response_floor: requiredProjection,
+    Pi_R_A_sea: piRASea,
+    total_post_turn_radial_acceleration: totalPostTurnAcceleration,
+    crosses_inward_response_floor: crosses,
+    post_turn_return_condition_passed: totalPostTurnAcceleration < -deadband,
+    additional_inward_projection_needed: additionalInwardProjectionNeeded,
+    required_Phi_probe_at_current_coefficients: requiredPhi,
+    required_Phi_multiplier_vs_current_probe: multiplier,
+    evidence_status: "diagnostic_floor_test_not_retained_evidence",
+  };
 }
 
 function readNoetherSeaProvider() {
@@ -423,6 +510,60 @@ export function evaluateSh0SeaDiagnosticCandidateModelEvidence(candidate) {
   };
 }
 
+export function buildSh0SeaDiagnosticResponseRun(options = {}) {
+  const model = buildSh0SeaDiagnosticCandidateModel(options);
+  const probe = buildDiagnosticResponseProbe({ model, options });
+  const piRASea = projectDiagnosticSeaResponse(probe);
+  const floorEvaluation = buildResponseFloorEvaluation({
+    probe,
+    piRASea,
+    options,
+  });
+  const core = {
+    schema: RESPONSE_RUN_SCHEMA,
+    proof_id: "SH-0-sea",
+    authority_class: AUTHORITY_CLASS,
+    claim_level: "diagnostic response-run floor test only",
+    target_artifact_id: model.target_artifact_id,
+    target_artifact_hash: model.target_artifact_hash,
+    target_source_row_id: model.target_source_row_id,
+    run_matrix_metadata: model.run_matrix_metadata ?? null,
+    model_artifact_hash: model.artifact_hash,
+    response_probe: probe,
+    response_equation:
+      "Pi_R A_sea=-K_NS_diag*Phi_probe-Gamma_NS_diag*dot_Phi_probe+W_boundary_projection",
+    floor_evaluation: floorEvaluation,
+    evidence_status: {
+      accepted: false,
+      accepted_evidence_status: "diagnostic_response_run_not_accepted_evidence",
+      first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+      first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+    },
+    accepted_evidence_blocker: model.accepted_evidence_blocker,
+    authorization: makeAuthorization(),
+  };
+  return {
+    ...core,
+    artifact_hash: stableHash(core),
+  };
+}
+
+export function evaluateSh0SeaDiagnosticResponseRunEvidence(candidate) {
+  if (candidate?.schema !== RESPONSE_RUN_SCHEMA) {
+    return {
+      accepted: false,
+      reason: "schema_not_sh_0_sea_diagnostic_response_run_v0",
+      first_missing_field: "sh_0_sea_diagnostic_response_run.schema",
+    };
+  }
+  return {
+    accepted: false,
+    reason: "diagnostic_response_run_not_accepted_retained_evidence",
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+  };
+}
+
 function parseArgs(args) {
   const stringOption = (name) => args.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? null;
   const numberOption = (name) => {
@@ -442,18 +583,26 @@ function parseArgs(args) {
   };
   return {
     pretty: args.includes("--pretty"),
+    responseRun: args.includes("--response-run"),
     runHandle: stringOption("run-handle"),
+    responseRunHandle: stringOption("response-run-handle"),
     embeddedCentralRunHandle: stringOption("embedded-central-run-handle"),
     targetSourceRowId: stringOption("source-row-id"),
     targetCenterGroupVelocity: vectorOption("target-center-group-velocity") ?? vectorOption("group-velocity"),
     surfaceSpeedFraction: numberOption("surface-speed-fraction") ?? numberOption("surface-speed"),
     prehistoryMode: stringOption("prehistory-mode"),
+    responseAmplitude: numberOption("response-amplitude"),
+    responseRate: numberOption("response-rate"),
+    responseStiffness: numberOption("response-stiffness"),
+    responseDamping: numberOption("response-damping"),
+    boundaryWakeProjection: numberOption("boundary-wake-projection"),
+    inwardDeadband: numberOption("inward-deadband"),
   };
 }
 
 function printUsage() {
   console.log(
-    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory]`
+    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>]`
   );
 }
 
@@ -463,6 +612,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     process.exit(0);
   }
   const options = parseArgs(process.argv.slice(2));
-  const model = buildSh0SeaDiagnosticCandidateModel(options);
-  console.log(JSON.stringify(model, null, options.pretty ? 2 : 0));
+  const artifact = options.responseRun
+    ? buildSh0SeaDiagnosticResponseRun(options)
+    : buildSh0SeaDiagnosticCandidateModel(options);
+  console.log(JSON.stringify(artifact, null, options.pretty ? 2 : 0));
 }
