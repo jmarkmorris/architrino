@@ -1,12 +1,12 @@
 # Absolute Timespace
 
-This chapter is the canonical substrate-level specification for **absolute timespace** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
+This chapter specifies the fixed background in which the microscopic dynamics run. In $\mathbb{A}\mathbb{A}\mathbb{A}$, **absolute timespace** means the product of one universal time line and one fixed Euclidean 3-space. The chapter defines that product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
 
 Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](absolute-time.md) and the [Euclidean Void](euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether sea dynamics; it is not the substrate itself.
 
 ## Core Concept
 
-Absolute timespace is the formal, non-dynamical product background for all physical phenomena. It is the direct product of absolute time and the Euclidean void, forming a **foliated structure** where each leaf is a complete instantaneous Euclidean 3-space indexed by the universal time parameter $T$.
+Absolute timespace is the formal, non-dynamical product background for all physical phenomena. It is the direct product of absolute time and the Euclidean void. That product forms a **foliated structure**: each leaf is a complete instantaneous Euclidean 3-space indexed by the universal time parameter $T$.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -46,7 +46,7 @@ $$
 \Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
-Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent.
+Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent at the substrate level.
 
 An object or assembly traces a worldline through the product background:
 $$
@@ -86,7 +86,7 @@ Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the re
 
 ## Newton-Cartan Data
 
-The background geometry is encoded by a pair of structures rather than by a single non-degenerate 4D metric.
+The background geometry is encoded by a pair of structures rather than by a single non-degenerate 4D metric. One structure keeps time ordered; the other measures distances inside each slice.
 
 The substrate clock 1-form is the exact form
 $$
@@ -161,7 +161,7 @@ This means:
 - Proper time is not a substrate interval.
 - Effective metric language belongs to observer-level spacetime reconstruction.
 
-The specified Newton-Cartan substrate data $(dT,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection.
+The specified Newton-Cartan substrate data $(dT,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection. Effective metric language enters only after clocks, rulers, and signal channels are reconstructed from assemblies and Noether sea response.
 
 ## Measurement and Geometry
 

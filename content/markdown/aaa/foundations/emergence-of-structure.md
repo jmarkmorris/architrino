@@ -223,11 +223,11 @@ However, because the potential density on each causal wake surface falls off as 
 A mathematically admissible many-source branch must satisfy the [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma): it must make a limit such as
 $$
 \lim_{R\to\infty}
-\sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
-\|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
-\mathbf{a}_{ij}(t;s)
+\sum_{\substack{j,\ T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)\\
+\|\mathbf X_j(T_{\mathrm{em}})-\mathbf X_i(T)\|<R}}
+\mathbf A_{ij}(T;T_{\mathrm{em}})
 $$
-exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over source events with $\mathbf{x}_j(s)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
+exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over source events with $\mathbf X_j(T_{\mathrm{em}})\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
 For the weak homogeneous Noether sea case, local neutrality can be stronger than an assumption. If the far population is statistically homogeneous, isotropic, locally neutral over correlation length $\ell$, and mixing, then receiver-centered shell fluctuations are square-summable: shell $n$ contains $O(n^2)$ neutral cells, its signed fluctuation is $O(n)$, and the inverse-square dilution contributes $O(n^{-2})$, so the shell variance is $O(n^{-2})$. The corresponding shell series converges almost surely under the declared mixing bound. This is the convergence foothold needed by the Noether sea construction; it does not remove the separate burden for coherent, inhomogeneous, strong-field, or poorly screened branches.
 
@@ -237,21 +237,21 @@ The infinite-history statement is therefore not a claim that every past wake car
 
 Self-hit is not defined by speed alone. It occurs when the same-source causal-root set is nonempty:
 $$
-\mathcal{C}_{ii}(t)
+\mathcal{C}_{ii}(T)
 =
-\{\,s<t:\|\mathbf{x}_i(t)-\mathbf{x}_i(s)\|=c_f(t-s)\,\}
+\{\,T_{\mathrm{em}}<T:\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
 \ne
 \varnothing
 $$
-If $\|\mathbf{v}_i(u)\|<c_f-\eta$ throughout the interval $[s,t]$, then no self-hit root can occur on that interval, because
+If $\|\mathbf V_i(U)\|<c_f-\eta$ throughout the interval $[T_{\mathrm{em}},T]$, then no self-hit root can occur on that interval, because
 $$
-\|\mathbf{x}_i(t)-\mathbf{x}_i(s)\|
+\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
 \le
-\int_s^t\|\mathbf{v}_i(u)\|\,du
+\int_{T_{\mathrm{em}}}^{T}\|\mathbf V_i(U)\|\,dU
 <
-c_f(t-s)
+c_f(T-T_{\mathrm{em}})
 $$
-Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf{v}\|>c_f$ alone.
+Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone.
 
 This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-source roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
 

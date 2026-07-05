@@ -1,6 +1,6 @@
 # Emergent Metric
 
-This chapter is the constitutive bridge from fixed-void substrate ontology to effective metric language. Its purpose is to say what the metric means in this framework, which medium variables are supposed to carry that structure, and what weak-field map has to be recovered before the spacetime branch can claim GR-level closure.
+This chapter explains how metric language enters a theory whose substrate is not metric spacetime. The Euclidean void remains fixed. The Noether sea changes state inside it. The effective metric is the observer-level description extracted from clock, ruler, signal, and medium-response channels. This chapter says what that metric means, which medium variables are supposed to carry it, and what weak-field map has to be recovered before the spacetime branch can claim GR-level closure.
 
 The opening fixes the ontological picture and the canonical symbols first. The later sections then move through equation-of-state support, refraction-versus-curvature language, weak-field constitutive maps, and closure interfaces.
 
@@ -22,6 +22,8 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
 - A dynamic medium (Noether braids) moving and rearranging in that geometry.
+
+The metric appears only after a Physical Observer record is assembled from those ingredients.
 
 ## Canonical Symbols (Spacetime)
 
@@ -60,7 +62,7 @@ $$
 g^{\text{eff}}_{\mu\nu}
 $$
 
-The first arrow is the open constitutive problem. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
+The first arrow is the open constitutive problem. It carries the main closure burden: the Noether sea state must produce the clock, ruler, drift, and signal channels together. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
 
 ### Weak-Gravity Visibility Scale
 

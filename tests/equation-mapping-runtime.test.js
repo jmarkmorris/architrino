@@ -86,7 +86,7 @@ function createFakeFormulaChild(width, className = "") {
 
 test("equation mapping seed document carries static layer anchors and comments", () => {
   const documents = createSeedEquationMapDocuments();
-  assert.equal(documents.length, 21);
+  assert.equal(documents.length, 22);
   const [document] = documents;
   assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
   assert.equal(document.schema, "equation-map-document.v1");
@@ -112,18 +112,18 @@ test("equation mapping seed document carries static layer anchors and comments",
     documents.slice(0, 4).map((entry) => entry.title),
     [
       "Causal Wake Per-Hit Law",
+      "Causal Wake Master Equation",
       "Lorentz Factor And Clock Rate",
       "Oblate Spheroidal Envelope",
-      "Energy Momentum And Rest Energy",
     ]
   );
   assert.deepEqual(
     documents.slice(0, 4).map((entry) => entry.id),
     [
       "eq-01-causal-wake-master-equation",
+      "eq-01b-causal-wake-master-equation",
       "eq-02-lorentz-clock-rate",
       "eq-03-oblate-spheroidal-envelope",
-      "eq-04-energy-momentum-rest-energy",
     ]
   );
 });
@@ -138,6 +138,32 @@ test("equation mapping names the causal wake entry as the per-hit law", () => {
   assert.equal(document.title, "Causal Wake Per-Hit Law");
   assert.match(accelerationText, /one acceleration contribution/u);
   assert.match(accelerationText, /full master equation sums this term/u);
+});
+
+test("equation mapping places the full master equation immediately after the per-hit law", () => {
+  const documents = createSeedEquationMapDocuments();
+  const masterEquation = documents[1];
+  const perHitOverlay = masterEquation.overlays.find((overlay) => overlay.id === "per-hit-contribution");
+
+  assert.equal(masterEquation.id, "eq-01b-causal-wake-master-equation");
+  assert.equal(masterEquation.title, "Causal Wake Master Equation");
+  assert.deepEqual(
+    masterEquation.anchors.map((anchor) => anchor.id),
+    ["totalAcceleration", "sourceSum", "emissionSum", "perHitLaw"]
+  );
+  assert.equal(
+    masterEquation.formulaParts.some(
+      (part) => part.kind === "math" && part.anchorId === "emissionSum" && part.tex.includes("\\mathcal C_{ij}(T)")
+    ),
+    true
+  );
+  assert.equal(masterEquation.formulaParts.some((part) => part.kind === "break"), false);
+  assert.equal(
+    perHitOverlay.content.some(
+      (block) => block.type === "text" && block.text.includes("per-hit law from the previous screen")
+    ),
+    true
+  );
 });
 
 test("equation mapping line-of-action callout names the emission point", () => {
@@ -849,10 +875,10 @@ test("equation mapping renders left and right carousel controls for equations", 
   });
 
   assert.equal(runtime.getDocumentByOffset(-1), null);
-  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-02-lorentz-clock-rate");
-  runtime.activeDocumentId = "eq-02-lorentz-clock-rate";
+  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-01b-causal-wake-master-equation");
+  runtime.activeDocumentId = "eq-01b-causal-wake-master-equation";
   assert.equal(runtime.getDocumentByOffset(-1)?.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
-  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-03-oblate-spheroidal-envelope");
+  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-02-lorentz-clock-rate");
   assert.equal(runtimeSource.includes("renderEquationCarousel()"), true);
   assert.equal(runtimeSource.includes('this.renderCarouselButton("previous", -1, "Previous equation")'), true);
   assert.equal(runtimeSource.includes('this.renderCarouselButton("next", 1, "Next equation")'), true);

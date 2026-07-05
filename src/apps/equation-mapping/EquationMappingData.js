@@ -319,6 +319,68 @@ const equationMapSeedDocuments = [
     ],
   },
   {
+    id: "eq-01b-causal-wake-master-equation",
+    title: "Causal Wake Master Equation",
+    subject: "AAA native ledgers",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "accepted-aaa-derivation",
+    formulaTeX:
+      "\\frac{d^2\\mathbf X_i}{dT^2}=\\sum_j\\sum_{T_{\\mathrm{em}}\\in\\mathcal C_{ij}(T)}\\kappa\\sigma_{ij}\\frac{|q_iq_j|}{r_{ij}^2}W_{ij}^{\\mathrm{rec}}(T;T_{\\mathrm{em}})\\hat{\\mathbf r}_{ij}",
+    anchors: [
+      anchor("totalAcceleration", "total acceleration", "total acceleration branch-sum response"),
+      anchor("sourceSum", "all sources", "outer sum over all sources partner hits self-hits"),
+      anchor("emissionSum", "active emission times", "inner sum active causal roots emission times"),
+      anchor("perHitLaw", "per-hit law", "per-hit acceleration contribution inside branch sum"),
+    ],
+    formulaParts: [
+      mathPart("totalAcceleration", "\\frac{d^2\\mathbf X_i}{dT^2}", "totalAcceleration"),
+      textPart("eq", " = "),
+      mathPart("sourceSum", "\\sum_j", "sourceSum"),
+      textPart("space-1", " "),
+      mathPart("emissionSum", "\\sum_{T_{\\mathrm{em}}\\in\\mathcal C_{ij}(T)}", "emissionSum"),
+      textPart("space-2", " "),
+      mathPart(
+        "perHitLaw",
+        "\\kappa\\sigma_{ij}\\frac{|q_iq_j|}{r_{ij}^2}W_{ij}^{\\mathrm{rec}}(T;T_{\\mathrm{em}})\\hat{\\mathbf r}_{ij}",
+        "perHitLaw"
+      ),
+    ],
+    overlays: [
+      overlay(
+        "total-acceleration",
+        "Total acceleration",
+        "totalAcceleration",
+        "This is the full acceleration of receiver i at absolute time T. It is the vector sum of all active causal wake hits, not a single source-receiver hit.",
+        "\\frac{d^2\\mathbf X_i}{dT^2}",
+        { x: 5, y: 8, width: 28, line: "above" }
+      ),
+      overlay(
+        "source-sum",
+        "All sources",
+        "sourceSum",
+        "The outer sum scans every source j. Partner hits use j different from i; self-hits enter through the same sum when j equals i.",
+        "\\sum_j",
+        { x: 36, y: 8, width: 26, line: "above" }
+      ),
+      overlay(
+        "emission-sum",
+        "Active emission times",
+        "emissionSum",
+        "For each source, this inner sum scans the past emission times whose causal wake surfaces reach receiver i at the current time T.",
+        "\\sum_{T_{\\mathrm{em}}\\in\\mathcal C_{ij}(T)}",
+        { x: 64, y: 8, width: 31, line: "above" }
+      ),
+      overlay(
+        "per-hit-contribution",
+        "Per-hit contribution",
+        "perHitLaw",
+        "Each term inside the sums is the per-hit law from the previous screen: sign and coupling, wake dilution, receiver-normal branch strength, and line of action.",
+        "\\kappa\\sigma_{ij}\\frac{|q_iq_j|}{r_{ij}^2}W_{ij}^{\\mathrm{rec}}\\hat{\\mathbf r}_{ij}",
+        { x: 33, y: 68, width: 34, line: "below" }
+      ),
+    ],
+  },
+  {
     id: "eq-02-lorentz-clock-rate",
     title: "Lorentz Factor And Clock Rate",
     subject: "Relativity and effective metric",

@@ -10,21 +10,21 @@ receiver-normal strength.
 
 The active branch strength is
 $$
-W_{ij}^{\mathrm{rec}}(t;t_0)
+W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 =
 \left|
-\frac{D_{T,ij}(t;t_0)}{D_{s,ij}(t;t_0)}
+\frac{D_{T,ij}(T;T_{\mathrm{em}})}{D_{s,ij}(T;T_{\mathrm{em}})}
 \right|,
 $$
 with
 $$
 D_{s,ij}
 =
-c_f-\mathbf v_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0),
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}}),
 \qquad
 D_{T,ij}
 =
-c_f-\mathbf v_i(t)\cdot\hat{\mathbf r}_{ij}(t;t_0).
+c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}}).
 $$
 
 A branch record that contains only $D_s$ is incomplete for current force/action
@@ -36,17 +36,17 @@ same retained record.
 ## Core Functional Definitions
 
 On a retained chart $\mathfrak B$ with active causal roots
-$t_0\in\mathcal C_{ij}(t)$, the receiver-normal scalar branch statistic is
+$T_{\mathrm{em}}\in\mathcal C_{ij}(T)$, the receiver-normal scalar branch statistic over a native-time window $T_{\mathrm{win}}$ is
 $$
 \bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B]
 =
-\frac{1}{T}
-\int_0^T
+\frac{1}{T_{\mathrm{win}}}
+\int_0^{T_{\mathrm{win}}}
 \sum_{i,j}
-\sum_{t_0\in\mathcal C_{ij}(t)}
-\frac{W_{ij}^{\mathrm{rec}}(t;t_0)}
-{r_{ij}^2(t;t_0)+\epsilon_c^2}
-\,dt.
+\sum_{T_{\mathrm{em}}\in\mathcal C_{ij}(T)}
+\frac{W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{r_{ij}^2(T;T_{\mathrm{em}})+\epsilon_c^2}
+\,dT.
 $$
 
 This is a scalar statistic, not the vector Master EOM itself. It keeps the same
@@ -72,9 +72,9 @@ until the vector residuals close.
 
 The causal root locus is defined by
 $$
-g_{ij}(t,t_0)
+g_{ij}(T,T_{\mathrm{em}})
 =
-\|\mathbf x_i(t)-\mathbf x_j(t_0)\|-c_f(t-t_0)=0.
+\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})=0.
 $$
 
 On a simple retained root, $D_s\ne0$ supplies the local inverse-function

@@ -5,20 +5,20 @@ Setup:
 - The interaction is delayed; the causal emission time exists uniquely for a fixed source, but the receiver-normal factor makes the acceleration depend on receiver radial velocity as well as current separation.
 
 Objectives:
-- Receiver-normal baseline equations for $r(t)$ and $v_r(t)$.
+- Receiver-normal baseline equations for $r(T)$ and $V_r(T)$.
 - Energy balance and integral expressions suitable for comparison.
 
 Delay differential equation and exact reduction:
-- With field speed normalized to $v=1$ and a fixed source location $x_c$, the causal root satisfies $|x(t)-x_c|=t-t_0$ with $t_0<t$.
-- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(t)=|x(t)-x_c|$ and the receiver-normal branch strength:
+- With field speed normalized to $v=1$ and a fixed source location $X_c$, the causal root satisfies $|X(T)-X_c|=T-T_{\mathrm{em}}$ with $T_{\mathrm{em}}<T$.
+- The per-hit law yields a line-of-action acceleration whose magnitude depends on the current separation $r(T)=|X(T)-X_c|$ and the receiver-normal branch strength:
   $$
-  \ddot{x}(t) \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(t)^2}W^{\mathrm{rec}}(t)\,\mathrm{sgn}\!\big(x(t)-x_c\big)
+  \frac{d^2X}{dT^2} \;=\; -\,\kappa\,\sigma_{q q'}\,\frac{|q q'|}{r(T)^2}W^{\mathrm{rec}}(T)\,\mathrm{sgn}\!\big(X(T)-X_c\big)
   $$
-  Writing $K=\kappa\,|q q'|>0$ and $r=\lvert x-x_c\rvert$, the radial ODE is
+  Writing $K=\kappa\,|q q'|>0$ and $r=\lvert X-X_c\rvert$, the radial ODE is
   $$
-  \ddot{r}(t) \;=\; -\,\frac{K}{r(t)^2}W^{\mathrm{rec}}(t),
+  \frac{d^2r}{dT^2} \;=\; -\,\frac{K}{r(T)^2}W^{\mathrm{rec}}(T),
   \qquad
-  W^{\mathrm{rec}}(t)=\left|1-\dot r(t)\right|
+  W^{\mathrm{rec}}(T)=\left|1-\frac{dr}{dT}\right|
   $$
   on the outward radial sign convention and field-speed units.
 
@@ -27,7 +27,7 @@ Solvability status:
 - No closed-form solution is presently asserted for the velocity-dependent receiver-normal radial fall.
 
 Notes:
-- For a fixed source, $D_s=1$ in field-speed units. The nontrivial receiver-normal factor is $D_T=1-\dot r(t)$ on the outward radial sign convention.
+- For a fixed source, $D_s=1$ in field-speed units. The nontrivial receiver-normal factor is $D_T=1-\frac{dr}{dT}$ on the outward radial sign convention.
 
 Use:
 - A simple ground-truth receiver-normal root geometry against which delayed-law simulations can check receiver-normal modulation.

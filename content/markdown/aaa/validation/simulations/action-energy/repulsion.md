@@ -1,7 +1,7 @@
 # Equal-Charge Symmetric Repulsion
 
 Setup:
-- Two identical charges (e.g., q1=q2=+$\epsilon$) placed at separation r0 with v1=v2=0 and symmetry about the midpoint.
+- Two identical charges (e.g., $q_1=q_2=+\epsilon$) placed at separation $r_0$ with $V_1=V_2=0$ and symmetry about the midpoint.
 
 Objectives:
 - Delay-only formulation of the equations of motion (DDEs).
@@ -9,27 +9,27 @@ Objectives:
 
 Delay differential equations (two-body, v=1):
 - Causal times:
-  - $t_0^{(2\to 1)}\in\mathcal{C}_2(t)$ solves $\lvert x_1(t)-x_2(t_0)\rvert = t-t_0$.
-  - $t_0^{(1\to 2)}\in\mathcal{C}_1(t)$ solves $\lvert x_2(t)-x_1(t_0)\rvert = t-t_0$.
+  - $T_{\mathrm{em}}^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
+  - $T_{\mathrm{em}}^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
 - Accelerations (sum over all causal roots if multiple exist):
   $$
-  a_1(t)
+  A_1(T)
   \;=\;
-  \sum_{t_0\in\mathcal{C}_2(t)}
-  +\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}(t;t_0)\frac{\mathrm{sgn}\!\big(x_1(t)-x_2(t_0)\big)}{r_{12}^2},
+  \sum_{T_{\mathrm{em}}\in\mathcal{C}_2(T)}
+  +\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_1(T)-X_2(T_{\mathrm{em}})\big)}{r_{12}^2},
   \quad
-  r_{12}=\big|x_1(t)-x_2(t_0)\big|
+  r_{12}=\big|X_1(T)-X_2(T_{\mathrm{em}})\big|
   $$
   $$
-  a_2(t)
+  A_2(T)
   \;=\;
-  \sum_{t_0\in\mathcal{C}_1(t)}
-  -\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}(t;t_0)\frac{\mathrm{sgn}\!\big(x_2(t)-x_1(t_0)\big)}{r_{21}^2},
+  \sum_{T_{\mathrm{em}}\in\mathcal{C}_1(T)}
+  -\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_2(T)-X_1(T_{\mathrm{em}})\big)}{r_{21}^2},
   \quad
-  r_{21}=\big|x_2(t)-x_1(t_0)\big|
+  r_{21}=\big|X_2(T)-X_1(T_{\mathrm{em}})\big|
   $$
 - $W_{12}^{\mathrm{rec}}$ and $W_{21}^{\mathrm{rec}}$ are the corresponding receiver-normal branch strengths. A root with a failed source-normal floor is a branch-transition or caustic case, not an ordinary stable row of this two-body DDE.
-- Symmetry implies $x_1(t)=-x_2(t)$ and $a_1(t)=-a_2(t)$ for all $t$ given symmetric initial data.
+- Symmetry implies $X_1(T)=-X_2(T)$ and $A_1(T)=-A_2(T)$ for all $T$ given symmetric initial data.
 
 Solvability status:
 - No exact closed-form solution is presently known for the coupled DDE system under mutual repulsion with delay.

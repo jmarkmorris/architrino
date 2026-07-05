@@ -1,6 +1,6 @@
 # Detecting the Absolute Frame
 
-This chapter isolates the complete-state diagnostic problem of identifying absolute rest in $\mathbb{A}\mathbb{A}\mathbb{A}$, whose substrate is absolute time together with the Euclidean void. Its purpose is to show that the preferred frame is not a purely metaphysical declaration: at the ontological level, it is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
+This chapter asks how the theory can identify absolute rest without first painting a coordinate grid onto the Euclidean void. The answer is a complete-state diagnostic: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the preferred frame is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
 
 ## Overview
 
@@ -24,6 +24,8 @@ This is not merely a philosophical puzzle. It is a **practical requirement** for
 ### The Key Physical Mechanism
 
 The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate creates a **dynamically preferred frame** available to complete-state reconstruction through purely geometric relationships.
+
+The idea is easiest to see by following the centers of emitted wake surfaces. A stationary source keeps emitting from the same void point. A moving source leaves a sequence of distinct emission centers behind it. The center pattern, not an external grid label, carries the rest diagnostic.
 
 ### The Nature of Causal Wakes
 
@@ -56,6 +58,8 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - The emitted centers are **non-coincident**; the source-tagged wake stream is **non-concentric**.
 - The architrino lies closer to the expanding wake front in its direction of motion, producing the geometric asymmetry that later appears as Doppler-like structure at the observer level.
 
+The difference between these two cases is the whole diagnostic. Rest means one repeated center. Uniform motion means a straight center sequence. Accelerated motion means a curved center history.
+
 ### The Complete-State Diagnostic Procedure
 
 **Step 1:** Track the source-tagged geometric centers of all expanding causal isochrons emitted by a target architrino over a diagnostic interval.
@@ -67,6 +71,8 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 - **Centers form a trajectory** means $\mathbf V_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf X$ per unit time $\Delta T$ yields the absolute velocity: $\mathbf V_{\text{abs}} = \Delta \mathbf X / \Delta T$.
 
 This is definitionally a complete-state test. It assumes the individual source identity, emission time, and isochron support are already available in the provenance-bearing state. A physical apparatus receiving only the summed potential cannot recover the source-tagged centers by a clever superposition-resolving operation unless it already has access to the very provenance data the diagnostic assumes.
+
+That limitation is not a weakness of the ontology. It marks the difference between complete-state reconstruction and what embedded Physical Observers can infer after provenance has been erased into a summed received record.
 
 **Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $T_{\mathrm{em}}$ and inspected at time $T>T_{\mathrm{em}}$ have support
 $$

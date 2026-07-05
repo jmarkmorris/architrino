@@ -170,33 +170,33 @@ Methodological priority:
   - No branch-local potential, scale generator, or homogeneity degree is supplied, so the classical potential virial theorem has not been recovered.
 
 Symmetric two-body on a line (exact DDE; challenges):
-- Let $x_1(t)=+\tfrac{1}{2}r(t)$ and $x_2(t)=-\tfrac{1}{2}r(t)$ with $r(t)>0$ and $v=1$. The causal-time condition implies
+- Let $X_1(T)=+\tfrac{1}{2}r(T)$ and $X_2(T)=-\tfrac{1}{2}r(T)$ with $r(T)>0$ and $v=1$. The causal-time condition implies
   $$
-  \frac{r(t)+r(t_0)}{2} \;=\; t - t_0,\qquad t_0<t
+  \frac{r(T)+r(T_{\mathrm{em}})}{2} \;=\; T - T_{\mathrm{em}},\qquad T_{\mathrm{em}}<T
   $$
-  or, writing $\tau(t)=t-t_0>0$ implicitly,
+  or, writing $\Delta(T)=T-T_{\mathrm{em}}>0$ implicitly,
   $$
-  r(t) + r\!\big(t-\tau(t)\big) \;=\; 2\,\tau(t)
+  r(T) + r\!\big(T-\Delta(T)\big) \;=\; 2\,\Delta(T)
   $$
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
-  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2}
-  W^{\mathrm{rec}}(t)
+  \frac{d^2 r}{dT^2} \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(T) + r(T-\Delta(T))\big)^2}
+  W^{\mathrm{rec}}(T)
   $$
-  with $\tau(t)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
+  with $\Delta(T)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
 Integral (delta) form selecting the causal root:
 - For particle 1 one may write
   $$
-  a_1(t) \;=\; -\,\kappa\,\epsilon^2 \int_{0}^{\infty}
-  \frac{\delta\!\big(\lvert x_1(t)-x_2(t-\tau)\rvert - \tau\big)\,
-  \mathrm{sgn}\!\big(x_1(t)-x_2(t-\tau)\big)}
-  {\lvert x_1(t)-x_2(t-\tau)\rvert^{2}}\; d\tau
+  A_1(T) \;=\; -\,\kappa\,\epsilon^2 \int_{0}^{\infty}
+  \frac{\delta\!\big(\lvert X_1(T)-X_2(T-\Delta)\rvert - \Delta\big)\,
+  \mathrm{sgn}\!\big(X_1(T)-X_2(T-\Delta)\big)}
+  {\lvert X_1(T)-X_2(T-\Delta)\rvert^{2}}\; d\Delta
   $$
-  whose evaluation selects the causal delay $\tau(t)$. The receiver-normal branch strength must then be applied on the selected root to yield the DDE above.
+  whose evaluation selects the causal delay $\Delta(T)$. The receiver-normal branch strength must then be applied on the selected root to yield the DDE above.
 
 Why closed-form solutions are unlikely (even with symmetry):
-- The delay is state-dependent: the unknown $r(t)$ appears both in the right-hand side and in the implicit constraint defining $\tau(t)$, making the problem a nonlinear functional equation rather than an ODE.
+- The delay is state-dependent: the unknown $r(T)$ appears both in the right-hand side and in the implicit constraint defining $\Delta(T)$, making the problem a nonlinear functional equation rather than an ODE.
 - Even linear constant-delay DDEs rarely admit elementary closed forms; state-dependent delays are generically non-integrable. The fixed-center problem is a special case that collapses to an ODE (see [Radial Attraction](radial-attraction.md)).
 
 Solution techniques (toolbox for delayed, radial DDEs):

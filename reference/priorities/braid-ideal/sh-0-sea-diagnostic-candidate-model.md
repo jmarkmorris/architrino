@@ -412,3 +412,30 @@ The response run now instantiates this model with:
 The first provider-seeded result does not cross the floor. The diagnostic produced pressure/tension source row crosses the floor at `Phi_probe=0.038`, with same-target event/support/action provenance refs, but it remains diagnostic. The next executable proof target is to replace this diagnostic produced source row with an accepted boundary-wake or pressure/tension source row carrying accepted same-target event/support/action provenance while preserving the accepted-evidence blocker.
 
 This diagnostic pass justifies a sharper retained-source request. It still does not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
+
+## Replacement Audit 2026-07-05
+
+No accepted same-target `boundary_wake` or `pressure_tension` source row was found to replace:
+
+`sh_0_sea_produced_response_source:pressure_tension:a7769646b22c4f4f`
+
+The diagnostic row remains useful because it is same-target and crosses the diagnostic floor, but its event, support, and action refs are local diagnostic refs only. Live output keeps `accepted=false`, `retained_evidence_authorized=false`, `receiver_normal_branch_strength=false`, and `scoreMovement="no_score_increase"`.
+
+The first missing accepted object remains:
+
+- object: `held_release_seed_path_rows_acceptance_certificate.v0`;
+- field: `held_release_seed_path_rows.acceptance_certificate_ref`;
+- provider-backed artifact: `held_release_seed_path_rows:5833f18e53586201`;
+- retained record: `retained-record:held-release-six-point:adapter-acceptance-certificate`;
+- source row: `two-speed-preferred-row:u0.8:v0.2`;
+- required accepted-ref prefix: `accepted:held-release-seed-path-rows:retained-record:held-release-six-point:adapter-acceptance-certificate:two-speed-preferred-row:u0.8:v0.2:`.
+
+Adjacent outputs directly help, but do not replace the diagnostic row:
+
+- the held-release seed-path requirement emits the exact expected certificate payload and still reports `requirement_passed=false`;
+- the retained-source adapter contract observes ten source fields and accepts zero package fields, with `held_release_seed_path_rows_acceptance_certificate_ref` as the first package field;
+- the accepted Noether sea density-compression provider supplies reusable `theta_sea_rho_NS` and stress/strain rows for its own retained-window domain, but it is not bound to the `SH-0-sea` target/source record;
+- EQ-20 pressure rows, pressure-row branch-intake fixtures, event/wake pullback diagnostics, torque-wake diagnostics, and chirality residual measurements are not same-target `SH-0-sea` replacement evidence;
+- receiver-normal field carriers and tests demonstrate the current `branchWeight`, `sourceNormalDenominator`, `receiverNormalFactor`, `receiverNormalNumerator`, and `unsignedReceiverNormalFactor` contract, but no accepted same-record `SH-0-sea` row carries those fields.
+
+The next executable proof target is to produce or acquire the non-circular `held_release_seed_path_rows_acceptance_certificate.v0` for `held_release_seed_path_rows:5833f18e53586201`, then the matching `held_release_seed_path_rows_external_accepted_authority_package.v0`, then repo authorization at `held_release_seed_path_rows.acceptance_certificate_ref`. Only after that target/source record is accepted should the retained-source adapter package and a real accepted same-target `boundary_wake` or `pressure_tension` source row be attempted.
