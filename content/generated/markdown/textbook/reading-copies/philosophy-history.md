@@ -4,6 +4,8 @@
 
 This lane provides historical, philosophical, and comparative orientation for $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not own the core ontology, the equation of motion, assembly definitions, or validation rules. Its role is to explain how inherited theories, philosophical positions, religious cosmologies, and unresolved paradoxes should be compared without letting effective descriptions become final ontology.
 
+The lane is a translation and placement layer. It helps the reader understand why old language was useful, which part survives, and where the surviving part belongs in the rebuilt stack. It should not become a second owner for mechanisms already defined in foundations, dynamics, assemblies, spacetime, quantum, cosmology, or validation.
+
 Use this lane when a reader needs:
 
 - historical context for why a substrate-first program looks unfamiliar,
@@ -57,6 +59,8 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not side commentary. It bears dire
 This page is indexed by schools and conceptual disputes rather than by biography. The complementary people-centered map remains [major-thinkers.md](../../../../markdown/aaa/philosophy-history/major-thinkers.md).
 
 The main claim of this page is simple: if $\mathbb{A}\mathbb{A}\mathbb{A}$ is to function as a serious replacement architecture, it must be methodologically explicit about realism, reduction, inference, and falsifiability rather than relying on these commitments implicitly.
+
+The reader should treat method as part of the physics discipline, not as decoration around it. A substrate theory can fail by making wrong predictions, but it can also fail by moving between ontology, model fitting, inference, and analogy without saying which role each claim is playing.
 
 The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be summarized as follows:
 
@@ -675,7 +679,7 @@ Emergence, on this view, is lawful novelty in organized systems, not metaphysica
 
 #### Context as Constraint
 
-The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(t)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
+The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(T)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
 
 $$
 K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}
@@ -684,10 +688,10 @@ $$
 The reduced flow then remains a lower-level flow constrained to $K_c$:
 
 $$
-\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c
+\frac{dX}{dT}=F_L(X_T),\qquad X(T)\in K_c
 $$
 
-Here $F_L$ represents the lower-level causal-wake dynamics, and $X_t$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
+Here $F_L$ represents the lower-level causal-wake dynamics, and $X_T$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
 
 For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. Then
 
@@ -1420,12 +1424,25 @@ dark matter (CDM) in an expanding universe.
 **Conceptual View:** Uses the Friedmann equations with a cosmological constant
 and pressureless dark matter to fit CMB, BAO, and LSS data.
 
-**Key Equation:** Friedmann equation:
+**Key Equation (standard comparison form):** Friedmann equation:
 $$
 H^2 = \left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho + \frac{\Lambda}{3}
  - \frac{k}{a^2}
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The scale factor $a(t)$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation treats the same row as an effective observer projection:
+$$
+H_{\mathrm{eff}}^2(t_{\mathrm{eff}})
+=
+\left(
+\frac{1}{a_{\mathrm{eff}}}
+\frac{d a_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
+\right)^2
+=
+\frac{8\pi G_{\mathrm{eff}}}{3}\rho_{\mathrm{eff}}
++\frac{\Lambda_{\mathrm{eff}}}{3}
+-\frac{k_{\mathrm{eff}}}{a_{\mathrm{eff}}^2}.
+$$
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
 
 **What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -1444,9 +1461,21 @@ horizon/flatness problems.
 **Conceptual View:** A scalar field with nearly constant potential energy drives an
 accelerated expansion; quantum fluctuations seed structure.
 
-**Key Equation:** Slow-roll condition and expansion:
+**Key Equation (standard comparison form):** Slow-roll condition and expansion:
 $$
 \ddot a > 0, \quad \epsilon = \frac{M_P^2}{2}\left(\frac{V'}{V}\right)^2 \ll 1
+$$
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation replaces the expansion variable by an effective observer projection:
+$$
+\frac{d^2a_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}>0,
+\qquad
+\epsilon_{\mathrm{eff}}
+=
+\frac{M_{P,\mathrm{eff}}^2}{2}
+\left(
+\frac{dV_{\mathrm{eff}}/d\phi_{\mathrm{eff}}}{V_{\mathrm{eff}}}
+\right)^2
+\ll1.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where inner nested shell braid components operate in the $v>c_f$ self-hit domain, driving rapid effective expansion/deflation of the Noether braid assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how nested shell braid configurations relax toward lower-curvature, more equilibrated states.
 
@@ -1488,10 +1517,22 @@ $$
 **Conceptual View:** Nuclear reaction networks freeze out as the universe cools,
 predicting H, He, D, and Li abundances.
 
-**Key Equation:** Reaction-rate balance (schematic):
+**Key Equation (standard comparison form):** Reaction-rate balance (schematic):
 $$
 \frac{dn_i}{dt} = \sum_{j,k} \langle \sigma v \rangle_{jk\to i}\, n_j n_k
  - \sum_{l} \langle \sigma v \rangle_{i l}\, n_i n_l
+$$
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation keeps this as an effective abundance ledger:
+$$
+\frac{dn_{i,\mathrm{eff}}}{dt_{\mathrm{eff}}}
+=
+\sum_{j,k}
+\langle \sigma v_{\mathrm{rel}}\rangle_{jk\to i}^{\mathrm{eff}}\,
+n_{j,\mathrm{eff}}n_{k,\mathrm{eff}}
+-
+\sum_l
+\langle \sigma v_{\mathrm{rel}}\rangle_{il}^{\mathrm{eff}}\,
+n_{i,\mathrm{eff}}n_{l,\mathrm{eff}}.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when nested shell braid-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
 
@@ -1654,7 +1695,7 @@ The source-mined update sharpens the comparison: the live Turok--Boyle line trie
 
 **Key Equation:** Contracting equation-of-state:
 $$
-w \gg 1 \Rightarrow a(t) \propto (-t)^{2/3(1+w)}
+w \gg 1 \Rightarrow a_{\mathrm{std}}(t_{\mathrm{std}}) \propto (-t_{\mathrm{std}})^{2/3(1+w)}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
 
@@ -1867,14 +1908,14 @@ The main breakdown points are therefore specific: the characteristic speed is no
 
 **Key Equation:** Time-dependent Schrödinger equation:
 $$
-i\hbar \frac{\partial}{\partial t}\psi(\mathbf{x},t)=\hat H\psi(\mathbf{x},t)
+i\hbar \frac{\partial}{\partial t_{\mathrm{std}}}\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})=\hat H\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 $$
 
-For a single non-relativistic particle in a potential $V(\mathbf{x},t)$,
+For a single non-relativistic particle in a potential $V_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})$,
 $$
-i\hbar \frac{\partial}{\partial t}\psi(\mathbf{x},t)
+i\hbar \frac{\partial}{\partial t_{\mathrm{std}}}\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 =
-\left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x},t)\right)\psi(\mathbf{x},t)
+\left(-\frac{\hbar^2}{2m}\nabla_{\mathrm{std}}^2+V_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})\right)\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 $$
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Schrödinger evolution is an effective low-energy, low-velocity envelope law. It is not the substrate-level dynamics. It should emerge only in the non-relativistic, weak-field, fixed-particle-number regime, where the coarse-grained wake or assembly-state envelope reduces to a linear wavefunction description. Outside that regime, the underlying nonlinear, history-dependent architrino dynamics should generate relativistic corrections, particle-number-changing behavior, or medium-coupled departures.
@@ -2031,7 +2072,9 @@ quantum randomness reflects ignorance of initial conditions.
 
 **Key Equation:** Guiding equation:
 $$
-\dot{\mathbf{x}} = \frac{\hbar}{m}\,\text{Im}\left(\frac{\nabla \psi}{\psi}\right)
+\frac{dx_{\mathrm{std}}^i}{dt_{\mathrm{std}}}
+=
+\frac{\hbar}{m}\,\text{Im}\left(\frac{\nabla_{\mathrm{std}}^i \psi_{\mathrm{std}}}{\psi_{\mathrm{std}}}\right)
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is particularly close to the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. Architrinos and assemblies follow definite trajectories, while their path-history wake (self-hit plus interactions with all other architrinos) acts as a deterministic guiding “field.” The Bohmian guiding equation is an effective law summarizing how these causal wakes steer assemblies in appropriate limits; $\psi$ is a compact encoding of the relevant wake/phase information.
 
@@ -2052,9 +2095,13 @@ It is the catalog companion to [Theory Mapping](../../../../markdown/aaa/philoso
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+The reader should treat each entry as a sorting tool. A theory may be brilliant at prediction, weak as ontology, indispensable as a calculation method, and misleading as a story about what physically exists. The differential format keeps those judgments separate. It asks what the framework got right, where it lives in the comparative stack, where its surviving content moves in the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, and what implementation still has to be supplied.
+
 One governing distinction in this chapter is the difference between predictive closure and implementation closure. A theory may organize observations with extraordinary precision while still leaving open what physically implements the successful mathematics. In that case the formalism is not discarded, but its stack placement must remain disciplined. The central comparative question is therefore not only whether a framework works, but whether it explains by exposing a generator or only by stabilizing an effective summary.
 
 This distinction also names a regime-capture problem. Modern physics has often converted success inside a measured domain into a boundary on what may count as fundamental explanation. In this chapter, such success is treated as evidence for an effective closure, not as automatic evidence for final ontology. A framework that works only inside a narrow range of speed, energy, curvature, particle-number stability, or observational access may still be indispensable, but under $\mathbb{A}\mathbb{A}\mathbb{A}$ it must be classified by the regime it actually governs and by the substrate mapping it still owes.
+
+In simple terms, this chapter keeps score without confusing the scoreboard for the engine. A successful equation family can remain useful while being relocated from `fundamental law` to `effective closure`, from `observable fact` to `inference product`, or from `ontology` to `comparison framework`. The demotion is not a dismissal; it is a demand for the physical implementation that the formal success did not provide.
 
 ##### Theory-Differential Template (Unified)
 
@@ -4714,11 +4761,11 @@ t_f(M),\;
 \Delta C_\ell,\;
 \Delta P(k,z),\;
 \Omega_{\mathrm{GW}}(f),\;
-\Delta\mathbf{x}_{\mathrm{ephem}}(t),\;
+\Delta x_{\mathrm{ephem,eff}}^i(t_{\mathrm{eff}}),\;
 \Phi_{\mathrm{HE}}(E,t)
 \right)
 $$
-where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
+where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta x_{\mathrm{ephem,eff}}^i$ is a solar-system ephemeris perturbation in the effective observer chart, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
 ###### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -4802,12 +4849,12 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
 \mathcal{S}_{m,\mathrm{eff}}
 $$
-so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
+so $d\rho_{m,\mathrm{eff}}/dt_{\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
 ###### 2. Ontological Commitments
 
@@ -7202,7 +7249,7 @@ chapters still own their local details.
 | Quantum state language | Wavefunction, Born weights, uncertainty, operators, spin, entanglement, no-signaling, and Bell/CHSH benchmarks | Effective-limit concept plus benchmark record | The effective chart must derive basin measures, record formation, and apparatus kernels from deterministic path-history dynamics |
 | Thermodynamics and statistical mechanics | Entropy, temperature, heat, irreversibility, kinetic theory, virial behavior, and ensemble closures | Effective-limit concept | The regime must declare the coarse-graining, access window, boundary flux, and measure; global cosmological extrapolation is not automatic |
 | Radiation and reaction formulas | Larmor/Lienard, bremsstrahlung, synchrotron, Compton-like rows, pair thresholds, blackbody and polarization constraints | Validated benchmark record | Formulas are target limits for event ledgers with photon output, recoil, remnant, heat, reaction, and medium-update rows |
-| Cosmology variables | $a(t)$, $H(t)$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Observer-inference benchmark record | These variables describe Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
+| Cosmology variables | $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Observer-inference benchmark record | These variables describe Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison and methodological language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
@@ -7240,17 +7287,17 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Worldline kinematics | $\mathbf X_a(T)$, $\mathbf V_a=d\mathbf X_a/dT$, $\mathbf A_a=d\mathbf V_a/dT$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
 | Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(T)$ with history ledger $H_T$ and branch data $\mathcal{B}_T$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
 | Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
-| Causal wake support | $\lVert\mathbf{x}-\mathbf{x}_0\rVert=c_f(t-t_0)$ with $t>t_0$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
-| Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
-| Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
+| Causal wake support | $\lVert\mathbf X-\mathbf X_{\mathrm{em}}\rVert=c_f(T-T_{\mathrm{em}})$ with $T>T_{\mathrm{em}}$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
+| Causal-root set | $F_{ij}(T,T_{\mathrm{em}})=\lVert\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\rVert-c_f(T-T_{\mathrm{em}})$ and $\mathcal{C}_{ij}(T)=\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
+| Causal surface density | $\rho(T,\mathbf X)=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
 | Root Jacobian and transversality | $D_{s,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct source-normal branch-analysis tool in the native law | Replacing branch strength by source-normal data alone, speed magnitude, or ignoring caustic/fold regimes |
 | Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
-| Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
+| Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_{\mathrm{em}})$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
-| Potential reconstruction | $\Phi_{\text{net}}(\mathbf{x},t)=\sum_o\Phi_o(\mathbf{x},t)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
-| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf{s}_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
+| Potential reconstruction | $\Phi_{\text{net}}(\mathbf X,T)=\sum_o\Phi_o(\mathbf X,T)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
+| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf X_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
 | Work and kinetic bookkeeping | $dK/dt=\mu_K(\lVert\mathbf{v}\rVert)\mathbf{a}\cdot\mathbf{v}$ and optional $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ | Energy bookkeeping after a kinetic proxy is declared | Primitive particle-specific mass or universal quadratic kinetic energy by assumption |
 | $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
 
@@ -7266,13 +7313,13 @@ and taking a spatial gradient connects that amplitude to inverse-square force
 scaling. In the full delayed dynamics, however, the accepted branch law remains
 
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2}
+\frac{d^2 \mathbf X_i}{dT^2}
 =
-\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\sigma_{ij}
-\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(t;t_0)}
-{r_{ij}^2(t;t_0)}
-\hat{\mathbf{r}}_{ij}(t;t_0).
+\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{R_{ij}^2(T;T_{\mathrm{em}})}
+\hat{\mathbf R}_{ij}(T;T_{\mathrm{em}}).
 $$
 
 The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
@@ -7419,17 +7466,17 @@ the observables $\mathcal{Q}$ relevant to the inherited comparison. A bulk
 variable has the schematic form
 
 $$
-Y_{\mathcal{Q},W}(t)
+Y_{\mathcal{Q},W}(T)
 =
 \mathcal{P}_{\mathcal{Q},W}
 \left(
-\{\Gamma_A(t),\mathcal{H}_A(t)\}_{A\in \mathcal{A}_W},
-\rho_{\text{NS}}(\mathbf{x},t)
+\{\Gamma_A(T),\mathcal{H}_A(T)\}_{A\in \mathcal{A}_W},
+\rho_{\text{NS}}(\mathbf X,T)
 \right),
 $$
 
 where $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
-In residuals below, $\Gamma(t)$ abbreviates the full sampled collection of
+In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of
 assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation
@@ -7446,9 +7493,9 @@ $$
 \mathcal{R}_{\mathrm{bulk}}
 =
 \left\|
-\frac{d}{dt}\mathcal{P}_{\mathcal{Q},W}(\Gamma(t))
+\frac{d}{dT}\mathcal{P}_{\mathcal{Q},W}(\Gamma(T))
 -
-F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
+F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(T)\right)
 \right\|_{\mathcal{Q},W}.
 $$
 
@@ -7527,6 +7574,8 @@ This lane owns detailed mappings between inherited physics frameworks and the co
 
 A theory bridge is not a neutral encyclopedia entry and it is not the canonical owner of the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. Its job is to take a mature external framework, preserve the mathematics that works, relocate its ontology when required, and state the closure targets needed to turn a comparison into a derivation.
 
+The bridge must move in both directions. It should tell a reader what the inherited theory successfully measures or computes, and it should tell the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack exactly which substrate, assembly, medium, or observer-record mechanism has to recover that success. A bridge that only criticizes old language is incomplete; a bridge that only copies old equations has not yet rebuilt the implementation layer.
+
 ##### Scope
 
 Use this lane for documents that:
@@ -7576,6 +7625,8 @@ Each mature bridge should include:
 #### Quantum Operator Mapping
 
 The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell braid assemblies, bounded by the causal-delay master equation.
+
+The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
 
 ##### The Nested Shell Braid Qubit and Phase Space
 
@@ -8250,6 +8301,10 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 
 The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
 
+In plain terms, the chapter separates two questions that ordinary language often blends. Does the primitive object carry an intrinsic spin axis? No. Can organized motion in a rotationally symmetric world produce conserved angular momentum, spin-like detector responses, and helicity labels? Yes, but only after the motion, wake history, and assembly orientation are specified. The point is not to demote spin; it is to put the burden in the right place.
+
+This makes the bridge strict. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ spin account must recover the measured transformation behavior, quantized response, magnetic-moment systematics, Stern-Gerlach branching, and weak-channel handedness without inserting intrinsic spin as a primitive label. Until that is done, spin language remains an effective ledger and recovery target.
+
 The related material is best read as an ordered path rather than as a flat list of adjacent chapters:
 
 1. Start with primitive ontology in [Architrino](../../../../markdown/aaa/foundations/architrino.md) and [Ontology](../../../../markdown/aaa/foundations/ontology.md).
@@ -8264,14 +8319,14 @@ The architrino page fixes the starting point: an architrino is a point transceiv
 That statement answers the first question directly. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not need angular momentum or spin as primitive entities. The primitive dynamics can be stated without either concept:
 
 $$
-\ddot{\mathbf{x}}_i(t)
+\frac{d^2\mathbf X_i}{dT^2}
 =
-\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\,\sigma_{ij}
 \frac{|q_iq_j|}
-{r_{ij}^2(t;t_0)}
-W_{ij}^{\mathrm{rec}}(t;t_0)
-\hat{\mathbf{r}}_{ij}(t;t_0)
+{r_{ij}^2(T;T_{\mathrm{em}})}
+W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}})
 $$
 
 The only vector direction inside one hit is the delayed radial line of action $\hat{\mathbf{r}}_{ij}$. There is no primitive cross-product force, no intrinsic magnetic right-hand-rule term, and no point-particle spin axis. Any angular, magnetic-like, spin-like, or helicity-like behavior must be reconstructed from delayed geometry, superposition, assembly circulation, and measurement coupling.
@@ -8292,6 +8347,8 @@ For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\
 
 The important qualification is that angular momentum still becomes mandatory once the dynamics are studied as an isolated rotationally symmetric system. The Euclidean void is invariant under spatial rotations. For the action-derived delayed model, rotational symmetry gives a conserved angular-momentum functional. That functional is not a new substance; it is the Noether ledger associated with organized motion and in-flight causal-wake history.
 
+A useful analogy is bookkeeping rather than an added component. Angular momentum is not an extra part tucked inside the architrino. It is the conserved account kept by a whole isolated motion-plus-wake history when that history respects rotational symmetry. Spin is still a further step: a stable assembly must expose the right orientation and measurement-response ledger so that Physical Observers see the standard spin class.
+
 ##### Angular Momentum as a History Ledger
 
 In ordinary local mechanics, angular momentum is often written as a particle-only snapshot. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is incomplete because delayed interactions break the instantaneous equal-and-opposite picture. A source emits at one time, a receiver responds later, and the apparent missing momentum or angular momentum is carried by the active causal-wake history.
@@ -8299,29 +8356,29 @@ In ordinary local mechanics, angular momentum is often written as a particle-onl
 With the universal force/energy bookkeeping constant $\mu_{\text{arch}}$, the mechanical part is
 
 $$
-\mathbf{L}_{\text{mech}}(t)
+\mathbf{L}_{\text{mech}}(T)
 =
-\sum_i \mathbf{x}_i(t)\times\mu_{\text{arch}}\mathbf{v}_i(t)
+\sum_i \mathbf X_i(T)\times\mu_{\text{arch}}\mathbf V_i(T)
 $$
 
 The wake part is a history functional. In the master-equation conservation scaffold it is written as
 
 $$
-\mathbf{L}_{\text{wake}}(t)
+\mathbf{L}_{\text{wake}}(T)
 =
-\mathbf{L}_{\text{wake}}(t_\ast)
+\mathbf{L}_{\text{wake}}(T_\ast)
 -
-\int_{t_\ast}^{t}
+\int_{T_\ast}^{T}
 \sum_i
-\mathbf{x}_i(s)\times\mathbf{F}_i(s)\,ds
+\mathbf X_i(T')\times\mathbf F_i(T')\,dT'
 $$
 
 where $\mathbf{F}_i=\mu_{\text{arch}}\mathbf{a}_i$ is only a bookkeeping force corresponding to the acceleration-first law. The conserved total ledger is
 
 $$
-\mathbf{L}_{\text{tot}}(t)
+\mathbf{L}_{\text{tot}}(T)
 \equiv
-\mathbf{L}_{\text{mech}}(t)+\mathbf{L}_{\text{wake}}(t)
+\mathbf{L}_{\text{mech}}(T)+\mathbf{L}_{\text{wake}}(T)
 $$
 
 For exact isolated solutions of the symmetry-preserving delayed action, $\mathbf{L}_{\text{tot}}$ is conserved. In regularized numerical models, conservation of $\mathbf{L}_{\text{tot}}$ is a validation condition: the chosen regularization must preserve the same rotation symmetry before exact conservation can be claimed.
@@ -8348,11 +8405,11 @@ The table shows why the answer cannot be simply "angular momentum exists" or "sp
 For two architrinos in an otherwise empty Euclidean void, the active causal-root condition is
 
 $$
-\|\mathbf{x}_1(t)-\mathbf{x}_2(t_0)\|
+\|\mathbf X_1(T)-\mathbf X_2(T_{\mathrm{em}})\|
 =
-c_f(t-t_0),
+c_f(T-T_{\mathrm{em}}),
 \qquad
-t_0 < t
+T_{\mathrm{em}} < T
 $$
 
 The sign of $q_1q_2$ determines attraction or repulsion:
@@ -8371,21 +8428,21 @@ $$
 The instantaneous hit is radial along the delayed line of action. If the receiver velocity is decomposed as
 
 $$
-\mathbf{v}_1
+\mathbf V_1
 =
-v_r\hat{\mathbf{r}}_{12}+\mathbf{v}_{\perp}
+V_r\hat{\mathbf r}_{12}+\mathbf V_{\perp}
 $$
 
-then the hit changes the along-the-line component directly, while the transverse component changes only through the later rotation of the line of action. The instantaneous power is proportional to $v_r$:
+then the hit changes the along-the-line component directly, while the transverse component changes only through the later rotation of the line of action. The instantaneous power is proportional to $V_r$:
 
 $$
-P_{12}(t;t_0)
+P_{12}(T;T_{\mathrm{em}})
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(t;t_0)}
+\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
 {r_{12}^2}
-v_r
+V_r
 $$
 
 An opposite-polarity flyby can therefore convert transverse motion into a capture or spiral if the delay geometry and impact parameter place the pair inside the relevant basin. A same-polarity flyby normally does the opposite: it pushes the paths apart. In both cases the spin statement remains the same. A flyby pair has no intrinsic spin variable. It has only motion, causal wakes, and the total angular-momentum ledger of that motion-plus-wake history.
@@ -8419,11 +8476,11 @@ The correct statement is that a spiraling binary has orbital-like rotational act
 The maximum-curvature binary is the candidate limiting state reached if a contraction or capture history enters self-hit geometry. Self-hit exists when the same architrino intersects its own earlier causal wake:
 
 $$
-\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|
+\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
 =
-c_f(t-t_0),
+c_f(T-T_{\mathrm{em}}),
 \qquad
-t_0 < t
+T_{\mathrm{em}} < T
 $$
 
 For uniform circular motion, the self-delay equation in units with $c_f=1$ is
@@ -8516,18 +8573,18 @@ again as a reduced action-angle statement rather than a completed derivation. Th
 
 The nested shell braid ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
 
-For each layer $\ell\in\{I,M,O\}$, let $R_\ell(t)$ be the layer radius, $\omega_\ell(t)$ its angular frequency, $\hat{\mathbf n}_\ell(t)$ its plane normal, and
+For each layer $\ell\in\{I,M,O\}$, let $R_\ell(T)$ be the layer radius, $\omega_\ell(T)$ its angular frequency, $\hat{\mathbf n}_\ell(T)$ its plane normal, and
 
 $$
-\theta_\ell(t)
+\theta_\ell(T)
 =
-\theta_{\ell,0}+\int_{t_0}^{t}\omega_\ell(s)\,ds
+\theta_{\ell,0}+\int_{T_0}^{T}\omega_\ell(T')\,dT'
 $$
 
 its phase. Choose in-plane basis vectors with
 
 $$
-\mathbf u_\ell(t)\times\mathbf v_\ell(t)=\hat{\mathbf n}_\ell(t)
+\mathbf u_\ell(T)\times\mathbf v_\ell(T)=\hat{\mathbf n}_\ell(T)
 $$
 
 and define
@@ -8543,21 +8600,21 @@ $$
 where $\phi_\ell$ is the layer phase offset in the selected chart. For member $\alpha\in\{+1,-1\}$, use the local position model
 
 $$
-\mathbf x_{\ell,\alpha}(t)
+\mathbf X_{\ell,\alpha}(T)
 =
-\mathbf X(t)+\mathbf c_\ell(t)+\alpha R_\ell(t)\mathbf e_\ell(\theta_\ell(t))
+\mathbf X(T)+\mathbf c_\ell(T)+\alpha R_\ell(T)\mathbf e_\ell(\theta_\ell(T))
 $$
 
-Here $\mathbf X(t)$ is the core center and $\mathbf c_\ell(t)$ records layer-center offset. A separated-scale internal gauge may set these terms aside, but only as an approximation.
+Here $\mathbf X(T)$ is the core center and $\mathbf c_\ell(T)$ records layer-center offset. A separated-scale internal gauge may set these terms aside, but only as an approximation.
 
 The mechanical part is
 
 $$
-\mathbf L_{\text{mech}}^{\text{core}}(t)
+\mathbf L_{\text{mech}}^{\text{core}}(T)
 =
 \sum_{\ell,\alpha}
-\mathbf x_{\ell,\alpha}(t)\times
-\mu_{\text{arch}}\dot{\mathbf x}_{\ell,\alpha}(t)
+\mathbf X_{\ell,\alpha}(T)\times
+\mu_{\text{arch}}\frac{d\mathbf X_{\ell,\alpha}}{dT}(T)
 $$
 
 For nearly circular separated layers, this becomes
@@ -8576,43 +8633,43 @@ where $\mathbf L_{\text{tr}}$ collects center motion, layer-center offsets, chan
 The delayed part is branch-resolved. Define
 
 $$
-\mathcal C_{\ell\alpha,m\beta}(t)
+\mathcal C_{\ell\alpha,m\beta}(T)
 =
 \left\{
-t_0 < t:
-\left\|\mathbf x_{\ell,\alpha}(t)-\mathbf x_{m,\beta}(t_0)\right\|
+T_{\mathrm{em}} < T:
+\left\|\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_{\mathrm{em}})\right\|
 =
-c_f(t-t_0)
+c_f(T-T_{\mathrm{em}})
 \right\}
 $$
 
 and let
 
 $$
-\mathcal R(t)
+\mathcal R(T)
 =
 \left\{
 (\ell,\alpha;m,\beta;b):
-t_0^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(t)
+T_{\mathrm{em}}^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(T)
 \right\}
 $$
 
 record the active source-receiver branches. For member phases, use
 
 $$
-\vartheta_{\ell,\alpha}(t)
+\vartheta_{\ell,\alpha}(T)
 =
-\theta_\ell(t)+\frac{1-\alpha}{2}\pi
+\theta_\ell(T)+\frac{1-\alpha}{2}\pi
 $$
 
 The phase-closure residual of a branch is
 
 $$
-\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 =
-\vartheta_{\ell,\alpha}(t)
+\vartheta_{\ell,\alpha}(T)
 -
-\vartheta_{m,\beta}(t_0^{(b)})
+\vartheta_{m,\beta}(T_{\mathrm{em}}^{(b)})
 +
 \phi_{\ell m}^{(b)}
 -
@@ -8622,7 +8679,7 @@ $$
 An active branch must satisfy the causal-root equation and the relevant phase window,
 
 $$
-\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 \equiv0\pmod{2\pi}
 $$
 
@@ -8631,11 +8688,11 @@ inside the tolerance of the regularized chart.
 The self-hit history is the diagonal subset
 
 $$
-\mathcal H_{\ell,\alpha}(t)
+\mathcal H_{\ell,\alpha}(T)
 =
 \left\{
-t_0\in\mathcal C_{\ell\alpha,\ell\alpha}(t):
-t_0 < t,\ H(t-t_0)=1
+T_{\mathrm{em}}\in\mathcal C_{\ell\alpha,\ell\alpha}(T):
+T_{\mathrm{em}} < T,\ H(T-T_{\mathrm{em}})=1
 \right\}
 $$
 
@@ -8644,9 +8701,9 @@ with the trivial instantaneous branch excluded. This history is path-history dat
 For an active branch, set
 
 $$
-\mathbf r_{\ell\alpha,m\beta}^{(b)}(t)
+\mathbf r_{\ell\alpha,m\beta}^{(b)}(T)
 =
-\mathbf x_{\ell,\alpha}(t)-\mathbf x_{m,\beta}(t_0^{(b)}),
+\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_{\mathrm{em}}^{(b)}),
 \qquad
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 =
@@ -8659,12 +8716,12 @@ and
 $$
 D_{s,\ell\alpha,m\beta}^{(b)}
 =
-c_f-\mathbf v_{m,\beta}(t_0^{(b)})\cdot
+c_f-\mathbf V_{m,\beta}(T_{\mathrm{em}}^{(b)})\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)},
 \qquad
-D_{t,\ell\alpha,m\beta}^{(b)}
+D_{T,\ell\alpha,m\beta}^{(b)}
 =
-c_f-\mathbf v_{\ell,\alpha}(t)\cdot
+c_f-\mathbf V_{\ell,\alpha}(T)\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 and
@@ -8672,7 +8729,7 @@ $$
 W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 =
 \left|
-\frac{D_{t,\ell\alpha,m\beta}^{(b)}}
+\frac{D_{T,\ell\alpha,m\beta}^{(b)}}
 {D_{s,\ell\alpha,m\beta}^{(b)}}
 \right|
 $$
@@ -8680,7 +8737,7 @@ $$
 The branch force-like bookkeeping term is
 
 $$
-\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 =
 \mu_{\text{arch}}\kappa\sigma_{\ell\alpha,m\beta}
 \frac{|q_{\ell,\alpha}q_{m,\beta}|}
@@ -8692,36 +8749,36 @@ $$
 The corresponding branch torque is
 
 $$
-\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 =
-\mathbf x_{\ell,\alpha}(t)\times
-\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\mathbf X_{\ell,\alpha}(T)\times
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 $$
 
 The delayed wake contribution is therefore
 
 $$
-\mathbf L_{\text{wake}}^{\text{core}}(t)
+\mathbf L_{\text{wake}}^{\text{core}}(T)
 =
-\mathbf L_{\text{wake}}^{\text{core}}(t_\ast)
+\mathbf L_{\text{wake}}^{\text{core}}(T_\ast)
 -
-\int_{t_\ast}^{t}
-\sum_{(\ell,\alpha;m,\beta;b)\in\mathcal R(s)}
-\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(s)\,ds
+\int_{T_\ast}^{T}
+\sum_{(\ell,\alpha;m,\beta;b)\in\mathcal R(T')}
+\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(T')\,dT'
 $$
 
 The working three-layer total is
 
 $$
 \boxed{
-\mathbf L_{\text{tot}}^{\text{core}}(t)
+\mathbf L_{\text{tot}}^{\text{core}}(T)
 =
 \sum_{\ell\in\{I,M,O\}}
-2\mu_{\text{arch}}R_\ell^2(t)\omega_\ell(t)\hat{\mathbf n}_\ell(t)
+2\mu_{\text{arch}}R_\ell^2(T)\omega_\ell(T)\hat{\mathbf n}_\ell(T)
 +
-\mathbf L_{\text{tr}}(t)
+\mathbf L_{\text{tr}}(T)
 +
-\mathbf L_{\text{wake}}^{\text{core}}(t)
+\mathbf L_{\text{wake}}^{\text{core}}(T)
 }
 $$
 
@@ -8748,9 +8805,9 @@ $$
 \Delta\mathbf L_{\text{wake}}^{\text{core}}
 =
 -
-\int_{t_i}^{t_f}
-\sum_{\mathcal R(s)}
-\boldsymbol{\tau}^{(b)}(s)\,ds
+\int_{T_i}^{T_f}
+\sum_{\mathcal R(T')}
+\boldsymbol{\tau}^{(b)}(T')\,dT'
 $$
 
 Projecting onto a transaction axis $\hat{\mathbf a}$ gives the scalar bridge convention
@@ -8772,23 +8829,23 @@ For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hba
 
 ##### Partition Equations from the Master Ledger
 
-The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[t_i,t_f]$:
+The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[T_i,T_f]$:
 
 $$
-\mathbf T_\ell(t)
+\mathbf T_\ell(T)
 =
 \sum_{\alpha}
-\sum_{(m,\beta;b):(\ell,\alpha;m,\beta;b)\in\mathcal R(t)}
-\mathbf x_{\ell,\alpha}(t)\times
-\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\sum_{(m,\beta;b):(\ell,\alpha;m,\beta;b)\in\mathcal R(T)}
+\mathbf X_{\ell,\alpha}(T)\times
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 $$
 
-Since $\frac{d}{dt}\big(\mathbf x\times\mu_{\text{arch}}\dot{\mathbf x}\big)=\mathbf x\times\mathbf F$ for each architrino worldline, the exact layer mechanical increment is
+Since $\frac{d}{dT}\big(\mathbf X\times\mu_{\text{arch}}\mathbf V\big)=\mathbf X\times\mathbf F$ for each architrino worldline, the exact layer mechanical increment is
 
 $$
 \Delta\mathbf L_{\text{mech},\ell}
 =
-\int_{t_i}^{t_f}\mathbf T_\ell(s)\,ds
+\int_{T_i}^{T_f}\mathbf T_\ell(T')\,dT'
 $$
 
 The master-equation scaffold therefore gives the core mechanical change
@@ -8799,8 +8856,8 @@ $$
 \sum_{\ell\in\{I,M,O\}}
 \Delta\mathbf L_{\text{mech},\ell}
 =
-\int_{t_i}^{t_f}
-\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(s)\,ds
+\int_{T_i}^{T_f}
+\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(T')\,dT'
 $$
 
 The wake functional supplies the complementary in-flight ledger:
@@ -8809,8 +8866,8 @@ $$
 \Delta\mathbf L_{\text{wake}}^{\text{core}}
 =
 -
-\int_{t_i}^{t_f}
-\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(s)\,ds
+\int_{T_i}^{T_f}
+\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(T')\,dT'
 +
 \Delta\mathbf L_{\text{wake},\partial}
 $$
@@ -9657,12 +9714,12 @@ Here $\mathfrak R$ is the causal-root ledger class and $B_{c_\star}$ records adm
 In the circular carrier chart,
 
 $$
-\mathbf x_{a,\alpha}(t)
+\mathbf X_{a,\alpha}(T)
 =
-\mathbf X(t)+\mathbf c_a(t)+\alpha R_a(t)
-\bigl(\cos\phi_a(t)\mathbf u_a(t)+\sin\phi_a(t)\mathbf v_a(t)\bigr),
+\mathbf X(T)+\mathbf c_a(T)+\alpha R_a(T)
+\bigl(\cos\phi_a(T)\mathbf u_a(T)+\sin\phi_a(T)\mathbf v_a(T)\bigr),
 \qquad
-\mathbf u_a(t)\times\mathbf v_a(t)=\hat{\mathbf n}_a(t)
+\mathbf u_a(T)\times\mathbf v_a(T)=\hat{\mathbf n}_a(T)
 $$
 
 The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three support roles, not two different triads.
@@ -9731,7 +9788,7 @@ $$
 \widetilde r(s)
 =
 \left(
-t_{0,r}(s),
+T_{\mathrm{em},r}(s),
 k_r(s),
 \mathcal E_r(s),
 \Xi_r(s),
@@ -10152,7 +10209,7 @@ $$
 Wr_c[\gamma]
 =
 \iint_{\mathcal{L}_{\text{causal}}}
-\mathrm{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
+\mathrm{sign}\!\big(\mathbf V(T)\times\mathbf V(T')\cdot\mathbf r\big)\,dT\,dT'
 $$
 
 which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered nested shell braid frame and then prove the $4\pi$ return behavior.
@@ -10264,7 +10321,7 @@ For a nested shell braid, the first closure object is the three-shell phase and 
 $$
 \Theta_a(T)
 =
-\int_0^T\omega_a(t)\,dt
+\int_0^T\omega_a(T')\,dT'
 +
 \Phi_a^{\text{root}}(T)
 +
@@ -10317,7 +10374,7 @@ The candidate nested shell braid closure labels are therefore:
 $$
 H_{\text{core}}(T)
 =
-\mathcal P\exp\!\int_0^T\widehat{\boldsymbol\Omega}_{\text{prec}}(t)\,dt
+\mathcal P\exp\!\int_0^T\widehat{\boldsymbol\Omega}_{\text{prec}}(T')\,dT'
 $$
 
 This return is $SO(3)$-like if the full lifted state returns after $2\pi$, and spinor-like only if the visible normal triad returns after $2\pi$ while the history-lifted ledger restores after $4\pi$.
@@ -10543,6 +10600,8 @@ Second-ring consumers inherit the same limitation. Photon records in [Reaction L
 ##### Helicity and Vector Modes
 
 Helicity is a projection onto a propagation or momentum axis. It should not be used for every planar circulation sign.
+
+The ordinary reader-facing distinction is simple: spin asks how an assembly transforms under rotations, while helicity asks how that rotational label lines up with the direction of travel. A planar circulation can contribute to such a label, but it does not become helicity until the propagation axis, transverse modes, and measurement channel are fixed. The equations below keep that separation visible.
 
 For a vector mode with propagation direction $\hat{\mathbf{p}}$, the standard helicity target is
 
@@ -11141,7 +11200,7 @@ Spin measurement is not the reading of a pre-existing tiny arrow. It is a finite
 For a Stern-Gerlach-like measurement, the apparatus supplies an oriented interaction geometry $\hat{\mathbf{m}}$ and a spatial gradient. In effective language one writes a coupling to a spin projection along $\hat{\mathbf{m}}$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate-level description is a macroscopic apparatus assembly whose constituent architrinos and causal wakes create an axis-indexed potential environment for the target nested shell braid. A useful reduced apparatus potential is
 
 $$
-U_{\text{app}}(\mathbf{x},t;\hat{\mathbf{m}})
+U_{\text{app}}(\mathbf X,T;\hat{\mathbf{m}})
 $$
 
 but this is only a mollified bookkeeping object for the coherent envelope of many causal-wake hits. The fundamental interaction remains the architrino-wise Master Equation sum over radial causal-wake intersections.
@@ -11149,9 +11208,9 @@ but this is only a mollified bookkeeping object for the coherent envelope of man
 The apparatus acts over a finite interval
 
 $$
-t_{\text{in}}\le t\le t_{\text{out}},
+T_{\text{in}}\le T\le T_{\text{out}},
 \qquad
-T_{\text{int}}=t_{\text{out}}-t_{\text{in}}>0
+T_{\text{int}}=T_{\text{out}}-T_{\text{in}}>0
 $$
 
 The gradient must be strong enough and persistent enough to drive the coupled target-apparatus state toward a branch boundary, but not so violent that it dissociates the target instead of measuring it. A zero-duration projection is therefore not the substrate model. The observer-level abruptness is the coarse appearance of a finite threshold crossing and record lock.
@@ -11159,12 +11218,12 @@ The gradient must be strong enough and persistent enough to drive the coupled ta
 The target is not represented by one internal vector $\hat{\mathbf{n}}$. The substrate-facing object is the full nested shell braid spin ledger
 
 $$
-\mathcal{J}_{\text{core}}(t)
+\mathcal{J}_{\text{core}}(T)
 =
 \left(
 \{\mathbf{n}_{\ell},\phi_{\ell},\omega_{\ell},I_{\ell},\mathcal{R}_{\ell}\}_{\ell\in\{I,M,O\}},
-\mathbf{L}_{\text{wake},\text{core}}(t),
-\mathcal{H}_{\text{self}}(t)
+\mathbf{L}_{\text{wake},\text{core}}(T),
+\mathcal{H}_{\text{self}}(T)
 \right)
 $$
 
@@ -11173,12 +11232,12 @@ where $\mathbf{n}_{\ell}$ denotes the layer plane normal, $\phi_{\ell}$ the phas
 The apparatus couples first through the externally exposed layers of the assembly, but the result is not determined by the outer layer alone. During the interval $T_{\text{int}}$, the apparatus gradient exerts a distributed torque on the target constituents,
 
 $$
-\boldsymbol{\tau}_{\text{app}\to\text{core}}(t)
+\boldsymbol{\tau}_{\text{app}\to\text{core}}(T)
 =
 \sum_{i\in\text{core}}
-\left(\mathbf{x}_i(t)-\mathbf{X}_{\text{core}}(t)\right)
+\left(\mathbf X_i(T)-\mathbf X_{\text{core}}(T)\right)
 \times
-\mathbf{F}^{\text{app}}_i(t)
+\mathbf F^{\text{app}}_i(T)
 $$
 
 where $\mathbf{F}^{\text{app}}_i$ is the apparatus-induced force bookkeeping term reconstructed from the local causal-wake hits, and $\mathbf{X}_{\text{braid}}$ is the target braid center used for the reduced ledger. The torque deforms the outer response channel, retunes the middle hinge, and can alter the admissible self-hit branch history of the inner layer. The measured response is therefore a coupled redistribution of $\Delta I_O$, $\Delta I_M$, $\Delta I_I$, and $\Delta I_{\text{wake}}$, not a direct lookup of an already chosen sign.
@@ -11202,15 +11261,15 @@ This is the Stern-Gerlach analogue of recoil accounting. The apparatus receives 
 The two outcomes arise from basin resolution. Let
 
 $$
-Z_{\hat{\mathbf{m}}}(t)
+Z_{\hat{\mathbf{m}}}(T)
 =
-\left(\mathcal{J}_{\text{core}}(t),A_{\hat{\mathbf{m}}}(t),\mathcal{W}_{\text{loc}}(t)\right)
+\left(\mathcal{J}_{\text{core}}(T),A_{\hat{\mathbf{m}}}(T),\mathcal{W}_{\text{loc}}(T)\right)
 $$
 
 denote the reduced state containing the core spin ledger, the apparatus channel state, and the local causal-wake background. A Stern-Gerlach-like measurement is successful only when the coupled flow crosses an axis-indexed separatrix
 
 $$
-\Sigma_{\hat{\mathbf{m}}}\!\left(Z_{\hat{\mathbf{m}}}(t)\right)=0
+\Sigma_{\hat{\mathbf{m}}}\!\left(Z_{\hat{\mathbf{m}}}(T)\right)=0
 $$
 
 and then settles into one of two record-forming basins
@@ -11227,21 +11286,21 @@ $$
 o_{\hat{\mathbf{m}}}
 =
 \begin{cases}
-+1, & Z_{\hat{\mathbf{m}}}(t_{\text{rec}})\in B_{+}(\hat{\mathbf{m}}),\\
--1, & Z_{\hat{\mathbf{m}}}(t_{\text{rec}})\in B_{-}(\hat{\mathbf{m}}),
++1, & Z_{\hat{\mathbf{m}}}(T_{\text{rec}})\in B_{+}(\hat{\mathbf{m}}),\\
+-1, & Z_{\hat{\mathbf{m}}}(T_{\text{rec}})\in B_{-}(\hat{\mathbf{m}}),
 \end{cases}
 $$
 
-where $t_{\text{rec}}>t_{\text{in}}$ is the time at which the branch has crossed the separatrix and locked into a persistent apparatus record. Failed capture, dissociation, or insufficient amplification are apparatus failures, not additional spin outcomes.
+where $T_{\text{rec}}>T_{\text{in}}$ is the time at which the branch has crossed the separatrix and locked into a persistent apparatus record. Failed capture, dissociation, or insufficient amplification are apparatus failures, not additional spin outcomes.
 
 The deterministic microscopic response for a fully specified incoming state is obtained by applying the finite-time flow to the two basin sets. This gives the exact reduced response kernels
 
 $$
-K_{\pm}(\hat{\mathbf{m}};Z_{\hat{\mathbf{m}}}(t_{\text{in}}))
+K_{\pm}(\hat{\mathbf{m}};Z_{\hat{\mathbf{m}}}(T_{\text{in}}))
 =
 \mathbf{1}\!\left[
 \Phi^{\hat{\mathbf{m}}}_{T_{\text{int}}}
-\left(Z_{\hat{\mathbf{m}}}(t_{\text{in}})\right)
+\left(Z_{\hat{\mathbf{m}}}(T_{\text{in}})\right)
 \in B_{\pm}(\hat{\mathbf{m}})
 \right]
 $$
@@ -11259,12 +11318,12 @@ $$
 with $q_{\hat{\mathbf{m}}}>0$ on the $+$ side and $q_{\hat{\mathbf{m}}}<0$ on the $-$ side. Along the apparatus-driven flow, linearize the separatrix-normal dynamics:
 
 $$
-\frac{d q_{\hat{\mathbf{m}}}}{dt}
+\frac{d q_{\hat{\mathbf{m}}}}{dT}
 =
-\lambda_{\hat{\mathbf{m}}}(t)q_{\hat{\mathbf{m}}}
+\lambda_{\hat{\mathbf{m}}}(T)q_{\hat{\mathbf{m}}}
 +
-\mathcal{N}_{\hat{\mathbf{m}}}(Z(t),t)\cdot
-\dot{\mathbf{J}}_{C}^{\text{app}}(t)
+\mathcal{N}_{\hat{\mathbf{m}}}(Z(T),T)\cdot
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T)
 +
 O(q_{\hat{\mathbf{m}}}^{2},\|\delta Z_{\perp}\|^{2})
 $$
@@ -11272,26 +11331,26 @@ $$
 Here $\mathcal{N}_{\hat{\mathbf{m}}}$ is the separatrix normal covector in the reduced angular-momentum ledger coordinates, $\lambda_{\hat{\mathbf{m}}}$ is the local normal expansion / contraction rate, and $\delta Z_{\perp}$ denotes tangent-to-separatrix perturbations. The apparatus-driven core update is
 
 $$
-\dot{\mathbf{J}}_{C}^{\text{app}}(t)
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T)
 =
-\boldsymbol{\tau}_{\text{app}\to\text{core}}(t)
+\boldsymbol{\tau}_{\text{app}\to\text{core}}(T)
 +
-\dot{\mathbf{L}}_{\text{wake},C\leftrightarrow A}(t)
+\frac{d\mathbf L_{\text{wake},C\leftrightarrow A}}{dT}(T)
 $$
 
 where
 
 $$
-\boldsymbol{\tau}_{\text{app}\to\text{core}}(t)
+\boldsymbol{\tau}_{\text{app}\to\text{core}}(T)
 =
 \sum_{i\in\text{core}}
-\left(\mathbf{x}_i(t)-\mathbf{X}_{\text{core}}(t)\right)
+\left(\mathbf X_i(T)-\mathbf X_{\text{core}}(T)\right)
 \times
-\mathbf{F}^{\text{app}}_i(t),
+\mathbf F^{\text{app}}_i(T),
 \qquad
-\mathbf{F}^{\text{app}}_i(t)
+\mathbf F^{\text{app}}_i(T)
 =
--\nabla_{\mathbf{x}_i}U_{\text{app}}(\mathbf{x}_i,t;\hat{\mathbf{m}})
+-\nabla_{\mathbf X_i}U_{\text{app}}(\mathbf X_i,T;\hat{\mathbf{m}})
 $$
 
 in the mollified apparatus-potential chart.
@@ -11299,28 +11358,28 @@ in the mollified apparatus-potential chart.
 The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus source architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
 
 $$
-\mathcal C_{ia}^{A}(t)
+\mathcal C_{ia}^{A}(T)
 =
 \left\{
-s<t:
-\left\|\mathbf{x}_i(t)-\mathbf{x}_a(s)\right\|
+T_{\mathrm{em}}<T:
+\left\|\mathbf X_i(T)-\mathbf X_a(T_{\mathrm{em}})\right\|
 =
-c_f(t-s)
+c_f(T-T_{\mathrm{em}})
 \right\}
 $$
 
-For each root $s\in\mathcal C_{ia}^{A}(t)$, write
+For each root $T_{\mathrm{em}}\in\mathcal C_{ia}^{A}(T)$, write
 
 $$
-\mathbf r_{ia}(t;s)
+\mathbf r_{ia}(T;T_{\mathrm{em}})
 =
-\mathbf{x}_i(t)-\mathbf{x}_a(s),
+\mathbf X_i(T)-\mathbf X_a(T_{\mathrm{em}}),
 \qquad
-r_{ia}(t;s)=\|\mathbf r_{ia}(t;s)\|,
+r_{ia}(T;T_{\mathrm{em}})=\|\mathbf r_{ia}(T;T_{\mathrm{em}})\|,
 \qquad
-\hat{\mathbf r}_{ia}(t;s)
+\hat{\mathbf r}_{ia}(T;T_{\mathrm{em}})
 =
-\frac{\mathbf r_{ia}(t;s)}{r_{ia}(t;s)}
+\frac{\mathbf r_{ia}(T;T_{\mathrm{em}})}{r_{ia}(T;T_{\mathrm{em}})}
 $$
 
 and
@@ -11359,30 +11418,30 @@ $$
 Equivalently, in the finite-memory dual-mollified chart,
 
 $$
-\mathbf a_{i,\eta}^{\text{app}}(t;\hat{\mathbf{m}})
+\mathbf A_{i,\eta}^{\text{app}}(T;\hat{\mathbf{m}})
 =
 \kappa
 \sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
 \sigma_{ia}|q_iq_a|
-\int_{t-h}^{t}
-\frac{\widehat{\mathbf r}_{ia}(t,s)}
-{r_{ia}^2(t,s)+\epsilon_c^2}
-\delta_{\eta}\!\left(r_{ia}(t,s)-c_f(t-s)\right)\,ds
+\int_{T-h}^{T}
+\frac{\widehat{\mathbf r}_{ia}(T,T')}
+{r_{ia}^2(T,T')+\epsilon_c^2}
+\delta_{\eta}\!\left(r_{ia}(T,T')-c_f(T-T')\right)\,dT'
 $$
 
 The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the braid-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
 
 $$
 \boxed{
-\dot{\mathbf{J}}_{C}^{\text{app}}(t;\hat{\mathbf{m}})
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T;\hat{\mathbf{m}})
 =
 \mu_{\text{arch}}
 \sum_{i\in C}
-\left(\mathbf{x}_i(t)-\mathbf{X}_{C}(t)\right)
+\left(\mathbf X_i(T)-\mathbf X_{C}(T)\right)
 \times
-\mathbf a_i^{\text{app}}(t;\hat{\mathbf{m}})
+\mathbf A_i^{\text{app}}(T;\hat{\mathbf{m}})
 +
-\dot{\mathbf L}_{\text{wake},C\leftrightarrow A}(t)
+\frac{d\mathbf L_{\text{wake},C\leftrightarrow A}}{dT}(T)
 }
 $$
 
@@ -11391,8 +11450,8 @@ and over the interaction window,
 $$
 \Delta\mathbf{J}_{C}^{\text{app}}
 =
-\int_{t_{\text{in}}}^{t_{\text{out}}}
-\dot{\mathbf{J}}_{C}^{\text{app}}(t;\hat{\mathbf{m}})\,dt
+\int_{T_{\text{in}}}^{T_{\text{out}}}
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T;\hat{\mathbf{m}})\,dT
 $$
 
 The missing recoil is not discarded; it is fixed by
@@ -11412,9 +11471,9 @@ $$
 Let
 
 $$
-\Lambda_{\hat{\mathbf{m}}}(u,v)
+\Lambda_{\hat{\mathbf{m}}}(U,V)
 =
-\int_{u}^{v}\lambda_{\hat{\mathbf{m}}}(s)\,ds
+\int_{U}^{V}\lambda_{\hat{\mathbf{m}}}(T)\,dT
 $$
 
 The first-order signed response functional at the end of the interaction window is
@@ -11422,13 +11481,13 @@ The first-order signed response functional at the end of the interaction window 
 $$
 \mathcal{Q}_{\hat{\mathbf{m}}}(Z_{\text{in}})
 =
-e^{\Lambda_{\hat{\mathbf{m}}}(t_{\text{in}},t_{\text{out}})}
+e^{\Lambda_{\hat{\mathbf{m}}}(T_{\text{in}},T_{\text{out}})}
 \Sigma_{\hat{\mathbf{m}}}(Z_{\text{in}})
 +
-\int_{t_{\text{in}}}^{t_{\text{out}}}
-e^{\Lambda_{\hat{\mathbf{m}}}(s,t_{\text{out}})}
-\mathcal{N}_{\hat{\mathbf{m}}}(Z(s),s)\cdot
-\dot{\mathbf{J}}_{C}^{\text{app}}(s)\,ds
+\int_{T_{\text{in}}}^{T_{\text{out}}}
+e^{\Lambda_{\hat{\mathbf{m}}}(T',T_{\text{out}})}
+\mathcal{N}_{\hat{\mathbf{m}}}(Z(T'),T')\cdot
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T')\,dT'
 $$
 
 The record gate is
@@ -11437,7 +11496,7 @@ $$
 G_{\text{rec}}(Z_{\text{in}})
 =
 H\!\left(
-\left|R(A(t_{\text{rec}}))-R(A_{\text{pre}})\right|-R_*
+\left|R(A(T_{\text{rec}}))-R(A_{\text{pre}})\right|-R_*
 \right)
 H\!\left(\tau_{\text{persist}}-T_{\text{rec}}\right)
 $$
@@ -11742,7 +11801,7 @@ P_{-}(\alpha\,|\,\text{rec})
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
+This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -11777,9 +11836,9 @@ $$
 The architrino-level starting point is not this ket. It is a pair provenance ledger. At a creation or fragmentation event,
 
 $$
-\Gamma_{\text{parent}}(t_0^-)
+\Gamma_{\text{parent}}(T_0^-)
 \longrightarrow
-\Gamma_A(t_0^+),\Gamma_B(t_0^+)
+\Gamma_A(T_0^+),\Gamma_B(T_0^+)
 $$
 
 with conservation of total energy, momentum, angular momentum, polarity inventory, and relevant causal-wake history. For a singlet-like pair, the observer-level summary is
@@ -11895,7 +11954,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar nested shell braids, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
-7. Evaluate the Master-Equation apparatus branch-sum impulse $\dot{\mathbf{J}}_{C}^{\text{app}}$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
+7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
@@ -11907,9 +11966,13 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.
 
-#### Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸
+#### Pilot-Wave Character: de Broglie–Bohm (QM) vs. $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 This document maps the structural relationship between the de Broglie–Bohm pilot-wave formalism and the deterministic causal wake dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is comparative: if $\mathbb{A}\mathbb{A}\mathbb{A}$ recovers pilot-wave-style guidance, it must do so with a **single ontology**. The guiding structure cannot be a separate entity layered atop particles; it must be the physical causal wake generated by the architrinos themselves. Guidance, interference, and quantization are therefore closure targets for the same Master Equation that governs all motion, without adding a second ontological category.
+
+The useful lesson from pilot-wave theory is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ should import a new wave object. The useful lesson is the contract: definite trajectories, a guiding structure, and a transported measure must jointly reproduce quantum statistics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that contract has to be implemented by architrinos, causal wakes, Noether sea response, and measurement basins, not by a separate configuration-space field.
+
+So this bridge should be read as a recovery test. If causal wakes can play the guidance role, they must supply the phase-like direction, the amplitude-like basin weights, and the current-like flow that pilot-wave theory packages into $\psi$. If they cannot do that from the same native dynamics, the comparison remains only an analogy.
 
 ---
 
@@ -11953,37 +12016,37 @@ $Q$ depends on the global shape of $R$ (the amplitude of $\psi$), not on its loc
 
 ###### Statistical Content and the Born Rule
 
-If the initial particle distribution is $|\psi(\mathbf{Q}, t_0)|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
+If the initial particle distribution is $|\psi_{\mathrm{std}}(\mathbf{Q}, t_{\mathrm{std},0})|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi_{\mathrm{std}}|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
 
-The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{t-t_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
+The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{T-T_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
 $$
-\mu_t
+\mu_T
 =
-(\Phi_{t-t_0})_*\mu_0
+(\Phi_{T-T_0})_*\mu_0
 $$
-is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
+is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(T)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
 $$
-\Delta_{\mathrm{Born}}^\theta(t)
+\Delta_{\mathrm{Born}}^\theta(T)
 =
 \max_k
 \frac{
 \left|
-\mu_t(B_k^\theta(t))
+\mu_T(B_k^\theta(T))
 -
-\int_{\Omega_k^\theta(t)}
-|\psi_{\mathrm{eff}}(q,t)|^2\,dq
+\int_{\Omega_k^\theta(T)}
+|\psi_{\mathrm{eff}}(q,T)|^2\,dq
 \right|
 }{\varepsilon_k}
 $$
-The closure target is $\Delta_{\mathrm{Born}}^\theta(t)\le1$ over the declared record window, with the same $\mu_t$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
+The closure target is $\Delta_{\mathrm{Born}}^\theta(T)\le1$ over the declared record window, with the same $\mu_T$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
 
-The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,t)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
+The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,T)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
 $$
-\partial_t\rho_\theta(q,t)
+\partial_T\rho_\theta(q,T)
 +
-\nabla_q\cdot \mathbf{J}_\theta(q,t)
+\nabla_q\cdot \mathbf{J}_\theta(q,T)
 =
-\mathcal{R}_{\mathrm{eq}}^\theta(q,t)
+\mathcal{R}_{\mathrm{eq}}^\theta(q,T)
 $$
 with
 $$
@@ -12004,6 +12067,8 @@ dBB theory has **two ontological categories**:
 The ontological status of $\psi$ is debated: is it a physical field (Valentini), a law of nature (Dürr, Goldstein, Zanghì), or an effective description of deeper structure? This two-category structure is the principal conceptual cost of the theory.
 
 The comparison boundary is therefore precise. De Broglie--Bohm theory is useful because it keeps deterministic trajectories, a transported measure, and measurement back-action on the table. It is not a finished $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism because its guiding wave lives on configuration space and its quantum potential is not implemented by causal-root, apparatus, and Noether sea records. The native replacement must recover the helpful trajectory and measure structure while replacing the configuration-space ontology with physical assemblies, causal wakes, pair provenance, and apparatus records.
+
+In plainer language, Bohmian mechanics proves that determinism and quantum statistics are not enemies by logic alone. Its cost is that the guiding wave has a strange home: the full configuration space of the system. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts the challenge but rejects that cost. The guiding information must be carried by physical wake history and assembly context in the Euclidean void.
 
 ---
 
@@ -12107,20 +12172,20 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but eq
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
-De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf{X}(t)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(t)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf{x},t)=S_{\mathrm{eff}}(\mathbf{x},t)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
+De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf X(T)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(T)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf X,T)=S_{\mathrm{eff}}(\mathbf X,T)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
 $$
 \mathcal{R}_{\mathrm{phase}}(\gamma)
 =
 \max\left(
-\sup_{t\in[0,T]}
-\frac{|\theta_{\mathrm{int}}(t)-\theta_{\mathrm{wake}}(\mathbf{X}(t),t)-2\pi k(t)|}{\varepsilon_\theta},
-\sup_{t\in[0,T]}
-\frac{\left|\,\mathbf{v}_{\mathrm{group}}(\mathbf{X}(t),t)-\dot{\mathbf{X}}(t)\,\right|}{\varepsilon_v},
-\frac{\left|\oint_\gamma \mathbf{p}_{\mathrm{eff}}\cdot d\mathbf{x}-n h_{\mathrm{eff}}\right|}{\varepsilon_I}
+\sup_{T'\in[0,T]}
+\frac{|\theta_{\mathrm{int}}(T')-\theta_{\mathrm{wake}}(\mathbf X(T'),T')-2\pi k(T')|}{\varepsilon_\theta},
+\sup_{T'\in[0,T]}
+\frac{\left|\,\mathbf V_{\mathrm{group}}(\mathbf X(T'),T')-\frac{d\mathbf X}{dT}(T')\,\right|}{\varepsilon_v},
+\frac{\left|\oint_\gamma p_i^{\mathrm{eff}}\,dX^i-n h_{\mathrm{eff}}\right|}{\varepsilon_I}
 \right)
 \le 1
 $$
-with $k(t),n\in\mathbb{Z}$, $\mathbf{p}_{\mathrm{eff}}=\nabla S_{\mathrm{eff}}$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
+with $k(T),n\in\mathbb{Z}$, $p_i^{\mathrm{eff}}=\partial S_{\mathrm{eff}}/\partial X^i$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
 
 ###### Boundary Conditions and Spectral Quantization
 
@@ -12171,11 +12236,11 @@ Here $\mathcal{P}_{T_n}$ is the retained assembly return map, $\Delta\varphi_n$ 
 
 Central potentials add a second comparison target. Standard quantum mechanics uses
 $$
-\hat{\mathbf{L}}=-i\hbar\,\mathbf{x}\times\nabla,
+\hat L_{\mathrm{std}}^i=-i\hbar\,\epsilon^i{}_{jk}x_{\mathrm{std}}^j\nabla_{\mathrm{std}}^k,
 \qquad
-[\hat L_i,\hat L_j]=i\hbar\,\epsilon_{ijk}\hat L_k,
+[\hat L_{\mathrm{std}}^i,\hat L_{\mathrm{std}}^j]=i\hbar\,\epsilon^{ij}{}_{k}\hat L_{\mathrm{std}}^k,
 \qquad
-[\hat H,\hat L_i]=[\hat H,\hat L^2]=0
+[\hat H_{\mathrm{std}},\hat L_{\mathrm{std}}^i]=[\hat H_{\mathrm{std}},\hat L_{\mathrm{std}}^2]=0
 $$
 for a central potential, allowing states to be labeled by $n,l,m$. The hydrogen benchmark is
 $$
@@ -12368,12 +12433,12 @@ Keep this chain separate from the spin-statistics / exchange ledger in [Fermi-Di
 
 Minimal mathematical spine:
 $$
-\text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(t,\mathbf{x},\mathbf{v})
-\Longrightarrow\ \psi=\sqrt{\rho}\,e^{iS/\hbar_{\mathrm{eff}}}
+\text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(T,\mathbf X,\mathbf V)
+\Longrightarrow\ \psi_{\mathrm{eff}}=\sqrt{\rho}\,e^{iS_{\mathrm{eff}}/\hbar_{\mathrm{eff}}}
 $$
 $$
-i\hbar_{\mathrm{eff}}\partial_t\psi=
-\left(-\frac{\hbar_{\mathrm{eff}}^2}{2m}\nabla^2+V_{\mathrm{eff}}\right)\psi
+i\hbar_{\mathrm{eff}}\partial_{t_{\mathrm{eff}}}\psi_{\mathrm{eff}}=
+\left(-\frac{\hbar_{\mathrm{eff}}^2}{2m_{\mathrm{eff}}}\nabla_{\mathrm{eff}}^2+V_{\mathrm{eff}}\right)\psi_{\mathrm{eff}}
 \quad (\text{in closure regime})
 $$
 $$
@@ -12385,11 +12450,13 @@ Detailed interface chapters:
 - metastability/separatrix side: [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md)
 - dynamical substrate side: [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
 
-#### Superposition Mechanism: QM vs. 𝔸𝔸𝔸
+#### Superposition Mechanism: QM vs. $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 This document establishes the ontological and mathematical mapping between the traditional quantum mechanical concept of state superposition and the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$).
 
 It should be read alongside [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+
+The core distinction is effective envelope versus substrate state. A Hilbert-space superposition is a powerful way to track unresolved alternatives in a declared basis. It is not, by itself, a claim that the underlying assembly is literally many final records at once. The bridge must show when causal-wake addition, metastable basin geometry, and observer-access limits justify the effective superposition description.
 
 ###### Traditional Quantum Mechanical View
 
@@ -12466,6 +12533,8 @@ For the correlated two-system extension of the same closure program, see [Entang
 #### Measurement Problem and Collapse
 
 This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
+
+The bridge question is practical: what physical transaction turns an unresolved effective state into a durable record? The answer cannot be a special observer rule. It has to be an apparatus-target interaction with energy routing, recoil, Noether sea response, basin selection, and record persistence all carried by the same event ledger.
 
 ###### The Traditional Measurement Problem
 
@@ -12546,13 +12615,15 @@ Treating collapse as a deterministic, finite-time threshold resolution imposes s
 *   **Failure Mode**: If experiments definitively demonstrate zero-time projection updates (e.g., transitions occurring strictly in zero absolute time with no measurable intermediate micro-dynamics or duration scaling with apparatus distance), the threshold resolution mechanism is falsified.
 *   **Closure Boundary**: A timing prediction is promotable only after a declared apparatus-target model supplies the separatrix geometry, finite record window, and basin-measure source used by the same measurement channel.
 
-#### Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸
+#### Entanglement and Nonlocality: QM vs. $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and local apparatus-response maps have passed the Bell gate.
+This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and resolved at measurement through the declared live substrate-causal $c_f$ coordination channel gated by that provenance; the epistemic limitations of Physical Observers explain why the record looks operationally irreducible, while the Bell nonfactorizability itself is carried by the live channel. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and the coupled apparatus-response law on the $c_f$ channel have passed the Bell gate.
 
 It forms a tight cluster with [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Superposition Mechanism](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [Pilot-Wave Character](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md).
 
----
+In plain terms, entanglement is not treated here as an invisible connection between distant objects. It is treated as a hard record problem. Two assemblies can inherit one source history, carry correlated internal ledgers, and later produce records that cannot be reduced to two independent local value tables. The closure task is to show that this record structure gives the observed quantum correlations while still blocking controllable faster-than-$c_f$ signaling.
+
+This distinction protects both sides of the comparison. Standard quantum mechanics is right that entangled records are not just ignorance about ordinary independent variables. $\mathbb{A}\mathbb{A}\mathbb{A}$ adds that the missing implementation should be searched for in source provenance, path-history memory, apparatus response, and Noether sea context rather than in a primitive nonlocal command sent at measurement time.
 
 ##### Traditional Quantum Mechanical View
 
@@ -12592,7 +12663,7 @@ This note concerns ordinary pair-provenance entanglement: two assemblies are for
 
 The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
 
-The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, local apparatus response, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
+The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, the coupled apparatus-response law on the declared $c_f$ coordination channel, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
 
 ###### Relativistic Subsystem Caution
 
@@ -12606,10 +12677,10 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue
 
 ###### Ontological Starting Point
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ in the Euclidean void at every absolute time $t$. There is no ontological indeterminacy. The complete microstate of a system is:
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf X_i(T)$ and velocity $\mathbf V_i(T)$ in the Euclidean void at every absolute time $T$. There is no ontological indeterminacy. The complete microstate of a system is:
 
 $$
-\Gamma(t) = \bigl\{(\mathbf{x}_i(t),\, \mathbf{v}_i(t),\, q_i)\bigr\}_{i=1}^{N}
+\Gamma(T) = \bigl\{(\mathbf X_i(T),\, \mathbf V_i(T),\, q_i)\bigr\}_{i=1}^{N}
 $$
 
 and the Master Equation determines its future evolution given path-history data, with deterministic multistability at threshold regimes.
@@ -12620,26 +12691,28 @@ Ordinary entanglement in this framework is not a primitive relation between dist
 2. **Conservation constraints** enforced at the source event and preserved by the dynamics,
 3. **Path-history structure** that carries and maintains these correlations through the causal wake geometry.
 
+The important word is `derived`. A pair is not entangled because a special relation has been added on top of two otherwise ordinary objects. It is entangled, if the recovery succeeds, because the two daughter assemblies are incomplete descriptions of one conserved production-and-record process. Physical Observers see two separated detections; the underlying ledger still contains the common provenance and the local response maps that determine the joint statistics.
+
 ###### Correlated Production: The Shared Causal Past
 
 Consider the production of an entangled pair, for example a neutral pion dissociating into an electron-positron pair, or parametric down-conversion producing correlated photon branches in the observer-level description.
 
-At the absolute time $t_0$ of the source event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
+At the absolute time $T_0$ of the source event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(T_0)$ and $\Gamma_B(T_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
 
 $$
-\Gamma_{\text{parent}}(t_0^-) \;\longrightarrow\; \Gamma_A(t_0^+),\; \Gamma_B(t_0^+) \quad \text{subject to conservation constraints.}
+\Gamma_{\text{parent}}(T_0^-) \;\longrightarrow\; \Gamma_A(T_0^+),\; \Gamma_B(T_0^+) \quad \text{subject to conservation constraints.}
 $$
 
-The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward. These correlations are not imposed by any nonlocal influence. They are recorded in the pair-provenance ledger inherited from the shared causal past.
+The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward, recorded in the pair-provenance ledger inherited from the shared causal past. The ledger is the gating record, not the Bell-violation carrier: correlations recorded at the source alone stay inside the Bell-local bound, and the declared live substrate-causal $c_f$ coordination channel, gated by this provenance, carries the nonfactorizable response during the measurement window.
 
 ###### Correlation Maintenance: Path-History Memory
 
-After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
+After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta T$, they evolve **causally independently** in the sense that no new information passes between them.
 
-The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
+The correlations established at $T_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
 
 - **Definite** at all times (no ontological indeterminacy),
-- **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(t)$ (epistemic indeterminacy),
+- **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(T)$ (epistemic indeterminacy),
 - **Jointly constrained** by the source event (correlated hidden variables).
 
 ###### Measurement as Threshold Resolution
@@ -12652,13 +12725,13 @@ When a measurement apparatus (itself an assembly of architrinos) interacts with 
 
 The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
 
-Because the hidden variables of $A$ and $B$ are correlated from the source event, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. This is not because $A$'s measurement causally influenced $B$, but because the correlated initial conditions supply the candidate joint distribution that the Bell closure must test against observed correlations.
+Because the hidden variables of $A$ and $B$ are correlated from the source event, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. Source correlations by themselves do not supply a Bell-violating law. They supply the pair-provenance gate and candidate hidden-variable domain; the Bell closure must show how the live $c_f$-coupled apparatus response during the measurement window pushes that domain to the observed correlations while preserving no-signaling.
 
 ###### Addressing Bell's Theorem
 
 Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell account must therefore be a **nonlocal hidden-variable theory** in the following precise sense:
 
-**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. If the Bell gate passes, the required nonlocality resides in the **ontological structure**: the existence of absolute time provides a global simultaneity surface, and the source event imprints **joint constraints** on the hidden variables of both particles that are not factorizable into independent local assignments.
+**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. If the Bell gate passes, the required nonlocality is Bell-level nonfactorizability of the observer-level joint response, not a faster-than-$c_f$ command and not a shared-source record by itself. Absolute time provides an objective ordering surface, the source event supplies the pair-provenance gate, and the declared live $c_f$ coordination channel during the measurement window carries the response coupling that must fail Bell factorization.
 
 Formally, let $\lambda$ denote the complete hidden-variable specification (the full microstate at the source event plus all subsequent path-history data). Bell locality requires:
 
@@ -12666,9 +12739,9 @@ $$
 P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda)
 $$
 
-where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
+where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail. Joint geometric constraints in $\lambda$ (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) correlate the wings but cannot by themselves break the factorized form: any shared record is part of $\lambda$, so if each wing is resolved by a purely local kernel the account stays Bell-local. The declared route instead couples the two apparatus-response maps through a live substrate-causal $c_f$ coordination channel during the measurement window, gated by the pair provenance. Coordination outside the effective photon cone is allowed when $c_f > c_0$; faster-than-$c_f$ influence and controllable observer signaling are forbidden. The pair-provenance ledger by itself is not yet the proof. The proof must derive the coupled response law and show that its observer-level compression fails Bell's factorized form while preserving no-signaling.
 
-The common-cause version of the same warning is sharper: conditioning on a shared source event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus local response kernels must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
+The common-cause version of the same warning is sharper: conditioning on a shared source event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus the coupled apparatus-response law on the $c_f$ coordination channel must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
 
 **Pair-provenance response kernel.** The Bell gate can be written as an attempted compression of the full provenance into a measurable joint response. Define the pair-provenance hidden-variable object as
 
@@ -12676,11 +12749,11 @@ $$
 \lambda_{AB}^{\text{prov}}
 =
 \big(
-\Gamma_{\text{parent}}(t_0^-),
-\Gamma_A(t_0^+),
-\Gamma_B(t_0^+),
-\mathcal{H}_A[t_0,t_A],
-\mathcal{H}_B[t_0,t_B],
+\Gamma_{\text{parent}}(T_0^-),
+\Gamma_A(T_0^+),
+\Gamma_B(T_0^+),
+\mathcal{H}_A[T_0,T_A],
+\mathcal{H}_B[T_0,T_B],
 \Delta\Theta_{AB}^{\text{bin/wake}},
 \mathsf{Cons}_{AB}
 \big)
@@ -12688,7 +12761,7 @@ $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
-Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and the kernel must be a normalized record law:
+Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record, the two detector couplings, and the live $c_f$ coordination channel. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), and the kernel must be a normalized record law:
 
 $$
 K_{ab}^{AB}\ge0,
@@ -12786,7 +12859,7 @@ D_{\mathrm{TV}}\!\left(
 \right)
 $$
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the structure of the pair-provenance ledger and local response kernels, not from allowing the settings to preselect the hidden-variable ensemble.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the live $c_f$-coupled apparatus-response law gated by the pair-provenance ledger, not from allowing the settings to preselect the hidden-variable ensemble.
 
 Here $D_{\mathrm{TV}}$ is total-variation distance on the pair-provenance distribution.
 
@@ -12817,13 +12890,13 @@ $$
 
 These residuals keep the observable constraint separate from the interpretation. The data product is the tested Bell correlation with no-signaling marginals; the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must earn that data product without importing a superdeterministic assumption.
 
-**Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
+**Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure. In Bohm's case that structure is the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$ the declared route is pair-provenance gating plus a live $c_f$-coupled apparatus response in absolute time. The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
 
 The Bohmian comparison also gives a warning about where the proof burden sits. A deterministic ontology can reproduce Bell correlations only if the hidden-variable space is not separable into two independent local packages at measurement time, or if another Bell assumption is explicitly changed. $\mathbb{A}\mathbb{A}\mathbb{A}$ should therefore not present pair provenance as an ordinary local hidden-variable repair. The derivation must show which shared path-history, basin-measure, or apparatus-response term prevents factorization while still preserving free settings and no-signaling.
 
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at the source event. The theory does not invoke superdeterminism.
 
-The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts that the complete universe state is deterministic in absolute time, including the physical histories of detector-setting devices. It does not treat that global determinism as license to make the source-provenance distribution depend on the later chosen settings. The retained closure burden is instead a nonseparable pair-provenance law whose setting dependence enters only through the two local apparatus kernels and whose marginals remain no-signaling.
+The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts that the complete universe state is deterministic in absolute time, including the physical histories of detector-setting devices. It does not treat that global determinism as license to make the source-provenance distribution depend on the later chosen settings. The retained closure burden is instead a pair-provenance-gated coupled response law whose setting dependence enters through the declared apparatus settings and $c_f$ coordination channel, while the one-wing marginals remain no-signaling.
 
 ###### The Absolute-Time Framework and Nonlocality
 
@@ -12833,9 +12906,9 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective tempora
 
 This structure avoids the conceptual difficulties of standard nonlocality:
 
-- **No action at a distance**: $A$'s measurement does not send any signal or influence to $B$.
+- **No instantaneous action at a distance**: $A$'s measurement does not send a faster-than-$c_f$ command or controllable observer signal to $B$; any distant substrate input must be the declared $c_f$ coordination channel.
 - **No frame-dependent causal ordering**: absolute time provides a unique, consistent ordering.
-- **No tension with causality**: all causal influences propagate at $c_f$ or below; the correlations are set up in the shared causal past.
+- **No tension with causality**: all causal influences propagate at $c_f$ or below; the shared causal past gates which pairs can coordinate, while Bell-level nonfactorizability must be carried by the live measurement-window response.
 
 Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics).
 
@@ -12900,8 +12973,8 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 |:---|:---|
 | **Entangled state** $\lvert\Psi\rangle_{AB}$ | Joint constraint on the hidden variables $(\Gamma_A, \Gamma_B)$ inherited from a shared source event; the microstate is non-factorizable because conservation laws at fragmentation enforce correlated binary phases and orientations. |
 | **Non-separability** (no product-state decomposition) | The hidden-variable space $\lambda$ encodes geometric correlations (relative binary-plane angles, wake-phase offsets) that cannot be decomposed into independent local assignments without losing information. |
-| **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
-| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus both local apparatus-response maps must reproduce the observed Bell correlations while failing Bell locality because $\lambda$ is non-separable; the violation may not be asserted from shared provenance alone. |
+| **Measurement collapse** (distant state update) | Threshold resolution at each detector in the coupled substrate response; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two basin crossings coordinated through the declared $c_f$ channel, gated by shared pair provenance, with no observer-level signaling. |
+| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus the coupled apparatus-response law on the $c_f$ coordination channel must reproduce the observed Bell correlations while failing Bell factorization; the violation may not be asserted from shared provenance alone. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
 | **Black-hole thermofield-double connected geometry** | Special strong-field/horizon-interface effective geometry, not the default ontology of ordinary Bell-pair entanglement. The black-hole case motivates the comparison but does not settle ER=EPR for arbitrary entanglement. |
 | **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether sea environment, randomizing the internal wake phases that carry the correlated information. |
@@ -12913,11 +12986,11 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
 
-**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(t)$ is always definite and global. After a source event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B$ are each fully determined for all $t > t_0$. For ordinary pair-provenance cases, the "entanglement" is the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
+**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(T)$ is always definite and global. After a source event at $T_0$, the daughter microstates $\Gamma_A(T)$ and $\Gamma_B$ are each fully determined for all $T > T_0$. For ordinary pair-provenance cases, the "entanglement" begins with the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained; that bookkeeping record gates the Bell response but does not by itself create a Bell violation. Bell-level nonfactorizability requires the coupled apparatus-response law on the declared $c_f$ coordination channel. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
-The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and two local apparatus interactions push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
+The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and the coupled apparatus-response law on the $c_f$ coordination channel push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
 
 ---
 
@@ -12928,7 +13001,7 @@ The persistent philosophical puzzles of entanglement—how can a measurement "he
 | **Copenhagen** | No | Ambiguous | Yes (axiom) | Rejects collapse axiom; $\lvert\psi\rangle$ is epistemic. |
 | **Many-Worlds** | No | No (all branches real) | No | Rejects ontic branching; one realized trajectory. |
 | **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces pilot wave with causal wake geometry. |
-| **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(t)$ is objective. |
+| **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(T)$ is objective. |
 | **Superdeterminism** | Yes | No | No | Rejects; measurement independence preserved. |
 | **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | No causal signal; Bell closure requires non-separable $\lambda$ | Effective (threshold crossing) | — |
 
@@ -12943,16 +13016,16 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 ##### Observables and Falsifiability
 
-**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic, nonseparable pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by local detector kernels without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
+**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by apparatus-response kernels coupled through the live substrate-causal $c_f$ coordination channel gated by that provenance, with no faster-than-$c_f$ influence and no controllable observer signaling. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
-- Complete microstate $\Gamma(t)$ is definite at all $t$.
+- Complete microstate $\Gamma(T)$ is definite at all $T$.
 - Conservation constraints at the source event constrain the joint hidden-variable distribution; the Bell gate must derive the remaining measure structure rather than assume it.
-- Measurement is a local threshold crossing (no distant causal input).
+- Measurement is a threshold crossing in the coupled substrate response; any distant substrate input is the declared $c_f$ coordination channel, with no faster-than-$c_f$ input and no controllable observer signaling.
 - Measurement independence holds (no superdeterminism).
 
 **Closure Targets and Constraints:**
-- Bell gate: derive the pair-provenance ledger, the two local apparatus-response maps, and the observer-level compression that reproduce the tested Bell correlations without invoking superluminal influence.
+- Bell gate: derive the pair-provenance ledger, the coupled apparatus-response law on the $c_f$ coordination channel, and the observer-level compression that reproduce the tested Bell correlations with no faster-than-$c_f$ influence and no observer-level signaling.
 - Measurement-independence guardrail: report $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ for any pair-provenance simulation or analytic Bell packet, and do not count a correlation fit as successful if it requires setting-dependent hidden-variable preparation.
 - Residual reporting: report $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ alongside any claimed Bell-pair recovery.
 - Photon-polarization gate: for entangled photon tests, Gate B must recover the transverse analyzer statistics and no-signaling behavior before the note may claim operational equivalence with quantum mechanics.
@@ -12962,7 +13035,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 **Failure Modes:**
 - If an experiment demonstrates **signaling** via entanglement (information transfer without a sub-$c_f$ channel), the mechanism fails.
 - If a Bell test with verified measurement independence and closed loopholes produces correlations **exceeding** the Tsirelson bound ($|S| = 2\sqrt{2}$), the quantum formalism itself would be violated, requiring revision at both levels.
-- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
+- If the pair-provenance ledger plus the coupled apparatus-response law on the $c_f$ coordination channel fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
 **Bell Closure Gate:**
 - Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter Noether braids) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
@@ -12991,13 +13064,15 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 The philosophy-facing framing of this problem lives in [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), especially its Bell and measurement sections.
 
-#### Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸
+#### Bell's Theorem: QM Foundations vs. $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, nested shell braid, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
----
+The fastest way to misunderstand Bell is to treat it as a slogan about reality being impossible. Bell is more precise than that. It rules out a class of explanations in which each detector outcome is screened off by a local package of variables that is independent of the distant setting. The experimentally observed correlations tell $\mathbb{A}\mathbb{A}\mathbb{A}$ exactly what kind of recovery target must be met: reproduce the joint records, preserve no-signaling, respect measurement-independence bounds, and explain why the observer-level compression is not Bell-factorizable.
+
+That is why this page is a benchmark page rather than a mechanism page. It keeps the theorem sharp so that the later assembly account cannot slide into loose common-cause language. A shared source event helps only if the retained pair-provenance ledger gates a coupled substrate-response law on the declared $c_f$ coordination channel that produces the quantum joint law without restoring Bell's product factorization.
 
 ##### Traditional Statement of Bell's Theorem
 
@@ -13103,7 +13178,7 @@ $$
 1-\chi_C E_\theta(C)
 \right]_+
 $$
-where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and local detector kernels, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
+where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and the coupled substrate-response kernels on the declared $c_f$ coordination channel, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
 
 **Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
 $$
@@ -13188,7 +13263,7 @@ At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion t
 
 The current placement is therefore:
 
-- **Realism is retained**: every architrino possesses a definite position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, polarity $q_i$, and path-history ledger at every absolute time $t$. The complete microstate exists independently of observation.
+- **Realism is retained**: every architrino possesses a definite position $\mathbf X_i(T)$, velocity $\mathbf V_i(T)$, polarity $q_i$, and path-history ledger at every absolute time $T$. The complete microstate exists independently of observation.
 
 - **Measurement independence is retained**: detector settings are not assumed to be pre-correlated with the source microstate. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not invoke superdeterminism.
 
@@ -13214,20 +13289,20 @@ $$
 
 Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
 
-The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $t_0<t_s<t_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
+The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $T_0<T_s<T_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
 
 $$
-\Delta_{\mathrm{div}}^{AB}(t_0,t_s,t_{\mathrm{rec}};\mathcal{Q}_{AB})
+\Delta_{\mathrm{div}}^{AB}(T_0,T_s,T_{\mathrm{rec}};\mathcal{Q}_{AB})
 =
 \left\|
-\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_{\mathrm{rec}}}
 -
-\mathcal{T}^{\mathcal{Q}_{AB}}_{t_s\to t_{\mathrm{rec}}}
-\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_s}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_s\to T_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_s}
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 
-If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, local apparatus kernels, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
+If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, the coupled substrate-response law on the declared $c_f$ channel, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
 
 ###### Bell Closure Diagnostics
 
@@ -13335,15 +13410,15 @@ $$
 
 Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
 
-Ordering leakage is a separate preferred-frame guardrail. For observer-level spacelike-separated detector records, the substrate still has an absolute-time order. Let $O_{AB}\in\{A\prec_t B,B\prec_t A\}$ denote that order for the two wings. A Bell packet must make the observable joint law insensitive to that order:
+Ordering leakage is a separate preferred-frame guardrail. For observer-level spacelike-separated detector records, the substrate still has an absolute-time order. Let $O_{AB}\in\{A\prec_T B,B\prec_T A\}$ denote that order for the two wings. A Bell packet must make the observable joint law insensitive to that order:
 $$
 \Delta_{\mathrm{ord}}
 =
 \sup_{a,b,x,y}
 \left|
-P(a,b|x,y,A\prec_t B)
+P(a,b|x,y,A\prec_T B)
 -
-P(a,b|x,y,B\prec_t A)
+P(a,b|x,y,B\prec_T A)
 \right|
 \le\epsilon_{\mathrm{ord}}.
 $$
@@ -13368,17 +13443,17 @@ No-signaling is also a Lorentz-export condition. The substrate has absolute time
 
 The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
 
-The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_tB$ with $B\prec_tA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
+The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_TB$ with $B\prec_TA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
 
-The relevant separation condition is set by causal-wake reach, not only by the photon-channel cone used in the observer description. Let the two record-closure windows be $W_A=[t_A,t_A+\tau_A]$ and $W_B=[t_B,t_B+\tau_B]$, with wing separation $d_{AB}=\|\mathbf{x}_A-\mathbf{x}_B\|$. Define the wake-reach margins
+The relevant separation condition is set by causal-wake reach, not only by the photon-channel cone used in the observer description. Let the two record-closure windows be $W_A=[T_A,T_A+\tau_A]$ and $W_B=[T_B,T_B+\tau_B]$, with wing separation $d_{AB}=\|\mathbf X_A-\mathbf X_B\|$. Define the wake-reach margins
 $$
 \Delta_{\mathrm{reach}}^{A\to B}
 =
-t_B+\tau_B-t_A-\frac{d_{AB}}{c_f},
+T_B+\tau_B-T_A-\frac{d_{AB}}{c_f},
 \qquad
 \Delta_{\mathrm{reach}}^{B\to A}
 =
-t_A+\tau_A-t_B-\frac{d_{AB}}{c_f}.
+T_A+\tau_A-T_B-\frac{d_{AB}}{c_f}.
 $$
 If both margins are negative, neither wing's causal wake can enter the other wing's record-closure window before the relevant record closes. If either margin is nonnegative, the experiment lies in a wake-reach exposure window. This matters whenever $c_f>c_\gamma$: a pair can be spacelike by the dressed photon-channel record while still allowing primitive causal-wake reach during the measurement window. A Bell closure must therefore either keep the record windows mutually outside $c_f$ causal-wake reach or prove that any such reach leaves $\Delta_{\mathrm{ord}}$ below the coincidence-timing and correlation-residual tolerance.
 
@@ -13435,7 +13510,7 @@ Thus record reconstruction is the output surface of the Bell program, not a subs
 
 The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, nested shell braid orientations, active causal-root branches, self-action terms, and causal-wake history.
 
-**Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $t_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$. For a spin-singlet-like event, the observer-level summary is
+**Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $T_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(T_0)$ and $\Gamma_B(T_0)$. For a spin-singlet-like event, the observer-level summary is
 
 $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
@@ -13451,8 +13526,8 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 \left(
 B_{\mathrm{parent}}^-,
 W_{\mathrm{src}},
-t_0,
-t_{\mathrm{sep}},
+T_0,
+T_{\mathrm{sep}},
 \Sigma_{\mathrm{src}},
 \mu_{\mathrm{src}},
 \Gamma_{\mathrm{src}}^{\mathrm{loc}}
@@ -13720,7 +13795,7 @@ This is the closest structural relative in the inherited taxonomy. Both $\mathbb
 
 | Feature | de Broglie–Bohm | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:---|:---|:---|
-| Hidden variables | Particle positions in 3D | Full microstate $\Gamma(t)$ (positions, velocities, charges) in 3D |
+| Hidden variables | Particle positions in 3D | Full microstate $\Gamma(T)$ (positions, velocities, charges) in 3D |
 | Guidance mechanism | Pilot wave $\psi$ on configuration space $\mathbb{R}^{3N}$ | Superposed causal-wake geometry in physical 3D space |
 | Ontological economy | Two ontological categories (particles + wave) | One category (architrinos); wake structure is generated by architrinos |
 | Nonlocality mechanism | $\psi$ on configuration space couples all particles | To be derived from pair provenance plus measurement-response ledger |
@@ -13735,7 +13810,7 @@ Superdeterministic models deny measurement independence: the detector settings a
 
 ###### Retrocausal Models
 
-Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
+Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$T$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
 
 Temporal-nonlocality language is therefore a comparison diagnostic, not a mechanism to import. In a relativistic observer description, different frames may assign different time orderings to spacelike-separated measurement records; that does not license future-boundary variables in the substrate ledger. A candidate Bell record should evaluate pair provenance, $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ on the absolute-time record. If the correlation fit requires $\lambda$ to depend on later settings, the record has left the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ route and should be classified with retrocausal or measurement-independence-denying comparison models.
 
@@ -13743,19 +13818,19 @@ Temporal-nonlocality language is therefore a comparison diagnostic, not a mechan
 
 ##### The Role of Absolute Time
 
-The existence of a global time parameter $t$ is essential for the internal consistency of the $\mathbb{A}\mathbb{A}\mathbb{A}$ account of Bell violations.
+The existence of a global time parameter $T$ is essential for the internal consistency of the $\mathbb{A}\mathbb{A}\mathbb{A}$ account of Bell violations.
 
 **Problem in relativistic frameworks.** In Minkowski spacetime, spacelike-separated measurements have no invariant temporal ordering. Telling a story about "what happens first" requires selecting a frame, and different frames give different orderings. This makes it conceptually difficult to describe how pre-established correlations are "read out" without invoking some form of action at a distance.
 
-**Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
+**Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $T_A$ and $T_B$, with $T_A < T_B$, $T_A = T_B$, or $T_A > T_B$ as an objective fact. In all three cases the account is the same:
 
-1. At $t_0 < \min(t_A, t_B)$: the creation event establishes $\lambda$.
+1. At $T_0 < \min(T_A, T_B)$: the creation event establishes $\lambda$.
 2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The one-wing basin crossing is local, but the validated observer-level law is the pushed-forward nonseparable pair-provenance response kernel, not a restartable product of two independent local hidden-variable packages.
 3. After both measurements: comparison of results (via sub-$c_f$ classical communication) reveals the correlations.
 
 No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.
 
-**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it creates the ordering-invariance burden above. The observer-accessible Bell table must not reveal whether $A\prec_tB$ or $B\prec_tA$ in the substrate; see [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md).
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it creates the ordering-invariance burden above. The observer-accessible Bell table must not reveal whether $A\prec_TB$ or $B\prec_TA$ in the substrate; see [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md).
 
 ---
 
@@ -13764,9 +13839,9 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 **Closure target:** $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce all experimentally observed Bell-family correlation constraints from architrino-level angular-momentum and measurement-response dynamics, without superluminal signaling or denial of measurement independence.
 
 **Assumptions:**
-- The full microstate $\Gamma(t)$ is definite at all $t$ (realism).
+- The full microstate $\Gamma(T)$ is definite at all $T$ (realism).
 - Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
-- Measurement is local threshold resolution (no distant causal input at measurement time).
+- Measurement is threshold resolution in the coupled substrate response (no controllable observer signaling and no faster-than-$c_f$ input; any distant substrate input must be the declared $c_f$ coordination channel).
 - Measurement independence holds (no superdeterminism, no retrocausation).
 - The measurement-response kernel of a Noether braid assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-assembly half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
 
@@ -13776,7 +13851,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
 - Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
-- Ordering invariance is exact within the declared Bell regime: observer-level spacelike-separated joint tables do not expose whether $A\prec_tB$ or $B\prec_tA$ in absolute time.
+- Ordering invariance is exact within the declared Bell regime: observer-level spacelike-separated joint tables do not expose whether $A\prec_TB$ or $B\prec_TA$ in absolute time.
 - Preferred-frame leakage remains below the Lorentz-test residual bound on the same observer export that supplies detector timing, analyzer calibration, and coincidence-window records.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.
@@ -13797,6 +13872,8 @@ The Bell claim therefore stops at the closure target and failure conditions. A c
 #### Special Relativity and Deformable Noether Braids
 
 This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), the canonical mass thesis remains in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md).
+
+The bridge keeps both sides honest. Special relativity supplies the tested observer contract: clocks, rulers, signals, energy, and momentum must transform together. The Noether braid story supplies the proposed implementation: moving assemblies must deform, retune, and export one shared effective record rather than separate fitted factors.
 
 ##### Bridge Thesis
 
@@ -13872,11 +13949,11 @@ The observer-level interval $s_{\mathrm{eff}}^2(E,R)$ is then an export of $\The
 
 ##### Clock Channel
 
-In special relativity, the moving-clock law is usually written
+In special relativity, the moving-clock law is usually written as a standard comparison form
 $$
-\frac{d\tau}{dt}=\frac{1}{\gamma},
+\frac{d\tau}{dt_{\mathrm{std}}}=\frac{1}{\gamma_{\mathrm{std}}},
 \qquad
-\gamma=\frac{1}{\sqrt{1-v^2/c^2}}
+\gamma_{\mathrm{std}}=\frac{1}{\sqrt{1-v_{\mathrm{std}}^2/c^2}}
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
@@ -13893,9 +13970,9 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The proper-time map is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The native clock-map row is therefore an extracted frequency ratio:
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dT}
 =
 \frac{\omega_{\text{clk}}(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
 $$
@@ -13925,7 +14002,7 @@ c_{\text{eff}}
 $$
 Clock slowing is the observer-facing readout of this retuning:
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 =
 \frac{c_{\perp}}{c_{\text{eff}}}
 =
@@ -14257,6 +14334,8 @@ To promote this bridge from mapping to derivation, the following targets must cl
 This bridge gives a compact reader-facing account of the Lorentz milestone developed in the spacetime and Noether braid chapters. Its preferred name is **Return-Cycle Lorentz Quantization**. The name is more precise than `quantized Lorentz factor` because the smooth observer-level Lorentz function is not replaced by a step function. The quantized object is the material realization of that function: a discrete admissible return-cycle branch of the Noether braid causal-root ledger.
 
 The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
+
+The key point is easy to lose: the smooth Lorentz formula remains the effective observer law. The discrete object is the material route by which an assembly realizes that law. A Noether braid cannot choose an arbitrary continuous internal return state; it must close through admissible causal-root ledger classes that project to the smooth envelope in the observer limit.
 
 ##### Naming And Scope
 
@@ -14611,6 +14690,10 @@ This bridge compares inherited mathematical models of space, time, vacuum, aethe
 
 The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
+The chapter is therefore a translation table, not a museum of metaphors. Each outside model is useful only to the extent that it tells the reader which job must be done: recover a signal cone, a clock map, a stress response, a boundary condition, a leakage bound, or an entropy ledger. Once that job is named, the wording must return to the native stack: absolute time, Euclidean void, Noether sea, assemblies, causal wakes, and effective observer geometry.
+
+The bright-line rule is that the container is not the contents and neither one is the observer's reconstructed spacetime. The Euclidean void is the fixed spatial container. The Noether sea occupies it. Effective spacetime is what Physical Observers infer from clocks, rulers, signal propagation, and records inside that occupied background.
+
 ##### Bridge Rule
 
 Use inherited spacetime models as comparison projections, not as identity claims.
@@ -14637,6 +14720,8 @@ Any outside model must therefore answer five questions before it can influence a
 5. Which failure mode would falsify the comparison?
 
 Modern vacuum language often functions as a medium-response comparison even when the word `aether` is avoided. Vacuum polarization, zero-point estimates, condensate analogies, refractive-index language, and effective field modes all point toward response variables, boundary conditions, and excitation spectra. The safe translation is not to revive a mechanical aether. It is to ask which part of the calculation should be rewritten as Noether sea density, delay, compliance, orientation, excitation, or boundary-response data, and which part remains only an observer-level field-theory export.
+
+This is also why analog models are helpful but dangerous. They can show that an effective metric, horizon, or radiation law can emerge from signal behavior in a medium, but they do not tell us that the laboratory medium is the ontology. The retained object is the response kernel or constitutive map, not the fluid, condensate, circuit, or mirror that happened to realize the analogy.
 
 ##### Boundary-Response Equivalence
 
@@ -14788,7 +14873,7 @@ The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate
 | Instability for the opposite coupling sign | For attractive coupling in the strongly deformed regime, soft modes become unstable once the same deformation threshold is crossed. | A BEC analogy fails if the native coupling sign or dense-source response destroys the coherent phase on the window being used for comparison. |
 | Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether sea force law. |
 
-A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
+A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf X,T)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
 
 $$
 \mathcal{L}_{\text{handoff}}
@@ -14957,6 +15042,8 @@ That is why analogy belongs here. Mechanism chapters should inherit the discipli
 #### Relativistic Scalar Fields and the Klein-Gordon Equation
 
 This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+
+The bridge question is not whether scalar fields are useful. They are. The question is what physical record supplies the scalar value: Noether sea density, compression, radial breathing, an assembly mode, or an observer-level occupation variable. Without that carrier, the scalar is a successful comparison object but not yet implementation.
 
 ##### Bridge Thesis
 
@@ -15227,6 +15314,10 @@ To promote this bridge from mapping to derivation, the following targets must cl
 
 This chapter is the main bridge from Standard Model CKM language to the assembly-level weak-mixing picture. Its purpose is to let a reader see, in one place, which ingredients are standard, which are geometric reinterpretations, and which closure relations remain postulates or fit targets. It should be read with [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md).
 
+The reader-facing idea is simple: the CKM matrix is not treated as a mysterious table pasted onto quarks. It is treated as a measured overlap table between two ways of organizing the same assembly. One organization is the weak-coupling triad that a charged weak corridor can access. The other is the shielding and mass-basis structure that fixes the externally observed generation state. The bridge asks whether those two organizations can be derived from one geometry rather than separately fitted.
+
+This preserves the Standard Model success. CKM already works as precision bookkeeping for charged-current reactions, rates, and CP-violating interference. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is narrower and harder: recover that bookkeeping from axial-frame geometry, weak-coupling-triad exposure, shielding eigenstates, and reaction provenance without changing definitions between channels.
+
 ##### Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to SM
 
 This chapter is written as a bridge text: it first states CKM in standard SM language, then translates each ingredient into $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. The goal is that a reader with QM and introductory QFT can identify exactly what is standard, what is assumed in $\mathbb{A}\mathbb{A}\mathbb{A}$, and what is predicted.
@@ -15287,6 +15378,8 @@ The reaction/transition probability into channel $j$ is proportional to $\lvert 
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+
+So each row should be read as a routing ledger. The weak interaction opens a charged corridor in one exposed basis, but the detector names the outgoing assembly in the mass basis. CKM entries measure how much of the exposed corridor lands in each mass-basis channel. That is why a high-value $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation cannot stop at the matrix values; it must also explain the two bases whose mismatch the matrix records.
 
 ###### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that transforms quark types (down ↔ up, strange ↔ charm, etc.).
@@ -15849,7 +15942,7 @@ $$
 \kappa_{ab}=
 \int_{\Gamma_{ab}}
 \mathcal{L}_{\mathrm{trans}}
-\bigl(\rho_{\text{NS}}(\mathbf{x},t),\nabla\rho_{\text{NS}}(\mathbf{x},t),\text{shielding},\text{wake exposure}\bigr)\,ds
+\bigl(\rho_{\text{NS}}(\mathbf X,T),\nabla_{\mathbf X}\rho_{\text{NS}}(\mathbf X,T),\text{shielding},\text{wake exposure}\bigr)\,ds
 $$
 rather than fitting them from CKM inputs.
 
@@ -15888,6 +15981,10 @@ This chapter treats the Planck scale as an exploratory alignment-horizon problem
 Its closest companions are [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
+
+The simple way to read the chapter is this: ordinary Planck formulas are not being used as standalone constants that already explain the world. They are being used as hard clues. If a nested shell braid really supplies the deepest stable clock-and-ruler standard, then the familiar Planck combinations should reappear as consequences of one extreme alignment branch, one action ledger, and one observer-export channel. If the constants can be fitted only one at a time, the mapping has failed.
+
+This keeps the claim level honest. The chapter preserves what Planck-unit reasoning gets right: it marks the point where localization, action, gravity, and signal speed stop being separable bookkeeping problems. The $\mathbb{A}\mathbb{A}\mathbb{A}$ addition is the recovery target: identify the physical branch whose delayed causal geometry makes those bookkeeping limits show up.
 
 ##### Thesis
 
@@ -15945,6 +16042,8 @@ E_{\mathrm{cross}}^2 \sim \frac{\hbar c_f^5}{2G},
 $$
 
 Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell braid alignment horizon rather than as proof that spacetime is made of smaller static beads.
+
+In plain terms, the probe argument says that "looking smaller" is not a neutral act. A higher-energy probe both sharpens the wavelength and loads more stress into the region being probed. The observed lower bound is therefore a joint readout of resolution, energy loading, and horizon-facing response. In this chapter that joint readout becomes a branch test: the nested shell braid account must explain why the same attempted compression becomes alignment or horizon behavior instead of an ordinary smaller ruler.
 
 The same operational limit can be written as a generalized-uncertainty comparison. A probe with momentum uncertainty $\Delta p$ carries an ordinary localization term and a gravitational back-action term:
 $$
@@ -16099,7 +16198,7 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 ##### Energy as Causal-Wake Interaction History
 
-This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
+This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf X,T)$ and its gradient $\nabla_{\mathbf X}\phi$.
 
 1. An architrino moves through a sea of potential gradients from many emitters.
 2. Each emitter’s influence arrives after a delay.
@@ -16372,6 +16471,8 @@ General Relativity is powerful because it makes clocks, rulers, light paths, fre
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It is a theory with disciplined placement for each geometry it uses. The Euclidean void supplies the fixed spatial metric, causal wakes supply path-history geometry, assemblies carry internal geometry, the Noether sea supplies constitutive response, and Physical Observers reconstruct an effective metric from clocks, rulers, and signal behavior. The critique of modern spacetime ontology is not that it is geometric. The critique is that it promotes one successful effective geometry into final ontology before the generator has been identified.
 
+The working question is always: what job is this geometry doing? A geometry may define the container, encode a causal wake, describe an assembly, summarize medium response, or organize observer measurements. Those jobs are different, and the chapter exists to keep them from being merged into one all-purpose word.
+
 The technical owners remain [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](../../../../markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 ### The Geometry Question
@@ -16494,6 +16595,8 @@ This document gives a philosophical orientation for a central $\mathbb{A}\mathbb
 
 The guiding problem is that modern physics often lets predictive objects carry more ontology than their derivation warrants. A metric, field, vacuum state, wavefunction, mass parameter, or particle label may be indispensable within its regime while still failing to identify the implementation layer that produces the observed behavior. The task here is not to dismiss those formalisms. It is to separate their effective success from the stronger claim that their native objects are the fundamental furniture of reality.
 
+The rule is simple: do not promote a useful descriptor into a primitive just because it works. Ask what exists, what causal structure it emits or records, what medium response it joins, and what observer-level summary is being read from it.
+
 ### Ontological Discipline
 
 The first discipline is to distinguish an entity from a description of behavior. A theory can describe a system accurately while naming the wrong layer as primitive. General Relativity describes gravitational phenomena through effective metric geometry; quantum field theory describes scattering and excitation through continuum fields and operators; statistical and information-theoretic methods describe distinguishable states and correlations. Those descriptions may be powerful without being final ontology.
@@ -16571,16 +16674,16 @@ That architecture is stronger than a slogan about building from the bottom up. I
 
 ## Major Thinkers
 
----
-
 ### Overview
 
 This document maps key historical and contemporary figures who have shaped foundational thinking about nature, reality, and the structure of physics. For each, it identifies the thinker's core commitments and assesses how $\mathbb{A}\mathbb{A}\mathbb{A}$ supports, challenges, reframes, or supersedes them.
 
 It should be read alongside [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md), [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), and [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md).
 
+This document is not a ranking of thinkers. It is a stack-placement exercise. A thinker may be right about mechanism but wrong about ontology, right about method but wrong about physics, or wrong in final form while still preserving a clue that becomes useful after the substrate is rebuilt.
+
 The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
-- **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
+- **Reductionist**: All complexity derives from one fundamental entity type, the architrino, with two polarity signs and shared interaction rules.
 - **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, with **deterministic multistability** at self-hit branch points.
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether sea response.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.
@@ -18109,6 +18212,8 @@ This comparative map pairs naturally with [Cosmology Ontology](../../../../markd
 
 **Disclaimer:** This chapter is a comparative map rather than an exhaustive theological history. Each tradition contains multiple schools, internal debates, and historical shifts. Terms such as creator, substance, origin, and end-state are cross-tradition approximations and should be read as analytical labels rather than exact doctrinal equivalents.
 
+The comparison is conceptual, not adjudicative. Religious cosmologies can illuminate deep human questions about origin, order, end-state, agency, and meaning, but those comparisons do not supply physical mechanisms. In this corpus they are used to clarify contrasts between symbolic, theological, metaphysical, and substrate-physical explanation.
+
 Religious cosmologies address three core questions:
 1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? What is real?
 2. **Cosmogony (How did it begin?):** What is the origin story of the universe or cosmos? Where did it come from?
@@ -18446,8 +18551,6 @@ What still works as comparative insight is Daoism's disciplined naturalism, its 
 
 ## Information / Computation
 
----
-
 ### Overview
 
 This document maps the information-theoretic and computational concepts that shape modern attempts to interpret physics, ontology, and explanation.
@@ -18456,13 +18559,15 @@ It complements [Philosophy of Science](../../../../markdown/aaa/philosophy-histo
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the central question is whether information and computation are fundamental or whether they are derived descriptions of physical organization and update structure.
 
+The chapter's core discipline is carrier before code. Information can measure distinction, correlation, compression, access, and loss, but every informative state still needs a physical carrier, a record channel, and an update process. Computation can model the dynamics, but a simulation is not the substrate it simulates.
+
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](../../../../markdown/aaa/philosophy-history/major-thinkers.md).
 
 The architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
-This layer needs one standard coverage template so subjects are treated systematically rather than as slogans.
+This layer uses a standard coverage template so subjects are treated systematically rather than as slogans.
 
 #### Information/Computation Subject Template (Unified)
 
@@ -18738,7 +18843,7 @@ This subject is crucial because debates about information often go wrong at exac
 
 #### Historical Motivation
 
-The historical motivation came from measurement theory, communication systems, cybernetics, control theory, and the practical realities of experimental science. The core question was how finite systems encode states of other systems reliably enough to support prediction and intervention. The central claim that emerged is that representation is neither magical nor purely semantic. It is grounded in causal chains that preserve selected distinctions and erase others. Major thinkers and programs here include Shannon-style communication analysis, cybernetics, measurement theory, error-correction programs, and modern quantum-information treatments of preparation and readout.
+The historical motivation came from measurement theory, communication systems, cybernetics, control theory, and the practical realities of experimental science. The core question was how finite systems encode states of other systems reliably enough to support prediction and intervention. The central claim that emerged is that representation is neither disembodied nor purely semantic. It is grounded in causal chains that preserve selected distinctions and erase others. Major thinkers and programs here include Shannon-style communication analysis, cybernetics, measurement theory, error-correction programs, and modern quantum-information treatments of preparation and readout.
 
 This subject also arose because modern instruments became too complex for naive observation language. A telescope image, collider event reconstruction, or qubit readout is already the output of layered encoding and decoding. Once that became unavoidable, it was no longer credible to speak as though measurement gave direct access to ontology without mediation. The problem shifted from "what do we see?" to "what causal chain turned world-state into reportable difference?"
 
@@ -18866,7 +18971,7 @@ This does not make every Noether braid an agent. A bare Noether braid has a thre
 
 The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable middle binary supplies the possibility of alternatives; controlled threshold placement supplies the decision.
 
-Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(t)$.
+Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(T)$.
 
 ### Determinism and Predictability
 
@@ -18884,20 +18989,20 @@ F_\Omega\!\left(
 X_\Omega(T),
 \mathcal{H}_{\Omega}^{<T},
 \mathcal{B}_{\partial\Omega}(T),
-N_{\text{sea}}|_{\Omega}(t)
+N_{\text{sea}}|_{\Omega}(T)
 \right)
 $$
 The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
 A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
 $$
-c_\Omega(t)=\left(\mathcal{H}_{\Omega}^{<t},\mathcal{B}_{\partial\Omega}(t),N_{\text{sea}}|_{\Omega}(t)\right)
+c_\Omega(T)=\left(\mathcal{H}_{\Omega}^{<T},\mathcal{B}_{\partial\Omega}(T),N_{\text{sea}}|_{\Omega}(T)\right)
 $$
-denote that fixed context. For a time window $T$, let $P_{c_\Omega,x,T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(t)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
+denote that fixed context. For a time window $W_T$, let $P_{c_\Omega,x,W_T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(T)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
 $$
-D\!\left(P_{c_\Omega,x_a,T},P_{c_\Omega,x_b,T}\right)\ge\epsilon_I
+D\!\left(P_{c_\Omega,x_a,W_T},P_{c_\Omega,x_b,W_T}\right)\ge\epsilon_I
 $$
-where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(t)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
+where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(T)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
 
 ### Will as Threshold Setting
 
@@ -19227,13 +19332,13 @@ Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical
 $$
 \mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
 =
-\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q}
+\frac{\left\|\partial_{t_{\mathrm{eff}}} Q_\theta+\nabla_{\mathrm{eff}}\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q}
 $$
 where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether sea, and it must carry observation, stability, and source/boundary residuals together.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ and $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ from substrate claims about assemblies and the Noether sea, and it must carry observation, stability, and source/boundary residuals together.
 
 Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
 
@@ -19452,13 +19557,13 @@ The long-term relevance of this episode is permanent until the field/particle di
 
 What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
 $$
-a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t},
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t_{\mathrm{eff}}},
 \qquad
-\dot{\rho}_{m,\mathrm{eff}}=0
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}=0
 $$
 The mathematical pressure is immediate. With no source term, dust continuity gives
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_*\rho_{m,\mathrm{eff}}=0
 $$
 so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
@@ -20042,26 +20147,26 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a com
 A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, let the relevant coarse state be written schematically as
 
 $$
-\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)
+\mathcal{Q}_{\mathrm{dS}}^{(O)}(t_{\mathrm{eff}})
 =
 \left(
-\mathcal{D}_{O}(t),
-\rho_{\text{NS}}(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t),
-\mathcal{M}_{\mathrm{sea}}^{ab}(\mathbf{x},t),
-S_{\mathrm{out}}^{(O)}(t)
+\mathcal{D}_{O}(t_{\mathrm{eff}}),
+\rho_{\text{NS}}(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T),
+\mathcal{M}_{\mathrm{sea}}^{ab}(\mathbf X,T),
+S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
+where $\mathcal{D}_{O}(t_{\mathrm{eff}})$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf X,T)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
 
 $$
-\mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
+\mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t_{\mathrm{eff}})\right]
 \longmapsto
 \left(
-H_{\mathrm{eff}}(t),
-w_{\mathrm{eff}}(t),
-S_{\mathrm{hor}}^{(O)}(t)
+H_{\mathrm{eff}}(t_{\mathrm{eff}}),
+w_{\mathrm{eff}}(t_{\mathrm{eff}}),
+S_{\mathrm{hor}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
@@ -20069,7 +20174,7 @@ that matches late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks,
 
 #### What Would Count As Resolution
 
-Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
+Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, $w_{\mathrm{eff}}(t_{\mathrm{eff}})$, horizon-access entropy, and structure-growth behavior from the same Noether sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
 
 ---
 
@@ -20580,7 +20685,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Standard repairs.** Standard repairs include a bare cosmological constant, dynamical dark-energy fields, coupled dark sectors, and infrared modifications of gravity. None has yet won because the same background data can be fit by more than one mechanism class.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Late acceleration becomes a question about redshift, clock transport, Noether sea evolution, source history, nested shell braid relaxation, and distance inference. The Euclidean void does not expand. The observer-facing quantities $a(t)$, $H(t)$, and $w(z)$ are effective summaries of medium evolution, transport, and clock-rate comparison.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Late acceleration becomes a question about redshift, clock transport, Noether sea evolution, source history, nested shell braid relaxation, and distance inference. The Euclidean void does not expand. The observer-facing quantities $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $w(z)$ are effective summaries of medium evolution, transport, and clock-rate comparison.
 
 **Detailed architecture route.** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether sea evolution, clock-rate comparison, and relaxation of nested shell braid assemblies in the Noether sea rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and outer-layer relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance.
 
@@ -21553,9 +21658,9 @@ $$
 =
 f_{\tau}\!\left(
 \beta,\,
-n(\mathbf{x},t),\,
-\chi_{\text{sea}}(\mathbf{x},t),\,
-\Phi_{\text{eff}}(\mathbf{x},t),\,
+n(\mathbf X,T),\,
+\chi_{\text{sea}}(\mathbf X,T),\,
+\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),\,
 \text{assembly state}
 \right),
 \qquad
@@ -22054,13 +22159,13 @@ E_{\mathrm{arch}}(t)
 +E_{\mathrm{wake}}(t)
 +E_{\mathrm{sea}}(t),
 \qquad
-\frac{dE_{\mathrm{tot}}}{dt}=0
+\frac{dE_{\mathrm{tot}}}{dT}=0
 $$
 
 where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This global form is available only if the universe-state energy is finite or convergently summable on the constant-$t$ leaf. If an unbounded populated Noether sea does not admit that global sum, the safe statement is the bounded-region continuity law
 
 $$
-\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+\partial_T\rho_E+\nabla_{\mathbf X}\cdot\mathbf{S}_E=0
 $$
 
 or, for a finite region $\Omega$ after boundary flux is included,

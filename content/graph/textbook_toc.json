@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 185,
-      "sections": 1474
+      "sections": 1476
     }
   },
   "tocRoot": {
@@ -556,10 +556,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Preferred Rest Frame and Dynamical Symmetry Breaking",
+                "title": "Preferred Rest Frame from the Wake Law",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-timespace.md",
-                "markdownSection": "Preferred Rest Frame and Dynamical Symmetry Breaking",
-                "sectionKey": "preferred rest frame and dynamical symmetry breaking",
+                "markdownSection": "Preferred Rest Frame from the Wake Law",
+                "sectionKey": "preferred rest frame from the wake law",
                 "headingLevel": 2
               },
               {
@@ -1506,9 +1506,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf{v}\\| = c_f$)",
+                "title": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf V\\| = c_f$)",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf{v}\\| = c_f$)",
+                "markdownSection": "Spiral Binary Symmetry-Breaking Point ($\\|\\mathbf V\\| = c_f$)",
                 "sectionKey": "spiral binary symmetry breaking point mathbf v c f",
                 "headingLevel": 2
               },
@@ -2206,6 +2206,14 @@
             "scenePath": "content/scenes/noether-braid/noether_braid_overview.json",
             "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Simple Picture",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
+                "markdownSection": "Simple Picture",
+                "sectionKey": "simple picture",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Document Role",
@@ -3502,6 +3510,14 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
+                    "title": "Coordinate Layers",
+                    "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+                    "markdownSection": "Coordinate Layers",
+                    "sectionKey": "coordinate layers",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Abstract",
                     "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
                     "markdownSection": "Abstract",
@@ -4633,7 +4649,7 @@
             "children": [
               {
                 "id": "fermions__color_charge_su3",
-                "title": "Color Charge SU3",
+                "title": "Color Charge SU(3)",
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/assemblies/color_charge_su3.json",
@@ -9155,7 +9171,7 @@
                   },
                   {
                     "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-                    "title": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+                    "title": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
@@ -9520,10 +9536,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "2026-06-28 Comparator and AAA Rescore Notes",
+                "title": "2026-06-28 Comparator and $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Rescore Notes",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-06-28 Comparator and AAA Rescore Notes",
-                "sectionKey": "2026 06 28 comparator and aaa rescore notes",
+                "markdownSection": "2026-06-28 Comparator and $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Rescore Notes",
+                "sectionKey": "2026 06 28 comparator and mathbb a mathbb a mathbb a rescore notes",
                 "headingLevel": 2
               },
               {
@@ -11587,7 +11603,7 @@
                   },
                   {
                     "id": "theory_bridges__pilot_wave_character",
-                    "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+                    "title": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
@@ -11653,7 +11669,7 @@
                   },
                   {
                     "id": "theory_bridges__superposition_mechanism",
-                    "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+                    "title": "Superposition Mechanism: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
@@ -11669,7 +11685,7 @@
                   },
                   {
                     "id": "theory_bridges__entanglement_nonlocality",
-                    "title": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+                    "title": "Entanglement and Nonlocality: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
@@ -11727,7 +11743,7 @@
                   },
                   {
                     "id": "theory_bridges__bell_theorem",
-                    "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+                    "title": "Bell's Theorem: QM Foundations vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",

@@ -4,6 +4,10 @@
 
 This chapter collects the observer-level and simulation-level checks that the framework must pass if it is to retain an absolute frame without contradicting established data. Its purpose is to translate foundational claims into concrete validation tasks: null tests, atomic comparisons, and frame-proxy checks.
 
+Validation is where ontology has to pay its bills. A preferred frame can exist in the theory only if ordinary Physical Observers still recover the null results, clock behavior, atomic spectra, and frame-proxy observations that experiments already constrain.
+
+The practical question is therefore not "can the framework say there is an absolute frame?" The question is whether the same machinery that contains that frame also hides it from ordinary operational tests to the observed precision.
+
 It should be used with [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md), [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md), [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
 The note is therefore a gatekeeping document. It should tell the reader what has to be reproduced, what mechanism is being claimed, and where falsification would occur.
@@ -109,7 +113,7 @@ In this framework, the candidate substrate-level quantities are:
 #### Category C: Assembly Geometry (Emergent but Calculable)
 - **Nested shell braid radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf{x},t)$)
+- **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf X,T)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
@@ -177,9 +181,9 @@ The speed of light $c$ is **not fundamental**. It is the low-gradient operationa
 
 **Key relation:**
 $$
-c_\gamma(\mathbf{x},t)=\frac{c_f}{\chi_\gamma(\mathbf{x},t)},
+c_\gamma(\mathbf X,T)=\frac{c_f}{\chi_\gamma(\mathbf X,T)},
 \qquad
-\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether sea state}\right)
+\chi_\gamma(\mathbf X,T)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf X,T),n(\mathbf X,T),\text{Noether sea state}\right)
 $$
 
 In the low-energy limit (flat spacetime, weak Noether sea gradients):
@@ -502,11 +506,11 @@ as the canonical symbol for the physical field speed, while $v=1$ or $c_f=1$ den
 
 The following should **not** be treated as free global constants:
 
-- $n(\mathbf{x},t)$,
-- $\rho_{\text{NS}}(\mathbf{x},t)$,
-- $\Phi_{\text{eff}}(\mathbf{x},t)$,
-- $c_{\text{eff}}(\mathbf{x})$,
-- $\chi_{\text{sea}}(\mathbf{x},t)$,
+- $n(\mathbf X,T)$,
+- $\rho_{\text{NS}}(\mathbf X,T)$,
+- $\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$,
+- $c_{\text{eff}}(\mathbf X,T)$,
+- $\chi_{\text{sea}}(\mathbf X,T)$,
 - $m_{\text{inertial}}(A)$ for a specific assembly $A$.
 
 These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent parameters.
@@ -520,7 +524,7 @@ The following observer-level quantities are closure targets, not primitive input
 - $G$,
 - $\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i$,
 - particle masses and electroweak angles,
-- observer-level redshift and expansion summaries such as $Z_X$, $a(t)$, $H(t)$, and $H_{\mathrm{eff}}$.
+- observer-level redshift and expansion summaries such as $Z_X$, $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $H_{\mathrm{eff}}$.
 
 If the theory must reset them independently for each chapter, parameter closure has failed.
 
@@ -672,19 +676,19 @@ R_*=\frac{\kappa\epsilon^2}{c_f^2},
 \qquad
 T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
 $$
-For $\tilde{\mathbf{x}}=\mathbf{x}/R_*$, $\tilde t=t/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
+For $\tilde{\mathbf X}=\mathbf X/R_*$, $\tilde T=T/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
 $$
-\tilde r_{ij}=\tilde t-\tilde t_0
+\tilde R_{ij}=\tilde T-\tilde T_{\mathrm{em}}
 $$
 and
 $$
-\frac{d^2\tilde{\mathbf{x}}_i}{d\tilde t^2}
+\frac{d^2\tilde{\mathbf X}_i}{d\tilde T^2}
 =
-\sum_j\sum_{\tilde t_0\in\tilde{\mathcal{C}}_{ij}(\tilde t)}
+\sum_j\sum_{\tilde T_{\mathrm{em}}\in\tilde{\mathcal{C}}_{ij}(\tilde T)}
 \sigma_{ij}
 \frac{|\tilde q_i\tilde q_j|\,\tilde W_{ij}^{\mathrm{rec}}}
-{\tilde r_{ij}^2}
-\hat{\mathbf{r}}_{ij}
+{\tilde R_{ij}^2}
+\hat{\mathbf R}_{ij}
 $$
 up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
 
@@ -725,11 +729,11 @@ These symbols control the handoff from the Euclidean substrate plus Noether sea 
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether braid density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
-| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
-| C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) |
-| C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
-| C5 | $c_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
-| C5a | $\chi_{\text{sea}}(\mathbf{x},t)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether sea propagation maps | [../spacetime/noether-sea.md](../../../../markdown/aaa/spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
+| C2 | $n(\mathbf X,T)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
+| C3 | $\Omega(x_{\mathrm{eff}}^i),\xi(x_{\mathrm{eff}}^i)$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) |
+| C4 | $\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
+| C5 | $c_{\text{eff}}(\mathbf X,T)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
+| C5a | $\chi_{\text{sea}}(\mathbf X,T)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether sea propagation maps | [../spacetime/noether-sea.md](../../../../markdown/aaa/spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | C6 | $\gamma_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | C7 | $C_2$ or $\beta_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | C8 | $\Xi_1,\Xi_2,\Xi_3,\Xi_4$ | Constitutive closure target | Open | preferred-frame leakage coefficients in the weak-field constitutive expansion | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
@@ -762,12 +766,13 @@ $$
 $$
 A representative regularized form is
 $$
-\mathbf{a}_a(t)=
+\frac{d^2\mathbf X_a}{dT^2}
+=
 \sum_b
 \kappa\,\sigma_{ab}|q_aq_b|
-\int_{-\infty}^{t}\!dt_0\;
-\frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
-\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big)
+\int_{-\infty}^{T}\!dT_{\mathrm{em}}\;
+\frac{\hat{\mathbf R}_{ab}(T;T_{\mathrm{em}})}{R_{ab}(T;T_{\mathrm{em}})^2}\,
+\delta_\eta\!\big(R_{ab}(T;T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}})\big)
 $$
 
 This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.
@@ -791,13 +796,13 @@ This equation is a normalization-sensitive substrate-to-observer reconstruction,
 
 The constitutive spacetime layer uses
 $$
-\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T)=\rho_{\text{NS},0}\,n(\mathbf X,T)
 $$
 and
 $$
-\Phi_{\text{eff}}(\mathbf{x})
+\Phi_{\text{eff}}(x_{\mathrm{eff}}^i)
 =
-c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big)
+c_f^2\ln\!\big(\Omega(x_{\mathrm{eff}}^i)\xi(x_{\mathrm{eff}}^i)\big)
 $$
 
 Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
@@ -813,11 +818,11 @@ $$
 
 The observable weak-field coefficients are read from the constitutive map through
 $$
-\chi_{\text{sea}}(\mathbf{x})
+\chi_{\text{sea}}(\mathbf X,T)
 \equiv
-\frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_f}{c_{\text{eff}}(\mathbf X,T)}
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_f^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right)
 $$
 and
@@ -950,7 +955,7 @@ Parameter closure fails if any of the following occurs:
 
 - a symbol advertised as fundamental changes meaning across chapters,
 - a constitutive coefficient must be re-fit independently for different observable classes,
-- a state field such as $n(\mathbf{x},t)$ is implicitly treated as a free global constant to rescue a calculation,
+- a state field such as $n(\mathbf X,T)$ is implicitly treated as a free global constant to rescue a calculation,
 - or observer-level benchmarks such as $e$, $G$, or particle masses are matched only by introducing one-off per-sector normalizations.
 
 In compact form, the closure target is a nonempty shared parameter set
@@ -1062,8 +1067,8 @@ X
 \left(
 \Gamma,
 \mathcal{H},
-\rho_{\text{NS}}(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T),
 Z_S
 \right)
 $$
@@ -1328,7 +1333,7 @@ The contract for each serious channel is:
 
 A reaction record may be promoted beyond a provisional map only when all of the following conditions have been met in the same sector case:
 
-1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
+1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, and explicitly named sector variables, with no hidden sector-specific residual term.
 2. **Boundary selection:** each selected channel has a stated boundary test $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either fails its boundary test or is ruled out by a compatibility condition.
 3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
 4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether sea, and remnant rows.
@@ -1539,7 +1544,7 @@ The minimal useful first path is BBN photon loading: identify a source-zone radi
 | Field | What must be recorded | Why it matters |
 | --- | --- | --- |
 | Architrino inventory | $\epsilon_+/\epsilon_-$ counts, braid/axial-layer separation, and identity routing for recruited or returned substrate content | Prevents creation-from-nothing wording in pair and weak channels |
-| Noether sea state | $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
+| Noether sea state | $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, anisotropy, and excitation state | Keeps density, delay, and transport variables distinct |
 | Noether sea recruitment and return | Neutral Noether braid content recruited into a reaction, returned to the ambient population, reclassified into another branch, or left as local excitation | Treats the Noether sea as a participant in vertices that change apparent inventory, not as a passive background |
 | Radiation event record | Source assembly, trigger geometry, $\delta\Theta_a$, $E_{\text{exc}}$, $E_\gamma$, recoil, medium excitation, polarization handoff, causal-wake ledger, and closure status | Provides the local event schema that can be propagated into source-zone, transport, and observer-level cosmology claims |
 | Photon assembly channel | Planar-mode nucleation threshold, emitted energy, direction, polarization basis, and transverse angular-momentum ledger | Links bremsstrahlung, synchrotron, and CMB photon-bath claims |
@@ -1596,7 +1601,7 @@ E_\gamma
 \Delta E_{\text{rem}}
 $$
 
-The provenance record must also include the source electron assembly, target assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, local $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, planar-mode threshold status, emitted photon assembly direction, recoil, medium excitation, causal-wake ledger, identity routing, closure status, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold. Its polarization handoff inherits photon Gate B rather than deriving photon spin locally, and the record remains provisional until the event residual routes source, recoil, medium, wake, handoff, and remnant rows.
+The provenance record must also include the source electron assembly, target assembly, source-depletion row, trigger geometry, $\delta\Theta_a$, local $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, planar-mode threshold status, emitted photon assembly direction, recoil, medium excitation, causal-wake ledger, identity routing, closure status, and whether the event occurs in a regime where standard free-free emissivity remains the observer-level scaffold. Its polarization handoff inherits photon Gate B rather than deriving photon spin locally, and the record remains provisional until the event residual routes source, recoil, medium, wake, handoff, and remnant rows.
 
 #### Synchrotron Emission
 
@@ -1825,9 +1830,9 @@ $$
 =
 \int_{\Gamma_z}
 \frac{
-\chi_\gamma(\omega_a,\mathbf{x},t)
+\chi_\gamma(\omega_a,\mathbf X,T)
 -
-\chi_\gamma(\omega_b,\mathbf{x},t)
+\chi_\gamma(\omega_b,\mathbf X,T)
 }{c_0}\,d\ell
 $$
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
@@ -1927,12 +1932,12 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   $$
   \mathcal{D}_{\mathrm{grav}}(T;\theta)
   =
-  \int_0^T\!\!\int_0^T
-  \Delta h_A(t)\,
-  N^{-1}_{AB}(t,t')\,
-  \Delta h_B(t')\,dt\,dt'
+  \int_0^{T_{\mathrm{run}}}\!\!\int_0^{T_{\mathrm{run}}}
+  \Delta h_A(t_{\mathrm{eff}})\,
+  N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})\,
+  \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
   $$
-  with $\Delta h_A(t)=h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
+  with $\Delta h_A(t_{\mathrm{eff}})=h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
 * **Validation Target** – combine long-coherence interferometry with Cavendish-like, atom-interferometric, or gravitational-wave-instrument precision bounds to constrain $\mathcal{D}_{\mathrm{grav}}$ using one effective-metric constitutive record $\theta$; the concrete scaffold is [Massive-Superposition Gravity Validation Packet](../../../../markdown/aaa/validation/massive-superposition-gravity.md).
 * **Mediated-Entanglement Target** – for gravitationally induced entanglement comparisons, the same $\theta$ must generate the branch interaction phase $\Delta\Phi_{\mathrm{ent}}$ needed for the observed witness $C_{\mathrm{obs}}$ while keeping $\mathcal{R}_{\mathrm{nongrav}}$ below the isolation threshold and $\mathcal{D}_{\mathrm{grav}}$ below the which-path threshold.
@@ -1965,7 +1970,7 @@ $$
 $$
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
-* **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta\mathbf{x}_{\mathrm{ephem}}^\theta(t)$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
+* **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta x_{\mathrm{ephem,eff}}^{i,\theta}(t_{\mathrm{eff}})$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
 * **Co-Signature Check** – if the branch predicts high-energy particles, radiation, or gravitational-wave sidebands, those observables must use the same trajectory, mass, and abundance record as the ephemeris perturbation.
 * **Failure Condition** – a compact dark-sector branch fails locally if it explains cosmological abundance with one mass or population record but requires a different record for ephemerides, visible-object exclusions, or high-energy null results.
 
@@ -2207,7 +2212,7 @@ The current benchmark scale is already severe: PDG 2024 summaries give $\tau/B(p
 | $\mathcal{C}_{\mathrm{gravity}}$ | One Noether sea response map $\mathcal{M}_{\mathrm{sea}}^{ab}$ supplies clock, ruler, effective signal-speed, weak-field metric, and PPN channels without changing coefficients per observable. | $\mathcal{B}_{\mathrm{gravity}}(\theta)$ lies in the redshift, Shapiro-delay, lensing, orbital, gravitational-wave-speed, PPN, and preferred-frame bound region within $\epsilon_{\mathrm{gravity}}$. | Clock, ruler, signal, or metric coefficients must be tuned independently, ordinary dissipative drag appears in stable motion, or preferred-frame leakage exceeds the recorded bounds. |
 | $\mathcal{C}_{\mathrm{hadronic}}$ | An accepted branch family $A$, exposure quotient, color/topology ledger, residual strong channel set, and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ close confinement, quark mass, baryon-stability, and nuclear-binding rows. | $\mathcal{B}_{\mathrm{hadronic}}(\theta)$ lies in the confinement, quark-hierarchy, proton-stability, deuteron, saturation, and alpha-like benchmark region within $\epsilon_{\mathrm{hadronic}}$. | The sector predicts generic fast proton decay, unphysical nuclear binding signs, missing color/topology closure, or an unbalanced architrino / Noether braid inventory. |
 | $\mathcal{C}_{\mathrm{radiation}}$ | A radiation residual $\mathcal{R}_{\Theta}$ selects admissible channels from $\{B_i\}$ and closes $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ with photon output, recoil, medium update, signed photon-frequency exchange, non-radiative remnant, or reaction rows explicitly recorded. | $\mathcal{B}_{\mathrm{radiation}}(\theta)$ lies in the Larmor/Lienard, bremsstrahlung, synchrotron, pair-threshold, Compton-like, SZ-like transfer, and blackbody benchmark region within $\epsilon_{\mathrm{radiation}}$. | Any benchmark requires per-observable retuning, untracked energy loss or gain, a missing recoil/provenance row, a free longitudinal photon mode, or a blackbody fit not tied to the event ledger. |
-| $\mathcal{C}_{\mathrm{cosmology}}$ | One source, transport, signed photon-frequency-transfer, thermalization, and clock-rate record uses the same $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance ledger across local source channels and observer-level cosmology. | $\mathcal{B}_{\mathrm{cosmology}}(\theta)$ lies in the BBN, CMB blackbody, damping, anisotropy, polarization handoff, redshift-budget, $H(z)$, BAO, and growth benchmark region within $\epsilon_{\mathrm{cosmology}}$. | BBN photon loading, CMB thermalization, redshift handoff, frequency-exchange closure, or structure growth requires unbalanced substrate creation, unlogged photon energy transfer, per-source retuning, or Noether sea variables incompatible with local reaction / radiation ledgers. |
+| $\mathcal{C}_{\mathrm{cosmology}}$ | One source, transport, signed photon-frequency-transfer, thermalization, and clock-rate record uses the same $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and reaction provenance ledger across local source channels and observer-level cosmology. | $\mathcal{B}_{\mathrm{cosmology}}(\theta)$ lies in the BBN, CMB blackbody, damping, anisotropy, polarization handoff, redshift-budget, $H(z)$, BAO, and growth benchmark region within $\epsilon_{\mathrm{cosmology}}$. | BBN photon loading, CMB thermalization, redshift handoff, frequency-exchange closure, or structure growth requires unbalanced substrate creation, unlogged photon energy transfer, per-source retuning, or Noether sea variables incompatible with local reaction / radiation ledgers. |
 
 ### Promotion Lemma
 
@@ -2277,7 +2282,7 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 | --- | --- | --- | --- |
 | Weak-domain split | $I(c)$ requires distinct weak exposure domains for `V-A`, CKM/PMNS, and weak-corridor provenance. | $\mathcal{C}_{\mathrm{weak}}\!\mid c=\varnothing$ because $P_{\mathrm{weak}}$ requires one weak-coupling-triad exposure record. | `weak.hidden_domain_split` |
 | Gravity coefficient split | $I(c)$ requires separate clock, ruler, signal, and PPN coefficients not derived from one $\mathcal{M}_{\mathrm{sea}}^{ab}$. | $\mathcal{C}_{\mathrm{gravity}}\!\mid c=\varnothing$ if the split is needed for benchmark recovery. | `gravity.hidden_tuning` |
-| Radiation-cosmology split | $I(c)$ fits blackbody recovery with $\chi_{\text{sea}}^{\mathrm{CMB}}(\mathbf{x},t)$ incompatible with the BBN or local radiation event ledger. | $\mathcal{C}_{\mathrm{cosmology}}\!\mid c=\varnothing$ or $\delta_{\mathrm{cosmology}}(c)<0$. | `cosmology.incompatible_transport_limit` |
+| Radiation-cosmology split | $I(c)$ fits blackbody recovery with $\chi_{\text{sea}}^{\mathrm{CMB}}(\mathbf X,T)$ incompatible with the BBN or local radiation event ledger. | $\mathcal{C}_{\mathrm{cosmology}}\!\mid c=\varnothing$ or $\delta_{\mathrm{cosmology}}(c)<0$. | `cosmology.incompatible_transport_limit` |
 | Quantum signal leak | $I(c)$ recovers Bell correlations through a detector kernel that transfers controllable signals outside the causal-wake ledger. | $\mathcal{C}_{\mathrm{quantum}}\!\mid c=\varnothing$ and the same record damages $\mathcal{C}_{\mathrm{gravity}}$ through preferred-frame leakage. | `quantum.signal_transfer` |
 | Event-ledger omission | $I(c)$ routes radiation, reaction, measurement, or strong-field release without a required $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium, or remnant row. | The target sector using that event has no admissible $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ completion. | `event.missing_ledger_row` |
 | Null-result violation | $I(c)$ predicts a non-baseline channel $e\in\mathfrak{E}_{\theta}^{\mathrm{new}}$ with $O_e(\theta)>O_e^{\max}$ in a tested regime. | The relevant sector gate may fit its positive benchmark, but the shared closure record fails $\mathcal{R}_{\mathrm{null}}(\theta)=0$. | `null.observed_absence_violation` |
@@ -2287,7 +2292,7 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 | Failure mode | Mathematical test | Routed workstream |
 | --- | --- | --- |
 | Empty intersection | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}=\varnothing$ or $\operatorname{Ext}_S(c)=\varnothing$ for a proposed local promotion. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md) |
-| Hidden tuning | A shared variable or map has sector-specific values $p_S\ne p_T$ with no recorded state variable, or the same benchmark family is recovered only by changing $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, the branch-chart revision record, equality map, root-coordinate split, $\mathcal{M}_{\mathrm{sea}}^{ab}$, $\rho_{\text{NS}}(\mathbf{x},t)$, or $\chi_{\text{sea}}(\mathbf{x},t)$ between cases. Branch-chart revisions selected after residual inspection rather than declared from branch geometry fail this test. | [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
+| Hidden tuning | A shared variable or map has sector-specific values $p_S\ne p_T$ with no recorded state variable, or the same benchmark family is recovered only by changing $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, the branch-chart revision record, equality map, root-coordinate split, $\mathcal{M}_{\mathrm{sea}}^{ab}$, $\rho_{\text{NS}}(\mathbf X,T)$, or $\chi_{\text{sea}}(\mathbf X,T)$ between cases. Branch-chart revisions selected after residual inspection rather than declared from branch geometry fail this test. | [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Null-result violation | $\mathcal{R}_{\mathrm{null}}(\theta)>0$ for a predicted added channel in a validated comparison regime. | [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) |
 | Missing conservation/provenance field | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ has an undefined or nonzero required row after all claimed outputs, recoil, medium updates, remnants, polarity / charge, architrino inventory, source identity, emission time, causal-root branch, and branch-Jacobian records are included. | [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) |
 | Benchmark-only fitting | A target benchmark in $\mathfrak{B}^{\mathrm{obs}}_S$ is used as an input to $\mathcal{L}_A$, $\Pi_S$, $Q_S$, $\mathcal{R}$, $\{B_i\}$, a branch-chart revision, an equality map, a root-coordinate split, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ rather than as an output of a replayable closure record. | [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), [Radiation](../../../../markdown/aaa/reactions/radiation.md) |
@@ -2310,6 +2315,10 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 ## No Go Theorems
 
 This chapter classifies the formal obstruction results that act as validation filters for $\mathbb{A}\mathbb{A}\mathbb{A}$. A no-go theorem is not useful here as a decorative citation. It is useful only when its assumptions, conclusion, and replacement burden can be recorded against a candidate closure.
+
+A no-go theorem has a simple shape: if these assumptions are accepted, this conclusion cannot be avoided. That does not automatically defeat a theory that rejects one of the assumptions. It does mean the theory now owes a replacement mechanism for the tested behavior that the theorem was protecting.
+
+This page is the bookkeeping layer for that debt. It separates direct falsifiers from assumption mismatches, and it prevents the easy mistake of saying "that theorem does not apply" while quietly keeping the theorem's validated target.
 
 The operational companion is [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md). That page defines the shared closure intersection. This page defines how a theorem enters one sector gate: directly as a rejection condition, as an assumption mismatch, as a replacement constraint, or as an irrelevant comparison.
 
@@ -2549,8 +2558,8 @@ Superposition, measurement, Born-rule emergence, and Bell/nonlocality closure ar
 Penrose-Diosi gravitational-collapse tests are an external benchmark for the same finite-time threshold-resolution burden, not an adopted ontology. The comparison uses the gravitational self-energy of the difference between two mass distributions,
 $$
 \Delta E_G \sim \frac{G}{2}\int\!\!\int
-\frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
-{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y
+\frac{(\rho_1-\rho_2)(x_{\mathrm{eff}}^i)(\rho_1-\rho_2)(y_{\mathrm{eff}}^i)}
+{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}\,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 $$
 with the collapse-time estimate
 $$
@@ -2583,7 +2592,7 @@ Radiation Gate C closure is validated only if the same event record passes the f
 | Aharonov-Bohm phase | derivation target | Recover a relative phase proportional to enclosed magnetic flux while the local force channel on the interferometer arms vanishes, using the same effective U(1) connection and photon/action ledger as the rest of Gate C. | The phase requires a local force on the arms, an independent phase fit, or a literal gauge-potential ontology rather than a derived effective connection. |
 | Blackbody recovery | derivation target | Recover Planck occupation, zero effective photon chemical potential, thermalization depth, damping, anisotropy, polarization handoff, and redshift handoff without retuning the Noether sea map. | The CMB or thermal branch needs unbalanced photon loading, per-observable retuning, or incompatible transport assumptions. |
 | Free photon polarization boundary | derivation target | Use Gate B records for transverse modes, helicity, Malus' law, and analyzer statistics; radiation and cosmology pages may only consume that handoff. | Any radiation channel derives free photon polarization locally, adds a free longitudinal mode, or treats Gate B as already proven. |
-| Noether sea-dependent deviations | speculation | State a benchmark-preserving limit and a measurable residual before promoting any $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, anisotropy, or threshold-floor effect. | A deviation is used to repair a failed standard recovery or is fitted separately per observable. |
+| Noether sea-dependent deviations | speculation | State a benchmark-preserving limit and a measurable residual before promoting any $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, anisotropy, or threshold-floor effect. | A deviation is used to repair a failed standard recovery or is fitted separately per observable. |
 
 ### Ontology Watchlist
 
@@ -2655,28 +2664,28 @@ The packet should classify a run by the strongest observable it actually carries
 
 ### Observable Target
 
-The target experiment compares two branch-level mass-density histories over a coherence window $T$:
+The target experiment compares two branch-level mass-density histories over an effective-observer coherence window $T_{\mathrm{run}}$:
 $$
-\rho_1(\mathbf{x},t),
+\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
 \qquad
-\rho_2(\mathbf{x},t)
+\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 The branch pair is interference-preserving only if the apparatus and environment have not produced an autonomous which-path record. The gravitational or effective-metric channel therefore becomes a constraint through the response difference
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 =
-h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)
+h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
 where $A$ labels the resolved detector response channel and $\theta$ is the shared effective-metric constitutive record.
 
 The which-path diagnostic is
 $$
-\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
 =
-\int_0^T\!\!\int_0^T
-\Delta h_A(t)\,
-N^{-1}_{AB}(t,t';\theta)\,
-\Delta h_B(t')\,dt\,dt'
+\int_0^{T_{\mathrm{run}}}\!\!\int_0^{T_{\mathrm{run}}}
+\Delta h_A(t_{\mathrm{eff}})\,
+N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}};\theta)\,
+\Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
 Here $N_{AB}$ is the observer-level covariance decomposed in [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md#boundary-wake-covariance-scaffold). It summarizes unresolved deterministic boundary histories and calibrated detector/environment residuals; it is not an ontological randomness postulate.
 
@@ -2684,62 +2693,62 @@ Here $N_{AB}$ is the observer-level covariance decomposed in [Observer Framework
 
 A concrete first packet can use a displaced normalized mass packet. Let $\varphi_\sigma$ be normalized by
 $$
-\int_{\Sigma_t}
-\varphi_\sigma(\mathbf{x})\,d^3x
+\int_{\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}}
+\varphi_\sigma(x_{\mathrm{eff}}^i)\,d^3x_{\mathrm{eff}}
 =
 1
 $$
-For branch separation $\mathbf{d}(t)$ around center $\mathbf{x}_0(t)$, set
+For branch separation $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$ around center $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, set
 $$
 \begin{aligned}
-\rho_1(\mathbf{x},t)
+\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 &=
 m\,\varphi_\sigma\!\left(
-\mathbf{x}-\mathbf{x}_0(t)-\frac{\mathbf{d}(t)}{2}
+x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})-\frac{d_{\mathrm{eff}}^i(t_{\mathrm{eff}})}{2}
 \right),\\
-\rho_2(\mathbf{x},t)
+\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 &=
 m\,\varphi_\sigma\!\left(
-\mathbf{x}-\mathbf{x}_0(t)+\frac{\mathbf{d}(t)}{2}
+x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})+\frac{d_{\mathrm{eff}}^i(t_{\mathrm{eff}})}{2}
 \right).
 \end{aligned}
 $$
-Let $G_A(t,s;\mathbf{x};\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for redshift, Shapiro delay, lensing, gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The branch response is
+Let $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ be the detector response kernel implied by the same effective-metric constitutive record used for redshift, Shapiro delay, lensing, gravitational-wave speed, and, when the record is extrapolated to compact sources, horizon-scale ring/shadow imaging. The branch response is
 $$
-h_A(t;\rho_k,\theta)
+h_A(t_{\mathrm{eff}};\rho_k,\theta)
 =
-\int_0^t\!\int_{\Sigma_s}
-G_A(t,s;\mathbf{x};\theta)\,
-\rho_k(\mathbf{x},s)\,d^3x\,ds
+\int_0^{t_{\mathrm{eff}}}\!\int_{\Sigma_{t'_{\mathrm{eff}}}^{\mathrm{eff}}}
+G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
+\rho_k(x_{\mathrm{eff}}^i,t'_{\mathrm{eff}})\,d^3x_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
 Therefore
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 =
-\int_0^t\!\int_{\Sigma_s}
-G_A(t,s;\mathbf{x};\theta)\,
+\int_0^{t_{\mathrm{eff}}}\!\int_{\Sigma_{t'_{\mathrm{eff}}}^{\mathrm{eff}}}
+G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
 \left[
-\rho_1(\mathbf{x},s)-\rho_2(\mathbf{x},s)
-\right]d^3x\,ds
+\rho_1(x_{\mathrm{eff}}^i,t'_{\mathrm{eff}})-\rho_2(x_{\mathrm{eff}}^i,t'_{\mathrm{eff}})
+\right]d^3x_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
-When $\|\mathbf{d}(t)\|$ is small relative to the packet scale,
+When $\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|$ is small relative to the packet scale,
 $$
-\rho_1(\mathbf{x},t)-\rho_2(\mathbf{x},t)
+\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})-\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
--m\,d^i(t)\,
-\partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(t))
+-m\,d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\,
+\partial_i\varphi_\sigma(x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}}))
 +
-O(\|\mathbf{d}(t)\|^3)
+O(\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|^3)
 $$
 so the leading branch response is
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 \approx
--m\int_0^t
-d^i(s)
-\int_{\Sigma_s}
-G_A(t,s;\mathbf{x};\theta)\,
-\partial_i\varphi_\sigma(\mathbf{x}-\mathbf{x}_0(s))\,d^3x\,ds
+-m\int_0^{t_{\mathrm{eff}}}
+d_{\mathrm{eff}}^i(t'_{\mathrm{eff}})
+\int_{\Sigma_{t'_{\mathrm{eff}}}^{\mathrm{eff}}}
+G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)\,
+\partial_i\varphi_\sigma(x_{\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i(t'_{\mathrm{eff}}))\,d^3x_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
 $$
 This gives the first closure equation: a mass displacement history should map to a predicted detector-channel separation before any interpretive claim about classical or quantum spacetime is introduced.
 
@@ -2747,35 +2756,35 @@ This gives the first closure equation: a mass displacement history should map to
 
 A complementary massive-superposition test asks whether two independently prepared massive probes can become entangled through the gravity-side channel while non-gravitational couplings are suppressed or bounded. This is a positive branch-phase benchmark, not a new ontology. The observable is the final two-probe correlation record, together with the calibration record showing that electromagnetic, spin-spin, thermal, and apparatus cross-talk channels are too small to account for the effect.
 
-Let the two probes be $A$ and $B$, with branch labels $a,b\in\{+,-\}$ and branch mass histories $\rho_A^a(\mathbf{x},t)$ and $\rho_B^b(\mathbf{x},t)$. The same weak-field constitutive record $\theta$ used for redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, compact-source ring/shadow extrapolations, and $\mathcal{D}_{\mathrm{grav}}$ must determine the branch interaction energy
+Let the two probes be $A$ and $B$, with branch labels $a,b\in\{+,-\}$ and branch mass histories $\rho_A^a(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\rho_B^b(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$. The same weak-field constitutive record $\theta$ used for redshift, Shapiro delay, lensing, PPN, gravitational-wave speed, compact-source ring/shadow extrapolations, and $\mathcal{D}_{\mathrm{grav}}$ must determine the branch interaction energy
 $$
-U_{ab}^{\mathrm{eff}}(t;\theta)
+U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)
 =
 -G_{\mathrm{eff}}(\theta)
-\int_{\Sigma_t}\!\!\int_{\Sigma_t}
-\frac{\rho_A^a(\mathbf{x},t)\rho_B^b(\mathbf{y},t)}
-{\|\mathbf{x}-\mathbf{y}\|}
-\,d^3x\,d^3y
+\int_{\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}}\!\!\int_{\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}}
+\frac{\rho_A^a(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\rho_B^b(y_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
+{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}
+\,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 +O(c_0^{-2})
 $$
 The branch phase is then
 $$
-\Phi_{ab}(T;\theta)
+\Phi_{ab}(T_{\mathrm{run}};\theta)
 =
 \frac{1}{\hbar}
-\int_0^T
-U_{ab}^{\mathrm{eff}}(t;\theta)\,dt
+\int_0^{T_{\mathrm{run}}}
+U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)\,dt_{\mathrm{eff}}
 $$
 Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
 $$
-\Delta\Phi_{\mathrm{ent}}(T;\theta)
+\Delta\Phi_{\mathrm{ent}}(T_{\mathrm{run}};\theta)
 =
 \Phi_{++}(T;\theta)+\Phi_{--}(T;\theta)
 -\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta)
 $$
 For the ideal equal-amplitude two-branch packet, a first witness target is
 $$
-C_{\mathrm{GIE}}(T;\theta)
+C_{\mathrm{GIE}}(T_{\mathrm{run}};\theta)
 =
 \left|
 \sin\frac{\Delta\Phi_{\mathrm{ent}}(T;\theta)}{2}
@@ -2797,14 +2806,14 @@ The packet is evaluated on an explicit run record:
 
 | Field | Symbol | Required content |
 | --- | --- | --- |
-| branch mass histories | $\rho_1,\rho_2$ | normalized mass-density histories on $\Sigma_t$ over $0\le t\le T$ |
-| branch separation | $\mathbf{d}(t)$ | center or multipole separation history with declared packet width $\sigma$ |
+| branch mass histories | $\rho_1,\rho_2$ | normalized mass-density histories on $\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$ over $0\le t_{\mathrm{eff}}\le T_{\mathrm{run}}$ |
+| branch separation | $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$ | center or multipole separation history with declared packet width $\sigma$ |
 | apparatus/environment record | $\mathcal{A}_{\mathrm{rec}}$ | record variable, persistence window, environmental coupling channels, and ordinary decoherence estimate |
-| gravity response kernel | $G_A(t,s;\mathbf{x};\theta)$ | detector response derived from the same effective-metric constitutive record used in weak-field gravity |
+| gravity response kernel | $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ | detector response derived from the same effective-metric constitutive record used in weak-field gravity |
 | mediated-entanglement phase | $\Delta\Phi_{\mathrm{ent}}$ | cross-branch phase predicted from $\rho_A^a,\rho_B^b$ and the shared constitutive record $\theta$ |
 | non-gravitational residual | $\mathcal{R}_{\mathrm{nongrav}}$ | calibrated bound on non-gravity channels that could create the observed correlation |
 | covariance decomposition | $N_{AB}$ | detector noise, unresolved boundary-wake terms, environmental residuals, and calibration residuals |
-| visibility data | $\mathcal{V}(T)$ | observed or predicted interference visibility over the run |
+| visibility data | $\mathcal{V}(T_{\mathrm{run}})$ | observed or predicted interference visibility over the run |
 | entanglement data | $C_{\mathrm{obs}}$ | measured or predicted two-probe entanglement witness in the retained readout basis |
 | record criteria | $R,\Sigma,T_{\text{rec}}$ | Physical Observer record variable, separatrix, and persistence threshold |
 
@@ -2812,10 +2821,10 @@ No row may be filled by changing the weak-field metric record after the positive
 
 ### Evaluation Protocol
 
-1. **Normalize the branch histories.** Verify $\int_{\Sigma_t}\rho_k(\mathbf{x},t)\,d^3x=m$ for each branch and each resolved time slice, or record the known mass exchange with the apparatus ledger.
-2. **Compute the response difference.** Use one kernel $G_A(t,s;\mathbf{x};\theta)$ to compute $h_A(t;\rho_1,\theta)$, $h_A(t;\rho_2,\theta)$, and $\Delta h_A(t)$.
+1. **Normalize the branch histories.** Verify $\int_{\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}}\rho_k(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,d^3x_{\mathrm{eff}}=m$ for each branch and each resolved time slice, or record the known mass exchange with the apparatus ledger.
+2. **Compute the response difference.** Use one kernel $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ to compute $h_A(t_{\mathrm{eff}};\rho_1,\theta)$, $h_A(t_{\mathrm{eff}};\rho_2,\theta)$, and $\Delta h_A(t_{\mathrm{eff}})$.
 3. **Assemble the covariance.** Build $N_{AB}=N^{\mathrm{det}}_{AB}+N^{\mathrm{env}}_{AB}+N^{\mathrm{wake}}_{AB}+N^{\mathrm{cal}}_{AB}$, with each term either derived from the apparatus model or bounded by calibration data.
-4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T;\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
+4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
 5. **Evaluate record formation.** Compute $\tau_{\text{meas}}$, $\Delta_{\mathrm{rec}}$, and the persistence window from the measurement chapter's record criteria.
 6. **Evaluate mediated entanglement when present.** If the run is a two-probe mediated-entanglement experiment, compute $\Delta\Phi_{\mathrm{ent}}$, $C_{\mathrm{GIE}}$, and $\mathcal{R}_{\mathrm{nongrav}}$ from the same run record.
 7. **Classify the run.** Use the same output record to assign one of four statuses:
@@ -2824,40 +2833,40 @@ No row may be filled by changing the weak-field metric record after the positive
 | --- | --- | --- |
 | weak-probe | $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$ and no durable record forms | gravitational response is too weak to act as a which-path record |
 | mediated-entangling | $C_{\mathrm{GIE}}\ge C_{\mathrm{obs}}-\varepsilon_C$, $\mathcal{R}_{\mathrm{nongrav}}\le\varepsilon_{\mathrm{iso}}$, $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$, and no durable which-path record forms | the branch phase is strong enough to account for the entanglement witness while the gravity-side readout remains below record threshold |
-| record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
+| record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T_{\mathrm{run}}$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
 | falsifying | $\mathcal{D}_{\mathrm{grav}}\gg1$ while visibility remains high and no record-autonomy criterion is met | the effective-metric response overproduces observable which-path information |
 
-For a white-noise readout approximation, $N_{AB}(t,t')=S_{AB}\delta(t-t')$, the distinguishability reduces to
+For a white-noise readout approximation, $N_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_{AB}\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability reduces to
 $$
-\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
 =
-\int_0^T
-\Delta h_A(t)\,
+\int_0^{T_{\mathrm{run}}}
+\Delta h_A(t_{\mathrm{eff}})\,
 S_{AB}^{-1}\,
-\Delta h_B(t)\,dt
+\Delta h_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
-This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $\mathbf{d}(t)$, $G_A$, and $S_{AB}$ are supplied.
+This special case is the first numerical target because it turns the validation packet into a finite time-series calculation once $m$, $\sigma$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $G_A$, and $S_{AB}$ are supplied.
 
 ### Worked Acceleration Bound
 
-A first sanity bound can use a single acceleration readout channel before introducing a full detector geometry. Suppose the branch displacement is bounded by $\|\mathbf{d}(t)\|\le d_0$, the detector is at distance $R$ from the branch center with $d_0\ll R$, and the weak-field map satisfies $G_{\mathrm{eff}}(\theta)\to G$ in the tested regime. The branch acceleration difference is bounded by
+A first sanity bound can use a single acceleration readout channel before introducing a full detector geometry. Suppose the branch displacement is bounded by $\|d_{\mathrm{eff}}^i(t_{\mathrm{eff}})\|\le d_0$, the detector is at distance $R$ from the branch center with $d_0\ll R$, and the weak-field map satisfies $G_{\mathrm{eff}}(\theta)\to G$ in the tested regime. The branch acceleration difference is bounded by
 $$
-|\Delta h(t)|
+|\Delta h(t_{\mathrm{eff}})|
 \le
 \frac{2G_{\mathrm{eff}}(\theta)M d_0}{R^3}
 $$
-For a white acceleration readout covariance $N(t,t')=S_a\delta(t-t')$, the distinguishability obeys
+For a white acceleration readout covariance $N(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_a\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability obeys
 $$
-\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
 \le
-\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T}{R^6S_a}
+\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T_{\mathrm{run}}}{R^6S_a}
 $$
 With benchmark values
 $$
 M=10^{-14}\,\mathrm{kg},\qquad
 d_0=10^{-6}\,\mathrm{m},\qquad
 R=10^{-3}\,\mathrm{m},\qquad
-T=1\,\mathrm{s}
+T_{\mathrm{run}}=1\,\mathrm{s}
 $$
 and an aggressive acceleration-noise amplitude
 $$
@@ -2871,7 +2880,7 @@ $$
 \left(\frac{M}{10^{-14}\,\mathrm{kg}}\right)^2
 \left(\frac{d_0}{10^{-6}\,\mathrm{m}}\right)^2
 \left(\frac{10^{-3}\,\mathrm{m}}{R}\right)^6
-\left(\frac{T}{1\,\mathrm{s}}\right)
+\left(\frac{T_{\mathrm{run}}}{1\,\mathrm{s}}\right)
 \left(
 \frac{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}{S_a^{1/2}}
 \right)^2
@@ -2881,7 +2890,7 @@ $$
 M_{\mathrm{crit}}
 \approx
 \frac{R^3}{2G_{\mathrm{eff}}(\theta)d_0}
-\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T}}
+\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T_{\mathrm{run}}}}
 $$
 or, in the same benchmark geometry,
 $$
@@ -2894,7 +2903,7 @@ M_{\mathrm{crit}}
 \left(
 \frac{S_a^{1/2}}{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}
 \right)
-\left(\frac{1\,\mathrm{s}}{T}\right)^{1/2}
+\left(\frac{1\,\mathrm{s}}{T_{\mathrm{run}}}\right)^{1/2}
 $$
 This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
 
@@ -2902,13 +2911,13 @@ This is not a new ontology or an experimental forecast. It is a scale check: for
 
 For an interference-preserving run, the metric or gravity-side readout must satisfy
 $$
-\mathcal{D}_{\mathrm{grav}}(T;\theta)
+\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
 \le
 \varepsilon_{\mathrm{wp}}
 $$
 For a mediated-entanglement run, the same record must also satisfy
 $$
-C_{\mathrm{GIE}}(T;\theta)
+C_{\mathrm{GIE}}(T_{\mathrm{run}};\theta)
 \ge
 C_{\mathrm{obs}}-\varepsilon_C,
 \qquad
@@ -2920,10 +2929,10 @@ This combined gate preserves the observable without overclaiming the interpretat
 
 If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
 $$
-\tau_{\text{meas}} < T,
+\tau_{\text{meas}} < T_{\mathrm{run}},
 \qquad
-\sup_{t\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
-\Delta_{\mathrm{rec}}(t;k)
+\sup_{t_{\mathrm{eff}}\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
+\Delta_{\mathrm{rec}}(t_{\mathrm{eff}};k)
 \le
 \varepsilon_{\mathrm{rec}}
 $$
@@ -2937,12 +2946,12 @@ The minimal simulation target is the map
 $$
 \mathcal{S}_{\mathrm{grav}}:
 \left(
-m,\sigma,\mathbf{d}(t),T,G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
+m,\sigma,d_{\mathrm{eff}}^i(t_{\mathrm{eff}}),T_{\mathrm{run}},G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
 \right)
 \longmapsto
 \left(
 \mathcal{D}_{\mathrm{grav}},
-\mathcal{V}(T),
+\mathcal{V}(T_{\mathrm{run}}),
 \Delta\Phi_{\mathrm{ent}},
 C_{\mathrm{GIE}},
 \tau_{\text{meas}},
@@ -2958,6 +2967,8 @@ The worked acceleration bound supplies the first analytic $\mathcal{D}_{\mathrm{
 ### Architrino
 
 This note records the minimum tier-1 simulation tests that should be passed before any strong self-hit or non-Markovian claims are trusted numerically. Its purpose is narrow: establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before moving to richer dynamics.
+
+The reader should treat this as the simulator's first honesty check. Before the code is allowed to talk about rich self-hit behavior, it has to show that causal rings arrive in the right order, source identities are preserved, and history lookups are not quietly inventing the past.
 
 The file is therefore an implementation-facing checklist rather than a general theory chapter. It should be read as a gate on simulation credibility.
 
@@ -2990,6 +3001,8 @@ Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ se
 ### Convergence Tests
 
 This chapter defines the convergence standard for simulations that include self-hit structure and other delayed-memory effects. Its role is to specify which observables are checked, which refinement ladders are required, and what pass/fail thresholds count as numerical control rather than artifact.
+
+Convergence means the result is not a trick of the mesh, time step, history buffer, root solver, or regulator. For delayed dynamics that matters especially, because a tiny bookkeeping error in the past can return later as a fake branch, fake stability window, or fake invariant.
 
 Because self-hit dynamics are especially prone to fake structure under poor time or history resolution, this document should be read as a validation gate rather than as optional numerical hygiene.
 
@@ -3187,7 +3200,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - What we assume:
 - Same-source self-hit is accepted only when the root equation
   $$
-  \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
+  \mathcal{C}_{aa}(T)=\{\,T_{\mathrm{em}}<T:\|\mathbf X_a(T)-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
   $$
   is nonempty and the active root passes the transversality/Jacobian floor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
@@ -3267,7 +3280,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Use $\Phi_\eta$ to evaluate $U$ and verify $\Delta E_k = -\,\Delta U$ across events that cross the self-hit onset boundary; in the $\eta\to 0$ limit, impulses integrate to the same work.
 
 4) Numerical recipe (robust, minimal assumptions)
-- For each receiver time $t$: (i) root-find causal emission times $t_0$ for all sources (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(t;t_0)$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
+- For each receiver time $T$: (i) root-find causal emission times $T_{\mathrm{em}}$ for all sources (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(T;T_{\mathrm{em}})$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
 
 ---
 
@@ -3296,14 +3309,14 @@ Plain language summary: radial hits, time delay, constant per-wavefront amplitud
 
 Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full source-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
-- Emission ledger (microstate): the set of tuples $(t_0,\mathbf{s}_j(t_0),\mathbf{v}_j(t_0),q_j)$ over all sources $j$ that causally affect the receiver.
+- Emission ledger (microstate): the set of tuples $(T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),\mathbf V_j(T_{\mathrm{em}}),q_j)$ over all sources $j$ that causally affect the receiver.
 - Observational map: ledgers map to histories of hits $\{A(t_k),L(t_k)\}$ across one or more receivers and over time.
 - Observational equivalence: two ledgers are equivalent if they induce indistinguishable hit histories at the chosen resolution (including mollifier width $\eta$, temporal sampling, and receiver geometry).
 
 - Coarse-grained PDE observables (Method 1):
-  - Number density $n(\mathbf{x}, t)$: count-per-volume of architrinos.
-  - Polarity density $\rho(\mathbf{x}, t)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
-  - Energy density $\mathcal{E}(\mathbf{x}, t)$: local kinetic + potential energy density for validation and conservation checks.
+  - Number density $n(\mathbf X,T)$: count-per-volume of architrinos.
+  - Polarity density $\rho(\mathbf X,T)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
+  - Energy density $\mathcal{E}(\mathbf X,T)$: local kinetic + potential energy density for validation and conservation checks.
   - Use: these fields are the natural inputs/targets for grid-based PDE runs and for validating event-driven simulations in aggregate.
 
 Observability axioms:
@@ -3508,11 +3521,11 @@ For a QFT-like reconstruction claim, the campaign must also state the presentati
 
 The state history is
 $$
-S_\eta(t)
+S_\eta(T)
 =
-\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i)\}_{i=1}^{N},
+\{(\mathbf X_i(T),\mathbf V_i(T),q_i)\}_{i=1}^{N},
 \qquad
-S_{\eta,t}(\theta)=S_\eta(t+\theta),\quad \theta\in[-h,0]
+S_{\eta,T}(\theta)=S_\eta(T+\theta),\quad \theta\in[-h,0]
 $$
 A Tier 1 packet must state whether this history is evaluated in $C^1([-h,0])$, $W^{1,\infty}([-h,0])$, or a stricter history class. A missing history class is an incomplete artifact, because the delayed source-state evaluation cannot be audited without it.
 
@@ -3522,7 +3535,7 @@ $$
 $$
 where $\Omega_h\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{x_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_h\subset[-h,0]$ is the stored path-history mesh, $\Delta h$ is the history resolution, and $\mathsf{bc}$ records boundary conditions. The interpolation operator $I_h^q$ is part of the packet; delayed source states cannot be reconstructed by an implicit or undocumented lookup rule.
 
-The path-history part of $\mathcal{G}_h$ and $\Pi_{\mathbb{U}_{\text{now}}}$ should distinguish authoritative kinematic segments from attached audit rows. Authoritative segments reconstruct $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ over declared intervals with error bounds. Causal-root rows, delayed source-state rows, assembly-membership intervals, reaction-event references, and display projections attach to those segments by identifier and time range. Chunking, compression, and broad-phase indices are allowed as storage or acceleration layers; they do not replace authoritative replay when a promoted claim depends on provenance.
+The path-history part of $\mathcal{G}_h$ and $\Pi_{\mathbb{U}_{\text{now}}}$ should distinguish authoritative kinematic segments from attached audit rows. Authoritative segments reconstruct $\mathbf X_i(T)$ and $\mathbf V_i(T)$ over declared intervals with error bounds. Causal-root rows, delayed source-state rows, assembly-membership intervals, reaction-event references, and display projections attach to those segments by identifier and time range. Chunking, compression, and broad-phase indices are allowed as storage or acceleration layers; they do not replace authoritative replay when a promoted claim depends on provenance.
 
 #### Executable Diagnostic Contract
 
@@ -3877,7 +3890,7 @@ Only after those well-posedness rows pass may the packet promote closed-cycle ac
 
 The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
 $$
-\mathbf{C}_{A_0}(t)=\frac{1}{6}\sum_{a\in A_0}\mathbf{s}_a(t)
+\mathbf{C}_{A_0}(T)=\frac{1}{6}\sum_{a\in A_0}\mathbf X_a(T)
 $$
 define
 $$
@@ -3885,8 +3898,8 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 =
 \left\langle
 \sum_{a\in A_0}
-\left(s_a^i-C_{A_0}^i\right)
-\left(s_a^j-C_{A_0}^j\right)
+\left(X_a^i-C_{A_0}^i\right)
+\left(X_a^j-C_{A_0}^j\right)
 \right\rangle_{T_{\mathbf{k}}}
 $$
 $$
@@ -3993,15 +4006,15 @@ Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ ext
 
 The current fold-layer-locked compact fixture is a controlled negative result, not an accepted attractor and not a broad falsification of the $A_0$ program. The direct one-period runner can preserve the locked self-root keys in $\mathcal{R}_{\text{lock}}$ without solving the branch equations: state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure still fail. The scalar branch-native relation basis over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leaves a relative acceleration residual far above the Tier 1 tolerance, so the next allowed rerun must predeclare either a non-circular carrier correction $\mathbf{d}_\ell(t)$ or a richer branch-native interaction basis before residual fitting.
 
-For a declared period window $W=[t_0,t_0+T_{\mathbf{k}}]$, the corrected carrier has the form
+For a declared period window $W=[T_0,T_0+T_{\mathbf{k}}]$, the corrected carrier has the form
 $$
-\mathbf{x}_{a,\ell}^{\star}(t)
+\mathbf X_{a,\ell}^{\star}(T)
 =
-\mathbf{x}_{a,\ell}^{(0)}(t)+\mathbf{d}_\ell(t),
+\mathbf X_{a,\ell}^{(0)}(T)+\mathbf D_\ell(T),
 \qquad
-\mathbf{d}_\ell(t+T_{\mathbf{k}})=\mathbf{d}_\ell(t),
+\mathbf D_\ell(T+T_{\mathbf{k}})=\mathbf D_\ell(T),
 \qquad
-\left\langle\mathbf{d}_\ell\right\rangle_W=0
+\left\langle\mathbf D_\ell\right\rangle_W=0
 $$
 The one-period residual is
 $$
@@ -4012,17 +4025,17 @@ $$
 \int_W
 \sum_a
 \left\|
-\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})
+\mathbf A^{\mathrm{ME}}_a(T;\mathbf D)
 -
 \sum_{B\in\{B_{\text{self}},B_{\text{partner}},B_{\text{inter}}\}}
-\alpha_B\,\mathbf{A}_{a,B}(t;\mathbf{d})
-\right\|^2 dt
+\alpha_B\,\mathbf A_{a,B}(T;\mathbf D)
+\right\|^2 dT
 \right)^{1/2}
 }{
 \left(
 \int_W
 \sum_a
-\|\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})\|^2 dt
+\|\mathbf A^{\mathrm{ME}}_a(T;\mathbf D)\|^2 dT
 \right)^{1/2}
 +\varepsilon_0
 }
@@ -4031,7 +4044,7 @@ The rerun may proceed toward monodromy only if
 $$
 \mathcal{R}_{\mathrm{1per}}\le 0.02
 $$
-with $\mathbf{d}_\ell(t)$, the basis terms $\mathbf{A}_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
+with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
 
 #### Tier 2: Energy and Shielding
 
@@ -4099,10 +4112,10 @@ A $\mathbb{U}_{\text{now}}$ is defined by:
 
 ##### Mapping: $\mathbb{U}_{\text{now}}$ data → Physical observables
 Synthetic observables must be generated by post-processing $\mathbb{U}_{\text{now}}$ logs with a model of a *physical* observer (assembly clock/detector):
-1. Extract local Noether sea state along detector worldline $X_{\text{det}}(t)$
-2. Compute derived detector clock time $\tau_{\text{det}}$ via the declared clock map $d\tau = F(\text{Noether sea state}, v_{\text{det}}, \Phi, \nabla\Phi, \dots)\,dt$ from [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md)
+1. Extract local Noether sea state along detector worldline $X_{\text{det}}^i(T)$
+2. Compute derived detector clock time $\tau_{\text{det}}$ via the declared clock map $d\tau = F(\text{Noether sea state}, V_{\text{det}}, \Phi, \nabla_{\mathbf X}\Phi, \dots)\,dT$ from [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 3) Generate detector-like outputs:
-   - clock readings $\tau(t)$
+   - clock readings $\tau(T)$
    - photon arrival times and frequency shifts, with signed exchange rows separated from endpoint cadence and launch geometry
    - inferred "geodesics" (effective paths) from travel-time minimization through the Noether sea effective signal speed $c_{\text{eff}}$
 
@@ -4112,8 +4125,8 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
 - **Causality residual (per record $m$):**
   $$
   \rho_m \equiv
-  \frac{\left|\|x_k-x_{i_m}(t_{\text{emit},m})\|-c_f\,(t_m-t_{\text{emit},m})\right|}
-  {\max(c_f\Delta t,\varepsilon_r)},
+  \frac{\left|\|\mathbf X_k-\mathbf X_{i_m}(T_{\mathrm{em},m})\|-c_f\,(T_m-T_{\mathrm{em},m})\right|}
+  {\max(c_f\Delta T,\varepsilon_r)},
   \qquad \varepsilon_r=10^{-12}
   $$
   Pass if at least $99.9\%$ of records satisfy $\rho_m\le 10^{-2}$ and
@@ -4121,7 +4134,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
 
 - **Temporal ordering check:**
   $$
-  \theta_m \equiv \frac{t_{\text{emit},m}-t_m}{\Delta t}
+  \theta_m \equiv \frac{T_{\mathrm{em},m}-T_m}{\Delta T}
   $$
   Pass if fraction with $\theta_m>10^{-9}$ is $\le 10^{-6}$.
 
@@ -4134,7 +4147,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   Pass if $E_{\mathrm{rel}}(\Phi)\le 0.03$ and
   $E_{\mathrm{rel}}(\|\nabla\Phi\|)\le 0.05$.
 
-- **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_t$, use
+- **Finite-window Gauss/Stokes residuals:** for any declared reconstructed vector channel $\mathbf{Y}_\eta$ on $\Sigma_T$, use
   $$
   R_G[V,t;\mathbf{Y}_\eta]\equiv
   \frac{\left|\int_{\partial V}\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\,dS-\int_V\nabla\!\cdot\!\mathbf{Y}_\eta\,dV\right|}
@@ -4143,12 +4156,12 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   and
   $$
   R_S[S,t;\mathbf{Y}_\eta]\equiv
-  \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot d\mathbf{x}-\int_S(\nabla\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
-  {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot d\mathbf{x}\right|+\int_S\left|(\nabla\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+10^{-12}}
+  \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot dX^i-\int_S(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
+  {\oint_{\partial S}\left|\mathbf{Y}_\eta\!\cdot dX^i\right|+\int_S\left|(\nabla_{\mathbf X}\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\right|\,dS+10^{-12}}
   $$
   Pass if both residuals are $\le 2\times10^{-2}$ on resolved windows and decrease under spatial refinement. These are diagnostics on reconstructed continuum channels, not claims that the channel is substrate ontology.
 
-- **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, delay $\tau_m=t-t_{\text{emit},m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
+- **Distributional wake-surface normalization:** for emitted wake surface $m$ with source strength $q_m$, delay $\tau_m=T-T_{\mathrm{em},m}$, and radial annulus $R_-\le r_m\le R_+$ around the emission point, use
   $$
   Q^{\mathrm{ann}}_{m,\eta}=
   q_mH(\tau_m)\int_{R_-}^{R_+}\delta_\eta(r_m-c_f\tau_m)\,dr_m
@@ -4156,7 +4169,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
   and
   $$
   R_{N,m}\equiv
-  \frac{\left|\int_{R_-\le r_m\le R_+}\rho_{m,\eta}(t,\mathbf{x})\,dV-Q^{\mathrm{ann}}_{m,\eta}\right|}
+  \frac{\left|\int_{R_-\le r_m\le R_+}\rho_{m,\eta}(T,\mathbf X)\,dV-Q^{\mathrm{ann}}_{m,\eta}\right|}
   {|q_m|+10^{-12}}
   $$
   Pass if at least $99.9\%$ of emitted wake surfaces satisfy $R_{N,m}\le 10^{-2}$ and the maximum resolved-window residual is $\le 5\times10^{-2}$.
@@ -4241,7 +4254,7 @@ Synthetic observables are envelope-limited. A detector-like output should carry 
 
 - **Reaction-diffusion and pattern probes:** when a reduced scalar or multi-channel field $y$ obeys
   $$
-  \partial_t y^a
+  \partial_T y^a
   =
   D^{ab}\Delta y_b
   +
@@ -4315,6 +4328,10 @@ until thresholds are met.
 #### A0 Tier 0 Result Interpretation
 
 This note explains how to read the first reduced $A_0$ branch-search artifact. It is a companion to the [$A_0$ Branch Certificate Protocol](../../../../markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md), the general [Simulation Run Protocols](../../../../markdown/aaa/validation/simulations/run-protocols.md), and the convergence standards in [Convergence Tests](../../../../markdown/aaa/validation/simulations/convergence-tests.md).
+
+Tier 0 asks one deliberately small question: is this reduced branch chart organized enough to deserve a more expensive continuation run? It is not asking whether the branch is physically real, stable under the full delayed dynamics, or ready to support a mass-map claim.
+
+That boundary is the point of the document. A candidate row can be useful without being promoted. The artifact must make that difference machine-readable so a diagnostic success does not turn into an accidental theory claim.
 
 The Tier 0 artifact is not an attractor proof. It is a certificate-facing filter that decides whether a reduced carrier chart is disciplined enough to seed Tier 1 $\eta > 0$ continuation. Its output should be read together with the mass thesis in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), the energy ledger definitions in [Energy](../../../../markdown/aaa/dynamics/energy.md), the dynamics baseline in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), and the closure bookkeeping in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md).
 
@@ -4472,6 +4489,8 @@ This boundary is the main protection against premature mass-map promotion.
 #### Bell-Family Record-Measure Harness
 
 This protocol gives the Bell-family residuals in [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md) their first executable scaffold. It is not a closure proof. It is a probability-table harness that checks whether a proposed record table preserves the standard benchmark shape before any claim is made about deriving that table from architrino dynamics, pair provenance, detector kernels, and finite-time basin measures.
+
+The simple point is that one Bell number is not enough. A candidate table may look good on a CHSH average while failing no-signaling, GHZ parity, Hardy structure, or measurement-independence accounting. This harness keeps those checks in one place before the deeper dynamics are allowed to claim success.
 
 The immediate target is discipline. A model that fits one Bell average can still fail GHZ parity, Hardy zero/positive-event structure, no-signaling, or measurement independence. The harness therefore evaluates CHSH, GHZ, Hardy, no-signaling, measurement-independence, and observed factorization residuals in one packet.
 
@@ -4946,6 +4965,8 @@ This protocol preserves the level distinction. A passing action-increment packet
 #### Retuning-Map Toy Model
 
 This protocol documents the first arithmetic fixture for the cadence-scale retuning map introduced in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#cadence-scale-retuning-closure). The fixture is not a delayed-dynamics proof. It replays the constrained branch bookkeeping for an accepted $\Delta A_{\mathrm{cyc}}=\pm h$ transaction and reports whether the resulting increment can be treated as a same-branch retuning.
+
+The toy model answers an accounting question before it answers a physics question. If a branch accepts one action-sized transaction, can the cadence, radius, scale, and speed rows be retuned without leaving the declared branch regime? Only after that arithmetic is clean does the harder delayed-dynamics proof become worth asking.
 
 The purpose is narrow: turn the retuning scaffold into a machine-readable packet that outputs $(\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi)$ and the corresponding first estimate for the cadence-space current $J_\nu$.
 
@@ -5458,7 +5479,7 @@ The current validation status is therefore conditional. Nonzero static endpoint 
 
 The hydrogen spectral toy scan may replay this compensated row as a scaffold, but that replay is not evidence that the gravitational endpoint has acquired nonzero $a_n$, $a_\lambda$, or $a_R$. Those entries become promotable only when the hydrogen branch or another declared branch derives the same component split for the same Noether sea cell.
 
-#### Hydrogen Gamma_N Spectral Coefficient Row Toy Scan
+#### Hydrogen Γ_N Spectral Coefficient Row Toy Scan
 
 This protocol is the first proof/simulation packet for the hydrogen spectral coefficient row $\mathbf{b}_{N}^{\mathrm{spec}}$. Its purpose is narrow: constrain the row that extracts $\Gamma_N$ for the hydrogen spectral channel without fitting a separate clock factor to each line.
 
@@ -6024,7 +6045,7 @@ For each Physical Observer $O$, effective-horizon patch $\partial\Omega$, and fi
 
 | Channel | Required content | Failure prevented |
 | --- | --- | --- |
-| Noether sea state | $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
+| Noether sea state | $n(\mathbf X,T)$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
 | Physical Observer | worldline, clock-rate record, access region, reference resources, and observer acceleration $a_O$ derived from the metric channel | importing an external observer or a free Rindler frame |
 | Boundary patch | $\partial\Omega$, effective patch area $A_{\partial\Omega}^{\mathrm{eff}}$, orientation, and signed crossing convention | hiding the area comparison in an undefined horizon surface |
 | Boundary wake labels | retained label set $\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)$ with emitter identity, emission time, receiver or sensor identity, reception time, channel, and persistence criterion | counting unrecorded or inaccessible microstates |
@@ -6303,6 +6324,8 @@ Passing this protocol would establish a local equilibrium recovery route for the
 #### Cosmology Shared Residual Fit Protocol
 
 This protocol turns the shared calibration gate in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN comparison packets can consume one shared Noether sea state record without silently replacing the state per observable family.
+
+A cosmology fit can cheat without looking like a cheat. It can use one hidden state for supernovae, another for BAO, another for the CMB, and another for growth, while reporting one attractive summary. This protocol exists to stop that split: one shared Noether sea state record must feed the observable families that claim to belong to the same cosmology.
 
 This is not a cosmological parameter fit and not an empirical claim. The first runtime artifact is a mock packet that fixes the object shape, residual accounting, projection-penalty semantics, gates, and failure codes that a real survey-facing packet must later populate.
 
@@ -6720,6 +6743,8 @@ Failure is informative. If the ordinary residual passes but the projection penal
 
 This protocol documents the first redshift-budget simulation fixture for the cosmology branch. The fixture is a bookkeeping replay of the factorized redshift record in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md#minimal-redshift-budget-toy-model), not an empirical distance-ladder fit.
 
+A redshift budget is a receipt for a photon record. It separates endpoint cadence, source-branch state, launch geometry, path-history transport, and signed frequency exchange so that a line shift is not silently converted into one undifferentiated expansion variable.
+
 Its purpose is narrow: verify that endpoint cadence, source-branch state, launch geometry, and Noether sea path-history remain separable in a machine-readable packet before any survey-facing cosmology comparison is attempted. The current packet also exposes the continuity-disciplined path-rate law, so source loading, equilibration, frequency-space current, flow divergence, and anisotropic response are not hidden as unrelated fitted terms.
 
 ##### Runtime Artifact
@@ -7098,7 +7123,7 @@ Several mappings are now reproducible as forms, while their coefficients remain 
 | :--- | :--- | :--- |
 | Weak-field GR bridge | The effective metric handoff exports ADM/Cartan variables and the clock/ruler quadratic form, and the weak clock row reproduces $d\tau_{\mathcal A}/dt\approx1-U_N/c_0^2-\|\mathbf w\|^2/(2c_0^2)$ after the clock-channel potential is matched to the Newtonian benchmark. | $\Phi_{\mathrm{eff}}=\Phi_N$, $G_{\mathrm{eff}}$, PPN coefficients, and any Einstein-equation analogue still require one same-record Noether sea constitutive derivation. |
 | Quantum envelope bridge | The retained phase-amplitude chart reproduces the Madelung/Hamilton-Jacobi residual with $Q_{\mathrm{env}}=-(\hbar_{\mathrm{eff}}^2/(2m_{\mathrm{eff}}))\nabla^2\sqrt{\rho_{\mathrm{env}}}/\sqrt{\rho_{\mathrm{env}}}$, and resonance-locked single-valuedness supplies the Bohr-Sommerfeld integer. | Born-rule recovery, spin-$\tfrac{1}{2}$ exchange, and fermionic antisymmetry remain blocked by the basin-measure pushforward and the polarity-domain-wall $\mathbb{Z}_2$ holonomy wall. |
-| Fixed-void cosmology | No-expanding-void discipline forces transport-redshift rows that must recover Tolman $(1+z)^{-4}$, light-curve time dilation $(1+z)$, and $T_{\mathrm{CMB}}(z)=T_0(1+z)$ rather than tired-light energy loss. | No derived $a_{\mathrm{eff}}(t)$, Friedmann analogue, sea equation of state, or shared cosmology fit exists until the mass map and Noether sea response coefficients are branch-derived. |
+| Fixed-void cosmology | No-expanding-void discipline forces transport-redshift rows that must recover Tolman $(1+z)^{-4}$, light-curve time dilation $(1+z)$, and $T_{\mathrm{CMB}}(z)=T_0(1+z)$ rather than tired-light energy loss. | No derived $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, Friedmann analogue, sea equation of state, or shared cosmology fit exists until the mass map and Noether sea response coefficients are branch-derived. |
 
 These form-level recoveries should not raise Parameter+Scale Closure, Empirical Precision+Benchmark Validation, or coefficient-recovery scores by themselves. They can raise interface readiness or formula-structure scores only when the document explicitly preserves the same-record blocker and the closure-inheritance dependency on the first certified braid.
 
@@ -7126,7 +7151,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 | Theory Architecture+Ontic Logic | 7 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 50 | 25 | 96 | 99 | 49 |
 | **TOTAL** | **100** | **Weighted mean across all categories.** | **86** | **56** | **46** | **68** | **-18** |
 
-### 2026-06-28 Comparator and AAA Rescore Notes
+### 2026-06-28 Comparator and $\mathbb{A}\mathbb{A}\mathbb{A}$ Rescore Notes
 
 The 2026-06-28 comparator rescore changes the Modern Physics Operational column from `88` to `86` and the Modern Physics Mechanism column from `67` to `56`. The prior comparator overcredited the mechanism column by letting sector-by-sector operational success stand in for a unified foundational mechanism. Under the challenger-theory lens, the inherited stack remains extremely strong operationally, but its mechanism score is lower because GR, QFT, the Standard Model, and Lambda-CDM do not yet form one ontic dynamics with fixed constants, a shared quantum-gravity bridge, a solved measurement mechanism, or a single dark-sector account.
 
@@ -7165,14 +7190,14 @@ The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ s
 The largest corpus-side improvement is the Noether braid taxonomy. The corpus now separates the broad neutral braid, shell braid, and nested shell braid cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell braid geometry chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
 
 $$
-D_{a,X}(\mathbf{x},t)
+D_{a,X}(\mathbf X,T)
 =
 \frac{
-\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)\right\|
 }{
-\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)\right\|
 +
-\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)\right\|
 }
 $$
 

@@ -492,7 +492,7 @@
     },
     {
       "id": "fermions__color_charge_su3",
-      "name": "Color Charge SU3",
+      "name": "Color Charge SU(3)",
       "path": "content/scenes/assemblies/color_charge_su3.json",
       "nodeType": "scene"
     },
@@ -2328,7 +2328,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene"
     },
@@ -4150,7 +4150,7 @@
       "nodeId": "scene:content/scenes/assemblies/color_charge_su3.json",
       "nodeType": "scene",
       "id": "fermions__color_charge_su3",
-      "name": "Color Charge SU3",
+      "name": "Color Charge SU(3)",
       "path": "content/scenes/assemblies/color_charge_su3.json",
       "searchTarget": "content/scenes/assemblies/color_charge_su3.json",
       "implicit": false
@@ -6913,7 +6913,7 @@
       "nodeId": "scene:content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "searchTarget": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "implicit": false

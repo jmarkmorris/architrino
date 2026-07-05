@@ -1422,7 +1422,7 @@ $$
 \frac{d\mathbf Y}{dT}=\mathcal{G}(\mathbf Y_T),\qquad
 \mathbf Y_{T_0}=\phi^0
 $$
-Then there exists $\Delta T>0$ and a unique $C^1$ solution on $[T_0-h,T_0+\Delta T)$.  
+Then there exists $\Delta T>0$ and a unique $C^1$ solution on $[T_0-h,T_0+\Delta T)$.
 Equivalently, there is a unique maximal solution interval
 $$
 [T_0-h,T_{\max}),\qquad T_{\max}>T_0

@@ -4,7 +4,11 @@
 
 ## Gauge Structure Emergence
 
-This chapter is a working emergence map from Noether sea and assembly language to observer-level gauge bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether sea structure, effective fields, symmetry deformations, and measurement-facing quantities are interpreted before exact closure is finished. The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, and null results for non-baseline channels.
+This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$. The short version is that gauge fields are not added to the Euclidean void as new primitive substances. They are observer-level bookkeeping for repeatable patterns in Noether sea state, assembly geometry, axial-layer exposure, and causal-wake response.
+
+The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, anomaly cancellation, running couplings, and null results for non-baseline channels. This chapter is a working emergence map, not the formal symmetry theorem chapter. Its job is to show what must be recovered and which substrate records are allowed to carry that recovery before exact closure is finished.
+
+The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one retained assembly and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
 
 ### Physical Medium: From Vacuum Language to Noether Sea
 
@@ -334,15 +338,15 @@ This residual belongs to the observer-level recovery map. It passes only when th
 
 A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
 $$
-Q_{m,\mathrm{eff}}^\theta(t)
+Q_{m,\mathrm{eff}}^\theta(t_{\mathrm{eff}})
 =
 Q_{m,\mathrm{form}}^\theta
 +
-\int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
+\int_{t_{\mathrm{form}}}^{t_{\mathrm{eff}}}
+\Gamma_{m,\mathrm{cap}}^\theta(t'_{\mathrm{eff}})\,dt'_{\mathrm{eff}}
 -
-\int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'
+\int_{t_{\mathrm{form}}}^{t_{\mathrm{eff}}}
+\Gamma_{m,\mathrm{loss}}^\theta(t'_{\mathrm{eff}})\,dt'_{\mathrm{eff}}
 $$
 The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
@@ -355,10 +359,10 @@ In this map, electroweak "breaking" means a stabilizer and mass-coordinate recov
 $$
 S_{\text{fund}}
 =
-\int dt\left[
-\sum_i \frac{1}{2}\mu_{\text{arch}}\dot{\mathbf{x}}_i^2
+\int dT\left[
+\sum_i \frac{1}{2}\mu_{\text{arch}}\|\mathbf V_i(T)\|^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}
+\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|^2}
 \right]
 $$
 Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $W_{ij}^{\mathrm{rec}}$ is the receiver-normal branch factor on the active branch, so the electroweak closure map starts from the same receiver-normal causal geometry as the master equation rather than from a stripped inverse-square surrogate.
@@ -450,16 +454,22 @@ For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\
 
 ## Gauge Symmetries
 
-This chapter provides a minimal theorem-backed bridge from architrino/assembly dynamics to the effective gauge symmetry structure used elsewhere.
+This chapter gives the compact theorem-facing version of the gauge bridge. Gauge symmetry is treated here as a tested structure of the observer-level record, not as a primitive substance in the Euclidean void. The bridge question is whether architrino assemblies, axial-layer bookkeeping, causal-wake history, and Noether sea response can reproduce the same effective redundancy, charge assignments, anomaly cancellations, and running couplings that the Standard Model uses.
+
+The page is deliberately stricter than the emergence narrative. It does not ask whether a larger symmetry package sounds attractive. It asks whether the effective gauge record can be recovered from one retained branch and medium state while every non-baseline channel remains absent.
+
+The reader-facing rule is direct: gauge symmetry is a recovery constraint on the record, not a new ontology for the void. The Standard Model gauge structure survives here only if it can be produced as effective bookkeeping over real assembly histories, with no extra observable channels introduced by the same move.
 
 Interface chapters:
 - Electroweak emergence narrative: [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md)
-- Color $SU(3)$ algebra closure: [Color Charge SU3](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
+- Color $SU(3)$ algebra closure: [Color Charge SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - Variational substrate: [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md)
 
 ### Regularized Setting
 
 Work in the $\eta>0$ regularized regime, with coarse-grained fields obtained from the same kernel used in the master/effective-action chapters.
+
+This section starts in the effective layer on purpose. The symbols look like field theory because the benchmark is field-theoretic. The substrate claim is weaker and harder: those effective fields must be recoverable from regularized assembly, wake, and Noether sea records.
 
 Assume:
 - **(G1)** Existence of coarse-grained matter field $\Psi$ and finite-energy histories on bounded windows.
@@ -814,7 +824,9 @@ These are theory-level falsifiers for this chapter's bridge.
 
 ## Particle Masses
 
-**Purpose:** Articulate the canonical mass thesis in $\mathbb{A}\mathbb{A}\mathbb{A}$ and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
+Mass is where the reader first sees why assemblies matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an architrino does not carry its own particle-specific mass tag. What a Physical Observer calls mass is the externally exposed response of a stable assembly whose internal causal history is partly shielded and partly coupled to the surrounding Noether sea.
+
+This chapter gives the reader-facing statement of that mass thesis and outlines the path toward quantitative mass predictions. The active derivation of a numerical mass map remains open until the shielding, stability, internal-energy, and medium-response terms are computed from retained assembly branches rather than fitted particle by particle.
 
 ---
 
@@ -1284,12 +1296,12 @@ The mass thesis must recover not only an inertial response to imposed accelerati
 For a clock or mass-bearing assembly $A$, write the assembly-dependent clock/response factor in a weak cell as
 
 $$
-\chi_A(\mathbf{x})
+\chi_A(x_{\mathrm{eff}}^i)
 =
-N(\mathbf{x})\,[1+\epsilon_A(\mathbf{x})]
+N(x_{\mathrm{eff}}^i)\,[1+\epsilon_A(x_{\mathrm{eff}}^i)]
 $$
 
-where $N(\mathbf{x})$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
+where $N(x_{\mathrm{eff}}^i)$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
 
 $$
 |\epsilon_A-\epsilon_B|
@@ -1618,7 +1630,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 #### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
-2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
+2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 #### Potential Falsifications
@@ -1630,9 +1642,13 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 ## Fermions
 
-### Color Charge SU3
+### Color Charge SU(3)
 
 This chapter gives the assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell braid scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md).
+
+The standard color label is extremely successful as algebra. The implementation question is different: what physical feature of a quark assembly can be counted in three ways, transformed by an octet of corridor modes, and hidden inside color-singlet hadrons? This chapter answers at the recovery-target level: color is axis exceptionality in the axial frame of a Noether braid assembly.
+
+That means the word `color` should be read as a structured bookkeeping channel, not as a colored substance. The three color states are the three possible exceptional-axis records; `SU(3)` is the effective transformation algebra that must be recovered when those records are compressed into observer-level quark language.
 
 ---
 
@@ -1641,6 +1657,8 @@ This chapter gives the assembly-level interpretation of color charge and effecti
 ##### Nested Shell Braid Scaffold
 
 Each fermion is built on a **nested shell braid scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether braid** for the broader class of conserved-quantity-bearing braids; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
+
+The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
 
 We label the three binaries by their dynamical regime:
 
@@ -1718,6 +1736,8 @@ This **braid chirality** will underpin our distinction between particles and ant
 
 **Core rule:**
 Color charge appears only when the nested shell braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+
+This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out an H, M, or L axis. Quarks are colored because their axial pattern does.
 
 ##### Stealth and color neutrality
 
@@ -2175,11 +2195,13 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 
 #### Purpose
 
-This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The electron is the clean charged-lepton reference case: stable, colorless, charge $-e$, and built from the lowest shielding-coherence version of the Noether braid plus axial-layer architecture.
 
 #### Framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is the Generation-I charged-lepton reference case for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is not a point particle with a primitive mass tag. It is a retained branch whose charge bookkeeping, inertial response, atomic detection map, and weak-reaction provenance must all come from the same assembly record.
+
+It is the Generation-I charged-lepton reference case for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md), and [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 
 #### Axial Inventory and Generation Core
 
@@ -2212,14 +2234,14 @@ The electron is not treated as a literal ontic-probability distribution. It is a
 A compact local target is
 
 $$
-\mathcal{D}_e^{(\ell)}(\mathbf{x}\mid \Theta_{\mathrm{atom}})
+\mathcal{D}_e^{(\ell)}(x_{\mathrm{eff}}^i\mid \Theta_{\mathrm{atom}})
 =
 \Pi_{\mathrm{det}}\!\left[
 \mathcal{B}_e,\,
 \mathcal{A}_{\mathrm{nuc}},\,
 \theta_{\mathrm{sea}}^{(\ell)},\,
 \mathcal{W}_{\mathrm{causal}}^{(\ell)}
-\right](\mathbf{x})
+\right](x_{\mathrm{eff}}^i)
 $$
 
 where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.
@@ -2294,7 +2316,9 @@ The electron ontology target supports the atomic, quantum, weak-reaction, and pr
 
 ### Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. The simple picture is that a neutrino is almost a photon-channel pair, but not quite locked enough to become a photon. That near-lock explains why it is neutral, fast, weakly coupled, hard to detect, and still able to expose an oscillation ledger.
+
+A neutrino is modeled as a near-planar pro/anti [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to keep neutrality, weak coupling, oscillation, and detection difficulty tied to internal geometry rather than to elementary point-particle axioms.
 
 The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti braid pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
@@ -2443,9 +2467,9 @@ The experimental implementation makes this split operational. A long-baseline be
 
 Matter correction enters through the Noether sea state:
 $$
-H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf{x},t)),
+H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf X,T)),
 \qquad
-n(\mathbf{x},t)\equiv\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
+n(\mathbf X,T)\equiv\frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
 The matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 
@@ -2470,10 +2494,16 @@ paired with a suppressed neutrinoless double-beta rate and a sterile or right-ha
 
 ### Quantum Number Mapping
 
-This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether braid, six-unit polarity inventory, and axial-layer realization are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. It tells the reader which structural features of the Noether braid, six-unit polarity inventory, and axial-layer realization are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+
+The dictionary is not the same thing as a completed derivation. A charge row, color label, weak doublet, or generation label becomes physical only when the branch record, axial inventory, stability row, and null-result exclusions close together. The purpose of this page is to keep the bookkeeping explicit enough that later mass, reaction, gauge, and validation chapters can test it without changing the definitions.
+
+The practical reading rule is: this page defines the labels, not their final proof. It says which assembly feature a Standard Model quantum number is supposed to read, and then leaves the stability, reaction, and null-result tests to the chapters that own those closures.
 
 #### Purpose
 This document establishes the canonical dictionary translating **Nested Shell Braid Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.
+
+The dictionary is needed because the same physical assembly is read in several languages. A Noether braid branch supplies generation and chirality, an axial inventory supplies electric bookkeeping, a weak-coupling exposure supplies weak labels, and axis exceptionality supplies color. Without a stable dictionary, later mass and reaction claims would silently change what the symbols mean.
 
 The parent charge target is a protected six-unit polarity inventory whose signed sum supplies observer-level electric bookkeeping. For charged fermions and quarks, this chapter uses the **Noether braid + axial layer** model as the working realization of that target:
 1.  **The Noether braid:** A neutral, rotating nested shell braid structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
@@ -2494,6 +2524,8 @@ The six-unit inventory has seven possible net charge sums. The table records the
 | $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
 
 This table is an inventory ledger, not a particle list. A row becomes a Standard Model assembly only after the Noether braid branch, axial-frame exposure, color-sector status, handed weak channel, and null-result exclusions are all supplied.
+
+That distinction is the main protection against over-reading the table. The seven charge sums show what the six-unit inventory can count; they do not say that every count becomes a stable low-energy particle.
 
 Neutrinos are the exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
@@ -3453,7 +3485,11 @@ $$
 
 #### Overview
 
-This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
+This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. A quark is treated as a color-exposed fermion assembly: a neutral Noether braid scaffold plus a six-site axial layer whose pattern exposes charge, weak bookkeeping, and one exceptional color axis.
+
+The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
+
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch, generation tier, and matter/antimatter orientation. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
 
 At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
@@ -3463,7 +3499,7 @@ The chapter uses axis strings and tables so the catalog is explicit without depe
 
 ##### Braid and axial split
 
-The quark construction used here follows the same Noether braid-plus-axial split already used in the fermion mapping chapters:
+The quark construction used here follows the same Noether braid-plus-axial split already used in the fermion mapping chapters. This split prevents three common confusions: charge is not color, color is not generation, and generation is not a new electric inventory.
 
 - The **Noether braid** is the neutral braid scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
@@ -3945,9 +3981,13 @@ That boundary matters. This chapter is a canonical catalog, not a claim that the
 
 This note records the geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 
+The measured Weinberg angle is an observer-level electroweak fact. This note does not reduce that fact to a bare visual tilt. It asks a narrower implementation question: whether the same six-pole assembly geometry that organizes weak exposure also supplies a discrete axial-frame increment that participates in the dressed electroweak mixing calculation.
+
 #### Purpose
 
 The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. This note does not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, it uses the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for axial-frame misalignment.
+
+The distinction matters because one number can appear in two layers. The Standard Model angle is the effective coupling angle after electroweak dressing. The candidate branch increment below is a geometry-side input that would still need dressing, normalization, and comparison before it could be identified with measured electroweak data.
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -3969,7 +4009,7 @@ This is intentionally narrower than a claim that the H/M/L axes themselves tilt 
 
 #### Core Distinction
 
-We separate two structures that are often spoken about together but should not be conflated.
+We separate two structures that are often spoken about together but should not be conflated. The core frame is the neutral scaffold; the axial frame is the exposed six-pole load. Weak mixing can only be discussed cleanly after those two frames are kept separate.
 
 ##### 1. Core frame
 
@@ -4416,7 +4456,7 @@ The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gau
 
 ##### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf{x})$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf X,T)$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$
@@ -4468,9 +4508,9 @@ $$
 =
 \int_{\Gamma_z}
 \frac{
-\chi_\gamma(\omega_a,\mathbf{x},t)
+\chi_\gamma(\omega_a,\mathbf X,T)
 -
-\chi_\gamma(\omega_b,\mathbf{x},t)
+\chi_\gamma(\omega_b,\mathbf X,T)
 }{c_0}\,d\ell
 $$
 The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homogeneous branch after the same $c_\gamma$ and $\chi_\gamma$ record has recovered local synchronization. A branch that requires a different photon speed for time-of-flight events than for clock, ruler, or scattering comparisons has not closed Gate A.
@@ -5002,9 +5042,15 @@ Primary closure integrations:
 **Scope:** Definition of color charge, gluon structure, and confinement.
 This chapter should be read together with [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Gauge Symmetries](../../../../markdown/aaa/assemblies/gauge-symmetries.md).
 
+The standard gluon is a gauge-boson carrier of the strong interaction. This chapter keeps that role as the observer-level recovery target, but asks for the physical implementation underneath it. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a gluon channel is a color-corridor event in the Noether sea: it routes axis exceptionality, flux-tube strain, recoil, and conserved ledgers between color-exposed quark assemblies.
+
+The key reader distinction is that a gluon is not introduced here as a new substrate particle. It is the effective record of a permitted strong-sector reconfiguration. The page therefore moves from color geometry, to the color-corridor event record, to the octet and confinement benchmarks that must reproduce QCD behavior.
+
 ### The Geometric Origin of Color Charge
 
 In the Standard Model, color is an abstract $SU(3)$ label. In $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
+
+Plainly, a quark is colored when the assembly has a "which axis is special" degree of freedom. A gluon event is then a controlled way of changing, transporting, or balancing that exceptional-axis information without breaking the event ledger.
 
 #### The Noether Braid Substrate
 
@@ -5045,6 +5091,8 @@ The conventional labels Red, Green, and Blue are therefore basis names for the t
 ### The Gluon: Emergent Vortex Dynamics
 
 In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between Noether braids.
+
+The useful picture is a corridor, not a bead. A color-exposed quark leaves open axial traffic in the surrounding Noether sea; the gluon channel is the routed corridor that carries that traffic into another compatible color state while preserving the strong-sector record.
 
 #### Polar Vortices and Flux Tubes
 
@@ -5199,6 +5247,8 @@ If these self-interacting braids form a closed loop without quarks at the ends, 
 
 A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes them unstable unless they bind into hadrons that are overall **color neutral**.
 
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, this page is about transient and stable composite assemblies in the strong sector. A meson is not a new fundamental primitive; it is a quark-antiquark assembly record whose color corridor, flux-tube geometry, lifetime, and dissociation channels must close in the same event ledger.
+
 There are two main classes:
 
 * **Baryons** — made of **three quarks** (e.g., protons, neutrons).
@@ -5212,12 +5262,14 @@ Key properties of hadrons:
 
 Protons and neutrons are the most familiar hadrons; they make up atomic nuclei. Mesons are typically unstable and mediate strong-force effects in nuclear processes.
 
-While the standard model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the "ephemeral" particles—primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons)—are the functional machinery of the strong interaction. In the architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$), these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether braids](../../../../markdown/aaa/noether-braid/noether-braid.md) connected by color flux tubes.
+While the Standard Model chart displays the fundamental fermions (quarks, leptons) and gauge bosons, the transient particles, primarily **mesons** (quark-antiquark pairs) and **baryon resonances** (excited states of protons/neutrons), are the functional machinery of the strong interaction. In $\mathbb{A}\mathbb{A}\mathbb{A}$, these are not fundamental building blocks but **transient composite assemblies**. They represent temporary stable configurations of [Noether braids](../../../../markdown/aaa/noether-braid/noether-braid.md) connected by color flux tubes.
 
-Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations.
+Their role is to mediate forces, conserve quantum numbers during high-energy transitions, and execute the mixing between mass generations. The implementation burden is to say which branch record forms, which corridor carries the exchange, how long the basin remains stable, and where the ledger goes when the meson dissociates.
 
 #### Geometric variational lens
 The strong interaction in $\mathbb{A}\mathbb{A}\mathbb{A}$ is the **elastic response** of the Noether sea to topological defects (fermions). Hadrons are the **critical points** of an energy functional on this geometry: ground-state baryons/mesons are stable minima, while resonances are metastable saddles. Pions in particular behave like minimal-tension flux sheets stretched between nucleons; their limited range follows from the point where maintaining that tension costs more energy than nucleating a dissociation in the Noether sea.
+
+Plainly, the meson is the temporary bridge state the strong sector can afford. It is stable enough to carry a corridor, but not necessarily stable enough to become an ordinary long-lived matter assembly.
 * **Stability criterion:** An assembly is stable while its trajectory in configuration space remains inside a basin where the binding action is a **local minimum**. **Dissociation** means the trajectory reaches a region where that action loses its minimum, so gradient flow carries the system toward another basin and into a new assembly pattern.
 
 **Confinement as topological shear (nonlinear elasticity lens)**
