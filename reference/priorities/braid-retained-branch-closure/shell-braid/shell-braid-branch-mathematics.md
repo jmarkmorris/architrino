@@ -13,17 +13,17 @@ Work on absolute timespace
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3,
 \qquad
-\Sigma_t=\{t\}\times\mathbb{R}^3,
+\Sigma_T=\{T\}\times\mathbb{R}^3,
 \qquad
 h_{ij}=\delta_{ij},
 $$
 
-with absolute time $t$, Euclidean void slices $\Sigma_t$, and primitive causal-wake speed $c_f>0$. A same-level branch chart over a compact window $W=[t_-,t_+]$ consists of $N$ architrino worldlines
+with absolute time $T$, Euclidean void slices $\Sigma_T$, and primitive causal-wake speed $c_f>0$. A same-level branch chart over a compact window $W=[T_-,T_+]$ consists of $N$ architrino worldlines
 
 $$
-\mathbf{x}_i: [t_- - h,t_+]\to\mathbb{R}^3,
+\mathbf X_i: [T_- - h,T_+]\to\mathbb{R}^3,
 \qquad
-\mathbf{v}_i(t)=\dot{\mathbf{x}}_i(t),
+\mathbf V_i(T)=\frac{d\mathbf X_i}{dT}(T),
 \qquad
 i=1,\ldots,N,
 $$
@@ -41,13 +41,13 @@ $$
 The branch state vector is
 
 $$
-X(t)=
+\mathsf Z(T)=
 \left(
-(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i)_{i=1}^N,
-\mathbf{C}(t),\dot{\mathbf{C}}(t),
-R(t),\delta(t),
+(\mathbf X_i(T),\mathbf V_i(T),q_i)_{i=1}^N,
+\mathbf{C}(T),\frac{d\mathbf C}{dT}(T),
+R(T),\delta(T),
 \mathcal{I},
-\Phi(t),
+\Phi(T),
 \mathcal{K}
 \right),
 $$
@@ -60,10 +60,10 @@ Plain language: the chart describes architrinos moving in one Euclidean void on 
 
 ## 2. Admissible History Space
 
-For memory depth $h>0$, define the history segment at time $t$ by
+For memory depth $h>0$, define the history segment at time $T$ by
 
 $$
-X_t(\theta)=X(t+\theta),
+\mathsf Z_T(\theta)=\mathsf Z(T+\theta),
 \qquad
 \theta\in[-h,0].
 $$
@@ -91,41 +91,41 @@ is allowed only after the weak-limit obligations in Section 8 are supplied.
 Let
 
 $$
-\mathbf{y}_i(t)=\mathbf{x}_i(t)-\mathbf{C}(t),
+\mathbf{y}_i(T)=\mathbf X_i(T)-\mathbf{C}(T),
 \qquad
-\mathbf{u}_i(t)=\dot{\mathbf{y}}_i(t).
+\mathbf U_i(T)=\frac{d\mathbf y_i}{dT}(T).
 $$
 
 A branch certificate must declare weights $\omega_i>0$ with $\sum_i\omega_i=1$ and impose the center gauge
 
 $$
-\sum_{i=1}^N\omega_i\mathbf{y}_i(t)=\mathbf{0},
+\sum_{i=1}^N\omega_i\mathbf{y}_i(T)=\mathbf{0},
 \qquad
-\sum_{i=1}^N\omega_i\mathbf{u}_i(t)=\mathbf{0}.
+\sum_{i=1}^N\omega_i\mathbf U_i(T)=\mathbf{0}.
 $$
 
-This removes translational gauge motion from the branch chart. Moving-assembly exports may reintroduce $\dot{\mathbf{C}}\ne\mathbf{0}$, but the branch-existence row is first checked in the center-gauge chart.
+This removes translational gauge motion from the branch chart. Moving-assembly exports may reintroduce $d\mathbf{C}/dT\ne\mathbf{0}$, but the branch-existence row is first checked in the center-gauge chart.
 
 ### 2.2 Support Band And Noncollision
 
 The same-level condition is not a nested-radius hierarchy. In the radial same-level sector, a sufficient support certificate is the common support-band condition
 
 $$
-0<R_-\le R(t)-\delta(t),
+0<R_-\le R(T)-\delta(T),
 \qquad
-R(t)+\delta(t)\le R_+<\infty,
+R(T)+\delta(T)\le R_+<\infty,
 $$
 
 and
 
 $$
-R(t)-\delta(t)
+R(T)-\delta(T)
 \le
-\|\mathbf{y}_i(t)\|
+\|\mathbf{y}_i(T)\|
 \le
-R(t)+\delta(t)
+R(T)+\delta(T)
 \qquad
-\text{for every }i\text{ and }t\in W.
+\text{for every }i\text{ and }T\in W.
 $$
 
 More general hybrid sectors may replace this radial norm band by a declared support descriptor with equivalent lower/upper support margins, as in [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md). The radial row above should therefore be read as a sector certificate, not as a spherical path assumption.
@@ -135,8 +135,8 @@ Noncollision is an independent Euclidean gate:
 $$
 d_{\min}
 =
-\inf_{i\ne j,\ t\in W}
-\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|
+\inf_{i\ne j,\ T\in W}
+\|\mathbf X_i(T)-\mathbf X_j(T)\|
 >
 \epsilon_x.
 $$
@@ -183,26 +183,26 @@ The ledger must close on the same retained branch as the root, energy, exposure,
 For receiver $i$ and source $j$, define the active causal-root set
 
 $$
-\mathcal{A}_{ij}(t)
+\mathcal{A}_{ij}(T)
 =
 \left\{
-s<t:
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|
-=c_f(t-s)
+T_{\mathrm{em}}<T:
+\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|
+=c_f(T-T_{\mathrm{em}})
 \right\}.
 $$
 
 The retained causal-root ledger is
 
 $$
-\mathcal{A}(t)
+\mathcal{A}(T)
 =
 \left\{
-(i,j,\alpha,s_{ij}^{\alpha}(t),\tau_{ij}^{\alpha}(t),J_{ij}^{\alpha}(t),\chi_{ij}^{\alpha})
+(i,j,\alpha,T_{\mathrm{em},ij}^{\alpha}(T),\Delta_{ij}^{\alpha}(T),J_{ij}^{\alpha}(T),\chi_{ij}^{\alpha})
 \right\},
 $$
 
-where $\alpha$ labels the retained root, $\tau_{ij}^{\alpha}(t)=t-s_{ij}^{\alpha}(t)$, and $\chi_{ij}^{\alpha}$ is one of
+where $\alpha$ labels the retained root, $\Delta_{ij}^{\alpha}(T)=T-T_{\mathrm{em},ij}^{\alpha}(T)$, and $\chi_{ij}^{\alpha}$ is one of
 
 | Root status | Meaning |
 | --- | --- |
@@ -214,32 +214,32 @@ where $\alpha$ labels the retained root, $\tau_{ij}^{\alpha}(t)=t-s_{ij}^{\alpha
 For
 
 $$
-\mathbf{r}_{ij}(t,s)=\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\mathbf{r}_{ij}(T,T_{\mathrm{em}})=\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}}),
 \qquad
-r_{ij}(t,s)=\|\mathbf{r}_{ij}(t,s)\|,
+r_{ij}(T,T_{\mathrm{em}})=\|\mathbf{r}_{ij}(T,T_{\mathrm{em}})\|,
 \qquad
-\hat{\mathbf{r}}_{ij}(t,s)=\frac{\mathbf{r}_{ij}(t,s)}{r_{ij}(t,s)},
+\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em}})=\frac{\mathbf{r}_{ij}(T,T_{\mathrm{em}})}{r_{ij}(T,T_{\mathrm{em}})},
 $$
 
 the branch Jacobian is
 
 $$
-J_{ij}(t,s)
+J_{ij}(T,T_{\mathrm{em}})
 =
 1-
-\frac{\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}(t,s)}{c_f}.
+\frac{\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em}})}{c_f}.
 $$
 
 Equivalently, for
 
 $$
-G_{ij}(t,s)=r_{ij}(t,s)-c_f(t-s),
+G_{ij}(T,T_{\mathrm{em}})=r_{ij}(T,T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}}),
 $$
 
 one has
 
 $$
-\frac{\partial G_{ij}}{\partial s}(t,s)=c_fJ_{ij}(t,s).
+\frac{\partial G_{ij}}{\partial T_{\mathrm{em}}}(T,T_{\mathrm{em}})=c_fJ_{ij}(T,T_{\mathrm{em}}).
 $$
 
 The transversality target is therefore
@@ -247,15 +247,15 @@ The transversality target is therefore
 $$
 J_{\min}
 =
-\inf_{(i,j,\alpha,t)\in\mathcal{A}}
-\left|J_{ij}^{\alpha}(t)\right|
+\inf_{(i,j,\alpha,T)\in\mathcal{A}}
+\left|J_{ij}^{\alpha}(T)\right|
 >
 \epsilon_J
 >
 0,
 $$
 
-together with finite root count $|\mathcal{A}(t)|<\infty$ for every $t\in W$.
+together with finite root count $|\mathcal{A}(T)|<\infty$ for every $T\in W$.
 
 ---
 
@@ -264,7 +264,7 @@ together with finite root count $|\mathcal{A}(t)|<\infty$ for every $t\in W$.
 The ideal same-level carrier constraint is
 
 $$
-\|\mathbf{u}_i(t)\|=c_f
+\|\mathbf U_i(T)\|=c_f
 \qquad
 \text{for every active carrier row}.
 $$
@@ -272,37 +272,37 @@ $$
 The speed residual is the architecture residual
 
 $$
-\mathcal{R}_{\mathrm{speed},i}(t)
+\mathcal{R}_{\mathrm{speed},i}(T)
 =
-\|\mathbf{u}_i(t)\|-c_f.
+\|\mathbf U_i(T)\|-c_f.
 $$
 
 For a retained root, write the line-of-action causal-wake contribution as
 
 $$
-\mathbf{F}_{ij}(t,s)
+\mathbf{F}_{ij}(T,T_{\mathrm{em}})
 =
 \kappa\,\mathrm{sign}(q_iq_j)
-\frac{|q_iq_j|W_{ij}^{\mathrm{rec}}(t,s)}
-{r_{ij}^2(t,s)}
-\hat{\mathbf{r}}_{ij}(t,s),
+\frac{|q_iq_j|W_{ij}^{\mathrm{rec}}(T,T_{\mathrm{em}})}
+{r_{ij}^2(T,T_{\mathrm{em}})}
+\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em}}),
 $$
 
 using the same active root convention as the causal-root ledger. Here $J_{ij}$ remains the source-normal root transversality row; $W_{ij}^{\mathrm{rec}}$ is the receiver-normal wake crossing factor that supplies branch strength. The fixed-speed tangential closure residual is
 
 $$
-\mathcal{R}_{\mathrm{tan},i}(t)
+\mathcal{R}_{\mathrm{tan},i}(T)
 =
-\mathbf{u}_i(t)\cdot
+\mathbf U_i(T)\cdot
 \left[
-\sum_{(j,\alpha)\in\mathcal{A}_i(t)}
-\mathbf{F}_{ij}\!\left(t,s_{ij}^{\alpha}(t)\right)
+\sum_{(j,\alpha)\in\mathcal{A}_i(T)}
+\mathbf{F}_{ij}\!\left(T,T_{\mathrm{em},ij}^{\alpha}(T)\right)
 -
-\ddot{\mathbf{C}}(t)
+\frac{d^2\mathbf C}{dT^2}(T)
 \right].
 $$
 
-In the center-gauge branch-existence chart with $\ddot{\mathbf{C}}=\mathbf{0}$, this reduces to the uncorrected sum of retained causal-wake forces. Moving-branch exports must keep the center-acceleration term.
+In the center-gauge branch-existence chart with $d^2\mathbf{C}/dT^2=\mathbf{0}$, this reduces to the uncorrected sum of retained causal-wake forces. Moving-branch exports must keep the center-acceleration term.
 
 A branch with $\mathcal{R}_{\mathrm{speed}}=0$ but $\mathcal{R}_{\mathrm{tan}}\ne0$ has not closed the carrier. The tangential residual is the theorem-target replacement for assuming that same-level $c_f$ motion automatically stays on a closed choreography.
 
@@ -319,22 +319,22 @@ The statements below are theorem targets for a future retained branch packet. Th
 Assume the support band is bounded by $R_+$, and the center gauge has drift bound
 
 $$
-\|\dot{\mathbf{C}}(t)\|\le V_C<c_f
+\left\|\frac{d\mathbf C}{dT}(T)\right\|\le V_C<c_f
 \qquad
-\text{on }[t_- - h,t_+].
+\text{on }[T_- - h,T_+].
 $$
 
 Then any active causal root satisfies
 
 $$
-\tau_{ij}^{\alpha}(t)
+\Delta_{ij}^{\alpha}(T)
 =
-t-s_{ij}^{\alpha}(t)
+T-T_{\mathrm{em},ij}^{\alpha}(T)
 \le
 \frac{2R_+}{c_f-V_C}.
 $$
 
-In the center-gauge branch-existence chart with $\dot{\mathbf{C}}=\mathbf{0}$, this reduces to
+In the center-gauge branch-existence chart with $d\mathbf{C}/dT=\mathbf{0}$, this reduces to
 
 $$
 h_{\mathrm{mem}}
@@ -342,43 +342,43 @@ h_{\mathrm{mem}}
 \frac{2R_+}{c_f}.
 $$
 
-Proof route: combine the root condition $c_f(t-s)=\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|$ with
+Proof route: combine the root condition $c_f(T-T_{\mathrm{em}})=\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|$ with
 
 $$
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|
+\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|
 \le
-\|\mathbf{C}(t)-\mathbf{C}(s)\|+2R_+
+\|\mathbf{C}(T)-\mathbf{C}(T_{\mathrm{em}})\|+2R_+
 \le
-V_C(t-s)+2R_+.
+V_C(T-T_{\mathrm{em}})+2R_+.
 $$
 
 Remaining obligation: exclude unresolved near-zero self roots by assigning every same-source row one of the statuses in Section 3. The ordinary same-curve arclength row is constrained by [same-source-self-root-exclusion-lemma.md](same-source-self-root-exclusion-lemma.md): it cannot be retained as a positive-delay Jacobian-regular root.
 
 ### Proposition Target 2: Root Continuation By The Implicit Function Theorem
 
-Suppose $G_{ij}(t_*,s_*)=0$ and
+Suppose $G_{ij}(T_*,T_{\mathrm{em},*})=0$ and
 
 $$
-|J_{ij}(t_*,s_*)|>\epsilon_J.
+|J_{ij}(T_*,T_{\mathrm{em},*})|>\epsilon_J.
 $$
 
-Then a retained proof should show that there are neighborhoods $U\ni t_*$ and $V\ni s_*$ and a unique $C^1$ function $s_{ij}^{\alpha}:U\to V$ such that
+Then a retained proof should show that there are neighborhoods $U\ni T_*$ and $V\ni T_{\mathrm{em},*}$ and a unique $C^1$ function $T_{\mathrm{em},ij}^{\alpha}:U\to V$ such that
 
 $$
-G_{ij}\!\left(t,s_{ij}^{\alpha}(t)\right)=0.
+G_{ij}\!\left(T,T_{\mathrm{em},ij}^{\alpha}(T)\right)=0.
 $$
 
 The continuation derivative is
 
 $$
-\frac{d s_{ij}^{\alpha}}{dt}
+\frac{d T_{\mathrm{em},ij}^{\alpha}}{dT}
 =
 \frac{
-c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}\!\left(t,s_{ij}^{\alpha}(t)\right)
+c_f-\mathbf V_i(T)\cdot\hat{\mathbf{r}}_{ij}\!\left(T,T_{\mathrm{em},ij}^{\alpha}(T)\right)
 }{
-c_f-\mathbf{v}_j\!\left(s_{ij}^{\alpha}(t)\right)
+c_f-\mathbf V_j\!\left(T_{\mathrm{em},ij}^{\alpha}(T)\right)
 \cdot
-\hat{\mathbf{r}}_{ij}\!\left(t,s_{ij}^{\alpha}(t)\right)
+\hat{\mathbf{r}}_{ij}\!\left(T,T_{\mathrm{em},ij}^{\alpha}(T)\right)
 }.
 $$
 
@@ -389,11 +389,11 @@ The causal-root ledger can retain the same root label $\alpha$ only until one of
 For $\eta>0$, let the mollified causal-wake force define a causal-history functional
 
 $$
-\frac{dX}{dt}
+\frac{d\mathsf Z}{dT}
 =
-\mathfrak{F}_{\eta}(X_t),
+\mathfrak{F}_{\eta}(\mathsf Z_T),
 \qquad
-X_t\in\mathscr{H}_{h,\eta}^{N},
+\mathsf Z_T\in\mathscr{H}_{h,\eta}^{N},
 $$
 
 where all causal-surface factors use the same $\delta_\eta$ convention, the inverse-square factor is evaluated only on histories satisfying $d_{\min}>\epsilon_x$, and the center gauge is either eliminated or enforced by a smooth projection onto the gauge slice.
@@ -405,11 +405,11 @@ If $\mathfrak{F}_{\eta}$ is locally Lipschitz on an admissible history neighborh
 $$
 d_{\min}>\epsilon_x,
 \qquad
-R(t)+\delta(t)\le R_+,
+R(T)+\delta(T)\le R_+,
 \qquad
 J_{\min}>\epsilon_J,
 \qquad
-|\mathcal{A}(t)|<\infty,
+|\mathcal{A}(T)|<\infty,
 $$
 
 or until the chosen $\eta>0$ fold-layer rule changes status.
@@ -423,8 +423,8 @@ A same-level branch certificate may take $\eta\to0$ only after the following wea
 1. Uniform noncollision:
 
    $$
-   \inf_{\eta,t,i\ne j}
-   \|\mathbf{x}_{i,\eta}(t)-\mathbf{x}_{j,\eta}(t)\|
+\inf_{\eta,T,i\ne j}
+\|\mathbf X_{i,\eta}(T)-\mathbf X_{j,\eta}(T)\|
    >
    \epsilon_x.
    $$
@@ -432,28 +432,28 @@ A same-level branch certificate may take $\eta\to0$ only after the following wea
 2. Uniform root control:
 
    $$
-   \inf_{\eta,(i,j,\alpha,t)}
-   |J_{ij,\eta}^{\alpha}(t)|
+\inf_{\eta,(i,j,\alpha,T)}
+|J_{ij,\eta}^{\alpha}(T)|
    >
    \epsilon_J,
    \qquad
-   \sup_{\eta,t}|\mathcal{A}_{\eta}(t)|<\infty,
+\sup_{\eta,T}|\mathcal{A}_{\eta}(T)|<\infty,
    \qquad
    \sup_{\eta}h_{\mathrm{mem},\eta}<\infty.
    $$
 
-3. Distributional force convergence: for every smooth compactly supported test function $\psi(t)$,
+3. Distributional force convergence: for every smooth compactly supported test function $\psi(T)$,
 
    $$
    \lim_{\eta\to0}
-   \int_W
-   \psi(t)\mathbf{F}_{i,\eta}(t)\,dt
-   =
-   \int_W
-   \psi(t)
-   \sum_{(j,\alpha)\in\mathcal{A}_i(t)}
-   \mathbf{F}_{ij}\!\left(t,s_{ij}^{\alpha}(t)\right)
-   dt.
+\int_W
+\psi(T)\mathbf{F}_{i,\eta}(T)\,dT
+=
+\int_W
+\psi(T)
+\sum_{(j,\alpha)\in\mathcal{A}_i(T)}
+\mathbf{F}_{ij}\!\left(T,T_{\mathrm{em},ij}^{\alpha}(T)\right)
+dT.
    $$
 
 4. Residual convergence on the retained row:

@@ -1,16 +1,18 @@
 # Architrino
 
-This chapter is the canonical primitive-entity specification for the **architrino** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver of potential-bearing causal wakes: each architrino continuously emits source-provenanced wake history, universally receives causal-wake intersections, and responds through receiver-local acceleration; effective equilibration appears only as a collective assembly response built from those received wakes. The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
+Start with the entity, not the familiar particle. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the **architrino** is the primitive point transceiver. It continuously emits source-provenanced causal wake history, receives wake intersections from the rest of the universe, and responds through receiver-local acceleration. Effective equilibration appears only later, as a collective assembly response built from those received wakes.
+
+The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
 
 Architrinos live in [absolute timespace](absolute-timespace.md): absolute time $T$ together with the [Euclidean void](euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
 
-The teaching order in this chapter is therefore deliberately narrow. First it fixes the primitive ontology, then it separates polarity from observer-level charge bookkeeping, and only then does it mark the boundary with dynamics and effective reconstruction. The aim is not to derive particle phenomenology here, but to state what must be present before any assembly-level derivation can begin.
+The teaching order is deliberately narrow. First fix the primitive ontology. Then separate polarity from observer-level charge bookkeeping. Then mark the boundary with dynamics and effective reconstruction. This chapter does not derive particle phenomenology; it states what must already exist before any assembly-level derivation can begin.
 
 ## Core Definition
 
 An **architrino** is the sole fundamental entity in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-It is:
+Its primitive commitments are:
 
 - A point transceiver located at position $\mathbf X_a(T)$ in the Euclidean void.
 - Always active: it continuously emits a causal wake and continuously receives wakes according to the dynamics branch.
@@ -18,7 +20,9 @@ It is:
 - Persistent: it has a continuous identity-bearing worldline through absolute timespace.
 - Deterministic: its detailed motion is specified by the [Master Equation](../dynamics/master-equation.md), with deterministic multistability possible near dynamical branch thresholds.
 
-The architrino has no internal structure, no volume, no intrinsic spin in the classical sense, and no primitive particle-specific inertial mass. Its primitive state is its identity, position, velocity, polarity, and path-history ledger. All larger structures arise from coordinated configurations and interactions of many architrinos.
+The architrino has no internal structure, no volume, no intrinsic spin in the classical sense, and no primitive particle-specific inertial mass. Its primitive state is its identity, position, velocity, polarity, and path-history ledger.
+
+All larger structures arise from coordinated configurations and interactions of many architrinos. That is why the primitive definition must stay lean: if mass, spin, particle type, or field state is imported here, the later assembly derivation has already been smuggled into the premise.
 
 Because no primitive mass is assigned to a single architrino, the primitive dynamical law is an acceleration law rather than a force law of the form $\mathbf{F}=m\mathbf{a}$. The universal coupling scale in that acceleration law is $\kappa>0$:
 $$
@@ -62,7 +66,7 @@ Apparent association, dissociation, annihilation, production, or transmutation a
 
 ## Polarity and Electric Bookkeeping
 
-At the architrino level, the primitive is **polarity**, not electric charge as a standalone substance. Electric charge is the observer-facing bookkeeping that becomes useful after architrino signs are counted inside assemblies.
+At the architrino level, the primitive sign is **polarity**. Electric charge is the observer-facing bookkeeping that becomes useful after architrino signs are counted inside assemblies.
 
 For calculations that need continuity with electric-charge bookkeeping, each architrino carries an effective signed unit
 $$
@@ -82,6 +86,8 @@ The two polarity names are:
 
 Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
 
+This relocation keeps both sides of the inherited word `charge`. The effective charge table remains real at the observer level, but its substrate basis is polarity inventory, not a separate charge substance attached to a miniature Standard Model particle.
+
 The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The general structural target is a protected six-unit polarity inventory: six sign-carrying architrinos or six retained polarity slots whose signed sum supplies observer-level charge bookkeeping. This parent target does not yet decide whether the six units are internal to the Noether braid, externally coupled to it, embedded in its retained path-history, or realized by a non-axial coupled branch.
 
 The axial-layer model is one charged-fermion realization of that parent target. In that model, the six-unit inventory appears as a closed six-polar-site branch record: three polar dyads in a branch-defined axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. Labels such as H/M/L are chart labels for a selected branch, not a primitive ordering of the three dyads. The protected-site version of the axial target asks for a finite site-stabilizer action $G_{\mathrm{ax}}$ on the Noether braid framing such that
@@ -96,7 +102,7 @@ The stronger ontological claim is not merely that architrinos move through time.
 
 Let $\mathcal{A}$ denote the ontic set of architrino identities. The foundational claim is that $\mathcal{A}$ is fixed. Architrinos may move, bind, unbind, exchange partners, enter a subsystem, or leave a subsystem, but they are not fundamentally created or destroyed by the dynamics. This is a primitive inventory postulate, not an inference from observer-level conservation laws.
 
-This gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a built-in provenance ledger. At the substrate level, one should not say merely that an equivalent unit appears later. One must ask which architrino appears later, where it came from, and through which path history it arrived.
+This gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a built-in provenance ledger. At the substrate level, it is not enough to say that an equivalent unit appears later. The sharper question is which architrino appears later, where it came from, and through which path history it arrived.
 
 Provenance is therefore stronger than coarse conservation:
 
@@ -135,7 +141,9 @@ If a discussion becomes meta-theoretic, the careful wording is that architrinos 
 
 An architrino is a point transceiver: it emits and receives continuously.
 
-Its emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at the primitive causal-wake speed $c_f$, the field propagation speed relative to the Euclidean-void rest frame; carries source provenance; and is received through later causal intersections. It is not an independent substance because it has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
+The emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at the primitive causal-wake speed $c_f$, the field propagation speed relative to the Euclidean-void rest frame; carries source provenance; and is received through later causal intersections.
+
+The wake is not an independent substance. It has no freely specifiable state apart from the source architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
 
 Schematically, if the source history has time domain $I_a$, the wake emitted by architrino $a$ is a source-history functional
 $$
@@ -156,7 +164,9 @@ Point-source causal-delay theories carry a known pathology class. Classical poin
 
 A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-force rows remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. The two singular loci are not the same: the coincidence stratum $\{r_{ij}=0\}$ is a spatial point-kernel problem, while the caustic stratum $\{\partial_s F_{ij}=0\}$ is a causal-root fold problem. The former requires the declared spatial or weak-limit regularization; the latter requires a fold-resolution chart and the active-root floor. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
 
-Ontologically, the causal wake is a **dynamical geometry**: a source-provenanced interaction structure generated by the path history of the source architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances. This linearity is a statement about wake superposition, not about the receiver worldline: a wake can act on any architrino, including its own source, and that receiver response makes the dynamics nonlinear. Their entire substrate-level content is therefore computable from the historical trajectories of the source architrinos that emitted them.
+Ontologically, the causal wake is a **dynamical geometry**: a source-provenanced interaction structure generated by the path history of the source architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances.
+
+This linearity is a statement about wake superposition, not about the receiver worldline. A wake can act on any architrino, including its own source, and that receiver response makes the dynamics nonlinear. The entire substrate-level content of a wake is therefore computable from the historical trajectory of the source architrino that emitted it.
 
 This page fixes the ontological commitments:
 
@@ -205,7 +215,7 @@ It does not define the force kernel, causal emission-time set, source-normal den
 
 ## Dynamics and Regime Boundary
 
-This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter therefore names those topics only to keep the reader from importing them back into the definition of a single architrino.
+This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter names those topics only to keep the reader from importing them back into the definition of a single architrino.
 
 The canonical homes are:
 
@@ -240,7 +250,7 @@ The existence of a stationary architrino is sufficient for choosing a material o
 
 ## Boundary With Assemblies and Effective Particles
 
-An architrino is not a Standard Model particle. It is the primitive constituent from which particle-like assemblies are built. The distinction should be read as a level distinction, not as a competing particle classification.
+An architrino is not a Standard Model particle. It is the primitive constituent from which particle-like assemblies are built. The distinction is a level distinction, not a competing particle classification.
 
 The boundary is:
 

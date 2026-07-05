@@ -30,9 +30,9 @@ $$
 
 A location is represented by a point
 $$
-\mathbf{x}=(x,y,z)\in\mathbb{R}^3
+\mathbf X=(X,Y,Z)\in\mathbb{R}^3
 $$
-or in index notation by $x^i$ where $i\in\{1,2,3\}$.
+or in index notation by $X^i$ where $i\in\{1,2,3\}$.
 
 The metric is fixed:
 $$
@@ -42,13 +42,13 @@ where $\delta_{ij}$ is the Kronecker delta.
 
 The spatial line element is therefore
 $$
-ds^2=h_{ij}\,dx^i dx^j=dx^2+dy^2+dz^2
+d\ell^2=h_{ij}\,dX^i dX^j=dX^2+dY^2+dZ^2
 $$
 
 The distance between two points $\mathbf{p}$ and $\mathbf{q}$ is
 $$
 d(\mathbf{p},\mathbf{q})=
-\sqrt{(x_p-x_q)^2+(y_p-y_q)^2+(z_p-z_q)^2}
+\sqrt{(X_p-X_q)^2+(Y_p-Y_q)^2+(Z_p-Z_q)^2}
 $$
 
 For fixed void points, this distance does not change with time. Equivalently, with
@@ -59,11 +59,11 @@ D_h(\mathbf{p},\mathbf{q})
 $$
 the substrate condition is
 $$
-\partial_t h_{ij}=0,
+\partial_T h_{ij}=0,
 \qquad
 R^i{}_{jkl}(h)=0,
 \qquad
-\frac{d}{dt}D_h(\mathbf{p},\mathbf{q})=0
+\frac{d}{dT}D_h(\mathbf{p},\mathbf{q})=0
 $$
 The consequence is immediate: a cosmological scale variable cannot be a time-dependent scale factor multiplying the void metric. It must be an effective summary of medium state, transport history, or observer records.
 
@@ -122,7 +122,7 @@ Consequently, topological protection in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not 
 
 Coordinates are names for fixed substrate locations. The void itself does not come with painted axes or a built-in origin. Once a chart is chosen for calculation, the canonical spatial chart is a rigid Cartesian coordinate system
 $$
-\mathcal{C}=\{x,y,z\}
+\mathcal{C}=\{X,Y,Z\}
 $$
 on the Euclidean void.
 
@@ -130,7 +130,7 @@ This differs from General Relativity. In GR, coordinates may function as gauge l
 
 This gives a plain rule for spatial identity:
 
-- The point $(x_0,y_0,z_0)$ is the same spatial location at every absolute time $t$.
+- The point $(X_0,Y_0,Z_0)$ is the same spatial location at every absolute time $T$.
 - The events $(T_1,X_0,Y_0,Z_0)$ and $(T_2,X_0,Y_0,Z_0)$ occur at the same spatial location at two different instants.
 - Local Noether sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
 
@@ -209,7 +209,7 @@ $$
 
 The spatial volume element in Cartesian coordinates is
 $$
-dV=\sqrt{\det h}\,d^3x=dx\,dy\,dz
+dV=\sqrt{\det h}\,d^3X=dX\,dY\,dZ
 $$
 
 Surface elements pick up the usual Jacobian factors when parametrized, for example $dA=r^2\sin\theta\,d\theta\,d\phi$ on a constant-$r$ sphere.
@@ -222,9 +222,9 @@ The gradient of a scalar field is
 $$
 \nabla f=
 \left(
-\frac{\partial f}{\partial x},
-\frac{\partial f}{\partial y},
-\frac{\partial f}{\partial z}
+\frac{\partial f}{\partial X},
+\frac{\partial f}{\partial Y},
+\frac{\partial f}{\partial Z}
 \right)
 =h^{ij}\partial_i f\,\mathbf{e}_j
 $$
@@ -238,13 +238,13 @@ $$
 
 In Cartesian coordinates this reduces to
 $$
-\partial_x v^x+\partial_y v^y+\partial_z v^z
+\partial_{X^1} v^1+\partial_{X^2} v^2+\partial_{X^3} v^3
 $$
 
 The scalar Laplacian in Cartesian coordinates is
 $$
 \Delta f=\nabla^2 f=h^{ij}\partial_i\partial_j f
-=\partial_x^2f+\partial_y^2f+\partial_z^2f
+=\partial_{X^1}^2f+\partial_{X^2}^2f+\partial_{X^3}^2f
 $$
 
 In curvilinear coordinates on the same flat geometry, the invariant scalar Laplacian is
@@ -265,12 +265,12 @@ $$
 
 This combines:
 
-- Spatial translations: $\mathbf{x}\mapsto\mathbf{x}+\mathbf{a}$.
-- Spatial rotations: $\mathbf{x}\mapsto R\mathbf{x}$, with $R\in SO(3)$.
+- Spatial translations: $\mathbf X\mapsto\mathbf X+\mathbf a$.
+- Spatial rotations: $\mathbf X\mapsto R\mathbf X$, with $R\in SO(3)$.
 
-Any element $g=(R,\mathbf{a})\in E(3)$ acts on a point $\mathbf{x}$ as
+Any element $g=(R,\mathbf a)\in E(3)$ acts on a point $\mathbf X$ as
 $$
-g\cdot\mathbf{x}=R\mathbf{x}+\mathbf{a}
+g\cdot\mathbf X=R\mathbf X+\mathbf a
 $$
 
 The metric is invariant under all such transformations:
@@ -294,7 +294,7 @@ Here the important separation is between a straight path in the container and a 
 
 In the absence of forces, motion in the Euclidean void follows straight-line, constant-velocity paths:
 $$
-\mathbf{x}(t)=\mathbf{x}_0+\mathbf{v}_0 t
+\mathbf X(T)=\mathbf X_0+\mathbf V_0 T
 $$
 
 Only physical interactions can bend a trajectory. A curved path in the void is not the same thing as curvature of the void:
@@ -314,7 +314,7 @@ Allowed spatial isometries are exactly the transformations that preserve the Euc
 - Spatial translations.
 - Spatial rotations.
 
-At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$t$ slices. Those transformations describe the product structure. They are not spatial isometries of one void slice. On a fixed slice $\Sigma_{t_0}$, a Galilean boost reduces to the translation $\mathbf{x}\mapsto\mathbf{x}+\mathbf{v}_0t_0$; its boost content appears only when different slices are compared. The wake law still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](absolute-timespace.md) carries the dynamical non-invariance of the primitive wake equation under boosted coordinates.
+At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$T$ slices. Those transformations describe the product structure. They are not spatial isometries of one void slice. On a fixed slice $\Sigma_{T_\ast}$, a Galilean boost reduces to the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost content appears only when different slices are compared. The wake law still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](absolute-timespace.md) carries the dynamical non-invariance of the primitive wake equation under boosted coordinates.
 
 Forbidden as substrate symmetries:
 
@@ -336,19 +336,19 @@ Keep the layers separate:
 3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
 4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether sea.
 
-At any time $t$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether sea cell, or empty of local architrino content. Those are different content states at the same location. None changes the identity or metric of the underlying void point.
+At any time $T$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether sea cell, or empty of local architrino content. Those are different content states at the same location. None changes the identity or metric of the underlying void point.
 
-This gives a direct no-expanding-void criterion for cosmology. Effective cosmology variables such as $a(t)$, $H(t)$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
+This gives a direct no-expanding-void criterion for cosmology. After an observer chart is declared, effective cosmology variables such as $a(t_{\mathrm{eff}})$, $H(t_{\mathrm{eff}})$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
 $$
-a_{\mathrm{eff}}(t)=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(t),O(t)]
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(T),O(t_{\mathrm{eff}})]
 $$
-Here $\mathcal{N}_{\mathrm{sea}}(t)$ denotes the relevant Noether sea state variables, and $O(t)$ denotes observer records and calibration data. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
+Here $\mathcal{N}_{\mathrm{sea}}(T)$ denotes the relevant Noether sea state variables, and $O(t_{\mathrm{eff}})$ denotes observer records and calibration data in the effective chart. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 
-It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(\mathbf{x},t)$, or an anisotropic scale response $a_{\mathrm{eff},ij}(\mathbf{x},t)$, not a single FRW-style $a_{\mathrm{eff}}(t)$.
+It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, or an anisotropic scale response $a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, not a single FRW-style $a_{\mathrm{eff}}(t_{\mathrm{eff}})$.
 
 When a tensorial scale response is retained, the scalar FRW projection is the trace
 $$
-a_0(\mathbf{x},t)=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(\mathbf{x},t),
+a_0(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
 \qquad
 a_{\langle ij\rangle}=a_{\mathrm{eff},ij}-a_0 h_{ij}.
 $$
@@ -356,7 +356,7 @@ The scalar scale-factor summary is admissible only in a sector where the trace-f
 
 These effective variables must not be interpreted as
 $$
-h_{ij}(t)=a_{\mathrm{eff}}^2(t)\delta_{ij}
+h_{ij}(T)=a_{\mathrm{eff}}^2(t_{\mathrm{eff}})\delta_{ij}
 $$
 for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging. Any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
@@ -382,7 +382,7 @@ This set records source identities and emission times whose causal isochrons pas
 
 Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void. It is a condition on the population of provenance labels and their wake weights.
 
-In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
+In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf X,T)$ names only the wake-history provenance labels available at that point.
 
 For the Noether sea ontology, see [Noether sea](../spacetime/noether-sea.md). For Noether braid assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../cosmology/cosmology-ontology.md).
 

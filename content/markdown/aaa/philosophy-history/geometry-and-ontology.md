@@ -22,7 +22,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the fixed substrate geometry is
 $$
 h_{ij}=\delta_{ij},
 \qquad
-\partial_t h_{ij}=0,
+\partial_T h_{ij}=0,
 \qquad
 R^i{}_{jkl}(h)=0
 $$
@@ -53,7 +53,7 @@ The useful distinction is not geometric versus non-geometric. It is primitive ge
 | Layer | Geometry | Ontological status | What it controls |
 | --- | --- | --- | --- |
 | Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, simultaneity-slice spatial operators, fixed location identity |
-| Causal wake | Expanding causal isochrons satisfying $r=c_f(t-t_0)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
+| Causal wake | Expanding causal isochrons satisfying $r=c_f(T-T_{\mathrm{em}})$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
 | Assembly | Stable internal organization of architrinos and Noether braids | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
 | Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
 | Effective metric | $g^{\text{eff}}_{\mu\nu}$ reconstructed from observer records | Observer-level geometry | Proper time, geodesic approximation, lensing, redshift, Shapiro delay, gravitational-wave comparison |
@@ -118,6 +118,6 @@ Whenever a document invokes geometry, the reader should be able to answer five q
 4. Which invariant or measurement record makes it useful?
 5. Which derivation or validation condition would expose incorrect placement?
 
-For the Euclidean void, the invariant is flat spatial metric structure: $\partial_t h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(t-t_0)$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
+For the Euclidean void, the invariant is flat spatial metric structure: $\partial_T h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(T-T_{\mathrm{em}})$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
 
 This gives the philosophy-history lane a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.
