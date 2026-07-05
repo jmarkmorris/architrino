@@ -6,6 +6,10 @@ The focus is branch geometry, high-speed response, gradient response, alignment 
 
 It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Nested Shell Braid](nested-shell-braid.md), and [Nested Shell Braid Geometry](nested-shell-braid-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
 
+The central question is practical: can one six-architrino branch keep its inner, middle, and outer support records coordinated while moving through the Noether sea? If the answer is yes, the same retained branch becomes a candidate source for mass response, photon-channel behavior, Lorentz export, and strong-field alignment. If the answer is no, those downstream rows cannot be rescued by assigning them separately.
+
+This chapter therefore treats stability as same-record closure. The branch must carry the period, active-root ledger, deformation map, medium response, observer-export packet, and event ledger together. A visually plausible frequency pattern or a useful envelope shape is not enough unless it belongs to the same retained delayed record.
+
 ## Document Role
 
 This chapter is the nested shell braid mechanism and certificate-target chapter. It owns the coupled shell dynamics, speed-regime conventions, field-speed hinge response, causal-root ledgers, gradient response, stability/alignment diagnostics, and same-record certificate target for promoting a nested shell chart.

@@ -8,6 +8,10 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 
 The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
 
+In plain terms, the chapter separates two questions that ordinary language often blends. Does the primitive object carry an intrinsic spin axis? No. Can organized motion in a rotationally symmetric world produce conserved angular momentum, spin-like detector responses, and helicity labels? Yes, but only after the motion, wake history, and assembly orientation are specified. The point is not to demote spin; it is to put the burden in the right place.
+
+This makes the bridge strict. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ spin account must recover the measured transformation behavior, quantized response, magnetic-moment systematics, Stern-Gerlach branching, and weak-channel handedness without inserting intrinsic spin as a primitive label. Until that is done, spin language remains an effective ledger and recovery target.
+
 The related material is best read as an ordered path rather than as a flat list of adjacent chapters:
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
@@ -49,6 +53,8 @@ $$
 For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\hbar$, this is of order hundreds of times $c$. If $R$ is enlarged enough to keep $v_{\mathrm{surf}}<c$, the electron is no longer a small localized charged constituent on atomic scales; if $R\to0$, the rigid-body angular momentum vanishes. The experimental lesson is therefore not that electron spin is unreal. It is that the magnetic moment, Stern-Gerlach response, anomalous Zeeman structure, and spin-$\tfrac{1}{2}$ label must be recovered from an internal transformation and response ledger, not from a literal rotating point or sphere.
 
 The important qualification is that angular momentum still becomes mandatory once the dynamics are studied as an isolated rotationally symmetric system. The Euclidean void is invariant under spatial rotations. For the action-derived delayed model, rotational symmetry gives a conserved angular-momentum functional. That functional is not a new substance; it is the Noether ledger associated with organized motion and in-flight causal-wake history.
+
+A useful analogy is bookkeeping rather than an added component. Angular momentum is not an extra part tucked inside the architrino. It is the conserved account kept by a whole isolated motion-plus-wake history when that history respects rotational symmetry. Spin is still a further step: a stable assembly must expose the right orientation and measurement-response ledger so that Physical Observers see the standard spin class.
 
 ## Angular Momentum as a History Ledger
 

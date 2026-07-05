@@ -2,6 +2,10 @@
 
 This chapter is the main bridge from Standard Model CKM language to the assembly-level weak-mixing picture. Its purpose is to let a reader see, in one place, which ingredients are standard, which are geometric reinterpretations, and which closure relations remain postulates or fit targets. It should be read with [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md), [Electroweak Bosons: Photons, W/Z, and Higgs](../../assemblies/bosons/electroweak-bosons.md), and [Quantum Number Mapping](../../assemblies/fermions/quantum-number-mapping.md).
 
+The reader-facing idea is simple: the CKM matrix is not treated as a mysterious table pasted onto quarks. It is treated as a measured overlap table between two ways of organizing the same assembly. One organization is the weak-coupling triad that a charged weak corridor can access. The other is the shielding and mass-basis structure that fixes the externally observed generation state. The bridge asks whether those two organizations can be derived from one geometry rather than separately fitted.
+
+This preserves the Standard Model success. CKM already works as precision bookkeeping for charged-current reactions, rates, and CP-violating interference. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is narrower and harder: recover that bookkeeping from axial-frame geometry, weak-coupling-triad exposure, shielding eigenstates, and reaction provenance without changing definitions between channels.
+
 ## Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to SM
 
 This chapter is written as a bridge text: it first states CKM in standard SM language, then translates each ingredient into $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. The goal is that a reader with QM and introductory QFT can identify exactly what is standard, what is assumed in $\mathbb{A}\mathbb{A}\mathbb{A}$, and what is predicted.
@@ -62,6 +66,8 @@ The reaction/transition probability into channel $j$ is proportional to $\lvert 
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+
+So each row should be read as a routing ledger. The weak interaction opens a charged corridor in one exposed basis, but the detector names the outgoing assembly in the mass basis. CKM entries measure how much of the exposed corridor lands in each mass-basis channel. That is why a high-value $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation cannot stop at the matrix values; it must also explain the two bases whose mismatch the matrix records.
 
 ### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that transforms quark types (down ↔ up, strange ↔ charm, etc.).

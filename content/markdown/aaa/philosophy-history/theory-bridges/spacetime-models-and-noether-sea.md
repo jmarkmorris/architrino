@@ -4,6 +4,10 @@ This bridge compares inherited mathematical models of space, time, vacuum, aethe
 
 The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
+The chapter is therefore a translation table, not a museum of metaphors. Each outside model is useful only to the extent that it tells the reader which job must be done: recover a signal cone, a clock map, a stress response, a boundary condition, a leakage bound, or an entropy ledger. Once that job is named, the wording must return to the native stack: absolute time, Euclidean void, Noether sea, assemblies, causal wakes, and effective observer geometry.
+
+The bright-line rule is that the container is not the contents and neither one is the observer's reconstructed spacetime. The Euclidean void is the fixed spatial container. The Noether sea occupies it. Effective spacetime is what Physical Observers infer from clocks, rulers, signal propagation, and records inside that occupied background.
+
 ## Bridge Rule
 
 Use inherited spacetime models as comparison projections, not as identity claims.
@@ -30,6 +34,8 @@ Any outside model must therefore answer five questions before it can influence a
 5. Which failure mode would falsify the comparison?
 
 Modern vacuum language often functions as a medium-response comparison even when the word `aether` is avoided. Vacuum polarization, zero-point estimates, condensate analogies, refractive-index language, and effective field modes all point toward response variables, boundary conditions, and excitation spectra. The safe translation is not to revive a mechanical aether. It is to ask which part of the calculation should be rewritten as Noether sea density, delay, compliance, orientation, excitation, or boundary-response data, and which part remains only an observer-level field-theory export.
+
+This is also why analog models are helpful but dangerous. They can show that an effective metric, horizon, or radiation law can emerge from signal behavior in a medium, but they do not tell us that the laboratory medium is the ontology. The retained object is the response kernel or constitutive map, not the fluid, condensate, circuit, or mirror that happened to realize the analogy.
 
 ## Boundary-Response Equivalence
 

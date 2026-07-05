@@ -139,7 +139,7 @@ test("equation mapping opens with coordinate layer terminology", () => {
   assert.equal(document.formulaTeX.includes("x^\\mu_{\\mathrm{GR}}"), true);
   assert.deepEqual(
     document.formulaParts.slice(0, 4).map((part) => part.id),
-    ["nativeLayer", "layer-map-break", "layerMap", "effective-layer-break"]
+    ["nativeLayer", "native-map-space", "layerMap", "effective-layer-break"]
   );
   assert.equal(placementByOverlayId.get("native-coordinates"), "above");
   assert.equal(placementByOverlayId.get("layer-map"), "above");
@@ -370,6 +370,32 @@ test("equation mapping places explicit formula rows by row instead of per-equati
     ["top-right-note", "above"],
     ["bottom-left-note", "below"],
     ["top-left-note", "above"],
+  ]);
+});
+
+test("equation mapping keeps only the first row above on three-row maps", () => {
+  const placementByOverlayId = resolveCalloutPlacements({
+    formulaParts: [
+      { kind: "math", anchorId: "topLeft" },
+      { kind: "math", anchorId: "topRight" },
+      { kind: "break" },
+      { kind: "math", anchorId: "middle" },
+      { kind: "break" },
+      { kind: "math", anchorId: "bottom" },
+    ],
+    overlays: [
+      { id: "top-left-note", targetAnchorId: "topLeft", sectionLinePlacement: "below" },
+      { id: "top-right-note", targetAnchorId: "topRight", sectionLinePlacement: "below" },
+      { id: "middle-note", targetAnchorId: "middle", sectionLinePlacement: "above" },
+      { id: "bottom-note", targetAnchorId: "bottom", sectionLinePlacement: "above" },
+    ],
+  });
+
+  assert.deepEqual([...placementByOverlayId.entries()], [
+    ["top-left-note", "above"],
+    ["top-right-note", "above"],
+    ["middle-note", "below"],
+    ["bottom-note", "below"],
   ]);
 });
 
@@ -1108,6 +1134,10 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(
     html,
     /\.equation-mapping-equation-shell \{[\s\S]*?width: min\(96vw, 1320px\);[\s\S]*?max-width: calc\(100vw - var\(--index-width\) - 24px\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-stage\[data-document-id="eq-00-coordinate-layer-key"\] \.equation-mapping-equation-shell \{[\s\S]*?width: min\(96vw, 1600px\);/u
   );
   assert.match(
     html,

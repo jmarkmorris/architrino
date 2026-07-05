@@ -16,6 +16,10 @@ This note starts a parallel ansatz program for the 1D collinear breather. It doe
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
 
+In plain terms, this page is a candidate-generator notebook, not the theorem. A visually plausible orbit, a small residual, or a familiar breather profile does not count unless it becomes a finite packet the proof can audit. The packet must say which history returns, which delayed roots are active, where the separators and folds live, and how much slack remains after receiver-normal branch strength is included.
+
+The useful outcome is therefore narrow and concrete: one certified candidate history that can be handed to the collinear fixed-point program. Everything else in this chapter, including analogies to nonlinear-wave breathers, is allowed only insofar as it helps produce that same auditable packet.
+
 The external breather literature supplies useful terminology pressure but not a
 mechanism that can be imported into this proof. In this chapter, `breather`
 means a bounded delayed return-map fixed point in the collinear

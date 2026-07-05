@@ -300,12 +300,11 @@ export function resolveCalloutPlacements(document = {}) {
   const placementByOverlayId = new Map();
 
   if (rowCount > 1) {
-    const topRowLimit = (rowCount - 1) / 2;
     overlays.forEach((overlay, index) => {
       const targetPosition = getOverlayTargetPosition(overlay, anchorPositions, index);
       placementByOverlayId.set(
         overlay.id,
-        targetPosition.rowIndex <= topRowLimit ? "above" : "below"
+        targetPosition.rowIndex === 0 ? "above" : "below"
       );
     });
     return placementByOverlayId;
@@ -1325,6 +1324,7 @@ export class EquationMappingRuntime {
   renderStage() {
     const stage = createElement(this.document, "section", "equation-mapping-stage");
     stage.setAttribute("aria-label", this.activeDocument.title);
+    stage.dataset.documentId = this.activeDocument.id;
     this.stageElement = stage;
     const pointerSvg = createSvgElement(this.document, "svg");
     pointerSvg.classList.add("equation-mapping-pointer-layer");

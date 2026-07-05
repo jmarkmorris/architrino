@@ -10,9 +10,13 @@ It is the catalog companion to [Theory Mapping](theory-mapping.md), [Theory Inhe
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+The reader should treat each entry as a sorting tool. A theory may be brilliant at prediction, weak as ontology, indispensable as a calculation method, and misleading as a story about what physically exists. The differential format keeps those judgments separate. It asks what the framework got right, where it lives in the comparative stack, where its surviving content moves in the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, and what implementation still has to be supplied.
+
 One governing distinction in this chapter is the difference between predictive closure and implementation closure. A theory may organize observations with extraordinary precision while still leaving open what physically implements the successful mathematics. In that case the formalism is not discarded, but its stack placement must remain disciplined. The central comparative question is therefore not only whether a framework works, but whether it explains by exposing a generator or only by stabilizing an effective summary.
 
 This distinction also names a regime-capture problem. Modern physics has often converted success inside a measured domain into a boundary on what may count as fundamental explanation. In this chapter, such success is treated as evidence for an effective closure, not as automatic evidence for final ontology. A framework that works only inside a narrow range of speed, energy, curvature, particle-number stability, or observational access may still be indispensable, but under $\mathbb{A}\mathbb{A}\mathbb{A}$ it must be classified by the regime it actually governs and by the substrate mapping it still owes.
+
+In simple terms, this chapter keeps score without confusing the scoreboard for the engine. A successful equation family can remain useful while being relocated from `fundamental law` to `effective closure`, from `observable fact` to `inference product`, or from `ontology` to `comparison framework`. The demotion is not a dismissal; it is a demand for the physical implementation that the formal success did not provide.
 
 ### Theory-Differential Template (Unified)
 

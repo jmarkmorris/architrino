@@ -4,7 +4,9 @@ This document presents the standard derivation and physical content of Bell's th
 
 The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, nested shell braid, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
----
+The fastest way to misunderstand Bell is to treat it as a slogan about reality being impossible. Bell is more precise than that. It rules out a class of explanations in which each detector outcome is screened off by a local package of variables that is independent of the distant setting. The experimentally observed correlations tell $\mathbb{A}\mathbb{A}\mathbb{A}$ exactly what kind of recovery target must be met: reproduce the joint records, preserve no-signaling, respect measurement-independence bounds, and explain why the observer-level compression is not Bell-factorizable.
+
+That is why this page is a benchmark page rather than a mechanism page. It keeps the theorem sharp so that the later assembly account cannot slide into loose common-cause language. A shared source event helps only if the retained pair-provenance ledger and local apparatus kernels produce the quantum joint law without restoring Bell's product factorization.
 
 ## Traditional Statement of Bell's Theorem
 

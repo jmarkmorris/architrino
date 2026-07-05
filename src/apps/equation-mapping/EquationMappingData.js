@@ -256,7 +256,7 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-source-reference",
     formulaTeX:
-      "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)\\\\ \\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)\\\\ \\mathrm{effective}:\\ (t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i;\\ c_{\\mathrm{eff}},c_0)\\\\ \\mathrm{imported}:\\ (x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}})\\Rightarrow\\mathrm{translated\\ form}",
+      "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)\\quad \\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)\\\\ \\mathrm{effective}:\\ (t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i;\\ c_{\\mathrm{eff}},c_0)\\\\ \\mathrm{imported}:\\ (x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}})\\Rightarrow\\mathrm{translated\\ form}",
     anchors: [
       anchor("nativeLayer", "native coordinates", "absolute time Euclidean void primitive wake speed"),
       anchor("layerMap", "coordinate-layer map", "native variables to effective observer chart"),
@@ -265,7 +265,7 @@ const equationMapSeedDocuments = [
     ],
     formulaParts: [
       mathPart("nativeLayer", "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)", "nativeLayer"),
-      breakPart("layer-map-break"),
+      textPart("native-map-space", " "),
       mathPart(
         "layerMap",
         "\\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)",

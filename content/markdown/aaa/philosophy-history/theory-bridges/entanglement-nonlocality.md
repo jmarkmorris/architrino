@@ -4,7 +4,9 @@ This document establishes the ontological and mathematical mapping between quant
 
 It forms a tight cluster with [Bell Theorem](./bell-theorem.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
----
+In plain terms, entanglement is not treated here as an invisible connection between distant objects. It is treated as a hard record problem. Two assemblies can inherit one source history, carry correlated internal ledgers, and later produce records that cannot be reduced to two independent local value tables. The closure task is to show that this record structure gives the observed quantum correlations while still blocking controllable faster-than-$c_f$ signaling.
+
+This distinction protects both sides of the comparison. Standard quantum mechanics is right that entangled records are not just ignorance about ordinary independent variables. $\mathbb{A}\mathbb{A}\mathbb{A}$ adds that the missing implementation should be searched for in source provenance, path-history memory, apparatus response, and Noether sea context rather than in a primitive nonlocal command sent at measurement time.
 
 ## Traditional Quantum Mechanical View
 
@@ -71,6 +73,8 @@ Ordinary entanglement in this framework is not a primitive relation between dist
 1. **Shared causal origin** (correlated initial conditions from a common source event),
 2. **Conservation constraints** enforced at the source event and preserved by the dynamics,
 3. **Path-history structure** that carries and maintains these correlations through the causal wake geometry.
+
+The important word is `derived`. A pair is not entangled because a special relation has been added on top of two otherwise ordinary objects. It is entangled, if the recovery succeeds, because the two daughter assemblies are incomplete descriptions of one conserved production-and-record process. Physical Observers see two separated detections; the underlying ledger still contains the common provenance and the local response maps that determine the joint statistics.
 
 ### Correlated Production: The Shared Causal Past
 

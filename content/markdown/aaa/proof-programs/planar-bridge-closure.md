@@ -6,6 +6,10 @@ This chapter isolates the first higher-dimensional closure problem that can move
 
 The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
 
+The simple reason this page matters is that one-dimensional success would not yet prove assembly physics. A line removes angular escape by construction. The plane reintroduces tangential motion, rotation, folds, and caustic crossing while keeping enough symmetry for a theorem attempt. This makes the planar bridge the first serious test of whether delayed causal dynamics can recapture an assembly rather than merely trap a line model.
+
+The recovery target is not "find a nice planar orbit." It is stronger: define a return section, control the delayed branch atlas, pass through necessary fold regions without blowing up the impulse, and show that radial recapture defeats tangential leakage on a declared envelope.
+
 ## Position in the Dynamics Stack
 
 This chapter sits between four existing layers:

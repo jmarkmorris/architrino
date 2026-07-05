@@ -15,6 +15,10 @@ This chapter sits between the canonical delayed law in [master-equation.md](../d
 
 The strategic point is simple. The proof should first close in the collinear dual-mollified model by producing a candidate cycle, a finite branch chart, a closed convex certificate, a return self-map, and the Schauder fixed point. Only after that closure is certified should the higher-dimensional sections below be reused as dependency maps. The next task in this chapter is therefore abstraction: identify what part of the collinear scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
 
+This chapter functions as the proof wiring diagram. The master equation is the underlying law, the collinear breather is the first controlled test case, and this page names which parts of that test case might survive when the system is allowed to move in more dimensions. It does not claim that a full breather has been found. It says what the full proof would have to reuse, replace, or newly prove.
+
+That distinction matters because the difficult object is not a scalar radius or a visually periodic path. The difficult object is a history-space return map that takes one admissible past history, evolves it under the delayed law, and returns it to the same controlled class. Any higher-dimensional proof must keep that whole history object in view.
+
 ## Purpose
 
 The breather problem for the full delayed master equation is not a single obstruction. It is the conjunction of five distinct analytic burdens:
