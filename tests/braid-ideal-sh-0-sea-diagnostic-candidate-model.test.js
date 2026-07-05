@@ -10,6 +10,7 @@ import test from "node:test";
 import {
   ACCEPTANCE_CERTIFICATE_SCHEMA,
   EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+  REPO_AUTHORIZATION_SCHEMA,
   buildHeldReleaseSeedPathRows,
 } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
 import {
@@ -114,6 +115,39 @@ function buildMatchingSeedPathAuthorityInputs() {
     negative_control_rejection_verified: true,
   };
   return { acceptanceCertificate, externalAuthorityPackage };
+}
+
+function buildMatchingRepoAuthorization({ acceptanceCertificate, externalAuthorityPackage }) {
+  return {
+    schema: REPO_AUTHORIZATION_SCHEMA,
+    accepted_repo_authorization: true,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      `${REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX}${TARGET_RETAINED_RECORD_ID}:${TARGET_SOURCE_ROW_ID}`,
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      acceptanceCertificate.held_release_seed_path_rows_acceptance_certificate_ref,
+    held_release_seed_path_rows_external_accepted_authority_package_ref:
+      externalAuthorityPackage.external_accepted_authority_package_ref,
+    external_accepted_authority_ref: acceptanceCertificate.external_accepted_authority_ref,
+    external_accepted_authority_verification_ref:
+      acceptanceCertificate.external_accepted_authority_verification_ref,
+    verified_certificate_artifact_hash:
+      externalAuthorityPackage.verified_certificate_artifact_hash,
+    held_release_seed_path_rows_artifact_id:
+      acceptanceCertificate.held_release_seed_path_rows_artifact_id,
+    held_release_seed_path_rows_artifact_hash:
+      acceptanceCertificate.held_release_seed_path_rows_artifact_hash,
+    retained_record_id: TARGET_RETAINED_RECORD_ID,
+    source_row_id: TARGET_SOURCE_ROW_ID,
+    source_run_id: acceptanceCertificate.source_run_id,
+    source_dataset_id: acceptanceCertificate.source_dataset_id,
+    provider_object_ref: TARGET_PROVIDER_OBJECT_REF,
+    provider_artifact_hash: TARGET_PROVIDER_ARTIFACT_HASH,
+    row_ids: [...acceptanceCertificate.row_ids],
+    row_artifact_hashes: [...acceptanceCertificate.row_artifact_hashes],
+    negative_control_rejection_verified: true,
+  };
 }
 
 function acceptedRefFromPrefix(prefix, suffix) {
@@ -500,6 +534,7 @@ test("SH-0-sea diagnostic response run can cross the floor through a produced sa
     accepted_event_provenance: false,
     accepted_support_provenance: false,
     accepted_action_provenance: false,
+    accepted_replacement_source_row_id: null,
   });
 });
 
@@ -610,6 +645,32 @@ test("SH-0-sea accepted-provenance replacement requirement propagates staged see
   assert.equal(conditionallyVerified.accepted_provenance_status.accepted_support_provenance, false);
   assert.equal(conditionallyVerified.accepted_provenance_status.accepted_action_provenance, false);
   assert.equal(conditionallyVerified.authorization.scoreMovement, "no_score_increase");
+
+  const repoAuthorization = buildMatchingRepoAuthorization({
+    acceptanceCertificate,
+    externalAuthorityPackage,
+  });
+  const repoAuthorizedRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    seedPathRepoAuthorization: repoAuthorization,
+  });
+  const repoAuthorized = repoAuthorizedRun.accepted_provenance_replacement_requirement;
+
+  assert.equal(repoAuthorized.accepted, false);
+  assert.equal(repoAuthorized.requirement_passed, false);
+  assert.equal(repoAuthorized.status, "same_target_accepted_provenance_package_missing");
+  assert.equal(repoAuthorized.seed_path_acceptance.accepted, true);
+  assert.equal(repoAuthorized.seed_path_acceptance.requirement_passed, true);
+  assert.equal(repoAuthorized.seed_path_acceptance.repo_authorization_status, "repo_authorization_verified");
+  assert.equal(
+    repoAuthorized.first_missing_object,
+    "sh_0_sea_same_target_accepted_provenance_package"
+  );
+  assert.equal(repoAuthorized.first_missing_field, "accepted_provenance_package");
+  assert.equal(repoAuthorized.accepted_provenance_status.accepted_geometry_provenance, false);
+  assert.equal(repoAuthorized.authorization.scoreMovement, "no_score_increase");
 });
 
 test("SH-0-sea accepted-provenance package verifier can match the FCC carrier without authorizing evidence", () => {
@@ -688,6 +749,86 @@ test("SH-0-sea accepted-provenance package verifier can match the FCC carrier wi
   assert.equal(badGeometryRun.authorization.scoreMovement, "no_score_increase");
 });
 
+test("SH-0-sea replacement requirement accepts same-target provenance only after seed path repo authorization", () => {
+  const { acceptanceCertificate, externalAuthorityPackage } = buildMatchingSeedPathAuthorityInputs();
+  const repoAuthorization = buildMatchingRepoAuthorization({
+    acceptanceCertificate,
+    externalAuthorityPackage,
+  });
+  const stagedRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    seedPathRepoAuthorization: repoAuthorization,
+  });
+  const acceptedProvenancePackage = buildMatchingAcceptedProvenancePackage(stagedRun, {
+    acceptanceCertificate,
+    externalAuthorityPackage,
+  });
+  const run = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    seedPathRepoAuthorization: repoAuthorization,
+    acceptedProvenancePackage,
+  });
+  const replacement = run.accepted_provenance_replacement_requirement;
+
+  assert.equal(replacement.accepted, true);
+  assert.equal(replacement.requirement_passed, true);
+  assert.equal(replacement.status, "same_target_accepted_provenance_package_conditionally_verified");
+  assert.equal(replacement.first_missing_object, null);
+  assert.equal(replacement.first_missing_field, null);
+  assert.equal(replacement.seed_path_acceptance.accepted, true);
+  assert.equal(replacement.seed_path_acceptance.requirement_passed, true);
+  assert.equal(
+    replacement.accepted_provenance_package_verification.package_conditionally_verified,
+    true
+  );
+  assert.deepEqual(replacement.accepted_provenance_package_verification.missing_fields, []);
+  assert.equal(replacement.accepted_provenance_status.accepted_geometry_provenance, true);
+  assert.equal(replacement.accepted_provenance_status.accepted_event_provenance, true);
+  assert.equal(replacement.accepted_provenance_status.accepted_support_provenance, true);
+  assert.equal(replacement.accepted_provenance_status.accepted_action_provenance, true);
+  assert.equal(
+    replacement.accepted_provenance_status.accepted_replacement_source_row_id,
+    acceptedProvenancePackage.accepted_replacement_source_row_id
+  );
+  assert.equal(replacement.authorization.accepted_same_record_evidence, true);
+  assert.equal(replacement.authorization.accepted_retained_evidence, false);
+  assert.equal(replacement.authorization.accepted_noether_sea_response_closure, false);
+  assert.equal(replacement.authorization.receiver_normal_branch_strength, false);
+  assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
+
+  const staleRepoAuthorizationPackage = {
+    ...acceptedProvenancePackage,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      `${REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX}stale-record:stale-source`,
+  };
+  const staleRepoAuthorizationRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    seedPathRepoAuthorization: repoAuthorization,
+    acceptedProvenancePackage: staleRepoAuthorizationPackage,
+  });
+  const staleVerification =
+    staleRepoAuthorizationRun.accepted_provenance_replacement_requirement
+      .accepted_provenance_package_verification;
+
+  assert.equal(staleVerification.package_conditionally_verified, false);
+  assert.equal(
+    staleVerification.missing_fields.includes(
+      "accepted_provenance_package.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+    ),
+    true
+  );
+  assert.equal(
+    staleRepoAuthorizationRun.accepted_provenance_replacement_requirement.accepted,
+    false
+  );
+});
+
 test("SH-0-sea accepted-provenance package shape cannot bypass missing seed-path acceptance", () => {
   const provisionalRun = buildSh0SeaDiagnosticResponseRun({
     producedResponseSource: true,
@@ -752,14 +893,20 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sh0sea-seed-path-authority-"));
   const certificatePath = path.join(tempDir, "acceptance-certificate.json");
   const externalAuthorityPackagePath = path.join(tempDir, "external-authority-package.json");
+  const repoAuthorizationPath = path.join(tempDir, "repo-authorization.json");
   const acceptedProvenancePackagePath = path.join(tempDir, "accepted-provenance-package.json");
   try {
     const { acceptanceCertificate, externalAuthorityPackage } =
       buildMatchingSeedPathAuthorityInputs();
+    const repoAuthorization = buildMatchingRepoAuthorization({
+      acceptanceCertificate,
+      externalAuthorityPackage,
+    });
     const stagedRun = buildSh0SeaDiagnosticResponseRun({
       producedResponseSource: true,
       seedPathAcceptanceCertificate: acceptanceCertificate,
       seedPathExternalAuthorityPackage: externalAuthorityPackage,
+      seedPathRepoAuthorization: repoAuthorization,
     });
     const acceptedProvenancePackage = buildMatchingAcceptedProvenancePackage(stagedRun, {
       acceptanceCertificate,
@@ -767,6 +914,7 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
     });
     fs.writeFileSync(certificatePath, JSON.stringify(acceptanceCertificate));
     fs.writeFileSync(externalAuthorityPackagePath, JSON.stringify(externalAuthorityPackage));
+    fs.writeFileSync(repoAuthorizationPath, JSON.stringify(repoAuthorization));
     fs.writeFileSync(acceptedProvenancePackagePath, JSON.stringify(acceptedProvenancePackage));
 
     const output = execFileSync(
@@ -777,6 +925,7 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
         "--produced-response-source",
         `--acceptance-certificate-json=${certificatePath}`,
         `--external-authority-package-json=${externalAuthorityPackagePath}`,
+        `--repo-authorization-json=${repoAuthorizationPath}`,
         `--accepted-provenance-package-json=${acceptedProvenancePackagePath}`,
       ],
       { encoding: "utf8" }
@@ -784,22 +933,21 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
     const run = JSON.parse(output);
     const replacement = run.accepted_provenance_replacement_requirement;
 
-    assert.equal(replacement.accepted, false);
-    assert.equal(replacement.requirement_passed, false);
+    assert.equal(replacement.accepted, true);
+    assert.equal(replacement.requirement_passed, true);
     assert.equal(
       replacement.status,
-      "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+      "same_target_accepted_provenance_package_conditionally_verified"
     );
-    assert.equal(
-      replacement.first_missing_object,
-      "repo_authorization_for_accepted_held_release_seed_path_rows"
-    );
-    assert.equal(replacement.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+    assert.equal(replacement.first_missing_object, null);
+    assert.equal(replacement.first_missing_field, null);
     assert.equal(replacement.seed_path_acceptance.conditionally_verified, true);
+    assert.equal(replacement.seed_path_acceptance.repo_authorization_status, "repo_authorization_verified");
     assert.equal(
       replacement.accepted_provenance_package_verification.package_conditionally_verified,
       true
     );
+    assert.equal(replacement.accepted_provenance_status.accepted_action_provenance, true);
     assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });

@@ -83,10 +83,11 @@ O,
 $$
 The void contribution is exactly zero. Effective curvature, effective expansion, and effective anisotropy may still be recovered from Noether sea state, assembly clock/ruler response, signal transport, and observer reconstruction. They just cannot be charged to the Euclidean container.
 
-The zero term is also a topology-and-bundle statement. Because the void is $\mathbb{R}^3$, it is contractible and parallelizable; its orthonormal frame bundle is globally trivial,
+The zero term is also a topology-and-bundle statement. Because the void is $\mathbb{R}^3$, it is contractible and parallelizable; its oriented orthonormal frame bundle is globally trivial,
 $$
-F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3).
+F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
+and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$.
 The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
 > **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
@@ -110,11 +111,11 @@ $$
 \Gamma^i{}_{jk}=0
 $$
 
-The geodesic equation becomes
+For the declared flat Levi-Civita connection, the geodesic equation in Cartesian coordinates becomes
 $$
-\frac{d^2x^i}{ds^2}=0
+\frac{d^2X^i}{ds^2}=0,
 $$
-so its solutions are straight lines.
+with $s$ Euclidean arclength, so its solutions are straight lines.
 
 Topologically, the void stays $\mathbb{R}^3$: contractible, simply connected, and without substrate-level topology change. The interesting topology is not in the container. It is in architrino worldlines and assembly configurations inside the container.
 
@@ -231,16 +232,17 @@ $$
 =h^{ij}\partial_i f\,\mathbf{e}_j
 $$
 
-The divergence of a vector field is
+The divergence of a vector field is given by the invariant formula
 $$
 \nabla\cdot\mathbf{v}
-=\partial_i v^i
 =\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,v^i\right)
 $$
 
-In Cartesian coordinates this reduces to
+In Cartesian coordinates $\sqrt{\det h}=1$, so this reduces to
 $$
-\partial_{X^1} v^1+\partial_{X^2} v^2+\partial_{X^3} v^3
+\nabla\cdot\mathbf{v}
+=\partial_i v^i
+=\partial_{X^1} v^1+\partial_{X^2} v^2+\partial_{X^3} v^3
 $$
 
 The scalar Laplacian in Cartesian coordinates is
@@ -260,17 +262,18 @@ The tensor expressions are the invariant statements. The component formulas chan
 
 ## Homogeneity, Isotropy, and the Euclidean Group
 
-The symmetry group of the Euclidean void is the Euclidean group:
+The symmetry group of the Euclidean void is the full Euclidean group:
 $$
-E(3)=\mathbb{R}^3\rtimes SO(3)
+E(3)=\mathbb{R}^3\rtimes O(3)
 $$
 
 This combines:
 
 - Spatial translations: $\mathbf X\mapsto\mathbf X+\mathbf a$.
 - Spatial rotations: $\mathbf X\mapsto R\mathbf X$, with $R\in SO(3)$.
+- Spatial reflections: $\mathbf X\mapsto M\mathbf X$, with $M\in O(3)\setminus SO(3)$.
 
-Any element $g=(R,\mathbf a)\in E(3)$ acts on a point $\mathbf X$ as
+Any element $g=(R,\mathbf a)\in E(3)$ with $R\in O(3)$ acts on a point $\mathbf X$ as
 $$
 g\cdot\mathbf X=R\mathbf X+\mathbf a
 $$
@@ -287,6 +290,8 @@ Homogeneity and isotropy give the container-level consequences:
 - No direction is preferred by the substrate.
 - Translation symmetry supplies the kinematic basis for momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
 - Rotation symmetry supplies the kinematic basis for angular momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
+
+Reflections are container symmetries, and the primitive wake law is parity-even: causal isochrons are spheres and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$. Chirality bookkeeping such as writhe and linking signs is therefore conventional at the container level, and physical parity violation must be recovered as assembly and branch-level selection; see [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md).
 
 Any preferred-frame effect, anisotropy, or effective Lorentz behavior must therefore come from dynamics, Noether sea response, or observer construction. It cannot come from an anisotropy of the Euclidean void.
 
@@ -315,6 +320,7 @@ Allowed spatial isometries are exactly the transformations that preserve the Euc
 
 - Spatial translations.
 - Spatial rotations.
+- Spatial reflections.
 
 At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$T$ slices. Those transformations describe the product structure. They are not spatial isometries of one void slice. On a fixed slice $\Sigma_{T_\ast}$, a Galilean boost reduces to the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost content appears only when different slices are compared. The wake law still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](absolute-timespace.md) carries the dynamical non-invariance of the primitive wake equation under boosted coordinates.
 

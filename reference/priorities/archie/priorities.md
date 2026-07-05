@@ -59,7 +59,6 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 5. `service_scaffolding_and_fixtures` - Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) to drive schema-only service contracts, fixture locations, environment classes, CI gates, staging smoke tests, and rollback fixtures before runtime providers or public launch. Status: `draft`. Depends on: `platform_architecture_packet`.
 6. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `service_scaffolding_and_fixtures`.
 7. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
-8. `reader_accessibility_rewrite_trials` - Trial the operator-approved plain-language rewrite style on selected high-value corpus markdown files so strong content becomes easier to read without changing claim level, TeX, or canonical terminology. Status: `pending`. Depends on: none.
 
 ## Promotion Map
 
@@ -72,7 +71,6 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 | `service_scaffolding_and_fixtures` | Schema-only implementation target. | Service code starts from contracts, fixtures, environment classes, and fail-closed gates before providers or public launch. |
 | `privacy_security_cost_boundary` | Platform launch gate. | User data, service use, logging, retention, abuse controls, and budget limits are explicit before public beta. |
 | `validation_and_qa` | Launch checklist. | Source, answer, privacy, multimodal, deployment, and rollback checks pass. |
-| `reader_accessibility_rewrite_trials` | Selected high-value corpus markdown files and later Archie answer guidance if the style proves stable. | Rewrites preserve equations, TeX delimiters, canonical terminology, relative links, claim level, and generated-artifact policy; source-only drafts stay out of scenes and indexes until reviewed. |
 
 ## Initial Constraints
 

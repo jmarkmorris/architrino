@@ -46,7 +46,7 @@ This note concerns ordinary pair-provenance entanglement: two assemblies are for
 
 The useful black-hole signal is narrower. The thermofield-double construction for two black-hole exteriors gives a convincing case where entanglement is accompanied by an effective connected geometry. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, that belongs to the strong-field black-hole regime and the horizon-interface layer, where effective geometry summarizes extreme Noether sea alignment and compression. It should not be exported to arbitrary Bell pairs as a settled ER=EPR theorem. For ordinary pairs, connected-geometry language is at most an aspirational closure target unless a separate derivation shows how the pair-provenance ledger induces that effective geometry.
 
-The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, local apparatus response, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
+The distinction is important because the black-hole case uses a very special entangled state and a very special strong-field geometry. The safe statement is that some controlled black-hole states make entanglement and connected effective geometry two descriptions of the same coarse-grained structure. The unsafe statement is that every entangled pair carries the same connected-geometry interpretation. Ordinary Bell-pair closure should therefore stay with pair provenance, the coupled apparatus-response law on the declared $c_f$ coordination channel, and no-signaling statistics until a separate strong-field or continuum-limit derivation earns geometric language.
 
 ### Relativistic Subsystem Caution
 
@@ -108,13 +108,13 @@ When a measurement apparatus (itself an assembly of architrinos) interacts with 
 
 The outcome is **deterministic** given complete microstate knowledge, but **operationally unpredictable** to the Physical Observer, who lacks access to the relevant hidden variables.
 
-Because the hidden variables of $A$ and $B$ are correlated from the source event, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. This is not because $A$'s measurement causally influenced $B$, but because the correlated initial conditions supply the candidate joint distribution that the Bell closure must test against observed correlations.
+Because the hidden variables of $A$ and $B$ are correlated from the source event, the measurement outcome at $A$ constrains—statistically, from the Physical Observer's perspective—the outcome at $B$. Source correlations by themselves do not supply a Bell-violating law. They supply the pair-provenance gate and candidate hidden-variable domain; the Bell closure must show how the live $c_f$-coupled apparatus response during the measurement window pushes that domain to the observed correlations while preserving no-signaling.
 
 ### Addressing Bell's Theorem
 
 Bell's theorem excludes theories that are simultaneously **local** (in the Bell sense) and assign pre-existing values to all observables. Any completed $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell account must therefore be a **nonlocal hidden-variable theory** in the following precise sense:
 
-**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. If the Bell gate passes, the required nonlocality resides in the **ontological structure**: the existence of absolute time provides a global simultaneity surface, and the source event imprints **joint constraints** on the hidden variables of both particles that are not factorizable into independent local assignments.
+**What "nonlocal" means here.** The framework does not violate causality. No signal, influence, or energy propagates faster than $c_f$. If the Bell gate passes, the required nonlocality is Bell-level nonfactorizability of the observer-level joint response, not a faster-than-$c_f$ command and not a shared-source record by itself. Absolute time provides an objective ordering surface, the source event supplies the pair-provenance gate, and the declared live $c_f$ coordination channel during the measurement window carries the response coupling that must fail Bell factorization.
 
 Formally, let $\lambda$ denote the complete hidden-variable specification (the full microstate at the source event plus all subsequent path-history data). Bell locality requires:
 
@@ -144,7 +144,7 @@ $$
 
 where $\mathcal{H}_A$ and $\mathcal{H}_B$ are the path-history data carried by the two daughter assemblies, $\Delta\Theta_{AB}^{\text{bin/wake}}$ records their correlated binary-orientation and wake-phase relations, and $\mathsf{Cons}_{AB}$ records the conservation constraints inherited from the source event. This is not an additional force or influence. It is the candidate hidden-variable domain over which the Bell closure must integrate.
 
-Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record and the two local apparatus interactions. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md), and the kernel must be a normalized record law:
+Let $K_{ab}^{AB}$ be the joint-record response kernel induced by the pair-provenance record, the two detector couplings, and the live $c_f$ coordination channel. For spin tests, its one-wing limits must agree with the Stern-Gerlach kernels derived in [Angular Momentum and Spin](./angular-momentum-and-spin.md), and the kernel must be a normalized record law:
 
 $$
 K_{ab}^{AB}\ge0,
@@ -273,13 +273,13 @@ $$
 
 These residuals keep the observable constraint separate from the interpretation. The data product is the tested Bell correlation with no-signaling marginals; the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must earn that data product without importing a superdeterministic assumption.
 
-**Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure (in Bohm's case, the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$, the correlated path-history wake geometry in absolute time). The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
+**Which Bell assumption must fail?** The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is closest in structure to de Broglie–Bohm theory: deterministic, definite trajectories, with correlations maintained through a shared dynamical structure. In Bohm's case that structure is the pilot wave on configuration space; in $\mathbb{A}\mathbb{A}\mathbb{A}$ the declared route is pair-provenance gating plus a live $c_f$-coupled apparatus response in absolute time. The comparison is useful, but it is a proof route rather than a completed Bell derivation. If the Bell gate passes, the nonlocality is ontological (the hidden-variable space is non-separable) but not operational (no usable signal).
 
 The Bohmian comparison also gives a warning about where the proof burden sits. A deterministic ontology can reproduce Bell correlations only if the hidden-variable space is not separable into two independent local packages at measurement time, or if another Bell assumption is explicitly changed. $\mathbb{A}\mathbb{A}\mathbb{A}$ should therefore not present pair provenance as an ordinary local hidden-variable repair. The derivation must show which shared path-history, basin-measure, or apparatus-response term prevents factorization while still preserving free settings and no-signaling.
 
 **Measurement independence** is preserved: the choice of measurement settings at $A$ and $B$ can be freely varied without correlation with the hidden variables $\lambda$ established at the source event. The theory does not invoke superdeterminism.
 
-The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts that the complete universe state is deterministic in absolute time, including the physical histories of detector-setting devices. It does not treat that global determinism as license to make the source-provenance distribution depend on the later chosen settings. The retained closure burden is instead a nonseparable pair-provenance law whose setting dependence enters only through the two local apparatus kernels and whose marginals remain no-signaling.
+The contrast with 't Hooft-style superdeterminism is exact. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts that the complete universe state is deterministic in absolute time, including the physical histories of detector-setting devices. It does not treat that global determinism as license to make the source-provenance distribution depend on the later chosen settings. The retained closure burden is instead a pair-provenance-gated coupled response law whose setting dependence enters through the declared apparatus settings and $c_f$ coordination channel, while the one-wing marginals remain no-signaling.
 
 ### The Absolute-Time Framework and Nonlocality
 
@@ -289,9 +289,9 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, there is an objective tempora
 
 This structure avoids the conceptual difficulties of standard nonlocality:
 
-- **No action at a distance**: $A$'s measurement does not send any signal or influence to $B$.
+- **No instantaneous action at a distance**: $A$'s measurement does not send a faster-than-$c_f$ command or controllable observer signal to $B$; any distant substrate input must be the declared $c_f$ coordination channel.
 - **No frame-dependent causal ordering**: absolute time provides a unique, consistent ordering.
-- **No tension with causality**: all causal influences propagate at $c_f$ or below; the correlations are set up in the shared causal past.
+- **No tension with causality**: all causal influences propagate at $c_f$ or below; the shared causal past gates which pairs can coordinate, while Bell-level nonfactorizability must be carried by the live measurement-window response.
 
 Temporal-nonlocality and retrocausal interpretations remain useful only as comparison routes. They help identify which Bell assumption is being changed in observer-level language, especially when relativistic frame order is ambiguous. They are not the mechanism here. The $\mathbb{A}\mathbb{A}\mathbb{A}$ account must keep the hidden-variable ledger forward-causal in absolute time and must report the same measurement-independence, no-signaling, and Bell-correlation residuals used in [Bell Theorem](./bell-theorem.md#bell-closure-diagnostics).
 
@@ -369,11 +369,11 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
 
-**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(T)$ is always definite and global. After a source event at $T_0$, the daughter microstates $\Gamma_A(T)$ and $\Gamma_B$ are each fully determined for all $T > T_0$. For ordinary pair-provenance cases, the "entanglement" is the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
+**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(T)$ is always definite and global. After a source event at $T_0$, the daughter microstates $\Gamma_A(T)$ and $\Gamma_B$ are each fully determined for all $T > T_0$. For ordinary pair-provenance cases, the "entanglement" begins with the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained; that bookkeeping record gates the Bell response but does not by itself create a Bell violation. Bell-level nonfactorizability requires the coupled apparatus-response law on the declared $c_f$ coordination channel. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
-The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and two local apparatus interactions push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
+The persistent philosophical puzzles of entanglement—how can a measurement "here" instantaneously affect a system "there"?—are relocated by this reading rather than solved by assertion. There is no instantaneous effect. A successful Bell closure must show that the pair-provenance domain and the coupled apparatus-response law on the $c_f$ coordination channel push forward to the tested joint law, with the comparison requiring ordinary sub-$c_f$ communication.
 
 ---
 

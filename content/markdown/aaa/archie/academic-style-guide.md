@@ -37,6 +37,20 @@ The prose should do three things at once:
 
 For central theory passages, the strongest pattern combines explanatory prose, formal precision, and a small equation. Begin by naming what is happening in the substrate or effective layer. Then give a compact map, table, or list that separates the moving parts. Then introduce the equation that binds those parts together, followed immediately by plain-language meanings for the symbols and the closure question that remains. The equation should clarify the prose rather than replace it, and the prose should make the equation's conceptual burden visible.
 
+## Bright First Reader Pattern
+
+Use the Bright First Reader pattern when a section introduces a hard distinction, a dense proof target, a long ledger, or a formal equation stack. The internal shorthand is `bright5`: write for a bright first reader who can follow rigorous ideas, but who should not have to decode project machinery before seeing the physical point.
+
+The pattern is not simplification by dilution. It is ordered entry:
+
+1. Begin with the direct observation, physical intuition, or everyday distinction.
+2. Name the relevant level: substrate ontology, assembly behavior, effective recovery, inference, comparison, or open proof work.
+3. Introduce the canonical project term only after the reader knows what role it plays.
+4. Then introduce the equation, ledger, theorem target, or recovery burden.
+5. Immediately state what the symbols or rows mean and what remains unproven, inferred, or conditional.
+
+Preserve TeX, equations, canonical terminology, and claim level exactly. Do not rename concepts to make them friendlier. Do not remove formal content. Do not turn theorem targets into completed results or established claims into tentative prose. The point is to give the reader a clean first foothold before the machinery arrives.
+
 ## Style Principles
 
 ### 1. Prefer disciplined clarity over rhetorical flourish

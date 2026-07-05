@@ -6,7 +6,7 @@ The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{
 
 The fastest way to misunderstand Bell is to treat it as a slogan about reality being impossible. Bell is more precise than that. It rules out a class of explanations in which each detector outcome is screened off by a local package of variables that is independent of the distant setting. The experimentally observed correlations tell $\mathbb{A}\mathbb{A}\mathbb{A}$ exactly what kind of recovery target must be met: reproduce the joint records, preserve no-signaling, respect measurement-independence bounds, and explain why the observer-level compression is not Bell-factorizable.
 
-That is why this page is a benchmark page rather than a mechanism page. It keeps the theorem sharp so that the later assembly account cannot slide into loose common-cause language. A shared source event helps only if the retained pair-provenance ledger and local apparatus kernels produce the quantum joint law without restoring Bell's product factorization.
+That is why this page is a benchmark page rather than a mechanism page. It keeps the theorem sharp so that the later assembly account cannot slide into loose common-cause language. A shared source event helps only if the retained pair-provenance ledger gates a coupled substrate-response law on the declared $c_f$ coordination channel that produces the quantum joint law without restoring Bell's product factorization.
 
 ## Traditional Statement of Bell's Theorem
 
@@ -236,7 +236,7 @@ $$
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 
-If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, local apparatus kernels, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
+If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, the coupled substrate-response law on the declared $c_f$ channel, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
 
 ### Bell Closure Diagnostics
 

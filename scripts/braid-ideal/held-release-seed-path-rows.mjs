@@ -10,12 +10,15 @@ export const ACCEPTANCE_CERTIFICATE_VERIFICATION_SCHEMA =
   "held_release_seed_path_rows_acceptance_certificate_verification.v0";
 export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA =
   "held_release_seed_path_rows_external_accepted_authority_package.v0";
+export const REPO_AUTHORIZATION_SCHEMA =
+  "repo_authorization_for_accepted_held_release_seed_path_rows.v0";
 export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX =
   "external-authority-package:held-release-seed-path-rows:";
 export const ACCEPTANCE_CERTIFICATE_REF_PREFIX = "accepted:held-release-seed-path-rows:";
 export const EXTERNAL_ACCEPTED_AUTHORITY_REF_PREFIX = "external-authority:held-release-seed-path-rows:";
 export const EXTERNAL_ACCEPTED_AUTHORITY_VERIFICATION_REF_PREFIX =
   "external-verification:held-release-seed-path-rows:";
+export const REPO_AUTHORIZATION_REF_PREFIX = "repo-authorization:accepted-held-release-seed-path-rows:";
 export const DEFAULT_SEED_ID = "braid-ideal:held-release:face-opposite:six-point:v0";
 export const DEFAULT_ROUTE_ID = "braid-ideal:self-hit-held-release:face-opposite:v0";
 export const DEFAULT_RUN_ID = "braid-ideal:held-release:seed-path-rows:v0";
@@ -73,6 +76,30 @@ const REQUIRED_EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELDS = Object.freeze([
   "external_accepted_authority_verification_ref",
   "verified_certificate_schema",
   "verified_certificate_ref",
+  "verified_certificate_artifact_hash",
+  "held_release_seed_path_rows_artifact_id",
+  "held_release_seed_path_rows_artifact_hash",
+  "retained_record_id",
+  "source_row_id",
+  "source_run_id",
+  "source_dataset_id",
+  "provider_object_ref",
+  "provider_artifact_hash",
+  "row_ids",
+  "row_artifact_hashes",
+  "negative_control_rejection_verified",
+]);
+
+const REQUIRED_REPO_AUTHORIZATION_FIELDS = Object.freeze([
+  "schema",
+  "accepted_repo_authorization",
+  "accepted_held_release_seed_path_rows",
+  "accepted_same_record_evidence",
+  "repo_authorization_for_accepted_held_release_seed_path_rows_ref",
+  "held_release_seed_path_rows_acceptance_certificate_ref",
+  "held_release_seed_path_rows_external_accepted_authority_package_ref",
+  "external_accepted_authority_ref",
+  "external_accepted_authority_verification_ref",
   "verified_certificate_artifact_hash",
   "held_release_seed_path_rows_artifact_id",
   "held_release_seed_path_rows_artifact_hash",
@@ -203,6 +230,11 @@ function externalAuthorityPackageRef(value) {
   return ref != null && ref.startsWith(EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX) ? ref : null;
 }
 
+function repoAuthorizationRef(value) {
+  const ref = normalizeStringRef(value);
+  return ref != null && ref.startsWith(REPO_AUTHORIZATION_REF_PREFIX) ? ref : null;
+}
+
 function matchingNonEmptyString(value, expected) {
   const ref = normalizeStringRef(value);
   const expectedRef = normalizeStringRef(expected);
@@ -222,6 +254,15 @@ function makeExternalAcceptedAuthorityPackageRef({ artifact, sourceRowId }) {
     return null;
   }
   return `${EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX}${retainedRecordId}:${sourceRowRef}`;
+}
+
+function makeRepoAuthorizationRef({ artifact, sourceRowId }) {
+  const retainedRecordId = normalizeStringRef(artifact?.retained_record_requirement?.retained_record_id);
+  const sourceRowRef = normalizeStringRef(sourceRowId);
+  if (retainedRecordId == null || sourceRowRef == null) {
+    return null;
+  }
+  return `${REPO_AUTHORIZATION_REF_PREFIX}${retainedRecordId}:${sourceRowRef}`;
 }
 
 function makeAcceptedSeedPathCertificateRefPrefix({ artifact, sourceRowId }) {
@@ -321,9 +362,14 @@ function makeRunMatrixMetadata({
   };
 }
 
-function makeAuthorization() {
+function makeAuthorization({ acceptedSeedPathRows = false } = {}) {
   return Object.fromEntries([
-    ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
+    ...AUTHORIZATION_FLAGS.map((flag) => [
+      flag,
+      flag === "accepted_same_record_evidence" || flag === "held_release_seed_path_rows"
+        ? acceptedSeedPathRows === true
+        : false,
+    ]),
     ["scoreMovement", "no_score_increase"],
   ]);
 }
@@ -586,6 +632,43 @@ function makeExternalAcceptedAuthorityPackageExpectation({ artifact, sourceRowId
   };
 }
 
+function makeRepoAuthorizationExpectation({ artifact, sourceRowId, certificate, externalAuthorityPackage }) {
+  return {
+    schema: REPO_AUTHORIZATION_SCHEMA,
+    accepted_repo_authorization: true,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref: makeRepoAuthorizationRef({
+      artifact,
+      sourceRowId,
+    }),
+    held_release_seed_path_rows_acceptance_certificate_ref: normalizeStringRef(
+      certificate?.held_release_seed_path_rows_acceptance_certificate_ref
+    ),
+    held_release_seed_path_rows_external_accepted_authority_package_ref: normalizeStringRef(
+      externalAuthorityPackage?.external_accepted_authority_package_ref
+    ),
+    external_accepted_authority_ref: normalizeStringRef(certificate?.external_accepted_authority_ref),
+    external_accepted_authority_verification_ref: normalizeStringRef(
+      certificate?.external_accepted_authority_verification_ref
+    ),
+    verified_certificate_artifact_hash: normalizeStringRef(
+      externalAuthorityPackage?.verified_certificate_artifact_hash
+    ),
+    held_release_seed_path_rows_artifact_id: artifact?.artifact_id ?? null,
+    held_release_seed_path_rows_artifact_hash: artifact?.artifact_hash ?? null,
+    retained_record_id: artifact?.retained_record_requirement?.retained_record_id ?? null,
+    source_row_id: normalizeStringRef(sourceRowId),
+    source_run_id: artifact?.source_run_identity?.source_run_id ?? null,
+    source_dataset_id: artifact?.source_run_identity?.source_dataset_id ?? null,
+    provider_object_ref: artifact?.rows?.[0]?.provider_provenance?.provider_object_ref ?? null,
+    provider_artifact_hash: artifact?.rows?.[0]?.provider_provenance?.provider_artifact_hash ?? null,
+    row_ids: artifact?.rows?.map((row) => row?.row_id) ?? [],
+    row_artifact_hashes: artifact?.rows?.map((row) => row?.artifact_hash) ?? [],
+    negative_control_rejection_verified: true,
+  };
+}
+
 function acceptanceCertificateMissingFields({ artifact, sourceRowId, certificate }) {
   const missingFields = [];
   const hasCertificateInput = certificate != null && Object.keys(certificate).length > 0;
@@ -816,11 +899,152 @@ function externalAcceptedAuthorityPackageMissingFields({ artifact, sourceRowId, 
   return missingFields;
 }
 
+function repoAuthorizationMissingFields({
+  artifact,
+  sourceRowId,
+  certificate,
+  externalAuthorityPackage,
+  repoAuthorization,
+}) {
+  const missingFields = [];
+  const hasRepoAuthorizationInput =
+    repoAuthorization != null && Object.keys(repoAuthorization).length > 0;
+  if (!hasRepoAuthorizationInput) {
+    return [REPO_AUTHORIZATION_FIELD];
+  }
+  const expected = makeRepoAuthorizationExpectation({
+    artifact,
+    sourceRowId,
+    certificate,
+    externalAuthorityPackage,
+  });
+  if (repoAuthorization?.schema !== REPO_AUTHORIZATION_SCHEMA) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.schema");
+  }
+  if (repoAuthorization?.accepted_repo_authorization !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.accepted_repo_authorization");
+  }
+  if (repoAuthorization?.accepted_held_release_seed_path_rows !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.accepted_held_release_seed_path_rows");
+  }
+  if (repoAuthorization?.accepted_same_record_evidence !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.accepted_same_record_evidence");
+  }
+  if (
+    repoAuthorizationRef(
+      repoAuthorization?.repo_authorization_for_accepted_held_release_seed_path_rows_ref
+    ) == null
+  ) {
+    missingFields.push(
+      "held_release_seed_path_rows.repo_authorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+    );
+  } else {
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: repoAuthorization?.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+      expected: expected.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+      field:
+        "held_release_seed_path_rows.repo_authorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref",
+    });
+  }
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_acceptance_certificate_ref,
+    expected: expected.held_release_seed_path_rows_acceptance_certificate_ref,
+    field:
+      "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_acceptance_certificate_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_external_accepted_authority_package_ref,
+    expected: expected.held_release_seed_path_rows_external_accepted_authority_package_ref,
+    field:
+      "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_external_accepted_authority_package_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.external_accepted_authority_ref,
+    expected: expected.external_accepted_authority_ref,
+    field: "held_release_seed_path_rows.repo_authorization.external_accepted_authority_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.external_accepted_authority_verification_ref,
+    expected: expected.external_accepted_authority_verification_ref,
+    field: "held_release_seed_path_rows.repo_authorization.external_accepted_authority_verification_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.verified_certificate_artifact_hash,
+    expected: expected.verified_certificate_artifact_hash,
+    field: "held_release_seed_path_rows.repo_authorization.verified_certificate_artifact_hash",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_artifact_id,
+    expected: expected.held_release_seed_path_rows_artifact_id,
+    field: "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_artifact_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_artifact_hash,
+    expected: expected.held_release_seed_path_rows_artifact_hash,
+    field: "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_artifact_hash",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.retained_record_id,
+    expected: expected.retained_record_id,
+    field: "held_release_seed_path_rows.repo_authorization.retained_record_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.source_row_id,
+    expected: expected.source_row_id,
+    field: "held_release_seed_path_rows.repo_authorization.source_row_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.source_run_id,
+    expected: expected.source_run_id,
+    field: "held_release_seed_path_rows.repo_authorization.source_run_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.source_dataset_id,
+    expected: expected.source_dataset_id,
+    field: "held_release_seed_path_rows.repo_authorization.source_dataset_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.provider_object_ref,
+    expected: expected.provider_object_ref,
+    field: "held_release_seed_path_rows.repo_authorization.provider_object_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.provider_artifact_hash,
+    expected: expected.provider_artifact_hash,
+    field: "held_release_seed_path_rows.repo_authorization.provider_artifact_hash",
+  });
+  if (!arraysEqual(repoAuthorization?.row_ids, expected.row_ids)) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.row_ids");
+  }
+  if (!arraysEqual(repoAuthorization?.row_artifact_hashes, expected.row_artifact_hashes)) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.row_artifact_hashes");
+  }
+  if (repoAuthorization?.negative_control_rejection_verified !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.negative_control_rejection_verified");
+  }
+  return missingFields;
+}
+
 export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
   artifact,
   sourceRowId,
   certificate = {},
   externalAuthorityPackage = {},
+  repoAuthorization = {},
 } = {}) {
   const expected = makeAcceptanceCertificateExpectation({ artifact, sourceRowId });
   const missingFields = acceptanceCertificateMissingFields({ artifact, sourceRowId, certificate });
@@ -842,30 +1066,56 @@ export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
     certificateConditionallyVerified && externalAuthorityPackageMissingFields.length === 0;
   const conditionallyVerified =
     certificateConditionallyVerified && externalAuthorityPackageConditionallyVerified;
-  const firstMissingObject = conditionallyVerified
+  const repoAuthorizationMissingFieldsResult = conditionallyVerified
+    ? repoAuthorizationMissingFields({
+        artifact,
+        sourceRowId,
+        certificate,
+        externalAuthorityPackage,
+        repoAuthorization,
+      })
+    : [];
+  const repoAuthorizationVerified =
+    conditionallyVerified && repoAuthorizationMissingFieldsResult.length === 0;
+  const firstMissingObject = repoAuthorizationVerified
+    ? null
+    : conditionallyVerified
     ? REPO_AUTHORIZATION_OBJECT
     : certificateConditionallyVerified
       ? "held_release_seed_path_rows_external_accepted_authority_package"
       : "held_release_seed_path_rows_acceptance_certificate";
-  const firstMissingField = conditionallyVerified
-    ? REPO_AUTHORIZATION_FIELD
-    : certificateConditionallyVerified
-      ? (externalAuthorityPackageMissingFields[0] ?? EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELD)
-      : (missingFields[0] ?? ACCEPTANCE_CERTIFICATE_FIELD);
-  const requirementMissingFields = conditionallyVerified
-    ? [REPO_AUTHORIZATION_FIELD]
-    : [...missingFields, ...externalAuthorityPackageMissingFields];
+  const firstMissingField = repoAuthorizationVerified
+    ? null
+    : conditionallyVerified
+      ? (repoAuthorizationMissingFieldsResult[0] ?? REPO_AUTHORIZATION_FIELD)
+      : certificateConditionallyVerified
+        ? (externalAuthorityPackageMissingFields[0] ?? EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELD)
+        : (missingFields[0] ?? ACCEPTANCE_CERTIFICATE_FIELD);
+  const requirementMissingFields = repoAuthorizationVerified
+    ? []
+    : conditionallyVerified
+      ? repoAuthorizationMissingFieldsResult
+      : [...missingFields, ...externalAuthorityPackageMissingFields];
+  const expectedRepoAuthorization = makeRepoAuthorizationExpectation({
+    artifact,
+    sourceRowId,
+    certificate,
+    externalAuthorityPackage,
+  });
   return {
     schema: ACCEPTANCE_CERTIFICATE_VERIFICATION_SCHEMA,
-    accepted: false,
+    accepted: repoAuthorizationVerified,
     certificate_conditionally_verified: certificateConditionallyVerified,
     external_authority_package_conditionally_verified: externalAuthorityPackageConditionallyVerified,
+    repo_authorization_verified: repoAuthorizationVerified,
     conditionally_verified: conditionallyVerified,
-    status: conditionallyVerified
-      ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
-      : certificateConditionallyVerified
-        ? "seed_path_acceptance_certificate_verified_external_authority_package_missing_or_unverified"
-        : "seed_path_acceptance_certificate_missing_or_unverified",
+    status: repoAuthorizationVerified
+      ? "seed_path_acceptance_certificate_repo_authorized"
+      : conditionallyVerified
+        ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+        : certificateConditionallyVerified
+          ? "seed_path_acceptance_certificate_verified_external_authority_package_missing_or_unverified"
+          : "seed_path_acceptance_certificate_missing_or_unverified",
     required_certificate_schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
     required_certificate_ref_prefix:
       makeAcceptedSeedPathCertificateRefPrefix({ artifact, sourceRowId }) ?? ACCEPTANCE_CERTIFICATE_REF_PREFIX,
@@ -879,13 +1129,21 @@ export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
       expectedExternalAuthorityPackage.external_accepted_authority_package_ref,
     required_external_authority_package_ref_prefix: EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX,
     required_external_authority_package_fields: [...REQUIRED_EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELDS],
+    required_repo_authorization_schema: REPO_AUTHORIZATION_SCHEMA,
     required_repo_authorization_object: REPO_AUTHORIZATION_OBJECT,
     required_repo_authorization_field: REPO_AUTHORIZATION_FIELD,
-    repo_authorization_status: conditionallyVerified
-      ? "missing_after_conditionally_verified_external_authority_package"
-      : "pending_seed_path_certificate_and_external_authority_package",
+    required_repo_authorization_ref:
+      expectedRepoAuthorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+    required_repo_authorization_ref_prefix: REPO_AUTHORIZATION_REF_PREFIX,
+    required_repo_authorization_fields: [...REQUIRED_REPO_AUTHORIZATION_FIELDS],
+    repo_authorization_status: repoAuthorizationVerified
+      ? "repo_authorization_verified"
+      : conditionallyVerified
+        ? "missing_after_conditionally_verified_external_authority_package"
+        : "pending_seed_path_certificate_and_external_authority_package",
     expected_certificate_payload: expected,
     expected_external_authority_package_payload: expectedExternalAuthorityPackage,
+    expected_repo_authorization_payload: expectedRepoAuthorization,
     supplied_certificate_ref: normalizeStringRef(certificate?.held_release_seed_path_rows_acceptance_certificate_ref),
     supplied_external_accepted_authority_ref: normalizeStringRef(certificate?.external_accepted_authority_ref),
     supplied_external_accepted_authority_verification_ref: normalizeStringRef(
@@ -894,10 +1152,13 @@ export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
     supplied_external_authority_package_ref: normalizeStringRef(
       externalAuthorityPackage?.external_accepted_authority_package_ref
     ),
+    supplied_repo_authorization_ref: normalizeStringRef(
+      repoAuthorization?.repo_authorization_for_accepted_held_release_seed_path_rows_ref
+    ),
     missing_fields: requirementMissingFields,
     first_missing_object: firstMissingObject,
     first_missing_field: firstMissingField,
-    authorization: makeAuthorization(),
+    authorization: makeAuthorization({ acceptedSeedPathRows: repoAuthorizationVerified }),
   };
 }
 
@@ -909,16 +1170,19 @@ export function buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement(opt
     sourceRowId,
     certificate: options.acceptanceCertificate ?? {},
     externalAuthorityPackage: options.externalAuthorityPackage ?? {},
+    repoAuthorization: options.repoAuthorization ?? {},
   });
   return {
     schema: ACCEPTANCE_CERTIFICATE_REQUIREMENT_SCHEMA,
-    accepted: false,
+    accepted: verification.accepted,
     requirement_passed: verification.accepted === true,
-    status: verification.conditionally_verified
-      ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
-      : verification.certificate_conditionally_verified
-        ? "seed_path_external_authority_package_missing"
-        : "seed_path_acceptance_certificate_missing",
+    status: verification.accepted
+      ? verification.status
+      : verification.conditionally_verified
+        ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+        : verification.certificate_conditionally_verified
+          ? "seed_path_external_authority_package_missing"
+          : "seed_path_acceptance_certificate_missing",
     retained_record_id: artifact?.retained_record_requirement?.retained_record_id ?? null,
     source_row_id: sourceRowId,
     source_run_id: artifact?.source_run_identity?.source_run_id ?? null,
@@ -942,12 +1206,16 @@ export function buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement(opt
     required_external_authority_package_fields: [...REQUIRED_EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELDS],
     required_repo_authorization_object: verification.required_repo_authorization_object,
     required_repo_authorization_field: verification.required_repo_authorization_field,
+    required_repo_authorization_schema: verification.required_repo_authorization_schema,
+    required_repo_authorization_ref: verification.required_repo_authorization_ref,
+    required_repo_authorization_ref_prefix: verification.required_repo_authorization_ref_prefix,
+    required_repo_authorization_fields: verification.required_repo_authorization_fields,
     repo_authorization_status: verification.repo_authorization_status,
     acceptance_certificate_verification: verification,
     first_missing_object: verification.first_missing_object,
     first_missing_field: verification.first_missing_field,
     missing_fields: verification.missing_fields,
-    authorization: makeAuthorization(),
+    authorization: makeAuthorization({ acceptedSeedPathRows: verification.accepted }),
   };
 }
 
@@ -1218,9 +1486,11 @@ function cliJsonOption(name) {
 function runCli() {
   let acceptanceCertificate = null;
   let externalAuthorityPackage = null;
+  let repoAuthorization = null;
   try {
     acceptanceCertificate = cliJsonOption("acceptance-certificate-json");
     externalAuthorityPackage = cliJsonOption("external-authority-package-json");
+    repoAuthorization = cliJsonOption("repo-authorization-json");
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
@@ -1249,6 +1519,7 @@ function runCli() {
     sourceRowId: cliStringOption("source-row-id"),
     acceptanceCertificate: acceptanceCertificate ?? {},
     externalAuthorityPackage: externalAuthorityPackage ?? {},
+    repoAuthorization: repoAuthorization ?? {},
   });
   if (process.argv.includes("--print-acceptance-certificate-requirement")) {
     console.log(JSON.stringify(certificateRequirement, null, pretty ? 2 : 0));
@@ -1263,7 +1534,7 @@ function runCli() {
     return;
   }
   const output =
-    acceptanceCertificate == null
+    acceptanceCertificate == null && externalAuthorityPackage == null && repoAuthorization == null
       ? artifact
       : {
           ...artifact,

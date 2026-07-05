@@ -149,9 +149,12 @@ function cleanNumber(value) {
   return number == null || Object.is(number, -0) ? 0 : number;
 }
 
-function makeAuthorization() {
+function makeAuthorization({ acceptedSameRecordEvidence = false } = {}) {
   return Object.fromEntries([
-    ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
+    ...AUTHORIZATION_FLAGS.map((flag) => [
+      flag,
+      flag === "accepted_same_record_evidence" ? acceptedSameRecordEvidence === true : false,
+    ]),
     ["scoreMovement", "no_score_increase"],
   ]);
 }
@@ -228,6 +231,7 @@ function buildSeedPathAcceptanceCertificateRequirement(model, options = {}) {
     providerArtifactHash: TARGET_PROVIDER_ARTIFACT_HASH,
     acceptanceCertificate: options.seedPathAcceptanceCertificate ?? {},
     externalAuthorityPackage: options.seedPathExternalAuthorityPackage ?? {},
+    repoAuthorization: options.seedPathRepoAuthorization ?? {},
   });
 }
 
@@ -244,6 +248,8 @@ function buildAcceptedProvenanceReplacementPackageExpectation({
     (seedPathRequirement.required_certificate_ref_prefix == null
       ? null
       : `${seedPathRequirement.required_certificate_ref_prefix}<certificate-ref>`);
+  const suppliedRepoAuthorizationRef =
+    seedPathRequirement.acceptance_certificate_verification?.supplied_repo_authorization_ref ?? null;
   return {
     schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
     accepted_same_target_sh_0_sea_source: true,
@@ -255,6 +261,7 @@ function buildAcceptedProvenanceReplacementPackageExpectation({
     held_release_seed_path_rows_external_accepted_authority_package_ref:
       seedPathRequirement.required_external_authority_package_ref ?? null,
     repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      suppliedRepoAuthorizationRef ??
       `${REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX}<repo-authorization-ref>`,
     accepted_geometry_provenance_ref:
       `${expectedRefPrefixes.accepted_geometry_provenance_ref}<accepted-geometry-provenance-ref>`,
@@ -357,15 +364,27 @@ function evaluateAcceptedProvenanceReplacementPackage({
       field:
         "accepted_provenance_package.held_release_seed_path_rows_external_accepted_authority_package_ref",
     });
-    if (
-      stringRefWithPrefix(
-        packageInput.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
-        REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX
-      ) == null
-    ) {
-      missingFields.push(
-        "accepted_provenance_package.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
-      );
+    const suppliedRepoAuthorizationRef =
+      seedPathRequirement.acceptance_certificate_verification?.supplied_repo_authorization_ref ?? null;
+    if (suppliedRepoAuthorizationRef == null) {
+      if (
+        stringRefWithPrefix(
+          packageInput.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+          REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX
+        ) == null
+      ) {
+        missingFields.push(
+          "accepted_provenance_package.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+        );
+      }
+    } else {
+      pushMissingUnlessMatchingString({
+        missingFields,
+        value: packageInput.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+        expected: suppliedRepoAuthorizationRef,
+        field:
+          "accepted_provenance_package.repo_authorization_for_accepted_held_release_seed_path_rows_ref",
+      });
     }
     if (
       stringRefWithPrefix(
@@ -650,7 +669,7 @@ function buildAcceptedProvenanceReplacementRequirement({
   const requirementPassed = seedPathReady && packageReady;
   return {
     schema: ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA,
-    accepted: false,
+    accepted: requirementPassed,
     requirement_passed: requirementPassed,
     status: seedPathReady
       ? acceptedProvenancePackageVerification.status
@@ -697,10 +716,13 @@ function buildAcceptedProvenanceReplacementRequirement({
         producedSourceRow.action_provenance?.action_exchange_row_ref ?? null,
     },
     accepted_provenance_status: {
-      accepted_geometry_provenance: false,
-      accepted_event_provenance: false,
-      accepted_support_provenance: false,
-      accepted_action_provenance: false,
+      accepted_geometry_provenance: requirementPassed,
+      accepted_event_provenance: requirementPassed,
+      accepted_support_provenance: requirementPassed,
+      accepted_action_provenance: requirementPassed,
+      accepted_replacement_source_row_id: requirementPassed
+        ? acceptedProvenancePackageVerification.supplied_accepted_replacement_source_row_id
+        : null,
     },
     first_missing_object: seedPathReady
       ? acceptedProvenancePackageVerification.first_missing_object
@@ -713,7 +735,7 @@ function buildAcceptedProvenanceReplacementRequirement({
       "repo_authorization_for_accepted_held_release_seed_path_rows",
       ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
     ],
-    authorization: makeAuthorization(),
+    authorization: makeAuthorization({ acceptedSameRecordEvidence: requirementPassed }),
   };
 }
 
@@ -1299,13 +1321,14 @@ function parseArgs(args) {
     producedSourceMarginStep: numberOption("produced-source-margin-step"),
     seedPathAcceptanceCertificate: jsonOption("acceptance-certificate-json"),
     seedPathExternalAuthorityPackage: jsonOption("external-authority-package-json"),
+    seedPathRepoAuthorization: jsonOption("repo-authorization-json"),
     acceptedProvenancePackage: jsonOption("accepted-provenance-package-json"),
   };
 }
 
 function printUsage() {
   console.log(
-    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--produced-response-source] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-row-kind=pressure_tension|boundary_wake] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>] [--produced-source-phi=<number>] [--produced-source-margin-step=<number>] [--acceptance-certificate-json=<path>] [--external-authority-package-json=<path>] [--accepted-provenance-package-json=<path>]`
+    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--produced-response-source] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-row-kind=pressure_tension|boundary_wake] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>] [--produced-source-phi=<number>] [--produced-source-margin-step=<number>] [--acceptance-certificate-json=<path>] [--external-authority-package-json=<path>] [--repo-authorization-json=<path>] [--accepted-provenance-package-json=<path>]`
   );
 }
 

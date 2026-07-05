@@ -16,6 +16,7 @@ import {
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  REPO_AUTHORIZATION_SCHEMA,
   SURFACE_VELOCITY_PATTERN,
   buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement,
   buildHeldReleaseSeedPathRows,
@@ -90,6 +91,37 @@ function makeMatchingExternalAuthorityPackage(artifact, certificate) {
     verified_certificate_schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
     verified_certificate_ref: certificate.held_release_seed_path_rows_acceptance_certificate_ref,
     verified_certificate_artifact_hash: stableHash(certificate),
+    held_release_seed_path_rows_artifact_id: artifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: artifact.artifact_hash,
+    retained_record_id: RETAINED_RECORD_ID,
+    source_row_id: SOURCE_ROW_ID,
+    source_run_id: artifact.source_run_identity.source_run_id,
+    source_dataset_id: artifact.source_run_identity.source_dataset_id,
+    provider_object_ref: PROVIDER_OBJECT_REF,
+    provider_artifact_hash: PROVIDER_ARTIFACT_HASH,
+    row_ids: artifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: artifact.rows.map((row) => row.artifact_hash),
+    negative_control_rejection_verified: true,
+  };
+}
+
+function makeMatchingRepoAuthorization(artifact, certificate, externalAuthorityPackage) {
+  return {
+    schema: REPO_AUTHORIZATION_SCHEMA,
+    accepted_repo_authorization: true,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      `repo-authorization:accepted-held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      certificate.held_release_seed_path_rows_acceptance_certificate_ref,
+    held_release_seed_path_rows_external_accepted_authority_package_ref:
+      externalAuthorityPackage.external_accepted_authority_package_ref,
+    external_accepted_authority_ref: certificate.external_accepted_authority_ref,
+    external_accepted_authority_verification_ref:
+      certificate.external_accepted_authority_verification_ref,
+    verified_certificate_artifact_hash:
+      externalAuthorityPackage.verified_certificate_artifact_hash,
     held_release_seed_path_rows_artifact_id: artifact.artifact_id,
     held_release_seed_path_rows_artifact_hash: artifact.artifact_hash,
     retained_record_id: RETAINED_RECORD_ID,
@@ -368,6 +400,21 @@ test("seed path acceptance-certificate requirement names the exact non-repo auth
   assert.equal(
     requirement.required_external_authority_package_ref,
     `external-authority-package:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(requirement.required_repo_authorization_schema, REPO_AUTHORIZATION_SCHEMA);
+  assert.equal(
+    requirement.required_repo_authorization_ref,
+    `repo-authorization:accepted-held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(
+    requirement.required_repo_authorization_ref_prefix,
+    "repo-authorization:accepted-held-release-seed-path-rows:"
+  );
+  assert.equal(
+    requirement.required_repo_authorization_fields.includes(
+      "repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+    ),
+    true
   );
   assert.equal(
     requirement.required_certificate_fields.includes("held_release_seed_path_rows_acceptance_certificate_ref"),
@@ -665,6 +712,71 @@ test("matching seed path certificate and external authority package conditionall
   assert.equal(requirement.authorization.scoreMovement, "no_score_increase");
 });
 
+test("matching seed path certificate, external authority package, and repo authorization pass the seed-path requirement", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const externalAuthorityPackage = makeMatchingExternalAuthorityPackage(artifact, certificate);
+  const repoAuthorization = makeMatchingRepoAuthorization(
+    artifact,
+    certificate,
+    externalAuthorityPackage
+  );
+  const requirement = buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    acceptanceCertificate: certificate,
+    externalAuthorityPackage,
+    repoAuthorization,
+  });
+
+  assert.equal(requirement.accepted, true);
+  assert.equal(requirement.requirement_passed, true);
+  assert.equal(requirement.status, "seed_path_acceptance_certificate_repo_authorized");
+  assert.equal(requirement.first_missing_object, null);
+  assert.equal(requirement.first_missing_field, null);
+  assert.deepEqual(requirement.missing_fields, []);
+  assert.equal(requirement.repo_authorization_status, "repo_authorization_verified");
+  assert.equal(requirement.acceptance_certificate_verification.repo_authorization_verified, true);
+  assert.equal(
+    requirement.acceptance_certificate_verification.supplied_repo_authorization_ref,
+    repoAuthorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref
+  );
+  assert.equal(requirement.authorization.accepted_same_record_evidence, true);
+  assert.equal(requirement.authorization.held_release_seed_path_rows, true);
+  assert.equal(requirement.authorization.retained_branch_claim, false);
+  assert.equal(requirement.authorization.receiver_normal_branch_strength, false);
+  assert.equal(requirement.authorization.scoreMovement, "no_score_increase");
+});
+
+test("repo authorization verifier rejects stale authorization refs", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const externalAuthorityPackage = makeMatchingExternalAuthorityPackage(artifact, certificate);
+  const repoAuthorization = {
+    ...makeMatchingRepoAuthorization(artifact, certificate, externalAuthorityPackage),
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      "repo-authorization:accepted-held-release-seed-path-rows:stale-record:stale-source",
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+    externalAuthorityPackage,
+    repoAuthorization,
+  });
+
+  assert.equal(verification.accepted, false);
+  assert.equal(verification.repo_authorization_verified, false);
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.repo_authorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+    ),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+  assert.equal(verification.authorization.scoreMovement, "no_score_increase");
+});
+
 test("external authority package verifier rejects copied certificate hashes and fixture refs", () => {
   const artifact = buildCurrentProviderBackedArtifact();
   const certificate = makeMatchingAcceptanceCertificate(artifact);
@@ -868,13 +980,18 @@ test("held-release seed path rows CLI requires the external authority package wi
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "seed-path-certificate-"));
   const certificatePath = path.join(tempDir, "seed-path-certificate.json");
   const authorityPackagePath = path.join(tempDir, "seed-path-external-authority-package.json");
+  const repoAuthorizationPath = path.join(tempDir, "seed-path-repo-authorization.json");
   try {
     const certificate = makeMatchingAcceptanceCertificate(artifact);
-    fs.writeFileSync(certificatePath, JSON.stringify(certificate));
-    fs.writeFileSync(
-      authorityPackagePath,
-      JSON.stringify(makeMatchingExternalAuthorityPackage(artifact, certificate))
+    const externalAuthorityPackage = makeMatchingExternalAuthorityPackage(artifact, certificate);
+    const repoAuthorization = makeMatchingRepoAuthorization(
+      artifact,
+      certificate,
+      externalAuthorityPackage
     );
+    fs.writeFileSync(certificatePath, JSON.stringify(certificate));
+    fs.writeFileSync(authorityPackagePath, JSON.stringify(externalAuthorityPackage));
+    fs.writeFileSync(repoAuthorizationPath, JSON.stringify(repoAuthorization));
 
     let missingAuthorityError;
     try {
@@ -994,6 +1111,39 @@ test("held-release seed path rows CLI requires the external authority package wi
     assert.deepEqual(unacceptedRequirementDiagnostic.acceptance_certificate_verification.missing_fields, [
       "held_release_seed_path_rows.acceptance_certificate_ref",
     ]);
+
+    const acceptedOutput = execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        `--retained-record-id=${RETAINED_RECORD_ID}`,
+        `--source-row-id=${SOURCE_ROW_ID}`,
+        `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+        `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+        `--acceptance-certificate-json=${certificatePath}`,
+        `--external-authority-package-json=${authorityPackagePath}`,
+        `--repo-authorization-json=${repoAuthorizationPath}`,
+        "--require-acceptance-certificate",
+        "--pretty",
+      ],
+      { encoding: "utf8" }
+    );
+    const acceptedArtifact = JSON.parse(acceptedOutput);
+
+    assert.equal(acceptedArtifact.acceptance_certificate_requirement.accepted, true);
+    assert.equal(acceptedArtifact.acceptance_certificate_requirement.requirement_passed, true);
+    assert.equal(
+      acceptedArtifact.acceptance_certificate_requirement.repo_authorization_status,
+      "repo_authorization_verified"
+    );
+    assert.equal(
+      acceptedArtifact.acceptance_certificate_requirement.authorization.held_release_seed_path_rows,
+      true
+    );
+    assert.equal(
+      acceptedArtifact.acceptance_certificate_requirement.authorization.scoreMovement,
+      "no_score_increase"
+    );
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
