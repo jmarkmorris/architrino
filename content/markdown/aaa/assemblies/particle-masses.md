@@ -1,6 +1,8 @@
 # Particle Masses: Emergent Inertia in the Noether Sea
 
-**Purpose:** Articulate the canonical mass thesis in $\mathbb{A}\mathbb{A}\mathbb{A}$ and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
+Mass is where the reader first sees why assemblies matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an architrino does not carry its own particle-specific mass tag. What a Physical Observer calls mass is the externally exposed response of a stable assembly whose internal causal history is partly shielded and partly coupled to the surrounding Noether sea.
+
+This chapter gives the reader-facing statement of that mass thesis and outlines the path toward quantitative mass predictions. The active derivation of a numerical mass map remains open until the shielding, stability, internal-energy, and medium-response terms are computed from retained assembly branches rather than fitted particle by particle.
 
 ---
 

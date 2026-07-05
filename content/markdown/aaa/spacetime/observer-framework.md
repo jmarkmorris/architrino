@@ -263,7 +263,7 @@ $$
 P_{\Omega,\theta,W}(Y_A\in B)
 =
 \mu_{\Omega,\theta}\!\left(
-\{\mathcal{B}:Y_A(t;\mathcal{B},\theta)\in B\ \text{on}\ W\}
+\{\mathcal{B}:Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)\in B\ \text{on}\ W\}
 \right)
 $$
 If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
@@ -272,9 +272,9 @@ If a comparison requires different measures for branch weights, thermodynamic no
 
 At the ontic level, simultaneity is absolute. Two events
 $$
-(t_1,\mathbf{x}_1)
+(T_1,\mathbf X_1)
 \qquad\text{and}\qquad
-(t_2,\mathbf{x}_2)
+(T_2,\mathbf X_2)
 $$
 are simultaneous exactly when
 $$
@@ -342,7 +342,7 @@ Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a war
 
 ## Physical Observer Clocks and Rulers
 
-A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
+A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $T$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
 
 The same rule applies to every observer tool. A clock, ruler, detector, telescope, or notebook is an assembly record. It is not a transparent window onto the substrate unless the clock, ruler, signal, and calibration channels have been declared.
 

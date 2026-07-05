@@ -2,11 +2,13 @@
 
 ## Purpose
 
-This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The electron is the clean charged-lepton reference case: stable, colorless, charge $-e$, and built from the lowest shielding-coherence version of the Noether braid plus axial-layer architecture.
 
 ## Framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is not a point particle with a primitive mass tag. It is a retained branch whose charge bookkeeping, inertial response, atomic detection map, and weak-reaction provenance must all come from the same assembly record.
+
+It is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
 
 ## Axial Inventory and Generation Core
 

@@ -1,6 +1,8 @@
 # Quantum Number Mapping: Architrino Geometry to Standard Model
 
-This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. Its purpose is to tell the reader which structural features of the Noether braid, six-unit polarity inventory, and axial-layer realization are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+This chapter is the canonical dictionary from assembly geometry to Standard Model quantum numbers. It tells the reader which structural features of the Noether braid, six-unit polarity inventory, and axial-layer realization are supposed to map to charge, weak labels, color labels, generation, and related bookkeeping categories.
+
+The dictionary is not the same thing as a completed derivation. A charge row, color label, weak doublet, or generation label becomes physical only when the branch record, axial inventory, stability row, and null-result exclusions close together. The purpose of this page is to keep the bookkeeping explicit enough that later mass, reaction, gauge, and validation chapters can test it without changing the definitions.
 
 ## Purpose
 This document establishes the canonical dictionary translating **Nested Shell Braid Assembly Geometry** into **Standard Model (SM) Quantum Numbers**.

@@ -33,7 +33,7 @@ A maximum-curvature interior is not assigned an ordinary physical-observer clock
 $$
 \mathrm{Clock}_{\mathrm{PO}}(\Omega_{\mathrm{int}})=\varnothing
 \quad\text{while}\quad
-t_{\mathrm{abs}}\ \text{still orders exterior and boundary records.}
+T\ \text{still orders exterior and boundary records.}
 $$
 This prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed. Absolute time still orders the ontology; a readable interior clock is a separate recovered channel.
 
@@ -126,12 +126,12 @@ A sharper endpoint criterion is that those same finite data admit a continuation
 $$
 \mathcal{T}_{\Omega}:
 \left(
-X_\Omega(t_i),
-\mathcal{B}_{\partial\Omega}|_{[t_i,t_f]},
-N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
+X_\Omega(T_i),
+\mathcal{B}_{\partial\Omega}|_{[T_i,T_f]},
+N_{\text{sea}}|_{\Omega\times[T_i,T_f]}
 \right)
 \longmapsto
-X_\Omega(t_f)
+X_\Omega(T_f)
 $$
 with
 $$
@@ -145,12 +145,12 @@ This is the singularity-resolution form of the black-hole endpoint gate. The rep
 
 GR Cauchy-horizon and cosmic-censorship language is useful here only as comparison pressure. It asks whether an effective initial-data surface has a unique global continuation or whether the observer-level spacetime description admits extensions not determined by that surface. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the substrate answer is not to import global hyperbolicity as an axiom. The native answer must show that the finite region record selects a finite admissible continuation family.
 
-For the same compact region $\Omega$ and interval $W=[t_i,t_f]$, define the accepted strong-field continuation family
+For the same compact region $\Omega$ and interval $W=[T_i,T_f]$, define the accepted strong-field continuation family
 $$
 \mathfrak{S}_H(\theta_{\partial\Omega,W})
 =
 \left\{
-\left(X_\Omega(t_f),\mathcal{B}_H(t_f)\right)
+\left(X_\Omega(T_f),\mathcal{B}_H(T_f)\right)
 :
 F_H=0,\quad
 \sup_{T\in W}\mathcal{R}_H(\Omega,T)<\infty,
@@ -171,7 +171,7 @@ $$
 F_H(T)=0,\qquad
 \sup_{T\in[T_i,T_f]}\mathcal{R}_H(\Omega,T)<\infty,
 \qquad
-0<\left|\mathcal{B}_{H}(t_f)\right|<\infty
+0<\left|\mathcal{B}_{H}(T_f)\right|<\infty
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
 

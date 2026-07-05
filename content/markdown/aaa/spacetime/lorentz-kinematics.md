@@ -75,7 +75,7 @@ and must be bounded by time-dilation tests such as Ives-Stilwell and storage-rin
 $$
 R_{\tau\Phi}
 \equiv
-\left.\frac{d\tau}{dt}\right|_{\beta=0}
+\left.\frac{d\tau}{dt_{\mathrm{eff}}}\right|_{\beta=0}
 -\left(1+\frac{\Phi_{\text{eff}}}{c_{\text{eff}}^2}+O\!\left(\frac{\Phi_{\text{eff}}^2}{c_{\text{eff}}^4}\right)\right),
 $$
 with the $\Phi_{\text{eff}}$ sign convention declared, and must recover gravitational-redshift and PPN clock/curvature constraints. Equivalence-principle recovery requires $R_{\tau v}$ and $R_{\tau\Phi}$ to come from the same Noether sea response and assembly-clock map.
@@ -276,9 +276,9 @@ Only after this particle-plus-wake-plus-medium ledger closes does an isolated tr
 
 ### Directional delay asymmetry
 
-For a primitive benchmark drifting binary with instantaneous separation vector $\mathbf{r}=r\,\hat{\mathbf{n}}$ and center drift $\mathbf{v}=v\,\hat{\mathbf{e}}_{\parallel}$, causal-delay closure satisfies
+For a primitive benchmark drifting binary with instantaneous separation vector $\mathbf r=r\,\hat{\mathbf n}$ and center drift $\mathbf V=v\,\hat{\mathbf e}_{\parallel}$, causal-delay closure satisfies
 $$
-\tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}
+\Delta=\frac{\|\mathbf r+\mathbf V\Delta\|}{c_f}
 $$
 This subsection is deliberately a $c_f$ branch-chart calculation. For operational clock, ruler, or photon tests, repeat the same budget with the declared $c_\star$ after Noether sea dressing. With $\mu\equiv \hat{\mathbf{n}}\cdot\hat{\mathbf{e}}_{\parallel}$ and $\beta=v/c_f$, the two directional roots are
 $$
@@ -794,9 +794,9 @@ Proposed mechanism chain under applied force (acceleration of a Noether braid-ba
 
 This can be treated as a coupled state map:
 $$
-(\mathbf{v},\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_M,R_L,\mathcal{E}_{\text{excl}})
+(\mathbf V,\mathbf{A}_H,\mathbf{A}_M,\mathbf{A}_L,R_H,R_M,R_L,\mathcal{E}_{\text{excl}})
 \xrightarrow{\;\Delta \mathbf{p}\;}
-(\mathbf{v}',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_M',R_L',\mathcal{E}_{\text{excl}}')
+(\mathbf V',\mathbf{A}_H',\mathbf{A}_M',\mathbf{A}_L',R_H',R_M',R_L',\mathcal{E}_{\text{excl}}')
 $$
 
 Initial directional hypothesis for acceleration response:
@@ -858,7 +858,7 @@ with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target i
 
 Terminology guardrail: $\xi$ is the Noether braid envelope shape ratio, inherited from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma}
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
 so clock slowing is a derived readout of the geometry-to-clock map.
 
@@ -925,7 +925,7 @@ The synchronization claim has a compact conditional form. In a weak homogeneous 
 $$
 L_{\parallel}(v)=\frac{L_0}{\gamma_\gamma},
 \qquad
-\frac{d\tau}{dt}=\frac{1}{\gamma_\gamma},
+\frac{d\tau}{dt_{\mathrm{eff}}}=\frac{1}{\gamma_\gamma},
 \qquad
 \gamma_\gamma=\frac{1}{\sqrt{1-v^2/c_\gamma^2}},
 $$
@@ -1023,11 +1023,11 @@ which is precisely $L_{\parallel}=L_0/\gamma_\star+O(\beta_\star^6)$.
 
 ### Stage A: binary analytic benchmark
 
-Start with a single causal path-history binary under constant drift $\mathbf{v}$. Derive:
+Start with a single causal path-history binary under constant drift $\mathbf V$. Derive:
 
 1. Existence and stability of periodic or quasi-periodic attractors.
-2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(v)$.
-3. First nonzero leakage coefficients in $v/c_f$ expansion.
+2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta)$.
+3. First nonzero leakage coefficients in the $\beta$ expansion.
 
 ### Stage B: nested shell braid full closure
 
@@ -1069,24 +1069,24 @@ $$
 $$
 Geodesic flow in the observer sector is
 $$
-\frac{d^2x^\lambda}{d\tau^2}
+\frac{d^2x_{\mathrm{eff}}^\lambda}{d\tau^2}
 +\Gamma^\lambda_{\mu\nu}
-\frac{dx^\mu}{d\tau}\frac{dx^\nu}{d\tau}=0
+\frac{dx_{\mathrm{eff}}^\mu}{d\tau}\frac{dx_{\mathrm{eff}}^\nu}{d\tau}=0
 $$
 
 For weak drift, slowly varying Noether sea flow, and quasi-static fields in a local Noether sea rest frame, define
 $$
-\Phi_{\text{eff}}(x)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big)
+\Phi_{\text{eff}}(x_{\mathrm{eff}}^i)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big)
 $$
 Then the nonrelativistic geodesic limit becomes
 $$
-\frac{d^2\mathbf{x}}{dt^2}
-=-\xi^{2}\nabla \Phi_{\text{eff}}
-+O\!\left(\frac{\|\mathbf{v}\|^2}{c_0^2},\epsilon_{\text{LV}}\right)
-=-\nabla \Phi_{\text{eff}}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
+=-\xi^{2}\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
++O\!\left(\frac{\|\mathbf V\|^2}{c_0^2},\epsilon_{\text{LV}}\right)
+=-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(
 \left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|,
-\frac{\|\mathbf{v}\|^2}{c_0^2},
+\frac{\|\mathbf V\|^2}{c_0^2},
 \epsilon_{\text{LV}}
 \right)
 $$
@@ -1172,13 +1172,13 @@ A_i(\beta)=A_i(0)\left(\frac{K_i(0)}{K_i(\beta)}\right)^{1/4}
 $$
 This provides the fixed-action retuning route from stiffness expansion to the coefficient extraction in [Stiffness Tensor from Causal-Wake Surface Integrals](#stiffness-tensor-from-causal-wake-surface-integrals).
 
-The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf{v}=v\hat{\mathbf{e}}_{\parallel}$ with primitive $\beta=v/c_f$, suppose one tries the causal-delay potential form
+The simplest scalar kernel is useful mainly because it fails in a controlled way. For translation $\mathbf V=v\hat{\mathbf e}_{\parallel}$ with primitive $\beta=v/c_f$, suppose one tries the causal-delay potential form
 $$
 \mathcal{U}_{\text{eff}}(\mathbf{r};\beta)
 =
 \frac{\kappa\,\epsilon^2}{r_{\text{cd}}\!\left(1-\boldsymbol{\beta}\cdot \hat{\mathbf{n}}_{\text{cd}}\right)}
 \qquad
-\boldsymbol{\beta}\equiv \frac{\mathbf{v}}{c_f}
+\boldsymbol{\beta}\equiv \frac{\mathbf V}{c_f}
 $$
 Define stiffness by cycle-averaged Hessian evaluation on $\boldsymbol{\rho}^\star(s;\beta)$:
 $$
@@ -1190,7 +1190,7 @@ K_{ab}(\beta)
 $$
 Naively expanding the causal-delay closure
 $$
-\tau=\frac{\|\mathbf{r}+\mathbf{v}\tau\|}{c_f}
+\Delta=\frac{\|\mathbf r+\mathbf V\Delta\|}{c_f}
 $$
 and projecting longitudinal/transverse channels would suggest integrals of the form
 $$
@@ -1273,12 +1273,12 @@ $$
 \mathcal{L}_{\mathrm{root}}(\beta)
 =
 \left\{
-(a,b,m,t,t_{0,m},J_{ab}^{(m)},\sigma_{ab}^{(m)})
+(a,b,m,T,T_{\mathrm{em},m},J_{ab}^{(m)},\sigma_{ab}^{(m)})
 :
 m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta)
 \right\}
 $$
-Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $t_{0,m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
+Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $T_{\mathrm{em},m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
 
 The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta)$ on a drift band $0\le\beta\le\beta_\star$ such that
 $$
@@ -1287,7 +1287,7 @@ K_{ab}(\beta)
 \left\langle
 \sum_{(a,b,m)\in\mathcal{L}_{\mathrm{root}}(\beta)}
 \partial_a\partial_b
-\mathcal{U}_{ab}^{(m)}(t;\beta,\eta)
+\mathcal{U}_{ab}^{(m)}(T;\beta,\eta)
 \right\rangle_{\mathrm{cyc}}
 $$
 and the extracted coefficient vector
@@ -1404,15 +1404,15 @@ for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}
 
 The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell braid deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
 $$
-c_f\tau
+c_f\Delta
 =
 \left\|
-u\tau\,\hat{\mathbf e}
+u\Delta\,\hat{\mathbf e}
 +
-\boldsymbol{\rho}_i(t)-\boldsymbol{\rho}_j(t-\tau)
+\boldsymbol{\rho}_i(T)-\boldsymbol{\rho}_j(T-\Delta)
 \right\|
 \ge
-u\tau+d_{\min}
+u\Delta+d_{\min}
 $$
 and therefore
 $$
@@ -1428,11 +1428,11 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, and positive Jacobian floors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
-\mathbf{x}_{\sigma}(t)
+\mathbf X_{\sigma}(T)
 =
-u t\,\hat{\mathbf e}
+u T\,\hat{\mathbf e}
 +
-\sigma\,\boldsymbol{\rho}_u(\theta(t))
+\sigma\,\boldsymbol{\rho}_u(\theta(T))
 $$
 on a retained deformed ledger $b_u$. The target is not merely existence. The branch must return the residual triple
 $$
@@ -1466,7 +1466,7 @@ If these equalities hold on the same branch ledger, the Lorentzian compensation 
 
 ### Theorem A (attractor existence under drift)
 
-For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf{v}\|<c_f$.
+For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf V\|<c_f$.
 
 ### Theorem B (anisotropic deformation law)
 

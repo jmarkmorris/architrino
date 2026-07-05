@@ -66,19 +66,19 @@ In plain terms, the observer cannot be allowed to recover one causal story from 
 
 Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether sea state, and closure-label ensemble determine the continuation.
 
-The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[t_i,t_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
+The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[T_i,T_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
 $$
 \mathcal{T}_{\Omega,W}^{\theta}:
 \left(
-X_\Omega(t_i),
-\mathcal{H}_{\Omega}^{<t_i},
+X_\Omega(T_i),
+\mathcal{H}_{\Omega}^{<T_i},
 \mathcal{B}_{\partial\Omega}|_{W},
 N_{\text{sea}}|_{\Omega\times W}
 \right)
 \longrightarrow
-\mathcal{S}_{\Omega}(t_f)
+\mathcal{S}_{\Omega}(T_f)
 $$
-where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(t_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
+where $\mathcal{S}_{\Omega}(T_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(T_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
 
 ## Weak-Field Observables That Must Match GR
 
@@ -119,7 +119,7 @@ $$
 
 For a point mass, the resulting delay is
 $$
-\Delta t
+\Delta t_{\mathrm{eff}}
 =
 \frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
@@ -180,8 +180,8 @@ R_{\mathrm{1PN}}\\
 \qquad
 R_{\mathrm{acc}}
 =
-\frac{\left\|\frac{d^2\mathbf x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}+\nabla_{\mathbf x_{\mathrm{eff}}}\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla_{\mathbf x_{\mathrm{eff}}}\Phi_{\text{eff}}\right\|_W+\varepsilon}
+\frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
+{\left\|\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
