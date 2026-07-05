@@ -497,7 +497,7 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
+      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
     anchors: [
       anchor("energy", "energy", "observer exposed energy"),
       anchor("momentum", "momentum term", "momentum response"),
@@ -514,7 +514,7 @@ const equationMapSeedDocuments = [
       breakPart("rest-mass-solve-break"),
       mathPart(
         "restMassSolve",
-        "M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
+        "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
         ""
       ),
     ],
@@ -531,7 +531,7 @@ const equationMapSeedDocuments = [
         "motion-response",
         "Motion response",
         "momentum",
-        "p includes M₀ through p = effective γ times M₀ times effective v. That is why the solve equation uses effective γ, not a separate p. In AAA, motion, mass, and speed stay in one ledger.",
+        "p is the momentum term. From the displayed energy relation alone, M₀ solves to the square-root expression below. If a branch also supplies p = effective γ times M₀ times effective v, the same relation reduces to E = effective γ times M₀ times effective c with exponent 2.",
         "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2",
         { x: 26, y: 8, width: 25, line: "above" }
       ),

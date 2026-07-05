@@ -1,19 +1,10 @@
 # Effective Lagrangian
 
-Receiver-normal restart notice. Any variational scaffold in this chapter that
-does not produce receiver-normal branch strength is invalid as closure evidence.
-The current target is to vary a path-history functional whose branch-reduced
-force law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained
-roots as the Master EOM. Source-normal denominators remain transversality
-diagnostics until paired with the receiver-normal numerator and checked by the
-stated residuals.
+This chapter asks whether the delayed Master EOM can be recovered from an action principle. In ordinary mechanics, a Lagrangian is useful because varying one scalar history functional gives the equations of motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is harder: the functional must remember delayed causal roots, source identities, boundary terms, and receiver-normal branch strength.
 
-Variational proof work restarts from this canonical receiver-normal target. No prior action
-stationarity, energy balance, or Noether wake-history verdict is inherited
-unless the same derivation reproduces the receiver-normal branch law on the
-retained record.
+The restart rule is simple. Any variational scaffold in this chapter that does not produce receiver-normal branch strength is invalid as closure evidence. The current target is to vary a path-history functional whose branch-reduced force law carries $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same retained roots as the Master EOM. Source-normal denominators remain transversality diagnostics until paired with the receiver-normal numerator and checked by the stated residuals.
 
-This chapter formalizes the conditional variational scaffold used by $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to connect the exact, path-history-dependent microdynamics of discrete architrinos to coarse-grained effective descriptions of macroscopic assembly behavior in the Noether sea.
+Variational proof work therefore restarts from this canonical receiver-normal target. No prior action stationarity, energy balance, or Noether wake-history verdict is inherited unless the same derivation reproduces the receiver-normal branch law on the retained record.
 
 The bridge is deliberately conditional. The Master EOM remains the primary dynamics at the substrate level; an action or Lagrangian chart becomes theorem-grade only after its variation, boundary, and conservation residuals close on the retained branch chart. Until then, the effective Lagrangian is a disciplined inference device rather than an independent ontology.
 

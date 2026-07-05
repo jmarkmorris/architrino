@@ -61,7 +61,7 @@ $$
 \Theta_A^{(O,W)}
 =
 \left(
-Y_A(t),
+Y_A(t_{\mathrm{eff}}),
 \mathcal{K}_A,
 \mathcal{M}_A,
 C_A,
@@ -69,17 +69,17 @@ C_A,
 \mathcal{B}_{\partial\Omega}^{(O)}(W)
 \right)
 $$
-where $Y_A(t)$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t)$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
+where $Y_A(t_{\mathrm{eff}})$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t_{\mathrm{eff}})$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
 Photon-distance records need the same separation. For an emission event $E$, reception event $R$, and transported photon-channel packet $\gamma$, a Physical Observer should not collapse three different quantities into one distance:
 $$
 d_{\mathrm{void}}(E,R)
 =
-\left\|\mathbf{x}_R(t_R)-\mathbf{x}_E(t_E)\right\|,
+\left\|\mathbf X_R(T_R)-\mathbf X_E(T_E)\right\|,
 \qquad
 L_{\gamma}(E\to R)
 =
-\int_{t_E}^{t_R}\left\|\dot{\mathbf{x}}_{\gamma}(t)\right\|\,dt,
+\int_{T_E}^{T_R}\left\|\frac{d\mathbf X_{\gamma}}{dT}\right\|\,dT,
 $$
 and
 $$
@@ -105,7 +105,7 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
 | Ontic | What exists and evolves in the complete microstate | Architrinos in absolute timespace with path-history dynamics |
 | Epistemic | What embedded assemblies can access and summarize | Derived clock time, measured distance, effective fields, wavefunctions, thermodynamic quantities |
 
-The ontic level is not observer-dependent. It is the complete state of the modeled world at absolute time $t$, together with the path-history information needed for deterministic continuation.
+The ontic level is not observer-dependent. It is the complete state of the modeled world at absolute time $T$, together with the path-history information needed for deterministic continuation.
 
 The epistemic level is observer-dependent because Physical Observers are built from assemblies and must infer the world through finite signals, local records, and internal clocks. This is a limit on access, not a claim that observers create the substrate.
 
@@ -132,16 +132,16 @@ $$
 
 The subsystem evolution therefore has the schematic form
 $$
-\frac{dX_\Omega}{dt}
+\frac{dX_\Omega}{dT}
 =
 F_\Omega\!\left(
-X_\Omega(t),
-\mathcal{H}_{\Omega}^{<t},
-\mathcal{B}_{\partial\Omega}(t),
-N_{\text{sea}}|_{\Omega}(t)
+X_\Omega(T),
+\mathcal{H}_{\Omega}^{<T},
+\mathcal{B}_{\partial\Omega}(T),
+N_{\text{sea}}|_{\Omega}(T)
 \right)
 $$
-where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
+where $N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(T)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
@@ -178,12 +178,12 @@ $$
 \mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)
 =
 \left.
-\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
+\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)
 \right|_{W}
 /
 \sim_{O,\theta,W}
 $$
-Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
+Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
 ## Boundary-Wake Covariance Scaffold
 
@@ -191,52 +191,52 @@ The boundary term above also supplies the native home for covariance matrices us
 
 With this notation, the unresolved boundary residual is
 $$
-\delta\mathcal{B}_{\partial\Omega}(t;\theta)
+\delta\mathcal{B}_{\partial\Omega}(T;\theta)
 =
-\mathcal{B}_{\partial\Omega}(t)
+\mathcal{B}_{\partial\Omega}(T)
 -
-\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
+\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)
 $$
-For a readout channel $Y_A(t)$, define the residual induced by unresolved boundary histories as
+For a readout channel $Y_A(t_{\mathrm{eff}})$, define the residual induced by unresolved boundary histories as
 $$
-\delta Y_A(t;\mathcal{B},\theta)
+\delta Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 =
-Y_A(t;\mathcal{B},\theta)
+Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 -
 \left\langle
-Y_A(t;\mathcal{B},\theta)
+Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 \right\rangle_{\mu_{\Omega,\theta}}
 $$
 Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
 
 The boundary-wake covariance is then
 $$
-N^{\mathrm{bw}}_{AB}(t,t';\theta)
+N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 =
 \int
-\delta Y_A(t;\mathcal{B},\theta)\,
-\delta Y_B(t';\mathcal{B},\theta)\,
+\delta Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)\,
+\delta Y_B(t_{\mathrm{eff}}';\mathcal{B},\theta)\,
 d\mu_{\Omega,\theta}(\mathcal{B})
 $$
 It must be positive semidefinite as a channel covariance:
 $$
 \int\!\!\int
-f_A(t)\,
-N^{\mathrm{bw}}_{AB}(t,t';\theta)\,
-f_B(t')\,dt\,dt'
+f_A(t_{\mathrm{eff}})\,
+N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)\,
+f_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 \ge 0
 $$
-for every resolved test channel $f_A(t)$ on the observation window.
+for every resolved test channel $f_A(t_{\mathrm{eff}})$ on the observation window.
 
 A detector model may add separately calibrated residuals,
 $$
-N_{AB}(t,t';\theta)
+N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 =
-N^{\mathrm{bw}}_{AB}(t,t';\theta)
+N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 +
-N^{\mathrm{det}}_{AB}(t,t')
+N^{\mathrm{det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 +
-N^{\mathrm{env}}_{AB}(t,t')
+N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
@@ -308,9 +308,9 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 +
 \lambda_{\tau}
 \left\|
-\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+\frac{d\tau_{\mathrm{eff}}}{dt_{\mathrm{eff}}}(\theta)
 -
-\frac{d\tau_{\mathrm{GR}}}{dt}
+\frac{d\tau_{\mathrm{GR}}}{dt_{\mathrm{eff}}}
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}

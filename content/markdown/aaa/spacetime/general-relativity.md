@@ -50,9 +50,9 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 +
 \lambda_{\tau}
 \left\|
-\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+\frac{d\tau_{\mathrm{eff}}}{dt_{\mathrm{eff}}}(\theta)
 -
-\frac{d\tau_{\mathrm{GR}}}{dt}
+\frac{d\tau_{\mathrm{GR}}}{dt_{\mathrm{eff}}}
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
@@ -86,7 +86,7 @@ where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-labe
 
 The clock channel must reproduce
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 \approx
 \sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{v^2}{c_0^2}}
 $$
@@ -103,17 +103,17 @@ Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are 
 
 In the refractive-medium picture, one-way path time is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
+t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,ds_{\mathrm{eff}}
 $$
 with
 $$
-\bar{\chi}_{\text{sea}}(\mathbf{x})
+\bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)
 \equiv
-\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}
 =
-\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
+\frac{c_0}{c_f}\chi_{\text{sea}}(x_{\mathrm{eff}}^i)
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_0^2}
 +O(c_0^{-4})
 $$
 
@@ -180,8 +180,8 @@ R_{\mathrm{1PN}}\\
 \qquad
 R_{\mathrm{acc}}
 =
-\frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
+\frac{\left\|\frac{d^2\mathbf x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}+\nabla_{\mathbf x_{\mathrm{eff}}}\Phi_{\text{eff}}\right\|_W}
+{\left\|\nabla_{\mathbf x_{\mathrm{eff}}}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
 The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
@@ -256,7 +256,7 @@ $$
 =
 \frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
-The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(\mathbf{x};\theta_W)$, the residual must also satisfy
+The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
 $$
 \mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
 =

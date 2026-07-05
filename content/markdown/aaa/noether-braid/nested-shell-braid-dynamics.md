@@ -1,10 +1,10 @@
 # Nested Shell Braid Dynamics
 
-This chapter formulates nested shell braid dynamics by extending the two-body delayed causal-wake system to a nested shell braid with three coupled shell binaries. Its focus is the branch geometry, high-speed response, gradient response, and diagnostic quantities needed to assess stability and alignment in absolute substrate time.
+This chapter asks how a nested shell braid could stay together as a moving delayed system. It extends the two-body causal-wake problem into a three-band assembly, where inner, middle, and outer support bands must keep compatible branch records instead of behaving like three independent orbits.
+
+The focus is branch geometry, high-speed response, gradient response, alignment behavior, and diagnostic quantities needed to assess stability in absolute substrate time. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; this chapter studies the coupled stability mechanisms that may let those ingredients form a retained nested shell braid branch.
 
 It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md), [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), [Nested Shell Braid](nested-shell-braid.md), and [Nested Shell Braid Geometry](nested-shell-braid-geometry.md), since those notes supply the binary precursor, lock structure, alignment target, assembly carrier, and exclusion-envelope geometry.
-
-This chapter is the canonical dynamics home for coupled speed regimes, alignment behavior, and assembly-stability mechanisms inside the nested shell braid variant. Primitive architrino ontology supplies the transceivers, polarities, causal wakes, and causal-root law; coupled stability mechanisms belong here and in [Binary Dynamics](../dynamics/binary-dynamics.md).
 
 ## Document Role
 

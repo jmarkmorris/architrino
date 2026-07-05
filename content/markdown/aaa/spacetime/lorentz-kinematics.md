@@ -95,13 +95,13 @@ Given a translating bound assembly (binary and then nested shell braid), derive:
 
 ### Causal path-history interaction form
 
-For architrino labels $i,j\in\{1,\dots,N\}$, with positions $\mathbf{x}_i(t)$ and regularized inertial weights $m_i$,
+For architrino labels $i,j\in\{1,\dots,N\}$, with positions $\mathbf X_i(T)$ and regularized inertial weights $m_i$,
 $$
-m_i\ddot{\mathbf{x}}_i(t)=\sum_{j\neq i}\mathbf{F}_{ij}\!\left(\mathbf{x}_i(t),\mathbf{x}_j(t-\tau_{ij}(t)),\dot{\mathbf{x}}_j(t-\tau_{ij}(t))\right)+\mathbf{F}^{\text{self}}_i(t)
+m_i\frac{d^2\mathbf X_i}{dT^2}=\sum_{j\neq i}\mathbf F_{ij}\!\left(\mathbf X_i(T),\mathbf X_j(T-\Delta_{ij}(T)),\mathbf V_j(T-\Delta_{ij}(T))\right)+\mathbf F^{\text{self}}_i(T)
 $$
 with causal delay
 $$
-\tau_{ij}(t)=\frac{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau_{ij}(t))\|}{c_f}
+\Delta_{ij}(T)=\frac{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta_{ij}(T))\|}{c_f}
 $$
 The self-hit term $\mathbf{F}^{\text{self}}_i$ captures history-dependent wake re-intersections and is the non-Markovian source of branch-sensitive corrections.
 
@@ -109,18 +109,18 @@ The weights $m_i$ in this reduced equation are not primitive architrino rest mas
 
 ### Co-moving decomposition
 
-For an assembly center trajectory $\mathbf{X}(t)$ with mean velocity $\mathbf{v}$, write
+For an assembly center trajectory $\mathbf X_c(T)$ with mean velocity $\mathbf V$, write
 $$
-\mathbf{x}_i(t)=\mathbf{X}(t)+\mathbf{r}_i(t)\qquad \sum_i m_i\mathbf{r}_i(t)=\mathbf{0}
+\mathbf X_i(T)=\mathbf X_c(T)+\mathbf r_i(T)\qquad \sum_i m_i\mathbf r_i(T)=\mathbf{0}
 $$
-The closure task is to solve for bounded relative motion $\mathbf{r}_i(t)$ under translation $\|\mathbf{v}\|<c_f$ and extract period and geometry renormalization.
+The closure task is to solve for bounded relative motion $\mathbf r_i(T)$ under translation $\|\mathbf V\|<c_f$ and extract period and geometry renormalization.
 
 ### Dimensionless drift-delay form and variational closure
 
 Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
 $$
-\beta\equiv \frac{v}{c_f}\qquad s\equiv \frac{t}{T_0}\qquad
-\boldsymbol{\rho}_i(s)\equiv \frac{\mathbf{r}_i(t)}{a_0}\qquad
+\beta\equiv \frac{v}{c_f}\qquad s\equiv \frac{T}{T_0}\qquad
+\boldsymbol{\rho}_i(s)\equiv \frac{\mathbf r_i(T)}{a_0}\qquad
 \chi\equiv \frac{c_f T_0}{a_0}
 $$
 Then delay closure in co-moving coordinates is
@@ -146,13 +146,13 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 
 The first hard Lorentz-closure calculation is the moving version of the certified rest two-body branch. Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
 $$
-\mathbf{x}_{\sigma}(t)
+\mathbf X_{\sigma}(T)
 =
-u t\,\hat{\mathbf e}
+u T\,\hat{\mathbf e}
 +
-\sigma\,\boldsymbol{\rho}_u(\theta(t)),
+\sigma\,\boldsymbol{\rho}_u(\theta(T)),
 \qquad
-\theta(t+T_u)=\theta(t)+2\pi
+\theta(T+T_u)=\theta(T)+2\pi
 $$
 with $\boldsymbol{\rho}_u$ periodic on the retained branch chart. This is not a Lorentz boost of coordinates. It is a direct absolute-time branch ansatz inserted into the delayed root equation.
 
@@ -250,10 +250,10 @@ in the planar orientation where the drift direction lies in the binary plane. A 
 
 At action level, use a causal path-history functional
 $$
-S=\int dt\left[
-\sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2
+S=\int dT\left[
+\sum_i \frac{1}{2}m_i\left\|\frac{d\mathbf X_i}{dT}\right\|^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\mathcal{L}_{\text{int}}\!\left(\mathbf{x}_i(t),\mathbf{x}_j(t-\tau)\right)
+\mathcal{L}_{\text{int}}\!\left(\mathbf X_i(T),\mathbf X_j(T-\Delta)\right)
 \right]
 $$
 The exact substrate symmetry group is
@@ -264,13 +264,13 @@ and the associated delayed-Noether proof target is that conserved totals close o
 $$
 \mathbf{P}_{\text{tot}}
 =
-\sum_i m_i\dot{\mathbf{x}}_i+\mathbf{P}_{\text{wake}}
+\sum_i m_i\frac{d\mathbf X_i}{dT}+\mathbf{P}_{\text{wake}}
 \qquad
 E_{\text{tot}}
 =
-\sum_i \frac{1}{2}m_i\dot{\mathbf{x}}_i^2+E_{\text{wake}}
+\sum_i \frac{1}{2}m_i\left\|\frac{d\mathbf X_i}{dT}\right\|^2+E_{\text{wake}}
 $$
-Only after this particle-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf{v}=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
+Only after this particle-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf V=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
 
 ## Emergent Kinematics from Delay Anisotropy
 
@@ -634,15 +634,15 @@ $$
 
 To anchor coefficient matching in the microdynamics, define the pairwise causal-wake potential on a translating attractor $\boldsymbol{\rho}^\star(s;\beta)$:
 $$
-\mathcal{U}_{ij}(t;\beta)\equiv
-\int_{\Sigma_{ij}^{\text{wake}}(t)}
-\frac{\kappa\,\epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}\,
-W_{ij}(t,\sigma;\eta)\,d^2\sigma
+\mathcal{U}_{ij}(T;\beta)\equiv
+\int_{\Sigma_{ij}^{\text{wake}}(T)}
+\frac{\kappa\,\epsilon^2}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta)\|^2}\,
+W_{ij}(T,\sigma;\eta)\,d^2\sigma
 $$
 where $W_{ij}$ is the regularized causal kernel weight and $\eta>0$ is the regularization scale.
 Set
 $$
-U_{\text{eff}}(t;\beta)\equiv \sum_{i<j}\mathcal{U}_{ij}(t;\beta)
+U_{\text{eff}}(T;\beta)\equiv \sum_{i<j}\mathcal{U}_{ij}(T;\beta)
 \qquad
 K_{ab}(\beta)\equiv
 \left\langle
@@ -896,10 +896,10 @@ g_{\text{eff}}^{\mu\nu}(x)=
 $$
 Hence microscopic shape closure, when it yields $\xi\to1/\gamma$, is injected directly into $g_{\mu\nu}^{\text{eff}}$.
 
-In the local Noether sea rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x^0=c_0 t$:
+In the local Noether sea rest frame ($\hat{u}^\mu=(1,0,0,0)$), with observer-sector coordinate $x_{\mathrm{eff}}^0=c_0 t_{\mathrm{eff}}$:
 $$
-ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx^\mu dx^\nu
-=\Omega^{2}\left[-\xi^{2}(dx^0)^2+d\mathbf{x}^2\right]
+ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu
+=-\Omega^{2}\xi^{2}(dx_{\mathrm{eff}}^0)^2+\gamma_{ij}^{\mathrm{eff}}dx_{\mathrm{eff}}^i dx_{\mathrm{eff}}^j
 $$
 Therefore the stationary ideal clock-rate factor extracted from the metric subclass is $\Omega\xi$, while the spatial ruler scale is governed by $\Omega$. This preserves the geometry-first interpretation: $\xi$ remains the oblate-envelope shape ratio, and the clock rate agrees with $\xi$ only after the geometry-to-clock closure is proved.
 

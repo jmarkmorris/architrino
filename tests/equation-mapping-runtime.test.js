@@ -451,7 +451,7 @@ test("equation mapping seed formulas use layer-explicit coordinate notation", ()
   });
 });
 
-test("equation mapping energy-momentum map adds corrected motion relation and rest-mass solve row", () => {
+test("equation mapping energy-momentum map derives rest mass directly from the displayed relation", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-04-energy-momentum-rest-energy"
   );
@@ -478,7 +478,16 @@ test("equation mapping energy-momentum map adds corrected motion relation and re
       (part) =>
         part.id === "restMassSolve" &&
         part.anchorId === "" &&
-        part.tex === "M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}"
+        part.tex === "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}"
+    ),
+    true
+  );
+  assert.equal(
+    motionOverlay.content.some(
+      (block) =>
+        block.type === "text" &&
+        block.text.includes("From the displayed energy relation alone") &&
+        block.text.includes("If a branch also supplies")
     ),
     true
   );
@@ -855,7 +864,7 @@ test("equation mapping arrow keys navigate through the visible equation list", (
   assert.equal(preventDefaultCount, 4);
 });
 
-test("equation mapping renders left and right carousel controls for equations", () => {
+test("equation mapping renders bottom carousel controls for equations", () => {
   const runtimeSource = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
   const html = readRepoFile("equation-mapping.html");
   const runtime = new EquationMappingRuntime({
@@ -882,9 +891,13 @@ test("equation mapping renders left and right carousel controls for equations", 
   assert.equal(runtimeSource.includes("renderEquationCarousel()"), true);
   assert.equal(runtimeSource.includes('this.renderCarouselButton("previous", -1, "Previous equation")'), true);
   assert.equal(runtimeSource.includes('this.renderCarouselButton("next", 1, "Next equation")'), true);
-  assert.match(html, /\.equation-mapping-carousel-button \{[\s\S]*?width: 58px;[\s\S]*?height: 96px;/u);
-  assert.match(html, /\.equation-mapping-carousel-button\.is-previous \{[\s\S]*?left: 10px;/u);
-  assert.match(html, /\.equation-mapping-carousel-button\.is-next \{[\s\S]*?right: 10px;/u);
+  assert.match(
+    html,
+    /\.equation-mapping-carousel \{[\s\S]*?bottom: max\(16px, env\(safe-area-inset-bottom\)\);[\s\S]*?left: 50%;[\s\S]*?transform: translateX\(-50%\);/u
+  );
+  assert.match(html, /\.equation-mapping-carousel-button \{[\s\S]*?width: 44px;[\s\S]*?height: 38px;/u);
+  assert.equal(/\.equation-mapping-carousel-button\.is-previous \{/u.test(html), false);
+  assert.equal(/\.equation-mapping-carousel-button\.is-next \{/u.test(html), false);
   assert.match(html, /\.equation-mapping-carousel-button:disabled \{[\s\S]*?opacity: 0\.18;/u);
 });
 

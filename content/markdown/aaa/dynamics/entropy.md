@@ -1,12 +1,12 @@
 # Entropy
 
-Entropy enters $\mathbb{A}\mathbb{A}\mathbb{A}$ as a record-coarse-graining concept. It is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
+Entropy asks what a finite record has forgotten. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
 
 This chapter collects the entropy rule used across time, energy, measurement, computation, horizon, and cosmology discussions. The central discipline is the same-record rule: a packet may not fit entropy, temperature, flux, probability weights, apparatus cost, or horizon labels from separate hidden ensembles. If a thermal, quantum, horizon, or computational comparison is claimed, the entropy appearing in that comparison must be a projection of the same record that supplies the other quantities.
 
 ## Plain-Language Reading
 
-A simple way to read entropy is: entropy measures how many hidden detailed stories could produce the same thing a record can see. A room does not contain an entropy substance. Rather, there are many exact arrangements of dust, air, books, and clothing that a coarse observer would still record as the same messy room. Entropy counts or measures those compatible detailed arrangements after the level of detail has been fixed.
+A simple way to read entropy is: entropy measures how many hidden detailed stories could produce the same thing a record can see. A room does not contain an entropy substance. Rather, many exact arrangements of dust, air, books, and clothing can still project to the same coarse record of "messy room." Entropy counts or measures those compatible detailed arrangements after the level of detail has been fixed.
 
 This is also why visible disorder is only a shortcut, not the definition. A jagged, broken, or visually mixed object can still have lower entropy than a smoother thermal state if fewer complete histories are compatible with its retained record. In this chapter, disorder language is acceptable only when it tracks the declared measure, macrostate partition, and unresolved history count.
 

@@ -36,21 +36,21 @@ Use the following symbols consistently across spacetime chapters:
 - $\Phi_{\text{eff}}(\mathbf X,T)$: constitutive potential inferred from the clock channel.
 - $\Phi_N(\mathbf X,T)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
-- $N(\mathbf{x},t)$: observer-level lapse or clock-rate field reconstructed from Noether sea state.
-- $u^i_{\mathrm{sea,eff}}(\mathbf{x},t)$: Noether sea drift field in the observer-level bookkeeping map.
-- $e^a{}_i(\mathbf{x},t)$: spatial frame field carrying Noether sea compliance and orientation response.
-- $\gamma_{ij}^{\mathrm{eff}}(\mathbf{x},t)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
+- $N(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: observer-level lapse or clock-rate field reconstructed from Noether sea state.
+- $u^i_{\mathrm{sea,eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: Noether sea drift field in the observer-level bookkeeping map.
+- $e^a{}_i(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: spatial frame field carrying Noether sea compliance and orientation response.
+- $\gamma_{ij}^{\mathrm{eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
 
 ## What “Metric” Means Here
 
-- **Effective metric $g^{\text{eff}}_{\mu\nu}(x)$** is *not* a fundamental property of the void. It is a derived description of:
+- **Effective metric $g^{\text{eff}}_{\mu\nu}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
   - How assembly-based rulers measure distances,
   - How photon-channel packets and gravitational-wave channels propagate through the Noether sea.
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
-> At each point $x$, choose an idealized physical observer (Noether braid clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
+> At each effective-chart point $(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$, choose an idealized physical observer (Noether braid clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps substrate and medium data into observer-level ADM/Cartan fields:
 
@@ -90,12 +90,12 @@ The constitutive variable that sources $\Phi_{\text{eff}}$ may therefore be an e
 
 One candidate route from assembly wakes to weak gravity is an RMS excitation law. If local causal-wake hits alternate in sign, direction, or branch provenance, the mean signed force can cancel while the quadratic excitation of the Noether sea remains:
 $$
-\Phi_{\mathrm{eff}}^\theta(\mathbf{x})
+\Phi_{\mathrm{eff}}^\theta(\mathbf X,T)
 \propto
 \mathcal{K}_{\mathrm{sea}}
 \left\langle
-\left(\sum_s q_s A_s(\mathbf{x},t)\right)^2
-\right\rangle_{\Delta t}^{1/2}.
+\left(\sum_s q_s A_s(\mathbf X,T)\right)^2
+\right\rangle_{\Delta T}^{1/2}.
 $$
 Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
@@ -152,7 +152,7 @@ This is a constitutive equation, not a new fundamental four-dimensional metric o
 
 As a form-level recovery, the same handoff already has the correct weak-field clock shape once the clock-channel potential has been matched to the Newtonian benchmark. In a weak, slow comparison window,
 $$
-\frac{d\tau_{\mathcal A}}{dt}
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
 \approx
 1-\frac{U_N}{c_0^2}
 -\frac{\|\mathbf w\|^2}{2c_0^2},
@@ -245,18 +245,18 @@ S_{\mathrm{clk}}
 d\tau
 =
 \frac{1}{c_0}
-\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu}
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
 and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
 $$
-\frac{d^2\mathbf{x}}{dt^2}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =
--\nabla\Phi_{\text{eff}}
+-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O(c_0^{-2})
 $$
 For null signal records,
 $$
-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0
+g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu=0
 $$
 must match the eikonal path-time extremal of the Noether sea signal channel. In the point-mass weak-field limit, the recovered deflection target is
 $$
@@ -275,9 +275,9 @@ Hybrid dark-sector comparisons sharpen the metric burden: a modified force law t
 $$
 ds_{\mathrm{eff}}^2
 =
--\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt^2
+-\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt_{\mathrm{eff}}^2
 +
-\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)d\mathbf{x}^2
+\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)\gamma_{ij}^{\mathrm{eff}}dx_{\mathrm{eff}}^i dx_{\mathrm{eff}}^j
 $$
 
 Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
@@ -382,7 +382,7 @@ For axially symmetric or rotating sources, oblate spheroidal coordinates can be 
 $$
 ds^2
 =
--f(\xi,\eta)c_0^2dt^2
+-f(\xi,\eta)c_0^2dt_{\mathrm{eff}}^2
 +g_1(\xi,\eta)d\xi^2
 +g_2(\xi,\eta)d\eta^2
 +g_3(\xi,\eta)d\phi^2
@@ -643,52 +643,52 @@ u^i_{\mathrm{sea,eff}}=0
 $$
 with observer-channel speed $c_0=c_{\text{eff}}(\infty)$. The weak-field target is
 $$
-N(\mathbf{x})
+N(x_{\mathrm{eff}}^k)
 =
-1+\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1+\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 $$
-\gamma_{ij}^{\mathrm{eff}}(\mathbf{x})
+\gamma_{ij}^{\mathrm{eff}}(x_{\mathrm{eff}}^k)
 =
 \left(
-1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-2\gamma_{\text{eff}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 \right)h_{ij}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 Equivalently, using $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ in the observer-sector metric,
 $$
-g^{\text{eff}}_{00}(\mathbf{x})
+g^{\text{eff}}_{00}(x_{\mathrm{eff}}^k)
 =
--\left(1+\frac{2\Phi_N(\mathbf{x})}{c_0^2}\right)
+-\left(1+\frac{2\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}\right)
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 $$
-g^{\text{eff}}_{ij}(\mathbf{x})
+g^{\text{eff}}_{ij}(x_{\mathrm{eff}}^k)
 =
 \left(
-1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-2\gamma_{\text{eff}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 \right)h_{ij}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 The canonical Noether sea delay factor remains
 $$
-\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\chi_{\text{sea}}(x_{\mathrm{eff}}^k)\equiv \frac{c_f}{c_{\text{eff}}(x_{\mathrm{eff}}^k)}
 $$
 For PPN time-of-flight comparisons, normalize by the homogeneous observer speed:
 $$
-\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^k)}
 =
-\frac{\chi_{\text{sea}}(\mathbf{x})}{\chi_{\text{sea}}(\infty)}
+\frac{\chi_{\text{sea}}(x_{\mathrm{eff}}^k)}{\chi_{\text{sea}}(\infty)}
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(\mathbf{x})}\,ds
+t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}\,ds_{\mathrm{eff}}
 $$
 
 This is the concrete first-order realization of
@@ -723,7 +723,7 @@ Minimal closure condition:
 2. The same $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ coefficients predict Shapiro delay, lensing, redshift, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
 3. The long-distance GR-EFT correction to weak gravity is recovered from the same constitutive record, without treating the effective metric as microscopic ontology.
 
-A proposed recovery that supplies only $c_{\text{eff}}(\mathbf{x})$ or $\chi_{\text{sea}}(\mathbf{x})$ therefore closes only a refractive signal model. It becomes a metric recovery candidate only after that scalar row is embedded in one shared clock/ruler/signal map for $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$.
+A proposed recovery that supplies only $c_{\text{eff}}(x_{\mathrm{eff}}^i)$ or $\chi_{\text{sea}}(x_{\mathrm{eff}}^i)$ therefore closes only a refractive signal model. It becomes a metric recovery candidate only after that scalar row is embedded in one shared clock/ruler/signal map for $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$.
 
 ## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
@@ -763,18 +763,18 @@ $$
 =
 \xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}
 $$
-Using $dx^0/dt\approx c_0$, the spatial geodesic equation gives
+Using $dx_{\mathrm{eff}}^0/dt_{\mathrm{eff}}\approx c_0$, the spatial geodesic equation gives
 $$
-\frac{d^2x^i}{dt^2}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 \approx
--\Gamma^i_{00}\left(\frac{dx^0}{dt}\right)^2
+-\Gamma^i_{00}\left(\frac{dx_{\mathrm{eff}}^0}{dt_{\mathrm{eff}}}\right)^2
 =
 -\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
 Hence, in weak field ($\xi\to 1$),
 $$
-\frac{d^2\mathbf{x}}{dt^2}
-=-\nabla\Phi_{\text{eff}}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
+=-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right)
 $$
 which is the Newtonian limit.

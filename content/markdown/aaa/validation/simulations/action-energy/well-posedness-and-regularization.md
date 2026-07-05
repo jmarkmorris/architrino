@@ -147,15 +147,15 @@ Existence and uniqueness mean that every declared initial history $S_{\eta,0}\in
 
 The no-runaway condition is a lower bound on the regularized wake energy:
 $$
-E_{\text{tot}}^{(\eta)}(t)
+E_{\text{tot}}^{(\eta)}(T)
 =
-K_{\mu}(t)+E_{\text{wake}}^{(\eta)}(t),
+K_{\mu}(T)+E_{\text{wake}}^{(\eta)}(T),
 \qquad
-E_{\text{wake}}^{(\eta)}(t)\ge U_{\min}^{(\eta)}>-\infty
+E_{\text{wake}}^{(\eta)}(T)\ge U_{\min}^{(\eta)}>-\infty
 $$
 When the regularization preserves the relevant time-translation symmetry, this gives
 $$
-K_{\mu}(t)
+K_{\mu}(T)
 \le
 E_{\text{tot}}^{(\eta)}(0)-U_{\min}^{(\eta)}
 $$
@@ -171,11 +171,11 @@ using the same local well-posedness constants after refreshing the history segme
 $$
 \partial\mathcal{A}_\eta
 =
-\{\|\mathbf{v}\|=V\}
+\{\|\mathbf V\|=V\}
 \cup
 \{r_{ij,\ell}=d\}
 \cup
-\{|\partial_\tau g_{ij,\ell}|=\nu\}
+\{|\partial_\Delta g_{ij,\ell}|=\nu\}
 \cup
 \{B_{ij}^{\mathrm{active}}=B\}
 \cup

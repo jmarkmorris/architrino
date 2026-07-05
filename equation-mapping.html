@@ -273,29 +273,37 @@
 
       .equation-mapping-carousel {
         position: absolute;
-        inset: 0;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        left: 50%;
         z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 6px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        background: var(--panel);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+        transform: translateX(-50%);
         pointer-events: none;
       }
 
       .equation-mapping-carousel-button {
         -webkit-appearance: none;
         appearance: none;
-        position: absolute;
-        top: 50%;
         display: inline-flex;
-        width: 58px;
-        height: 96px;
+        width: 44px;
+        height: 38px;
         align-items: center;
         justify-content: center;
         padding: 0;
-        border: 1px solid transparent;
+        border: 1px solid var(--rule);
         border-radius: 999px;
-        background: transparent;
+        background: var(--panel-strong);
         color: var(--line-ink);
         cursor: pointer;
-        opacity: 0.8;
-        transform: translateY(-50%);
+        opacity: 0.9;
         pointer-events: auto;
       }
 
@@ -314,27 +322,19 @@
       }
 
       .equation-mapping-carousel-button:disabled:hover {
-        border-color: transparent;
-        background: transparent;
+        border-color: var(--rule);
+        background: var(--panel-strong);
       }
 
       .equation-mapping-carousel-button svg {
-        width: 52px;
-        height: 74px;
+        width: 22px;
+        height: 22px;
         fill: none;
         stroke: currentColor;
-        stroke-width: 1.55;
+        stroke-width: 2.2;
         stroke-linecap: round;
         stroke-linejoin: round;
         pointer-events: none;
-      }
-
-      .equation-mapping-carousel-button.is-previous {
-        left: 10px;
-      }
-
-      .equation-mapping-carousel-button.is-next {
-        right: 10px;
       }
 
       .equation-mapping-icon-button {
@@ -830,31 +830,24 @@
           align-content: start;
           gap: 18px;
           overflow: visible;
-          padding: 132px 15px 36px;
+          padding: 132px 15px 88px;
+        }
+
+        .equation-mapping-carousel {
+          bottom: max(12px, env(safe-area-inset-bottom));
+          gap: 8px;
+          padding: 5px;
         }
 
         .equation-mapping-carousel-button {
-          top: auto;
-          bottom: 14px;
           width: 42px;
           height: 42px;
-          border-color: var(--rule);
-          background: var(--panel-strong);
-          transform: none;
         }
 
         .equation-mapping-carousel-button svg {
           width: 23px;
           height: 23px;
           stroke-width: 2.3;
-        }
-
-        .equation-mapping-carousel-button.is-previous {
-          left: 16px;
-        }
-
-        .equation-mapping-carousel-button.is-next {
-          right: 16px;
         }
 
         .equation-mapping-pointer-layer {

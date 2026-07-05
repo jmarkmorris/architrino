@@ -1,10 +1,10 @@
 # Master Equation
 
-This chapter is the canonical statement of the delayed dynamical law used throughout the dynamics branch. It defines what counts as a causal hit, how the receiver-local force law is assembled from path history, and which exact or regularized structures are firm enough to support later work on binaries, nested shell braids, effective geometry, and quantum closure.
+This chapter answers the first dynamics question: given architrinos moving in absolute time through the Euclidean void, what exactly makes one of them accelerate? The answer is the delayed, receiver-local law used throughout the dynamics branch. It defines what counts as a causal hit, how path history selects the active emission events, and how those hits sum into the acceleration of the receiver.
 
-For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology stops: once continuous transceiver status is turned into a delay-root law, causal-hit branch sum, receiver-normal branch acceleration, or regularized simulation equation.
+For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology becomes motion. A causal wake is not a vague field surrounding a source; it is a delayed contact condition between a past emission event and a receiver event. When that condition closes, the receiver samples a line-of-action contribution with source-normal root legality and receiver-normal branch strength.
 
-The chapter is long because it plays several roles at once: foundational law, theorem spine, analytic benchmark source, and numerical reference. The opening establishes the causal geometry and canonical equation; later sections develop DDE form, self-hit structure, analytic regimes, and the energy-symmetry-conservation interface.
+The chapter is long because it plays several roles at once: foundational law, theorem spine, analytic benchmark source, and numerical reference. The opening establishes the causal geometry and canonical equation. Later sections develop the delay differential equation form, self-hit structure, analytic regimes, and the energy-symmetry-conservation interface needed by binaries, nested shell braids, effective geometry, and quantum closure.
 
 ## Foundations and Causal Geometry
 
@@ -367,23 +367,23 @@ $$
 \subset
 C^1\!\left([-h,0],(\mathbb{R}^3)^N\right)
 $$
-around the returned history segment. For each active branch row $\ell$, write its emission offset as $s_\ell(\phi)\in[-h,0)$ for a history $\phi\in\mathcal{U}_{\mathfrak{B}}$, and define
+around the returned history segment. For each active branch row $\ell$, write its emission offset as $\theta_\ell(\phi)\in[-h,0)$ for a history $\phi\in\mathcal{U}_{\mathfrak{B}}$, and define
 $$
-F_\ell(\phi,s)
+F_\ell(\phi,\theta)
 =
 \left\|
-\phi_i(0)-\phi_j(s)
+\phi_i(0)-\phi_j(\theta)
 \right\|
--c_f(0-s)
+-c_f(0-\theta)
 $$
 The branch chart is history-compatible on $\mathcal{U}_{\mathfrak{B}}$ only if
 $$
-F_\ell(\phi,s_\ell(\phi))=0,
+F_\ell(\phi,\theta_\ell(\phi))=0,
 \qquad
-\left|\partial_s F_\ell(\phi,s_\ell(\phi))\right|
+\left|\partial_\theta F_\ell(\phi,\theta_\ell(\phi))\right|
 \ge c_f\nu_J>0
 $$
-and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $s_\ell$ on the retained history, so the branch acceleration, root-transport residual, receiver-normal branch-strength row, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|Ds_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
+and if every inactive complement remains separated by the declared positive gap. Under these conditions the implicit-function theorem gives $C^1$ dependence of $\theta_\ell$ on the retained history, so the branch acceleration, root-transport residual, receiver-normal branch-strength row, and wake-history Noether increments are functionals on one local history chart rather than pointwise rows that only happen to close at one evaluation time. This is the reconstruction-regularity content of the branch chart: the root reconstruction has an inverse bound controlled by the transversality floor, schematically $\|D\theta_\ell\|\lesssim (c_f\nu_J)^{-1}$ times the history-evaluation norm, until a fold or chart boundary is reached.
 
 This compatibility condition is a theorem-target requirement, not a new force law. It says that a promoted branch chart must define a locally replayable delayed functional system: nearby retained histories must keep the same root identities, positive source-normal Jacobian floor, bounded receiver-normal branch-strength row, inactive gaps, and finite memory depth until a declared fold, branch transition, or chart boundary is reached.
 
@@ -876,11 +876,11 @@ for one leg pair.
 
 In spherical-harmonic language this checkpoint is the $\ell=0$ isotropy projection of the moving internal delay record. The next leakage row is the $\ell=2$ quadrupole anisotropy, denoted schematically by $Q_A$ for assembly $A$. A retained Lorentz or clock-universality claim must show that $Q_A$ is either cancelled by the full three-dimensional branch ledger or bounded below the relevant anisotropy ceiling; otherwise the two-leg period result is only an orientation-specific delay identity.
 
-Accelerated motion adds a second burden. Even if the inertial translating-loop scaling is recovered, acceleration requires a transport law for the internal phase ledger through the Noether sea. For a stable branch with rest size $L_0$, center speed $v(t)$, and small acceleration scale $a(t)$, the dynamics target is a branch-period transport law of the schematic form
+Accelerated motion adds a second burden. Even if the inertial translating-loop scaling is recovered, acceleration requires a transport law for the internal phase ledger through the Noether sea. For a stable branch with rest size $L_0$, center speed $v(T)$, and small acceleration scale $a(T)$, the dynamics target is a branch-period transport law of the schematic form
 $$
-T_q[v(t),a(t)]
+T_q[v(T),a(T)]
 =
-T_q[v(t),0]\,
+T_q[v(T),0]\,
 \left(
 1+
 O\!\left(\frac{a^2L_0^2}{c_f^2}\right)
@@ -1258,8 +1258,8 @@ while preserving total emission $q$.
 
 To make the existence/uniqueness claim precise for the finite-$\eta$ regularization used in this chapter, we formalize the dynamics as a state-dependent delay system in first-order form:
 $$
-\dot{\mathbf{Y}}(t)=\mathcal{G}(\mathbf{Y}_t),\qquad
-\mathbf{Y}_t(\theta)=\mathbf{Y}(t+\theta),\ \theta\in[-h,0]
+\frac{d\mathbf Y}{dT}=\mathcal{G}(\mathbf Y_T),\qquad
+\mathbf Y_T(\theta)=\mathbf Y(T+\theta),\ \theta\in[-h,0]
 $$
 with phase space $\mathcal{H}=C^1([-h,0],\mathbb{R}^{6N})$.
 This is the convenient proof scaffold used here because the active-root extraction uses the implicit-function theorem on
@@ -1276,13 +1276,13 @@ or an absolutely continuous history class. The exact choice is a regularity burd
 
 - **(W1) Kernel regularity:** $\delta_\eta$ is $C^1$, bounded, and integrable.
 - **(W2) Uniform branch finiteness:** on the considered history neighborhood, each pair $(i,j)$ has at most $B_{ij}<\infty$ active causal branches.
-- **(W3) Root transversality:** for every active branch $\tau_{ij,\ell}$,
+- **(W3) Root transversality:** for every active branch $\Delta_{ij,\ell}$,
   $$
-  \left|\partial_\tau g_{ij}(\tau,\phi)\right|\ge \nu>0,
+  \left|\partial_\Delta g_{ij}(\Delta,\phi)\right|\ge \nu>0,
   \qquad
-  g_{ij}(\tau,\phi)=\|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau
+  g_{ij}(\Delta,\phi)=\|\phi_i(0)-\phi_j(-\Delta)\|-c_f\Delta
   $$
-- **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\tau_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
+- **(W4) Distance floor on the branch support:** $\|\phi_i(0)-\phi_j(-\Delta_{ij,\ell}(\phi))\|\ge d_{\min}>0$.
 - **(W5) Bounded charges/couplings:** $\kappa$, $|q_i|$ finite.
 
 **Conditional theorem (local well-posedness and continuation).**  
@@ -1294,7 +1294,7 @@ The solution extends uniquely to a maximal interval $[T_0-h,T_{\max})$. If on ev
 $$
 \sup_{T<T^\ast}\|\mathbf V(T)\|<\infty,\quad
 \inf_{T<T^\ast,\ i,j,\ell} r_{ij,\ell}(T)>0,\quad
-\inf_{T<T^\ast,\ i,j,\ell}|\partial_\tau g_{ij,\ell}(T)|>0
+\inf_{T<T^\ast,\ i,j,\ell}|\partial_\Delta g_{ij,\ell}(T)|>0
 $$
 and
 $$
