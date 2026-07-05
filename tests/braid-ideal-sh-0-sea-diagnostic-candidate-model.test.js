@@ -9,6 +9,7 @@ import {
   AUTHORITY_CLASS,
   CANDIDATE_RESPONSE_ROW_SCHEMA,
   DEFAULT_RESPONSE_DEADBAND,
+  PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
   RESPONSE_RUN_SCHEMA,
   REQUIRED_INWARD_RESPONSE_FLOOR,
   SCHEMA,
@@ -193,19 +194,50 @@ test("SH-0-sea diagnostic response run uses provider-seeded probe and does not c
   });
 });
 
-test("SH-0-sea diagnostic response run can cross the floor only as a non-authorizing parameter probe", () => {
+test("SH-0-sea diagnostic response run can cross the floor through a produced same-target source row", () => {
   const run = buildSh0SeaDiagnosticResponseRun({
-    responseAmplitude: 0.04,
-    responseRunHandle: "sh0sea-provider-stiffness-crossing-probe",
+    producedResponseSource: true,
+    responseRunHandle: "sh0sea-produced-pressure-tension-source",
   });
 
-  assert.equal(run.response_probe.probe_id, "sh0sea-provider-stiffness-crossing-probe");
+  assert.equal(run.response_probe.probe_id, "sh0sea-produced-pressure-tension-source");
+  assert.equal(run.produced_response_source_row.schema, PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA);
+  assert.equal(run.produced_response_source_row.response_kind, "pressure_tension");
+  assert.equal(run.produced_response_source_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(run.produced_response_source_row.target_binding.target_artifact_hash, run.target_artifact_hash);
+  assert.equal(
+    run.produced_response_source_row.target_binding.target_source_row_id,
+    run.target_source_row_id
+  );
+  assert.equal(run.produced_response_source_row.target_binding.target_path_row_ids.length, 6);
+  assert.equal(
+    run.produced_response_source_row.event_provenance.boundary_condition_row_ref,
+    "sh_0_sea_model:boundary_condition_row"
+  );
+  assert.equal(
+    run.produced_response_source_row.support_provenance.support_envelope_row_ref,
+    "sh_0_sea_model:support_envelope_row"
+  );
+  assert.equal(
+    run.produced_response_source_row.action_provenance.action_exchange_row_ref,
+    "sh_0_sea_model:action_exchange_row"
+  );
+  assert.equal(run.produced_response_source_row.accepted, false);
+  assert.equal(run.produced_response_source_row.retained_evidence_authorized, false);
+  assert.equal(
+    run.response_probe.produced_response_source_row_ref,
+    run.produced_response_source_row.row_id
+  );
   assert.equal(run.candidate_response_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
   assert.equal(
     run.candidate_response_row.response_components.Phi_probe,
-    0.04
+    run.produced_response_source_row.produced_response_components.Phi_probe
   );
-  assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.0996);
+  assert.equal(
+    run.candidate_response_row.response_components.produced_response_source_row_ref,
+    run.produced_response_source_row.row_id
+  );
+  assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.09462);
   assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
   assert.equal(run.floor_evaluation.post_turn_return_condition_passed, true);
   assert.equal(run.floor_evaluation.additional_inward_projection_needed, 0);
@@ -217,13 +249,18 @@ test("SH-0-sea diagnostic response run can cross the floor only as a non-authori
 test("SH-0-sea diagnostic response run CLI emits JSON without authorizing evidence", () => {
   const output = execFileSync(
     process.execPath,
-    [SCRIPT_PATH, "--response-run", "--response-amplitude=0.04", "--pretty"],
+    [SCRIPT_PATH, "--response-run", "--produced-response-source", "--pretty"],
     { encoding: "utf8" }
   );
   const run = JSON.parse(output);
 
   assert.equal(run.schema, RESPONSE_RUN_SCHEMA);
+  assert.equal(run.produced_response_source_row.schema, PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA);
   assert.equal(run.candidate_response_row.schema, CANDIDATE_RESPONSE_ROW_SCHEMA);
+  assert.equal(
+    run.candidate_response_row.response_components.produced_response_source_row_ref,
+    run.produced_response_source_row.row_id
+  );
   assert.equal(
     run.floor_evaluation.candidate_response_row_id,
     run.candidate_response_row.row_id

@@ -111,7 +111,7 @@ test("equation mapping seed document carries static layer anchors and comments",
   assert.deepEqual(
     documents.slice(0, 4).map((entry) => entry.title),
     [
-      "Causal Wake Master Equation",
+      "Causal Wake Per-Hit Law",
       "Lorentz Factor And Clock Rate",
       "Oblate Spheroidal Envelope",
       "Energy Momentum And Rest Energy",
@@ -126,6 +126,18 @@ test("equation mapping seed document carries static layer anchors and comments",
       "eq-04-energy-momentum-rest-energy",
     ]
   );
+});
+
+test("equation mapping names the causal wake entry as the per-hit law", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID
+  );
+  const acceleration = document.overlays.find((overlay) => overlay.id === "native-root");
+  const accelerationText = acceleration.content.find((block) => block.type === "text").text;
+
+  assert.equal(document.title, "Causal Wake Per-Hit Law");
+  assert.match(accelerationText, /one acceleration contribution/u);
+  assert.match(accelerationText, /full master equation sums this term/u);
 });
 
 test("equation mapping line-of-action callout names the emission point", () => {

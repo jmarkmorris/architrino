@@ -251,7 +251,7 @@ function overlay(
 const equationMapSeedDocuments = [
   {
     id: "eq-01-causal-wake-master-equation",
-    title: "Causal Wake Master Equation",
+    title: "Causal Wake Per-Hit Law",
     subject: "AAA native ledgers",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
@@ -280,7 +280,7 @@ const equationMapSeedDocuments = [
         "native-root",
         "Acceleration response",
         "acceleration",
-        "Start with the left side: this is acceleration, the receiver's change in velocity. In AAA, one causal root reaches the receiver, and this symbol is the receiver's response to that hit.",
+        "Start with the left side: this is one acceleration contribution, the receiver's change in velocity from one active causal root. The full master equation sums this term over all sources and all active emission times.",
         "\\mathbf A_{o'\\leftarrow o}",
         { x: 5, y: 8, width: 30, line: "above" }
       ),

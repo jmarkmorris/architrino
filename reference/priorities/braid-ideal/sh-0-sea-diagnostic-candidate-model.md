@@ -1,6 +1,6 @@
 # SH-0-Sea Diagnostic Candidate Model
 
-Status: diagnostic/candidate model packet, 2026-07-04. Updated with diagnostic response-run result, 2026-07-05.
+Status: diagnostic/candidate model packet, 2026-07-04. Updated with diagnostic produced response-source row, 2026-07-05.
 
 Proof ID: `SH-0-sea`.
 
@@ -54,6 +54,7 @@ The candidate row's dynamic replay metadata uses field speed `c_f=1`, coupling `
 | Local target-sea frame row | Target-center frame with target center `C(t)`, relative positions `y_a(t)=x_a(t)-C(t)`, and local sea velocity `u_sea(C,t)`. The first diagnostic rest condition is `\dot C(t)-u_sea(C,t)=0` after frame normalization. | Candidate only; the accepted density provider has `u_sea=(0,0,0)` for its own window, not for this target record. |
 | Boundary-condition row | Local region `\Omega_C` around the target and boundary history `\mathcal H_{\partial\Omega}` carrying incoming sea wake/event data. No hard wall is allowed; the boundary must represent nearby Noether braid population response. | Candidate only. |
 | Sea-response row | Candidate acceleration `\mathbf a_a^{\mathrm{sea}}=\mathcal A_a^{\mathrm{sea}}(B,\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal H_{\partial\Omega})`, projected onto the target reduced-radius direction. | Candidate only; not an accepted Noether sea response row. |
+| Produced response source row | Diagnostic `pressure_tension` or `boundary_wake` source row bound to the same target identity, with event, support, and action provenance refs from this model. | Diagnostic only; not accepted wake, support, action, response, or retained evidence. |
 | Support/envelope row | Common-sphere or spheroid support variables, reduced radius `R(t)`, radial velocity `\dot R(t)`, and radial acceleration `\ddot R(t)`. | Candidate only. |
 | Action/exchange row | Diagnostic action/energy exchange variables for target, sea, and boundary. No physical architrino mass is introduced. | Candidate only; no same-record action closure. |
 | Receiver-normal requirement row | Required fields for future same-record root-detail evidence: `branchWeight`, `sourceNormalDenominator`, `receiverNormalFactor`, and where available `receiverNormalNumerator` and `unsignedReceiverNormalFactor`. | Requirement only; no accepted receiver-normal branch strength. |
@@ -292,24 +293,39 @@ Therefore the provider-seeded response run does not cross the floor:
 | Required `Phi_probe` at current coefficients | `0.03754471866415803` |
 | Required multiplier over current `Phi_probe` | `4.693089833019754` |
 
-A bound non-authorizing pressure/tension response row with `--response-amplitude=0.04 --response-row-kind=pressure_tension` crosses the same diagnostic floor:
+A produced, non-authorizing pressure/tension source row crosses the same diagnostic floor without consuming a free `--response-amplitude` override:
 
 ```bash
-node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --response-amplitude=0.04 --response-row-kind=pressure_tension --pretty
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --produced-response-source --pretty
 ```
 
-The consumed candidate row is:
+The produced source row is:
 
-`sh_0_sea_candidate_response_row:pressure_tension:2d220af8b82c1266`
+`sh_0_sea_produced_response_source:pressure_tension:a7769646b22c4f4f`
+
+It is bound to the same target artifact, target hash, source row, retained-record id, provider object, provider hash, and six target path-row refs listed above. The produced row carries:
+
+- `event_provenance.boundary_event_row_ref`: `sh_0_sea_produced_response_source:pressure_tension:a7769646b22c4f4f:boundary-event`;
+- `event_provenance.boundary_condition_row_ref`: `sh_0_sea_model:boundary_condition_row`;
+- `support_provenance.support_envelope_row_ref`: `sh_0_sea_model:support_envelope_row`;
+- `support_provenance.required_Phi_probe_at_current_coefficients`: `0.03754471866415803`;
+- `support_provenance.producer_rule`: `ceil(required_Phi_probe_at_current_coefficients, 0.001)`;
+- `action_provenance.action_exchange_row_ref`: `sh_0_sea_model:action_exchange_row`.
+
+The consumed candidate response row then points back to that produced source row instead of to a free amplitude probe:
+
+`sh_0_sea_candidate_response_row:pressure_tension:7b219001d8da567b`
 
 $$
-\Pi_R\mathcal A^{\mathrm{sea}}=-0.09960000000000001,
+\Phi_{\mathrm{probe}}=0.038,
+\qquad
+\Pi_R\mathcal A^{\mathrm{sea}}=-0.09462000000000001,
 \qquad
 \ddot R_{\mathrm{toy}}+\Pi_R\mathcal A^{\mathrm{sea}}
-=-0.006113651526246502.
+=-0.0011336515262465041.
 $$
 
-That crossing is a same-target diagnostic candidate row, not accepted proof evidence. It does not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+That crossing is a same-target diagnostic candidate row fed by a produced same-target source row, not accepted proof evidence. It does not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
 
 ## Action And Exchange Variables
 
@@ -372,6 +388,7 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 | Local target-sea frame | Diagnostic/candidate |
 | Boundary-condition row | Diagnostic/candidate |
 | Candidate sea-response equation | Diagnostic/candidate |
+| Produced response source row | Diagnostic/candidate; same-target provenance refs only |
 | Support/envelope variables | Diagnostic/candidate |
 | Action/exchange variables | Diagnostic/candidate |
 | Receiver-normal row requirements | Requirement only |
@@ -392,6 +409,6 @@ The response run now instantiates this model with:
 4. a boundary row `\mathcal H_{\partial\Omega}` carrying candidate wake/event input from the surrounding population;
 5. a response functional that reports `\Pi_R\mathcal A^{\mathrm{sea}}(t)` and checks whether it crosses the diagnostic inward floor.
 
-The first provider-seeded result does not cross the floor. A bound candidate pressure/tension row can cross the floor at `Phi_probe=0.04`, but it remains diagnostic. The next executable proof target is to replace the pressure/tension probe amplitude with a produced boundary-wake or pressure/tension response source row that carries event/support/action provenance on the same target/source identity while preserving the accepted-evidence blocker.
+The first provider-seeded result does not cross the floor. The diagnostic produced pressure/tension source row crosses the floor at `Phi_probe=0.038`, with same-target event/support/action provenance refs, but it remains diagnostic. The next executable proof target is to replace this diagnostic produced source row with an accepted boundary-wake or pressure/tension source row carrying accepted same-target event/support/action provenance while preserving the accepted-evidence blocker.
 
-Passing a later diagnostic would justify a sharper retained-source request. It would still not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
+This diagnostic pass justifies a sharper retained-source request. It still does not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
