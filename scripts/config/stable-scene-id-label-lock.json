@@ -19,7 +19,7 @@
       "sceneId": "fermions",
       "sceneName": "Fermions",
       "objects": {
-        "color_charge_su3": "Color Charge SU3",
+        "color_charge_su3": "Color Charge SU(3)",
         "down_strange_bottom_quarks": "Down, Strange, Bottom Quarks",
         "electron_muon_tau": "Electron, Muon, Tau",
         "neutrinos": "Neutrinos",

@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "borg",
-    "title": "Borg App",
+    "title": "Borg",
     "type": "Scene-Diagram",
     "units": "relative",
     "wrapLabels": true,

@@ -26,6 +26,7 @@ import {
   createPointerLineGeometry,
   createSidePointerLineGeometry,
   EquationMappingRuntime,
+  resolveCarouselClearanceCalloutPosition,
   resolveCalloutPlacements,
   resolveCalloutRowLayout,
   resolveEquationLineClearancePx,
@@ -133,6 +134,7 @@ test("equation mapping seed document carries static layer anchors and comments",
 test("equation mapping opens with coordinate layer terminology", () => {
   const document = createSeedEquationMapDocuments()[0];
   const layerMap = document.overlays.find((overlay) => overlay.id === "layer-map");
+  const comparisonForms = document.overlays.find((overlay) => overlay.id === "comparison-forms");
   const placementByOverlayId = resolveCalloutPlacements(document);
 
   assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
@@ -147,6 +149,7 @@ test("equation mapping opens with coordinate layer terminology", () => {
   assert.equal(placementByOverlayId.get("layer-map"), "above");
   assert.equal(placementByOverlayId.get("effective-coordinates"), "below");
   assert.equal(placementByOverlayId.get("comparison-forms"), "below");
+  assert.equal(comparisonForms.position.width, 31.9);
   assert.equal(
     layerMap.content.some(
       (block) => block.type === "text" && block.text.includes("handoff from native variables")
@@ -603,12 +606,12 @@ test("equation mapping can place a side callout on the same line as its target",
     commentRect: { left: 0, top: 0, right: 260, bottom: 160, width: 260, height: 160 },
   });
 
-  assert.deepEqual(position, { x: 408, y: 436 });
+  assert.deepEqual(position, { x: 408, y: 400 });
   assert.deepEqual(
     createSidePointerLineGeometry(
       { left: 100, top: 50, width: 1200, height: 900 },
       { left: 700, top: 420, right: 980, bottom: 540, width: 280, height: 120 },
-      { left: 408, top: 436, right: 668, bottom: 596, width: 260, height: 160 }
+      { left: 408, top: 400, right: 668, bottom: 560, width: 260, height: 160 }
     ),
     {
       x1: 568,
@@ -616,6 +619,25 @@ test("equation mapping can place a side callout on the same line as its target",
       x2: 600,
       y2: 430,
     }
+  );
+});
+
+test("equation mapping can keep a bottom callout clear of the carousel", () => {
+  const clearPosition = resolveCarouselClearanceCalloutPosition({
+    position: { x: 420, y: 620 },
+    commentRect: { left: 0, top: 0, right: 300, bottom: 180, width: 300, height: 180 },
+    carouselRect: { left: 500, top: 840, right: 620, bottom: 892, width: 120, height: 52 },
+  });
+
+  assert.deepEqual(clearPosition, { x: 420, y: 620 });
+  assert.deepEqual(
+    resolveCarouselClearanceCalloutPosition({
+      position: { x: 420, y: 700 },
+      commentRect: { left: 0, top: 0, right: 300, bottom: 180, width: 300, height: 180 },
+      carouselRect: { left: 500, top: 840, right: 620, bottom: 892, width: 120, height: 52 },
+      clearancePx: 20,
+    }),
+    { x: 420, y: 640 }
   );
 });
 
@@ -638,6 +660,22 @@ test("equation mapping compact callout layout stays near the equation until widt
   assert.equal(layout.get("right").x < 940, true);
   assert.equal(layout.get("middle").x >= layout.get("left").x + 260 + 24, true);
   assert.equal(layout.get("right").x >= layout.get("middle").x + 260 + 24, true);
+});
+
+test("equation mapping keeps wide-row edge callouts centered on their markers", () => {
+  const layout = resolveCalloutRowLayout({
+    stageWidth: 1976,
+    stageHeight: 1246,
+    equationRect: { left: 430, top: 548, right: 1690, bottom: 698, width: 1260, height: 150 },
+    titleRect: { bottom: 70 },
+    placement: "above",
+    items: [
+      { id: "left-edge", width: 429, height: 176, targetCenterX: 426.65 },
+      { id: "middle", width: 429, height: 177, targetCenterX: 851.23 },
+    ],
+  });
+
+  assert.equal(Math.abs(layout.get("left-edge").x - (426.65 - 429 / 2)) < 0.1, true);
 });
 
 test("equation mapping callout layout can reserve one full equation line", () => {
@@ -1217,7 +1255,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
     html,
     /\.equation-mapping-comment \{[\s\S]*?left: var\(--overlay-layout-x, calc\(var\(--overlay-x\) \* 1%\)\);[\s\S]*?top: var\(--overlay-layout-y, calc\(var\(--overlay-y\) \* 1%\)\);/u
   );
-  assert.match(html, /\.equation-mapping-comment \{[\s\S]*?width: min\(calc\(var\(--overlay-width\) \* 1%\), 390px\);/u);
+  assert.match(html, /\.equation-mapping-comment \{[\s\S]*?width: min\(calc\(var\(--overlay-width\) \* 1%\), 429px\);/u);
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
@@ -1228,7 +1266,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?font-size: 21px;/u);
   assert.match(
     html,
-    /\.equation-mapping-comment-target \{[\s\S]*?margin-left: auto;[\s\S]*?text-align: right;/u
+    /\.equation-mapping-comment-target \{[\s\S]*?flex: 0 0 auto;[\s\S]*?margin-left: auto;[\s\S]*?text-align: right;[\s\S]*?white-space: nowrap;/u
   );
   assert.match(html, /\.equation-mapping-comment-body \{[\s\S]*?font-size: 21px;/u);
   assert.match(

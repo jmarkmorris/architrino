@@ -48,12 +48,14 @@ const COMMENT_CONNECTOR_INSET_PX = 32;
 const CALLOUT_LAYOUT_MARGIN_PX = 32;
 const CALLOUT_LAYOUT_EQUATION_GAP_PX = 28;
 const CALLOUT_LAYOUT_ITEM_GAP_PX = 24;
-const CALLOUT_LAYOUT_BAND_PADDING_PX = 150;
+const CALLOUT_LAYOUT_BAND_PADDING_PX = 240;
 const CALLOUT_LAYOUT_TITLE_GAP_PX = 18;
 const COORDINATE_EFFECTIVE_OVERLAY_ID = "effective-coordinates";
 const COORDINATE_EFFECTIVE_ANCHOR_ID = "effectiveLayer";
+const COORDINATE_COMPARISON_OVERLAY_ID = "comparison-forms";
+const COORDINATE_COMPARISON_ANCHOR_ID = "comparisonLayer";
 const SIDE_CALLOUT_GAP_PX = 32;
-const SIDE_CALLOUT_VERTICAL_OFFSET_PX = 16;
+const COORDINATE_CAROUSEL_CLEARANCE_PX = 16;
 
 function createElement(documentLike, tag, className = "", textContent) {
   const element = documentLike.createElement(tag);
@@ -306,6 +308,14 @@ function isCoordinateEffectiveSideCallout(document, overlay) {
   );
 }
 
+function isCoordinateComparisonCarouselCallout(document, overlay) {
+  return (
+    document?.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID &&
+    overlay?.id === COORDINATE_COMPARISON_OVERLAY_ID &&
+    overlay?.targetAnchorId === COORDINATE_COMPARISON_ANCHOR_ID
+  );
+}
+
 export function resolveCalloutPlacements(document = {}) {
   const overlays = document.overlays ?? [];
   const { anchorPositions, rowCount } = getFormulaAnchorPositions(document);
@@ -475,13 +485,30 @@ export function resolveSideCalloutPosition({
   const hardRight = Math.max(hardLeft, stageWidth - marginPx);
   const hardBottom = Math.max(marginPx, stageHeight - marginPx);
   const preferredX = targetRect.left - commentRect.width - gapPx;
-  const preferredY =
-    commentRect.height > targetRect.height
-      ? targetRect.top + SIDE_CALLOUT_VERTICAL_OFFSET_PX
-      : targetRect.top + targetRect.height / 2 - commentRect.height / 2;
+  const preferredY = targetRect.top + targetRect.height / 2 - commentRect.height / 2;
   return {
     x: clamp(preferredX, hardLeft, Math.max(hardLeft, hardRight - commentRect.width)),
     y: clamp(preferredY, marginPx, Math.max(marginPx, hardBottom - commentRect.height)),
+  };
+}
+
+export function resolveCarouselClearanceCalloutPosition({
+  position = null,
+  commentRect = null,
+  carouselRect = null,
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  clearancePx = COORDINATE_CAROUSEL_CLEARANCE_PX,
+} = {}) {
+  if (!position || !commentRect || !carouselRect) {
+    return position;
+  }
+  const maxY = carouselRect.top - clearancePx - commentRect.height;
+  if (!Number.isFinite(maxY) || position.y <= maxY) {
+    return position;
+  }
+  return {
+    ...position,
+    y: Math.max(marginPx, maxY),
   };
 }
 
@@ -1579,6 +1606,10 @@ export class EquationMappingRuntime {
     const titleRect = this.equationTitleElement
       ? getLocalRect(this.equationTitleElement.getBoundingClientRect(), stageRect)
       : null;
+    const carouselElement = this.root?.querySelector?.(".equation-mapping-carousel") ?? null;
+    const carouselRect = carouselElement
+      ? getLocalRect(carouselElement.getBoundingClientRect(), stageRect)
+      : null;
     const itemsByPlacement = new Map([
       ["above", []],
       ["below", []],
@@ -1615,9 +1646,11 @@ export class EquationMappingRuntime {
       }
       items.push({
         id: overlay.id,
+        overlay,
         element: commentElement,
         width: commentRect.width,
         height: commentRect.height,
+        commentRect: getLocalRect(commentRect, stageRect),
         targetCenterX: targetRect.left + targetRect.width / 2,
       });
     });
@@ -1634,9 +1667,16 @@ export class EquationMappingRuntime {
         equationGapPx,
       });
       items.forEach((item) => {
-        const position = layout.get(item.id);
+        let position = layout.get(item.id);
         if (!position) {
           return;
+        }
+        if (isCoordinateComparisonCarouselCallout(this.activeDocument, item.overlay)) {
+          position = resolveCarouselClearanceCalloutPosition({
+            position,
+            commentRect: item.commentRect,
+            carouselRect,
+          });
         }
         item.element.style.setProperty("--overlay-layout-x", `${position.x.toFixed(1)}px`);
         item.element.style.setProperty("--overlay-layout-y", `${position.y.toFixed(1)}px`);
@@ -1701,6 +1741,18 @@ export class EquationMappingRuntime {
       "--equation-layout-y",
       `${nextCenterY.toFixed(1)}px`
     );
+    this.activeDocument.overlays.forEach((overlay) => {
+      if (!isCoordinateEffectiveSideCallout(this.activeDocument, overlay)) {
+        return;
+      }
+      const commentElement = this.overlayElements.get(overlay.id);
+      const currentY = Number.parseFloat(
+        commentElement?.style?.getPropertyValue?.("--overlay-layout-y") ?? ""
+      );
+      if (Number.isFinite(currentY)) {
+        commentElement.style.setProperty("--overlay-layout-y", `${(currentY + shiftPx).toFixed(1)}px`);
+      }
+    });
     return { shiftPx, nextCenterY };
   }
 

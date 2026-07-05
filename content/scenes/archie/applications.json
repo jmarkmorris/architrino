@@ -77,7 +77,7 @@
     },
     {
       "id": "photon",
-      "title": "Photon and Polarization Visualization App",
+      "title": "Photon and Polarization Visualization",
       "radius": 2.2,
       "color": "#2563eb",
       "labelTitle": "Photon",
@@ -152,7 +152,7 @@
     },
     {
       "id": "borg",
-      "title": "Borg App",
+      "title": "Borg",
       "radius": 2.2,
       "color": "#5f7a4d",
       "labelTitle": "Borg",

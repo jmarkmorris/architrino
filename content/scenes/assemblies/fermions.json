@@ -50,10 +50,10 @@
   "objects": [
     {
       "id": "color_charge_su3",
-      "title": "Color Charge SU3",
+      "title": "Color Charge SU(3)",
       "radius": 2.688,
       "color": "#2f6b6f",
-      "labelTitle": "Color Charge SU3",
+      "labelTitle": "Color Charge SU(3)",
       "labelBadge": "doc"
     },
     {

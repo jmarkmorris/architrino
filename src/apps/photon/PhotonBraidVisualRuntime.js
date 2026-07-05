@@ -366,7 +366,7 @@ function drawPhotonSideDeltaMarker(ctx, layout) {
   }
 
   const centerX = layout.sideCenterX;
-  const label = "Δx";
+  const label = "Δx app";
   const arrowHead = 7;
 
   ctx.save();

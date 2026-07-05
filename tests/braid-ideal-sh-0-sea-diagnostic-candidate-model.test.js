@@ -1,11 +1,23 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 import {
+  ACCEPTANCE_CERTIFICATE_SCHEMA,
+  EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+  buildHeldReleaseSeedPathRows,
+} from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
+import {
   ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+  ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+  ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA,
+  ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA,
   AUTHORITY_CLASS,
   CANDIDATE_RESPONSE_ROW_SCHEMA,
   DEFAULT_RESPONSE_DEADBAND,
@@ -16,6 +28,11 @@ import {
   REQUIRED_INWARD_RESPONSE_FLOOR,
   SCHEMA,
   TARGET_ARTIFACT_ID,
+  TARGET_PROVIDER_ARTIFACT_HASH,
+  TARGET_PROVIDER_OBJECT_REF,
+  TARGET_RETAINED_RECORD_ID,
+  TARGET_SOURCE_ROW_ID,
+  REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX,
   buildSh0SeaDiagnosticCandidateModel,
   buildSh0SeaDiagnosticResponseRun,
   evaluateSh0SeaDiagnosticCandidateModelEvidence,
@@ -35,6 +52,123 @@ function assertAlmostEqual(actual, expected, epsilon = 1e-12) {
     Math.abs(actual - expected) <= epsilon,
     `expected ${actual} to be within ${epsilon} of ${expected}`
   );
+}
+
+function stableHash(value) {
+  return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+
+function buildMatchingSeedPathAuthorityInputs() {
+  const artifact = buildHeldReleaseSeedPathRows({
+    retainedRecordId: TARGET_RETAINED_RECORD_ID,
+    sourceRowId: TARGET_SOURCE_ROW_ID,
+    providerObjectRef: TARGET_PROVIDER_OBJECT_REF,
+    providerArtifactHash: TARGET_PROVIDER_ARTIFACT_HASH,
+  });
+  const acceptanceCertificate = {
+    schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    non_repo_external_authority: true,
+    external_accepted_authority_ref:
+      `external-authority:held-release-seed-path-rows:${TARGET_RETAINED_RECORD_ID}:${TARGET_SOURCE_ROW_ID}`,
+    external_accepted_authority_verification_ref:
+      `external-verification:held-release-seed-path-rows:${TARGET_RETAINED_RECORD_ID}:${TARGET_SOURCE_ROW_ID}`,
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      `accepted:held-release-seed-path-rows:${TARGET_RETAINED_RECORD_ID}:${TARGET_SOURCE_ROW_ID}:certificate`,
+    held_release_seed_path_rows_artifact_id: artifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: artifact.artifact_hash,
+    retained_record_id: TARGET_RETAINED_RECORD_ID,
+    source_row_id: TARGET_SOURCE_ROW_ID,
+    source_run_id: artifact.source_run_identity.source_run_id,
+    source_dataset_id: artifact.source_run_identity.source_dataset_id,
+    provider_object_ref: TARGET_PROVIDER_OBJECT_REF,
+    provider_artifact_hash: TARGET_PROVIDER_ARTIFACT_HASH,
+    row_ids: artifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: artifact.rows.map((row) => row.artifact_hash),
+    negative_control_rejection_verified: true,
+  };
+  const externalAuthorityPackage = {
+    schema: EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+    accepted_external_authority: true,
+    non_repo_external_authority: true,
+    external_accepted_authority_package_ref:
+      `external-authority-package:held-release-seed-path-rows:${TARGET_RETAINED_RECORD_ID}:${TARGET_SOURCE_ROW_ID}`,
+    external_accepted_authority_ref: acceptanceCertificate.external_accepted_authority_ref,
+    external_accepted_authority_verification_ref:
+      acceptanceCertificate.external_accepted_authority_verification_ref,
+    verified_certificate_schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
+    verified_certificate_ref:
+      acceptanceCertificate.held_release_seed_path_rows_acceptance_certificate_ref,
+    verified_certificate_artifact_hash: stableHash(acceptanceCertificate),
+    held_release_seed_path_rows_artifact_id: artifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: artifact.artifact_hash,
+    retained_record_id: TARGET_RETAINED_RECORD_ID,
+    source_row_id: TARGET_SOURCE_ROW_ID,
+    source_run_id: artifact.source_run_identity.source_run_id,
+    source_dataset_id: artifact.source_run_identity.source_dataset_id,
+    provider_object_ref: TARGET_PROVIDER_OBJECT_REF,
+    provider_artifact_hash: TARGET_PROVIDER_ARTIFACT_HASH,
+    row_ids: artifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: artifact.rows.map((row) => row.artifact_hash),
+    negative_control_rejection_verified: true,
+  };
+  return { acceptanceCertificate, externalAuthorityPackage };
+}
+
+function acceptedRefFromPrefix(prefix, suffix) {
+  return `${prefix}${suffix}`;
+}
+
+function buildMatchingAcceptedProvenancePackage(run, {
+  acceptanceCertificate,
+  externalAuthorityPackage,
+}) {
+  const replacement = run.accepted_provenance_replacement_requirement;
+  const target = replacement.target_binding;
+  const prefixes = replacement.expected_ref_prefixes;
+  return {
+    schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+    accepted_same_target_sh_0_sea_source: true,
+    response_kind: replacement.response_kind,
+    diagnostic_source_row_id: replacement.diagnostic_source_row_id,
+    accepted_replacement_source_row_id: acceptedRefFromPrefix(
+      prefixes.accepted_replacement_source_row_ref,
+      "synthetic-package-row"
+    ),
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      acceptanceCertificate.held_release_seed_path_rows_acceptance_certificate_ref,
+    held_release_seed_path_rows_external_accepted_authority_package_ref:
+      externalAuthorityPackage.external_accepted_authority_package_ref,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      `${REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX}${TARGET_RETAINED_RECORD_ID}:${TARGET_SOURCE_ROW_ID}`,
+    accepted_geometry_provenance_ref: acceptedRefFromPrefix(
+      prefixes.accepted_geometry_provenance_ref,
+      "synthetic-package-geometry"
+    ),
+    accepted_event_provenance_ref: acceptedRefFromPrefix(
+      prefixes.accepted_event_provenance_ref,
+      "synthetic-package-event"
+    ),
+    accepted_support_provenance_ref: acceptedRefFromPrefix(
+      prefixes.accepted_support_provenance_ref,
+      "synthetic-package-support"
+    ),
+    accepted_action_provenance_ref: acceptedRefFromPrefix(
+      prefixes.accepted_action_provenance_ref,
+      "synthetic-package-action"
+    ),
+    geometry_carrier_row_ref: replacement.geometry_carrier.geometry_carrier_row_ref,
+    target_artifact_id: target.target_artifact_id,
+    target_artifact_hash: target.target_artifact_hash,
+    target_source_row_id: target.target_source_row_id,
+    retained_record_id: target.retained_record_id,
+    provider_object_ref: target.provider_object_ref,
+    provider_artifact_hash: target.provider_artifact_hash,
+    target_path_row_ids: [...target.target_path_row_ids],
+    accepted_same_record_evidence: true,
+    negative_control_rejection_verified: true,
+  };
 }
 
 test("SH-0-sea diagnostic candidate model binds the candidate central target", () => {
@@ -192,14 +326,30 @@ test("SH-0-sea diagnostic response run uses provider-seeded probe and does not c
   assert.equal(run.response_probe.Phi_probe, 0.008);
   assert.equal(run.response_probe.Gamma_NS_diag, 0);
   assert.equal(run.response_probe.W_boundary_projection, 0);
+  assert.equal(
+    run.response_probe.geometry_carrier.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(run.response_probe.geometry_carrier.diagnostic_attempt_id, "aa");
+  assert.equal(run.response_probe.geometry_carrier.population_size, 12);
   assert.equal(run.candidate_response_row.schema, CANDIDATE_RESPONSE_ROW_SCHEMA);
   assert.equal(run.candidate_response_row.response_kind, "pressure_tension");
   assert.equal(run.candidate_response_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
   assert.equal(run.candidate_response_row.target_binding.target_artifact_hash, run.target_artifact_hash);
   assert.equal(run.candidate_response_row.target_binding.target_source_row_id, run.target_source_row_id);
   assert.equal(run.candidate_response_row.target_binding.target_path_row_ids.length, 6);
+  assert.equal(
+    run.candidate_response_row.local_row_refs.fcc_nearest_neighbor_shell_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(
+    run.candidate_response_row.response_components.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(run.candidate_response_row.response_components.geometry_carrier_attempt_id, "aa");
   assert.equal(run.candidate_response_row.accepted, false);
   assert.equal(run.candidate_response_row.retained_evidence_authorized, false);
+  assert.equal(run.accepted_provenance_replacement_requirement, null);
   assert.equal(
     run.floor_evaluation.candidate_response_row_id,
     run.candidate_response_row.row_id
@@ -244,12 +394,39 @@ test("SH-0-sea diagnostic response run can cross the floor through a produced sa
     "sh_0_sea_model:boundary_condition_row"
   );
   assert.equal(
+    run.produced_response_source_row.event_provenance.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(
+    run.produced_response_source_row.event_provenance.event_source,
+    "candidate_same_target_aa_fcc_shell_pressure_tension_event"
+  );
+  assert.equal(
+    run.produced_response_source_row.geometry_carrier.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(run.produced_response_source_row.geometry_carrier.diagnostic_attempt_id, "aa");
+  assert.equal(run.produced_response_source_row.geometry_carrier.population_size, 12);
+  assert.equal(run.produced_response_source_row.geometry_carrier.neighbor_directions.length, 12);
+  assert.equal(
+    run.produced_response_source_row.geometry_carrier.source_production_role,
+    "pressure_tension_diagnostic_geometry_carrier"
+  );
+  assert.equal(
     run.produced_response_source_row.support_provenance.support_envelope_row_ref,
     "sh_0_sea_model:support_envelope_row"
   );
   assert.equal(
+    run.produced_response_source_row.support_provenance.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(
     run.produced_response_source_row.action_provenance.action_exchange_row_ref,
     "sh_0_sea_model:action_exchange_row"
+  );
+  assert.equal(
+    run.produced_response_source_row.action_provenance.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
   );
   assert.equal(run.produced_response_source_row.accepted, false);
   assert.equal(run.produced_response_source_row.retained_evidence_authorized, false);
@@ -273,6 +450,242 @@ test("SH-0-sea diagnostic response run can cross the floor through a produced sa
   assert.equal(run.evidence_status.accepted, false);
   assert.equal(run.authorization.accepted_noether_sea_response_closure, false);
   assert.equal(run.authorization.scoreMovement, "no_score_increase");
+
+  const replacement = run.accepted_provenance_replacement_requirement;
+  assert.equal(replacement.schema, ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA);
+  assert.equal(replacement.accepted, false);
+  assert.equal(replacement.requirement_passed, false);
+  assert.equal(replacement.status, "seed_path_acceptance_certificate_missing");
+  assert.equal(replacement.response_kind, "pressure_tension");
+  assert.equal(replacement.diagnostic_source_row_id, run.produced_response_source_row.row_id);
+  assert.equal(replacement.candidate_response_row_id, run.candidate_response_row.row_id);
+  assert.equal(replacement.required_package_schema, ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA);
+  assert.equal(
+    replacement.accepted_provenance_package_verification.schema,
+    ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA
+  );
+  assert.equal(
+    replacement.accepted_provenance_package_verification.status,
+    "same_target_accepted_provenance_package_missing"
+  );
+  assert.equal(
+    replacement.accepted_provenance_package_verification.package_conditionally_verified,
+    false
+  );
+  assert.equal(
+    replacement.accepted_provenance_package_verification.first_missing_object,
+    "sh_0_sea_same_target_accepted_provenance_package"
+  );
+  assert.equal(
+    replacement.accepted_provenance_package_verification.first_missing_field,
+    "accepted_provenance_package"
+  );
+  assert.equal(replacement.seed_path_acceptance.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(replacement.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(replacement.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(
+    replacement.current_diagnostic_refs.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(
+    replacement.expected_ref_prefixes.accepted_geometry_provenance_ref,
+    "accepted:sh-0-sea:geometry:aa-fcc-nearest-neighbor-shell:"
+  );
+  assert.equal(
+    replacement.expected_ref_prefixes.accepted_event_provenance_ref,
+    "accepted:sh-0-sea:event:pressure_tension:aa-fcc-shell:"
+  );
+  assert.deepEqual(replacement.accepted_provenance_status, {
+    accepted_geometry_provenance: false,
+    accepted_event_provenance: false,
+    accepted_support_provenance: false,
+    accepted_action_provenance: false,
+  });
+});
+
+test("SH-0-sea diagnostic response run can use the FCC shell carrier for boundary-wake source rows", () => {
+  const run = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    responseRowKind: "boundary_wake",
+    responseRunHandle: "sh0sea-aa-fcc-boundary-wake-source",
+  });
+
+  assert.equal(run.produced_response_source_row.response_kind, "boundary_wake");
+  assert.equal(
+    run.produced_response_source_row.geometry_carrier.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(
+    run.produced_response_source_row.geometry_carrier.source_production_role,
+    "boundary_wake_diagnostic_geometry_carrier"
+  );
+  assert.equal(
+    run.produced_response_source_row.event_provenance.event_source,
+    "candidate_same_target_aa_fcc_shell_boundary_wake_event"
+  );
+  assert.equal(
+    run.candidate_response_row.response_components.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
+  assert.equal(run.produced_response_source_row.accepted, false);
+  assert.equal(run.produced_response_source_row.retained_evidence_authorized, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+  assert.equal(
+    run.accepted_provenance_replacement_requirement.expected_ref_prefixes
+      .accepted_replacement_source_row_ref,
+    "accepted:sh-0-sea:boundary_wake:same-target-aa-fcc-source:"
+  );
+  assert.equal(
+    run.accepted_provenance_replacement_requirement.expected_ref_prefixes
+      .accepted_event_provenance_ref,
+    "accepted:sh-0-sea:event:boundary_wake:aa-fcc-shell:"
+  );
+  assert.equal(
+    run.accepted_provenance_replacement_requirement.required_package_fields.includes(
+      "accepted_geometry_provenance_ref"
+    ),
+    true
+  );
+  assert.equal(
+    run.accepted_provenance_replacement_requirement.required_package_fields.includes(
+      "accepted_action_provenance_ref"
+    ),
+    true
+  );
+});
+
+test("SH-0-sea accepted-provenance replacement requirement propagates staged seed-path blockers", () => {
+  const { acceptanceCertificate, externalAuthorityPackage } = buildMatchingSeedPathAuthorityInputs();
+  const certificateOnlyRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+  });
+  const certificateOnly = certificateOnlyRun.accepted_provenance_replacement_requirement;
+
+  assert.equal(certificateOnly.accepted, false);
+  assert.equal(certificateOnly.requirement_passed, false);
+  assert.equal(certificateOnly.status, "seed_path_external_authority_package_missing");
+  assert.equal(
+    certificateOnly.first_missing_object,
+    "held_release_seed_path_rows_external_accepted_authority_package"
+  );
+  assert.equal(
+    certificateOnly.first_missing_field,
+    "held_release_seed_path_rows.external_authority.external_accepted_authority_package_ref"
+  );
+  assert.equal(certificateOnly.seed_path_acceptance.conditionally_verified, false);
+  assert.equal(
+    certificateOnly.seed_path_acceptance.repo_authorization_status,
+    "pending_seed_path_certificate_and_external_authority_package"
+  );
+  assert.equal(certificateOnly.authorization.scoreMovement, "no_score_increase");
+
+  const conditionallyVerifiedRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+  });
+  const conditionallyVerified =
+    conditionallyVerifiedRun.accepted_provenance_replacement_requirement;
+
+  assert.equal(conditionallyVerified.accepted, false);
+  assert.equal(conditionallyVerified.requirement_passed, false);
+  assert.equal(
+    conditionallyVerified.status,
+    "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+  );
+  assert.equal(
+    conditionallyVerified.first_missing_object,
+    "repo_authorization_for_accepted_held_release_seed_path_rows"
+  );
+  assert.equal(conditionallyVerified.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(conditionallyVerified.seed_path_acceptance.conditionally_verified, true);
+  assert.equal(
+    conditionallyVerified.seed_path_acceptance.repo_authorization_status,
+    "missing_after_conditionally_verified_external_authority_package"
+  );
+  assert.equal(conditionallyVerified.accepted_provenance_status.accepted_geometry_provenance, false);
+  assert.equal(conditionallyVerified.accepted_provenance_status.accepted_event_provenance, false);
+  assert.equal(conditionallyVerified.accepted_provenance_status.accepted_support_provenance, false);
+  assert.equal(conditionallyVerified.accepted_provenance_status.accepted_action_provenance, false);
+  assert.equal(conditionallyVerified.authorization.scoreMovement, "no_score_increase");
+});
+
+test("SH-0-sea accepted-provenance package verifier can match the FCC carrier without authorizing evidence", () => {
+  const { acceptanceCertificate, externalAuthorityPackage } = buildMatchingSeedPathAuthorityInputs();
+  const stagedRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+  });
+  const acceptedProvenancePackage = buildMatchingAcceptedProvenancePackage(stagedRun, {
+    acceptanceCertificate,
+    externalAuthorityPackage,
+  });
+  const run = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    acceptedProvenancePackage,
+  });
+  const replacement = run.accepted_provenance_replacement_requirement;
+  const packageVerification = replacement.accepted_provenance_package_verification;
+
+  assert.equal(packageVerification.schema, ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA);
+  assert.equal(
+    packageVerification.status,
+    "same_target_accepted_provenance_package_conditionally_verified"
+  );
+  assert.equal(packageVerification.package_conditionally_verified, true);
+  assert.deepEqual(packageVerification.missing_fields, []);
+  assert.equal(
+    packageVerification.expected_package_payload.geometry_carrier_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(
+    packageVerification.supplied_accepted_replacement_source_row_id,
+    acceptedProvenancePackage.accepted_replacement_source_row_id
+  );
+  assert.equal(replacement.accepted, false);
+  assert.equal(replacement.requirement_passed, false);
+  assert.equal(
+    replacement.status,
+    "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+  );
+  assert.equal(
+    replacement.first_missing_object,
+    "repo_authorization_for_accepted_held_release_seed_path_rows"
+  );
+  assert.equal(replacement.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
+
+  const badGeometryPackage = {
+    ...acceptedProvenancePackage,
+    geometry_carrier_row_ref: "sh_0_sea_model:not_the_fcc_shell_row",
+  };
+  const badGeometryRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    seedPathAcceptanceCertificate: acceptanceCertificate,
+    seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    acceptedProvenancePackage: badGeometryPackage,
+  });
+  const badVerification =
+    badGeometryRun.accepted_provenance_replacement_requirement
+      .accepted_provenance_package_verification;
+
+  assert.equal(badVerification.package_conditionally_verified, false);
+  assert.equal(
+    badVerification.missing_fields.includes(
+      "accepted_provenance_package.geometry_carrier_row_ref"
+    ),
+    true
+  );
+  assert.equal(
+    badGeometryRun.accepted_provenance_replacement_requirement.first_missing_object,
+    "repo_authorization_for_accepted_held_release_seed_path_rows"
+  );
+  assert.equal(badGeometryRun.authorization.scoreMovement, "no_score_increase");
 });
 
 test("SH-0-sea diagnostic response run CLI emits JSON without authorizing evidence", () => {
@@ -298,4 +711,70 @@ test("SH-0-sea diagnostic response run CLI emits JSON without authorizing eviden
   assert.equal(run.evidence_status.accepted, false);
   assert.equal(run.accepted_evidence_blocker.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
   assert.equal(run.accepted_evidence_blocker.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(
+    run.accepted_provenance_replacement_requirement.schema,
+    ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA
+  );
+  assert.equal(
+    run.accepted_provenance_replacement_requirement.required_package_schema,
+    ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA
+  );
+});
+
+test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authority diagnostics", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sh0sea-seed-path-authority-"));
+  const certificatePath = path.join(tempDir, "acceptance-certificate.json");
+  const externalAuthorityPackagePath = path.join(tempDir, "external-authority-package.json");
+  const acceptedProvenancePackagePath = path.join(tempDir, "accepted-provenance-package.json");
+  try {
+    const { acceptanceCertificate, externalAuthorityPackage } =
+      buildMatchingSeedPathAuthorityInputs();
+    const stagedRun = buildSh0SeaDiagnosticResponseRun({
+      producedResponseSource: true,
+      seedPathAcceptanceCertificate: acceptanceCertificate,
+      seedPathExternalAuthorityPackage: externalAuthorityPackage,
+    });
+    const acceptedProvenancePackage = buildMatchingAcceptedProvenancePackage(stagedRun, {
+      acceptanceCertificate,
+      externalAuthorityPackage,
+    });
+    fs.writeFileSync(certificatePath, JSON.stringify(acceptanceCertificate));
+    fs.writeFileSync(externalAuthorityPackagePath, JSON.stringify(externalAuthorityPackage));
+    fs.writeFileSync(acceptedProvenancePackagePath, JSON.stringify(acceptedProvenancePackage));
+
+    const output = execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        "--response-run",
+        "--produced-response-source",
+        `--acceptance-certificate-json=${certificatePath}`,
+        `--external-authority-package-json=${externalAuthorityPackagePath}`,
+        `--accepted-provenance-package-json=${acceptedProvenancePackagePath}`,
+      ],
+      { encoding: "utf8" }
+    );
+    const run = JSON.parse(output);
+    const replacement = run.accepted_provenance_replacement_requirement;
+
+    assert.equal(replacement.accepted, false);
+    assert.equal(replacement.requirement_passed, false);
+    assert.equal(
+      replacement.status,
+      "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+    );
+    assert.equal(
+      replacement.first_missing_object,
+      "repo_authorization_for_accepted_held_release_seed_path_rows"
+    );
+    assert.equal(replacement.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+    assert.equal(replacement.seed_path_acceptance.conditionally_verified, true);
+    assert.equal(
+      replacement.accepted_provenance_package_verification.package_conditionally_verified,
+      true
+    );
+    assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
 });

@@ -556,7 +556,7 @@ test("causal delay feedback now scrubber pauses and moves replay time", () => {
 
   assert.equal(runtime.isPlaying, false);
   assert.equal(nowInput.value, "500");
-  assert.equal(nowValue.textContent, "t=0.5");
+  assert.equal(nowValue.textContent, "replay t=0.5");
   assertNear(runtime.getCurrentReplayTime(), 0.5);
   assertNear(renderedTime, 0.5);
   assert.equal(readout.hidden, true);
@@ -610,7 +610,7 @@ test("causal delay feedback reset resyncs now control and selected readout", () 
 
   assert.equal(runtime.isPlaying, true);
   assert.equal(nowInput.value, "0");
-  assert.equal(nowValue.textContent, "t=0");
+  assert.equal(nowValue.textContent, "replay t=0");
   assert.equal(readout.hidden, true);
   assert.equal(readout.children.length, 0);
 });
@@ -4360,7 +4360,7 @@ test("causal delay feedback arrow keys pause and step solver replay frames", () 
   assert.equal(prevented, true);
   assert.equal(runtime.isPlaying, false);
   assertNear(runtime.getCurrentReplayTime(), frameTimes[1]);
-  assert.equal(nowValue.textContent, `t=${formatTestCompactNumber(frameTimes[1])}`);
+  assert.equal(nowValue.textContent, `replay t=${formatTestCompactNumber(frameTimes[1])}`);
 
   prevented = false;
   runtime.handleKeyDown({

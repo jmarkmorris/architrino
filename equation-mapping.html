@@ -699,7 +699,7 @@
         position: absolute;
         left: var(--overlay-layout-x, calc(var(--overlay-x) * 1%));
         top: var(--overlay-layout-y, calc(var(--overlay-y) * 1%));
-        width: min(calc(var(--overlay-width) * 1%), 390px);
+        width: min(calc(var(--overlay-width) * 1%), 429px);
         min-width: 220px;
         padding: 10px;
         border: 1px solid var(--line-ink);
@@ -733,13 +733,14 @@
       }
 
       .equation-mapping-comment-target {
-        flex: 0 1 auto;
+        flex: 0 0 auto;
         max-width: 100%;
         margin-left: auto;
         color: var(--text);
         font-size: 21px;
         line-height: 1.1;
         text-align: right;
+        white-space: nowrap;
       }
 
       .equation-mapping-comment-body {

@@ -8,7 +8,7 @@ The reader-facing rule is direct: gauge symmetry is a recovery constraint on the
 
 Interface chapters:
 - Electroweak emergence narrative: [Gauge Structure Emergence](./gauge-structure-emergence.md)
-- Color $SU(3)$ algebra closure: [Color Charge SU3](fermions/color-charge-su3.md)
+- Color $SU(3)$ algebra closure: [Color Charge SU(3)](fermions/color-charge-su3.md)
 - Variational substrate: [Effective Lagrangian](../dynamics/effective-lagrangian.md)
 
 ## Regularized Setting

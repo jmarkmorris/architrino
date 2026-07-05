@@ -55,7 +55,8 @@ The candidate row's dynamic replay metadata uses field speed `c_f=1`, coupling `
 | Local target-sea frame row | Target-center frame with target center `C(t)`, relative positions `y_a(t)=x_a(t)-C(t)`, and local sea velocity `u_sea(C,t)`. The first diagnostic rest condition is `\dot C(t)-u_sea(C,t)=0` after frame normalization. | Candidate only; the accepted density provider has `u_sea=(0,0,0)` for its own window, not for this target record. |
 | Boundary-condition row | Local region `\Omega_C` around the target and boundary history `\mathcal H_{\partial\Omega}` carrying incoming sea wake/event data. No hard wall is allowed; the boundary must represent nearby Noether braid population response. | Candidate only. |
 | Sea-response row | Candidate acceleration `\mathbf a_a^{\mathrm{sea}}=\mathcal A_a^{\mathrm{sea}}(B,\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal H_{\partial\Omega})`, projected onto the target reduced-radius direction. | Candidate only; not an accepted Noether sea response row. |
-| Produced response source row | Diagnostic `pressure_tension` or `boundary_wake` source row bound to the same target identity, with event, support, and action provenance refs from this model. | Diagnostic only; not accepted wake, support, action, response, or retained evidence. |
+| Produced response source row | Diagnostic `pressure_tension` or `boundary_wake` source row bound to the same target identity, using attempt `aa` FCC nearest-neighbor shell as the geometry carrier and event, support, and action provenance refs from this model. | Diagnostic only; not accepted wake, support, action, response, or retained evidence. |
+| Accepted provenance replacement requirement | Fail-closed requirement and package verifier for the future `sh_0_sea_same_target_accepted_provenance_package.v0`, which must replace the diagnostic FCC geometry, event, support, and action refs after the seed-path certificate, external authority package, and repo authorization exist. | Requirement only; current status is blocked first at `held_release_seed_path_rows_acceptance_certificate`. |
 | Support/envelope row | Common-sphere or spheroid support variables, reduced radius `R(t)`, radial velocity `\dot R(t)`, and radial acceleration `\ddot R(t)`. | Candidate only. |
 | Action/exchange row | Diagnostic action/energy exchange variables for target, sea, and boundary. No physical architrino mass is introduced. | Candidate only; no same-record action closure. |
 | Receiver-normal requirement row | Required fields for future same-record root-detail evidence: `branchWeight`, `sourceNormalDenominator`, `receiverNormalFactor`, and where available `receiverNormalNumerator` and `unsignedReceiverNormalFactor`. | Requirement only; no accepted receiver-normal branch strength. |
@@ -311,7 +312,7 @@ Therefore the provider-seeded response run does not cross the floor:
 | Required `Phi_probe` at current coefficients | `0.03754471866415803` |
 | Required multiplier over current `Phi_probe` | `4.693089833019754` |
 
-A produced, non-authorizing pressure/tension source row crosses the same diagnostic floor without consuming a free `--response-amplitude` override:
+A produced, non-authorizing pressure/tension source row now uses the attempt `aa` FCC shell row as its diagnostic geometry carrier and crosses the same diagnostic floor without consuming a free `--response-amplitude` override:
 
 ```bash
 node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --produced-response-source --pretty
@@ -319,20 +320,27 @@ node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run 
 
 The produced source row is:
 
-`sh_0_sea_produced_response_source:pressure_tension:a7769646b22c4f4f`
+`sh_0_sea_produced_response_source:pressure_tension:a8c1a969eb0ccb5e`
 
-It is bound to the same target artifact, target hash, source row, retained-record id, provider object, provider hash, and six target path-row refs listed above. The produced row carries:
+It is bound to the same target artifact, target hash, source row, retained-record id, provider object, provider hash, and six target path-row refs listed above. It also carries:
 
-- `event_provenance.boundary_event_row_ref`: `sh_0_sea_produced_response_source:pressure_tension:a7769646b22c4f4f:boundary-event`;
+- `geometry_carrier.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
+- `geometry_carrier.diagnostic_attempt_id`: `aa`;
+- `geometry_carrier.population_size`: `12`;
+- `geometry_carrier.source_production_role`: `pressure_tension_diagnostic_geometry_carrier`;
+- `event_provenance.boundary_event_row_ref`: `sh_0_sea_produced_response_source:pressure_tension:a8c1a969eb0ccb5e:boundary-event`;
 - `event_provenance.boundary_condition_row_ref`: `sh_0_sea_model:boundary_condition_row`;
+- `event_provenance.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
 - `support_provenance.support_envelope_row_ref`: `sh_0_sea_model:support_envelope_row`;
+- `support_provenance.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
 - `support_provenance.required_Phi_probe_at_current_coefficients`: `0.03754471866415803`;
 - `support_provenance.producer_rule`: `ceil(required_Phi_probe_at_current_coefficients, 0.001)`;
-- `action_provenance.action_exchange_row_ref`: `sh_0_sea_model:action_exchange_row`.
+- `action_provenance.action_exchange_row_ref`: `sh_0_sea_model:action_exchange_row`;
+- `action_provenance.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`.
 
 The consumed candidate response row then points back to that produced source row instead of to a free amplitude probe:
 
-`sh_0_sea_candidate_response_row:pressure_tension:7b219001d8da567b`
+`sh_0_sea_candidate_response_row:pressure_tension:81b7e914155b6fa1`
 
 $$
 \Phi_{\mathrm{probe}}=0.038,
@@ -343,7 +351,29 @@ $$
 =-0.0011336515262465041.
 $$
 
-That crossing is a same-target diagnostic candidate row fed by a produced same-target source row, not accepted proof evidence. It does not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+The same carrier can emit a diagnostic boundary-wake source row with:
+
+- produced row: `sh_0_sea_produced_response_source:boundary_wake:0bd98a2e2ea4a94f`;
+- candidate response row: `sh_0_sea_candidate_response_row:boundary_wake:be6db21692b6f9f8`;
+- `geometry_carrier.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
+- `geometry_carrier.source_production_role`: `boundary_wake_diagnostic_geometry_carrier`.
+
+Those crossings are same-target diagnostic candidate rows fed by produced same-target source rows, not accepted proof evidence. They do not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+
+The response run now also emits the exact future replacement requirement:
+
+- schema: `sh_0_sea_same_target_accepted_provenance_replacement_requirement.v0`;
+- required package: `sh_0_sea_same_target_accepted_provenance_package.v0`;
+- package verifier schema: `sh_0_sea_same_target_accepted_provenance_package_verification.v0`;
+- current status: `seed_path_acceptance_certificate_missing`;
+- first missing object: `held_release_seed_path_rows_acceptance_certificate`;
+- first missing field: `held_release_seed_path_rows.acceptance_certificate_ref`;
+- required accepted provenance refs: `accepted_geometry_provenance_ref`, `accepted_event_provenance_ref`, `accepted_support_provenance_ref`, and `accepted_action_provenance_ref`;
+- accepted geometry ref prefix: `accepted:sh-0-sea:geometry:aa-fcc-nearest-neighbor-shell:`;
+- accepted pressure/tension event ref prefix: `accepted:sh-0-sea:event:pressure_tension:aa-fcc-shell:`;
+- accepted boundary-wake event ref prefix: `accepted:sh-0-sea:event:boundary_wake:aa-fcc-shell:`.
+
+This requirement is the executable bridge for the closure target. It propagates staged seed-path verifier states without changing claim level: with a matching certificate only, the first missing object becomes `held_release_seed_path_rows_external_accepted_authority_package`; with a matching certificate plus authority package, the first missing object becomes `repo_authorization_for_accepted_held_release_seed_path_rows`. The package verifier can conditionally check that a supplied future package matches the current FCC-carried diagnostic source row, geometry carrier, target binding, seed-path certificate ref, external authority package ref, repo authorization ref prefix, and accepted geometry/event/support/action provenance ref prefixes. It still leaves `accepted=false`, `requirement_passed=false`, and `scoreMovement="no_score_increase"` until the seed-path authority chain is accepted. Once the seed-path certificate, matching external authority package, and repo authorization exist, the next package must replace the current FCC-carried diagnostic geometry/event/support/action refs with accepted same-target provenance.
 
 ## Action And Exchange Variables
 
@@ -407,7 +437,8 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 | Local target-sea frame | Diagnostic/candidate |
 | Boundary-condition row | Diagnostic/candidate |
 | Candidate sea-response equation | Diagnostic/candidate |
-| Produced response source row | Diagnostic/candidate; same-target provenance refs only |
+| Produced response source row | Diagnostic/candidate; same-target provenance refs plus attempt `aa` FCC geometry carrier only |
+| Accepted provenance replacement requirement | Requirement only; blocked first at the seed-path acceptance certificate |
 | Support/envelope variables | Diagnostic/candidate |
 | Action/exchange variables | Diagnostic/candidate |
 | Receiver-normal row requirements | Requirement only |
@@ -426,19 +457,22 @@ The response run now instantiates this model with:
 2. a paired local population of like Noether braid assemblies around the target;
 3. the accepted `theta_sea_rho_NS` provider rows as reusable local-state inputs, explicitly unbound to the target record;
 4. a boundary row `\mathcal H_{\partial\Omega}` carrying candidate wake/event input from the surrounding population;
-5. a response functional that reports `\Pi_R\mathcal A^{\mathrm{sea}}(t)` and checks whether it crosses the diagnostic inward floor.
+5. the attempt `aa` FCC nearest-neighbor shell row as the diagnostic geometry carrier for produced `pressure_tension` or `boundary_wake` source rows;
+6. a response functional that reports `\Pi_R\mathcal A^{\mathrm{sea}}(t)` and checks whether it crosses the diagnostic inward floor;
+7. a fail-closed accepted-provenance replacement requirement for the future same-target geometry, event, support, and action package.
 
-The first provider-seeded result does not cross the floor. The diagnostic produced pressure/tension source row crosses the floor at `Phi_probe=0.038`, with same-target event/support/action provenance refs, but it remains diagnostic. The next executable proof target is to replace this diagnostic produced source row with an accepted boundary-wake or pressure/tension source row carrying accepted same-target event/support/action provenance while preserving the accepted-evidence blocker.
+The first provider-seeded result does not cross the floor. The diagnostic produced pressure/tension and boundary-wake source rows cross the floor at `Phi_probe=0.038`, with same-target event/support/action provenance refs and the attempt `aa` FCC shell as the geometry carrier, but they remain diagnostic. The next executable proof target is to replace these diagnostic produced source rows with an accepted boundary-wake or pressure/tension source row carrying accepted same-target geometry, event, support, and action provenance while preserving the accepted-evidence blocker.
 
 This diagnostic pass justifies a sharper retained-source request. It still does not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
 
 ## Replacement Audit 2026-07-05
 
-No accepted same-target `boundary_wake` or `pressure_tension` source row was found to replace:
+No accepted same-target `boundary_wake` or `pressure_tension` source row was found to replace the current attempt `aa` FCC-carried diagnostic source rows:
 
-`sh_0_sea_produced_response_source:pressure_tension:a7769646b22c4f4f`
+- `sh_0_sea_produced_response_source:pressure_tension:a8c1a969eb0ccb5e`;
+- `sh_0_sea_produced_response_source:boundary_wake:0bd98a2e2ea4a94f`.
 
-The diagnostic row remains useful because it is same-target and crosses the diagnostic floor, but its event, support, and action refs are local diagnostic refs only. Live output keeps `accepted=false`, `retained_evidence_authorized=false`, `receiver_normal_branch_strength=false`, and `scoreMovement="no_score_increase"`.
+The diagnostic rows remain useful because they are same-target, use the attempt `aa` FCC shell as a geometry carrier, and cross the diagnostic floor, but their geometry, event, support, and action refs are local diagnostic refs only. Live output keeps `accepted=false`, `retained_evidence_authorized=false`, `receiver_normal_branch_strength=false`, and `scoreMovement="no_score_increase"`.
 
 The first missing accepted object remains:
 
@@ -449,9 +483,12 @@ The first missing accepted object remains:
 - source row: `two-speed-preferred-row:u0.8:v0.2`;
 - required accepted-ref prefix: `accepted:held-release-seed-path-rows:retained-record:held-release-six-point:adapter-acceptance-certificate:two-speed-preferred-row:u0.8:v0.2:`.
 
+No current executable producer emits that accepted certificate. The current executable boundary is the verifier/intake path in `scripts/braid-ideal/held-release-seed-path-rows.mjs`; the missing producer is a non-circular `held_release_seed_path_rows_acceptance_certificate.v0` issuer, either as a focused producer script or as an explicit producer mode on that verifier.
+
 Adjacent outputs directly help, but do not replace the diagnostic row:
 
 - the held-release seed-path requirement emits the exact expected certificate payload and still reports `requirement_passed=false`;
+- the SH-0-sea response run verifies the expected future `sh_0_sea_same_target_accepted_provenance_package.v0` payload shape for the FCC-carried diagnostic row without authorizing evidence;
 - the retained-source adapter contract observes ten source fields and accepts zero package fields, with `held_release_seed_path_rows_acceptance_certificate_ref` as the first package field;
 - the accepted Noether sea density-compression provider supplies reusable `theta_sea_rho_NS` and stress/strain rows for its own retained-window domain, but it is not bound to the `SH-0-sea` target/source record;
 - EQ-20 pressure rows, pressure-row branch-intake fixtures, event/wake pullback diagnostics, torque-wake diagnostics, and chirality residual measurements are not same-target `SH-0-sea` replacement evidence;

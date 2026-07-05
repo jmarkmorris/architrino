@@ -2,7 +2,10 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
-import { buildHeldReleaseSeedPathRows } from "./held-release-seed-path-rows.mjs";
+import {
+  buildHeldReleaseSeedPathRows,
+  buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement,
+} from "./held-release-seed-path-rows.mjs";
 
 export const SCHEMA = "sh_0_sea_diagnostic_candidate_model.v0";
 export const AUTHORITY_CLASS = "diagnostic_candidate_model_not_accepted_evidence";
@@ -23,6 +26,14 @@ export const REQUIRED_INWARD_RESPONSE_FLOOR = -0.0934863484737535;
 export const RESPONSE_RUN_SCHEMA = "sh_0_sea_diagnostic_response_run.v0";
 export const CANDIDATE_RESPONSE_ROW_SCHEMA = "sh_0_sea_candidate_response_row.diagnostic.v0";
 export const PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA = "sh_0_sea_produced_response_source_row.diagnostic.v0";
+export const ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA =
+  "sh_0_sea_same_target_accepted_provenance_replacement_requirement.v0";
+export const ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA =
+  "sh_0_sea_same_target_accepted_provenance_package.v0";
+export const ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA =
+  "sh_0_sea_same_target_accepted_provenance_package_verification.v0";
+export const REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX =
+  "repo-authorization:accepted-held-release-seed-path-rows:";
 export const DEFAULT_RESPONSE_DEADBAND = 1e-9;
 export const DEFAULT_PRODUCED_SOURCE_MARGIN_STEP = 0.001;
 export const FCC_SEA_DIAGNOSTIC_ATTEMPT_ID = "aa";
@@ -44,6 +55,31 @@ export const FCC_NEAREST_NEIGHBOR_DIRECTIONS = Object.freeze([
 
 const PROVIDER_PATH = new URL("../spacetime/noether-sea-density-compression-provider.v1.json", import.meta.url);
 
+const REQUIRED_ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_FIELDS = Object.freeze([
+  "schema",
+  "accepted_same_target_sh_0_sea_source",
+  "response_kind",
+  "diagnostic_source_row_id",
+  "accepted_replacement_source_row_id",
+  "held_release_seed_path_rows_acceptance_certificate_ref",
+  "held_release_seed_path_rows_external_accepted_authority_package_ref",
+  "repo_authorization_for_accepted_held_release_seed_path_rows_ref",
+  "accepted_geometry_provenance_ref",
+  "accepted_event_provenance_ref",
+  "accepted_support_provenance_ref",
+  "accepted_action_provenance_ref",
+  "geometry_carrier_row_ref",
+  "target_artifact_id",
+  "target_artifact_hash",
+  "target_source_row_id",
+  "retained_record_id",
+  "provider_object_ref",
+  "provider_artifact_hash",
+  "target_path_row_ids",
+  "accepted_same_record_evidence",
+  "negative_control_rejection_verified",
+]);
+
 const AUTHORIZATION_FLAGS = Object.freeze([
   "accepted_same_record_evidence",
   "accepted_retained_evidence",
@@ -63,6 +99,33 @@ function stableHash(value) {
 
 function normalizeStringRef(value) {
   return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function stringRefWithPrefix(value, requiredPrefix) {
+  const ref = normalizeStringRef(value);
+  const prefix = normalizeStringRef(requiredPrefix);
+  return ref != null && prefix != null && ref.startsWith(prefix) ? ref : null;
+}
+
+function matchingNonEmptyString(value, expected) {
+  const ref = normalizeStringRef(value);
+  const expectedRef = normalizeStringRef(expected);
+  return expectedRef != null && ref === expectedRef;
+}
+
+function pushMissingUnlessMatchingString({ missingFields, value, expected, field }) {
+  if (!matchingNonEmptyString(value, expected)) {
+    missingFields.push(field);
+  }
+}
+
+function arraysEqual(left, right) {
+  return (
+    Array.isArray(left) &&
+    Array.isArray(right) &&
+    left.length === right.length &&
+    left.every((entry, index) => entry === right[index])
+  );
 }
 
 function normalizeNumber(value, fallback) {
@@ -129,12 +192,291 @@ function buildTargetBinding(model) {
 function buildLocalRowRefs(model) {
   return {
     sea_population_row_ref: rowBySuffix(model, "like_braid_population_row")?.row_id ?? null,
+    fcc_nearest_neighbor_shell_row_ref:
+      rowBySuffix(model, "fcc_nearest_neighbor_shell_row")?.row_id ?? null,
     local_target_sea_frame_row_ref: rowBySuffix(model, "local_target_sea_frame_row")?.row_id ?? null,
     theta_sea_state_row_ref: rowBySuffix(model, "theta_sea_state_row")?.row_id ?? null,
     boundary_condition_row_ref: rowBySuffix(model, "boundary_condition_row")?.row_id ?? null,
     sea_response_equation_row_ref: rowBySuffix(model, "sea_response_equation_row")?.row_id ?? null,
     support_envelope_row_ref: rowBySuffix(model, "support_envelope_row")?.row_id ?? null,
     action_exchange_row_ref: rowBySuffix(model, "action_exchange_row")?.row_id ?? null,
+  };
+}
+
+function buildGeometryCarrier(model) {
+  const shellRow = rowBySuffix(model, "fcc_nearest_neighbor_shell_row");
+  return {
+    geometry_carrier_row_ref: shellRow?.row_id ?? null,
+    diagnostic_attempt_id: shellRow?.diagnostic_attempt_id ?? null,
+    shell_configuration: shellRow?.shell_configuration ?? null,
+    population_size: shellRow?.population_size ?? null,
+    center_formula: shellRow?.center_formula ?? null,
+    nearest_neighbor_radius: shellRow?.nearest_neighbor_radius ?? null,
+    neighbor_directions: shellRow?.neighbor_directions?.map((row) => ({
+      index: row.index,
+      direction: [...row.direction],
+    })) ?? [],
+    accepted_geometry_carrier: false,
+  };
+}
+
+function buildSeedPathAcceptanceCertificateRequirement(model, options = {}) {
+  return buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement({
+    retainedRecordId: TARGET_RETAINED_RECORD_ID,
+    sourceRowId: model.target_source_row_id ?? TARGET_SOURCE_ROW_ID,
+    providerObjectRef: TARGET_PROVIDER_OBJECT_REF,
+    providerArtifactHash: TARGET_PROVIDER_ARTIFACT_HASH,
+    acceptanceCertificate: options.seedPathAcceptanceCertificate ?? {},
+    externalAuthorityPackage: options.seedPathExternalAuthorityPackage ?? {},
+  });
+}
+
+function buildAcceptedProvenanceReplacementPackageExpectation({
+  producedSourceRow,
+  seedPathRequirement,
+  expectedRefPrefixes,
+  targetBinding,
+  geometryCarrier,
+}) {
+  const suppliedCertificateRef =
+    seedPathRequirement.acceptance_certificate_verification?.supplied_certificate_ref ?? null;
+  const requiredCertificateRef = suppliedCertificateRef ??
+    (seedPathRequirement.required_certificate_ref_prefix == null
+      ? null
+      : `${seedPathRequirement.required_certificate_ref_prefix}<certificate-ref>`);
+  return {
+    schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+    accepted_same_target_sh_0_sea_source: true,
+    response_kind: producedSourceRow?.response_kind ?? null,
+    diagnostic_source_row_id: producedSourceRow?.row_id ?? null,
+    accepted_replacement_source_row_id:
+      `${expectedRefPrefixes.accepted_replacement_source_row_ref}<accepted-source-row-ref>`,
+    held_release_seed_path_rows_acceptance_certificate_ref: requiredCertificateRef,
+    held_release_seed_path_rows_external_accepted_authority_package_ref:
+      seedPathRequirement.required_external_authority_package_ref ?? null,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref:
+      `${REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX}<repo-authorization-ref>`,
+    accepted_geometry_provenance_ref:
+      `${expectedRefPrefixes.accepted_geometry_provenance_ref}<accepted-geometry-provenance-ref>`,
+    accepted_event_provenance_ref:
+      `${expectedRefPrefixes.accepted_event_provenance_ref}<accepted-event-provenance-ref>`,
+    accepted_support_provenance_ref:
+      `${expectedRefPrefixes.accepted_support_provenance_ref}<accepted-support-provenance-ref>`,
+    accepted_action_provenance_ref:
+      `${expectedRefPrefixes.accepted_action_provenance_ref}<accepted-action-provenance-ref>`,
+    geometry_carrier_row_ref: geometryCarrier?.geometry_carrier_row_ref ?? null,
+    target_artifact_id: targetBinding?.target_artifact_id ?? null,
+    target_artifact_hash: targetBinding?.target_artifact_hash ?? null,
+    target_source_row_id: targetBinding?.target_source_row_id ?? null,
+    retained_record_id: targetBinding?.retained_record_id ?? null,
+    provider_object_ref: targetBinding?.provider_object_ref ?? null,
+    provider_artifact_hash: targetBinding?.provider_artifact_hash ?? null,
+    target_path_row_ids: targetBinding?.target_path_row_ids ?? [],
+    accepted_same_record_evidence: true,
+    negative_control_rejection_verified: true,
+  };
+}
+
+function evaluateAcceptedProvenanceReplacementPackage({
+  acceptedProvenancePackage = {},
+  producedSourceRow,
+  seedPathRequirement,
+  expectedRefPrefixes,
+  targetBinding,
+  geometryCarrier,
+}) {
+  const packageInput = acceptedProvenancePackage ?? {};
+  const hasPackageInput =
+    typeof packageInput === "object" &&
+    packageInput !== null &&
+    Object.keys(packageInput).length > 0;
+  const expected = buildAcceptedProvenanceReplacementPackageExpectation({
+    producedSourceRow,
+    seedPathRequirement,
+    expectedRefPrefixes,
+    targetBinding,
+    geometryCarrier,
+  });
+  const missingFields = [];
+  if (!hasPackageInput) {
+    missingFields.push("accepted_provenance_package");
+  } else {
+    if (packageInput.schema !== ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA) {
+      missingFields.push("accepted_provenance_package.schema");
+    }
+    if (packageInput.accepted_same_target_sh_0_sea_source !== true) {
+      missingFields.push("accepted_provenance_package.accepted_same_target_sh_0_sea_source");
+    }
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.response_kind,
+      expected: expected.response_kind,
+      field: "accepted_provenance_package.response_kind",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.diagnostic_source_row_id,
+      expected: expected.diagnostic_source_row_id,
+      field: "accepted_provenance_package.diagnostic_source_row_id",
+    });
+    if (
+      stringRefWithPrefix(
+        packageInput.accepted_replacement_source_row_id,
+        expectedRefPrefixes.accepted_replacement_source_row_ref
+      ) == null
+    ) {
+      missingFields.push("accepted_provenance_package.accepted_replacement_source_row_id");
+    }
+
+    const suppliedCertificateRef =
+      seedPathRequirement.acceptance_certificate_verification?.supplied_certificate_ref ?? null;
+    if (suppliedCertificateRef == null) {
+      if (
+        stringRefWithPrefix(
+          packageInput.held_release_seed_path_rows_acceptance_certificate_ref,
+          seedPathRequirement.required_certificate_ref_prefix
+        ) == null
+      ) {
+        missingFields.push(
+          "accepted_provenance_package.held_release_seed_path_rows_acceptance_certificate_ref"
+        );
+      }
+    } else {
+      pushMissingUnlessMatchingString({
+        missingFields,
+        value: packageInput.held_release_seed_path_rows_acceptance_certificate_ref,
+        expected: suppliedCertificateRef,
+        field:
+          "accepted_provenance_package.held_release_seed_path_rows_acceptance_certificate_ref",
+      });
+    }
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.held_release_seed_path_rows_external_accepted_authority_package_ref,
+      expected: seedPathRequirement.required_external_authority_package_ref,
+      field:
+        "accepted_provenance_package.held_release_seed_path_rows_external_accepted_authority_package_ref",
+    });
+    if (
+      stringRefWithPrefix(
+        packageInput.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+        REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX
+      ) == null
+    ) {
+      missingFields.push(
+        "accepted_provenance_package.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+      );
+    }
+    if (
+      stringRefWithPrefix(
+        packageInput.accepted_geometry_provenance_ref,
+        expectedRefPrefixes.accepted_geometry_provenance_ref
+      ) == null
+    ) {
+      missingFields.push("accepted_provenance_package.accepted_geometry_provenance_ref");
+    }
+    if (
+      stringRefWithPrefix(
+        packageInput.accepted_event_provenance_ref,
+        expectedRefPrefixes.accepted_event_provenance_ref
+      ) == null
+    ) {
+      missingFields.push("accepted_provenance_package.accepted_event_provenance_ref");
+    }
+    if (
+      stringRefWithPrefix(
+        packageInput.accepted_support_provenance_ref,
+        expectedRefPrefixes.accepted_support_provenance_ref
+      ) == null
+    ) {
+      missingFields.push("accepted_provenance_package.accepted_support_provenance_ref");
+    }
+    if (
+      stringRefWithPrefix(
+        packageInput.accepted_action_provenance_ref,
+        expectedRefPrefixes.accepted_action_provenance_ref
+      ) == null
+    ) {
+      missingFields.push("accepted_provenance_package.accepted_action_provenance_ref");
+    }
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.geometry_carrier_row_ref,
+      expected: expected.geometry_carrier_row_ref,
+      field: "accepted_provenance_package.geometry_carrier_row_ref",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.target_artifact_id,
+      expected: expected.target_artifact_id,
+      field: "accepted_provenance_package.target_artifact_id",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.target_artifact_hash,
+      expected: expected.target_artifact_hash,
+      field: "accepted_provenance_package.target_artifact_hash",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.target_source_row_id,
+      expected: expected.target_source_row_id,
+      field: "accepted_provenance_package.target_source_row_id",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.retained_record_id,
+      expected: expected.retained_record_id,
+      field: "accepted_provenance_package.retained_record_id",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.provider_object_ref,
+      expected: expected.provider_object_ref,
+      field: "accepted_provenance_package.provider_object_ref",
+    });
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: packageInput.provider_artifact_hash,
+      expected: expected.provider_artifact_hash,
+      field: "accepted_provenance_package.provider_artifact_hash",
+    });
+    if (!arraysEqual(packageInput.target_path_row_ids, expected.target_path_row_ids)) {
+      missingFields.push("accepted_provenance_package.target_path_row_ids");
+    }
+    if (packageInput.accepted_same_record_evidence !== true) {
+      missingFields.push("accepted_provenance_package.accepted_same_record_evidence");
+    }
+    if (packageInput.negative_control_rejection_verified !== true) {
+      missingFields.push("accepted_provenance_package.negative_control_rejection_verified");
+    }
+  }
+  const packageConditionallyVerified = hasPackageInput && missingFields.length === 0;
+  return {
+    schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA,
+    accepted: false,
+    package_supplied: hasPackageInput,
+    package_conditionally_verified: packageConditionallyVerified,
+    status: packageConditionallyVerified
+      ? "same_target_accepted_provenance_package_conditionally_verified"
+      : hasPackageInput
+        ? "same_target_accepted_provenance_package_missing_or_unverified"
+        : "same_target_accepted_provenance_package_missing",
+    required_package_schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+    required_package_fields: [...REQUIRED_ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_FIELDS],
+    expected_package_payload: expected,
+    supplied_package_schema: normalizeStringRef(packageInput.schema),
+    supplied_accepted_replacement_source_row_id:
+      normalizeStringRef(packageInput.accepted_replacement_source_row_id),
+    supplied_geometry_carrier_row_ref: normalizeStringRef(packageInput.geometry_carrier_row_ref),
+    missing_fields: missingFields,
+    first_missing_object: packageConditionallyVerified
+      ? null
+      : "sh_0_sea_same_target_accepted_provenance_package",
+    first_missing_field: packageConditionallyVerified
+      ? null
+      : (missingFields[0] ?? "accepted_provenance_package"),
+    authorization: makeAuthorization(),
   };
 }
 
@@ -161,8 +503,9 @@ function buildDiagnosticResponseProbe({ model, options, producedSourceRow = null
     radial_rate_source: options.responseRate == null ? "default_zero_radial_rate_probe" : "cli:response-rate",
     boundary_wake_source:
       options.boundaryWakeProjection == null
-        ? "default_zero_boundary_wake_projection"
+        ? "aa_fcc_shell_default_zero_boundary_wake_projection"
         : "cli:boundary-wake-projection",
+    geometry_carrier: buildGeometryCarrier(model),
     rho_NS: cleanNumber(rhoNs),
     n: cleanNumber(normalizedDensity),
     e_sea: cleanNumber(eSea),
@@ -187,11 +530,13 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
       : cleanNumber(normalizeNumber(options.producedSourcePhi, seedProbe.Phi_probe));
   const targetBinding = buildTargetBinding(model);
   const localRowRefs = buildLocalRowRefs(model);
+  const geometryCarrier = buildGeometryCarrier(model);
   const rowKey = {
     schema: PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
     responseKind,
     targetBinding,
     localRowRefs,
+    geometryCarrier,
     requiredPhi,
     producedPhi,
     step,
@@ -208,11 +553,34 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
     event_provenance: {
       boundary_event_row_ref: `${rowId}:boundary-event`,
       boundary_condition_row_ref: localRowRefs.boundary_condition_row_ref,
-      event_source: "candidate_same_target_boundary_pressure_tension_event",
+      geometry_carrier_row_ref: geometryCarrier.geometry_carrier_row_ref,
+      event_source: `candidate_same_target_aa_fcc_shell_${responseKind}_event`,
       accepted_event_row: false,
+    },
+    geometry_carrier: {
+      ...geometryCarrier,
+      source_production_role: `${responseKind}_diagnostic_geometry_carrier`,
+    },
+    accepted_replacement_target: {
+      required_package_schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+      required_seed_path_certificate_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+      required_seed_path_certificate_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+      required_provenance_fields: [
+        "accepted_geometry_provenance_ref",
+        "accepted_event_provenance_ref",
+        "accepted_support_provenance_ref",
+        "accepted_action_provenance_ref",
+      ],
+      accepted_geometry_provenance: false,
+      accepted_event_provenance: false,
+      accepted_support_provenance: false,
+      accepted_action_provenance: false,
+      first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+      first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
     },
     support_provenance: {
       support_envelope_row_ref: localRowRefs.support_envelope_row_ref,
+      geometry_carrier_row_ref: geometryCarrier.geometry_carrier_row_ref,
       weakest_outward_post_turn_ddot_R_toy: cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR),
       inward_deadband: deadband,
       required_projected_response_floor: cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband),
@@ -221,6 +589,7 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
     },
     action_provenance: {
       action_exchange_row_ref: localRowRefs.action_exchange_row_ref,
+      geometry_carrier_row_ref: geometryCarrier.geometry_carrier_row_ref,
       response_work_rate_ref: rowBySuffix(model, "action_exchange_row")?.response_work_rate ?? null,
       diagnostic_action_residual_ref: rowBySuffix(model, "action_exchange_row")?.diagnostic_action_residual ?? null,
       accepted_same_record_action_closure: false,
@@ -238,6 +607,113 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
     first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
     first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
     retained_evidence_authorized: false,
+  };
+}
+
+function buildAcceptedProvenanceReplacementRequirement({
+  model,
+  producedSourceRow,
+  candidateResponseRow,
+  options = {},
+}) {
+  if (producedSourceRow == null) {
+    return null;
+  }
+  const seedPathRequirement = buildSeedPathAcceptanceCertificateRequirement(model, options);
+  const responseKind = producedSourceRow.response_kind ?? candidateResponseRow?.response_kind ?? "pressure_tension";
+  const targetBinding = producedSourceRow.target_binding ?? buildTargetBinding(model);
+  const geometryCarrier = producedSourceRow.geometry_carrier ?? buildGeometryCarrier(model);
+  const expectedRefPrefixes = {
+    accepted_replacement_source_row_ref:
+      `accepted:sh-0-sea:${responseKind}:same-target-aa-fcc-source:`,
+    accepted_geometry_provenance_ref:
+      "accepted:sh-0-sea:geometry:aa-fcc-nearest-neighbor-shell:",
+    accepted_event_provenance_ref:
+      `accepted:sh-0-sea:event:${responseKind}:aa-fcc-shell:`,
+    accepted_support_provenance_ref:
+      `accepted:sh-0-sea:support:${responseKind}:aa-fcc-shell:`,
+    accepted_action_provenance_ref:
+      `accepted:sh-0-sea:action:${responseKind}:aa-fcc-shell:`,
+  };
+  const acceptedProvenancePackageVerification = evaluateAcceptedProvenanceReplacementPackage({
+    acceptedProvenancePackage: options.acceptedProvenancePackage ?? {},
+    producedSourceRow,
+    candidateResponseRow,
+    seedPathRequirement,
+    expectedRefPrefixes,
+    targetBinding,
+    geometryCarrier,
+  });
+  const seedPathReady = seedPathRequirement.requirement_passed === true;
+  const packageReady =
+    acceptedProvenancePackageVerification.package_conditionally_verified === true;
+  const requirementPassed = seedPathReady && packageReady;
+  return {
+    schema: ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA,
+    accepted: false,
+    requirement_passed: requirementPassed,
+    status: seedPathReady
+      ? acceptedProvenancePackageVerification.status
+      : seedPathRequirement.status,
+    response_kind: responseKind,
+    diagnostic_source_row_id: producedSourceRow.row_id,
+    candidate_response_row_id: candidateResponseRow?.row_id ?? null,
+    target_binding: targetBinding,
+    geometry_carrier: geometryCarrier,
+    seed_path_acceptance: {
+      requirement_schema: seedPathRequirement.schema,
+      accepted: seedPathRequirement.accepted,
+      requirement_passed: seedPathRequirement.requirement_passed,
+      status: seedPathRequirement.status,
+      first_missing_object: seedPathRequirement.first_missing_object,
+      first_missing_field: seedPathRequirement.first_missing_field,
+      required_certificate_schema: seedPathRequirement.required_certificate_schema,
+      required_certificate_ref_prefix: seedPathRequirement.required_certificate_ref_prefix,
+      required_external_authority_package_schema:
+        seedPathRequirement.required_external_authority_package_schema,
+      required_external_authority_package_ref:
+        seedPathRequirement.required_external_authority_package_ref,
+      required_repo_authorization_object:
+        seedPathRequirement.required_repo_authorization_object,
+      required_repo_authorization_field:
+        seedPathRequirement.required_repo_authorization_field,
+      repo_authorization_status: seedPathRequirement.repo_authorization_status,
+      conditionally_verified:
+        seedPathRequirement.acceptance_certificate_verification?.conditionally_verified ?? false,
+    },
+    required_package_schema: ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+    required_package_fields: [...REQUIRED_ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_FIELDS],
+    expected_ref_prefixes: expectedRefPrefixes,
+    accepted_provenance_package_verification: acceptedProvenancePackageVerification,
+    current_diagnostic_refs: {
+      geometry_carrier_row_ref: geometryCarrier.geometry_carrier_row_ref,
+      boundary_condition_row_ref:
+        producedSourceRow.event_provenance?.boundary_condition_row_ref ?? null,
+      boundary_event_row_ref:
+        producedSourceRow.event_provenance?.boundary_event_row_ref ?? null,
+      support_envelope_row_ref:
+        producedSourceRow.support_provenance?.support_envelope_row_ref ?? null,
+      action_exchange_row_ref:
+        producedSourceRow.action_provenance?.action_exchange_row_ref ?? null,
+    },
+    accepted_provenance_status: {
+      accepted_geometry_provenance: false,
+      accepted_event_provenance: false,
+      accepted_support_provenance: false,
+      accepted_action_provenance: false,
+    },
+    first_missing_object: seedPathReady
+      ? acceptedProvenancePackageVerification.first_missing_object
+      : seedPathRequirement.first_missing_object,
+    first_missing_field: seedPathReady
+      ? acceptedProvenancePackageVerification.first_missing_field
+      : seedPathRequirement.first_missing_field,
+    next_after_seed_path_acceptance: [
+      "held_release_seed_path_rows_external_accepted_authority_package.v0",
+      "repo_authorization_for_accepted_held_release_seed_path_rows",
+      ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
+    ],
+    authorization: makeAuthorization(),
   };
 }
 
@@ -268,6 +744,8 @@ function buildCandidateResponseRow({ model, probe, options }) {
       coefficient_source: probe.coefficient_source,
       radial_displacement_source: probe.radial_displacement_source,
       boundary_wake_source: probe.boundary_wake_source,
+      geometry_carrier_row_ref: probe.geometry_carrier?.geometry_carrier_row_ref ?? null,
+      geometry_carrier_attempt_id: probe.geometry_carrier?.diagnostic_attempt_id ?? null,
       produced_response_source_row_ref: probe.produced_response_source_row_ref,
     },
     response_equation:
@@ -721,6 +1199,12 @@ export function buildSh0SeaDiagnosticResponseRun(options = {}) {
     piRASea,
     options,
   });
+  const acceptedProvenanceReplacementRequirement = buildAcceptedProvenanceReplacementRequirement({
+    model,
+    producedSourceRow,
+    candidateResponseRow,
+    options,
+  });
   const core = {
     schema: RESPONSE_RUN_SCHEMA,
     proof_id: "SH-0-sea",
@@ -734,6 +1218,7 @@ export function buildSh0SeaDiagnosticResponseRun(options = {}) {
     response_probe: probe,
     produced_response_source_row: producedSourceRow,
     candidate_response_row: candidateResponseRow,
+    accepted_provenance_replacement_requirement: acceptedProvenanceReplacementRequirement,
     response_equation:
       "Pi_R A_sea=-K_NS_diag*Phi_probe-Gamma_NS_diag*dot_Phi_probe+W_boundary_projection",
     floor_evaluation: floorEvaluation,
@@ -785,6 +1270,13 @@ function parseArgs(args) {
     }
     return vector;
   };
+  const jsonOption = (name) => {
+    const path = stringOption(name);
+    if (path == null) {
+      return undefined;
+    }
+    return JSON.parse(fs.readFileSync(path, "utf8"));
+  };
   return {
     pretty: args.includes("--pretty"),
     responseRun: args.includes("--response-run"),
@@ -805,12 +1297,15 @@ function parseArgs(args) {
     inwardDeadband: numberOption("inward-deadband"),
     producedSourcePhi: numberOption("produced-source-phi"),
     producedSourceMarginStep: numberOption("produced-source-margin-step"),
+    seedPathAcceptanceCertificate: jsonOption("acceptance-certificate-json"),
+    seedPathExternalAuthorityPackage: jsonOption("external-authority-package-json"),
+    acceptedProvenancePackage: jsonOption("accepted-provenance-package-json"),
   };
 }
 
 function printUsage() {
   console.log(
-    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--produced-response-source] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-row-kind=pressure_tension|boundary_wake] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>] [--produced-source-phi=<number>] [--produced-source-margin-step=<number>]`
+    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--produced-response-source] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-row-kind=pressure_tension|boundary_wake] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>] [--produced-source-phi=<number>] [--produced-source-margin-step=<number>] [--acceptance-certificate-json=<path>] [--external-authority-package-json=<path>] [--accepted-provenance-package-json=<path>]`
   );
 }
 
