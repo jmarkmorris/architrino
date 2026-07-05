@@ -334,7 +334,10 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 ### Wake Escapement
 
+This is a boundary-accounting idea, not a new energy reservoir. If a wake leaves the chosen local window before any retained receiver crosses it, the local work ledger cannot spend that wake internally. The accounting must therefore mark it as escaped flux, recoil, boundary exchange, or another declared handoff rather than hiding it inside the local assembly.
+
 For a finite local window $W\subset\Sigma_T$, **wake escapement** is the subset of emitted causal isochrons that exit the retained window without intersecting any retained receiver inside that window. More explicitly, if architrino $a$ emits at $T_{\mathrm{em}}$, define the causal isochron at later time $T$ by
+
 $$
 C_a(T;T_{\mathrm{em}})
 =

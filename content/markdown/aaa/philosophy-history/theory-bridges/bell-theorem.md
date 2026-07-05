@@ -112,7 +112,7 @@ $$
 1-\chi_C E_\theta(C)
 \right]_+
 $$
-where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and local detector kernels, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
+where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and the coupled substrate-response kernels on the declared $c_f$ coordination channel, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
 
 **Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
 $$
@@ -775,7 +775,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 **Assumptions:**
 - The full microstate $\Gamma(T)$ is definite at all $T$ (realism).
 - Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
-- Measurement is local threshold resolution (no distant causal input at measurement time).
+- Measurement is threshold resolution in the coupled substrate response (no controllable observer signaling and no faster-than-$c_f$ input; any distant substrate input must be the declared $c_f$ coordination channel).
 - Measurement independence holds (no superdeterminism, no retrocausation).
 - The measurement-response kernel of a Noether braid assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-assembly half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
 

@@ -1129,6 +1129,8 @@ The circular formulas below use reduced coordinates; stability in the full histo
 
 #### Two-Body Closure Packet (Theorem Target)
 
+The practical standard is replayability. A binary branch is not accepted because the picture is circular, compact, or suggestive. It is accepted only when the same finite record supplies the motion, active roots, excluded roots, return map, energy packet, and residuals needed to reproduce the branch under the delayed law.
+
 A nontrivial electrino:positrino binary is promoted only by a replayable finite-$\eta$ packet, not by the circular ansatz alone. For a fixed signed causal-root ledger $b$, the binary closure packet is
 
 $$

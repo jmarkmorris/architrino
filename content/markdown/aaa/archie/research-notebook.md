@@ -10,6 +10,34 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-07-04: Coordinate-Layer Notation Established
+
+Relevant files:
+
+- [Mathematical Style Guide](mathematics-style-guide.md)
+- [Mathematical Terminology](mathematics-terminology.md)
+- [Ontology](../foundations/ontology.md)
+- [Observer Framework](../spacetime/observer-framework.md)
+- [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
+
+The coordinate notation settled into a core layer rule: every equation must show whether it is using the native absolute frame or an effective observer/GR-comparison chart. The native substrate variables are $T$ for absolute time and $\mathbf X=(X^1,X^2,X^3)$ for position in the Euclidean void. Worldlines, velocities, causal-root conditions, and primitive wake geometry therefore use $\mathbf X_i(T)$, $\mathbf V_i=d\mathbf X_i/dT$, $dT$, $dX^i$, $\partial_T$, and $\nabla_{\mathbf X}$.
+
+The GR-relative Lorentz frame is not a second substrate. It is the effective observer chart reconstructed by Physical Observers from clocks, rulers, signals, Noether sea state, and retained records. Its coordinates are $t_{\mathrm{eff}}$ and $x_{\mathrm{eff}}^i$, with differentials and operators such as $dt_{\mathrm{eff}}$, $dx_{\mathrm{eff}}^i$, and $\partial_{t_{\mathrm{eff}}}$. Effective metric rows use $g_{\mu\nu}^{\mathrm{eff}}$ and related observer-sector objects only after that chart has been declared.
+
+The important realization is that the same physical dimensions do not make two coordinates the same object. $T$ and $t_{\mathrm{eff}}$ both measure time-like quantities, and $X^i$ and $x_{\mathrm{eff}}^i$ both carry length units, but they live on different sides of the theory. Treating them as interchangeable hides the constitutive map that the Lorentz and gravity programs are supposed to derive.
+
+That map is now named explicitly:
+$$
+(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)
+=
+\chi_{\mathrm{eff}}(T,\mathbf X,\mathcal N_{\mathrm{sea}},\text{observer record}).
+$$
+Unless a local document has already derived the needed row, $\chi_{\mathrm{eff}}$ remains a closure target. It cannot be smuggled into a derivation by reusing bare $t$, $x^i$, $dt$, or $dx^i$ as if the absolute and observer charts had already been identified.
+
+This notation change matters because it protects the central architecture of $\mathbb{A}\mathbb{A}\mathbb{A}$. The theory keeps absolute time, the Euclidean void, and the Euclidean-void rest frame at the substrate level, while still requiring Physical Observers to recover Lorentz-consistent records inside tested regimes. The notation now forces each calculation to say which side it is on: substrate dynamics in the absolute frame, or observer-accessible Lorentz/GR comparison after clock, ruler, signal, and Noether sea response have been projected into an effective chart.
+
+The milestone is therefore not a proof of Lorentz recovery. It is the establishment of the notation discipline needed for that proof to be honest. A valid-looking equation can no longer pass by dimensional similarity alone. It must carry its coordinate layer, its clock layer, and its map obligation visibly in the symbols.
+
 ## 2026-06-30: Original Blog Archive and GitHub Development Home
 
 Relevant links:

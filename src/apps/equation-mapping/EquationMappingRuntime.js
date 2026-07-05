@@ -298,6 +298,38 @@ function getOverlayTargetPosition(overlay, anchorPositions, fallbackIndex) {
   };
 }
 
+function resolveConnectorAlignedRowShift({
+  positioned = [],
+  hardLeft = 0,
+  hardRight = 0,
+  connectorInsetPx = COMMENT_CONNECTOR_INSET_PX,
+} = {}) {
+  if (!positioned.length || hardRight <= hardLeft) {
+    return 0;
+  }
+  const first = positioned[0];
+  const last = positioned[positioned.length - 1];
+  let minDelta = hardLeft - first.x;
+  let maxDelta = hardRight - (last.x + last.item.width);
+
+  positioned.forEach((entry) => {
+    const width = Math.max(0, entry.item.width);
+    const inset = Math.min(connectorInsetPx, width / 2);
+    const verticalLeft = entry.item.targetCenterX - (width - inset);
+    const verticalRight = entry.item.targetCenterX - inset;
+    minDelta = Math.max(minDelta, verticalLeft - entry.x);
+    maxDelta = Math.min(maxDelta, verticalRight - entry.x);
+  });
+
+  if (minDelta > maxDelta) {
+    return 0;
+  }
+  if (minDelta <= 0 && maxDelta >= 0) {
+    return 0;
+  }
+  return minDelta > 0 ? minDelta : maxDelta;
+}
+
 function isCoordinateEffectiveSideCallout(document, overlay) {
   return (
     document?.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID &&
@@ -310,6 +342,16 @@ export function resolveCalloutPlacements(document = {}) {
   const overlays = document.overlays ?? [];
   const { anchorPositions, rowCount } = getFormulaAnchorPositions(document);
   const placementByOverlayId = new Map();
+
+  if (document.calloutPlacementMode === "explicit") {
+    overlays.forEach((overlay) => {
+      placementByOverlayId.set(
+        overlay.id,
+        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
+      );
+    });
+    return placementByOverlayId;
+  }
 
   if (rowCount > 1) {
     const overlayTargets = overlays.map((overlay, index) => ({
@@ -415,6 +457,17 @@ function resolveHorizontalCalloutPositions({
   if (underflowLeft > 0) {
     positioned.forEach((entry) => {
       entry.x += underflowLeft;
+    });
+  }
+
+  const connectorAlignedShift = resolveConnectorAlignedRowShift({
+    positioned,
+    hardLeft,
+    hardRight,
+  });
+  if (connectorAlignedShift !== 0) {
+    positioned.forEach((entry) => {
+      entry.x += connectorAlignedShift;
     });
   }
 

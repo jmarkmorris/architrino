@@ -561,10 +561,11 @@ test("equation mapping energy-momentum map substitutes momentum before solving r
   );
   const motionOverlay = document.overlays.find((overlay) => overlay.id === "motion-response");
 
+  assert.equal(document.calloutPlacementMode, "explicit");
   assert.deepEqual([...resolveCalloutPlacements(document).entries()], [
     ["energy-readout", "above"],
-    ["motion-response", "below"],
-    ["mass-response", "below"],
+    ["motion-response", "above"],
+    ["mass-response", "above"],
     ["speed-role", "above"],
   ]);
   assert.equal(
@@ -703,6 +704,23 @@ test("equation mapping compact callout layout stays near the equation until widt
   assert.equal(layout.get("right").x < 940, true);
   assert.equal(layout.get("middle").x >= layout.get("left").x + 260 + 24, true);
   assert.equal(layout.get("right").x >= layout.get("middle").x + 260 + 24, true);
+});
+
+test("equation mapping shifts a callout row when that makes angled connectors vertical", () => {
+  const layout = resolveCalloutRowLayout({
+    stageWidth: 1000,
+    stageHeight: 700,
+    equationRect: { left: 300, top: 360, right: 700, bottom: 430, width: 400, height: 70 },
+    titleRect: { bottom: 70 },
+    placement: "above",
+    items: [
+      { id: "left", width: 300, height: 120, targetCenterX: 300 },
+      { id: "right", width: 300, height: 120, targetCenterX: 450 },
+    ],
+  });
+
+  assert.equal(Math.round(layout.get("left").x), 94);
+  assert.equal(Math.round(layout.get("right").x), 418);
 });
 
 test("equation mapping keeps wide-row edge callouts centered on their markers", () => {
@@ -1368,18 +1386,18 @@ test("user-facing equation mapping and scene sources use TeX for stylized AAA", 
   });
 });
 
-test("equation mapping supports cabernet geometry-note callouts", () => {
+test("equation mapping uses the standard tone for former geometry callouts", () => {
   const documents = createSeedEquationMapDocuments();
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
   const html = readRepoFile("equation-mapping.html");
   assert.equal(
     documents.some((document) => document.overlays.some((overlay) => overlay.tone === "geometry")),
-    true
+    false
   );
   assert.equal(runtime.includes("comment.dataset.tone = overlay.tone ?? \"standard\""), true);
   assert.equal(runtime.includes("line.dataset.tone = overlay.tone ?? \"standard\""), true);
-  assert.match(html, /--geometry-note-ink: rgba\(190, 85, 98, 0\.82\);/u);
-  assert.match(html, /\.equation-mapping-pointer-line\[data-tone="geometry"\] \{[\s\S]*?stroke: var\(--geometry-note-ink\);/u);
+  assert.equal(html.includes("--geometry-note-ink"), false);
+  assert.equal(html.includes('data-tone="geometry"'), false);
 });
 
 test("equation mapping defaults to medium comment font size", () => {

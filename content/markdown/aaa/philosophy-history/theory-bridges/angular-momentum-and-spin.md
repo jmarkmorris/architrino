@@ -2308,6 +2308,8 @@ Second-ring consumers inherit the same limitation. Photon records in [Reaction L
 
 Helicity is a projection onto a propagation or momentum axis. It should not be used for every planar circulation sign.
 
+The ordinary reader-facing distinction is simple: spin asks how an assembly transforms under rotations, while helicity asks how that rotational label lines up with the direction of travel. A planar circulation can contribute to such a label, but it does not become helicity until the propagation axis, transverse modes, and measurement channel are fixed. The equations below keep that separation visible.
+
 For a vector mode with propagation direction $\hat{\mathbf{p}}$, the standard helicity target is
 
 $$

@@ -8149,6 +8149,8 @@ This is the first honest many-body recapture theorem target. It says that the co
 
 The remaining bridge step is now the same structural one that appeared in the 1D, reduced-planar, and unreduced-planar programs: put the whole cycle on one closed convex tame self-map domain. The only difference is that the data to be preserved are now genuinely atlas-level.
 
+The plain picture is that a proposed many-body cycle cannot be certified by watching one visually plausible path return. The proof must fence off a whole controlled family of nearby histories, let the delayed law evolve that family, and show that every admissible history lands back inside the same fence. The formal atlas language below names the bookkeeping needed to make that statement finite instead of visual.
+
 Let
 $$
 \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}

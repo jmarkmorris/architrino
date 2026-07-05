@@ -31,7 +31,8 @@ export const CLAIM_LEVELS = Object.freeze([
 const EQUATION_SCALE_VALUES = new Set(["small", "medium", "large"]);
 const COMMENT_FONT_SIZE_VALUES = new Set(["small", "medium", "large"]);
 const SECTION_LINE_PLACEMENTS = new Set(["above", "below"]);
-const OVERLAY_TONES = new Set(["standard", "geometry"]);
+const CALLOUT_PLACEMENT_MODES = new Set(["auto", "explicit"]);
+const OVERLAY_TONES = new Set(["standard"]);
 const STYLIZED_AAA_TEX = "\\mathbb{A}\\mathbb{A}\\mathbb{A}";
 const STYLIZED_AAA_UNICODE = "\u{1d538}\u{1d538}\u{1d538}";
 
@@ -100,6 +101,10 @@ export function normalizeCommentFontSize(value, fallback = DEFAULT_COMMENT_FONT_
 
 function normalizeOverlayTone(value) {
   return OVERLAY_TONES.has(value) ? value : "standard";
+}
+
+function normalizeCalloutPlacementMode(value) {
+  return CALLOUT_PLACEMENT_MODES.has(value) ? value : "auto";
 }
 
 function normalizeClaimLevel(value) {
@@ -216,6 +221,7 @@ export function normalizeEquationMapDocument(document = {}, index = 0) {
     overlays,
     backgroundId: normalizeBackgroundId(document.backgroundId),
     claimLevel: normalizeClaimLevel(document.claimLevel),
+    calloutPlacementMode: normalizeCalloutPlacementMode(document.calloutPlacementMode),
   };
 }
 
@@ -589,6 +595,7 @@ const equationMapSeedDocuments = [
     subject: "Relativity and effective metric",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
+    calloutPlacementMode: "explicit",
     formulaTeX:
       "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ p=\\gamma_{\\mathrm{eff}}M_0v_{\\mathrm{eff}}\\Rightarrow E^2=\\gamma_{\\mathrm{eff}}^2M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
     anchors: [
@@ -1015,7 +1022,7 @@ const equationMapSeedDocuments = [
         "properTime",
         "dτ is the clock time along the path. Current physics treats it as the time measured by the moving clock. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is the local clock readout produced by steady absolute time filtered through the branch history.",
         "\\int d\\tau",
-        { x: 66, y: 8, width: 30, line: "above", tone: "geometry" }
+        { x: 66, y: 8, width: 30, line: "above" }
       ),
     ],
   },
@@ -1057,7 +1064,7 @@ const equationMapSeedDocuments = [
         "massDensity",
         "ρ is the source density that loads the field. Ordinary gravity reads it as mass-energy density. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this points to the missing carrier question: which Noether sea ledger stores that source loading?",
         "\\rho_{\\mathrm{eff}}",
-        { x: 36, y: 8, width: 30, line: "above", tone: "geometry" }
+        { x: 36, y: 8, width: 30, line: "above" }
       ),
       overlay(
         "einstein-response",
@@ -1111,7 +1118,7 @@ const equationMapSeedDocuments = [
         "nullPath",
         "A null path has zero interval for light in the effective metric. This is how current relativity draws light cones. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the light cone is the geometry seen by signals moving through Noether sea response.",
         "ds_{\\mathrm{eff}}^2=0",
-        { x: 36, y: 8, width: 30, line: "above", tone: "geometry" }
+        { x: 36, y: 8, width: 30, line: "above" }
       ),
       overlay(
         "wave-vector-test",
@@ -1165,7 +1172,7 @@ const equationMapSeedDocuments = [
         "closedAction",
         "The loop integral says only whole action counts fit around a closed cycle. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a geometry clue: a stable branch ledger must close its return cycle without a leftover phase.",
         "\\oint p\\,dq=nh",
-        { x: 62, y: 76, width: 34, line: "below", tone: "geometry" }
+        { x: 62, y: 76, width: 34, line: "below" }
       ),
     ],
   },
@@ -1211,7 +1218,7 @@ const equationMapSeedDocuments = [
         "waveOperator",
         "The box operator is the spacetime wave operator. It is the part that makes disturbances propagate as waves. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is a direct clue for the carrier geometry of signal ledgers.",
         "\\Box A_\\mu",
-        { x: 62, y: 76, width: 34, line: "below", tone: "geometry" }
+        { x: 62, y: 76, width: 34, line: "below" }
       ),
     ],
   },
@@ -1257,7 +1264,7 @@ const equationMapSeedDocuments = [
         "recordCurrent",
         "J is the current that moves the density around. The equation says density is not lost; it flows. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a carrier-flow map for retained branch ledgers.",
         "\\mathbf J_{\\mathrm{rec}}",
-        { x: 58, y: 82, width: 34, line: "below", tone: "geometry" }
+        { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],
   },
@@ -1305,7 +1312,7 @@ const equationMapSeedDocuments = [
         "scaleFactor",
         "The effective scale factor is the ruler that tells how cosmic distances compare over effective observer time. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the same behavior should be read as Noether sea expansion or response history, not empty space stretching by itself.",
         "a_{\\mathrm{eff}}(t_{\\mathrm{eff}})",
-        { x: 27, y: 8, width: 22, line: "above", tone: "geometry" }
+        { x: 27, y: 8, width: 22, line: "above" }
       ),
       overlay(
         "spatial-curvature-row",
@@ -1374,7 +1381,7 @@ const equationMapSeedDocuments = [
         "lambda",
         "Λ is the LCDM dark-energy term. It behaves like a smooth pressure or energy of the background. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a prime place to test whether the Noether sea has a constitutive pressure ledger.",
         "\\Lambda_{\\mathrm{eff}}/3",
-        { x: 69, y: 8, width: 24, line: "above", tone: "geometry" }
+        { x: 69, y: 8, width: 24, line: "above" }
       ),
       overlay(
         "cosmic-continuity",
@@ -1429,7 +1436,7 @@ const equationMapSeedDocuments = [
         "lambdaDensity",
         "This converts a smooth dark-energy density into Λ. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the geometry reading is direct: find the Noether sea ledger whose density and pressure create this effective term.",
         "\\rho_{\\mathrm{DE,eff}}\\to\\Lambda_{\\mathrm{eff}}",
-        { x: 66, y: 8, width: 30, line: "above", tone: "geometry" }
+        { x: 66, y: 8, width: 30, line: "above" }
       ),
     ],
   },
@@ -1459,7 +1466,7 @@ const equationMapSeedDocuments = [
         "observedAccel",
         "g observed is the acceleration inferred from galaxy rotation. It is larger than the visible-baryon estimate in the low-acceleration regime. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a response readout of the Noether sea around galaxies.",
         "g_{\\mathrm{obs}}",
-        { x: 5, y: 8, width: 28, line: "above", tone: "geometry" }
+        { x: 5, y: 8, width: 28, line: "above" }
       ),
       overlay(
         "baryon-g",
@@ -1522,7 +1529,7 @@ const equationMapSeedDocuments = [
         "modeDensity",
         "uν is energy density per frequency. The ν cubed factor counts how many wave modes fit. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that mode-counting is a geometry clue for photon carrier ledgers in the Noether sea.",
         "u_\\nu",
-        { x: 62, y: 76, width: 34, line: "below", tone: "geometry" }
+        { x: 62, y: 76, width: 34, line: "below" }
       ),
     ],
   },

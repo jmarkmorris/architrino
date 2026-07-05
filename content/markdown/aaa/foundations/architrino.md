@@ -1,6 +1,6 @@
 # Architrino
 
-Start with the entity, not the familiar particle. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the **architrino** is the primitive point transceiver. It continuously emits source-provenanced causal wake history, receives wake intersections from the rest of the universe, and responds through receiver-local acceleration. Effective equilibration appears only later, as a collective assembly response built from those received wakes.
+Start with the entity, not the familiar particle. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the **architrino** is the primitive point transceiver. It continuously emits source-provenanced causal wake history, receives wake intersections from the universe's wake history, including its own emitted wakes when self-hit roots exist, and responds through receiver-local acceleration. Effective equilibration appears only later, as a collective assembly response built from those received wakes.
 
 The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
 
@@ -37,17 +37,19 @@ W_{ij}^{\mathrm{rec}}
 =
 \left|\frac{D_{T,ij}}{D_{s,ij}}\right|
 $$
-Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_{\mathrm{em}})$ is the source-normal denominator and $D_{T,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}} F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
+Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T-T_{\mathrm{em}})$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the emission point $\mathbf X_j(T_{\mathrm{em}})$ toward the receiver $\mathbf X_i(T)$. $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_{\mathrm{em}})$ is the source-normal denominator and $D_{T,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T)$ is the receiver-normal numerator. The absolute value quotes only the branch-strength magnitude; the signed branch-orientation factor $m_{ij}=D_{T,ij}/D_{s,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T-T_{\mathrm{em}})$ in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_{\mathrm{em}}}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}} \tilde F_{ij}$ is the source-normal causal-root transversality Jacobian, and $c_fJ_{ij}^{\mathrm{src}}=\partial_{T_{\mathrm{em}}}g_{ij}=D_{s,ij}$, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_{\mathrm{em}}} F_{ij}=0\},
 $$
-while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the corresponding simple-root floor, for example $\lvert\partial_{T_{\mathrm{em}}}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
+while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the simple-root floor stated above before the schematic acceleration law is treated as an ordinary row rather than a catastrophe-theoretic transition.
 
 In dimensional form $\kappa$ has units
 $$
 [\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}
 $$
 where $\mathrm{Q}$ denotes the polarity unit. The coupling is recorded in the [Parameter Ledger](../validation/parameter-ledger.md#layer-i-substrate-and-kernel-parameters) and defined by the [Master Equation](../dynamics/master-equation.md); any later force-like variable is effective bookkeeping after an assembly response coefficient has been introduced, not primitive architrino inertia.
+
+This supplies a substrate universality seed: no individual architrino carries a separate inertial coefficient, so same-branch primitive response is governed by the same acceleration normalization. The mass-map and Noether sea programs must still show that assembly inertia and gravitational response preserve weak-equivalence bounds; see [General Relativity](../spacetime/general-relativity.md) and [Particle Masses](../assemblies/particle-masses.md).
 
 This definition is ontological, not effective. It does not assign an individual architrino a rest mass, a Standard Model particle type, or a field degree of freedom. Those descriptions enter only after architrinos form assemblies whose collective wake closure can be read by observers.
 
@@ -121,11 +123,13 @@ $$
 $$
 denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
 $$
+\left\lVert
 \mathcal{O}(S)
-=
+-
 \mathcal{O}(\pi S)
-+
-O(\epsilon_{\mathrm{prov}})
+\right\rVert
+\le
+\epsilon_{\mathrm{prov}}
 $$
 This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). The coarse leakage residual and the fine exchange-sign carrier are different objects: $\epsilon_{\mathrm{prov}}$ bounds label leakage through $\Pi_{\mathrm{obs}}$, while the substrate carrier for an exchange sign must live in the joint framed-braid class, including protected rows such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when those rows are part of the branch certificate; see [Absolute Time](absolute-time.md#provenance-and-identity-through-time). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
 
@@ -244,8 +248,11 @@ emits a concentric wake stream centered on one fixed point of the Euclidean void
 
 Over a diagnostic interval $I$, the relevant complete-state object is the source-tagged center curve
 $$
-Z_a(I)=\{\mathbf{z}_a(s):s\in I\}.
+Z_a(I)=\{\mathbf{z}_a(s):s\in I\},
+\qquad
+\mathbf{z}_a(s)=\mathbf X_a(s),
 $$
+where $\mathbf{z}_a(s)$ is the center of the wake isochron emitted at time $s$.
 Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-source wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).

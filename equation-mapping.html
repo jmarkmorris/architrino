@@ -45,7 +45,6 @@
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
         --marker-ink: rgba(75, 0, 130, 0.44);
-        --geometry-note-ink: rgba(127, 29, 29, 0.72);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -66,7 +65,6 @@
         --equation-ink: #ffffff;
         --line-ink: #ffffff;
         --marker-ink: rgba(232, 226, 236, 0.58);
-        --geometry-note-ink: rgba(190, 85, 98, 0.82);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.22);
@@ -81,7 +79,6 @@
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
         --marker-ink: rgba(75, 0, 130, 0.44);
-        --geometry-note-ink: rgba(127, 29, 29, 0.72);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -96,7 +93,6 @@
         --equation-ink: #ffffff;
         --line-ink: #ffffff;
         --marker-ink: rgba(226, 232, 240, 0.58);
-        --geometry-note-ink: rgba(190, 85, 98, 0.82);
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.2);
@@ -679,11 +675,6 @@
         bottom: -14px;
       }
 
-      .equation-mapping-formula-part.is-targeted[data-section-tone="geometry"]::before,
-      .equation-mapping-formula-part.is-targeted[data-section-tone="geometry"]::after {
-        background: var(--geometry-note-ink);
-      }
-
       .equation-mapping-formula-part.is-editor-selected-anchor {
         color: var(--equation-ink);
       }
@@ -712,10 +703,6 @@
 
       .equation-mapping-comment.is-active {
         border-color: var(--line-ink);
-      }
-
-      .equation-mapping-comment[data-tone="geometry"] {
-        border-color: var(--geometry-note-ink);
       }
 
       .equation-mapping-comment-header {
@@ -785,10 +772,6 @@
         stroke: var(--marker-ink);
         stroke-width: 1;
         vector-effect: non-scaling-stroke;
-      }
-
-      .equation-mapping-pointer-line[data-tone="geometry"] {
-        stroke: var(--geometry-note-ink);
       }
 
       .equation-mapping-math-fallback {

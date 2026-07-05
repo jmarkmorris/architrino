@@ -3597,7 +3597,10 @@ $$
 
 ### Invariant-envelope closure
 
+The goal of this section is to turn many local estimates into one return trap. A single margin can show that one part of the motion bends the right way, but a breather proof needs the whole delayed history to stay in a controlled class for an entire cycle. The invariant envelope is that controlled class: if the three margins stay positive together, the return map has a plausible domain on which fixed-point closure can be attempted.
+
 The cycle estimates now reduce to three explicit margins:
+
 $$
 \mathfrak M_{\mathrm{in}}
 \equiv

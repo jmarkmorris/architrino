@@ -3055,6 +3055,8 @@ Therefore a source-emission cadence mapped onto a moving receiver path carries a
 
 ##### Variation and line-of-action forces
 
+This subsection is the bridge from the causal-hit rule to an action-style account. The physical rule has already said what a receiver feels: delayed line-of-action hits with receiver-normal branch strength. The variation below asks whether the same rule can be obtained from one regularized action ledger, so that force, power, and conservation bookkeeping come from the same source rather than from separate matching rules.
+
 The branch law targeted by the action-level variation is:
 
 $$

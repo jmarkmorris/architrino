@@ -606,7 +606,10 @@ Every entry is computed in absolute time from the retained causal-root chart. La
 
 ## Terminal Alignment Label-Count Target
 
+The intuition is that a horizon-adjacent region should not be counted by arbitrary visual tiles. It should be counted by the retained branch labels that can actually sit next to one another without breaking layer closure, wake exchange, chirality, or the observer record. The formal set and transfer matrix below are a way to count only compatible branch records.
+
 The black-hole entropy route requires a dynamics-side label calculation. Once a nested shell braid branch is driven to terminal alignment, the dynamics should output the admissible alignment-restricted closure labels and their neighbor-compatibility rules. For a connected block $U$ of horizon-adjacent alignment patches, the object is
+
 $$
 \mathcal{L}_U(\theta)
 =

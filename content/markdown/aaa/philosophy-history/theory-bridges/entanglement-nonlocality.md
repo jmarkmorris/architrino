@@ -1,6 +1,6 @@
 # Entanglement and Nonlocality: Traditional vs. Architrino Assembly Architecture
 
-This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is not a mysterious connection between distant systems but a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and rendered operationally irreducible by the epistemic limitations of Physical Observers. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and local apparatus-response maps have passed the Bell gate.
+This document establishes the ontological and mathematical mapping between quantum entanglement and nonlocality as understood in standard quantum mechanics and as grounded in the deterministic, path-history dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). The central thesis is that ordinary pair entanglement is a deterministic correlation inherited from shared causal origin, maintained through correlated path-history structure, and resolved at measurement through the declared live substrate-causal $c_f$ coordination channel gated by that provenance; the epistemic limitations of Physical Observers explain why the record looks operationally irreducible, while the Bell nonfactorizability itself is carried by the live channel. Bell-level operational equivalence remains a closure target until the pair-provenance ledger and the coupled apparatus-response law on the $c_f$ channel have passed the Bell gate.
 
 It forms a tight cluster with [Bell Theorem](./bell-theorem.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
@@ -86,7 +86,7 @@ $$
 \Gamma_{\text{parent}}(T_0^-) \;\longrightarrow\; \Gamma_A(T_0^+),\; \Gamma_B(T_0^+) \quad \text{subject to conservation constraints.}
 $$
 
-The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward. These correlations are not imposed by any nonlocal influence. They are recorded in the pair-provenance ledger inherited from the shared causal past.
+The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward, recorded in the pair-provenance ledger inherited from the shared causal past. The ledger is the gating record, not the Bell-violation carrier: correlations recorded at the source alone stay inside the Bell-local bound, and the declared live substrate-causal $c_f$ coordination channel, gated by this provenance, carries the nonfactorizable response during the measurement window.
 
 ### Correlation Maintenance: Path-History Memory
 
@@ -122,9 +122,9 @@ $$
 P(a, b \,|\, \hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B, \lambda) = P(a \,|\, \hat{\mathbf{m}}_A, \lambda)\; P(b \,|\, \hat{\mathbf{m}}_B, \lambda)
 $$
 
-where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail—not because of any superluminal influence at the time of measurement, but because $\lambda$ may encode **joint geometric constraints** (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) that are lost when the pair is partitioned into independent local packages. The pair-provenance ledger by itself is not yet the proof. The proof must derive the two local apparatus-response maps and show that their observer-level compression fails Bell's factorized form while preserving no-signaling.
+where $a, b$ are outcomes and $\hat{\mathbf{m}}_A, \hat{\mathbf{m}}_B$ are measurement settings. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure program, this factorization is the gate to fail. Joint geometric constraints in $\lambda$ (correlated binary-phase orientations, conserved angular-momentum projections, and path-history relations) correlate the wings but cannot by themselves break the factorized form: any shared record is part of $\lambda$, so if each wing is resolved by a purely local kernel the account stays Bell-local. The declared route instead couples the two apparatus-response maps through a live substrate-causal $c_f$ coordination channel during the measurement window, gated by the pair provenance. Coordination outside the effective photon cone is allowed when $c_f > c_0$; faster-than-$c_f$ influence and controllable observer signaling are forbidden. The pair-provenance ledger by itself is not yet the proof. The proof must derive the coupled response law and show that its observer-level compression fails Bell's factorized form while preserving no-signaling.
 
-The common-cause version of the same warning is sharper: conditioning on a shared source event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus local response kernels must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
+The common-cause version of the same warning is sharper: conditioning on a shared source event must not simply screen the joint record law into two independent one-wing laws. If the retained pair-provenance record behaves as an ordinary screening variable, then the account has only rebuilt a Bell-local hidden-variable model. The useful claim is narrower: the pair-provenance object plus the coupled apparatus-response law on the $c_f$ coordination channel must identify which observer-level compression prevents product factorization, while still leaving each one-wing marginal independent of the distant setting.
 
 **Pair-provenance response kernel.** The Bell gate can be written as an attempted compression of the full provenance into a measurable joint response. Define the pair-provenance hidden-variable object as
 
@@ -242,7 +242,7 @@ D_{\mathrm{TV}}\!\left(
 \right)
 $$
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the structure of the pair-provenance ledger and local response kernels, not from allowing the settings to preselect the hidden-variable ensemble.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ Bell route requires $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ to vanish, or to be bounded below an explicitly reported tolerance set by the simulation and experimental pipeline. The non-factorization must therefore come from the live $c_f$-coupled apparatus-response law gated by the pair-provenance ledger, not from allowing the settings to preselect the hidden-variable ensemble.
 
 Here $D_{\mathrm{TV}}$ is total-variation distance on the pair-provenance distribution.
 
@@ -356,8 +356,8 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 |:---|:---|
 | **Entangled state** $\lvert\Psi\rangle_{AB}$ | Joint constraint on the hidden variables $(\Gamma_A, \Gamma_B)$ inherited from a shared source event; the microstate is non-factorizable because conservation laws at fragmentation enforce correlated binary phases and orientations. |
 | **Non-separability** (no product-state decomposition) | The hidden-variable space $\lambda$ encodes geometric correlations (relative binary-plane angles, wake-phase offsets) that cannot be decomposed into independent local assignments without losing information. |
-| **Measurement collapse** (distant state update) | Local threshold resolution at each detector independently; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two separate, causally disconnected basin crossings whose outcomes are correlated by shared $\lambda$. |
-| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus both local apparatus-response maps must reproduce the observed Bell correlations while failing Bell locality because $\lambda$ is non-separable; the violation may not be asserted from shared provenance alone. |
+| **Measurement collapse** (distant state update) | Threshold resolution at each detector in the coupled substrate response; the $\mathbb{U}_{\text{now}}$ universe-state perspective sees two basin crossings coordinated through the declared $c_f$ channel, gated by shared pair provenance, with no observer-level signaling. |
+| **Bell inequality violation** ($\lvert S\rvert = 2\sqrt{2}$) | Closure target: the pair-provenance ledger plus the coupled apparatus-response law on the $c_f$ coordination channel must reproduce the observed Bell correlations while failing Bell factorization; the violation may not be asserted from shared provenance alone. |
 | **No-signaling** | Marginal statistics at each detector are independent of the distant setting; correlations are visible only upon classical comparison of results. |
 | **Black-hole thermofield-double connected geometry** | Special strong-field/horizon-interface effective geometry, not the default ontology of ordinary Bell-pair entanglement. The black-hole case motivates the comparison but does not settle ER=EPR for arbitrary entanglement. |
 | **Decoherence of entanglement** | Progressive loss of phase correlation between the two assemblies as each interacts with its local Noether sea environment, randomizing the internal wake phases that carry the correlated information. |
@@ -399,16 +399,16 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 
 ## Observables and Falsifiability
 
-**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic, nonseparable pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by local detector kernels without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
+**Working closure route:** Ordinary entanglement correlations should be derived from a deterministic pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by apparatus-response kernels coupled through the live substrate-causal $c_f$ coordination channel gated by that provenance, with no faster-than-$c_f$ influence and no controllable observer signaling. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
 - Complete microstate $\Gamma(T)$ is definite at all $T$.
 - Conservation constraints at the source event constrain the joint hidden-variable distribution; the Bell gate must derive the remaining measure structure rather than assume it.
-- Measurement is a local threshold crossing (no distant causal input).
+- Measurement is a threshold crossing in the coupled substrate response; any distant substrate input is the declared $c_f$ coordination channel, with no faster-than-$c_f$ input and no controllable observer signaling.
 - Measurement independence holds (no superdeterminism).
 
 **Closure Targets and Constraints:**
-- Bell gate: derive the pair-provenance ledger, the two local apparatus-response maps, and the observer-level compression that reproduce the tested Bell correlations without invoking superluminal influence.
+- Bell gate: derive the pair-provenance ledger, the coupled apparatus-response law on the $c_f$ coordination channel, and the observer-level compression that reproduce the tested Bell correlations with no faster-than-$c_f$ influence and no observer-level signaling.
 - Measurement-independence guardrail: report $\Delta_{\mathrm{MI}}^{\mathrm{prov}}$ for any pair-provenance simulation or analytic Bell packet, and do not count a correlation fit as successful if it requires setting-dependent hidden-variable preparation.
 - Residual reporting: report $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ alongside any claimed Bell-pair recovery.
 - Photon-polarization gate: for entangled photon tests, Gate B must recover the transverse analyzer statistics and no-signaling behavior before the note may claim operational equivalence with quantum mechanics.
@@ -418,7 +418,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 **Failure Modes:**
 - If an experiment demonstrates **signaling** via entanglement (information transfer without a sub-$c_f$ channel), the mechanism fails.
 - If a Bell test with verified measurement independence and closed loopholes produces correlations **exceeding** the Tsirelson bound ($|S| = 2\sqrt{2}$), the quantum formalism itself would be violated, requiring revision at both levels.
-- If the pair-provenance ledger plus local apparatus-response maps fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
+- If the pair-provenance ledger plus the coupled apparatus-response law on the $c_f$ coordination channel fail to reproduce the full spin-singlet joint law from the hidden-variable geometry, the specific Bell-closure mechanism is falsified, though the general ontological framework may admit repair.
 
 **Bell Closure Gate:**
 - Simulate a minimal correlated-pair source event (e.g., a parent assembly fragmenting into two daughter Noether braids) under the Master Equation and extract the joint outcome statistics as a function of relative measurement angle.
