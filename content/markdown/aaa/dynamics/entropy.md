@@ -500,11 +500,11 @@ $$
 Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{v}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{v}_{\partial W}=0$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
 
 $$
-\frac{dS_{\mathcal{Q},W}}{dt}\ge 0
+\frac{dS_{\mathcal{Q},W}}{dT}\ge 0
 \quad\Longleftrightarrow\quad
-\sigma_W(t)+\mathcal{R}_{\mathcal{Q}}(t)
+\sigma_W(T)+\mathcal{R}_{\mathcal{Q}}(T)
 \ge
-\int_{\partial W(t)}
+\int_{\partial W(T)}
 \left(
 \mathbf{J}_S
 -
@@ -518,17 +518,17 @@ for the declared record. The phrase "entropy of the universe" is not a complete 
 The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
-\frac{d}{dt}S_{\Pi,W}(t)
+\frac{d}{dT}S_{\Pi,W}(T)
 =
-k_B\,\sigma_W^{\mathrm{int}}(t)
+k_B\,\sigma_W^{\mathrm{int}}(T)
 +
 k_B\,\Sigma_{\mathrm{esc}}
 \left(
 \mathcal{E}_{\mathrm{esc}}(W),
-t
+T
 \right)
 +
-\mathcal{R}_{\Pi,W}(t)
+\mathcal{R}_{\Pi,W}(T)
 $$
 
 on a fixed coarse-graining and boundary convention. In words: observer-window entropy production is bounded below by the retained-history distinctions lost to escaping wakes, up to declared interior production and projection residuals. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.

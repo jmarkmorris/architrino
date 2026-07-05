@@ -47,12 +47,12 @@ The rebuilt drive packet must report:
 | --- | --- |
 | retained box | same $I_\ast\times W_\alpha$ box used by the topology row |
 | $D_s$ | source-normal interval and floor |
-| $D_t$ | receiver-normal interval |
+| $D_T$ | receiver-normal interval |
 | $W^{\mathrm{rec}}$ | outward-rounded receiver-normal strength interval |
 | radial contribution | recomputed radial interval on the same box |
 | tangential contribution | recomputed tangential interval on the same box |
 | aggregation | branch-sum interval with no sampled-only promotion |
-| negative control | row fails closed when $D_t$ is missing, mismatched, or nonfinite |
+| negative control | row fails closed when $D_T$ is missing, mismatched, or nonfinite |
 
 ## Promotion Rule
 

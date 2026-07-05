@@ -82,13 +82,13 @@ D_{s,r}=J_r
 =
 1-\mathbf{T}_j(\lambda_n-\eta_r)\cdot\widehat{\mathbf{R}}_r,
 \qquad
-D_{t,r}
+D_{T,r}
 =
 1-\mathbf{T}_i(\lambda_n)\cdot\widehat{\mathbf{R}}_r,
 \qquad
 W_r^{\mathrm{rec}}
 =
-\left|\frac{D_{t,r}}{D_{s,r}}\right|,
+\left|\frac{D_{T,r}}{D_{s,r}}\right|,
 $$
 
 and
@@ -231,7 +231,7 @@ $$
 
 where the last term is present only for variations with $\delta\eta_r\ne0$.
 
-On a fixed sign stratum for $D_{s,r}$ and $D_{t,r}$,
+On a fixed sign stratum for $D_{s,r}$ and $D_{T,r}$,
 
 $$
 \delta\mathbf{f}_r

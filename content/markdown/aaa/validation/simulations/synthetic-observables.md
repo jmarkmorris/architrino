@@ -11,20 +11,20 @@ Define a canonical $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathb
 
 ### Definition
 A $\mathbb{U}_{\text{now}}$ is defined by:
-- Fixed Euclidean sample points or worldlines $P = \{x_k\}$ in a declared coordinate scaffold on $\mathbb{R}^3$
-- Access to the full state $S(t) = \{(x_i(t), v_i(t), q_i, \dots)\}$ for all architrinos
+- Fixed Euclidean sample points or worldlines $P = \{\mathbf X_k\}$ in a declared coordinate scaffold on $\mathbb{R}^3$
+- Access to the full state $S(T) = \{(\mathbf X_i(T), \mathbf V_i(T), q_i, \dots)\}$ for all architrinos
 - Output channels:
-  - Local potential $\Phi(x_k,t)$
-  - Local gradient $\nabla\Phi(x_k,t)$ (force proxy)
+  - Local potential $\Phi(\mathbf X_k,T)$
+  - Local gradient $\nabla_{\mathbf X}\Phi(\mathbf X_k,T)$ (force proxy)
   - Optional local Noether sea state variables (e.g., $\rho_{\text{NS}}$, alignment/orientation metrics)
-  - Causal wake surface provenance/event tags: for each received contribution at $(x_k,t)$, record `emitter_id` together with $t_{\text{emit}}$, satisfying $\| x_k - x_{\text{emitter}}(t_{\text{emit}})\| = c_f (t - t_{\text{emit}})$
+  - Causal wake surface provenance/event tags: for each received contribution at $(\mathbf X_k,T)$, record `emitter_id` together with $T_{\mathrm{em}}$, satisfying $\| \mathbf X_k - \mathbf X_{\text{emitter}}(T_{\mathrm{em}})\| = c_f (T - T_{\mathrm{em}})$
   - Photon packet provenance when a radiation channel is declared: source event, path segment, before/after frequency, recoil or medium-energy exchange, remnant row, and signed exchange residual
   - Optional finite-window operator diagnostics for declared reconstructed channels $\mathbf{Y}_\eta$, including Gauss, Stokes, and wake-surface normalization residuals
 
 ### Minimal synthetic products
-- Time series: $\Phi(t)$, $\nabla\Phi(t)$ at fixed points ("stationary detectors")
-- Snapshot field maps: $\Phi(x,t_0)$, $\nabla\Phi(x,t_0)$ over grids at fixed $t_0$
-- Provenance tables: `receiver_id`, $t$, `emitter_id`, $t_{\text{emit}}$, `contribution_strength`
+- Time series: $\Phi(T)$, $\nabla_{\mathbf X}\Phi(T)$ at fixed points ("stationary detectors")
+- Snapshot field maps: $\Phi(\mathbf X,T_\ast)$, $\nabla_{\mathbf X}\Phi(\mathbf X,T_\ast)$ over grids at fixed $T_\ast$
+- Provenance tables: `receiver_id`, $T$, `emitter_id`, $T_{\mathrm{em}}$, `contribution_strength`
 - Propagation diagnostics: arrival-time distributions, dispersion tests, effective $c_{\text{eff}}$ estimates
 - Coarse kinetic moments when a continuum reduction is claimed: density, current, momentum-current tensor, energy-flux vector, and memory-current residuals derived from the same event-root records
 - Stochastic summaries when a noise model is claimed: drift vector, diffusion tensor, first two distribution moments, and direct ensemble comparison against event-root histories
@@ -234,9 +234,9 @@ until thresholds are met.
 
 ### $\mathbb{U}_{\text{now}}$ as Standard Probe
 
-1. **Definition**: A $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) is a non-physical bookkeeping operator acting on the full microstate $S(t)$.
+1. **Definition**: A $\mathbb{U}_{\text{now}}$ universe-state perspective ($\mathbb{U}_{\text{now}}$) is a non-physical bookkeeping operator acting on the full microstate $S(T)$.
 2. **Synthetic Observables**:
-    - **Raw Data**: Time series of $\Phi(x,t)$ at fixed points.
+    - **Raw Data**: Time series of $\Phi(\mathbf X,T)$ at fixed points.
     - **Post-Processing**: To simulate a physical detector, we act on the raw data by integrating the derived clock time $\tau$ of a "clock assembly" moving through the $\mathbb{U}_{\text{now}}$ grid.
 3. **Separation of Concerns**: This explicitly separates Ontology (simulation state/$\mathbb{U}_{\text{now}}$ data) from Phenomenology (synthetic detector data).
 

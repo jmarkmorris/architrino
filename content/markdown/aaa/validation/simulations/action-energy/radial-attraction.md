@@ -27,7 +27,7 @@ Solvability status:
 - No closed-form solution is presently asserted for the velocity-dependent receiver-normal radial fall.
 
 Notes:
-- For a fixed source, $D_s=1$ in field-speed units. The nontrivial receiver-normal factor is $D_t=1-\dot r(t)$ on the outward radial sign convention.
+- For a fixed source, $D_s=1$ in field-speed units. The nontrivial receiver-normal factor is $D_T=1-\dot r(t)$ on the outward radial sign convention.
 
 Use:
 - A simple ground-truth receiver-normal root geometry against which delayed-law simulations can check receiver-normal modulation.

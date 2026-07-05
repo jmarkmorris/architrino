@@ -15,7 +15,7 @@ Use an Elie Cartan-style moving-frame, coframe, connection, and holonomy lens. K
 
 ## Context
 
-We are developing a deterministic tri-binary Noether-braid theory. A Noether braid is a retained closed assembly with three coupled binary substructures, causal-delay wake channels, self-hit, energy, momentum, angular-momentum ledgers, phase rows, and a surrounding Noether sea state. The Noether sea is the population-level medium record around retained assemblies; it carries density, cadence, delay, stress, flow, orientation, and response rows.
+We are developing a deterministic Noether braid theory. A Noether braid is a retained closed assembly with causal-delay wake channels, self-hit, energy, momentum, angular-momentum ledgers, phase rows, and a surrounding Noether sea state. Exact shell support and binary grouping are branch-level proof obligations; the nested shell braid candidate adds three ordered support bands when that role map is declared. The Noether sea is the population-level medium record around retained assemblies; it carries density, cadence, delay, stress, flow, orientation, and response rows.
 
 The current equation-mapping target is:
 

@@ -6,17 +6,17 @@ The core warning is simple: time-translation invariance of a state-dependent del
 
 ## Energy Construction Problem
 
-Fix a finite retained system over a time window $W=[t_a,t_b]$, a spatial window $\Omega\subset\Sigma_t$ when boundary flux is relevant, memory depth $h < \infty$, causal-surface width $\eta > 0$, optional core cutoff $\epsilon_c > 0$, and branch chart
+Fix a finite retained system over a time window $W=[T_a,T_b]$, a spatial window $\Omega\subset\Sigma_T$ when boundary flux is relevant, memory depth $h < \infty$, causal-surface width $\eta > 0$, optional core cutoff $\epsilon_c > 0$, and branch chart
 $$
 \mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)
 $$
-for the same active causal-root rows used by the [Master Equation](../../../dynamics/master-equation.md). The retained history at time $t$ is the segment
+for the same active causal-root rows used by the [Master Equation](../../../dynamics/master-equation.md). The retained history at time $T$ is the segment
 $$
-X_t
+X_T
 =
 \left\{
-\mathbf{x}_a(t+\theta),
-\mathbf{v}_a(t+\theta),
+\mathbf X_a(T+\theta),
+\mathbf V_a(T+\theta),
 q_a
 :
 a\in A_\Omega,\,
@@ -28,13 +28,13 @@ Here $A_\Omega$ is the retained architrino index set for the window, not a new k
 
 A promoted delay-energy functional has the form
 $$
-E_{\mathrm{delay}}^{(\eta)}[X_t;\mathfrak{B},\Omega]
+E_{\mathrm{delay}}^{(\eta)}[X_T;\mathfrak{B},\Omega]
 =
-K_{\mu}^{(\eta)}(t)
+K_{\mu}^{(\eta)}(T)
 +
-E_{\text{wake},\mathfrak{B}}^{(\eta)}(t)
+E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 +
-E_{\mathrm{sea},\Omega}^{(\eta)}(t)
+E_{\mathrm{sea},\Omega}^{(\eta)}(T)
 $$
 where $K_{\mu}^{(\eta)}$ is the declared mechanical kinetic bookkeeping proxy, $E_{\text{wake},\mathfrak{B}}^{(\eta)}$ is the causal-history interaction contribution, and $E_{\mathrm{sea},\Omega}^{(\eta)}$ is included only when retained Noether sea degrees of freedom are part of the window. None of these terms is allowed to absorb an unreported boundary flux or unresolved reaction channel.
 
@@ -46,16 +46,16 @@ There are three admissible ways to define the wake-energy term. A calculation ma
 
 ### Action-Boundary Route
 
-If a symmetry-preserving nonlocal action supplies the force row, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(t_1,t_0)$ chosen by the same action as the force residual,
+If a symmetry-preserving nonlocal action supplies the force row, then the energy term is the time-boundary charge induced by absolute-time translation. With causal-delay interaction kernel $\mathcal{K}_{ij}^{E}(T_1,T_{\mathrm{em}})$ chosen by the same action as the force residual,
 $$
-E_{\text{wake},\mathfrak{B}}^{(\eta)}(t)
+E_{\text{wake},\mathfrak{B}}^{(\eta)}(T)
 =
 \frac{1}{2}
 \sum_{i,j}
-\int_{-\infty}^{t}dt_0
-\int_t^\infty dt_1\,
-\partial_{t_1}
-\mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(t_1,t_0)
+\int_{-\infty}^{T}dT_{\mathrm{em}}
+\int_T^\infty dT_1\,
+\partial_{T_1}
+\mathcal{K}_{ij,\mathfrak{B}}^{E,\eta}(T_1,T_{\mathrm{em}})
 $$
 is the candidate in-flight causal-history charge. This is the route developed in [Master Equation](../../../dynamics/master-equation.md#action-level-wake-energy-functional-at-time-boundary-t) and [Effective Lagrangian](../../../dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws). It becomes theorem-level only when the same action also gives the accepted acceleration law and the endpoint leakage residual vanishes.
 
@@ -63,60 +63,60 @@ is the candidate in-flight causal-history charge. This is the route developed in
 
 For a realized trajectory, one may reconstruct a compatible interaction contribution by integrating the delivered power:
 $$
-U_{\mathfrak{B}}(t)
+U_{\mathfrak{B}}(T)
 =
 U_\ast
 -
-\int_{t_\ast}^{t}
+\int_{T_\ast}^{T}
 \sum_i
 \mu_{\text{arch}}\,
-\mathbf{a}_{i,\mathfrak{B}}^{(\eta)}(t')
+\mathbf A_{i,\mathfrak{B}}^{(\eta)}(T')
 \cdot
-\mathbf{v}_i(t')\,dt'
+\mathbf V_i(T')\,dT'
 $$
 This route is trajectory-local. It is useful for simulations and branch replay, but it is not an off-shell conserved charge unless the same action and boundary convention have already been declared.
 
 #### Binary Branch Work Ledger
 
-For a solved two-body branch chart $b$, the work-integral route has a concrete first test. Let $\mathbf{a}_{i,b}^{(\eta)}(t)$ be the acceleration row obtained from exactly the active causal roots retained by the binary branch chart. With the quadratic kinetic proxy, define the delivered branch power by
+For a solved two-body branch chart $b$, the work-integral route has a concrete first test. Let $\mathbf A_{i,b}^{(\eta)}(T)$ be the acceleration row obtained from exactly the active causal roots retained by the binary branch chart. With the quadratic kinetic proxy, define the delivered branch power by
 $$
-P_{b,\mathrm{work}}^{(\eta)}(t)
+P_{b,\mathrm{work}}^{(\eta)}(T)
 =
 \sum_{i=1}^{2}
 \mu_{\text{arch}}\,
-\mathbf{a}_{i,b}^{(\eta)}(t)
+\mathbf A_{i,b}^{(\eta)}(T)
 \cdot
-\mathbf{v}_i(t)
+\mathbf V_i(T)
 $$
-The same row must also be available before superposition. For each retained source/root hit $(i,j,t_0)$ on the branch chart, define the root-resolved delivered power
+The same row must also be available before superposition. For each retained source/root hit $(i,j,T_{\mathrm{em}})$ on the branch chart, define the root-resolved delivered power
 $$
-P_{i\leftarrow j,t_0}^{(\eta)}(t)
+P_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
 =
 \mu_{\text{arch}}\,
-\mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+\mathbf A_{i\leftarrow j}^{(\eta)}(T;T_{\mathrm{em}})
 \cdot
-\mathbf{v}_i(t)
+\mathbf V_i(T)
 $$
 so that
 $$
-P_{b,\mathrm{work}}^{(\eta)}(t)
+P_{b,\mathrm{work}}^{(\eta)}(T)
 =
 \sum_i
 \sum_j
-\sum_{t_0\in\mathcal C_{ij,b}^{(\eta)}(t)}
-P_{i\leftarrow j,t_0}^{(\eta)}(t)
+\sum_{T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)}
+P_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
 $$
 on the same active causal-root ledger. This root-resolved form is the accounting guardrail: source identity, polarity, emission time, Jacobian, and receiver radial power are retained before the net branch work is collapsed to one scalar.
 and reconstruct the compatible causal-history interaction contribution by
 $$
-U_{b,\mathrm{work}}^{(\eta)}(t)
+U_{b,\mathrm{work}}^{(\eta)}(T)
 =
-U_b(t_\ast)
+U_b(T_\ast)
 -
-\int_{t_\ast}^{t}
-P_{b,\mathrm{work}}^{(\eta)}(t')\,dt'
+\int_{T_\ast}^{T}
+P_{b,\mathrm{work}}^{(\eta)}(T')\,dT'
 $$
-For a primitive kinetic scalar, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_i\|)$ inside the sum. This is the operational binary definition: the wake-history row is whatever balances the delivered branch work along the realized trajectory, after the window, regulator, and branch ledger have been declared.
+For a primitive kinetic scalar, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_i\|)$ inside the sum. This is the operational binary definition: the wake-history row is whatever balances the delivered branch work along the realized trajectory, after the window, regulator, and branch ledger have been declared.
 
 On a circular benchmark with speed $s_b$, the radial component is orthogonal to the receiver velocity, so the branch power is the tangential row:
 $$
@@ -197,10 +197,10 @@ E_{\mathrm{sea},\Omega}^{(\eta)}
 -
 \int_W
 \sum_i
-\mathbf{v}_i\cdot\mathbf{R}_i^{(\eta)}\,dt
+\mathbf V_i\cdot\mathbf{R}_i^{(\eta)}\,dT
 -
 \int_W
-\mathcal{B}_E^{(\eta)}\,dt
+\mathcal{B}_E^{(\eta)}\,dT
 -
 W_{\partial\Omega}^{(\eta)}
 $$

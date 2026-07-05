@@ -33,7 +33,7 @@ Then $\mathcal{H}_{\rm hist}$ becomes the *numerical violation* of an exact theo
 **Comment 8 — The weakest correct first theorem (answering Q2).**
 
 > **Lemma (Retained-Orbit Reduction, weak form).**
-> Let the retained tri-binary braid satisfy:
+> Let the retained nested shell braid satisfy:
 > (H1) The causal action $S$ has a $C^2$ delay kernel with compact support $[-\tau_{\max},0]$ and time-translation + Euclidean symmetry.
 > (H2) There exists a hyperbolic periodic orbit $\gamma_0$ of the DDE with Floquet spectrum bounded away from the unit circle except for the trivial multiplier.
 > (H3) The second-variation form $\Omega_h$ (with $w$ = Hessian cross-term) has finite-dimensional non-degenerate quotient $\mathcal{M} = H/\ker\Omega_h$ near $\gamma_0$.

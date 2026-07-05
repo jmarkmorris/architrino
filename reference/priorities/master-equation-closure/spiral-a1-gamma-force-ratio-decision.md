@@ -19,7 +19,7 @@ B_{r,\alpha}^{\mathrm{rec}}(0),
 $$
 where each summand is computed from the same-box factor
 $$
-W_{\alpha}^{\mathrm{rec}}=\left|D_{t,\alpha}/D_{s,\alpha}\right|.
+W_{\alpha}^{\mathrm{rec}}=\left|D_{T,\alpha}/D_{s,\alpha}\right|.
 $$
 
 Promotion rule. No A1 force-ratio row may pass or fail until a receiver-normal

@@ -12,7 +12,7 @@ The inactive-complement cover and root-transport residual contract are specified
 with concrete seed rows from the active-root lane, but they are not theorem-grade
 complete until a new certificate supplies outward interval active-root tubes,
 box gaps, derivative residual rows, and any force/action consumer separately
-emits same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows.
+emits same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows.
 
 ## Fixed VP-1 Domain
 

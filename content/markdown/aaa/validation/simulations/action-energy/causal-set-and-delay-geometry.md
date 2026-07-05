@@ -1,33 +1,33 @@
 # Causal set and delay geometry
 
-The receiver $o'$ at time $t$ interacts with a source $o$ through the possibly multi-valued set of causal emission times
+The receiver $o'$ at absolute time $T$ interacts with a source $o$ through the possibly multi-valued set of causal emission times
 $$
-\mathcal{C}_o(t)
+\mathcal{C}_o(T)
 =
-\big\{\,t_0<t\mid \|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|=t-t_0\,\big\}
+\big\{\,T_{\mathrm{em}}<T\mid \|\mathbf X_{o'}(T)-\mathbf X_o(T_{\mathrm{em}})\|=T-T_{\mathrm{em}}\,\big\}
 $$
-For $\|\mathbf{v}_o(t_0)\|<1$ locally, $\mathcal{C}_o(t)$ is generically a singleton; for $\|\mathbf{v}_o\|>1$, it may contain multiple solutions, including self-hits when $o'=o$.
+For $\|\mathbf V_o(T_{\mathrm{em}})\|<1$ locally, $\mathcal{C}_o(T)$ is generically a singleton; for $\|\mathbf V_o\|>1$, it may contain multiple solutions, including self-hits when $o'=o$.
 
-Clarification: "Multi-valued" means that, for a fixed observation time $t$, there can be more than one emission time $t_0$ that satisfies the causal-distance condition; i.e., $\mathcal{C}_o(t)$ may contain multiple causal roots when $\|\mathbf{v}_o\|>1$ or when same-source roots exist for $o'=o$. This multiplicity can occur only if the transmitter/source has exceeded field speed at least once; if $\|\mathbf{v}_o\|<1$ everywhere, $F(t_0;t)$ is strictly increasing in $t_0$ and the causal root is unique.
+Clarification: "Multi-valued" means that, for a fixed observation time $T$, there can be more than one emission time $T_{\mathrm{em}}$ that satisfies the causal-distance condition; i.e., $\mathcal{C}_o(T)$ may contain multiple causal roots when $\|\mathbf V_o\|>1$ or when same-source roots exist for $o'=o$. This multiplicity can occur only if the transmitter/source has exceeded field speed at least once; if $\|\mathbf V_o\|<1$ everywhere, $F(T_{\mathrm{em}};T)$ is strictly increasing in $T_{\mathrm{em}}$ and the causal root is unique.
 
-Terminology note: the `causal set` in this simulation note is the causal interaction set $\mathcal{C}_o(t)$: a set of delayed emission times that reach a receiver now. It is not Causal Set Theory, the external quantum-gravity program that treats discrete spacetime events and partial order as fundamental. That outside program remains useful as a comparison for causal ordering and continuum emergence, but the native object here is a path-history root set inside absolute timespace.
+Terminology note: the `causal set` in this simulation note is the causal interaction set $\mathcal{C}_o(T)$: a set of delayed emission times that reach a receiver now. It is not Causal Set Theory, the external quantum-gravity program that treats discrete spacetime events and partial order as fundamental. That outside program remains useful as a comparison for causal ordering and continuum emergence, but the native object here is a path-history root set inside absolute timespace.
 
 ## Geometry of Delay and Roots
 
 - Root condition as an expanding causal isochron intersection:
-  - Define $F(t_0; t) \equiv \|\mathbf{s}_{o'}(t) - \mathbf{s}_o(t_0)\| - (t - t_0)$ (with $v=1$ units). Causal roots satisfy $F(t_0; t)=0$ with $t_0 < t$ and $H(t-t_0)$.
-- Geometrically: the source point $\mathbf{s}_o(t_0)$ must lie on the causal wake surface (isochron) of radius $\tau = t - t_0$ centered at the receiver’s current position $\mathbf{s}_{o'}(t)$.
+  - Define $F(T_{\mathrm{em}}; T) \equiv \|\mathbf X_{o'}(T) - \mathbf X_o(T_{\mathrm{em}})\| - (T - T_{\mathrm{em}})$ (with $v=1$ units). Causal roots satisfy $F(T_{\mathrm{em}}; T)=0$ with $T_{\mathrm{em}} < T$ and $H(T-T_{\mathrm{em}})$.
+- Geometrically: the source point $\mathbf X_o(T_{\mathrm{em}})$ must lie on the causal wake surface (isochron) of radius $\Delta = T - T_{\mathrm{em}}$ centered at the receiver’s current position $\mathbf X_{o'}(T)$.
 
 - Local uniqueness (sub-field-speed, transverse crossing):
-  - If the source speed is locally sub-field-speed ($\|\mathbf{v}_o(t_0)\|<1$) and the derivative $\partial_{t_0}F(t_0;t) = -\hat{\mathbf{r}}\!\cdot\!\mathbf{v}_o(t_0) + 1$ is nonzero at the root, then the implicit function theorem guarantees a unique, smooth root branch near $t$.
+  - If the source speed is locally sub-field-speed ($\|\mathbf V_o(T_{\mathrm{em}})\|<1$) and the derivative $\partial_{T_{\mathrm{em}}}F(T_{\mathrm{em}};T) = -\hat{\mathbf{r}}\!\cdot\!\mathbf V_o(T_{\mathrm{em}}) + 1$ is nonzero at the root, then the implicit function theorem guarantees a unique, smooth root branch near $T$.
   - Intuition: the expanding causal isochron intersects the moving source path transversely.
 
 - Multiple roots (require super-field-speed):
-  - When $\|\mathbf{v}_o\|> 1$ at some emission times, the source can outpace its recent wake surfaces, allowing several distinct historical points to satisfy the same distance–time constraint (multi-hit regime). If $\|\mathbf{v}_o\|<1$ everywhere, $F(t_0;t)$ is strictly increasing in $t_0$, so at most one causal root exists.
+  - When $\|\mathbf V_o\|> 1$ at some emission times, the source can outpace its recent wake surfaces, allowing several distinct historical points to satisfy the same distance-time constraint (multi-hit regime). If $\|\mathbf V_o\|<1$ everywhere, $F(T_{\mathrm{em}};T)$ is strictly increasing in $T_{\mathrm{em}}$, so at most one causal root exists.
 
 - Conventions at singular cases:
-  - We adopt $H(0)=0$ so the instantaneous emission at $t_0=t$ does not produce an immediate self-kick.
-  - No $r=0$ causal roots beyond $\tau=0$: because $r = v(t - t_0)$, $r=0$ implies $\tau=0$; the $\tau=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
+  - We adopt $H(0)=0$ so the instantaneous emission at $T_{\mathrm{em}}=T$ does not produce an immediate self-kick.
+  - No $r=0$ causal roots beyond $\Delta=0$: because $r = v(T - T_{\mathrm{em}})$, $r=0$ implies $\Delta=0$; the $\Delta=0$ case is excluded by $H(0)=0$. Under mollification, the symmetric limit as $r\to 0$ yields zero net push.
 
 Plain language: a receiver is pushed only by earlier source moments whose causal isochrons currently pass through it. Usually there is one such moment; if the source is very fast or its path loops around, there can be several.
 

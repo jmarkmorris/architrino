@@ -2,9 +2,9 @@
 
 The regularized simulation replaces each sharp causal-surface delta by a narrow mollifier while preserving total emission $q$:
 $$
-\delta(r-\tau)\longrightarrow
+\delta(r-\Delta)\longrightarrow
 \frac{1}{\sqrt{2\pi}\,\eta}
-\exp\!\left(-\frac{(r-\tau)^2}{2\eta^2}\right)
+\exp\!\left(-\frac{(r-\Delta)^2}{2\eta^2}\right)
 $$
 
 ## Impulses Versus Smooth Pushes
@@ -19,30 +19,30 @@ $$
   - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.
 
 - Distributional wake-surface normalization:
-  - Treat $\delta(r-v\tau)$ and $\delta_\eta(r-v\tau)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For $\tau=t-t_0$ and $r=\|\mathbf{s}-\mathbf{s}_0\|$,
+  - Treat $\delta(r-v\Delta)$ and $\delta_\eta(r-v\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For $\Delta=T-T_{\mathrm{em}}$ and $r=\|\mathbf X-\mathbf X_0\|$,
     $$
-    \rho_\eta(t,\mathbf{s})=
-    \frac{q}{4\pi r^2}\,\delta_\eta(r-v\tau)\,H(\tau)
+    \rho_\eta(T,\mathbf X)=
+    \frac{q}{4\pi r^2}\,\delta_\eta(r-v\Delta)\,H(\Delta)
     $$
     must satisfy
     $$
-    \lim_{\eta\to0}\int_{\Sigma_t} f(\mathbf{s})\,\rho_\eta(t,\mathbf{s})\,dV
+    \lim_{\eta\to0}\int_{\Sigma_T} f(\mathbf X)\,\rho_\eta(T,\mathbf X)\,dV
     =
-    \frac{qH(\tau)}{4\pi}\int_{S^2} f(\mathbf{s}_0+v\tau\,\hat{\boldsymbol{\omega}})\,d\Omega
+    \frac{qH(\Delta)}{4\pi}\int_{S^2} f(\mathbf X_0+v\Delta\,\hat{\boldsymbol{\omega}})\,d\Omega
     $$
   - In particular, $f\equiv1$ gives the total-emission check
     $$
-    \int_{\Sigma_t}\rho_\eta(t,\mathbf{s})\,dV \longrightarrow qH(\tau)
+    \int_{\Sigma_T}\rho_\eta(T,\mathbf X)\,dV \longrightarrow qH(\Delta)
     $$
     On a finite annulus $R_-\le r\le R_+$, the expected retained amount is
     $$
-    Q_{\eta}^{\mathrm{ann}}(R_-,R_+;t)=
-    qH(\tau)\int_{R_-}^{R_+}\delta_\eta(r-v\tau)\,dr
+    Q_{\eta}^{\mathrm{ann}}(R_-,R_+;T)=
+    qH(\Delta)\int_{R_-}^{R_+}\delta_\eta(r-v\Delta)\,dr
     $$
     The annular residual is therefore
     $$
-    R_N(R_-,R_+;t)\equiv
-    \frac{\left|\int_{R_-\le r\le R_+}\rho_\eta(t,\mathbf{s})\,dV-Q_{\eta}^{\mathrm{ann}}(R_-,R_+;t)\right|}
+    R_N(R_-,R_+;T)\equiv
+    \frac{\left|\int_{R_-\le r\le R_+}\rho_\eta(T,\mathbf X)\,dV-Q_{\eta}^{\mathrm{ann}}(R_-,R_+;T)\right|}
     {|q|+\varepsilon_q}
     $$
     This catches missing $4\pi r^2$ factors, lost radial Jacobians, and mollifiers that do not preserve total emission.

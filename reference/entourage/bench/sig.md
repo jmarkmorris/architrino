@@ -37,7 +37,7 @@ I categorize all validation work into three tiers. Failure at Tier 1 is a termin
 ### Tier 3: The "Smoking Guns" (Architrino vs. The World)
 *Targeting specific deviations where our theory outperforms $\Lambda\mathrm{CDM}$ + SM.*
 - **Hubble Tension**: Decisively resolving the 5$\sigma$ discrepancy between early/late universe.
-- **Electron Form Factor**: Predicting the energy scale $\Lambda$ where the electron's tri-binary structure becomes visible.
+- **Electron Form Factor**: Predicting the energy scale $\Lambda$ where the electron's nested shell braid structure becomes visible.
 - **Modified Gravity Signatures**: Unique GW dispersion or extra polarization modes.
 
 ---
@@ -68,7 +68,7 @@ If the synthetic data is statistically distinguishable from the real experimenta
 ## Domain-Specific Observational Targets
 
 ### Particle & Nuclear (Ch. 22, 26, 43)
-- **$g-2$**: My top priority for Phe. If tri-binary geometry resolves the muon anomaly, it's a Tier-3 win.
+- **$g-2$**: My top priority for Phe. If nested shell braid geometry resolves the muon anomaly, it's a Tier-3 win.
 - **Isotope Stability**: Searching for anomalous stability patterns uniquely predicted by neutral-axis coupling.
 
 ### Gravity & Cosmology (Ch. 33, 34, 41, 43)

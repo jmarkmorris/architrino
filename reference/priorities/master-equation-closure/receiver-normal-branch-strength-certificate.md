@@ -20,7 +20,7 @@ source-normal proxy.
 
 Vendor/proof intake rule. A proposal may choose the smallest branch family that
 can be reproduced independently, but its first force/action deliverable is this
-certificate packet: branch identity, same-record $D_s$, $D_t$,
+certificate packet: branch identity, same-record $D_s$, $D_T$,
 $W^{\mathrm{rec}}$, sign/fold status, retained/rejected branch status, and a
 negative control that fails if receiver-normal branch strength is replaced.
 
@@ -28,7 +28,7 @@ Breather specialization. The breather consumer of this packet is
 [Breather Receiver-Normal Force-Margin Restart Target](../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md).
 It adds no new branch pass. It states the breather recapture/self-drive margin
 equation and keeps the packet fail-closed until the consumed margin rows bind
-same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, and
 $D_vW^{\mathrm{rec}}$ to the same retained branch-family checksum.
 
 ## Branch Row
@@ -40,7 +40,7 @@ D_{s,\alpha}
 =
 c_f-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_j(s_\alpha),
 \qquad
-D_{t,\alpha}
+D_{T,\alpha}
 =
 c_f-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_i(t),
 $$
@@ -48,7 +48,7 @@ and
 $$
 W_{\alpha}^{\mathrm{rec}}
 =
-\left|D_{t,\alpha}/D_{s,\alpha}\right|.
+\left|D_{T,\alpha}/D_{s,\alpha}\right|.
 $$
 The corresponding branch acceleration row has the form
 $$
@@ -60,7 +60,7 @@ $$
 $$
 
 This row keeps the source-normal denominator and receiver-normal numerator
-separate. $D_s$ is the simple-root transversality field. $D_t$ is the receiver
+separate. $D_s$ is the simple-root transversality field. $D_T$ is the receiver
 sampling field. $W^{\mathrm{rec}}$ is the branch-strength field.
 
 ## Required Same-Record Fields
@@ -72,9 +72,9 @@ sampling field. $W^{\mathrm{rec}}$ is the branch-strength field.
 | Time row | Receiver time $t$ and source time $s_\alpha(t)$ or bounded interval. |
 | Geometry row | $r_\alpha$, $\hat{\mathbf r}_\alpha$, and the source-to-receiver convention. |
 | Source-normal row | Interval for $D_{s,\alpha}$ and the active transversality floor. |
-| Receiver-normal row | Interval for $D_{t,\alpha}$ on the same retained box. |
-| Branch-strength row | Interval for $W_{\alpha}^{\mathrm{rec}}=\lvert D_{t,\alpha}/D_{s,\alpha}\rvert$. |
-| Derivative row | First retained-branch derivative row for $D_s$, $D_t$, $W^{\mathrm{rec}}$, and the receiver-normal force/action kernel when a downstream packet consumes force, action, power, or wake-history derivatives. |
+| Receiver-normal row | Interval for $D_{T,\alpha}$ on the same retained box. |
+| Branch-strength row | Interval for $W_{\alpha}^{\mathrm{rec}}=\lvert D_{T,\alpha}/D_{s,\alpha}\rvert$. |
+| Derivative row | First retained-branch derivative row for $D_s$, $D_T$, $W^{\mathrm{rec}}$, and the receiver-normal force/action kernel when a downstream packet consumes force, action, power, or wake-history derivatives. |
 | Projection rows | Radial and tangential projections computed from the same force/action row. |
 | Aggregation row | Branch-family sum that names exactly which retained rows were consumed. |
 | Scalar statistic row | Any margin, constant, threshold, or pass/fail statistic derived from the aggregation row. |
@@ -112,19 +112,19 @@ D_{s,\alpha}
 =
 c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_j(s_\alpha),
 \qquad
-D_{t,\alpha}
+D_{T,\alpha}
 =
 c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_i(t),
 \qquad
 \dot s_\alpha
 =
-\frac{D_{t,\alpha}}{D_{s,\alpha}},
+\frac{D_{T,\alpha}}{D_{s,\alpha}},
 $$
 and
 $$
 W_{\alpha}^{\mathrm{rec}}
 =
-\left|\frac{D_{t,\alpha}}{D_{s,\alpha}}\right|.
+\left|\frac{D_{T,\alpha}}{D_{s,\alpha}}\right|.
 $$
 
 The first derivative row is evaluated along the same retained branch:
@@ -149,17 +149,17 @@ $$
 -\dot{\hat{\mathbf r}}_\alpha\cdot\mathbf v_j(s_\alpha)
 -\hat{\mathbf r}_\alpha\cdot\mathbf a_j(s_\alpha)\dot s_\alpha,
 \qquad
-\dot D_{t,\alpha}
+\dot D_{T,\alpha}
 =
 -\dot{\hat{\mathbf r}}_\alpha\cdot\mathbf v_i(t)
 -\hat{\mathbf r}_\alpha\cdot\mathbf a_i(t).
 $$
-For the signed ratio $Q_\alpha=D_{t,\alpha}/D_{s,\alpha}$, the derivative row is
+For the signed ratio $Q_\alpha=D_{T,\alpha}/D_{s,\alpha}$, the derivative row is
 $$
 \dot Q_\alpha
 =
-\frac{\dot D_{t,\alpha}D_{s,\alpha}
--D_{t,\alpha}\dot D_{s,\alpha}}
+\frac{\dot D_{T,\alpha}D_{s,\alpha}
+-D_{T,\alpha}\dot D_{s,\alpha}}
 {D_{s,\alpha}^2}.
 $$
 If the retained interval for $Q_\alpha$ excludes zero, the branch-strength
@@ -195,7 +195,7 @@ aggregation.
 
 Acceptance conditions:
 
-- $D_s$, $D_t$, $W^{\mathrm{rec}}$, $\dot s$, $\dot D_s$, $\dot D_t$,
+- $D_s$, $D_T$, $W^{\mathrm{rec}}$, $\dot s$, $\dot D_s$, $\dot D_T$,
   $\dot W^{\mathrm{rec}}$, and $\dot{\mathbf B}^{\mathrm{rec}}$ use the same
   retained root id, source/receiver ids, source-to-receiver direction, receiver
   time, source time, retained box, and regulator state.
@@ -214,14 +214,14 @@ Acceptance conditions:
 
 Failure modes:
 
-- missing $\dot s$, $\dot D_s$, $\dot D_t$, $\dot W^{\mathrm{rec}}$, or
+- missing $\dot s$, $\dot D_s$, $\dot D_T$, $\dot W^{\mathrm{rec}}$, or
   $\dot{\mathbf B}^{\mathrm{rec}}$ when the consuming packet requires a first
   derivative;
 - derivative fields evaluated from a root id, source/receiver id, box,
   direction convention, regulator state, or artifact hash different from the
   branch-strength row;
 - finite-difference or interpolated derivative rows without an outward error
-  interval and same-record reconstruction of $D_s$, $D_t$, and
+  interval and same-record reconstruction of $D_s$, $D_T$, and
   $W^{\mathrm{rec}}$;
 - $Q_\alpha$ crossing zero without a declared nonsmooth crossing convention for
   the consuming packet;
@@ -255,12 +255,12 @@ $$
 \left(
 R_a,
 D_{s,a},
-D_{t,a},
+D_{T,a},
 \zeta_{s,a},
 \zeta_{t,a},
 W_a^{\mathrm{rec}},
 D_vD_{s,a},
-D_vD_{t,a},
+D_vD_{T,a},
 D_vW_a^{\mathrm{rec}}
 \right)
 \right\}_{a\in\mathcal{A}_{\mathcal B}},
@@ -275,13 +275,13 @@ On each retained row, fixed sign labels must satisfy
 $$
 \zeta_{s,a}=\operatorname{sign}D_{s,a},
 \qquad
-\zeta_{t,a}=\operatorname{sign}D_{t,a},
+\zeta_{t,a}=\operatorname{sign}D_{T,a},
 $$
 and
 $$
 \zeta_{s,a}D_{s,a}\ge D_{s,0}>0,
 \qquad
-\zeta_{t,a}D_{t,a}\ge D_{t,0}>0
+\zeta_{t,a}D_{T,a}\ge D_{T,0}>0
 $$
 on the same retained box. The receiver-normal branch-strength derivative is
 then not an independent fit; it is reconstructed on the same record as
@@ -290,9 +290,9 @@ D_vW_a^{\mathrm{rec}}
 =
 \frac{\zeta_{t,a}\zeta_{s,a}}{D_{s,a}^2}
 \left(
-D_{s,a}D_vD_{t,a}
+D_{s,a}D_vD_{T,a}
 -
-D_{t,a}D_vD_{s,a}
+D_{T,a}D_vD_{s,a}
 \right).
 $$
 Equivalently, on the fixed sign stratum,
@@ -301,15 +301,15 @@ D_vW_a^{\mathrm{rec}}
 =
 W_a^{\mathrm{rec}}
 \left(
-\frac{D_vD_{t,a}}{D_{t,a}}
+\frac{D_vD_{T,a}}{D_{T,a}}
 -
 \frac{D_vD_{s,a}}{D_{s,a}}
 \right).
 $$
 
 Lemma target: same-record receiver-normal derivative reconstruction. If the
-retained row fixes $\zeta_s,\zeta_t$ on its box and emits $D_s$, $D_t$,
-$D_vD_s$, and $D_vD_t$ on the same retained record, then the only admissible
+retained row fixes $\zeta_s,\zeta_T$ on its box and emits $D_s$, $D_T$,
+$D_vD_s$, and $D_vD_T$ on the same retained record, then the only admissible
 receiver-normal branch-strength derivative for a differentiable consumer is the
 reconstructed $D_vW^{\mathrm{rec}}$ above. A derivative interval that does not
 contain this value exits as
@@ -360,8 +360,8 @@ evidence.
 | --- | --- |
 | `retained_record_key` | Branch-family id, retained root id, branch label, source/receiver ids, direction convention, receiver time, source time or delay row, retained box, regulator state, and source artifact hash. |
 | `variation_key` | Declared variation $v$, coefficient norm or time-branch convention, and the consumer rows allowed to use the derivative. |
-| `receiver_normal_fields` | $D_{s,a}$, $D_{t,a}$, $\zeta_{s,a}$, $\zeta_{t,a}$, $W_a^{\mathrm{rec}}$, and sign-stratum floors on the same retained box. |
-| `receiver_normal_derivatives` | $D_vD_{s,a}$, $D_vD_{t,a}$, and reconstructed $D_vW_a^{\mathrm{rec}}$ with outward intervals. |
+| `receiver_normal_fields` | $D_{s,a}$, $D_{T,a}$, $\zeta_{s,a}$, $\zeta_{t,a}$, $W_a^{\mathrm{rec}}$, and sign-stratum floors on the same retained box. |
+| `receiver_normal_derivatives` | $D_vD_{s,a}$, $D_vD_{T,a}$, and reconstructed $D_vW_a^{\mathrm{rec}}$ with outward intervals. |
 | `geometry_derivatives` | $D_vr_a$ and $D_v\hat{\mathbf r}_a$, or the shell-braid arclength equivalents $D_v\eta_a$ and $D_v\widehat{\mathbf R}_a$. |
 | `force_kernel_derivative` | $\mathbf B_a^{\mathrm{rec}}$ and $D_v\mathbf B_a^{\mathrm{rec}}$ computed from the same rows. |
 | `branch_family_checksum` | Exact retained branch list $\mathcal{A}_{\mathcal B}$, aggregation convention, and consumer checksum tying every downstream statistic to that list. |
@@ -373,10 +373,10 @@ The artifact fails with:
 
 | Status | Meaning |
 | --- | --- |
-| `receiver-normal-first-derivative-row-missing` | A derivative-consuming packet lacks $D_vD_s$, $D_vD_t$, or $D_vW^{\mathrm{rec}}$ on the retained row. |
-| `receiver-normal-derivative-record-mismatch` | $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or $D_vW^{\mathrm{rec}}$ come from different retained records, boxes, variation coordinates, regulator states, or source artifact hashes. |
-| `receiver-normal-sign-stratum-open` | The retained row does not fix both $D_s$ and $D_t$ signs or does not declare an accepted nonsmooth crossing convention. |
-| `receiver-normal-derivative-reconstruction-failed` | The emitted $D_vW^{\mathrm{rec}}$ interval does not contain the reconstructed value from $D_s$, $D_t$, $D_vD_s$, and $D_vD_t$. |
+| `receiver-normal-first-derivative-row-missing` | A derivative-consuming packet lacks $D_vD_s$, $D_vD_T$, or $D_vW^{\mathrm{rec}}$ on the retained row. |
+| `receiver-normal-derivative-record-mismatch` | $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, or $D_vW^{\mathrm{rec}}$ come from different retained records, boxes, variation coordinates, regulator states, or source artifact hashes. |
+| `receiver-normal-sign-stratum-open` | The retained row does not fix both $D_s$ and $D_T$ signs or does not declare an accepted nonsmooth crossing convention. |
+| `receiver-normal-derivative-reconstruction-failed` | The emitted $D_vW^{\mathrm{rec}}$ interval does not contain the reconstructed value from $D_s$, $D_T$, $D_vD_s$, and $D_vD_T$. |
 | `aggregate-only-branch-family-derivative-rejected` | A terminal aggregate, provider replay, lambda witness, scalar statistic, or finite-difference table is supplied after branch identity has been erased. |
 | `source-normal-diagnostic-consumed-as-branch-strength` | A row consumes the source-normal transversality diagnostic as receiver-normal branch strength. |
 | `branch-family-consumer-checksum-mismatch` | A force, action, power, wake-history, Lipschitz, or scalar row consumes a different retained branch list from the derivative artifact. |
@@ -389,7 +389,7 @@ wake-history row only when the row's accepted proof object carries
 `receiver-normal-retained-branch-family-first-derivative/v0` on the same
 retained source record, event ledger, retained record key, source artifact hash,
 and consumer row, and when reconstructed $D_vW^{\mathrm{rec}}$ agrees with
-$D_s$, $D_t$, $D_vD_s$, and $D_vD_t$. This does not certify wake-history
+$D_s$, $D_T$, $D_vD_s$, and $D_vD_T$. This does not certify wake-history
 closure or promote any domain branch family; it only emits the first concrete
 same-record derivative consumer and the corresponding fail-closed record
 mismatch and reconstruction controls.
@@ -408,7 +408,7 @@ The executable H39 branch-provider audit sharpens this boundary in
 [Branch Provider Evidence Report](../app-solver/branch-provider-evidence-report.md#receiver-normal-first-derivative-readout):
 the target names five shared source cells, 15 terminal rows, and 30 `P_-` /
 `P_+` branch rows, but the manifest emits zero accepted provider-object branch
-intervals and no same-record $D_s$, $D_t$, $D_vD_s$, $D_vD_t$, or
+intervals and no same-record $D_s$, $D_T$, $D_vD_s$, $D_vD_T$, or
 $D_vW^{\mathrm{rec}}$ rows. Its first derivative-evidence verdict is therefore
 `h39-receiver-normal-first-derivative-evidence-not-populated`, with the
 provider-object branch rows still missing before receiver-normal derivative
@@ -441,9 +441,9 @@ circular, eigen-braid, or assembly-closure pass.
 
 Claim level. `validation-evidence` for receiver-normal branch-strength row
 shape and fail-closed invariant enforcement. The certificate proves that the
-row reports $D_s$, $D_t$, and $W^{\mathrm{rec}}$ on the same analytic root and
+row reports $D_s$, $D_T$, and $W^{\mathrm{rec}}$ on the same analytic root and
 that the invariant consumer rejects rows whose branch strength is not
-$\lvert D_t/D_s\rvert$.
+$\lvert D_T/D_s\rvert$.
 
 Source artifacts:
 
@@ -479,7 +479,7 @@ D_{s,\alpha}
 =
 1,
 \qquad
-D_{t,\alpha}
+D_{T,\alpha}
 =
 1-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_i(t)
 =
@@ -489,7 +489,7 @@ and therefore
 $$
 W_{\alpha}^{\mathrm{rec}}
 =
-\left|D_{t,\alpha}/D_{s,\alpha}\right|
+\left|D_{T,\alpha}/D_{s,\alpha}\right|
 =
 1.
 $$
@@ -513,12 +513,12 @@ force-balance verdict.
 | Time row | $t=10$, $s_\alpha=0$, $\Delta=10$. |
 | Geometry row | $r_\alpha=10$, $\hat{\mathbf r}_\alpha=(1,0,0)$, source-emission point to receiver-now convention. |
 | Source-normal row | $D_{s,\alpha}=1$; transversality status `ok`. |
-| Receiver-normal row | $D_{t,\alpha}=1$ on the same root row. |
+| Receiver-normal row | $D_{T,\alpha}=1$ on the same root row. |
 | Branch-strength row | `branchWeight=1`, `receiverNormalFactor=1`, `unsignedReceiverNormalFactor=1`. |
 | Projection rows | Radial projection equals the symbolic prefactor above; tangential projection is $0$. |
 | Aggregation row | Singleton aggregation over `{rootId=0}`. |
 | Scalar statistic row | $W_{\alpha}^{\mathrm{rec}}=1$ and invariant status `ok`. |
-| Negative controls | `InvariantChecks.cpp` rejects completed rows when root `branchWeight` or delayed-hit `strength` differs from $\lvert D_t/D_s\rvert$, and rejects non-finite receiver-normal fields. |
+| Negative controls | `InvariantChecks.cpp` rejects completed rows when root `branchWeight` or delayed-hit `strength` differs from $\lvert D_T/D_s\rvert$, and rejects non-finite receiver-normal fields. |
 | Source artifact hash | The request, response, invariant-consumer, and contract-check hashes listed above. |
 | Regulator state | Simple-root analytic fixture; no fold, caustic, $\eta$, or $\epsilon_c$ regulator row is active. |
 
@@ -539,7 +539,7 @@ pass.
 
 Claim level. `validation-evidence` for a same-record branch-family row whose
 receiver-normal numerator differs from the source-normal denominator. The
-fixture proves that the durable solver contract can carry $D_s$, $D_t$, and
+fixture proves that the durable solver contract can carry $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ on the same retained branch and that the checker rejects a
 source-normal proxy for either the root `branchWeight` or delayed-hit
 `strength`.
@@ -586,7 +586,7 @@ $$
 while the receiver-normal row is
 
 $$
-D_{t,\alpha}
+D_{T,\alpha}
 =
 1-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_i(t)
 =
@@ -600,7 +600,7 @@ Therefore
 $$
 W_{\alpha}^{\mathrm{rec}}
 =
-\left|D_{t,\alpha}/D_{s,\alpha}\right|
+\left|D_{T,\alpha}/D_{s,\alpha}\right|
 =
 \frac32.
 $$
@@ -630,32 +630,32 @@ calibrated force-balance verdict.
 | Time row | $t=10$, $s_\alpha=5$, $\Delta=5$. |
 | Geometry row | $r_\alpha=5$, $\hat{\mathbf r}_\alpha=(1,0,0)$, source-emission point to receiver-now convention. |
 | Source-normal row | $D_{s,\alpha}=1$; transversality status `ok`. |
-| Receiver-normal row | $D_{t,\alpha}=3/2$ on the same root row. |
+| Receiver-normal row | $D_{T,\alpha}=3/2$ on the same root row. |
 | Branch-strength row | `branchWeight=1.5`, `receiverNormalFactor=1.5`, `unsignedReceiverNormalFactor=1.5`. |
 | Projection rows | Radial projection equals the symbolic prefactor above; tangential projection is $0$. |
 | Aggregation row | Singleton aggregation over `{rootId=0}`. |
 | Scalar statistic row | $W_{\alpha}^{\mathrm{rec}}=3/2$ and invariant status `ok`. |
-| Negative controls | `check-solver-contract-fixtures.mjs` rejects a source-normal proxy by setting root `branchWeight=1` or delayed-hit `strength=1` and requiring receiver-normal invariant failure. `InvariantChecks.cpp` independently rejects completed rows whose branch strength differs from $\lvert D_t/D_s\rvert$. |
+| Negative controls | `check-solver-contract-fixtures.mjs` rejects a source-normal proxy by setting root `branchWeight=1` or delayed-hit `strength=1` and requiring receiver-normal invariant failure. `InvariantChecks.cpp` independently rejects completed rows whose branch strength differs from $\lvert D_T/D_s\rvert$. |
 | Source artifact hash | The request, response, native analytic smoke, invariant-consumer, and contract-check hashes listed above. |
 | Regulator state | Simple-root analytic linear-motion fixture; no fold, caustic, $\eta$, or $\epsilon_c$ regulator row is active. |
 
 Changeover consequence. This fixture supplies the first accepted nontrivial
-branch-family row with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ and a
+branch-family row with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ and a
 source-normal-proxy negative control. It authorizes solver-contract and vendor
 intake reuse for the receiver-normal branch-strength field. It does not
 authorize any A1, VP-1, breather, circular, eigen-braid, or assembly-closure
 force/action conclusion; those packets must populate their own retained branch
 families and negative controls. It also does not populate
 `receiver-normal-retained-branch-family-first-derivative/v0`; derivative
-consumers still need same-record $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, and
+consumers still need same-record $D_vD_s$, $D_vD_T$, $D_vW^{\mathrm{rec}}$, and
 the consumer checksum.
 
 ## Fail-Closed Controls
 
 The certificate must reject:
 
-- a row with missing $D_t$;
-- a row where $D_s$, $D_t$, and $W^{\mathrm{rec}}$ come from different retained
+- a row with missing $D_T$;
+- a row where $D_s$, $D_T$, and $W^{\mathrm{rec}}$ come from different retained
   records or different boxes;
 - a row that substitutes a source-normal diagnostic for receiver-normal branch
   strength;
@@ -663,9 +663,9 @@ The certificate must reject:
 - a stationary-receiver reduction that was not derived by direct substitution
   inside the declared retained row;
 - a derivative-consuming force/action row with missing or non-same-record
-  variation key, $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, or
+  variation key, $D_vD_s$, $D_vD_T$, $D_vW^{\mathrm{rec}}$, or
   $D_v\mathbf B^{\mathrm{rec}}$;
-- a sign-changing $D_t/D_s$ derivative row treated as differentiable
+- a sign-changing $D_T/D_s$ derivative row treated as differentiable
   force/action evidence without an accepted nonsmooth crossing convention;
 - an aggregation row whose retained-row list differs from the scalar statistic
   row.

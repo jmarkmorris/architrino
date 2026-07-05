@@ -6,7 +6,7 @@ This priority packet closes the coefficient side of the pressure-dependent Noeth
 
 - **Status:** branch-conditional coefficient closure; no empirical pass claimed.
 - **Main claim:** in a branch-preserving pressure perturbation, the cadence, delay, effective-speed, strain, and medium-response tensor channels reduce to a small set of shared isotropic and anisotropic pressure coefficients. Individual values of $a_i$, $b_i$, $\kappa_i$, $m_S$, and $K_{\text{sea}}$ are not observable-local fit freedoms.
-- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether braid branch or a certified pressure simulation. Any mass-facing pressure row must also pass the retained pressure-row receiver-normal simulation target below, with same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, exposure, energy, Noether sea response, and pressure rows on one retained branch identity. The density-side modulus and headroom target is now staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
+- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether braid branch or a certified pressure simulation. Any mass-facing pressure row must also pass the retained pressure-row receiver-normal simulation target below, with same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, exposure, energy, Noether sea response, and pressure rows on one retained branch identity. The density-side modulus and headroom target is now staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
 - **Promotion target:** none until the pressure response survives a shared-row replay and the Lorentz, clock/signal, dispersion, birefringence, and transport null sectors remain below bound.
 
 ## Source Anchors
@@ -422,7 +422,7 @@ The branch intake must be emitted before any replay residual is inspected:
 | Intake field | Required branch source |
 | --- | --- |
 | `accepted_branch_id` | accepted Noether braid branch or branch-preserving material segment |
-| `receiver_normal_weight_record` | same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rows for the retained roots consumed by exposure, pressure, and response tensors |
+| `receiver_normal_weight_record` | same-row $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ rows for the retained roots consumed by exposure, pressure, and response tensors |
 | `source_record` | $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$ from the exposure quotient |
 | `pressure_record` | declared $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and the retained replay direction |
 | `coefficient_record` | branch-emitted $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and any masked packing or heavy-scaling columns |
@@ -512,7 +512,7 @@ The status vector is deliberately fail-closed:
 | --- | --- | --- |
 | `source_descent` | $M_0^{\mathrm{src}}$ and $\partial_P M_0^{\mathrm{src}}$ descend through the mass-facing exposure quotient. | `pending_source_descent` or `source_nondescent` |
 | `branch_intake` | The pressure coefficient row is bound to an accepted finite-branch source record with accepted history, same-row receiver-normal branch-strength data, quotient chart identity, stability or branch-gap status, eta-ladder status when required, and branch-emitted pressure/Hessian or response entries. | `finite_branch_evidence_missing` |
-| `receiver_normal_same_record` | Same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are present for the retained roots consumed by exposure, pressure, and response tensors. | `receiver_normal_same_record_missing` |
+| `receiver_normal_same_record` | Same-row $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are present for the retained roots consumed by exposure, pressure, and response tensors. | `receiver_normal_same_record_missing` |
 | `isotropic_trace` | $C_{\mathrm{tr}}^{\mathrm{iso}}$ is computed from branch-emitted $\partial_{\Pi}\delta_PM_0^{\mathrm{src}}$ and $C_{\chi}^{\mathrm{iso}}$. | `coefficient_fit_contamination` if either term is replay-fitted after benchmark comparison |
 | `trace_free_span` | $\mathcal{V}_{P,A}$ is declared before the replay and $B_P^{ab}\in\mathcal{V}_{P,A}$. | `tf_bound_only` when anisotropy is masked; `projection_mismatch` when directions drift |
 | `no_hidden_mass_handle` | $\mathcal{R}_{\mathrm{nohandle}}^{P}\le\epsilon_{\mathrm{nohandle}}^{P}$. | `hidden_pressure_mass_handle` |
@@ -547,7 +547,7 @@ $$
 
 The accepted-history source must include the path to the priority packet or
 generated report that emits it. The receiver-normal weight record must report
-same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for the
+same-row $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ for the
 retained roots consumed by the pressure response. Scanner, correction-packet,
 waveform-replay, toy-Hessian, empirical pressure, H39/theta3minus quotient
 diagnostics, or source-mining rows may be cited as diagnostics, but they must
@@ -573,7 +573,7 @@ cross-row bundle. Its required fields are:
 | --- | --- | --- |
 | `branch_id` | Accepted finite branch identity for the row. | absent |
 | `accepted_history_segment_id` | History segment emitted by the accepted branch packet or generated report. | absent |
-| `receiver_normal_weight_record` | Same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rows for the retained roots used by the pressure response. | absent |
+| `receiver_normal_weight_record` | Same-row $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ rows for the retained roots used by the pressure response. | absent |
 | `source_path` | Path to the accepted branch packet or generated report that emits the history segment. | absent |
 | `quotient_chart_id` | Exposure quotient chart used by the mass-facing source row. | absent |
 | `residual_status` | Pass/fail residual status for the same pressure row. | absent |
@@ -599,7 +599,7 @@ Hessian, Fe/Cr, or Ni/Co material to stand in for accepted branch evidence.
 | --- | --- | --- |
 | `branch_id` | A0 rest diagnostic and toy rows only | absent for retained pressure row |
 | `accepted_history_segment_id` | no accepted finite pressure-row history segment | `finite_branch_evidence_missing` |
-| `receiver_normal_weight_record` | no same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}$ record for the pressure response | absent |
+| `receiver_normal_weight_record` | no same-row $D_s$, $D_T$, and $W^{\mathrm{rec}}$ record for the pressure response | absent |
 | `source_path` | no accepted branch report path emitting a pressure-row history segment | absent |
 | `quotient_chart_id` | no branch-local exposure quotient chart for the same row | absent |
 | `residual_status` | algebraic or toy residuals only | diagnostic-only |
@@ -911,7 +911,7 @@ $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and
 $\mathcal{N}_{\mathrm{tf},ab}(A)$ on the same row, and pressure replay must
 replace the toy residual and toy coefficients with branch-emitted
 $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$,
-$C_{\chi}^{\mathrm{aniso}}$, $m_S$, same-row $D_s$, $D_t$,
+$C_{\chi}^{\mathrm{aniso}}$, $m_S$, same-row $D_s$, $D_T$,
 $W^{\mathrm{rec}}$, retained root-row identities, $\theta_{\mathrm{sea}}$,
 $\mathcal{M}_{+}^{ab}$, loss-channel closure, preferred-frame, and
 directional-tensor records.
@@ -955,9 +955,9 @@ must recompute rather than import
 $$
 D_s,
 \qquad
-D_t,
+D_T,
 \qquad
-W^{\mathrm{rec}}=\left|\frac{D_t}{D_s}\right|,
+W^{\mathrm{rec}}=\left|\frac{D_T}{D_s}\right|,
 \qquad
 E_{\text{internal}}(A),
 \qquad
@@ -1018,7 +1018,7 @@ The required output fields are:
 | Field | Required content |
 | --- | --- |
 | `retained_branch_identity` | accepted branch id, accepted history segment, source path, retained pressure-row id, retained response direction, and quotient chart |
-| `receiver_normal_weight_record` | same-row $D_s$, $D_t$, $W^{\mathrm{rec}}$, and retained root-row identities before and after the pressure perturbation |
+| `receiver_normal_weight_record` | same-row $D_s$, $D_T$, $W^{\mathrm{rec}}$, and retained root-row identities before and after the pressure perturbation |
 | `energy_exposure_record` | same-row $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}(A)$, $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A)$, and exposure quotient descent status |
 | `pressure_noether_sea_record` | same-row $\theta_{\mathrm{sea}}$, $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and $\mathcal{M}_{+}^{ab}$ |
 | `finite_difference_trace` | baseline trace, perturbed trace, predicted receiver-normal pressure trace, $\mathcal{R}_{\mathrm{rec}P}^{\mathrm{sim}}$, and tolerance |
@@ -1030,7 +1030,7 @@ The pass/fail status vector is:
 | Status key | Pass condition | Fail or bound-only reading |
 | --- | --- | --- |
 | `accepted_retained_branch_identity` | one accepted non-fixture retained pressure row supplies branch identity, history segment, source path, and quotient chart. | `finite_branch_evidence_missing` |
-| `receiver_normal_same_record` | $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are recomputed on the retained roots used by exposure, pressure, and response tensors. | `receiver_normal_same_record_missing` |
+| `receiver_normal_same_record` | $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are recomputed on the retained roots used by exposure, pressure, and response tensors. | `receiver_normal_same_record_missing` |
 | `energy_exposure_binding` | $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$ descend through the same mass-facing exposure quotient. | `pending_source_descent`, `source_nondescent`, or `energy_exposure_row_split` |
 | `pressure_noether_sea_binding` | pressure variables and Noether sea response coefficients are branch-emitted on the same retained pressure row. | `pressure_response_row_split` or `coefficient_fit_contamination` |
 | `trace_prediction` | $\mathcal{R}_{\mathrm{rec}P}^{\mathrm{sim}}\le\epsilon_{\mathrm{rec}P}^{\mathrm{sim}}$ with no benchmark-tuned coefficient. | `trace_prediction_fail` |

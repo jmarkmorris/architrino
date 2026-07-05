@@ -7,7 +7,7 @@ Claim level: deformation theorem-target and simulation-target material. This pac
 Receiver-normal status: `receiver-normal-restart-required` for active
 force/action derivative use. The $|J|^{-1}$ precession variation below is a
 source-normal diagnostic snapshot. A live precession packet must rebuild the
-variation with same-record $W^{\mathrm{rec}}$, $D_s$, $D_t$, and
+variation with same-record $W^{\mathrm{rec}}$, $D_s$, $D_T$, and
 $DW^{\mathrm{rec}}$ before it can feed action, Krawczyk, or retention rows.
 
 ---

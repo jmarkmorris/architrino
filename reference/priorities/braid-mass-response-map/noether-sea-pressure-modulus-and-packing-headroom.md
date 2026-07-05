@@ -23,7 +23,7 @@ target, not an inherited shell-force coefficient. A pressure modulus row may
 consume wake-return stiffness in scalar mass response only when the same
 retained branch record supplies the wake-history row, the energy/exposure row,
 the Noether sea response row, and the receiver-normal branch strengths
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for the roots that carry that wake
+$W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ for the roots that carry that wake
 history. Source-normal denominators and H39/theta3minus quotient diagnostics
 remain transversality or provider-boundary diagnostics until that same-record
 binding exists.
@@ -31,7 +31,7 @@ binding exists.
 Current disposition: `defer with blocker`. The next accepted evidence object is
 a retained pressure-modulus row with $K_{\mathrm{wake}}^{\mathrm{rev}}$,
 $K_{\mathrm{env}}$, $K_{\mathrm{contact}}$, $s_n$, $\theta_{\mathrm{sea}}$,
-and $\{D_s,D_t,W^{\mathrm{rec}}\}$ on one branch identity. Without that object,
+and $\{D_s,D_T,W^{\mathrm{rec}}\}$ on one branch identity. Without that object,
 the density-channel vanishing invariant below remains a priority-only theorem
 target.
 

@@ -27,6 +27,22 @@ Treat terminology maintenance as a theory-protective cleanup discipline, not as 
 - When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
 - Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
 
+## Ledger, Ledger Row, and Record Usage
+
+Use `ledger` for the $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting structure that keeps related readouts, sources, carriers, and response terms tied together. A ledger is not just a data table; it is the named bookkeeping structure that lets the theory say which quantities belong to the same retained causal history or Noether sea response.
+
+Use `ledger row` only when the sentence needs a specific channel inside that shared accounting structure. Avoid bare `row` in reader-facing prose unless the word literally means a table row, formula row, or layout row. In explanatory app language, prefer `ledger` over `row` unless the channel distinction has already been established for the reader.
+
+Reserve `record` for ordinary records: source records, measurement records, historical records, stored files, log entries, or explicit record-forming events. Do not use `record` as the default replacement for `ledger` when explaining $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting. When the prose means a conserved or retained theory structure, use `ledger`.
+
+Sentence guidance:
+
+- Prefer: "The clock, ruler, and envelope readouts belong to one ledger."
+- Prefer: "The density term belongs to the Noether sea continuity ledger."
+- Prefer: "The proof packet records the failed route in the work log."
+- Avoid by default: "The clock row closes the map" when the reader has not been taught ledger rows.
+- Avoid by default: "The retained record evolves" when the meaning is a retained ledger.
+
 ## Architrino Architecture, AAA, and Disallowed Variants
 
 Use `Architrino` as the public project, product, repository, and app identity. Use `Architrino Assembly Architecture` when the full theory name is needed.
@@ -150,12 +166,12 @@ Use `Noether braid` as the canonical reader-facing term for the neutral six-arch
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | the broad six-architrino neutral assembly class | `Noether braid` | legacy neutral-scaffold labels or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
-| a proposed branch or branch family before all certificate rows close | `candidate braid` | treating the branch as retained or certified before the same-record rows close | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability rows close." |
-| a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability rows are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
+| a proposed branch or branch family before all certificate ledgers close | `candidate braid` | treating the branch as retained or certified before the same-ledger evidence closes | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability ledgers close." |
+| a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability ledgers are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
 | the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
 | a one-band radial-support case | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
 | the three-band nested shell-support candidate | `nested shell braid` | binary-first labels unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |
-| a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge row closes." |
+| a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge ledger closes." |
 
 The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, framed self-linking parity, flat phase-bundle holonomy, or the full assembly topological charge.
 

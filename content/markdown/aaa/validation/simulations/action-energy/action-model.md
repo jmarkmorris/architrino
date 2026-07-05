@@ -1,6 +1,6 @@
 # Action Model Comparison
 
-This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
+This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. We work in units with field speed $v=1$ unless stated otherwise; emission cadence and per-wavefront amplitude are constant at the source; per-hit actions are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$; $H(0)=0$ excludes the coincident-time self-kick; no cross products or right-hand-rule terms appear.
 
 ---
 
@@ -156,7 +156,7 @@ where:
 * $\mathbf{v}_s(\tau)=\dfrac{d\mathbf{x}_s}{d\tau}$ is the source velocity at emission time $\tau$.
 * $\mathbf{n}(\tau) = \dfrac{\mathbf{x}-\mathbf{x}_s(\tau)}{r(\tau)}$ is the unit vector pointing from source (at emission) to the field point.
 
-In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf{v}_s/c_f|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed. The corresponding source-normal denominator is the root-transversality field, while the active received branch strength is the receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rather than an extra source-amplitude modulation.
+In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf{v}_s/c_f|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed. The corresponding source-normal denominator is the root-transversality field, while the active received branch strength is the receiver-normal factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ rather than an extra source-amplitude modulation.
 
 ### Special simple case — stationary emitter
 
@@ -186,53 +186,53 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with receiver-normal branch strength at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c_f$ otherwise.
 
 Field representation (transport/continuity form)
-- Source impulse at $(t_0,\mathbf{s}_0)$ creates a wake surface supported on $r = v(t-t_0)$ with surface density that conserves a constant per-wake surface amplitude $q$:
+- Source impulse at $(T_{\mathrm{em}},\mathbf X_0)$ creates a wake surface supported on $r = v(T-T_{\mathrm{em}})$ with surface density that conserves a constant per-wake surface amplitude $q$:
   $$
-  \rho(t,\mathbf{s}) \;=\; \frac{q}{4\pi r^2}\,\delta\!\big(r - v(t-t_0)\big)\,H(t-t_0),\quad r=\|\mathbf{s}-\mathbf{s}_0\|
+  \rho(T,\mathbf X) \;=\; \frac{q}{4\pi r^2}\,\delta\!\big(r - v(T-T_{\mathrm{em}})\big)\,H(T-T_{\mathrm{em}}),\quad r=\|\mathbf X-\mathbf X_0\|
   $$
 - This solves the radial continuity (transport) equation
   $$
-  \partial_t \rho + \nabla\!\cdot\!\big(v\,\hat{\mathbf{r}}\,\rho\big) \;=\; q\,\delta(t-t_0)\,\delta^{(3)}(\mathbf{s}-\mathbf{s}_0)
+  \partial_T \rho + \nabla_{\mathbf X}\!\cdot\!\big(v\,\hat{\mathbf{r}}\,\rho\big) \;=\; q\,\delta(T-T_{\mathrm{em}})\,\delta^{(3)}(\mathbf X-\mathbf X_0)
   $$
-- Emission is continuous with constant time-density $q(t)\equiv q_0$.
+- Emission is continuous with constant time-density $q(T)\equiv q_0$.
 
 Per-hit equation of motion (EOM)
-- For a receiver $o'$ at time $t$ and a source $j$, causal emission times satisfy
+- For a receiver $o'$ at time $T$ and a source $j$, causal emission times satisfy
   $$
-  \|\mathbf{s}_{o'}(t) - \mathbf{s}_j(t_0)\| = v\,(t-t_0),\qquad t_0<t
+  \|\mathbf X_{o'}(T) - \mathbf X_j(T_{\mathrm{em}})\| = v\,(T-T_{\mathrm{em}}),\qquad T_{\mathrm{em}}<T
   $$
 - Each root contributes a line-of-action acceleration
   $$
-  \mathbf{a}_{o'\leftarrow j}(t;t_0)
+  \mathbf A_{o'\leftarrow j}(T;T_{\mathrm{em}})
   \;=\;
   \kappa\,\sigma_{q_j q_{o'}}\,\frac{|q_j q_{o'}|}{r^2}\,
-  W_{o'j}^{\mathrm{rec}}(t;t_0)\,\hat{\mathbf{r}},
+  W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}},
   \quad
-  \hat{\mathbf{r}}=\frac{\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)}{r},\ r>0
+  \hat{\mathbf{r}}=\frac{\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})}{r},\ r>0
   $$
-  with $W_{o'j}^{\mathrm{rec}}=\lvert D_{t,o'j}/D_{s,o'j}\rvert$, $D_{s,o'j}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}$, and $D_{t,o'j}=c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}}$.
+  with $W_{o'j}^{\mathrm{rec}}=\lvert D_{T,o'j}/D_{s,o'j}\rvert$, $D_{s,o'j}=c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}$, and $D_{T,o'j}=c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}$.
   with total acceleration the sum over sources and roots. Convention $H(0)=0$ removes the instantaneous self-kick at $\tau=0$. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth pushes.
 
 Implementation checklist
-- Root finding: solve $F(t_0;t)=\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(t_0)\|-v(t-t_0)=0$ for all $j$ (including $j=o'$ for self-hits when kinematics permit).
-- Accumulation: compute $r,\hat{\mathbf{r}}$, $D_s$, $D_t$, and $W^{\mathrm{rec}}$, apply $W^{\mathrm{rec}}/r^2$, then superpose.
+- Root finding: solve $F(T_{\mathrm{em}};T)=\|\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})\|-v(T-T_{\mathrm{em}})=0$ for all $j$ (including $j=o'$ for self-hits when kinematics permit).
+- Accumulation: compute $r,\hat{\mathbf{r}}$, $D_s$, $D_T$, and $W^{\mathrm{rec}}$, apply $W^{\mathrm{rec}}/r^2$, then superpose.
 - Time stepping: impulsive mode (events) or mollified mode ($\eta>0$) with standard ODE integrators.
 - Self-interaction: appears when the worldline outruns recent wake surfaces ($\|\mathbf{v}\|>v$ for some emissions); self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
 - This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
-- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c_f$ from Method 2 is the source-normal branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; no additional source-speed amplitude factor is introduced.
+- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c_f$ from Method 2 is the source-normal branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$; no additional source-speed amplitude factor is introduced.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
 Operator diagnostics (finite-window checks)
 - Use vector-calculus identities only on declared, reconstructed diagnostic channels such as $\nabla\Phi_\eta$ or the mollified transport current $\mathbf{J}_\eta=v\,\hat{\mathbf{r}}\,\rho_\eta$. These channels are validation objects, not new substrate ontology.
-- For any finite control volume $V\subset\Sigma_t$ with outward unit normal $\hat{\mathbf{n}}$, define the Gauss residual
+- For any finite control volume $V\subset\Sigma_T$ with outward unit normal $\hat{\mathbf{n}}$, define the Gauss residual
   $$
   R_G[V,t;\mathbf{Y}_\eta]\equiv
   \frac{\left|\int_{\partial V}\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\,dS-\int_V\nabla\!\cdot\!\mathbf{Y}_\eta\,dV\right|}
   {\int_{\partial V}\left|\mathbf{Y}_\eta\!\cdot\!\hat{\mathbf{n}}\right|\,dS+\int_V\left|\nabla\!\cdot\!\mathbf{Y}_\eta\right|\,dV+\varepsilon_G}
   $$
-- For any oriented smooth surface $S\subset\Sigma_t$ with boundary $\partial S$, define the Stokes residual
+- For any oriented smooth surface $S\subset\Sigma_T$ with boundary $\partial S$, define the Stokes residual
   $$
   R_S[S,t;\mathbf{Y}_\eta]\equiv
   \frac{\left|\oint_{\partial S}\mathbf{Y}_\eta\!\cdot d\mathbf{x}-\int_S(\nabla\times\mathbf{Y}_\eta)\!\cdot\!\hat{\mathbf{n}}\,dS\right|}
@@ -276,7 +276,7 @@ Practical implementation notes (concise)
 
 Axiomatic fidelity (delayed-only, line-of-action, constant source emission)
 - Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
-- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a source-normal Jacobian $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding source-normal denominator as root-transversality data, while received force magnitude uses $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
+- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a source-normal Jacobian $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding source-normal denominator as root-transversality data, while received force magnitude uses $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
 - Method 3: Exact match. Delayed-only, line-of-action per-hit with constant source emission is native, and the receiver-normal branch strength appears explicitly in the received force magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity

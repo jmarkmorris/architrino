@@ -72,7 +72,7 @@ and the sheet tube remains separated from all other retained root tubes, exclude
 The source-normal root chart still needs a fixed Jacobian sign on each retained
 tube for differentiating the causal-root row. The force/action contribution is
 not this diagnostic quotient; it is the receiver-normal branch strength
-$W_u^{\mathrm{rec}}=\lvert D_{t,u}/D_{s,u}\rvert$ on the same retained record.
+$W_u^{\mathrm{rec}}=\lvert D_{T,u}/D_{s,u}\rvert$ on the same retained record.
 The ledger must emit
 
 $$
@@ -85,7 +85,7 @@ $$
 \zeta_uJ_u\ge J_0>0
 $$
 
-throughout the tube and coefficient ball, together with $D_s$, $D_t$,
+throughout the tube and coefficient ball, together with $D_s$, $D_T$,
 $W_u^{\mathrm{rec}}$, and $D_vW_u^{\mathrm{rec}}$. Then
 
 $$
@@ -834,7 +834,7 @@ $$
 \right).
 $$
 
-On the fixed $D_s,D_t$ sign stratum,
+On the fixed $D_s,D_T$ sign stratum,
 
 $$
 D_{v,w}^{2}\mathbf{f}_u
@@ -948,7 +948,7 @@ A root-sheet variation run must emit:
 | `sheet_labels` | root label $u$, source pair $(i,j)$, receiver cell $I_n$, delay slab $Q_q$, exact-antipodal mate, and endpoint ownership |
 | `sheet_geometry` | $\eta_u$, $\widehat{\mathbf{R}}_u$, $J_u$, $\zeta_u$, $\eta_0$, $J_0$, tube separation, and complement-gap intervals |
 | `arclength_variation` | $\eta_u'(\lambda)$ and its mesh-lift bound $L_{\lambda,u}/J_0$ |
-| `coefficient_variation` | $D_v\eta_u$, $D_v\widehat{\mathbf{R}}_u$, $D_vJ_u$, $D_vW_u^{\mathrm{rec}}$, and fixed $D_s,D_t$ sign rows |
+| `coefficient_variation` | $D_v\eta_u$, $D_v\widehat{\mathbf{R}}_u$, $D_vJ_u$, $D_vW_u^{\mathrm{rec}}$, and fixed $D_s,D_T$ sign rows |
 | `force_derivative` | $D_v\mathbf{f}_u$, $D_v\widetilde{\mathbf{F}}_i$, and the per-sheet constants $\Lambda_{\eta,u}$, $\Lambda_{R,u}$, $\Lambda_{J,u}$, $\Lambda_{W,u}$ |
 | `residual_derivative` | $D_vA_i$, $D_vR_{T,i}$, $D_vR_{K,i}$, and $D_vR_\gamma$ on the sheet-complete ledger |
 | `curl_action_rows` | $W_p^{+}$, $D_qW_p^{+}$, $\mathcal{C}_{pq}^{+}$, $\Gamma_B$, $D_v\Gamma_B$, and scalar inertia rows if active |

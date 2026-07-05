@@ -5,7 +5,7 @@ finite certificates are closure evidence for the canonical Master EOM only if
 they carry receiver-normal branch strength. The ansatz program may reuse
 history-space, root-ledger, inactive-gap, finite-memory, and source-normal
 transversality structure, but every force, action, returned-history, and margin
-row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ before
 promotion.
 
 This is a restart, not a repair pass. Earlier ansatz constants, collocation
@@ -229,13 +229,13 @@ D_s=c_f+v.
 $$
 The receiver-normal numerator is
 $$
-D_t=c_f-v,
+D_T=c_f-v,
 $$
 so the receiver-normal branch strength is
 $$
 W_p^{\mathrm{rec}}
 =
-\left|\frac{D_t}{D_s}\right|
+\left|\frac{D_T}{D_s}\right|
 =
 \frac{c_f-v}{c_f+v}
 $$
@@ -436,7 +436,7 @@ r_p=c_f\tau_p,
 \qquad
 D_s=c_f+u_r,
 \qquad
-D_t=c_f-u_r,
+D_T=c_f-u_r,
 \qquad
 W_p^{\mathrm{rec}}=\frac{c_f-u_r}{c_f+u_r}
 $$

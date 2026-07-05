@@ -24,8 +24,8 @@ Each simulation campaign should declare a bounded scope envelope before any resu
 
 The durable target is to separate four questions that are often conflated:
 
-- What portion of $S(t)$ is being integrated?
-- What portion of $S(t)$ is being logged?
+- What portion of $S(T)$ is being integrated?
+- What portion of $S(T)$ is being logged?
 - What observer-level quantity is being reconstructed from those logs?
 - Which perturbations or interventions are allowed during the run?
 

@@ -5,20 +5,20 @@ receiver-normal branch factor
 $$
 D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_j(s),
 \qquad
-D_{t,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_i(t),
+D_{T,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_i(t),
 \qquad
-W_{ij}^{\mathrm{rec}}=\left|D_{t,ij}/D_{s,ij}\right|.
+W_{ij}^{\mathrm{rec}}=\left|D_{T,ij}/D_{s,ij}\right|.
 $$
 Any active proof, solver row, action row, force row, or certificate must carry
 this same-record receiver-normal branch strength before it can move closure.
-Rows that do not expose $D_s$, $D_t$, and $W^{\mathrm{rec}}$ on the retained
+Rows that do not expose $D_s$, $D_T$, and $W^{\mathrm{rec}}$ on the retained
 branch record are not force/action evidence.
 
 Clean-slate proof-process rule. If a proof path consumed any force, action,
-finite-certificate, no-go, margin, or pass/fail row lacking same-record $D_t$,
+finite-certificate, no-go, margin, or pass/fail row lacking same-record $D_T$,
 restart that proof path from its first receiver-normal branch table. Do not
 promote a prior margin, constant, no-go, fixed-point claim, or pass/fail verdict
-by patching in $D_t$ later. The only admissible carryover is explicitly non-force
+by patching in $D_T$ later. The only admissible carryover is explicitly non-force
 geometry: root existence, retained branch labels, inactive gaps, finite-memory
 depth, and source-normal transversality. Even those rows must be re-bound to the
 same receiver-normal EOM record before a restarted proof consumes them.
@@ -50,7 +50,7 @@ Rows that must restart:
 - A1 outward constants,
 - generated pass/fail certificates that lack receiver-normal branch-strength
   rows,
-- app or solver rows that reconstruct branch strength without $D_t$,
+- app or solver rows that reconstruct branch strength without $D_T$,
 - any proof process whose conclusion depended on one of those rows.
 
 ## Canonical Equation
@@ -72,14 +72,14 @@ not be collapsed.
 
 | Surface | Receiver-normal disposition | Required restart |
 | --- | --- | --- |
-| `content/markdown/aaa/dynamics/master-equation.md` | Canonical equation uses receiver-normal branch strength. Action and circular rows that lack same-record $D_t$ are restart targets only. | Redrive action functional and circular branch asymptotics with $W^{\mathrm{rec}}$. |
+| `content/markdown/aaa/dynamics/master-equation.md` | Canonical equation uses receiver-normal branch strength. Action and circular rows that lack same-record $D_T$ are restart targets only. | Redrive action functional and circular branch asymptotics with $W^{\mathrm{rec}}$. |
 | `reference/priorities/master-equation-closure/receiver-normal-wake-action-factor.md` | Accepted correction packet. | Use as the local law for every restarted force/action row. |
-| A1 spiral packets | Root topology, inactive gaps, finite memory, and source-normal Jacobian floors remain conditional topology inputs. Force/action verdict rows are invalid as closure evidence. | Start a new same-box $D_s$, $D_t$, $W^{\mathrm{rec}}$ branch table before any branch-sum or pass/fail action certificate is attempted. |
+| A1 spiral packets | Root topology, inactive gaps, finite memory, and source-normal Jacobian floors remain conditional topology inputs. Force/action verdict rows are invalid as closure evidence. | Start a new same-box $D_s$, $D_T$, $W^{\mathrm{rec}}$ branch table before any branch-sum or pass/fail action certificate is attempted. |
 | Breather proof program | Existing branch topology and history-space architecture remain useful only as conditional inputs. Recapture, self-drive, force-margin, and certificate rows must be regenerated with receiver-normal strength. | Restart the breather margin proof with receiver-normal branch strengths and regenerate any consumed finite certificates. |
 | Action / Noether wake-history | Scalar action scaffolds are restart targets unless their variation produces the receiver-normal branch law. | Rebuild the constrained-branch action target and Noether balance rows using $W^{\mathrm{rec}}$ on the same retained branch chart. |
-| Solver and app bridge | Central root rows carry source-normal denominators and receiver-normal factors. Branch weight and delayed-hit strength must equal the unsigned receiver-normal factor. | Keep tests that force moving-receiver asymmetry; reject local helpers that omit $D_t$. |
+| Solver and app bridge | Central root rows carry source-normal denominators and receiver-normal factors. Branch weight and delayed-hit strength must equal the unsigned receiver-normal factor. | Keep tests that force moving-receiver asymmetry; reject local helpers that omit $D_T$. |
 | Photon / Animator / Ideal Braid app-local formulas | App-local physical contribution reconstruction remains suspect until each path consumes solver-owned receiver-normal rows. | Move contribution rows behind solver output before using app-local summaries as physics evidence. |
-| Equation-mapping and geometry-bridge packets | Any row that lacks receiver-normal branch strength is score-neutral for proof movement. Provider/root identity lessons remain useful only if independent of branch-strength consumption. | Redrive only after the canonical Master EOM, A1, and breather force rows expose $D_t/D_s$ on the same retained record. |
+| Equation-mapping and geometry-bridge packets | Any row that lacks receiver-normal branch strength is score-neutral for proof movement. Provider/root identity lessons remain useful only if independent of branch-strength consumption. | Redrive only after the canonical Master EOM, A1, and breather force rows expose $D_T/D_s$ on the same retained record. |
 
 ## Reinitiation Decisions
 
@@ -89,15 +89,15 @@ architecture remains the right proof shape; the numerical and analytic margins
 must be redriven.
 
 Reinitiate A1 outward constants only after each retained label has same-box
-$D_t$ bounds. Existing constants do not certify action or force closure.
+$D_T$ bounds. Existing constants do not certify action or force closure.
 
 Reinitiate action and Noether wake-history closure from the constrained branch
 scaffold with $W^{\mathrm{rec}}$. Do not replay branch-strength rows that omit
-$D_t$ as live proof steps.
+$D_T$ as live proof steps.
 
 Pause equation-mapping score movement until the receiver-normal Master EOM rows exist.
 Equation-mapping can still audit which rows lack receiver-normal branch
-strength, but numeric pass/fail without $D_t$ is not proof evidence.
+strength, but numeric pass/fail without $D_T$ is not proof evidence.
 
 Default decision. When a proof surface is ambiguous, restart it rather than
 inherit it. A restarted proof may cite the earlier topology diagnostics only as
@@ -114,8 +114,8 @@ minimum object needed before any purged proof path can be rationally restarted.
 First-derivative extension. The first derivative-consuming restart object is
 now the priority-only
 `receiver-normal-retained-branch-family-first-derivative/v0` artifact: on the
-same retained branch-family record it must bind $D_s$, $D_t$, fixed sign
-labels, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed
+same retained branch-family record it must bind $D_s$, $D_T$, fixed sign
+labels, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed
 $D_vW^{\mathrm{rec}}$, geometry derivatives, the force-kernel derivative, and
 the exact retained branch-family checksum consumed downstream.
 

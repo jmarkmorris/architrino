@@ -15,7 +15,7 @@ Use an Elie Cartan-style emergent-geometry and connection lens. Keep the fixed E
 
 ## Context
 
-We are developing a deterministic tri-binary Noether-braid theory. A Noether braid is a retained closed assembly with three coupled binary substructures, causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, phase rows, and a surrounding Noether sea state. A Noether sea is the population-level medium record around retained assemblies; it carries density, cadence, delay, stress, flow, orientation, and response rows.
+We are developing a deterministic Noether braid theory. A Noether braid is a retained closed assembly with causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, phase rows, and a surrounding Noether sea state. Exact shell support and binary grouping are branch-level proof obligations; the nested shell braid candidate adds three ordered support bands when that role map is declared. A Noether sea is the population-level medium record around retained assemblies; it carries density, cadence, delay, stress, flow, orientation, and response rows.
 
 The current equation-mapping target is:
 
@@ -185,7 +185,7 @@ This suggests a mass-root geometry question: can a charged-lepton generation-by-
 7. How can the local medium-response tensor $\mathcal M_{\mathrm{sea}}^{ab}$ become an effective metric/connection input without collapsing the fixed Euclidean substrate into literal curved substrate geometry?
 8. What is the smallest Noether sea evidence object that would be geometrically meaningful even before the full retained branch is accepted?
 9. What row should be accepted first from a geometry standpoint: raw label preservation, plane-orientation/bivector rows, response-center/group-velocity rows, or the Noether sea record?
-10. How should phase offsets in an equal-frequency tri-binary row set be represented geometrically: holonomy, connection phase, torus angle, frame rotation, or another object?
+10. How should phase offsets in an equal-frequency nested shell braid row set be represented geometrically: holonomy, connection phase, torus angle, frame rotation, or another object?
 11. For Koide, is the $45^\circ$ mass-root angle better interpreted as a vector-bundle constraint, a moment-map level set, an eigenvector condition, a sector-projection theorem, or a coincidence until proven otherwise?
 12. What geometric mechanism could make square-root masses natural rather than masses themselves?
 13. What would count as a no-retune geometric proof that $M_{\ell,0}$, $M_{\ell,1}$, and $M_{\ell,2}$ come from one branch family and one response map?

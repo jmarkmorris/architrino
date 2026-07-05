@@ -5,7 +5,7 @@ lemmas, inactive-gap logic, finite-memory controls, and source-normal
 transversality rows in this chapter remain candidate proof inputs. Any recapture
 margin, self-drive margin, branch-force estimate, action row, or finite
 certificate is closure evidence only after it is redriven with the
-receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same
+receiver-normal factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same
 retained branch record.
 
 The proof process restarts at the receiver-normal branch table. Earlier margins,
@@ -255,14 +255,14 @@ D_s=c_f+v
 $$
 while the receiver-normal numerator is
 $$
-D_t=c_f-v.
+D_T=c_f-v.
 $$
 Thus the delayed partner force is neither the naive conservative inverse-square
 force nor a source-normal-only row. The receiver-normal branch strength is
 $$
 W_p^{\mathrm{rec}}
 =
-\left|\frac{D_t}{D_s}\right|
+\left|\frac{D_T}{D_s}\right|
 =
 \frac{c_f-v}{c_f+v}
 $$
@@ -316,7 +316,7 @@ This is a receiver-normal restart scaffold, not a solved breather baseline. It
 shows only that the affine exterior partner row by itself still approaches
 field speed only at the origin-layer limit. Any finite-radius field-speed
 crossing, sub-field return, or recapture mechanism must be redriven from the
-dual-mollified law with the same-record $D_t/D_s$ branch strength.
+dual-mollified law with the same-record $D_T/D_s$ branch strength.
 
 ### Field-Speed Head-On Caustic Test
 
@@ -442,7 +442,7 @@ the partner emission time still lies in the held history,
 $$
 D_s=c_f,
 \qquad
-D_t=c_f-\dot x(t),
+D_T=c_f-\dot x(t),
 \qquad
 W^{\mathrm{rec}}=1-\frac{\dot x(t)}{c_f}.
 $$
@@ -460,7 +460,7 @@ $$
 The energy identity, field-speed criterion, handoff angle, numerical fixture,
 and source-normal continuity claim must be recomputed from this receiver-normal
 ODE and then matched to the moving-partner delayed chart with the same-record
-$D_t/D_s$ factor before they can act as evidence.
+$D_T/D_s$ factor before they can act as evidence.
 
 ## Partner-Hit and Self-Hit Root Equations
 
@@ -10643,7 +10643,7 @@ J_p = 1+\frac{\dot x(t_0)\hat r_p}{c_f},
 \qquad
 J_s = 1-\frac{\dot x(t_0)\hat r_s}{c_f}
 $$
-The receiver-normal numerators $D_t$ are scalar factors as well. This makes
+The receiver-normal numerators $D_T$ are scalar factors as well. This makes
 the same-record binding of root identity, source-normal transversality, and
 receiver-normal branch strength much easier to track analytically.
 

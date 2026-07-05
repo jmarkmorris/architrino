@@ -204,12 +204,12 @@ The same line-of-action hit can have both tangential and support-radial projecti
 The fixed-speed condition implies
 
 $$
-\frac{d}{dt}
+\frac{d}{dT}
 \left(
-\frac{1}{2}\left\|\mathbf{u}_i(t)\right\|^2
+\frac{1}{2}\left\|\mathbf{u}_i(T)\right\|^2
 \right)
 =
-\mathbf{u}_i(t)\cdot\dot{\mathbf{u}}_i(t)
+\mathbf{u}_i(T)\cdot\frac{d\mathbf{u}_i}{dT}(T)
 =0.
 $$
 

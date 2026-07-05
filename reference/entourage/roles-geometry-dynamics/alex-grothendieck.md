@@ -50,7 +50,7 @@ Provide a **high-level structural language** (categories, functors, moduli space
 
 5. **Structural constraints**
    - Reject ad hoc constructions that require separate tuning of mass, clock, ruler, photon, metric, or sector rows when the current proof stack requires one retained branch record.
-   - Formulate minimality questions precisely, especially the slow-fast tri-binary minimality theorem and the absence of extra low-energy partners or hidden transport modes.
+   - Formulate minimality questions precisely, especially the slow-fast nested shell braid minimality theorem and the absence of extra low-energy partners or hidden transport modes.
    - Make structural failures useful by preserving the exact obstruction: no hidden-fit split, branch-chart failure, missing quotient, unstable Floquet spectrum, or unclosed event ledger.
 
 ---

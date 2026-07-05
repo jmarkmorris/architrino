@@ -122,8 +122,8 @@ The central solver should provide these capabilities:
 
 1. Motion solving for architrino assemblies, including positions, velocities, polarity bookkeeping, phase diagnostics, and integration status.
 2. Causal-root solving over source and receiver histories, including all retained branches, residuals, bracket data, and unresolved-root diagnostics.
-3. Delayed-hit solving for self and partner interactions, with emission time, hit time, emitter, receiver, distance, source-normal denominator $D_s$, receiver-normal numerator $D_t$, branch weight $W^{\mathrm{rec}}$, causal-delay Jacobian/transversality status, and halt reason when relevant.
-4. Receiver-normal interaction terms using branch weights $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$, with $D_s$ retained separately as the source-normal root-transversality denominator.
+3. Delayed-hit solving for self and partner interactions, with emission time, hit time, emitter, receiver, distance, source-normal denominator $D_s$, receiver-normal numerator $D_T$, branch weight $W^{\mathrm{rec}}$, causal-delay Jacobian/transversality status, and halt reason when relevant.
+4. Receiver-normal interaction terms using branch weights $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$, with $D_s$ retained separately as the source-normal root-transversality denominator.
 5. Geometry calculations used by apps and simulations: source positions, receiver positions, distances, directions, circular self-hit spans, shell intersections, branch-local vectors, frame transforms, and planar or 3-D projection data.
 6. Scale-aware numerical precision across many orders of magnitude, including declared precision paths, conditioning diagnostics, residual error budgets, and nondimensionalized or rescaled variables where needed.
 7. Simulation envelope admission that evaluates requested scale, runtime, memory, precision, output detail, and algorithmic stress before the solver commits to a run.
@@ -155,7 +155,7 @@ The central API should be versioned and handle-based. Small configs, manifests, 
 | Run an architrino motion simulation | Frames with positions, velocities, phases, diagnostics, and halt status. |
 | Record a minimal virtual-observer path segment | Time bounds, path id, coordinate frame, endpoint state or segment coefficients, interpolation law, numeric type, and error bounds. |
 | Solve causal roots for a source-receiver history pair | Root list with emission time, delay, residual, branch metadata, and unresolved-root diagnostics. |
-| Solve delayed hits | Hit records with emitter, receiver, emission point, receiver point, $D_{s,ij}$, $D_{t,ij}$, $W_{ij}^{\mathrm{rec}}$ / `branchWeight`, causal-delay Jacobian/transversality status, and source branch. |
+| Solve delayed hits | Hit records with emitter, receiver, emission point, receiver point, $D_{s,ij}$, $D_{T,ij}$, $W_{ij}^{\mathrm{rec}}$ / `branchWeight`, causal-delay Jacobian/transversality status, and source branch. |
 | Emit a root ledger | Active roots, inactive gaps, tail or separator rows, transition rows, root labels, root kind, residuals, Jacobian sign strata, and first-failure statuses. |
 | Report phase-at-hit diagnostics | Source phase, receiver phase when modeled, layer, role, charge sign, cycle index, phase-spread summaries, and event-window consistency flags. |
 | Select precision path | Regime classification, selected simulation technique, numeric type, tolerance policy, scale normalization, error budget, and conditioning diagnostics. |
@@ -237,7 +237,7 @@ For one architrino at $t_{\mathrm{now}}$ with position $\mathbf{x}_i(t_{\mathrm{
 | Assigned assembly state when modeled | Assembly-state reference, phase, cycle index, assembly-local coordinates, and declared internal degrees of freedom for the active assembly model. | Required when the force law depends on phase, assembly structure, or internal resonance. Store compact values or references, not full assembly copies per sample. |
 | Active causal roots | Source id, receiver id, root id, root kind, emission time, hit time, delay, residual, and branch status. | Identifies which past source-history events can affect the architrino now. |
 | Branch geometry | Source point at emission, receiver point at hit, displacement, distance, direction, source velocity when needed, and local frame. | Supplies the geometry used for delayed hits, potential terms, and Jacobian evaluation. |
-| Jacobian and weighting | $J_{ij}$ or $D_{s,ij}$, sign stratum, receiver-normal branch weight $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$, floors, and rejection reason when any. | Keeps root transversality, branch strength, and near-singular behavior explicit. |
+| Jacobian and weighting | $J_{ij}$ or $D_{s,ij}$, sign stratum, receiver-normal branch weight $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$, floors, and rejection reason when any. | Keeps root transversality, branch strength, and near-singular behavior explicit. |
 | Potential summary | Net potential or force/acceleration contribution required by the current model, plus optional per-source contribution references. | Lets the integrator advance the path and lets diagnostics explain the perceived potential. |
 | Error and validity state | Tolerances, residual error estimate, interpolation error estimate, precision path, and status code. | States whether the sample is authoritative for replay, preview only, or halted. |
 
@@ -1165,8 +1165,8 @@ also carries `h39-receiver-normal-retained-record-preimage-row/v0` and
 receiver-normal derivative handoff targets. H39 provider-object branch rows
 remain unusable by `receiver-normal-retained-branch-family-first-derivative/v0`
 until an accepted provider-object branch row is bound to a retained causal-root
-force/action record carrying $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$,
-$D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives,
+force/action record carrying $D_s$, $D_T$, fixed signs, $W^{\mathrm{rec}}$,
+$D_vD_s$, $D_vD_T$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives,
 and the retained branch-family checksum.
 
 ## Settled Decisions

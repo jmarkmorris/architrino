@@ -62,26 +62,26 @@ record:
 $$
 D_{s,\rho},
 \qquad
-D_{t,\rho},
+D_{T,\rho},
 \qquad
-W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|,
+W_{\rho}^{\mathrm{rec}}=\left|D_{T,\rho}/D_{s,\rho}\right|,
 \qquad
 D_vD_{s,\rho},
 \qquad
-D_vD_{t,\rho},
+D_vD_{T,\rho},
 \qquad
 D_vW_{\rho}^{\mathrm{rec}}.
 $$
-The derivative row is not an independent fit. On a fixed $D_s,D_t$ sign
+The derivative row is not an independent fit. On a fixed $D_s,D_T$ sign
 stratum it must reconstruct
 $$
 D_vW_{\rho}^{\mathrm{rec}}
 =
-\frac{\zeta_{t,\rho}\zeta_{s,\rho}}{D_{s,\rho}^2}
+\frac{\zeta_{T,\rho}\zeta_{s,\rho}}{D_{s,\rho}^2}
 \left(
-D_{s,\rho}D_vD_{t,\rho}
+D_{s,\rho}D_vD_{T,\rho}
 -
-D_{t,\rho}D_vD_{s,\rho}
+D_{T,\rho}D_vD_{s,\rho}
 \right)
 $$
 on the same retained box, source artifact hash, regulator state, and branch
@@ -95,7 +95,7 @@ Breather force-margin consumers use the same rule. The specialized target is
 [Breather Receiver-Normal Force-Margin Restart Target](../../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md);
 it keeps recapture, self-drive, action, power, wake-history, and
 Schauder-envelope margin rows fail-closed unless they consume same-record
-$D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+$D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, and
 $D_vW^{\mathrm{rec}}$ on the retained branch-family checksum.
 
 If any row is computed on a different active-root ledger, memory depth, support descriptor, or endpoint convention, the status is

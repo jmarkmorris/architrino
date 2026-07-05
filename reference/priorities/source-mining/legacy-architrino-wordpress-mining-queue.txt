@@ -1,5 +1,5 @@
 # Legacy Architrino WordPress Mining Queue
-# Generated: 2026-06-28
+# Generated: 2026-07-04
 # Source registry: reference/priorities/source-mining/legacy-architrino-wordpress-posts.jsonl
 # This is an all-post archive URL view. Completion is topic/pass-specific and belongs in source-mining-history.md.
 
@@ -41,7 +41,7 @@ https://architrino.wordpress.com/2024/07/08/there-is-no-vacuum-catastrophe/
 https://architrino.wordpress.com/2024/07/05/symmetry-c-p-t/
 # 2024-07-05 How Nature and the Universe Operate
 https://architrino.wordpress.com/2024/07/05/how-nature-and-the-universe-operate/
-# 2024-06-22 Noether Core Factory
+# 2024-06-22 Noether Braid Factory
 https://architrino.wordpress.com/2024/06/22/noether-core-factory/
 # 2024-06-22 Causal Contact and Information
 https://architrino.wordpress.com/2024/06/22/causal-contact-and-information/
@@ -49,7 +49,7 @@ https://architrino.wordpress.com/2024/06/22/causal-contact-and-information/
 https://architrino.wordpress.com/2024/06/07/dynamical-systems-theory-delay-differential-equations-or-control-theory/
 # 2024-06-01 Life Begins with Point Potentials
 https://architrino.wordpress.com/2024/06/01/life-begins-with-point-potentials/
-# 2024-03-26 Spin and Noether Core Geometry
+# 2024-03-26 Spin and Noether Braid Geometry
 https://architrino.wordpress.com/2024/03/26/spin-and-noether-core-geometry/
 # 2024-03-18 The Apparent Darkness of Cosmology
 https://architrino.wordpress.com/2024/03/18/the-apparent-darkness-of-cosmology/
@@ -79,9 +79,9 @@ https://architrino.wordpress.com/2023/05/29/mapping-the-friedmann-equations/
 https://architrino.wordpress.com/2023/05/06/depicting-assemblies-and-reactions-as-paths/
 # 2023-04-29 Quark Epoch : Emerging/Surviving Quarks Couple Vortices
 https://architrino.wordpress.com/2023/04/29/quark-epoch-emerging-surviving-quarks-couple-vortices/
-# 2023-04-28 ElectroWeak Epoch : Personality Charges Bond to Noether Cores
+# 2023-04-28 ElectroWeak Epoch : Personality Charges Bond to Noether Braids
 https://architrino.wordpress.com/2023/04/28/electroweak-epoch-personality-charges-bond-to-noether-cores/
-# 2023-04-23 Inflationary Epoch : Noether Cores Form
+# 2023-04-23 Inflationary Epoch : Noether Braids Form
 https://architrino.wordpress.com/2023/04/23/inflationary-epoch-noether-cores-form/
 # 2023-04-23 Grand Unification Epoch: Binaries Dominate
 https://architrino.wordpress.com/2023/04/23/grand-unification-epoch-dipoles-dominate/
@@ -101,7 +101,7 @@ https://architrino.wordpress.com/2023/03/05/the-equation-of-nature-and-the-unive
 https://architrino.wordpress.com/2023/01/06/barry-barish/
 # 2023-01-03 Mapping Gluons
 https://architrino.wordpress.com/2023/01/03/mapping-gluons/
-# 2023-01-01 Do Nested Binaries Synchronize?
+# 2023-01-01 Do Ordered Support Bands Synchronize?
 https://architrino.wordpress.com/2023/01/01/npqg-april-15-2021/
 # 2022-12-27 Mapping “Spinning Gluons in the Proton”
 https://architrino.wordpress.com/2022/12/27/mapping-spinning-gluons-in-the-proton/
@@ -109,7 +109,7 @@ https://architrino.wordpress.com/2022/12/27/mapping-spinning-gluons-in-the-proto
 https://architrino.wordpress.com/2022/12/25/spacetime-vs-time-and-space/
 # 2022-12-24 Organization of Academia
 https://architrino.wordpress.com/2022/12/24/organization-of-academia/
-# 2022-12-24 Noether Core Superposition
+# 2022-12-24 Noether Braid Superposition
 https://architrino.wordpress.com/2022/12/24/noether-core-superposition/
 # 2022-12-24 Lagrangian
 https://architrino.wordpress.com/2022/12/24/lagrangian/
@@ -193,7 +193,7 @@ https://architrino.wordpress.com/2022/06/07/assembling-a-theory/
 https://architrino.wordpress.com/2022/06/01/absolute-relativity/
 # 2022-05-30 Reactions : Disassembly and Reassembly
 https://architrino.wordpress.com/2022/05/30/fusion/
-# 2022-05-30 Noether Cores and Polar Personality Charges
+# 2022-05-30 Noether Braids and Polar Personality Charges
 https://architrino.wordpress.com/2022/05/30/noether-cores-and-polar-personality-charges-20/
 # 2022-05-23 The Expansion of Spacetime
 https://architrino.wordpress.com/2022/05/23/inflation-expansion-deflation-5-drafted/
@@ -223,7 +223,7 @@ https://architrino.wordpress.com/2022/04/09/assembly-redux/
 https://architrino.wordpress.com/2022/04/08/jefimenko-lienard-wiechert/
 # 2022-04-07 Rearranging Cosmology
 https://architrino.wordpress.com/2022/04/07/rearranging-cosmology/
-# 2022-04-06 Noether Cores and Quantum Spin
+# 2022-04-06 Noether Braids and Quantum Spin
 https://architrino.wordpress.com/2022/04/06/noether-cores-and-quantum-spin/
 # 2022-04-06 Mapping the Right Hand Rule
 https://architrino.wordpress.com/2022/04/06/canceling-the-right-hand-rule/
@@ -339,7 +339,7 @@ https://architrino.wordpress.com/2021/11/11/guardians-of-physics-are-an-embarass
 https://architrino.wordpress.com/2021/10/24/physicists-take-the-l/
 # 2021-10-22 The Standard Model of Particle Physics
 https://architrino.wordpress.com/2021/10/22/the-standard-model-of-particle-physics/
-# 2021-10-17 Zooming in on a Noether Core
+# 2021-10-17 Zooming in on a Noether Braid
 https://architrino.wordpress.com/2021/10/17/zooming-in-on-a-noether-core/
 # 2021-10-13 Dirac Strings Debunked
 https://architrino.wordpress.com/2021/10/13/dirac-strings-debunked/
@@ -365,7 +365,7 @@ https://architrino.wordpress.com/2021/09/11/dear-particle-data-group/
 https://architrino.wordpress.com/2021/09/07/new-ideas-on-galaxy-dynamics/
 # 2021-08-24 Mass
 https://architrino.wordpress.com/2021/08/24/mass/
-# 2021-08-22 The Noether Core is Self-Tuning
+# 2021-08-22 The Noether Braid is Self-Tuning
 https://architrino.wordpress.com/2021/08/22/the-immutable-point-charge-architecture-is-self-tuning/
 # 2021-08-10 Physicist, Heal Thyself
 https://architrino.wordpress.com/2021/08/10/fire-the-physicists/

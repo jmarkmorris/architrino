@@ -145,7 +145,7 @@ $$
 
 The Jacobian floor is retained as the tail-root isolation diagnostic only.
 Assimilated force/action use requires the same tail record to emit
-$W_u^{\mathrm{rec}}$, $D_s$, $D_t$, and the corresponding derivative row.
+$W_u^{\mathrm{rec}}$, $D_s$, $D_T$, and the corresponding derivative row.
 
 The assimilated tail force is
 

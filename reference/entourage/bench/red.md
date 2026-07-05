@@ -76,13 +76,13 @@ Use `validation/parameter-ledger.md` as the canonical list; flag any new paramet
 
 **Category B (Scale Setters / Emergent Structures):**
 - Overall coupling strength $\lambda$ (sets energy/distance scales)
-- Tri-binary radius ratios ($r_{inner} : r_{mid} : r_{outer}$)
+- Nested shell braid radius ratios ($r_{inner} : r_{mid} : r_{outer}$)
 - Noether braid density normalization $\rho_{\text{NS},0}$ and state variables such as $n(\mathbf{x},t)$ and $\chi_{\text{sea}}(\mathbf{x},t)$
 - Self-hit memory depth or decay timescale (if computational approximation)
 
 **Category C (Derived from Micro-Dynamics / Simulations):**
 - Binary formation rates and stability thresholds
-- Tri-binary attractor basins
+- Nested shell braid attractor basins
 - Self-hit regime onset conditions
 - Particle masses (if truly derived, not fitted)
 
@@ -161,9 +161,9 @@ For **every** simulated or calculated process, explicitly verify:
 I actively watch for and **flag** these patterns:
 
 **The "Assembly Closure" Trap:**
-- **Claim:** "Tri-binaries form because dynamics favor tri-binaries."
-- **Red Flag:** No demonstration that random initial conditions converge to tri-binaries.
-- **Resolution Required:** Ensemble statistics showing **>20%** of random ICs lead to tri-binaries; basin-of-attraction analysis.
+- **Claim:** "Nested shell braids form because dynamics favor nested shell braids."
+- **Red Flag:** No demonstration that random initial conditions converge to nested shell braids.
+- **Resolution Required:** Ensemble statistics showing **>20%** of random ICs lead to nested shell braids; basin-of-attraction analysis.
 
 **The "Effective Freedom" Trap:**
 - **Claim:** "Emergent symmetries arise naturally."
@@ -227,8 +227,8 @@ Violations don't immediately kill the framework but require **major revision**:
 - **Identical particle interference:** Bosons **must** interfere constructively; fermions **destructively**--not "approximately," but exactly.
 - **Pauli exclusion precision:** Zero violations ever observed. If volume exclusion is the mechanism, it must be 100.000...% effective.
 - **Neutron-proton mass difference:** $(m_n - m_p) = 1.293$ MeV must **emerge** from axial-structure differences, not be input.
-- **Neutron magnetic moment:** $\mu_n = -1.913 \mu_N$ despite zero net charge. Can tri-binary geometry explain this sign and magnitude?
-- **Vacuum birefringence:** QED predicts tiny effect in strong B-fields. Does tri-binary medium enhance, suppress, or leave it unchanged? (Testable with next-gen lasers.)
+- **Neutron magnetic moment:** $\mu_n = -1.913 \mu_N$ despite zero net charge. Can nested shell braid geometry explain this sign and magnitude?
+- **Vacuum birefringence:** QED predicts tiny effect in strong B-fields. Does nested shell braid medium enhance, suppress, or leave it unchanged? (Testable with next-gen lasers.)
 
 **From Gravity:**
 - **Frame-dragging (Lense-Thirring):** Measured by Gravity Probe B. Must emerge from metric.
@@ -242,7 +242,7 @@ Violations don't immediately kill the framework but require **major revision**:
 
 **From Condensed Matter / Precision:**
 - **Magnetic flux quantization:** In superconductors, $\Phi = n(h/2e)$ **exactly**. Must emerge from assembly geometry.
-- **Quantized Hall resistance:** $R_H = h/(\nu e^2)$ with $\nu$ integer or simple fraction. Does tri-binary geometry allow this?
+- **Quantized Hall resistance:** $R_H = h/(\nu e^2)$ with $\nu$ integer or simple fraction. Does nested shell braid geometry allow this?
 - **NMR precision:** Nuclear magnetic moments stable to ~ $10^{-12}$ level. Spacetime "sea" must not disrupt these.
 
 **Protocol:** Maintain this catalog as a **living checklist**. Each quarter, verify: which have we addressed, which remain open, which are threatened by new data?
@@ -258,7 +258,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 **1. Convergence Certification:**
 - **Temporal:** Halve time step $\Delta t$ -> observables change <2%
 - **Spatial:** Double spatial resolution -> observables change <2%
-- **Parameter sweep:** Vary interaction strength $\lambda$ by +/-20% -> qualitative behavior (e.g., tri-binary formation) persists
+- **Parameter sweep:** Vary interaction strength $\lambda$ by +/-20% -> qualitative behavior (e.g., nested shell braid formation) persists
 
 **2. Cross-Integrator Validation:**
 - Run with **at least two fundamentally different integrators**:
@@ -285,7 +285,7 @@ For **any** computational claim of "emergent structure," "stable assembly," or "
 - Run simulations with **intentionally wrong physics**:
   - Change $|e/6| \to |e/5|$ 
   - Alter interaction law (e.g., 1/r -> 1/r^3)
-- **Verify:** Model **fails as expected** (no stable SM-like particles, no tri-binaries, etc.)
+- **Verify:** Model **fails as expected** (no stable SM-like particles, no nested shell braids, etc.)
 - This proves the simulation is **sensitive to the physics**, not just numerically stable
 
 **6. Artifact Discrimination Diagnostics:**
@@ -380,7 +380,7 @@ Maintain **ranked list** of 5-10 **most decisive tests** (updated quarterly):
    - **Decisive:** Moderate-High (current 4.2$\sigma$ anomaly)
    - **Feasibility:** Data complete ~2025
    - **Cost:** Sunk
-   - **Theory Status:** Must predict $a_\mu$ from tri-binary structure; match or explain deviation from SM
+   - **Theory Status:** Must predict $a_\mu$ from nested shell braid structure; match or explain deviation from SM
 
 3. **High-energy electron form factor** (future ILC or FCC-ee)
    - **Decisive:** High (direct test of compositeness)
@@ -411,7 +411,7 @@ Maintain **ranked list** of 5-10 **most decisive tests** (updated quarterly):
 
 **G.1 To Geometric Topologist & Dynamical Systems Theorist**
 
-- **"Are tri-binaries generic attractors or fine-tuned?"**
+- **"Are nested shell braids generic attractors or fine-tuned?"**
   - Demand: Basin-of-attraction measure on initial condition space
   - Request: Lyapunov stability analysis; bifurcation diagrams as parameters vary
   - Challenge: "Show me the phase portrait; where do random ICs flow?"
@@ -429,14 +429,14 @@ Maintain **ranked list** of 5-10 **most decisive tests** (updated quarterly):
 
 - **"Derive, don't fit."**
   - If electron mass is "derived," show **explicit calculation with zero free parameters adjusted to electron mass**
-  - If it requires fitting one tri-binary parameter, **that parameter is now "fitted to electron mass"** (goes in Category D of ledger)
+  - If it requires fitting one nested shell braid parameter, **that parameter is now "fitted to electron mass"** (goes in Category D of ledger)
 
 - **"Why these gauge groups (SU(3) x SU(2) x U(1))?"**
   - Prove this is the **only** consistent emergent structure, or explain why alternatives (SU(5), SO(10), E8) are suppressed/unstable
 
 - **"Where are the Goldstone bosons?"**
   - If Higgs mechanism breaks SU(2) x U(1) -> $U(1)_{EM}$, **three Goldstone modes must be eaten by W+/-, Z**
-  - Show this **explicitly** in tri-binary dynamics (not just "it emerges")
+  - Show this **explicitly** in nested shell braid dynamics (not just "it emerges")
 
 - **"Generational hierarchy: mechanism?"**
   - Not just "generations are vibrational modes"--**show the calculation**

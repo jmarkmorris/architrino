@@ -14,14 +14,14 @@ A future `rows.radial_turn` object may decide VP-1 only if it contains:
 | --- | --- |
 | `status` | `passed`, `certified_fail`, or `blocked` after receiver-normal evaluation |
 | `data.D_s_interval` | source-normal interval on the retained root box |
-| `data.D_t_interval` | receiver-normal interval on the same box |
-| `data.W_rec_interval` | outward interval for `abs(D_t/D_s)` |
+| `data.D_T_interval` | receiver-normal interval on the same box |
+| `data.W_rec_interval` | outward interval for `abs(D_T/D_s)` |
 | `data.B_r_rec_interval` | receiver-normal radial branch-sum interval |
 | `data.gamma_interval` | independently justified kinematic interval, if used |
-| `data.negative_control` | confirms the row fails closed when $D_t$ is missing or mismatched |
+| `data.negative_control` | confirms the row fails closed when $D_T$ is missing or mismatched |
 
 ## Promotion Rule
 
 No VP-1 radial row may pass or fail from a source-normal branch sum. The row must
 compare the kinematic demand to $B_r^{\mathrm{rec}}$ computed from same-record
-$D_s$, $D_t$, and $W^{\mathrm{rec}}$ intervals.
+$D_s$, $D_T$, and $W^{\mathrm{rec}}$ intervals.

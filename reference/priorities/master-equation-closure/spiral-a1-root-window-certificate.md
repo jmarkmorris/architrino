@@ -16,7 +16,7 @@ evidence.
 
 Claim level. Priority topology packet for the retained $3+1$ root chart. A new
 receiver-normal certificate must reproduce any retained topology it consumes and
-must add same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before any
+must add same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows before any
 force/action interpretation.
 
 ## Candidate Definition
@@ -284,7 +284,7 @@ candidate constants:
    branch-history certificate.
 7. `radial_turn` and `tangential_drive`: the companion
    [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md) packet
-   now requires same-box $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before any
+   now requires same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows before any
    force/action verdict can be promoted. This root-window packet is topology
    evidence only.
 

@@ -9,7 +9,7 @@ $$
 \mathsf{N}_{\mathrm H,\mathrm{spec}}^{(\ell)}
 :
 \left(
-S(t)|_{\Omega_{\mathrm H}},
+S(T)|_{\Omega_{\mathrm H}},
 \mathcal A_{\mathrm H}(t),
 C_{\ell,\mathrm{spec}},
 \Pi_{\mathrm{spec}}
@@ -37,7 +37,7 @@ $$
 \delta\Theta_{e\text{-env},\mathrm{spec}}^{(\ell)}
 [\mathcal B_e,D_{e,\mathrm{spec}}].
 $$
-The smallest executable target is two admissible atomic resolutions and at least two isolated hydrogen transitions emitted from one $S(t)|_{\Omega_{\mathrm H}}$ provenance ledger, with $\mathbf g_{N,\mathrm H}^{(\ell)}$, envelope gaps, observer frequencies, and $\mathbf a^G_{\mathrm H}$ all coming from that same ledger.
+The smallest executable target is two admissible atomic resolutions and at least two isolated hydrogen transitions emitted from one $S(T)|_{\Omega_{\mathrm H}}$ provenance ledger, with $\mathbf g_{N,\mathrm H}^{(\ell)}$, envelope gaps, observer frequencies, and $\mathbf a^G_{\mathrm H}$ all coming from that same ledger.
 
 Historical May 22, 2026 promotion note is preserved in [work-log.md](work-log.md#2026-07-02-may-22-2026-promotion-note).
 

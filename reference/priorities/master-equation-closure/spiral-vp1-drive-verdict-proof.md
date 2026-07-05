@@ -7,7 +7,7 @@ Claim level. Priority-only restart target.
 
 The drive verdict can be rebuilt only from same-record receiver-normal rows:
 $$
-D_s,\qquad D_t,\qquad W^{\mathrm{rec}}=\left|D_t/D_s\right|.
+D_s,\qquad D_T,\qquad W^{\mathrm{rec}}=\left|D_T/D_s\right|.
 $$
 
 Until those rows exist, VP-1 has retained topology diagnostics but no canonical

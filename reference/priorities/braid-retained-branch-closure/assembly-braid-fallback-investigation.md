@@ -337,7 +337,7 @@ $$
 Here $J_{ij,\alpha}^{\nu}$ is only the source-normal transversality row for
 root isolation. The active force/action branch strength is the same-record
 receiver-normal factor $W_{ij,\alpha}^{\mathrm{rec},\nu}$, so any fallback
-packet that lacks the corresponding $D_s,D_t,DW^{\mathrm{rec}}$ row is
+packet that lacks the corresponding $D_s,D_T,DW^{\mathrm{rec}}$ row is
 `receiver-normal-restart-required`.
 
 The fallback therefore adds these proof risks:

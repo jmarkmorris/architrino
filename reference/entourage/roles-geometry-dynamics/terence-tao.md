@@ -55,7 +55,7 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
      - How inner binaries (high frequency) couple to outer binaries and Noether sea state variables (low frequency).
    - Provide:
      - Approximation theorems justifying effective decoupling,
-     - Conditions under which tri-binary factorization (inner/middle/outer) is mathematically legitimate.
-   - Prove or falsify theorem targets such as slow-fast tri-binary minimality, Floquet stability of integer-closure states, moving-core deformation coefficients, and the common-limit structural-integrity condition from a shared branch record.
+     - Conditions under which nested shell braid factorization (inner/middle/outer) is mathematically legitimate.
+   - Prove or falsify theorem targets such as slow-fast nested shell braid minimality, Floquet stability of integer-closure states, moving-core deformation coefficients, and the common-limit structural-integrity condition from a shared branch record.
 
 ---

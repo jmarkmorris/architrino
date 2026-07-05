@@ -29,7 +29,7 @@ S_{\mathrm{red}}[\gamma] \;=\; \oint_\gamma \vartheta,
 $$
 with $\vartheta$ the braid action one-form above. The theorem target is:
 
-> **Period Quantization Lemma (target).** For a retained tri-binary braid on a closed branch chart with smooth $E(3)\times\mathbb R_t$ symmetry of the kernel, the de Rham class $[\vartheta]$ is integral, and its generator period $h:=\oint_{\gamma_0}\vartheta$ is independent of which conjugate readout (energy, momentum, or angular momentum) projects $\vartheta$.
+> **Period Quantization Lemma (target).** For a retained nested shell braid on a closed branch chart with smooth $E(3)\times\mathbb R_t$ symmetry of the kernel, the de Rham class $[\vartheta]$ is integral, and its generator period $h:=\oint_{\gamma_0}\vartheta$ is independent of which conjugate readout (energy, momentum, or angular momentum) projects $\vartheta$.
 
 This is what converts "$h$ is inserted" into "$h$ is the period of one retained two-form." It is a *plausible theorem target*, not yet established--the open step is showing $[\vartheta]$ is integral despite self-hit (the history term in $\Omega$ could in principle carry irrational holonomy).
 

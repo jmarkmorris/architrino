@@ -19,7 +19,7 @@ The strongest phenomenology from the earlier draft has now been promoted into th
 
 The most important negative result to preserve is this:
 
-- **Receiver-normal action-counting guardrail:** one cannot infer action or energy doubling directly from delay-map covering degree. In the canonical Master EOM, any action-counting guardrail must be redriven with receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Spatial double covering and temporal frequency doubling are therefore not interchangeable, and any future action theorem must come after the reduced stability analysis rather than before it.
+- **Receiver-normal action-counting guardrail:** one cannot infer action or energy doubling directly from delay-map covering degree. In the canonical Master EOM, any action-counting guardrail must be redriven with receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$. Spatial double covering and temporal frequency doubling are therefore not interchangeable, and any future action theorem must come after the reduced stability analysis rather than before it.
 
 ## Heuristic Archive
 
@@ -100,9 +100,9 @@ $$
 $$
 That argument is not rigorous enough to carry the load.
 
-The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. Near the null separatrix, $D_s$ can lose its floor, and the retained row must also carry the matching $D_t$ numerator before any branch-strength comparison is allowed:
+The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. Near the null separatrix, $D_s$ can lose its floor, and the retained row must also carry the matching $D_T$ numerator before any branch-strength comparison is allowed:
 $$
-\left|D_t/D_s\right|.
+\left|D_T/D_s\right|.
 $$
 Therefore one cannot factor the covering degree out of the action integral unless much stronger same-record invariance assumptions are proved.
 

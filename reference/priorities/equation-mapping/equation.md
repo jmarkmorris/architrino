@@ -138,9 +138,9 @@ with source-normal denominator, receiver-normal numerator, and branch strength
 $$
 D_{s,o'\leftarrow o}=c_f-\mathbf v_o(t_0)\cdot\hat{\mathbf r},
 \qquad
-D_{t,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
+D_{T,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{t,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
+W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{T,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
 $$
 
 ### AAA Mapping

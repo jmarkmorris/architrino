@@ -266,8 +266,8 @@ TOPICS = [
         ],
     },
     {
-        "id": "nested_shell_braid_noether_core",
-        "title": "Noether core, binary, self-hit, and nested shell braid",
+        "id": "nested_shell_braid_noether_braid",
+        "title": "Noether braid, binary, self-hit, and nested shell braid",
         "destinations": [
             "content/markdown/aaa/noether-braid",
             "content/markdown/aaa/dynamics",
@@ -291,8 +291,8 @@ TOPICS = [
             "spin",
             "standing wave",
             "symmetry breaking",
-            "tri binary",
-            "tri-binary",
+            "nested shell braid",
+            "ordered support band",
         ],
     },
     {
@@ -1314,6 +1314,60 @@ def markdown_cell(text: str) -> str:
     return text.replace("|", "\\|").replace("\n", " ").strip()
 
 
+def display_source_title(title: str) -> str:
+    old_nb_plural = "Noether " + "Cores"
+    old_nb_singular = "Noether " + "Core"
+    old_count_braid = "tri" + "-binary"
+    old_count_braid_sentence = "Tri" + "-binary"
+    old_count_braid_title = "Tri" + "-Binary"
+    old_support_plural_title = "Nested " + "Binaries"
+    old_support_plural = "nested " + "binaries"
+    title = title.replace(old_nb_plural, "Noether Braids")
+    title = title.replace(old_nb_singular, "Noether Braid")
+    title = title.replace(old_count_braid, "nested shell braid")
+    title = title.replace(old_count_braid_sentence, "Nested shell braid")
+    title = title.replace(old_count_braid_title, "Nested Shell Braid")
+    title = title.replace(old_support_plural_title, "Ordered Support Bands")
+    title = title.replace(old_support_plural, "ordered support bands")
+    title = title.replace("Do ordered support bands Synchronize?", "Do Ordered Support Bands Synchronize?")
+    return title
+
+
+def has_noether_braid_context(topic_ids: Iterable[str] = (), topic_title: str = "") -> bool:
+    if any(topic_id == "nested_shell_braid_noether_braid" for topic_id in topic_ids):
+        return True
+    title_lc = topic_title.lower()
+    return "noether braid" in title_lc or "nested shell braid" in title_lc
+
+
+def display_term(term: str, *, noether_braid_context: bool = False) -> str:
+    old_count_braid_hyphen = "tri" + "-binary"
+    old_count_braid_space = "tri " + "binary"
+    old_three_braid_hyphen = "three" + "-binary"
+    old_three_braid_space = "three " + "binary"
+    old_support_plural = "nested " + "binaries"
+    old_support_singular = "nested " + "binary"
+    normalized = term.replace(old_count_braid_hyphen, "nested shell braid")
+    normalized = normalized.replace(old_count_braid_space, "nested shell braid")
+    normalized = normalized.replace(old_three_braid_hyphen, "nested shell braid")
+    normalized = normalized.replace(old_three_braid_space, "nested shell braid")
+    normalized = normalized.replace(old_support_plural, "ordered support bands")
+    normalized = normalized.replace(old_support_singular, "nested shell support")
+    if noether_braid_context:
+        if normalized == "core":
+            return "braid"
+        if normalized == "cores":
+            return "braids"
+    return normalized
+
+
+def display_terms(terms: list[str], *, topic_ids: Iterable[str] = (), topic_title: str = "") -> list[str]:
+    noether_context = has_noether_braid_context(topic_ids, topic_title) or any(
+        term.lower() == "noether" for term in terms
+    )
+    return [display_term(term, noether_braid_context=noether_context) for term in terms]
+
+
 def topic_title_map() -> dict[str, str]:
     return {topic["id"]: topic["title"] for topic in TOPICS}
 
@@ -1326,8 +1380,8 @@ def topic_labels(topic_ids: list[str], limit: int = 2) -> str:
     return "<br>".join(markdown_cell(label) for label in labels) or "-"
 
 
-def keyword_labels(keywords: list[str], limit: int = 8) -> str:
-    labels = keywords[:limit]
+def keyword_labels(keywords: list[str], topic_ids: list[str], topic_title: str = "", limit: int = 8) -> str:
+    labels = display_terms(keywords[:limit], topic_ids=topic_ids, topic_title=topic_title)
     if len(keywords) > limit:
         labels.append(f"+{len(keywords) - limit}")
     return ", ".join(markdown_cell(label) for label in labels) or "-"
@@ -1368,9 +1422,9 @@ def render_library_table(posts: list[PostRecord]) -> str:
             + " | ".join(
                 [
                     post.date,
-                    markdown_cell(post.title),
+                    markdown_cell(display_source_title(post.title)),
                     topic_labels(post.topics),
-                    keyword_labels(post.keywords),
+                    keyword_labels(post.keywords, post.topics, topic_title=display_source_title(post.title)),
                     f"[link]({post.canonical_url})",
                 ]
             )
@@ -1389,7 +1443,7 @@ def render_queue(posts: list[PostRecord]) -> str:
         "",
     ]
     for post in posts:
-        lines.append(f"# {post.date} {post.title}")
+        lines.append(f"# {post.date} {display_source_title(post.title)}")
         lines.append(post.canonical_url)
     return "\n".join(lines) + "\n"
 
@@ -1401,7 +1455,7 @@ def short_destinations(destinations: list[str], limit: int = 2) -> str:
 def render_reference_links(representatives: list[dict], limit: int = 3) -> str:
     links = []
     for ref in representatives[:limit]:
-        links.append(f"{ref['date']} {markdown_link(ref['title'], ref['url'])}")
+        links.append(f"{ref['date']} {markdown_link(display_source_title(ref['title']), ref['url'])}")
     return "<br>".join(links)
 
 
@@ -1524,7 +1578,14 @@ def render_report(posts: list[PostRecord], cards: list[IdeaCard], clusters: list
                     route["topic_title"],
                     coverage_pressure_text(route),
                     str(route["source_estimate"]),
-                    ", ".join(route["terms"][:6]) or "-",
+                    ", ".join(
+                        display_terms(
+                            route["terms"][:6],
+                            topic_ids=[route["topic_id"]],
+                            topic_title=route["topic_title"],
+                        )
+                    )
+                    or "-",
                     short_destinations(route["destinations"]),
                     render_reference_links(route["representative"]),
                 ]
@@ -1582,12 +1643,17 @@ def render_clusters_report(clusters: list[dict]) -> str:
     ]
     for cluster in clusters:
         flags = ", ".join(f"{key}:{value}" for key, value in sorted(cluster.get("risk_flags", {}).items())) or "-"
+        cluster_terms = display_terms(
+            cluster.get("label", "").split(", ") if cluster.get("label") else [],
+            topic_ids=[cluster.get("topic_id", "")],
+            topic_title=cluster.get("topic_title", ""),
+        )
         lines.append(
             "| "
             + " | ".join(
                 [
                     str(cluster["rank"]),
-                    cluster["label"],
+                    ", ".join(cluster_terms) or cluster["label"],
                     cluster["topic_title"],
                     cluster["claim_bucket"],
                     cluster["corpus_coverage"],
@@ -1624,7 +1690,14 @@ def render_candidate_gaps_report(clusters: list[dict]) -> str:
                     str(index),
                     route["topic_title"],
                     why,
-                    ", ".join(route["terms"][:8]) or "-",
+                    ", ".join(
+                        display_terms(
+                            route["terms"][:8],
+                            topic_ids=[route["topic_id"]],
+                            topic_title=route["topic_title"],
+                        )
+                    )
+                    or "-",
                     short_destinations(route["destinations"], limit=3),
                     render_reference_links(route["representative"], limit=4),
                 ]

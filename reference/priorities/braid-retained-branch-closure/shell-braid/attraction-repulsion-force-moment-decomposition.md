@@ -810,7 +810,7 @@ A solver packet that uses the $3$-$2$ inventory as a dynamics diagnostic must em
 | --- | --- |
 | `solver_space` | `bounded-speed-force-moment-decomposition`, `fixed-speed-special-case`, or downstream solver name consuming this packet |
 | `polarity_inventory` | $\sigma_i$, $A_i$, $R_i$, $|A_i|=3$, $|R_i|=2$, and partner/cross split |
-| `root_weight_convention` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{t,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $\omega_r^\nu=\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$, floors, and event-time convention |
+| `root_weight_convention` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{T,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $\omega_r^\nu=\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$, floors, and event-time convention |
 | `source_site_kernels` | $U_{ij}^\nu$, $\Theta_{ij}^\nu$, $B_{ij}^\nu$, and root multiplicity per source site |
 | `force_split` | $F_{i,A}^\nu$, $F_{i,R}^\nu$, self and medium force rows if present |
 | `tangent_power_split` | $f_{i,A}^\nu$, $f_{i,R}^\nu$, $\mathcal{P}_{i,A}^\nu$, $\mathcal{P}_{i,R}^\nu$, and total $f_i^\nu$ consumed by the speed ODE |

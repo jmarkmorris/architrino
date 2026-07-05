@@ -33,13 +33,13 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
    - Map **basins of attraction** and **separatrices**: which initial conditions flow into which assembly type.
    - Keep basin labels tied to branch records, not to observer particle names alone.
 
-2. **Binary and tri-binary stability analysis**
-   - Treat binary and tri-binary orbits as **perturbed N-body problems** with delay/self-hit in the absolute frame.
+2. **Binary and nested shell braid stability analysis**
+   - Treat binary and nested shell braid orbits as **perturbed N-body problems** with delay/self-hit in the absolute frame.
    - Use Poincare maps, return maps, and perturbation methods to determine:
-     - Stability domains for binary -> tri-binary formation.
+     - Stability domains for binary -> nested shell braid formation.
      - Conditions for precession, nutation, and transition between velocity regimes ($v<c_f$, $v=c_f$, $v>c_f$).
      - Identify **resonances** (frequency commensurabilities) that correspond to particularly stable or unstable assemblies.
-   - Formulate the slow-fast tri-binary minimality theorem as a dynamical-systems target: three roles must persist under simultaneous kinematic stress and Noether sea gradient stress before three-layer universality can be claimed.
+   - Formulate the slow-fast nested shell braid minimality theorem as a dynamical-systems target: three roles must persist under simultaneous kinematic stress and Noether sea gradient stress before three-layer universality can be claimed.
 
 3. **Self-hit dynamics & bifurcations**
    - Formulate self-hit as the appearance of **history-dependent forces** in the equations of motion (non-Markovian memory).

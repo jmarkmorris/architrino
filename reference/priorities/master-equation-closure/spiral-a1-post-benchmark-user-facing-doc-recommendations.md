@@ -13,6 +13,6 @@ Required before promotion:
 | radial turn | same-box $B_r^{\mathrm{rec}}$ interval and accepted $\Gamma$ interval |
 | tangential drive | same-box $T^{\mathrm{rec}}$ or weighted-drive interval |
 | tangential compatibility | same-box $T_0^{\mathrm{rec}}$ interval |
-| action/power/wake-history | same retained record with $D_s$, $D_t$, and $W^{\mathrm{rec}}$ |
+| action/power/wake-history | same retained record with $D_s$, $D_T$, and $W^{\mathrm{rec}}$ |
 
 No post-benchmark user-facing update is recommended before those rows exist.

@@ -50,11 +50,11 @@ Here the same retained record must carry
 $$
 D_{s,a}=J_a,
 \qquad
-D_{t,a}
+D_{T,a}
 =
 1-\mathbf{T}_i(\lambda)\cdot\widehat{\mathbf{R}}_a,
 \qquad
-W_a^{\mathrm{rec}}=\left|\frac{D_{t,a}}{D_{s,a}}\right|.
+W_a^{\mathrm{rec}}=\left|\frac{D_{T,a}}{D_{s,a}}\right|.
 $$
 
 $W_a^{\mathrm{rec}}$ is the receiver-normal branch strength. The
@@ -74,7 +74,7 @@ Assume the same record also emits fixed sign labels
 $$
 \zeta_{s,a}=\operatorname{sign}D_{s,a},
 \qquad
-\zeta_{t,a}=\operatorname{sign}D_{t,a},
+\zeta_{T,a}=\operatorname{sign}D_{T,a},
 $$
 
 with
@@ -82,7 +82,7 @@ with
 $$
 \zeta_{s,a}D_{s,a}\ge D_{s,0}=J_0>0,
 \qquad
-\zeta_{t,a}D_{t,a}\ge D_{t,0}>0.
+\zeta_{T,a}D_{T,a}\ge D_{T,0}>0.
 $$
 
 For every unit coefficient variation consumed by the certificate, the
@@ -91,22 +91,22 @@ same-record receiver-normal first-derivative row is
 $$
 D_vW_a^{\mathrm{rec}}
 =
-\frac{\zeta_{t,a}\zeta_{s,a}}{D_{s,a}^2}
+\frac{\zeta_{T,a}\zeta_{s,a}}{D_{s,a}^2}
 \left(
-D_{s,a}D_vD_{t,a}
+D_{s,a}D_vD_{T,a}
 -
-D_{t,a}D_vD_{s,a}
+D_{T,a}D_vD_{s,a}
 \right).
 $$
 
-Equivalently, on this fixed $D_s,D_t$ sign stratum,
+Equivalently, on this fixed $D_s,D_T$ sign stratum,
 
 $$
 D_vW_a^{\mathrm{rec}}
 =
 W_a^{\mathrm{rec}}
 \left(
-\frac{D_vD_{t,a}}{D_{t,a}}
+\frac{D_vD_{T,a}}{D_{T,a}}
 -
 \frac{D_vD_{s,a}}{D_{s,a}}
 \right).
@@ -117,7 +117,7 @@ If the emitted row has bounds
 $$
 |D_vD_{s,a}|\le E_s,
 \qquad
-|D_vD_{t,a}|\le E_t,
+|D_vD_{T,a}|\le E_t,
 $$
 
 then the branch-strength derivative bound used below may be rebuilt as
@@ -148,8 +148,8 @@ This bundle is the shell-braid specialization of the priority-only
 [retained branch-family first-derivative evidence artifact](../../master-equation-closure/receiver-normal-branch-strength-certificate.md#retained-branch-family-first-derivative-evidence-artifact).
 In this packet, $r_a=\eta_a$ and
 $\hat{\mathbf r}_a=\widehat{\mathbf R}_a$. The row is accepted only when the
-same retained record carries $D_{s,a}$, $D_{t,a}$, fixed sign labels,
-$D_vD_{s,a}$, $D_vD_{t,a}$, reconstructed $D_vW_a^{\mathrm{rec}}$,
+same retained record carries $D_{s,a}$, $D_{T,a}$, fixed sign labels,
+$D_vD_{s,a}$, $D_vD_{T,a}$, reconstructed $D_vW_a^{\mathrm{rec}}$,
 $D_v\eta_a$, $D_v\widehat{\mathbf R}_a$, and the exact retained branch list
 consumed by the Lipschitz envelope. A terminal aggregate, replay-only provider
 surface, lambda witness interval, or finite-difference derivative table is not
@@ -468,7 +468,7 @@ $$
 
 with $L_F$ assembled from the per-root bounds above. The same chart also gives a projected-force residual derivative envelope when $D_vP^\perp$, $D_vK$, and $D_v\Gamma_K$ are included.
 
-Proof route. The implicit root derivative is bounded by the source-normal Jacobian floor. The unit line-of-action derivative is bounded by the delay floor and curve-variation envelope. The inverse-square and receiver-normal weights are differentiable on fixed sign strata with $\eta_a\ge\eta_0$, $|D_{s,a}|\ge J_0$, and bounded $D_{t,a}$. Summing finitely many retained roots gives the force envelope.
+Proof route. The implicit root derivative is bounded by the source-normal Jacobian floor. The unit line-of-action derivative is bounded by the delay floor and curve-variation envelope. The inverse-square and receiver-normal weights are differentiable on fixed sign strata with $\eta_a\ge\eta_0$, $|D_{s,a}|\ge J_0$, and bounded $D_{T,a}$. Summing finitely many retained roots gives the force envelope.
 
 ---
 
@@ -478,7 +478,7 @@ The current $M=3$ packets report useful root floors and residual descent, but th
 
 1. $C_0,C_1,C_2$ for the reduced $M=3$ basis;
 2. the same-record receiver-normal derivative bundle
-   $D_{s,a},D_{t,a},D_vD_{s,a},D_vD_{t,a}$, fixed sign labels, and
+   $D_{s,a},D_{T,a},D_vD_{s,a},D_vD_{T,a}$, fixed sign labels, and
    $D_vW_a^{\mathrm{rec}}$;
 3. per-root $E_\eta,E_{\widehat{R}},E_J,L_a$;
 4. full $L_F$ on the support-complete memory ledger;
@@ -504,7 +504,7 @@ Future solver packets should emit:
 | Field | Required payload |
 | --- | --- |
 | `curve_variation_bounds` | $C_0,C_1,C_2$ in the reduced coefficient norm |
-| `receiver_normal_first_derivative_row` | $D_{s,a}$, $D_{t,a}$, fixed sign labels, $D_vD_{s,a}$, $D_vD_{t,a}$, $W_a^{\mathrm{rec}}$, and $D_vW_a^{\mathrm{rec}}$ on the same retained record |
+| `receiver_normal_first_derivative_row` | $D_{s,a}$, $D_{T,a}$, fixed sign labels, $D_vD_{s,a}$, $D_vD_{T,a}$, $W_a^{\mathrm{rec}}$, and $D_vW_a^{\mathrm{rec}}$ on the same retained record |
 | `receiver_normal_first_derivative_artifact` | `receiver-normal-retained-branch-family-first-derivative/v0`, branch-family checksum, source artifact hash, and accepted/failure status for the same retained branch list consumed by $L_F$ |
 | `root_derivative_bounds` | $E_\eta$ per retained label and worst-case value |
 | `direction_derivative_bounds` | $E_{\widehat{R}}$ per retained label |
@@ -527,7 +527,7 @@ diagnostic, or signed-radius target, it fails before the preimage row with
 `h39-provider-candidate-consumed-as-retained-record` or the packet-local
 `h39-coefficient-series-provider-candidate-not-retained-record-preimage`.
 Those rows may guide provider-object construction, but they do not supply
-$D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or
+$D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, or
 $D_vW^{\mathrm{rec}}$ to this Lipschitz envelope.
 
 Failure/status codes:

@@ -58,9 +58,9 @@ with source-normal denominator, receiver-normal numerator, and branch strength
 $$
 D_{s,o'\leftarrow o}=c_f-\mathbf v_o(t_0)\cdot\hat{\mathbf r},
 \qquad
-D_{t,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
+D_{T,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{t,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
+W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{T,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
 $$
 
 On a retained branch chart
@@ -109,7 +109,7 @@ $$
 \hat{\mathbf r}_{o'o,\alpha}.
 $$
 
-This row is native only when the same retained active-root ledger carries $D_s$, $D_t$, and $W^{\mathrm{rec}}$ for each branch. The open conservation burden is to build energy, momentum, angular-momentum, wake, event, and boundary rows from that same retained active-root ledger rather than from a separate fitted potential or observer-level field.
+This row is native only when the same retained active-root ledger carries $D_s$, $D_T$, and $W^{\mathrm{rec}}$ for each branch. The open conservation burden is to build energy, momentum, angular-momentum, wake, event, and boundary rows from that same retained active-root ledger rather than from a separate fitted potential or observer-level field.
 
 ## Same-Root Conservation Contract
 

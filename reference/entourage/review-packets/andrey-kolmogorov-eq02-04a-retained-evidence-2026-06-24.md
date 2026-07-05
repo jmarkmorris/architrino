@@ -15,7 +15,7 @@ Use an Andrey Kolmogorov-style statistical and probabilistic dynamics lens. Trea
 
 ## Context
 
-We are developing a deterministic tri-binary Noether-braid theory. A Noether braid is a retained closed assembly with three coupled binary substructures, causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, phase rows, and a surrounding Noether sea state. A Noether sea is the population-level medium record around retained assemblies; it carries density, cadence, delay, stress, flow, orientation, and response rows.
+We are developing a deterministic Noether braid theory. A Noether braid is a retained closed assembly with causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, phase rows, and a surrounding Noether sea state. Exact shell support and binary grouping are branch-level proof obligations; the nested shell braid candidate adds three ordered support bands when that role map is declared. A Noether sea is the population-level medium record around retained assemblies; it carries density, cadence, delay, stress, flow, orientation, and response rows.
 
 The current equation-mapping target is not to add more scaffolding. It is to obtain one accepted retained branch or Noether sea evidence object. The focused row family is:
 

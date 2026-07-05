@@ -9,7 +9,7 @@ Claim level. Priority-only restart target.
 The variable-rate turn problem is now:
 
 1. keep the retained A1 root topology visible;
-2. compute $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the
+2. compute $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the
    same retained branch boxes;
 3. rebuild radial and tangential turn-center sums from those receiver-normal
    factors;

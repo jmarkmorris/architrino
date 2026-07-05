@@ -12,7 +12,7 @@
 ## Receiver-Normal Restart Notice
 
 The receiver-normal Master EOM branch-strength law is the receiver-normal factor
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Breather proof packets, pass/fail
+$W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$. Breather proof packets, pass/fail
 rows, and certificate reports are closure evidence only when their force/action
 rows carry that factor on the same retained branch record. Root topology,
 inactive-gap, finite-memory, source-normal transversality, and history-space
@@ -24,7 +24,7 @@ reconsidered.
 Dependency audit rule. Breather packets may not consume theta3minus, H39,
 first-y $G,D$, H-graph, coefficient, or successor quotient certificates as
 force/action evidence unless the consumed packet explicitly carries
-same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows and marks its
+same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows and marks its
 receiver-normal evidence status as accepted. Historical quotient certificates
 may be cited only as root-geometry diagnostics or dependency provenance. Any
 breather margin, recapture, self-drive, branch-chart, or Schauder packet that
@@ -38,13 +38,13 @@ preledger, active branch chart, finite-memory row, and event ledger to
 $$
 D_{s,\rho},
 \qquad
-D_{t,\rho},
+D_{T,\rho},
 \qquad
-W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|,
+W_{\rho}^{\mathrm{rec}}=\left|D_{T,\rho}/D_{s,\rho}\right|,
 \qquad
 D_vD_{s,\rho},
 \qquad
-D_vD_{t,\rho},
+D_vD_{T,\rho},
 \qquad
 D_vW_{\rho}^{\mathrm{rec}}
 $$
@@ -68,7 +68,7 @@ shell-braid force-residue substitutions. The exact blocker remains
 `receiver_normal_breather_force_margin_missing`: no breather fixture emits that
 object, no same-packet branch chart is authorized, and no recapture,
 self-drive, action, power, wake-history, or Schauder-envelope margin row
-consumes same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, and derivative rows on
+consumes same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, and derivative rows on
 the retained branch family. The validator's `--absence-boundary` mode also
 sharpens this as `accepted_non_fixture_source_missing` by naming the missing
 fixture producer, `branch_chart.json`, retained receiver-normal row source,
@@ -721,7 +721,7 @@ defect atlas, and fold-layer burden atlas.
 
 The sub-field-speed comparison lane has restarted under the receiver-normal
 Master EOM. The held-release segment and exterior affine delayed-partner chart
-must now be solved with same-record $D_t/D_s$ branch strength. On the exterior
+must now be solved with same-record $D_T/D_s$ branch strength. On the exterior
 affine partner row the receiver-normal invariant is
 $$
 \ln\!\left(\frac{1-\beta^2}{1-\beta_0^2}\right)

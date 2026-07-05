@@ -177,7 +177,7 @@ D_v\widehat{\mathbf{R}}_r
 \right]
 $$
 
-on a fixed $D_s,D_t$ sign stratum. The terms $D_v\eta_r$, $D_vW_{r,\nu}^{\mathrm{rec}}$, $D_v\widehat{\mathbf{R}}_r$, and the clock-corrected $D_vT_i$ must be the bounded-speed root-sheet derivatives, not fixed-speed derivatives reused after $b$ becomes active.
+on a fixed $D_s,D_T$ sign stratum. The terms $D_v\eta_r$, $D_vW_{r,\nu}^{\mathrm{rec}}$, $D_v\widehat{\mathbf{R}}_r$, and the clock-corrected $D_vT_i$ must be the bounded-speed root-sheet derivatives, not fixed-speed derivatives reused after $b$ becomes active.
 
 Let $\{v_\ell\}$ be the declared active correction directions. Define the mean-row derivative matrix
 

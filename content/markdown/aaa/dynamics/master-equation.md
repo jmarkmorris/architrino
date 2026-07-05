@@ -1097,23 +1097,23 @@ If the force-like bookkeeping variable $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ 
 
 #### Receiver Kinematics (Radial vs Orthogonal Components)
 
-At a given hit $(t; t_0)$, decompose the receiver's velocity into components parallel and orthogonal to the line of action $\hat{\mathbf{r}}_{ij}$:
+At a given hit $(T; T_{\mathrm{em}})$, decompose the receiver's velocity into components parallel and orthogonal to the line of action $\hat{\mathbf{r}}_{ij}$:
 
 $$
-\mathbf{v}_i(t) = v_r \hat{\mathbf{r}}_{ij} + \mathbf{v}_\perp
+\mathbf V_i(T) = V_r \hat{\mathbf{r}}_{ij} + \mathbf V_\perp
 $$
 
 where:
 
-- $v_r = \mathbf{v}_i(t) \cdot \hat{\mathbf{r}}_{ij}$ (radial component; positive = moving away from emission point)
-- $\mathbf{v}_\perp = \mathbf{v}_i(t) - v_r \hat{\mathbf{r}}_{ij}$ (orthogonal component)
+- $V_r = \mathbf V_i(T) \cdot \hat{\mathbf{r}}_{ij}$ (radial component; positive = moving away from emission point)
+- $\mathbf V_\perp = \mathbf V_i(T) - V_r \hat{\mathbf{r}}_{ij}$ (orthogonal component)
 
 **Instantaneous effect of the hit:**
 
-Because $\mathbf{a}_{ij}(t; t_0) \parallel \hat{\mathbf{r}}_{ij}$, its instantaneous effect satisfies:
+Because $\mathbf A_{ij}(T; T_{\mathrm{em}}) \parallel \hat{\mathbf{r}}_{ij}$, its instantaneous effect satisfies:
 
 $$
-\frac{d}{dt}\mathbf{v}_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dt}v_r\Big|_{\text{hit}} = \mathbf{a}_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2}W_{ij}^{\mathrm{rec}}(t;t_0)
+\frac{d}{dT}\mathbf V_\perp\Big|_{\text{hit}} = \mathbf{0}, \quad \frac{d}{dT}V_r\Big|_{\text{hit}} = \mathbf A_{ij} \cdot \hat{\mathbf{r}}_{ij} = \kappa \, \sigma_{ij} \, \frac{|q_i q_j|}{r_{ij}^2}W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected at the instant of the hit. Over time, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
@@ -2909,41 +2909,41 @@ $$
 E_{\text{wake}}(t)
 =
 \frac{1}{2}\sum_{i,j}
-\int_{-\infty}^{t} dt_0
-\int_{t}^{\infty} dt_1\,
-\partial_{t_1}\mathcal{K}_{ij}(t_1,t_0)
+\int_{-\infty}^{T} dT_{\mathrm{em}}
+\int_{T}^{\infty} dT_1\,
+\partial_{T_1}\mathcal{K}_{ij}(T_1,T_{\mathrm{em}})
 $$
 
-For $i=j$, the same rule applies with the trivial coincidence branch ($t_1=t_0$) excluded, matching the self-hit convention used throughout this chapter.
+For $i=j$, the same rule applies with the trivial coincidence branch ($T_1=T_{\mathrm{em}}$) excluded, matching the self-hit convention used throughout this chapter.
 
-Interpretation: the double integral measures interaction links that cross the time boundary $t$ (past emission side $t_0\le t$ and future reception side $t_1\ge t$). This is the exact “in-flight” interaction contribution in the nonlocal theory.
+Interpretation: the double integral measures interaction links that cross the absolute-time boundary $T$ (past emission side $T_{\mathrm{em}}\le T$ and future reception side $T_1\ge T$). This is the exact “in-flight” interaction contribution in the nonlocal theory.
 
 For exact solutions of the causal action, nonlocal Noether’s theorem gives
 
 $$
-\frac{d}{dt}\Big(K_{\mu}(t)+E_{\text{wake}}(t)\Big)=0
+\frac{d}{dT}\Big(K_{\mu}(T)+E_{\text{wake}}(T)\Big)=0
 $$
 
 No separate spatial field-energy ontology is required; conservation is encoded directly in worldline geometry and the causal kernel.
 
 For proof and simulation, the same statement can be written as a residual balance. Let
 $$
-\mathbf{R}_i^{(\eta)}(t)
+\mathbf{R}_i^{(\eta)}(T)
 =
-\mu_{\text{arch}}\mathbf{a}_i(t)
+\mu_{\text{arch}}\mathbf A_i(T)
 -
-\mathbf{F}_{i,\mathrm{act}}^{(\eta)}(t)
+\mathbf{F}_{i,\mathrm{act}}^{(\eta)}(T)
 $$
-be the Euler-Lagrange residual of the symmetry-preserving regularized action, where $\mathbf{F}_{i,\mathrm{act}}^{(\eta)}$ includes the scale term and any nonzero constraint-variation residual from the action. Let $\mathcal{B}_{E}^{(\eta)}(t)$ collect energy flux through finite history-window endpoints, period cuts, and excluded self-coincidence boundaries. Then the action-level energy balance is
+be the Euler-Lagrange residual of the symmetry-preserving regularized action, where $\mathbf{F}_{i,\mathrm{act}}^{(\eta)}$ includes the scale term and any nonzero constraint-variation residual from the action. Let $\mathcal{B}_{E}^{(\eta)}(T)$ collect energy flux through finite history-window endpoints, period cuts, and excluded self-coincidence boundaries. Then the action-level energy balance is
 $$
-\frac{d}{dt}
+\frac{d}{dT}
 \left(
-K_{\mu}(t)+E_{\text{wake}}^{(\eta)}(t)
+K_{\mu}(T)+E_{\text{wake}}^{(\eta)}(T)
 \right)
 =
-\sum_i\mathbf{v}_i(t)\cdot\mathbf{R}_i^{(\eta)}(t)
+\sum_i\mathbf V_i(T)\cdot\mathbf{R}_i^{(\eta)}(T)
 +
-\mathcal{B}_{E}^{(\eta)}(t)
+\mathcal{B}_{E}^{(\eta)}(T)
 $$
 For isolated compactly supported or period-matched histories, $\mathbf{R}_i^{(\eta)}=\mathbf{0}$ and $\mathcal{B}_{E}^{(\eta)}=0$ give the exact conserved charge. A nonzero residual identifies a real failure mode: branch-chart loss, nonsymmetric regularization, leakage through the finite memory window, or an unaccounted derivative-of-delta counterterm.
 
@@ -2952,7 +2952,7 @@ For isolated compactly supported or period-matched histories, $\mathbf{R}_i^{(\e
 For direct trajectory evaluation, one may reconstruct a compatible interaction contribution through the accumulated power exchange along the realized trajectory:
 
 $$
-U(t)=U_\ast-\int_{t_\ast}^{t}\sum_i \mu_{\text{arch}}\,\mathbf{a}_i(t')\cdot\mathbf{v}_i(t')\,dt'
+U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\mathbf V_i(T')\,dT'
 $$
 
 This work-integral form is a practical trajectory-level reconstruction when the same action-derived force law and boundary convention are used. It should not be treated as an independent off-shell Noether functional; outside the symmetry-preserving action model it is a diagnostic bookkeeping quantity rather than a proved conserved charge.
@@ -3046,10 +3046,10 @@ delta has been integrated out. It should not be silently reused as a
 receiver-normal action-rate measure. On a retained smooth root $t_0=t_\ell(t)$,
 the causal constraint also gives
 $$
-\frac{dt_\ell}{dt}
+\frac{dT_{\ell,\mathrm{em}}}{dT}
 =
-\frac{c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_i(t)}
-{c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_j(t_\ell)}
+\frac{c_f-\hat{\mathbf{r}}_{ij}(T;T_{\ell,\mathrm{em}})\cdot\mathbf V_i(T)}
+{c_f-\hat{\mathbf{r}}_{ij}(T;T_{\ell,\mathrm{em}})\cdot\mathbf V_j(T_{\ell,\mathrm{em}})}
 $$
 Therefore a source-emission cadence mapped onto a moving receiver path carries a receiver-normal numerator in addition to the source-normal Jacobian denominator. The action, power, wake-history, and finite-window conservation rows must consume the receiver-normal branch measure on the same retained branch chart. Rows that omit $D_T$ are not canonical force/action rows; fixed-receiver reductions must be obtained by direct substitution in $W_{ij}^{\mathrm{rec}}$.
 
@@ -3058,14 +3058,14 @@ Therefore a source-emission cadence mapped onto a moving receiver path carries a
 The branch law targeted by the action-level variation is:
 
 $$
-\frac{d}{dt}\left(\mu_{\text{arch}}\mathbf{v}_i(t)\right)
-= \sum_j \mathbf{F}_{ij}(t)
+\frac{d}{dT}\left(\mu_{\text{arch}}\mathbf V_i(T)\right)
+= \sum_j \mathbf{F}_{ij}(T)
 $$
 
 and the branch-resolved force is
 
 $$
-\mathbf{F}_{ij}(t)
+\mathbf{F}_{ij}(T)
 =
 \mu_{\text{arch}}\,\kappa\,\sigma_{ij}\,|q_i q_j|
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
@@ -3664,21 +3664,21 @@ The theorem-level branch claim requires the three residual balances to converge 
 
 For a finite spatial window, the energy boundary row can be read as the wake-escapement flux defined in [Energy](energy.md#wake-escapement). In that notation, a theorem-level conservation packet should be able to rewrite the energy balance in the form
 $$
-\frac{dE_W}{dt}
+\frac{dE_W}{dT}
 =
--\Phi_{\mathrm{wake},\partial W}(t)
-+P_{\mathrm{ext},W}(t)
-+\mathcal{R}_{E,W}(t),
+-\Phi_{\mathrm{wake},\partial W}(T)
++P_{\mathrm{ext},W}(T)
++\mathcal{R}_{E,W}(T),
 \qquad
-\Phi_{\mathrm{wake},\partial W}(t)
+\Phi_{\mathrm{wake},\partial W}(T)
 =
-\frac{d}{dt}
+\frac{d}{dT}
 \sum_{\alpha\in\mathcal{E}_{\mathrm{esc}}(W)}
 E_\alpha^{\mathrm{emit}}.
 $$
 This does not add a second energy channel. It identifies the endpoint and boundary term of the delayed action with the causal-wake history that exits the retained window without a retained receiver. The same boundary object is the entropy-arrow theorem target in [Entropy](entropy.md#second-law-and-same-record-monotonicity): energy flux, wake escapement, and observer-window entropy production are three projections of one finite-window path-history defect.
 
-Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $t'=t$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $t_0<t$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
+Self‑interaction ($i=j$) is included by adding $S_{ii}$ with the same kernel, but explicitly excluding the trivial coincidence $T'=T$ (no instantaneous self‑push at the moment of emission). Self‑hit corresponds to nontrivial roots $T_{\mathrm{em}}<T$ where the worldline re‑intersects its own causal isochrons, which are captured naturally by the same double‑integral structure.
 
 Thus:
 

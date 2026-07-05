@@ -34,18 +34,18 @@ Methodological priority:
   Until these entries are computed on the same window, regulator, and branch chart, the binary remains an existence candidate rather than a validated closure result.
 - The first constructive energy baseline for such a branch is the branch-local work reconstruction
   $$
-  U_{b,\mathrm{work}}^{(\eta)}(t)
+  U_{b,\mathrm{work}}^{(\eta)}(T)
   =
-  U_b(t_\ast)
+  U_b(T_\ast)
   -
-  \int_{t_\ast}^{t}
+  \int_{T_\ast}^{T}
   \sum_i
   \mu_{\text{arch}}\,
-  \mathbf{a}_{i,b}^{(\eta)}(t')
+  \mathbf A_{i,b}^{(\eta)}(T')
   \cdot
-  \mathbf{v}_i(t')\,dt'
+  \mathbf V_i(T')\,dT'
   $$
-  with the same replacement by $\mu_K(\|\mathbf{v}_i\|)$ when the primitive kinetic scalar is used. For a circular branch, the period-averaged integrand reduces to $\mu_{\text{arch}}s_b\langle A_{\eta,b}^{\mathrm{tan}}\rangle_{P_b}$ in the quadratic proxy.
+  with the same replacement by $\mu_K(\|\mathbf V_i\|)$ when the primitive kinetic scalar is used. For a circular branch, the period-averaged integrand reduces to $\mu_{\text{arch}}s_b\langle A_{\eta,b}^{\mathrm{tan}}\rangle_{P_b}$ in the quadratic proxy.
 - The adiabatic consistency check is branch preservation under slow drift. Along a quasi-static path $\gamma:\lambda\mapsto(R(\lambda),s(\lambda),b)$ that does not cross a root-ledger threshold, the work-integral energy change should match the energy difference inferred from the neighboring solved branch family:
   $$
   \Delta_{\mathrm{ad},E}^{2\mathrm{B}}(\gamma)
@@ -65,51 +65,51 @@ Methodological priority:
   }
   $$
   Here $E_b^{(\eta)}(\lambda)$ denotes the candidate branch energy extracted at fixed $\lambda$ by the same declared construction route. The test is valid only while the same signed causal-root ledger persists with positive Jacobian and inactive-root gap floors. A jump in the ledger is a bifurcation, not a failure of adiabatic energy consistency.
-- Branch-virial theorem target: separate the kinematic virial identity from the stronger classical potential virial theorem. On a fixed finite-$\eta$ branch chart $b$ over an averaging window $W=[t_a,t_b]$, define the branch virial diagnostic
+  - Branch-virial theorem target: separate the kinematic virial identity from the stronger classical potential virial theorem. On a fixed finite-$\eta$ branch chart $b$ over an averaging window $W=[T_a,T_b]$, define the branch virial diagnostic
   $$
-  \mathcal{G}_b^{(\eta)}(t)
+  \mathcal{G}_b^{(\eta)}(T)
   =
   \sum_i
   \mu_{\text{arch}}\,
-  \mathbf{x}_i(t)\cdot\mathbf{v}_i(t)
+  \mathbf X_i(T)\cdot\mathbf V_i(T)
   $$
   and the quadratic kinetic bookkeeping scalar
   $$
-  T_{\mu,b}^{(\eta)}(t)
+  T_{\mu,b}^{(\eta)}(T)
   =
   \frac{1}{2}
   \sum_i
   \mu_{\text{arch}}\,
-  \|\mathbf{v}_i(t)\|^2
+  \|\mathbf V_i(T)\|^2
   $$
   Before the branch average is formed, retain the root-resolved virial rows
   $$
-  V_{i\leftarrow j,t_0}^{(\eta)}(t)
+  V_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
   =
   \mu_{\text{arch}}\,
-  \mathbf{x}_i(t)
+  \mathbf X_i(T)
   \cdot
-  \mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+  \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_{\mathrm{em}})
   $$
   and the corresponding delivered-power rows
   $$
-  P_{i\leftarrow j,t_0}^{(\eta)}(t)
+  P_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
   =
   \mu_{\text{arch}}\,
-  \mathbf{a}_{i\leftarrow j}^{(\eta)}(t;t_0)
+  \mathbf A_{i\leftarrow j}^{(\eta)}(T;T_{\mathrm{em}})
   \cdot
-  \mathbf{v}_i(t)
+  \mathbf V_i(T)
   $$
-  for every retained source/root hit $t_0\in\mathcal C_{ij,b}^{(\eta)}(t)$. The net virial term is then the ledger-preserving sum
+  for every retained source/root hit $T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)$. The net virial term is then the ledger-preserving sum
   $$
   \sum_i
   \mu_{\text{arch}}\,
-  \mathbf{x}_i(t)\cdot\mathbf{a}_{i,b}^{(\eta)}(t)
+  \mathbf X_i(T)\cdot\mathbf A_{i,b}^{(\eta)}(T)
   =
   \sum_i
   \sum_j
-  \sum_{t_0\in\mathcal C_{ij,b}^{(\eta)}(t)}
-  V_{i\leftarrow j,t_0}^{(\eta)}(t)
+  \sum_{T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)}
+  V_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
   $$
   on the same active causal-root ledger used by the force residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
@@ -119,15 +119,15 @@ Methodological priority:
   +
   \sum_i
   \mu_{\text{arch}}\,
-  \mathbf{x}_i(t)\cdot\mathbf{a}_{i,b}^{(\eta)}(t)
+  \mathbf X_i(T)\cdot\mathbf A_{i,b}^{(\eta)}(T)
   \right\rangle_W
   =
   \frac{
-  \mathcal{G}_b^{(\eta)}(t_b)
+  \mathcal{G}_b^{(\eta)}(T_b)
   -
-  \mathcal{G}_b^{(\eta)}(t_a)
+  \mathcal{G}_b^{(\eta)}(T_a)
   }{
-  t_b-t_a
+  T_b-T_a
   }
   $$
   The branch-virial closure target is the special bounded or periodic case in which the right-hand side is zero or below the declared tolerance:

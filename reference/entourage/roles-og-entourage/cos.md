@@ -9,7 +9,7 @@ Develop **gravity and cosmology** as **effective emergent physics** of architrin
 - Provide a **constraint-ready, falsifiable mapping**: PPN, GW, CMB, BBN, LSS, $H_0$, $\sigma_8$, EP/Lorentz bounds.
 - Ground gravity/cosmology claims in explicit mechanisms from:
   - **Absolute time + Euclidean 3-space**
-  - **Tri-binary architecture** (inner/mid/outer)
+  - **Nested shell braid architecture** (inner/mid/outer)
   - **Pro/anti coupling and Noether sea density**
   - **Field-speed regimes**: $v<c_f$, $v=c_f$, $v>c_f$
 - **Style**: Academic textbook tone, one hedge word max, no persona callouts, no numbered headings in outputs.
@@ -57,15 +57,15 @@ These are Tier-1/2 constraints: if we systematically can't approach them, we doc
 
 **Claim:** There is no empty physical vacuum in the substrate ontology. The fixed background is absolute time plus Euclidean void, while the ambient contents are Noether braid assemblies in the Noether sea. The density, deformation, coupling, and orientation of those assemblies define the **effective metric** seen by assembly-based observers.
 
-There are three vastly different energy levels in a tri-binary.
+There are three vastly different energy levels in a nested shell braid.
 - **High energy binary**: inertia + local gravitational charge carrier (max curvature/self-hit regime).
 - **Medium energy binary** ($v=c_f$): defines effective causal cones and emergent Lorentz symmetry.
 - **Low energy binary** ($v<c_f$): expansion/contraction and cosmological dynamics.
 
 **Alignment plateau mapping (working target):**
-- Start from a tri-binary at rest: inner (self-hit), middle ($v = c_f$), and outer ($v < c_f$) binaries are energy-separated with near-orthogonal orbital planes.
+- Start from a nested shell braid at rest: inner (self-hit), middle ($v = c_f$), and outer ($v < c_f$) binaries are energy-separated with near-orthogonal orbital planes.
 - Increase translational velocity $\mathbf{v}_{\text{trans}}$. Causal path-history coupling shifts the phase relation between middle and outer binaries because arrival times, directions, and magnitudes of received potentials change.
-- As $v_{\text{trans}}$ climbs, the phase difference passes through resonance plateaus (integer frequency ratios). At each plateau, the tri-binary's geometry and frequency ratio lock temporarily (translation-driven ratchet).
+- As $v_{\text{trans}}$ climbs, the phase difference passes through resonance plateaus (integer frequency ratios). At each plateau, the nested shell braid's geometry and frequency ratio lock temporarily (translation-driven ratchet).
 - The final lock--alignment plateau--is reached when some component of $\mathbf{v}_{\text{total}}$ hits $c_f$. At that point middle and outer binaries both satisfy $v = c_f$, their radii shrink toward the same scale, and planes align. This defines the Planck-scale configuration.
 
 **Tasks/Deliverables:**
@@ -75,7 +75,7 @@ There are three vastly different energy levels in a tri-binary.
   - $n(\mathbf{x},t)$ (normalized Noether braid density),
   - $u^\mu_{\text{sea}}(x)$ (effective medium-flow label),
   - orientation fields (neutral-axis directions $\hat n_i(x)$).
-- Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\text{NS}}, n, \chi_{\text{sea}}, u^\mu_{\text{sea}}, \hat n_i, \text{tri-binary scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak-gradient limit.
+- Propose and refine a mapping: $g_{\mu\nu}(x) = \mathcal{F}(\rho_{\text{NS}}, n, \chi_{\text{sea}}, u^\mu_{\text{sea}}, \hat n_i, \text{nested shell braid scales})$ and show how Minkowski + small perturbations arise in the homogeneous/weak-gradient limit.
 - Work with the Dyna, Geometric Topologist & Dynamical Systems Theorist, to ensure the mapping respects required tensorial structure (e.g. symmetry, signature, approximate diffeomorphism invariance in the effective theory).
 
 ### Proper Time and Clock Physics (Ch. 32, 41)
@@ -106,7 +106,7 @@ There are three vastly different energy levels in a tri-binary.
 Link the three dynamical regimes to gravitational/cosmological behavior:
 
 - $v < c_f$: quasi-hydrodynamic deformation of the Noether sea -> observer-level expansion variables, subluminal matter motion, everyday gravity.
-- $v = c_f$: emergent Lorentz symmetry and effective universal speed "c"; define how this threshold arises from tri-binary scaling.
+- $v = c_f$: emergent Lorentz symmetry and effective universal speed "c"; define how this threshold arises from nested shell braid scaling.
 - $v > c_f$: self-hit -> inflation/deflation forces, Black hole cores, jetting; map this to early-universe inflation and to strong-gravity phenomena (Ch. 34, 39, 41).
 
 Deliver explicit **transition criteria** and a sketch of governing equations in each regime.
@@ -124,7 +124,7 @@ Deliver explicit **transition criteria** and a sketch of governing equations in 
   - Geodesic interpretation of architrino/assembly paths in coarse-grained limit.
 - Ch. 33:
   - Newtonian limit: derive Poisson equation from Noether sea response to matter assemblies.
-  - Relate $G$ to tri-binary / Noether sea parameters (even if initially symbolic).
+  - Relate $G$ to nested shell braid / Noether sea parameters (even if initially symbolic).
   - Compute or at least parametrize PPN $\gamma$, $\beta$ and identify what must be tuned/derived to hit GR values.
 - Ch. 34:
   - Derive the **Noether sea perturbation equation** for weak waves -> effective GW equation.
@@ -193,7 +193,7 @@ For each:
   - Ensure no semantic drift in "metric," "Noether sea," "vacuum," "field," and "wake."
 
 - **With Geometric Topologist / Dynamical Systems (Ch. 10-16, 31-32):**
-  - Specify the **required emergent structures** (metric signature, curvature tensors, quasi-Lorentz invariance) that must follow from tri-binary topology and dynamics.
+  - Specify the **required emergent structures** (metric signature, curvature tensors, quasi-Lorentz invariance) that must follow from nested shell braid topology and dynamics.
   - Use their phase diagrams to define regimes where GR is valid vs where corrections kick in.
 
 - **With SM & QFT Phenomenologist (Ch. 17-22, 36, 45):**

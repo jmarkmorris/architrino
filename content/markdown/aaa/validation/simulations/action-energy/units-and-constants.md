@@ -9,18 +9,18 @@ Core symbols:
 - $\eta>0$: causal-isochron thickness.
 - $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
-- $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$, with $\hat{\mathbf{r}}=(\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0))/r$.
+- $r=\|\mathbf X_{o'}(T)-\mathbf X_o(T_{\mathrm{em}})\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T)-\mathbf X_o(T_{\mathrm{em}}))/r$.
 
 ## Dynamical Geometry
 
 - Field-speed units ($v=1$):
   - Choosing $L_0,T_0$ with $v=L_0/T_0=1$ fixes a conversion between spatial and temporal scales so that all speeds are dimensionless ratios to the field speed. This is akin to “setting c=1,” but the reference is the model’s field speed. Kinematics still lives on absolute time × Euclidean space; we have not mixed time and space into a 4D line element.
-  - Consequence: every velocity appears as a pure number $\|\mathbf{v}\|$; the symmetry point $\|\mathbf{v}\|=v$ becomes $\|\mathbf{v}\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
+  - Consequence: every velocity appears as a pure number $\|\mathbf V\|$; the symmetry point $\|\mathbf V\|=v$ becomes $\|\mathbf V\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
 
 - Coupling constant ($\kappa>0$):
   - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
     $
-    \mathbf{a}_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{rec}}\,\hat{\mathbf{r}},
+    \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{rec}}\,\hat{\mathbf{r}},
     $
     larger $\kappa$ uniformly strengthens every interaction.
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
@@ -31,13 +31,13 @@ Core symbols:
 
 - Polarity-unit magnitude ($\epsilon>0$):
   - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making observer-level quark electric charges integer multiples of $\epsilon$.
-  - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, where $D_s$ records source-normal root transversality and $D_t$ records receiver-normal crossing.
+  - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, where $D_s$ records source-normal root transversality and $D_T$ records receiver-normal crossing.
 
 - Sign of interaction ($\sigma_{q q'}$):
   - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects attraction vs repulsion while keeping the acceleration strictly collinear with $\hat{\mathbf{r}}$. Like-on-like ($\sigma$=+1) points along +$\hat{\mathbf{r}}$ (repulsion); unlike ($\sigma$=-1) points along -$\hat{\mathbf{r}}$ (attraction).
 
-- Line of action ($r$, $\hat{\mathbf{r}}$, $D_s$, $D_t$, $W^{\mathrm{rec}}$):
-  - $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$ is the separation between the receiver “now” and the source at its causal emission time. $\hat{\mathbf{r}}$ is the corresponding unit vector. The source-normal denominator is $D_s=c_f-\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}$, the receiver-normal numerator is $D_t=c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. All per-hit actions are directed along this line; no transverse or right-hand-rule terms appear.
+- Line of action ($r$, $\hat{\mathbf{r}}$, $D_s$, $D_T$, $W^{\mathrm{rec}}$):
+  - $r=\|\mathbf X_{o'}(T)-\mathbf X_o(T_{\mathrm{em}})\|$ is the separation between the receiver “now” and the source at its causal emission time. $\hat{\mathbf{r}}$ is the corresponding unit vector. The source-normal denominator is $D_s=c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}$, the receiver-normal numerator is $D_T=c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$. All per-hit actions are directed along this line; no transverse or right-hand-rule terms appear.
 
 - Combined role in assembly scales:
   - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
@@ -46,7 +46,7 @@ Core symbols:
   - Simulation sweeps should report dimensionless controls rather than only raw choices of $(\kappa,\epsilon,\eta,L_0,T_0)$. Choose a reference length $L_\star$ and the corresponding reference time $T_\star=L_\star/c_f$; in field-speed units, $c_f=1$ and $T_\star=L_\star$.
   - **Speed ratio:** use
     $$
-    \beta_i(t)=\frac{\|\mathbf{v}_i(t)\|}{c_f}
+    \beta_i(T)=\frac{\|\mathbf V_i(T)\|}{c_f}
     $$
     and, for circular binary scans, the existing speed factor
     $$
@@ -85,4 +85,4 @@ Core symbols:
     $$
     together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.
 
-Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of polarity. The push is always straight along the line back to where the isochron was emitted, but its received strength is shaped by the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; like polarities push out, unlike polarities pull in.
+Plain language: We measure speeds in units where the field speed is one, use $\kappa$ to set how hard every hit pushes, use $\eta$ to slightly thicken the razor-thin isochrons so calculus works, and use $\epsilon$ as the basic unit of polarity. The push is always straight along the line back to where the isochron was emitted, but its received strength is shaped by the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$; like polarities push out, unlike polarities pull in.

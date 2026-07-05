@@ -3,16 +3,16 @@
 Event-aware integration (practical algorithm):
 
 1. Root finding:
-   - For each source $o$ (including $o'=o$ for potential self-hits), solve $F(t_0;t)=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|-(t-t_0)=0$ for $t_0< t$.
+   - For each source $o$ (including $o'=o$ for potential self-hits), solve $F(T_{\mathrm{em}};T)=\|\mathbf X_{o'}(T)-\mathbf X_o(T_{\mathrm{em}})\|-(T-T_{\mathrm{em}})=0$ for $T_{\mathrm{em}}< T$.
    - Discard non-physical roots by convention $H(0)=0$ (exclude $\tau=0$); note $r=0$ occurs only at $\tau=0$ and is thus excluded.
 
 2. Per-hit accumulation:
    - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,
-     $D_s=1-\mathbf{v}_o(t_0)\cdot\hat{\mathbf r}$,
-     $D_t=1-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf r}$, and
-     $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Then use
+     $D_s=1-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf r}$,
+     $D_T=1-\mathbf V_{o'}(T)\cdot\hat{\mathbf r}$, and
+     $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$. Then use
      $$
-     \mathbf{a}_{o'\leftarrow o}(t;t_0)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{rec}}\,\hat{\mathbf{r}}
+     \mathbf A_{o'\leftarrow o}(T;T_{\mathrm{em}})=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{rec}}\,\hat{\mathbf{r}}
      $$
    - Sum over all sources and all roots (superposition).
 
@@ -21,12 +21,12 @@ Event-aware integration (practical algorithm):
    - Mollified mode: replace $\delta(\cdot)$ by $\delta_\eta(\cdot)$ and integrate with a standard ODE solver; choose $\eta$ small relative to local geometric scales.
 
 4. Stability tips:
-   - Use event bracketing or root trackers for continuity of $t'(t)$ across steps.
+   - Use event bracketing or root trackers for continuity of $T_{\mathrm{em}}(T)$ across steps.
    - Limit step size so that at most one (or a controlled number of) mollified wake surfaces overlap significantly per step.
    - Monitor invariants over resolved windows (work–energy balance with $\Phi_\eta$) to validate settings.
 
 5. Units:
-   - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed enters branch strength through $D_t$ and instantaneous power through $v_r$.
+   - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed enters branch strength through $D_T$ and instantaneous power through $v_r$.
 
 6. Two-body closure run packet:
    - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $h$, candidate period $P_b$, and the residual tuple

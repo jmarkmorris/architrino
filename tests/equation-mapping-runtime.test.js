@@ -35,6 +35,23 @@ function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
+function collectVisibleEquationMapText(document) {
+  return [
+    { source: `${document.id} title`, text: document.title },
+    { source: `${document.id} subject`, text: document.subject },
+    ...document.anchors.flatMap((anchor) => [
+      { source: `${document.id} ${anchor.id} anchor label`, text: anchor.label },
+      { source: `${document.id} ${anchor.id} anchor search`, text: anchor.searchText },
+    ]),
+    ...document.overlays.flatMap((overlay) => [
+      { source: `${document.id} ${overlay.id} title`, text: overlay.title },
+      ...overlay.content
+        .filter((block) => block.type === "text")
+        .map((block) => ({ source: `${document.id} ${overlay.id} text`, text: block.text })),
+    ]),
+  ].filter((entry) => entry.text);
+}
+
 function createFakeStyle() {
   return {
     flexWrap: "",
@@ -111,6 +128,20 @@ test("equation mapping seed document carries static layer anchors and comments",
   );
 });
 
+test("equation mapping line-of-action callout names the emission point", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID
+  );
+  const lineOfAction = document.overlays.find((overlay) => overlay.id === "line-of-action");
+
+  assert.equal(
+    lineOfAction.content.some(
+      (block) => block.type === "text" && block.text.includes("point of emission")
+    ),
+    true
+  );
+});
+
 test("equation mapping rejects overlays that do not target a formula section", () => {
   assert.throws(
     () =>
@@ -180,6 +211,34 @@ test("equation mapping callout prose avoids underscore notation", () => {
             `${document.id} ${overlay.id} should use subscripted prose symbols`
           );
         });
+    });
+  });
+});
+
+test("equation mapping callout prose uses exponent notation instead of squared prose", () => {
+  createSeedEquationMapDocuments().forEach((document) => {
+    document.overlays.forEach((overlay) => {
+      overlay.content
+        .filter((block) => block.type === "text")
+        .forEach((block) => {
+          assert.equal(
+            /\bsquared\b/iu.test(block.text),
+            false,
+            `${document.id} ${overlay.id} should use exponent notation instead of "squared"`
+          );
+        });
+    });
+  });
+});
+
+test("equation mapping visible theory text uses ledger terminology", () => {
+  createSeedEquationMapDocuments().forEach((document) => {
+    collectVisibleEquationMapText(document).forEach(({ source, text }) => {
+      assert.equal(
+        /\b(?:row|rows|record|records)\b/iu.test(text),
+        false,
+        `${source} should use ledger terminology instead of bare row or record language`
+      );
     });
   });
 });

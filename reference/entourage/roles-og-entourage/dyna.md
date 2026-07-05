@@ -4,7 +4,7 @@
 
 Provide the **mathematical backbone** of the architrino theory.
 
-- Turn Marko's core ideas--architrinos, tri-binaries, self-hit, and the Noether sea--into **precise dynamical systems** in Euclidean 3-space with absolute time.
+- Turn Marko's core ideas--architrinos, nested shell braids, self-hit, and the Noether sea--into **precise dynamical systems** in Euclidean 3-space with absolute time.
 - Identify and classify **stable assemblies** (particles, Noether sea assemblies, effective fields) as **invariant and/or topological structures** of those dynamics.
 - Derive the **effective continuum descriptions**--fields, symmetries, metrics--needed by:
   - SM/QFT mapping (Part IV),
@@ -138,7 +138,7 @@ Deliverable: Clear **mathematical definition of "assembly"** as an invariant/top
 - Build a **systematic taxonomy** of assemblies:
   - Use knot/link invariants, homotopy/homology, topological charges.
   - Classify by:
-    - Dimensionality (ellipsoidal 3D vs planar 2D tri-binaries),
+    - Dimensionality (ellipsoidal 3D vs planar 2D nested shell braids),
     - Linking/writhe,
     - Symmetry properties (e.g. chiral vs achiral).
 - Assemble an **Assembly Atlas**:
@@ -166,8 +166,8 @@ Deliverable: Quantitative proposals for **mass functionals** and generational se
   - Nonlinear: basins of attraction, Lyapunov exponents, escape times.
 - Map **bifurcation diagrams**:
   - As interaction strengths, densities, or field-speed ratios vary:
-    - When do binaries -> tri-binaries?
-    - When do tri-binaries destabilize into dissociation or reaction channels?
+    - When do binaries -> nested shell braids?
+    - When do nested shell braids destabilize into dissociation or reaction channels?
 - Define **phases** of the architrino system:
   - Gas-like, fluid-like, crystalline, highly condensed, inflating regimes.
 
@@ -190,7 +190,7 @@ Deliverable: Explicit **coarse-graining map** and resulting field equations (Ch.
 ### Emergent Metric & Curvature from Noether Sea Assemblies
 
 - Build a **metric functional**:
-  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{tri-binary scales}\big)$
+  $g_{\mu\nu}(x) = \mathcal{F}\big(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), u^\alpha_{\text{sea}}(x), \hat n_i(x), \text{nested shell braid scales}\big)$
   where $\rho_{\text{NS}}$ is physical Noether braid density, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $u^\alpha_{\text{sea}}$ is an effective medium-flow label, and $\hat n_i$ are neutral-axis orientations.
 - Show:
   - Geodesics in this effective metric correspond to coarse-grained architrino/assembly paths.
@@ -203,7 +203,7 @@ Deliverable: Mathematical backbone for Ch. 31-32 and 34 (metric emergence and si
 ### Absolute Time and Proper Time Map
 
 - Derive the mapping $d\tau/dt = f(v, \rho_{\text{NS}}, \chi_{\text{sea}}, \Phi_{\text{eff}})$ from:
-  - Delay/interaction structure at the tri-binary level (Noether braid oscillation rate vs absolute time).
+  - Delay/interaction structure at the nested shell braid level (Noether braid oscillation rate vs absolute time).
   - Noether sea coupling.
 - Show how:
   - SR-like kinetic time dilation,
@@ -357,7 +357,7 @@ Use and combine:
 ### Pathology & No-Go Report
 
 - Living document listing:
-  - Known pathological regimes (e.g., runaway self-hit, unstable tri-binaries).
+  - Known pathological regimes (e.g., runaway self-hit, unstable nested shell braids).
   - Conditions where continuum limits fail or lead to contradictions with GR/QFT tests.
   - Open mathematical problems that must be resolved for the theory to remain viable.
 
@@ -372,7 +372,7 @@ You can consider the role successful if:
 - There is a **coherent geometric/topological account** of:
   - Mass (as dynamical/topological resistance),
   - Charge (from architrino polarity and axial structure),
-  - Spin (from tri-binary geometry),
+  - Spin (from nested shell braid geometry),
   - And at least a plausible path to generations.
 
 - The formalism:

@@ -212,8 +212,8 @@ Receiver-normal export blocker: any observer export that consumes a force,
 wake-history term, action current, mass-response exposure, breather force
 margin, or Noether sea constitutive response must consume $W^{\mathrm{rec}}$
 from the same retained branch-strength record as the active root list, root
-delay, $D_s$, $D_t$, and, for derivative-consuming rows, $D_vD_s$,
-$D_vD_t$, and reconstructed $D_vW^{\mathrm{rec}}$. A terminal aggregate,
+delay, $D_s$, $D_T$, and, for derivative-consuming rows, $D_vD_s$,
+$D_vD_T$, and reconstructed $D_vW^{\mathrm{rec}}$. A terminal aggregate,
 H39/theta3minus quotient certificate, source-normal denominator row, or old
 shell-braid force residue remains diagnostic-only and fails as
 `receiver-normal-export-row-missing`.
@@ -229,10 +229,10 @@ $$
 \left(
 \mathcal{A}_q,
 D_s,
-D_t,
+D_T,
 W^{\mathrm{rec}},
 D_vD_s,
-D_vD_t,
+D_vD_T,
 D_vW^{\mathrm{rec}},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}
 \right),

@@ -4,7 +4,7 @@ Receiver-normal restart notice. This bridge chapter remains the correct
 history-space proof architecture, but any force-balance, recapture, self-drive,
 action, or finite-certificate row is closure evidence only after it is rebuilt
 under the receiver-normal Master EOM branch factor
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
+$W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
 
 The breather proof process therefore starts over from the receiver-normal branch
@@ -7242,8 +7242,8 @@ where:
 The explicit unresolved theorem burden is to prove, on the recapture windows,
 that the opposite-sign core term dominates the same-sign and self-driven
 widening after all admissible fold-tube and deep-past ceilings are paid. Any
-margin lacking same-record $D_t$ is restart-only: the margin becomes force
-evidence only after the same retained record reports $D_s$, $D_t$, and
+margin lacking same-record $D_T$ is restart-only: the margin becomes force
+evidence only after the same retained record reports $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ for every consumed branch family.
 
 Accordingly, a first branch-sum ceiling for the residual widening term should be written as

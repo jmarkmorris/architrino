@@ -6,7 +6,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 
 - **Status:** candidate constitutive law with two-material replay scaffold.
 - **Main claim:** local atomic and lattice pressure should retune the surrounding Noether sea through one shared record for normalized Noether braid density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
-- **Open burden:** coefficients must be derived from an accepted Noether braid branch, pressure-sensitive packing geometry, and the medium-response tensor probe. Any mass-facing coefficient must additionally consume receiver-normal branch strength from same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rows, not H39/theta3minus quotient certificates or old shell-braid force residues. The first density-side modulus target is staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
+- **Open burden:** coefficients must be derived from an accepted Noether braid branch, pressure-sensitive packing geometry, and the medium-response tensor probe. Any mass-facing coefficient must additionally consume receiver-normal branch strength from same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ rows, not H39/theta3minus quotient certificates or old shell-braid force residues. The first density-side modulus target is staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
 - **Promotion targets:** [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
 
 ## Source Signals
@@ -263,12 +263,12 @@ M_{0,\mathrm{rec}}^{\mathrm{src}}(A),
 \qquad
 \mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A),
 \qquad
-\{D_s,D_t,W^{\mathrm{rec}}\}_{\rho\in\mathfrak{R}_{A}^{\mathrm{ret}}}.
+\{D_s,D_T,W^{\mathrm{rec}}\}_{\rho\in\mathfrak{R}_{A}^{\mathrm{ret}}}.
 $$
 
 The theorem target is a same-record descent statement: perturb one accepted
 retained branch by a declared subthreshold pressure row, recompute
-$D_s$, $D_t$, $W^{\mathrm{rec}}$, $\theta_{\mathrm{sea}}$,
+$D_s$, $D_T$, $W^{\mathrm{rec}}$, $\theta_{\mathrm{sea}}$,
 $M_{0,\mathrm{rec}}^{\mathrm{src}}$, $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$,
 and $\mathcal{M}_{+}^{ab}$ on the same branch identity, and verify that the
 finite-difference scalar trace is explained by the receiver-normal
@@ -284,7 +284,7 @@ packet, the target is admissible only when one retained pressure row supplies:
 | Intake field | Same-record requirement |
 | --- | --- |
 | `retained_branch_identity` | accepted branch id, accepted history segment, source path, quotient chart, retained root-row identity, and retained pressure-row id |
-| `receiver_normal_weight_record` | recomputed $D_s$, $D_t$, and $W^{\mathrm{rec}}$ for the retained roots used by the mass-facing exposure and pressure response |
+| `receiver_normal_weight_record` | recomputed $D_s$, $D_T$, and $W^{\mathrm{rec}}$ for the retained roots used by the mass-facing exposure and pressure response |
 | `energy_exposure_record` | $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}(A)$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A)$ descending through the same exposure quotient |
 | `pressure_record` | $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, retained direction, and pressure step size |
 | `noether_sea_response_record` | $\theta_{\mathrm{sea}}$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, $\mathcal{M}_{+}^{ab}$, reversible-domain row, and null-sector bounds |

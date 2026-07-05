@@ -226,7 +226,7 @@ so the fixed tubes remain below the corridor-specific finite-memory bound.
 | Finite memory for fixed tubes | pass | $6.92<B_{\mathrm{mem}}^{\mathrm{VP1}}=7.8221162806\ldots$ |
 
 The lane blocker is receiver-normal rebuild. A future certificate must recompute
-any radial, tangential, action, or pass/fail row from same-record $D_s$, $D_t$,
+any radial, tangential, action, or pass/fail row from same-record $D_s$, $D_T$,
 and $W^{\mathrm{rec}}$ intervals rather than integrating these topology rows
 into a purged runner.
 

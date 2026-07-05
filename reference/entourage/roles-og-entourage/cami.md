@@ -51,10 +51,10 @@ Define and defend the **basic furniture of reality**:
 Clarify the **hierarchy of structure** and the nature of emergence: See `foundations/ontology.md` for the canonical term set.
 
 **Hierarchy:**
-- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Tri-binaries** (Noether braids) -> **Particles** (assemblies with axial layers) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
+- **Architrinos** (fundamental) -> **Binaries** (stable configurations) -> **Nested shell braids** (Noether braids) -> **Particles** (assemblies with axial layers) -> **Nuclei** (coupled assemblies) -> **Atoms** -> **Matter**.
 
 **Identity and Persistence:**
-- What makes one tri-binary "the same" through time? Is it:
+- What makes one nested shell braid "the same" through time? Is it:
   - Continuity of architrino trajectories,
   - Topological invariants (linking numbers, winding),
   - Or operational: whatever functions as a stable unit?
@@ -296,7 +296,7 @@ Maintain a **living explanatory scoreboard** tracking what the architrino framew
 
 | Phenomenon | SM+GR Status | Architrino Ambition | Current Progress | Deliverable Chapter(s) |
 |------------|--------------|---------------------|------------------|------------------------|
-| Particle masses | 19 input parameters | Derive from tri-binary geometry | In progress | Ch. 18 |
+| Particle masses | 19 input parameters | Derive from nested shell braid geometry | In progress | Ch. 18 |
 | Charge quantization | Postulated (e = 1.602...x10^{-19} C) | Explained (\|e/6\| from architrino) | Conceptual | Ch. 18 |
 | Spin-statistics | Postulated | Derive from ellipsoidal/planar geometry | Conceptual | Ch. 13, 21 |
 | Three generations | Unexplained | Vibrational modes? | Speculative | Ch. 18 |
@@ -362,7 +362,7 @@ Work with **Adversary / Red Team** to provide conceptual roadmaps for major theo
 
 **Spin-Statistics:**
 - **Standard proof**: Requires relativistic QFT in flat spacetime.
-- **Architrino stance**: Must be **derived** from ellipsoidal (fermion) vs planar (boson) tri-binary geometry.
+- **Architrino stance**: Must be **derived** from ellipsoidal (fermion) vs planar (boson) nested shell braid geometry.
 - **My job**: Provide conceptual framing--why does topology determine exchange statistics?
 - **Deliverable**: Conceptual introduction in **Ch. 13** and **Ch. 21**; formal derivation by topologist and QFT roles.
 
@@ -460,7 +460,7 @@ Provide context within the history of foundational physics:
 **What Is Genuinely Novel:**
 - Specific self-hit dynamics and non-Markovian memory.
 - $|e/6|$ charge unit and architrino polarity.
-- Tri-binary architecture (nested binaries at three scales).
+- Nested shell braid architecture (ordered support bands at three scales).
 - Detailed Euclidean + absolute-time ontology with emergent Lorentz symmetry.
 
 **Use This Context To:**
@@ -477,7 +477,7 @@ Provide context within the history of foundational physics:
 
 **Foundational Documents:**
 - **Foundational Ontology Manifesto** (subsections in Ch. 2, 10, 31, 47): What exists, what is emergent, what is operational.
-- **Glossary of Ontological Terms** (Appendix C): Architrino, electrino, positrino, assembly, tri-binary, field, spacetime, proper time, absolute time, etc.
+- **Glossary of Ontological Terms** (Appendix C): Architrino, electrino, positrino, assembly, nested shell braid, field, spacetime, proper time, absolute time, etc.
 - **Emergence Hierarchy Diagram**: Fundamental -> Effective, with clear boundaries (Ch. 10).
 
 **Chapter Contributions:**

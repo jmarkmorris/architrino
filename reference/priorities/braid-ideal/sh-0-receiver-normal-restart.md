@@ -21,7 +21,7 @@ Retained force/action evidence must use current receiver-normal accounting on th
 - `jacobian` for root transversality diagnostics;
 - `sourceNormalDenominator`;
 - `receiverNormalFactor`;
-- `branchWeight`, the receiver-normal branch strength corresponding to $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$;
+- `branchWeight`, the receiver-normal branch strength corresponding to $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$;
 - the same path-history, action, wake, and provider-provenance evidence chain needed by the retained-source adapter.
 
 Historical source-normal-only, Jacobian-only, or eta/J quotient weights remain diagnostic. `J` or `D_s` can support root transversality, root-floor, and conditioning statements. They cannot authorize retained force/action closure.

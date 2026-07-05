@@ -6,7 +6,7 @@ This priority packet synthesizes the current mass-map advances into one proof ch
 
 - **Status:** priority-side theorem target with a reader-facing compact form promoted into [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md).
 - **Main claim:** in a branch-preserving reversible response record, scalar mass trace factors through a quotient-visible exposed source and the rotational trace of the exposed inertial-response tensor. Antisymmetric response, unlogged transport loss, and pressure-row splits cannot contribute to scalar rest mass. Only the trace-free exposure components visible to the retained reversible response directions can affect the scalar trace.
-- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, the retained trace-free response directions, and pressure coefficients from accepted branch records rather than benchmarks. For the receiver-normal successor, the same branch records must also carry same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for the retained roots consumed by the exposed-source and response rows.
+- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, the retained trace-free response directions, and pressure coefficients from accepted branch records rather than benchmarks. For the receiver-normal successor, the same branch records must also carry same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ for the retained roots consumed by the exposed-source and response rows.
 
 ## Inputs
 
@@ -85,12 +85,12 @@ must carry
 $$
 D_{s,\rho},
 \qquad
-D_{t,\rho},
+D_{T,\rho},
 \qquad
 W_{\rho}^{\mathrm{rec}}
 =
 \left|
-\frac{D_{t,\rho}}{D_{s,\rho}}
+\frac{D_{T,\rho}}{D_{s,\rho}}
 \right|,
 $$
 
@@ -141,7 +141,7 @@ $$
 \Pi,
 A,
 D_s,
-D_t,
+D_T,
 W^{\mathrm{rec}}
 \right).
 $$
@@ -188,7 +188,7 @@ Pass fields:
 | Field | Required condition |
 | --- | --- |
 | `accepted_retained_branch_identity` | the same branch id, history segment, source path, quotient chart, and retained pressure-row id carry every input |
-| `receiver_normal_same_record` | $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are recomputed on the retained roots consumed by exposure and response |
+| `receiver_normal_same_record` | $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are recomputed on the retained roots consumed by exposure and response |
 | `energy_exposure_binding` | $E_{\text{internal}}(A)$, $M_{0,\mathrm{rec}}^{\mathrm{src}}(A)$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A)$ descend through the same exposure quotient |
 | `pressure_noether_sea_binding` | $\theta_{\mathrm{sea}}$, $\Pi$, $A$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and $\mathcal{M}_{+}^{ab}$ are branch-emitted on the same pressure row |
 | `trace_prediction` | the finite-difference trace residual is below the declared $\mathcal{R}_{\mathrm{rec}P}$ tolerance |
@@ -542,7 +542,7 @@ The proof chain fails or must demote its claim level if any of the following occ
 | Failure mode | Meaning |
 | --- | --- |
 | `source-nondescent` | $M_0^{\mathrm{src}}$ changes across representatives identified by the scalar quotient. |
-| `receiver-normal-same-record-missing` | $D_s$, $D_t$, or $W^{\mathrm{rec}}$ is missing from the retained roots used by the same exposure, pressure, and response rows. |
+| `receiver-normal-same-record-missing` | $D_s$, $D_T$, or $W^{\mathrm{rec}}$ is missing from the retained roots used by the same exposure, pressure, and response rows. |
 | `trace-nondescent` | $M_0^{\mathrm{src}}$ descends but the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ onto $\mathcal{V}_{\mathcal M}(A)$ does not descend. |
 | `scalar-positivity-window-fail` | the trace-free contraction overwhelms the scalar exposed source, so $m_{\mathrm{tr}}(A)$ is zero or negative in the retained response record. |
 | `response-span-escape` | An unretained trace-free response tensor contributes above $\mathcal{R}_{\mathrm{chain}}$ tolerance. |

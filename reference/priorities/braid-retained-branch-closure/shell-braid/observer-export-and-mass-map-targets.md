@@ -2,7 +2,7 @@
 
 This priority note converts the same-level tri-binary observer-facing claims into export rows that a retained branch packet must compute before any downstream promotion. It is a priority-only theorem-target document. It does not authorize migration into `content/markdown/aaa`, scene assets, simulation defaults, or end-user language.
 
-Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows for every force/action or mass-response contribution, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
+Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows for every force/action or mass-response contribution, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
 
 If the branch uses the bounded speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), every observer export below must be recomputed on the bounded-speed ledger. In particular, the moving-assembly clock/ruler row must replace the fixed-speed condition by
 
@@ -160,13 +160,13 @@ energy/action comparison, or wake-history accounting must carry
 $$
 D_{s,\rho},
 \qquad
-D_{t,\rho},
+D_{T,\rho},
 \qquad
-W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|
+W_{\rho}^{\mathrm{rec}}=\left|D_{T,\rho}/D_{s,\rho}\right|
 $$
 on the same retained root row as the exported branch contribution. If the
 export consumes a derivative-sensitive row, it must also carry
-$D_vD_{s,\rho}$, $D_vD_{t,\rho}$, and reconstructed
+$D_vD_{s,\rho}$, $D_vD_{T,\rho}$, and reconstructed
 $D_vW_{\rho}^{\mathrm{rec}}$ with the same branch-family checksum. H39/theta3minus
 quotient diagnostics, source-normal denominators, old shell-braid force
 residues, and terminal aggregates may remain provider-boundary or

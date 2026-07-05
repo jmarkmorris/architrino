@@ -7,7 +7,7 @@ Claim level. Priority-only restart target.
 
 The routing rule is:
 
-1. emit $D_s$, $D_t$, and $W^{\mathrm{rec}}$ for every retained VP-1 branch;
+1. emit $D_s$, $D_T$, and $W^{\mathrm{rec}}$ for every retained VP-1 branch;
 2. compute $B_r^{\mathrm{rec}}$ on those same boxes;
 3. only then compare $B_r^{\mathrm{rec}}$ to an independently justified
    kinematic $\Gamma$ interval.

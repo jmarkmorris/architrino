@@ -12,7 +12,7 @@
 ## Receiver-Normal Restart Rule
 
 The receiver-normal Master EOM branch-strength row is the receiver-normal factor
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. The restart ledger is
+$W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$. The restart ledger is
 [receiver-normal-master-equation-restart-ledger.md](receiver-normal-master-equation-restart-ledger.md),
 and the local identity packet is
 [receiver-normal-wake-action-factor.md](receiver-normal-wake-action-factor.md).
@@ -22,12 +22,12 @@ Retained root labels, inactive gaps, finite-memory rows, source-normal
 transversality floors, and root-transport rows may survive as conditional
 topology inputs. Force-balance, action, power, Noether wake-history, A1 outward
 constants, and generated pass/fail certificates must restart with same-record
-$D_t/D_s$ branch-strength rows.
+$D_T/D_s$ branch-strength rows.
 
 The policy is proof-process restart, not verdict repair. Any proof route that
-used a force/action row lacking same-record $D_t$ starts over at the first
+used a force/action row lacking same-record $D_T$ starts over at the first
 receiver-normal branch table. Earlier topology rows may be re-used only as
-conditional inputs after they are rebound to the same $D_s$, $D_t$, and
+conditional inputs after they are rebound to the same $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ record. No previous no-go, margin, constant, or pass/fail
 verdict is inherited.
 
@@ -37,8 +37,8 @@ verdict is inherited.
 2. `receiver_normal_branch_strength_certificate` — Upgrade the accepted
    analytic row-shape certificate into the first branch-family same-record
    branch-strength certificate with retained root id, source/receiver ids,
-   $D_s$, $D_t$, $W^{\mathrm{rec}}$, first derivative rows
-   $D_vD_s,D_vD_t,D_vW^{\mathrm{rec}}$, radial/tangential projection rows,
+   $D_s$, $D_T$, $W^{\mathrm{rec}}$, first derivative rows
+   $D_vD_s,D_vD_T,D_vW^{\mathrm{rec}}$, radial/tangential projection rows,
    aggregation row, scalar statistic row, source artifact hash, regulator
    state, and fail-closed negative controls. H39/theta3minus attempts must pass
    through `h39-receiver-normal-retained-record-preimage-row/v0` before any
@@ -49,17 +49,17 @@ verdict is inherited.
 3. `spiral_branch_chart_test` — Rebuild the variable-pitch spiral branch-chart
    test from the receiver-normal Master EOM. Root-topology subrows may survive
    only as conditional geometry inputs; radial, tangential, action, power, and
-   pass/fail rows must restart from same-record $D_s$, $D_t$, and
-   $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ intervals before any promotion.
+   pass/fail rows must restart from same-record $D_s$, $D_T$, and
+   $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ intervals before any promotion.
    Status: `active-restart`. Depends on: none.
 4. `a1_outward_constants_handoff` — Emit an A1 outward-constants contract only
-   after the retained A1 chart has same-box $D_s$, $D_t$, and
+   after the retained A1 chart has same-box $D_s$, $D_T$, and
    $W^{\mathrm{rec}}$ rows. Status: `active-restart`; superseded sampled ladders,
    finite-difference repair searches, and generated pass/fail sidecars are
    purged as force/action evidence. Depends on: `spiral_branch_chart_test`.
 5. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
 6. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
-7. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and supplies the source-normal denominator on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only; receiver-normal action-factor audit added`. Notes: active force/action rows must use receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, while accumulated action, power, and wake-history rows must declare the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$ on the same retained record; see [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md). Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
+7. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and supplies the source-normal denominator on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only; receiver-normal action-factor audit added`. Notes: active force/action rows must use receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, while accumulated action, power, and wake-history rows must declare the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$ on the same retained record; see [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md). Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
 8. `binary_perturbation_projection_classifier` — Split finite binary perturbations into radial and tangential projection rows, then decide whether the response is same-branch phase, radius/cadence retuning, or branch transition. Status: `priority-only`. Depends on: `certified_eigen_braid`.
 9. `topological_causal_root_ledger_proof_target` — Work out whether causal-root topology on a neutral 3-torus can supply an EOM-independent closed-ledger admissibility theorem: roots persist as winding-labeled retained path-history records, root counts change only through declared boundary strata, and every boundary contribution is absent, paired, or routed into the same retained source record before any downstream EOM consumer may use the row. Status: `priority-only theorem target; executable-diagnostic-chain-active`. The current chain has separate priority-only diagnostics for topological roots, photon constituent root routing, near-$c_f$ middle-hinge root-status routing, same-retained-history source-record contract, Noether sea handoff compatibility, wake-history event pullback, action-boundary pullback, and the closed-ledger compositor. The source-record contract checks that root topology, Noether handoff, photon route artifact and sample rows, middle-hinge route artifact and sample rows, event pullback, and action pullback name the same retained history before the boundary equation is evaluated; it now includes an `eom-label-decoy-without-topological-ledger` negative control proving that an EOM or force-law label cannot replace the topology-native active root ledger object. The photon route diagnostic fails closed until every constituent absolute speed above $c_f$ has a self-hit, partner-hit, caustic, or inactive-root route on the same retained source record; the middle-hinge diagnostic fails closed until every `1` or `C` word sample has a same-record self-hit/inactive-root or caustic/finite-$\eta$ route without literal-communication semantics. Both route diagnostics now emit `route_evidence_summary` so missing, synthetic, toy, and accepted-for-branch-retention route evidence stay distinct. The compositor now fails first on $\partial\mathcal{R}^{\mathrm{act}}$ route population in the default fixture; `--route-replay-fixtures` advances that row to action-boundary blockers only at priority-only fixture level and reports `accepted_route_evidence_status: not_accepted_for_branch_retention`; wake-history, action, and Noether medium-response rows now expose `accepted_evidence_summary` and remain `not_accepted_for_wake_history_closure`, `not_accepted_for_action_closure`, and `not_accepted_for_medium_response_closure` until their rows carry same-record accepted evidence ids and derivation proof objects; the compositor now reports `cross_sector_acceptance_status` and `branch_retention_status` so priority-only row logic cannot be mistaken for branch retention, and sector validators reject accepted-summary drift before compositor consumption; see [topological-causal-root-ledger-proof-target](topological-causal-root-ledger-proof-target.md). Depends on: none for the topology-native ledger layer; downstream branch promotion still depends on an accepted branch consumer such as `certified_eigen_braid`.
 
@@ -112,7 +112,7 @@ The updated [master-equation](../../../content/markdown/aaa/dynamics/master-equa
 Practical condition: active proof and simulation packets should treat retained
 root topology as conditional geometry only. Force, action, power, wake-history,
 and pass/fail rows restart under the receiver-normal Master EOM and need
-same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ evidence.
+same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ evidence.
 
 ## Foundation/Dynamics Impact 2026-06-22
 
@@ -132,9 +132,9 @@ set.
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `certified_eigen_braid` | This file, [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
-| `receiver_normal_branch_strength_certificate` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [receiver-normal-master-equation-restart-ledger](receiver-normal-master-equation-restart-ledger.md), [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md), and [branch-provider-evidence-report](../app-solver/branch-provider-evidence-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and the active proof-program packet that emits the first domain branch-family row | The accepted analytic row-shape certificate, the linear moving-receiver branch-family fixture, and the priority-only first-derivative artifact target are populated. Promotion for A1, VP-1, breather, circular, eigen-braid, H39/theta3minus, or assembly closure still requires that packet's retained branch family to report same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, projection, aggregation, scalar statistic, artifact hash, regulator state, and fail-closed negative controls. H39 provider-object rows must first satisfy `h39-receiver-normal-retained-record-preimage-row/v0`. |
-| `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding circular rows restart from same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ intervals before any self-force or tangential no-go is promoted. |
-| `spiral_branch_chart_test` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [spiral-vp1-drive-verdict-proof](spiral-vp1-drive-verdict-proof.md), [spiral-vp1-tangential-interval-proof](spiral-vp1-tangential-interval-proof.md), [spiral-vp1-radial-branch-interval-proof](spiral-vp1-radial-branch-interval-proof.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md), and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md) | One admissible variable-pitch candidate must report retained root topology plus same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, radial, tangential, aggregation, and negative-control rows before any drive verdict is promoted. |
+| `receiver_normal_branch_strength_certificate` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [receiver-normal-master-equation-restart-ledger](receiver-normal-master-equation-restart-ledger.md), [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md), and [branch-provider-evidence-report](../app-solver/branch-provider-evidence-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and the active proof-program packet that emits the first domain branch-family row | The accepted analytic row-shape certificate, the linear moving-receiver branch-family fixture, and the priority-only first-derivative artifact target are populated. Promotion for A1, VP-1, breather, circular, eigen-braid, H39/theta3minus, or assembly closure still requires that packet's retained branch family to report same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed $D_vW^{\mathrm{rec}}$, projection, aggregation, scalar statistic, artifact hash, regulator state, and fail-closed negative controls. H39 provider-object rows must first satisfy `h39-receiver-normal-retained-record-preimage-row/v0`. |
+| `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding circular rows restart from same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ intervals before any self-force or tangential no-go is promoted. |
+| `spiral_branch_chart_test` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [spiral-vp1-drive-verdict-proof](spiral-vp1-drive-verdict-proof.md), [spiral-vp1-tangential-interval-proof](spiral-vp1-tangential-interval-proof.md), [spiral-vp1-radial-branch-interval-proof](spiral-vp1-radial-branch-interval-proof.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md), and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [doubling-frequency-lock](../braid-doubling-frequency-lock/priorities.md) | One admissible variable-pitch candidate must report retained root topology plus same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, radial, tangential, aggregation, and negative-control rows before any drive verdict is promoted. |
 | `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving Noether braid contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
 | `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
@@ -151,11 +151,11 @@ and defines the corresponding energy, momentum, and angular-momentum wake-histor
 
 This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM. The corpus now states this as a concrete branch-chart conservation test rather than as an open handoff phrase: the required output is the retained-chart pullback of the three Noether totals, with exact wake-history charges separated from work-integral and torque-projection diagnostics.
 
-`spiral_turning_conditions` remains active only as retained-root topology and turn-center context. The A1 and VP-1 drive rows are receiver-normal restart targets: active-root counts, inactive gaps, finite-memory bounds, source-normal floors, and root-transport rows may still constrain the branch chart, but radial, tangential, and action pass/fail rows require same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ intervals before they can count as Master EOM evidence. The active priority is to rebuild the retained spiral branch table with receiver-normal branch-strength rows, then decide whether finite-collar radial closure or tangential transport is admissible in the canonical receiver-normal row.
+`spiral_turning_conditions` remains active only as retained-root topology and turn-center context. The A1 and VP-1 drive rows are receiver-normal restart targets: active-root counts, inactive gaps, finite-memory bounds, source-normal floors, and root-transport rows may still constrain the branch chart, but radial, tangential, and action pass/fail rows require same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ intervals before they can count as Master EOM evidence. The active priority is to rebuild the retained spiral branch table with receiver-normal branch-strength rows, then decide whether finite-collar radial closure or tangential transport is admissible in the canonical receiver-normal row.
 
 The A1 finite-collar continuation restarts. The next usable artifact is not a
 finite-difference repair search or sampled remainder ladder; it is a
-receiver-normal branch table that binds the retained roots to $D_s$, $D_t$, and
+receiver-normal branch table that binds the retained roots to $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ on the same boxes. Only after that table exists should A1
 outward constants, radial closure, or tangential transport be redriven.
 
@@ -289,9 +289,9 @@ The first simulation packet should scan perturbation amplitude, injection phase,
 - Each such branch is born on a Jacobian-null surface.
 - Circular self-branch count grows only linearly.
 - The circular and spiral source-normal branch tables survive only as topology, root-count, inactive-gap, finite-memory, and transversality diagnostics.
-- No circular, VP-1, or A1 tangential/radial no-go is active as Master EOM evidence until its branch rows are redriven with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ intervals.
+- No circular, VP-1, or A1 tangential/radial no-go is active as Master EOM evidence until its branch rows are redriven with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ intervals.
 - Circular and spiral generated certificate artifacts are purged from the
-  active workstream. Any replacement runner must emit same-record $D_s$, $D_t$,
+  active workstream. Any replacement runner must emit same-record $D_s$, $D_T$,
   $W^{\mathrm{rec}}$, aggregation, and negative-control rows.
 
 ## Breather Certificate Routing Gate
@@ -308,8 +308,8 @@ Use the collinear-breather certificate as the smallest finite-root-ledger test f
 
 ## Parallel Tracks
 
-- Circular closure: rebuild higher-winding circular rows with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$, then decide whether any no-go or existence claim survives.
-- Spiral closure: rebuild variable-pitch radial and tangential rows with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$, then compare candidates without importing source-normal verdicts.
+- Circular closure: rebuild higher-winding circular rows with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$, then decide whether any no-go or existence claim survives.
+- Spiral closure: rebuild variable-pitch radial and tangential rows with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$, then compare candidates without importing source-normal verdicts.
 
 ## Circular Work Order
 
@@ -320,7 +320,7 @@ branches with receiver-normal branch strength before asserting any circular
 no-go, existence result, or non-circular baseline obstruction.
 
 1. Preserve the checked root-bracket inclusion rows and inactive-gap ledger as topology diagnostics.
-2. Recompute every partner and self branch with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
+2. Recompute every partner and self branch with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$.
 3. Rebuild circular radial and tangential residuals from receiver-normal rows only.
 4. Do not import circular finite-band passes or tail constants into the
    receiver-normal Master EOM.
@@ -385,9 +385,9 @@ Branchwise classification.
 | Circular object | Classification | Required report |
 | --- | --- | --- |
 | Partner root equation | Delayed-state on a fixed $C^1$ chart while $|J_p|\ge\nu_J$ and inactive gaps stay positive. | Root phase, branch label, memory depth, inactive gaps, and partner-side tangential sign. |
-| Partner receiver-normal branch strength and transported force term | Derivative-sensitive because $D_{s,p}^{-1}$, $D_{t,p}$, and the transported source state depend on delayed velocity through the branch map. | $D_{s,p}$ floor, $D_{t,p}$ bound, $W_p^{\mathrm{rec}}$, $\mathcal{R}^{\mathrm{circ}}_{\mathrm{tr},p}$, radial projection, tangential projection, and contribution to the signed residuals. |
+| Partner receiver-normal branch strength and transported force term | Derivative-sensitive because $D_{s,p}^{-1}$, $D_{T,p}$, and the transported source state depend on delayed velocity through the branch map. | $D_{s,p}$ floor, $D_{T,p}$ bound, $W_p^{\mathrm{rec}}$, $\mathcal{R}^{\mathrm{circ}}_{\mathrm{tr},p}$, radial projection, tangential projection, and contribution to the signed residuals. |
 | Self-hit root equation | Delayed-state away from branch births; blocked at $\tan\xi=\xi$ birth windows until finite-crossing control is supplied. | Root phase, birth interval status, memory depth, inactive gaps, and whether the row is outside $\mathcal{N}_{J,\varepsilon}$. |
-| Self-hit receiver-normal branch strength and higher-winding contribution | Derivative-sensitive away from $D_{s,s}=0$ because $D_{s,s}^{-1}$ and $D_{t,s}$ change the retained force budget and the large-$\beta$ asymptotics. | Signed radial term, signed tangential term, $D_{s,s}$ floor, $D_{t,s}$ bound, $W_s^{\mathrm{rec}}$, absolute tangential activity, positive-sine subchart residue, and full signed $|\sin\xi|$ chart residue. |
+| Self-hit receiver-normal branch strength and higher-winding contribution | Derivative-sensitive away from $D_{s,s}=0$ because $D_{s,s}^{-1}$ and $D_{T,s}$ change the retained force budget and the large-$\beta$ asymptotics. | Signed radial term, signed tangential term, $D_{s,s}$ floor, $D_{T,s}$ bound, $W_s^{\mathrm{rec}}$, absolute tangential activity, positive-sine subchart residue, and full signed $|\sin\xi|$ chart residue. |
 | Noether wake-history pullback | Derivative-sensitive theorem target; not neutral-type unless delayed acceleration or boundary-derivative dependence is introduced and a continuity estimate is proved. | Declare the functional norm, the delayed-velocity dependence, and whether any boundary term upgrades the packet to neutral-type. |
 
 Circular residuals. Outside $\mathcal{N}_{J,\varepsilon}$, the packet must report the signed partner/self force-balance residuals
@@ -419,7 +419,7 @@ The large-$\beta$ residual computation, sampled finite-band table,
 generated interval pass matrix, and tail constant packets are purged from the
 active workstream. Circular closure now restarts from the analytic root
 equations plus a new receiver-normal certificate that emits same-record $D_s$,
-$D_t$, $W^{\mathrm{rec}}$, radial, tangential, aggregation, and
+$D_T$, $W^{\mathrm{rec}}$, radial, tangential, aggregation, and
 negative-control rows. Until that replacement exists, circular finite-band and
 large-$\beta$ rows are not Master EOM evidence.
 
@@ -431,7 +431,7 @@ $$
 \qquad
 \beta_n^\star=\sqrt{1+(\xi_n^\star)^2},
 $$
-without promoting the singular point itself as a circular closure. It applies to continuation or simulation passages through a birth window; an exact constant circular theorem at $\beta=\beta_n^\star$ remains blocked because the source-normal denominator vanishes and the receiver-normal branch strength is singular unless the same branch supplies a compensating $D_t$ zero.
+without promoting the singular point itself as a circular closure. It applies to continuation or simulation passages through a birth window; an exact constant circular theorem at $\beta=\beta_n^\star$ remains blocked because the source-normal denominator vanishes and the receiver-normal branch strength is singular unless the same branch supplies a compensating $D_T$ zero.
 
 Fold normal form. For
 $$
@@ -659,7 +659,7 @@ $$
 $$
 where $w(\theta)\ge0$ is a declared quadrature weight on the returned section and every $W^{\mathrm{rec}}$ row is computed from the same retained root record as the numerator it weights.
 
-Verdict. The bare isolated spiral remains undecided until an admissible radial turn corridor supplies $\mathcal{D}_T^{\mathrm{rec}}(I_\ast)$ with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows. Source-normal tangential signs are diagnostics only.
+Verdict. The bare isolated spiral remains undecided until an admissible radial turn corridor supplies $\mathcal{D}_T^{\mathrm{rec}}(I_\ast)$ with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows. Source-normal tangential signs are diagnostics only.
 
 ### Candidate VP-1 Branch-Chart Packet
 
@@ -809,7 +809,7 @@ $$
 $$
 alongside $\nu_J$, inactive-gap floors, the finite-memory bound, $\mathcal{T}_r(0)$, and $\mathcal{D}_T(I_\ast)$.
 
-Classification. VP-1 is derivative-sensitive on the retained $C^1$ history chart because the transported root offsets depend on delayed source velocities and the current force rows also depend on receiver-normal motion through $D_t$. It should not be promoted as a neutral-type theorem unless a later Noether wake-history pullback introduces delayed acceleration or boundary-derivative dependence and supplies the corresponding continuity estimate. Failure of $C^1$ root-offset dependence, inactive-gap persistence, root-transport residuals, or same-record $D_t/D_s$ rows blocks the VP-1 branch chart before radial-turn and weighted tangential-drive verdicts are interpreted.
+Classification. VP-1 is derivative-sensitive on the retained $C^1$ history chart because the transported root offsets depend on delayed source velocities and the current force rows also depend on receiver-normal motion through $D_T$. It should not be promoted as a neutral-type theorem unless a later Noether wake-history pullback introduces delayed acceleration or boundary-derivative dependence and supplies the corresponding continuity estimate. Failure of $C^1$ root-offset dependence, inactive-gap persistence, root-transport residuals, or same-record $D_T/D_s$ rows blocks the VP-1 branch chart before radial-turn and weighted tangential-drive verdicts are interpreted.
 
 The finite-memory bound is supplied by
 $$

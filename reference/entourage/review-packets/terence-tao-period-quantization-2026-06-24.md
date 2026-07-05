@@ -15,7 +15,7 @@ Use a Terence Tao-style mathematical analyst lens. Focus on whether the proposed
 
 ## Context
 
-We are developing a tri-binary Noether-braid theory. A Noether braid is a retained closed assembly with three coupled binary substructures, causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, and a surrounding Noether sea state.
+We are developing a Noether braid theory. A Noether braid is a retained closed assembly with causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, and a surrounding Noether sea state. Exact shell support and binary grouping are branch-level proof obligations; the nested shell braid candidate adds three ordered support bands when that role map is declared.
 
 The current goal is to avoid inserting Planck's constant independently into several standard equations. Instead, we want $h$ to arise as one retained action period whose projections produce photon energy, de Broglie momentum, angular momentum, blackbody occupancy, and fine-structure coupling.
 
@@ -50,7 +50,7 @@ $$
 ## Target Lemma
 
 Period Quantization Lemma:
-For a retained tri-binary Noether braid on a closed branch chart with smooth Euclidean-motion and time-translation symmetry of the causal kernel, the de Rham class $[\vartheta]$ is integral, and the generator period $h_\vartheta$ is independent of which conjugate readout projects it: energy-frequency, momentum-wavevector, or angular momentum.
+For a retained nested shell braid on a closed branch chart with smooth Euclidean-motion and time-translation symmetry of the causal kernel, the de Rham class $[\vartheta]$ is integral, and the generator period $h_\vartheta$ is independent of which conjugate readout projects it: energy-frequency, momentum-wavevector, or angular momentum.
 
 The residual target is:
 

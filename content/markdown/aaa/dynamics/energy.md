@@ -311,15 +311,15 @@ with $\varepsilon_E > 0$ a declared denominator floor. A retained $U_{\text{int}
 The conservation claim is a level-specific statement. For an isolated branch whose force law comes from a time-translation-invariant causal action,
 
 $$
-\frac{d}{dt}E_{\text{total}}(t)=0,
+\frac{d}{dT}E_{\text{total}}(T)=0,
 \qquad
-E_{\text{total}}(t)
+E_{\text{total}}(T)
 =
-\sum_a E_{k,a}(t)
+\sum_a E_{k,a}(T)
 +
-U_{\text{int}}(t)
+U_{\text{int}}(T)
 +
-E_{\text{wake}}(t)
+E_{\text{wake}}(T)
 $$
 
 This is not a claim that $\sum_a E_{k,a}$ is constant on $\Sigma_T$, nor that a finite simulation window conserves its particle-only ledger. Delayed hits move energy between mechanical motion and causal-wake history, and finite windows must also name boundary flux, external work, and residuals. A calculation that omits one of those terms has not established energy nonconservation; it has exposed an incomplete retained record.

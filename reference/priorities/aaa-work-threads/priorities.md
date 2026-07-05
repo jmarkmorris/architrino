@@ -239,7 +239,7 @@ from these rows by itself.
   row-logic fixture binds `receiver-normal-retained-branch-family-first-derivative/v0`
   to the same source record, event ledger, retained record key, source artifact
   hash, and consumer row, then reconstructs $D_vW^{\mathrm{rec}}$ from $D_s$,
-  $D_t$, $D_vD_s$, and $D_vD_t$.
+  $D_T$, $D_vD_s$, and $D_vD_T$.
 - `app-solver` / `braid-geometry-export-bridge`: the H39/theta3minus provider
   audit now emits `h39-receiver-normal-retained-record-preimage-fixture/v0` as
   an executable fail-closed matrix. It rejects absence rows, partial
@@ -248,8 +248,8 @@ from these rows by itself.
   consumption.
 - `proof-programs`: the breather lane now has
   `breather-receiver-normal-force-margin-restart/v0`, a priority-only theorem
-  and fixture target for same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$,
-  $D_vD_s$, $D_vD_t$, and $D_vW^{\mathrm{rec}}$ force-margin rows. Its blocker
+  and fixture target for same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$,
+  $D_vD_s$, $D_vD_T$, and $D_vW^{\mathrm{rec}}$ force-margin rows. Its blocker
   remains `receiver_normal_breather_force_margin_missing`.
 - `master-equation-closure` / `app-simulation`: the T3 run summary now carries an
   `orientedBoundaryPrototype` derived from `t3-run-summary.v1`. It is an
