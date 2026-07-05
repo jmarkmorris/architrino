@@ -51,7 +51,8 @@ $$
 \frac{16\pi G_{\text{eff}}}{(c_{\text{GW}}^{\mathrm{eff}})^4}\,T_{\mu\nu}^{\text{TT}},
 \qquad
 \Box_{c_{\text{GW}}^{\mathrm{eff}}}\equiv
--\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_t^2+\nabla^2
+-\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_{t_{\mathrm{eff}}}^2
++\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}
 $$
 
 *Derivation sketch:* If the effective field equations induced by the metric constitutive map exist in this regime, linearize them around the homogeneous background, then project onto the TT sector.
@@ -85,9 +86,9 @@ $$
 =
 \int_{\Gamma}
 \left[
-k_{\theta}(f,\mathbf{x},t)
+k_{\theta}(f,x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 -
-k_{\mathrm{GR}}(f,\mathbf{x},t)
+k_{\mathrm{GR}}(f,x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 \right]\,d\ell
 $$
 where $\Gamma$ is the observer-level propagation path used by the comparison. A useful low-frequency residual is
@@ -111,8 +112,8 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether braid equilibrium packet,
 
 $$
-\partial_t f_N
-+\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
+\partial_T f_N
++\nabla_{\mathbf X}\cdot(\mathbf u_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
 S_{\mathrm{BH}}
@@ -128,7 +129,7 @@ $$
 \delta\alpha_{\mathrm{prop},X}^{\mathrm{GW}}
 =
 \mathcal{A}_{X,\mathrm{GW}}\!\left[
-S_{\mathrm{GW}},f_N,J_\nu;\mathbf{x},t,\hat{\mathbf{k}}
+S_{\mathrm{GW}},f_N,J_\nu;x_{\mathrm{eff}}^i,t_{\mathrm{eff}},\hat{\mathbf{k}}
 \right]
 $$
 
@@ -141,7 +142,7 @@ In the project spin taxonomy, this is the effective **spin-2 / tensor** channel:
 **Conditional Lemma 2 (two-mode TT closure in isotropic limit).**
 If the low-energy constitutive response is parity-even and isotropic, residual gauge constraints leave exactly two propagating tensor modes:
 $$
-h_+(t,\mathbf{x}),\qquad h_\times(t,\mathbf{x})
+h_+(t_{\mathrm{eff}},x_{\mathrm{eff}}^i),\qquad h_\times(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)
 $$
 
 *Derivation sketch:* Standard counting in Lorenz gauge plus TT projection gives 10 components $\to$ gauge/constraint reduction $\to$ two physical helicity-2 modes, provided the effective-metric gauge structure is recovered by the constitutive map.
@@ -176,7 +177,7 @@ $$
 
 with the tolerances fixed by the validation band. This gate protects the separation between the observable data product and the ontology: the data product is a calibrated, coincident, low-residual strain record, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation must still earn the claim that the record is the tensor-sector response of the effective metric induced by Noether sea constitutive dynamics.
 
-Coincidence is part of the data product, not an afterthought. For a detector network with instruments $D_a$, calibrated strain streams $s_a(t)$, response templates $h_a^\theta(t)$, and allowed light-speed timing windows $\Delta t_{ab}^{\mathrm{geom}}$, define
+Coincidence is part of the data product, not an afterthought. For a detector network with instruments $D_a$, calibrated strain streams $s_a(t_{\mathrm{eff}})$, response templates $h_a^\theta(t_{\mathrm{eff}})$, and allowed light-speed timing windows $\Delta t_{ab}^{\mathrm{geom}}$, define
 $$
 \mathcal{R}_{\mathrm{coin}}(\theta)
 =
@@ -244,7 +245,7 @@ When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energ
 
 Stationary no-hair agreement is not enough to close the dynamical strong-field problem. If a black-hole model changes the horizon-interface boundary condition during formation, merger, or evaporation, the change must be tested against the detector-facing waveform packet and the same final compact-object labels used by exterior GR.
 
-For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(t)$ be the effective strain modes predicted after projection through the detector response, and let $D_{\mathrm{merge}}^{\mathrm{obs}}$ collect the observed inspiral, merger, ringdown, calibration, and covariance packet. This observed packet must be sourced from the same versioned GWOSC/LVK event row and artifact hashes used by $\mathcal{C}_{\mathrm{GW}}$ when ringdown is used as strong-field evidence. A compact residual is
+For a candidate horizon-interface record $\theta_H$, let $h_{\ell m}^{\theta_H}(t_{\mathrm{eff}})$ be the effective strain modes predicted after projection through the detector response, and let $D_{\mathrm{merge}}^{\mathrm{obs}}$ collect the observed inspiral, merger, ringdown, calibration, and covariance packet. This observed packet must be sourced from the same versioned GWOSC/LVK event row and artifact hashes used by $\mathcal{C}_{\mathrm{GW}}$ when ringdown is used as strong-field evidence. A compact residual is
 $$
 \mathcal{R}_{\mathrm{merge}}(\theta_H)
 =

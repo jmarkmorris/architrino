@@ -19,7 +19,7 @@ Required inputs:
 
 Receiver-normal changeover boundary. The inputs above are not enough for a
 pure receiver-normal mass-response row unless the accepted branch packet also
-emits same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$
+emits same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$
 values for the retained roots that feed the exposure ledger. Source-normal
 denominators, quotient-only branch coordinates, H39/theta3minus diagnostics, or
 old shell-braid force residues may be cited only as conditional root-geometry or

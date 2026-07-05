@@ -2,6 +2,8 @@
 
 This lane provides historical, philosophical, and comparative orientation for $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not own the core ontology, the equation of motion, assembly definitions, or validation rules. Its role is to explain how inherited theories, philosophical positions, religious cosmologies, and unresolved paradoxes should be compared without letting effective descriptions become final ontology.
 
+The lane is a translation and placement layer. It helps the reader understand why old language was useful, which part survives, and where the surviving part belongs in the rebuilt stack. It should not become a second owner for mechanisms already defined in foundations, dynamics, assemblies, spacetime, quantum, cosmology, or validation.
+
 Use this lane when a reader needs:
 
 - historical context for why a substrate-first program looks unfamiliar,

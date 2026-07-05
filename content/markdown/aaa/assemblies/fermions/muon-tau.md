@@ -2,11 +2,13 @@
 
 ## Purpose
 
-This chapter defines the heavier charged-lepton branch targets for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the heavier charged-lepton branch targets for $\mathbb{A}\mathbb{A}\mathbb{A}$. The muon and tau are not treated as new kinds of electric charge. They are heavier charged-lepton branches that keep the charged-lepton axial inventory while exposing different shielding, lifetime, and reaction behavior.
 
 ## Framing
 
 Muon and tau states are treated as higher-excitation charged lepton assemblies that share the same broad charge pattern as the [electron](./electron.md) while differing in shielding, excitation, and dissociation-accessible relaxation channels. They are the heavier charged-lepton branches of the same shielding ladder used in [Noether Braid](../../noether-braid/noether-braid.md) and [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md).
+
+The reader-facing rule is simple: electron, muon, and tau belong to one charged-lepton family because the exposed axial inventory is shared. Their different masses and lifetimes are then a shielding-coherence and reaction-provenance problem, not a change in electric bookkeeping.
 
 ## Axial Inventory and Shielding-Coherence Classes
 
@@ -15,10 +17,12 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 | Branch | Shielding-coherence class | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
 | $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6\epsilon_-$ | reference charged-lepton branch |
-| $\mu^-$ | $(1,1,0)$ | bi-binary shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
-| $\tau^-$ | $(1,0,0)$ | uni-binary shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
+| $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
+| $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
 The corresponding antileptons use anti-braid orientation and $6\epsilon_+$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
+
+This keeps lepton universality intelligible. The shared axial row supplies the common electromagnetic and weak-facing identity; the generation row explains why the muon and tau are heavier and less stable.
 
 This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 

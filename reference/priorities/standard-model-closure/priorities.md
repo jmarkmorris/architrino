@@ -310,7 +310,7 @@ $$
 $$
 S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}(t)
 =
-S(t)\big|_{\Omega_{\mathrm{H}}}
+S(T)\big|_{\Omega_{\mathrm{H}}}
 \setminus
 \mathcal{A}_{\mathrm{H}}(t),
 $$
@@ -617,7 +617,7 @@ For an element or isotope window $\Omega_E$, the promoted target is
 $$
 S_{\mathrm{sea}}^{\Omega_E}(t)
 =
-S(t)\big|_{\Omega_E}
+S(T)\big|_{\Omega_E}
 \setminus
 \left(
 \mathcal A_{\mathrm{nuc}}^{Z,N}(t)

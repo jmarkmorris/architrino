@@ -1,16 +1,18 @@
 # Noether Sea
 
-This chapter is the canonical medium-ontology page for the **Noether sea** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines what the physical medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
+This chapter defines the **Noether sea** as the physical medium inside the fixed background in $\mathbb{A}\mathbb{A}\mathbb{A}$. It explains what the medium is, how it differs from the Euclidean void, which state variables describe it, and where detailed assembly, metric, clock, and cosmology work belongs.
 
 The Noether sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether braid assemblies whose collective response appears to physical observers as spacetime behavior.
 
-This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
+The easiest mistake is to treat the Noether sea as another name for space. It is not. Space is the fixed container. The Noether sea is the organized medium inside that container. Effective spacetime is the observer-level reconstruction built from how that medium changes clocks, rulers, signals, and matter response.
+
+This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. The intended picture is a fixed container populated by organized assemblies, not a flexible container that curves by itself. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
 $$
-\rho_{\text{NS}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T)
 \sim
-\sum_s W_\ell(\mathbf{x}-\mathbf{X}_s(t))
+\sum_s W_\ell(\mathbf X-\mathbf X_s(T))
 $$
-where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf{X}_s(t)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
+where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf X_s(T)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
 
 The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$ and a mixing bound, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$, so the neutral far-population contribution converges in the receiver-centered exhaustion sense. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
 
@@ -32,7 +34,7 @@ In prose, use **Noether sea** as the standalone proper noun. Use **Noether sea**
 
 ## Boundary With the Euclidean Void
 
-The Euclidean void and the Noether sea must remain distinct.
+The Euclidean void and the Noether sea must remain distinct. The void is the fixed spatial container; the Noether sea is the active content whose state changes inside it.
 
 | **Layer** | **Status** | **What It Owns** |
 |:---|:---|:---|
@@ -42,11 +44,11 @@ The Euclidean void and the Noether sea must remain distinct.
 
 The void does not curve, expand, contract, or carry energy. The Noether sea, as physical content, can carry energy and stress, flow, strain, compress, relax, and change its response variables. Effective curvature and effective expansion are therefore derived descriptions of Noether sea response, not curvature or expansion of the void itself.
 
-At a fixed coordinate point $\mathbf{x}$ and absolute time $t$, the Noether sea state may change:
+At a fixed coordinate point $\mathbf X$ and absolute time $T$, the Noether sea state may change:
 $$
-\rho_{\text{NS}}(\mathbf{x},t),\quad
-\Sigma_{\text{sea}}(\mathbf{x},t),\quad
-\mathbf{u}_{\text{sea}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T),\quad
+\Sigma_{\text{sea}}(\mathbf X,T),\quad
+\mathbf{u}_{\text{sea}}(\mathbf X,T)
 $$
 without changing the identity of the underlying void point.
 
@@ -55,7 +57,7 @@ without changing the identity of the underlying void point.
 The complete substrate description is the universe state
 
 $$
-\mathbb{U}_{\text{now}}\equiv S(t)
+\mathbb{U}_{\text{now}}\equiv S(T)
 $$
 
 This state is not an observer frame. It is the absolute-time record of positions, velocities, assemblies, causal wakes, Noether sea variables, and path-history ledgers inside the Euclidean void. Physical observers recover clock rates, photon frequencies, energies, distances, and effective geometry only after their local assemblies couple to part of that record.
@@ -66,7 +68,7 @@ $$
 E_{\mathrm{obs}}=h\nu_{\mathrm{obs}}
 $$
 
-not a primitive frame-free photon scalar. The redshift task is to compute the endpoint cadence, launch geometry, and path-history propagation terms from the same $S(t)$ record rather than changing explanation between gravitational, relative-motion, and cosmological cases.
+not a primitive frame-free photon scalar. The redshift task is to compute the endpoint cadence, launch geometry, and path-history propagation terms from the same $S(T)$ record rather than changing explanation between gravitational, relative-motion, and cosmological cases.
 
 ## Composition
 
@@ -93,7 +95,7 @@ $$
 
 The entries are, respectively: retained-branch closure; local polarity neutrality and pro/anti balance; convergence of the far-population wake sum; dense packing without uncontrolled branch disruption; weak homogeneous transparency to ordinary matter, photon-channel packets, and neutrino-like assemblies; a shared constitutive response for $n$, $\chi_{\text{sea}}$, $\Gamma_N$, stress, and effective metric channels; compatibility with the particle-building branch program; and a production, recycling, or relaxation route that gives the class sufficient abundance.
 
-Transparency is therefore a bounded-response condition, not a claim of zero interaction. For a channel family $X\in\{\gamma,\tau,\mathrm{mat},\nu\}$, the Noether sea must make direct loss, scattering, and preferred-frame visibility small while still supplying the constitutive response that the channel is supposed to recover. A compact two-row check is
+Transparency is therefore a bounded-response condition, not a claim of zero interaction. The Noether sea has to keep direct scattering and loss below tolerance while still supplying the response assigned to clocks, photons, matter, and neutrino-like channels. For a channel family $X\in\{\gamma,\tau,\mathrm{mat},\nu\}$, the Noether sea must make direct loss, scattering, and preferred-frame visibility small while still supplying the constitutive response that the channel is supposed to recover. A compact two-row check is
 
 $$
 \mathcal R_{\mathrm{vis/resp},X}
@@ -110,7 +112,7 @@ The nested shell braid-centered Noether sea claim is therefore the statement tha
 
 The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
-This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the core level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
+This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the braid level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
 The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md). This page only fixes the Noether sea ontology those assembly hypotheses serve.
 
@@ -133,7 +135,7 @@ B;\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal{H}_{\partial\Omega}
 \right)=0
 $$
 
-where $\Theta_{\mathrm{sea}}$ records the local Noether sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit parameters. They are the retained part of the same absolute record $S(t)$ needed to decide whether the local branch persists.
+where $\Theta_{\mathrm{sea}}$ records the local Noether sea density, cadence, orientation, strain, and delay-response state; $\Theta_{\mathrm{asm}}$ records nearby resolved assemblies, including assemblies that later map to Standard Model particle language; and $\mathcal{H}_{\partial\Omega}$ records the causal-wake and event data entering the local region through its boundary. These are not extra fit parameters. They are the retained part of the same absolute record $S(T)$ needed to decide whether the local branch persists.
 
 At the force-ledger level this means that a local architrino row should be understood schematically as
 
@@ -177,22 +179,22 @@ Assembly emergence is therefore not emergence from empty isolation. It is local 
 The spacetime branch uses the following canonical total-density symbols:
 
 $$
-\rho_{\text{NS}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T)
 $$
 
 with normalized density
 
 $$
-n(\mathbf{x},t)
-=\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
+n(\mathbf X,T)
+=\frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
 
 The Noether sea delay factor is written
 
 $$
-\chi_{\text{sea}}(\mathbf{x},t)
+\chi_{\text{sea}}(\mathbf X,T)
 =
-\frac{c_f}{c_{\text{eff}}(\mathbf{x},t)}
+\frac{c_f}{c_{\text{eff}}(\mathbf X,T)}
 $$
 
 It plays the role that refractive index plays in ordinary optical analogies, but it is a native Noether sea response variable. Do not use $n$ for this delay factor; $n$ is reserved for normalized Noether braid density.
@@ -200,18 +202,18 @@ It plays the role that refractive index plays in ordinary optical analogies, but
 Clock and spectral comparisons may also extract the Noether sea cadence-stretch diagnostic
 
 $$
-\Gamma_N(\mathbf{x},t)
+\Gamma_N(\mathbf X,T)
 =
-\frac{\Omega_{N0}}{\Omega_N(\mathbf{x},t)},
+\frac{\Omega_{N0}}{\Omega_N(\mathbf X,T)},
 \qquad
-C_N(\mathbf{x},t)=\Gamma_N^{-1}(\mathbf{x},t)
+C_N(\mathbf X,T)=\Gamma_N^{-1}(\mathbf X,T)
 $$
 
 Here $\Omega_N$ is a representative local Noether sea braid cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether braid density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 
-Older parameter-ledger language may denote the baseline ambient Noether sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{NS},0}$ for the reference density and $\rho_{\text{NS}}(\mathbf{x},t)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
+Older parameter-ledger language may denote the baseline ambient Noether sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{NS},0}$ for the reference density and $\rho_{\text{NS}}(\mathbf X,T)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
 
 ## Medium Properties
 
@@ -219,7 +221,7 @@ The Noether sea is characterized by collective variables, not by a new point-par
 
 Important medium properties include:
 
-- **Noether braid density:** $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$.
+- **Noether braid density:** $\rho_{\text{NS}}(\mathbf X,T)$ and normalized density $n(\mathbf X,T)$.
 - **Energy density:** approximately $\rho_{\text{NS}}E_{\text{braid}}$ at the coarse level, with corrections from stress, excitation, and coupling.
 - **Orientation and strain:** local ordering of braid axes and deformation away from equilibrium.
 - **Flow or drift:** collective motion of the Noether sea relative to the absolute frame.
@@ -230,9 +232,9 @@ These are medium variables. They are not properties of the Euclidean void.
 
 ## Continuum Balance and Constitutive Closure
 
-The first continuum obligation for the Noether sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a material region $V\subset\Sigma_t$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
+The first continuum obligation for the Noether sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a material region $V\subset\Sigma_T$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
 $$
-\frac{d}{dt}\int_V \rho_{\text{NS}}\,dV
+\frac{d}{dT}\int_V \rho_{\text{NS}}\,dV
 +
 \int_{\partial V}\rho_{\text{NS}}\mathbf{u}_{\mathrm{sea}}\cdot\hat{\mathbf n}\,dA
 =
@@ -242,7 +244,7 @@ R_{\rho,V}
 $$
 Equivalently, on resolved windows,
 $$
-\partial_t\rho_{\text{NS}}
+\partial_T\rho_{\text{NS}}
 +\nabla\cdot(\rho_{\text{NS}}\mathbf{u}_{\mathrm{sea}})
 =
 S_{\rho}
@@ -300,12 +302,12 @@ $$
 \max_a
 \frac{
 \left\|
-\partial_t M_a[\mathcal{N}_{\mathrm{sea}}]
+\partial_T M_a[\mathcal{N}_{\mathrm{sea}}]
 +\nabla\cdot J_a[\mathcal{N}_{\mathrm{sea}}]
 -S_a[\mathcal{N}_{\mathrm{sea}}]
 \right\|
 }{
-\left\|\partial_t M_a\right\|
+\left\|\partial_T M_a\right\|
 +\left\|\nabla\cdot J_a\right\|
 +\left\|S_a\right\|
 +\varepsilon
@@ -406,7 +408,7 @@ $$
 
 so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. The full nested shell braid can partition the same transaction across its inner, middle, and outer layers, so this relation is a first estimate rather than a complete closure law.
 
-At the ensemble level, let $f_N(\nu,\mathbf{x},t)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
+At the ensemble level, let $f_N(\nu,\mathbf X,T)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
 
 $$
 J_\nu
@@ -420,11 +422,11 @@ $$
 where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-braid retuning map $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$ is specified, the first current estimate is
 
 $$
-J_\nu(\nu,\mathbf{x},t)
+J_\nu(\nu,\mathbf X,T)
 =
 \sum_{\sigma=\pm1}
-f_N(\nu,\mathbf{x},t)\,
-r_\sigma(\nu,\mathbf{x},t)\,
+f_N(\nu,\mathbf X,T)\,
+r_\sigma(\nu,\mathbf X,T)\,
 \Delta\nu_N^{(q,\sigma)}
 +
 O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
@@ -439,41 +441,41 @@ A temperature channel can enter this transport law only through the same retaine
 When the retained record licenses a temperature variable $T_{\mathcal Q,W}$, the temperature-conditioned part of the cadence current has the candidate form
 
 $$
-J_\nu^{(T)}(\nu,\mathbf{x},t)
+J_\nu^{(T)}(\nu,\mathbf X,T)
 =
 \sum_{\sigma=\pm1}
-f_N(\nu,\mathbf{x},t)\,
-r_\sigma(\nu,\mathbf{x},t;T_{\mathcal Q,W})\,
+f_N(\nu,\mathbf X,T)\,
+r_\sigma(\nu,\mathbf X,T;T_{\mathcal Q,W})\,
 \Delta\nu_N^{(q,\sigma)}
 +
 O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
 $$
 
-where $r_\sigma(\nu,\mathbf{x},t;T_{\mathcal Q,W})$ is the accepted rate for the $\sigma$ branch transition under the same temperature-availability record. The detailed-balance residual for a neighboring $+h/-h$ pair is
+where $r_\sigma(\nu,\mathbf X,T;T_{\mathcal Q,W})$ is the accepted rate for the $\sigma$ branch transition under the same temperature-availability record. The detailed-balance residual for a neighboring $+h/-h$ pair is
 
 $$
-\mathcal R_{\mathrm{db}}^{(T)}(\nu,\mathbf{x},t)
+\mathcal R_{\mathrm{db}}^{(T)}(\nu,\mathbf X,T)
 =
-f_N(\nu,\mathbf{x},t)\,
-r_+(\nu,\mathbf{x},t;T_{\mathcal Q,W})
+f_N(\nu,\mathbf X,T)\,
+r_+(\nu,\mathbf X,T;T_{\mathcal Q,W})
 -
-f_N(\nu+\Delta\nu_N^{(q,+)},\mathbf{x},t)\,
-r_-(\nu+\Delta\nu_N^{(q,+)},\mathbf{x},t;T_{\mathcal Q,W})
+f_N(\nu+\Delta\nu_N^{(q,+)},\mathbf X,T)\,
+r_-(\nu+\Delta\nu_N^{(q,+)},\mathbf X,T;T_{\mathcal Q,W})
 $$
 
 If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed shell-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\sigma$, the retuning increments $\Delta\nu_N^{(q,\sigma)}$, and the layer partition of the same action transaction from a closed nested shell braid branch record rather than treating temperature as an external force.
 
-The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-braid quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
+The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-braid quantity $f_k(T)$ in a coarse window $\Omega_\ell$, define
 
 $$
-\left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
+\left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf X,T)
 =
 \frac{
-\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
-W_\ell(\mathbf{x}-\mathbf{X}_k(t))f_k(t)
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+W_\ell(\mathbf X-\mathbf X_k(T))f_k(T)
 }{
-\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
-W_\ell(\mathbf{x}-\mathbf{X}_k(t))
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+W_\ell(\mathbf X-\mathbf X_k(T))
 }
 $$
 
@@ -500,7 +502,7 @@ where $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved 
 A candidate equilibrium-transport equation is
 
 $$
-\partial_t f_N
+\partial_T f_N
 +\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
@@ -511,7 +513,7 @@ $$
 
 Here $J_\nu$ is the current through frequency or cadence state space, $S_{\mathrm{BH}}$ is loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is the perturbative contribution from gravitational-wave disturbances, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. This equation is a derivation target, not a completed constitutive law. It becomes relevant to redshift only if the same $f_N$ record also determines $\Gamma_N$, $\chi_{\text{sea}}$, and the path-history propagation term $\mathcal{P}_{E\to R}$ used in the cosmology chapters.
 
-The first absolute-record transport target packages those requirements into one map. For a photon-channel or spectral family $X$ emitted at $E$ and received at $R$, let $\mathcal S_{X,E\to R}$ be the restriction of $S(t)$ to the source branch, receiver branch, endpoint Noether sea cadence records, medium flow, causal wakes, and the path-history ledger relevant to that packet. The candidate transport map is
+The first absolute-record transport target packages those requirements into one map. For a photon-channel or spectral family $X$ emitted at $E$ and received at $R$, let $\mathcal S_{X,E\to R}$ be the restriction of $S(T)$ to the source branch, receiver branch, endpoint Noether sea cadence records, medium flow, causal wakes, and the path-history ledger relevant to that packet. The candidate transport map is
 
 $$
 \mathfrak T_X
@@ -615,7 +617,7 @@ $$
 \Theta_X
 $$
 
-The three cases may supply different restrictions of $S(t)$: a strong endpoint deformation record, a launch-velocity record, or a long weak path-history record. They fail the absolute-record transport target if the coefficient row or explanatory class changes between those restrictions.
+The three cases may supply different restrictions of $S(T)$: a strong endpoint deformation record, a launch-velocity record, or a long weak path-history record. They fail the absolute-record transport target if the coefficient row or explanatory class changes between those restrictions.
 
 The endpoint cadence factors are extracted from the same local deformation record used by the clock program:
 
@@ -632,7 +634,7 @@ $$
 Q\in\{E,R\}
 $$
 
-where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{core}}/R_{\text{core},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
+where $\mathbf g_N=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi,\ln(R_{\text{braid}}/R_{\text{braid},0}))^T$ in the local endpoint cell. The launch term is the causal-root compression of the emitted phase train. In the first weak-velocity form,
 
 $$
 D_v
@@ -685,7 +687,7 @@ with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\
 $$
 D_{\gamma}
 =
-c_{\gamma}^{-1}\partial_t
+c_{\gamma}^{-1}\partial_T
 +
 \hat{\mathbf k}\cdot\nabla
 $$
@@ -712,7 +714,7 @@ so that, away from the regularization floor,
 
 $$
 \left(
-\partial_t
+\partial_T
 +
 \mathbf u_{\mathrm{sea}}\cdot\nabla
 \right)
@@ -799,7 +801,7 @@ $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
 \ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
-\ln\frac{R_{\text{core}}}{R_{\text{core},0}}=a_R\frac{U}{c_0^2},
+\ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}=a_R\frac{U}{c_0^2},
 \qquad
 U\equiv-\Phi_N
 $$
@@ -850,7 +852,7 @@ A_\chi^{-1},\,
 \right)
 $$
 
-For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{core}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
+For $\gamma_{\text{eff}}=1$, this gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{braid}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
 
 The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak record with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $B_X(E)=1$, and $\mathcal K_{X,j}=0$ for every segment,
 
@@ -963,7 +965,7 @@ Y_X^{\mathrm{dur}}
 \epsilon_{\mathrm{td},X}
 $$
 
-The path term is thus phase-cadence retiming read from $S(t)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.
+The path term is thus phase-cadence retiming read from $S(T)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.
 
 With this map, the received frequency is
 
@@ -985,7 +987,7 @@ The expansionary reading is therefore conditional. Local equilibrium by itself d
 Massive assemblies polarize and load the surrounding Noether sea. In weak-field language, this changes the normalized density, stress, and effective signal speed:
 
 $$
-c_{\text{eff}}(\mathbf{x}) < c_f
+c_{\text{eff}}(\mathbf X,T) < c_f
 $$
 
 in denser or more strongly loaded regions.

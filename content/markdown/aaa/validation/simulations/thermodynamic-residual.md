@@ -10,7 +10,7 @@ For each Physical Observer $O$, effective-horizon patch $\partial\Omega$, and fi
 
 | Channel | Required content | Failure prevented |
 | --- | --- | --- |
-| Noether sea state | $n(\mathbf{x},t)$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
+| Noether sea state | $n(\mathbf X,T)$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, and $N$ on the relevant region | fitting entropy, flux, and metric response with separate Noether sea states |
 | Physical Observer | worldline, clock-rate record, access region, reference resources, and observer acceleration $a_O$ derived from the metric channel | importing an external observer or a free Rindler frame |
 | Boundary patch | $\partial\Omega$, effective patch area $A_{\partial\Omega}^{\mathrm{eff}}$, orientation, and signed crossing convention | hiding the area comparison in an undefined horizon surface |
 | Boundary wake labels | retained label set $\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)$ with emitter identity, emission time, receiver or sensor identity, reception time, channel, and persistence criterion | counting unrecorded or inaccessible microstates |
@@ -85,7 +85,7 @@ $$
 \qquad
 a_O^2
 =
-\gamma_{ij}a_O^i a_O^j
+\gamma_{ij}^{\mathrm{eff}}a_O^i a_O^j
 $$
 
 The continuum flux estimator is

@@ -29,7 +29,7 @@ with
 $$
 W_{\alpha}^{\mathrm{rec}}
 =
-\left|D_{t,\alpha}/D_{s,\alpha}\right|
+\left|D_{T,\alpha}/D_{s,\alpha}\right|
 $$
 on the same retained root box as the topology certificate. The weighted
 tangential-drive row is then the outward interval integral of the recomputed
@@ -41,14 +41,14 @@ The required packet must report:
 | --- | --- |
 | retained box | same root box used by the topology certificate |
 | $D_s$ | source-normal interval and nonzero floor |
-| $D_t$ | receiver-normal interval |
+| $D_T$ | receiver-normal interval |
 | $W^{\mathrm{rec}}$ | outward-rounded branch-strength interval |
 | tangential contribution | recomputed interval using $W^{\mathrm{rec}}$ |
 | weighted aggregation | receiver-normal drive interval on $I_\ast$ |
-| negative control | row fails closed when $D_t$ is absent or mismatched |
+| negative control | row fails closed when $D_T$ is absent or mismatched |
 
 ## Promotion Rule
 
 No VP-1 tangential-drive row may pass or fail until the weighted drive interval
-is recomputed from same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows for all
+is recomputed from same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows for all
 retained labels.

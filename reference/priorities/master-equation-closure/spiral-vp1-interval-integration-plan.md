@@ -18,10 +18,10 @@ Topology rows may still be loaded:
 Drive rows require:
 
 - $D_s$ interval;
-- $D_t$ interval;
-- $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ interval;
+- $D_T$ interval;
+- $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ interval;
 - receiver-normal radial or tangential contribution interval;
-- a negative control showing the row fails closed when $D_t$ is missing.
+- a negative control showing the row fails closed when $D_T$ is missing.
 
 ## Promotion Rule
 

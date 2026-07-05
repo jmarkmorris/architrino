@@ -131,7 +131,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   c_{\perp}=c_{\text{eff}}\sqrt{1-\beta^2}.
   $$
-- Effective-metric bridge: the same budget should be expressible through the ADM/Cartan bookkeeping fields $N$, $u^i_{\text{sea}}$, and $\gamma_{ij}$, without promoting that metric to substrate ontology.
+- Effective-metric bridge: the same budget should be expressible through the ADM/Cartan bookkeeping fields $N$, $u^i_{\mathrm{sea,eff}}$, and $\gamma_{ij}^{\mathrm{eff}}$, without promoting that metric to substrate ontology.
 - Output: one resource controls time dilation, length contraction, clock freeze, quantum-step admissibility, photon/rest-frame separation, and the local Lorentz map.
 - Proof burden: promote this from a synthesis subsection into a standalone dynamics lemma, including the metric diagonalization that yields $\gamma_{\text{eff}}$ and the residual preferred-frame null tests.
 - Priority route: `master-equation-closure`.
@@ -268,20 +268,20 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 11b. Effective Metric And Cartan Connection
 
-- Inputs: Noether sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and rank-three orientation fields.
+- Inputs: Noether sea density, compliance, stress, drift $u^i_{\mathrm{sea,eff}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j$, and rank-three orientation fields.
 - Mechanism: reconstruct the observer-level bookkeeping metric
   $$
-  ds_{\rm eff}^2
+  ds_{\mathrm{eff}}^2
   =
-  -N^2c_0^2dt^2
+  -N^2c_0^2dt_{\mathrm{eff}}^2
   +
-  \gamma_{ij}
-  \left(dx^i-u^i_{\text{sea}}dt\right)
-  \left(dx^j-u^j_{\text{sea}}dt\right),
+  \gamma_{ij}^{\mathrm{eff}}
+  \left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+  \left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right),
   $$
   and derive the Levi-Civita connection in the GR-matching regime, with torsion and nonmetricity tracked as deviation observables.
 - Output: explicit observer-level fields for lapse, medium drift, spatial compliance, frame orientation, geodesics, redshift, lensing, Shapiro delay, horizon null surfaces, and PPN matching.
-- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether sea state variables and Noether braid response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
+- Proof burden: derive $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ from Noether sea state variables and Noether braid response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}^{\mathrm{eff}}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\mathrm{sea,eff}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
 - Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -338,7 +338,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: $c_{\text{eff}}(\mathbf{x})$, Noether sea density, compliance, stress, tidal gradients, and phase-closure variables.
 - Mechanism: observer-level redshift/phase-lock and local assembly failure are distinct; local failure requires a strain or gradient threshold.
 - Output: exterior GR behavior plus a substrate failure condition when transverse closure is locally exhausted.
-- Proof burden: define observer-level horizons as null surfaces of $g^{\rm eff}_{\mu\nu}$, for example $\gamma_{ij}u_\perp^i u_\perp^j=N^2c_0^2$ in stationary flow form, while keeping local structural failure as a separate strain/tidal threshold.
+- Proof burden: define observer-level horizons as null surfaces of $g^{\rm eff}_{\mu\nu}$, for example $\gamma_{ij}^{\mathrm{eff}}u_\perp^i u_\perp^j=N^2c_0^2$ in stationary flow form, while keeping local structural failure as a separate strain/tidal threshold.
 - Priority route: `strong-field-closure`, `cosmology-closure`.
 - Current disposition: `priority`.
 

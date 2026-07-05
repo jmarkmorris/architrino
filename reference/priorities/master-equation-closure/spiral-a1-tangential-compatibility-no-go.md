@@ -20,9 +20,9 @@ T_{\alpha}^{\mathrm{rec}}(0),
 \qquad
 T_{\alpha}^{\mathrm{rec}}(0)
 \text{ uses }
-W_{\alpha}^{\mathrm{rec}}=\left|D_{t,\alpha}/D_{s,\alpha}\right|.
+W_{\alpha}^{\mathrm{rec}}=\left|D_{T,\alpha}/D_{s,\alpha}\right|.
 $$
 
 Promotion rule. The prescribed A1 history cannot be rejected or accepted by
 tangential compatibility until $T_0^{\mathrm{rec}}$ is emitted with same-box
-$D_s$, $D_t$, and $W^{\mathrm{rec}}$ intervals for every retained label.
+$D_s$, $D_T$, and $W^{\mathrm{rec}}$ intervals for every retained label.

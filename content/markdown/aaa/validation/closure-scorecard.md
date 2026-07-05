@@ -62,7 +62,7 @@ Several mappings are now reproducible as forms, while their coefficients remain 
 | :--- | :--- | :--- |
 | Weak-field GR bridge | The effective metric handoff exports ADM/Cartan variables and the clock/ruler quadratic form, and the weak clock row reproduces $d\tau_{\mathcal A}/dt\approx1-U_N/c_0^2-\|\mathbf w\|^2/(2c_0^2)$ after the clock-channel potential is matched to the Newtonian benchmark. | $\Phi_{\mathrm{eff}}=\Phi_N$, $G_{\mathrm{eff}}$, PPN coefficients, and any Einstein-equation analogue still require one same-record Noether sea constitutive derivation. |
 | Quantum envelope bridge | The retained phase-amplitude chart reproduces the Madelung/Hamilton-Jacobi residual with $Q_{\mathrm{env}}=-(\hbar_{\mathrm{eff}}^2/(2m_{\mathrm{eff}}))\nabla^2\sqrt{\rho_{\mathrm{env}}}/\sqrt{\rho_{\mathrm{env}}}$, and resonance-locked single-valuedness supplies the Bohr-Sommerfeld integer. | Born-rule recovery, spin-$\tfrac{1}{2}$ exchange, and fermionic antisymmetry remain blocked by the basin-measure pushforward and the polarity-domain-wall $\mathbb{Z}_2$ holonomy wall. |
-| Fixed-void cosmology | No-expanding-void discipline forces transport-redshift rows that must recover Tolman $(1+z)^{-4}$, light-curve time dilation $(1+z)$, and $T_{\mathrm{CMB}}(z)=T_0(1+z)$ rather than tired-light energy loss. | No derived $a_{\mathrm{eff}}(t)$, Friedmann analogue, sea equation of state, or shared cosmology fit exists until the mass map and Noether sea response coefficients are branch-derived. |
+| Fixed-void cosmology | No-expanding-void discipline forces transport-redshift rows that must recover Tolman $(1+z)^{-4}$, light-curve time dilation $(1+z)$, and $T_{\mathrm{CMB}}(z)=T_0(1+z)$ rather than tired-light energy loss. | No derived $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, Friedmann analogue, sea equation of state, or shared cosmology fit exists until the mass map and Noether sea response coefficients are branch-derived. |
 
 These form-level recoveries should not raise Parameter+Scale Closure, Empirical Precision+Benchmark Validation, or coefficient-recovery scores by themselves. They can raise interface readiness or formula-structure scores only when the document explicitly preserves the same-record blocker and the closure-inheritance dependency on the first certified braid.
 
@@ -90,7 +90,7 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 | Theory Architecture+Ontic Logic | 7 | Unified theoretical architecture, explanatory parsimony, substrate logic, and avoidance of ad-hoc patching, scored separately from validated formula recovery. | 50 | 25 | 96 | 99 | 49 |
 | **TOTAL** | **100** | **Weighted mean across all categories.** | **86** | **56** | **46** | **68** | **-18** |
 
-## 2026-06-28 Comparator and AAA Rescore Notes
+## 2026-06-28 Comparator and $\mathbb{A}\mathbb{A}\mathbb{A}$ Rescore Notes
 
 The 2026-06-28 comparator rescore changes the Modern Physics Operational column from `88` to `86` and the Modern Physics Mechanism column from `67` to `56`. The prior comparator overcredited the mechanism column by letting sector-by-sector operational success stand in for a unified foundational mechanism. Under the challenger-theory lens, the inherited stack remains extremely strong operationally, but its mechanism score is lower because GR, QFT, the Standard Model, and Lambda-CDM do not yet form one ontic dynamics with fixed constants, a shared quantum-gravity bridge, a solved measurement mechanism, or a single dark-sector account.
 
@@ -116,7 +116,7 @@ The score is still held below modern operational closure by the same central blo
 
 The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
 
-The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and core rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
+The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and braid-scale rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
 
 Formula, parameter, and empirical rows remain the main drag on the total. The corpus still lacks a single accepted native record that supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN coefficients, photon-channel coefficients, Born/Bell measures, weak-mixing and CKM/PMNS values, Standard Model mass formulas, radiation benchmarks, and shared cosmology residual fits. The Parameter Ledger improves the bookkeeping of primitive constants, geometric closure targets, constitutive closure targets, CODATA benchmark rows, and null-result discipline, but most decisive symbols remain open or branch-dependent rather than fixed outputs.
 
@@ -129,14 +129,14 @@ The 2026-05-22 assessment raises the weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ s
 The largest corpus-side improvement is the Noether braid taxonomy. The corpus now separates the broad neutral braid, shell braid, and nested shell braid cases; treats exact binaries as a proof assumption rather than a naming axiom; and routes dynamic exclusion-envelope geometry into a dedicated nested shell braid geometry chapter. That chapter adds a computable assembly/Noether sea interface diagnostic,
 
 $$
-D_{a,X}(\mathbf{x},t)
+D_{a,X}(\mathbf X,T)
 =
 \frac{
-\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)\right\|
 }{
-\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)\right\|
 +
-\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)\right\|
 }
 $$
 

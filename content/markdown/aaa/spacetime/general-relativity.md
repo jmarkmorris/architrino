@@ -1,8 +1,10 @@
 # General Relativity
 
-This chapter is the observer-facing checklist for the spacetime branch. Its purpose is to say, in one place, which general-relativistic observables must be matched by the constitutive medium picture and where the framework is allowed to differ only after that closure is secured.
+This chapter is the observer-facing checklist for the spacetime branch. It says, in one place, which general-relativistic observables must be matched by the constitutive medium picture and where the framework is allowed to differ only after that closure is secured.
 
-Read it as a phenomenology gate rather than as a derivation chapter: the metric and PPN notes carry the constitutive work, while this page states the observable obligations and their regime boundaries.
+Read it as a phenomenology gate rather than as a derivation chapter. The metric and PPN notes carry the constitutive work; this page states the observable obligations and their regime boundaries.
+
+The central question is not whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can describe gravity in different words. The question is whether one Noether sea response record can reproduce the network of tested GR observables without switching hidden assumptions between rows. Redshift, Shapiro delay, bending, orbital precession, equivalence-principle behavior, and gravitational waves must come from the same effective-geometry map in the regime where GR already works.
 
 ## Purpose
 
@@ -26,6 +28,8 @@ $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
 
+Every row below should be treated as a test of the same medium record. If a clock result, a lensing result, and a gravitational-wave result require different hidden records, the branch has produced separate fits rather than a GR recovery.
+
 ### Network evidence and nuisance separation
 
 The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases. The phenomenology gate therefore treats GR recovery as a network constraint:
@@ -48,9 +52,9 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 +
 \lambda_{\tau}
 \left\|
-\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+\frac{d\tau_{\mathrm{eff}}}{dt_{\mathrm{eff}}}(\theta)
 -
-\frac{d\tau_{\mathrm{GR}}}{dt}
+\frac{d\tau_{\mathrm{GR}}}{dt_{\mathrm{eff}}}
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
@@ -58,23 +62,25 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 $$
 The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
 
+In plain terms, the observer cannot be allowed to recover one causal story from photons, a different clock story from matter, and a third timing story from gravitational waves. The tested regime must look like one effective spacetime to the Physical Observer.
+
 ### Global continuation and cosmic-censorship comparison
 
 Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether sea state, and closure-label ensemble determine the continuation.
 
-The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[t_i,t_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
+The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[T_i,T_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
 $$
 \mathcal{T}_{\Omega,W}^{\theta}:
 \left(
-X_\Omega(t_i),
-\mathcal{H}_{\Omega}^{<t_i},
+X_\Omega(T_i),
+\mathcal{H}_{\Omega}^{<T_i},
 \mathcal{B}_{\partial\Omega}|_{W},
 N_{\text{sea}}|_{\Omega\times W}
 \right)
 \longrightarrow
-\mathcal{S}_{\Omega}(t_f)
+\mathcal{S}_{\Omega}(T_f)
 $$
-where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(t_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
+where $\mathcal{S}_{\Omega}(T_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(T_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
 
 ## Weak-Field Observables That Must Match GR
 
@@ -82,7 +88,7 @@ where $\mathcal{S}_{\Omega}(t_f)$ is the finite accepted endpoint or branch-labe
 
 The clock channel must reproduce
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 \approx
 \sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{v^2}{c_0^2}}
 $$
@@ -99,23 +105,23 @@ Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are 
 
 In the refractive-medium picture, one-way path time is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(\mathbf{x})\,ds
+t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,ds_{\mathrm{eff}}
 $$
 with
 $$
-\bar{\chi}_{\text{sea}}(\mathbf{x})
+\bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)
 \equiv
-\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}
 =
-\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf{x})
+\frac{c_0}{c_f}\chi_{\text{sea}}(x_{\mathrm{eff}}^i)
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_0^2}
 +O(c_0^{-4})
 $$
 
 For a point mass, the resulting delay is
 $$
-\Delta t
+\Delta t_{\mathrm{eff}}
 =
 \frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
@@ -154,7 +160,7 @@ $$
 \theta_W
 \longmapsto
 \left(
-N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},
+N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},
 \Phi_{\text{eff}},
 \chi_{\text{sea}}
 \right)
@@ -176,10 +182,10 @@ R_{\mathrm{1PN}}\\
 \qquad
 R_{\mathrm{acc}}
 =
-\frac{\left\|\frac{d^2\mathbf{x}}{dt^2}+\nabla\Phi_{\text{eff}}\right\|_W}
-{\left\|\nabla\Phi_{\text{eff}}\right\|_W+\varepsilon}
+\frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
+{\left\|\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
-The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\text{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
+The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
 
 Solar oblateness supplies the nuisance-control version of the same rule. Mercury-type precession may be written as
 $$
@@ -252,7 +258,7 @@ $$
 =
 \frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
 $$
-The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(\mathbf{x};\theta_W)$, the residual must also satisfy
+The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
 $$
 \mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
 =

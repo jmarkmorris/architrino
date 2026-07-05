@@ -2,6 +2,8 @@
 
 This protocol documents the first redshift-budget simulation fixture for the cosmology branch. The fixture is a bookkeeping replay of the factorized redshift record in [Expansion Mechanism](../../cosmology/expansion-mechanism.md#minimal-redshift-budget-toy-model), not an empirical distance-ladder fit.
 
+A redshift budget is a receipt for a photon record. It separates endpoint cadence, source-branch state, launch geometry, path-history transport, and signed frequency exchange so that a line shift is not silently converted into one undifferentiated expansion variable.
+
 Its purpose is narrow: verify that endpoint cadence, source-branch state, launch geometry, and Noether sea path-history remain separable in a machine-readable packet before any survey-facing cosmology comparison is attempted. The current packet also exposes the continuity-disciplined path-rate law, so source loading, equilibration, frequency-space current, flow divergence, and anisotropic response are not hidden as unrelated fitted terms.
 
 ## Runtime Artifact

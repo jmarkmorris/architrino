@@ -1,6 +1,8 @@
 # Neutrinos
 
-This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. A neutrino is modeled as a near-planar pro/anti [Noether braid](../../noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to explain why neutrinos are neutral, weakly coupled, oscillatory, and hard to detect while keeping the discussion tied to internal geometry rather than to elementary point-particle axioms.
+This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. The simple picture is that a neutrino is almost a photon-channel pair, but not quite locked enough to become a photon. That near-lock explains why it is neutral, fast, weakly coupled, hard to detect, and still able to expose an oscillation ledger.
+
+A neutrino is modeled as a near-planar pro/anti [Noether braid](../../noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to keep neutrality, weak coupling, oscillation, and detection difficulty tied to internal geometry rather than to elementary point-particle axioms.
 
 The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti braid pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
 
@@ -149,9 +151,9 @@ The experimental implementation makes this split operational. A long-baseline be
 
 Matter correction enters through the Noether sea state:
 $$
-H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf{x},t)),
+H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf X,T)),
 \qquad
-n(\mathbf{x},t)\equiv\frac{\rho_{\text{NS}}(\mathbf{x},t)}{\rho_{\text{NS},0}}
+n(\mathbf X,T)\equiv\frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
 The matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 

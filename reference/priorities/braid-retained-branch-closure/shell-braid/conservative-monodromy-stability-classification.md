@@ -70,9 +70,9 @@ $$
 -
 \delta^2\mathcal{S}_{[t_-,t_+]}[\zeta,\xi]
 =
-\Omega_{t_+}(\xi_{t_+},\zeta_{t_+})
+\Omega_{t_+}(\xi_{t_+},\zeta_{T_+})
 -
-\Omega_{t_-}(\xi_{t_-},\zeta_{t_-})
+\Omega_{t_-}(\xi_{t_-},\zeta_{T_-})
 +
 \mathcal{E}_{\mathrm{curl/tail/disc/end}}.
 $$

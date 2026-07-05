@@ -2,6 +2,8 @@
 
 This page gives a plain-language orientation to the legal terms for using Architrino materials. If this page conflicts with the repository license or a specific third-party attribution, the controlling license or attribution governs.
 
+The simple version is that the project is open for inspection and improvement, but the material is not guaranteed, not professional advice, and not a substitute for checking the controlling license, attribution, or source status.
+
 Basic terms: Architrino is open source, published in good faith, and offered for inspection and improvement without a warranty. Use the material at your own risk, keep required license and attribution notices with copied material, and do not treat explanations, apps, simulations, generated media, or diagrams as professional advice or proof by themselves.
 
 ## License

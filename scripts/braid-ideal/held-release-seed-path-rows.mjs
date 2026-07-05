@@ -10,16 +10,26 @@ export const ACCEPTANCE_CERTIFICATE_VERIFICATION_SCHEMA =
   "held_release_seed_path_rows_acceptance_certificate_verification.v0";
 export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA =
   "held_release_seed_path_rows_external_accepted_authority_package.v0";
+export const REPO_AUTHORIZATION_SCHEMA =
+  "repo_authorization_for_accepted_held_release_seed_path_rows.v0";
 export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX =
   "external-authority-package:held-release-seed-path-rows:";
 export const ACCEPTANCE_CERTIFICATE_REF_PREFIX = "accepted:held-release-seed-path-rows:";
 export const EXTERNAL_ACCEPTED_AUTHORITY_REF_PREFIX = "external-authority:held-release-seed-path-rows:";
 export const EXTERNAL_ACCEPTED_AUTHORITY_VERIFICATION_REF_PREFIX =
   "external-verification:held-release-seed-path-rows:";
+export const REPO_AUTHORIZATION_REF_PREFIX = "repo-authorization:accepted-held-release-seed-path-rows:";
 export const DEFAULT_SEED_ID = "braid-ideal:held-release:face-opposite:six-point:v0";
 export const DEFAULT_ROUTE_ID = "braid-ideal:self-hit-held-release:face-opposite:v0";
 export const DEFAULT_RUN_ID = "braid-ideal:held-release:seed-path-rows:v0";
 export const DEFAULT_GROUP_VELOCITY = Object.freeze([1 / 60, 1 / 60, 1 / 60]);
+export const DEFAULT_PREHISTORY_MODE = "stationary-held-release";
+export const PREHISTORY_MODES = Object.freeze([
+  DEFAULT_PREHISTORY_MODE,
+  "kick-at-release",
+  "moving-prehistory",
+]);
+export const SURFACE_VELOCITY_PATTERN = "antipodal-shell-tangent-diagnostic-v0";
 export const FIRST_MISSING_OBJECT = "six_held_release_seed_path_rows_for_retained_record";
 export const FIRST_MISSING_FIELD = "held_release_seed_path_rows[*].retained_record_id";
 export const ACCEPTANCE_CERTIFICATE_FIELD = "held_release_seed_path_rows.acceptance_certificate_ref";
@@ -80,6 +90,30 @@ const REQUIRED_EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELDS = Object.freeze([
   "negative_control_rejection_verified",
 ]);
 
+const REQUIRED_REPO_AUTHORIZATION_FIELDS = Object.freeze([
+  "schema",
+  "accepted_repo_authorization",
+  "accepted_held_release_seed_path_rows",
+  "accepted_same_record_evidence",
+  "repo_authorization_for_accepted_held_release_seed_path_rows_ref",
+  "held_release_seed_path_rows_acceptance_certificate_ref",
+  "held_release_seed_path_rows_external_accepted_authority_package_ref",
+  "external_accepted_authority_ref",
+  "external_accepted_authority_verification_ref",
+  "verified_certificate_artifact_hash",
+  "held_release_seed_path_rows_artifact_id",
+  "held_release_seed_path_rows_artifact_hash",
+  "retained_record_id",
+  "source_row_id",
+  "source_run_id",
+  "source_dataset_id",
+  "provider_object_ref",
+  "provider_artifact_hash",
+  "row_ids",
+  "row_artifact_hashes",
+  "negative_control_rejection_verified",
+]);
+
 const SIX_POINT_SEED = Object.freeze([
   Object.freeze({ architrino_id: "P:+x:+y:+z", polarity: "P", sign: 1, position: [1, 1, 1] }),
   Object.freeze({ architrino_id: "P:+x:-y:-z", polarity: "P", sign: 1, position: [1, -1, -1] }),
@@ -87,6 +121,15 @@ const SIX_POINT_SEED = Object.freeze([
   Object.freeze({ architrino_id: "E:-x:-y:-z", polarity: "E", sign: -1, position: [-1, -1, -1] }),
   Object.freeze({ architrino_id: "E:-x:+y:+z", polarity: "E", sign: -1, position: [-1, 1, 1] }),
   Object.freeze({ architrino_id: "E:+x:-y:+z", polarity: "E", sign: -1, position: [1, -1, 1] }),
+]);
+
+const TANGENT_REFERENCE_AXES = Object.freeze([
+  Object.freeze([0, 0, 1]),
+  Object.freeze([1, 0, 0]),
+  Object.freeze([0, 1, 0]),
+  Object.freeze([0, 0, 1]),
+  Object.freeze([1, 0, 0]),
+  Object.freeze([0, 1, 0]),
 ]);
 
 export const NEGATIVE_CONTROL_REASONS = Object.freeze({
@@ -135,11 +178,27 @@ function normalizeNumber(value, fallback) {
   return Number.isFinite(number) ? number : fallback;
 }
 
+function normalizeFiniteNumber(value, fallback, fieldName) {
+  const number = normalizeNumber(value, fallback);
+  if (!Number.isFinite(number)) {
+    throw new TypeError(`${fieldName} must be finite`);
+  }
+  return number;
+}
+
 function normalizeVector(value, fallback) {
   if (!Array.isArray(value) || value.length !== 3) {
     return [...fallback];
   }
   return value.map((entry, index) => normalizeNumber(entry, fallback[index]));
+}
+
+function normalizePrehistoryMode(value) {
+  const mode = normalizeStringRef(value) ?? DEFAULT_PREHISTORY_MODE;
+  if (!PREHISTORY_MODES.includes(mode)) {
+    throw new TypeError(`prehistory mode must be one of: ${PREHISTORY_MODES.join(", ")}`);
+  }
+  return mode;
 }
 
 function normalizeStringRef(value) {
@@ -171,6 +230,11 @@ function externalAuthorityPackageRef(value) {
   return ref != null && ref.startsWith(EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX) ? ref : null;
 }
 
+function repoAuthorizationRef(value) {
+  const ref = normalizeStringRef(value);
+  return ref != null && ref.startsWith(REPO_AUTHORIZATION_REF_PREFIX) ? ref : null;
+}
+
 function matchingNonEmptyString(value, expected) {
   const ref = normalizeStringRef(value);
   const expectedRef = normalizeStringRef(expected);
@@ -190,6 +254,15 @@ function makeExternalAcceptedAuthorityPackageRef({ artifact, sourceRowId }) {
     return null;
   }
   return `${EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX}${retainedRecordId}:${sourceRowRef}`;
+}
+
+function makeRepoAuthorizationRef({ artifact, sourceRowId }) {
+  const retainedRecordId = normalizeStringRef(artifact?.retained_record_requirement?.retained_record_id);
+  const sourceRowRef = normalizeStringRef(sourceRowId);
+  if (retainedRecordId == null || sourceRowRef == null) {
+    return null;
+  }
+  return `${REPO_AUTHORIZATION_REF_PREFIX}${retainedRecordId}:${sourceRowRef}`;
 }
 
 function makeAcceptedSeedPathCertificateRefPrefix({ artifact, sourceRowId }) {
@@ -232,9 +305,71 @@ function addVectors(left, right) {
   return left.map((value, index) => value + right[index]);
 }
 
-function makeAuthorization() {
+function scaleVector(vector, scale) {
+  return vector.map((value) => value * scale);
+}
+
+function crossVectors(left, right) {
+  return [
+    left[1] * right[2] - left[2] * right[1],
+    left[2] * right[0] - left[0] * right[2],
+    left[0] * right[1] - left[1] * right[0],
+  ];
+}
+
+function vectorNorm(vector) {
+  return Math.hypot(...vector);
+}
+
+function normalizeUnitVector(vector) {
+  const norm = vectorNorm(vector);
+  return norm > 0 ? scaleVector(vector, 1 / norm) : [0, 0, 0];
+}
+
+function makeSurfaceVelocity({ seedRow, index, fieldSpeed, surfaceSpeedFraction }) {
+  if (surfaceSpeedFraction === 0) {
+    return [0, 0, 0];
+  }
+  const referenceAxis = TANGENT_REFERENCE_AXES[index] ?? TANGENT_REFERENCE_AXES[0];
+  const tangentDirection = normalizeUnitVector(crossVectors(referenceAxis, seedRow.position));
+  return scaleVector(tangentDirection, fieldSpeed * surfaceSpeedFraction);
+}
+
+function makeRunMatrixMetadata({
+  proofId,
+  runHandle,
+  sourceRowId,
+  rowKey,
+  surfaceSpeedFraction,
+  prehistoryMode,
+  matrixOptionsActive,
+}) {
+  if (!matrixOptionsActive) {
+    return null;
+  }
+  return {
+    schema: "sh_shell_braid_run_matrix_metadata.v0",
+    proof_id: proofId ?? "SH-0",
+    run_handle: runHandle,
+    source_row_id: sourceRowId,
+    target_center_group_velocity: [...rowKey.groupVelocity],
+    surface_speed_fraction: surfaceSpeedFraction,
+    surface_speed: rowKey.fieldSpeed * surfaceSpeedFraction,
+    surface_speed_units: "fraction_of_field_speed",
+    surface_velocity_pattern: SURFACE_VELOCITY_PATTERN,
+    prehistory_mode: prehistoryMode,
+    evidence_status: "diagnostic_candidate_only_not_accepted_evidence",
+  };
+}
+
+function makeAuthorization({ acceptedSeedPathRows = false } = {}) {
   return Object.fromEntries([
-    ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
+    ...AUTHORIZATION_FLAGS.map((flag) => [
+      flag,
+      flag === "accepted_same_record_evidence" || flag === "held_release_seed_path_rows"
+        ? acceptedSeedPathRows === true
+        : false,
+    ]),
     ["scoreMovement", "no_score_increase"],
   ]);
 }
@@ -251,19 +386,36 @@ function makePathRow({
   seedRow,
   index,
   rowKey,
+  proofId,
+  runHandle,
   groupVelocity,
+  surfaceSpeedFraction,
+  prehistoryMode,
+  matrixOptionsActive,
   retainedRecordId,
   providerObjectRef,
   providerArtifactHash,
 }) {
   const pathKey = stableUint32(`${rowKey.seedId}:${seedRow.architrino_id}`);
+  const surfaceVelocity = makeSurfaceVelocity({
+    seedRow,
+    index,
+    fieldSpeed: rowKey.fieldSpeed,
+    surfaceSpeedFraction,
+  });
+  const releaseVelocity =
+    prehistoryMode === DEFAULT_PREHISTORY_MODE
+      ? [...groupVelocity]
+      : addVectors(groupVelocity, surfaceVelocity);
+  const prehistoryVelocity =
+    prehistoryMode === "moving-prehistory" ? [...releaseVelocity] : [...groupVelocity];
   const pathRow = {
     pathKey,
     segmentIndex: 0,
     startTime: 0,
     endTime: rowKey.duration,
     start: addVectors(seedRow.position, groupVelocity.map((value) => value * rowKey.holdTime)),
-    velocity: [...groupVelocity],
+    velocity: releaseVelocity,
     errorBound: DEFAULT_ERROR_BOUND,
     stateFlags: DEFAULT_STATE_FLAGS,
   };
@@ -277,19 +429,31 @@ function makePathRow({
     source_dataset_id: rowKey.sourceDatasetId,
     retained_record_id: retainedRecordId ?? null,
   };
+  const dynamicReplay = {
+    replayKind: "held-release-seed-path-row-request",
+    fieldSpeed: rowKey.fieldSpeed,
+    coupling: rowKey.coupling,
+    duration: rowKey.duration,
+    dt: rowKey.dt,
+    holdTime: rowKey.holdTime,
+    groupVelocity,
+  };
+  if (matrixOptionsActive) {
+    dynamicReplay.proofId = proofId ?? "SH-0";
+    dynamicReplay.runHandle = runHandle;
+    dynamicReplay.targetCenterGroupVelocity = [...groupVelocity];
+    dynamicReplay.surfaceSpeedFraction = surfaceSpeedFraction;
+    dynamicReplay.surfaceVelocity = [...surfaceVelocity];
+    dynamicReplay.releaseVelocity = [...releaseVelocity];
+    dynamicReplay.prehistoryVelocity = [...prehistoryVelocity];
+    dynamicReplay.prehistoryMode = prehistoryMode;
+    dynamicReplay.surfaceVelocityPattern = SURFACE_VELOCITY_PATTERN;
+  }
   const artifactInput = {
     schema: "held_release_seed_path_row.v0",
     pathIdentity,
     pathRow,
-    dynamicReplay: {
-      replayKind: "held-release-seed-path-row-request",
-      fieldSpeed: rowKey.fieldSpeed,
-      coupling: rowKey.coupling,
-      duration: rowKey.duration,
-      dt: rowKey.dt,
-      holdTime: rowKey.holdTime,
-      groupVelocity,
-    },
+    dynamicReplay,
   };
   const artifactHash = stableHash(artifactInput);
   const retainedRecordPresent = typeof retainedRecordId === "string" && retainedRecordId.length > 0;
@@ -323,6 +487,20 @@ function makePathRow({
       source_run_id: rowKey.sourceRunId,
       source_dataset_id: rowKey.sourceDatasetId,
       retained_record_id: retainedRecordId ?? null,
+      ...(matrixOptionsActive
+        ? {
+            proof_id: proofId ?? "SH-0",
+            run_handle: runHandle,
+            target_center_group_velocity: [...groupVelocity],
+            surface_speed_fraction: surfaceSpeedFraction,
+            surface_speed: rowKey.fieldSpeed * surfaceSpeedFraction,
+            surface_velocity: [...surfaceVelocity],
+            release_velocity: [...releaseVelocity],
+            prehistory_velocity: [...prehistoryVelocity],
+            prehistory_mode: prehistoryMode,
+            surface_velocity_pattern: SURFACE_VELOCITY_PATTERN,
+          }
+        : {}),
     },
     same_record_binding: {
       required: true,
@@ -440,6 +618,43 @@ function makeExternalAcceptedAuthorityPackageExpectation({ artifact, sourceRowId
     verified_certificate_schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
     verified_certificate_ref: certificateRef,
     verified_certificate_artifact_hash: certificateHash,
+    held_release_seed_path_rows_artifact_id: artifact?.artifact_id ?? null,
+    held_release_seed_path_rows_artifact_hash: artifact?.artifact_hash ?? null,
+    retained_record_id: artifact?.retained_record_requirement?.retained_record_id ?? null,
+    source_row_id: normalizeStringRef(sourceRowId),
+    source_run_id: artifact?.source_run_identity?.source_run_id ?? null,
+    source_dataset_id: artifact?.source_run_identity?.source_dataset_id ?? null,
+    provider_object_ref: artifact?.rows?.[0]?.provider_provenance?.provider_object_ref ?? null,
+    provider_artifact_hash: artifact?.rows?.[0]?.provider_provenance?.provider_artifact_hash ?? null,
+    row_ids: artifact?.rows?.map((row) => row?.row_id) ?? [],
+    row_artifact_hashes: artifact?.rows?.map((row) => row?.artifact_hash) ?? [],
+    negative_control_rejection_verified: true,
+  };
+}
+
+function makeRepoAuthorizationExpectation({ artifact, sourceRowId, certificate, externalAuthorityPackage }) {
+  return {
+    schema: REPO_AUTHORIZATION_SCHEMA,
+    accepted_repo_authorization: true,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    repo_authorization_for_accepted_held_release_seed_path_rows_ref: makeRepoAuthorizationRef({
+      artifact,
+      sourceRowId,
+    }),
+    held_release_seed_path_rows_acceptance_certificate_ref: normalizeStringRef(
+      certificate?.held_release_seed_path_rows_acceptance_certificate_ref
+    ),
+    held_release_seed_path_rows_external_accepted_authority_package_ref: normalizeStringRef(
+      externalAuthorityPackage?.external_accepted_authority_package_ref
+    ),
+    external_accepted_authority_ref: normalizeStringRef(certificate?.external_accepted_authority_ref),
+    external_accepted_authority_verification_ref: normalizeStringRef(
+      certificate?.external_accepted_authority_verification_ref
+    ),
+    verified_certificate_artifact_hash: normalizeStringRef(
+      externalAuthorityPackage?.verified_certificate_artifact_hash
+    ),
     held_release_seed_path_rows_artifact_id: artifact?.artifact_id ?? null,
     held_release_seed_path_rows_artifact_hash: artifact?.artifact_hash ?? null,
     retained_record_id: artifact?.retained_record_requirement?.retained_record_id ?? null,
@@ -684,11 +899,152 @@ function externalAcceptedAuthorityPackageMissingFields({ artifact, sourceRowId, 
   return missingFields;
 }
 
+function repoAuthorizationMissingFields({
+  artifact,
+  sourceRowId,
+  certificate,
+  externalAuthorityPackage,
+  repoAuthorization,
+}) {
+  const missingFields = [];
+  const hasRepoAuthorizationInput =
+    repoAuthorization != null && Object.keys(repoAuthorization).length > 0;
+  if (!hasRepoAuthorizationInput) {
+    return [REPO_AUTHORIZATION_FIELD];
+  }
+  const expected = makeRepoAuthorizationExpectation({
+    artifact,
+    sourceRowId,
+    certificate,
+    externalAuthorityPackage,
+  });
+  if (repoAuthorization?.schema !== REPO_AUTHORIZATION_SCHEMA) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.schema");
+  }
+  if (repoAuthorization?.accepted_repo_authorization !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.accepted_repo_authorization");
+  }
+  if (repoAuthorization?.accepted_held_release_seed_path_rows !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.accepted_held_release_seed_path_rows");
+  }
+  if (repoAuthorization?.accepted_same_record_evidence !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.accepted_same_record_evidence");
+  }
+  if (
+    repoAuthorizationRef(
+      repoAuthorization?.repo_authorization_for_accepted_held_release_seed_path_rows_ref
+    ) == null
+  ) {
+    missingFields.push(
+      "held_release_seed_path_rows.repo_authorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref"
+    );
+  } else {
+    pushMissingUnlessMatchingString({
+      missingFields,
+      value: repoAuthorization?.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+      expected: expected.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+      field:
+        "held_release_seed_path_rows.repo_authorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref",
+    });
+  }
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_acceptance_certificate_ref,
+    expected: expected.held_release_seed_path_rows_acceptance_certificate_ref,
+    field:
+      "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_acceptance_certificate_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_external_accepted_authority_package_ref,
+    expected: expected.held_release_seed_path_rows_external_accepted_authority_package_ref,
+    field:
+      "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_external_accepted_authority_package_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.external_accepted_authority_ref,
+    expected: expected.external_accepted_authority_ref,
+    field: "held_release_seed_path_rows.repo_authorization.external_accepted_authority_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.external_accepted_authority_verification_ref,
+    expected: expected.external_accepted_authority_verification_ref,
+    field: "held_release_seed_path_rows.repo_authorization.external_accepted_authority_verification_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.verified_certificate_artifact_hash,
+    expected: expected.verified_certificate_artifact_hash,
+    field: "held_release_seed_path_rows.repo_authorization.verified_certificate_artifact_hash",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_artifact_id,
+    expected: expected.held_release_seed_path_rows_artifact_id,
+    field: "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_artifact_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.held_release_seed_path_rows_artifact_hash,
+    expected: expected.held_release_seed_path_rows_artifact_hash,
+    field: "held_release_seed_path_rows.repo_authorization.held_release_seed_path_rows_artifact_hash",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.retained_record_id,
+    expected: expected.retained_record_id,
+    field: "held_release_seed_path_rows.repo_authorization.retained_record_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.source_row_id,
+    expected: expected.source_row_id,
+    field: "held_release_seed_path_rows.repo_authorization.source_row_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.source_run_id,
+    expected: expected.source_run_id,
+    field: "held_release_seed_path_rows.repo_authorization.source_run_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.source_dataset_id,
+    expected: expected.source_dataset_id,
+    field: "held_release_seed_path_rows.repo_authorization.source_dataset_id",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.provider_object_ref,
+    expected: expected.provider_object_ref,
+    field: "held_release_seed_path_rows.repo_authorization.provider_object_ref",
+  });
+  pushMissingUnlessMatchingString({
+    missingFields,
+    value: repoAuthorization?.provider_artifact_hash,
+    expected: expected.provider_artifact_hash,
+    field: "held_release_seed_path_rows.repo_authorization.provider_artifact_hash",
+  });
+  if (!arraysEqual(repoAuthorization?.row_ids, expected.row_ids)) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.row_ids");
+  }
+  if (!arraysEqual(repoAuthorization?.row_artifact_hashes, expected.row_artifact_hashes)) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.row_artifact_hashes");
+  }
+  if (repoAuthorization?.negative_control_rejection_verified !== true) {
+    missingFields.push("held_release_seed_path_rows.repo_authorization.negative_control_rejection_verified");
+  }
+  return missingFields;
+}
+
 export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
   artifact,
   sourceRowId,
   certificate = {},
   externalAuthorityPackage = {},
+  repoAuthorization = {},
 } = {}) {
   const expected = makeAcceptanceCertificateExpectation({ artifact, sourceRowId });
   const missingFields = acceptanceCertificateMissingFields({ artifact, sourceRowId, certificate });
@@ -710,30 +1066,56 @@ export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
     certificateConditionallyVerified && externalAuthorityPackageMissingFields.length === 0;
   const conditionallyVerified =
     certificateConditionallyVerified && externalAuthorityPackageConditionallyVerified;
-  const firstMissingObject = conditionallyVerified
+  const repoAuthorizationMissingFieldsResult = conditionallyVerified
+    ? repoAuthorizationMissingFields({
+        artifact,
+        sourceRowId,
+        certificate,
+        externalAuthorityPackage,
+        repoAuthorization,
+      })
+    : [];
+  const repoAuthorizationVerified =
+    conditionallyVerified && repoAuthorizationMissingFieldsResult.length === 0;
+  const firstMissingObject = repoAuthorizationVerified
+    ? null
+    : conditionallyVerified
     ? REPO_AUTHORIZATION_OBJECT
     : certificateConditionallyVerified
       ? "held_release_seed_path_rows_external_accepted_authority_package"
       : "held_release_seed_path_rows_acceptance_certificate";
-  const firstMissingField = conditionallyVerified
-    ? REPO_AUTHORIZATION_FIELD
-    : certificateConditionallyVerified
-      ? (externalAuthorityPackageMissingFields[0] ?? EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELD)
-      : (missingFields[0] ?? ACCEPTANCE_CERTIFICATE_FIELD);
-  const requirementMissingFields = conditionallyVerified
-    ? [REPO_AUTHORIZATION_FIELD]
-    : [...missingFields, ...externalAuthorityPackageMissingFields];
+  const firstMissingField = repoAuthorizationVerified
+    ? null
+    : conditionallyVerified
+      ? (repoAuthorizationMissingFieldsResult[0] ?? REPO_AUTHORIZATION_FIELD)
+      : certificateConditionallyVerified
+        ? (externalAuthorityPackageMissingFields[0] ?? EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELD)
+        : (missingFields[0] ?? ACCEPTANCE_CERTIFICATE_FIELD);
+  const requirementMissingFields = repoAuthorizationVerified
+    ? []
+    : conditionallyVerified
+      ? repoAuthorizationMissingFieldsResult
+      : [...missingFields, ...externalAuthorityPackageMissingFields];
+  const expectedRepoAuthorization = makeRepoAuthorizationExpectation({
+    artifact,
+    sourceRowId,
+    certificate,
+    externalAuthorityPackage,
+  });
   return {
     schema: ACCEPTANCE_CERTIFICATE_VERIFICATION_SCHEMA,
-    accepted: false,
+    accepted: repoAuthorizationVerified,
     certificate_conditionally_verified: certificateConditionallyVerified,
     external_authority_package_conditionally_verified: externalAuthorityPackageConditionallyVerified,
+    repo_authorization_verified: repoAuthorizationVerified,
     conditionally_verified: conditionallyVerified,
-    status: conditionallyVerified
-      ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
-      : certificateConditionallyVerified
-        ? "seed_path_acceptance_certificate_verified_external_authority_package_missing_or_unverified"
-        : "seed_path_acceptance_certificate_missing_or_unverified",
+    status: repoAuthorizationVerified
+      ? "seed_path_acceptance_certificate_repo_authorized"
+      : conditionallyVerified
+        ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+        : certificateConditionallyVerified
+          ? "seed_path_acceptance_certificate_verified_external_authority_package_missing_or_unverified"
+          : "seed_path_acceptance_certificate_missing_or_unverified",
     required_certificate_schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
     required_certificate_ref_prefix:
       makeAcceptedSeedPathCertificateRefPrefix({ artifact, sourceRowId }) ?? ACCEPTANCE_CERTIFICATE_REF_PREFIX,
@@ -747,13 +1129,21 @@ export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
       expectedExternalAuthorityPackage.external_accepted_authority_package_ref,
     required_external_authority_package_ref_prefix: EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_REF_PREFIX,
     required_external_authority_package_fields: [...REQUIRED_EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELDS],
+    required_repo_authorization_schema: REPO_AUTHORIZATION_SCHEMA,
     required_repo_authorization_object: REPO_AUTHORIZATION_OBJECT,
     required_repo_authorization_field: REPO_AUTHORIZATION_FIELD,
-    repo_authorization_status: conditionallyVerified
-      ? "missing_after_conditionally_verified_external_authority_package"
-      : "pending_seed_path_certificate_and_external_authority_package",
+    required_repo_authorization_ref:
+      expectedRepoAuthorization.repo_authorization_for_accepted_held_release_seed_path_rows_ref,
+    required_repo_authorization_ref_prefix: REPO_AUTHORIZATION_REF_PREFIX,
+    required_repo_authorization_fields: [...REQUIRED_REPO_AUTHORIZATION_FIELDS],
+    repo_authorization_status: repoAuthorizationVerified
+      ? "repo_authorization_verified"
+      : conditionallyVerified
+        ? "missing_after_conditionally_verified_external_authority_package"
+        : "pending_seed_path_certificate_and_external_authority_package",
     expected_certificate_payload: expected,
     expected_external_authority_package_payload: expectedExternalAuthorityPackage,
+    expected_repo_authorization_payload: expectedRepoAuthorization,
     supplied_certificate_ref: normalizeStringRef(certificate?.held_release_seed_path_rows_acceptance_certificate_ref),
     supplied_external_accepted_authority_ref: normalizeStringRef(certificate?.external_accepted_authority_ref),
     supplied_external_accepted_authority_verification_ref: normalizeStringRef(
@@ -762,10 +1152,13 @@ export function evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
     supplied_external_authority_package_ref: normalizeStringRef(
       externalAuthorityPackage?.external_accepted_authority_package_ref
     ),
+    supplied_repo_authorization_ref: normalizeStringRef(
+      repoAuthorization?.repo_authorization_for_accepted_held_release_seed_path_rows_ref
+    ),
     missing_fields: requirementMissingFields,
     first_missing_object: firstMissingObject,
     first_missing_field: firstMissingField,
-    authorization: makeAuthorization(),
+    authorization: makeAuthorization({ acceptedSeedPathRows: repoAuthorizationVerified }),
   };
 }
 
@@ -777,16 +1170,19 @@ export function buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement(opt
     sourceRowId,
     certificate: options.acceptanceCertificate ?? {},
     externalAuthorityPackage: options.externalAuthorityPackage ?? {},
+    repoAuthorization: options.repoAuthorization ?? {},
   });
   return {
     schema: ACCEPTANCE_CERTIFICATE_REQUIREMENT_SCHEMA,
-    accepted: false,
+    accepted: verification.accepted,
     requirement_passed: verification.accepted === true,
-    status: verification.conditionally_verified
-      ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
-      : verification.certificate_conditionally_verified
-        ? "seed_path_external_authority_package_missing"
-        : "seed_path_acceptance_certificate_missing",
+    status: verification.accepted
+      ? verification.status
+      : verification.conditionally_verified
+        ? "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+        : verification.certificate_conditionally_verified
+          ? "seed_path_external_authority_package_missing"
+          : "seed_path_acceptance_certificate_missing",
     retained_record_id: artifact?.retained_record_requirement?.retained_record_id ?? null,
     source_row_id: sourceRowId,
     source_run_id: artifact?.source_run_identity?.source_run_id ?? null,
@@ -810,17 +1206,33 @@ export function buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement(opt
     required_external_authority_package_fields: [...REQUIRED_EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_FIELDS],
     required_repo_authorization_object: verification.required_repo_authorization_object,
     required_repo_authorization_field: verification.required_repo_authorization_field,
+    required_repo_authorization_schema: verification.required_repo_authorization_schema,
+    required_repo_authorization_ref: verification.required_repo_authorization_ref,
+    required_repo_authorization_ref_prefix: verification.required_repo_authorization_ref_prefix,
+    required_repo_authorization_fields: verification.required_repo_authorization_fields,
     repo_authorization_status: verification.repo_authorization_status,
     acceptance_certificate_verification: verification,
     first_missing_object: verification.first_missing_object,
     first_missing_field: verification.first_missing_field,
     missing_fields: verification.missing_fields,
-    authorization: makeAuthorization(),
+    authorization: makeAuthorization({ acceptedSeedPathRows: verification.accepted }),
   };
 }
 
 export function buildHeldReleaseSeedPathRows(options = {}) {
   const groupVelocity = normalizeVector(options.groupVelocity, DEFAULT_GROUP_VELOCITY);
+  const proofId = normalizeStringRef(options.proofId);
+  const runHandle = normalizeStringRef(options.runHandle);
+  const sourceRowId = normalizeStringRef(options.sourceRowId);
+  const prehistoryMode = normalizePrehistoryMode(options.prehistoryMode);
+  const surfaceSpeedFraction = normalizeFiniteNumber(
+    options.surfaceSpeedFraction,
+    0,
+    "surfaceSpeedFraction"
+  );
+  if (surfaceSpeedFraction < 0) {
+    throw new TypeError("surfaceSpeedFraction must be nonnegative");
+  }
   const providerObjectRef = normalizeStringRef(options.providerObjectRef);
   const providerArtifactHash = normalizeStringRef(options.providerArtifactHash);
   const rowKey = {
@@ -836,19 +1248,50 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
     holdTime: normalizeNumber(options.holdTime, DEFAULT_HOLD_TIME),
     groupVelocity,
   };
+  const matrixOptionsActive =
+    runHandle != null ||
+    proofId != null ||
+    prehistoryMode !== DEFAULT_PREHISTORY_MODE ||
+    surfaceSpeedFraction !== 0 ||
+    options.matrixOptionsActive === true;
+  const rowKeyHashInput = matrixOptionsActive
+    ? {
+        ...rowKey,
+        proofId: proofId ?? "SH-0",
+        runHandle,
+        sourceRowId,
+        surfaceSpeedFraction,
+        prehistoryMode,
+        surfaceVelocityPattern: SURFACE_VELOCITY_PATTERN,
+      }
+    : rowKey;
   const retainedRecordId =
     typeof options.retainedRecordId === "string" && options.retainedRecordId.length > 0
       ? options.retainedRecordId
       : null;
-  const artifactHash = stableHash({ ...rowKey, retainedRecordId });
+  const artifactHash = stableHash({ ...rowKeyHashInput, retainedRecordId });
   const rowPrefix = `held_release_seed_path_rows:${artifactHash.slice(0, 16)}`;
+  const runMatrixMetadata = makeRunMatrixMetadata({
+    proofId,
+    runHandle,
+    sourceRowId,
+    rowKey,
+    surfaceSpeedFraction,
+    prehistoryMode,
+    matrixOptionsActive,
+  });
   const rows = makeSeedRows().map((seedRow, index) =>
     makePathRow({
       rowPrefix,
       seedRow,
       index,
       rowKey,
+      proofId,
+      runHandle,
       groupVelocity,
+      surfaceSpeedFraction,
+      prehistoryMode,
+      matrixOptionsActive,
       retainedRecordId,
       providerObjectRef,
       providerArtifactHash,
@@ -869,6 +1312,8 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
     artifact_hash: artifactHash,
     seed_id: rowKey.seedId,
     route_id: rowKey.routeId,
+    ...(sourceRowId == null ? {} : { source_row_id: sourceRowId }),
+    ...(runMatrixMetadata == null ? {} : { run_matrix_metadata: runMatrixMetadata }),
     source_run_identity: {
       same_run_required: true,
       source_run_id: rowKey.sourceRunId,
@@ -904,6 +1349,18 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
       dt: rowKey.dt,
       hold_time: rowKey.holdTime,
       group_velocity: [...groupVelocity],
+      ...(runMatrixMetadata == null
+        ? {}
+        : {
+            proof_id: runMatrixMetadata.proof_id,
+            run_handle: runMatrixMetadata.run_handle,
+            source_row_id: runMatrixMetadata.source_row_id,
+            target_center_group_velocity: runMatrixMetadata.target_center_group_velocity,
+            surface_speed_fraction: runMatrixMetadata.surface_speed_fraction,
+            surface_speed: runMatrixMetadata.surface_speed,
+            prehistory_mode: runMatrixMetadata.prehistory_mode,
+            surface_velocity_pattern: runMatrixMetadata.surface_velocity_pattern,
+          }),
     },
     rows,
     artifact_status:
@@ -916,6 +1373,18 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
     first_missing_object: firstMissingObject,
     first_missing_field: evidence.first_missing_field,
     evidence_evaluation: evidence,
+    evidence_status: {
+      accepted: false,
+      accepted_evidence_status: providerBacked
+        ? "candidate_provider_backed_source_unaccepted"
+        : "source_acquisition_blocked",
+      claim_level: "diagnostic_candidate_only_not_accepted_evidence",
+      first_missing_object: firstMissingObject,
+      first_missing_field: evidence.first_missing_field,
+      source_artifact_id: rowPrefix,
+      source_artifact_hash: artifactHash,
+      source_row_id: sourceRowId,
+    },
     authorization: makeAuthorization(),
     negative_controls: Object.entries(NEGATIVE_CONTROL_REASONS).map(([evidence_class, reason]) => ({
       evidence_class,
@@ -989,6 +1458,23 @@ function cliStringOption(name) {
   return process.argv.find((arg) => arg.startsWith(`--${name}=`))?.slice(name.length + 3) ?? null;
 }
 
+function cliNumberOption(name) {
+  const value = cliStringOption(name);
+  return value == null ? undefined : Number(value);
+}
+
+function cliVectorOption(name) {
+  const value = cliStringOption(name);
+  if (value == null) {
+    return undefined;
+  }
+  const parts = value.split(",").map((entry) => Number(entry.trim()));
+  if (parts.length !== 3 || parts.some((entry) => !Number.isFinite(entry))) {
+    throw new TypeError(`--${name} must be a comma-separated vector with three finite numbers`);
+  }
+  return parts;
+}
+
 function cliJsonOption(name) {
   const path = cliStringOption(name);
   if (path == null) {
@@ -1000,15 +1486,23 @@ function cliJsonOption(name) {
 function runCli() {
   let acceptanceCertificate = null;
   let externalAuthorityPackage = null;
+  let repoAuthorization = null;
   try {
     acceptanceCertificate = cliJsonOption("acceptance-certificate-json");
     externalAuthorityPackage = cliJsonOption("external-authority-package-json");
+    repoAuthorization = cliJsonOption("repo-authorization-json");
   } catch (error) {
     console.error(error instanceof Error ? error.message : String(error));
     process.exitCode = 1;
     return;
   }
   const artifact = buildHeldReleaseSeedPathRows({
+    proofId: cliStringOption("proof-id"),
+    runHandle: cliStringOption("run-handle"),
+    sourceRowId: cliStringOption("source-row-id"),
+    groupVelocity: cliVectorOption("target-center-group-velocity") ?? cliVectorOption("group-velocity"),
+    surfaceSpeedFraction: cliNumberOption("surface-speed-fraction") ?? cliNumberOption("surface-speed"),
+    prehistoryMode: cliStringOption("prehistory-mode"),
     retainedRecordId: cliStringOption("retained-record-id"),
     providerObjectRef: cliStringOption("provider-object-ref"),
     providerArtifactHash: cliStringOption("provider-artifact-hash"),
@@ -1025,6 +1519,7 @@ function runCli() {
     sourceRowId: cliStringOption("source-row-id"),
     acceptanceCertificate: acceptanceCertificate ?? {},
     externalAuthorityPackage: externalAuthorityPackage ?? {},
+    repoAuthorization: repoAuthorization ?? {},
   });
   if (process.argv.includes("--print-acceptance-certificate-requirement")) {
     console.log(JSON.stringify(certificateRequirement, null, pretty ? 2 : 0));
@@ -1039,7 +1534,7 @@ function runCli() {
     return;
   }
   const output =
-    acceptanceCertificate == null
+    acceptanceCertificate == null && externalAuthorityPackage == null && repoAuthorization == null
       ? artifact
       : {
           ...artifact,

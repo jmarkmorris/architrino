@@ -2,6 +2,10 @@
 
 This chapter states the molecular-geometry closure target within the assembly framework. Its purpose is to identify what molecular shape depends on in this ontology so the eventual detailed derivation has a stable launch point.
 
+Start with the ordinary fact: molecules have repeatable shapes. Water is bent, carbon dioxide is linear, methane is tetrahedral, and those shapes come with repeatable bond lengths, bond angles, and vibration spectra. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those patterns are not imported as orbital pictures that already explain themselves. They are targets that the assembly, corridor, exclusion, phase, and Noether sea response story has to recover.
+
+The simple version is that a molecule finds a stable arrangement only when its bonding corridors can share wake structure, avoid incompatible exclusion, keep phase-compatible resonances, and sit in a local Noether sea response that does not tear the arrangement apart.
+
 It should be connected to [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
 
 Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.

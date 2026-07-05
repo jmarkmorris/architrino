@@ -44,12 +44,16 @@ const SECTION_LINE_OFFSET_PX = Object.freeze({
 });
 const SECTION_MARKER_DEFAULT_INSET_RATIO = 0.18;
 const SECTION_MARKER_MIN_INSET_PX = 8;
-const COMMENT_CONNECTOR_INSET_PX = 18;
+const COMMENT_CONNECTOR_INSET_PX = 32;
 const CALLOUT_LAYOUT_MARGIN_PX = 32;
 const CALLOUT_LAYOUT_EQUATION_GAP_PX = 28;
 const CALLOUT_LAYOUT_ITEM_GAP_PX = 24;
-const CALLOUT_LAYOUT_BAND_PADDING_PX = 150;
+const CALLOUT_LAYOUT_BAND_PADDING_PX = 240;
 const CALLOUT_LAYOUT_TITLE_GAP_PX = 18;
+const COORDINATE_EFFECTIVE_OVERLAY_ID = "effective-coordinates";
+const COORDINATE_EFFECTIVE_ANCHOR_ID = "effectiveLayer";
+const SIDE_CALLOUT_GAP_PX = 32;
+const COORDINATE_CAROUSEL_CLEARANCE_PX = 16;
 
 function createElement(documentLike, tag, className = "", textContent) {
   const element = documentLike.createElement(tag);
@@ -75,6 +79,17 @@ function getRectCenter(rect) {
     x: rect.left + rect.width / 2,
     y: rect.top + rect.height / 2,
   };
+}
+
+function isTextEntryTarget(target) {
+  const tagName = String(target?.tagName ?? "").toLowerCase();
+  return (
+    tagName === "input" ||
+    tagName === "textarea" ||
+    tagName === "select" ||
+    Boolean(target?.isContentEditable) ||
+    Boolean(target?.closest?.("[contenteditable='true'], [contenteditable='plaintext-only']"))
+  );
 }
 
 function getLocalRect(rect, stageRect) {
@@ -256,6 +271,133 @@ export function resolveEquationVerticalShift({
   return Math.min(rowAdvancePx, maxShiftPx);
 }
 
+function getFormulaAnchorPositions(document = {}) {
+  const anchorPositions = new Map();
+  let rowIndex = 0;
+  let partIndex = 0;
+  (document.formulaParts ?? []).forEach((part) => {
+    if (part.kind === "break") {
+      rowIndex += 1;
+      return;
+    }
+    if (part.anchorId && !anchorPositions.has(part.anchorId)) {
+      anchorPositions.set(part.anchorId, { rowIndex, partIndex });
+    }
+    partIndex += 1;
+  });
+  return {
+    anchorPositions,
+    rowCount: rowIndex + 1,
+  };
+}
+
+function getOverlayTargetPosition(overlay, anchorPositions, fallbackIndex) {
+  return anchorPositions.get(overlay.targetAnchorId) ?? {
+    rowIndex: 0,
+    partIndex: Number.MAX_SAFE_INTEGER + fallbackIndex,
+  };
+}
+
+function resolveConnectorAlignedRowShift({
+  positioned = [],
+  hardLeft = 0,
+  hardRight = 0,
+  connectorInsetPx = COMMENT_CONNECTOR_INSET_PX,
+} = {}) {
+  if (!positioned.length || hardRight <= hardLeft) {
+    return 0;
+  }
+  const first = positioned[0];
+  const last = positioned[positioned.length - 1];
+  let minDelta = hardLeft - first.x;
+  let maxDelta = hardRight - (last.x + last.item.width);
+
+  positioned.forEach((entry) => {
+    const width = Math.max(0, entry.item.width);
+    const inset = Math.min(connectorInsetPx, width / 2);
+    const verticalLeft = entry.item.targetCenterX - (width - inset);
+    const verticalRight = entry.item.targetCenterX - inset;
+    minDelta = Math.max(minDelta, verticalLeft - entry.x);
+    maxDelta = Math.min(maxDelta, verticalRight - entry.x);
+  });
+
+  if (minDelta > maxDelta) {
+    return 0;
+  }
+  if (minDelta <= 0 && maxDelta >= 0) {
+    return 0;
+  }
+  return minDelta > 0 ? minDelta : maxDelta;
+}
+
+function isCoordinateEffectiveSideCallout(document, overlay) {
+  return (
+    document?.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID &&
+    overlay?.id === COORDINATE_EFFECTIVE_OVERLAY_ID &&
+    overlay?.targetAnchorId === COORDINATE_EFFECTIVE_ANCHOR_ID
+  );
+}
+
+export function resolveCalloutPlacements(document = {}) {
+  const overlays = document.overlays ?? [];
+  const { anchorPositions, rowCount } = getFormulaAnchorPositions(document);
+  const placementByOverlayId = new Map();
+
+  if (document.calloutPlacementMode === "explicit") {
+    overlays.forEach((overlay) => {
+      placementByOverlayId.set(
+        overlay.id,
+        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
+      );
+    });
+    return placementByOverlayId;
+  }
+
+  if (rowCount > 1) {
+    const overlayTargets = overlays.map((overlay, index) => ({
+      overlay,
+      index,
+      targetPosition: getOverlayTargetPosition(overlay, anchorPositions, index),
+    }));
+    const crowdedFirstRowOverlays = overlayTargets
+      .filter(({ targetPosition }) => targetPosition.rowIndex === 0)
+      .sort((left, right) =>
+        left.targetPosition.partIndex - right.targetPosition.partIndex ||
+        left.index - right.index
+      );
+    const crowdedFirstRowPlacementById = new Map();
+    if (crowdedFirstRowOverlays.length >= 4) {
+      crowdedFirstRowOverlays.forEach(({ overlay }, index) => {
+        crowdedFirstRowPlacementById.set(overlay.id, index % 2 === 0 ? "above" : "below");
+      });
+    }
+    overlayTargets.forEach(({ overlay, targetPosition }) => {
+      placementByOverlayId.set(
+        overlay.id,
+        crowdedFirstRowPlacementById.get(overlay.id) ??
+          (targetPosition.rowIndex === 0 ? "above" : "below")
+      );
+    });
+    return placementByOverlayId;
+  }
+
+  overlays
+    .map((overlay, index) => ({
+      overlay,
+      index,
+      targetPosition: getOverlayTargetPosition(overlay, anchorPositions, index),
+    }))
+    .sort((left, right) =>
+      left.targetPosition.partIndex - right.targetPosition.partIndex ||
+      left.index - right.index
+    )
+    .forEach(({ overlay }, index) => {
+      placementByOverlayId.set(overlay.id, index % 2 === 0 ? "above" : "below");
+    });
+
+  return placementByOverlayId;
+}
+
 function resolveHorizontalCalloutPositions({
   stageWidth = 0,
   equationRect = null,
@@ -318,6 +460,17 @@ function resolveHorizontalCalloutPositions({
     });
   }
 
+  const connectorAlignedShift = resolveConnectorAlignedRowShift({
+    positioned,
+    hardLeft,
+    hardRight,
+  });
+  if (connectorAlignedShift !== 0) {
+    positioned.forEach((entry) => {
+      entry.x += connectorAlignedShift;
+    });
+  }
+
   return new Map(
     positioned.map(({ item, x }) => [
       item.id,
@@ -375,6 +528,48 @@ export function resolveCalloutRowLayout({
       },
     ])
   );
+}
+
+export function resolveSideCalloutPosition({
+  stageWidth = 0,
+  stageHeight = 0,
+  targetRect = null,
+  commentRect = null,
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  gapPx = SIDE_CALLOUT_GAP_PX,
+} = {}) {
+  if (!targetRect || !commentRect || stageWidth <= 0 || stageHeight <= 0) {
+    return null;
+  }
+  const hardLeft = marginPx;
+  const hardRight = Math.max(hardLeft, stageWidth - marginPx);
+  const hardBottom = Math.max(marginPx, stageHeight - marginPx);
+  const preferredX = targetRect.left - commentRect.width - gapPx;
+  const preferredY = targetRect.top + targetRect.height / 2 - commentRect.height / 2;
+  return {
+    x: clamp(preferredX, hardLeft, Math.max(hardLeft, hardRight - commentRect.width)),
+    y: clamp(preferredY, marginPx, Math.max(marginPx, hardBottom - commentRect.height)),
+  };
+}
+
+export function resolveCarouselClearanceCalloutPosition({
+  position = null,
+  commentRect = null,
+  carouselRect = null,
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  clearancePx = COORDINATE_CAROUSEL_CLEARANCE_PX,
+} = {}) {
+  if (!position || !commentRect || !carouselRect) {
+    return position;
+  }
+  const maxY = carouselRect.top - clearancePx - commentRect.height;
+  if (!Number.isFinite(maxY) || position.y <= maxY) {
+    return position;
+  }
+  return {
+    ...position,
+    y: Math.max(marginPx, maxY),
+  };
 }
 
 export function calculateEquationAutoFit({
@@ -437,6 +632,21 @@ export function createPointerLineGeometry(
   };
 }
 
+export function createSidePointerLineGeometry(stageRect, targetRect, commentRect) {
+  const targetY = targetRect.top + targetRect.height / 2;
+  const sourceY = clamp(
+    targetY,
+    commentRect.top + COMMENT_CONNECTOR_INSET_PX,
+    commentRect.bottom - COMMENT_CONNECTOR_INSET_PX
+  );
+  return {
+    x1: commentRect.right - stageRect.left,
+    y1: sourceY - stageRect.top,
+    x2: targetRect.left - stageRect.left,
+    y2: targetY - stageRect.top,
+  };
+}
+
 export function createEquationMappingHomeHref(windowLike = globalThis.window) {
   return resolveStandaloneAppHomeHref(windowLike?.location?.href);
 }
@@ -452,6 +662,30 @@ function renderMath(windowLike, element, tex, { displayMode = false } = {}) {
   }
   element.textContent = displayMode ? `$$${tex}$$` : tex;
   element.classList.add("equation-mapping-math-fallback");
+}
+
+function appendInlineMathText(windowLike, documentLike, parent, text) {
+  const source = String(text ?? "");
+  const inlineMathPattern = /\$([^$\n]+)\$/g;
+  let cursor = 0;
+  let match;
+  while ((match = inlineMathPattern.exec(source))) {
+    if (match.index > cursor) {
+      parent.append(documentLike.createTextNode(source.slice(cursor, match.index)));
+    }
+    const math = createElement(documentLike, "span", "equation-mapping-inline-math");
+    renderMath(windowLike, math, match[1], { displayMode: false });
+    parent.append(math);
+    cursor = match.index + match[0].length;
+  }
+  if (cursor < source.length) {
+    parent.append(documentLike.createTextNode(source.slice(cursor)));
+  }
+  return parent;
+}
+
+function createInlineMathTextElement(windowLike, documentLike, tag, className, text) {
+  return appendInlineMathText(windowLike, documentLike, createElement(documentLike, tag, className), text);
 }
 
 function readSavedSettings(windowLike) {
@@ -471,6 +705,81 @@ function saveSettings(windowLike, settings) {
   }
 }
 
+function normalizeExpandedSubjectIds(value) {
+  if (!Array.isArray(value)) {
+    return new Set();
+  }
+  return new Set(value.map((entry) => String(entry ?? "").trim()).filter(Boolean));
+}
+
+function createStableSlug(value, fallback = "") {
+  const slug = String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/gu, "-")
+    .replace(/^-+|-+$/gu, "");
+  return slug || fallback;
+}
+
+function removeEquationIdPrefix(documentId = "") {
+  return String(documentId).replace(/^eq-\d+[a-z]?-/u, "");
+}
+
+function getDocumentHashId(document = {}) {
+  const semanticId = removeEquationIdPrefix(document.id);
+  return semanticId && semanticId !== document.id
+    ? semanticId
+    : createStableSlug(document.title, document.id);
+}
+
+function getDocumentHashAliases(document = {}) {
+  return new Set(
+    [
+      document.id,
+      getDocumentHashId(document),
+      createStableSlug(document.title),
+    ].filter(Boolean)
+  );
+}
+
+function readLocationHashId(windowLike) {
+  const hash = String(windowLike?.location?.hash ?? "").replace(/^#/u, "").trim();
+  if (!hash) {
+    return "";
+  }
+  try {
+    return decodeURIComponent(hash);
+  } catch {
+    return hash;
+  }
+}
+
+function resolveDocumentId(documents = [], requestedId = "") {
+  const normalizedId = String(requestedId ?? "").replace(/^#/u, "").trim();
+  if (!normalizedId) {
+    return "";
+  }
+  return documents.find((document) => getDocumentHashAliases(document).has(normalizedId))?.id ?? "";
+}
+
+function replaceLocationHashForDocument(windowLike, document) {
+  const hashId = getDocumentHashId(document);
+  if (!hashId || !windowLike?.location) {
+    return;
+  }
+  const nextHash = `#${encodeURIComponent(hashId)}`;
+  if (windowLike.location.hash === nextHash) {
+    return;
+  }
+  if (typeof windowLike.history?.replaceState === "function" && windowLike.location.href) {
+    const url = new URL(windowLike.location.href);
+    url.hash = hashId;
+    windowLike.history.replaceState(windowLike.history.state ?? null, "", url.href);
+    return;
+  }
+  windowLike.location.hash = nextHash;
+}
+
 function createIconSvg(name) {
   switch (name) {
     case "home":
@@ -483,6 +792,10 @@ function createIconSvg(name) {
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4.5L19 9.5 14.5 5 4 15.5V20Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m13.5 6 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
     case "collapse":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6 9 12l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    case "previous":
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    case "next":
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     default:
       return "";
   }
@@ -542,13 +855,19 @@ export class EquationMappingRuntime {
       options.documents ?? mergeSeedAndSavedDocuments(seedDocuments, savedDocuments)
     );
     const savedSettings = readSavedSettings(this.window);
+    const requestedDocumentId =
+      options.initialDocumentId ||
+      readLocationHashId(this.window);
     this.activeDocumentId =
-      options.initialDocumentId ??
-      savedSettings.activeDocumentId ??
-      this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ??
+      resolveDocumentId(this.documents, requestedDocumentId) ||
+      this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ||
       this.documents[0].id;
-    this.activeOverlayId = savedSettings.activeOverlayId ?? this.activeDocument.overlays[0]?.id ?? "";
-    this.activeAnchorId = savedSettings.activeAnchorId ?? this.activeDocument.anchors[0]?.id ?? "";
+    this.activeOverlayId = this.activeDocument.overlays.some((overlay) => overlay.id === savedSettings.activeOverlayId)
+      ? savedSettings.activeOverlayId
+      : this.activeDocument.overlays[0]?.id ?? "";
+    this.activeAnchorId = this.activeDocument.anchors.some((anchor) => anchor.id === savedSettings.activeAnchorId)
+      ? savedSettings.activeAnchorId
+      : this.activeDocument.anchors[0]?.id ?? "";
     this.backgroundId = normalizeBackgroundId(
       options.backgroundId ?? savedSettings.backgroundId ?? this.activeDocument.backgroundId ?? DEFAULT_BACKGROUND_ID
     );
@@ -562,6 +881,9 @@ export class EquationMappingRuntime {
         (savedSizeSettingsAreCurrent ? savedSettings.commentFontSize : DEFAULT_COMMENT_FONT_SIZE)
     );
     this.indexCollapsed = Boolean(options.indexCollapsed ?? savedSettings.indexCollapsed ?? false);
+    this.expandedSubjectIds = normalizeExpandedSubjectIds(
+      options.expandedSubjectIds ?? savedSettings.expandedSubjectIds
+    );
     this.searchOpen = false;
     this.settingsOpen = false;
     this.editorOpen = false;
@@ -572,6 +894,7 @@ export class EquationMappingRuntime {
     this.equationShellElement = null;
     this.equationElement = null;
     this.equationTitleElement = null;
+    this.handleKeyDown = null;
   }
 
   get activeDocument() {
@@ -594,13 +917,16 @@ export class EquationMappingRuntime {
       throw new Error("Missing #equation-mapping-app");
     }
     this.handleResize = () => this.scheduleEquationLayout();
+    this.handleKeyDown = (event) => this.handleDocumentKeyDown(event);
     this.window?.addEventListener?.("resize", this.handleResize);
+    this.window?.addEventListener?.("keydown", this.handleKeyDown);
     this.render();
     return this;
   }
 
   destroy() {
     this.window?.removeEventListener?.("resize", this.handleResize);
+    this.window?.removeEventListener?.("keydown", this.handleKeyDown);
   }
 
   persistSettings() {
@@ -613,6 +939,7 @@ export class EquationMappingRuntime {
       commentFontSize: this.commentFontSize,
       sizeCalibrationVersion: SIZE_CALIBRATION_VERSION,
       indexCollapsed: this.indexCollapsed,
+      expandedSubjectIds: [...this.expandedSubjectIds],
     });
   }
 
@@ -650,6 +977,7 @@ export class EquationMappingRuntime {
       this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ?? this.documents[0].id;
     this.activeAnchorId = this.activeDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = this.activeDocument.overlays[0]?.id ?? "";
+    this.expandedSubjectIds = new Set();
     this.persistSettings();
     this.render();
   }
@@ -662,8 +990,63 @@ export class EquationMappingRuntime {
     this.activeDocumentId = nextDocument.id;
     this.activeAnchorId = nextDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
+    this.expandedSubjectIds.add(nextDocument.subject);
+    replaceLocationHashForDocument(this.window, nextDocument);
     this.persistSettings();
     this.render();
+  }
+
+  getVisibleDocumentList() {
+    return this.documents;
+  }
+
+  getDocumentByOffset(offset) {
+    const list = this.getVisibleDocumentList();
+    const currentIndex = list.findIndex((document) => document.id === this.activeDocument.id);
+    if (currentIndex < 0) {
+      return null;
+    }
+    const nextIndex = currentIndex + offset;
+    if (nextIndex < 0 || nextIndex >= list.length) {
+      return null;
+    }
+    return list[nextIndex];
+  }
+
+  navigateActiveDocumentByOffset(offset) {
+    const nextDocument = this.getDocumentByOffset(offset);
+    if (!nextDocument) {
+      return false;
+    }
+    this.setActiveDocument(nextDocument.id);
+    return true;
+  }
+
+  handleDocumentKeyDown(event) {
+    if (
+      event?.defaultPrevented ||
+      event?.altKey ||
+      event?.ctrlKey ||
+      event?.metaKey ||
+      isTextEntryTarget(event?.target)
+    ) {
+      return false;
+    }
+    const offsetByKey = {
+      ArrowRight: 1,
+      ArrowDown: 1,
+      ArrowLeft: -1,
+      ArrowUp: -1,
+    };
+    const offset = offsetByKey[event?.key];
+    if (!offset) {
+      return false;
+    }
+    const didNavigate = this.navigateActiveDocumentByOffset(offset);
+    if (didNavigate) {
+      event.preventDefault?.();
+    }
+    return didNavigate;
   }
 
   setActiveOverlay(overlayId) {
@@ -719,7 +1102,6 @@ export class EquationMappingRuntime {
     const nextDocument = updateEquationOverlay(this.activeDocument, activeOverlay.id, {
       title: sectionElement.querySelector('[name="overlay-title"]')?.value,
       targetAnchorId: sectionElement.querySelector('[name="overlay-target"]')?.value,
-      sectionLinePlacement: sectionElement.querySelector('[name="overlay-line"]')?.value,
       text: sectionElement.querySelector('[name="overlay-text"]')?.value,
       mathTex: sectionElement.querySelector('[name="overlay-math"]')?.value,
       position: {
@@ -770,17 +1152,37 @@ export class EquationMappingRuntime {
     });
     header.append(title, collapse);
     const groups = createElement(this.document, "div", "equation-mapping-index-groups");
-    groupEquationMapDocumentsBySubject(this.documents).forEach(([subject, entries]) => {
+    groupEquationMapDocumentsBySubject(this.getVisibleDocumentList()).forEach(([subject, entries]) => {
       const group = createElement(this.document, "section", "equation-mapping-index-group");
-      group.append(createElement(this.document, "h2", "", subject));
+      const isExpanded = this.expandedSubjectIds.has(subject);
+      group.dataset.expanded = isExpanded ? "true" : "false";
+      const toggle = createElement(this.document, "button", "equation-mapping-index-group-toggle");
+      toggle.type = "button";
+      toggle.setAttribute("aria-expanded", String(isExpanded));
+      toggle.append(
+        createElement(this.document, "span", "equation-mapping-index-group-chevron", "›"),
+        createInlineMathTextElement(this.window, this.document, "strong", "", subject),
+        createElement(this.document, "small", "", String(entries.length))
+      );
+      toggle.addEventListener("click", () => {
+        if (this.expandedSubjectIds.has(subject)) {
+          this.expandedSubjectIds.delete(subject);
+        } else {
+          this.expandedSubjectIds.add(subject);
+        }
+        this.persistSettings();
+        this.render();
+      });
+      const itemList = createElement(this.document, "div", "equation-mapping-index-items");
       entries.forEach((entry) => {
         const button = createElement(this.document, "button", "equation-mapping-index-item");
         button.type = "button";
         button.classList.toggle("is-active", entry.id === this.activeDocument.id);
         button.append(createElement(this.document, "span", "", entry.title));
         button.addEventListener("click", () => this.setActiveDocument(entry.id));
-        group.append(button);
+        itemList.append(button);
       });
+      group.append(toggle, itemList);
       groups.append(group);
     });
     index.append(header, groups);
@@ -789,8 +1191,37 @@ export class EquationMappingRuntime {
 
   renderCanvas() {
     const canvas = createElement(this.document, "main", "equation-mapping-canvas");
-    canvas.append(this.renderControls(), this.renderStage());
+    canvas.append(this.renderControls(), this.renderEquationCarousel(), this.renderStage());
     return canvas;
+  }
+
+  renderEquationCarousel() {
+    const carousel = createElement(this.document, "nav", "equation-mapping-carousel");
+    carousel.setAttribute("aria-label", "Equation navigation");
+    carousel.append(
+      this.renderCarouselButton("previous", -1, "Previous equation"),
+      this.renderCarouselButton("next", 1, "Next equation")
+    );
+    return carousel;
+  }
+
+  renderCarouselButton(iconName, offset, fallbackLabel) {
+    const targetDocument = this.getDocumentByOffset(offset);
+    const button = createElement(
+      this.document,
+      "button",
+      `equation-mapping-carousel-button is-${iconName}`
+    );
+    button.type = "button";
+    button.disabled = !targetDocument;
+    const label = targetDocument ? `${fallbackLabel}: ${targetDocument.title}` : fallbackLabel;
+    button.title = label;
+    button.setAttribute("aria-label", label);
+    button.innerHTML = createIconSvg(iconName);
+    button.addEventListener("click", () => {
+      this.navigateActiveDocumentByOffset(offset);
+    });
+    return button;
   }
 
   renderControls() {
@@ -865,7 +1296,7 @@ export class EquationMappingRuntime {
       button.type = "button";
       button.append(
         createElement(this.document, "strong", "", entry.title),
-        createElement(this.document, "span", "", entry.subject)
+        createInlineMathTextElement(this.window, this.document, "span", "", entry.subject)
       );
       button.addEventListener("click", () => {
         this.searchOpen = false;
@@ -940,10 +1371,6 @@ export class EquationMappingRuntime {
         activeOverlay?.targetAnchorId ?? "",
         this.activeDocument.anchors.map((anchor) => ({ value: anchor.id, label: anchor.label }))
       ),
-      this.renderEditorSelect("Line", "overlay-line", activeOverlay?.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT, [
-        { value: "above", label: "above" },
-        { value: "below", label: "below" },
-      ]),
       this.renderEditorInput("Left", "overlay-x", activeOverlay?.position?.x ?? 18, "number"),
       this.renderEditorInput("Top", "overlay-y", activeOverlay?.position?.y ?? 32, "number"),
       this.renderEditorInput("Width", "overlay-width", activeOverlay?.position?.width ?? 26, "number"),
@@ -1060,6 +1487,7 @@ export class EquationMappingRuntime {
   renderStage() {
     const stage = createElement(this.document, "section", "equation-mapping-stage");
     stage.setAttribute("aria-label", this.activeDocument.title);
+    stage.dataset.documentId = this.activeDocument.id;
     this.stageElement = stage;
     const pointerSvg = createSvgElement(this.document, "svg");
     pointerSvg.classList.add("equation-mapping-pointer-layer");
@@ -1085,15 +1513,23 @@ export class EquationMappingRuntime {
     equation.setAttribute("role", "img");
     equation.setAttribute("aria-label", document.formulaTeX);
     const activeTargetId = this.activeOverlay?.targetAnchorId ?? "";
+    const placementByOverlayId = resolveCalloutPlacements(document);
     const targetPlacementByAnchor = new Map(
       document.overlays.map((overlay) => [
         overlay.targetAnchorId,
-        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT,
+        isCoordinateEffectiveSideCallout(document, overlay)
+          ? "side-left"
+          : placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT,
       ])
+    );
+    const targetToneByAnchor = new Map(
+      document.overlays.map((overlay) => [overlay.targetAnchorId, overlay.tone ?? "standard"])
     );
     document.formulaParts.forEach((part) => {
       if (part.kind === "break") {
-        equation.append(createElement(this.document, "span", "equation-mapping-formula-break"));
+        const breakElement = createElement(this.document, "span", "equation-mapping-formula-break");
+        breakElement.dataset.partId = part.id;
+        equation.append(breakElement);
         return;
       }
       const partElement = createElement(
@@ -1114,6 +1550,7 @@ export class EquationMappingRuntime {
         if (targetPlacementByAnchor.has(part.anchorId)) {
           partElement.classList.add("is-targeted");
           partElement.dataset.sectionLine = targetPlacementByAnchor.get(part.anchorId);
+          partElement.dataset.sectionTone = targetToneByAnchor.get(part.anchorId) ?? "standard";
         }
         if (part.anchorId === activeTargetId) {
           partElement.classList.add("is-active-target");
@@ -1138,20 +1575,26 @@ export class EquationMappingRuntime {
     this.activeDocument.overlays.forEach((overlay) => {
       const comment = createElement(this.document, "article", "equation-mapping-comment");
       comment.dataset.overlayId = overlay.id;
+      comment.dataset.tone = overlay.tone ?? "standard";
       comment.classList.toggle("is-active", overlay.id === this.activeOverlay?.id);
       comment.style.setProperty("--overlay-x", String(overlay.position.x));
       comment.style.setProperty("--overlay-y", String(overlay.position.y));
       comment.style.setProperty("--overlay-width", String(overlay.position.width));
+      if (Number.isFinite(overlay.position.maxWidth)) {
+        comment.style.setProperty("--overlay-max-width", `${overlay.position.maxWidth}px`);
+      }
       const header = createElement(this.document, "header", "equation-mapping-comment-header");
       header.append(createElement(this.document, "strong", "", overlay.title));
       const body = createElement(this.document, "div", "equation-mapping-comment-body");
+      const mathBlocks = overlay.content.filter((block) => block.type === "math");
+      mathBlocks.forEach((block) => {
+        const mathElement = createElement(this.document, "span", "equation-mapping-comment-math equation-mapping-comment-target");
+        renderMath(this.window, mathElement, block.tex, { displayMode: false });
+        header.append(mathElement);
+      });
       overlay.content.forEach((block) => {
-        if (block.type === "math") {
-          const mathElement = createElement(this.document, block.displayMode ? "div" : "span", "equation-mapping-comment-math");
-          renderMath(this.window, mathElement, block.tex, { displayMode: block.displayMode });
-          body.append(mathElement);
-        } else {
-          body.append(createElement(this.document, "p", "", block.text));
+        if (block.type === "text") {
+          body.append(createInlineMathTextElement(this.window, this.document, "p", "", block.text));
         }
       });
       comment.append(header, body);
@@ -1250,10 +1693,16 @@ export class EquationMappingRuntime {
     const titleRect = this.equationTitleElement
       ? getLocalRect(this.equationTitleElement.getBoundingClientRect(), stageRect)
       : null;
+    const carouselElement = this.root?.querySelector?.(".equation-mapping-carousel") ?? null;
+    const carouselRect = carouselElement
+      ? getLocalRect(carouselElement.getBoundingClientRect(), stageRect)
+      : null;
     const itemsByPlacement = new Map([
       ["above", []],
       ["below", []],
     ]);
+    const sideItems = [];
+    const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const anchorElement = this.anchorElements.get(overlay.targetAnchorId);
       const commentElement = this.overlayElements.get(overlay.id);
@@ -1268,7 +1717,16 @@ export class EquationMappingRuntime {
       }
       const commentRect = commentElement.getBoundingClientRect();
       const targetRect = getLocalRect(anchorElement.getBoundingClientRect(), stageRect);
-      const placement = overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT;
+      if (isCoordinateEffectiveSideCallout(this.activeDocument, overlay)) {
+        sideItems.push({
+          id: overlay.id,
+          element: commentElement,
+          commentRect: getLocalRect(commentRect, stageRect),
+          targetRect,
+        });
+        return;
+      }
+      const placement = placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT;
       const items = itemsByPlacement.get(placement);
       if (!items) {
         return;
@@ -1278,6 +1736,7 @@ export class EquationMappingRuntime {
         element: commentElement,
         width: commentRect.width,
         height: commentRect.height,
+        commentRect: getLocalRect(commentRect, stageRect),
         targetCenterX: targetRect.left + targetRect.width / 2,
       });
     });
@@ -1294,14 +1753,35 @@ export class EquationMappingRuntime {
         equationGapPx,
       });
       items.forEach((item) => {
-        const position = layout.get(item.id);
+        let position = layout.get(item.id);
         if (!position) {
           return;
+        }
+        if (placement === "below") {
+          position = resolveCarouselClearanceCalloutPosition({
+            position,
+            commentRect: item.commentRect,
+            carouselRect,
+          });
         }
         item.element.style.setProperty("--overlay-layout-x", `${position.x.toFixed(1)}px`);
         item.element.style.setProperty("--overlay-layout-y", `${position.y.toFixed(1)}px`);
         placements.push({ id: item.id, placement, ...position });
       });
+    });
+    sideItems.forEach((item) => {
+      const position = resolveSideCalloutPosition({
+        stageWidth: stageRect.width,
+        stageHeight: stageRect.height,
+        targetRect: item.targetRect,
+        commentRect: item.commentRect,
+      });
+      if (!position) {
+        return;
+      }
+      item.element.style.setProperty("--overlay-layout-x", `${position.x.toFixed(1)}px`);
+      item.element.style.setProperty("--overlay-layout-y", `${position.y.toFixed(1)}px`);
+      placements.push({ id: item.id, placement: "side-left", ...position });
     });
     return placements;
   }
@@ -1318,13 +1798,14 @@ export class EquationMappingRuntime {
     const rowRects = measureEquationRowRects(this.equationElement, stageRect);
     const aboveCalloutRects = [];
     const belowCalloutRects = [];
+    const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const commentElement = this.overlayElements.get(overlay.id);
       if (!commentElement) {
         return;
       }
       const rect = getLocalRect(commentElement.getBoundingClientRect(), stageRect);
-      const placement = overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT;
+      const placement = placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT;
       if (placement === "above") {
         aboveCalloutRects.push(rect);
       } else {
@@ -1346,6 +1827,18 @@ export class EquationMappingRuntime {
       "--equation-layout-y",
       `${nextCenterY.toFixed(1)}px`
     );
+    this.activeDocument.overlays.forEach((overlay) => {
+      if (!isCoordinateEffectiveSideCallout(this.activeDocument, overlay)) {
+        return;
+      }
+      const commentElement = this.overlayElements.get(overlay.id);
+      const currentY = Number.parseFloat(
+        commentElement?.style?.getPropertyValue?.("--overlay-layout-y") ?? ""
+      );
+      if (Number.isFinite(currentY)) {
+        commentElement.style.setProperty("--overlay-layout-y", `${(currentY + shiftPx).toFixed(1)}px`);
+      }
+    });
     return { shiftPx, nextCenterY };
   }
 
@@ -1357,20 +1850,28 @@ export class EquationMappingRuntime {
     this.pointerSvg.setAttribute("viewBox", `0 0 ${Math.max(stageRect.width, 1)} ${Math.max(stageRect.height, 1)}`);
     this.pointerSvg.textContent = "";
     this.pointerLines = [];
+    const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const anchorElement = this.anchorElements.get(overlay.targetAnchorId);
       const commentElement = this.overlayElements.get(overlay.id);
       if (!anchorElement || !commentElement) {
         return;
       }
-      const geometry = createPointerLineGeometry(
-        stageRect,
-        getSectionMarkerTargetRect(anchorElement),
-        commentElement.getBoundingClientRect(),
-        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
-      );
+      const geometry = isCoordinateEffectiveSideCallout(this.activeDocument, overlay)
+        ? createSidePointerLineGeometry(
+            stageRect,
+            anchorElement.getBoundingClientRect(),
+            commentElement.getBoundingClientRect()
+          )
+        : createPointerLineGeometry(
+            stageRect,
+            getSectionMarkerTargetRect(anchorElement),
+            commentElement.getBoundingClientRect(),
+            placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT
+          );
       const line = createSvgElement(this.document, "line");
       line.classList.add("equation-mapping-pointer-line");
+      line.dataset.tone = overlay.tone ?? "standard";
       line.classList.toggle("is-active", overlay.id === this.activeOverlay?.id);
       line.setAttribute("x1", String(geometry.x1));
       line.setAttribute("y1", String(geometry.y1));

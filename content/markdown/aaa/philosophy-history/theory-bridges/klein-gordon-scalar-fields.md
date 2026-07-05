@@ -2,6 +2,8 @@
 
 This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../spacetime/noether-sea.md), [Particle Masses](../../assemblies/particle-masses.md), [Emergent Metric](../../spacetime/emergent-metric.md), and [Master Equation](../../dynamics/master-equation.md).
 
+The bridge question is not whether scalar fields are useful. They are. The question is what physical record supplies the scalar value: Noether sea density, compression, radial breathing, an assembly mode, or an observer-level occupation variable. Without that carrier, the scalar is a successful comparison object but not yet implementation.
+
 ## Bridge Thesis
 
 The Klein-Gordon equation is the canonical relativistic wave equation for a spin-0 scalar degree of freedom. It is not a complete particle-physics theory by itself, but it is the simplest bridge between scalar fields in quantum theory, curved-spacetime field theory, and cosmological scalar-field models.
@@ -68,13 +70,24 @@ In standard QFT, one increment of that ladder is called one particle of the corr
 
 ## Flat-Spacetime Equation
 
-The flat-spacetime Klein-Gordon equation is
+The flat-spacetime Klein-Gordon standard comparison form is
 $$
 \left(\Box - \frac{m^2c^2}{\hbar^2}\right)\phi = 0,
 \qquad
 \Box = -\frac{1}{c^2}\frac{\partial^2}{\partial t^2}+\nabla^2
 $$
 in the mostly-plus metric convention.
+
+The layer-explicit effective bridge keeps the same operator pattern but maps $t\mapsto t_{\mathrm{eff}}$, the spatial chart to $x_{\mathrm{eff}}^i$, and $\phi\mapsto\phi_{\mathrm{eff}}$:
+$$
+\left(\Box_{\mathrm{eff}}-\frac{m_{\mathrm{eff}}^2c_{\mathrm{eff}}^2}{\hbar_{\mathrm{eff}}^2}\right)\phi_{\mathrm{eff}}=0,
+\qquad
+\Box_{\mathrm{eff}}
+=
+-\frac{1}{c_{\mathrm{eff}}^2}
+\frac{\partial^2}{\partial t_{\mathrm{eff}}^2}
++\Delta_{\mathrm{eff}}.
+$$
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ bridge reads this as a continuum-limit target. A mature derivation should show when linearization around a homogeneous Noether sea background yields a dispersion relation of the form
 $$
@@ -98,13 +111,13 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a recovery equation, not an ontolo
 
 ## Curved-Spacetime Equation
 
-The curved-spacetime scalar-field equation with optional curvature coupling is
+The curved-spacetime scalar-field standard comparison form with optional curvature coupling is
 $$
 \left(\nabla^\mu\nabla_\mu - \frac{m^2c^2}{\hbar^2} - \xi R\right)\phi = 0
 $$
 Here $\nabla^\mu\nabla_\mu$ is the metric wave operator, $R$ is scalar curvature, and $\xi$ controls nonminimal coupling between the scalar mode and curvature.
 
-The corresponding curved-spacetime action is commonly written:
+The layer-explicit reading is that $g_{\mu\nu}$, $R$, $d^4x$, and the covariant derivative are effective observer-geometry objects: $g_{\mu\nu}^{\mathrm{eff}}$, $R_{\mathrm{eff}}$, $d^4x_{\mathrm{eff}}$, and $\nabla_{\mathrm{eff}}$. The corresponding curved-spacetime action is commonly written in standard comparison notation:
 $$
 S_\phi =
 \int d^4x\,\sqrt{-g}\,
@@ -154,13 +167,13 @@ Here $J$ may be an ordinary source density, a distributional point or surface so
 
 ## Variational Scalar Closure Benchmark
 
-The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated as
+The statistical-field-theory comparison gives a concrete continuum test: if a coarse scalar mode is legitimate, it should have a controlled quadratic fluctuation operator around a saddle of an effective free-energy or action functional. In native $\mathbb{A}\mathbb{A}\mathbb{A}$ notation the bridge target can be stated on an absolute slice as
 $$
 \mathcal{F}_{\mathrm{eff}}[\phi]
 =
-\int_{\Sigma_t}
+\int_{\Sigma_T}
 \left[
-\frac{K_\phi}{2}\|\nabla\phi\|^2
+\frac{K_\phi}{2}\|\nabla_{\mathbf X}\phi\|^2
 +V_{\mathrm{eff}}(\phi)
 \right]\,dV
 $$
@@ -178,7 +191,7 @@ V_{\mathrm{eff}}'(\phi_\ast)=0
 $$
 Linearizing gives
 $$
-\partial_t^2\delta\phi
+\partial_T^2\delta\phi
 \approx
 c_{\mathrm{eff}}^2\Delta\delta\phi
 -\omega_0^2\delta\phi,
@@ -244,7 +257,7 @@ Long-term relevance is as a benchmark continuum limit: the mature stack should d
 To promote this bridge from mapping to derivation, the following targets must close:
 
 1. Derive a coarse-grained scalar amplitude $\phi$ from Noether sea density, compression, or radial breathing modes.
-2. Derive normal coordinates $Q_k(t)$ for Noether braid cluster modes so that $\phi(\mathbf{x},t)\approx\sum_k Q_k(t)u_k(\mathbf{x})$ in the continuum limit.
+2. Derive normal coordinates $Q_k(T)$ for Noether braid cluster modes so that $\phi(\mathbf X,T)\approx\sum_k Q_k(T)u_k(\mathbf X)$ in the continuum limit.
 3. Show how stable discrete increments of $Q_k$ produce the effective occupation-count behavior encoded by $a_k^\dagger$, $a_k$, and $N_k$.
 4. Show when linearization around a homogeneous Noether sea background yields $\omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2$.
 5. Relate the effective mass parameter $m$ to assembly stiffness, confinement energy, or radial restoring dynamics rather than treating it as primitive.

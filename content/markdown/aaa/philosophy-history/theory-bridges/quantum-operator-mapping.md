@@ -2,6 +2,8 @@
 
 The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell braid assemblies, bounded by the causal-delay master equation.
 
+The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
+
 ## The Nested Shell Braid Qubit and Phase Space
 
 A physical qubit corresponds to the stable orientational states of a nested shell braid assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.
@@ -106,15 +108,15 @@ This condition keeps positive geometry in its proper role: a powerful comparison
 
 ## Hilbert-Representation Invariance Guardrail
 
-Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. For
+Effective Hilbert-space trajectories are not ontology by themselves. A time-dependent unitary re-description can change the apparent state-vector path while preserving all calibrated record probabilities if the operators and Hamiltonian are transformed with it. In layer-explicit effective comparison notation, the time parameter is $t_{\mathrm{eff}}$:
 $$
-|\psi'\rangle=U(t)|\psi\rangle,
+|\psi'\rangle=U_\theta(t_{\mathrm{eff}})|\psi\rangle,
 \qquad
-\widehat O'_a=U(t)\widehat O_aU^\dagger(t)
+\widehat O'_a=U_\theta(t_{\mathrm{eff}})\widehat O_aU_\theta^\dagger(t_{\mathrm{eff}})
 $$
 the Hamiltonian transforms as
 $$
-H'=UHU^\dagger+i\hbar\,\dot U\,U^\dagger
+H'=U_\theta H U_\theta^\dagger+i\hbar\,\partial_{t_{\mathrm{eff}}}U_\theta\,U_\theta^\dagger
 $$
 
 A substrate interpretation of an effective operator model must therefore be invariant under this representational freedom:
@@ -596,7 +598,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
 * **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
-* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf{x},t)$ or normalized density $n(\mathbf{x},t)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
+* **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf X,T)$ or normalized density $n(\mathbf X,T)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
 While the trajectory of a single nested shell braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
@@ -659,7 +661,7 @@ The continuous loss of path-history coherence must be formalized as a transport 
 
 * **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the nested shell braid orientation evolves according to an effective Fokker-Planck equation.
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf{x},t)$ or $n(\mathbf{x},t)$. It is not an intrinsic property of the nested shell braid, but a measure of the local Noether sea entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf X,T)$ or $n(\mathbf X,T)$. It is not an intrinsic property of the nested shell braid, but a measure of the local Noether sea entropy production rate during the operation.
 
 ## Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.

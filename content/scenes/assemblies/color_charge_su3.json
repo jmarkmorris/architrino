@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "fermions__color_charge_su3",
-    "title": "Color Charge SU3",
+    "title": "Color Charge SU(3)",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

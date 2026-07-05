@@ -652,7 +652,7 @@ $$
 \chi_{AB},
 N,
 e^a{}_i,
-\gamma_{ij},
+\gamma_{ij}^{\mathrm{eff}},
 \Phi_{\mathrm{eff}},
 G_{\mathrm{eff}},
 P_{\mathrm{eff}},
@@ -769,7 +769,7 @@ $$
 c_X^2,\,
 C_{ij}{}^{kl},\,
 N,\,
-\gamma_{ij},\,
+\gamma_{ij}^{\mathrm{eff}},\,
 G_{\mathrm{eff}},\,
 P_{\mathrm{eff}},\,
 a_\star
@@ -790,7 +790,7 @@ $$
 \mathbf r_{\rho}^{X}.
 $$
 
-Here $N$, $\gamma_{ij}$, $G_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $a_\star$ are observer-level projection outputs of the Noether sea constitutive state. They are not substrate geometry, fitted vacuum energy, or an imported low-acceleration ontology.
+Here $N$, $\gamma_{ij}^{\mathrm{eff}}$, $G_{\mathrm{eff}}$, $P_{\mathrm{eff}}$, and $a_\star$ are observer-level projection outputs of the Noether sea constitutive state. They are not substrate geometry, fitted vacuum energy, or an imported low-acceleration ontology.
 
 Accept the slice as populated only when the same $\mathsf J_{\rho}^{X}$ supplies a perturbation speed and at least one stress/strain or metric-compliance coefficient, while weak-gravity, effective-pressure, and low-acceleration outputs are either projected from the same row or explicitly reported as missing:
 
@@ -831,9 +831,9 @@ $$
 \mapsto
 \left(
 N,
-u^i_{\mathrm{sea}},
+u^i_{\mathrm{sea,eff}},
 e^a{}_i,
-\gamma_{ij},
+\gamma_{ij}^{\mathrm{eff}},
 \Phi_{\mathrm{eff}},
 \chi_{\text{sea}},
 \Gamma_N
@@ -843,13 +843,13 @@ $$
 with observer-level line element
 
 $$
-ds_{\rm eff}^2
+ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\mathrm{sea}}dt\right)
-\left(dx^j-u^j_{\mathrm{sea}}dt\right).
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right).
 $$
 
 A reusable metric-observable residual can extend the existing weak residual:
@@ -882,7 +882,7 @@ $$
 
 ### AAA Carrier Variables
 
-The carriers are $N$, $u^i_{\mathrm{sea}}$, $e^a{}_i$, $\gamma_{ij}$, $\Phi_{\mathrm{eff}}$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathbf u_{\mathrm{sea}}$, $\rho_{\text{NS}}$, $n$, $\sigma_{ij}^{\mathrm{tf}}$, $\mathcal M_{\mathrm{sea}}^{ab}$, PPN rows, preferred-frame leakage rows, and photon-channel delay when the row is explicitly radiative.
+The carriers are $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\mathrm{eff}}$, $\chi_{\text{sea}}$, $\Gamma_N$, $\mathbf u_{\mathrm{sea}}$, $\rho_{\text{NS}}$, $n$, $\sigma_{ij}^{\mathrm{tf}}$, $\mathcal M_{\mathrm{sea}}^{ab}$, PPN rows, preferred-frame leakage rows, and photon-channel delay when the row is explicitly radiative.
 
 ### Architectural Clarification
 

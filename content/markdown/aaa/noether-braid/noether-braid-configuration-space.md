@@ -4,6 +4,10 @@ This chapter gives the Noether braid search space for cases where three retained
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
+The plain reading is that configuration space is the menu of possible branch records, not a list of already-existing particles. A candidate braid becomes important only when its rows return together under the delayed dynamics. Until then, labels such as `4:2:1`, iso-frequency, field-speed hinge, or rank-three are search coordinates.
+
+This distinction prevents premature naming. A three-row branch is valuable because three independent angular-momentum rows can supply a full internal frame in Euclidean space. It is not valuable because three rows sound elegant. The solver still has to prove that the energies, phases, orientations, root ledgers, and group velocity belong to one retained record.
+
 ## Document Role
 
 This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
@@ -103,7 +107,7 @@ The internal plane data do not encode group velocity. The plane normals $\hat{\m
 $$
 \mathbf{V}_{\mathrm{grp}}
 =
-\frac{d\mathbf{X}_{\mathrm{resp}}}{dt}
+\frac{d\mathbf{X}_{\mathrm{resp}}}{dT}
 \quad
 \text{relative to the declared Noether sea record.}
 $$
@@ -156,7 +160,7 @@ $$
 \to
 \frac{1}{\gamma},
 \qquad
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 \to
 \frac{1}{\gamma},
 $$
@@ -247,7 +251,7 @@ $$
 \mathcal T_a=(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal L_a)
 \right\}.
 $$
-The symmetric group $S_3$ acts on this space by permuting the three binary records:
+The symmetric group $S_3$ acts on this space by permuting the three support-row records:
 $$
 \pi\cdot(\mathcal T_1,\mathcal T_2,\mathcal T_3)
 =
@@ -364,27 +368,27 @@ The classification is topological only where the entries are invariant under bra
 
 ## Accessory-Architrino Capture
 
-After a stable rank-three core has been retained, the next search level asks whether ordinary architrinos can become bound to that core without destroying the core ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained core branch.
+After a stable rank-three braid has been retained, the next search level asks whether ordinary architrinos can become bound to that braid without destroying the braid ledger. In this search-stage sense, an **accessory architrino** is not a new ontological species. It is an architrino whose trajectory becomes coupled to an already retained braid branch.
 
-For a core branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
+For a braid branch $B$, define a capture site as a region of phase-position-history space where an added architrino can acquire a bounded return ledger:
 $$
 \mathcal{C}_{\mathrm{cap}}(B)
 =
 \left\{
-(\mathbf{x},\mathbf{v},q,\phi):
-\mathrm{Retain}_{\mathrm{acc}}(B;\mathbf{x},\mathbf{v},q,\phi)=1
+(\mathbf X,\mathbf V,q,\phi):
+\mathrm{Retain}_{\mathrm{acc}}(B;\mathbf X,\mathbf V,q,\phi)=1
 \right\}.
 $$
-The capture predicate must use the same causal-root, action, energy, and return-map conventions as the core branch. A site is not merely a low potential region. It must preserve the core ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
+The capture predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. A site is not merely a low potential region. It must preserve the braid ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.
 
-Topologically, capture preserves the assembly topological charge of the core branch while augmenting it with an accessory row. If $B_{\mathrm{core}}$ has assembly topological charge $[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}$, then an admissible captured branch should have
+Topologically, capture preserves the assembly topological charge of the braid branch while augmenting it with an accessory row. If $B_{\mathrm{braid}}$ has assembly topological charge $[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}$, then an admissible captured branch should have
 $$
-[\mathfrak B_{\mathrm{core}}\cup\mathrm{acc}]_{\mathrm{top}}
+[\mathfrak B_{\mathrm{braid}}\cup\mathrm{acc}]_{\mathrm{top}}
 =
-[\mathfrak B_{\mathrm{core}}]_{\mathrm{top}}
+[\mathfrak B_{\mathrm{braid}}]_{\mathrm{top}}
 +\Delta_{\mathrm{acc}},
 $$
-where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the core entries are unchanged. If the core values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a core reconfiguration through a fold, reconnection, or branch surgery.
+where $\Delta_{\mathrm{acc}}$ is supplied by the accessory row's own causal-root and return ledger while the braid entries are unchanged. If the braid values of $N_s$, $M_p$, $c_1$, signed degree, or phase-return data change, the event is not capture in this sense; it is a braid reconfiguration through a fold, reconnection, or branch surgery.
 
 The architectural question is therefore:
 $$

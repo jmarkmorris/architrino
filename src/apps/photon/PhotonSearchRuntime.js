@@ -219,18 +219,18 @@ function buildPhotonSearchCandidates(baseState) {
       return;
     }
     pushCandidate(
-      `Delta x 10^${log10Ratio} r`,
+      `App-coordinate Δx 10^${log10Ratio} r`,
       mutateCandidateState(base, (state) => setPhotonPairSeparationLog10Ratio(state, log10Ratio)),
       "delta-x"
     );
   });
 
   [
-    ["Observer center", { x: 0, y: 0, z: 0 }],
-    ["Observer y +1", { x: 0, y: 1, z: 0 }],
-    ["Observer z +1", { x: 0, y: 0, z: 1 }],
-    ["Observer diagonal", { x: 0, y: 1, z: 1 }],
-    ["Observer y edge", { x: 0, y: 4, z: 0 }],
+    ["Observer app-coordinate center", { x: 0, y: 0, z: 0 }],
+    ["Observer app y +1", { x: 0, y: 1, z: 0 }],
+    ["Observer app z +1", { x: 0, y: 0, z: 1 }],
+    ["Observer app-coordinate diagonal", { x: 0, y: 1, z: 1 }],
+    ["Observer app y edge", { x: 0, y: 4, z: 0 }],
   ].forEach(([name, observer]) => {
     pushCandidate(
       name,

@@ -1,10 +1,12 @@
 # Singularity Resolution
 
-This chapter frames how architrino assemblies avoid singularities and how strong-field behavior should be interpreted in the Noether braid architecture. It is the canonical strong-field bridge for [Noether Braid](../noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), and [Black Holes](./black-holes.md).
+This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), and [Black Holes](./black-holes.md).
+
+The important conversion is from an infinite-endpoint question to a finite-boundary-data question. The strong-field model must say what assembly state is packed, what exterior records remain readable, what boundary data determine continuation, and why no zero-volume or arbitrary branch endpoint is required.
 
 ## Canonical Strong-Field Alignment Condition
 
-This chapter is the canonical source for the strong-field event-horizon alignment condition used across spacetime documents.
+This chapter is the canonical source for the strong-field event-horizon alignment condition used across spacetime documents. The condition marks the assembly-level state that the effective horizon description is trying to summarize.
 
 Use the following regime definition near the horizon:
 $$
@@ -12,12 +14,12 @@ v_M=c_f,\qquad v_O\to c_f
 $$
 with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
 
-This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. In schematic form, the horizon-interface closure problem is
+This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. The horizon is therefore treated as an interface problem: what packed assembly state is allowed, what boundary data reach the exterior, and which continuation labels remain finite? In schematic form, the horizon-interface closure problem is
 $$
 F_H\!\left[
-\rho_{\text{NS}}(\mathbf{x},t),
-\Sigma_{\text{sea}}(\mathbf{x},t),
-\mathbf{u}_{\text{sea}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf X,T),
+\Sigma_{\text{sea}}(\mathbf X,T),
+\mathbf u_{\text{sea}}(\mathbf X,T),
 \{\Lambda_{\text{NS}}\};
 \partial\Omega
 \right]
@@ -33,9 +35,9 @@ A maximum-curvature interior is not assigned an ordinary physical-observer clock
 $$
 \mathrm{Clock}_{\mathrm{PO}}(\Omega_{\mathrm{int}})=\varnothing
 \quad\text{while}\quad
-t_{\mathrm{abs}}\ \text{still orders exterior and boundary records.}
+T\ \text{still orders exterior and boundary records.}
 $$
-This prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed.
+This prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed. Absolute time still orders the ontology; a readable interior clock is a separate recovered channel.
 
 ### Trapped-Surface Comparison Pressure
 
@@ -43,7 +45,7 @@ Penrose-style singularity theorems are useful here because they remove a mislead
 $$
 \theta_+^{\mathrm{eff}}<0,\qquad \theta_-^{\mathrm{eff}}<0
 $$
-That is a standard-theory warning that weak-field continuation has entered a generic strong-collapse regime.
+That is a standard-theory warning that weak-field continuation has entered a generic strong-collapse regime. The warning is useful even though the native ontology is not a curved spacetime manifold.
 
 The useful Penrose comparison assumption vector is
 $$
@@ -90,7 +92,7 @@ The theorem burden is not to deny the trapped-surface comparison result. It is t
 
 ### Finite-Boundary-Data Regularity
 
-The useful comparison lesson from analytic singularity-removal programs is not an imported mirror boundary or complex-time ontology. It is the regularity criterion: a candidate strong-field replacement must keep the native variables finite and the continuation rule unambiguous in the regime where the effective metric description would otherwise diverge.
+The useful comparison lesson from analytic singularity-removal programs is not an imported mirror boundary or complex-time ontology. It is the regularity criterion. A candidate strong-field replacement must keep the native variables finite and the continuation rule unambiguous in the regime where the effective metric description would otherwise diverge.
 
 For a compact strong-field region $\Omega$, a minimal diagnostic is
 $$
@@ -98,17 +100,17 @@ $$
 =
 \sup_{\Omega}
 \left(
-|\rho_{\text{NS}}(\mathbf{x},t)|
+|\rho_{\text{NS}}(\mathbf X,T)|
 +
-\|\Sigma_{\text{sea}}(\mathbf{x},t)\|
+\|\Sigma_{\text{sea}}(\mathbf X,T)\|
 +
-\|\mathbf{u}_{\text{sea}}(\mathbf{x},t)\|
+\|\mathbf u_{\text{sea}}(\mathbf X,T)\|
 \right)
 <\infty
 $$
-together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success: the strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success. The strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
-The packed-state replacement must also keep interior storage distinct from interface exposure. A dense interior may carry a large finite energy inventory while only the surface, defect, or horizon-interface rows couple efficiently to exterior clock, ruler, lensing, release, or dark-sector readouts. For a compact region $\Omega$, write the exposed response schematically as
+The packed-state replacement must also keep interior storage distinct from interface exposure. A dense interior may carry a large finite energy inventory while only the surface, defect, or horizon-interface rows couple efficiently to exterior clock, ruler, lensing, release, or dark-sector readouts. In ordinary terms, not everything stored inside is automatically visible outside. For a compact region $\Omega$, write the exposed response schematically as
 $$
 E_{\mathrm{ext}}(\Omega)
 =
@@ -126,12 +128,12 @@ A sharper endpoint criterion is that those same finite data admit a continuation
 $$
 \mathcal{T}_{\Omega}:
 \left(
-X_\Omega(t_i),
-\mathcal{B}_{\partial\Omega}|_{[t_i,t_f]},
-N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
+X_\Omega(T_i),
+\mathcal{B}_{\partial\Omega}|_{[T_i,T_f]},
+N_{\text{sea}}|_{\Omega\times[T_i,T_f]}
 \right)
 \longmapsto
-X_\Omega(t_f)
+X_\Omega(T_f)
 $$
 with
 $$
@@ -139,21 +141,21 @@ F_H=0,\qquad
 \mathcal{R}_H(\Omega)<\infty,\qquad
 0<\left|\mathcal{B}_{H}\right|<\infty
 $$
-This is the singularity-resolution form of the black-hole endpoint gate: the replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
+This is the singularity-resolution form of the black-hole endpoint gate. The replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
 
 ### Cauchy-Horizon Comparison Pressure
 
 GR Cauchy-horizon and cosmic-censorship language is useful here only as comparison pressure. It asks whether an effective initial-data surface has a unique global continuation or whether the observer-level spacetime description admits extensions not determined by that surface. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the substrate answer is not to import global hyperbolicity as an axiom. The native answer must show that the finite region record selects a finite admissible continuation family.
 
-For the same compact region $\Omega$ and interval $W=[t_i,t_f]$, define the accepted strong-field continuation family
+For the same compact region $\Omega$ and interval $W=[T_i,T_f]$, define the accepted strong-field continuation family
 $$
 \mathfrak{S}_H(\theta_{\partial\Omega,W})
 =
 \left\{
-\left(X_\Omega(t_f),\mathcal{B}_H(t_f)\right)
+\left(X_\Omega(T_f),\mathcal{B}_H(T_f)\right)
 :
 F_H=0,\quad
-\sup_{t\in W}\mathcal{R}_H(\Omega,t)<\infty,
+\sup_{T\in W}\mathcal{R}_H(\Omega,T)<\infty,
 \quad
 \mathcal{L}_{E\mathbf{p}\mathbf{J}}\ \text{closes}
 \right\}
@@ -162,20 +164,20 @@ The Cauchy-horizon comparison burden is
 $$
 0<\left|\mathfrak{S}_H(\theta_{\partial\Omega,W})\right|<\infty
 $$
-with every element carrying a closure label, finite horizon-interface ledger, and event-ledger accounting. An empty family means no native continuation has been supplied. An infinite or unlabeled family means the endpoint remains arbitrary. A finite labeled family is admissible only if later observer-level release, entropy, and exterior $(M,\mathbf{J},Q)$ records are computed from those same finite boundary data.
+with every element carrying a closure label, finite horizon-interface ledger, and event-ledger accounting. The count matters. An empty family means no native continuation has been supplied. An infinite or unlabeled family means the endpoint remains arbitrary. A finite labeled family is admissible only if later observer-level release, entropy, and exterior $(M,\mathbf{J},Q)$ records are computed from those same finite boundary data.
 
 Stationary regularity is only the first test. A horizon construction may keep curvature invariants finite in an eternal or stationary comparison metric while still failing during collapse, merger, evaporation, or embedding in a time-dependent Noether sea. The dynamical gate is therefore stronger:
 $$
 \theta_+^{\mathrm{eff}}<0,\quad \theta_-^{\mathrm{eff}}<0
 \quad\Longrightarrow\quad
-F_H(t)=0,\qquad
-\sup_{t\in[t_i,t_f]}\mathcal{R}_H(\Omega,t)<\infty,
+F_H(T)=0,\qquad
+\sup_{T\in[T_i,T_f]}\mathcal{R}_H(\Omega,T)<\infty,
 \qquad
-0<\left|\mathcal{B}_{H}(t_f)\right|<\infty
+0<\left|\mathcal{B}_{H}(T_f)\right|<\infty
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
 
-Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,t)$ only in an isolated stationary chart.
+Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,T)$ only in an isolated stationary chart.
 
 ## Maximal Curvature vs Planck Scale
 

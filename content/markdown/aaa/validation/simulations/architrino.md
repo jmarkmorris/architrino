@@ -2,6 +2,8 @@
 
 This note records the minimum tier-1 simulation tests that should be passed before any strong self-hit or non-Markovian claims are trusted numerically. Its purpose is narrow: establish provenance-resolved propagation, baseline diagnostics, and a workable history-buffer strategy before moving to richer dynamics.
 
+The reader should treat this as the simulator's first honesty check. Before the code is allowed to talk about rich self-hit behavior, it has to show that causal rings arrive in the right order, source identities are preserved, and history lookups are not quietly inventing the past.
+
 The file is therefore an implementation-facing checklist rather than a general theory chapter. It should be read as a gate on simulation credibility.
 
 ## Tier-1 Mandatory Unit Tests (Before Self-Hit Claims)

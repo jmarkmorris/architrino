@@ -1,7 +1,5 @@
 # Information / Computation
 
----
-
 ## Overview
 
 This document maps the information-theoretic and computational concepts that shape modern attempts to interpret physics, ontology, and explanation.
@@ -10,13 +8,15 @@ It complements [Philosophy of Science](philosophy-of-science.md), [Crisis in Phy
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the central question is whether information and computation are fundamental or whether they are derived descriptions of physical organization and update structure.
 
+The chapter's core discipline is carrier before code. Information can measure distinction, correlation, compression, access, and loss, but every informative state still needs a physical carrier, a record channel, and an update process. Computation can model the dynamics, but a simulation is not the substrate it simulates.
+
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](major-thinkers.md).
 
 The architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
-This layer needs one standard coverage template so subjects are treated systematically rather than as slogans.
+This layer uses a standard coverage template so subjects are treated systematically rather than as slogans.
 
 ### Information/Computation Subject Template (Unified)
 
@@ -292,7 +292,7 @@ This subject is crucial because debates about information often go wrong at exac
 
 ### Historical Motivation
 
-The historical motivation came from measurement theory, communication systems, cybernetics, control theory, and the practical realities of experimental science. The core question was how finite systems encode states of other systems reliably enough to support prediction and intervention. The central claim that emerged is that representation is neither magical nor purely semantic. It is grounded in causal chains that preserve selected distinctions and erase others. Major thinkers and programs here include Shannon-style communication analysis, cybernetics, measurement theory, error-correction programs, and modern quantum-information treatments of preparation and readout.
+The historical motivation came from measurement theory, communication systems, cybernetics, control theory, and the practical realities of experimental science. The core question was how finite systems encode states of other systems reliably enough to support prediction and intervention. The central claim that emerged is that representation is neither disembodied nor purely semantic. It is grounded in causal chains that preserve selected distinctions and erase others. Major thinkers and programs here include Shannon-style communication analysis, cybernetics, measurement theory, error-correction programs, and modern quantum-information treatments of preparation and readout.
 
 This subject also arose because modern instruments became too complex for naive observation language. A telescope image, collider event reconstruction, or qubit readout is already the output of layered encoding and decoding. Once that became unavoidable, it was no longer credible to speak as though measurement gave direct access to ontology without mediation. The problem shifted from "what do we see?" to "what causal chain turned world-state into reportable difference?"
 

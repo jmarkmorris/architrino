@@ -1,13 +1,13 @@
 # Self-interaction switch
 
-An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(t)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
+An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(T)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
 
 ## Conditions and Effects
 
 - Root multiplicity and self-roots:
   - The simulation should open the self-hit channel only when it finds same-source roots
     $$
-    \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
+    \mathcal{C}_{aa}(T)=\{\,T_{\mathrm{em}}<T:\|\mathbf X_a(T)-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
     $$
     A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence and a nonzero Jacobian/transversality margin.
   - Coincident $r=0$ contact is not an active same-source hit. At $\Delta=0$ the convention $H(0)=0$ blocks instantaneous self-kicks, and for a coincident delayed candidate the unit line of action $\hat{\mathbf{r}}$ is undefined. The active channel begins with a nonzero-delay same-source root that supplies both direction and transversality.

@@ -1,6 +1,8 @@
 # Particle Masses: Emergent Inertia in the Noether Sea
 
-**Purpose:** Articulate the canonical mass thesis in $\mathbb{A}\mathbb{A}\mathbb{A}$ and outline the path toward quantitative mass predictions. This chapter gives the reader-facing statement. The active derivation of a numerical mass map remains a priority workstream until the shielding, stability, and medium-response terms are computed.
+Mass is where the reader first sees why assemblies matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an architrino does not carry its own particle-specific mass tag. What a Physical Observer calls mass is the externally exposed response of a stable assembly whose internal causal history is partly shielded and partly coupled to the surrounding Noether sea.
+
+This chapter gives the reader-facing statement of that mass thesis and outlines the path toward quantitative mass predictions. The active derivation of a numerical mass map remains open until the shielding, stability, internal-energy, and medium-response terms are computed from retained assembly branches rather than fitted particle by particle.
 
 ---
 
@@ -443,7 +445,7 @@ The useful ledger split is:
 Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested binary rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
+- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested shell braid rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
 - **Shielding:** The pro/anti structure of the [Noether braid](../noether-braid/noether-braid.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
@@ -470,12 +472,12 @@ The mass thesis must recover not only an inertial response to imposed accelerati
 For a clock or mass-bearing assembly $A$, write the assembly-dependent clock/response factor in a weak cell as
 
 $$
-\chi_A(\mathbf{x})
+\chi_A(x_{\mathrm{eff}}^i)
 =
-N(\mathbf{x})\,[1+\epsilon_A(\mathbf{x})]
+N(x_{\mathrm{eff}}^i)\,[1+\epsilon_A(x_{\mathrm{eff}}^i)]
 $$
 
-where $N(\mathbf{x})$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
+where $N(x_{\mathrm{eff}}^i)$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
 
 $$
 |\epsilon_A-\epsilon_B|
@@ -736,7 +738,7 @@ $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same core-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, bi-binary, and uni-binary cores is more constrained than a generic monotone hierarchy.
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same braid-scaffold-plus-axial-layer architecture viewed through three shielding tiers, then a mass-root relation may be an external clue that the exposure map from nested shell braid, Generation-II shielding, and Generation-III shielding branches is more constrained than a generic monotone hierarchy.
 
 The conservative use of Koide here is therefore:
 
@@ -804,7 +806,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 
 ### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
-2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf{x},t)$ vary with cosmological epoch, gravitational field strength, or local matter density?
+2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
 3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ### Potential Falsifications

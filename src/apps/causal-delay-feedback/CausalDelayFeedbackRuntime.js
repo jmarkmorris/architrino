@@ -1625,7 +1625,7 @@ class CausalDelayFeedbackRuntime {
     if (this.dom?.architrinoSpeedValue) {
       const value = this.formatArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction());
       this.dom.architrinoSpeedValue.textContent = `${value} c_f`;
-      this.dom.architrinoSpeedValue.setAttribute("aria-label", `${value} c f`);
+      this.dom.architrinoSpeedValue.setAttribute("aria-label", `${value} field speed c_f`);
       this.dom.architrinoSpeedValue.innerHTML = `${value} c<sub>f</sub>`;
     }
   }
@@ -1955,7 +1955,7 @@ class CausalDelayFeedbackRuntime {
     const span = end - start;
     const phase = span > 0 ? clamp((replayTime - start) / span, 0, 1) : 0;
     this.dom.nowInput.value = String(Math.round(phase * NOW_SLIDER_MAX));
-    this.dom.nowValue.textContent = `t=${formatCompactNumber(replayTime)}`;
+    this.dom.nowValue.textContent = `replay t=${formatCompactNumber(replayTime)}`;
   }
 
   toggleSettings() {

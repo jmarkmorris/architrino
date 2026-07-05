@@ -2,6 +2,8 @@
 
 This document maps the traditional "Measurement Problem" and the phenomenon of wavefunction collapse to the deterministic, non-Markovian micro-dynamics of the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$). In this framework, "collapse" is not a fundamental discontinuous axiom but an emergent, finite-time dynamical process: the deterministic resolution of a metastable state across a phase-space separatrix. It should be read alongside [Measurement Ontology](../../quantum/measurement-ontology.md), [Superposition Mechanism](./superposition-mechanism.md), [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
+The bridge question is practical: what physical transaction turns an unresolved effective state into a durable record? The answer cannot be a special observer rule. It has to be an apparatus-target interaction with energy routing, recoil, Noether sea response, basin selection, and record persistence all carried by the same event ledger.
+
 ### The Traditional Measurement Problem
 
 In the textbook non-relativistic, fixed-particle-number framing of quantum mechanics, the evolution of a closed system is strictly linear and unitary, governed by the Schrödinger equation. However, upon "measurement," the system is postulated to undergo a discontinuous, non-unitary projection (collapse) into an eigenstate of the measured observable. 

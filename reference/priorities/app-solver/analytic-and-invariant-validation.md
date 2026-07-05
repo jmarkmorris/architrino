@@ -69,7 +69,7 @@ the branch metadata rules, and the hit/ledger consistency checks below.
 
 | Fixture id | Construction | Expected result | Required checks |
 | --- | --- | --- | --- |
-| `static_static_single_root` | Fixed source and fixed receiver with distance $d$ and hit time $T$. | One root at $t_e = T - d / c_f$ when $t_e$ lies inside the source support. | Root count 1, delay $d / c_f$, distance $d$, residual 0 within tolerance, positive delay, finite source-normal Jacobian, and receiver-normal branch weight computed from the same-record $D_t/D_s$ row. |
+| `static_static_single_root` | Fixed source and fixed receiver with distance $d$ and hit time $T$. | One root at $t_e = T - d / c_f$ when $t_e$ lies inside the source support. | Root count 1, delay $d / c_f$, distance $d$, residual 0 within tolerance, positive delay, finite source-normal Jacobian, and receiver-normal branch weight computed from the same-record $D_T/D_s$ row. |
 | `static_static_history_boundary` | Same geometry, but the source support starts after the analytic emission time. | No active root; ledger records an inactive gap, finite-history boundary, or first-failure row. | Root count 0, no fabricated root at the support edge, status `insufficient_history_depth` or `root_not_bracketed` as appropriate. |
 | `linear_collinear_single_root` | Affine source $x_s(t)=a+v t$ on the line to a fixed receiver $R$, with $\lvert v \rvert < c_f$ and no crossing. | One root from $(R-a-vt) = c_f(T-t)$, so $t_e = (R-a-c_f T)/(v-c_f)$. | Root count 1, expected emission time, bracket contains the root, residual tolerance, Jacobian sign stratum, and branch weight. |
 | `linear_collinear_no_catch_up` | Source and receiver geometry chosen so the analytic root is outside the declared history or requires a negative delay. | No retained active root. | No positive root emitted, first-failure status explains whether the issue is history depth, no bracket, or invalid time ordering. |
@@ -153,7 +153,7 @@ different scales and different authority.
 | Bracket containment | The final bracket contains the retained emission time and preserves a sign change or certified tangent classification when applicable. | `root_not_bracketed`, `small_jacobian`, or `transversality_floor_failed` |
 | Delay consistency | `delay = hitTime - emissionTime` inside time tolerance and delay is nonnegative for retained positive roots. | `validation_replay_mismatch` |
 | Distance consistency | Root and hit distances match endpoint separation inside distance tolerance. | `validation_replay_mismatch` |
-| Branch weight | For ordinary roots, branch weight or hit strength is the unsigned receiver-normal factor $\lvert D_t / D_s\rvert$ inside branch-weight tolerance. | `validation_replay_mismatch`; `small_jacobian` when the source-normal denominator is below floor |
+| Branch weight | For ordinary roots, branch weight or hit strength is the unsigned receiver-normal factor $\lvert D_T / D_s\rvert$ inside branch-weight tolerance. | `validation_replay_mismatch`; `small_jacobian` when the source-normal denominator is below floor |
 | Unit direction | Delayed-hit unit direction is normalized and points from emission point to receiver point. | `validation_replay_mismatch` |
 | Residual history | Where iteration history is exposed, residuals should contract according to the declared method or else record the fallback/rebracket decision. | `root_unresolved` or `precision_failed` |
 | Precision replay | A stricter replay must match root count, branch identity, residual sign, and claim boundary. | `validation_replay_mismatch` |

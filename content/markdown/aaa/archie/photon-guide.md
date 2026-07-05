@@ -1,5 +1,7 @@
 # Photon Guide
 
+The photon app is an inspection workbench, not a proof document. It lets a reader inspect whether a paired planar Noether braid candidate can produce coherent field and polarization readouts before the full photon proof is available.
+
 ## What This App Shows
 
 The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether braids. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure.
@@ -99,7 +101,7 @@ When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon c_\gamma
 
 `Absolute history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino source history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular source against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
-The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{rec}}/R^2$, where $R$ is the source-to-observer distance at the root and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
+The plotted E curve is recalculated by solving the causal-root equation from every active architrino source history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{rec}}/R^2$, where $R$ is the source-to-observer distance at the root and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
 The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
 

@@ -4,6 +4,10 @@ This bridge compares inherited mathematical models of space, time, vacuum, aethe
 
 The purpose is narrower: keep historically important models available as disciplined comparisons without letting their vocabulary become native ontology. Terms such as absolute space, vacuum, aether, elastic medium, analog metric, condensate, and superfluid can help locate a mathematical burden, but none of them replaces `Noether sea`.
 
+The chapter is therefore a translation table, not a museum of metaphors. Each outside model is useful only to the extent that it tells the reader which job must be done: recover a signal cone, a clock map, a stress response, a boundary condition, a leakage bound, or an entropy ledger. Once that job is named, the wording must return to the native stack: absolute time, Euclidean void, Noether sea, assemblies, causal wakes, and effective observer geometry.
+
+The bright-line rule is that the container is not the contents and neither one is the observer's reconstructed spacetime. The Euclidean void is the fixed spatial container. The Noether sea occupies it. Effective spacetime is what Physical Observers infer from clocks, rulers, signal propagation, and records inside that occupied background.
+
 ## Bridge Rule
 
 Use inherited spacetime models as comparison projections, not as identity claims.
@@ -30,6 +34,8 @@ Any outside model must therefore answer five questions before it can influence a
 5. Which failure mode would falsify the comparison?
 
 Modern vacuum language often functions as a medium-response comparison even when the word `aether` is avoided. Vacuum polarization, zero-point estimates, condensate analogies, refractive-index language, and effective field modes all point toward response variables, boundary conditions, and excitation spectra. The safe translation is not to revive a mechanical aether. It is to ask which part of the calculation should be rewritten as Noether sea density, delay, compliance, orientation, excitation, or boundary-response data, and which part remains only an observer-level field-theory export.
+
+This is also why analog models are helpful but dangerous. They can show that an effective metric, horizon, or radiation law can emerge from signal behavior in a medium, but they do not tell us that the laboratory medium is the ontology. The retained object is the response kernel or constitutive map, not the fluid, condensate, circuit, or mirror that happened to realize the analogy.
 
 ## Boundary-Response Equivalence
 
@@ -65,7 +71,7 @@ The bridge should cover the major mathematical families rather than only modern 
 | General-relativistic metric spacetime | Dynamic metric geometry, curvature, geodesics, Einstein equation, and PPN observables. | The strongest tested observer-level gravitational target. | Detailed mapping belongs in the spacetime lane; this bridge records only the comparison interface. |
 | Kaluza-Klein and higher-dimensional geometry | Gauge fields from higher-dimensional metric components or compact dimensions. | A useful reminder that geometry can encode force bookkeeping. | Comparison only unless a $\mathbb{A}\mathbb{A}\mathbb{A}$-native hidden coordinate or fiber variable is derived from assembly state. |
 | Metric-affine, torsion, and Einstein-Cartan programs | Independent connection, torsion, spin coupling, and generalized geometric variables. | A structured way to ask whether spin, torsion, or nonmetricity survive as effective observer-level residues. | Possible deviation channels in the ADM/Cartan handoff, not primitive geometry of the Euclidean void. |
-| ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| ADM and canonical spacetime decompositions | Lapse, shift, spatial metric, constraints, and foliation-based dynamics. | A practical 3+1 language for mapping observer geometry. | Directly useful as the reconstruction surface $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$. |
 | Sakharov induced gravity | Gravity as an induced or elastic response of quantum vacuum degrees of freedom. | The idea that GR-like dynamics can be effective rather than fundamental. | Recast as a Noether sea microstructure-to-metric response problem, not as proof from QFT vacuum ontology. |
 | Jacobson thermodynamic spacetime | Einstein equation as an equation of state from local horizon thermodynamics, boost-energy flux, and the Clausius relation. | Thermodynamic and equation-of-state pressure on any emergent metric theory. | A high-value comparison for deriving GR-like limits from Noether sea entropy, stress, energy exchange, and finite-boundary observer data. |
 | Analog gravity and acoustic metrics | Effective Lorentzian metrics for perturbations in fluids or condensates. | Concrete examples where signal propagation in a medium carries metric form. | Useful if it sharpens the signal-channel map; insufficient if it only supplies scalar speed. |
@@ -92,13 +98,13 @@ A third comparison lesson concerns discreteness and symmetry. Causal-set work us
 
 | Inherited model | What it preserves | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer | Forbidden inference | Closure target |
 | --- | --- | --- | --- | --- |
-| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_t$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
+| Euclidean 3D + T absolute background | Flat 3D geometry, universal time order, inertial baseline, and ordinary vector calculus. | Absolute timespace $\mathbb{R}\times\mathbb{R}^3$, with dynamics on simultaneity slices $\Sigma_T$. | Empty space by itself explains matter, inertia, or gravity. | Show how delayed wakes and Noether sea state add all observed fields, clocks, rulers, and gravitational behavior on top of the fixed container. |
 | Newtonian gravity | Low-speed potential mechanics and inverse-square weak-field limits. | $\Phi_N$ remains a benchmark potential; the substrate mechanism is delayed causal-wake summation plus medium response. | Instantaneous action-at-a-distance is fundamental. | Recover Newtonian acceleration as the leading observer-level limit of the delayed ledger and effective metric map. |
 | Lorentz aether | Hidden preferred frame plus Lorentz-contracted matter and slowed clocks. | Absolute time and Euclidean void supply the preferred substrate frame; assemblies and signal channels must hide it operationally. | The Noether sea is a mechanical luminiferous aether. | Derive shared clock/ruler/signal retuning with $\epsilon_{\text{LV}}$ and PPN preferred-frame coefficients below bounds. |
 | Special-relativistic Minkowski spacetime | Lorentz kinematics, invariant signal speed, mass-shell bookkeeping, and relativity of simultaneity for Physical Observers. | Homogeneous weak-field limit of deformable assemblies, synchronized signal channels, and Noether sea-dressed clocks and rulers. | Lorentz symmetry is primitive substrate geometry. | Show that stable assembly closure drives the same $\gamma_{\text{eff}}$ factor in clock, ruler, signal, energy, and momentum channels while preferred-frame leakage remains below bounds. |
 | General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether sea state to ADM/Cartan fields that recovers GR in tested regimes. |
 | Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether braid population dynamics and identify their valid averaging scale. |
-| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$. |
 | Kaluza-Klein, compact extra-dimensional, and string compactification models | Geometry can generate quantized modes, effective gauge bookkeeping, momentum/winding sectors, dual descriptions, and low-energy spectra. | Comparison for hidden-coordinate or internal-cycle bookkeeping only if a native assembly-state or Noether sea variable supplies the coordinate and its excitation spectrum. | A mathematically allowed compactification, T-dual description, or landscape member is a physical explanation. | Recover the observed spectrum and constants from one shared record, keep all extra modes above observational bounds, and provide a no-hidden-retune witness across the null results and recovered low-energy channels. |
 | Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
 | Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
@@ -181,7 +187,7 @@ The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate
 | Instability for the opposite coupling sign | For attractive coupling in the strongly deformed regime, soft modes become unstable once the same deformation threshold is crossed. | A BEC analogy fails if the native coupling sign or dense-source response destroys the coherent phase on the window being used for comparison. |
 | Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether sea force law. |
 
-A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
+A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf X,T)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
 
 $$
 \mathcal{L}_{\text{handoff}}
@@ -230,7 +236,7 @@ followed by the ADM/Cartan reconstruction target
 $$
 \mathcal{X}_{\text{sea}}
 \longrightarrow
-\left(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\right)
+\left(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}}\right)
 \longrightarrow
 g^{\text{eff}}_{\mu\nu}
 $$
@@ -238,16 +244,16 @@ $$
 The resulting observer-level line element has the shared target form
 
 $$
-ds_{\rm eff}^2
+ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
+This equation is the filter for comparison language. A spacetime model is useful only insofar as it clarifies one of the channels in $\mathcal{X}_{\text{sea}}$, sharpens the map to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})$, or names an observational recovery target for $g^{\text{eff}}_{\mu\nu}$.
 
 For superfluid comparisons, a second optional handoff is required before the analogy can become technical:
 

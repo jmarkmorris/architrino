@@ -28,7 +28,7 @@
             "mode": "doc"
           },
           "2026 06 14 molecule visualization app": {
-            "labelTitle": "Molecule Visualization App",
+            "labelTitle": "Molecule Visualization",
             "labelSubtitle": "2026-06-14"
           },
           "2026 06 20 central solver workstream and benchmark gate": {
@@ -44,11 +44,11 @@
             "labelSubtitle": "2026-06-16"
           },
           "2026 06 13 photon and polarization visualization app": {
-            "labelTitle": "Photon and Polarization Visualization App",
+            "labelTitle": "Photon and Polarization Visualization",
             "labelSubtitle": "2026-06-13"
           },
           "2026 06 10 ideal noether braid lorentz geometry app": {
-            "labelTitle": "Braid Lorentz Geometry App",
+            "labelTitle": "Braid Lorentz Geometry",
             "labelSubtitle": "2026-06-10"
           },
           "2026 03 17 planar three body breather bridge frozen": {

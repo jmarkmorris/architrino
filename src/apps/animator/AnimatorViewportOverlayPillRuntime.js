@@ -174,7 +174,7 @@ export function createAnimatorViewportOverlayPillRuntime(options = {}) {
         value.step = "0.001";
         value.inputMode = "decimal";
         value.className = "animator-path-point-pill-input";
-        value.setAttribute("aria-label", `${key.toUpperCase()} coordinate`);
+        value.setAttribute("aria-label", `${key.toUpperCase()} display-frame coordinate`);
         value.value = "0";
         value.addEventListener("pointerdown", (event) => {
           event.stopPropagation();

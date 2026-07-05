@@ -2,6 +2,8 @@
 
 This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../nuclear-atomic/condensed-matter.md), [Molecular Geometry](../nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](./noether-sea-pro-anti-coupling.md), and [Gravitational Waves](./gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether sea response.
 
+The guiding distinction is ordinary occupancy versus medium availability. Molecules exclude one another through electron-envelope and bonding structure, but that does not decide how photon, neutrino-like, gravitational-wave, clock, or Noether sea response channels propagate through the same Euclidean volume. A tiny molecular hard-core packing fraction is therefore useful background, not a proof that every channel sees empty space.
+
 When chemists use the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron distribution: the effective hard-core volume a molecule presents to its neighbors. This is estimated from atomic van der Waals radii (Bondi, 1964) and corrected for bond overlaps. For example:
 
 | Molecule    | Formula | VdW Volume (Å³) |

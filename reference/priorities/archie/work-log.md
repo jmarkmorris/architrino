@@ -6,4 +6,4 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+- 2026-07-05: Promoted the reader-accessibility rewrite trial into the canonical [Academic Style Guide](../../../content/markdown/aaa/archie/academic-style-guide.md) as the Bright First Reader pattern, with `bright5` retained as an internal shorthand. Removed `reader_accessibility_rewrite_trials` from the active Archie task queue after the style proved useful across corpus rewrite trials.

@@ -13,7 +13,7 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
 \qquad
 D_{\mathrm{cert}}=\left[\frac{1}{2},4\pi\right].
 $$
-No active branch exchange, root-count change, or active Jacobian-null contact was found in the sampled diagnostic. The theorem-grade row remains pending until the same constants are reproduced by an outward-rounded interval certificate over the active tubes and inactive complements, and any force/action consumer also supplies same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows.
+No active branch exchange, root-count change, or active Jacobian-null contact was found in the sampled diagnostic. The theorem-grade row remains pending until the same constants are reproduced by an outward-rounded interval certificate over the active tubes and inactive complements, and any force/action consumer also supplies same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows.
 
 ## Equations Used
 

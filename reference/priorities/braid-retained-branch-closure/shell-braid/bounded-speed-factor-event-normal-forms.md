@@ -171,7 +171,7 @@ c_2=\frac12\partial_{\eta\eta}G_r^\nu(\eta_*;x_*),
 c_1=D_xG_r^\nu(\eta_*;x_*)\dot x_*.
 $$
 
-Since the force row contains $W_{r,\nu}^{\mathrm{rec}}=|D_{t,r}^{\nu}/D_{s,r}^{\nu}|$, the ordinary root ledger stops at the fold:
+Since the force row contains $W_{r,\nu}^{\mathrm{rec}}=|D_{T,r}^{\nu}/D_{s,r}^{\nu}|$, the ordinary root ledger stops at the fold:
 
 $$
 \texttt{bounded-speed-root-fold}.

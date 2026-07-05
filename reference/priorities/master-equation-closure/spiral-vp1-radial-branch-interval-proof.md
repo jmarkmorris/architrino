@@ -29,7 +29,7 @@ from the same retained record using
 $$
 W_{\alpha}^{\mathrm{rec}}
 =
-\left|D_{t,\alpha}/D_{s,\alpha}\right|.
+\left|D_{T,\alpha}/D_{s,\alpha}\right|.
 $$
 
 The required radial packet must report:
@@ -38,14 +38,14 @@ The required radial packet must report:
 | --- | --- |
 | retained box | same root box used by the topology certificate |
 | $D_s$ | source-normal interval and nonzero floor |
-| $D_t$ | receiver-normal interval |
+| $D_T$ | receiver-normal interval |
 | $W^{\mathrm{rec}}$ | outward-rounded branch-strength interval |
 | radial contribution | recomputed interval using $W^{\mathrm{rec}}$ |
 | aggregation | $B_r^{\mathrm{rec}}(0)$ interval |
-| negative control | row fails closed when $D_t$ is absent or mismatched |
+| negative control | row fails closed when $D_T$ is absent or mismatched |
 
 ## Promotion Rule
 
 No VP-1 radial-turn row may pass, fail, or enter a force-ratio comparison until
-the retained chart emits $B_r^{\mathrm{rec}}(0)$ from same-record $D_s$, $D_t$,
+the retained chart emits $B_r^{\mathrm{rec}}(0)$ from same-record $D_s$, $D_T$,
 and $W^{\mathrm{rec}}$ intervals.

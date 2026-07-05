@@ -15,7 +15,7 @@ Use a Terence Tao-style analysis lens: be precise about hypotheses, genericity, 
 
 ## Context
 
-We are developing a deterministic tri-binary Noether-braid theory. A Noether braid is a retained closed assembly with three coupled binary substructures, causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, and a surrounding Noether sea state.
+We are developing a deterministic Noether braid theory. A Noether braid is a retained closed assembly with causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, and a surrounding Noether sea state. Exact shell support and binary grouping are branch-level proof obligations; the nested shell braid candidate adds three ordered support bands when that role map is declared.
 
 The current target is the origin of the action unit $h$ and $\hbar=h/(2\pi)$. We do not want to insert Planck's constant independently into photon energy, de Broglie momentum, angular momentum, blackbody occupancy, and fine-structure coupling. The working proposal is that a retained periodic orbit supplies one action period:
 
@@ -114,14 +114,14 @@ This is not accepted evidence. The stable-root margin, first Lyapunov coefficien
 ## Breakthrough Questions
 
 1. Is a scalar constant-delay Hopf-born orbit capable, even in principle, of supporting a geometry-derived action unit, or is its action period generically rescalable and therefore only a toy obstruction test?
-2. What extra structure would make $h_\vartheta=\oint\vartheta_{\mathrm{PC}}$ invariant rather than merely an orbit-area normalization: topology, a circle-bundle holonomy, an index, a symplectic capacity, a Maslov-type class, a Noether charge, or tri-binary symmetry?
+2. What extra structure would make $h_\vartheta=\oint\vartheta_{\mathrm{PC}}$ invariant rather than merely an orbit-area normalization: topology, a circle-bundle holonomy, an index, a symplectic capacity, a Maslov-type class, a Noether charge, or nested shell braid symmetry?
 3. What is the weakest theorem that would justify local constancy of $h_\vartheta$ under a $g$- or $\mu$-continuation while $E$ and $\nu$ move?
 4. Does a dissipative constant-delay equation admit a meaningful Poincare-Cartan one-form, or must the first model be replaced by a variational, contact, or doubled causal-delay system before action-period language is legitimate?
 5. What computable normal-form data would be enough to replace the supplied $\ell_1$ field with a trustworthy proof or interval-certified computation?
 6. What monodromy/Floquet certificate is strong enough for a delay equation: finite collocation spectrum plus tail bound, Evans-function enclosure, interval arithmetic, validated continuation, or another method?
 7. Which small-divisor or resonance obstruction is most likely to split $h_E$, $h_\Phi$, $h_p$, and $h_J$ even when the Hopf and Floquet checks pass?
-8. The tri-binary theory now treats equal-frequency triples $(f,f,f)$ as high priority: different binaries may share a clock while having different radii/speed relations and phase offsets. Could this equal-clock, different-radius structure be exactly what protects the angular-momentum unit, or is that mathematically unlikely?
-9. If the scalar model is only a scaffold, what is the minimal tri-binary model whose symmetry is rich enough to test $J=n\hbar_\vartheta$ seriously?
+8. The nested shell braid theory now treats equal-frequency triples $(f,f,f)$ as high priority: different binaries may share a clock while having different radii/speed relations and phase offsets. Could this equal-clock, different-radius structure be exactly what protects the angular-momentum unit, or is that mathematically unlikely?
+9. If the scalar model is only a scaffold, what is the minimal nested shell braid model whose symmetry is rich enough to test $J=n\hbar_\vartheta$ seriously?
 10. What decisive counterexample should we try to construct first to show that the action period is a fitted constant rather than a derived invariant?
 11. What would be the most compact solver output that would make this program hard to dismiss by a skeptical analyst?
-12. If you had to choose one next mathematical artifact, should it be a theorem statement, a validated numerical certificate, a variational replacement model, a tri-binary symmetry reduction, or a counterexample?
+12. If you had to choose one next mathematical artifact, should it be a theorem statement, a validated numerical certificate, a variational replacement model, a nested shell braid symmetry reduction, or a counterexample?

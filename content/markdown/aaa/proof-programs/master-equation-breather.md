@@ -4,7 +4,7 @@ Receiver-normal restart notice. This bridge chapter remains the correct
 history-space proof architecture, but any force-balance, recapture, self-drive,
 action, or finite-certificate row is closure evidence only after it is rebuilt
 under the receiver-normal Master EOM branch factor
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
+$W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
 
 The breather proof process therefore starts over from the receiver-normal branch
@@ -14,6 +14,10 @@ finite certificate, or action conclusion is inherited.
 This chapter sits between the canonical delayed law in [master-equation.md](../dynamics/master-equation.md) and the one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). It is a theorem-program atlas, not the proof itself. Its purpose is to extract the transportable theorem architecture and to state clearly which replacement lemmas would be required before a genuine breather theorem can be pursued at the level of the master equation.
 
 The strategic point is simple. The proof should first close in the collinear dual-mollified model by producing a candidate cycle, a finite branch chart, a closed convex certificate, a return self-map, and the Schauder fixed point. Only after that closure is certified should the higher-dimensional sections below be reused as dependency maps. The next task in this chapter is therefore abstraction: identify what part of the collinear scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
+
+This chapter functions as the proof wiring diagram. The master equation is the underlying law, the collinear breather is the first controlled test case, and this page names which parts of that test case might survive when the system is allowed to move in more dimensions. It does not claim that a full breather has been found. It says what the full proof would have to reuse, replace, or newly prove.
+
+That distinction matters because the difficult object is not a scalar radius or a visually periodic path. The difficult object is a history-space return map that takes one admissible past history, evolves it under the delayed law, and returns it to the same controlled class. Any higher-dimensional proof must keep that whole history object in view.
 
 ## Purpose
 
@@ -122,24 +126,24 @@ The return-map program does not require an elementary closed-form orbit. It requ
 
 For the dual-mollified master equation, the certification-level evolution law may be written directly in absolute time as
 $$
-\ddot{\mathbf{x}}_i(t)
+\mathbf A_i(T)
 =
 \kappa\epsilon^2
 \sum_j \sigma_{ij}
-\int_{t-h}^{t}
-\frac{\widehat{\mathbf r}_{ij}(t,s)}
-{\|\mathbf r_{ij}(t,s)\|^2+\epsilon_c^2}\,
-\delta_\eta\!\big(\|\mathbf r_{ij}(t,s)\|-c_f(t-s)\big)\,ds
+\int_{T-h}^{T}
+\frac{\widehat{\mathbf r}_{ij}(T,T_{\mathrm{em}})}
+{\|\mathbf r_{ij}(T,T_{\mathrm{em}})\|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(\|\mathbf r_{ij}(T,T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
 $$
 where
 $$
-\mathbf r_{ij}(t,s)
+\mathbf r_{ij}(T,T_{\mathrm{em}})
 \equiv
-\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}}),
 \qquad
-\widehat{\mathbf r}_{ij}(t,s)
+\widehat{\mathbf r}_{ij}(T,T_{\mathrm{em}})
 \equiv
-\frac{\mathbf r_{ij}(t,s)}{\|\mathbf r_{ij}(t,s)\|}
+\frac{\mathbf r_{ij}(T,T_{\mathrm{em}})}{\|\mathbf r_{ij}(T,T_{\mathrm{em}})\|}
 $$
 Here
 $$
@@ -282,21 +286,21 @@ The transport from the collinear reference model to the master equation is not l
 
 The 1D scaffold organizes delayed topology around the scalar sorting maps
 $$
-w(t)=x(t)+c_f t
+w(T)=X(T)+c_f T
 \qquad
 \text{and}
 \qquad
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 Those maps force deep-past roots into rigid order intervals and make descent arguments explicit.
 
 No direct higher-dimensional analogue exists merely by replacing
 $$
-x
+X
 $$
 with
 $$
-\mathbf{x}
+\mathbf X
 $$
 What is needed instead is a replacement coercive functional or ordered comparison geometry that can play the same role:
 
@@ -308,9 +312,9 @@ What is needed instead is a replacement coercive functional or ordered compariso
 
 In 1D the causal Jacobians reduce to explicit signed scalars. In the master equation they retain the exact form
 $$
-J_{ij}(t;t_0)
+J_{ij}(T;T_{\mathrm{em}})
 =
-1-\frac{\mathbf{v}_j(t_0)\cdot \hat{\mathbf{r}}_{ij}(t;t_0)}{c_f}
+1-\frac{\mathbf V_j(T_{\mathrm{em}})\cdot \hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})}{c_f}
 $$
 but the sign bookkeeping is no longer exhausted by line ordering.
 
@@ -506,11 +510,11 @@ If that planar bridge regime also resists tame-envelope closure, then the obstru
 
 Work on the reflection-symmetric planar two-body subclass
 $$
-\mathbf{x}_1(t)=-\mathbf{r}(t),
+\mathbf X_1(T)=-\mathbf{r}(T),
 \qquad
-\mathbf{x}_2(t)=\mathbf{r}(t),
+\mathbf X_2(T)=\mathbf{r}(T),
 \qquad
-\mathbf{r}(t)\in \Pi\cong \mathbb{R}^2,
+\mathbf{r}(T)\in \Pi\cong \mathbb{R}^2,
 \qquad
 q_1=-\epsilon,
 \qquad
@@ -518,19 +522,19 @@ q_2=+\epsilon
 $$
 Write
 $$
-\rho(t)\equiv \|\mathbf{r}(t)\|,
+\rho(T)\equiv \|\mathbf{r}(T)\|,
 \qquad
-\hat{\mathbf{e}}_r(t)\equiv \frac{\mathbf{r}(t)}{\rho(t)},
+\hat{\mathbf{e}}_r(T)\equiv \frac{\mathbf{r}(T)}{\rho(T)},
 \qquad
-\hat{\mathbf{e}}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf{e}}_r(t)
+\hat{\mathbf{e}}_\theta(T)\equiv R_{\pi/2}\hat{\mathbf{e}}_r(T)
 $$
 away from the collision set, and decompose the planar velocity as
 $$
-\dot{\mathbf{r}}(t)=u_r(t)\hat{\mathbf{e}}_r(t)+u_\theta(t)\hat{\mathbf{e}}_\theta(t)
+\frac{d\mathbf{r}}{dT}(T)=u_r(T)\hat{\mathbf{e}}_r(T)+u_\theta(T)\hat{\mathbf{e}}_\theta(T)
 $$
 When a polar-angle coordinate is convenient, write
 $$
-\mathbf{r}(t)=\rho(t)(\cos\vartheta(t),\sin\vartheta(t))
+\mathbf{r}(T)=\rho(T)(\cos\vartheta(T),\sin\vartheta(T))
 $$
 
 The first technical lesson is that the planar bridge should be written on a rotationally reduced chart. If one keeps the full planar rotation symmetry visible, then the most natural fixed-radius section is not affine in the ambient Banach space and the convex-envelope step is obscured from the start. The clean approach is therefore to quotient rigid planar rotations locally at the section by choosing the representative with
@@ -660,7 +664,7 @@ admits one-cycle continuation with:
   $$
 - causal Jacobian bound
   $$
-  |J_{ij}(t;t_0)|\ge \nu_J
+  |J_{ij}(T;T_{\mathrm{em}})|\ge \nu_J
   $$
 - dual-mollified caustic-transit impulse bounded by
   $$
@@ -741,7 +745,7 @@ $$
 \qquad
 \overline{\zeta}^+_{\hat{\mathbf{u}}}(t)
 \equiv
-\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta)
+\sup_{\theta\le T}\zeta^+_{\hat{\mathbf{u}}}(\theta)
 $$
 The running infimum
 $$
@@ -755,9 +759,9 @@ is non-decreasing by definition. The nontrivial theorem burden is therefore not 
 
 Two cycle windows should then be named explicitly:
 $$
-I_{\mathrm{in}}=[t_{\mathrm{in}}^-,t_{\mathrm{x}}],
+I_{\mathrm{in}}=[T_{\mathrm{in}}^-,T_{\mathrm{x}}],
 \qquad
-I_{\mathrm{ap}}=[t_{\mathrm{ap}}^-,t_{\mathrm{ap}}^+]
+I_{\mathrm{ap}}=[T_{\mathrm{ap}}^-,T_{\mathrm{ap}}^+]
 $$
 Here
 $$
@@ -765,7 +769,7 @@ I_{\mathrm{in}}
 $$
 is the final inbound window ending at the first center crossing time
 $$
-t_{\mathrm{x}}
+T_{\mathrm{x}}
 $$
 and
 $$
@@ -1005,7 +1009,7 @@ The next concrete step is to convert the sector labels from the first package in
 
 Let
 $$
-I_{\mathrm{out}}=[t_{\mathrm{x}},t_{\mathrm{ap}}^-]
+I_{\mathrm{out}}=[T_{\mathrm{x}},T_{\mathrm{ap}}^-]
 $$
 denote the earlier outbound interval between the first center crossing and the start of the late-apocenter window. For each active apocenter sector
 $$
@@ -1138,11 +1142,11 @@ $$
 >    $$
 >    with delay at least
 >    $$
->    \tau_{\mathrm{dp}}
+>    \Delta T_{\mathrm{dp}}
 >    $$
 >    has source time
 >    $$
->    s\le t_{\mathrm{ap}}^-;
+>    T_{\mathrm{em}}\le T_{\mathrm{ap}}^-;
 >    $$
 > 2. for every active apocenter sector
 >    $$
@@ -1300,7 +1304,7 @@ automatically yields positive transversality margins.
 > $$
 > Consequently every active branch on those windows obeys
 > $$
-> J_{ij}(t;t_0)\ge \min\{\nu^{\mathrm{self}}_{J,k,W},\nu^{\mathrm{part}}_{J,k,W}\}>0.
+> J_{ij}(T;T_{\mathrm{em}})\ge \min\{\nu^{\mathrm{self}}_{J,k,W},\nu^{\mathrm{part}}_{J,k,W}\}>0.
 > $$
 
 The content of this proposition is geometric rather than algebraic. One has to prove that admissible emitter velocities stay inside cones whose forward projection onto every active line-of-sight sector remains strictly sub-field-speed. That is the planar replacement for the scalar statement that the 1D Jacobian sign never approaches zero on the controlled branch family.
@@ -1317,7 +1321,7 @@ $$
 $$
 Then the entire controlled cycle satisfies
 $$
-|J_{ij}(t;t_0)|\ge \nu_{J,\mathrm{cyc}}>0
+|J_{ij}(T;T_{\mathrm{em}})|\ge \nu_{J,\mathrm{cyc}}>0
 $$
 on every labeled active branch.
 
@@ -1644,7 +1648,7 @@ $$
 $$
 one has
 $$
-\partial_s G_s(t,s)
+\partial_{T_{\mathrm{em}}} G_s(t,s)
 =
 c_f-\dot{\mathbf{r}}(s)\cdot \hat{\mathbf{u}}_{s,t}^{\mathrm{self}}
 =
@@ -1739,13 +1743,13 @@ $$
 >    $$
 >    G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})=0,
 >    \qquad
->    \partial_s G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})=0,
+>    \partial_{T_{\mathrm{em}}} G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})=0,
 >    $$
 >    while the fold is nondegenerate:
 >    $$
 >    \partial_{ss}G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})\ge \lambda_{\mathrm{cau}},
 >    \qquad
->    \partial_t G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})\le -\chi_{\mathrm{cau}};
+>    \partial_T G_s(t_{\mathrm{cau}},s_{\mathrm{cau}})\le -\chi_{\mathrm{cau}};
 >    $$
 > 3. **controlled branch count through the tube:** outside
 >    $$
@@ -1757,7 +1761,7 @@ $$
 >    $$
 > 4. **bounded dual-mollified caustic impulse:** if
 >    $$
->    \mathbf{a}^{\mathrm{self}}_{\eta,\mathrm{cau}}(t)
+>    \mathbf{A}^{\mathrm{self}}_{\eta,\mathrm{cau}}(T)
 >    $$
 >    denotes the self contribution coming from the branch family intersecting
 >    $$
@@ -1767,7 +1771,7 @@ $$
 >    $$
 >    \left\|
 >    \int_{W_{\mathrm{cau}}}
->    \mathbf{a}^{\mathrm{self}}_{\eta,\mathrm{cau}}(t)\,dt
+>    \mathbf{A}^{\mathrm{self}}_{\eta,\mathrm{cau}}(T)\,dT
 >    \right\|
 >    \le
 >    I_{\mathrm{cau}};
@@ -1832,30 +1836,30 @@ The planar comparison problem should be written on two explicit windows:
 $$
 W_{\mathrm{in}}^{\mathrm{turn}}
 \equiv
-[t_{\mathrm{in}}^{\mathrm{turn}},\,t_{\mathrm{in}}^{\mathrm{turn}}+\tau_{\mathrm{in}}],
+[T_{\mathrm{in}}^{\mathrm{turn}},\,T_{\mathrm{in}}^{\mathrm{turn}}+\tau_{\mathrm{in}}],
 \qquad
 W_{\mathrm{out}}^{\mathrm{turn}}
 \equiv
 I_{\mathrm{ap}}
-=[t_{\mathrm{ap}}^-,\,t_{\mathrm{ap}}^+]
+=[T_{\mathrm{ap}}^-,\,T_{\mathrm{ap}}^+]
 $$
 The first is the short post-crossing window issued by the caustic handoff. The second is the late-apocenter window on the later outbound branch.
 
 Write the net acceleration in the moving polar frame as
 $$
-\mathbf{a}_{\mathrm{net}}(t)
+\mathbf A_{\mathrm{net}}(T)
 =
-a_r(t)\hat{\mathbf{e}}_r(t)
+A_r(T)\hat{\mathbf{e}}_r(T)
 +
-a_\theta(t)\hat{\mathbf{e}}_\theta(t),
+A_\theta(T)\hat{\mathbf{e}}_\theta(T),
 \qquad
-a_r(t)=\hat{\mathbf{e}}_r(t)\cdot \mathbf{a}_{\mathrm{net}}(t),
+A_r(T)=\hat{\mathbf{e}}_r(T)\cdot \mathbf A_{\mathrm{net}}(T),
 \qquad
-a_\theta(t)=\hat{\mathbf{e}}_\theta(t)\cdot \mathbf{a}_{\mathrm{net}}(t)
+A_\theta(T)=\hat{\mathbf{e}}_\theta(T)\cdot \mathbf A_{\mathrm{net}}(T)
 $$
 Then
 $$
-\ddot\rho(t)=a_r(t)+\rho(t)\dot\vartheta(t)^2
+\frac{d^2\rho}{dT^2}(T)=A_r(T)+\rho(T)\left(\frac{d\vartheta}{dT}(T)\right)^2
 $$
 The scalar 1D turn inequalities are therefore replaced by a competition among three windowwise quantities:
 
@@ -1890,13 +1894,13 @@ The scalar 1D turn inequalities are therefore replaced by a competition among th
 > $$
 > one has
 > $$
-> -a_r^{\mathrm{part}}(t)\ge \underline A^{\mathrm{in}}_p,
+> -A_r^{\mathrm{part}}(T)\ge \underline A^{\mathrm{in}}_p,
 > \qquad
-> a_r^{\mathrm{self}}(t)\le \overline A^{\mathrm{in}}_s,
+> A_r^{\mathrm{self}}(T)\le \overline A^{\mathrm{in}}_s,
 > \qquad
-> \rho(t)\dot\vartheta(t)^2\le \Theta_{\mathrm{in}},
+> \rho(T)\left(\frac{d\vartheta}{dT}(T)\right)^2\le \Theta_{\mathrm{in}},
 > \qquad
-> |a_\theta(t)|\le \Gamma_{\theta,\mathrm{in}},
+> |A_\theta(T)|\le \Gamma_{\theta,\mathrm{in}},
 > $$
 > and on
 > $$
@@ -1904,13 +1908,13 @@ The scalar 1D turn inequalities are therefore replaced by a competition among th
 > $$
 > one has
 > $$
-> -a_r^{\mathrm{part}}(t)\ge \underline A^{\mathrm{out}}_p,
+> -A_r^{\mathrm{part}}(T)\ge \underline A^{\mathrm{out}}_p,
 > \qquad
-> a_r^{\mathrm{self}}(t)\le \overline A^{\mathrm{out}}_s,
+> A_r^{\mathrm{self}}(T)\le \overline A^{\mathrm{out}}_s,
 > \qquad
-> \rho(t)\dot\vartheta(t)^2\le \Theta_{\mathrm{out}},
+> \rho(T)\left(\frac{d\vartheta}{dT}(T)\right)^2\le \Theta_{\mathrm{out}},
 > \qquad
-> |a_\theta(t)|\le \Gamma_{\theta,\mathrm{out}}.
+> |A_\theta(T)|\le \Gamma_{\theta,\mathrm{out}}.
 > $$
 
 Define the reference inward accelerations
@@ -1955,11 +1959,11 @@ can be maintained throughout the comparison window.
 > $$
 > V_{\mathrm{in},0}
 > \equiv
-> \dot\rho(t_{\mathrm{in}}^{\mathrm{turn}}),
+> \frac{d\rho}{dT}(T_{\mathrm{in}}^{\mathrm{turn}}),
 > \qquad
 > V_{\mathrm{out},0}
 > \equiv
-> \dot\rho(t_{\mathrm{ap}}^-).
+> \frac{d\rho}{dT}(T_{\mathrm{ap}}^-).
 > $$
 > If
 > $$
@@ -2485,7 +2489,7 @@ The first step in that ladder should be made fully explicit. For a labeled plana
 $$
 \mathbf{Y}(t)
 \equiv
-(\mathbf{x}_1(t),\mathbf{x}_2(t))
+(\mathbf X_1(t),\mathbf X_2(t))
 \in
 (\mathbb{R}^2)^2
 $$
@@ -2493,11 +2497,11 @@ and decompose the instantaneous configuration into midpoint and chord variables
 $$
 \mathbf{m}(t)
 \equiv
-\frac{\mathbf{x}_1(t)+\mathbf{x}_2(t)}{2},
+\frac{\mathbf X_1(t)+\mathbf X_2(t)}{2},
 \qquad
 \mathbf{q}(t)
 \equiv
-\mathbf{x}_2(t)-\mathbf{x}_1(t)
+\mathbf X_2(t)-\mathbf X_1(t)
 $$
 This is the reason the unreduced planar binary is the correct next regime. The quotient by translations is still explicit through
 $$
@@ -2700,7 +2704,7 @@ $$
 G_{\tau}(t,s)
 \equiv
 \bigl\|
-\mathbf{x}_i(t)-\mathbf{x}_j(s)
+\mathbf X_i(t)-\mathbf X_j(s)
 \bigr\|
 -c_f(t-s),
 \qquad
@@ -2710,8 +2714,8 @@ and let
 $$
 \hat{\mathbf{u}}_{\tau}(t,s)
 \equiv
-\frac{\mathbf{x}_i(t)-\mathbf{x}_j(s)}{
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|}
+\frac{\mathbf X_i(t)-\mathbf X_j(s)}{
+\|\mathbf X_i(t)-\mathbf X_j(s)\|}
 $$
 be the associated chord direction whenever the denominator is nonzero. The active delayed roots over one candidate cycle should be studied only after the cycle is partitioned into a finite family of windows
 $$
@@ -3143,12 +3147,12 @@ W^{\sharp}_{\mathrm{out,turn}}
 $$
 be the late-turn window. The quotient comparison law should then be organized as
 $$
-\ddot{\rho}^{\sharp}(t)
+\frac{d^2\rho^{\sharp}}{dT^2}(T)
 =
--A^{\sharp}_{p}(t)
-+A^{\sharp}_{s,\mathrm{loc}}(t)
-+A^{\sharp}_{s,\mathrm{deep}}(t)
-+\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Lambda^{\sharp}_{\alpha}(t)
+-A^{\sharp}_{p}(T)
++A^{\sharp}_{s,\mathrm{loc}}(T)
++A^{\sharp}_{s,\mathrm{deep}}(T)
++\sum_{\alpha=1}^{Q^{\sharp}_{\mathrm{esc}}}\Lambda^{\sharp}_{\alpha}(T)
 $$
 where:
 
@@ -3279,13 +3283,13 @@ $$
 $$
 Whenever these are positive, the primary escape observable obeys the comparison inequalities
 $$
-\ddot{\rho}^{\sharp}(t)\le -\mathfrak{M}^{\sharp}_{\mathrm{in}}<0
+\frac{d^2\rho^{\sharp}}{dT^2}(T)\le -\mathfrak{M}^{\sharp}_{\mathrm{in}}<0
 \qquad
 \text{on }W^{\sharp}_{\mathrm{in,turn}}
 $$
 and
 $$
-\ddot{\rho}^{\sharp}(t)\le -\mathfrak{M}^{\sharp}_{\mathrm{out}}<0
+\frac{d^2\rho^{\sharp}}{dT^2}(T)\le -\mathfrak{M}^{\sharp}_{\mathrm{out}}<0
 \qquad
 \text{on }W^{\sharp}_{\mathrm{out,turn}}
 $$
@@ -3295,11 +3299,11 @@ $$
 > $$
 > V^{\sharp}_{\mathrm{in},0}
 > \equiv
-> \dot{\rho}^{\sharp}(t^{\sharp}_{\mathrm{in}}),
+> \left.\frac{d\rho^{\sharp}}{dT}\right|_{T=T^{\sharp}_{\mathrm{in}}},
 > \qquad
 > V^{\sharp}_{\mathrm{out},0}
 > \equiv
-> \dot{\rho}^{\sharp}(t^{\sharp}_{\mathrm{out}}),
+> \left.\frac{d\rho^{\sharp}}{dT}\right|_{T=T^{\sharp}_{\mathrm{out}}},
 > $$
 > at the entrance times of
 > $$
@@ -3798,25 +3802,25 @@ Before tightening the full delay geometry, one should record one explicit planar
 
 Work in the center-of-mass chart and write
 $$
-\mathbf{x}_1
+\mathbf X_1
 =
 \frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b},
 \qquad
-\mathbf{x}_2
+\mathbf X_2
 =
 \frac{2}{3}\mathbf{b},
 \qquad
-\mathbf{x}_3
+\mathbf X_3
 =
 -\frac{1}{2}\mathbf{a}-\frac{1}{3}\mathbf{b}
 $$
 These factors are the standard equal-mass Jacobi coordinates for the chosen labels:
 $$
-\mathbf{a}=\mathbf{x}_1-\mathbf{x}_3,
+\mathbf{a}=\mathbf X_1-\mathbf X_3,
 \qquad
-\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2},
+\mathbf{b}=\mathbf X_2-\frac{\mathbf X_1+\mathbf X_3}{2},
 \qquad
-\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0
+\mathbf X_1+\mathbf X_2+\mathbf X_3=0
 $$
 Thus the factors
 $$
@@ -3824,11 +3828,11 @@ $$
 $$
 in
 $$
-\mathbf{x}_1
+\mathbf X_1
 \quad
 \text{and}
 \quad
-\mathbf{x}_3
+\mathbf X_3
 $$
 are intentional: the same-sign outer pair lies on the base line with midpoint
 $$
@@ -3881,7 +3885,7 @@ $$
 \qquad
 \mathbf{b}_{\mathrm{seed}}(0)=B_\ast\mathbf{e}_2,
 \qquad
-\dot{\mathbf{b}}_{\mathrm{seed}}(0)
+\left.\frac{d\mathbf{b}_{\mathrm{seed}}}{dT}\right|_{T=0}
 =
 -V_{x,\mathrm{seed}}\mathbf{e}_1-u_{b,\mathrm{seed}}\mathbf{e}_2
 $$
@@ -3889,13 +3893,13 @@ so the gauge conditions
 $$
 \mathbf{e}_2\cdot \mathbf{b}(0)>0,
 \qquad
-\mathbf{e}_1\cdot \dot{\mathbf{b}}(0)<0
+\mathbf{e}_1\cdot \left.\frac{d\mathbf{b}}{dT}\right|_{T=0}<0
 $$
 are automatic.
 
 The associated seed body velocities are
 $$
-\dot{\mathbf{x}}_{1,\mathrm{seed}}
+\mathbf V_{1,\mathrm{seed}}
 =
 -\left(
 \frac{u_{a,\mathrm{seed}}}{2}
@@ -3904,13 +3908,13 @@ $$
 +\frac{u_{b,\mathrm{seed}}}{3}\mathbf{e}_2
 $$
 $$
-\dot{\mathbf{x}}_{2,\mathrm{seed}}
+\mathbf V_{2,\mathrm{seed}}
 =
 -\frac{2V_{x,\mathrm{seed}}}{3}\mathbf{e}_1
 -\frac{2u_{b,\mathrm{seed}}}{3}\mathbf{e}_2
 $$
 $$
-\dot{\mathbf{x}}_{3,\mathrm{seed}}
+\mathbf V_{3,\mathrm{seed}}
 =
 \left(
 \frac{u_{a,\mathrm{seed}}}{2}
@@ -3924,13 +3928,13 @@ U^{\mathrm{mb}}_{\mathrm{seed}}
 \equiv
 \max\left\{
 \left\|
-\dot{\mathbf{x}}_{1,\mathrm{seed}}
+\mathbf V_{1,\mathrm{seed}}
 \right\|,
 \left\|
-\dot{\mathbf{x}}_{2,\mathrm{seed}}
+\mathbf V_{2,\mathrm{seed}}
 \right\|,
 \left\|
-\dot{\mathbf{x}}_{3,\mathrm{seed}}
+\mathbf V_{3,\mathrm{seed}}
 \right\|
 \right\}
 <c_f
@@ -3948,14 +3952,14 @@ R_{\mathrm{pair}}
 $$
 Then the instantaneous Coulomb-like partner projections satisfy
 $$
-\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{part}}
+\left(\frac{d^2\mathbf{a}}{dT^2}\right)_{\mathrm{seed}}^{\mathrm{part}}
 =
 -\,\frac{\kappa\epsilon^2}{R_{\mathrm{pair}}^3}\,
 \mathbf{a}_{\mathrm{seed}}(0)
 $$
 while the direct same-sign pair repulsion contributes
 $$
-\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{same}}
+\left(\frac{d^2\mathbf{a}}{dT^2}\right)_{\mathrm{seed}}^{\mathrm{same}}
 =
 \frac{2\kappa\epsilon^2}{A_\ast^3}\,
 \mathbf{a}_{\mathrm{seed}}(0)
@@ -3966,9 +3970,9 @@ $$
 \equiv
 -\hat{\mathbf{a}}_{\mathrm{seed}}(0)\cdot
 \left(
-\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{part}}
+\left(\frac{d^2\mathbf{a}}{dT^2}\right)_{\mathrm{seed}}^{\mathrm{part}}
 +
-\ddot{\mathbf{a}}_{\mathrm{seed}}^{\mathrm{same}}
+\left(\frac{d^2\mathbf{a}}{dT^2}\right)_{\mathrm{seed}}^{\mathrm{same}}
 \right)
 =
 \kappa\epsilon^2
@@ -3980,7 +3984,7 @@ $$
 
 Likewise, the leading midpoint-axis attraction from the opposite-sign body against the outer-pair midpoint is
 $$
-\ddot{\mathbf{b}}_{\mathrm{seed}}^{\mathrm{part}}
+\left(\frac{d^2\mathbf{b}}{dT^2}\right)_{\mathrm{seed}}^{\mathrm{part}}
 =
 -\,\frac{3\kappa\epsilon^2}{R_{\mathrm{pair}}^3}\,
 \mathbf{b}_{\mathrm{seed}}(0)
@@ -3990,7 +3994,7 @@ $$
 \Lambda^{\mathrm{mb}}_{2,\mathrm{seed}}
 \equiv
 -\hat{\mathbf{b}}_{\mathrm{seed}}(0)\cdot
-\ddot{\mathbf{b}}_{\mathrm{seed}}^{\mathrm{part}}
+\left(\frac{d^2\mathbf{b}}{dT^2}\right)_{\mathrm{seed}}^{\mathrm{part}}
 =
 \frac{3\kappa\epsilon^2 B_\ast}{R_{\mathrm{pair}}^3}
 $$
@@ -4008,7 +4012,7 @@ L^{\mathrm{mb}}_{1,\mathrm{geom,seed}}
 $$
 because
 $$
-\dot{\mathbf{a}}_{\mathrm{seed}}(0)
+\left.\frac{d\mathbf{a}_{\mathrm{seed}}}{dT}\right|_{T=0}
 =
 -u_{a,\mathrm{seed}}\mathbf{e}_1
 $$
@@ -4028,7 +4032,7 @@ $$
 $$
 while the transverse component of
 $$
-\dot{\mathbf{b}}_{\mathrm{seed}}(0)
+\left.\frac{d\mathbf{b}_{\mathrm{seed}}}{dT}\right|_{T=0}
 $$
 is exactly
 $$
@@ -4084,11 +4088,11 @@ Then the first two inward channels are positive before any refined delay bookkee
 >    $$
 > 3. the role gap at the seed is strictly positive,
 >    $$
->    \|\mathbf{x}_{1,\mathrm{seed}}(0)\|
+>    \|\mathbf X_{1,\mathrm{seed}}(0)\|
 >    =
->    \|\mathbf{x}_{3,\mathrm{seed}}(0)\|
+>    \|\mathbf X_{3,\mathrm{seed}}(0)\|
 >    >
->    \|\mathbf{x}_{2,\mathrm{seed}}(0)\|;
+>    \|\mathbf X_{2,\mathrm{seed}}(0)\|;
 >    $$
 > 4. and if
 >    $$
@@ -4224,7 +4228,7 @@ thickenings, denote by
 $$
 r^{\mathrm{inst}}_{ij}(t)
 \equiv
-\|\mathbf{x}_i(t)-\mathbf{x}_j(t)\|
+\|\mathbf X_i(t)-\mathbf X_j(t)\|
 $$
 the instantaneous pair distances and by
 $$
@@ -4367,20 +4371,20 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > \beta=(i,j),
 > \qquad
-> \Delta t_\beta(t)=t-s_\beta(t),
+> \Delta T_\beta(T)=T-T_{\mathrm{em},\beta}(T),
 > $$
 > and set
 > $$
-> g_\beta(t;s;\Phi)
+> g_\beta(T;T_{\mathrm{em}};\Phi)
 > =
-> \|\mathbf{x}_i(t;\Phi)-\mathbf{x}_j(s;\Phi)\|-c_f(t-s).
+> \|\mathbf X_i(T;\Phi)-\mathbf X_j(T_{\mathrm{em}};\Phi)\|-c_f(T-T_{\mathrm{em}}).
 > $$
 > On the affine seed, the source derivative is
 > $$
-> \partial_s g_\beta(t;s;\Phi_{\mathrm{seed}})
+> \partial_{T_{\mathrm{em}}} g_\beta(T;T_{\mathrm{em}};\Phi_{\mathrm{seed}})
 > =
-> c_f-\dot{\mathbf{x}}_{j,\mathrm{seed}}\cdot
-> \hat{\mathbf{r}}_\beta(t;s;\Phi_{\mathrm{seed}})
+> c_f-\mathbf V_{j,\mathrm{seed}}\cdot
+> \hat{\mathbf{r}}_\beta(T;T_{\mathrm{em}};\Phi_{\mathrm{seed}})
 > \ge
 > c_f-U^{\mathrm{mb}}_{\mathrm{seed}}
 > >0.
@@ -4395,7 +4399,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > if necessary, one source-time graph
 > $$
-> s_{\beta,\mathrm{seed}}(t)
+> T_{\mathrm{em},\beta,\mathrm{seed}}(T)
 > $$
 > for each
 > $$
@@ -4412,11 +4416,11 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > to dominate both the listed seed branch delays and the receiver-window length on this compact set.
 > Shrink the seed packet so that these roots remain inside the same source intervals and so that, on those intervals,
 > $$
-> \|\dot{\mathbf{x}}_k(0;\Phi)-\dot{\mathbf{x}}_{k,\mathrm{seed}}(0)\|
+> \|\mathbf V_k(0;\Phi)-\mathbf V_{k,\mathrm{seed}}(0)\|
 > \le
 > \varepsilon_V,
 > \qquad
-> \|\ddot{\mathbf{x}}_k(\theta;\Phi)\|
+> \|\mathbf A_k(\theta;\Phi)\|
 > \le
 > \varepsilon_A
 > $$
@@ -4430,7 +4434,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > The local Lipschitz-velocity bound gives the uniform speed ceiling
 > $$
-> \|\dot{\mathbf{x}}_k(\theta;\Phi)\|
+> \|\mathbf V_k(\theta;\Phi)\|
 > \le
 > U^{\mathrm{mb}}_{\mathrm{seed}}
 > +
@@ -4451,7 +4455,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > Thus
 > $$
-> \partial_s g_\beta(t;s;\Phi)
+> \partial_{T_{\mathrm{em}}} g_\beta(T;T_{\mathrm{em}};\Phi)
 > \ge
 > c_f-
 > \left(
@@ -4467,7 +4471,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > The defect
 > $$
-> g_\beta(t;s;\Phi)
+> g_\beta(T;T_{\mathrm{em}};\Phi)
 > $$
 > is therefore strictly increasing in source time on each listed source interval. The seed root persists by the implicit-function theorem, and strict monotonicity excludes any second root in the same seed-side interval. This proves uniqueness and simplicity for every branch in
 > $$
@@ -4476,20 +4480,20 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 >
 > The causal-delay length estimate follows from the root identity
 > $$
-> c_f\Delta t_\beta(t)
+> c_f\Delta T_\beta(T)
 > =
-> r_\beta(t;s_\beta(t))
+> r_\beta(T;T_{\mathrm{em},\beta}(T))
 > $$
 > and the source displacement formula
 > $$
-> \mathbf{x}_j(t)-\mathbf{x}_j(s_\beta(t))
+> \mathbf X_j(T)-\mathbf X_j(T_{\mathrm{em},\beta}(T))
 > =
-> \dot{\mathbf{x}}_{j,\mathrm{seed}}(0)\Delta t_\beta(t)
+> \mathbf V_{j,\mathrm{seed}}(0)\Delta T_\beta(T)
 > +
 > O\!\left(
-> \varepsilon_V\Delta t_\beta(t)
+> \varepsilon_V\Delta T_\beta(T)
 > +
-> \varepsilon_A\Delta t_\beta(t)^2
+> \varepsilon_A\Delta T_\beta(T)^2
 > \right).
 > $$
 > Equivalently, with
@@ -4505,32 +4509,32 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > one has
 > $$
 > \bigl\|
-> \mathbf{x}_j(t)-\mathbf{x}_j(s_\beta(t))
+> \mathbf X_j(T)-\mathbf X_j(T_{\mathrm{em},\beta}(T))
 > \bigr\|
 > \le
-> U_\ast\Delta t_\beta(t).
+> U_\ast\Delta T_\beta(T).
 > $$
 > By the reverse triangle inequality,
 > $$
 > \bigl|
-> r_\beta(t;s_\beta(t))
+> r_\beta(T;T_{\mathrm{em},\beta}(T))
 > -
-> r^{\mathrm{inst}}_\beta(t)
+> r^{\mathrm{inst}}_\beta(T)
 > \bigr|
 > \le
-> U_\ast\Delta t_\beta(t)
+> U_\ast\Delta T_\beta(T)
 > =
 > \frac{U_\ast}{c_f}
-> r_\beta(t;s_\beta(t)).
+> r_\beta(T;T_{\mathrm{em},\beta}(T)).
 > $$
 > Since
 > $$
-> r_\beta(t;s_\beta(t))
+> r_\beta(T;T_{\mathrm{em},\beta}(T))
 > \le
-> r^{\mathrm{inst}}_\beta(t)
+> r^{\mathrm{inst}}_\beta(T)
 > +
 > \frac{U_\ast}{c_f}
-> r_\beta(t;s_\beta(t)),
+> r_\beta(T;T_{\mathrm{em},\beta}(T)),
 > $$
 > and
 > $$
@@ -4538,21 +4542,21 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > it follows that
 > $$
-> r_\beta(t;s_\beta(t))
+> r_\beta(T;T_{\mathrm{em},\beta}(T))
 > \le
 > \frac{1}{1-U_\ast/c_f}
-> r^{\mathrm{inst}}_\beta(t).
+> r^{\mathrm{inst}}_\beta(T).
 > $$
 > Combining the two inequalities gives
 > $$
 > \bigl|
-> r_\beta(t;s_\beta(t))
+> r_\beta(T;T_{\mathrm{em},\beta}(T))
 > -
-> r^{\mathrm{inst}}_\beta(t)
+> r^{\mathrm{inst}}_\beta(T)
 > \bigr|
 > \le
 > \frac{U_\ast/c_f}{1-U_\ast/c_f}
-> r^{\mathrm{inst}}_\beta(t).
+> r^{\mathrm{inst}}_\beta(T).
 > $$
 > The shrinkage condition
 > $$
@@ -4575,14 +4579,14 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 >
 > The same speed ceiling gives the Jacobian estimate directly. For every listed branch,
 > $$
-> J_\beta(t;s_\beta(t))
+> J_\beta(T;T_{\mathrm{em},\beta}(T))
 > =
-> 1-\frac{\dot{\mathbf{x}}_j(s_\beta(t))\cdot
-> \hat{\mathbf{r}}_\beta(t;s_\beta(t))}{c_f},
+> 1-\frac{\mathbf V_j(T_{\mathrm{em},\beta}(T))\cdot
+> \hat{\mathbf{r}}_\beta(T;T_{\mathrm{em},\beta}(T))}{c_f},
 > $$
 > so
 > $$
-> \bigl|J_\beta(t;s_\beta(t))-1\bigr|
+> \bigl|J_\beta(T;T_{\mathrm{em},\beta}(T))-1\bigr|
 > \le
 > \frac{U_\ast}{c_f}
 > \le
@@ -4591,7 +4595,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > In particular
 > $$
-> J_\beta(t;s_\beta(t))
+> J_\beta(T;T_{\mathrm{em},\beta}(T))
 > \ge
 > 1-\frac{U_\ast}{c_f}
 > =
@@ -4620,7 +4624,7 @@ the exact causal-delay partner/source times on the preserved seed-side branch fa
 > $$
 > on this compact set. The causal-delay estimate controls the difference between delayed and instantaneous chords. The present-time drift over the short seed window satisfies
 > $$
-> \|\mathbf{x}_k(t)-\mathbf{x}_{k,\mathrm{seed}}(0)\|
+> \|\mathbf X_k(t)-\mathbf X_{k,\mathrm{seed}}(0)\|
 > \le
 > U_\ast\tau^{\mathrm{mb}}_{\mathrm{seed}},
 > $$
@@ -4706,7 +4710,7 @@ This is the first genuine many-body seed-side margin calculation in the chapter.
 
 Let
 $$
-\mathbf{x}(t)=\big(\mathbf{x}_1(t),\mathbf{x}_2(t),\mathbf{x}_3(t)\big)
+\mathbf X(t)=\big(\mathbf X_1(t),\mathbf X_2(t),\mathbf X_3(t)\big)
 \in
 \mathcal{Q}_{3,\mathrm{pl}}
 \equiv
@@ -4718,7 +4722,7 @@ $$
 $$
 is the collision locus. Remove translations by imposing the center-of-mass condition
 $$
-\mathbf{x}_1+\mathbf{x}_2+\mathbf{x}_3=0
+\mathbf X_1+\mathbf X_2+\mathbf X_3=0
 $$
 The remaining quotient by rigid planar rotations defines the reduced shape space
 $$
@@ -4758,9 +4762,9 @@ For the first three-body bridge it is useful to distinguish the opposite-sign bo
 
 Choose the present-time Jacobi vectors
 $$
-\mathbf{a}(t)\equiv \mathbf{x}_1(t)-\mathbf{x}_3(t),
+\mathbf{a}(t)\equiv \mathbf X_1(t)-\mathbf X_3(t),
 \qquad
-\mathbf{b}(t)\equiv \mathbf{x}_2(t)-\frac{\mathbf{x}_1(t)+\mathbf{x}_3(t)}{2}
+\mathbf{b}(t)\equiv \mathbf X_2(t)-\frac{\mathbf X_1(t)+\mathbf X_3(t)}{2}
 $$
 The first vector tracks the same-sign pair separation, while the second tracks the opposite-sign body's displacement from the outer-pair midpoint. Away from the near-collinear set
 $$
@@ -4777,7 +4781,7 @@ $$
 \qquad
 \mathbf{e}_2\cdot \mathbf{b}(0)>0,
 \qquad
-\mathbf{e}_1\cdot \dot{\mathbf{b}}(0)<0
+\mathbf{e}_1\cdot \left.\frac{d\mathbf{b}}{dT}\right|_{T=0}<0
 $$
 with fixed
 $$
@@ -4802,7 +4806,7 @@ $$
 \quad
 \mathbf{e}_2\cdot \mathbf{b}_\Phi(0)\ge B_{\min},
 \quad
-\mathbf{e}_1\cdot \dot{\mathbf{b}}_\Phi(0)\le -V_{\mathrm{in}}
+\mathbf{e}_1\cdot \left.\frac{d\mathbf{b}_\Phi}{dT}\right|_{T=0}\le -V_{\mathrm{in}}
 \right\}
 $$
 for fixed positive constants
@@ -4923,65 +4927,65 @@ i=j
 $$
 define the exact delay defect
 $$
-g_{ij}(t;s)
+g_{ij}(T;T_{\mathrm{em}})
 \equiv
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
+\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})
 $$
 A fold event is a pair
 $$
-(t,s_\ast)
+(T,T_{\mathrm{em},\ast})
 $$
 with
 $$
-g_{ij}(t;s_\ast)=0,
+g_{ij}(T;T_{\mathrm{em},\ast})=0,
 \qquad
-\partial_s g_{ij}(t;s_\ast)=0
+\partial_{T_{\mathrm{em}}} g_{ij}(T;T_{\mathrm{em},\ast})=0
 $$
 Write
 $$
-\mathbf{r}_{ij}(t;s)\equiv \mathbf{x}_i(t)-\mathbf{x}_j(s),
+\mathbf{r}_{ij}(T;T_{\mathrm{em}})\equiv \mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}}),
 \qquad
-r_{ij}(t;s)\equiv \|\mathbf{r}_{ij}(t;s)\|,
+r_{ij}(T;T_{\mathrm{em}})\equiv \|\mathbf{r}_{ij}(T;T_{\mathrm{em}})\|,
 \qquad
-\hat{\mathbf{r}}_{ij}(t;s)\equiv \frac{\mathbf{r}_{ij}(t;s)}{r_{ij}(t;s)}
+\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\equiv \frac{\mathbf{r}_{ij}(T;T_{\mathrm{em}})}{r_{ij}(T;T_{\mathrm{em}})}
 $$
 Then
 $$
-\partial_s g_{ij}(t;s)
+\partial_{T_{\mathrm{em}}} g_{ij}(T;T_{\mathrm{em}})
 =
-c_f-\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot \hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})
 $$
 $$
-\partial_t g_{ij}(t;s)
+\partial_T g_{ij}(T;T_{\mathrm{em}})
 =
-\dot{\mathbf{x}}_i(t)\cdot \hat{\mathbf{r}}_{ij}(t;s)-c_f
+\mathbf V_i(T)\cdot \hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})-c_f
 $$
 $$
-\partial_s^2 g_{ij}(t;s)
+\partial_{T_{\mathrm{em}}}^2 g_{ij}(T;T_{\mathrm{em}})
 =
--\ddot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)
+-\mathbf A_j(T_{\mathrm{em}})\cdot \hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})
 +\frac{
-\|\dot{\mathbf{x}}_j(s)\|^2-
-\big(\dot{\mathbf{x}}_j(s)\cdot \hat{\mathbf{r}}_{ij}(t;s)\big)^2
+\|\mathbf V_j(T_{\mathrm{em}})\|^2-
+\big(\mathbf V_j(T_{\mathrm{em}})\cdot \hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\big)^2
 }{
-r_{ij}(t;s)
+r_{ij}(T;T_{\mathrm{em}})
 }
 $$
 and
 $$
-\partial_s^3 g_{ij}(t;s)
+\partial_{T_{\mathrm{em}}}^3 g_{ij}(T;T_{\mathrm{em}})
 $$
 is a finite linear combination of terms built from
 $$
-\dddot{\mathbf{x}}_j(s),
+\frac{d\mathbf A_j}{dT}(T_{\mathrm{em}}),
 \qquad
-\dot{\mathbf{x}}_j(s),
+\mathbf V_j(T_{\mathrm{em}}),
 \qquad
-\ddot{\mathbf{x}}_j(s),
+\mathbf A_j(T_{\mathrm{em}}),
 \qquad
-r_{ij}(t;s)^{-1},
+r_{ij}(T;T_{\mathrm{em}})^{-1},
 \qquad
-r_{ij}(t;s)^{-2}
+r_{ij}(T;T_{\mathrm{em}})^{-2}
 $$
 so it is controlled by the same
 $$
@@ -4998,32 +5002,32 @@ The first analytic bridge theorem should impose one quantitative nondegeneracy r
 
 - a uniform acceleration bound
   $$
-  \|\ddot{\mathbf{x}}_i\|\le A_{\max}
+  \|\mathbf A_i\|\le A_{\max}
   $$
 - a uniform acceleration-Lipschitz bound
   $$
-  \|\ddot{\mathbf{x}}_i(t)-\ddot{\mathbf{x}}_i(t')\|
+  \|\mathbf A_i(t)-\mathbf A_i(t')\|
   \le
   L_A|t-t'|
   $$
 - a strict fold curvature floor
   $$
-  |\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0
+  |\partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0
   $$
   at every admissible fold;
 - and a uniform Jacobian floor
   $$
-  |\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0
+  |\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0
   $$
   away from the explicitly listed fold tubes.
 
 Under these hypotheses the delay defects should satisfy one explicit derivative hierarchy on the controlled cycle:
 $$
-|\partial_s g_{ij}(t;s)|\le C^{\mathrm{mb}}_{1,g},
+|\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|\le C^{\mathrm{mb}}_{1,g},
 \qquad
-|\partial_s^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g},
+|\partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g},
 \qquad
-|\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g}
+|\partial_{T_{\mathrm{em}}}^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g}
 $$
 for constants determined only by
 $$
@@ -5037,7 +5041,7 @@ d_{\min}
 $$
 The point of this hierarchy is that it makes the fold geometry quantitative rather than qualitative: once
 $$
-\partial_s g_{ij}=0
+\partial_{T_{\mathrm{em}}} g_{ij}=0
 $$
 is known to be a genuinely curved zero with bounded third derivative, the root geometry cannot oscillate arbitrarily fast nearby.
 
@@ -5052,17 +5056,17 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > with
 > $$
-> \partial_s g_{ij}(t;s_\ast)=0,
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s_\ast)=0,
 > \qquad
-> |\partial_s^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0.
+> |\partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s_\ast)|\ge \gamma_{\mathrm{fold}}>0.
 > $$
 > If
 > $$
-> |\partial_s^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g}
+> |\partial_{T_{\mathrm{em}}}^3 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{3,g}
 > $$
 > on the corresponding fold tube, then
 > $$
-> \partial_s g_{ij}(t;s)\neq 0
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s)\neq 0
 > $$
 > for every
 > $$
@@ -5080,7 +5084,7 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > **Proof.**
 > Taylor-expand
 > $$
-> \partial_s g_{ij}(t;s)
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s)
 > $$
 > about
 > $$
@@ -5088,15 +5092,15 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > Since
 > $$
-> \partial_s g_{ij}(t;s_\ast)=0,
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s_\ast)=0,
 > $$
 > one has
 > $$
-> \partial_s g_{ij}(t;s)
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s)
 > =
-> \partial_s^2 g_{ij}(t;s_\ast)(s-s_\ast)
+> \partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s_\ast)(s-s_\ast)
 > +
-> \frac{1}{2}\partial_s^3 g_{ij}(t;\xi_s)(s-s_\ast)^2
+> \frac{1}{2}\partial_{T_{\mathrm{em}}}^3 g_{ij}(t;\xi_s)(s-s_\ast)^2
 > $$
 > for some
 > $$
@@ -5112,7 +5116,7 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > Therefore
 > $$
-> |\partial_s g_{ij}(t;s)|
+> |\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|
 > \ge
 > |s-s_\ast|
 > \left(
@@ -5130,7 +5134,7 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > and assume, in addition, that the receiver-time derivative is transversal there:
 > $$
-> |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0.
+> |\partial_T g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0.
 > $$
 > Let
 > $$
@@ -5138,7 +5142,7 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > be the local fold sheet obtained from
 > $$
-> \partial_s g_{ij}(t;s_{\mathrm{fold}}(t))=0
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s_{\mathrm{fold}}(t))=0
 > $$
 > by the curvature floor, and define the scalar fold-passage function
 > $$
@@ -5160,7 +5164,7 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > **Proof.**
 > The curvature floor gives
 > $$
-> \partial_s^2 g_{ij}(t_\ast;s_\ast)\neq 0,
+> \partial_{T_{\mathrm{em}}}^2 g_{ij}(t_\ast;s_\ast)\neq 0,
 > $$
 > so the implicit-function theorem gives the local fold sheet
 > $$
@@ -5174,11 +5178,11 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 > $$
 > \dot{G}_{\mathrm{fold}}(t_\ast)
 > =
-> \partial_t g_{ij}(t_\ast;s_\ast)
+> \partial_T g_{ij}(t_\ast;s_\ast)
 > +
-> \partial_s g_{ij}(t_\ast;s_\ast)\dot{s}_{\mathrm{fold}}(t_\ast)
+> \partial_{T_{\mathrm{em}}} g_{ij}(t_\ast;s_\ast)\dot{s}_{\mathrm{fold}}(t_\ast)
 > =
-> \partial_t g_{ij}(t_\ast;s_\ast),
+> \partial_T g_{ij}(t_\ast;s_\ast),
 > $$
 > hence
 > $$
@@ -5239,11 +5243,11 @@ is known to be a genuinely curved zero with bounded third derivative, the root g
 >    $$
 > 3. away from the listed fold tubes one has the simple-branch floor
 >    $$
->    |\partial_s g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0.
+>    |\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|\ge \nu_J^{\mathrm{mb}}>0.
 >    $$
 > 4. every admissible fold is also transversal in receiver time:
 >    $$
->    |\partial_t g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0,
+>    |\partial_T g_{ij}(t_\ast;s_\ast)|\ge \chi_{\mathrm{fold}}>0,
 >    $$
 >    and the controlled cycle carries one receiver-time fold-passage ceiling
 >    $$
@@ -5326,11 +5330,11 @@ $$
 $$
 are the corresponding sector-boundary and admissible exchange isolation scales produced by the same derivative hierarchy. The first two terms are the source-time and receiver-time fold-isolation scales. The third term is the uniform simple-branch persistence scale away from fold tubes: if
 $$
-|\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}}
+|\partial_{T_{\mathrm{em}}} g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}}
 $$
 then
 $$
-|\partial_s g_{ij}(t;s)|\ge \frac{1}{2}\nu_J^{\mathrm{mb}}
+|\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|\ge \frac{1}{2}\nu_J^{\mathrm{mb}}
 $$
 whenever
 $$
@@ -5360,15 +5364,15 @@ The remaining local input is simple-branch persistence away from fold tubes.
 > $$
 > outside the controlled fold tubes with
 > $$
-> |\partial_s g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}}.
+> |\partial_{T_{\mathrm{em}}} g_{ij}(t;s_0)|\ge \nu_J^{\mathrm{mb}}.
 > $$
 > If
 > $$
-> |\partial_s^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g}
+> |\partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s)|\le C^{\mathrm{mb}}_{2,g}
 > $$
 > on the corresponding branch neighborhood, then
 > $$
-> |\partial_s g_{ij}(t;s)|\ge \frac{1}{2}\nu_J^{\mathrm{mb}}
+> |\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|\ge \frac{1}{2}\nu_J^{\mathrm{mb}}
 > $$
 > whenever
 > $$
@@ -5382,13 +5386,13 @@ The remaining local input is simple-branch persistence away from fold tubes.
 > **Proof.**
 > By the mean-value theorem,
 > $$
-> |\partial_s g_{ij}(t;s)-\partial_s g_{ij}(t;s_0)|
+> |\partial_{T_{\mathrm{em}}} g_{ij}(t;s)-\partial_{T_{\mathrm{em}}} g_{ij}(t;s_0)|
 > \le
 > C^{\mathrm{mb}}_{2,g}|s-s_0|.
 > $$
 > So on the stated interval one has
 > $$
-> |\partial_s g_{ij}(t;s)|
+> |\partial_{T_{\mathrm{em}}} g_{ij}(t;s)|
 > \ge
 > \nu_J^{\mathrm{mb}}-C^{\mathrm{mb}}_{2,g}|s-s_0|
 > \ge
@@ -5397,7 +5401,7 @@ The remaining local input is simple-branch persistence away from fold tubes.
 
 The remaining event types are not detected by
 $$
-\partial_s g_{ij}=0
+\partial_{T_{\mathrm{em}}} g_{ij}=0
 $$
 alone, so their proof burden should also be stated explicitly. For each fixed branch family in one atlas chart, let
 $$
@@ -5439,7 +5443,7 @@ Along any active branch away from the fold tubes one also has
 $$
 \dot{s}(t)
 =
--\frac{\partial_t g_{ij}(t;s(t))}{\partial_s g_{ij}(t;s(t))}
+-\frac{\partial_T g_{ij}(t;s(t))}{\partial_{T_{\mathrm{em}}} g_{ij}(t;s(t))}
 $$
 so the simple-branch persistence lemma supplies the denominator floor needed to keep
 $$
@@ -5473,7 +5477,7 @@ on the corresponding branch segments.
 > 2. **Simple-branch persistence between folds.**
 >    Outside the union of those fold neighborhoods, the Jacobian floor
 >    $$
->    |\partial_s g_{ij}|\ge \nu_J^{\mathrm{mb}}
+>    |\partial_{T_{\mathrm{em}}} g_{ij}|\ge \nu_J^{\mathrm{mb}}
 >    $$
 >    and the simple-branch persistence lemma imply that every active root branch remains uniformly transversal on intervals of source-time size
 >    $$
@@ -5579,8 +5583,8 @@ The theorem target is that the dual-mollified branch sum contributes only a fini
 $$
 \left|
 \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
-\Pi_m(t)\cdot
-\ddot{\mathbf{X}}(t)\,dt
+\Pi_m(T)\cdot
+\frac{d^2\mathbf X}{dT^2}(T)\,dT
 \right|
 \le
 F^{\mathrm{mb}}_{m,\mathsf{e}}
@@ -5626,7 +5630,7 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > $$
 > J_{ij}(t;s)
 > =
-> \partial_s g_{ij}(t;s)
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s)
 > =
 > \alpha_{ij}(t)\,u
 > +
@@ -5665,11 +5669,11 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > $$
 > Since
 > $$
-> \partial_s g_{ij}(t_\ast;s_\ast)=0
+> \partial_{T_{\mathrm{em}}} g_{ij}(t_\ast;s_\ast)=0
 > $$
 > and
 > $$
-> |\partial_s^2 g_{ij}(t_\ast;s_\ast)|\ge \gamma_{\mathrm{fold}},
+> |\partial_{T_{\mathrm{em}}}^2 g_{ij}(t_\ast;s_\ast)|\ge \gamma_{\mathrm{fold}},
 > $$
 > Taylor expansion in
 > $$
@@ -5677,9 +5681,9 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > $$
 > gives
 > $$
-> \partial_s g_{ij}(t;s)
+> \partial_{T_{\mathrm{em}}} g_{ij}(t;s)
 > =
-> \partial_s^2 g_{ij}(t;s_\ast)\,u
+> \partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s_\ast)\,u
 > +
 > \mathcal{R}_{ij}(t,u),
 > $$
@@ -5691,7 +5695,7 @@ The first proof-oriented step is to reduce every admissible fold tube to one qua
 > $$
 > Define
 > $$
-> \alpha_{ij}(t)\equiv \partial_s^2 g_{ij}(t;s_\ast).
+> \alpha_{ij}(t)\equiv \partial_{T_{\mathrm{em}}}^2 g_{ij}(t;s_\ast).
 > $$
 > By continuity in
 > $$
@@ -5749,8 +5753,8 @@ Once that reduction is available, the actual impulse bound becomes a finite-dime
 > $$
 > \left|
 > \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
-> \Pi_m(t)\cdot
-> \ddot{\mathbf{X}}(t)\,dt
+> \Pi_m(T)\cdot
+> \frac{d^2\mathbf X}{dT^2}(T)\,dT
 > \right|
 > \le
 > \mathfrak{F}^{\mathrm{mb}}_m\,
@@ -5892,8 +5896,8 @@ The proof is written one local fold block at a time.
 > $$
 > \left|
 > \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
-> \Pi_m(t)\cdot
-> \mathbf{a}^{(ij)}_{\eta}(t)\,dt
+> \Pi_m(T)\cdot
+> \mathbf{A}^{(ij)}_{\eta}(T)\,dT
 > \right|
 > \le
 > \mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}},
@@ -5985,15 +5989,15 @@ The proof is written one local fold block at a time.
 >    $$
 >    \frac{ds}{dt}
 >    =
->    -\frac{\partial_t g_{ij}(t;s(t))}{\partial_s g_{ij}(t;s(t))}.
+>    -\frac{\partial_T g_{ij}(t;s(t))}{\partial_{T_{\mathrm{em}}} g_{ij}(t;s(t))}.
 >    $$
 >    Hence
 >    $$
 >    dt
 >    =
->    \frac{|\partial_s g_{ij}(t;s(t))|}{|\partial_t g_{ij}(t;s(t))|}\,ds
+>    \frac{|\partial_{T_{\mathrm{em}}} g_{ij}(t;s(t))|}{|\partial_T g_{ij}(t;s(t))|}\,ds
 >    =
->    \frac{|J_{ij}(t;s)|}{|\partial_t g_{ij}(t;s)|}\,du.
+>    \frac{|J_{ij}(t;s)|}{|\partial_T g_{ij}(t;s)|}\,du.
 >    $$
 >    By shrinking the controlled fold tube if necessary, the receiver-time passage floor from the no-accumulation package persists along the active root branch; write the persisted floor again as
 >    $$
@@ -6001,7 +6005,7 @@ The proof is written one local fold block at a time.
 >    $$
 >    Thus
 >    $$
->    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
+>    |\partial_T g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
 >    $$
 >    Therefore the source-normal diagnostic factor
 >    $$
@@ -6083,8 +6087,8 @@ The proof is written one local fold block at a time.
 > $$
 > \left|
 > \int_{W^{\mathrm{mb}}_{\mathrm{fold}}(\mathsf{e})}
-> \Pi_m(t)\cdot
-> \ddot{\mathbf{X}}(t)\,dt
+> \Pi_m(T)\cdot
+> \frac{d^2\mathbf X}{dT^2}(T)\,dT
 > \right|
 > \le
 > M_{\mathrm{loc}}(\mathsf{e})\,\mathfrak{F}^{\mathrm{mb}}_{m,\mathrm{II}},
@@ -6130,11 +6134,11 @@ The proof is written one local fold block at a time.
 > $$
 > such that every admissible fold block sends the controlled tube data into a post-transit state satisfying
 > $$
-> \|\dot{\mathbf{X}}\|\le U_{\max}^{+},
+> \left\|\frac{d\mathbf X}{dT}\right\|\le U_{\max}^{+},
 > \qquad
-> \|\ddot{\mathbf{X}}\|\le A_{\max}^{+},
+> \left\|\frac{d^2\mathbf X}{dT^2}\right\|\le A_{\max}^{+},
 > \qquad
-> \operatorname{Lip}(\ddot{\mathbf{X}})\le L_A^{+}.
+> \operatorname{Lip}\!\left(\frac{d^2\mathbf X}{dT^2}\right)\le L_A^{+}.
 > $$
 > In the eventual invariant-envelope argument one must choose the kinematic box so that these renormalized constants are absorbed back into the same admissible class.
 >
@@ -6244,7 +6248,7 @@ let
 $$
 g_{ij}(t;s)
 \equiv
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s)
+\|\mathbf X_i(t)-\mathbf X_j(s)\|-c_f(t-s)
 $$
 denote the exact delayed-root equation on a window
 $$
@@ -6622,21 +6626,21 @@ This finite-cycle parity rule should now be treated as an explicit upstream geom
 >    $$
 >    \frac{ds}{dt}
 >    =
->    -\frac{\partial_t g_{ij}}{\partial_s g_{ij}}.
+>    -\frac{\partial_T g_{ij}}{\partial_{T_{\mathrm{em}}} g_{ij}}.
 >    $$
 >    On the controlled late-turn and mid windows, the no-accumulation package gives the receiver-time passage floor
 >    $$
->    |\partial_t g_{ij}|\ge \chi_{\mathrm{evt}}>0,
+>    |\partial_T g_{ij}|\ge \chi_{\mathrm{evt}}>0,
 >    $$
 >    while away from the explicitly listed fold tubes the simple-branch Jacobian floor gives
 >    $$
->    |\partial_s g_{ij}|\ge \nu^{\mathrm{mb}}_J>0.
+>    |\partial_{T_{\mathrm{em}}} g_{ij}|\ge \nu^{\mathrm{mb}}_J>0.
 >    $$
 >    Hence
 >    $$
 >    \left|\frac{ds}{dt}\right|
 >    \ge
->    \frac{\chi_{\mathrm{evt}}}{\sup|\partial_s g_{ij}|}
+>    \frac{\chi_{\mathrm{evt}}}{\sup|\partial_{T_{\mathrm{em}}} g_{ij}|}
 >    \equiv
 >    c^{\mathrm{mb}}_{s,\mathrm{drift}}>0
 >    $$
@@ -6889,9 +6893,9 @@ $$
 $$
 adapted to the Jacobi coordinates
 $$
-\mathbf{a}=\mathbf{x}_1-\mathbf{x}_3,
+\mathbf{a}=\mathbf X_1-\mathbf X_3,
 \qquad
-\mathbf{b}=\mathbf{x}_2-\frac{\mathbf{x}_1+\mathbf{x}_3}{2}
+\mathbf{b}=\mathbf X_2-\frac{\mathbf X_1+\mathbf X_3}{2}
 $$
 For the first three-body bridge the natural concrete choice is
 $$
@@ -6907,11 +6911,11 @@ $$
 $$
 \rho^{\mathrm{mb}}_4(\mathbf{a},\mathbf{b})\equiv
 \max\Big\{
-\|\mathbf{x}_1\|,
-\|\mathbf{x}_2\|,
-\|\mathbf{x}_3\|
+\|\mathbf X_1\|,
+\|\mathbf X_2\|,
+\|\mathbf X_3\|
 \Big\}
--\|\mathbf{x}_2\|
+-\|\mathbf X_2\|
 $$
 
 Their intended meanings are:
@@ -7108,38 +7112,38 @@ $$
 $$
 one has on every noncollision, non-pair-collapse window
 $$
-\dot{\rho}^{\mathrm{mb}}_1
+\frac{d\rho^{\mathrm{mb}}_1}{dT}
 =
-\hat{\mathbf{a}}\cdot \dot{\mathbf{a}},
+\hat{\mathbf{a}}\cdot \frac{d\mathbf{a}}{dT},
 $$
 and
 $$
-\ddot{\rho}^{\mathrm{mb}}_1
+\frac{d^2\rho^{\mathrm{mb}}_1}{dT^2}
 =
-\hat{\mathbf{a}}\cdot \ddot{\mathbf{a}}
+\hat{\mathbf{a}}\cdot \frac{d^2\mathbf{a}}{dT^2}
 \;+\;
-\frac{\|\dot{\mathbf{a}}\|^2-\big(\hat{\mathbf{a}}\cdot\dot{\mathbf{a}}\big)^2}{\|\mathbf{a}\|}.
+\frac{\left\|\frac{d\mathbf{a}}{dT}\right\|^2-\left(\hat{\mathbf{a}}\cdot\frac{d\mathbf{a}}{dT}\right)^2}{\|\mathbf{a}\|}.
 $$
 Writing
 $$
-\ddot{\mathbf{a}}=\ddot{\mathbf{x}}_1-\ddot{\mathbf{x}}_3,
+\frac{d^2\mathbf{a}}{dT^2}=\mathbf A_1-\mathbf A_3,
 $$
 the first term is the true pair-axis forcing and the second is the tangential leakage caused by rotation of the same-sign pair axis in the plane. Since the leakage term is nonnegative, the useful inward comparison law is obtained by isolating the pair-axis component
 $$
-\Lambda^{\mathrm{mb}}_1(t)
+\Lambda^{\mathrm{mb}}_1(T)
 \equiv
--\hat{\mathbf{a}}(t)\cdot\ddot{\mathbf{a}}(t),
+-\hat{\mathbf{a}}(T)\cdot\frac{d^2\mathbf{a}}{dT^2}(T),
 $$
 and the geometric leakage ceiling
 $$
-L^{\mathrm{mb}}_1(t)
+L^{\mathrm{mb}}_1(T)
 \equiv
-\frac{\|\dot{\mathbf{a}}(t)\|^2-\big(\hat{\mathbf{a}}(t)\cdot\dot{\mathbf{a}}(t)\big)^2}{\|\mathbf{a}(t)\|}
-+L^{\mathrm{mb}}_{1,\mathrm{rep}}(t),
+\frac{\left\|\frac{d\mathbf{a}}{dT}(T)\right\|^2-\left(\hat{\mathbf{a}}(T)\cdot\frac{d\mathbf{a}}{dT}(T)\right)^2}{\|\mathbf{a}(T)\|}
++L^{\mathrm{mb}}_{1,\mathrm{rep}}(T),
 $$
 where
 $$
-L^{\mathrm{mb}}_{1,\mathrm{rep}}(t)
+L^{\mathrm{mb}}_{1,\mathrm{rep}}(T)
 $$
 is the explicit ceiling for same-sign self-driven widening and any partner-mediated outward component not absorbed into
 $$
@@ -7176,7 +7180,7 @@ W_{ij}^{\mathrm{rec}}(t;s)
 $$
 The receiver-normal branch law is
 $$
-\ddot{\mathbf{x}}_i(t)
+\mathbf A_i(t)
 =
 \sum_{j=1}^3
 \sum_{s\in\mathcal{C}_{ij}(t)}
@@ -7193,7 +7197,7 @@ terms are self branches. Then
 $$
 \Lambda^{\mathrm{mb}}_1(t)
 =
--\hat{\mathbf{a}}(t)\cdot\big(\ddot{\mathbf{x}}_1(t)-\ddot{\mathbf{x}}_3(t)\big)
+-\hat{\mathbf{a}}(t)\cdot\big(\mathbf A_1(t)-\mathbf A_3(t)\big)
 $$
 splits into branch families
 $$
@@ -7242,8 +7246,8 @@ where:
 The explicit unresolved theorem burden is to prove, on the recapture windows,
 that the opposite-sign core term dominates the same-sign and self-driven
 widening after all admissible fold-tube and deep-past ceilings are paid. Any
-margin lacking same-record $D_t$ is restart-only: the margin becomes force
-evidence only after the same retained record reports $D_s$, $D_t$, and
+margin lacking same-record $D_T$ is restart-only: the margin becomes force
+evidence only after the same retained record reports $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ for every consumed branch family.
 
 Accordingly, a first branch-sum ceiling for the residual widening term should be written as
@@ -7274,35 +7278,35 @@ $$
 $$
 one has likewise
 $$
-\dot{\rho}^{\mathrm{mb}}_2
+\frac{d\rho^{\mathrm{mb}}_2}{dT}
 =
-\hat{\mathbf{b}}\cdot \dot{\mathbf{b}}
+\hat{\mathbf{b}}\cdot \frac{d\mathbf{b}}{dT}
 $$
 and
 $$
-\ddot{\rho}^{\mathrm{mb}}_2
+\frac{d^2\rho^{\mathrm{mb}}_2}{dT^2}
 =
-\hat{\mathbf{b}}\cdot \ddot{\mathbf{b}}
+\hat{\mathbf{b}}\cdot \frac{d^2\mathbf{b}}{dT^2}
 \;+\;
-\frac{\|\dot{\mathbf{b}}\|^2-\big(\hat{\mathbf{b}}\cdot\dot{\mathbf{b}}\big)^2}{\|\mathbf{b}\|}
+\frac{\left\|\frac{d\mathbf{b}}{dT}\right\|^2-\left(\hat{\mathbf{b}}\cdot\frac{d\mathbf{b}}{dT}\right)^2}{\|\mathbf{b}\|}
 $$
 Since
 $$
-\ddot{\mathbf{b}}
+\frac{d^2\mathbf{b}}{dT^2}
 =
-\ddot{\mathbf{x}}_2-\frac{\ddot{\mathbf{x}}_1+\ddot{\mathbf{x}}_3}{2}
+\mathbf A_2-\frac{\mathbf A_1+\mathbf A_3}{2}
 $$
 the first term measures the net delayed pull of the opposite-sign body toward or away from the outer-pair midpoint, while the second term is the transverse leakage created by midpoint-frame rotation and shape drift. The natural channelwise definitions are therefore
 $$
-\Lambda^{\mathrm{mb}}_2(t)
+\Lambda^{\mathrm{mb}}_2(T)
 \equiv
--\hat{\mathbf{b}}(t)\cdot \ddot{\mathbf{b}}(t)
+-\hat{\mathbf{b}}(T)\cdot \frac{d^2\mathbf{b}}{dT^2}(T)
 $$
 $$
-L^{\mathrm{mb}}_2(t)
+L^{\mathrm{mb}}_2(T)
 \equiv
-\frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
-+L^{\mathrm{mb}}_{2,\mathrm{breath}}(t)
+\frac{\left\|\frac{d\mathbf{b}}{dT}(T)\right\|^2-\left(\hat{\mathbf{b}}(T)\cdot\frac{d\mathbf{b}}{dT}(T)\right)^2}{\|\mathbf{b}(T)\|}
++L^{\mathrm{mb}}_{2,\mathrm{breath}}(T)
 $$
 where
 $$
@@ -7335,8 +7339,8 @@ $$
 =
 -\hat{\mathbf{b}}(t)\cdot
 \left(
-\ddot{\mathbf{x}}_2(t)
--\frac{\ddot{\mathbf{x}}_1(t)+\ddot{\mathbf{x}}_3(t)}{2}
+\mathbf A_2(t)
+-\frac{\mathbf A_1(t)+\mathbf A_3(t)}{2}
 \right)
 $$
 and this naturally decomposes into:
@@ -7410,15 +7414,15 @@ $$
 $$
 so its first derivative may be organized as
 $$
-\dot{\rho}^{\mathrm{mb}}_3
+\frac{d\rho^{\mathrm{mb}}_3}{dT}
 =
 \varsigma\,
 \frac{
-\det(\dot{\mathbf{a}},\mathbf{b})+\det(\mathbf{a},\dot{\mathbf{b}})
+\det(d\mathbf{a}/dT,\mathbf{b})+\det(\mathbf{a},d\mathbf{b}/dT)
 }{S_{ab}}
 -
 \varsigma\,
-\frac{\Delta_{ab}\,\dot S_{ab}}{S_{ab}^2}.
+\frac{\Delta_{ab}\,(dS_{ab}/dT)}{S_{ab}^2}.
 $$
 The theorem burden is not to memorize the full second derivative term-by-term, but to split it into
 $$
@@ -7494,15 +7498,15 @@ $$
 \rho^{\mathrm{mb}}_4
 =
 \max\Big\{
-\|\mathbf{x}_1\|,
-\|\mathbf{x}_2\|,
-\|\mathbf{x}_3\|
+\|\mathbf X_1\|,
+\|\mathbf X_2\|,
+\|\mathbf X_3\|
 \Big\}
--\|\mathbf{x}_2\|
+-\|\mathbf X_2\|
 $$
 the correct local formulation is piecewise. On any subwindow where one outer body, say
 $$
-\mathbf{x}_{i_\ast},
+\mathbf X_{i_\ast},
 \qquad
 i_\ast\in\{1,3\}
 $$
@@ -7514,13 +7518,13 @@ one has the smooth branch
 $$
 \rho^{\mathrm{mb}}_4
 =
-\|\mathbf{x}_{i_\ast}\|-\|\mathbf{x}_2\|
+\|\mathbf X_{i_\ast}\|-\|\mathbf X_2\|
 $$
 Then, with
 $$
-\hat{\mathbf{x}}_{i_\ast}\equiv \frac{\mathbf{x}_{i_\ast}}{\|\mathbf{x}_{i_\ast}\|},
+\hat{\mathbf X}_{i_\ast}\equiv \frac{\mathbf X_{i_\ast}}{\|\mathbf X_{i_\ast}\|},
 \qquad
-\hat{\mathbf{x}}_{2}\equiv \frac{\mathbf{x}_{2}}{\|\mathbf{x}_{2}\|}
+\hat{\mathbf X}_{2}\equiv \frac{\mathbf X_{2}}{\|\mathbf X_{2}\|}
 $$
 the channelwise comparison law should be organized as
 $$
@@ -7534,8 +7538,8 @@ with
 $$
 \Lambda^{\mathrm{mb}}_4(t)
 \equiv
--\hat{\mathbf{x}}_{i_\ast}(t)\cdot \ddot{\mathbf{x}}_{i_\ast}(t)
-+\hat{\mathbf{x}}_{2}(t)\cdot \ddot{\mathbf{x}}_{2}(t)
+-\hat{\mathbf X}_{i_\ast}(t)\cdot \mathbf A_{i_\ast}(t)
++\hat{\mathbf X}_{2}(t)\cdot \mathbf A_{2}(t)
 $$
 interpreted as persistence of the distinguished opposite-sign core role, and with leakage ceiling
 $$
@@ -7558,11 +7562,11 @@ Here:
   $$
   controls the loss of smoothness near a near-tie
   $$
-  \|\mathbf{x}_{i_\ast}\|\approx \|\mathbf{x}_2\|
+  \|\mathbf X_{i_\ast}\|\approx \|\mathbf X_2\|
   $$
   or
   $$
-  \|\mathbf{x}_1\|\approx \|\mathbf{x}_3\|
+  \|\mathbf X_1\|\approx \|\mathbf X_3\|
   $$
 - $$
   L^{\mathrm{mb}}_{4,\mathrm{fold}}
@@ -7579,22 +7583,22 @@ These four formulas are the concrete comparison identities the planar-three-body
 
 The next step is to specify the first recapture windows for the principal channels, beginning with the first two Jacobi channels for which the cleanest local turning lemma is available. Let
 $$
-t_{\mathrm{x}}^{\mathrm{mb}}
+T_{\mathrm{x}}^{\mathrm{mb}}
 $$
 denote the first near-core crossing or minimum-core event after the initial inbound section, and let
 $$
-t_{\mathrm{turn}}^{\mathrm{mb}}
+T_{\mathrm{turn}}^{\mathrm{mb}}
 $$
 denote the first later time at which the distinguished opposite-sign body and the same-sign outer pair are both candidates for outward escape rather than continued compression. The first controlled windows should then be taken as
 $$
 I^{\mathrm{mb}}_{\rho,\mathrm{post}}
 \equiv
-\big[t_{\mathrm{x}}^{\mathrm{mb}},\,t_{\mathrm{x}}^{\mathrm{mb}}+\Delta_{\rho,\mathrm{post}}\big],
+\big[T_{\mathrm{x}}^{\mathrm{mb}},\,T_{\mathrm{x}}^{\mathrm{mb}}+\Delta_{\rho,\mathrm{post}}\big],
 $$
 $$
 I^{\mathrm{mb}}_{\rho,\mathrm{late}}
 \equiv
-\big[t_{\mathrm{turn}}^{\mathrm{mb}}-\Delta_{\rho,\mathrm{late}},\,t_{\mathrm{turn}}^{\mathrm{mb}}\big],
+\big[T_{\mathrm{turn}}^{\mathrm{mb}}-\Delta_{\rho,\mathrm{late}},\,T_{\mathrm{turn}}^{\mathrm{mb}}\big],
 $$
 with positive window lengths
 $$
@@ -7651,7 +7655,7 @@ the intended role is late-turn closure: the same observables must already be los
 > +
 > \Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}\Big)_+
 > +
-> \frac{\|\dot{\mathbf{a}}\|^2-\big(\hat{\mathbf{a}}\cdot\dot{\mathbf{a}}\big)^2}{\|\mathbf{a}\|}
+> \frac{\left\|d\mathbf{a}/dT\right\|^2-\left(\hat{\mathbf{a}}\cdot d\mathbf{a}/dT\right)^2}{\|\mathbf{a}\|}
 > +
 > F^{\mathrm{mb}}_1
 > +
@@ -7664,7 +7668,7 @@ the intended role is late-turn closure: the same observables must already be los
 > +
 > \Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}\Big)_+
 > +
-> \frac{\|\dot{\mathbf{b}}\|^2-\big(\hat{\mathbf{b}}\cdot\dot{\mathbf{b}}\big)^2}{\|\mathbf{b}\|}
+> \frac{\left\|d\mathbf{b}/dT\right\|^2-\left(\hat{\mathbf{b}}\cdot d\mathbf{b}/dT\right)^2}{\|\mathbf{b}\|}
 > +
 > F^{\mathrm{mb}}_2
 > +
@@ -7672,20 +7676,20 @@ the intended role is late-turn closure: the same observables must already be los
 > $$
 > Then the two principal escape observables obey
 > $$
-> \ddot{\rho}^{\mathrm{mb}}_1(t)<0,
+> \frac{d^2\rho^{\mathrm{mb}}_1}{dT^2}(T)<0,
 > \qquad
-> \ddot{\rho}^{\mathrm{mb}}_2(t)<0
+> \frac{d^2\rho^{\mathrm{mb}}_2}{dT^2}(T)<0
 > $$
 > throughout those windows.
 >
 > In particular:
 > 1. if
 >    $$
->    \dot{\rho}^{\mathrm{mb}}_1
+>    \frac{d\rho^{\mathrm{mb}}_1}{dT}
 >    $$
 >    or
 >    $$
->    \dot{\rho}^{\mathrm{mb}}_2
+>    \frac{d\rho^{\mathrm{mb}}_2}{dT}
 >    $$
 >    is initially positive at the start of either window, it must strictly decrease along that window;
 > 2. if the window is long enough and the initial outward rates are uniformly bounded, each observable reaches a turning time inside the window;
@@ -7774,73 +7778,73 @@ should be defined directly from the projected branch-sum gaps above. Namely
 $$
 \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{post}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{1,\mathrm{post}}}
+\inf_{T\in I^{\mathrm{mb}}_{1,\mathrm{post}}}
 \left[
-\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(t)
+\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(T)
 -
-\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(T)\Big)_+
 -
-\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(T)\Big)_+
 -
-\frac{\|\dot{\mathbf{a}}(t)\|^2-\big(\hat{\mathbf{a}}(t)\cdot\dot{\mathbf{a}}(t)\big)^2}{\|\mathbf{a}(t)\|}
+\frac{\left\|\frac{d\mathbf{a}}{dT}(T)\right\|^2-\left(\hat{\mathbf{a}}(T)\cdot\frac{d\mathbf{a}}{dT}(T)\right)^2}{\|\mathbf{a}(T)\|}
 -
-L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(T)
 -
-A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(T)
 \right],
 $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{1,\mathrm{late}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{1,\mathrm{late}}}
+\inf_{T\in I^{\mathrm{mb}}_{1,\mathrm{late}}}
 \left[
-\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(t)
+\Lambda^{\mathrm{mb}}_{1,\mathrm{core}}(T)
 -
-\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{same}}(T)\Big)_+
 -
-\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{1,\mathrm{self}}(T)\Big)_+
 -
-\frac{\|\dot{\mathbf{a}}(t)\|^2-\big(\hat{\mathbf{a}}(t)\cdot\dot{\mathbf{a}}(t)\big)^2}{\|\mathbf{a}(t)\|}
+\frac{\left\|\frac{d\mathbf{a}}{dT}(T)\right\|^2-\left(\hat{\mathbf{a}}(T)\cdot\frac{d\mathbf{a}}{dT}(T)\right)^2}{\|\mathbf{a}(T)\|}
 -
-L^{\mathrm{mb}}_{1,\mathrm{fold}}(t)
+L^{\mathrm{mb}}_{1,\mathrm{fold}}(T)
 -
-A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(T)
 \right],
 $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{post}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{2,\mathrm{post}}}
+\inf_{T\in I^{\mathrm{mb}}_{2,\mathrm{post}}}
 \left[
-\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(t)
+\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(T)
 -
-\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(T)\Big)_+
 -
-\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(T)\Big)_+
 -
-\frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
+\frac{\left\|\frac{d\mathbf{b}}{dT}(T)\right\|^2-\left(\hat{\mathbf{b}}(T)\cdot\frac{d\mathbf{b}}{dT}(T)\right)^2}{\|\mathbf{b}(T)\|}
 -
-L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(T)
 -
-A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(T)
 \right],
 $$
 $$
 \mathfrak{M}^{\mathrm{mb}}_{2,\mathrm{late}}
 \equiv
-\inf_{t\in I^{\mathrm{mb}}_{2,\mathrm{late}}}
+\inf_{T\in I^{\mathrm{mb}}_{2,\mathrm{late}}}
 \left[
-\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(t)
+\Lambda^{\mathrm{mb}}_{2,\mathrm{attr}}(T)
 -
-\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{pair}}(T)\Big)_+
 -
-\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(t)\Big)_+
+\Big(\Lambda^{\mathrm{mb}}_{2,\mathrm{self}}(T)\Big)_+
 -
-\frac{\|\dot{\mathbf{b}}(t)\|^2-\big(\hat{\mathbf{b}}(t)\cdot\dot{\mathbf{b}}(t)\big)^2}{\|\mathbf{b}(t)\|}
+\frac{\left\|\frac{d\mathbf{b}}{dT}(T)\right\|^2-\left(\hat{\mathbf{b}}(T)\cdot\frac{d\mathbf{b}}{dT}(T)\right)^2}{\|\mathbf{b}(T)\|}
 -
-L^{\mathrm{mb}}_{2,\mathrm{fold}}(t)
+L^{\mathrm{mb}}_{2,\mathrm{fold}}(T)
 -
-A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
+A^{\mathrm{mb}}_{s,\mathrm{deep}}(T)
 \right].
 $$
 
@@ -8145,6 +8149,8 @@ This is the first honest many-body recapture theorem target. It says that the co
 
 The remaining bridge step is now the same structural one that appeared in the 1D, reduced-planar, and unreduced-planar programs: put the whole cycle on one closed convex tame self-map domain. The only difference is that the data to be preserved are now genuinely atlas-level.
 
+The plain picture is that a proposed many-body cycle cannot be certified by watching one visually plausible path return. The proof must fence off a whole controlled family of nearby histories, let the delayed law evolve that family, and show that every admissible history lands back inside the same fence. The formal atlas language below names the bookkeeping needed to make that statement finite instead of visual.
+
 Let
 $$
 \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
@@ -8243,9 +8249,9 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 > $$
 > \|\mathbf{X}\|,
 > \qquad
-> \|\dot{\mathbf{X}}\|,
+> \left\|\frac{d\mathbf X}{dT}\right\|,
 > \qquad
-> \operatorname{Lip}(\dot{\mathbf{X}}),
+> \operatorname{Lip}\!\left(\frac{d\mathbf X}{dT}\right),
 > $$
 > the delay defects and the sector/exchange gap functions depend continuously on the history in the
 > $$
@@ -8256,7 +8262,7 @@ The next theorem burden is therefore not yet a convex tame set, but a stability 
 > 1. **Persistence of the event class.**
 >    Transversal zeros of
 >    $$
->    \partial_s g_{ij},
+>    \partial_{T_{\mathrm{em}}} g_{ij},
 >    \qquad
 >    \Theta_{\mathrm{sec}},
 >    \qquad
@@ -8343,7 +8349,7 @@ Choose:
   $$
   and the distinguished role-gap vector
   $$
-  \mathbf{x}_{i_\ast}-\mathbf{x}_2;
+  \mathbf X_{i_\ast}-\mathbf X_2;
   $$
 - closed velocity cones
   $$
@@ -8458,7 +8464,7 @@ and the relevant role-gap vector may be taken as
 $$
 \mathbf{r}^{\mathrm{role}}_{\mathrm{seed}}
 \equiv
-\mathbf{x}_{1,\mathrm{seed}}(0)-\mathbf{x}_{2,\mathrm{seed}}(0)
+\mathbf X_{1,\mathrm{seed}}(0)-\mathbf X_{2,\mathrm{seed}}(0)
 =
 \frac{1}{2}A_\ast \mathbf{e}_1-B_\ast \mathbf{e}_2.
 $$
@@ -8489,7 +8495,7 @@ $$
 \qquad
 \mathfrak{V}^{i}_W
 \ \text{around}\ 
-\dot{\mathbf{x}}_{i,\mathrm{seed}}.
+\mathbf V_{i,\mathrm{seed}}.
 $$
 The support floors should be chosen from the seed values with explicit slack
 $$
@@ -8544,26 +8550,26 @@ small enough that the corresponding inequalities still hold strictly on the whol
 > $$
 > of all gauge-fixed histories
 > $$
-> \Phi=(\mathbf{X},\dot{\mathbf{X}})
+> \Phi=\left(\mathbf X,\frac{d\mathbf X}{dT}\right)
 > \in
 > \mathcal{C}^{\mathrm{mb}}_{A_\ast,\eta}
 > $$
 > obeying
 > 1. the seed-centered tube bounds
 >    $$
->    \sup_t
->    \|\mathbf{X}(t)-\mathbf{X}_{\mathrm{seed}}(t)\|
+>    \sup_T
+>    \|\mathbf X(T)-\mathbf X_{\mathrm{seed}}(T)\|
 >    \le
 >    \varepsilon_X,
 >    $$
 >    $$
->    \sup_t
->    \|\dot{\mathbf{X}}(t)-\dot{\mathbf{X}}_{\mathrm{seed}}(t)\|
+>    \sup_T
+>    \left\|\frac{d\mathbf X}{dT}(T)-\frac{d\mathbf X_{\mathrm{seed}}}{dT}(T)\right\|
 >    \le
 >    \varepsilon_V,
 >    $$
 >    $$
->    \operatorname{Lip}(\dot{\mathbf{X}})
+>    \operatorname{Lip}\!\left(\frac{d\mathbf X}{dT}\right)
 >    \le
 >    A_\ast+\varepsilon_A;
 >    $$
@@ -8573,9 +8579,9 @@ small enough that the corresponding inequalities still hold strictly on the whol
 >    \qquad
 >    \mathbf{b}(t)\in \mathfrak{C}^{b}_W,
 >    \qquad
->    \mathbf{x}_{i_\ast}(t)-\mathbf{x}_2(t)\in \mathfrak{C}^{\mathrm{role}}_W,
+>    \mathbf X_{i_\ast}(t)-\mathbf X_2(t)\in \mathfrak{C}^{\mathrm{role}}_W,
 >    \qquad
->    \dot{\mathbf{x}}_i(t)\in \mathfrak{V}^{i}_W
+>    \mathbf V_i(t)\in \mathfrak{V}^{i}_W
 >    $$
 >    on every controlled window
 >    $$
@@ -8588,7 +8594,7 @@ small enough that the corresponding inequalities still hold strictly on the whol
 >    \mathbf{n}^{b}_W\cdot \mathbf{b}(t)\ge \alpha^{b}_W,
 >    \qquad
 >    \mathbf{n}^{\mathrm{role}}_W\cdot
->    \bigl(\mathbf{x}_{i_\ast}(t)-\mathbf{x}_2(t)\bigr)
+>    \bigl(\mathbf X_{i_\ast}(t)-\mathbf X_2(t)\bigr)
 >    \ge
 >    \alpha^{\mathrm{role}}_W
 >    $$
@@ -8619,7 +8625,7 @@ small enough that the corresponding inequalities still hold strictly on the whol
 >    $$
 > 4. and the branchwise Jacobian floors
 >    $$
->    |J_\beta(t)|
+>    |J_\beta(T)|
 >    \ge
 >    \nu^{\mathrm{cvx}}_{J,\beta}
 >    \qquad
@@ -8722,15 +8728,15 @@ small enough that the corresponding inequalities still hold strictly on the whol
 >    $$
 >    satisfy
 >    $$
->    \dot{\mathbf{x}}_j\cdot \hat{\mathbf{r}}_\beta
+>    \mathbf V_j\cdot \hat{\mathbf{r}}_\beta
 >    \le
 >    c_f(1-\nu^{\mathrm{cvx}}_{\beta,W}),
 >    $$
 >    so
 >    $$
->    J_\beta(t)
+>    J_\beta(T)
 >    =
->    1-\frac{\dot{\mathbf{x}}_j\cdot \hat{\mathbf{r}}_\beta}{c_f}
+>    1-\frac{\mathbf V_j\cdot \hat{\mathbf{r}}_\beta}{c_f}
 >    \ge
 >    \nu^{\mathrm{cvx}}_{\beta,W}.
 >    $$
@@ -8763,7 +8769,7 @@ small enough that the corresponding inequalities still hold strictly on the whol
 >    \qquad
 >    \mathbf{r}^{\mathrm{role}}_{\mathrm{seed}},
 >    \qquad
->    \dot{\mathbf{x}}_{i,\mathrm{seed}};
+>    \mathbf V_{i,\mathrm{seed}};
 >    $$
 > 3. and positive support slacks
 >    $$
@@ -9040,11 +9046,11 @@ $$
 V^{\mathrm{mb}}_{m,W,\max}
 \equiv
 \sup_{\Phi\in\mathcal{K}^{\mathrm{mb}}_{\mathrm{cvx}}}
-\bigl(\dot{\rho}^{\mathrm{mb}}_m\bigr)_+(t^{\Phi}_{m,W,\mathrm{in}}),
+\left(\frac{d\rho^{\mathrm{mb}}_m}{dT}\right)_+(T^{\Phi}_{m,W,\mathrm{in}}),
 $$
 where
 $$
-t^{\Phi}_{m,W,\mathrm{in}}
+T^{\Phi}_{m,W,\mathrm{in}}
 $$
 is the entry time of the history
 $$

@@ -460,9 +460,9 @@ Earth-core iron is a useful correction case because it separates three levels th
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation should therefore treat Earth-core iron as density sorting, metallic phase response, Noether sea strain, local clock and transport modification, and possible branch-preserving retuning of already existing iron assemblies. It should not treat the core as an iron-nucleus production site unless a separate reaction-provenance mechanism is derived. A compact guardrail is
 
 $$
-\partial_t \mathcal{N}_{\mathrm{Fe}}
+\partial_{t_{\mathrm{eff}}} \mathcal{N}_{\mathrm{Fe}}
 +
-\nabla\cdot\mathbf{J}_{\mathrm{Fe}}
+\nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\mathrm{Fe}}
 =
 S_{\mathrm{Fe}}^{\mathrm{nuc}},
 \qquad

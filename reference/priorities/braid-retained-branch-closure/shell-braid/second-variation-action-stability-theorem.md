@@ -209,7 +209,7 @@ $$
 $$
 
 The row is a receiver-normal restart row: $W_a^{\mathrm{rec}}=\lvert
-D_{t,a}/D_{s,a}\rvert$ and its first variation must be emitted on the same
+D_{T,a}/D_{s,a}\rvert$ and its first variation must be emitted on the same
 retained record before this packet can act as force/action evidence.
 
 For direct second-variation audits, the packet must also emit or enclose
@@ -236,7 +236,7 @@ $$
 and the direction variation $\delta\widehat{\mathbf{R}}_a$. A certificate may
 avoid writing every tensor component if it emits an interval or
 automatic-differentiation Hessian bound for the same retained-record solver,
-including $D_s$, $D_t$, $D W_a^{\mathrm{rec}}$, and
+including $D_s$, $D_T$, $D W_a^{\mathrm{rec}}$, and
 $D^2W_a^{\mathrm{rec}}$, and validates the skew part against the curl row.
 
 ---

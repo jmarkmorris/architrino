@@ -4,6 +4,8 @@ This lane owns detailed mappings between inherited physics frameworks and the co
 
 A theory bridge is not a neutral encyclopedia entry and it is not the canonical owner of the $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism. Its job is to take a mature external framework, preserve the mathematics that works, relocate its ontology when required, and state the closure targets needed to turn a comparison into a derivation.
 
+The bridge must move in both directions. It should tell a reader what the inherited theory successfully measures or computes, and it should tell the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack exactly which substrate, assembly, medium, or observer-record mechanism has to recover that success. A bridge that only criticizes old language is incomplete; a bridge that only copies old equations has not yet rebuilt the implementation layer.
+
 ## Scope
 
 Use this lane for documents that:

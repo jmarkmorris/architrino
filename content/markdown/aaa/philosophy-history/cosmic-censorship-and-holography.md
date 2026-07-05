@@ -2,6 +2,8 @@
 
 This chapter groups three closely connected ideas about gravitational extremality and informational closure: cosmic censorship, holography, and AdS/CFT. Cosmic censorship concerns whether singular behavior is hidden behind horizons. Holography concerns whether bulk physics admits lower-dimensional encoding. AdS/CFT provides the strongest formal realization of that idea by relating a gravitational bulk theory to a non-gravitational boundary theory.
 
+The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after the horizon-interface regime is derived from nested shell braid alignment, Noether sea response, and finite boundary data.
+
 ## Conceptual View
 
 The common conceptual pressure is that horizons may not be merely geometric boundaries. They may also be informational interfaces. In weak cosmic censorship, naked singularities are excluded from ordinary outside observation. In strong cosmic censorship, generic evolution remains predictively closed in the relevant sense. Holography then strengthens the role of the boundary by treating it as an encoding surface rather than a passive edge. AdS/CFT turns that intuition into a duality statement between two different descriptions of one underlying structure.

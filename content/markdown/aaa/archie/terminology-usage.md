@@ -2,6 +2,8 @@
 
 This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing. Its purpose is not to track migration work, but to record canonical usage patterns, level distinctions, sentence-level examples, and the underlying rationale when a terminology choice protects the ontology from being blurred by inherited language. As terminology families stabilize, their durable guidance should live here and be removed from the open conversion queue.
 
+Words are part of the theory machinery here. A good term tells the reader whether the sentence is naming substrate ontology, assembly behavior, effective recovery, historical source language, or standard comparison language. A loose term can move a claim across levels without anyone noticing.
+
 Despite the filename, this document is not only a usage sheet in the narrow copyediting sense. It is also the place where the project records why certain terms are preferred, what level-boundary errors those preferences prevent, and how $\mathbb{A}\mathbb{A}\mathbb{A}$ native wording should relate to older Standard Model or relativistic vocabulary. In that sense it functions as a canon-and-rationale reference for terminology decisions that remain important after the immediate cleanup pass is over.
 
 Use this document alongside [academic-style-guide.md](./academic-style-guide.md), [mathematics-style-guide.md](./mathematics-style-guide.md), [mathematics-terminology.md](./mathematics-terminology.md), and [comparative-glossary.md](./comparative-glossary.md).
@@ -26,6 +28,32 @@ Treat terminology maintenance as a theory-protective cleanup discipline, not as 
 - Keep canon docs positive-only and canonical; do not preserve retired $\mathbb{A}\mathbb{A}\mathbb{A}$ vocabulary for its own sake.
 - When a sentence still blurs levels, rewrite it so ontology, effective bookkeeping, and comparative language are explicitly separated.
 - Pay special attention to recurring confusion pairs such as `spacetime` versus `Euclidean void` / `absolute timespace`, and `shell` versus `layer`, because those often hide constitutive ambiguity rather than harmless style variation.
+
+## Ledger, Ledger Row, and Record Usage
+
+Use `ledger` for the $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting structure that keeps related readouts, sources, carriers, and response terms tied together. A ledger is not just a data table; it is the named bookkeeping structure that lets the theory say which quantities belong to the same retained causal history or Noether sea response.
+
+Use `ledger row` only when the sentence needs a specific channel inside that shared accounting structure. Avoid bare `row` in reader-facing prose unless the word literally means a table row, formula row, or layout row. In explanatory app language, prefer `ledger` over `row` unless the channel distinction has already been established for the reader.
+
+Reserve `record` for ordinary records: source records, measurement records, historical records, stored files, log entries, or explicit record-forming events. Do not use `record` as the default replacement for `ledger` when explaining $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting. When the prose means a conserved or retained theory structure, use `ledger`.
+
+Sentence guidance:
+
+- Prefer: "The clock, ruler, and envelope readouts belong to one ledger."
+- Prefer: "The density term belongs to the Noether sea continuity ledger."
+- Prefer: "The proof packet records the failed route in the work log."
+- Avoid by default: "The clock row closes the map" when the reader has not been taught ledger rows.
+- Avoid by default: "The retained record evolves" when the meaning is a retained ledger.
+
+## Architrino Architecture, AAA, and Disallowed Variants
+
+Use `Architrino` as the public project, product, repository, and app identity. Use `Architrino Assembly Architecture` when the full theory name is needed.
+
+For reader-facing prose, first establish the full name before using any shortened form. After that, prefer `the Architrino architecture` when clarity matters and `the architecture` only when the local antecedent is unambiguous. In formal textbook prose and math, follow [academic-style-guide.md](./academic-style-guide.md): use `$\mathbb{A}\mathbb{A}\mathbb{A}$` for the theory name rather than plain-text variants.
+
+Plain `AAA` is allowed only where literal text brevity or interoperability is the point: compact app labels, search keys, code identifiers, file names, generated indices, or an explicit parenthetical abbreviation after the full name. Do not use `AAA` as the standalone public brand.
+
+Do not use `A^3`, `A³`, `$A^3$`, or any A-cubed form anywhere in project prose, UI, artwork, icons, covers, title graphics, badges, URLs, email, social handles, search keys, citation labels, or code-like naming surfaces. These forms are disallowed variants: not shorthand, not math styling, and not optional visual marks. Use `Architrino`, `Architrino Assembly Architecture`, `AAA` only in the limited interoperability cases above, or `$\mathbb{A}\mathbb{A}\mathbb{A}$` in formal prose and math.
 
 ## Axial and Polar Usage
 
@@ -135,21 +163,21 @@ Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space
 
 ## Noether Braid Usage
 
-Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three positrinos and three electrinos. The term is broader than exact three-binary motion: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
+Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three positrinos and three electrinos. The term is broader than an exact-binary nested-shell branch: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the broad six-architrino neutral assembly class | `Noether braid` | `Noether core`, `Noether cluster`, or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
-| a proposed branch or branch family before all certificate rows close | `candidate braid` | treating the branch as retained or certified before the same-record rows close | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability rows close." |
-| a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability rows are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
+| the broad six-architrino neutral assembly class | `Noether braid` | legacy neutral-scaffold labels or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
+| a proposed branch or branch family before all certificate ledgers close | `candidate braid` | treating the branch as retained or certified before the same-ledger evidence closes | "The iso-frequency braid remains a candidate braid until its phase, support, energy, and stability ledgers close." |
+| a retained branch promoted through return-map, stability, alignment, and observer-export closure | `certified braid` | linear-operator status labels or using `retained branch` when Lorentz export and stability ledgers are still missing | "A certified braid must reproduce Lorentz clock and ruler deformation at observer export." |
 | the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
 | a one-band radial-support case | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
-| the three-band nested exact-binary candidate | `nested shell braid` | `exact three-binary`, `three exact binaries`, or `nested binary` unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |
-| a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge row closes." |
+| the three-band nested shell-support candidate | `nested shell braid` | binary-first labels unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |
+| a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge ledger closes." |
 
 The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, framed self-linking parity, flat phase-bundle holonomy, or the full assembly topological charge.
 
-Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`. Treat those strings as stable implementation identifiers, not as preferred prose or source-title guidance. Do not invent alternate synonyms such as `Noether nucleus`, `Noether cluster`, or `Noether core` unless a later canon decision explicitly changes the taxonomy.
+Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`. Treat those strings as stable implementation identifiers, not as preferred prose or source-title guidance. Do not invent alternate non-braid aliases unless a later canon decision explicitly changes the taxonomy.
 
 ## Oblate Spheroidal Envelope, Spheroid, and Ellipsoid
 
@@ -266,7 +294,7 @@ Use `Noether braid` for the neutral six-architrino scaffold. Use `particle` main
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the neutral six-architrino scaffold of a fermion | `Noether braid` | `core` or vague central-structure wording when the scaffold itself is meant | "The axial layer is bound to the Noether braid." |
+| the neutral six-architrino scaffold of a fermion | `Noether braid` | legacy central-scaffold wording when the scaffold itself is meant | "The axial layer is bound to the Noether braid." |
 | $\mathbb{A}\mathbb{A}\mathbb{A}$ compositional object | `assembly` | `particle` as default ontology word | "The assembly remains stable under delayed feedback." |
 | Standard Model or observer-facing language | `particle` | not applicable | "The particle is observed as electrically neutral." |
 

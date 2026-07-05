@@ -2,6 +2,8 @@
 
 This note explains why the repository is not only a storage location but also a public discussion surface for the theory. Its purpose is to frame GitHub as part of the reader-facing and critique-facing architecture of the project rather than as a purely internal engineering tool.
 
+GitHub is the public workbench. It holds the documents, the change history, the open questions, the critique surface, and the route by which useful discussion can become durable improvement.
+
 The sections below explain repository role, community function, and how the public discussion layer relates to the main web presentation.
 
 ## Purpose

@@ -10,9 +10,13 @@ It is the catalog companion to [Theory Mapping](theory-mapping.md), [Theory Inhe
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+The reader should treat each entry as a sorting tool. A theory may be brilliant at prediction, weak as ontology, indispensable as a calculation method, and misleading as a story about what physically exists. The differential format keeps those judgments separate. It asks what the framework got right, where it lives in the comparative stack, where its surviving content moves in the $\mathbb{A}\mathbb{A}\mathbb{A}$ stack, and what implementation still has to be supplied.
+
 One governing distinction in this chapter is the difference between predictive closure and implementation closure. A theory may organize observations with extraordinary precision while still leaving open what physically implements the successful mathematics. In that case the formalism is not discarded, but its stack placement must remain disciplined. The central comparative question is therefore not only whether a framework works, but whether it explains by exposing a generator or only by stabilizing an effective summary.
 
 This distinction also names a regime-capture problem. Modern physics has often converted success inside a measured domain into a boundary on what may count as fundamental explanation. In this chapter, such success is treated as evidence for an effective closure, not as automatic evidence for final ontology. A framework that works only inside a narrow range of speed, energy, curvature, particle-number stability, or observational access may still be indispensable, but under $\mathbb{A}\mathbb{A}\mathbb{A}$ it must be classified by the regime it actually governs and by the substrate mapping it still owes.
+
+In simple terms, this chapter keeps score without confusing the scoreboard for the engine. A successful equation family can remain useful while being relocated from `fundamental law` to `effective closure`, from `observable fact` to `inference product`, or from `ontology` to `comparison framework`. The demotion is not a dismissal; it is a demand for the physical implementation that the formal success did not provide.
 
 ### Theory-Differential Template (Unified)
 
@@ -2672,11 +2676,11 @@ t_f(M),\;
 \Delta C_\ell,\;
 \Delta P(k,z),\;
 \Omega_{\mathrm{GW}}(f),\;
-\Delta\mathbf{x}_{\mathrm{ephem}}(t),\;
+\Delta x_{\mathrm{ephem,eff}}^i(t_{\mathrm{eff}}),\;
 \Phi_{\mathrm{HE}}(E,t)
 \right)
 $$
-where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
+where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta x_{\mathrm{ephem,eff}}^i$ is a solar-system ephemeris perturbation in the effective observer chart, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2760,12 +2764,12 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
 \mathcal{S}_{m,\mathrm{eff}}
 $$
-so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
+so $d\rho_{m,\mathrm{eff}}/dt_{\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
 #### 2. Ontological Commitments
 
@@ -2793,7 +2797,7 @@ The clearest limiting tension for Steady State Cosmology is that its explanatory
 
 #### 8. Mapping Target for $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(t)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to retain the conservation discipline while rejecting the failed ontology. Any fixed-void cosmology that uses recycling, medium loading, or recurring assembly production must derive $\mathcal{S}_{m,\mathrm{eff}}$ from the absolute record $S(T)$ and then pass CMB, galaxy-evolution, BBN, redshift, growth, and lensing comparisons. The source term is admissible only as a projection of assembly and Noether sea histories, never as matter produced by the Euclidean void.
 
 ---
 

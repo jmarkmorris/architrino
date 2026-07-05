@@ -2,6 +2,8 @@
 
 This note defines contributor-facing guidance for keeping the Architrino webapp codebase coherent as it grows. Its purpose is to prevent experimental paths, hardcoded stopgaps, duplicated logic, and abandoned prototypes from quietly hardening into the long-term architecture.
 
+Architecture is how the codebase remembers what owns what. When ownership is clear, a change can improve one layer without leaving another layer full of old paths, hidden assumptions, or duplicate behavior.
+
 Read this as maintenance governance for the software side of the project: first the governing claim, then the major failure modes, then the rules used to keep the codebase from drifting into legacy cruft.
 
 ## Purpose

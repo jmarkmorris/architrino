@@ -62,7 +62,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 
 4. **Assemblies**
    - **Binary**: primitive architrino-anti-architrino pair.
-   - **Nested shell braid / tri-binary**: three nested binaries (inner, middle, outer) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
+   - **Nested shell braid**: three ordered support bands (inner, middle, outer) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
    - **Braid concept**: use `braid` as the general family name for path-history-linked architrino assembly patterns only when the local claim declares which branch record, topology, and causal-root rows are in play.
    - **Ideal braid subset**: the current focused subset is the `ideal braid`, a speculative same-level six-architrino Noether braid candidate whose constituents may share comparable branch energy, relative speed magnitude, and distance from a dynamic center without assuming circular orbits.
    - **Ideal braid topology variants**: the current support variants are `face-opposite`, the first admissible static support candidate and candidate for stability, and `axial-paired`, which uses the same six axial sites and neutral inventory but loses the common-sphere and antipodal-pair support window in the toy rows. Treat `axial-paired` as unstable as a simple support table and open only as a possible braid-level orbit-reversal projection until retained-history rows prove otherwise.
@@ -75,7 +75,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 5. **Nested shell braid alignment and speed regimes**
    - In the ordinary weak-stress target hierarchy, the inner binary is self-hit/history-supported, the middle binary is the near-$c_f$ separator-sensitive hinge, and the outer binary is the sub-field-speed shielding and boundary-coupling interface.
    - **Planck scale** is treated as an **event-horizon alignment condition**.
-   - As a tri-binary approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**; the **middle binary** tracks the separator-sensitive near-field-speed hinge as its radius/frequency shift.
+   - As a nested shell braid approaches an event horizon, the **outer binary frequency increases** and its **velocity approaches field speed**; the **middle binary** tracks the separator-sensitive near-field-speed hinge as its radius/frequency shift.
    - At the event horizon, the target is for the **middle and outer binaries to reach $v = c_f$ and become coplanar and co-linear with the inner binary**, with precession ceasing at alignment. Treat this as an alignment closure target unless a branch certificate has supplied the required root-ledger, stability, and event rows.
 
 6. **Mass, photon, and observer-export closure**

@@ -23,6 +23,7 @@ This document distinguishes three audience scopes:
 - Do not place `$$...$$` display math inline inside sentences, headings, list labels, callouts, or preview text; those contexts must use inline-safe math.
 - For inline inequalities or expressions containing `<` or `>` inside prose, keep them in `$...$` with spaces around the operators (for example `$1 < m < n$`).
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.
+- Do not use `A^3`, `A³`, or `$A^3$` as theory abbreviations, visual marks, badges, search keys, handles, or citation labels. Use `Architrino`, `Architrino Assembly Architecture`, `AAA` only in the limited interoperability cases, or `$\mathbb{A}\mathbb{A}\mathbb{A}$` in formal prose and math.
 
 ### Operator/Developer Communication
 
@@ -53,6 +54,7 @@ This document distinguishes three audience scopes:
 - The operator does not use git worktrees for this repo because they do not meet the workflow requirements. Do not propose or request a git worktree as the default isolation strategy unless the operator explicitly asks for one.
 - At the start of work, inspect `git status --short --untracked-files=all`, then keep the write set scoped to the files the current task owns. Report unrelated dirty files only when they block the task, create overwrite risk, affect validation, or matter for staging, committing, pushing, or PR publication.
 - In closeouts, distinguish scoped edits from ambient multi-agent worktree state. Avoid generic warnings such as "the broader working tree has additional user changes" unless those changes alter the next action.
+- Treat operator/developer implementation input as a request for an across-the-board, reproducible feature or rule across the relevant app, renderer, corpus path, or workflow class. Do not satisfy such input with one-off local customization unless the operator/developer explicitly scopes it that way; any exception, per-item override, or special case must be negotiated with the operator/developer before implementation.
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 

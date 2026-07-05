@@ -8,7 +8,7 @@ Geometry-only, taxonomy, support, chart, and negative-diagnostic material can re
 
 - accepted branch identity and history segment;
 - active causal-root identities on the same support and event convention;
-- same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, or the runtime fields `sourceNormalDenominator`, `receiverNormalNumerator`, `receiverNormalFactor`, `unsignedReceiverNormalFactor`, and `branchWeight`;
+- same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, or the runtime fields `sourceNormalDenominator`, `receiverNormalNumerator`, `receiverNormalFactor`, `unsignedReceiverNormalFactor`, and `branchWeight`;
 - action/energy, event, wake, stability, convergence, and support rows consumed by the claim.
 
 Source-normal, Jacobian-only, quotient, fixture, frozen-ledger, old force-residue, app-provider, or cross-row evidence remains diagnostic until those rows are rebuilt on one branch record. The cleanup status for such evidence is `diagnostic-only`, `not_retained`, or `receiver-normal-restart-required`, depending on the packet's own vocabulary.

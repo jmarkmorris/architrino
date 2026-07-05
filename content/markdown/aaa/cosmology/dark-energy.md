@@ -71,7 +71,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 ### The Noether Sea Carries the Dynamics
 
-The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether braids. Each Noether braid has internal energy stored across three nested shell binaries operating in distinct field-speed regimes. The collective state of the Noether sea—its local Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, normalized density $n(\mathbf{x},t)$, internal energy spectrum, delay response $\chi_{\text{sea}}$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether braids. Each Noether braid has internal energy stored across three nested shell binaries operating in distinct field-speed regimes. The collective state of the Noether sea—its local Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, normalized density $n(\mathbf X,T)$, internal energy spectrum, delay response $\chi_{\text{sea}}(\mathbf X,T)$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the aggregate properties of the Noether sea evolve on Hubble timescales, not about the container expanding.
 
@@ -79,7 +79,7 @@ Late-time cosmological acceleration, in this picture, is a statement about how t
 
 ### Baseline Energy of the Noether Sea
 
-In the nested shell case, each Noether braid in the Noether sea carries internal binding energy distributed across its three binary tiers:
+In the nested shell case, each Noether braid in the Noether sea carries internal binding energy distributed across its three support tiers:
 
 - **Inner binary** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
 - **Middle binary** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
@@ -88,10 +88,10 @@ In the nested shell case, each Noether braid in the Noether sea carries internal
 The baseline energy density of the Noether sea is
 
 $$
-u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{core}} \rangle
+u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{braid}} \rangle
 $$
 
-where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{core}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
+where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{braid}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
 
 $$
 \rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{outer-binary state})
@@ -157,7 +157,7 @@ The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relax
 This narrative must be made quantitative through a constitutive relation linking the Noether sea state variables to an effective pressure. The minimal parameterization is:
 
 $$
-p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;\dot{\rho}_{\text{NS}},\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr)
+p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr)
 $$
 
 where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target.
@@ -389,7 +389,7 @@ The historical steady-state comparison is useful because it separates two ideas 
 
 For an effective matter component, write the sourced continuity comparison as
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
 \mathcal{S}_{m,\mathrm{eff}}
@@ -401,7 +401,7 @@ $$
 \mathcal{S}_{m,\mathrm{eff}}
 -
 \Pi_m\!\left[
-S(t);
+S(T);
 \mathcal{H}_{\mathrm{assoc}},
 \mathcal{H}_{\mathrm{diss}},
 \mathcal{H}_{\mathrm{BH}},
@@ -410,7 +410,7 @@ S(t);
 $$
 where $\Pi_m$ projects the absolute assembly, reaction, recycling, and Noether sea histories into the effective matter source. The residual must vanish within tolerance before a constant-density or matter-creation-like interpretation is promoted. This is the safe lesson from failed steady-state models: conservation can be preserved only by an explicit source channel, not by assigning unexplained energy to the container.
 
-The same discipline applies to comparison models that obtain acceleration through negative effective mass, phase-transition vacuum energy, time-varying $\Lambda(t)$, or Hubble-age pressure on $\Lambda$. These are useful as branch-role stress tests, not as imported ontology. Let the comparison branch declare
+The same discipline applies to comparison models that obtain acceleration through negative effective mass, phase-transition vacuum energy, time-varying $\Lambda_{\mathrm{eff}}(t_{\mathrm{eff}})$, or Hubble-age pressure on $\Lambda$. These are useful as branch-role stress tests, not as imported ontology. Let the comparison branch declare
 
 $$
 \mathcal{C}_{\mathrm{DE}}
@@ -442,7 +442,7 @@ p_{\mathrm{sea}} \\
 \right\|
 $$
 
-The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda(t)$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
+The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda_{\mathrm{eff}}(t_{\mathrm{eff}})$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
 
 The same translation applies to "negative energy" language. In the native ledger, the sign belongs to an effective stress projection or transfer term:
 $$
@@ -469,9 +469,9 @@ where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy 
 If the dark-energy term dominates and remains effectively constant, then the comparison equation gives nearly constant $H$. The corresponding homogeneous observer variable has the exponential form
 
 $$
-a_{\mathrm{eff}}(t)
+a_{\mathrm{eff}}(t_{\mathrm{eff}})
 \propto
-\exp(H_{\mathrm{eff}}t)
+\exp(H_{\mathrm{eff}}t_{\mathrm{eff}})
 $$
 
 This is the clean comparison reason that a constant density produces accelerated expansion. The negative-pressure statement is mathematically equivalent in the standard acceleration equation, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it should not be translated into a literal force that pushes on the Euclidean void.
@@ -479,7 +479,7 @@ This is the clean comparison reason that a constant density produces accelerated
 The effective dark-energy density evolves according to:
 
 $$
-\dot{\rho}_{\mathrm{DE,eff}} + 3H(1 + w_{\mathrm{eff}})\,\rho_{\mathrm{DE,eff}} = \mathcal{S}_{\mathrm{relax}}
+\frac{d\rho_{\mathrm{DE,eff}}}{dt_{\mathrm{eff}}} + 3H_{\mathrm{eff}}(1 + w_{\mathrm{eff}})\,\rho_{\mathrm{DE,eff}} = \mathcal{S}_{\mathrm{relax}}
 $$
 
 where $w_{\mathrm{eff}} = p_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$ and $\mathcal{S}_{\mathrm{relax}}$ is a source term encoding energy exchange between the dark-energy sector and other components during medium relaxation. In the $\Lambda\mathrm{CDM}$ limit, $w_{\mathrm{eff}} = -1$ and $\mathcal{S}_{\mathrm{relax}} = 0$.
@@ -539,7 +539,7 @@ This split prevents a time-varying $w(a)$ preference from being promoted too qui
 
 ### de Sitter and Phantom-$w$ Comparison
 
-Standard quantum-gravity discussions often use de Sitter space as the clean comparison model for a universe with asymptotically constant positive dark energy. In holographic language, the speculative target is a boundary or statistical description associated with the far future. In this chapter, that comparison should remain effective rather than ontological: $a(t)$, $H(t)$, and $w(a)$ are observer-level summaries of Noether sea evolution, not fundamental variables of the Euclidean void.
+Standard quantum-gravity discussions often use de Sitter space as the clean comparison model for a universe with asymptotically constant positive dark energy. In holographic language, the speculative target is a boundary or statistical description associated with the far future. In this chapter, that comparison should remain effective rather than ontological: $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $w(a_{\mathrm{eff}})$ are observer-level summaries of Noether sea evolution, not fundamental variables of the Euclidean void.
 
 The strongest lesson from modern string and holographic debates is that de Sitter comparison cannot be treated as a minor variant of the anti-de Sitter case. Anti-de Sitter control relies on a spatial boundary where a conformal theory can be placed; the de Sitter-like late universe instead gives observers horizon-limited access inside an evolving Noether sea state. The local target is therefore an observer-horizon accounting rule, not a literal boundary CFT.
 
@@ -640,17 +640,17 @@ The native handoff to [Expansion Mechanism](./expansion-mechanism.md) is more co
 The effective dark-energy sector can enter the redshift-transfer law only through the Noether sea state variables that determine endpoint cadence and propagation. It should not be added as a separate photon-energy loss channel. A scoped handoff target is
 
 $$
-\partial_t\boldsymbol{\theta}_\gamma
+\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_\gamma
 =
 \mathbf{J}_{\mathrm{DE}}
 \begin{pmatrix}
-\partial_t\ln\rho_{\mathrm{DE,eff}}\\
-\partial_t w_{\mathrm{eff}}\\
+\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}\\
+\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}\\
 \mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
 \mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
 \end{pmatrix}
 +
-\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}
+\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}
 $$
 
 where
@@ -661,11 +661,11 @@ $$
 \left(
 \ln\chi_\gamma,\,
 \ln n,\,
-\ln R_{\text{core}}
+\ln R_{\text{braid}}
 \right)
 $$
 
-The matrix $\mathbf{J}_{\mathrm{DE}}$ is a constitutive derivative of the Noether sea response law, not a new dark-energy fluid. The residual term $\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}$ records local environment, source-neighborhood, and calibration effects that must be separated before attributing a redshift-transfer slope to the dark-energy sector.
+The matrix $\mathbf{J}_{\mathrm{DE}}$ is a constitutive derivative of the Noether sea response law, not a new dark-energy fluid. The residual term $\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}$ records local environment, source-neighborhood, and calibration effects that must be separated before attributing a redshift-transfer slope to the dark-energy sector.
 
 Inserted into the propagation functional, the dark-energy contribution has the schematic form
 
@@ -678,8 +678,8 @@ a_\chi^X & a_n^X & a_R^X
 \end{pmatrix}
 \mathbf{J}_{\mathrm{DE}}
 \begin{pmatrix}
-\partial_t\ln\rho_{\mathrm{DE,eff}}\\
-\partial_t w_{\mathrm{eff}}\\
+\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}\\
+\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}\\
 \mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
 \mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
 \end{pmatrix}
@@ -702,14 +702,14 @@ q_{\mathrm{BH}}
 \end{pmatrix}
 =
 \begin{pmatrix}
-\partial_t\ln\rho_{\mathrm{DE,eff}}\\
-\partial_t w_{\mathrm{eff}}\\
+\partial_{t_{\mathrm{eff}}}\ln\rho_{\mathrm{DE,eff}}\\
+\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}\\
 \mathcal{S}_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}\\
 \mathcal{S}_{\mathrm{BH}}/\rho_{\mathrm{DE,eff}}
 \end{pmatrix}
 $$
 
-Each entry has dimensions of inverse time. The matrix $\mathbf{J}_{\mathrm{DE}}$ is therefore dimensionless in the minimal first-order closure, because it maps rate variables in $\mathbf{q}_{\mathrm{DE}}$ to the rate vector $\partial_t\boldsymbol{\theta}_\gamma$. For a clean line family $X$, define the transport-facing coefficient row
+Each entry has dimensions of inverse time. The matrix $\mathbf{J}_{\mathrm{DE}}$ is therefore dimensionless in the minimal first-order closure, because it maps rate variables in $\mathbf{q}_{\mathrm{DE}}$ to the rate vector $\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_\gamma$. For a clean line family $X$, define the transport-facing coefficient row
 
 $$
 \boldsymbol{\lambda}_X^T
@@ -751,7 +751,7 @@ H_{\mathrm{eff},X}^{\mathrm{DE}}
 \frac{
 \frac{c_0}{c_\gamma}
 \left[
-\lambda_w^X\,\partial_t w_{\mathrm{eff}}
+\lambda_w^X\,\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}
 +(\lambda_\rho^X+\lambda_{\mathrm{sea}}^X)\frac{\mathcal{S}_{\mathrm{sea}}}{\rho_{\mathrm{DE,eff}}}
 +(\lambda_\rho^X+\lambda_{\mathrm{BH}}^X)\frac{\mathcal{S}_{\mathrm{BH}}}{\rho_{\mathrm{DE,eff}}}
 \right]
@@ -777,11 +777,11 @@ $$
 E_N=h\nu_N
 $$
 
-Individual Noether braids may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf{x},t)$ and its cadence-space current:
+Individual Noether braids may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf X,T)$ and its cadence-space current:
 
 $$
-\partial_t f_N
-+\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
+\partial_T f_N
++\nabla_{\mathbf X}\cdot(\mathbf u_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
 S_{\mathrm{BH}}
@@ -792,10 +792,10 @@ $$
 This packet gives a more microscopic reading of $\mathcal{S}_{\mathrm{sea}}$ and $\mathcal{S}_{\mathrm{BH}}$. The term $R_{\mathrm{eq}}[f_N]$ is local neighbor equilibration in the Noether sea, $S_{\mathrm{BH}}$ is loading from strong-field recycling regions, and $S_{\mathrm{GW}}$ is the bounded perturbation from gravitational-wave disturbances. The projection into the redshift handoff should be a constitutive map
 
 $$
-\partial_t\boldsymbol{\theta}_\gamma
+\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_\gamma
 =
 \Pi_\gamma\!\left[f_N,J_\nu,S_{\mathrm{BH}},S_{\mathrm{GW}},R_{\mathrm{eq}}\right]
-+\partial_t\boldsymbol{\theta}_{\gamma,\mathrm{local}}
++\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}
 $$
 
 This strengthens the expansion claim and limits it at the same time. If $J_\nu$ vanishes in the homogeneous coarse-grained limit, or if the source and equilibration terms cancel with no signed large-scale current, the equilibrium hypothesis does not generate a dark-energy-like redshift-transfer slope. If a signed current remains, it may contribute to $H_{\mathrm{eff},X}^{\mathrm{DE}}$ only through the same $\boldsymbol{\theta}_\gamma$ variables already used for redshift, CMB, BAO, lensing, and growth. It is therefore a candidate mechanism for the effective expansion history, not a separate expansion of the Euclidean void and not a standalone photon-energy loss channel.

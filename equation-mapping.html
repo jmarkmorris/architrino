@@ -148,16 +148,68 @@
         padding: 18px;
       }
 
-      .equation-mapping-index-group h2 {
-        margin: 0 0 10px;
+      .equation-mapping-index-group {
+        display: grid;
+        gap: 8px;
+      }
+
+      .equation-mapping-index-group-toggle {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        min-height: 44px;
+        padding: 8px 10px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: transparent;
         color: var(--muted);
-        font-size: 20px;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .equation-mapping-index-group-toggle:hover,
+      .equation-mapping-index-group-toggle:focus-visible {
+        border-color: var(--strong-rule);
+        outline: none;
+      }
+
+      .equation-mapping-index-group-toggle strong {
+        overflow-wrap: anywhere;
+        font-size: 18px;
         font-weight: 760;
         line-height: 1.1;
       }
 
+      .equation-mapping-index-group-toggle small {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 760;
+      }
+
+      .equation-mapping-index-group-chevron {
+        font-size: 22px;
+        line-height: 1;
+        transition: transform 140ms ease;
+      }
+
+      .equation-mapping-index-group[data-expanded="true"] .equation-mapping-index-group-chevron {
+        transform: rotate(90deg);
+      }
+
+      .equation-mapping-index-group[data-expanded="false"] .equation-mapping-index-items {
+        display: none;
+      }
+
+      .equation-mapping-index-items {
+        display: grid;
+        gap: 4px;
+      }
+
       .equation-mapping-index-item {
         display: grid;
+        gap: 6px;
         width: 100%;
         min-height: 64px;
         padding: 14px;
@@ -173,6 +225,13 @@
         font-size: 21px;
         font-weight: 720;
         line-height: 1.18;
+      }
+
+      .equation-mapping-index-item small {
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 680;
+        line-height: 1.2;
       }
 
       .equation-mapping-index-item.is-active,
@@ -206,6 +265,72 @@
         display: flex;
         align-items: flex-start;
         gap: 8px;
+      }
+
+      .equation-mapping-carousel {
+        position: absolute;
+        bottom: max(16px, env(safe-area-inset-bottom));
+        left: 50%;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 6px;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        background: var(--panel);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .equation-mapping-carousel-button {
+        -webkit-appearance: none;
+        appearance: none;
+        display: inline-flex;
+        width: 44px;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid var(--rule);
+        border-radius: 999px;
+        background: var(--panel-strong);
+        color: var(--line-ink);
+        cursor: pointer;
+        opacity: 0.9;
+        pointer-events: auto;
+      }
+
+      .equation-mapping-carousel-button:hover,
+      .equation-mapping-carousel-button:focus-visible {
+        border-color: var(--strong-rule);
+        background: var(--accent-soft);
+        color: var(--line-ink);
+        opacity: 1;
+        outline: none;
+      }
+
+      .equation-mapping-carousel-button:disabled {
+        cursor: default;
+        opacity: 0.18;
+      }
+
+      .equation-mapping-carousel-button:disabled:hover {
+        border-color: var(--rule);
+        background: var(--panel-strong);
+      }
+
+      .equation-mapping-carousel-button svg {
+        width: 22px;
+        height: 22px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        pointer-events: none;
       }
 
       .equation-mapping-icon-button {
@@ -454,6 +579,18 @@
         transform: translate(-50%, -50%);
       }
 
+      .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-equation-shell {
+        width: min(96vw, 1600px);
+      }
+
+      .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-formula-part[data-anchor-id="effectiveLayer"] {
+        transform: translateX(clamp(96px, 10vw, 180px));
+      }
+
+      .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-formula-break[data-part-id="comparison-layer-break"] {
+        height: clamp(56px, 5vw, 88px);
+      }
+
       .equation-mapping-equation-title {
         position: absolute;
         top: max(22px, env(safe-area-inset-top));
@@ -516,7 +653,7 @@
       .equation-mapping-formula-break {
         flex: 0 0 100%;
         width: 100%;
-        height: clamp(5px, 0.8vw, 12px);
+        height: clamp(28px, 3.2vw, 52px);
       }
 
       .equation-mapping-formula-part.is-targeted[data-section-line="above"]::before,
@@ -553,7 +690,7 @@
         position: absolute;
         left: var(--overlay-layout-x, calc(var(--overlay-x) * 1%));
         top: var(--overlay-layout-y, calc(var(--overlay-y) * 1%));
-        width: min(calc(var(--overlay-width) * 1%), 390px);
+        width: min(calc(var(--overlay-width) * 1%), var(--overlay-max-width, 429px));
         min-width: 220px;
         padding: 10px;
         border: 1px solid var(--line-ink);
@@ -570,14 +707,27 @@
 
       .equation-mapping-comment-header {
         display: flex;
-        align-items: center;
+        flex-wrap: wrap;
+        align-items: baseline;
         justify-content: space-between;
         gap: 8px;
         margin-bottom: 6px;
       }
 
       .equation-mapping-comment-header strong {
+        flex: 0 1 auto;
         font-size: 21px;
+      }
+
+      .equation-mapping-comment-target {
+        flex: 0 0 auto;
+        max-width: 100%;
+        margin-left: auto;
+        color: var(--text);
+        font-size: 21px;
+        line-height: 1.1;
+        text-align: right;
+        white-space: nowrap;
       }
 
       .equation-mapping-comment-body {
@@ -593,11 +743,13 @@
       }
 
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-target,
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-body {
         font-size: 18px;
       }
 
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-target,
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-body {
         font-size: 24px;
       }
@@ -674,7 +826,24 @@
           align-content: start;
           gap: 18px;
           overflow: visible;
-          padding: 132px 15px 36px;
+          padding: 132px 15px 88px;
+        }
+
+        .equation-mapping-carousel {
+          bottom: max(12px, env(safe-area-inset-bottom));
+          gap: 8px;
+          padding: 5px;
+        }
+
+        .equation-mapping-carousel-button {
+          width: 42px;
+          height: 42px;
+        }
+
+        .equation-mapping-carousel-button svg {
+          width: 23px;
+          height: 23px;
+          stroke-width: 2.3;
         }
 
         .equation-mapping-pointer-layer {
@@ -711,6 +880,10 @@
           position: static;
           width: 100%;
           min-width: 0;
+        }
+
+        .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-formula-part[data-anchor-id="effectiveLayer"] {
+          transform: none;
         }
 
         .equation-mapping-popover {

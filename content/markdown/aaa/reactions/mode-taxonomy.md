@@ -65,7 +65,7 @@ Path history is part of identity bookkeeping in absolute time.
 
 4. **Characterize local Noether sea state**
 Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{NS}}(\mathbf{x},t), n(\mathbf{x},t), \chi_{\text{sea}}(\mathbf{x},t), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
+$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
 These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
@@ -112,9 +112,9 @@ where the continuity component is
 $$
 \Delta_{\mathrm{cont}}
 \equiv
-\partial_t\rho_{\mathrm{eff}}
+\partial_{t_{\mathrm{eff}}}\rho_{\mathrm{eff}}
 +
-\nabla\cdot\mathbf{J}_{\mathrm{eff}}
+\nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\mathrm{eff}}
 $$
 
 and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey

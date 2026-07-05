@@ -1,19 +1,21 @@
 # Observer Framework
 
-This chapter is the canonical home for the observer framework in $\mathbb{A}\mathbb{A}\mathbb{A}$. It distinguishes the complete ontic universe-state perspective from Physical Observers, and it states how absolute simultaneity, operational simultaneity, derived clock time, and effective metric descriptions fit together.
+This chapter explains what an observer can access in $\mathbb{A}\mathbb{A}\mathbb{A}$. It separates the complete ontic universe-state perspective from Physical Observers, then shows how absolute simultaneity, operational simultaneity, derived clock time, and effective metric descriptions fit together.
 
-The key split is:
+The key split is simple:
 
-- The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is a theoretical complete-state perspective on the absolute-time slice.
-- A **Physical Observer** is an assembly inside the Noether sea, using physical clocks, rulers, detectors, and finite-speed signals.
+- The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the theory-side complete-state perspective on an absolute-time slice.
+- A **Physical Observer** is an embedded assembly inside the Noether sea, using physical clocks, rulers, detectors, records, and finite-speed signals.
 
 This page owns the level distinction. The clock law itself belongs in [Proper Time and Time Dilation](proper-time-and-time-dilation.md), and the effective metric bridge belongs in [Emergent Metric](emergent-metric.md).
 
+This is not an idealist or measurement-created ontology. The complete state exists whether or not any Physical Observer reads it. The point is that any actual observer is made of assemblies and can only infer the world through finite records, local clocks, signals, calibrations, and access boundaries.
+
 ## The $\mathbb{U}_{\text{now}}$ Universe-State Perspective
 
-The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is a conceptual, non-physical perspective representing complete knowledge of the architrino microstate on a slice of [absolute timespace](../foundations/absolute-timespace.md).
+The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the theory's complete ledger for one slice of [absolute timespace](../foundations/absolute-timespace.md). It represents complete knowledge of the architrino microstate on that slice, including the history data needed for the next step of deterministic evolution.
 
-It includes, in principle:
+In principle, it includes:
 
 - the position and velocity of every architrino,
 - each architrino identity and polarity,
@@ -22,11 +24,11 @@ It includes, in principle:
 - emission times for active wake intersections,
 - and the branch-history information needed by the dynamics.
 
-It is not a physical device or observer. It does not measure, signal, compute with finite resources, or occupy a local assembly state. It is a bookkeeping perspective used to state the ontology and the deterministic laws without confusing them with what an embedded observer can recover.
+It is not a physical device or observer. It does not measure, signal, compute with finite resources, or occupy a local assembly state. It is the bookkeeping perspective used to state the ontology and deterministic laws while keeping those laws separate from what an embedded observer can recover.
 
 ## Physical Observers
 
-A **Physical Observer** is any observer, detector, clock, ruler, or measuring apparatus composed of architrino assemblies.
+A **Physical Observer** is any observer, detector, clock, ruler, or measuring apparatus composed of architrino assemblies. The term is physical before it is psychological: a lab apparatus, atom, detector medium, or human observer all count only through the records their assemblies can produce and preserve.
 
 Examples include:
 
@@ -35,9 +37,9 @@ Examples include:
 - humans and biological sensors,
 - planets, stars, and other large assemblies when treated as measurement systems.
 
-Physical Observers are embedded in the Noether sea. Their clocks, rulers, detector thresholds, records, and synchronization conventions are therefore outputs of assembly dynamics, not external primitives.
+Physical Observers are embedded in the Noether sea. Their clocks, rulers, detector thresholds, records, and synchronization conventions are therefore outputs of assembly dynamics, not external primitives placed outside the system.
 
-A Physical Observer has access only to:
+A Physical Observer has access only through:
 
 - local interactions,
 - finite-speed signals,
@@ -48,7 +50,7 @@ A Physical Observer has access only to:
 
 No Physical Observer can be promoted into a global, outside-the-universe vantage point. The $\mathbb{U}_{\text{now}}$ universe-state perspective can define the complete state for theory construction, but a Physical Observer can only assemble finite records across a declared access region and communication history.
 
-This limitation becomes especially important in strong-gravity and cosmology comparisons. Standard quantum-gravity discussions also run into the fact that an observer cannot be placed outside the entire universe as a massless, energy-free measuring device. A real observer supplies a clock, a location, finite records, and an access region. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this does not make reality observer-created; it means that black-hole entropy, de Sitter thermodynamics, horizon access, and quantum state descriptions must be stated relative to what an embedded Physical Observer can actually clock, probe, and record.
+This limitation becomes especially important in strong-gravity and cosmology comparisons. Standard quantum-gravity discussions also run into the fact that an observer cannot be placed outside the entire universe as a massless, energy-free measuring device. A real observer supplies a clock, a location, finite records, and an access region. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this does not make reality observer-created. It means that black-hole entropy, de Sitter thermodynamics, horizon access, and quantum state descriptions must be stated relative to what an embedded Physical Observer can actually clock, probe, and record.
 
 For the same reason, an expectation value, covariance, or correlation function is not automatically an ontic claim about an effective metric, the Noether sea, or the complete microstate. It is an observer-level summary for a declared observation region, readout channel, and boundary-data model. A comparison packet may use such summaries, but it must say which Physical Observer records and boundary wake data make the summary meaningful.
 
@@ -56,12 +58,12 @@ Strong-gravity information claims require the same declared-access discipline. A
 
 The same discipline applies when one Physical Observer uses another Physical Observer's report. The report is not a disembodied update rule. It is a physical record carried by signals, memory states, documents, detector logs, or other assemblies, and it can be imported only through a declared communication channel with finite latency, calibration, and persistence. If two observers appear to certify incompatible conclusions, the first diagnostic question is whether both conclusions belong to the same declared record channel and access model. A mismatch in readout channel, missing reference resources, or failed record autonomy is an observer-layer failure, not evidence that the complete ontic state has become contradictory.
 
-Purpose-built precision experiments add a practical record rule. A Physical Observer does not record only a number; the observer records an apparatus protocol, a modulation or timing method, calibration references, and a nuisance model. For a precision-gravity channel $A$, write the retained record as
+Purpose-built precision experiments add a practical record rule. A Physical Observer does not record only a number. The observer records an apparatus protocol, a modulation or timing method, calibration references, and a nuisance model. For a precision-gravity channel $A$, write the retained record as
 $$
 \Theta_A^{(O,W)}
 =
 \left(
-Y_A(t),
+Y_A(t_{\mathrm{eff}}),
 \mathcal{K}_A,
 \mathcal{M}_A,
 C_A,
@@ -69,17 +71,17 @@ C_A,
 \mathcal{B}_{\partial\Omega}^{(O)}(W)
 \right)
 $$
-where $Y_A(t)$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t)$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
+where $Y_A(t_{\mathrm{eff}})$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t_{\mathrm{eff}})$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
 Photon-distance records need the same separation. For an emission event $E$, reception event $R$, and transported photon-channel packet $\gamma$, a Physical Observer should not collapse three different quantities into one distance:
 $$
 d_{\mathrm{void}}(E,R)
 =
-\left\|\mathbf{x}_R(t_R)-\mathbf{x}_E(t_E)\right\|,
+\left\|\mathbf X_R(T_R)-\mathbf X_E(T_E)\right\|,
 \qquad
 L_{\gamma}(E\to R)
 =
-\int_{t_E}^{t_R}\left\|\dot{\mathbf{x}}_{\gamma}(t)\right\|\,dt,
+\int_{T_E}^{T_R}\left\|\frac{d\mathbf X_{\gamma}}{dT}\right\|\,dT,
 $$
 and
 $$
@@ -94,6 +96,8 @@ z_\gamma,
 $$
 Here $d_{\mathrm{void}}$ is the Euclidean coordinate separation of the two recorded events in the fixed void, $L_\gamma$ is the photon-channel path-history length through the Noether sea, and $D_O$ is the Physical Observer's inferred distance under a declared inference map. Redshift may constrain $D_O$, but it is not by itself a measurement of either absolute separation or photon path length unless the endpoint clock, launch, path-history, and calibration rows are held fixed in the same record.
 
+This is the central observational warning for cosmology: photons are the dominant observation channel, but a photon record is a transport record through the Noether sea before it is a direct distance label.
+
 ## Ontic and Epistemic Levels
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
@@ -103,9 +107,9 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
 | Ontic | What exists and evolves in the complete microstate | Architrinos in absolute timespace with path-history dynamics |
 | Epistemic | What embedded assemblies can access and summarize | Derived clock time, measured distance, effective fields, wavefunctions, thermodynamic quantities |
 
-The ontic level is not observer-dependent. It is the complete state of the modeled world at absolute time $t$, together with the path-history information needed for deterministic continuation.
+The ontic level is not observer-dependent. It is the complete state of the modeled world at absolute time $T$, together with the path-history information needed for deterministic continuation.
 
-The epistemic level is observer-dependent because Physical Observers are built from assemblies and must infer the world through finite signals, local records, and internal clocks.
+The epistemic level is observer-dependent because Physical Observers are built from assemblies and must infer the world through finite signals, local records, and internal clocks. This is a limit on access, not a claim that observers create the substrate.
 
 This distinction protects several recurring claims:
 
@@ -115,37 +119,37 @@ This distinction protects several recurring claims:
 
 For the quantum side of this distinction, see [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md).
 
-Formal note: a local subsystem is not generally closed under the primitive dynamics. Let $\Omega\subset\Sigma_t$ be the spatial region resolved by a Physical Observer, let $X_\Omega(t)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<t}$ be the path-history data for the relevant architrino trajectories and causal wakes before $t$. The missing exterior influence can be represented as boundary wake data
+Formal note: a local subsystem is not generally closed under the primitive dynamics. A Physical Observer may model a region as though it were isolated, but finite-speed wake history still crosses the boundary. Let $\Omega\subset\Sigma_T$ be the spatial region resolved by a Physical Observer, let $X_\Omega(T)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<T}$ be the path-history data for the relevant architrino trajectories and causal wakes before $T$. The missing exterior influence can be represented as boundary wake data
 $$
-\mathcal{B}_{\partial\Omega}(t)
+\mathcal{B}_{\partial\Omega}(T)
 =
 \left\{
-(j,t_0,\mathbf{s}_j(t_0),q_j)
+(j,T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),q_j)
 \;:\;
-t_0<t,\quad
-\|\mathbf{x}-\mathbf{s}_j(t_0)\|=c_f(t-t_0),\quad
-\mathbf{x}\in\partial\Omega
+T_{\mathrm{em}}<T,\quad
+\|\mathbf X-\mathbf X_j(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}}),\quad
+\mathbf X\in\partial\Omega
 \right\}
 $$
 
 The subsystem evolution therefore has the schematic form
 $$
-\frac{dX_\Omega}{dt}
+\frac{dX_\Omega}{dT}
 =
 F_\Omega\!\left(
-X_\Omega(t),
-\mathcal{H}_{\Omega}^{<t},
-\mathcal{B}_{\partial\Omega}(t),
-N_{\text{sea}}|_{\Omega}(t)
+X_\Omega(T),
+\mathcal{H}_{\Omega}^{<T},
+\mathcal{B}_{\partial\Omega}(T),
+N_{\text{sea}}|_{\Omega}(T)
 \right)
 $$
-where $N_{\text{sea}}|_{\Omega}(t)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(t)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
+where $N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(T)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
 ### Global-Reconstruction Ambiguity
 
-Finite observer records can underdetermine global reconstruction even when the local data are extremely rich. For a declared Physical Observer $O$, observation window $W$, data-product family $\mathcal{D}$, and tolerance $\epsilon$, let $\Pi_{\mathcal{D}}^{(O,W)}(\theta)$ be the data-product projection of a candidate closure record $\theta$. Relative to the promoted closure set $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ from [Failure Criteria](../validation/failure-criteria.md), define
+Finite observer records can underdetermine global reconstruction even when the local data are extremely rich. A record can be precise and still fail to select a unique global reconstruction. For a declared Physical Observer $O$, observation window $W$, data-product family $\mathcal{D}$, and tolerance $\epsilon$, let $\Pi_{\mathcal{D}}^{(O,W)}(\theta)$ be the data-product projection of a candidate closure record $\theta$. Relative to the promoted closure set $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ from [Failure Criteria](../validation/failure-criteria.md), define
 $$
 [\theta]_{\mathcal{D},\epsilon}^{(O,W)}
 =
@@ -176,12 +180,12 @@ $$
 \mathcal{B}_{\partial\Omega}^{(O)}(\theta;W)
 =
 \left.
-\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
+\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)
 \right|_{W}
 /
 \sim_{O,\theta,W}
 $$
-Here $\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
+Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
 ## Boundary-Wake Covariance Scaffold
 
@@ -189,52 +193,52 @@ The boundary term above also supplies the native home for covariance matrices us
 
 With this notation, the unresolved boundary residual is
 $$
-\delta\mathcal{B}_{\partial\Omega}(t;\theta)
+\delta\mathcal{B}_{\partial\Omega}(T;\theta)
 =
-\mathcal{B}_{\partial\Omega}(t)
+\mathcal{B}_{\partial\Omega}(T)
 -
-\widehat{\mathcal{B}}_{\partial\Omega}(t;\theta)
+\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)
 $$
-For a readout channel $Y_A(t)$, define the residual induced by unresolved boundary histories as
+For a readout channel $Y_A(t_{\mathrm{eff}})$, define the residual induced by unresolved boundary histories as
 $$
-\delta Y_A(t;\mathcal{B},\theta)
+\delta Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 =
-Y_A(t;\mathcal{B},\theta)
+Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 -
 \left\langle
-Y_A(t;\mathcal{B},\theta)
+Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)
 \right\rangle_{\mu_{\Omega,\theta}}
 $$
 Here $\mu_{\Omega,\theta}$ is a coarse-grained conditional measure over complete states whose resolved projection agrees with the Physical Observer's record $\theta$. It is an epistemic measure over unresolved deterministic histories, not a new substrate law.
 
 The boundary-wake covariance is then
 $$
-N^{\mathrm{bw}}_{AB}(t,t';\theta)
+N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 =
 \int
-\delta Y_A(t;\mathcal{B},\theta)\,
-\delta Y_B(t';\mathcal{B},\theta)\,
+\delta Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)\,
+\delta Y_B(t_{\mathrm{eff}}';\mathcal{B},\theta)\,
 d\mu_{\Omega,\theta}(\mathcal{B})
 $$
 It must be positive semidefinite as a channel covariance:
 $$
 \int\!\!\int
-f_A(t)\,
-N^{\mathrm{bw}}_{AB}(t,t';\theta)\,
-f_B(t')\,dt\,dt'
+f_A(t_{\mathrm{eff}})\,
+N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)\,
+f_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 \ge 0
 $$
-for every resolved test channel $f_A(t)$ on the observation window.
+for every resolved test channel $f_A(t_{\mathrm{eff}})$ on the observation window.
 
 A detector model may add separately calibrated residuals,
 $$
-N_{AB}(t,t';\theta)
+N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 =
-N^{\mathrm{bw}}_{AB}(t,t';\theta)
+N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 +
-N^{\mathrm{det}}_{AB}(t,t')
+N^{\mathrm{det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 +
-N^{\mathrm{env}}_{AB}(t,t')
+N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
@@ -254,14 +258,14 @@ N^{\mathrm{env}}_{AB},
 \Pi_{\mathrm{ADM}}
 \right)
 $$
-where $\Pi_{\mathrm{ADM}}$ is the observer-level projection to $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij},\Phi_{\text{eff}},\chi_{\text{sea}})$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
+where $\Pi_{\mathrm{ADM}}$ is the observer-level projection to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
 The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
 $$
 P_{\Omega,\theta,W}(Y_A\in B)
 =
 \mu_{\Omega,\theta}\!\left(
-\{\mathcal{B}:Y_A(t;\mathcal{B},\theta)\in B\ \text{on}\ W\}
+\{\mathcal{B}:Y_A(t_{\mathrm{eff}};\mathcal{B},\theta)\in B\ \text{on}\ W\}
 \right)
 $$
 If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
@@ -270,33 +274,33 @@ If a comparison requires different measures for branch weights, thermodynamic no
 
 At the ontic level, simultaneity is absolute. Two events
 $$
-(t_1,\mathbf{x}_1)
+(T_1,\mathbf X_1)
 \qquad\text{and}\qquad
-(t_2,\mathbf{x}_2)
+(T_2,\mathbf X_2)
 $$
 are simultaneous exactly when
 $$
-t_1=t_2
+T_1=T_2
 $$
 
 The simultaneity slice is
 $$
-\Sigma_t=\{t\}\times\mathbb{R}^3
+\Sigma_T=\{T\}\times\mathbb{R}^3
 $$
 
-This is a statement about the substrate foliation of absolute timespace, not about what any Physical Observer can operationally reconstruct.
+This is a statement about the substrate foliation of absolute timespace. It is not a statement that any Physical Observer can operationally reconstruct the whole slice.
 
 Physical Observers define simultaneity through clocks, rulers, and signal exchanges. Because those clocks and rulers are assemblies and because signals propagate at finite speed, different moving observers may assign different operational simultaneity surfaces.
 
 The disagreement is epistemic rather than ontological:
 
-- The $\mathbb{U}_{\text{now}}$ universe-state perspective has one absolute slice $\Sigma_t$.
+- The $\mathbb{U}_{\text{now}}$ universe-state perspective has one absolute slice $\Sigma_T$.
 - Physical Observers recover only operational synchronization conventions.
 - In validated regimes, those operational conventions must reproduce Lorentz-consistent clock, ruler, and two-way signal phenomenology while bounding preferred-frame leakage below observational limits.
 
 ## Effective Causal-Order Recovery
 
-External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels, all of which are assembly and Noether sea outputs rather than substrate intervals.
+External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels. All three are assembly and Noether sea outputs rather than substrate intervals.
 
 For a declared GR comparison metric and a candidate Noether sea state and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact recovery diagnostic is
 $$
@@ -306,9 +310,9 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 +
 \lambda_{\tau}
 \left\|
-\frac{d\tau_{\mathrm{eff}}}{dt}(\theta)
+\frac{d\tau_{\mathrm{eff}}}{dt_{\mathrm{eff}}}(\theta)
 -
-\frac{d\tau_{\mathrm{GR}}}{dt}
+\frac{d\tau_{\mathrm{GR}}}{dt_{\mathrm{eff}}}
 \right\|_{W}
 +
 \lambda_{\mathrm{PF}}
@@ -340,7 +344,9 @@ Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a war
 
 ## Physical Observer Clocks and Rulers
 
-A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $t$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
+A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $T$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
+
+The same rule applies to every observer tool. A clock, ruler, detector, telescope, or notebook is an assembly record. It is not a transparent window onto the substrate unless the clock, ruler, signal, and calibration channels have been declared.
 
 This page does not own the clock law. Once a discussion asks how an internal clock frequency changes with velocity, Noether sea density, effective potential, or clock geometry, use [Proper Time and Time Dilation](proper-time-and-time-dilation.md).
 

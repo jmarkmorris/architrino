@@ -2,7 +2,7 @@
 
 Setup:
 - Two architrinos with polarities $q_1=-\epsilon$ and $q_2=+\epsilon$.
-- Initial velocities v1≈0, v2≈0; initial separation r0 ≫ 1 (in v=1 units).
+- Initial velocities $V_1\approx0$, $V_2\approx0$; initial separation $r_0\gg 1$ (in $v=1$ units).
 - For all examples, we restrict motion to a single geometrical line.
 
 Objectives:
@@ -10,56 +10,56 @@ Objectives:
 - Exact analytic solutions if available; otherwise, status of solvability.
 
 Canonical delayed-law considerations:
-- Delay enters through the implicit emission times $t_0$ satisfying $\lvert x_1(t) - x_2(t_0)\rvert = t - t_0$ (and its counterpart).
-- All per-hit actions are radial along the line of action and carry the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; $H(0)=0$ excludes $t_0=t$.
+- Delay enters through the implicit emission times $T_{\mathrm{em}}$ satisfying $\lvert X_1(T) - X_2(T_{\mathrm{em}})\rvert = T - T_{\mathrm{em}}$ (and its counterpart).
+- All per-hit actions are radial along the line of action and carry the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$; $H(0)=0$ excludes $T_{\mathrm{em}}=T$.
 
 Equations of motion (canonical delayed law; two-body, v=1):
 - Definitions:
   - Polarities: $q_1=-\epsilon$ (particle 1), $q_2=+\epsilon$ (particle 2); $\epsilon>0$ is the polarity-unit magnitude.
   - Coupling: $\kappa>0$ is the universal coupling constant; we work in units with field speed $v=1$.
-  - Separation: $r(t)=|x_1(t)-x_2(t)|>0$.
+  - Separation: $r(T)=|X_1(T)-X_2(T)|>0$.
 - Causal (path-history) times:
-  - $t_0^{(2\to 1)}\in\mathcal{C}_2(t)$ solves $\lvert x_1(t)-x_2(t_0)\rvert = t-t_0$.
-  - $t_0^{(1\to 2)}\in\mathcal{C}_1(t)$ solves $\lvert x_2(t)-x_1(t_0)\rvert = t-t_0$.
+  - $T_{\mathrm{em}}^{(2\to 1)}\in\mathcal{C}_2(T)$ solves $\lvert X_1(T)-X_2(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
+  - $T_{\mathrm{em}}^{(1\to 2)}\in\mathcal{C}_1(T)$ solves $\lvert X_2(T)-X_1(T_{\mathrm{em}})\rvert = T-T_{\mathrm{em}}$.
 - Per-particle accelerations (sum over all causal roots if multiple exist):
   $$
-  a_1(t)
+  A_1(T)
   \;=\;
-  \sum_{t_0\in\mathcal{C}_2(t)}
-  -\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}(t;t_0)\frac{\mathrm{sgn}\!\big(x_1(t)-x_2(t_0)\big)}{r_{12}^2},
+  \sum_{T_{\mathrm{em}}\in\mathcal{C}_2(T)}
+  -\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_1(T)-X_2(T_{\mathrm{em}})\big)}{r_{12}^2},
   \quad
-  r_{12}=\big|x_1(t)-x_2(t_0)\big|
+  r_{12}=\big|X_1(T)-X_2(T_{\mathrm{em}})\big|
   $$
   $$
-  a_2(t)
+  A_2(T)
   \;=\;
-  \sum_{t_0\in\mathcal{C}_1(t)}
-  +\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}(t;t_0)\frac{\mathrm{sgn}\!\big(x_2(t)-x_1(t_0)\big)}{r_{21}^2},
+  \sum_{T_{\mathrm{em}}\in\mathcal{C}_1(T)}
+  +\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(X_2(T)-X_1(T_{\mathrm{em}})\big)}{r_{21}^2},
   \quad
-  r_{21}=\big|x_2(t)-x_1(t_0)\big|
+  r_{21}=\big|X_2(T)-X_1(T_{\mathrm{em}})\big|
   $$
   Here $\sigma_{q_2 q_1}=\sigma_{q_1 q_2}=-1$ (unlike polarities attract),
-  $W_{ab}^{\mathrm{rec}}=\lvert D_{t,ab}/D_{s,ab}\rvert$ is the receiver-normal
-  branch strength on the corresponding root, $H(0)=0$ excludes $t_0=t$, and
+  $W_{ab}^{\mathrm{rec}}=\lvert D_{T,ab}/D_{s,ab}\rvert$ is the receiver-normal
+  branch strength on the corresponding root, $H(0)=0$ excludes $T_{\mathrm{em}}=T$, and
   $\mathrm{sgn}(\cdot)$ denotes the sign function.
 
 Relative-coordinate DDE:
-- Define $r(t)=x_1(t)-x_2(t)>0$. Then
+- Define $r(T)=X_1(T)-X_2(T)>0$. Then
   $$
-  \ddot{r}(t)\;=\;a_1(t)-a_2(t)
+  \frac{d^2r}{dT^2}\;=\;A_1(T)-A_2(T)
   \;=\;
-  -\,\kappa\,\epsilon^2\sum_{t_0\in\mathcal{C}_2(t)}W_{12}^{\mathrm{rec}}(t;t_0)\frac{\mathrm{sgn}\!\big(r_{12}\big)}{r_{12}^2}
-  -\,\kappa\,\epsilon^2\sum_{t_0\in\mathcal{C}_1(t)}W_{21}^{\mathrm{rec}}(t;t_0)\frac{\mathrm{sgn}\!\big(r_{21}\big)}{r_{21}^2}
+  -\,\kappa\,\epsilon^2\sum_{T_{\mathrm{em}}\in\mathcal{C}_2(T)}W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(r_{12}\big)}{r_{12}^2}
+  -\,\kappa\,\epsilon^2\sum_{T_{\mathrm{em}}\in\mathcal{C}_1(T)}W_{21}^{\mathrm{rec}}(T;T_{\mathrm{em}})\frac{\mathrm{sgn}\!\big(r_{21}\big)}{r_{21}^2}
   $$
-  with $r_{12}=|x_1(t)-x_2(t_0)|$ and $r_{21}=|x_2(t)-x_1(t_0)|$ defined by their respective causal-root conditions. No exact closed-form solution is presently known for the coupled DDE system.
+  with $r_{12}=|X_1(T)-X_2(T_{\mathrm{em}})|$ and $r_{21}=|X_2(T)-X_1(T_{\mathrm{em}})|$ defined by their respective causal-root conditions. No exact closed-form solution is presently known for the coupled DDE system.
 
 Nonlinear history-anchored form (vector notation for clarity):
   $$
-  \mathbf{a}_1(t)\;=\;-\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}\,
-  \frac{\mathbf{s}_1(t)-\mathbf{s}_2\!\big(t_0^{(2\to 1)}\big)}{\big\|\mathbf{s}_1(t)-\mathbf{s}_2\!\big(t_0^{(2\to 1)}\big)\big\|^3},
+  \mathbf A_1(T)\;=\;-\,\kappa\,\epsilon^2\,W_{12}^{\mathrm{rec}}\,
+  \frac{\mathbf X_1(T)-\mathbf X_2\!\big(T_{\mathrm{em}}^{(2\to 1)}\big)}{\big\|\mathbf X_1(T)-\mathbf X_2\!\big(T_{\mathrm{em}}^{(2\to 1)}\big)\big\|^3},
   \qquad
-  \mathbf{a}_2(t)\;=\;+\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}\,
-  \frac{\mathbf{s}_2(t)-\mathbf{s}_1\!\big(t_0^{(1\to 2)}\big)}{\big\|\mathbf{s}_2(t)-\mathbf{s}_1\!\big(t_0^{(1\to 2)}\big)\big\|^3}
+  \mathbf A_2(T)\;=\;+\,\kappa\,\epsilon^2\,W_{21}^{\mathrm{rec}}\,
+  \frac{\mathbf X_2(T)-\mathbf X_1\!\big(T_{\mathrm{em}}^{(1\to 2)}\big)}{\big\|\mathbf X_2(T)-\mathbf X_1\!\big(T_{\mathrm{em}}^{(1\to 2)}\big)\big\|^3}
   $$
   The attachment points are the partners’ path-history locations at their respective causal emission times; linearizations and small-parameter expansions are intentionally omitted.
 
@@ -67,26 +67,26 @@ Central-origin kinematics (1D positions and velocities; symmetric two-body frame
 - Choose a fixed origin at the geometric midpoint. With equal-magnitude charges and symmetric initial data, this midpoint remains at rest by symmetry.
 - Define the separation
   $$
-  r(t) \equiv x_1(t) - x_2(t) > 0
+  r(T) \equiv X_1(T) - X_2(T) > 0
   $$
   Positions relative to the central origin are then
   $$
-  x_1(t) = \tfrac{1}{2}\,r(t),\qquad
-  x_2(t) = -\,\tfrac{1}{2}\,r(t)
+  X_1(T) = \tfrac{1}{2}\,r(T),\qquad
+  X_2(T) = -\,\tfrac{1}{2}\,r(T)
   $$
 - Velocities follow by differentiation:
   $$
-  v_1(t) = \dot{x}_1(t)
-  = \tfrac{1}{2}\,\dot{r}(t),
+  V_1(T) = \frac{dX_1}{dT}
+  = \tfrac{1}{2}\,\frac{dr}{dT},
   \qquad
-  v_2(t) = \dot{x}_2(t)
-  = -\,\tfrac{1}{2}\,\dot{r}(t)
+  V_2(T) = \frac{dX_2}{dT}
+  = -\,\tfrac{1}{2}\,\frac{dr}{dT}
   $$
 - Symmetric initial conditions (example):
   $$
-  x_1(0)=\tfrac{r_0}{2},\quad
-  x_2(0)=-\tfrac{r_0}{2},\quad
-  v_1(0)=v_2(0)=0
+  X_1(0)=\tfrac{r_0}{2},\quad
+  X_2(0)=-\tfrac{r_0}{2},\quad
+  V_1(0)=V_2(0)=0
   $$
 
 Deliverables:

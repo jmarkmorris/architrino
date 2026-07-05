@@ -15,7 +15,7 @@ Use a Henri Poincare-style nonlinear dynamics lens. Focus on qualitative dynamic
 
 ## Context
 
-We are developing a deterministic tri-binary Noether-braid theory. A Noether braid is a retained closed assembly with three coupled binary substructures, causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, and a surrounding Noether sea state.
+We are developing a deterministic Noether braid theory. A Noether braid is a retained closed assembly with causal-delay wake channels, self-hit, energy/momentum/angular-momentum ledgers, and a surrounding Noether sea state. Exact shell support and binary grouping are branch-level proof obligations; the nested shell braid candidate adds three ordered support bands when that role map is declared.
 
 The current target is the origin of the action unit $h$ and $\hbar=h/(2\pi)$. We want to avoid inserting Planck's constant independently into photon energy, de Broglie momentum, angular momentum, blackbody occupancy, and fine-structure coupling. Instead, the strongest current proposal is:
 
@@ -67,7 +67,7 @@ g\,x(t-\tau(x(t))),
 \tau(x)=\tau_0+\beta x.
 $$
 
-This is not yet claimed to be the full tri-binary Noether braid. It is the smallest candidate model meant to expose whether the reduction program has a real dynamical skeleton.
+This is not yet claimed to be the full nested shell braid. It is the smallest candidate model meant to expose whether the reduction program has a real dynamical skeleton.
 
 The intended first work steps are:
 
@@ -181,7 +181,7 @@ Running fine-structure coupling may change response kernels and charged-threshol
 9. Can $\oint\vartheta$ be made meaningful before proving an exact symplectic/contact reduction, or must the solver first prove the reduced one-form structure?
 10. What two coordinate/readout systems should be compared first to test period readout independence?
 11. What failure pattern would decisively show that the equal action period is an artifact of coordinates or fitting?
-12. How should the tri-binary frequency possibilities enter this reduced model: equal-frequency phase offsets, nearby triplets such as $(f-1,f,f+1)$, hinge triplets such as $(f-1,f,f+2)$, or a general $(m,n)$ resonance family?
+12. How should the nested shell braid frequency possibilities enter this reduced model: equal-frequency phase offsets, nearby triplets such as $(f-1,f,f+1)$, hinge triplets such as $(f-1,f,f+2)$, or a general $(m,n)$ resonance family?
 13. Does the equal-frequency case $(f,f,f)$ suggest a clean invariant torus or phase-locked orbit in which different radii/speed relations share one clock?
 14. What is the smallest numerical experiment that would separate a real retained action period from a fitted constant?
 15. What concrete theorem, counterexample, or certificate should be built next to advance fastest?

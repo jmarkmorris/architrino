@@ -2,6 +2,8 @@
 
 Architrino exists to make a difficult physics architecture inspectable. Its public standard is not persuasion by spectacle. Its public standard is disciplined explanation, clear source status, and artifacts that serious readers can inspect, question, and improve.
 
+The short version is inspection over performance. The project should make strong ideas easier to examine, not harder to question.
+
 ## Public Inspection
 
 Architrino should remain public, source-grounded, and reviewable.

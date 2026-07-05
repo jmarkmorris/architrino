@@ -1,12 +1,12 @@
 # Entropy
 
-Entropy enters $\mathbb{A}\mathbb{A}\mathbb{A}$ as a record-coarse-graining concept. It is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
+Entropy asks what a finite record has forgotten. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a primitive substance, not a field in the Euclidean void, not the generator of absolute time, and not an independent gravitational mechanism. It is a functional of the histories a declared observer, apparatus, simulation packet, or effective description retains after the complete deterministic state has been projected into a finite record.
 
 This chapter collects the entropy rule used across time, energy, measurement, computation, horizon, and cosmology discussions. The central discipline is the same-record rule: a packet may not fit entropy, temperature, flux, probability weights, apparatus cost, or horizon labels from separate hidden ensembles. If a thermal, quantum, horizon, or computational comparison is claimed, the entropy appearing in that comparison must be a projection of the same record that supplies the other quantities.
 
 ## Plain-Language Reading
 
-A simple way to read entropy is: entropy measures how many hidden detailed stories could produce the same thing a record can see. A room does not contain an entropy substance. Rather, there are many exact arrangements of dust, air, books, and clothing that a coarse observer would still record as the same messy room. Entropy counts or measures those compatible detailed arrangements after the level of detail has been fixed.
+A simple way to read entropy is: entropy measures how many hidden detailed stories could produce the same thing a record can see. A room does not contain an entropy substance. Rather, many exact arrangements of dust, air, books, and clothing can still project to the same coarse record of "messy room." Entropy counts or measures those compatible detailed arrangements after the level of detail has been fixed.
 
 This is also why visible disorder is only a shortcut, not the definition. A jagged, broken, or visually mixed object can still have lower entropy than a smoother thermal state if fewer complete histories are compatible with its retained record. In this chapter, disorder language is acceptable only when it tracks the declared measure, macrostate partition, and unresolved history count.
 
@@ -24,15 +24,15 @@ The quantum version says the same thing in a sharper language. A complete compar
 
 ## Core Definition
 
-Let $\mu_t$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $t_0$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[t_0-h,t_0]$ and let $\mathcal{F}_{t_0\to t}$ be the deterministic delayed-flow map. Then
+Let $\mu_T$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $T_0$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[T_0-h,T_0]$ and let $\mathcal{F}_{T_0\to T}$ be the deterministic delayed-flow map. Then
 
 $$
-\mu_t
+\mu_T
 =
-\left(\mathcal{F}_{t_0\to t}\right)_*\nu_{\mathrm{prep}}
+\left(\mathcal{F}_{T_0\to T}\right)_*\nu_{\mathrm{prep}}
 $$
 
-This is the official reading of $\mu_t$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
+This is the official reading of $\mu_T$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
 
 Let $W(t)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
 
@@ -43,12 +43,12 @@ $$
 maps complete histories into retained record variables. Here $\Gamma_t$ is the preparation-conditioned complete-history space at time $t$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
 
 $$
-\nu_{\mathcal{Q},W,t}
+\nu_{\mathcal{Q},W,T}
 =
-(\Pi_{\mathcal{Q},W})_*\mu_t
+(\Pi_{\mathcal{Q},W})_*\mu_T
 =
 (\Pi_{\mathcal{Q},W})_*
-\left(\mathcal{F}_{t_0\to t}\right)_*
+\left(\mathcal{F}_{T_0\to T}\right)_*
 \nu_{\mathrm{prep}}
 $$
 
@@ -90,7 +90,7 @@ Equivalently, entropy is a functional on the quotient $\Gamma_t/\!\sim_{\mathcal
 
 ### Receiver Inference Fibers And Provenance Graphs
 
-The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf{x}_i(t),t)$, let the retained hit record be
+The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf X_i(T),T)$, let the retained hit record be
 
 $$
 \mathcal{H}_i^{\mathrm{hit}}(t)
@@ -347,13 +347,13 @@ $$
 \Lambda_{\text{sea}}(W)
 =
 \frac{
-\tau_{\text{retune}}\!\left(\theta_{\text{sea}}\right)
+T_{\text{retune}}\!\left(\theta_{\text{sea}}\right)
 }{
-\tau_{\text{cycle}}
+T_{\text{cycle}}
 }
 $$
 
-where $\tau_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $\tau_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T$ is not a well-defined state function for that record.
+where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $T_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T$ is not a well-defined state function for that record.
 
 In differential-form language, $\delta Q/T$ is an exact 1-form only in the fast-retuning regime where the Noether sea response closes before the comparison cycle completes. When $\Lambda_{\text{sea}}\gtrsim1$, the same form acquires a nonzero period around the cycle: the hysteresis-loop area is the observable obstruction to treating thermodynamic entropy as a state function on that packet. The predicted simulation signature is a loop area that grows with the sea-retuning lag rather than with an independently assigned entropy defect.
 
@@ -482,11 +482,11 @@ First, choose the physical window $W$ and the record carrier: apparatus, boundar
 For open or cosmological windows, entropy bookkeeping must expose production, boundary flux, and record-change residuals:
 
 $$
-\frac{dS_{\mathcal{Q},W}}{dt}
+\frac{dS_{\mathcal{Q},W}}{dT}
 =
-\sigma_W(t)
+\sigma_W(T)
 -
-\int_{\partial W(t)}
+\int_{\partial W(T)}
 \left(
 \mathbf{J}_S
 -
@@ -494,17 +494,17 @@ s_{\mathcal{Q}}\mathbf{v}_{\partial W}
 \right)
 \cdot\hat{\mathbf{n}}\,dA
 +
-\mathcal{R}_{\mathcal{Q}}(t)
+\mathcal{R}_{\mathcal{Q}}(T)
 $$
 
 Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{v}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{v}_{\partial W}=0$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
 
 $$
-\frac{dS_{\mathcal{Q},W}}{dt}\ge 0
+\frac{dS_{\mathcal{Q},W}}{dT}\ge 0
 \quad\Longleftrightarrow\quad
-\sigma_W(t)+\mathcal{R}_{\mathcal{Q}}(t)
+\sigma_W(T)+\mathcal{R}_{\mathcal{Q}}(T)
 \ge
-\int_{\partial W(t)}
+\int_{\partial W(T)}
 \left(
 \mathbf{J}_S
 -
@@ -518,17 +518,17 @@ for the declared record. The phrase "entropy of the universe" is not a complete 
 The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
-\frac{d}{dt}S_{\Pi,W}(t)
+\frac{d}{dT}S_{\Pi,W}(T)
 =
-k_B\,\sigma_W^{\mathrm{int}}(t)
+k_B\,\sigma_W^{\mathrm{int}}(T)
 +
 k_B\,\Sigma_{\mathrm{esc}}
 \left(
 \mathcal{E}_{\mathrm{esc}}(W),
-t
+T
 \right)
 +
-\mathcal{R}_{\Pi,W}(t)
+\mathcal{R}_{\Pi,W}(T)
 $$
 
 on a fixed coarse-graining and boundary convention. In words: observer-window entropy production is bounded below by the retained-history distinctions lost to escaping wakes, up to declared interior production and projection residuals. The thermodynamic arrow is therefore a theorem target about the same causal-wake boundary ledger used by finite-window energy bookkeeping, not a second primitive arrow.
@@ -546,15 +546,15 @@ The conservation instinct behind stronger universal-entropy claims should theref
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the second law is therefore not the source of absolute time and not a primitive command that a substance called entropy must always rise. It is a finite-window typicality and bookkeeping claim over a declared record. For a fixed window, coarse-graining, boundary record, and apparatus/control class, the same-record second-law diagnostic is
 
 $$
-\Delta S_{\mathcal{Q},\mathrm{tot}}(\theta_W;t_i,t_f)
+\Delta S_{\mathcal{Q},\mathrm{tot}}(\theta_W;T_i,T_f)
 =
 \Delta S_{\mathcal{Q},W}
 +
 \Delta S_{\mathcal{Q},\partial W+\mathrm{env}}
 +
-\int_{t_i}^{t_f}\mathcal{R}_{\mathcal{Q}}(t)\,dt
+\int_{T_i}^{T_f}\mathcal{R}_{\mathcal{Q}}(T)\,dT
 \ge
--\epsilon_{\mathrm{fluc}}(W,\mathcal{Q},t_f-t_i)
+-\epsilon_{\mathrm{fluc}}(W,\mathcal{Q},T_f-T_i)
 $$
 
 Here $\Delta S_{\mathcal{Q},W}$ is the retained entropy change inside the window, $\Delta S_{\mathcal{Q},\partial W+\mathrm{env}}$ is the boundary and environmental entropy change assigned by the same record, $\mathcal{R}_{\mathcal{Q}}$ records changes in the retained coarse-graining or record set, and $\epsilon_{\mathrm{fluc}}$ allows finite-window statistical fluctuations. In the macroscopic thermodynamic regime, $\epsilon_{\mathrm{fluc}}$ is negligible for ordinary comparisons. In microscopic or short-time windows it is not.
@@ -607,7 +607,7 @@ In the language of the core definition, the same-record rule says that entropy, 
 
 ## Entropy And Absolute Time
 
-Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $t_0 < t$ can contribute to a receiver at $t$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
+Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $T_0 < T$ can contribute to a receiver at $T$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
 
 Even if the complete deterministic dynamics preserve the underlying measure, the observer-window entropy $S_{\Pi,W}$ can increase when $\Pi_{\mathcal{Q},W}$ discards path-history, boundary-wake, or apparatus-record information. That increase is a projection effect inside the declared record. It is not evidence that time itself is generated by entropy.
 
@@ -665,9 +665,9 @@ Measurement records require entropy locking. For a declared apparatus/environmen
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
 =
-S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_0+T_{\text{rec}})
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_0+T_{\text{rec}})
 -
-S_{\mathcal{Q},W}^{\mathrm{app+env}}(t_0)
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_0)
 $$
 
 is the entropy change associated with the candidate record. A strong record candidate satisfies
@@ -760,7 +760,7 @@ $$
 
 This target avoids a false one-patch interpretation. The coefficient is a block entropy density and patch-area normalization, not a literal independent count on one microscopic patch.
 
-The label set is not arbitrary. At terminal alignment the three-binary collapses its orbital-plane normals onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
+The label set is not arbitrary. At terminal alignment the nested shell braid collapses its orbital-plane normals onto one interface axis, so the surviving discrete labels are the handedness assignment and the causal-root ledger index still carried by the aligned branch. In a block $U$,
 
 $$
 \left|

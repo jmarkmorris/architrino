@@ -2,13 +2,15 @@
 
 This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../noether-braid/nested-shell-braid-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
 
+The bridge keeps both sides honest. Special relativity supplies the tested observer contract: clocks, rulers, signals, energy, and momentum must transform together. The Noether braid story supplies the proposed implementation: moving assemblies must deform, retune, and export one shared effective record rather than separate fitted factors.
+
 ## Bridge Thesis
 
 Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether braid account proposes the underlying implementation layer: a moving Noether braid assembly must preserve finite-speed causal wake closure while translating through the Noether sea. That requirement deforms the braid's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
 
 The bridge claim is not that special relativity is discarded. The claim is that the Lorentz formulas are the effective limit seen by Physical Observers when stable assemblies and photon-like signal channels are built from the same finite-speed Noether sea dynamics.
 
-The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three binary layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
+The sharper milestone is Return-Cycle Lorentz Quantization, the branch-quantized Lorentz response of a Noether braid assembly. The continuous Lorentz factor remains the observer-level envelope, but a Noether braid realizes that envelope only through admissible causal-root ledger classes. Each ledger class retunes all three support layers and then projects its observable ruler behavior through the outer-binary exclusion envelope.
 
 ## Ownership Boundary
 
@@ -76,11 +78,11 @@ The observer-level interval $s_{\mathrm{eff}}^2(E,R)$ is then an export of $\The
 
 ## Clock Channel
 
-In special relativity, the moving-clock law is usually written
+In special relativity, the moving-clock law is usually written as a standard comparison form
 $$
-\frac{d\tau}{dt}=\frac{1}{\gamma},
+\frac{d\tau}{dt_{\mathrm{std}}}=\frac{1}{\gamma_{\mathrm{std}}},
 \qquad
-\gamma=\frac{1}{\sqrt{1-v^2/c^2}}
+\gamma_{\mathrm{std}}=\frac{1}{\sqrt{1-v_{\mathrm{std}}^2/c^2}}
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
@@ -97,9 +99,9 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The proper-time map is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The native clock-map row is therefore an extracted frequency ratio:
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dT}
 =
 \frac{\omega_{\text{clk}}(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
 $$
@@ -129,7 +131,7 @@ c_{\text{eff}}
 $$
 Clock slowing is the observer-facing readout of this retuning:
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 =
 \frac{c_{\perp}}{c_{\text{eff}}}
 =
@@ -416,7 +418,7 @@ The same Lorentz factor appears in clock, ruler, momentum, and energy formulas b
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,
-2. stable phase closure across nested binaries,
+2. stable phase closure across nested shell braid support rows,
 3. deformation of the dynamic exclusion envelope,
 4. clock-frequency extraction from internal cycles,
 5. and medium-dressed response to acceleration.
@@ -450,8 +452,8 @@ To promote this bridge from mapping to derivation, the following targets must cl
 7. Show that clock, ruler, momentum, and energy channels share the same $\gamma_{\text{eff}}$ to the required order.
 8. Bound preferred-frame leakage and identify the leading measurable correction terms.
 9. Derive the branch-quantized Lorentz response: for each stable admissible causal-root ledger class $q$, compute $B_q(v)$, extract $\gamma_{\mathrm{clk}}^{(q)}$ and $\gamma_{\mathrm{rul}}^{(q)}$, and show that all accepted clock/ruler branches collapse to the same effective $\gamma_{\text{eff}}$ within $O(\epsilon_{\mathrm{LV}})$.
-10. Prove that the outer-envelope oblation is the observable projection of an all-three-binary branch update, not an independently assigned deformation law.
+10. Prove that the outer-envelope oblation is the observable projection of a whole-braid branch update, not an independently assigned deformation law.
 
 ## Summary Commitment
 
-> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three binary layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.
+> **Special Relativity Bridge Commitment:** Special relativity is retained as the effective observer-level bookkeeping of clocks, rulers, energy, and momentum in homogeneous weak-field conditions. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation is that deformable Noether braids preserve finite-speed causal wake closure by retuning internal phase, all three support layers, outer-envelope geometry, and medium-dressed response. The mature theory must derive the Lorentz factor as a shared branch-quantized closure consequence, not assign it separately to clocks, rods, mass, and momentum.

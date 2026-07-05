@@ -27,9 +27,9 @@ $$
 =
 \int_{\Gamma_z}
 \frac{
-\chi_\gamma(\omega_a,\mathbf{x},t)
+\chi_\gamma(\omega_a,\mathbf X,T)
 -
-\chi_\gamma(\omega_b,\mathbf{x},t)
+\chi_\gamma(\omega_b,\mathbf X,T)
 }{c_0}\,d\ell
 $$
 Here $\Gamma_z$ is the observer-level path used by the comparison, and $\chi_\gamma$ is the photon-channel delay factor from the same branch record used for photon synchronization. A useful residual is
@@ -129,12 +129,12 @@ Massive-interference experiments and precision gravity readouts jointly test whe
   $$
   \mathcal{D}_{\mathrm{grav}}(T;\theta)
   =
-  \int_0^T\!\!\int_0^T
-  \Delta h_A(t)\,
-  N^{-1}_{AB}(t,t')\,
-  \Delta h_B(t')\,dt\,dt'
+  \int_0^{T_{\mathrm{run}}}\!\!\int_0^{T_{\mathrm{run}}}
+  \Delta h_A(t_{\mathrm{eff}})\,
+  N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})\,
+  \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
   $$
-  with $\Delta h_A(t)=h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
+  with $\Delta h_A(t_{\mathrm{eff}})=h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)$, must remain below the declared which-path threshold for any interference-preserving run unless a record-forming separatrix crossing and persistence window are also derived.
 * **Observable** – the data products are massive-superposition coherence time, branch separation and mass-displacement history, precision-gravity response, detector noise covariance, any two-probe entanglement witness, non-gravitational coupling residuals, and the absence or presence of a durable which-path record.
 * **Validation Target** – combine long-coherence interferometry with Cavendish-like, atom-interferometric, or gravitational-wave-instrument precision bounds to constrain $\mathcal{D}_{\mathrm{grav}}$ using one effective-metric constitutive record $\theta$; the concrete scaffold is [Massive-Superposition Gravity Validation Packet](massive-superposition-gravity.md).
 * **Mediated-Entanglement Target** – for gravitationally induced entanglement comparisons, the same $\theta$ must generate the branch interaction phase $\Delta\Phi_{\mathrm{ent}}$ needed for the observed witness $C_{\mathrm{obs}}$ while keeping $\mathcal{R}_{\mathrm{nongrav}}$ below the isolation threshold and $\mathcal{D}_{\mathrm{grav}}$ below the which-path threshold.
@@ -167,7 +167,7 @@ $$
 $$
 with the accepted comparison using the full ephemeris covariance rather than this estimate alone.
 
-* **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta\mathbf{x}_{\mathrm{ephem}}^\theta(t)$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
+* **Constraint** – any claimed local compact dark-sector signal must produce an ephemeris residual $\Delta x_{\mathrm{ephem,eff}}^{i,\theta}(t_{\mathrm{eff}})$ above the declared ranging and model-error floor while remaining inconsistent with ordinary catalogued bodies under the same orbit-reconstruction covariance.
 * **Co-Signature Check** – if the branch predicts high-energy particles, radiation, or gravitational-wave sidebands, those observables must use the same trajectory, mass, and abundance record as the ephemeris perturbation.
 * **Failure Condition** – a compact dark-sector branch fails locally if it explains cosmological abundance with one mass or population record but requires a different record for ephemerides, visible-object exclusions, or high-energy null results.
 

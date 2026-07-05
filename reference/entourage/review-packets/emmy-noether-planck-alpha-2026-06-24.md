@@ -1,7 +1,7 @@
 # Self-Contained Review Packet: Planck Action, Blackbody Occupancy, And Fine-Structure Running
 
 Closure goal:
-Assess whether the proposed Planck-action, Planck-blackbody, and fine-structure-running closure targets can be grounded in symmetry, action, and conservation structure for a tri-binary Noether-braid theory, and identify the strongest corrections, invariants, and proof steps.
+Assess whether the proposed Planck-action, Planck-blackbody, and fine-structure-running closure targets can be grounded in symmetry, action, and conservation structure for a Noether braid theory, and identify the strongest corrections, invariants, and proof steps.
 
 This packet is self-contained. It does not require access to any files, prior notes, code, or external references.
 
@@ -22,7 +22,7 @@ Use equations where they sharpen the answer. Distinguish established consequence
 
 The working theory treats the fundamental substrate as a deterministic causal-wake system in a fixed Euclidean timespace. Local assemblies are not point particles with assigned quantum labels. They are retained branch structures made from interacting architrino histories, causal roots, wake channels, and event ledgers.
 
-A **Noether braid** is a retained closed assembly whose internal causal history, phase, wake, energy, momentum, angular momentum, and event rows remain bound on one branch chart. A tri-binary Noether braid has three coupled binary substructures. The binary roles are ordered as inner, middle, outer when a retained role map exists.
+A **Noether braid** is a retained closed assembly whose internal causal history, phase, wake, energy, momentum, angular momentum, and event rows remain bound on one branch chart. A nested shell braid candidate has three ordered support bands; inner, middle, and outer roles are used only after a retained role map exists.
 
 A **Noether sea** is the surrounding population/medium response of Noether braids. It supplies local density, delay, cadence stretch, effective photon-channel speed, and observer-level metric behavior. It is not the Euclidean void itself.
 
@@ -57,7 +57,7 @@ $$
 J=n\hbar.
 $$
 
-The intended claim is not that $h$ is inserted as a primitive constant. The intended claim is that $h$ and $\hbar$ should become exposed action-cycle readouts from retained Noether-braid geometry.
+The intended claim is not that $h$ is inserted as a primitive constant. The intended claim is that $h$ and $\hbar$ should become exposed action-cycle readouts from retained Noether braid geometry.
 
 Candidate carrier:
 

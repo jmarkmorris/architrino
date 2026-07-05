@@ -260,7 +260,7 @@ Executable source-field ledger:
 | Explicit provider-object branches | `explicit_provider_object_branch_row_count` | `0 / 30` | No explicit `P_-` / `P_+` provider-object branch rows can be bound to a retained record. |
 | Branch-attributed source terms | `source_term_provider_branch_attributed_term_row_count` | `0` | Aggregate `P`, lambda terminal witness intervals, variable-owned alpha candidates, and row-local expression feeds remain negative-control inputs, not accepted provider-object branches. |
 | Identity payloads | `source_field_availability_audit.identity_families` | missing same-domain branch-bearing $P_b$ map, branch projection or alpha map, `pushforward_operator_ref`, and `normalization_identity_ref` | Candidate branch feeds cannot be admitted as provider-object branch rows. |
-| Receiver-normal derivative binding | `receiver-normal-retained-branch-family-first-derivative/v0` rows | not emitted | No same-record $D_s$, $D_t$, $D_vD_s$, $D_vD_t$, or $D_vW^{\mathrm{rec}}$ can be consumed from this H39 target. |
+| Receiver-normal derivative binding | `receiver-normal-retained-branch-family-first-derivative/v0` rows | not emitted | No same-record $D_s$, $D_T$, $D_vD_s$, $D_vD_T$, or $D_vW^{\mathrm{rec}}$ can be consumed from this H39 target. |
 
 Populated candidate diagnostics that remain rejected:
 
@@ -278,9 +278,9 @@ therefore has this status:
 | Artifact row | H39/theta3minus status |
 | --- | --- |
 | `retained_record_key` | Not populated. The H39 row has provider source cells, terminal $h$ indexes, and target branch labels, but no retained causal-root id, source/receiver ids, source-to-receiver direction, receiver time, source time or delay row, retained box, or force-row regulator state. |
-| `variation_key` | Not populated for receiver-normal use. H39 names source-map derivative order and terminal graph coordinates, not the force/action variation $v$ consumed by $D_vD_s$, $D_vD_t$, and $D_vW^{\mathrm{rec}}$. |
-| `receiver_normal_fields` | Missing. No same-record $D_s$, $D_t$, fixed sign labels, or $W^{\mathrm{rec}}$ are emitted on the H39 provider-object branch target. |
-| `receiver_normal_derivatives` | Missing. No $D_vD_s$, $D_vD_t$, or reconstructed $D_vW^{\mathrm{rec}}$ interval is emitted. |
+| `variation_key` | Not populated for receiver-normal use. H39 names source-map derivative order and terminal graph coordinates, not the force/action variation $v$ consumed by $D_vD_s$, $D_vD_T$, and $D_vW^{\mathrm{rec}}$. |
+| `receiver_normal_fields` | Missing. No same-record $D_s$, $D_T$, fixed sign labels, or $W^{\mathrm{rec}}$ are emitted on the H39 provider-object branch target. |
+| `receiver_normal_derivatives` | Missing. No $D_vD_s$, $D_vD_T$, or reconstructed $D_vW^{\mathrm{rec}}$ interval is emitted. |
 | `geometry_derivatives` | Missing for force/action use. The row has terminal graph/provider coordinates, not $D_vr_a$ and $D_v\hat{\mathbf r}_a$ or shell-braid $D_v\eta_a$ and $D_v\widehat{\mathbf R}_a$. |
 | `force_kernel_derivative` | Missing. No $\mathbf B_a^{\mathrm{rec}}$ or $D_v\mathbf B_a^{\mathrm{rec}}$ row is emitted. |
 | `branch_family_checksum` | Target-only. The exact 15 terminal rows and 30 `P_-` / `P_+` branch rows are named, but none is accepted as a provider-object branch interval and none is bound to a receiver-normal force/action consumer checksum. |
@@ -303,8 +303,8 @@ derivative row yet. It is a two-stage obligation:
    reference, normalization identity, and the already named 15-terminal /
    30-branch binding fields;
 2. then bind that accepted provider object to a retained causal-root
-   force/action record that emits $D_s$, $D_t$, fixed sign labels,
-   $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed
+   force/action record that emits $D_s$, $D_T$, fixed sign labels,
+   $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed
    $D_vW^{\mathrm{rec}}$, geometry derivatives, and the same retained
    branch-family checksum consumed by the force/action packet.
 
@@ -328,8 +328,8 @@ same-record identity.
 | `accepted_provider_object_branch_row_ref` | Accepted same-domain `P_-` / `P_+` provider-object row or $A_P=P_- - P_+$ row, with terminal row id, branch label, both interval payloads, $P_b$ map, branch projection or alpha map, `pushforward_operator_ref`, and `normalization_identity_ref`. | Missing. Candidate branch feeds exist, but no admissible provider-object branch row or pushforward identity exists. |
 | `retained_causal_root_record_ref` | Stable retained causal-root force/action record that consumes the provider row: source/receiver ids, source-to-receiver direction, receiver time, source time or delay row, retained box, regulator state, and source artifact hash. | Missing. H39 names terminal source-map coordinates, not a retained causal-root force/action record. |
 | `branch_family_binding` | Map from each H39 branch row `speed.{0..4}.first-y:h{37,36,35}:P_-` / `P_+` into the retained branch list $\mathcal{A}_{\mathcal B}$ consumed by the force/action packet, with a consumer checksum. | Target-only. The 30 branch rows are named, but none is accepted or checksummed as a retained force/action branch family. |
-| `receiver_normal_fields` | Same-record $D_s$, $D_t$, fixed sign labels, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the retained causal-root record. | Missing. No H39 provider row emits $D_s$, $D_t$, or $W^{\mathrm{rec}}$. |
-| `receiver_normal_derivative_fields` | Same-record $D_vD_s$, $D_vD_t$, and reconstructed $D_vW^{\mathrm{rec}}$ using the retained-record formula. | Missing. No H39 provider row emits force/action variation derivatives. |
+| `receiver_normal_fields` | Same-record $D_s$, $D_T$, fixed sign labels, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the retained causal-root record. | Missing. No H39 provider row emits $D_s$, $D_T$, or $W^{\mathrm{rec}}$. |
+| `receiver_normal_derivative_fields` | Same-record $D_vD_s$, $D_vD_T$, and reconstructed $D_vW^{\mathrm{rec}}$ using the retained-record formula. | Missing. No H39 provider row emits force/action variation derivatives. |
 | `geometry_derivative_fields` | Same-record $D_vr_a$ and $D_v\hat{\mathbf r}_a$, or the shell-braid specialization $D_v\eta_a$ and $D_v\widehat{\mathbf R}_a$. | Missing. H39 terminal graph/provider coordinates do not supply the force/action geometry derivative row. |
 | `negative_control_status` | Reject aggregate `P`, lambda terminal witness intervals, variable-owned alpha candidates, row-local expression feeds, term-pushforward candidate rows, or source-map residual provider candidates unless the accepted provider-object branch row and retained causal-root record are both present. | Active. These are the populated-but-rejected diagnostics above. |
 
@@ -340,8 +340,8 @@ Failure statuses for this handoff row are:
 | `h39-provider-object-branch-row-missing` | No accepted same-domain provider-object `P_-` / `P_+` branch row or $A_P=P_- - P_+$ row exists. |
 | `h39-provider-object-retained-record-unbound` | An accepted provider-object branch row exists, but no retained causal-root force/action record consumes it on the same branch family. |
 | `h39-retained-branch-family-checksum-missing` | The H39 branch list is not checksummed against the retained branch list consumed by force/action, action, power, wake-history, or Lipschitz rows. |
-| `h39-receiver-normal-fields-missing` | The retained record lacks $D_s$, $D_t$, fixed signs, or $W^{\mathrm{rec}}$. |
-| `h39-receiver-normal-derivative-fields-missing` | The retained record lacks $D_vD_s$, $D_vD_t$, or reconstructed $D_vW^{\mathrm{rec}}$. |
+| `h39-receiver-normal-fields-missing` | The retained record lacks $D_s$, $D_T$, fixed signs, or $W^{\mathrm{rec}}$. |
+| `h39-receiver-normal-derivative-fields-missing` | The retained record lacks $D_vD_s$, $D_vD_T$, or reconstructed $D_vW^{\mathrm{rec}}$. |
 | `h39-provider-candidate-consumed-as-retained-record` | A variable-owned alpha candidate, row-local branch feed, term-pushforward candidate, source-map residual provider candidate, lambda terminal witness interval, or aggregate `P` row is consumed as if it were an accepted retained record. |
 
 Packet-local H39 negative controls feeding this handoff row:
@@ -349,7 +349,7 @@ Packet-local H39 negative controls feeding this handoff row:
 | Packet-local status | Rejected object | Reason it cannot populate the retained-record preimage row |
 | --- | --- | --- |
 | `h39-thirty-eighth-successor-not-retained-record-preimage` | Thirty-eighth-order $N_{38}$ successor coefficient or derivative-bound row | Producer-side provenance only; no accepted $A_P=P_- - P_+$ or explicit `P_-` / `P_+` provider-object branch row and no retained causal-root derivative record. |
-| `h39-primitive-vector-provider-provenance-only-not-retained-record-preimage` | H39 primitive-vector replay with $\Lambda_{39}^{\mathrm R}<1$ or hybrid prefix-Cauchy order diagnostic feeding that replay lane | Primitive or hybrid-prefix provenance may support source-map construction, but it emits none of $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, or the branch-family checksum. |
+| `h39-primitive-vector-provider-provenance-only-not-retained-record-preimage` | H39 primitive-vector replay with $\Lambda_{39}^{\mathrm R}<1$ or hybrid prefix-Cauchy order diagnostic feeding that replay lane | Primitive or hybrid-prefix provenance may support source-map construction, but it emits none of $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, $D_vW^{\mathrm{rec}}$, or the branch-family checksum. |
 | `h39-coefficient-series-provider-candidate-not-retained-record-preimage` | Coefficient-series source-map residual provider candidate, source-map residual envelope, provider-fit diagnostic, or signed-radius target | Candidate provider rows have same-domain/source-map value only; they are not accepted provider-object branch rows and are not bound to a retained causal-root force/action record. |
 
 Partial-population invariant. The branch-provider report already has a
@@ -487,9 +487,9 @@ claim. It exercises these rows:
 | `source_map_residual_provider_only` | The fixture carries `provider_row_source_kind=directed-rounded-same-domain-h38-source-map-residual-provider` with same-domain/source-map residual checks, but no accepted $A_P$ or explicit `P_-` / `P_+` provider-object branch row and no retained causal-root derivative record. | `h39-coefficient-series-provider-candidate-not-retained-record-preimage`; no downstream authorization |
 | `partial_provider_object_branch_row` | The producer-side extractor reports 14 available $A_P$ terminal rows and 28 explicit provider-object branch rows, with exact missing terminal and branch row ids. | `h39-provider-object-branch-row-missing`; no downstream authorization |
 | `accepted_provider_object_unbound` | All 15 terminal rows and all 30 `P_-` / `P_+` rows are accepted as provider-object branch rows, but no retained causal-root force/action record consumes them. | `h39-provider-object-retained-record-unbound` |
-| `retained_record_missing_receiver_normal_derivative` | The provider row is bound to a retained causal-root record carrying $D_s$, $D_t$, fixed signs, and $W^{\mathrm{rec}}$, but omits $D_vD_s$, $D_vD_t$, or reconstructed $D_vW^{\mathrm{rec}}$. | `h39-receiver-normal-derivative-fields-missing` |
+| `retained_record_missing_receiver_normal_derivative` | The provider row is bound to a retained causal-root record carrying $D_s$, $D_T$, fixed signs, and $W^{\mathrm{rec}}$, but omits $D_vD_s$, $D_vD_T$, or reconstructed $D_vW^{\mathrm{rec}}$. | `h39-receiver-normal-derivative-fields-missing` |
 | `fourth_jet_taylor_derivative_only` | Fourth-jet or Taylor derivative rows are present only as diagnostics, without accepted provider-object branch rows and retained causal-root same-record binding. | `h39-provider-candidate-consumed-as-retained-record`; no receiver-normal derivative evidence |
-| `preimage_review_candidate` | The accepted provider row, retained causal-root record, branch-family checksum, $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, and geometry derivative fields all share one source artifact hash and retained box. | `h39-receiver-normal-retained-record-preimage-review-required`; still not retained-branch promotion |
+| `preimage_review_candidate` | The accepted provider row, retained causal-root record, branch-family checksum, $D_s$, $D_T$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, reconstructed $D_vW^{\mathrm{rec}}$, and geometry derivative fields all share one source artifact hash and retained box. | `h39-receiver-normal-retained-record-preimage-review-required`; still not retained-branch promotion |
 
 The positive review fixture is not allowed to pass by copying a terminal graph
 coordinate into a force/action record. It must verify the receiver-normal
@@ -543,7 +543,7 @@ same-record binding fields named above.
 For receiver-normal derivative use, that provider-object packet is still only
 stage one. Stage two is the retained-record preimage row: bind the accepted
 provider-object branch row to the retained causal-root force/action record with
-$D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$,
+$D_s$, $D_T$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$,
 reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives, and the retained
 branch-family checksum. Primitive-vector replays, coefficient-series source-map
 residual provider candidates, source-map residual envelopes, provider-fit diagnostics, and

@@ -2,6 +2,8 @@
 
 This chapter defines the convergence standard for simulations that include self-hit structure and other delayed-memory effects. Its role is to specify which observables are checked, which refinement ladders are required, and what pass/fail thresholds count as numerical control rather than artifact.
 
+Convergence means the result is not a trick of the mesh, time step, history buffer, root solver, or regulator. For delayed dynamics that matters especially, because a tiny bookkeeping error in the past can return later as a fake branch, fake stability window, or fake invariant.
+
 Because self-hit dynamics are especially prone to fake structure under poor time or history resolution, this document should be read as a validation gate rather than as optional numerical hygiene.
 
 All convergence claims in this chapter are finite-window claims. Passing the gates below validates the declared observables on the analysis window, with the stated detector set, history horizon, and regulator choices. It does not decide unbounded reachability questions for the full delayed dynamics; those would require a separate theorem about the global flow rather than a stronger convergence plot.

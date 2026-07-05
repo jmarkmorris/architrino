@@ -8,6 +8,8 @@ General Relativity is powerful because it makes clocks, rulers, light paths, fre
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ is therefore not an anti-geometric theory. It is a theory with disciplined placement for each geometry it uses. The Euclidean void supplies the fixed spatial metric, causal wakes supply path-history geometry, assemblies carry internal geometry, the Noether sea supplies constitutive response, and Physical Observers reconstruct an effective metric from clocks, rulers, and signal behavior. The critique of modern spacetime ontology is not that it is geometric. The critique is that it promotes one successful effective geometry into final ontology before the generator has been identified.
 
+The working question is always: what job is this geometry doing? A geometry may define the container, encode a causal wake, describe an assembly, summarize medium response, or organize observer measurements. Those jobs are different, and the chapter exists to keep them from being merged into one all-purpose word.
+
 The technical owners remain [Euclidean Void](../foundations/euclidean-void.md), [Ontology](../foundations/ontology.md), [Master Equation](../dynamics/master-equation.md), [Noether sea](../spacetime/noether-sea.md), [Emergent Metric](../spacetime/emergent-metric.md), and [Spacetime Models and the Noether sea](theory-bridges/spacetime-models-and-noether-sea.md). This page supplies the philosophy-facing placement discipline.
 
 ## The Geometry Question
@@ -22,7 +24,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the fixed substrate geometry is
 $$
 h_{ij}=\delta_{ij},
 \qquad
-\partial_t h_{ij}=0,
+\partial_T h_{ij}=0,
 \qquad
 R^i{}_{jkl}(h)=0
 $$
@@ -35,16 +37,16 @@ g^{\text{eff}}_{\mu\nu}
 \mathcal{G}_{\text{metric}}
 \left(
 h_{ij},
-S(t),
+S(T),
 n,
 \chi_{\text{sea}},
 \sigma^{ab}_{\text{sea}},
-u^i_{\text{sea}},
+u^i_{\mathrm{sea,eff}},
 e^a{}_i,
 \Pi_{\text{obs}}
 \right)
 $$
-Here $S(t)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\text{sea}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
+Here $S(T)$ is the complete ontic universe state with path-history provenance, $n$ is normalized Noether braid density, $\chi_{\text{sea}}$ is the Noether sea delay factor, $\sigma^{ab}_{\text{sea}}$ denotes retained stress response, $u^i_{\mathrm{sea,eff}}$ and $e^a{}_i$ are observer-level drift and frame-field channels, and $\Pi_{\text{obs}}$ denotes the clock, ruler, and signal projections used by Physical Observers. The map $\mathcal{G}_{\text{metric}}$ is not a new primitive. It is the constitutive recovery problem: show how one medium and observer record yields the effective metric that passes GR-level tests.
 
 ## Geometry-Layer Map
 
@@ -53,7 +55,7 @@ The useful distinction is not geometric versus non-geometric. It is primitive ge
 | Layer | Geometry | Ontological status | What it controls |
 | --- | --- | --- | --- |
 | Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, simultaneity-slice spatial operators, fixed location identity |
-| Causal wake | Expanding causal isochrons satisfying $r=c_f(t-t_0)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
+| Causal wake | Expanding causal isochrons satisfying $r=c_f(T-T_{\mathrm{em}})$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
 | Assembly | Stable internal organization of architrinos and Noether braids | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
 | Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
 | Effective metric | $g^{\text{eff}}_{\mu\nu}$ reconstructed from observer records | Observer-level geometry | Proper time, geodesic approximation, lensing, redshift, Shapiro delay, gravitational-wave comparison |
@@ -118,6 +120,6 @@ Whenever a document invokes geometry, the reader should be able to answer five q
 4. Which invariant or measurement record makes it useful?
 5. Which derivation or validation condition would expose incorrect placement?
 
-For the Euclidean void, the invariant is flat spatial metric structure: $\partial_t h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(t-t_0)$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
+For the Euclidean void, the invariant is flat spatial metric structure: $\partial_T h_{ij}=0$ and $R^i{}_{jkl}(h)=0$. For causal wakes, the invariant is finite-speed delayed intersection: $r=c_f(T-T_{\mathrm{em}})$. For effective spacetime, the invariant target is operational agreement across clock, ruler, signal, and gravity records under one shared constitutive map.
 
 This gives the philosophy-history lane a clean answer to the original worry. $\mathbb{A}\mathbb{A}\mathbb{A}$ is geometric, but it is not geometrically naive. It treats geometry as a layered explanatory instrument and refuses to let an effective observer geometry replace the substrate generator it is supposed to recover.

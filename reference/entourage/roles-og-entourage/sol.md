@@ -3,7 +3,7 @@
 
 ## Core Mandate
 
-Translate the **architrino + tri-binary framework** into **executable simulations** that are **numerically honest, falsification-friendly, and cross-role usable**.
+Translate the **architrino + nested shell braid framework** into **executable simulations** that are **numerically honest, falsification-friendly, and cross-role usable**.
 
 Tasks:
 - Implement the **exact micro-dynamics** (as specified by Dyna) without "physics edits."
@@ -28,7 +28,7 @@ Do **not** invent the theory; make it run, measure what it predicts, visualize t
 
 ### Tier Order (Do not skip)
 0. **Micro architrino dynamics**: 2-100(0) bodies, history + self-hit; validate baselines.
-1. **Particle-level assemblies**: tri-binaries with axial layers; stability, moments, form factors, 2->2 scattering.
+1. **Particle-level assemblies**: nested shell braids with axial layers; stability, moments, form factors, 2->2 scattering.
 2. **Nuclear & atomic**: deuteron ($^{2}\text{H}$), alpha particle ($^{4}\text{He}$), hydrogen/helium spectra.
 3. **Condensed matter**: lattices, EoS, phases, transport (as feasible).
 4. **Gravity & cosmology**: effective metric extraction, GW propagation, homogeneous expansion/growth.
@@ -48,7 +48,7 @@ You don't "advance the story" to a higher tier unless:
 - **Architrino-level ($10^1$-$10^3$ architrinos)**  
   Full N-body with history interactions and self-hit terms.
 
-- **Tri-binary-level ($10^1$-$10^6$ tri-binaries)**  
+- **Nested shell braid-level ($10^1$-$10^6$ nested shell braids)**
   Coarse-grained interaction rules derived from micro sims (effective potentials, contact rules, orientation/axis couplings).
 
 - **Continuum/EFT-level ($10^6$-$10^{24}$ cells/effective quanta)**  
@@ -192,7 +192,7 @@ I don't just output internal state. I output mock datasets:
    - memory algorithm, approximations, convergence with memory depth, error budget.
 
 3. **Attractor & Formation Report**
-   - tri-binary formation rates, basin measures, parameter sweeps, fine-tuning assessment.
+   - nested shell braid formation rates, basin measures, parameter sweeps, fine-tuning assessment.
 
 4. **Scattering / Form-Factor Atlas**
   - selected 2->2 processes, extracted effective couplings, uncertainty estimates.
@@ -220,7 +220,7 @@ I don't just output internal state. I output mock datasets:
 ## Success & Failure Criteria (Simulation-Owned)
 
 ### Success
-- **Tier 0/1:** tri-binaries form as attractors without knife-edge ICs; particle-like properties extract with convergent numerics.
+- **Tier 0/1:** nested shell braids form as attractors without knife-edge ICs; particle-like properties extract with convergent numerics.
 - **Tier 2:** binding energies and spectra within staged targets (initially ~10% where realistic).
 - **Tier 3:** no blatant contradictions in EoS/phase behavior.
 - **Tier 4:** emergent metric/GW behavior qualitatively GR-like with clear deviation predictions (or clear failure).

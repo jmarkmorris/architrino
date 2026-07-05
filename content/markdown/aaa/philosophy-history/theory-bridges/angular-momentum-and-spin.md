@@ -8,6 +8,10 @@ This bridge explains how angular momentum, spin, helicity, and the constants $h$
 
 The result is not that angular momentum and spin are unreal. The result is that their ontological status is emergent. They are indispensable higher-level ledgers and measurement labels, but the fundamental ontology still consists of architrinos, polarity, position, velocity, absolute time, Euclidean void, causal wakes, and path history.
 
+In plain terms, the chapter separates two questions that ordinary language often blends. Does the primitive object carry an intrinsic spin axis? No. Can organized motion in a rotationally symmetric world produce conserved angular momentum, spin-like detector responses, and helicity labels? Yes, but only after the motion, wake history, and assembly orientation are specified. The point is not to demote spin; it is to put the burden in the right place.
+
+This makes the bridge strict. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ spin account must recover the measured transformation behavior, quantized response, magnetic-moment systematics, Stern-Gerlach branching, and weak-channel handedness without inserting intrinsic spin as a primitive label. Until that is done, spin language remains an effective ledger and recovery target.
+
 The related material is best read as an ordered path rather than as a flat list of adjacent chapters:
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
@@ -22,14 +26,14 @@ The architrino page fixes the starting point: an architrino is a point transceiv
 That statement answers the first question directly. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not need angular momentum or spin as primitive entities. The primitive dynamics can be stated without either concept:
 
 $$
-\ddot{\mathbf{x}}_i(t)
+\frac{d^2\mathbf X_i}{dT^2}
 =
-\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\,\sigma_{ij}
 \frac{|q_iq_j|}
-{r_{ij}^2(t;t_0)}
-W_{ij}^{\mathrm{rec}}(t;t_0)
-\hat{\mathbf{r}}_{ij}(t;t_0)
+{r_{ij}^2(T;T_{\mathrm{em}})}
+W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}})
 $$
 
 The only vector direction inside one hit is the delayed radial line of action $\hat{\mathbf{r}}_{ij}$. There is no primitive cross-product force, no intrinsic magnetic right-hand-rule term, and no point-particle spin axis. Any angular, magnetic-like, spin-like, or helicity-like behavior must be reconstructed from delayed geometry, superposition, assembly circulation, and measurement coupling.
@@ -50,6 +54,8 @@ For the classical electron radius $r_e=e^2/(4\pi\epsilon_0 m_e c^2)$ and $S\sim\
 
 The important qualification is that angular momentum still becomes mandatory once the dynamics are studied as an isolated rotationally symmetric system. The Euclidean void is invariant under spatial rotations. For the action-derived delayed model, rotational symmetry gives a conserved angular-momentum functional. That functional is not a new substance; it is the Noether ledger associated with organized motion and in-flight causal-wake history.
 
+A useful analogy is bookkeeping rather than an added component. Angular momentum is not an extra part tucked inside the architrino. It is the conserved account kept by a whole isolated motion-plus-wake history when that history respects rotational symmetry. Spin is still a further step: a stable assembly must expose the right orientation and measurement-response ledger so that Physical Observers see the standard spin class.
+
 ## Angular Momentum as a History Ledger
 
 In ordinary local mechanics, angular momentum is often written as a particle-only snapshot. In $\mathbb{A}\mathbb{A}\mathbb{A}$ that is incomplete because delayed interactions break the instantaneous equal-and-opposite picture. A source emits at one time, a receiver responds later, and the apparent missing momentum or angular momentum is carried by the active causal-wake history.
@@ -57,29 +63,29 @@ In ordinary local mechanics, angular momentum is often written as a particle-onl
 With the universal force/energy bookkeeping constant $\mu_{\text{arch}}$, the mechanical part is
 
 $$
-\mathbf{L}_{\text{mech}}(t)
+\mathbf{L}_{\text{mech}}(T)
 =
-\sum_i \mathbf{x}_i(t)\times\mu_{\text{arch}}\mathbf{v}_i(t)
+\sum_i \mathbf X_i(T)\times\mu_{\text{arch}}\mathbf V_i(T)
 $$
 
 The wake part is a history functional. In the master-equation conservation scaffold it is written as
 
 $$
-\mathbf{L}_{\text{wake}}(t)
+\mathbf{L}_{\text{wake}}(T)
 =
-\mathbf{L}_{\text{wake}}(t_\ast)
+\mathbf{L}_{\text{wake}}(T_\ast)
 -
-\int_{t_\ast}^{t}
+\int_{T_\ast}^{T}
 \sum_i
-\mathbf{x}_i(s)\times\mathbf{F}_i(s)\,ds
+\mathbf X_i(T')\times\mathbf F_i(T')\,dT'
 $$
 
 where $\mathbf{F}_i=\mu_{\text{arch}}\mathbf{a}_i$ is only a bookkeeping force corresponding to the acceleration-first law. The conserved total ledger is
 
 $$
-\mathbf{L}_{\text{tot}}(t)
+\mathbf{L}_{\text{tot}}(T)
 \equiv
-\mathbf{L}_{\text{mech}}(t)+\mathbf{L}_{\text{wake}}(t)
+\mathbf{L}_{\text{mech}}(T)+\mathbf{L}_{\text{wake}}(T)
 $$
 
 For exact isolated solutions of the symmetry-preserving delayed action, $\mathbf{L}_{\text{tot}}$ is conserved. In regularized numerical models, conservation of $\mathbf{L}_{\text{tot}}$ is a validation condition: the chosen regularization must preserve the same rotation symmetry before exact conservation can be claimed.
@@ -106,11 +112,11 @@ The table shows why the answer cannot be simply "angular momentum exists" or "sp
 For two architrinos in an otherwise empty Euclidean void, the active causal-root condition is
 
 $$
-\|\mathbf{x}_1(t)-\mathbf{x}_2(t_0)\|
+\|\mathbf X_1(T)-\mathbf X_2(T_{\mathrm{em}})\|
 =
-c_f(t-t_0),
+c_f(T-T_{\mathrm{em}}),
 \qquad
-t_0 < t
+T_{\mathrm{em}} < T
 $$
 
 The sign of $q_1q_2$ determines attraction or repulsion:
@@ -129,21 +135,21 @@ $$
 The instantaneous hit is radial along the delayed line of action. If the receiver velocity is decomposed as
 
 $$
-\mathbf{v}_1
+\mathbf V_1
 =
-v_r\hat{\mathbf{r}}_{12}+\mathbf{v}_{\perp}
+V_r\hat{\mathbf r}_{12}+\mathbf V_{\perp}
 $$
 
-then the hit changes the along-the-line component directly, while the transverse component changes only through the later rotation of the line of action. The instantaneous power is proportional to $v_r$:
+then the hit changes the along-the-line component directly, while the transverse component changes only through the later rotation of the line of action. The instantaneous power is proportional to $V_r$:
 
 $$
-P_{12}(t;t_0)
+P_{12}(T;T_{\mathrm{em}})
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(t;t_0)}
+\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
 {r_{12}^2}
-v_r
+V_r
 $$
 
 An opposite-polarity flyby can therefore convert transverse motion into a capture or spiral if the delay geometry and impact parameter place the pair inside the relevant basin. A same-polarity flyby normally does the opposite: it pushes the paths apart. In both cases the spin statement remains the same. A flyby pair has no intrinsic spin variable. It has only motion, causal wakes, and the total angular-momentum ledger of that motion-plus-wake history.
@@ -177,11 +183,11 @@ The correct statement is that a spiraling binary has orbital-like rotational act
 The maximum-curvature binary is the candidate limiting state reached if a contraction or capture history enters self-hit geometry. Self-hit exists when the same architrino intersects its own earlier causal wake:
 
 $$
-\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|
+\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
 =
-c_f(t-t_0),
+c_f(T-T_{\mathrm{em}}),
 \qquad
-t_0 < t
+T_{\mathrm{em}} < T
 $$
 
 For uniform circular motion, the self-delay equation in units with $c_f=1$ is
@@ -230,7 +236,7 @@ I_\ell
 I_\ell\hat{\mathbf{n}}_\ell
 $$
 
-where $\hat{\mathbf{n}}_\ell$ is the layer's oriented plane normal. This is not yet the exact Noether charge; it is the layer projection of the rotational ledger. The core-level accounting target is
+where $\hat{\mathbf{n}}_\ell$ is the layer's oriented plane normal. This is not yet the exact Noether charge; it is the layer projection of the rotational ledger. The braid-level accounting target is
 
 $$
 \mathbf{J}_{\text{core}}
@@ -274,18 +280,18 @@ again as a reduced action-angle statement rather than a completed derivation. Th
 
 The nested shell braid ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
 
-For each layer $\ell\in\{I,M,O\}$, let $R_\ell(t)$ be the layer radius, $\omega_\ell(t)$ its angular frequency, $\hat{\mathbf n}_\ell(t)$ its plane normal, and
+For each layer $\ell\in\{I,M,O\}$, let $R_\ell(T)$ be the layer radius, $\omega_\ell(T)$ its angular frequency, $\hat{\mathbf n}_\ell(T)$ its plane normal, and
 
 $$
-\theta_\ell(t)
+\theta_\ell(T)
 =
-\theta_{\ell,0}+\int_{t_0}^{t}\omega_\ell(s)\,ds
+\theta_{\ell,0}+\int_{T_0}^{T}\omega_\ell(T')\,dT'
 $$
 
 its phase. Choose in-plane basis vectors with
 
 $$
-\mathbf u_\ell(t)\times\mathbf v_\ell(t)=\hat{\mathbf n}_\ell(t)
+\mathbf u_\ell(T)\times\mathbf v_\ell(T)=\hat{\mathbf n}_\ell(T)
 $$
 
 and define
@@ -301,21 +307,21 @@ $$
 where $\phi_\ell$ is the layer phase offset in the selected chart. For member $\alpha\in\{+1,-1\}$, use the local position model
 
 $$
-\mathbf x_{\ell,\alpha}(t)
+\mathbf X_{\ell,\alpha}(T)
 =
-\mathbf X(t)+\mathbf c_\ell(t)+\alpha R_\ell(t)\mathbf e_\ell(\theta_\ell(t))
+\mathbf X(T)+\mathbf c_\ell(T)+\alpha R_\ell(T)\mathbf e_\ell(\theta_\ell(T))
 $$
 
-Here $\mathbf X(t)$ is the core center and $\mathbf c_\ell(t)$ records layer-center offset. A separated-scale internal gauge may set these terms aside, but only as an approximation.
+Here $\mathbf X(T)$ is the core center and $\mathbf c_\ell(T)$ records layer-center offset. A separated-scale internal gauge may set these terms aside, but only as an approximation.
 
 The mechanical part is
 
 $$
-\mathbf L_{\text{mech}}^{\text{core}}(t)
+\mathbf L_{\text{mech}}^{\text{core}}(T)
 =
 \sum_{\ell,\alpha}
-\mathbf x_{\ell,\alpha}(t)\times
-\mu_{\text{arch}}\dot{\mathbf x}_{\ell,\alpha}(t)
+\mathbf X_{\ell,\alpha}(T)\times
+\mu_{\text{arch}}\frac{d\mathbf X_{\ell,\alpha}}{dT}(T)
 $$
 
 For nearly circular separated layers, this becomes
@@ -334,43 +340,43 @@ where $\mathbf L_{\text{tr}}$ collects center motion, layer-center offsets, chan
 The delayed part is branch-resolved. Define
 
 $$
-\mathcal C_{\ell\alpha,m\beta}(t)
+\mathcal C_{\ell\alpha,m\beta}(T)
 =
 \left\{
-t_0 < t:
-\left\|\mathbf x_{\ell,\alpha}(t)-\mathbf x_{m,\beta}(t_0)\right\|
+T_{\mathrm{em}} < T:
+\left\|\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_{\mathrm{em}})\right\|
 =
-c_f(t-t_0)
+c_f(T-T_{\mathrm{em}})
 \right\}
 $$
 
 and let
 
 $$
-\mathcal R(t)
+\mathcal R(T)
 =
 \left\{
 (\ell,\alpha;m,\beta;b):
-t_0^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(t)
+T_{\mathrm{em}}^{(b)}\in\mathcal C_{\ell\alpha,m\beta}(T)
 \right\}
 $$
 
 record the active source-receiver branches. For member phases, use
 
 $$
-\vartheta_{\ell,\alpha}(t)
+\vartheta_{\ell,\alpha}(T)
 =
-\theta_\ell(t)+\frac{1-\alpha}{2}\pi
+\theta_\ell(T)+\frac{1-\alpha}{2}\pi
 $$
 
 The phase-closure residual of a branch is
 
 $$
-\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 =
-\vartheta_{\ell,\alpha}(t)
+\vartheta_{\ell,\alpha}(T)
 -
-\vartheta_{m,\beta}(t_0^{(b)})
+\vartheta_{m,\beta}(T_{\mathrm{em}}^{(b)})
 +
 \phi_{\ell m}^{(b)}
 -
@@ -380,7 +386,7 @@ $$
 An active branch must satisfy the causal-root equation and the relevant phase window,
 
 $$
-\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\Psi_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 \equiv0\pmod{2\pi}
 $$
 
@@ -389,11 +395,11 @@ inside the tolerance of the regularized chart.
 The self-hit history is the diagonal subset
 
 $$
-\mathcal H_{\ell,\alpha}(t)
+\mathcal H_{\ell,\alpha}(T)
 =
 \left\{
-t_0\in\mathcal C_{\ell\alpha,\ell\alpha}(t):
-t_0 < t,\ H(t-t_0)=1
+T_{\mathrm{em}}\in\mathcal C_{\ell\alpha,\ell\alpha}(T):
+T_{\mathrm{em}} < T,\ H(T-T_{\mathrm{em}})=1
 \right\}
 $$
 
@@ -402,9 +408,9 @@ with the trivial instantaneous branch excluded. This history is path-history dat
 For an active branch, set
 
 $$
-\mathbf r_{\ell\alpha,m\beta}^{(b)}(t)
+\mathbf r_{\ell\alpha,m\beta}^{(b)}(T)
 =
-\mathbf x_{\ell,\alpha}(t)-\mathbf x_{m,\beta}(t_0^{(b)}),
+\mathbf X_{\ell,\alpha}(T)-\mathbf X_{m,\beta}(T_{\mathrm{em}}^{(b)}),
 \qquad
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 =
@@ -417,12 +423,12 @@ and
 $$
 D_{s,\ell\alpha,m\beta}^{(b)}
 =
-c_f-\mathbf v_{m,\beta}(t_0^{(b)})\cdot
+c_f-\mathbf V_{m,\beta}(T_{\mathrm{em}}^{(b)})\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)},
 \qquad
-D_{t,\ell\alpha,m\beta}^{(b)}
+D_{T,\ell\alpha,m\beta}^{(b)}
 =
-c_f-\mathbf v_{\ell,\alpha}(t)\cdot
+c_f-\mathbf V_{\ell,\alpha}(T)\cdot
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 and
@@ -430,7 +436,7 @@ $$
 W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 =
 \left|
-\frac{D_{t,\ell\alpha,m\beta}^{(b)}}
+\frac{D_{T,\ell\alpha,m\beta}^{(b)}}
 {D_{s,\ell\alpha,m\beta}^{(b)}}
 \right|
 $$
@@ -438,7 +444,7 @@ $$
 The branch force-like bookkeeping term is
 
 $$
-\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 =
 \mu_{\text{arch}}\kappa\sigma_{\ell\alpha,m\beta}
 \frac{|q_{\ell,\alpha}q_{m,\beta}|}
@@ -450,36 +456,36 @@ $$
 The corresponding branch torque is
 
 $$
-\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 =
-\mathbf x_{\ell,\alpha}(t)\times
-\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\mathbf X_{\ell,\alpha}(T)\times
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 $$
 
 The delayed wake contribution is therefore
 
 $$
-\mathbf L_{\text{wake}}^{\text{core}}(t)
+\mathbf L_{\text{wake}}^{\text{core}}(T)
 =
-\mathbf L_{\text{wake}}^{\text{core}}(t_\ast)
+\mathbf L_{\text{wake}}^{\text{core}}(T_\ast)
 -
-\int_{t_\ast}^{t}
-\sum_{(\ell,\alpha;m,\beta;b)\in\mathcal R(s)}
-\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(s)\,ds
+\int_{T_\ast}^{T}
+\sum_{(\ell,\alpha;m,\beta;b)\in\mathcal R(T')}
+\boldsymbol{\tau}_{\ell\alpha\leftarrow m\beta}^{(b)}(T')\,dT'
 $$
 
 The working three-layer total is
 
 $$
 \boxed{
-\mathbf L_{\text{tot}}^{\text{core}}(t)
+\mathbf L_{\text{tot}}^{\text{core}}(T)
 =
 \sum_{\ell\in\{I,M,O\}}
-2\mu_{\text{arch}}R_\ell^2(t)\omega_\ell(t)\hat{\mathbf n}_\ell(t)
+2\mu_{\text{arch}}R_\ell^2(T)\omega_\ell(T)\hat{\mathbf n}_\ell(T)
 +
-\mathbf L_{\text{tr}}(t)
+\mathbf L_{\text{tr}}(T)
 +
-\mathbf L_{\text{wake}}^{\text{core}}(t)
+\mathbf L_{\text{wake}}^{\text{core}}(T)
 }
 $$
 
@@ -506,9 +512,9 @@ $$
 \Delta\mathbf L_{\text{wake}}^{\text{core}}
 =
 -
-\int_{t_i}^{t_f}
-\sum_{\mathcal R(s)}
-\boldsymbol{\tau}^{(b)}(s)\,ds
+\int_{T_i}^{T_f}
+\sum_{\mathcal R(T')}
+\boldsymbol{\tau}^{(b)}(T')\,dT'
 $$
 
 Projecting onto a transaction axis $\hat{\mathbf a}$ gives the scalar bridge convention
@@ -530,23 +536,23 @@ For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hba
 
 ## Partition Equations from the Master Ledger
 
-The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[t_i,t_f]$:
+The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[T_i,T_f]$:
 
 $$
-\mathbf T_\ell(t)
+\mathbf T_\ell(T)
 =
 \sum_{\alpha}
-\sum_{(m,\beta;b):(\ell,\alpha;m,\beta;b)\in\mathcal R(t)}
-\mathbf x_{\ell,\alpha}(t)\times
-\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(t)
+\sum_{(m,\beta;b):(\ell,\alpha;m,\beta;b)\in\mathcal R(T)}
+\mathbf X_{\ell,\alpha}(T)\times
+\mathbf F_{\ell\alpha\leftarrow m\beta}^{(b)}(T)
 $$
 
-Since $\frac{d}{dt}\big(\mathbf x\times\mu_{\text{arch}}\dot{\mathbf x}\big)=\mathbf x\times\mathbf F$ for each architrino worldline, the exact layer mechanical increment is
+Since $\frac{d}{dT}\big(\mathbf X\times\mu_{\text{arch}}\mathbf V\big)=\mathbf X\times\mathbf F$ for each architrino worldline, the exact layer mechanical increment is
 
 $$
 \Delta\mathbf L_{\text{mech},\ell}
 =
-\int_{t_i}^{t_f}\mathbf T_\ell(s)\,ds
+\int_{T_i}^{T_f}\mathbf T_\ell(T')\,dT'
 $$
 
 The master-equation scaffold therefore gives the core mechanical change
@@ -557,8 +563,8 @@ $$
 \sum_{\ell\in\{I,M,O\}}
 \Delta\mathbf L_{\text{mech},\ell}
 =
-\int_{t_i}^{t_f}
-\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(s)\,ds
+\int_{T_i}^{T_f}
+\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(T')\,dT'
 $$
 
 The wake functional supplies the complementary in-flight ledger:
@@ -567,8 +573,8 @@ $$
 \Delta\mathbf L_{\text{wake}}^{\text{core}}
 =
 -
-\int_{t_i}^{t_f}
-\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(s)\,ds
+\int_{T_i}^{T_f}
+\sum_{\ell\in\{I,M,O\}}\mathbf T_\ell(T')\,dT'
 +
 \Delta\mathbf L_{\text{wake},\partial}
 $$
@@ -1415,15 +1421,15 @@ Here $\mathfrak R$ is the causal-root ledger class and $B_{c_\star}$ records adm
 In the circular carrier chart,
 
 $$
-\mathbf x_{a,\alpha}(t)
+\mathbf X_{a,\alpha}(T)
 =
-\mathbf X(t)+\mathbf c_a(t)+\alpha R_a(t)
-\bigl(\cos\phi_a(t)\mathbf u_a(t)+\sin\phi_a(t)\mathbf v_a(t)\bigr),
+\mathbf X(T)+\mathbf c_a(T)+\alpha R_a(T)
+\bigl(\cos\phi_a(T)\mathbf u_a(T)+\sin\phi_a(T)\mathbf v_a(T)\bigr),
 \qquad
-\mathbf u_a(t)\times\mathbf v_a(t)=\hat{\mathbf n}_a(t)
+\mathbf u_a(T)\times\mathbf v_a(T)=\hat{\mathbf n}_a(T)
 $$
 
-The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three binary roles, not two different triads.
+The reduced closure-label version of the same target keeps only the data needed to compare closed nested shell braid branches. The dynamics sections use $\ell\in\{I,M,O\}$ for inner, middle, and outer. The ordered-frame and chirality literature also uses $\{H,M,L\}$, where $H$ is high / inner, $M$ is middle, and $L$ is low / outer. These are aliases for the same three support roles, not two different triads.
 
 For a closed ordered frame, use the reduced branch label
 
@@ -1489,7 +1495,7 @@ $$
 \widetilde r(s)
 =
 \left(
-t_{0,r}(s),
+T_{\mathrm{em},r}(s),
 k_r(s),
 \mathcal E_r(s),
 \Xi_r(s),
@@ -1910,7 +1916,7 @@ $$
 Wr_c[\gamma]
 =
 \iint_{\mathcal{L}_{\text{causal}}}
-\mathrm{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
+\mathrm{sign}\!\big(\mathbf V(T)\times\mathbf V(T')\cdot\mathbf r\big)\,dT\,dT'
 $$
 
 which measures handedness of the self-interaction pattern. The open problem is to lift that kind of causal-locus invariant from one worldline or branch family to the full ordered nested shell braid frame and then prove the $4\pi$ return behavior.
@@ -2022,7 +2028,7 @@ For a nested shell braid, the first closure object is the three-shell phase and 
 $$
 \Theta_a(T)
 =
-\int_0^T\omega_a(t)\,dt
+\int_0^T\omega_a(T')\,dT'
 +
 \Phi_a^{\text{root}}(T)
 +
@@ -2075,7 +2081,7 @@ The candidate nested shell braid closure labels are therefore:
 $$
 H_{\text{core}}(T)
 =
-\mathcal P\exp\!\int_0^T\widehat{\boldsymbol\Omega}_{\text{prec}}(t)\,dt
+\mathcal P\exp\!\int_0^T\widehat{\boldsymbol\Omega}_{\text{prec}}(T')\,dT'
 $$
 
 This return is $SO(3)$-like if the full lifted state returns after $2\pi$, and spinor-like only if the visible normal triad returns after $2\pi$ while the history-lifted ledger restores after $4\pi$.
@@ -2301,6 +2307,8 @@ Second-ring consumers inherit the same limitation. Photon records in [Reaction L
 ## Helicity and Vector Modes
 
 Helicity is a projection onto a propagation or momentum axis. It should not be used for every planar circulation sign.
+
+The ordinary reader-facing distinction is simple: spin asks how an assembly transforms under rotations, while helicity asks how that rotational label lines up with the direction of travel. A planar circulation can contribute to such a label, but it does not become helicity until the propagation axis, transverse modes, and measurement channel are fixed. The equations below keep that separation visible.
 
 For a vector mode with propagation direction $\hat{\mathbf{p}}$, the standard helicity target is
 
@@ -2899,7 +2907,7 @@ Spin measurement is not the reading of a pre-existing tiny arrow. It is a finite
 For a Stern-Gerlach-like measurement, the apparatus supplies an oriented interaction geometry $\hat{\mathbf{m}}$ and a spatial gradient. In effective language one writes a coupling to a spin projection along $\hat{\mathbf{m}}$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate-level description is a macroscopic apparatus assembly whose constituent architrinos and causal wakes create an axis-indexed potential environment for the target nested shell braid. A useful reduced apparatus potential is
 
 $$
-U_{\text{app}}(\mathbf{x},t;\hat{\mathbf{m}})
+U_{\text{app}}(\mathbf X,T;\hat{\mathbf{m}})
 $$
 
 but this is only a mollified bookkeeping object for the coherent envelope of many causal-wake hits. The fundamental interaction remains the architrino-wise Master Equation sum over radial causal-wake intersections.
@@ -2907,9 +2915,9 @@ but this is only a mollified bookkeeping object for the coherent envelope of man
 The apparatus acts over a finite interval
 
 $$
-t_{\text{in}}\le t\le t_{\text{out}},
+T_{\text{in}}\le T\le T_{\text{out}},
 \qquad
-T_{\text{int}}=t_{\text{out}}-t_{\text{in}}>0
+T_{\text{int}}=T_{\text{out}}-T_{\text{in}}>0
 $$
 
 The gradient must be strong enough and persistent enough to drive the coupled target-apparatus state toward a branch boundary, but not so violent that it dissociates the target instead of measuring it. A zero-duration projection is therefore not the substrate model. The observer-level abruptness is the coarse appearance of a finite threshold crossing and record lock.
@@ -2917,31 +2925,31 @@ The gradient must be strong enough and persistent enough to drive the coupled ta
 The target is not represented by one internal vector $\hat{\mathbf{n}}$. The substrate-facing object is the full nested shell braid spin ledger
 
 $$
-\mathcal{J}_{\text{core}}(t)
+\mathcal{J}_{\text{core}}(T)
 =
 \left(
 \{\mathbf{n}_{\ell},\phi_{\ell},\omega_{\ell},I_{\ell},\mathcal{R}_{\ell}\}_{\ell\in\{I,M,O\}},
-\mathbf{L}_{\text{wake},\text{core}}(t),
-\mathcal{H}_{\text{self}}(t)
+\mathbf{L}_{\text{wake},\text{core}}(T),
+\mathcal{H}_{\text{self}}(T)
 \right)
 $$
 
-where $\mathbf{n}_{\ell}$ denotes the layer plane normal, $\phi_{\ell}$ the phase, $\omega_{\ell}$ the layer frequency, $I_{\ell}$ the radian-normalized rotational-action variable, $\mathcal{R}_{\ell}$ the active causal-root ledger, $\mathbf{L}_{\text{wake},\text{core}}$ the in-flight causal-wake contribution associated with the target core, and $\mathcal{H}_{\text{self}}$ the relevant self-hit history. This package is still a reduction of the full architrino state. It is nevertheless the minimum kind of ledger a spin apparatus can couple to, because a single classical axis would erase the phase, root, and wake-history information that the measurement interaction is supposed to test.
+where $\mathbf{n}_{\ell}$ denotes the layer plane normal, $\phi_{\ell}$ the phase, $\omega_{\ell}$ the layer frequency, $I_{\ell}$ the radian-normalized rotational-action variable, $\mathcal{R}_{\ell}$ the active causal-root ledger, $\mathbf{L}_{\text{wake},\text{braid}}$ the in-flight causal-wake contribution associated with the target braid, and $\mathcal{H}_{\text{self}}$ the relevant self-hit history. This package is still a reduction of the full architrino state. It is nevertheless the minimum kind of ledger a spin apparatus can couple to, because a single classical axis would erase the phase, root, and wake-history information that the measurement interaction is supposed to test.
 
 The apparatus couples first through the externally exposed layers of the assembly, but the result is not determined by the outer layer alone. During the interval $T_{\text{int}}$, the apparatus gradient exerts a distributed torque on the target constituents,
 
 $$
-\boldsymbol{\tau}_{\text{app}\to\text{core}}(t)
+\boldsymbol{\tau}_{\text{app}\to\text{core}}(T)
 =
 \sum_{i\in\text{core}}
-\left(\mathbf{x}_i(t)-\mathbf{X}_{\text{core}}(t)\right)
+\left(\mathbf X_i(T)-\mathbf X_{\text{core}}(T)\right)
 \times
-\mathbf{F}^{\text{app}}_i(t)
+\mathbf F^{\text{app}}_i(T)
 $$
 
-where $\mathbf{F}^{\text{app}}_i$ is the apparatus-induced force bookkeeping term reconstructed from the local causal-wake hits, and $\mathbf{X}_{\text{core}}$ is the target core center used for the reduced ledger. The torque deforms the outer response channel, retunes the middle hinge, and can alter the admissible self-hit branch history of the inner layer. The measured response is therefore a coupled redistribution of $\Delta I_O$, $\Delta I_M$, $\Delta I_I$, and $\Delta I_{\text{wake}}$, not a direct lookup of an already chosen sign.
+where $\mathbf{F}^{\text{app}}_i$ is the apparatus-induced force bookkeeping term reconstructed from the local causal-wake hits, and $\mathbf{X}_{\text{braid}}$ is the target braid center used for the reduced ledger. The torque deforms the outer response channel, retunes the middle hinge, and can alter the admissible self-hit branch history of the inner layer. The measured response is therefore a coupled redistribution of $\Delta I_O$, $\Delta I_M$, $\Delta I_I$, and $\Delta I_{\text{wake}}$, not a direct lookup of an already chosen sign.
 
-Angular momentum must be conserved across the whole interaction window. For the target core $C$, apparatus $A$, exchange wakes, and local Noether sea recoil, the required ledger is
+Angular momentum must be conserved across the whole interaction window. For the target braid $C$, apparatus $A$, exchange wakes, and local Noether sea recoil, the required ledger is
 
 $$
 \Delta \mathbf{J}_{C}
@@ -2960,15 +2968,15 @@ This is the Stern-Gerlach analogue of recoil accounting. The apparatus receives 
 The two outcomes arise from basin resolution. Let
 
 $$
-Z_{\hat{\mathbf{m}}}(t)
+Z_{\hat{\mathbf{m}}}(T)
 =
-\left(\mathcal{J}_{\text{core}}(t),A_{\hat{\mathbf{m}}}(t),\mathcal{W}_{\text{loc}}(t)\right)
+\left(\mathcal{J}_{\text{core}}(T),A_{\hat{\mathbf{m}}}(T),\mathcal{W}_{\text{loc}}(T)\right)
 $$
 
 denote the reduced state containing the core spin ledger, the apparatus channel state, and the local causal-wake background. A Stern-Gerlach-like measurement is successful only when the coupled flow crosses an axis-indexed separatrix
 
 $$
-\Sigma_{\hat{\mathbf{m}}}\!\left(Z_{\hat{\mathbf{m}}}(t)\right)=0
+\Sigma_{\hat{\mathbf{m}}}\!\left(Z_{\hat{\mathbf{m}}}(T)\right)=0
 $$
 
 and then settles into one of two record-forming basins
@@ -2985,21 +2993,21 @@ $$
 o_{\hat{\mathbf{m}}}
 =
 \begin{cases}
-+1, & Z_{\hat{\mathbf{m}}}(t_{\text{rec}})\in B_{+}(\hat{\mathbf{m}}),\\
--1, & Z_{\hat{\mathbf{m}}}(t_{\text{rec}})\in B_{-}(\hat{\mathbf{m}}),
++1, & Z_{\hat{\mathbf{m}}}(T_{\text{rec}})\in B_{+}(\hat{\mathbf{m}}),\\
+-1, & Z_{\hat{\mathbf{m}}}(T_{\text{rec}})\in B_{-}(\hat{\mathbf{m}}),
 \end{cases}
 $$
 
-where $t_{\text{rec}}>t_{\text{in}}$ is the time at which the branch has crossed the separatrix and locked into a persistent apparatus record. Failed capture, dissociation, or insufficient amplification are apparatus failures, not additional spin outcomes.
+where $T_{\text{rec}}>T_{\text{in}}$ is the time at which the branch has crossed the separatrix and locked into a persistent apparatus record. Failed capture, dissociation, or insufficient amplification are apparatus failures, not additional spin outcomes.
 
 The deterministic microscopic response for a fully specified incoming state is obtained by applying the finite-time flow to the two basin sets. This gives the exact reduced response kernels
 
 $$
-K_{\pm}(\hat{\mathbf{m}};Z_{\hat{\mathbf{m}}}(t_{\text{in}}))
+K_{\pm}(\hat{\mathbf{m}};Z_{\hat{\mathbf{m}}}(T_{\text{in}}))
 =
 \mathbf{1}\!\left[
 \Phi^{\hat{\mathbf{m}}}_{T_{\text{int}}}
-\left(Z_{\hat{\mathbf{m}}}(t_{\text{in}})\right)
+\left(Z_{\hat{\mathbf{m}}}(T_{\text{in}})\right)
 \in B_{\pm}(\hat{\mathbf{m}})
 \right]
 $$
@@ -3017,12 +3025,12 @@ $$
 with $q_{\hat{\mathbf{m}}}>0$ on the $+$ side and $q_{\hat{\mathbf{m}}}<0$ on the $-$ side. Along the apparatus-driven flow, linearize the separatrix-normal dynamics:
 
 $$
-\frac{d q_{\hat{\mathbf{m}}}}{dt}
+\frac{d q_{\hat{\mathbf{m}}}}{dT}
 =
-\lambda_{\hat{\mathbf{m}}}(t)q_{\hat{\mathbf{m}}}
+\lambda_{\hat{\mathbf{m}}}(T)q_{\hat{\mathbf{m}}}
 +
-\mathcal{N}_{\hat{\mathbf{m}}}(Z(t),t)\cdot
-\dot{\mathbf{J}}_{C}^{\text{app}}(t)
+\mathcal{N}_{\hat{\mathbf{m}}}(Z(T),T)\cdot
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T)
 +
 O(q_{\hat{\mathbf{m}}}^{2},\|\delta Z_{\perp}\|^{2})
 $$
@@ -3030,26 +3038,26 @@ $$
 Here $\mathcal{N}_{\hat{\mathbf{m}}}$ is the separatrix normal covector in the reduced angular-momentum ledger coordinates, $\lambda_{\hat{\mathbf{m}}}$ is the local normal expansion / contraction rate, and $\delta Z_{\perp}$ denotes tangent-to-separatrix perturbations. The apparatus-driven core update is
 
 $$
-\dot{\mathbf{J}}_{C}^{\text{app}}(t)
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T)
 =
-\boldsymbol{\tau}_{\text{app}\to\text{core}}(t)
+\boldsymbol{\tau}_{\text{app}\to\text{core}}(T)
 +
-\dot{\mathbf{L}}_{\text{wake},C\leftrightarrow A}(t)
+\frac{d\mathbf L_{\text{wake},C\leftrightarrow A}}{dT}(T)
 $$
 
 where
 
 $$
-\boldsymbol{\tau}_{\text{app}\to\text{core}}(t)
+\boldsymbol{\tau}_{\text{app}\to\text{core}}(T)
 =
 \sum_{i\in\text{core}}
-\left(\mathbf{x}_i(t)-\mathbf{X}_{\text{core}}(t)\right)
+\left(\mathbf X_i(T)-\mathbf X_{\text{core}}(T)\right)
 \times
-\mathbf{F}^{\text{app}}_i(t),
+\mathbf F^{\text{app}}_i(T),
 \qquad
-\mathbf{F}^{\text{app}}_i(t)
+\mathbf F^{\text{app}}_i(T)
 =
--\nabla_{\mathbf{x}_i}U_{\text{app}}(\mathbf{x}_i,t;\hat{\mathbf{m}})
+-\nabla_{\mathbf X_i}U_{\text{app}}(\mathbf X_i,T;\hat{\mathbf{m}})
 $$
 
 in the mollified apparatus-potential chart.
@@ -3057,28 +3065,28 @@ in the mollified apparatus-potential chart.
 The Master-Equation origin of this impulse is the constituent causal-hit sum. Let $\mathscr A_{\hat{\mathbf{m}}}$ be the set of apparatus source architrinos whose organized wake envelope defines the Stern-Gerlach gradient. For target constituent $i\in C$ and apparatus constituent $a\in\mathscr A_{\hat{\mathbf{m}}}$, define the apparatus cross-root set
 
 $$
-\mathcal C_{ia}^{A}(t)
+\mathcal C_{ia}^{A}(T)
 =
 \left\{
-s<t:
-\left\|\mathbf{x}_i(t)-\mathbf{x}_a(s)\right\|
+T_{\mathrm{em}}<T:
+\left\|\mathbf X_i(T)-\mathbf X_a(T_{\mathrm{em}})\right\|
 =
-c_f(t-s)
+c_f(T-T_{\mathrm{em}})
 \right\}
 $$
 
-For each root $s\in\mathcal C_{ia}^{A}(t)$, write
+For each root $T_{\mathrm{em}}\in\mathcal C_{ia}^{A}(T)$, write
 
 $$
-\mathbf r_{ia}(t;s)
+\mathbf r_{ia}(T;T_{\mathrm{em}})
 =
-\mathbf{x}_i(t)-\mathbf{x}_a(s),
+\mathbf X_i(T)-\mathbf X_a(T_{\mathrm{em}}),
 \qquad
-r_{ia}(t;s)=\|\mathbf r_{ia}(t;s)\|,
+r_{ia}(T;T_{\mathrm{em}})=\|\mathbf r_{ia}(T;T_{\mathrm{em}})\|,
 \qquad
-\hat{\mathbf r}_{ia}(t;s)
+\hat{\mathbf r}_{ia}(T;T_{\mathrm{em}})
 =
-\frac{\mathbf r_{ia}(t;s)}{r_{ia}(t;s)}
+\frac{\mathbf r_{ia}(T;T_{\mathrm{em}})}{r_{ia}(T;T_{\mathrm{em}})}
 $$
 
 and
@@ -3117,30 +3125,30 @@ $$
 Equivalently, in the finite-memory dual-mollified chart,
 
 $$
-\mathbf a_{i,\eta}^{\text{app}}(t;\hat{\mathbf{m}})
+\mathbf A_{i,\eta}^{\text{app}}(T;\hat{\mathbf{m}})
 =
 \kappa
 \sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
 \sigma_{ia}|q_iq_a|
-\int_{t-h}^{t}
-\frac{\widehat{\mathbf r}_{ia}(t,s)}
-{r_{ia}^2(t,s)+\epsilon_c^2}
-\delta_{\eta}\!\left(r_{ia}(t,s)-c_f(t-s)\right)\,ds
+\int_{T-h}^{T}
+\frac{\widehat{\mathbf r}_{ia}(T,T')}
+{r_{ia}^2(T,T')+\epsilon_c^2}
+\delta_{\eta}\!\left(r_{ia}(T,T')-c_f(T-T')\right)\,dT'
 $$
 
-The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the core-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
+The apparatus angular impulse entering the reduced response is therefore not an imported spin torque. It is the braid-centered torque of these delayed radial hits, plus the wake part required by the delayed Noether ledger:
 
 $$
 \boxed{
-\dot{\mathbf{J}}_{C}^{\text{app}}(t;\hat{\mathbf{m}})
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T;\hat{\mathbf{m}})
 =
 \mu_{\text{arch}}
 \sum_{i\in C}
-\left(\mathbf{x}_i(t)-\mathbf{X}_{C}(t)\right)
+\left(\mathbf X_i(T)-\mathbf X_{C}(T)\right)
 \times
-\mathbf a_i^{\text{app}}(t;\hat{\mathbf{m}})
+\mathbf A_i^{\text{app}}(T;\hat{\mathbf{m}})
 +
-\dot{\mathbf L}_{\text{wake},C\leftrightarrow A}(t)
+\frac{d\mathbf L_{\text{wake},C\leftrightarrow A}}{dT}(T)
 }
 $$
 
@@ -3149,8 +3157,8 @@ and over the interaction window,
 $$
 \Delta\mathbf{J}_{C}^{\text{app}}
 =
-\int_{t_{\text{in}}}^{t_{\text{out}}}
-\dot{\mathbf{J}}_{C}^{\text{app}}(t;\hat{\mathbf{m}})\,dt
+\int_{T_{\text{in}}}^{T_{\text{out}}}
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T;\hat{\mathbf{m}})\,dT
 $$
 
 The missing recoil is not discarded; it is fixed by
@@ -3170,9 +3178,9 @@ $$
 Let
 
 $$
-\Lambda_{\hat{\mathbf{m}}}(u,v)
+\Lambda_{\hat{\mathbf{m}}}(U,V)
 =
-\int_{u}^{v}\lambda_{\hat{\mathbf{m}}}(s)\,ds
+\int_{U}^{V}\lambda_{\hat{\mathbf{m}}}(T)\,dT
 $$
 
 The first-order signed response functional at the end of the interaction window is
@@ -3180,13 +3188,13 @@ The first-order signed response functional at the end of the interaction window 
 $$
 \mathcal{Q}_{\hat{\mathbf{m}}}(Z_{\text{in}})
 =
-e^{\Lambda_{\hat{\mathbf{m}}}(t_{\text{in}},t_{\text{out}})}
+e^{\Lambda_{\hat{\mathbf{m}}}(T_{\text{in}},T_{\text{out}})}
 \Sigma_{\hat{\mathbf{m}}}(Z_{\text{in}})
 +
-\int_{t_{\text{in}}}^{t_{\text{out}}}
-e^{\Lambda_{\hat{\mathbf{m}}}(s,t_{\text{out}})}
-\mathcal{N}_{\hat{\mathbf{m}}}(Z(s),s)\cdot
-\dot{\mathbf{J}}_{C}^{\text{app}}(s)\,ds
+\int_{T_{\text{in}}}^{T_{\text{out}}}
+e^{\Lambda_{\hat{\mathbf{m}}}(T',T_{\text{out}})}
+\mathcal{N}_{\hat{\mathbf{m}}}(Z(T'),T')\cdot
+\frac{d\mathbf J_{C}^{\text{app}}}{dT}(T')\,dT'
 $$
 
 The record gate is
@@ -3195,7 +3203,7 @@ $$
 G_{\text{rec}}(Z_{\text{in}})
 =
 H\!\left(
-\left|R(A(t_{\text{rec}}))-R(A_{\text{pre}})\right|-R_*
+\left|R(A(T_{\text{rec}}))-R(A_{\text{pre}})\right|-R_*
 \right)
 H\!\left(\tau_{\text{persist}}-T_{\text{rec}}\right)
 $$
@@ -3500,7 +3508,7 @@ P_{-}(\alpha\,|\,\text{rec})
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $\dot{\mathbf{J}}_{C}^{\text{app}}$ is the angular impulse generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
+This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -3535,9 +3543,9 @@ $$
 The architrino-level starting point is not this ket. It is a pair provenance ledger. At a creation or fragmentation event,
 
 $$
-\Gamma_{\text{parent}}(t_0^-)
+\Gamma_{\text{parent}}(T_0^-)
 \longrightarrow
-\Gamma_A(t_0^+),\Gamma_B(t_0^+)
+\Gamma_A(T_0^+),\Gamma_B(T_0^+)
 $$
 
 with conservation of total energy, momentum, angular momentum, polarity inventory, and relevant causal-wake history. For a singlet-like pair, the observer-level summary is
@@ -3653,7 +3661,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
 5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar nested shell braids, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
-7. Evaluate the Master-Equation apparatus branch-sum impulse $\dot{\mathbf{J}}_{C}^{\text{app}}$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
+7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.

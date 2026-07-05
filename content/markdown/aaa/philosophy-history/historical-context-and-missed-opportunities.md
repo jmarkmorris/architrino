@@ -284,13 +284,13 @@ Here $\mathcal{R}_{\mathrm{obs}}$ measures mismatch to the declared astronomical
 $$
 \mathcal{R}_{\mathrm{src/bdy}}(\theta;W)
 =
-\frac{\left\|\partial_t Q_\theta+\nabla\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q}
+\frac{\left\|\partial_{t_{\mathrm{eff}}} Q_\theta+\nabla_{\mathrm{eff}}\cdot \mathbf{F}_\theta-\mathcal{S}_\theta\right\|_W}{\epsilon_Q}
 $$
 where $Q_\theta$ is the retained effective quantity, $\mathbf{F}_\theta$ is its boundary flux, $\mathcal{S}_\theta$ is its declared source, and $\epsilon_Q$ is the tolerance fixed by the comparison packet. A global geometry, medium interpretation, or effective scale-factor story should not be promoted unless the three terms are simultaneously small under one branch record.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a(t)$ and $H(t)$ from substrate claims about assemblies and the Noether sea, and it must carry observation, stability, and source/boundary residuals together.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary and directly useful as method**. It does not support importing Einstein's static closed universe, nor does it justify treating $\lambda$ as a disguised proof of Noether sea dynamics. It supports a stricter rule: whenever $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes an effective cosmological history in a fixed Euclidean void, the history must distinguish observer-level variables such as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ and $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ from substrate claims about assemblies and the Noether sea, and it must carry observation, stability, and source/boundary residuals together.
 
 Transition relevance is high because emergent cosmologies are especially vulnerable to the same failure mode. A model can be mathematically elegant, philosophically attractive, and still be under-validated. The Einstein World warns that a closure device should remain a closure device until it survives the full residual check.
 
@@ -509,13 +509,13 @@ The long-term relevance of this episode is permanent until the field/particle di
 
 What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
 $$
-a_{\mathrm{eff}}(t)=a_0e^{H_*t},
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t_{\mathrm{eff}}},
 \qquad
-\dot{\rho}_{m,\mathrm{eff}}=0
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}=0
 $$
 The mathematical pressure is immediate. With no source term, dust continuity gives
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_*\rho_{m,\mathrm{eff}}=0
 $$
 so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
@@ -534,7 +534,7 @@ What was occluded was a disciplined source-provenance analysis. A cosmological c
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t)$, $H_{\mathrm{eff}}(t)$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(t)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **cautionary but useful**. The Euclidean void does not supply matter or energy. The Noether sea may carry Noether sea state dynamics that project into $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $\rho_{\mathrm{DE,eff}}$, but any effective matter source must be derived from assembly and medium histories inside $S(T)$. This episode therefore sharpens the fixed-void cosmology discipline rather than weakening it.
 
 ### Recovery Target
 

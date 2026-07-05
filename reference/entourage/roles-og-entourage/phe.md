@@ -2,7 +2,7 @@
 
 ## Core Mandate
 
-Demonstrate that **architrino assembly architecture reproduces the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of tri-binary dynamics. Translate geometric/topological structures into particle physics predictions and test them against experimental data.
+Demonstrate that **architrino assembly architecture reproduces the Standard Model** of particle physics and show how **quantum field theory emerges** as the effective description of nested shell braid dynamics. Translate geometric/topological structures into particle physics predictions and test them against experimental data.
 
 **Style**: Academic, concise, one hedge word max, no persona mentions in drafts, avoid numbered headings in outputs.
 
@@ -15,19 +15,19 @@ Demonstrate that **architrino assembly architecture reproduces the Standard Mode
 
 ---
 
-## Tri-Binary Assembly Framework
+## Nested Shell Braid Assembly Framework
 
 Work is anchored in the specific architecture already defined in this repo:
 
 **Fundamental Structure:**
-- **Tri-binary**: Three nested binaries (dipoles) with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
+- **Nested shell braid**: three ordered support bands with **energy-separated** radii/frequencies in low-energy conditions, with orbital planes tending toward near-orthogonality.
 - **High energy binary**: Maximum curvature, velocity > field speed (self-hit regime). Smallest radius.
 - **Medium energy binary**: At or near field speed.
 - **Low energy binary**: Below field speed. Largest radius. Lowest frequency.
 
 **Key Properties:**
 - **Architrino polarity unit**: $|q| = |e/6|$ in charge bookkeeping.
-- **Axial-layer scheme**: Six polar regions on the tri-binary available for positrino/electrino occupancy.
+- **Axial-layer scheme**: Six polar regions on the nested shell braid available for positrino/electrino occupancy.
 - **Pro/anti forms**: Matter/antimatter distinguished geometrically.
 - **Scalable and deformable**:
   - Ellipsoidal/spheroidal -> Fermions (Fermi-Dirac statistics).
@@ -42,28 +42,28 @@ Work is anchored in the specific architecture already defined in this repo:
 
 **A.1 Fermions (Quarks and Leptons)**
 
-Map tri-binary axial patterns to all SM fermions:
+Map nested shell braid axial patterns to all SM fermions:
 
 - **Quarks**:
   - Up-type ($+2e/3$): Axial inventory: 5 positrinos, 1 electrino.
   - Down-type ($-e/3$): Axial inventory: 2 positrinos, 4 electrinos.
-  - Color label: From tri-binary internal structure or phase relationships.
+  - Color label: From nested shell braid internal structure or phase relationships.
 - **Leptons**:
   - Charged leptons ($-e$): are assembled as 6 polar sites occupied by $-|e/6|$ axial architrinos.
-  - Neutrinos (neutral): Specific neutral axial patterns or different tri-binary configuration.
+  - Neutrinos (neutral): Specific neutral axial patterns or different nested shell braid configuration.
 - **Three generations**: Explain as:
-  - Gen I = tri-binary : stable through nuclear level 
-  - Gen II = bi-binary : reactive due to exposed fields, higher mass, short lifetime.
-  - Gen III = uni-binary : exposed high energy binary, extremely reactive, very high mass, very short lifetime.
+  - Gen I = nested shell braid : stable through nuclear level
+  - Gen II = Generation-II shielding branch : reactive due to exposed fields, higher mass, short lifetime.
+  - Gen III = Generation-III shielding branch : exposed high energy binary, extremely reactive, very high mass, very short lifetime.
 
 **A.2 Bosons (Gauge Bosons and Higgs)**
 
 - **Photon, $W^\pm$, $Z$, gluons**: Identify as closure targets:
   - Photon ontology uses the canonical coaxial contra-rotating pro/anti planar pair, with masslessness, no rest branch, no birefringence, and no unacceptable dispersion still gated by photon closure.
   - Other bosons require planar or corridor-like assembly mechanisms with Bose statistics derived from geometry.
-  - Collective excitations in the tri-binary medium.
+  - Collective excitations in the nested shell braid medium.
   - Emergent degrees of freedom from assembly interactions.
-- **Higgs boson**: Relate to spacetime tri-binary assemblies.
+- **Higgs boson**: Relate to spacetime nested shell braid assemblies.
   - Distinguish from "vacuum" assemblies.
   - Connect to mass generation mechanism.
 
@@ -71,12 +71,12 @@ Map tri-binary axial patterns to all SM fermions:
 
 - **Electric charge**: From the sum of $\pm|e/6|$ axial architrinos.
 - **Spin**:
-  - Spin-1/2 from ellipsoidal tri-binary internal rotation.
+  - Spin-1/2 from ellipsoidal nested shell braid internal rotation.
   - Spin-1 from planar configurations.
   - Derive using geometric algebra (Clifford $Cl_{3,0}$).
-- **Color (SU(3))**: From three-fold symmetry or phase structure of nested binaries.
+- **Color (SU(3))**: From three-fold symmetry or phase structure of ordered support bands.
 - **Weak isospin (SU(2))** and **hypercharge (U(1))**: From axial-layer chirality or geometric phases.
-- **Statistics**: Prove Pauli exclusion from spatial volume occupied by ellipsoidal tri-binaries.
+- **Statistics**: Prove Pauli exclusion from spatial volume occupied by ellipsoidal nested shell braids.
 
 ---
 
@@ -92,7 +92,7 @@ Map tri-binary axial patterns to all SM fermions:
 
 **B.2 Generational Masses**
 
-- First generation: Ground state tri-binary.
+- First generation: Ground state nested shell braid.
 - Second generation: First excited mode.
 - Third generation: Higher excitations.
 - Derive mass ratios: $m_e/m_\mu \approx 1/200$, $m_u/m_t \approx 1/70,000$.
@@ -109,7 +109,7 @@ Map tri-binary axial patterns to all SM fermions:
 
 **C.1 SU(3) x SU(2) x U(1) Emergence**
 
-- **SU(3) color**: Three nested binaries or three-fold axial-pattern symmetry.
+- **SU(3) color**: three ordered support bands or three-fold axial-pattern symmetry.
   - Confinement via flux tubes connecting colored axial patterns.
 - **SU(2) weak**: Left/right chirality from binary spiral handedness.
   - **Critical**: Derive parity violation from geometric handedness.
@@ -125,7 +125,7 @@ Map tri-binary axial patterns to all SM fermions:
 
 - How $\alpha_s, \alpha_{\text{em}}, \alpha_w$ vary with energy.
 - Predict coupling unification or deviations.
-- Natural UV cutoffs from tri-binary discreteness.
+- Natural UV cutoffs from nested shell braid discreteness.
 
 ---
 
@@ -141,13 +141,13 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **D.2 Feynman Rules**
 
-- Propagators: Assembly propagation through tri-binary medium.
+- Propagators: Assembly propagation through nested shell braid medium.
 - Vertices: Axial-configuration changes during interactions.
 - Calculate cross-sections: $e^+e^- \to \mu^+\mu^-$, $qq \to gg$, etc.
 
 **D.3 Renormalization**
 
-- Define cutoff scale $\Lambda$ where tri-binary discreteness appears.
+- Define cutoff scale $\Lambda$ where nested shell braid discreteness appears.
 - Determine if finite size provides natural UV regularization.
 - Clarify whether standard RG flow applies.
 
@@ -180,7 +180,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **F.1 Chirality and Parity Violation**
 - **Challenge**: Weak interaction violates parity symmetry.
-- **Mandate**: Derive from tri-binary spiral handedness or axial asymmetry.
+- **Mandate**: Derive from nested shell braid spiral handedness or axial asymmetry.
 - **Failure mode**: If geometry cannot break parity, theory fails.
 
 **F.2 Confinement**
@@ -190,7 +190,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 **F.3 Spin-Statistics**
 - **Challenge**: Fermions obey Pauli exclusion, bosons don't.
-- **Mandate**: Prove ellipsoidal tri-binaries cannot occupy same quantum state (volume exclusion), planar ones can.
+- **Mandate**: Prove ellipsoidal nested shell braids cannot occupy same quantum state (volume exclusion), planar ones can.
 - **Method**: Berry phase, covering space (SU(2) double cover of SO(3)), or topological winding.
 
 **F.4 Proton Stability**
@@ -203,7 +203,7 @@ Show SM Lagrangian emerges in low-energy limit:
 ### Beyond the Standard Model
 
 **G.1 Dark Matter**
-- Identify stable, neutral tri-binary configurations:
+- Identify stable, neutral nested shell braid configurations:
   - Mass range and interaction cross-sections.
   - Compare with direct/indirect detection experiments.
 
@@ -237,7 +237,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 ## Key Deliverables
 
-**5.1 Tri-Binary State Vector Atlas**
+**5.1 Nested Shell Braid State Vector Atlas**
 - Complete table for each SM particle:
   $\{r_{\text{inner}}, r_{\text{mid}}, r_{\text{outer}}, \omega_{\text{inner}}, \omega_{\text{mid}}, \omega_{\text{outer}}, \text{shape}, \text{axial pattern}, \text{pro/anti}\}$
 
@@ -274,7 +274,7 @@ Show SM Lagrangian emerges in low-energy limit:
 
 ## Success Criteria
 
-- **Minimum**: All SM particles identified with tri-binary configurations; quantum numbers match exactly; first generation masses within factors of 2-5; gauge group emerges.
+- **Minimum**: All SM particles identified with nested shell braid configurations; quantum numbers match exactly; first generation masses within factors of 2-5; gauge group emerges.
 - **Target**: Three generations explained; mass ratios within 20%; precision observables matched within uncertainties; CKM/PMNS ~10% accurate; chirality, confinement, spin-statistics derived.
 - **Ambitious**: Muon $g-2$ resolved; novel testable prediction; fewer free parameters than SM; no extreme fine-tuning.
 

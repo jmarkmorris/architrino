@@ -4,7 +4,9 @@ This document presents the standard derivation and physical content of Bell's th
 
 The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, nested shell braid, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
----
+The fastest way to misunderstand Bell is to treat it as a slogan about reality being impossible. Bell is more precise than that. It rules out a class of explanations in which each detector outcome is screened off by a local package of variables that is independent of the distant setting. The experimentally observed correlations tell $\mathbb{A}\mathbb{A}\mathbb{A}$ exactly what kind of recovery target must be met: reproduce the joint records, preserve no-signaling, respect measurement-independence bounds, and explain why the observer-level compression is not Bell-factorizable.
+
+That is why this page is a benchmark page rather than a mechanism page. It keeps the theorem sharp so that the later assembly account cannot slide into loose common-cause language. A shared source event helps only if the retained pair-provenance ledger gates a coupled substrate-response law on the declared $c_f$ coordination channel that produces the quantum joint law without restoring Bell's product factorization.
 
 ## Traditional Statement of Bell's Theorem
 
@@ -110,7 +112,7 @@ $$
 1-\chi_C E_\theta(C)
 \right]_+
 $$
-where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and local detector kernels, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
+where $E_\theta(C)$ is the product expectation of the three declared apparatus records in context $C$ and $[x]_+\equiv\max(x,0)$. Passing this benchmark means deriving the context-indexed joint record distribution from pair or multiplet provenance and the coupled substrate-response kernels on the declared $c_f$ coordination channel, not assigning context-independent substrate values to all effective $X$ and $Y$ operators.
 
 **Hardy zero/positive event benchmark.** Hardy's two-particle proof uses binary observables $U_i,D_i$ and a nonmaximally entangled state to combine three zero-probability constraints with one positive-probability event. In one common convention the quantum target is
 $$
@@ -195,7 +197,7 @@ At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion t
 
 The current placement is therefore:
 
-- **Realism is retained**: every architrino possesses a definite position $\mathbf{x}_i(t)$, velocity $\mathbf{v}_i(t)$, polarity $q_i$, and path-history ledger at every absolute time $t$. The complete microstate exists independently of observation.
+- **Realism is retained**: every architrino possesses a definite position $\mathbf X_i(T)$, velocity $\mathbf V_i(T)$, polarity $q_i$, and path-history ledger at every absolute time $T$. The complete microstate exists independently of observation.
 
 - **Measurement independence is retained**: detector settings are not assumed to be pre-correlated with the source microstate. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not invoke superdeterminism.
 
@@ -221,20 +223,20 @@ $$
 
 Here $C$ is not a new substrate object; it is the retained common-past or pair-provenance record used by the proposed Bell closure. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ route must explain why the declared provenance and apparatus-response compression leaves a nonzero factorization residual while keeping the measurement-independence and no-signaling residuals below tolerance. If $\Delta_{\mathrm{fact}}(C)$ vanishes for the completed hidden-variable record, the closure has not escaped the theorem.
 
-The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $t_0<t_s<t_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
+The same point can be stated as a Markov-screening and restartability test. A finite-thickness screening region, common-past record, or pair-provenance ledger screens a Bell experiment only if the retained state at an intermediate time can be used as a restartable effective state for the later detector records. For $T_0<T_s<T_{\mathrm{rec}}$ and a declared Bell coarse-graining $\mathcal{Q}_{AB}$, define
 
 $$
-\Delta_{\mathrm{div}}^{AB}(t_0,t_s,t_{\mathrm{rec}};\mathcal{Q}_{AB})
+\Delta_{\mathrm{div}}^{AB}(T_0,T_s,T_{\mathrm{rec}};\mathcal{Q}_{AB})
 =
 \left\|
-\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_{\mathrm{rec}}}
 -
-\mathcal{T}^{\mathcal{Q}_{AB}}_{t_s\to t_{\mathrm{rec}}}
-\mathcal{T}^{\mathcal{Q}_{AB}}_{t_0\to t_s}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_s\to T_{\mathrm{rec}}}
+\mathcal{T}^{\mathcal{Q}_{AB}}_{T_0\to T_s}
 \right\|_{\mathrm{TV}\to\mathrm{TV}}
 $$
 
-If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, local apparatus kernels, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
+If $\Delta_{\mathrm{div}}^{AB}\le\varepsilon_{\mathrm{div}}$ and $\Delta_{\mathrm{fact}}(C)=0$ for the completed retained record, the proposed closure has supplied a restartable screened common cause and remains in the Bell-local class. If $\Delta_{\mathrm{div}}^{AB}=O(1)$ for the observer-level Bell variables, then the reduced variables have lost path-history information needed for the joint record law; that is a possible reason the Bell abstraction fails to factorize. This does not weaken Bell's theorem. It states the replacement burden: derive the non-restartable record compression from pair provenance, the coupled substrate-response law on the declared $c_f$ channel, and finite-time measurement dynamics while still passing the no-signaling, measurement-independence, and correlation gates below.
 
 ### Bell Closure Diagnostics
 
@@ -342,15 +344,15 @@ $$
 
 Thus the non-product burden is sharply located: a successful pair-provenance account must derive a correlation channel $C(x,y)$ that is not reducible to $C_{\mathrm{prod}}(x,y)$, while keeping $m_A$ and $m_B$ local and preserving positivity.
 
-Ordering leakage is a separate preferred-frame guardrail. For observer-level spacelike-separated detector records, the substrate still has an absolute-time order. Let $O_{AB}\in\{A\prec_t B,B\prec_t A\}$ denote that order for the two wings. A Bell packet must make the observable joint law insensitive to that order:
+Ordering leakage is a separate preferred-frame guardrail. For observer-level spacelike-separated detector records, the substrate still has an absolute-time order. Let $O_{AB}\in\{A\prec_T B,B\prec_T A\}$ denote that order for the two wings. A Bell packet must make the observable joint law insensitive to that order:
 $$
 \Delta_{\mathrm{ord}}
 =
 \sup_{a,b,x,y}
 \left|
-P(a,b|x,y,A\prec_t B)
+P(a,b|x,y,A\prec_T B)
 -
-P(a,b|x,y,B\prec_t A)
+P(a,b|x,y,B\prec_T A)
 \right|
 \le\epsilon_{\mathrm{ord}}.
 $$
@@ -375,17 +377,17 @@ No-signaling is also a Lorentz-export condition. The substrate has absolute time
 
 The no-signaling row cannot be checked only after the CHSH fit. It must be a measure-invariance statement: the joint basin measure remains invariant under local-setting relabelings at each wing, so summing over one wing leaves the other marginal independent of the far setting while the joint invariant can still carry the $2\sqrt{2}$ correlation.
 
-The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_tB$ with $B\prec_tA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
+The ordering row must be a measure-invariance statement too. For spacelike-separated observer records, exchanging the substrate order sector $A\prec_TB$ with $B\prec_TA$ inside the same prepared Bell regime may not change the observer-accessible joint table beyond $\epsilon_{\mathrm{ord}}$.
 
-The relevant separation condition is set by causal-wake reach, not only by the photon-channel cone used in the observer description. Let the two record-closure windows be $W_A=[t_A,t_A+\tau_A]$ and $W_B=[t_B,t_B+\tau_B]$, with wing separation $d_{AB}=\|\mathbf{x}_A-\mathbf{x}_B\|$. Define the wake-reach margins
+The relevant separation condition is set by causal-wake reach, not only by the photon-channel cone used in the observer description. Let the two record-closure windows be $W_A=[T_A,T_A+\tau_A]$ and $W_B=[T_B,T_B+\tau_B]$, with wing separation $d_{AB}=\|\mathbf X_A-\mathbf X_B\|$. Define the wake-reach margins
 $$
 \Delta_{\mathrm{reach}}^{A\to B}
 =
-t_B+\tau_B-t_A-\frac{d_{AB}}{c_f},
+T_B+\tau_B-T_A-\frac{d_{AB}}{c_f},
 \qquad
 \Delta_{\mathrm{reach}}^{B\to A}
 =
-t_A+\tau_A-t_B-\frac{d_{AB}}{c_f}.
+T_A+\tau_A-T_B-\frac{d_{AB}}{c_f}.
 $$
 If both margins are negative, neither wing's causal wake can enter the other wing's record-closure window before the relevant record closes. If either margin is nonnegative, the experiment lies in a wake-reach exposure window. This matters whenever $c_f>c_\gamma$: a pair can be spacelike by the dressed photon-channel record while still allowing primitive causal-wake reach during the measurement window. A Bell closure must therefore either keep the record windows mutually outside $c_f$ causal-wake reach or prove that any such reach leaves $\Delta_{\mathrm{ord}}$ below the coincidence-timing and correlation-residual tolerance.
 
@@ -442,7 +444,7 @@ Thus record reconstruction is the output surface of the Bell program, not a subs
 
 The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, nested shell braid orientations, active causal-root branches, self-action terms, and causal-wake history.
 
-**Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $t_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$. For a spin-singlet-like event, the observer-level summary is
+**Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $T_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(T_0)$ and $\Gamma_B(T_0)$. For a spin-singlet-like event, the observer-level summary is
 
 $$
 \mathbf{J}_A+\mathbf{J}_B=\mathbf{0}
@@ -458,8 +460,8 @@ P_{\mathrm{src}}^{\mathrm{sing}}
 \left(
 B_{\mathrm{parent}}^-,
 W_{\mathrm{src}},
-t_0,
-t_{\mathrm{sep}},
+T_0,
+T_{\mathrm{sep}},
 \Sigma_{\mathrm{src}},
 \mu_{\mathrm{src}},
 \Gamma_{\mathrm{src}}^{\mathrm{loc}}
@@ -727,7 +729,7 @@ This is the closest structural relative in the inherited taxonomy. Both $\mathbb
 
 | Feature | de Broglie–Bohm | $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:---|:---|:---|
-| Hidden variables | Particle positions in 3D | Full microstate $\Gamma(t)$ (positions, velocities, charges) in 3D |
+| Hidden variables | Particle positions in 3D | Full microstate $\Gamma(T)$ (positions, velocities, charges) in 3D |
 | Guidance mechanism | Pilot wave $\psi$ on configuration space $\mathbb{R}^{3N}$ | Superposed causal-wake geometry in physical 3D space |
 | Ontological economy | Two ontological categories (particles + wave) | One category (architrinos); wake structure is generated by architrinos |
 | Nonlocality mechanism | $\psi$ on configuration space couples all particles | To be derived from pair provenance plus measurement-response ledger |
@@ -742,7 +744,7 @@ Superdeterministic models deny measurement independence: the detector settings a
 
 ### Retrocausal Models
 
-Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$t$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
+Retrocausal interpretations allow influences from future measurement settings to propagate backward in time to the source, effectively setting $\lambda$ in response to $\hat{m}_A$ and $\hat{m}_B$. $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time ontology categorically forbids backward-in-$T$ causation. All causal influences propagate forward in absolute time at or below $c_f$. The correlations in $\lambda$ are forward-causal consequences of the creation event, established before any measurement setting is chosen.
 
 Temporal-nonlocality language is therefore a comparison diagnostic, not a mechanism to import. In a relativistic observer description, different frames may assign different time orderings to spacelike-separated measurement records; that does not license future-boundary variables in the substrate ledger. A candidate Bell record should evaluate pair provenance, $\Delta_{\mathrm{MI}}$, $\Delta_{\mathrm{NS}}^{A}$, $\Delta_{\mathrm{NS}}^{B}$, and $\Delta_{\mathrm{Bell}}$ on the absolute-time record. If the correlation fit requires $\lambda$ to depend on later settings, the record has left the stated $\mathbb{A}\mathbb{A}\mathbb{A}$ route and should be classified with retrocausal or measurement-independence-denying comparison models.
 
@@ -750,19 +752,19 @@ Temporal-nonlocality language is therefore a comparison diagnostic, not a mechan
 
 ## The Role of Absolute Time
 
-The existence of a global time parameter $t$ is essential for the internal consistency of the $\mathbb{A}\mathbb{A}\mathbb{A}$ account of Bell violations.
+The existence of a global time parameter $T$ is essential for the internal consistency of the $\mathbb{A}\mathbb{A}\mathbb{A}$ account of Bell violations.
 
 **Problem in relativistic frameworks.** In Minkowski spacetime, spacelike-separated measurements have no invariant temporal ordering. Telling a story about "what happens first" requires selecting a frame, and different frames give different orderings. This makes it conceptually difficult to describe how pre-established correlations are "read out" without invoking some form of action at a distance.
 
-**Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $t_A$ and $t_B$, with $t_A < t_B$, $t_A = t_B$, or $t_A > t_B$ as an objective fact. In all three cases the account is the same:
+**Resolution via absolute time.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, the temporal ordering of all events is objective. Measurements at $A$ and $B$ occur at definite absolute times $T_A$ and $T_B$, with $T_A < T_B$, $T_A = T_B$, or $T_A > T_B$ as an objective fact. In all three cases the account is the same:
 
-1. At $t_0 < \min(t_A, t_B)$: the creation event establishes $\lambda$.
+1. At $T_0 < \min(T_A, T_B)$: the creation event establishes $\lambda$.
 2. At each measurement time: the local apparatus drives the local assembly across a basin boundary. The one-wing basin crossing is local, but the validated observer-level law is the pushed-forward nonseparable pair-provenance response kernel, not a restartable product of two independent local hidden-variable packages.
 3. After both measurements: comparison of results (via sub-$c_f$ classical communication) reveals the correlations.
 
 No step may involve faster-than-$c_f$ signal transfer. The correlations are visible only upon comparison. The objective temporal ordering removes one frame-dependence puzzle, but it does not by itself solve Bell's theorem. The missing work is the lower-level derivation of the spin ledger and measurement-response kernel.
 
-**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it creates the ordering-invariance burden above. The observer-accessible Bell table must not reveal whether $A\prec_tB$ or $B\prec_tA$ in the substrate; see [Observer Framework](../../spacetime/observer-framework.md).
+**Emergent Lorentz invariance.** Physical Observers, who lack access to absolute time and use assembly-based clocks and rulers, reconstruct an effective Minkowski geometry in which the temporal ordering of spacelike-separated events is frame-dependent. This does not contradict the underlying absolute ordering; it creates the ordering-invariance burden above. The observer-accessible Bell table must not reveal whether $A\prec_TB$ or $B\prec_TA$ in the substrate; see [Observer Framework](../../spacetime/observer-framework.md).
 
 ---
 
@@ -771,9 +773,9 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 **Closure target:** $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce all experimentally observed Bell-family correlation constraints from architrino-level angular-momentum and measurement-response dynamics, without superluminal signaling or denial of measurement independence.
 
 **Assumptions:**
-- The full microstate $\Gamma(t)$ is definite at all $t$ (realism).
+- The full microstate $\Gamma(T)$ is definite at all $T$ (realism).
 - Conservation constraints at creation establish a joint pair ledger, but the detailed angular-momentum distribution must be derived.
-- Measurement is local threshold resolution (no distant causal input at measurement time).
+- Measurement is threshold resolution in the coupled substrate response (no controllable observer signaling and no faster-than-$c_f$ input; any distant substrate input must be the declared $c_f$ coordination channel).
 - Measurement independence holds (no superdeterminism, no retrocausation).
 - The measurement-response kernel of a Noether braid assembly interacting with an apparatus is a deterministic basin indicator, not a primitive $\cos^2(\alpha/2)$ rule. The single-assembly half-angle law is now computed in the reduced Stern-Gerlach chart; the Master-Equation burden is to derive the effective spinor coordinate and verify that the branch-sum apparatus impulse and record-cycle invariant measure realize that chart.
 
@@ -783,7 +785,7 @@ No step may involve faster-than-$c_f$ signal transfer. The correlations are visi
 - GHZ product-sign contexts are recovered without assigning one context-independent local value table across all $X/Y$ settings.
 - Hardy's zero-probability constraints and positive event margin are recovered for the calibrated nonmaximally entangled regime.
 - No-signaling is exact: no measurement protocol on $A$ can alter the marginal statistics at $B$.
-- Ordering invariance is exact within the declared Bell regime: observer-level spacelike-separated joint tables do not expose whether $A\prec_tB$ or $B\prec_tA$ in absolute time.
+- Ordering invariance is exact within the declared Bell regime: observer-level spacelike-separated joint tables do not expose whether $A\prec_TB$ or $B\prec_TA$ in absolute time.
 - Preferred-frame leakage remains below the Lorentz-test residual bound on the same observer export that supplies detector timing, analyzer calibration, and coincidence-window records.
 - Measurement-independence leakage is explicitly bounded by $\Delta_{\mathrm{MI}}\le\epsilon_{\mathrm{MI}}$ rather than absorbed into the pair-provenance explanation.
 - Correlation recovery is checked through $\Delta_{\mathrm{Bell}}$ against the full $-\cos\theta$ curve, not only by a single CHSH setting choice.

@@ -2,6 +2,10 @@
 
 This chapter is the main bridge from Standard Model CKM language to the assembly-level weak-mixing picture. Its purpose is to let a reader see, in one place, which ingredients are standard, which are geometric reinterpretations, and which closure relations remain postulates or fit targets. It should be read with [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md), [Electroweak Bosons: Photons, W/Z, and Higgs](../../assemblies/bosons/electroweak-bosons.md), and [Quantum Number Mapping](../../assemblies/fermions/quantum-number-mapping.md).
 
+The reader-facing idea is simple: the CKM matrix is not treated as a mysterious table pasted onto quarks. It is treated as a measured overlap table between two ways of organizing the same assembly. One organization is the weak-coupling triad that a charged weak corridor can access. The other is the shielding and mass-basis structure that fixes the externally observed generation state. The bridge asks whether those two organizations can be derived from one geometry rather than separately fitted.
+
+This preserves the Standard Model success. CKM already works as precision bookkeeping for charged-current reactions, rates, and CP-violating interference. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is narrower and harder: recover that bookkeeping from axial-frame geometry, weak-coupling-triad exposure, shielding eigenstates, and reaction provenance without changing definitions between channels.
+
 ## Weak Mixing: $\mathbb{A}\mathbb{A}\mathbb{A}$ to SM
 
 This chapter is written as a bridge text: it first states CKM in standard SM language, then translates each ingredient into $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry. The goal is that a reader with QM and introductory QFT can identify exactly what is standard, what is assumed in $\mathbb{A}\mathbb{A}\mathbb{A}$, and what is predicted.
@@ -61,7 +65,9 @@ $$
 The reaction/transition probability into channel $j$ is proportional to $\lvert V_{ij}\rvert^2$ (after kinematic and hadronic factors). This is the precise meaning of flavor mixing.
 Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{ij}\rvert^2$ is the observed weight of allowed architrino transport histories that connect weak-basis channel $i$ to mass-basis channel $j$.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), bi-binary (IM-), and uni-binary (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), Generation-II shielding (IM-), and Generation-III shielding (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
+
+So each row should be read as a routing ledger. The weak interaction opens a charged corridor in one exposed basis, but the detector names the outgoing assembly in the mass basis. CKM entries measure how much of the exposed corridor lands in each mass-basis channel. That is why a high-value $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation cannot stop at the matrix values; it must also explain the two bases whose mismatch the matrix records.
 
 ### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
 - The weak force is the only one that transforms quark types (down ↔ up, strange ↔ charm, etc.).
@@ -76,12 +82,12 @@ In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these thr
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
 ## Minimal premises
-- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II bi-binary (c,s), Gen III uni-binary (t,b).
+- **Generations = shielding level:** Gen I nested shell braid (u,d), Gen II shielding branch (c,s), Gen III shielding branch (t,b).
 - **Weak basis = weak-coupling triad:** SU(2) acts on the exposed three polar sites (polarity = $T_3$). This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../assemblies/particle-masses.md).
 
 Weak-coupling-triad exposure (working hypothesis): in translation, the three **forward** polar sites are more exposed (outside the particle’s own wake), so they form the weak-coupling triad; trailing sites are likely shielded by the wake/slipstream. Needs simulation confirmation.
-Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where cores are unshadowed and available to couple.
+Forward bias also fits the $W$-corridor picture: a transient corridor would form into the Noether sea ahead of the translating quark group, where quark braids are unshadowed and available to couple.
 
 Noether sea sourcing note: in $\mathbb{A}\mathbb{A}\mathbb{A}$ there is no empty background here, only the Noether sea. Weak reconfigurations (e.g., heavy → light generation) may draw assembly parts from the Sea; treat any net architrino “gain” during heavy-to-light weak dissociation as speculative until energy/number flow is explicitly budgeted.
 
@@ -564,7 +570,7 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Environmental partners:**
   - Photon: a coaxial contra-rotating pro/anti planar pair.
   - Noether sea: hypothesized as paired pro/anti Noether braids; a local interaction could draw neutral braid content to participate while preserving recorded provenance.
-- **Architrino budget example:** reacting with a Noether sea super-assembly (4 cores) × (6 architrinos/core) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
+- **Architrino budget example:** reacting with a Noether sea super-assembly (4 braids) × (6 architrinos/braid) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating braids/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
 
 ### Illustrative Candidate Ledger Rows
@@ -624,7 +630,7 @@ $$
 \kappa_{ab}=
 \int_{\Gamma_{ab}}
 \mathcal{L}_{\mathrm{trans}}
-\bigl(\rho_{\text{NS}}(\mathbf{x},t),\nabla\rho_{\text{NS}}(\mathbf{x},t),\text{shielding},\text{wake exposure}\bigr)\,ds
+\bigl(\rho_{\text{NS}}(\mathbf X,T),\nabla_{\mathbf X}\rho_{\text{NS}}(\mathbf X,T),\text{shielding},\text{wake exposure}\bigr)\,ds
 $$
 rather than fitting them from CKM inputs.
 

@@ -12,9 +12,9 @@ The framework explicitly separates the **ontic reality** of architrino trajector
 
 ## Ontological Status of the Wavefunction
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the standard comparison notation $\psi(\mathbf{x}, t)$ translates to an effective chart variable $\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$. It is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers.
 
-The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
+The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf X_i(T)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
 
 This requires a two-layer use of the word superposition. Substrate superposition means linear addition of causal-wake contributions and accelerations; it is part of the deterministic dynamics. Quantum superposition of mutually exclusive outcomes is different: it is an effective branch envelope used by a Physical Observer before a record has selected a basin. A deterministic substrate can therefore reject ontic superposition of mutually exclusive macroscopic states without rejecting the wake addition that produces the effective landscape.
 
@@ -33,9 +33,9 @@ The standard phrase particle-wave duality is a comparison label, not native onto
 
 For a declared preparation and apparatus channel, the retained effective state should be read as a lossy projection of a substrate packet
 $$
-\Gamma_\theta(t)=\left(X_{\mathrm{asm}}(t),\mathcal{W}_\theta(t),Z_\theta(t)\right)
+\Gamma_\theta(T)=\left(\mathbf X_{\mathrm{asm}}(T),\mathcal{W}_\theta(T),Z_\theta(T)\right)
 $$
-where $X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\theta$ denotes the causal-wake/path-history data still relevant to the record channel, and $Z_\theta$ denotes retained Noether sea and apparatus-environment context. Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\theta$.
+where $\mathbf X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\theta$ denotes the causal-wake/path-history data still relevant to the record channel, and $Z_\theta$ denotes retained Noether sea and apparatus-environment context. Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\theta$.
 
 The double-slit lesson is therefore not that an ontic particle becomes a wave before becoming a particle again. The lesson is that a localized assembly can leave and receive distributed wake structure whose path history remains live until an apparatus creates a restartable record. If no which-path record has formed at the slit plane, the effective wavefunction must continue to carry the unresolved branch envelope. If a which-path apparatus forms a durable record, the record channel changes and interference is removed by apparatus coupling, not by an observer's act of looking.
 
@@ -71,7 +71,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner pr
 
 ### Representation and Decomposition Discipline
 
-The state-vector contract also fixes what may not be imported from the notation. A representation such as $\psi(\mathbf{x},t)$, $\psi(\mathbf{p},t)$, or $\psi(q_1,\ldots,q_N)$ is a coordinate choice on the effective state, not a direct inventory of substrate contents. A position-space chart is physically licensed only when $\theta$ includes a projection from deterministic assembly, causal-wake, and apparatus data to the corresponding position records. A configuration-space wavefunction for many coordinates is therefore not a new physical arena layered over the Euclidean void; it is an observer-level bookkeeping chart over possible record tuples.
+The state-vector contract also fixes what may not be imported from the notation. A standard comparison representation such as $\psi(\mathbf{x},t)$, $\psi(\mathbf{p},t)$, or $\psi(q_1,\ldots,q_N)$ is a coordinate choice on the effective state, not a direct inventory of substrate contents. The layer-explicit position-space version is $\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, with $x_{\mathrm{eff}}^i$ supplied by the declared observer chart. A position-space chart is physically licensed only when $\theta$ includes a projection from deterministic assembly, causal-wake, and apparatus data to the corresponding position records. A configuration-space wavefunction for many coordinates is therefore not a new physical arena layered over the Euclidean void; it is an observer-level bookkeeping chart over possible record tuples.
 
 The same rule applies to subsystem decomposition. Standard quantum mechanics often writes a composite channel as
 $$
@@ -112,49 +112,64 @@ The first term tests the effective operator or channel residual against the loop
 
 ### Density-Current Closure Target
 
-Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, define
+Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. In standard comparison form, one writes
 $$
-\rho_\psi(\mathbf{x},t)=|\psi(\mathbf{x},t)|^2,
+\rho_{\psi,\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})=|\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})|^2,
 \qquad
-\mathbf{J}_\psi(\mathbf{x},t)
+\mathbf{J}_{\psi,\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 =
 \frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
-\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right)
+\left(\psi_{\mathrm{std}}^*\nabla_{\mathrm{std}}\psi_{\mathrm{std}}-\psi_{\mathrm{std}}\nabla_{\mathrm{std}}\psi_{\mathrm{std}}^*\right)
 $$
-The standard benchmark is
+and
 $$
-\partial_t\rho_\psi+\nabla\cdot\mathbf{J}_\psi=0
+\partial_{t_{\mathrm{std}}}\rho_{\psi,\mathrm{std}}+\nabla_{\mathrm{std}}\cdot\mathbf{J}_{\psi,\mathrm{std}}=0
 $$
-This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(\mathbf{x},t)$ and $\mathbf{J}_{\mathrm{rec}}(\mathbf{x},t)$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
+For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, the layer-explicit target is
 $$
-\mathcal{R}_{\rho J}(W,T;\theta)
+\rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
+=|\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})|^2,
+\qquad
+J_{\psi,\mathrm{eff}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
+=
+\frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
+\gamma_{\mathrm{eff}}^{ij}\left(\psi_{\mathrm{eff}}^*\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}^*\right),
+$$
+$$
+\partial_{t_{\mathrm{eff}}}\rho_{\psi,\mathrm{eff}}
++\partial_{x_{\mathrm{eff}}^i}J_{\psi,\mathrm{eff}}^i=0.
+$$
+This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
+$$
+\mathcal{R}_{\rho J}(W,\mathcal T_{\mathrm{eff}};\theta)
 =
 \max\left(
-\frac{\sup_{t\in T}\|\rho_{\mathrm{rec}}(\cdot,t)-\rho_\psi(\cdot,t)\|_{L^1(W)}}{\varepsilon_\rho},
-\frac{\|\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf{J}_{\mathrm{rec}}\|_{\mathcal{D}'(W\times T)}}{\varepsilon_{\mathrm{cont}}},
-\frac{\sup_{t\in T}\|\mathbf{J}_{\mathrm{rec}}(\cdot,t)-\mathbf{J}_\psi(\cdot,t)\|_{W^{-1,1}(W)}}{\varepsilon_J}
+\frac{\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}\|\rho_{\mathrm{rec}}(\cdot,t_{\mathrm{eff}})-\rho_{\psi,\mathrm{eff}}(\cdot,t_{\mathrm{eff}})\|_{L^1(W)}}{\varepsilon_\rho},
+\frac{\|\partial_{t_{\mathrm{eff}}}\rho_{\mathrm{rec}}+\nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\mathrm{rec}}\|_{\mathcal{D}'(W\times \mathcal T_{\mathrm{eff}})}}{\varepsilon_{\mathrm{cont}}},
+\frac{\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}\|\mathbf{J}_{\mathrm{rec}}(\cdot,t_{\mathrm{eff}})-\mathbf{J}_{\psi,\mathrm{eff}}(\cdot,t_{\mathrm{eff}})\|_{W^{-1,1}(W)}}{\varepsilon_J}
 \right)
 \le 1
 $$
 The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
 
-The same target can be sharpened into a guidance-ratio test. Wherever $\rho_\psi>0$, the effective quantum velocity field is
+The same target can be sharpened into a guidance-ratio test. Wherever $\rho_{\psi,\mathrm{eff}}>0$, the effective quantum velocity field is
 $$
-\mathbf{v}_\psi(\mathbf{x},t)
+\mathbf{v}_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
-\frac{\mathbf{J}_\psi(\mathbf{x},t)}{\rho_\psi(\mathbf{x},t)}
+\frac{\mathbf{J}_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
+{\rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
 $$
 Let $\mathbf{v}_{\mathrm{rec}}$ be the velocity field obtained by projecting the deterministic assembly-flow current through the same record chart. The local guidance residual is
 $$
-\mathcal{R}_{\mathrm{guid}}(W,T;\theta)
+\mathcal{R}_{\mathrm{guid}}(W,\mathcal T_{\mathrm{eff}};\theta)
 =
 \frac{
-\sup_{t\in T}
+\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}
 \left\|
-\mathbf{v}_{\mathrm{rec}}(\cdot,t)
+\mathbf{v}_{\mathrm{rec}}(\cdot,t_{\mathrm{eff}})
 -
-\mathbf{v}_\psi(\cdot,t)
-\right\|_{L^1(W,\rho_\psi)}
+\mathbf{v}_{\psi,\mathrm{eff}}(\cdot,t_{\mathrm{eff}})
+\right\|_{L^1(W,\rho_{\psi,\mathrm{eff}})}
 }{\epsilon_v}
 \le 1
 $$
@@ -182,59 +197,64 @@ Any attempt by a Physical Observer to resolve the microstate of an assembly requ
 
 The free Gaussian wavepacket is the simplest observer-level benchmark for this claim. In standard quantum mechanics, a Gaussian packet minimizes the position-momentum uncertainty product and then disperses under free Schrödinger evolution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is therefore not merely to state $\Delta x\,\Delta p\ge\hbar/2$, but to recover the minimal packet as an effective envelope of deterministic path-history data.
 
-The standard wavepacket construction makes that benchmark more specific. A single plane wave is useful as an ideal momentum eigenstate, but it is not a localized, normalizable packet. The observer-level packet must be built by superposing a spread of wave numbers. Narrowing the spatial envelope broadens the retained $k$-support, and the standard relation $p=\hbar k$ converts that Fourier constraint into the position-momentum uncertainty relation. A Gaussian amplitude distribution is the minimum case; other amplitude distributions increase the product, and free evolution spreads the packet. The recovery target is therefore a four-part benchmark: normalization, packet-center transport at the effective group velocity, the covariance tradeoff between position and momentum, and the standard free-packet spreading law. None of these steps imports a matter wave as substrate ontology; each is a required observer-level consequence of the extracted path-history envelope. The first residual form of that benchmark is:
+The standard wavepacket construction makes that benchmark more specific. A single plane wave is useful as an ideal momentum eigenstate, but it is not a localized, normalizable packet. The observer-level packet must be built by superposing a spread of wave numbers. Narrowing the spatial envelope broadens the retained $k$-support, and the standard relation $p=\hbar k$ converts that Fourier constraint into the position-momentum uncertainty relation. A Gaussian amplitude distribution is the minimum case; other amplitude distributions increase the product, and free evolution spreads the packet. The recovery target is therefore a four-part benchmark: normalization, packet-center transport at the effective group velocity, the covariance tradeoff between position and momentum, and the standard free-packet spreading law. None of these steps imports a matter wave as substrate ontology; each is a required observer-level consequence of the extracted path-history envelope. In layer-explicit effective notation, the first residual form of that benchmark is:
 $$
-\Delta_x(t)\Delta_p(t)\ge\frac{\hbar_{\mathrm{eff}}}{2},
+\Delta_{x,\mathrm{eff}}(t_{\mathrm{eff}})
+\Delta_{p,\mathrm{eff}}(t_{\mathrm{eff}})
+\ge\frac{\hbar_{\mathrm{eff}}}{2},
 \qquad
-\left|\Delta_x(0)\Delta_p(0)-\frac{\hbar_{\mathrm{eff}}}{2}\right|
+\left|\Delta_{x,\mathrm{eff}}(t_{\mathrm{eff},0})
+\Delta_{p,\mathrm{eff}}(t_{\mathrm{eff},0})
+-\frac{\hbar_{\mathrm{eff}}}{2}\right|
 \le
 \varepsilon_{\mathrm{G}}
 $$
 For a free retained chart, the same packet must move and spread with the standard effective kinematics,
 $$
 \left\|
-\frac{d}{dt}\langle\mathbf{x}\rangle_\theta(t)
+\frac{d}{dt_{\mathrm{eff}}}
+\langle x_{\mathrm{eff}}^i\rangle_\theta(t_{\mathrm{eff}})
 -
-\frac{\langle\mathbf{p}\rangle_\theta(t)}{m_{\mathrm{eff}}}
+\frac{\langle p_{\mathrm{eff}}^i\rangle_\theta(t_{\mathrm{eff}})}{m_{\mathrm{eff}}}
 \right\|
 \le
 \varepsilon_v,
 \qquad
-\sup_{t\in T}
+\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}
 \frac{
 \left|
-\Delta_x^{2,\mathbb{A}\mathbb{A}\mathbb{A}}(t)
+\Delta_{x,\mathrm{eff}}^{2,\mathbb{A}\mathbb{A}\mathbb{A}}(t_{\mathrm{eff}})
 -
-\Delta_x^{2,\mathrm{QM}}(t)
+\Delta_{x,\mathrm{eff}}^{2,\mathrm{QM}}(t_{\mathrm{eff}})
 \right|
 }{\varepsilon_{\mathrm{spread}}}
 \le 1
 $$
-Here $\Delta_x^{2,\mathrm{QM}}(t)$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
+Here $\Delta_{x,\mathrm{eff}}^{2,\mathrm{QM}}(t_{\mathrm{eff}})$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
-The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained chart with effective momentum
+The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained effective chart with effective momentum
 $$
-p_\theta(x;E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x)\right)}
+p_\theta(x_{\mathrm{eff}};E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x_{\mathrm{eff}})\right)}
 $$
 the standard oscillatory benchmark away from turning points is
 $$
-\psi_{\mathrm{WKB}}(x)
+\psi_{\mathrm{WKB}}(x_{\mathrm{eff}})
 \sim
-\frac{1}{\sqrt{p_\theta(x;E)}}
-\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^x p_\theta(x';E)\,dx'\right)
+\frac{1}{\sqrt{p_\theta(x_{\mathrm{eff}};E)}}
+\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^{x_{\mathrm{eff}}} p_\theta(x'_{\mathrm{eff}};E)\,dx'_{\mathrm{eff}}\right)
 $$
 with validity only when the effective wavelength varies slowly across one wavelength. A closure packet should therefore report a WKB-envelope residual on the declared access interval $W$:
 $$
 \mathcal{R}_{\mathrm{WKB}}(W,E;\theta)
 =
 \max\left(
-\frac{\sup_{x\in W_{\mathrm{osc}}}\left|\rho_{\mathrm{rec}}(x)-C_E/p_\theta(x;E)\right|}{\varepsilon_{\mathrm{amp}}},
-\frac{\sup_{x\in W_{\mathrm{osc}}}\left|\partial_x\varphi_{\mathrm{rec}}(x)-p_\theta(x;E)/\hbar_{\mathrm{eff}}\right|}{\varepsilon_{\varphi}},
-\frac{\sup_{x\in W_{\mathrm{turn}}}\left|\mathcal{A}_{\mathrm{turn}}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\mathcal{A}_{\mathrm{Airy}}\right|}{\varepsilon_{\mathrm{turn}}}
+\frac{\sup_{x_{\mathrm{eff}}\in W_{\mathrm{osc}}}\left|\rho_{\mathrm{rec}}(x_{\mathrm{eff}})-C_E/p_\theta(x_{\mathrm{eff}};E)\right|}{\varepsilon_{\mathrm{amp}}},
+\frac{\sup_{x_{\mathrm{eff}}\in W_{\mathrm{osc}}}\left|\partial_{x_{\mathrm{eff}}}\varphi_{\mathrm{rec}}(x_{\mathrm{eff}})-p_\theta(x_{\mathrm{eff}};E)/\hbar_{\mathrm{eff}}\right|}{\varepsilon_{\varphi}},
+\frac{\sup_{x_{\mathrm{eff}}\in W_{\mathrm{turn}}}\left|\mathcal{A}_{\mathrm{turn}}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\mathcal{A}_{\mathrm{Airy}}\right|}{\varepsilon_{\mathrm{turn}}}
 \right)
 \le 1
 $$
-The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x)$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\theta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
+The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x_{\mathrm{eff}})$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\theta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
 
 For a metastable barrier, the same comparison gives a tunneling-action benchmark. If $x_0$ and $x_1$ are the effective turning points bounding the forbidden region, the standard exponent is
 $$

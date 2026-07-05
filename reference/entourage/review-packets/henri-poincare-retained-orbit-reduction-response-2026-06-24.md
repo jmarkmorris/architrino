@@ -91,7 +91,7 @@ The single trivial multiplier $\mu=1$ is the time-shift direction (always presen
 Dynamically, $\ker\Omega_h$ = **strongly contracting Floquet directions = slaved memory modes**. These are the history directions with $|\mu_k|\ll 1$: perturbations along them collapse onto the orbit within a fraction of a period, so they carry no independent action. They are **not gauge** (gauge would be neutral, $|\mu|=1$) and **not genuine neutral directions** (only the time-shift is neutral). Interpretation: *memory redundancy* — the infinite-dimensional history is dynamically equivalent to its finite slow projection. This is exactly what licenses the inertial-manifold reduction.
 
 **Comment 11 — Q8/Q12/Q13 (resonance and the frequency triplets). [derived/conjectured]**
-The first small-divisor object to compute is the **near-resonance among Floquet exponents and the carrier frequency**. For the eventual tri-binary, write the three reduced frequencies $(\omega_1,\omega_2,\omega_3)$ and compute
+The first small-divisor object to compute is the **near-resonance among Floquet exponents and the carrier frequency**. For the eventual nested shell braid, write the three reduced frequencies $(\omega_1,\omega_2,\omega_3)$ and compute
 $$
 \Delta_{\mathbf n}=\sum_j n_j\omega_j,\qquad \mathbf n\in\mathbb Z^3,\ |\mathbf n|\le N_{\max},
 $$

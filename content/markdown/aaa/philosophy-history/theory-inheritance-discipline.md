@@ -113,8 +113,8 @@ chapters still own their local details.
 
 | Inherited concept family | Current corpus use | Transfer class | Scope discipline |
 | --- | --- | --- | --- |
-| Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_t$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
-| Absolute-time parameterization | Global time $t$, worldlines, causal emission times $t_0$, and $\mathbb{U}_{\text{now}}\equiv S(t)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
+| Euclidean geometry and vector calculus | Spatial metric $h_{ij}$, norms, dot products, gradients, and spatial integration on $\Sigma_T$ | Native substrate commitment plus direct mathematical tool | Geometry is fundamental only as Euclidean void geometry; it does not license Newtonian force ontology or 4D spacetime ontology |
+| Absolute-time parameterization | Global time $T$, worldlines, causal emission times $T_{\mathrm{em}}$, and $\mathbb{U}_{\text{now}}\equiv S(T)$ | Native substrate commitment | Proper time, clock readout, and time dilation remain observer-level recovery targets |
 | Distributional causal surfaces | Delta functions, Heaviside support, mollification, branch integrals, and weak limits | Direct mathematical tool | The distribution is a formal representation of causal wake support, not a continuum field substance |
 | Jacobian and branch analysis | Causal-root weights, transversality floors, caustic handling, and multi-root bookkeeping | Direct mathematical tool | A root ledger records admissible delayed channels; it is not itself a force law or stability proof |
 | Inverse-square surface dilution | Causal wake density over expanding surfaces | Native dynamics component | It supplies the microscopic kernel but still owes effective recovery of observer-level field laws |
@@ -126,7 +126,7 @@ chapters still own their local details.
 | Quantum state language | Wavefunction, Born weights, uncertainty, operators, spin, entanglement, no-signaling, and Bell/CHSH benchmarks | Effective-limit concept plus benchmark record | The effective chart must derive basin measures, record formation, and apparatus kernels from deterministic path-history dynamics |
 | Thermodynamics and statistical mechanics | Entropy, temperature, heat, irreversibility, kinetic theory, virial behavior, and ensemble closures | Effective-limit concept | The regime must declare the coarse-graining, access window, boundary flux, and measure; global cosmological extrapolation is not automatic |
 | Radiation and reaction formulas | Larmor/Lienard, bremsstrahlung, synchrotron, Compton-like rows, pair thresholds, blackbody and polarization constraints | Validated benchmark record | Formulas are target limits for event ledgers with photon output, recoil, remnant, heat, reaction, and medium-update rows |
-| Cosmology variables | $a(t)$, $H(t)$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Observer-inference benchmark record | These variables describe Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
+| Cosmology variables | $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, redshift, CMB spectra, BAO rulers, BBN abundances, growth, $S_8$, and $\Omega$ summaries | Observer-inference benchmark record | These variables describe Noether sea evolution, transport, and clock-rate comparison; the Euclidean void does not expand |
 | Information and computation | State distinction, encoding, measurement records, reset cost, algorithmic scaling, and simulation discipline | Directional comparison and methodological language | Useful for records and models, but not a substrate ontology |
 | Holography, AdS/CFT, islands, MOND-like fits, string/LQG/SUSY/inflationary programs | Comparison pressure, candidate analogies, and boundary checks | Directional comparison | They may sharpen constraints, but they are not closure targets unless a tested observable or hard consistency condition requires them |
 
@@ -159,22 +159,22 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 
 | Formula family | Foundational expression | Current status | What it does not license |
 | --- | --- | --- | --- |
-| Absolute timespace: absolute time + Euclidean void | $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, $\Sigma_t=\{t\}\times\mathbb{R}^3$ | Native substrate commitment | A fundamental 4D metric, spacetime curvature, or relativistic interval |
-| Substrate clock and Euclidean metric | $dt$, $h_{ij}=\delta_{ij}$, $\nabla dt=0$, $\nabla h=0$ | Native substrate commitment plus direct mathematical tool | Curvature of the Euclidean void or observer proper time as a substrate interval |
-| Worldline kinematics | $\mathbf{s}_a(t)$, $\mathbf{v}_a=d\mathbf{s}_a/dt$, $\mathbf{a}_a=d\mathbf{v}_a/dt$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
-| Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(t)$ with history ledger $H_t$ and branch data $\mathcal{B}_t$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
+| Absolute timespace: absolute time + Euclidean void | $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, $\Sigma_T=\{T\}\times\mathbb{R}^3$ | Native substrate commitment | A fundamental 4D metric, spacetime curvature, or relativistic interval |
+| Substrate clock and Euclidean metric | $dT$, $h_{ij}=\delta_{ij}$, $\nabla dT=0$, $\nabla h=0$ | Native substrate commitment plus direct mathematical tool | Curvature of the Euclidean void or observer proper time as a substrate interval |
+| Worldline kinematics | $\mathbf X_a(T)$, $\mathbf V_a=d\mathbf X_a/dT$, $\mathbf A_a=d\mathbf V_a/dT$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
+| Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(T)$ with history ledger $H_T$ and branch data $\mathcal{B}_T$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
 | Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
-| Causal wake support | $\lVert\mathbf{x}-\mathbf{x}_0\rVert=c_f(t-t_0)$ with $t>t_0$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
-| Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
-| Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
+| Causal wake support | $\lVert\mathbf X-\mathbf X_{\mathrm{em}}\rVert=c_f(T-T_{\mathrm{em}})$ with $T>T_{\mathrm{em}}$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
+| Causal-root set | $F_{ij}(T,T_{\mathrm{em}})=\lVert\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\rVert-c_f(T-T_{\mathrm{em}})$ and $\mathcal{C}_{ij}(T)=\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
+| Causal surface density | $\rho(T,\mathbf X)=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
 | Root Jacobian and transversality | $D_{s,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct source-normal branch-analysis tool in the native law | Replacing branch strength by source-normal data alone, speed magnitude, or ignoring caustic/fold regimes |
-| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
-| Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
+| Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_{\mathrm{em}})$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
-| Potential reconstruction | $\Phi_{\text{net}}(\mathbf{x},t)=\sum_o\Phi_o(\mathbf{x},t)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
-| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf{s}_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
+| Potential reconstruction | $\Phi_{\text{net}}(\mathbf X,T)=\sum_o\Phi_o(\mathbf X,T)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
+| Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf X_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
 | Work and kinetic bookkeeping | $dK/dt=\mu_K(\lVert\mathbf{v}\rVert)\mathbf{a}\cdot\mathbf{v}$ and optional $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ | Energy bookkeeping after a kinetic proxy is declared | Primitive particle-specific mass or universal quadratic kinetic energy by assumption |
 | $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
 
@@ -190,13 +190,13 @@ and taking a spatial gradient connects that amplitude to inverse-square force
 scaling. In the full delayed dynamics, however, the accepted branch law remains
 
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2}
+\frac{d^2 \mathbf X_i}{dT^2}
 =
-\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\sigma_{ij}
-\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(t;t_0)}
-{r_{ij}^2(t;t_0)}
-\hat{\mathbf{r}}_{ij}(t;t_0).
+\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{R_{ij}^2(T;T_{\mathrm{em}})}
+\hat{\mathbf R}_{ij}(T;T_{\mathrm{em}}).
 $$
 
 The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
@@ -233,7 +233,7 @@ Risk scores:
 | Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
 | Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
 | Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
-| Source-normal transversality and receiver-normal strength | 4 | The source-normal denominator is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_s$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for force/action strength |
+| Source-normal transversality and receiver-normal strength | 4 | The source-normal denominator is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_s$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ for force/action strength |
 | Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
 | Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
 | Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |
@@ -343,17 +343,17 @@ the observables $\mathcal{Q}$ relevant to the inherited comparison. A bulk
 variable has the schematic form
 
 $$
-Y_{\mathcal{Q},W}(t)
+Y_{\mathcal{Q},W}(T)
 =
 \mathcal{P}_{\mathcal{Q},W}
 \left(
-\{\Gamma_A(t),\mathcal{H}_A(t)\}_{A\in \mathcal{A}_W},
-\rho_{\text{NS}}(\mathbf{x},t)
+\{\Gamma_A(T),\mathcal{H}_A(T)\}_{A\in \mathcal{A}_W},
+\rho_{\text{NS}}(\mathbf X,T)
 \right),
 $$
 
 where $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
-In residuals below, $\Gamma(t)$ abbreviates the full sampled collection of
+In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of
 assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation
@@ -370,9 +370,9 @@ $$
 \mathcal{R}_{\mathrm{bulk}}
 =
 \left\|
-\frac{d}{dt}\mathcal{P}_{\mathcal{Q},W}(\Gamma(t))
+\frac{d}{dT}\mathcal{P}_{\mathcal{Q},W}(\Gamma(T))
 -
-F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
+F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(T)\right)
 \right\|_{\mathcal{Q},W}.
 $$
 

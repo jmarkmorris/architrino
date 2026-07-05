@@ -2,6 +2,8 @@
 
 Ideal Braid is an app-facing guide for the standalone Noether braid Lorentz lesson. It explains what the application is trying to make visible, how its controls map to the equations, and where the displayed geometry fits relative to the surrounding $\mathbb{A}\mathbb{A}\mathbb{A}$ documents.
 
+The app is useful because Lorentz factors can become too abstract too quickly. This lesson puts $\beta$, $\gamma$, length contraction, relative-time behavior, and oblate spheroidal envelope geometry into one inspectable picture.
+
 This is not a proof document. The app is an inspection surface: it makes a candidate geometry legible so that the theory documents can state the mathematical obligations clearly.
 
 Read this alongside:

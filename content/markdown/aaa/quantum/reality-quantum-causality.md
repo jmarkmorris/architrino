@@ -179,7 +179,7 @@ This is the retained content of hidden-variable language, stripped of the mislea
 $$
 \Gamma_T
 =
-\left(\Gamma(t_0),\{\mathbf{x}_i(t),\mathbf{v}_i(t),q_i\}_{t\in[t_0,t_1]},\mathcal{K}_{\mathrm{app}}\right)
+\left(\Gamma(T_0),\{\mathbf X_i(T),\mathbf V_i(T),q_i\}_{T\in[T_0,T_1]},\mathcal{K}_{\mathrm{app}}\right)
 $$
 
 where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_T$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
@@ -226,7 +226,7 @@ The distinction matters because "free will" is a philosophically loaded term wit
 ### Determinism in This Framework
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
-- Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
+- Every architrino has a definite position $\mathbf X_i(T)$ and velocity $\mathbf V_i(T)$ at every absolute time $T$
 - The master equation is **lawful**: given complete initial conditions, the future is fixed, with **deterministic multistability** at threshold regimes
 - **There is no ontological randomness**, no stochastic law at the substrate level, and no violation of causality
 
@@ -407,7 +407,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 **1) Collapse**
 - **QM formalism:** $\rho \rightarrow |n\rangle\langle n|$ (projection onto an eigenstate).
-- **Architrino micro‑dynamics:** The full microstate $\Gamma(t)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action‑like variable $J$ crosses a basin boundary.
+- **Architrino micro‑dynamics:** The full microstate $\Gamma(T)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action‑like variable $J$ crosses a basin boundary.
 - **Coarse‑graining map:** Define $C[\Gamma] = f$ and $\rho_{\mathrm{eff}}(f)$ as an average over fast phases (inner/middle binaries). “Collapse” corresponds to conditioning on a realized basin label.
 - **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history‑dependent hysteresis is expected.
 
@@ -419,7 +419,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 **3) Branching / Many‑Worlds**
 - **QM formalism:** $\sum_n c_n |n\rangle$ treated as coexisting branches.
-- **Architrino micro‑dynamics:** One realized trajectory $\Gamma(t)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
+- **Architrino micro‑dynamics:** One realized trajectory $\Gamma(T)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
 - **Coarse‑graining map:** A single micro‑trajectory maps to multiple coarse‑grained histories near a threshold boundary.
 - **Difference (in principle):** No ontic branching; the “tree” is a bookkeeping device for incomplete knowledge.
 

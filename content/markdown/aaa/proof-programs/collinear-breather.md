@@ -5,7 +5,7 @@ lemmas, inactive-gap logic, finite-memory controls, and source-normal
 transversality rows in this chapter remain candidate proof inputs. Any recapture
 margin, self-drive margin, branch-force estimate, action row, or finite
 certificate is closure evidence only after it is redriven with the
-receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same
+receiver-normal factor $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ on the same
 retained branch record.
 
 The proof process restarts at the receiver-normal branch table. Earlier margins,
@@ -17,9 +17,11 @@ This chapter isolates the simplest reduced dynamical problem that can test a sel
 
 The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell braid locking, and assembly-level closure lose their cleanest analytic foothold.
 
+The reader should treat this as a proof laboratory, not as the final physical assembly. The one-dimensional setup removes angular momentum and shell geometry so the delayed self-hit question is exposed directly. Success here would supply a controlled recapture mechanism to lift into richer branches; failure here would sharply constrain what later braid arguments are allowed to assume.
+
 ## Overview
 
-In Lineland there is only a single endless road. Upon it travel two polarity-bearing points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each point runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one's own past against the present pull of the other. The purpose of this chapter is to determine whether that contest can be forced into repeated recapture rather than escape, and to state the theorem program that would make such a bounded cycle rigorous.
+In Lineland there is only a single endless road. Upon it travel two polarity-bearing points. From a great distance they rush toward one another, drawn together by their mutual pull. Each accelerates as it approaches the other. Yet whatever influence a point emits into the line does not act everywhere at once; it spreads along the road at a finite pace, leaving behind a wake of its past motion. For a time each point runs ahead of the disturbance it has already sent out. They meet, pass, and continue apart. But presently each encounters the older wake it cast while approaching. This delayed encounter pushes outward, while the partner, now behind, continues to pull inward. Thus the whole affair reduces to a contest on a line: a delayed push from one'S own past against the present pull of the other. The purpose of this chapter is to determine whether that contest can be forced into repeated recapture rather than escape, and to state the theorem program that would make such a bounded cycle rigorous.
 
 
 Formally, this chapter develops a proof scaffold for the global existence question of a periodic limit cycle in a symmetric two-body collinear system governed by a strongly nonlinear state-dependent delay differential equation. The dynamics use a dual-mollified delayed kernel, separating the short-distance $1/r^2$ singularity from the causal-isochron boundary. The main analytic difficulty is the velocity-dependent causal-fold geometry, where Jacobians can approach
@@ -28,11 +30,11 @@ J\to 0
 $$
 The scaffold attacks that geometry by constructing the sorting maps
 $$
-w(t)=x(t)+c_f t
+w(T)=X(T)+c_f T
 \qquad
 \text{and}
 \qquad
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 which isolate root birth, root exclusion, deep-past localization, and bounded caustic transit. From there the delayed dynamics are reduced to explicit conservative force margins for the inner recapture and the outer apocenter turn, and these are assembled into a closed, convex, precompact invariant-envelope program in
 $$
@@ -109,9 +111,9 @@ This chapter should therefore be read as an internal reduced model inside $\math
 
 Work on the reflection-symmetric center-of-mass subspace
 $$
-x_1(t)=-x(t),
+X_1(T)=-X(T),
 \qquad
-x_2(t)=x(t),
+X_2(T)=X(T),
 \qquad
 q_1=-\epsilon,
 \qquad
@@ -120,8 +122,8 @@ $$
 
 Here:
 
-- $x(t)\in\mathbb{R}$ is the signed position of the right-hand architrino,
-- $\dot x(t)$ is its signed velocity,
+- $X(T)\in\mathbb{R}$ is the signed native coordinate of the right-hand architrino on the reduced line,
+- $dX/dT(T)$ is its signed native velocity,
 - the center of mass is fixed at the origin,
 - and the full two-body state is recovered by reflection.
 
@@ -131,7 +133,7 @@ $$
 $$
 with history segment
 $$
-x_t(\theta)\equiv x(t+\theta),
+X_T(\theta)\equiv X(T+\theta),
 \qquad
 \theta\in[-h,0]
 $$
@@ -139,12 +141,12 @@ for a memory horizon $h>0$ large enough to contain all active causal roots under
 
 Useful derived quantities:
 $$
-d(t)\equiv 2|x(t)|,
+d(T)\equiv 2|X(T)|,
 \qquad
-u(t)\equiv \dot x(t)
+u(T)\equiv \frac{dX}{dT}(T)
 $$
 
-When $x(t)>0$ and $u(t)<0$, the labeled right-hand architrino is inbound on the right exterior branch. After label-preserving passage through the center, the same particle continues on the left exterior branch with $x(t)<0$. For theorem work on full oscillations, the safest interpretation is therefore in signed coordinates $x\in\mathbb{R}$ together with the radial distance $d(t)=2|x(t)|$.
+When $X(T)>0$ and $u(T)<0$, the labeled right-hand architrino is inbound on the right exterior branch. After label-preserving passage through the center, the same particle continues on the left exterior branch with $X(T)<0$. For theorem work on full oscillations, the safest interpretation is therefore in signed native coordinates $X\in\mathbb{R}$ together with the radial distance $d(T)=2|X(T)|$.
 
 ## Partner-Only Hinge Radius
 
@@ -152,13 +154,13 @@ Before self-hit is active, the natural zeroth-order picture is partner-dominated
 
 ### Definition
 
-Let $x_{c_f}>0$ denote the **hinge radius** for the partner-only inbound benchmark:
+Let $X_{c_f}>0$ denote the **hinge radius** for the partner-only inbound benchmark:
 $$
 |u| = c_f
 \qquad
 \text{at}
 \qquad
-x = x_{c_f}
+X = X_{c_f}
 $$
 
 This is not yet a theorem of the full delayed system. It is a reduced-model normalization tied to the inbound partner-attraction phase before the self-hit-capable regime is entered.
@@ -167,7 +169,7 @@ This is not yet a theorem of the full delayed system. It is a reduced-model norm
 
 Define
 $$
-\chi \equiv \frac{x}{x_{c_f}},
+\chi \equiv \frac{X}{X_{c_f}},
 \qquad
 \upsilon \equiv \frac{u}{c_f}
 $$
@@ -189,36 +191,36 @@ This makes the reduced narrative explicit:
 
 If one uses the quadratic kinetic bookkeeping proxy with universal constant $\mu_{\text{arch}}$ and ignores delay at leading order, the partner-only effective potential is
 $$
-U_{\text{pair}}(x)
+U_{\text{pair}}(X)
 \approx
--\frac{\kappa\epsilon^2}{2x}
+-\frac{\kappa\epsilon^2}{2X}
 $$
-since the pair separation is $d=2x$.
+since the pair separation is $d=2X$.
 
 Starting from rest at infinity, a zeroth-order energy balance gives
 $$
 \frac{1}{2}\mu_{\text{arch}} u^2
 \approx
-\frac{\kappa\epsilon^2}{2x}
+\frac{\kappa\epsilon^2}{2X}
 $$
 
 Imposing the hinge condition $|u|=c_f$ yields
 $$
 \mu_{\text{arch}} c_f^2
 \approx
-\frac{\kappa\epsilon^2}{x_{c_f}},
+\frac{\kappa\epsilon^2}{X_{c_f}},
 \qquad
-x_{c_f}
+X_{c_f}
 \approx
 \frac{\kappa\epsilon^2}{\mu_{\text{arch}} c_f^2}
 $$
 
 Thus one may, if desired, choose reduced units so that
 $$
-x_{c_f}=1
+X_{c_f}=1
 $$
 
-This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius. In the bookkeeping convention just displayed, setting $x_{c_f}=1$ fixes the dimensionless combination
+This is the cleanest way to formalize the intuition that the partner-only inbound fall from infinity reaches field speed at a distinguished radius. In the bookkeeping convention just displayed, setting $X_{c_f}=1$ fixes the dimensionless combination
 $$
 \frac{\kappa\epsilon^2}{\mu_{\text{arch}}c_f^2}=1
 $$
@@ -228,9 +230,9 @@ The partner-only benchmark should also not be read as a crossing formula at the 
 $$
 u^2
 \approx
-\frac{\kappa\epsilon^2}{\mu_{\text{arch}}x}
+\frac{\kappa\epsilon^2}{\mu_{\text{arch}}X}
 $$
-so it predicts $|u|\to\infty$ as $x\to0^+$. The hinge marks where the reduced partner-only model has reached the self-hit-capable regime and should hand off to the delayed root ledger rather than being extrapolated through the origin.
+so it predicts $|u|\to\infty$ as $X\to0^+$. The hinge marks where the reduced partner-only model has reached the self-hit-capable regime and should hand off to the delayed root ledger rather than being extrapolated through the origin.
 
 ### Receiver-normal delayed partner correction
 
@@ -239,30 +241,30 @@ causal-root branch factor and therefore should not be used as evidence that a
 released history reaches field speed at a finite exterior radius. On the
 simplest receiver-normal exterior chart, the partner source is locally affine:
 $$
-x(s)\approx x(t)-v(t-s),
+X(T_{\mathrm{em}})\approx X(T)-v(T-T_{\mathrm{em}}),
 \qquad
-v=\dot x(t),
+v=\frac{dX}{dT}(T),
 \qquad
-x(t)>0
+X(T)>0
 $$
 The partner causal equation gives
 $$
-\tau_p=t-s=\frac{2x}{c_f+v},
+\Delta T_p=T-T_{\mathrm{em}}=\frac{2X}{c_f+v},
 \qquad
-r_p=c_f\tau_p,
+r_p=c_f\Delta T_p,
 \qquad
 D_s=c_f+v
 $$
 while the receiver-normal numerator is
 $$
-D_t=c_f-v.
+D_T=c_f-v.
 $$
 Thus the delayed partner force is neither the naive conservative inverse-square
 force nor a source-normal-only row. The receiver-normal branch strength is
 $$
 W_p^{\mathrm{rec}}
 =
-\left|\frac{D_t}{D_s}\right|
+\left|\frac{D_T}{D_s}\right|
 =
 \frac{c_f-v}{c_f+v}
 $$
@@ -270,23 +272,23 @@ on this inbound exterior chart, and therefore
 $$
 \frac{W_p^{\mathrm{rec}}}{r_p^2}
 =
-\frac{1}{4x^2}
+\frac{1}{4X^2}
 \left(1-\frac{v^2}{c_f^2}\right).
 $$
 The simple-root receiver-normal comparison law is consequently
 $$
-\ddot x
+\frac{d^2X}{dT^2}
 =
--\frac{g}{4x^2}
-\left(1-\frac{\dot x^2}{c_f^2}\right),
+-\frac{g}{4X^2}
+\left(1-\frac{(dX/dT)^2}{c_f^2}\right),
 \qquad
 g\equiv\kappa\epsilon^2
 $$
-as long as the exterior partner chart remains valid and $-c_f<\dot x$.
+as long as the exterior partner chart remains valid and $-c_f<dX/dT$.
 
 Writing
 $$
-\beta\equiv\frac{\dot x}{c_f},
+\beta\equiv\frac{dX/dT}{c_f},
 \qquad
 \alpha\equiv\frac{g}{4c_f^2}
 $$
@@ -294,71 +296,71 @@ the phase equation has the exact receiver-normal invariant
 $$
 \ln\!\left(\frac{1-\beta^2}{1-\beta_0^2}\right)
 =
--2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)
+-2\alpha\left(\frac{1}{X}-\frac{1}{X_0}\right)
 $$
-For a released exterior branch with $\beta_0=0$ at $x=x_0$, this gives
+For a released exterior branch with $\beta_0=0$ at $X=X_0$, this gives
 $$
-\beta_{\mathrm{in}}(x)
+\beta_{\mathrm{in}}(X)
 =
 -\sqrt{
-1-\exp\!\left[-2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)\right]
+1-\exp\!\left[-2\alpha\left(\frac{1}{X}-\frac{1}{X_0}\right)\right]
 }
 $$
 where the negative square-root branch is the inbound branch. Hence
-$-1<\beta_{\mathrm{in}}(x)<0$ for every $x>0$ on the exterior chart, and the
+$-1<\beta_{\mathrm{in}}(X)<0$ for every $X>0$ on the exterior chart, and the
 time parametrization is the quadrature
 $$
-t-t_0
+T-T_0
 =
-\int_x^{x_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}
+\int_X^{X_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}
 $$
 This is a receiver-normal restart scaffold, not a solved breather baseline. It
 shows only that the affine exterior partner row by itself still approaches
 field speed only at the origin-layer limit. Any finite-radius field-speed
 crossing, sub-field return, or recapture mechanism must be redriven from the
-dual-mollified law with the same-record $D_t/D_s$ branch strength.
+dual-mollified law with the same-record $D_T/D_s$ branch strength.
 
 ### Field-Speed Head-On Caustic Test
 
 A tempting boundary test is to place the left Electrino and right Positrino at
 $$
-x_L(0)=-x_0,
+X_L(0)=-X_0,
 \qquad
-x_R(0)=+x_0
+X_R(0)=+X_0
 $$
 with inward velocities
 $$
-\dot x_L(0)=+c_f,
+\frac{dX_L}{dT}(0)=+c_f,
 \qquad
-\dot x_R(0)=-c_f
+\frac{dX_R}{dT}(0)=-c_f
 $$
 This is not ordinary initial data for the simple-root branch law unless the path history is also specified. If the intended prehistory is affine field-speed infall,
 $$
-x_L(s)=-x_0+c_fs,
+X_L(T_{\mathrm{em}})=-X_0+c_fT_{\mathrm{em}},
 \qquad
-x_R(s)=x_0-c_fs,
+X_R(T_{\mathrm{em}})=X_0-c_fT_{\mathrm{em}},
 \qquad
-s\le0
+T_{\mathrm{em}}\le0
 $$
-then the opposite-source wake is still in flight at $t=0$. For the right-hand receiver before the origin meeting,
+then the opposite-source wake is still in flight at $T=0$. For the right-hand receiver before the origin meeting,
 $$
-x_R(t)-x_L(s)=c_f(t-s)
+X_R(T)-X_L(T_{\mathrm{em}})=c_f(T-T_{\mathrm{em}})
 $$
 reduces to
 $$
-2x_0-c_f(t+s)=c_f(t-s)
+2X_0-c_f(T+T_{\mathrm{em}})=c_f(T-T_{\mathrm{em}})
 $$
 and hence
 $$
-t=\frac{x_0}{c_f}
+T=\frac{X_0}{c_f}
 $$
-Thus there is no partner root for $0\le t<x_0/c_f$ on this affine chart, while at $t=x_0/c_f$ all affine source times co-arrive at the origin. That event is a caustic, not a regular branch.
+Thus there is no partner root for $0\le T<X_0/c_f$ on this affine chart, while at $T=X_0/c_f$ all affine source times co-arrive at the origin. That event is a caustic, not a regular branch.
 
 The same-source ledger is already singular. Along either affine field-speed history,
 $$
-|x_i(t)-x_i(s)|=c_f(t-s)
+|X_i(T)-X_i(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}})
 $$
-for every $s<t$, and the simple-root Jacobian is
+for every $T_{\mathrm{em}}<T$, and the simple-root Jacobian is
 $$
 J=0
 $$
@@ -366,13 +368,13 @@ Therefore the exact field-speed head-on seed is a fail-closed separator test. It
 
 The finite-history calculation can still be stated exactly before the origin caustic. For the right Positrino, define
 $$
-\Delta(t)\equiv 2(x_0-c_ft),
+\Delta(T)\equiv 2(X_0-c_fT),
 \qquad
 g\equiv\kappa\epsilon^2
 $$
 The same-source continuum contributes
 $$
-a_R^{\mathrm{self}}(t;H,\eta,\epsilon_c)
+a_R^{\mathrm{self}}(T;H,\eta,\epsilon_c)
 =
 -g\,\delta_\eta(0)
 \int_0^H
@@ -383,21 +385,21 @@ a_R^{\mathrm{self}}(t;H,\eta,\epsilon_c)
 $$
 while the off-shell partner tail contributes
 $$
-a_R^{\mathrm{partner}}(t;H,\eta,\epsilon_c)
+a_R^{\mathrm{partner}}(T;H,\eta,\epsilon_c)
 =
--g\,\delta_\eta(\Delta(t))
+-g\,\delta_\eta(\Delta(T))
 \int_0^H
-\frac{du}{(\Delta(t)+c_fu)^2+\epsilon_c^2}
+\frac{du}{(\Delta(T)+c_fu)^2+\epsilon_c^2}
 $$
 Equivalently,
 $$
 a_R^{\mathrm{partner}}
 =
--\frac{g\,\delta_\eta(\Delta(t))}{c_f\epsilon_c}
+-\frac{g\,\delta_\eta(\Delta(T))}{c_f\epsilon_c}
 \left[
-\arctan\!\left(\frac{\Delta(t)+c_fH}{\epsilon_c}\right)
+\arctan\!\left(\frac{\Delta(T)+c_fH}{\epsilon_c}\right)
 -
-\arctan\!\left(\frac{\Delta(t)}{\epsilon_c}\right)
+\arctan\!\left(\frac{\Delta(T)}{\epsilon_c}\right)
 \right]
 $$
 Thus the infinite-history limit is finite for fixed $\eta$ and $\epsilon_c$,
@@ -422,7 +424,7 @@ on $|z|\le1$ and zero outside, this becomes
 $$
 -\frac{15\pi g}{32c_f\eta\epsilon_c}
 $$
-At $t=0$ with $x_0=1$, this compact shell also sets the partner term exactly to zero whenever $\eta<2x_0$, because the partner support has not reached the receiver. The theory consequence is sharper than "the partner wake is in flight": an exact affine $v=c_f$ inbound history produces a regulator-dependent self-continuum acceleration before the partner wake can contribute. A lawful candidate must therefore break the exact continuum by preparation or branch geometry before the simple-root certificate can begin.
+At $T=0$ with $X_0=1$, this compact shell also sets the partner term exactly to zero whenever $\eta<2X_0$, because the partner support has not reached the receiver. The theory consequence is sharper than "the partner wake is in flight": an exact affine $v=c_f$ inbound history produces a regulator-dependent self-continuum acceleration before the partner wake can contribute. A lawful candidate must therefore break the exact continuum by preparation or branch geometry before the simple-root certificate can begin.
 
 ## Held-Release Restart Target
 
@@ -431,99 +433,99 @@ held-release solution is purged as a solution artifact because it used the
 superseded branch law. Let a right-hand Positrino and left-hand Electrino
 be held at
 $$
-x_2(t)=+x_0,\qquad x_1(t)=-x_0,\qquad x_0 > 0
+X_2(T)=+X_0,\qquad X_1(T)=-X_0,\qquad X_0 > 0
 $$
 with zero velocity for a holding interval long enough that the stationary partner wakes have reached the opposite side before release:
 $$
-T_{\mathrm{hold}}\ge \frac{2x_0}{c_f}
+T_{\mathrm{hold}}\ge \frac{2X_0}{c_f}
 $$
-Set the release time to $t=0$. During the first post-release segment, while
+Set the release time to $T=0$. During the first post-release segment, while
 the partner emission time still lies in the held history,
 $$
 D_s=c_f,
 \qquad
-D_t=c_f-\dot x(t),
+D_T=c_f-\frac{dX}{dT}(T),
 \qquad
-W^{\mathrm{rec}}=1-\frac{\dot x(t)}{c_f}.
+W^{\mathrm{rec}}=1-\frac{dX/dT(T)}{c_f}.
 $$
 The receiver-normal restart equation is therefore
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 =
--\frac{\kappa\epsilon^2}{(x(t)+x_0)^2}
-\left(1-\frac{\dot x(t)}{c_f}\right),
+-\frac{\kappa\epsilon^2}{(X(T)+X_0)^2}
+\left(1-\frac{dX/dT(T)}{c_f}\right),
 \qquad
-x(0)=x_0,\qquad
-\dot x(0)=0.
+X(0)=X_0,\qquad
+\frac{dX}{dT}(0)=0.
 $$
 
 The energy identity, field-speed criterion, handoff angle, numerical fixture,
 and source-normal continuity claim must be recomputed from this receiver-normal
 ODE and then matched to the moving-partner delayed chart with the same-record
-$D_t/D_s$ factor before they can act as evidence.
+$D_T/D_s$ factor before they can act as evidence.
 
 ## Partner-Hit and Self-Hit Root Equations
 
-For the right-hand architrino $x_2(t)=x(t)$, the exact causal root conditions split naturally into partner and self branches.
+For the right-hand architrino $X_2(T)=X(T)$, the exact causal root conditions split naturally into partner and self branches.
 
 ### Partner-hit roots
 
-A partner-hit emission time $t_0<t$ satisfies
+A partner-hit emission time $T_0<T$ satisfies
 $$
-|x(t)+x(t_0)| = c_f(t-t_0)
+|X(T)+X(T_0)| = c_f(T-T_0)
 $$
 
 Define the partner-root set
 $$
-\mathcal{C}_p(t)
+\mathcal{C}_p(T)
 \equiv
 \left\{
-t_0<t \;\middle|\; |x(t)+x(t_0)| = c_f(t-t_0)
+T_0<T \;\middle|\; |X(T)+X(T_0)| = c_f(T-T_0)
 \right\}
 $$
 
 On this symmetry subspace the 1D line-of-action sign is
 $$
-\hat r_p(t;t_0)=\mathrm{sgn}\!\big(x(t)+x(t_0)\big)
+\hat r_p(T;T_0)=\mathrm{sgn}\!\big(X(T)+X(T_0)\big)
 $$
 and the partner Jacobian becomes
 $$
-J_p(t;t_0)
+J_p(T;T_0)
 =
-1-\frac{\dot x_1(t_0)\hat r_p(t;t_0)}{c_f}
+1-\frac{dX_1/dT(T_0)\hat r_p(T;T_0)}{c_f}
 =
-1+\frac{\dot x(t_0)\hat r_p(t;t_0)}{c_f}
+1+\frac{dX/dT(T_0)\hat r_p(T;T_0)}{c_f}
 $$
 
 Because $q_1q_2<0$, this branch is attractive.
 
 ### Self-hit roots
 
-A nontrivial self-hit emission time $t_0<t$ satisfies
+A nontrivial self-hit emission time $T_0<T$ satisfies
 $$
-|x(t)-x(t_0)| = c_f(t-t_0),
+|X(T)-X(T_0)| = c_f(T-T_0),
 \qquad
-t_0\neq t
+T_0\neq T
 $$
 
 Define the self-root set
 $$
-\mathcal{C}_s(t)
+\mathcal{C}_s(T)
 \equiv
 \left\{
-t_0<t \;\middle|\; |x(t)-x(t_0)| = c_f(t-t_0)
+T_0<T \;\middle|\; |X(T)-X(T_0)| = c_f(T-T_0)
 \right\}
 $$
 
 The self line-of-action sign is
 $$
-\hat r_s(t;t_0)=\mathrm{sgn}\!\big(x(t)-x(t_0)\big)
+\hat r_s(T;T_0)=\mathrm{sgn}\!\big(X(T)-X(T_0)\big)
 $$
 and the self Jacobian is
 $$
-J_s(t;t_0)
+J_s(T;T_0)
 =
-1-\frac{\dot x(t_0)\hat r_s(t;t_0)}{c_f}
+1-\frac{dX/dT(T_0)\hat r_s(T;T_0)}{c_f}
 $$
 
 Because $q_2q_2>0$, each self branch is repulsive.
@@ -533,7 +535,7 @@ Because $q_2q_2>0$, each self branch is repulsive.
 A simple-root branch row is not admissible as force evidence merely because it
 has a source-normal Jacobian floor. For each retained branch row
 $$
-b=(r,t,t_0),
+b=(r,T,T_0),
 \qquad
 r\in\{p,s\},
 $$
@@ -543,35 +545,35 @@ receiver-normal branch strength.
 
 For partner rows set
 $$
-r_p(t;t_0)=|x(t)+x(t_0)|,
+r_p(T;T_0)=|X(T)+X(T_0)|,
 \qquad
-D_{s,p}(t;t_0)=c_f+\dot x(t_0)\hat r_p(t;t_0),
+D_{S,p}(T;T_0)=c_f+\frac{dX}{dT}(T_0)\hat r_p(T;T_0),
 $$
 $$
-D_{t,p}(t;t_0)=c_f-\dot x(t)\hat r_p(t;t_0),
+D_{T,p}(T;T_0)=c_f-\frac{dX}{dT}(T)\hat r_p(T;T_0),
 \qquad
-W_p^{\mathrm{rec}}(t;t_0)
+W_p^{\mathrm{rec}}(T;T_0)
 =
-\left|\frac{D_{t,p}(t;t_0)}{D_{s,p}(t;t_0)}\right|.
+\left|\frac{D_{T,p}(T;T_0)}{D_{S,p}(T;T_0)}\right|.
 $$
 For self rows set
 $$
-r_s(t;t_0)=|x(t)-x(t_0)|,
+r_s(T;T_0)=|X(T)-X(T_0)|,
 \qquad
-D_{s,s}(t;t_0)=c_f-\dot x(t_0)\hat r_s(t;t_0),
+D_{S,s}(T;T_0)=c_f-\frac{dX}{dT}(T_0)\hat r_s(T;T_0),
 $$
 $$
-D_{t,s}(t;t_0)=c_f-\dot x(t)\hat r_s(t;t_0),
+D_{T,s}(T;T_0)=c_f-\frac{dX}{dT}(T)\hat r_s(T;T_0),
 \qquad
-W_s^{\mathrm{rec}}(t;t_0)
+W_s^{\mathrm{rec}}(T;T_0)
 =
-\left|\frac{D_{t,s}(t;t_0)}{D_{s,s}(t;t_0)}\right|.
+\left|\frac{D_{T,s}(T;T_0)}{D_{S,s}(T;T_0)}\right|.
 $$
 Thus
 $$
-D_{s,p}=c_fJ_p,
+D_{S,p}=c_fJ_p,
 \qquad
-D_{s,s}=c_fJ_s,
+D_{S,s}=c_fJ_s,
 $$
 so $J_p$ and $J_s$ remain source-normal transversality diagnostics rather
 than standalone force weights.
@@ -580,7 +582,7 @@ The row passes the receiver-normal admissibility target only if these fields
 are bound to the same branch row as the root identity and the sign data:
 $$
 \left(
-t_0,\hat r_r,r_r,D_{s,r},D_{t,r},W_r^{\mathrm{rec}}
+T_0,\hat r_r,r_r,D_{S,r},D_{T,r},W_r^{\mathrm{rec}}
 \right)
 $$
 on one retained record. A source-normal denominator, a root-topology row, or a
@@ -590,19 +592,19 @@ Schauder rows.
 
 ### Reduced branch-resolved equation
 
-On the exact root-selected model, the right-particle acceleration is
+On the exact rooT-T_{\mathrm{em}}elected model, the right-particle acceleration is
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 =
 -\,\kappa \epsilon^2
-\sum_{t_0\in\mathcal{C}_p(t)}
-\frac{\hat r_p(t;t_0)W_p^{\mathrm{rec}}(t;t_0)}
-{r_p(t;t_0)^2}
+\sum_{T_0\in\mathcal{C}_p(T)}
+\frac{\hat r_p(T;T_0)W_p^{\mathrm{rec}}(T;T_0)}
+{r_p(T;T_0)^2}
 +
 \kappa \epsilon^2
-\sum_{t_0\in\mathcal{C}_s(t)}
-\frac{\hat r_s(t;t_0)W_s^{\mathrm{rec}}(t;t_0)}
-{r_s(t;t_0)^2}
+\sum_{T_0\in\mathcal{C}_s(T)}
+\frac{\hat r_s(T;T_0)W_s^{\mathrm{rec}}(T;T_0)}
+{r_s(T;T_0)^2}
 $$
 
 The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
@@ -613,22 +615,22 @@ Plain language: in 1D there is no tangential direction to hide in. The entire co
 
 For analysis and numerics, replace the shell delta by a smooth mollifier $\delta_\eta$ with width $\eta>0$. Then the reduced equation can be written in integral form:
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 =
 -\,\kappa \epsilon^2
-\int_{-\infty}^{t} dt_0\;
-\frac{\hat r_p(t;t_0)}
-{|x(t)+x(t_0)|^2}
-\delta_\eta\!\big(|x(t)+x(t_0)|-c_f(t-t_0)\big)
+\int_{-\infty}^{T} dT_0\;
+\frac{\hat r_p(T;T_0)}
+{|X(T)+X(T_0)|^2}
+\delta_\eta\!\big(|X(T)+X(T_0)|-c_f(T-T_0)\big)
 $$
 $$
 \qquad
 +
 \kappa \epsilon^2
-\int_{-\infty}^{t} dt_0\;
-\frac{\hat r_s(t;t_0)}
-{|x(t)-x(t_0)|^2}
-\delta_\eta\!\big(|x(t)-x(t_0)|-c_f(t-t_0)\big)
+\int_{-\infty}^{T} dT_0\;
+\frac{\hat r_s(T;T_0)}
+{|X(T)-X(T_0)|^2}
+\delta_\eta\!\big(|X(T)-X(T_0)|-c_f(T-T_0)\big)
 $$
 with the understanding that the source-normal denominators and receiver-normal branch factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
 
@@ -662,10 +664,10 @@ $$
 $$
 uses this convention. On a simple-root chart,
 $$
-\int f(s)\delta_\eta(g(t,s))\,ds
+\int f(T_{\mathrm{em}})\delta_\eta(g(T,T_{\mathrm{em}}))\,dT_{\mathrm{em}}
 \longrightarrow
-\sum_{g(t,s_k)=0}
-\frac{f(s_k)}{|\partial_s g(t,s_k)|}
+\sum_{g(T,T_{\mathrm{em},k})=0}
+\frac{f(T_{\mathrm{em},k})}{|\partial_{T_{\mathrm{em}}} g(T,T_{\mathrm{em},k})|}
 $$
 and the fixed factor
 $$
@@ -673,7 +675,7 @@ c_f^{-1}
 $$
 from
 $$
-\partial_s g=c_fJ
+\partial_{T_{\mathrm{em}}} g=c_fJ
 $$
 is absorbed into the branch-law normalization of
 $$
@@ -690,22 +692,22 @@ This leaves the delayed shell selection controlled by $\eta$ while the core moll
 
 For the certified finite-memory problem, the exact dual-mollified reduced evolution law is the absolute-time integral
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 =
 -\,\kappa\epsilon^2
-\int_{t-h}^{t}
-\frac{\hat r_p(t;s)}
-{|x(t)+x(s)|^2+\epsilon_c^2}\,
-\delta_\eta\!\big(|x(t)+x(s)|-c_f(t-s)\big)\,ds
+\int_{T-h}^{T}
+\frac{\hat r_p(T;T_{\mathrm{em}})}
+{|X(T)+X(T_{\mathrm{em}})|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(|X(T)+X(T_{\mathrm{em}})|-c_f(T-T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
 $$
 $$
 \qquad
 +
 \kappa\epsilon^2
-\int_{t-h}^{t}
-\frac{\hat r_s(t;s)}
-{|x(t)-x(s)|^2+\epsilon_c^2}\,
-\delta_\eta\!\big(|x(t)-x(s)|-c_f(t-s)\big)\,ds
+\int_{T-h}^{T}
+\frac{\hat r_s(T;T_{\mathrm{em}})}
+{|X(T)-X(T_{\mathrm{em}})|^2+\epsilon_c^2}\,
+\delta_\eta\!\big(|X(T)-X(T_{\mathrm{em}})|-c_f(T-T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
 $$
 The branch-sum equations used throughout the proof scaffold are simple-root reductions of this law. Across causal folds, caustic transit, and certified topology arguments, the integral law is the primary object.
 After the receiver-normal restart, any simple-root reduction that is used as
@@ -729,7 +731,7 @@ $$
 $$
 are exterior-chart data. They must be reattached to the correct outgoing sheet after the crossing, and they should not be treated as a smooth scalar formula through
 $$
-x=0
+X=0
 $$
 
 > **Lemma (Origin-layer continuity of the dual-mollified 1D field).**
@@ -743,15 +745,15 @@ $$
 > $$
 > Let a signed collinear history have a single label-preserving origin crossing on a layer
 > $$
-> |t|\le \tau_{\mathrm{cross}},
+> |T|\le \tau_{\mathrm{cross}},
 > $$
 > with fixed incoming and outgoing exterior-sheet labels. Define the sheet-projected radial acceleration on the layer by applying the absolute-time integral law in the signed coordinate and then projecting to the active radial sheet:
 > $$
-> F^\rho_{\eta,\epsilon_c}(t)
+> F^\rho_{\eta,\epsilon_c}(T)
 > \equiv
-> \sigma_{\mathrm{out}}(t)F^x_{\eta,\epsilon_c}(t),
+> \sigma_{\mathrm{out}}(T)F^X_{\eta,\epsilon_c}(T),
 > \qquad
-> \rho(t)=|x(t)|.
+> \rho(T)=|X(T)|.
 > $$
 > Assume the layer has a uniform velocity bound, a uniform acceleration bound, and no uncontrolled nontransverse root accumulation except the certified fold events carried by the layer chart. Then
 > $$
@@ -790,7 +792,7 @@ $$
 $$
 and the layer tube bounds. The signed exterior direction changes when the trajectory passes through
 $$
-x=0
+X=0
 $$
 but the radial projection multiplies by the outgoing sheet label at the same crossing. On the two sides of the layer this converts the exterior signed direction into the same radial direction field. Any remaining sign changes occur only across the certified causal-root surfaces inside the integral; away from certified folds they are simple-root changes of variables, and at certified folds the fold tube is handled by the integral law rather than by a branch sum. Dominated convergence, with the standard one-dimensional coarea calculation on the simple-root pieces, gives continuity and the first radial derivative on the whole layer.
 
@@ -804,42 +806,42 @@ The first genuine dynamical question is not whether self-hit exists, but whether
 
 Fix an interval on which
 $$
-x(t)>0
+X(T)>0
 $$
 
 Then:
 
-- **inbound** means $\dot x(t)<0$,
-- **outbound** means $\dot x(t)>0$.
+- **inbound** means $\frac{dX}{dT}(T)<0$,
+- **outbound** means $\frac{dX}{dT}(T)>0$.
 
-This is the natural branch on which to analyze collapse, rebound, and return to a section at $x=x_\ast>0$.
+This is the natural branch on which to analyze collapse, rebound, and return to a section at $X=X_\ast>0$.
 
 ### Partner term
 
 On the exterior branch, the partner source points inward only for active partner roots whose delayed source remains on the opposite side of the current right-hand particle. In the signed variables this is the branch condition
 $$
-x(t)+x(t_0)>0
+X(T)+X(T_0)>0
 $$
 The recapture estimates below use a tame exterior-root class in which all active partner roots entering the lower-bound arguments satisfy this condition. Any partner roots with
 $$
-x(t)+x(t_0)<0
+X(T)+X(T_0)<0
 $$
 are not inward partner roots; they must either be excluded by the delayed-root hypotheses or carried as a separate error channel.
 
 Write
 $$
-A_p(t)
+A_p(T)
 \equiv
 \kappa \epsilon^2
-\sum_{t_0\in\mathcal{C}_p(t)}
-\frac{\mathbf{1}_{\{x(t)+x(t_0)>0\}}W_p^{\mathrm{rec}}(t;t_0)}
-{r_p(t;t_0)^2}
+\sum_{T_0\in\mathcal{C}_p(T)}
+\frac{\mathbf{1}_{\{X(T)+X(T_0)>0\}}W_p^{\mathrm{rec}}(T;T_0)}
+{r_p(T;T_0)^2}
 \ge 0
 $$
 
 On that inward exterior partner channel the signed contribution is
 $$
-a_p(t)=-A_p(t)
+a_p(T)=-A_p(T)
 $$
 
 Therefore, when the inward exterior partner channel is active:
@@ -851,63 +853,63 @@ Therefore, when the inward exterior partner channel is active:
 
 The self term does not have a fixed sign. Split the active self roots into
 $$
-\mathcal{C}_s^{\text{out}}(t)
+\mathcal{C}_s^{\text{out}}(T)
 \equiv
 \left\{
-t_0\in\mathcal{C}_s(t)\;\middle|\; x(t_0)>x(t)
+T_0\in\mathcal{C}_s(T)\;\middle|\; X(T_0)>X(T)
 \right\}
 $$
 $$
-\mathcal{C}_s^{\text{in}}(t)
+\mathcal{C}_s^{\text{in}}(T)
 \equiv
 \left\{
-t_0\in\mathcal{C}_s(t)\;\middle|\; x(t_0)<x(t)
+T_0\in\mathcal{C}_s(T)\;\middle|\; X(T_0)<X(T)
 \right\}
 $$
 
-For $t_0\in\mathcal{C}_s^{\text{out}}(t)$ one has
+For $T_0\in\mathcal{C}_s^{\text{out}}(T)$ one has
 $$
-\hat r_s(t;t_0)=\mathrm{sgn}(x(t)-x(t_0))=-1
+\hat r_s(T;T_0)=\mathrm{sgn}(X(T)-X(T_0))=-1
 $$
 so that branch contributes **negative** acceleration.
 
-For $t_0\in\mathcal{C}_s^{\text{in}}(t)$ one has
+For $T_0\in\mathcal{C}_s^{\text{in}}(T)$ one has
 $$
-\hat r_s(t;t_0)=\mathrm{sgn}(x(t)-x(t_0))=+1
+\hat r_s(T;T_0)=\mathrm{sgn}(X(T)-X(T_0))=+1
 $$
 so that branch contributes **positive** acceleration.
 
 Define the corresponding positive amplitudes
 $$
-A_s^{\text{out}}(t)
+A_s^{\text{out}}(T)
 \equiv
 \kappa \epsilon^2
-\sum_{t_0\in\mathcal{C}_s^{\text{out}}(t)}
-\frac{W_s^{\mathrm{rec}}(t;t_0)}{r_s(t;t_0)^2}
+\sum_{T_0\in\mathcal{C}_s^{\text{out}}(T)}
+\frac{W_s^{\mathrm{rec}}(T;T_0)}{r_s(T;T_0)^2}
 $$
 $$
-A_s^{\text{in}}(t)
+A_s^{\text{in}}(T)
 \equiv
 \kappa \epsilon^2
-\sum_{t_0\in\mathcal{C}_s^{\text{in}}(t)}
-\frac{W_s^{\mathrm{rec}}(t;t_0)}{r_s(t;t_0)^2}
+\sum_{T_0\in\mathcal{C}_s^{\text{in}}(T)}
+\frac{W_s^{\mathrm{rec}}(T;T_0)}{r_s(T;T_0)^2}
 $$
 
 On the tame exterior-root class where all active partner roots are inward exterior roots, the total acceleration on the exterior branch is
 $$
-\ddot x(t)= -A_p(t)-A_s^{\text{out}}(t)+A_s^{\text{in}}(t)
+\frac{d^2X}{dT^2}(T)= -A_p(T)-A_s^{\text{out}}(T)+A_s^{\text{in}}(T)
 $$
 
 This is the key reduced formula.
 
 ### Physical interpretation
 
-- **Inbound** ($\dot x<0$):
+- **Inbound** ($\frac{dX}{dT}<0$):
   - the retained inward partner channel strengthens infall,
   - outer-memory self roots also strengthen infall,
   - inner-memory self roots oppose infall.
 
-- **Outbound** ($\dot x>0$):
+- **Outbound** ($\frac{dX}{dT}>0$):
   - the retained inward partner channel brakes the outward motion,
   - outer-memory self roots also brake the outward motion,
   - inner-memory self roots drive further escape.
@@ -916,20 +918,20 @@ So self-hit is not a permanent outward engine. Its effect depends on where the a
 
 ### Signed-branch caution
 
-The formulas above are exact on a fixed exterior slice $x(t)>0$, but they should not be overread as proving that a physical 1D trajectory can rebound at some $x_{\min}>0$ and then move back out on the same right-hand branch. In the current 1D delayed kernel, the pre-origin inbound leg is driven inward by partner attraction and by the self branches available on that slice. So the physically relevant oscillatory program should be formulated as an **origin-crossing** one in signed coordinates, or equivalently in the radial variable
+The formulas above are exact on a fixed exterior slice $X(T)>0$, but they should not be overread as proving that a physical 1D trajectory can rebound at some $X_{\min}>0$ and then move back out on the same right-hand branch. In the current 1D delayed kernel, the pre-origin inbound leg is driven inward by partner attraction and by the self branches available on that slice. So the physically relevant oscillatory program should be formulated as an **origin-crossing** one in signed coordinates, or equivalently in the radial variable
 $$
-\rho(t)\equiv |x(t)|
+\rho(T)\equiv |X(T)|
 $$
 
-In that formulation, a full oscillation alternates between the right and left exterior branches with label-preserving passage through $x=0$. The theorem targets later in this note should therefore be read as targets for post-crossing recapture of the radial distance rather than as literal pre-origin bounce statements on a single $x>0$ branch.
+In that formulation, a full oscillation alternates between the right and left exterior branches with label-preserving passage through $X=0$. The theorem targets later in this note should therefore be read as targets for post-crossing recapture of the radial distance rather than as literal pre-origin bounce statements on a single $X>0$ branch.
 
 Every theorem that crosses the origin must use the origin-layer integral chart from Lemma `Origin-layer continuity of the dual-mollified 1D field`. The signed branch-sum formulas are valid again only after the crossing layer has been exited and the exterior sheet labels have been fixed. In particular, local recapture estimates stated in
 $$
-\rho(t)=|x(t)|
+\rho(T)=|X(T)|
 $$
 are radial post-crossing estimates; they are not proofs that the signed scalar branch-sum field is smooth at
 $$
-x=0
+X=0
 $$
 
 In particular, the present 1D geometry should not be treated as a radial simplification of the 2D circular case. Along a true collinear history, the self-hit term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: the self interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The corrected theorem program therefore asks whether partner attraction can recapture the motion **despite** that self-drive, not because self-hit itself creates the turnaround.
@@ -938,45 +940,45 @@ In particular, the present 1D geometry should not be treated as a radial simplif
 
 The breather question can now be reduced to one concrete inequality.
 
-Fix an outbound time $t_\sharp$ on the exterior branch with
+Fix an outbound time $T_\sharp$ on the exterior branch with
 $$
-x(t_\sharp)>0,
+X(T_\sharp)>0,
 \qquad
-\dot x(t_\sharp)=u_\sharp>0
+\frac{dX}{dT}(T_\sharp)=u_\sharp>0
 $$
 
-If the trajectory is ever to turn around and re-enter as an inbound branch, there must exist a later time $t_{\mathrm{turn}}>t_\sharp$ such that
+If the trajectory is ever to turn around and re-enter as an inbound branch, there must exist a later time $T_{\mathrm{turn}}>T_\sharp$ such that
 $$
-\dot x(t_{\mathrm{turn}})=0
+\frac{dX}{dT}(T_{\mathrm{turn}})=0
 $$
 
 Integrating the reduced acceleration identity gives
 $$
 0
 =
-u_\sharp + \int_{t_\sharp}^{t_{\mathrm{turn}}}
+u_\sharp + \int_{T_\sharp}^{T_{\mathrm{turn}}}
 \Big(
--A_p(s)-A_s^{\text{out}}(s)+A_s^{\text{in}}(s)
-\Big)\,ds
+-A_p(S)-A_s^{\text{out}}(S)+A_s^{\text{in}}(S)
+\Big)\,dS
 $$
 
 Equivalently,
 $$
 u_\sharp
 =
-\int_{t_\sharp}^{t_{\mathrm{turn}}}
+\int_{T_\sharp}^{T_{\mathrm{turn}}}
 \Big(
-A_p(s)+A_s^{\text{out}}(s)-A_s^{\text{in}}(s)
-\Big)\,ds
+A_p(S)+A_s^{\text{out}}(S)-A_s^{\text{in}}(S)
+\Big)\,dS
 $$
 
 Therefore a **necessary condition for recapture** is
 $$
-\sup_{t>t_\sharp}
-\int_{t_\sharp}^{t}
+\sup_{T>T_\sharp}
+\int_{T_\sharp}^{T}
 \Big(
-A_p(s)+A_s^{\text{out}}(s)-A_s^{\text{in}}(s)
-\Big)\,ds
+A_p(S)+A_s^{\text{out}}(S)-A_s^{\text{in}}(S)
+\Big)\,dS
 \ge
 u_\sharp
 $$
@@ -985,15 +987,15 @@ If this inequality fails, then the total accumulated braking from partner attrac
 
 ### Stronger sufficient criterion
 
-If there exists an interval $[t_1,t_2]$ with $t_1\ge t_\sharp$ on which
+If there exists an interval $[T_1,T_2]$ with $T_1\ge T_\sharp$ on which
 $$
-A_p(t)+A_s^{\text{out}}(t)-A_s^{\text{in}}(t)\ge \delta >0
+A_p(T)+A_s^{\text{out}}(T)-A_s^{\text{in}}(T)\ge \delta >0
 $$
-for all $t\in[t_1,t_2]$, and
+for all $T\in[T_1,T_2]$, and
 $$
-\int_{t_1}^{t_2}\delta\,dt \ge \dot x(t_1)
+\int_{T_1}^{T_2}\delta\,dT \ge \frac{dX}{dT}(T_1)
 $$
-then a turning point must occur no later than $t_2$.
+then a turning point must occur no later than $T_2$.
 
 This criterion is not expected to be the final theorem, but it gives the correct sign target for both numerics and analysis.
 
@@ -1003,7 +1005,7 @@ To state a breather problem precisely, define a return section on the symmetric 
 
 Fix:
 
-- a section location $x_\ast>0$,
+- a section location $X_\ast>0$,
 - a memory horizon $h$ large enough to contain all active branches on one cycle,
 - and a regularization width $\eta>0$.
 
@@ -1014,23 +1016,23 @@ $$
 \mathcal{H}_h
 $$
 $$
-\Sigma^+_{x_\ast,\eta}
+\Sigma^+_{X_\ast,\eta}
 \equiv
 \left\{
  \phi\in\mathcal{H}_h
 \;\middle|\;
-\phi(0)=x_\ast,
+\phi(0)=X_\ast,
 \qquad
 \dot\phi(0)>0
 \right\}
 $$
 $$
-\Sigma^-_{x_\ast,\eta}
+\Sigma^-_{X_\ast,\eta}
 \equiv
 \left\{
  \phi\in\mathcal{H}_h
 \;\middle|\;
-\phi(0)=x_\ast,
+\phi(0)=X_\ast,
 \qquad
 \dot\phi(0)<0
 \right\}
@@ -1038,19 +1040,19 @@ $$
 
 Because the section histories are anchored by
 $$
-\phi(0)=x_\ast
+\phi(0)=X_\ast
 $$
 with prescribed crossing sign, this return section quotients out the absolute time-translation symmetry of the continuous delayed flow. A periodic trajectory therefore appears as a fixed returned history rather than as an unpinned one-parameter family of time shifts.
 
 The first workable theorem domain should not be the full sections
 $$
-\Sigma^\pm_{x_\ast,\eta}
+\Sigma^\pm_{X_\ast,\eta}
 $$
 but a controlled tame subclass on which the regularized delayed dynamics and return times are well behaved.
 
 Let
 $$
-\mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}
+\mathcal{H}^{\mathrm{adm}}_{X_\ast,\eta}
 \subset
 \mathcal{H}_h
 $$
@@ -1059,7 +1061,7 @@ denote an admissible reflection-symmetric history class with the following prope
 - section anchoring at $\theta=0$,
 - uniform position bounds
   $$
-  x_{\min}\le \phi(\theta)\le x_{\max}
+  X_{\min}\le \phi(\theta)\le X_{\max}
   $$
 - uniform speed bounds
   $$
@@ -1086,18 +1088,18 @@ Also require the active causal memory depth to fit inside the chosen history win
 $$
 \tau_{\max}(\phi)\le h
 \qquad
-\text{for every }\phi\in\mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}
+\text{for every }\phi\in\mathcal{H}^{\mathrm{adm}}_{X_\ast,\eta}
 $$
 
 The role of
 $$
-\mathcal{H}^{\mathrm{adm}}_{x_\ast,\eta}
+\mathcal{H}^{\mathrm{adm}}_{X_\ast,\eta}
 $$
-is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The Lipschitz-velocity bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$; equivalently, $\ddot\phi$ exists almost everywhere with $|\ddot\phi|\le a_{\max}$ in the weak sense. The memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $x=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
+is simple: it isolates a tame region of history space on which the regularized vector field, root selection, and section crossings can plausibly be controlled. The Lipschitz-velocity bound is the first compactness-oriented ingredient for a later Arzela-Ascoli step in $C^1$; equivalently, $\ddot\phi$ exists almost everywhere with $|\ddot\phi|\le a_{\max}$ in the weak sense. The memory-depth bound ensures the delayed law really closes on the chosen history interval. Whether the eventual theorem program allows histories that approach $X=0$ arbitrarily closely is a separate question and should not be conflated with the first well-posedness regime.
 
 For
 $$
-\phi\in\Sigma^+_{x_\ast,\eta}
+\phi\in\Sigma^+_{X_\ast,\eta}
 $$
 for which the $\eta$-regularized dynamics is well defined up to the first later time
 $$
@@ -1106,19 +1108,19 @@ $$
 such that:
 
 - the trajectory has completed one outbound excursion and recapture,
-- $x(T^-_\eta(\phi))=x_\ast$,
-- and $\dot x(T^-_\eta(\phi))<0$.
+- $X(T^-_\eta(\phi))=X_\ast$,
+- and $\frac{dX}{dT}(T^-_\eta(\phi))<0$.
 
 Then define the exact outbound-to-inbound history map on its natural domain
 $$
-Q_\eta:\operatorname{Dom}(Q_\eta)\subseteq \Sigma^+_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
+Q_\eta:\operatorname{Dom}(Q_\eta)\subseteq \Sigma^+_{X_\ast,\eta}\to\Sigma^-_{X_\ast,\eta},
 \qquad
-Q_\eta(\phi)=x_{T^-_\eta(\phi)}
+Q_\eta(\phi)=X_{T^-_\eta(\phi)}
 $$
 
 For
 $$
-\phi\in\Sigma^-_{x_\ast,\eta}
+\phi\in\Sigma^-_{X_\ast,\eta}
 $$
 for which the $\eta$-regularized dynamics is well defined up to the first return time
 $$
@@ -1127,14 +1129,14 @@ $$
 such that:
 
 - the trajectory has completed one collapse-and-rebound cycle,
-- $x(T(\phi))=x_\ast$,
-- and $\dot x(T(\phi))<0$ again.
+- $X(T(\phi))=X_\ast$,
+- and $\frac{dX}{dT}(T(\phi))<0$ again.
 
 Then define the exact history-space return map on its natural domain
 $$
-P_\eta:\operatorname{Dom}(P_\eta)\subseteq \Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta},
+P_\eta:\operatorname{Dom}(P_\eta)\subseteq \Sigma^-_{X_\ast,\eta}\to\Sigma^-_{X_\ast,\eta},
 \qquad
-P_\eta(\phi)=x_{T(\phi)}
+P_\eta(\phi)=X_{T(\phi)}
 $$
 
 This is the natural reduced object for theorem work. The core fixed-point question belongs to $P_\eta$ on a controlled subset of history space, not to any scalar speed map by itself.
@@ -1145,108 +1147,108 @@ The scalar map is useful only after choosing a specific way to inject scalar spe
 
 Assume there is a continuous injection
 $$
-\iota_\eta(\,\cdot\,;x_\ast):I\to\Sigma^+_{x_\ast,\eta},
+\iota_\eta(\,\cdot\,;X_\ast):I\to\Sigma^+_{X_\ast,\eta},
 \qquad
-u\mapsto \phi^+_{\eta}(u;x_\ast)
+u\mapsto \phi^+_{\eta}(u;X_\ast)
 $$
 from an interval $I\subset(0,\infty)$ of outbound speeds into admissible outbound histories, such that
 $$
-\dot\phi^+_{\eta}(u;x_\ast)(0)=u
+\dot\phi^+_{\eta}(u;X_\ast)(0)=u
 $$
 
 This injection is extra structure. It is not part of the master equation itself; it is a chosen slice through history space.
 
-Write the corresponding trajectory as $x(t;u,x_\ast,\eta)$ with initial section data
+Write the corresponding trajectory as $X(T;u,X_\ast,\eta)$ with initial section data
 $$
-x(0;u,x_\ast,\eta)=x_\ast,
+X(0;u,X_\ast,\eta)=X_\ast,
 \qquad
-\dot x(0;u,x_\ast,\eta)=u
+\frac{dX}{dT}(0;u,X_\ast,\eta)=u
 $$
 
 If the trajectory is recaptured and returns to the inbound section, define the projected scalar map
 $$
-R_\eta(u;x_\ast)
+R_\eta(u;X_\ast)
 \equiv
--\dot x\!\big(T^-_\eta(u;x_\ast);u,x_\ast,\eta\big)
+-\frac{dX}{dT}\!\big(T^-_\eta(u;X_\ast);u,X_\ast,\eta\big)
 >0
 $$
 
-Thus $R_\eta(u;x_\ast)$ is the magnitude of the next inbound speed when the trajectory re-crosses the same section $x=x_\ast$.
+Thus $R_\eta(u;X_\ast)$ is the magnitude of the next inbound speed when the trajectory re-crosses the same section $X=X_\ast$.
 
 Equivalently, if
 $$
-\Pi:\Sigma^-_{x_\ast,\eta}\to(0,\infty),
+\Pi:\Sigma^-_{X_\ast,\eta}\to(0,\infty),
 \qquad
 \Pi(\phi)\equiv -\dot\phi(0)
 $$
 denotes the inbound speed projection on the section, then
 $$
-R_\eta(\,\cdot\,;x_\ast)
+R_\eta(\,\cdot\,;X_\ast)
 =
-\Pi\circ Q_\eta\circ \iota_\eta(\,\cdot\,;x_\ast)
+\Pi\circ Q_\eta\circ \iota_\eta(\,\cdot\,;X_\ast)
 $$
 
 This is the correct status of the scalar map: it is a projection of the history-space excursion map through a chosen one-parameter injection, not an autonomous closure law of the delayed system.
 
 Now introduce the net inward braking density
 $$
-B_\eta(t;u,x_\ast)
+B_\eta(T;u,X_\ast)
 \equiv
-A_p(t)+A_s^{\text{out}}(t)-A_s^{\text{in}}(t)
+A_p(T)+A_s^{\text{out}}(T)-A_s^{\text{in}}(T)
 $$
 so that along the trajectory
 $$
-\ddot x(t;u,x_\ast,\eta) = -B_\eta(t;u,x_\ast)
+\frac{d^2X}{dT^2}(T;u,X_\ast,\eta) = -B_\eta(T;u,X_\ast)
 $$
 
-Integrating from the outbound crossing at $t=0$ to the next inbound crossing at $t=T^-_\eta(u;x_\ast)$ gives
+Integrating from the outbound crossing at $T=0$ to the next inbound crossing at $T=T^-_\eta(u;X_\ast)$ gives
 $$
--R_\eta(u;x_\ast)
+-R_\eta(u;X_\ast)
 =
-u + \int_{0}^{T^-_\eta(u;x_\ast)}
-\ddot x(s;u,x_\ast,\eta)\,ds
+u + \int_{0}^{T^-_\eta(u;X_\ast)}
+\frac{d^2X}{dT^2}(S;u,X_\ast,\eta)\,dS
 =
-u - \int_{0}^{T^-_\eta(u;x_\ast)}
-B_\eta(s;u,x_\ast)\,ds
+u - \int_{0}^{T^-_\eta(u;X_\ast)}
+B_\eta(S;u,X_\ast)\,dS
 $$
 
 Equivalently,
 $$
-R_\eta(u;x_\ast)
+R_\eta(u;X_\ast)
 =
--u + \int_{0}^{T^-_\eta(u;x_\ast)}
-B_\eta(s;u,x_\ast)\,ds
+-u + \int_{0}^{T^-_\eta(u;X_\ast)}
+B_\eta(S;u,X_\ast)\,dS
 $$
 
 This is the clean projected scalar map: the next inbound speed equals the total accumulated inward braking budget over the outbound-and-return excursion minus the outbound launch speed at the section.
 
-If $T^\mathrm{turn}_\eta(u;x_\ast)$ denotes the first turning time with
+If $T^\mathrm{turn}_\eta(u;X_\ast)$ denotes the first turning time with
 $$
-\dot x\!\big(T^\mathrm{turn}_\eta(u;x_\ast)\big)=0
+\frac{dX}{dT}\!\big(T^\mathrm{turn}_\eta(u;X_\ast)\big)=0
 $$
 then the same map splits into two exact pieces:
 $$
 u
 =
-\int_{0}^{T^\mathrm{turn}_\eta(u;x_\ast)}
-B_\eta(s;u,x_\ast)\,ds
+\int_{0}^{T^\mathrm{turn}_\eta(u;X_\ast)}
+B_\eta(S;u,X_\ast)\,dS
 $$
 $$
-R_\eta(u;x_\ast)
+R_\eta(u;X_\ast)
 =
-\int_{T^\mathrm{turn}_\eta(u;x_\ast)}^{T^-_\eta(u;x_\ast)}
-B_\eta(s;u,x_\ast)\,ds
+\int_{T^\mathrm{turn}_\eta(u;X_\ast)}^{T^-_\eta(u;X_\ast)}
+B_\eta(S;u,X_\ast)\,dS
 $$
 
 The first identity is the outbound recapture condition on the section. The second states that the next inbound speed is exactly the inward gain accumulated after the turning point.
 
 ### Scalar closure condition
 
-The map $R_\eta$ is only a projection of the exact history-space map $Q_\eta$, but it is the sharpest scalar diagnostic for recapture on the fixed section $x=x_\ast$.
+The map $R_\eta$ is only a projection of the exact history-space map $Q_\eta$, but it is the sharpest scalar diagnostic for recapture on the fixed section $X=X_\ast$.
 
 If the admissible family is symmetric enough that outbound and inbound section data are parameterized by the same scalar speed, then a scalar breather candidate satisfies
 $$
-u_\ast = R_\eta(u_\ast;x_\ast)
+u_\ast = R_\eta(u_\ast;X_\ast)
 $$
 
 However, this scalar fixed-point condition does not by itself imply periodic closure. The delayed dynamics only closes when the full history is returned:
@@ -1256,65 +1258,65 @@ $$
 
 The scalar map is therefore best read as a reduced diagnostic for recapture and speed balance. The actual theorem program should proceed by finding a closed, bounded, invariant subset of the raw inbound section
 $$
-\Sigma^-_{x_\ast,\eta}
+\Sigma^-_{X_\ast,\eta}
 $$
 and then packaging it inside the later convex-envelope hierarchy
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 \supseteq
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 $$
 
 ### Local recapture architecture
 
 The scalar map is only a diagnostic for section-speed balance. The real local input to the global fixed-point route is a post-crossing recapture theorem on a uniform admissible crossing subclass. The global envelope hierarchy
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 \supseteq
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 $$
 is introduced later; at the local level the only issue is whether partner attraction can erase the first post-crossing outward radial speed before the self drive pushes the trajectory to large radius.
 
 The sorting map
 $$
-w(t)\equiv x(t)+c_f t
+w(T)\equiv X(T)+c_f T
 $$
 organizes that geometry. On the initial post-crossing branch, as long as
 $$
-\dot x(t)<-c_f
+\frac{dX}{dT}(T)<-c_f
 $$
 one has
 $$
-\dot w(t)=\dot x(t)+c_f<0,
+\frac{dw}{dT}(T)=\frac{dX}{dT}(T)+c_f<0,
 \qquad
 w(0)=0
 $$
 and therefore
 $$
-w(t)<0
+w(T)<0
 \qquad
-\text{for }0<t\le \tau_{\mathrm{loc}}
+\text{for }0<T\le \tau_{\mathrm{loc}}
 $$
 If
 $$
-t_{\mathrm{zero}}<0
+T_{\mathrm{zero}}<0
 $$
 is the earlier inbound time satisfying
 $$
-w(t_{\mathrm{zero}})=0
+w(T_{\mathrm{zero}})=0
 $$
 then every active self root selected by
 $$
-w(t_s)=w(t)
+w(T_s)=w(T)
 $$
 must satisfy
 $$
-t_s<t_{\mathrm{zero}}
+T_T_{\mathrm{em}}<T_{\mathrm{zero}}
 $$
 The active self roots are therefore forced back into the earlier sub-field-speed inbound source region, where the self Jacobian is automatically noncaustic. This is the mechanism behind the bounded self-drive estimate used in the local theorem below.
 
 > **Theorem (Local Origin-Crossing Recapture).**
-> Let the 1D kernel be dual-mollified by a shell width $\eta>0$ and a core mollifier $\epsilon_c>0$. Let $\phi$ be an admissible signed history with an origin crossing at $t=0$ and outward radial speed
+> Let the 1D kernel be dual-mollified by a shell width $\eta>0$ and a core mollifier $\epsilon_c>0$. Let $\phi$ be an admissible signed history with an origin crossing at $T=0$ and outward radial speed
 > $$
 > V_0\equiv V_\phi(0)>c_f.
 > $$
@@ -1329,13 +1331,13 @@ The active self roots are therefore forced back into the earlier sub-field-speed
 >
 > Then there exists a time window $[0,\tau_{\mathrm{env}}]$ on which:
 > $$
-> w(t)<0,
+> w(T)<0,
 > \qquad
-> A_s^{\rho}(t)\le \overline A_s^{\rho},
+> A_s^{\rho}(T)\le \overline A_s^{\rho},
 > $$
 > and the radial acceleration satisfies
 > $$
-> \ddot\rho(t)\le -A_p^{\rho}(t)+A_s^{\rho}(t).
+> \frac{d^2\rho}{dT^2}(T)\le -A_p^{\rho}(T)+A_s^{\rho}(T).
 > $$
 > If, in addition,
 > $$
@@ -1351,7 +1353,7 @@ The active self roots are therefore forced back into the earlier sub-field-speed
 > $$
 > every active self root satisfies
 > $$
-> t_s\le t_{\mathrm{zero}}-\frac{\eta}{\nu},
+> T_s\le T_{\mathrm{zero}}-\frac{\eta}{\nu},
 > $$
 > so the caustic is separated from the active self branches there.
 > If the resulting impulse margin obeys
@@ -1359,8 +1361,8 @@ The active self roots are therefore forced back into the earlier sub-field-speed
 > V_0<
 > \int_0^{\tau_{\mathrm{env}}}
 > \Big(
-> \underline A_p^{\rho}(s)-\overline A_s^{\rho}
-> \Big)\,ds,
+> \underline A_p^{\rho}(S)-\overline A_s^{\rho}
+> \Big)\,dS,
 > $$
 > then there exists
 > $$
@@ -1368,7 +1370,7 @@ The active self roots are therefore forced back into the earlier sub-field-speed
 > $$
 > such that
 > $$
-> \dot\rho(\tau_{\mathrm{turn}})=0.
+> \frac{d\rho}{dT}(\tau_{\mathrm{turn}})=0.
 > $$
 > In particular, the post-crossing branch is radially recaptured on the initial window.
 
@@ -1396,29 +1398,29 @@ w(\theta)=\phi(\theta)+c_f\theta,
 $$
 there exist times
 $$
-t_{\mathrm{zero}}<t_{\mathrm{hinge}}<0
+T_{\mathrm{zero}}<T_{\mathrm{hinge}}<0
 $$
 such that
 $$
-w(t_{\mathrm{zero}})=0,
+w(T_{\mathrm{zero}})=0,
 \qquad
-\dot\phi(t_{\mathrm{hinge}})=-c_f
+\dot\phi(T_{\mathrm{hinge}})=-c_f
 $$
 and
 $$
 w(\theta)>0
 \qquad
-\text{for }\theta\in(t_{\mathrm{zero}},0)
+\text{for }\theta\in(T_{\mathrm{zero}},0)
 $$
 For any fixed interior margin
 $$
-0<\gamma_w<\min\{t_{\mathrm{hinge}}-t_{\mathrm{zero}},-t_{\mathrm{hinge}}\}
+0<\gamma_w<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},-T_{\mathrm{hinge}}\}
 $$
-continuity then gives the compact-subinterval gap
+continuity then gives the compacT-T_{\mathrm{em}}ubinterval gap
 $$
 \delta_w
 \equiv
-\min_{\theta\in[t_{\mathrm{zero}}+\gamma_w,-\gamma_w]} w(\theta)
+\min_{\theta\in[T_{\mathrm{zero}}+\gamma_w,-\gamma_w]} w(\theta)
 >0
 $$
 
@@ -1427,11 +1429,11 @@ There exists $\nu>0$ such that
 $$
 \dot\phi(\theta)\ge -c_f+\nu
 \qquad
-\text{for }\theta\in[-h,t_{\mathrm{zero}}]
+\text{for }\theta\in[-h,T_{\mathrm{zero}}]
 $$
 
 **(H4) Shell-mollifier separation from the interior sorting gap.**
-For the compact-subinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(t)$ into the positive interior sorting hump:
+For the compacT-T_{\mathrm{em}}ubinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(T)$ into the positive interior sorting hump:
 $$
 \eta<\frac{\delta_w}{2}
 $$
@@ -1446,10 +1448,10 @@ $$
 V_0<
 \int_0^{\tau_{\mathrm{env}}}
 \Big(
-\underline A_p^{\rho}(s;\phi,V_0,\epsilon_c)
+\underline A_p^{\rho}(S;\phi,V_0,\epsilon_c)
 -
 \overline A_s^{\rho}(\phi,\nu)
-\Big)\,ds
+\Big)\,dS
 $$
 At this stage this remains the abstract bottleneck hypothesis. A concrete sufficient realization is provided later by the proposition `Explicit short-window recapture regime`, which chooses
 $$
@@ -1513,9 +1515,9 @@ denote the class of signed crossing histories $\phi$ satisfying:
   $$
   \rho_{\mathrm{zero}}(\phi)
   \equiv
-  -c_f t_{\mathrm{zero}}(\phi)
+  -c_f T_{\mathrm{zero}}(\phi)
   =
-  \phi(t_{\mathrm{zero}}(\phi))
+  \phi(T_{\mathrm{zero}}(\phi))
   \ge
   \rho_{0,\min}
   $$
@@ -1525,13 +1527,13 @@ denote the class of signed crossing histories $\phi$ satisfying:
   $$
   satisfies
   $$
-  |\ddot x_\phi(t)|\le a_{\mathrm{tube}}
+  |\frac{d^2X_\phi}{dT^2}(T)|\le a_{\mathrm{tube}}
   \qquad
-  \text{for }0\le t\le \tau_{\mathrm{tube}}
+  \text{for }0\le T\le \tau_{\mathrm{tube}}
   $$
   every active self root on that window obeys
   $$
-  |J_s(t;t_s)|\ge \frac{\nu}{c_f}
+  |J_s(T;T_s)|\ge \frac{\nu}{c_f}
   $$
   and has at most
   $$
@@ -1585,7 +1587,7 @@ The crossing subclass uses the following constants.
 | $\gamma_w$ | compact pre-crossing sorting-gap trimming scale | (H2), Lemma 2 |
 | $\delta_{w,\min}$ | class-wide lower sorting gap on the trimmed interval | shell-width exclusion in Lemma 2 |
 | $\nu$ | self-root Jacobian floor, scaled by $c_f$ in the statement | Lemma 2 and tame topology |
-| $\rho_{0,\min}$ | minimum pre-caustic radius at $t_{\mathrm{zero}}$ | Lemma 2 delayed-source separation |
+| $\rho_{0,\min}$ | minimum pre-caustic radius at $T_{\mathrm{zero}}$ | Lemma 2 delayed-source separation |
 | $a_{\max}$ | stored-history Lipschitz-velocity bound | Lemma 3 partner-root remainder |
 | $a_{\mathrm{tube}}$ | forward acceleration ceiling on the local tube | Lemma 1 and Lemma 3 |
 | $\tau_{\mathrm{tube}}$ | guaranteed forward continuation window | Lemma 1 |
@@ -1604,17 +1606,17 @@ The theorem target naturally breaks into four lemmas.
 **Lemma 1: Short-time continuation and sorting-map monotonicity.**
 Prove that there exists $\tau_1>0$ such that
 $$
-\dot x(t)\le -c_f
+\frac{dX}{dT}(T)\le -c_f
 \qquad
-\text{for }0\le t\le \tau_1
+\text{for }0\le T\le \tau_1
 $$
 so that
 $$
-\dot w(t)\le 0
+\frac{dw}{dT}(T)\le 0
 \qquad
 \text{and hence}
 \qquad
-w(t)<0
+w(T)<0
 $$
 on the initial post-crossing window.
 
@@ -1625,9 +1627,9 @@ $$
 $$
 Because the dual-mollified vector field is finite on the post-crossing window, there exists a local acceleration bound
 $$
-|\ddot x(t)|\le a_{\mathrm{loc}}
+|\frac{d^2X}{dT^2}(T)|\le a_{\mathrm{loc}}
 \qquad
-\text{for }0\le t\le \tau_{\mathrm{loc}}
+\text{for }0\le T\le \tau_{\mathrm{loc}}
 $$
 Choose
 $$
@@ -1635,11 +1637,11 @@ $$
 $$
 Then
 $$
-\dot x(t)
+\frac{dX}{dT}(T)
 \le
-\dot x(0)+a_{\mathrm{loc}}t
+\frac{dX}{dT}(0)+a_{\mathrm{loc}}T
 =
--V_0+a_{\mathrm{loc}}t
+-V_0+a_{\mathrm{loc}}T
 \le
 -V_0+\sigma
 =
@@ -1647,31 +1649,31 @@ $$
 <
 -c_f
 $$
-for all $t\in[0,\tau_1]$. Consequently
+for all $T\in[0,\tau_1]$. Consequently
 $$
-\dot w(t)=\dot x(t)+c_f\le -\sigma
+\frac{dw}{dT}(T)=\frac{dX}{dT}(T)+c_f\le -\sigma
 $$
 and integrating from $w(0)=0$ gives
 $$
-w(t)\le -\sigma t<0
+w(T)\le -\sigma T<0
 \qquad
-\text{for }0<t\le \tau_1
+\text{for }0<T\le \tau_1
 $$
 
 Proof.
 The forward local tube condition in the admissible crossing subclass gives existence of the dual-mollified continuation on $[0,\tau_{\mathrm{loc}}]$ together with the bound
 $$
-|\ddot x(t)|\le a_{\mathrm{loc}}
+|\frac{d^2X}{dT^2}(T)|\le a_{\mathrm{loc}}
 $$
 Because
 $$
-\dot x(0)=-V_0<-c_f
+\frac{dX}{dT}(0)=-V_0<-c_f
 $$
 the fundamental theorem of calculus yields
 $$
-\dot x(t)=\dot x(0)+\int_0^t \ddot x(s)\,ds
+\frac{dX}{dT}(T)=\frac{dX}{dT}(0)+\int_0^T \frac{d^2X}{dT^2}(S)\,dS
 \le
--V_0+a_{\mathrm{loc}}t
+-V_0+a_{\mathrm{loc}}T
 $$
 Choosing
 $$
@@ -1679,45 +1681,45 @@ $$
 $$
 forces
 $$
-\dot x(t)\le -V_0+\sigma=-c_f-\sigma<-c_f
+\frac{dX}{dT}(T)\le -V_0+\sigma=-c_f-\sigma<-c_f
 $$
-for every $t\in[0,\tau_1]$. Therefore
+for every $T\in[0,\tau_1]$. Therefore
 $$
-\dot w(t)=\dot x(t)+c_f\le -\sigma
+\frac{dw}{dT}(T)=\frac{dX}{dT}(T)+c_f\le -\sigma
 $$
 and integration from the crossing value
 $$
-w(0)=x(0)+c_f\cdot 0=0
+w(0)=X(0)+c_f\cdot 0=0
 $$
 gives
 $$
-w(t)\le -\sigma t<0
+w(T)\le -\sigma T<0
 $$
 on $(0,\tau_1]$. This proves the lemma. On a fixed admissible crossing subclass the same argument is uniform after replacing $\sigma$ by $\sigma_{\min}$ and $a_{\mathrm{loc}}$ by $a_{\mathrm{tube}}$.
 
 **Lemma 2: Caustic isolation and uniform self-drive bound.**
-Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $t_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
+Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $T_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
 
 Working form:
-fix $t\in(0,\tau_1]$ and suppose a self-emission time $t_s<t$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
+fix $T\in(0,\tau_1]$ and suppose a self-emission time $T_T_{\mathrm{em}}<T$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
 $$
-\left|x(t)-x(t_s)+c_f(t-t_s)\right|\le \eta
+\left|X(T)-X(T_s)+c_f(T-T_s)\right|\le \eta
 $$
 which is equivalent to
 $$
-\left|w(t_s)-w(t)\right|\le \eta
+\left|w(T_s)-w(T)\right|\le \eta
 $$
 
 On the full initial tube one assumes the class-wide branch-count bound and a
 same-record receiver-normal branch-strength ceiling
 $$
-W_s^{\mathrm{rec}}(t;t_s)
+W_s^{\mathrm{rec}}(T;T_s)
 \le
 \overline W_s^{\mathrm{rec}}
 $$
 for every retained self row in the tube. Therefore
 $$
-A_s^{\rho}(t)
+A_s^{\rho}(T)
 \le
 N_s^{\max}\,
 \kappa\epsilon^2\,
@@ -1726,7 +1728,7 @@ N_s^{\max}\,
 \equiv
 \overline A_s^{\rho}
 \qquad
-\text{for }0\le t\le \tau_1
+\text{for }0\le T\le \tau_1
 $$
 This is the basic bounded self-drive estimate used in the local theorem.
 
@@ -1734,27 +1736,27 @@ One obtains a stronger separated statement on a slightly delayed subwindow. Defi
 $$
 \tau_{\mathrm{sep}}\equiv \frac{2\eta}{\sigma}
 $$
-Then for $t\in[\tau_{\mathrm{sep}},\tau_1]$,
+Then for $T\in[\tau_{\mathrm{sep}},\tau_1]$,
 $$
-w(t)\le -2\eta
+w(T)\le -2\eta
 $$
 so any active self root satisfies
 $$
-w(t_s)\le -\eta
+w(T_s)\le -\eta
 $$
 Hence every active self root on that delayed subwindow satisfies
 $$
-t_s<t_{\mathrm{zero}}
+T_T_{\mathrm{em}}<T_{\mathrm{zero}}
 $$
 Since on the sub-field-speed source region one has
 $$
-\dot w(\theta)=\dot x(\theta)+c_f\ge \nu,
+\frac{dw}{dT}(\theta)=\frac{dX}{dT}(\theta)+c_f\ge \nu,
 \qquad
-\theta\in[-h,t_{\mathrm{zero}}]
+\theta\in[-h,T_{\mathrm{zero}}]
 $$
 monotonicity gives
 $$
-t_s\le t_{\mathrm{zero}}-\gamma(\eta),
+T_s\le T_{\mathrm{zero}}-\gamma(\eta),
 \qquad
 \gamma(\eta)\equiv \frac{\eta}{\nu}
 $$
@@ -1763,39 +1765,39 @@ Thus the caustic is uniformly separated from the active self roots on the delaye
 
 A sharper geometric version is available only on the delayed window where the roots have already entered the sub-field-speed source region. Since
 $$
-w(t_{\mathrm{zero}})=0
+w(T_{\mathrm{zero}})=0
 \qquad
 \Longrightarrow
 \qquad
-x(t_{\mathrm{zero}})=-c_f t_{\mathrm{zero}}
+X(T_{\mathrm{zero}})=-c_f T_{\mathrm{zero}}
 \equiv
 \rho_{\mathrm{zero}}>0
 $$
 and the pre-crossing branch is inbound, one has
 $$
-x(t_s)\ge \rho_{\mathrm{zero}}
+X(T_s)\ge \rho_{\mathrm{zero}}
 \qquad
-\text{for every }t_s\le t_{\mathrm{zero}}
+\text{for every }T_s\le T_{\mathrm{zero}}
 $$
 Choose a short window $[0,\tau_\rho]$ on which
 $$
-\rho(t)=|x(t)|\le \frac{\rho_{\mathrm{zero}}}{2}
+\rho(T)=|X(T)|\le \frac{\rho_{\mathrm{zero}}}{2}
 $$
 Then every active self root on the delayed geometric window
 $$
-t\in[\tau_{\mathrm{sep}},\min\{\tau_1,\tau_\rho\}]
+T\in[\tau_{\mathrm{sep}},\min\{\tau_1,\tau_\rho\}]
 $$
 satisfies
 $$
-|x(t)-x(t_s)|
+|X(T)-X(T_s)|
 =
-\rho(t)+x(t_s)
+\rho(T)+X(T_s)
 \ge
 \frac{\rho_{\mathrm{zero}}}{2}
 $$
 Hence the same branch-count bound yields the sharper estimate
 $$
-A_s^{\rho}(t)
+A_s^{\rho}(T)
 \le
 N_s^{\max}\,
 \kappa\epsilon^2\,
@@ -1827,96 +1829,96 @@ N_s^{\max}
 $$
 active self roots gives the crude bound
 $$
-A_s^{\rho}(t)\le \overline A_s^\rho
+A_s^{\rho}(T)\le \overline A_s^\rho
 $$
 for
 $$
-0\le t\le \tau_1
+0\le T\le \tau_1
 $$
 
 For the delayed separation, Lemma 1 gives
 $$
-w(t)\le -\sigma t
+w(T)\le -\sigma T
 $$
 Hence for
 $$
-t\in[\tau_{\mathrm{sep}},\tau_1],
+T\in[\tau_{\mathrm{sep}},\tau_1],
 \qquad
 \tau_{\mathrm{sep}}=\frac{2\eta}{\sigma}
 $$
 one has
 $$
-w(t)\le -2\eta
+w(T)\le -2\eta
 $$
-If a self root $t_s<t$ lies in the shell support, then
+If a self root $T_T_{\mathrm{em}}<T$ lies in the shell support, then
 $$
-|w(t_s)-w(t)|\le \eta
+|w(T_s)-w(T)|\le \eta
 $$
 so
 $$
-w(t_s)\le -\eta<0
+w(T_s)\le -\eta<0
 $$
 But hypothesis (H2) states that
 $$
 w(\theta)>0
 \qquad
-\text{for }\theta\in(t_{\mathrm{zero}},0)
+\text{for }\theta\in(T_{\mathrm{zero}},0)
 $$
-therefore no such $t_s$ can lie in $(t_{\mathrm{zero}},0)$ and hence
+therefore no such $T_s$ can lie in $(T_{\mathrm{zero}},0)$ and hence
 $$
-t_s<t_{\mathrm{zero}}
+T_T_{\mathrm{em}}<T_{\mathrm{zero}}
 $$
 On the source region
 $$
-[-h,t_{\mathrm{zero}}]
+[-h,T_{\mathrm{zero}}]
 $$
 hypothesis (H3) gives
 $$
-\dot w(\theta)=\dot x(\theta)+c_f\ge \nu
+\frac{dw}{dT}(\theta)=\frac{dX}{dT}(\theta)+c_f\ge \nu
 $$
-Applying the mean-value theorem between $t_s$ and $t_{\mathrm{zero}}$ yields
+Applying the mean-value theorem between $T_s$ and $T_{\mathrm{zero}}$ yields
 $$
-w(t_{\mathrm{zero}})-w(t_s)\ge \nu\,(t_{\mathrm{zero}}-t_s)
+w(T_{\mathrm{zero}})-w(T_s)\ge \nu\,(T_{\mathrm{zero}}-T_s)
 $$
 Since
 $$
-w(t_{\mathrm{zero}})=0
+w(T_{\mathrm{zero}})=0
 \qquad
 \text{and}
 \qquad
-w(t_s)\le -\eta
+w(T_s)\le -\eta
 $$
 it follows that
 $$
-t_s\le t_{\mathrm{zero}}-\frac{\eta}{\nu}
+T_s\le T_{\mathrm{zero}}-\frac{\eta}{\nu}
 =
-t_{\mathrm{zero}}-\gamma(\eta)
+T_{\mathrm{zero}}-\gamma(\eta)
 $$
 This proves the delayed caustic-separation claim.
 
-For the geometric refinement, use that the selected source branch is inbound before the crossing, so $x(\theta)$ decreases toward the origin on the stored pre-crossing leg. Thus
+For the geometric refinement, use that the selected source branch is inbound before the crossing, so $X(\theta)$ decreases toward the origin on the stored pre-crossing leg. Thus
 $$
-t_s\le t_{\mathrm{zero}}
+T_s\le T_{\mathrm{zero}}
 \qquad
 \Longrightarrow
 \qquad
-x(t_s)\ge x(t_{\mathrm{zero}})=\rho_{\mathrm{zero}}
+X(T_s)\ge X(T_{\mathrm{zero}})=\rho_{\mathrm{zero}}
 $$
 If in addition
 $$
-0\le t\le \tau_\rho
+0\le T\le \tau_\rho
 \qquad
 \text{and}
 \qquad
-\rho(t)\le \frac{\rho_{\mathrm{zero}}}{2}
+\rho(T)\le \frac{\rho_{\mathrm{zero}}}{2}
 $$
 then on the delayed geometric window
 $$
-t\in[\tau_{\mathrm{sep}},\min\{\tau_1,\tau_\rho\}]
+T\in[\tau_{\mathrm{sep}},\min\{\tau_1,\tau_\rho\}]
 $$
 one has
 $$
-|x(t)-x(t_s)|=\rho(t)+x(t_s)\ge \frac{\rho_{\mathrm{zero}}}{2}
+|X(T)-X(T_s)|=\rho(T)+X(T_s)\ge \frac{\rho_{\mathrm{zero}}}{2}
 $$
 Replacing the crude denominator bound
 $$
@@ -1932,66 +1934,66 @@ N_s^{\max}
 $$
 branches gives
 $$
-A_s^\rho(t)\le \overline A_{s,\mathrm{geom}}^\rho
+A_s^\rho(T)\le \overline A_{s,\mathrm{geom}}^\rho
 $$
 This proves Lemma 2.
 
 **Lemma 3: Partner-root linearization and lower bound.**
 Use the linearized partner root
 $$
-t_p
+T_p
 =
--\left(\frac{V_0-c_f}{V_0+c_f}\right)t
+-\left(\frac{V_0-c_f}{V_0+c_f}\right)T
 $$
 to derive the partner-distance bound
 $$
-r_p(t)\le
-\left(\frac{2c_fV_0}{V_0+c_f}\right)t+\mathcal{O}(t^2)
+r_p(T)\le
+\left(\frac{2c_fV_0}{V_0+c_f}\right)T+\mathcal{O}(T^2)
 $$
 and hence a lower bound on the core-mollified partner attraction
 $$
-A_p^{\rho}(t)\ge \underline A_p^{\rho}(t)
+A_p^{\rho}(T)\ge \underline A_p^{\rho}(T)
 $$
 
 Working form:
 write
 $$
-s\equiv -t_p>0
+S\equiv -T_p>0
 $$
 for the past partner-emission time measured backward from the crossing. On the active partner branch, shell support gives
 $$
-\left||x(t)+x(t_p)|-c_f(t+s)\right|\le \eta
+\left||X(T)+X(T_p)|-c_f(T+S)\right|\le \eta
 $$
 
-Assume the signed trajectory is $C^1$ through the crossing and obeys uniform acceleration bounds on both sides of $t=0$. Then there exists
+Assume the signed trajectory is $C^1$ through the crossing and obeys uniform acceleration bounds on both sides of $T=0$. Then there exists
 $$
 a_\ast\equiv \max\{a_{\mathrm{loc}},a_{\max}\}
 $$
 such that the Taylor remainders satisfy
 $$
-x(t)= -V_0 t + R_+(t),
+X(T)= -V_0 T + R_+(T),
 \qquad
-|R_+(t)|\le \frac{a_\ast}{2}t^2
+|R_+(T)|\le \frac{a_\ast}{2}T^2
 $$
-for $t\in[0,\tau_1]$, and
+for $T\in[0,\tau_1]$, and
 $$
-x(t_p)= V_0 s + R_-(s),
+X(T_p)= V_0 S + R_-(S),
 \qquad
-|R_-(s)|\le \frac{a_\ast}{2}s^2
+|R_-(S)|\le \frac{a_\ast}{2}S^2
 $$
-for $s\in[0,\tau_1]$.
+for $S\in[0,\tau_1]$.
 
 Substituting these expansions into the partner-shell condition yields
 $$
 \left|
-V_0(t-s)-c_f(t+s)
-+E_p(t,s)
+V_0(T-T_{\mathrm{em}})-c_f(T+S)
++E_p(T,S)
 \right|
 \le \eta
 $$
 where
 $$
-|E_p(t,s)|\le \frac{a_\ast}{2}(t^2+s^2)
+|E_p(T,S)|\le \frac{a_\ast}{2}(T^2+S^2)
 $$
 
 Let
@@ -2000,73 +2002,73 @@ $$
 \qquad
 \beta_p\equiv \frac{2c_fV_0}{V_0+c_f}
 $$
-Then the linearized root is $s=\alpha t$. For sufficiently small $t$ and $\eta$, the exact active partner root obeys the one-sided estimate
+Then the linearized root is $S=\alpha T$. For sufficiently small $T$ and $\eta$, the exact active partner root obeys the one-sided estimate
 $$
-s\le \alpha t + C_p(t^2+\eta)
+S\le \alpha T + C_p(T^2+\eta)
 $$
 for some constant $C_p$ depending only on $(V_0,c_f,a_\ast)$.
 
 Consequently the delayed partner distance satisfies the upper bound
 $$
-r_p(t)=c_f(t+s)
+r_p(T)=c_f(T+S)
 \le
-\beta_p t + c_f C_p(t^2+\eta)
+\beta_p T + c_f C_p(T^2+\eta)
 $$
 
 This is the form needed for the theorem program: as the trajectory brakes after the crossing, the true partner distance can only become smaller than this leading linear estimate, which strengthens the partner attraction. Therefore the core-mollified partner term admits the explicit lower bound
 $$
-A_p^{\rho}(t)
+A_p^{\rho}(T)
 \ge
 \frac{\kappa\epsilon^2}{
 \left(
-\beta_p t + c_f C_p(t^2+\eta)
+\beta_p T + c_f C_p(T^2+\eta)
 \right)^2+\epsilon_c^2}
 \equiv
-\underline A_p^{\rho}(t)
+\underline A_p^{\rho}(T)
 $$
 
 Proof.
 Let
 $$
-F(t,s)\equiv V_0(t-s)-c_f(t+s)+E_p(t,s)
+F(T,S)\equiv V_0(T-T_{\mathrm{em}})-c_f(T+S)+E_p(T,S)
 $$
 The shell condition on the active partner branch is precisely
 $$
-|F(t,s)|\le \eta
+|F(T,S)|\le \eta
 $$
 At the linear level,
 $$
-F_0(t,s)=V_0(t-s)-c_f(t+s)
+F_0(T,S)=V_0(T-T_{\mathrm{em}})-c_f(T+S)
 $$
 has root
 $$
-s=\alpha t,
+S=\alpha T,
 \qquad
 \alpha=\frac{V_0-c_f}{V_0+c_f}
 $$
 and
 $$
-\partial_s F_0(0,0)=-(V_0+c_f)\neq 0
+\partial_{T_{\mathrm{em}}} F_0(0,0)=-(V_0+c_f)\neq 0
 $$
 Write
 $$
-E_p(t,s)=-(R_+(t)+R_-(s))
+E_p(T,S)=-(R_+(T)+R_-(S))
 $$
 so the absolute remainder bounds imply
 $$
-|E_p(t,\alpha t)|
+|E_p(T,\alpha T)|
 \le
-\frac{a_\ast}{2}(1+\alpha^2)t^2
+\frac{a_\ast}{2}(1+\alpha^2)T^2
 \equiv
-C_0 t^2
+C_0 T^2
 $$
 Moreover the integral remainder formula gives
 $$
-|\partial_s E_p(t,s)|\le a_\ast s
+|\partial_{T_{\mathrm{em}}} E_p(T,S)|\le a_\ast S
 $$
 After shrinking the local window if necessary, assume
 $$
-0\le s\le \tau_1
+0\le S\le \tau_1
 \qquad
 \text{and}
 \qquad
@@ -2074,29 +2076,29 @@ a_\ast\tau_1\le \frac{V_0+c_f}{2}
 $$
 Then on that window
 $$
-\partial_s F(t,s)
+\partial_{T_{\mathrm{em}}} F(T,S)
 =
--(V_0+c_f)+\partial_s E_p(t,s)
+-(V_0+c_f)+\partial_{T_{\mathrm{em}}} E_p(T,S)
 \le
 -\frac{V_0+c_f}{2}<0
 $$
-Hence the active partner branch is quantitatively nondegenerate. Applying the mean-value theorem in the $s$ variable between $s$ and $\alpha t$ yields a point $\xi$ between them such that
+Hence the active partner branch is quantitatively nondegenerate. Applying the mean-value theorem in the $S$ variable between $S$ and $\alpha T$ yields a point $\xi$ between them such that
 $$
-F(t,s)-F(t,\alpha t)=\partial_s F(t,\xi)\,(s-\alpha t)
+F(T,S)-F(T,\alpha T)=\partial_{T_{\mathrm{em}}} F(T,\xi)\,(S-\alpha T)
 $$
 Therefore
 $$
-\frac{V_0+c_f}{2}\,|s-\alpha t|
+\frac{V_0+c_f}{2}\,|S-\alpha T|
 \le
-|F(t,s)|+|F(t,\alpha t)|
+|F(T,S)|+|F(T,\alpha T)|
 \le
-\eta+C_0 t^2
+\eta+C_0 T^2
 $$
 so
 $$
-|s-\alpha t|
+|S-\alpha T|
 \le
-\frac{2}{V_0+c_f}\big(\eta+C_0 t^2\big)
+\frac{2}{V_0+c_f}\big(\eta+C_0 T^2\big)
 $$
 Thus there is an explicit constant
 $$
@@ -2104,31 +2106,31 @@ C_p=C_p(V_0,c_f,a_\ast)
 $$
 such that
 $$
-s\le \alpha t + C_p(t^2+\eta)
+S\le \alpha T + C_p(T^2+\eta)
 $$
 Substituting into
 $$
-r_p(t)=c_f(t+s)
+r_p(T)=c_f(T+S)
 $$
 gives
 $$
-r_p(t)\le c_f(1+\alpha)t+c_f C_p(t^2+\eta)
+r_p(T)\le c_f(1+\alpha)T+c_f C_p(T^2+\eta)
 =
-\beta_p t + c_f C_p(t^2+\eta)
+\beta_p T + c_f C_p(T^2+\eta)
 $$
 Because the core-mollified partner contribution is monotone decreasing in the delayed distance,
 $$
-r_p(t)\le r_{\mathrm{ub}}(t)
+r_p(T)\le r_{\mathrm{ub}}(T)
 \qquad
 \Longrightarrow
 \qquad
-\frac{1}{r_p(t)^2+\epsilon_c^2}
+\frac{1}{r_p(T)^2+\epsilon_c^2}
 \ge
-\frac{1}{r_{\mathrm{ub}}(t)^2+\epsilon_c^2}
+\frac{1}{r_{\mathrm{ub}}(T)^2+\epsilon_c^2}
 $$
 where
 $$
-r_{\mathrm{ub}}(t)\equiv \beta_p t + c_f C_p(t^2+\eta)
+r_{\mathrm{ub}}(T)\equiv \beta_p T + c_f C_p(T^2+\eta)
 $$
 Multiplying by the positive prefactor
 $$
@@ -2136,7 +2138,7 @@ $$
 $$
 gives
 $$
-A_p^\rho(t)\ge \underline A_p^\rho(t)
+A_p^\rho(T)\ge \underline A_p^\rho(T)
 $$
 which proves the lemma. On the admissible crossing subclass the same argument is uniform after replacing
 $$
@@ -2152,13 +2154,13 @@ $$
 **Lemma 4: Recapture integration.**
 Show that the function
 $$
-f(t)
+f(T)
 \equiv
 V_0-
-\int_0^t
+\int_0^T
 \Big(
-\underline A_p^{\rho}(s)-\overline A_s^{\rho}
-\Big)\,ds
+\underline A_p^{\rho}(S)-\overline A_s^{\rho}
+\Big)\,dS
 $$
 has a zero on the initial window under (H5), and conclude that the true radial speed must vanish there.
 
@@ -2167,12 +2169,12 @@ fix a window $[0,\tau]$ on which Lemma 2 and Lemma 3 both hold, and define
 $$
 B_\tau\equiv c_f C_p(\tau^2+\eta)
 $$
-Then for $0\le t\le \tau$,
+Then for $0\le T\le \tau$,
 $$
-\underline A_p^{\rho}(t)
+\underline A_p^{\rho}(T)
 \ge
 \frac{\kappa\epsilon^2}{
-\left(\beta_p t+B_\tau\right)^2+\epsilon_c^2
+\left(\beta_p T+B_\tau\right)^2+\epsilon_c^2
 }
 $$
 
@@ -2180,7 +2182,7 @@ Integrating this explicit lower bound gives the partner impulse estimate
 $$
 \Delta V_p(\tau)
 \equiv
-\int_0^\tau \underline A_p^{\rho}(s)\,ds
+\int_0^\tau \underline A_p^{\rho}(S)\,dS
 \ge
 \frac{\kappa\epsilon^2}{\beta_p\epsilon_c}
 \left[
@@ -2250,7 +2252,7 @@ That conservative substitution is the bridge from the single-history Lemma 4 est
 Proof.
 Let
 $$
-V(t)\equiv \dot\rho(t)
+V(T)\equiv \frac{d\rho}{dT}(T)
 $$
 denote the outward radial speed on the post-crossing branch. Then
 $$
@@ -2258,50 +2260,50 @@ V(0)=V_0>0
 $$
 By Lemma 2 and Lemma 3, on every window $[0,\tau]$ where both lemmas hold one has
 $$
-\ddot\rho(t)\le -\underline A_p^\rho(t)+\overline A_s^\rho
+\frac{d^2\rho}{dT^2}(T)\le -\underline A_p^\rho(T)+\overline A_s^\rho
 $$
-Integrating from $0$ to $t\le \tau$ yields
+Integrating from $0$ to $T\le \tau$ yields
 $$
-V(t)
+V(T)
 =
-V_0+\int_0^t \ddot\rho(s)\,ds
+V_0+\int_0^T \frac{d^2\rho}{dT^2}(S)\,dS
 \le
-V_0-\int_0^t\big(\underline A_p^\rho(s)-\overline A_s^\rho\big)\,ds
+V_0-\int_0^T\big(\underline A_p^\rho(S)-\overline A_s^\rho\big)\,dS
 =
-f(t)
+f(T)
 $$
 If the delayed geometric regime is available, the same integration gives the sharper estimate
 $$
-V(t)
+V(T)
 \le
-V_0-\Delta V_p(t)
+V_0-\Delta V_p(T)
 +
 \overline A_s^\rho\,\tau_{\mathrm{sep}}
 +
-\overline A_{s,\mathrm{geom}}^\rho\,(t-\tau_{\mathrm{sep}})
+\overline A_{s,\mathrm{geom}}^\rho\,(T-\tau_{\mathrm{sep}})
 $$
 for
 $$
-t\in[\tau_{\mathrm{sep}},\tau]
+T\in[\tau_{\mathrm{sep}},\tau]
 $$
 
 Now assume the Goldilocks condition holds on $[0,\tau]$, so that
 $$
 f(\tau)<0
 $$
-If $V$ remained strictly positive on the whole interval $[0,\tau]$, then evaluating the previous bound at $t=\tau$ would give
+If $V$ remained strictly positive on the whole interval $[0,\tau]$, then evaluating the previous bound at $T=\tau$ would give
 $$
 0<V(\tau)\le f(\tau)<0
 $$
 which is impossible. Therefore the set
 $$
-\{t\in[0,\tau]:V(t)=0\}
+\{T\in[0,\tau]:V(T)=0\}
 $$
 is nonempty. Define
 $$
 \tau_{\mathrm{turn}}
 \equiv
-\inf\{t\in[0,\tau]:V(t)=0\}
+\inf\{T\in[0,\tau]:V(T)=0\}
 $$
 Continuity of $V$ implies
 $$
@@ -2489,19 +2491,19 @@ Proof sketch:
 
 1. Lemma 1 gives the class-uniform post-crossing monotonicity
    $$
-   w(t)<0
+   w(T)<0
    \qquad
-   \text{for }0<t\le \tau_1
+   \text{for }0<T\le \tau_1
    $$
 2. Lemma 2 supplies the full-window self-drive bound
    $$
-   A_s^\rho(t)\le \overline A_s^\rho
+   A_s^\rho(T)\le \overline A_s^\rho
    \qquad
-   \text{for }0\le t\le \tau_1
+   \text{for }0\le T\le \tau_1
    $$
    with the delayed-window refinement available once
    $$
-   \tau_{\mathrm{sep},\max}\le t\le \tau_\rho
+   \tau_{\mathrm{sep},\max}\le T\le \tau_\rho
    $$
 3. Lemma 3 gives the class-uniform partner lower bound with
    $$
@@ -2575,11 +2577,11 @@ that enters the global invariant-envelope theorem.
 
 The local origin-crossing theorem supplies only the inner turnaround. The global capstone is an isolated fixed point of the full return map
 $$
-P_\eta:\Sigma^-_{x_\ast,\eta}\to\Sigma^-_{x_\ast,\eta}
+P_\eta:\Sigma^-_{X_\ast,\eta}\to\Sigma^-_{X_\ast,\eta}
 $$
 In the dual-mollified setting the final topological target is therefore to construct a nonempty closed convex tame envelope
 $$
-\mathcal{K}_{x_\ast,\eta}\subset C^1([-h,0])
+\mathcal{K}_{X_\ast,\eta}\subset C^1([-h,0])
 $$
 not a continuous family of equal-amplitude cycles. Exact energy for the dual-mollified problem remains conditional on action-level regularization, so the fixed-point route should be built from uniform bounds, continuity, and compactness rather than from a presumed conserved history functional.
 
@@ -2590,11 +2592,11 @@ The global input list is now fixed:
 3. outer-turn and return-to-section control;
 4. a convex section envelope
    $$
-   \mathcal{C}_{x_\ast,\eta}
+   \mathcal{C}_{X_\ast,\eta}
    $$
    and a closed convex tame sub-envelope
    $$
-   \mathcal{K}_{x_\ast,\eta}\subseteq \mathcal{C}_{x_\ast,\eta}
+   \mathcal{K}_{X_\ast,\eta}\subseteq \mathcal{C}_{X_\ast,\eta}
    $$
 5. continuity and precompactness of
    $$
@@ -2602,11 +2604,11 @@ The global input list is now fixed:
    $$
    on
    $$
-   \mathcal{K}_{x_\ast,\eta}
+   \mathcal{K}_{X_\ast,\eta}
    $$
 6. and the self-map property
    $$
-   P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}\big)\subseteq \mathcal{K}_{x_\ast,\eta}
+   P_\eta\!\big(\mathcal{K}_{X_\ast,\eta}\big)\subseteq \mathcal{K}_{X_\ast,\eta}
    $$
 
 Only after those inputs live on the same domain does Schauder apply.
@@ -2619,7 +2621,7 @@ The theorem status of the global program should be read in three layers.
 - The compactness mechanism is conceptually standard once one has class-uniform bounds on one closed domain: this is the Arzela-Ascoli side of the argument.
 - The active unresolved burden is domain production: the manuscript still has to place nonempty tame propagation, closed convexity, continuity, precompactness, and the self-map property on one and the same set
   $$
-  \mathcal{K}_{x_\ast,\eta}
+  \mathcal{K}_{X_\ast,\eta}
   $$
 
 So the true blocker is not the abstract fixed-point theorem. It is the production of one legitimate tame self-map domain carrying all of the hypotheses at once.
@@ -2628,7 +2630,7 @@ So the true blocker is not the abstract fixed-point theorem. It is the productio
 
 The visible Banach-space constraints should be separated from the delayed-root constraints. Fix constants
 $$
-x_\ast\in(0,X_{\max}),
+X_\ast\in(0,X_{\max}),
 \qquad
 U_{\max}>0,
 \qquad
@@ -2638,15 +2640,15 @@ h\ge \frac{2X_{\max}}{c_f}
 $$
 and define
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 \subset
-\Sigma^-_{x_\ast,\eta}
+\Sigma^-_{X_\ast,\eta}
 $$
 to be the set of histories $\phi\in C^1([-h,0])$ such that:
 
 - section anchoring:
   $$
-  \phi(0)=x_\ast
+  \phi(0)=X_\ast
   $$
 - inbound sign at the section:
   $$
@@ -2687,12 +2689,12 @@ $$
 $$
 The point is to keep only affine and supremum-type constraints inside
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 while postponing nonlocal tame delayed-root conditions to a sub-envelope.
 The envelope is intentionally written in the signed coordinate
 $$
-x\in[-X_{\max},X_{\max}]
+X\in[-X_{\max},X_{\max}]
 $$
 rather than in a one-sided radial coordinate. A genuine origin-crossing cycle may store data from both sign sheets inside
 $$
@@ -2705,25 +2707,25 @@ $$
 would exclude valid histories whenever the memory window crosses the origin. Branch labels, exterior sheets, and origin-crossing status belong to the finite tame certificate, not to the convex Banach envelope.
 Those delayed-root conditions are not visibly convex inside
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 so the next proposition is a genuine packaging target rather than an automatic consequence of intersecting
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 with the naive tame subclass.
 
 > **Target Proposition (Closed Convex Tame Envelope).**
 > The remaining topological task is to exhibit a nonempty closed convex set
 > $$
-> \mathcal{K}_{x_\ast,\eta}
+> \mathcal{K}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}
+> \mathcal{C}_{X_\ast,\eta}
 > $$
 > such that:
 > 1. the propagated nonempty tame class lies inside
 >    $$
->    \mathcal{K}_{x_\ast,\eta};
+>    \mathcal{K}_{X_\ast,\eta};
 >    $$
 > 2. the return map
 >    $$
@@ -2731,7 +2733,7 @@ with the naive tame subclass.
 >    $$
 >    is well defined on
 >    $$
->    \mathcal{K}_{x_\ast,\eta};
+>    \mathcal{K}_{X_\ast,\eta};
 >    $$
 > 3. the delayed-root persistence and Jacobian bounds defining tameness remain valid on that domain;
 > 4. and the tame constraints are closed under limits in the
@@ -2742,17 +2744,17 @@ with the naive tame subclass.
 
 This is the exact topological object needed by the final fixed-point theorem. The role of
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 is to carry the convex bounds; the role of
 $$
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 $$
 is to put the same convex bounds and the tame delayed geometry on one matching domain. In particular, this target does not assert that Jacobian lower bounds or branch-count restrictions are convex by inspection. It isolates the additional burden of producing a closed convex subset on which those tame conditions persist. The self-map property is a separate dynamical burden supplied later by invariant-envelope closure.
 
 The clean way to discharge that burden is not to put the nonconvex delayed-root labels directly into the definition of
 $$
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 $$
 Instead, one should produce a finite tame certificate: a finite family of continuous affine functionals
 $$
@@ -2766,10 +2768,10 @@ b_\alpha
 $$
 such that the closed affine tube
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 \equiv
 \left\{
-\phi\in\mathcal{C}_{x_\ast,\eta}
+\phi\in\mathcal{C}_{X_\ast,\eta}
 \;\middle|\;
 \ell_\alpha(\phi)\le b_\alpha
 \text{ for every }\alpha\in\mathcal{I}_{\mathrm{cert}}
@@ -2786,17 +2788,17 @@ implies the desired finite branch chart, Jacobian floors, root-count ceilings, a
 >
 > 1. one seed-propagated history
 >    $$
->    \phi_{\mathrm{seed,cyc}}\in\mathcal{C}_{x_\ast,\eta}
+>    \phi_{\mathrm{seed,cyc}}\in\mathcal{C}_{X_\ast,\eta}
 >    $$
 >    satisfies all certificate inequalities with strict slack;
 > 2. every
 >    $$
->    \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+>    \phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 >    $$
 >    has the same finite active branch chart on the stored interval and on the controlled one-cycle continuation;
 >    this chart includes the signed exterior sheet labels and origin-crossing layer labels needed to interpret the signed
 >    $$
->    x
+>    X
 >    $$
 >    history;
 > 3. on that chart the delayed roots remain simple with uniform Jacobian floor
@@ -2805,7 +2807,7 @@ implies the desired finite branch chart, Jacobian floors, root-count ceilings, a
 >    $$
 > 4. the active branch count, memory depth, position, speed, and Lipschitz-velocity bounds are bounded by the constants used in
 >    $$
->    \mathcal{C}_{x_\ast,\eta};
+>    \mathcal{C}_{X_\ast,\eta};
 >    $$
 > 5. and these certificate implications are closed under
 >    $$
@@ -2813,21 +2815,21 @@ implies the desired finite branch chart, Jacobian floors, root-count ceilings, a
 >    $$
 >    limits inside
 >    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+>    \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 >    $$
 >
 > Then
 > $$
-> \mathcal{K}_{x_\ast,\eta}
+> \mathcal{K}_{X_\ast,\eta}
 > \equiv
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > is a nonempty closed convex tame envelope.
 
 Proof.
 The set
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 is closed and convex by its affine section condition, interval bounds, speed bounds, and Lipschitz-velocity bound. Each certificate condition
 $$
@@ -2839,7 +2841,7 @@ C^1([-h,0])
 $$
 so the finite intersection
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 is closed and convex. It is nonempty because
 $$
@@ -2851,7 +2853,7 @@ C^1
 $$
 limits inside the certified set. Hence
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 is the required nonempty closed convex tame envelope.
 
@@ -2882,7 +2884,7 @@ and returned-sample residuals. Until that data packet exists, every finite-certi
 > **Proposition (Sampled seed-cycle tube gives a finite tame certificate).**
 > Let
 > $$
-> \phi_{\mathrm{cyc}}\in\mathcal{C}_{x_\ast,\eta}
+> \phi_{\mathrm{cyc}}\in\mathcal{C}_{X_\ast,\eta}
 > $$
 > be a seed-propagated history whose one-cycle continuation is defined on
 > $$
@@ -2932,7 +2934,7 @@ and returned-sample residuals. Until that data packet exists, every finite-certi
 > $$
 > such that every
 > $$
-> \phi\in\mathcal{C}_{x_\ast,\eta}
+> \phi\in\mathcal{C}_{X_\ast,\eta}
 > $$
 > satisfying those finite inequalities lies in a
 > $$
@@ -3025,7 +3027,7 @@ C^1([-h,0])
 $$
 The previous proposition then turns their finite intersection with
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 into a closed convex tame envelope.
 
@@ -3034,21 +3036,21 @@ $$
 \nu_{\mathrm{seed}}
 \equiv
 \min_{\beta\in\mathcal{B}_{\mathrm{act}}}
-\inf_{t\in I_\beta}|J_\beta(t)|
+\inf_{T\in I_\beta}|J_\beta(T)|
 $$
 $$
 \gamma_{\mathrm{gap}}
 \equiv
 \min_{\beta\in\mathcal{B}_{\mathrm{inact}}}
-\inf_{(t,\theta)\in Q_\beta}
-|F_\beta(t,\theta)|
+\inf_{(T,\theta)\in Q_\beta}
+|F_\beta(T,\theta)|
 $$
 $$
 \gamma_h
 \equiv
 \min_{\beta\in\mathcal{B}_{\mathrm{act}}}
-\inf_{t\in I_\beta}
-\operatorname{dist}\big(\theta_\beta(t),\{-h,0\}\big)
+\inf_{T\in I_\beta}
+\operatorname{dist}\big(\theta_\beta(T),\{-h,0\}\big)
 $$
 together with the envelope slack
 $$
@@ -3064,7 +3066,7 @@ A_{\max}-\operatorname{Lip}(\dot\phi_{\mathrm{cyc}})
 $$
 Here
 $$
-F_\beta(t,\theta)=0
+F_\beta(T,\theta)=0
 $$
 denotes the delayed-root equation for branch candidate
 $$
@@ -3195,14 +3197,14 @@ These four strict inequalities are precisely the branch-chart, gap, memory-depth
 > **Proposition (Precompactness of the Return Image).**
 > Fix a dual-mollified inbound class
 > $$
-> \mathcal{A}_{x_\ast,\eta}
+> \mathcal{A}_{X_\ast,\eta}
 > \subset
-> \Sigma^-_{x_\ast,\eta}
+> \Sigma^-_{X_\ast,\eta}
 > $$
 > such that:
 > 1. for every
 >    $$
->    \psi\in\mathcal{A}_{x_\ast,\eta},
+>    \psi\in\mathcal{A}_{X_\ast,\eta},
 >    $$
 >    the one-cycle return time
 >    $$
@@ -3235,7 +3237,7 @@ These four strict inequalities are precisely the branch-chart, gap, memory-depth
 >
 > Then
 > $$
-> P_\eta\!\big(\mathcal{A}_{x_\ast,\eta}\big)
+> P_\eta\!\big(\mathcal{A}_{X_\ast,\eta}\big)
 > $$
 > is precompact in
 > $$
@@ -3247,7 +3249,7 @@ Take any sequence
 $$
 \phi_n=P_\eta(\psi_n),
 \qquad
-\psi_n\in\mathcal{A}_{x_\ast,\eta}
+\psi_n\in\mathcal{A}_{X_\ast,\eta}
 $$
 The returned-history bounds give uniform boundedness in
 $$
@@ -3293,11 +3295,11 @@ $$
 $$
 Since
 $$
-\phi_n(\theta)-\phi_n(0)=\int_0^\theta \dot\phi_n(s)\,ds
+\phi_n(\theta)-\phi_n(0)=\int_0^\theta \dot\phi_n(\sigma)\,d\sigma
 $$
 passing to the limit gives
 $$
-\phi_\ast(\theta)-\phi_\ast(0)=\int_0^\theta v_\ast(s)\,ds
+\phi_\ast(\theta)-\phi_\ast(0)=\int_0^\theta v_\ast(\sigma)\,d\sigma
 $$
 Hence
 $$
@@ -3313,7 +3315,7 @@ C^1
 $$
 norm. Therefore
 $$
-P_\eta\!\big(\mathcal{A}_{x_\ast,\eta}\big)
+P_\eta\!\big(\mathcal{A}_{X_\ast,\eta}\big)
 $$
 is precompact in
 $$
@@ -3360,7 +3362,7 @@ The continuity row used later should be a theorem on certified branch charts, no
 >    \qquad
 >    \operatorname{Lip}(\dot\phi)\le A_{\max},
 >    \qquad
->    \tau_\beta(t)\in[0,h-\gamma_h]
+>    \tau_\beta(T)\in[0,h-\gamma_h]
 >    $$
 >    for some
 >    $$
@@ -3384,7 +3386,7 @@ The continuity row used later should be a theorem on certified branch charts, no
 > $$
 > \phi
 > \longmapsto
-> x_\phi|_{[-h,\tau_{\mathrm{wp}}]}
+> X_\phi|_{[-h,\tau_{\mathrm{wp}}]}
 > $$
 > is locally Lipschitz from
 > $$
@@ -3427,7 +3429,7 @@ C^1
 $$
 history segment to acceleration. The integral equation
 $$
-x(t)=\phi(0)+t\dot\phi(0)+\int_0^t(t-s)\,F_\eta(x_s)\,ds
+X(T)=\phi(0)+T\dot\phi(0)+\int_0^T(T-S)\,F_\eta(X_S)\,dS
 $$
 then gives local existence and uniqueness by the standard contraction argument on a short
 $$
@@ -3435,11 +3437,11 @@ C^1
 $$
 tube. Applying the same Lipschitz estimate to two solutions and using Gronwall on the controlled interval gives local Lipschitz dependence of
 $$
-x
+X
 $$
 and
 $$
-\dot x
+\frac{dX}{dT}
 $$
 on the initial history.
 
@@ -3461,9 +3463,9 @@ The continuity theorem must distinguish uncontrolled branch changes from certifi
 >    $$
 > 2. a local fold normal form
 >    $$
->    g_k(t,s;\lambda)
+>    g_k(T,S;\lambda)
 >    =
->    a_k(s-s_k)^2+b_k\lambda+\mathrm{higher\ order},
+>    a_k(S-s_k)^2+b_k\lambda+\mathrm{higher\ order},
 >    \qquad
 >    a_kb_k\ne 0;
 >    $$
@@ -3481,17 +3483,17 @@ This reconciles the continuity row with the causal-fold geometry. A field-speed 
 
 ### Continuity on the tame envelope
 
-> **Proposition (Continuity of the Return Map on $\mathcal{K}_{x_\ast,\eta}$).**
+> **Proposition (Continuity of the Return Map on $\mathcal{K}_{X_\ast,\eta}$).**
 > Let
 > $$
-> \mathcal{K}_{x_\ast,\eta}
+> \mathcal{K}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}
+> \mathcal{C}_{X_\ast,\eta}
 > $$
 > be a closed convex tame envelope such that:
 > 1. each
 >    $$
->    \psi\in\mathcal{K}_{x_\ast,\eta}
+>    \psi\in\mathcal{K}_{X_\ast,\eta}
 >    $$
 >    admits a unique forward continuation on
 >    $$
@@ -3502,14 +3504,14 @@ This reconciles the continuity row with the causal-fold geometry. A field-speed 
 > 3. outside a certified fold-event atlas the active delayed roots persist continuously with the history, with no root birth, root collision, or Jacobian loss of transversality; across each certified fold layer, the active branch list undergoes the parity-preserving transition recorded in the atlas;
 > 4. the first return to the inbound section is uniformly transverse:
 >    $$
->    x(T(\psi);\psi)=x_\ast,
+>    X(T(\psi);\psi)=X_\ast,
 >    \qquad
->    \dot x(T(\psi);\psi)\le -u_{\mathrm{sec}}<0.
+>    \frac{dX}{dT}(T(\psi);\psi)\le -u_{\mathrm{sec}}<0.
 >    $$
 >
 > Then
 > $$
-> P_\eta:\mathcal{K}_{x_\ast,\eta}\to C^1([-h,0])
+> P_\eta:\mathcal{K}_{X_\ast,\eta}\to C^1([-h,0])
 > $$
 > is continuous.
 
@@ -3522,9 +3524,9 @@ $$
 $$
 The certified branch-chart well-posedness proposition and the class-uniform tube bounds imply
 $$
-x_n\to x,
+X_n\to X,
 \qquad
-\dot x_n\to \dot x
+\frac{dX_n}{dT}\to \frac{dX}{dT}
 $$
 uniformly on compact intervals in
 $$
@@ -3532,15 +3534,15 @@ $$
 $$
 The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted separator transitions by integral-law fold layers with fixed incoming and outgoing charts, so the forward solution map is continuous on the entire tame envelope. For the section function
 $$
-G(t,\psi)\equiv x(t;\psi)-x_\ast
+G(T,\psi)\equiv X(T;\psi)-X_\ast
 $$
 the convergence of
 $$
-x_n
+X_n
 $$
 to
 $$
-x
+X
 $$
 is uniform in a fixed neighborhood of
 $$
@@ -3550,7 +3552,7 @@ Uniform transversality gives
 $$
 G(T(\psi),\psi)=0,
 \qquad
-\partial_tG(T(\psi),\psi)=\dot x(T(\psi);\psi)\le -u_{\mathrm{sec}}<0
+\partial_TG(T(\psi),\psi)=\frac{dX}{dT}(T(\psi);\psi)\le -u_{\mathrm{sec}}<0
 $$
 and therefore
 $$
@@ -3582,7 +3584,7 @@ T(\psi_n)
 $$
 Finally,
 $$
-P_\eta(\psi_n)(\theta)=x_n(T(\psi_n)+\theta)
+P_\eta(\psi_n)(\theta)=X_n(T(\psi_n)+\theta)
 $$
 so the convergence of trajectories and return times yields
 $$
@@ -3595,7 +3597,10 @@ $$
 
 ### Invariant-envelope closure
 
+The goal of this section is to turn many local estimates into one return trap. A single margin can show that one part of the motion bends the right way, but a breather proof needs the whole delayed history to stay in a controlled class for an entire cycle. The invariant envelope is that controlled class: if the three margins stay positive together, the return map has a plausible domain on which fixed-point closure can be attempted.
+
 The cycle estimates now reduce to three explicit margins:
+
 $$
 \mathfrak M_{\mathrm{in}}
 \equiv
@@ -3629,18 +3634,18 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 > **Theorem (Invariant-Envelope Closure from Compatible Explicit Regimes).**
 > Fix
 > $$
-> x_\ast>0
+> X_\ast>0
 > $$
 > and a tame inbound class
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}.
+> \mathcal{C}_{X_\ast,\eta}.
 > $$
 > Assume:
 > 1. the collapse-to-crossing control theorem holds on
 >    $$
->    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+>    \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 >    $$
 >    with crossing-speed upper bound
 >    $$
@@ -3673,7 +3678,7 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >    $$
 > 6. the envelope parameters satisfy
 >    $$
->    X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
+>    X_{\max}\ge \max\{X_\ast,X_{\mathrm{out},\max}\},
 >    $$
 >    $$
 >    U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
@@ -3689,9 +3694,9 @@ coming from the unified trimmed-apocenter outer-turn criterion. The first margin
 >
 > Then
 > $$
-> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\big)
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}.
+> \mathcal{C}_{X_\ast,\eta}.
 > $$
 
 Proof.
@@ -3713,15 +3718,15 @@ $$
 $$
 The return lemmas then give re-entry to
 $$
-x=x_\ast
+X=X_\ast
 $$
 with class-uniform position, speed, acceleration, time, and tame delayed-root bounds. The envelope inequalities in item 6 place the entire returned history back inside
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 This is the dynamical input needed to turn
 $$
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 $$
 into a genuine self-map domain for
 $$
@@ -3818,7 +3823,7 @@ This theorem should be read narrowly. It records the exact self-map statement ob
 > $$
 > satisfying
 > $$
-> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}\},
+> X_{\max}\ge \max\{X_\ast,X_{\mathrm{out},\max}\},
 > $$
 > $$
 > U_{\max}\ge \max\{V_{\max},V_{\mathrm{ent}}^{\mathrm{out}},U_{\mathrm{sec},\max}\},
@@ -4016,7 +4021,7 @@ persists on a small neighborhood of
 $$
 p_0
 $$
-The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the strict-slack case open.
+The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the stricT-T_{\mathrm{em}}lack case open.
 
 This proposition reduces the coupled-regime problem to a finite arithmetic certificate: exhibit one tuple
 $$
@@ -4137,11 +4142,11 @@ The following sufficient corridor is the scalar form of that arithmetic certific
 > $$
 > Suppose the force bounds on a chosen envelope factor as
 > $$
-> \overline A_s^\rho=gS_{\mathrm{in}}^\rho,
+> \overline A_s^\rho=g_s{\mathrm{in}}^\rho,
 > \qquad
 > \underline A_p^{\mathrm{out}}=gP_{\mathrm{out}},
 > \qquad
-> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=gS_{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=g_s{\mathrm{ent}}^{\mathrm{out}},
 > $$
 > where the coefficients are independent of
 > $$
@@ -4287,9 +4292,9 @@ Thus the finite strict-regime list holds. Choosing the envelope constants with s
 > **Proposition (Certified self-map criterion).**
 > Let
 > $$
-> \mathcal{K}_{x_\ast,\eta}
+> \mathcal{K}_{X_\ast,\eta}
 > =
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > be a closed convex tame envelope produced by a finite certificate
 > $$
@@ -4298,13 +4303,13 @@ Thus the finite strict-regime list holds. Choosing the envelope constants with s
 > Assume:
 > 1. the invariant-envelope closure theorem applies on
 >    $$
->    \mathcal{K}_{x_\ast,\eta},
+>    \mathcal{K}_{X_\ast,\eta},
 >    $$
 >    so that
 >    $$
->    P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+>    P_\eta(\phi)\in\mathcal{C}_{X_\ast,\eta}
 >    \qquad
->    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta};
+>    \text{for every }\phi\in\mathcal{K}_{X_\ast,\eta};
 >    $$
 > 2. each certificate inequality is preserved by one return:
 >    $$
@@ -4313,24 +4318,24 @@ Thus the finite strict-regime list holds. Choosing the envelope constants with s
 >    \text{for every }
 >    \alpha\in\mathcal{I}_{\mathrm{cert}}
 >    \text{ and every }
->    \phi\in\mathcal{K}_{x_\ast,\eta}.
+>    \phi\in\mathcal{K}_{X_\ast,\eta}.
 >    $$
 >
 > Then
 > $$
-> P_\eta(\mathcal{K}_{x_\ast,\eta})
+> P_\eta(\mathcal{K}_{X_\ast,\eta})
 > \subseteq
-> \mathcal{K}_{x_\ast,\eta}.
+> \mathcal{K}_{X_\ast,\eta}.
 > $$
 
 Proof.
 Fix
 $$
-\phi\in\mathcal{K}_{x_\ast,\eta}
+\phi\in\mathcal{K}_{X_\ast,\eta}
 $$
 By invariant-envelope closure,
 $$
-P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+P_\eta(\phi)\in\mathcal{C}_{X_\ast,\eta}
 $$
 By certificate preservation,
 $$
@@ -4342,9 +4347,9 @@ Therefore
 $$
 P_\eta(\phi)
 \in
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 =
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 $$
 Since
 $$
@@ -4357,7 +4362,7 @@ For the sampled certificate above, certificate preservation has an entirely fini
 > **Proposition (Finite sampled preservation criterion).**
 > Suppose
 > $$
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > is defined by the sampled seed-cycle tube in Proposition `Sampled seed-cycle tube gives a finite tame certificate`, with mesh
 > $$
@@ -4369,13 +4374,13 @@ For the sampled certificate above, certificate preservation has an entirely fini
 > $$
 > Assume invariant-envelope closure gives
 > $$
-> P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+> P_\eta(\phi)\in\mathcal{C}_{X_\ast,\eta}
 > \qquad
-> \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> \text{for every }\phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 > $$
 > If, for every
 > $$
-> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > and every mesh index
 > $$
@@ -4391,23 +4396,23 @@ For the sampled certificate above, certificate preservation has an entirely fini
 > $$
 > then
 > $$
-> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> P_\eta(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}})
 > \subseteq
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 > $$
 
 Proof.
 The invariant-envelope theorem gives the returned-history membership in
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 The displayed finite sample inequalities are exactly the certificate inequalities defining
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 in the sampled construction. Hence every returned history satisfies all certificate inequalities and therefore lies in
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 
 The hard part of applying this criterion is proving the finite mesh inequalities uniformly. The following budget form is the one that should be used in later proof checking.
@@ -4415,9 +4420,9 @@ The hard part of applying this criterion is proving the finite mesh inequalities
 > **Proposition (Returned-sample budget certificate).**
 > In the setting of Proposition `Finite sampled preservation criterion`, suppose there are finite returned-sample budgets
 > $$
-> E_{j,+}^{x},
+> E_{j,+}^{X},
 > \qquad
-> E_{j,-}^{x},
+> E_{j,-}^{X},
 > \qquad
 > E_{j,+}^{v},
 > \qquad
@@ -4427,15 +4432,15 @@ The hard part of applying this criterion is proving the finite mesh inequalities
 > $$
 > such that for every
 > $$
-> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > the returned history satisfies
 > $$
 > P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)
-> \le E_{j,+}^{x},
+> \le E_{j,+}^{X},
 > \qquad
 > \phi_{\mathrm{cyc}}(\theta_j)-P_\eta(\phi)(\theta_j)
-> \le E_{j,-}^{x},
+> \le E_{j,-}^{X},
 > $$
 > and
 > $$
@@ -4447,7 +4452,7 @@ The hard part of applying this criterion is proving the finite mesh inequalities
 > $$
 > If the strict sample-slack inequalities
 > $$
-> \max\{E_{j,+}^{x},E_{j,-}^{x},E_{j,+}^{v},E_{j,-}^{v}\}
+> \max\{E_{j,+}^{X},E_{j,-}^{X},E_{j,+}^{v},E_{j,-}^{v}\}
 > <
 > \frac{r_{\mathrm{cert}}}{4}
 > \qquad
@@ -4455,9 +4460,9 @@ The hard part of applying this criterion is proving the finite mesh inequalities
 > $$
 > hold, then
 > $$
-> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> P_\eta(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}})
 > \subseteq
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 > $$
 
 Proof.
@@ -4486,11 +4491,11 @@ for every mesh index. Proposition `Finite sampled preservation criterion` then g
 > $$
 > and define the one-sided returned residuals
 > $$
-> R_{j,+}^{x}
+> R_{j,+}^{X}
 > \equiv
 > \big(P_\eta(\phi_{\mathrm{cyc}})(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)\big)_+,
 > \qquad
-> R_{j,-}^{x}
+> R_{j,-}^{X}
 > \equiv
 > \big(\phi_{\mathrm{cyc}}(\theta_j)-P_\eta(\phi_{\mathrm{cyc}})(\theta_j)\big)_+,
 > $$
@@ -4505,13 +4510,13 @@ for every mesh index. Proposition `Finite sampled preservation criterion` then g
 > $$
 > Suppose also that the return map sample functionals have finite local sensitivity constants on
 > $$
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}},
 > $$
 > namely
 > $$
 > |P_\eta(\phi)(\theta_j)-P_\eta(\phi_{\mathrm{cyc}})(\theta_j)|
 > \le
-> L_j^x\|\phi-\phi_{\mathrm{cyc}}\|_{C^1},
+> L_j^X\|\phi-\phi_{\mathrm{cyc}}\|_{C^1},
 > $$
 > $$
 > |\partial_\theta P_\eta(\phi)(\theta_j)
@@ -4522,11 +4527,11 @@ for every mesh index. Proposition `Finite sampled preservation criterion` then g
 > $$
 > for every
 > $$
-> \phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> \phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 > $$
 > If
 > $$
-> \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
+> \max\{R_{j,+}^{X},R_{j,-}^{X}\}+L_j^X r_{\mathrm{cert}}
 > <
 > \frac{r_{\mathrm{cert}}}{4},
 > $$
@@ -4542,9 +4547,9 @@ for every mesh index. Proposition `Finite sampled preservation criterion` then g
 > $$
 > then the returned-sample budget certificate holds, and hence
 > $$
-> P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+> P_\eta(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}})
 > \subseteq
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 > $$
 
 Proof.
@@ -4554,13 +4559,13 @@ $$
 $$
 for every
 $$
-\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 Therefore
 $$
 P_\eta(\phi)(\theta_j)-\phi_{\mathrm{cyc}}(\theta_j)
 \le
-R_{j,+}^{x}+L_j^x r_{\mathrm{cert}}
+R_{j,+}^{X}+L_j^X r_{\mathrm{cert}}
 $$
 and the same triangle-inequality argument gives the other three one-sided bounds. The displayed strict inequalities therefore define returned-sample budgets satisfying the previous proposition. The self-map inclusion follows.
 
@@ -4573,8 +4578,8 @@ This criterion is only a sufficient route. If the raw local sensitivity is too l
 > \equiv
 > \frac{r_{\mathrm{cert}}}{4}
 > -
-> \max_{0\le j\le N}
-> \max\{E_{j,+}^{x},E_{j,-}^{x},E_{j,+}^{v},E_{j,-}^{v}\}.
+> \maX_{0\le j\le N}
+> \max\{E_{j,+}^{X},E_{j,-}^{X},E_{j,+}^{v},E_{j,-}^{v}\}.
 > $$
 > If
 > $$
@@ -4582,7 +4587,7 @@ This criterion is only a sufficient route. If the raw local sensitivity is too l
 > $$
 > then every codimension-one sample face of
 > $$
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > is strictly inward under one return.
 
@@ -4626,26 +4631,26 @@ by one of the established cycle margins. Because the certificate family is finit
 >    $$
 > 2. the sampled finite certificate defines
 >    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}};
 >    $$
 > 3. the factorized coupled-regime corridor holds, so invariant-envelope closure gives
 >    $$
->    P_\eta(\phi)\in\mathcal{C}_{x_\ast,\eta}
+>    P_\eta(\phi)\in\mathcal{C}_{X_\ast,\eta}
 >    \qquad
->    \text{for every }\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    \text{for every }\phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}};
 >    $$
 > 4. and either the direct returned-sample budget certificate holds on
 >    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}},
+>    \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}},
 >    $$
 >    for example by boundary trapping, or the residual-plus-sensitivity sampled preservation criterion holds on
 >    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+>    \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 >    $$
 >
 > Then
 > $$
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > is a nonempty closed convex tame self-map domain for
 > $$
@@ -4653,19 +4658,19 @@ by one of the established cycle margins. Because the certificate family is finit
 > $$
 > namely
 > $$
-> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+> P_\eta\!\big(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}\big)
 > \subseteq
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}.
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}.
 > $$
 
 Proof.
 The positive seed-cycle ledger and the radius criterion give the strict branch-chart, gap, memory-depth, and envelope margins required by the sampled finite certificate. The finite certificate construction then makes
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
-a nonempty closed convex tame envelope. The factorized corridor supplies the coupled strict-slack point needed by invariant-envelope closure, so returned histories lie in
+a nonempty closed convex tame envelope. The factorized corridor supplies the coupled stricT-T_{\mathrm{em}}lack point needed by invariant-envelope closure, so returned histories lie in
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 Finally, a direct returned-sample budget certificate gives the finite sampled preservation criterion immediately. If that direct route is not used, the residual-plus-sensitivity criterion implies the same returned-sample budget certificate. In either case the finite sampled preservation criterion gives the certificate inequalities after one return. Therefore the returned history lies in the certified set itself, proving the self-map inclusion.
 
@@ -4707,9 +4712,9 @@ The finite self-map ledger has five rows. The first, second, third, and fifth ro
    $$
    the pre-ledger must classify the row as empty, simple-root, or fold-layer using
    $$
-   u=c_f t-x,
+   u=c_f T-X,
    \qquad
-   w=c_f t+x
+   w=c_f T+X
    $$
    Empty rows require strict range separation; simple-root rows require a positive source-side derivative floor; fold-layer rows remain outside branch-sum reduction until the dual-mollified fold certificate supplies the parity-preserving transition
    $$
@@ -4790,7 +4795,7 @@ The finite self-map ledger has five rows. The first, second, third, and fifth ro
    $$
    the residual-plus-sensitivity route should be considered closed for that unstable direction, and the returned-sample row must use direct one-sided boundary trapping. If the spectrum and operator-norm enclosure are small enough to give usable constants
    $$
-   L_j^x,
+   L_j^X,
    \qquad
    L_j^v
    $$
@@ -4812,13 +4817,13 @@ The finite self-map ledger has five rows. The first, second, third, and fifth ro
 5. **Returned-sample row.**
    Prefer the direct one-sided budget route when local sensitivities are large: prove
    $$
-   E_{j,\pm}^{x},
+   E_{j,\pm}^{X},
    \qquad
    E_{j,\pm}^{v}
    $$
    by boundary trapping with strict sample slack. Equivalently, when the sensitivity constants are tame enough, verify
    $$
-   \max\{R_{j,+}^{x},R_{j,-}^{x}\}+L_j^x r_{\mathrm{cert}}
+   \max\{R_{j,+}^{X},R_{j,-}^{X}\}+L_j^X r_{\mathrm{cert}}
    <
    \frac{r_{\mathrm{cert}}}{4},
    \qquad
@@ -4834,9 +4839,9 @@ This ledger is deliberately finite. Passing the seed-chart, coupled-corridor, so
 
 After the finite closure audit supplies
 $$
-P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+P_\eta\!\big(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}\big)
 \subseteq
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 precompactness is no longer a separate dynamical mystery: the returned histories already lie in the same certified
 $$
@@ -4877,20 +4882,20 @@ is the finite section-transversality check needed by the continuity proposition.
 > 2. the certified branch-chart well-posedness proposition applies on the finite chart intervals covering the stored history and one-cycle continuation;
 > 3. the active delayed roots persist on
 >    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+>    \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 >    $$
 >    with the Jacobian floors, branch-count ceilings, and memory-depth bounds supplied by the certificate outside the certified fold-event atlas, and each fold layer in that atlas has a parity-preserving incoming-to-outgoing chart transition.
 >
 > Then
 > $$
 > P_\eta:
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > \to
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > is continuous, and
 > $$
-> P_\eta\!\big(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}\big)
+> P_\eta\!\big(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}\big)
 > $$
 > is precompact in
 > $$
@@ -4900,25 +4905,25 @@ is the finite section-transversality check needed by the continuity proposition.
 Proof.
 The finite-certificate invariant closure package gives
 $$
-P_\eta(\phi)\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+P_\eta(\phi)\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 \subseteq
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 for every
 $$
-\phi\in\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\phi\in\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 Hence every returned history satisfies the position, speed, Lipschitz-velocity, and horizon bounds required by Proposition `Precompactness of the Return Image`; that proposition gives precompactness.
 
 For continuity, certified branch-chart well-posedness gives continuous dependence of the controlled continuation on the initial history while the certificate keeps the same exterior charts, origin-layer charts, fold-event atlas, and Jacobian floors. The displayed return-speed estimate gives the uniform transverse return condition
 $$
-\dot x(T(\phi);\phi)\le -u_{\mathrm{ret}}^{\mathrm{cert}}<0
+\frac{dX}{dT}(T(\phi);\phi)\le -u_{\mathrm{ret}}^{\mathrm{cert}}<0
 $$
 Therefore the continuity proposition for the return map applies with
 $$
-\mathcal{K}_{x_\ast,\eta}
+\mathcal{K}_{X_\ast,\eta}
 =
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 and yields continuity of
 $$
@@ -4980,15 +4985,15 @@ Before those five audit rows can be meaningful, the candidate must pass the name
    with a certificate mesh and either fold-adapted fractional basis data near field-speed separators or an interval-collocation representation with equivalent residual targets;
 2. verify the `Null-Coordinate Causal Pre-Ledger` target for
    $$
-   |x(t)-x(s)|=c_f(t-s),
+   |X(T)-X(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}}),
    \qquad
-   s<t
+   T_{\mathrm{em}}<T
    $$
    using
    $$
-   u=c_f t-x,
+   u=c_f T-X,
    \qquad
-   w=c_f t+x
+   w=c_f T+X
    $$
    to classify every ordered arc-pair block as empty, simple-root, or fold-layer. After accepted simple-root and fold-layer subblocks are removed, the remaining parent-complement strips must also be consumed by strict range separation, endpoint-excluded singleton contact under the declared boundary convention, exact fold-layer coverage, or another already accepted same-packet complement predicate. If this finite pre-ledger cannot be certified with strict gaps, derivative floors, fold-layer bounds, and consumed parent complements, the candidate or itinerary fails before the seed-cycle margin ledger is attempted;
 3. verify the seed-cycle margin ledger
@@ -5007,7 +5012,7 @@ Before those five audit rows can be meaningful, the candidate must pass the name
    $$
    to choose the sampled finite tame certificate for
    $$
-   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+   \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
    $$
 4. verify the factorized coupled-corridor inequalities
    $$
@@ -5045,27 +5050,27 @@ Before those five audit rows can be meaningful, the candidate must pass the name
    use the result to route the returned-sample proof to boundary trapping rather than residual-plus-sensitivity estimates.
 6. derive returned-sample budgets. If the sample sensitivities
    $$
-   L_j^x,
+   L_j^X,
    \qquad
    L_j^v
    $$
    are too large to close the residual-plus-sensitivity route, use direct boundary trapping for
    $$
-   E_{j,\pm}^{x},
+   E_{j,\pm}^{X},
    \qquad
    E_{j,\pm}^{v}
    $$
    with strict sample slack. When sensitivities are small enough, the residual-plus-sensitivity inequalities
    $$
-   R_{j,\pm}^{x}+L_j^x r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
+   R_{j,\pm}^{X}+L_j^X r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4},
    \qquad
    R_{j,\pm}^{v}+L_j^v r_{\mathrm{cert}}<\frac{r_{\mathrm{cert}}}{4}
    $$
    are sufficient. In either case, prove the finite checks that imply
    $$
-   P_\eta(\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}})
+   P_\eta(\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}})
    \subseteq
-   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+   \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
    $$
    on that same domain.
 7. verify the topology row:
@@ -5074,7 +5079,7 @@ Before those five audit rows can be meaningful, the candidate must pass the name
    $$
    and certified branch-chart well-posedness for the dual-mollified vector field on the controlled continuation, including the origin-layer chart and certified fold-event atlas, so the certified topology proposition gives continuity and precompactness on
    $$
-   \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+   \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
    $$
 
 Once the pre-ledger gate passes and the five audit rows are theorem-level, the finite-certificate invariant closure package supplies the self-map domain and the certified topology proposition supplies continuity and precompactness. The remaining Schauder step is then formally routine.
@@ -5086,7 +5091,7 @@ Once the pre-ledger gate passes and the five audit rows are theorem-level, the f
 > 1. the theorem `Seed-to-Tame Full-Cycle Propagation`;
 > 2. the finite-certificate invariant closure package, producing the nonempty closed convex tame self-map domain
 >    $$
->    \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}};
+>    \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}};
 >    $$
 > 3. and the certified topology proposition, giving continuity and precompactness of
 >    $$
@@ -5098,7 +5103,7 @@ Once the pre-ledger gate passes and the five audit rows are theorem-level, the f
 > $$
 > \phi_\eta^\ast
 > \in
-> \mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+> \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 > $$
 > such that
 > $$
@@ -5109,7 +5114,7 @@ Once the pre-ledger gate passes and the five audit rows are theorem-level, the f
 Proof.
 `Seed-to-Tame Full-Cycle Propagation` supplies a nonempty tame class. The finite-certificate invariant closure package places that class inside a nonempty closed convex self-map domain
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 Continuity and precompactness place the return image inside a compact subset of that same domain, while invariant-envelope closure prevents escape. Schauder therefore yields a fixed point of
 $$
@@ -5117,7 +5122,7 @@ P_\eta
 $$
 on
 $$
-\mathcal{K}_{x_\ast,\eta}^{\mathrm{cert}}
+\mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
 and by construction that fixed point is exactly a periodic returned history.
 This capstone remains conditional on the finite closure audit and certified topology row. Without one nonempty closed convex tame self-map domain carrying propagation, continuity, precompactness, and invariance all at once, Schauder does not yet apply.
@@ -5131,15 +5136,15 @@ The simplest seed is a strictly sub-field-speed affine inbound history on the ri
 > **Target Theorem (Seed History and Section-Tame Nonemptiness).**
 > Fix
 > $$
-> x_\ast>0,
+> X_\ast>0,
 > \qquad
 > 0<u_{\mathrm{seed}}<c_f,
 > \qquad
-> h\ge \frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> h\ge \frac{2X_\ast}{c_f-u_{\mathrm{seed}}}.
 > $$
 > Then there exists an explicit inbound history
 > $$
-> \psi_{\mathrm{seed}}\in \Sigma^-_{x_\ast,\eta}\cap \mathcal{C}_{x_\ast,\eta}
+> \psi_{\mathrm{seed}}\in \Sigma^-_{X_\ast,\eta}\cap \mathcal{C}_{X_\ast,\eta}
 > $$
 > such that:
 > 1. the stored history lies in the position, speed, and acceleration envelope;
@@ -5151,9 +5156,9 @@ The simplest seed is a strictly sub-field-speed affine inbound history on the ri
 >    $$
 >    remains inside a section-level tame subclass
 >    $$
->    \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+>    \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 >    \subseteq
->    \mathcal{C}_{x_\ast,\eta}.
+>    \mathcal{C}_{X_\ast,\eta}.
 >    $$
 
 This theorem is intentionally only a section-side nonemptiness statement. It does not yet say that the forward delayed flow preserves the same class for one full cycle. That stronger claim belongs to the later invariant-envelope theorem.
@@ -5161,34 +5166,34 @@ This theorem is intentionally only a section-side nonemptiness statement. It doe
 > **Proposition (Explicit affine inbound seed history).**
 > Fix
 > $$
-> x_\ast>0,
+> X_\ast>0,
 > \qquad
 > 0<u_{\mathrm{seed}}<c_f,
 > \qquad
-> h\ge \frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> h\ge \frac{2X_\ast}{c_f-u_{\mathrm{seed}}}.
 > $$
 > Define
 > $$
 > \psi_{\mathrm{seed}}(\theta)
 > \equiv
-> x_\ast-u_{\mathrm{seed}}\theta,
+> X_\ast-u_{\mathrm{seed}}\theta,
 > \qquad
 > \theta\in[-h,0].
 > $$
 > Then:
 > 1. the section conditions hold:
 >    $$
->    \psi_{\mathrm{seed}}(0)=x_\ast,
+>    \psi_{\mathrm{seed}}(0)=X_\ast,
 >    \qquad
 >    \dot\psi_{\mathrm{seed}}(0)=-u_{\mathrm{seed}}<0;
 >    $$
 > 2. the stored path is right exterior and monotone inbound:
 >    $$
->    x_\ast
+>    X_\ast
 >    \le
 >    \psi_{\mathrm{seed}}(\theta)
 >    \le
->    x_\ast+u_{\mathrm{seed}}h,
+>    X_\ast+u_{\mathrm{seed}}h,
 >    \qquad
 >    \dot\psi_{\mathrm{seed}}(\theta)=-u_{\mathrm{seed}},
 >    \qquad
@@ -5198,7 +5203,7 @@ This theorem is intentionally only a section-side nonemptiness statement. It doe
 >    $$
 >    \theta_{p,\mathrm{seed}}
 >    =
->    -\frac{2x_\ast}{c_f-u_{\mathrm{seed}}},
+>    -\frac{2X_\ast}{c_f-u_{\mathrm{seed}}},
 >    $$
 >    and its Jacobian satisfies
 >    $$
@@ -5213,7 +5218,7 @@ This theorem is intentionally only a section-side nonemptiness statement. It doe
 >
 > Consequently, if
 > $$
-> X_{\max}\ge x_\ast+u_{\mathrm{seed}}h,
+> X_{\max}\ge X_\ast+u_{\mathrm{seed}}h,
 > \qquad
 > U_{\max}\ge u_{\mathrm{seed}},
 > \qquad
@@ -5223,7 +5228,7 @@ This theorem is intentionally only a section-side nonemptiness statement. It doe
 > $$
 > then
 > $$
-> \psi_{\mathrm{seed}}\in \mathcal{C}_{x_\ast,\eta},
+> \psi_{\mathrm{seed}}\in \mathcal{C}_{X_\ast,\eta},
 > $$
 > and the stored-history transversality bounds hold with
 > $$
@@ -5242,9 +5247,9 @@ $$
 $$
 one has
 $$
-\psi_{\mathrm{seed}}(\theta)=x_\ast-u_{\mathrm{seed}}\theta
+\psi_{\mathrm{seed}}(\theta)=X_\ast-u_{\mathrm{seed}}\theta
 =
-x_\ast+u_{\mathrm{seed}}|\theta|
+X_\ast+u_{\mathrm{seed}}|\theta|
 $$
 so the stored path remains on the right exterior branch, decreases monotonically toward the section as
 $$
@@ -5258,23 +5263,23 @@ $$
 $$
 the delayed causal relation is
 $$
-x_\ast+\psi_{\mathrm{seed}}(\theta_p)=c_f(0-\theta_p)
+X_\ast+\psi_{\mathrm{seed}}(\theta_p)=c_f(0-\theta_p)
 $$
 Writing
 $$
-s=-\theta_p>0
+S=-\theta_p>0
 $$
 this becomes
 $$
-x_\ast+\bigl(x_\ast+u_{\mathrm{seed}}s\bigr)=c_f s
+X_\ast+\bigl(X_\ast+u_{\mathrm{seed}}S\bigr)=c_f S
 $$
 hence
 $$
-2x_\ast=(c_f-u_{\mathrm{seed}})s
+2X_\ast=(c_f-u_{\mathrm{seed}})S
 $$
 and therefore
 $$
-s=\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}
+S=\frac{2X_\ast}{c_f-u_{\mathrm{seed}}}
 $$
 The lower bound on
 $$
@@ -5282,7 +5287,7 @@ h
 $$
 ensures that
 $$
-\theta_{p,\mathrm{seed}}=-s
+\theta_{p,\mathrm{seed}}=-S
 $$
 lies inside
 $$
@@ -5305,15 +5310,15 @@ c_f(0-\theta_s)
 $$
 Again writing
 $$
-s=-\theta_s>0
+S=-\theta_s>0
 $$
 the left-hand side equals
 $$
-u_{\mathrm{seed}}s
+u_{\mathrm{seed}}S
 $$
 so the equation becomes
 $$
-u_{\mathrm{seed}}s=c_f s
+u_{\mathrm{seed}}S=c_f S
 $$
 Because
 $$
@@ -5321,7 +5326,7 @@ $$
 $$
 this has no solution for
 $$
-s>0
+S>0
 $$
 Hence there are no exact same-side self roots on
 $$
@@ -5337,12 +5342,12 @@ The final membership claim is then immediate from the displayed envelope inequal
 > $$
 > such that the set
 > $$
-> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 > \equiv
 > \left\{
-> \phi\in \mathcal{C}_{x_\ast,\eta}
+> \phi\in \mathcal{C}_{X_\ast,\eta}
 > \;\middle|\;
-> \phi(0)=x_\ast,
+> \phi(0)=X_\ast,
 > \quad
 > \dot\phi(0)\le -\frac{u_{\mathrm{seed}}}{2},
 > \quad
@@ -5354,7 +5359,7 @@ The final membership claim is then immediate from the displayed envelope inequal
 Proof sketch.
 The set is nonempty because
 $$
-\psi_{\mathrm{seed}}\in \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\psi_{\mathrm{seed}}\in \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 $$
 for every
 $$
@@ -5384,7 +5389,7 @@ This corollary is the first concrete nonvacuity statement for the theorem progra
 
 The seed construction resolves only the section-side nonvacuity issue. The next step is to promote a smaller neighborhood of seed histories to a genuinely nonempty tame class for the delayed flow itself. In other words, one wants to replace
 $$
-\mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 $$
 by a forward-propagated subclass on which the collapse, recapture, return, and root-control estimates all hold on one full cycle.
 
@@ -5393,16 +5398,16 @@ This is the precise bridge from the section-level seed construction to the invar
 > **Target Theorem (Seed-to-Tame Full-Cycle Propagation).**
 > Assume the affine seed proposition and the nonempty section-level neighborhood corollary above. Then there exists a nonempty subclass
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}
+> \mathcal{C}_{X_\ast,\eta}
 > $$
 > such that:
 > 1. every
 >    $$
->    \psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+>    \psi\in \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 >    $$
 >    admits a unique forward continuation through one full cycle;
 > 2. the collapse-to-crossing control theorem applies uniformly on this class;
@@ -5410,12 +5415,12 @@ This is the precise bridge from the section-level seed construction to the invar
 > 4. the turn-to-section return lemmas apply uniformly on this class;
 > 5. and the returned history satisfies
 >    $$
->    P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+>    P_\eta(\psi)\in \mathcal{C}_{X_\ast,\eta}.
 >    $$
 >
 > In particular,
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\neq \varnothing,
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\neq \varnothing,
 > $$
 > the return map
 > $$
@@ -5442,9 +5447,9 @@ The intended proof order is:
 2. **Seed-neighborhood collapse control.**
    Prove that the collapse-to-crossing estimates can be made uniform on a smaller neighborhood
    $$
-   \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+   \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
    \subseteq
-   \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+   \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
    $$
 3. **Seed-neighborhood realization of the inner regime.**
    Verify that the first crossing from this neighborhood lands uniformly in the Goldilocks window required by Proposition `Explicit short-window recapture regime`.
@@ -5453,11 +5458,11 @@ The intended proof order is:
 5. **Returned-history reentry.**
    Show that the returned history segment lies back inside
    $$
-   \mathcal{C}_{x_\ast,\eta}
+   \mathcal{C}_{X_\ast,\eta}
    $$
    and, after shrinking once more if necessary, inside a forward-propagation subclass
    $$
-   \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+   \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
    $$
 
 The conceptual point is simple: the seed history does not need to solve the whole breather problem by itself. It only needs to provide one strict interior point of history space around which all the already-developed cycle estimates can be made uniform. Once such a neighborhood is propagated through one full cycle, the nonempty tame class required by the Schauder program is in hand.
@@ -5465,7 +5470,7 @@ The conceptual point is simple: the seed history does not need to solve the whol
 > **Proposition (Local seed-neighborhood continuation with stored-root persistence).**
 > Assume the affine seed proposition above, and strengthen the horizon choice slightly to
 > $$
-> h>\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}.
+> h>\frac{2X_\ast}{c_f-u_{\mathrm{seed}}}.
 > $$
 > Then there exist constants
 > $$
@@ -5477,13 +5482,13 @@ The conceptual point is simple: the seed history does not need to solve the whol
 > $$
 > and a nonempty subclass
 > $$
-> \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 > $$
 > such that for every
 > $$
-> \phi\in \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> \phi\in \mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 > $$
 > one has:
 > 1. **strict stored sub-field-speed bound:**
@@ -5534,13 +5539,13 @@ The conceptual point is simple: the seed history does not need to solve the whol
 Proof sketch.
 Because
 $$
-h>\frac{2x_\ast}{c_f-u_{\mathrm{seed}}}
+h>\frac{2X_\ast}{c_f-u_{\mathrm{seed}}}
 $$
 there is a positive slack
 $$
 \delta_h
 \equiv
-(c_f-u_{\mathrm{seed}})h-2x_\ast
+(c_f-u_{\mathrm{seed}})h-2X_\ast
 >0
 $$
 Choose
@@ -5557,10 +5562,10 @@ $$
 $$
 Let
 $$
-\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 \equiv
 \left\{
-\phi\in \mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\phi\in \mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 \;\middle|\;
 \|\phi-\psi_{\mathrm{seed}}\|_{C^1([-h,0])}\le \varepsilon_{\mathrm{loc}}
 \right\}
@@ -5572,7 +5577,7 @@ $$
 
 For any
 $$
-\phi\in \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+\phi\in \mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 $$
 the derivative bound gives
 $$
@@ -5605,15 +5610,15 @@ F_\phi(\theta)\equiv \phi(0)+\phi(\theta)+c_f\theta
 $$
 Then
 $$
-F_\phi(0)=2x_\ast>0
+F_\phi(0)=2X_\ast>0
 $$
 while
 $$
 F_\phi(-h)
 \le
-x_\ast+\bigl(x_\ast+u_{\mathrm{seed}}h+\varepsilon_{\mathrm{loc}}h\bigr)-c_f h
+X_\ast+\bigl(X_\ast+u_{\mathrm{seed}}h+\varepsilon_{\mathrm{loc}}h\bigr)-c_f h
 =
-2x_\ast-(c_f-u_{\mathrm{seed}}-\varepsilon_{\mathrm{loc}})h
+2X_\ast-(c_f-u_{\mathrm{seed}}-\varepsilon_{\mathrm{loc}})h
 <
 0
 $$
@@ -5657,9 +5662,9 @@ This proves the proposition.
 > **Proposition (Seed-neighborhood collapse control under a uniform inward bracket).**
 > Let
 > $$
-> \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 > $$
 > be a nonempty subclass. Assume there exist constants
 > $$
@@ -5671,20 +5676,20 @@ This proves the proposition.
 > $$
 > such that for every
 > $$
-> \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 > $$
 > the corresponding forward trajectory satisfies on its pre-crossing leg:
 > 1. the two-sided inward acceleration bracket
 >    $$
 >    -a_+^{\mathrm{seed}}
 >    \le
->    \ddot x(t;\psi)
+>    \frac{d^2X}{dT^2}(T;\psi)
 >    \le
 >    -a_-^{\mathrm{seed}}<0;
 >    $$
 > 2. the acceleration ceiling
 >    $$
->    |\ddot x(t;\psi)|\le A_{\mathrm{coll}};
+>    |\frac{d^2X}{dT^2}(T;\psi)|\le A_{\mathrm{coll}};
 >    $$
 > 3. and the active pre-crossing roots satisfy the uniform transversality bound
 >    $$
@@ -5696,21 +5701,21 @@ This proves the proposition.
 > Then:
 > 1. every
 >    $$
->    \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+>    \psi\in \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 >    $$
 >    reaches the origin in finite time, with the uniform bound
 >    $$
->    t_{\mathrm{cross}}(\psi)
+>    T_{\mathrm{cross}}(\psi)
 >    \le
->    \sqrt{\frac{2x_\ast}{a_-^{\mathrm{seed}}}};
+>    \sqrt{\frac{2X_\ast}{a_-^{\mathrm{seed}}}};
 >    $$
 > 2. the pre-crossing tube bounds
 >    $$
->    0\le x(t;\psi)\le X_{\mathrm{seed},\max},
+>    0\le X(T;\psi)\le X_{\mathrm{seed},\max},
 >    \qquad
->    |\dot x(t;\psi)|\le U_{\mathrm{seed},\max},
+>    |\frac{dX}{dT}(T;\psi)|\le U_{\mathrm{seed},\max},
 >    \qquad
->    |\ddot x(t;\psi)|\le A_{\mathrm{coll}}
+>    |\frac{d^2X}{dT^2}(T;\psi)|\le A_{\mathrm{coll}}
 >    $$
 >    hold on the collapse leg for suitable class constants
 >    $$
@@ -5730,21 +5735,21 @@ This proves the proposition.
 >    $$
 >    then the collapse-to-crossing control theorem applies on
 >    $$
->    \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}.
+>    \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}.
 >    $$
 
 Proof sketch.
 For every
 $$
-\psi\in \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+\psi\in \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 $$
 the lower inward acceleration bound implies finite-time crossing by Lemma 6, yielding the displayed uniform bound on
 $$
-t_{\mathrm{cross}}(\psi)
+T_{\mathrm{cross}}(\psi)
 $$
 The two-sided acceleration bracket and the section-speed interval inherited from
 $$
-\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 $$
 allow Lemma 7 to be applied with
 $$
@@ -5761,26 +5766,26 @@ are chosen to dominate the resulting comparison bounds.
 
 Finally, Lemma 8 upgrades the monotone inbound motion, the crossing-time bound, and the acceleration ceiling to the stated position-speed-acceleration tube bounds on the entire collapse leg. Together with the assumed Jacobian lower bound, these are exactly the ingredients required by the collapse-to-crossing theorem. Hence that theorem applies uniformly on
 $$
-\mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 $$
 
 > **Proposition (Seed-neighborhood realization of the explicit inner recapture regime).**
 > Let
 > $$
-> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 > $$
 > be a nonempty subclass on which the collapse-to-crossing control theorem applies with uniform crossing-speed window
 > $$
 > V_{\min}^{\mathrm{seed}}
 > \le
-> -\dot x(t_{\mathrm{cross}};\psi)
+> -\frac{dX}{dT}(T_{\mathrm{cross}};\psi)
 > \le
 > V_{\max}^{\mathrm{seed}}
 > \qquad
 > \text{for every }
-> \psi\in \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}.
+> \psi\in \mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}.
 > $$
 > Assume further that the crossing histories issued from this class satisfy the admissible-crossing hypotheses with the same class constants entering Proposition `Explicit short-window recapture regime`, and that
 > $$
@@ -5800,7 +5805,7 @@ $$
 > $$
 > Then every first crossing launched from
 > $$
-> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}
 > $$
 > lies in the explicit short-window recapture regime, and the corresponding post-crossing branch turns around on the class-uniform window
 > $$
@@ -5810,7 +5815,7 @@ $$
 Proof sketch.
 By the collapse-to-crossing theorem, every
 $$
-\psi\in \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+\psi\in \mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}
 $$
 reaches a crossing history inside the admissible crossing subclass and with outgoing radial speed at most
 $$
@@ -5830,7 +5835,7 @@ $$
 $$
 is admissible. Therefore Proposition `Explicit short-window recapture regime` applies uniformly to every first crossing issued from
 $$
-\mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}
 $$
 yielding a class-uniform post-crossing turnaround on
 $$
@@ -5842,17 +5847,17 @@ This proposition closes the inner half of the seed-propagation program at the re
 > **Proposition (Seed-neighborhood realization of the unified outer-turn regime).**
 > Let
 > $$
-> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,out}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}
 > $$
 > be a nonempty subclass such that the post-crossing recapture, return-half, and outer-branch delayed-geometry estimates developed later in the note hold uniformly on the corresponding trajectories. Assume in particular that for every
 > $$
-> \psi\in \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> \psi\in \mathcal{C}^{\mathrm{seed,out}}_{X_\ast,\eta}
 > $$
 > there is a trimmed apocenter window
 > $$
-> I_{\mathrm{deep}}(\psi)=[t_a(\psi)+\tau_{\mathrm{deep}},\,t_b(\psi)]
+> I_{\mathrm{deep}}(\psi)=[T_a(\psi)+\tau_{\mathrm{deep}},\,T_b(\psi)]
 > $$
 > on which the unified trimmed-apocenter outer-turn criterion is applicable with the same class constants
 > $$
@@ -5868,10 +5873,10 @@ This proposition closes the inner half of the seed-propagation program at the re
 > $$
 > Assume moreover that the explicit inequalities
 > $$
-> z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+> z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 > -
 > \frac{a_{z}^{\mathrm{out}}}{2}
-> \big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+> \big(T_a+\tau_{\mathrm{deep}}-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 > <0,
 > $$
 > $$
@@ -5888,13 +5893,13 @@ This proposition closes the inner half of the seed-propagation program at the re
 >
 > Then every trajectory issued from
 > $$
-> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,out}}_{X_\ast,\eta}
 > $$
 > satisfies the outer-turn recapture mechanism uniformly: the trimmed-apocenter acceleration obeys
 > $$
-> \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+> \frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
 > \qquad
-> \text{for }t\in I_{\mathrm{deep}}(\psi),
+> \text{for }T\in I_{\mathrm{deep}}(\psi),
 > $$
 > and, if
 > $$
@@ -5907,7 +5912,7 @@ This proposition closes the inner half of the seed-propagation program at the re
 Proof sketch.
 By assumption, the same uniform constants entering the outer-turn layer apply to every trajectory launched from
 $$
-\mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,out}}_{X_\ast,\eta}
 $$
 The first displayed inequality is exactly the outbound-level exclusion condition from the
 $$
@@ -5922,7 +5927,7 @@ It follows that every trajectory on the seed-out neighborhood has:
 - the refined deep-past suppression bound,
 - and the inward acceleration margin
   $$
-  \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+  \frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
   $$
   on
   $$
@@ -5939,9 +5944,9 @@ This proposition closes the outer half of the seed-propagation program at the re
 > **Proposition (Returned-history reentry from uniform seed-cycle bounds).**
 > Let
 > $$
-> \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,ret}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,out}}_{X_\ast,\eta}
 > $$
 > be a nonempty subclass such that:
 > 1. the collapse-to-crossing control theorem applies uniformly on this class;
@@ -5961,7 +5966,7 @@ This proposition closes the outer half of the seed-propagation program at the re
 >
 > Assume moreover that the envelope parameters satisfy
 > $$
-> X_{\max}\ge \max\{x_\ast,X_{\mathrm{out},\max}^{\mathrm{seed}}\},
+> X_{\max}\ge \max\{X_\ast,X_{\mathrm{out},\max}^{\mathrm{seed}}\},
 > $$
 > $$
 > U_{\max}\ge \max\{V_{\max}^{\mathrm{seed}},U_{\mathrm{sec},\max}^{\mathrm{seed}}\},
@@ -5976,22 +5981,22 @@ This proposition closes the outer half of the seed-propagation program at the re
 >
 > Then
 > $$
-> P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+> P_\eta(\psi)\in \mathcal{C}_{X_\ast,\eta}
 > \qquad
 > \text{for every }
-> \psi\in \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}.
+> \psi\in \mathcal{C}^{\mathrm{seed,ret}}_{X_\ast,\eta}.
 > $$
 > If, in addition, the same stored-history Jacobian, root-count, and local continuation bounds that define the seed-side propagation class persist on the returned segment, then after shrinking once more if necessary there exists a nonempty forward-propagation subclass
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{seed,ret}}_{X_\ast,\eta}
 > $$
 > such that
 > $$
-> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+> P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\big)
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}.
+> \mathcal{C}_{X_\ast,\eta}.
 > $$
 
 Proof sketch.
@@ -6003,11 +6008,11 @@ Items 1-3 provide the full dynamical cycle structure:
 
 Item 4 then supplies the section-return consequences from the return-half layer:
 $$
-0\le x(t;\psi)\le X_{\mathrm{out},\max}^{\mathrm{seed}},
+0\le X(T;\psi)\le X_{\mathrm{out},\max}^{\mathrm{seed}},
 \qquad
-|\dot x(t;\psi)|\le U_{\mathrm{sec},\max}^{\mathrm{seed}},
+|\frac{dX}{dT}(T;\psi)|\le U_{\mathrm{sec},\max}^{\mathrm{seed}},
 \qquad
-|\ddot x(t;\psi)|\le A_{\mathrm{cyc},\max}^{\mathrm{seed}}
+|\frac{d^2X}{dT^2}(T;\psi)|\le A_{\mathrm{cyc},\max}^{\mathrm{seed}}
 $$
 through the full cycle and up to the first inbound section return, together with the time bound
 $$
@@ -6015,24 +6020,24 @@ T(\psi)\le T_{\mathrm{cyc},\max}^{\mathrm{seed}}
 $$
 The displayed envelope inequalities therefore imply that the returned history segment fits inside the convex envelope
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 Hence
 $$
-P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}
+P_\eta(\psi)\in \mathcal{C}_{X_\ast,\eta}
 $$
 for every
 $$
-\psi\in \mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+\psi\in \mathcal{C}^{\mathrm{seed,ret}}_{X_\ast,\eta}
 $$
 
 If the returned segment also preserves the same stored-history root simplicity, Jacobian lower bounds, and local continuation control that defined the seed-side propagation class, then one may shrink the class once more to a nonempty subclass
 $$
-\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 $$
 on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
 
-This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled strict-slack arithmetic, and returned-sample preservation on the same domain.
+This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled stricT-T_{\mathrm{em}}lack arithmetic, and returned-sample preservation on the same domain.
 
 > **Theorem (Nonempty tame class from seed propagation).**
 > Assume:
@@ -6045,9 +6050,9 @@ This proposition closes the seed-propagation ladder at the nonvacuity level. The
 >
 > Then there exists a nonempty subclass
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}
+> \mathcal{C}_{X_\ast,\eta}
 > $$
 > such that:
 > 1. the return map
@@ -6056,62 +6061,62 @@ This proposition closes the seed-propagation ladder at the nonvacuity level. The
 >    $$
 >    is well defined on
 >    $$
->    \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta};
+>    \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta};
 >    $$
 > 2. the collapse-to-crossing, inner-recapture, outer-turn, and return-half bounds all apply uniformly on this class;
 > 3. the returned histories satisfy
 >    $$
->    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+>    P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\big)
 >    \subseteq
->    \mathcal{C}_{x_\ast,\eta};
+>    \mathcal{C}_{X_\ast,\eta};
 >    $$
 > 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
 >
-> In particular, once the sampled certificate, coupled strict-slack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
+> In particular, once the sampled certificate, coupled stricT-T_{\mathrm{em}}lack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
 
 Proof sketch.
 The seed proposition and its neighborhood corollary provide a nonempty section-side class
 $$
-\mathcal{C}^{\mathrm{seed}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed}}_{X_\ast,\eta}
 \neq
 \varnothing
 $$
 The local seed-neighborhood continuation proposition then produces a smaller nonempty subclass
 $$
-\mathcal{C}^{\mathrm{seed,loc}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,loc}}_{X_\ast,\eta}
 $$
 on which the stored delayed geometry is simple and the forward flow is locally well defined. The collapse-control proposition shrinks again to a nonempty class
 $$
-\mathcal{C}^{\mathrm{seed,coll}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,coll}}_{X_\ast,\eta}
 $$
 on which the collapse-to-crossing theorem applies uniformly.
 
 The inner-regime proposition next yields a nonempty subclass
 $$
-\mathcal{C}^{\mathrm{seed,in}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,in}}_{X_\ast,\eta}
 $$
 whose first crossings lie uniformly in the explicit short-window recapture regime. The outer-regime proposition then yields a further nonempty subclass
 $$
-\mathcal{C}^{\mathrm{seed,out}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,out}}_{X_\ast,\eta}
 $$
 on which the trimmed-apocenter outer-turn mechanism applies uniformly. Finally, the returned-history reentry proposition produces a nonempty subclass
 $$
-\mathcal{C}^{\mathrm{seed,ret}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{seed,ret}}_{X_\ast,\eta}
 $$
 whose full-cycle images lie back in
 $$
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 
 Choose
 $$
-\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 $$
 to be any nonempty forward-propagation subclass supplied by the last proposition. By construction, all cycle estimates invoked in the invariant-envelope synthesis hold uniformly on this class, and the return map is well defined there. The inclusion
 $$
-P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}\big)
+P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\big)
 \subseteq
-\mathcal{C}_{x_\ast,\eta}
+\mathcal{C}_{X_\ast,\eta}
 $$
 is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
 
@@ -6120,7 +6125,7 @@ This theorem closes the seed-side nonvacuity gap in the global existence program
 - an explicit nonempty section-side seed,
 - a propagation ladder from that seed to a nonempty tame class,
 - explicit inner and outer recapture regimes,
-- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
+- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled stricT-T_{\mathrm{em}}lack arithmetic,
 - and the previously stated precompactness, continuity, and Schauder route.
 
 The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
@@ -6132,9 +6137,9 @@ The next concrete theorem should attack Step 1 of the cycle ladder directly. Its
 > **Target Theorem (Collapse-to-Crossing Control).**
 > Fix a dual-mollified tame inbound subclass
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}.
+> \mathcal{C}_{X_\ast,\eta}.
 > $$
 > Assume there exist class constants
 > $$
@@ -6148,34 +6153,34 @@ The next concrete theorem should attack Step 1 of the cycle ladder directly. Its
 > $$
 > such that every trajectory launched from
 > $$
-> \psi\in\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \psi\in\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > $$
 > satisfies, on its inbound pre-crossing leg:
 > 1. **finite-time crossing:**
 >    there exists a first time
 >    $$
->    t_{\mathrm{cross}}(\psi)\in(0,\tau_{\mathrm{cross},\max}]
+>    T_{\mathrm{cross}}(\psi)\in(0,\tau_{\mathrm{cross},\max}]
 >    $$
 >    with
 >    $$
->    x(t_{\mathrm{cross}}(\psi);\psi)=0;
+>    X(T_{\mathrm{cross}}(\psi);\psi)=0;
 >    $$
 > 2. **crossing-speed window:**
 >    the signed crossing speed obeys
 >    $$
->    -V_{\max}\le \dot x(t_{\mathrm{cross}}(\psi);\psi)\le -V_{\min}<-c_f;
+>    -V_{\max}\le \frac{dX}{dT}(T_{\mathrm{cross}}(\psi);\psi)\le -V_{\min}<-c_f;
 >    $$
 > 3. **tube preservation before crossing:**
 >    $$
->    0\le x(t;\psi)\le X_{\max},
+>    0\le X(T;\psi)\le X_{\max},
 >    \qquad
->    |\dot x(t;\psi)|\le U_{\max},
+>    |\frac{dX}{dT}(T;\psi)|\le U_{\max},
 >    \qquad
->    |\ddot x(t;\psi)|\le A_{\max}
+>    |\frac{d^2X}{dT^2}(T;\psi)|\le A_{\max}
 >    $$
 >    for
 >    $$
->    0\le t\le t_{\mathrm{cross}}(\psi);
+>    0\le T\le T_{\mathrm{cross}}(\psi);
 >    $$
 > 4. **pre-crossing transversality:**
 >    all active roots on the pre-crossing leg satisfy the same Jacobian lower bound
@@ -6198,7 +6203,7 @@ The intended proof order for the collapse phase is:
 2. **Finite-time crossing lemma.**
    Use the inward acceleration and inbound section sign to show that
    $$
-   x(t)
+   X(T)
    $$
    reaches zero in bounded time.
 3. **Crossing-speed bounds.**
@@ -6209,12 +6214,12 @@ The intended proof order for the collapse phase is:
 4. **Pre-crossing tube preservation.**
    Verify that position, speed, and acceleration remain inside the tame envelope up to
    $$
-   t_{\mathrm{cross}}
+   T_{\mathrm{cross}}
    $$
 5. **Crossing-history admissibility.**
    Show that the translated history at
    $$
-   t_{\mathrm{cross}}
+   T_{\mathrm{cross}}
    $$
    satisfies the sorting-map, Jacobian, and branch-count hypotheses needed by the local origin-crossing theorem.
 
@@ -6230,33 +6235,33 @@ Assume the pre-crossing leg of a tame inbound trajectory satisfies:
 
 - right exterior inbound geometry,
   $$
-  0\le x(t)\le X_{\max},
+  0\le X(T)\le X_{\max},
   \qquad
-  \dot x(t)\le 0
+  \frac{dX}{dT}(T)\le 0
   $$
 - at least one inward exterior active partner branch for each
   $$
-  t\in[0,t_{\mathrm{cross}}]
+  T\in[0,T_{\mathrm{cross}}]
   $$
   with
   $$
-  x(t)+x(t_p)>0,
+  X(T)+X(T_p)>0,
   \qquad
-  0\le x(t_p)\le X_{\max}
+  0\le X(T_p)\le X_{\max}
   $$
 - the speed bound
   $$
-  |\dot x(t)|\le U_{\max}
+  |\frac{dX}{dT}(T)|\le U_{\max}
   $$
 - and the partner Jacobian transversality bound
   $$
-  |J_p(t;t_p)|\ge \nu
+  |J_p(T;T_p)|\ge \nu
   $$
   on every active partner root.
 
 Then the partner contribution to the inward acceleration obeys the class-uniform lower bound
 $$
-A_p(t)\ge \underline A_p^{\mathrm{in}}
+A_p(T)\ge \underline A_p^{\mathrm{in}}
 \equiv
 \frac{\kappa\epsilon^2}{
 \left(4X_{\max}^2+\epsilon_c^2\right)
@@ -6265,35 +6270,35 @@ A_p(t)\ge \underline A_p^{\mathrm{in}}
 $$
 Equivalently, the partner acceleration satisfies
 $$
-a_p(t)=-A_p(t)\le -\underline A_p^{\mathrm{in}}<0
+a_p(T)=-A_p(T)\le -\underline A_p^{\mathrm{in}}<0
 $$
 
 Proof.
 Along the retained inward exterior partner channel, the delayed source remains on the opposite side of the current right-hand particle, so each retained partner contribution points inward and has the form
 $$
-a_p(t)=-A_p(t)
+a_p(T)=-A_p(T)
 $$
 For any retained active partner root
 $$
-t_p<t
+T_p<T
 $$
 the delayed separation is
 $$
-r_p(t;t_p)=x(t)+x(t_p)
+r_p(T;T_p)=X(T)+X(T_p)
 $$
 Because both the current and delayed positions lie in the tame position envelope,
 $$
-0\le x(t)\le X_{\max},
+0\le X(T)\le X_{\max},
 \qquad
-0\le x(t_p)\le X_{\max}
+0\le X(T_p)\le X_{\max}
 $$
 one has
 $$
-r_p(t;t_p)\le 2X_{\max}
+r_p(T;T_p)\le 2X_{\max}
 $$
 Hence the dual-mollified amplitude denominator satisfies
 $$
-r_p(t;t_p)^2+\epsilon_c^2\le 4X_{\max}^2+\epsilon_c^2
+r_p(T;T_p)^2+\epsilon_c^2\le 4X_{\max}^2+\epsilon_c^2
 $$
 
 On the same branch the 1D partner line-of-action sign is
@@ -6302,18 +6307,18 @@ $$
 $$
 so
 $$
-J_p(t;t_p)=1+\frac{\dot x(t_p)}{c_f}
+J_p(T;T_p)=1+\frac{\frac{dX}{dT}(T_p)}{c_f}
 $$
 Using the speed bound gives the crude upper estimate
 $$
-|J_p(t;t_p)|\le 1+\frac{U_{\max}}{c_f}
+|J_p(T;T_p)|\le 1+\frac{U_{\max}}{c_f}
 $$
 
 Therefore each retained active partner branch contributes at least
 $$
 \kappa\epsilon^2
 \frac{1}{
-\left(r_p(t;t_p)^2+\epsilon_c^2\right)|J_p(t;t_p)|
+\left(r_p(T;T_p)^2+\epsilon_c^2\right)|J_p(T;T_p)|
 }
 \ge
 \frac{\kappa\epsilon^2}{
@@ -6323,16 +6328,16 @@ $$
 $$
 Since at least one inward exterior partner branch is active, summing over the retained active partner roots yields
 $$
-A_p(t)\ge \underline A_p^{\mathrm{in}}
+A_p(T)\ge \underline A_p^{\mathrm{in}}
 $$
 which proves the lemma.
 
 **Lemma 6: Finite-time crossing under a net inward acceleration floor.**
 Assume the pre-crossing leg starts from the inbound section
 $$
-x(0)=x_\ast>0,
+X(0)=X_\ast>0,
 \qquad
-\dot x(0)\le 0
+\frac{dX}{dT}(0)\le 0
 $$
 and suppose there exists a constant
 $$
@@ -6340,24 +6345,24 @@ a_{\mathrm{in}}>0
 $$
 such that the full pre-crossing acceleration obeys
 $$
-\ddot x(t)\le -a_{\mathrm{in}}
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in}}
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 Then the trajectory reaches the origin in finite time, with
 $$
-t_{\mathrm{cross}}
+T_{\mathrm{cross}}
 \le
-\sqrt{\frac{2x_\ast}{a_{\mathrm{in}}}}
+\sqrt{\frac{2X_\ast}{a_{\mathrm{in}}}}
 $$
 
 In particular, a sufficient realization is
 $$
-A_s^{\mathrm{in}}(t)-A_s^{\mathrm{out}}(t)
+A_s^{\mathrm{in}}(T)-A_s^{\mathrm{out}}(T)
 \le
 \theta\,\underline A_p^{\mathrm{in}}
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 for some
 $$
@@ -6365,9 +6370,9 @@ $$
 $$
 since then
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 =
--A_p(t)-A_s^{\mathrm{out}}(t)+A_s^{\mathrm{in}}(t)
+-A_p(T)-A_s^{\mathrm{out}}(T)+A_s^{\mathrm{in}}(T)
 \le
 -(1-\theta)\underline A_p^{\mathrm{in}}
 \equiv
@@ -6377,53 +6382,53 @@ $$
 Proof.
 Integrating the acceleration bound once gives
 $$
-\dot x(t)
+\frac{dX}{dT}(T)
 \le
-\dot x(0)-a_{\mathrm{in}}t
+\frac{dX}{dT}(0)-a_{\mathrm{in}}T
 \le
--a_{\mathrm{in}}t
+-a_{\mathrm{in}}T
 $$
 because
 $$
-\dot x(0)\le 0
+\frac{dX}{dT}(0)\le 0
 $$
 Integrating again from
 $$
-x(0)=x_\ast
+X(0)=X_\ast
 $$
 yields
 $$
-x(t)
+X(T)
 \le
-x_\ast+\dot x(0)t-\frac{a_{\mathrm{in}}}{2}t^2
+X_\ast+\frac{dX}{dT}(0)T-\frac{a_{\mathrm{in}}}{2}T^2
 \le
-x_\ast-\frac{a_{\mathrm{in}}}{2}t^2
+X_\ast-\frac{a_{\mathrm{in}}}{2}T^2
 $$
 Therefore
 $$
-x(t)\le 0
+X(T)\le 0
 $$
 whenever
 $$
-t\ge \sqrt{\frac{2x_\ast}{a_{\mathrm{in}}}}
+T\ge \sqrt{\frac{2X_\ast}{a_{\mathrm{in}}}}
 $$
 By continuity of the trajectory, there is a first crossing time
 $$
-t_{\mathrm{cross}}\in
-\left(0,\sqrt{\frac{2x_\ast}{a_{\mathrm{in}}}}\right]
+T_{\mathrm{cross}}\in
+\left(0,\sqrt{\frac{2X_\ast}{a_{\mathrm{in}}}}\right]
 $$
 such that
 $$
-x(t_{\mathrm{cross}})=0
+X(T_{\mathrm{cross}})=0
 $$
 This proves the lemma.
 
 **Lemma 7: Crossing-speed bounds under two-sided acceleration control.**
 Assume the pre-crossing leg starts from
 $$
-x(0)=x_\ast>0,
+X(0)=X_\ast>0,
 \qquad
-\dot x(0)=-u_0,
+\frac{dX}{dT}(0)=-u_0,
 \qquad
 u_0\ge 0
 $$
@@ -6433,25 +6438,25 @@ $$
 $$
 such that
 $$
--a_+\le \ddot x(t)\le -a_-
+-a_+\le \frac{d^2X}{dT^2}(T)\le -a_-
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 Define the quadratic comparison roots
 $$
 \tau_\pm
 \equiv
-\frac{\sqrt{u_0^2+2a_\pm x_\ast}-u_0}{a_\pm}
+\frac{\sqrt{u_0^2+2a_\pm X_\ast}-u_0}{a_\pm}
 $$
 Then the crossing time satisfies
 $$
-\tau_+\le t_{\mathrm{cross}}\le \tau_-
+\tau_+\le T_{\mathrm{cross}}\le \tau_-
 $$
 and the crossing speed obeys
 $$
 u_0+a_-\tau_+
 \le
--\dot x(t_{\mathrm{cross}})
+-\frac{dX}{dT}(T_{\mathrm{cross}})
 \le
 u_0+a_+\tau_-
 $$
@@ -6464,71 +6469,71 @@ u_0+a_+\tau_-\le V_{\max}
 $$
 then the crossing lands in the Goldilocks speed window
 $$
-V_{\min}\le -\dot x(t_{\mathrm{cross}})\le V_{\max}
+V_{\min}\le -\frac{dX}{dT}(T_{\mathrm{cross}})\le V_{\max}
 $$
 
 Proof.
 Integrating the two-sided acceleration bound gives
 $$
--u_0-a_+t
+-u_0-a_+T
 \le
-\dot x(t)
+\frac{dX}{dT}(T)
 \le
--u_0-a_-t
+-u_0-a_-T
 $$
 Integrating again yields the quadratic comparison bounds
 $$
-x_\ast-u_0 t-\frac{a_+}{2}t^2
+X_\ast-u_0 T-\frac{a_+}{2}T^2
 \le
-x(t)
+X(T)
 \le
-x_\ast-u_0 t-\frac{a_-}{2}t^2
+X_\ast-u_0 T-\frac{a_-}{2}T^2
 $$
 
 Let
 $$
-q_\pm(t)\equiv x_\ast-u_0 t-\frac{a_\pm}{2}t^2
+q_\pm(T)\equiv X_\ast-u_0 T-\frac{a_\pm}{2}T^2
 $$
 Each $q_\pm$ has a unique positive root, namely
 $$
 \tau_\pm
 =
-\frac{\sqrt{u_0^2+2a_\pm x_\ast}-u_0}{a_\pm}
+\frac{\sqrt{u_0^2+2a_\pm X_\ast}-u_0}{a_\pm}
 $$
 Because
 $$
-x(t)\le q_-(t)
+X(T)\le q_-(T)
 $$
 the crossing must occur no later than the first time the upper comparison reaches zero:
 $$
-t_{\mathrm{cross}}\le \tau_-
+T_{\mathrm{cross}}\le \tau_-
 $$
 Likewise,
 $$
-x(t)\ge q_+(t)
+X(T)\ge q_+(T)
 $$
 so the trajectory cannot cross before the lower comparison reaches zero:
 $$
-t_{\mathrm{cross}}\ge \tau_+
+T_{\mathrm{cross}}\ge \tau_+
 $$
 Hence
 $$
-\tau_+\le t_{\mathrm{cross}}\le \tau_-
+\tau_+\le T_{\mathrm{cross}}\le \tau_-
 $$
 
 Evaluating the velocity bounds at the crossing time gives
 $$
--\dot x(t_{\mathrm{cross}})
+-\frac{dX}{dT}(T_{\mathrm{cross}})
 \ge
-u_0+a_- t_{\mathrm{cross}}
+u_0+a_- T_{\mathrm{cross}}
 \ge
 u_0+a_-\tau_+
 $$
 and
 $$
--\dot x(t_{\mathrm{cross}})
+-\frac{dX}{dT}(T_{\mathrm{cross}})
 \le
-u_0+a_+ t_{\mathrm{cross}}
+u_0+a_+ T_{\mathrm{cross}}
 \le
 u_0+a_+\tau_-
 $$
@@ -6537,33 +6542,33 @@ This proves the claimed crossing-speed bracket.
 **Lemma 8: Pre-crossing tube preservation from monotonicity and bounded acceleration.**
 Assume the pre-crossing leg starts from the inbound section
 $$
-x(0)=x_\ast,
+X(0)=X_\ast,
 \qquad
-\dot x(0)=-u_0,
+\frac{dX}{dT}(0)=-u_0,
 \qquad
 0\le u_0\le U_{\mathrm{in}}
 $$
 with
 $$
-0<x_\ast\le X_{\max}
+0<X_\ast\le X_{\max}
 $$
 Assume moreover that on
 $$
-[0,t_{\mathrm{cross}}]
+[0,T_{\mathrm{cross}}]
 $$
 the trajectory satisfies:
 
 - inward monotonicity,
   $$
-  \dot x(t)\le 0
+  \frac{dX}{dT}(T)\le 0
   $$
 - bounded crossing time,
   $$
-  t_{\mathrm{cross}}\le \tau_{\mathrm{cross},\max}
+  T_{\mathrm{cross}}\le \tau_{\mathrm{cross},\max}
   $$
 - and a uniform acceleration bound,
   $$
-  |\ddot x(t)|\le A_{\max}
+  |\frac{d^2X}{dT^2}(T)|\le A_{\max}
   $$
 
 If
@@ -6572,48 +6577,48 @@ U_{\mathrm{in}}+A_{\max}\tau_{\mathrm{cross},\max}\le U_{\max}
 $$
 then the full pre-crossing tube bounds hold:
 $$
-0\le x(t)\le X_{\max},
+0\le X(T)\le X_{\max},
 \qquad
-|\dot x(t)|\le U_{\max},
+|\frac{dX}{dT}(T)|\le U_{\max},
 \qquad
-|\ddot x(t)|\le A_{\max}
+|\frac{d^2X}{dT^2}(T)|\le A_{\max}
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 
 Proof.
 Because
 $$
-\dot x(t)\le 0
+\frac{dX}{dT}(T)\le 0
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 the position is nonincreasing on the pre-crossing leg. Since the first crossing occurs at
 $$
-x(t_{\mathrm{cross}})=0
+X(T_{\mathrm{cross}})=0
 $$
 one has
 $$
-0\le x(t)\le x(0)=x_\ast\le X_{\max}
+0\le X(T)\le X(0)=X_\ast\le X_{\max}
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 
 For the velocity, the acceleration bound gives
 $$
-|\dot x(t)-\dot x(0)|
+|\frac{dX}{dT}(T)-\frac{dX}{dT}(0)|
 \le
-\int_0^t |\ddot x(s)|\,ds
+\int_0^T |\frac{d^2X}{dT^2}(S)|\,dS
 \le
-A_{\max} t
+A_{\max} T
 \le
 A_{\max}\tau_{\mathrm{cross},\max}
 $$
 Therefore
 $$
-|\dot x(t)|
+|\frac{dX}{dT}(T)|
 \le
-|\dot x(0)|+A_{\max}\tau_{\mathrm{cross},\max}
+|\frac{dX}{dT}(0)|+A_{\max}\tau_{\mathrm{cross},\max}
 \le
 U_{\mathrm{in}}+A_{\max}\tau_{\mathrm{cross},\max}
 \le
@@ -6626,17 +6631,17 @@ This lemma does not by itself control Jacobian transversality or branch-count gr
 **Lemma 9: Crossing-history admissibility.**
 Let
 $$
-\psi\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+\psi\in \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 $$
 be an inbound history for which the pre-crossing leg satisfies Lemmas 6-8. Let
 $$
-t_{\mathrm{cross}}=t_{\mathrm{cross}}(\psi)
+T_{\mathrm{cross}}=T_{\mathrm{cross}}(\psi)
 $$
 denote the first crossing time and define the translated crossing history
 $$
 \phi_{\mathrm{cross}}(\theta)
 \equiv
-x(t_{\mathrm{cross}}+\theta;\psi),
+X(T_{\mathrm{cross}}+\theta;\psi),
 \qquad
 \theta\in[-h,0]
 $$
@@ -6644,13 +6649,13 @@ Assume, in addition, that the pre-crossing collapse provides:
 
 - a crossing-speed window
   $$
-  V_{\min}\le -\dot x(t_{\mathrm{cross}})\le V_{\max},
+  V_{\min}\le -\frac{dX}{dT}(T_{\mathrm{cross}})\le V_{\max},
   \qquad
   V_{\min}>c_f
   $$
 - a stored-past sorting-map geometry with class-uniform data
   $$
-  t_{\mathrm{zero}}<t_{\mathrm{hinge}}<0,
+  T_{\mathrm{zero}}<T_{\mathrm{hinge}}<0,
   \qquad
   \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min}
   $$
@@ -6658,7 +6663,7 @@ Assume, in addition, that the pre-crossing collapse provides:
   $$
   \dot\phi_{\mathrm{cross}}(\theta)\ge -c_f+\nu
   \qquad
-  \text{for }\theta\in[-h,t_{\mathrm{zero}}]
+  \text{for }\theta\in[-h,T_{\mathrm{zero}}]
   $$
 - and the same class-uniform acceleration and root-count bounds used in the definition of
   $$
@@ -6681,11 +6686,11 @@ In particular, the local origin-crossing recapture theorem applies to the transl
 Proof.
 By construction of the translated segment,
 $$
-\phi_{\mathrm{cross}}(0)=x(t_{\mathrm{cross}})=0
+\phi_{\mathrm{cross}}(0)=X(T_{\mathrm{cross}})=0
 $$
 The crossing-speed hypothesis gives
 $$
-\dot\phi_{\mathrm{cross}}(0)=\dot x(t_{\mathrm{cross}})
+\dot\phi_{\mathrm{cross}}(0)=\frac{dX}{dT}(T_{\mathrm{cross}})
 \in[-V_{\max},-V_{\min}]
 $$
 with
@@ -6700,9 +6705,9 @@ $$
 $$
 They therefore supply the required times
 $$
-t_{\mathrm{zero}}<t_{\mathrm{hinge}}<0
+T_{\mathrm{zero}}<T_{\mathrm{hinge}}<0
 $$
-the interior compact-subinterval gap
+the interior compacT-T_{\mathrm{em}}ubinterval gap
 $$
 \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min}
 $$
@@ -6710,7 +6715,7 @@ and the sub-field-speed source transversality bound
 $$
 \dot\phi_{\mathrm{cross}}(\theta)\ge -c_f+\nu
 \qquad
-\text{for }\theta\in[-h,t_{\mathrm{zero}}]
+\text{for }\theta\in[-h,T_{\mathrm{zero}}]
 $$
 Because
 $$
@@ -6740,7 +6745,7 @@ This lemma isolates the exact last handoff in the proof architecture. The collap
 
 The collapse-to-crossing ladder has its kinematic part in place. The remaining hard issue is delayed geometry, but it must be framed correctly. Because the inbound speed rises from a sub-field-speed regime to a crossing speed strictly larger than $c_f$, the trajectory must pass through the hinge
 $$
-\dot x=-c_f
+\frac{dX}{dT}=-c_f
 $$
 At that hinge, the self-hit sorting map necessarily creates a self root, and the corresponding self Jacobian reaches
 $$
@@ -6756,13 +6761,13 @@ at the instant of birth. So the correct theorem target is not global self-root t
 > **Target Theorem (Pre-crossing Caustic Transit and Recovery).**
 > Fix a dual-mollified tame inbound subclass
 > $$
-> \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > \subseteq
-> \mathcal{C}_{x_\ast,\eta}.
+> \mathcal{C}_{X_\ast,\eta}.
 > $$
 > Assume the pre-crossing leg from every
 > $$
-> \psi\in\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+> \psi\in\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 > $$
 > satisfies the kinematic hypotheses of Lemmas 5-8. Suppose moreover that there exist class constants
 > $$
@@ -6785,7 +6790,7 @@ at the instant of birth. So the correct theorem target is not global self-root t
 >    $$
 > 2. **hinge birth of the self branch:** exactly one principal self root is born when
 >    $$
->    \dot x=-c_f,
+>    \frac{dX}{dT}=-c_f,
 >    $$
 >    and no uncontrolled branch proliferation occurs before the crossing;
 > 3. **bounded caustic impulse:** the dual-mollified inward velocity gain contributed during the self-root birth and immediate caustic transit is bounded by
@@ -6817,7 +6822,7 @@ The intended proof order for this delayed-geometry step is:
 2. **Hinge-birth lemma.**
    Prove that exactly one principal self root is born when the trajectory passes through
    $$
-   \dot x=-c_f
+   \frac{dX}{dT}=-c_f
    $$
 3. **Caustic-transit impulse bound.**
    Show that the dual-mollified self-root birth contributes only a bounded inward velocity kick
@@ -6835,7 +6840,7 @@ The intended proof order for this delayed-geometry step is:
    $$
    |J_s|\ge \nu_s
    $$
-   and the translated crossing history inherits the compact-subinterval sorting gap needed by the local post-crossing theorem.
+   and the translated crossing history inherits the compacT-T_{\mathrm{em}}ubinterval sorting gap needed by the local post-crossing theorem.
 
 The first item is a partner-branch regularity statement. The second and third items explicitly embrace the self-root caustic instead of assuming it away. The fifth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
 
@@ -6844,123 +6849,123 @@ Assume the pre-crossing leg satisfies:
 
 - right exterior inbound geometry
   $$
-  x(t)\ge 0,
+  X(T)\ge 0,
   \qquad
-  \dot x(t)\le 0
+  \frac{dX}{dT}(T)\le 0
   $$
 - a unique hinge time
   $$
-  t_{\mathrm{hinge}}\in(0,t_{\mathrm{cross}})
+  T_{\mathrm{hinge}}\in(0,T_{\mathrm{cross}})
   $$
   with
   $$
-  \dot x(t_{\mathrm{hinge}})=-c_f
+  \frac{dX}{dT}(T_{\mathrm{hinge}})=-c_f
   $$
 - and strict post-hinge super-field-speed infall
   $$
-  \dot x(t)<-c_f
+  \frac{dX}{dT}(T)<-c_f
   \qquad
-  \text{for }t\in(t_{\mathrm{hinge}},t_{\mathrm{cross}}]
+  \text{for }T\in(T_{\mathrm{hinge}},T_{\mathrm{cross}}]
   $$
 
 Define
 $$
-w(t)\equiv x(t)+c_f t,
+w(T)\equiv X(T)+c_f T,
 \qquad
-y(t)\equiv c_f t-x(t)
+y(T)\equiv c_f T-X(T)
 $$
 Then the active partner root on the inbound leg is selected by
 $$
-w(t_p)=y(t),
+w(T_p)=y(T),
 \qquad
-t_p<t
+T_p<T
 $$
 Moreover:
 
 1. the partner branch persists continuously on
    $$
-   [0,t_{\mathrm{cross}}]
+   [0,T_{\mathrm{cross}}]
    $$
 2. it remains strictly on the ascending side of the sorting map,
    $$
-   t_p(t)<t_{\mathrm{hinge}}
+   T_p(T)<T_{\mathrm{hinge}}
    $$
 3. and therefore the partner Jacobian stays strictly positive:
    $$
-   J_p(t;t_p)=\frac{\dot w(t_p)}{c_f}>0
+   J_p(T;T_p)=\frac{\frac{dw}{dT}(T_p)}{c_f}>0
    $$
 
 Proof.
 On the inbound leg,
 $$
-\dot y(t)=c_f-\dot x(t)\ge c_f>0
+\frac{dy}{dT}(T)=c_f-\frac{dX}{dT}(T)\ge c_f>0
 $$
-so $y(t)$ is strictly increasing. Also,
+so $y(T)$ is strictly increasing. Also,
 $$
-\dot w(t)=\dot x(t)+c_f
+\frac{dw}{dT}(T)=\frac{dX}{dT}(T)+c_f
 $$
 which is positive before the hinge, zero at the hinge, and negative after the hinge. Hence
 $$
-w(t)
+w(T)
 $$
 has a strict maximum at
 $$
-t=t_{\mathrm{hinge}}
+T=T_{\mathrm{hinge}}
 $$
 
 It therefore suffices to show that
 $$
-y(t)<w(t_{\mathrm{hinge}})
+y(T)<w(T_{\mathrm{hinge}})
 \qquad
-\text{for every }t\in[0,t_{\mathrm{cross}}]
+\text{for every }T\in[0,T_{\mathrm{cross}}]
 $$
 Since $y$ is increasing, it is enough to check this at the crossing time. Using
 $$
-x(t_{\mathrm{cross}})=0
+X(T_{\mathrm{cross}})=0
 $$
 gives
 $$
-y(t_{\mathrm{cross}})=c_f t_{\mathrm{cross}}
+y(T_{\mathrm{cross}})=c_f T_{\mathrm{cross}}
 $$
 On the other hand,
 $$
-w(t_{\mathrm{hinge}})=x(t_{\mathrm{hinge}})+c_f t_{\mathrm{hinge}}
+w(T_{\mathrm{hinge}})=X(T_{\mathrm{hinge}})+c_f T_{\mathrm{hinge}}
 $$
 By the mean value theorem and the strict post-hinge inequality
 $$
-\dot x<-c_f
+\frac{dX}{dT}<-c_f
 \qquad
-\text{on }(t_{\mathrm{hinge}},t_{\mathrm{cross}}]
+\text{on }(T_{\mathrm{hinge}},T_{\mathrm{cross}}]
 $$
 one has
 $$
-x(t_{\mathrm{cross}})-x(t_{\mathrm{hinge}})
+X(T_{\mathrm{cross}})-X(T_{\mathrm{hinge}})
 <
--c_f\,(t_{\mathrm{cross}}-t_{\mathrm{hinge}})
+-c_f\,(T_{\mathrm{cross}}-T_{\mathrm{hinge}})
 $$
 Since
 $$
-x(t_{\mathrm{cross}})=0
+X(T_{\mathrm{cross}})=0
 $$
 this rearranges to
 $$
-x(t_{\mathrm{hinge}})
+X(T_{\mathrm{hinge}})
 >
-c_f\,(t_{\mathrm{cross}}-t_{\mathrm{hinge}})
+c_f\,(T_{\mathrm{cross}}-T_{\mathrm{hinge}})
 $$
 hence
 $$
-w(t_{\mathrm{hinge}})
+w(T_{\mathrm{hinge}})
 =
-x(t_{\mathrm{hinge}})+c_f t_{\mathrm{hinge}}
+X(T_{\mathrm{hinge}})+c_f T_{\mathrm{hinge}}
 >
-c_f t_{\mathrm{cross}}
+c_f T_{\mathrm{cross}}
 =
-y(t_{\mathrm{cross}})
+y(T_{\mathrm{cross}})
 $$
 Therefore
 $$
-y(t)<w(t_{\mathrm{hinge}})
+y(T)<w(T_{\mathrm{hinge}})
 $$
 for all pre-crossing times, so the partner branch never reaches the hinge maximum.
 
@@ -6970,81 +6975,81 @@ w
 $$
 is strictly increasing on the ascending side, there is a unique solution
 $$
-t_p(t)<t_{\mathrm{hinge}}
+T_p(T)<T_{\mathrm{hinge}}
 $$
 to
 $$
-w(t_p)=y(t)
+w(T_p)=y(T)
 $$
 for each
 $$
-t\in[0,t_{\mathrm{cross}}]
+T\in[0,T_{\mathrm{cross}}]
 $$
 This gives continuous persistence of the partner branch. Finally, on that ascending side,
 $$
-\dot w(t_p)>0
+\frac{dw}{dT}(T_p)>0
 $$
 so
 $$
-J_p(t;t_p)=\frac{\dot w(t_p)}{c_f}>0
+J_p(T;T_p)=\frac{\frac{dw}{dT}(T_p)}{c_f}>0
 $$
 Thus the partner branch remains safe from the caustic throughout the infall.
 
 **Lemma 11: Hinge birth and uniqueness of the principal self root.**
 Assume the pre-crossing leg satisfies a strict inward acceleration floor
 $$
-\ddot x(t)\le -a_-<0
+\frac{d^2X}{dT^2}(T)\le -a_-<0
 \qquad
-\text{for }0\le t\le t_{\mathrm{cross}}
+\text{for }0\le T\le T_{\mathrm{cross}}
 $$
 and define
 $$
-w(t)\equiv x(t)+c_f t
+w(T)\equiv X(T)+c_f T
 $$
 Let
 $$
-t_{\mathrm{hinge}}
+T_{\mathrm{hinge}}
 $$
 be the unique time at which
 $$
-\dot x(t_{\mathrm{hinge}})=-c_f
+\frac{dX}{dT}(T_{\mathrm{hinge}})=-c_f
 $$
 Then:
 
 1. $w$ is strictly concave on the pre-crossing interval,
 2. $w$ has a unique global maximum at
    $$
-   t=t_{\mathrm{hinge}}
+   T=T_{\mathrm{hinge}}
    $$
 3. for each
    $$
-   t\in(t_{\mathrm{hinge}},t_{\mathrm{cross}}]
+   T\in(T_{\mathrm{hinge}},T_{\mathrm{cross}}]
    $$
    there exists a unique self root
    $$
-   t_s(t)<t_{\mathrm{hinge}}
+   T_s(T)<T_{\mathrm{hinge}}
    $$
    satisfying
    $$
-   w(t_s)=w(t)
+   w(T_s)=w(T)
    $$
 4. and this self branch is born at the hinge with
    $$
-   \lim_{t\downarrow t_{\mathrm{hinge}}} t_s(t)=t_{\mathrm{hinge}},
+   \lim_{T\downarrow T_{\mathrm{hinge}}} T_s(T)=T_{\mathrm{hinge}},
    \qquad
-   J_s(t;t_s)\to 0^+
+   J_s(T;T_s)\to 0^+
    $$
 
 Proof.
 Differentiate twice:
 $$
-\dot w(t)=\dot x(t)+c_f,
+\frac{dw}{dT}(T)=\frac{dX}{dT}(T)+c_f,
 \qquad
-\ddot w(t)=\ddot x(t)
+\frac{d^2w}{dT^2}(T)=\frac{d^2X}{dT^2}(T)
 $$
 By hypothesis,
 $$
-\ddot w(t)\le -a_-<0
+\frac{d^2w}{dT^2}(T)\le -a_-<0
 $$
 so
 $$
@@ -7052,11 +7057,11 @@ w
 $$
 is strictly concave on the full pre-crossing interval. Hence
 $$
-\dot w
+\frac{dw}{dT}
 $$
 is strictly decreasing and can vanish at most once. Since
 $$
-\dot w(t_{\mathrm{hinge}})=\dot x(t_{\mathrm{hinge}})+c_f=0
+\frac{dw}{dT}(T_{\mathrm{hinge}})=\frac{dX}{dT}(T_{\mathrm{hinge}})+c_f=0
 $$
 the hinge is the unique critical point of
 $$
@@ -7066,7 +7071,7 @@ and therefore its unique global maximum.
 
 For
 $$
-t<t_{\mathrm{hinge}}
+T<T_{\mathrm{hinge}}
 $$
 the function
 $$
@@ -7074,65 +7079,65 @@ w
 $$
 is strictly increasing, so no earlier time can satisfy
 $$
-w(t_s)=w(t)
+w(T_s)=w(T)
 $$
 with
 $$
-t_s<t
+T_T_{\mathrm{em}}<T
 $$
 For
 $$
-t>t_{\mathrm{hinge}}
+T>T_{\mathrm{hinge}}
 $$
 strict concavity implies that
 $$
-w(t)<w(t_{\mathrm{hinge}})
+w(T)<w(T_{\mathrm{hinge}})
 $$
 and because the ascending branch is strictly increasing up to the hinge, there is a unique
 $$
-t_s(t)<t_{\mathrm{hinge}}
+T_s(T)<T_{\mathrm{hinge}}
 $$
 such that
 $$
-w(t_s)=w(t)
+w(T_s)=w(T)
 $$
 This is the unique principal self root on the pre-crossing leg.
 
 As
 $$
-t\downarrow t_{\mathrm{hinge}}
+T\downarrow T_{\mathrm{hinge}}
 $$
 continuity and uniqueness force
 $$
-t_s(t)\uparrow t_{\mathrm{hinge}}
+T_s(T)\uparrow T_{\mathrm{hinge}}
 $$
 On the relevant outer-memory branch,
 $$
-J_s(t;t_s)=1+\frac{\dot x(t_s)}{c_f}=\frac{\dot w(t_s)}{c_f}
+J_s(T;T_s)=1+\frac{\frac{dX}{dT}(T_s)}{c_f}=\frac{\frac{dw}{dT}(T_s)}{c_f}
 $$
 Since
 $$
-t_s(t)<t_{\mathrm{hinge}}
+T_s(T)<T_{\mathrm{hinge}}
 $$
 lies on the ascending side,
 $$
-\dot w(t_s)>0
+\frac{dw}{dT}(T_s)>0
 $$
 so
 $$
-J_s(t;t_s)>0
+J_s(T;T_s)>0
 $$
 But as
 $$
-t_s(t)\uparrow t_{\mathrm{hinge}}
+T_s(T)\uparrow T_{\mathrm{hinge}}
 $$
 one has
 $$
-\dot w(t_s)\downarrow \dot w(t_{\mathrm{hinge}})=0
+\frac{dw}{dT}(T_s)\downarrow \frac{dw}{dT}(T_{\mathrm{hinge}})=0
 $$
 hence
 $$
-J_s(t;t_s)\to 0^+
+J_s(T;T_s)\to 0^+
 $$
 So the self branch is born exactly at the hinge and is unique.
 
@@ -7141,7 +7146,7 @@ Fix a hinge-centered time window
 $$
 I_{\mathrm{cau}}
 \equiv
-[t_{\mathrm{hinge}}-\tau_{\mathrm{cau}},\,t_{\mathrm{hinge}}+\tau_{\mathrm{cau}}]
+[T_{\mathrm{hinge}}-\tau_{\mathrm{cau}},\,T_{\mathrm{hinge}}+\tau_{\mathrm{cau}}]
 $$
 on which the dual-mollified self interaction is evaluated through the regularized time-integral representation with:
 
@@ -7164,7 +7169,7 @@ on which the dual-mollified self interaction is evaluated through the regularize
 
 Assume the self integral on this window is taken only over the stored history
 $$
-t_0\in[t-h,t]
+T_0\in[T-h,T]
 $$
 Then the total inward velocity kick contributed by the self branch across the hinge window is finite and obeys the crude bound
 $$
@@ -7184,15 +7189,15 @@ does not produce an infinite velocity jump in the dual-mollified model.
 Proof.
 On the hinge window, evaluate the self contribution in the regularized integral form rather than the branch-sum form. By construction of the dual mollification, the self acceleration satisfies the absolute bound
 $$
-|a_s(t)|
+|a_s(T)|
 \le
 \kappa\epsilon^2
-\int_{t-h}^{t}
-\frac{\delta_\eta(\cdots)}{|x(t)-x(t_0)|^2+\epsilon_c^2}\,dt_0
+\int_{T-h}^{T}
+\frac{\delta_\eta(\cdots)}{|X(T)-X(T_0)|^2+\epsilon_c^2}\,dT_0
 $$
 Because
 $$
-|x(t)-x(t_0)|^2+\epsilon_c^2\ge \epsilon_c^2
+|X(T)-X(T_0)|^2+\epsilon_c^2\ge \epsilon_c^2
 $$
 and
 $$
@@ -7200,11 +7205,11 @@ $$
 $$
 one obtains
 $$
-|a_s(t)|
+|a_s(T)|
 \le
 \kappa\epsilon^2
-\int_{t-h}^{t}
-\frac{\|\delta_\eta\|_\infty}{\epsilon_c^2}\,dt_0
+\int_{T-h}^{T}
+\frac{\|\delta_\eta\|_\infty}{\epsilon_c^2}\,dT_0
 =
 \frac{\kappa\epsilon^2\,h\,\|\delta_\eta\|_\infty}{\epsilon_c^2}
 $$
@@ -7212,7 +7217,7 @@ Integrating over the hinge window gives
 $$
 \Delta V_{\mathrm{cau}}
 \le
-\int_{I_{\mathrm{cau}}}|a_s(t)|\,dt
+\int_{I_{\mathrm{cau}}}|a_s(T)|\,dT
 \le
 \frac{\kappa\epsilon^2\,h\,\|\delta_\eta\|_\infty}{\epsilon_c^2}
 \cdot
@@ -7235,25 +7240,25 @@ Thus the caustic transit contributes a finite inward impulse in the dual-mollifi
 **Lemma 13: Post-hinge Jacobian recovery and sorting-gap inheritance.**
 Assume the pre-crossing leg satisfies Lemmas 10-12, and let
 $$
-t_{\mathrm{cross}}
+T_{\mathrm{cross}}
 $$
 denote the first origin crossing. Define
 $$
-w(t)\equiv x(t)+c_f t
+w(T)\equiv X(T)+c_f T
 $$
 on the unshifted inbound leg, and let
 $$
-t_{\mathrm{zero}}<t_{\mathrm{hinge}}
+T_{\mathrm{zero}}<T_{\mathrm{hinge}}
 $$
 be the unique time satisfying
 $$
-w(t_{\mathrm{zero}})=w(t_{\mathrm{cross}})
+w(T_{\mathrm{zero}})=w(T_{\mathrm{cross}})
 $$
 Assume moreover that on the ascending side of the sorting map one has the lower derivative bound
 $$
-\dot w(t)\ge \nu_s>0
+\frac{dw}{dT}(T)\ge \nu_s>0
 \qquad
-\text{for }t\in[t_{\mathrm{zero}},t_{\mathrm{hinge}}-\gamma_w]
+\text{for }T\in[T_{\mathrm{zero}},T_{\mathrm{hinge}}-\gamma_w]
 $$
 for some
 $$
@@ -7263,24 +7268,24 @@ Then:
 
 1. the active self root at the crossing is exactly
    $$
-   t_s(t_{\mathrm{cross}})=t_{\mathrm{zero}}
+   T_s(T_{\mathrm{cross}})=T_{\mathrm{zero}}
    $$
 2. the recovered self Jacobian at the crossing satisfies
    $$
-   J_s(t_{\mathrm{cross}};t_{\mathrm{zero}})
+   J_s(T_{\mathrm{cross}};T_{\mathrm{zero}})
    =
-   \frac{\dot w(t_{\mathrm{zero}})}{c_f}
+   \frac{\frac{dw}{dT}(T_{\mathrm{zero}})}{c_f}
    \ge
    \frac{\nu_s}{c_f}
    $$
 3. and the translated crossing history
    $$
-   \phi_{\mathrm{cross}}(\theta)=x(t_{\mathrm{cross}}+\theta)
+   \phi_{\mathrm{cross}}(\theta)=X(T_{\mathrm{cross}}+\theta)
    $$
-   inherits a compact-subinterval sorting gap:
+   inherits a compacT-T_{\mathrm{em}}ubinterval sorting gap:
    for every
    $$
-   0<\gamma<\min\{t_{\mathrm{hinge}}-t_{\mathrm{zero}},-t_{\mathrm{hinge}}\}
+   0<\gamma<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},-T_{\mathrm{hinge}}\}
    $$
    the translated sorting function
    $$
@@ -7288,13 +7293,13 @@ Then:
    \equiv
    \phi_{\mathrm{cross}}(\theta)+c_f\theta
    =
-   w(t_{\mathrm{cross}}+\theta)-w(t_{\mathrm{cross}})
+   w(T_{\mathrm{cross}}+\theta)-w(T_{\mathrm{cross}})
    $$
    satisfies
    $$
    \widetilde w(\theta)>0
    \qquad
-   \text{for }\theta\in(t_{\mathrm{zero}}-t_{\mathrm{cross}},0)
+   \text{for }\theta\in(T_{\mathrm{zero}}-T_{\mathrm{cross}},0)
    $$
    and therefore
    $$
@@ -7304,36 +7309,36 @@ Then:
 Proof.
 By Lemma 11, for each
 $$
-t\in(t_{\mathrm{hinge}},t_{\mathrm{cross}}]
+T\in(T_{\mathrm{hinge}},T_{\mathrm{cross}}]
 $$
 there exists a unique principal self root
 $$
-t_s(t)<t_{\mathrm{hinge}}
+T_s(T)<T_{\mathrm{hinge}}
 $$
 such that
 $$
-w(t_s)=w(t)
+w(T_s)=w(T)
 $$
 Evaluating this at the crossing time and using the defining property of
 $$
-t_{\mathrm{zero}}
+T_{\mathrm{zero}}
 $$
 shows
 $$
-t_s(t_{\mathrm{cross}})=t_{\mathrm{zero}}
+T_s(T_{\mathrm{cross}})=T_{\mathrm{zero}}
 $$
 
 On the relevant outer-memory branch,
 $$
-J_s(t_{\mathrm{cross}};t_{\mathrm{zero}})
+J_s(T_{\mathrm{cross}};T_{\mathrm{zero}})
 =
-1+\frac{\dot x(t_{\mathrm{zero}})}{c_f}
+1+\frac{\frac{dX}{dT}(T_{\mathrm{zero}})}{c_f}
 =
-\frac{\dot w(t_{\mathrm{zero}})}{c_f}
+\frac{\frac{dw}{dT}(T_{\mathrm{zero}})}{c_f}
 $$
 The assumed lower derivative bound on the ascending side therefore yields
 $$
-J_s(t_{\mathrm{cross}};t_{\mathrm{zero}})
+J_s(T_{\mathrm{cross}};T_{\mathrm{zero}})
 \ge
 \frac{\nu_s}{c_f}>0
 $$
@@ -7341,7 +7346,7 @@ which is the desired post-hinge Jacobian recovery.
 
 For the sorting-gap inheritance, define
 $$
-\widetilde w(\theta)=w(t_{\mathrm{cross}}+\theta)-w(t_{\mathrm{cross}})
+\widetilde w(\theta)=w(T_{\mathrm{cross}}+\theta)-w(T_{\mathrm{cross}})
 $$
 Then
 $$
@@ -7349,19 +7354,19 @@ $$
 $$
 and
 $$
-\widetilde w(t_{\mathrm{zero}}-t_{\mathrm{cross}})=0
+\widetilde w(T_{\mathrm{zero}}-T_{\mathrm{cross}})=0
 $$
 Because
 $$
-w(t)<w(t_{\mathrm{hinge}})
+w(T)<w(T_{\mathrm{hinge}})
 $$
 for all
 $$
-t\neq t_{\mathrm{hinge}}
+T\neq T_{\mathrm{hinge}}
 $$
 and because the level
 $$
-w(t_{\mathrm{cross}})
+w(T_{\mathrm{cross}})
 $$
 intersects the strictly concave graph of
 $$
@@ -7369,9 +7374,9 @@ w
 $$
 exactly at
 $$
-t_{\mathrm{zero}}
+T_{\mathrm{zero}}
 \quad\text{and}\quad
-t_{\mathrm{cross}}
+T_{\mathrm{cross}}
 $$
 it follows that
 $$
@@ -7379,9 +7384,9 @@ $$
 $$
 for every
 $$
-\theta\in(t_{\mathrm{zero}}-t_{\mathrm{cross}},0)
+\theta\in(T_{\mathrm{zero}}-T_{\mathrm{cross}},0)
 $$
-Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compact-subinterval sorting gap
+Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compacT-T_{\mathrm{em}}ubinterval sorting gap
 $$
 \delta_w(\phi_{\mathrm{cross}};\gamma)>0
 $$
@@ -7398,11 +7403,11 @@ Once the local post-crossing theorem has produced a turning point, the remaining
 > $$
 > and suppose the local origin-crossing recapture theorem produces, for every admissible crossing history, a turning time
 > $$
-> t_{\mathrm{turn}}\le \tau_{\mathrm{env}}
+> T_{\mathrm{turn}}\le \tau_{\mathrm{env}}
 > $$
 > with
 > $$
-> \dot\rho(t_{\mathrm{turn}})=0.
+> \frac{d\rho}{dT}(T_{\mathrm{turn}})=0.
 > $$
 > Assume there exist class constants
 > $$
@@ -7418,46 +7423,46 @@ Once the local post-crossing theorem has produced a turning point, the remaining
 > 1. **inward return after the turn:**
 >    the trajectory re-enters toward the origin after
 >    $$
->    t_{\mathrm{turn}},
+>    T_{\mathrm{turn}},
 >    $$
 >    crosses the center a second time, reaches the reflected section state
 >    $$
->    x=x_\ast,
+>    X=X_\ast,
 >    \qquad
->    \dot x>0,
+>    \frac{dX}{dT}>0,
 >    $$
 >    on the right exterior branch, and after one further outer turn returns to the section
 >    $$
->    x=x_\ast
+>    X=X_\ast
 >    $$
 >    as an inbound branch;
 > 2. **bounded excursion on the return half:**
 >    $$
->    0\le x(t)\le X_{\max}
+>    0\le X(T)\le X_{\max}
 >    \qquad
->    \text{for }t_{\mathrm{turn}}\le t\le T(\psi);
+>    \text{for }T_{\mathrm{turn}}\le T\le T(\psi);
 >    $$
 > 3. **bounded speed and acceleration on the return half:**
 >    $$
->    |\dot x(t)|\le U_{\max},
+>    |\frac{dX}{dT}(T)|\le U_{\max},
 >    \qquad
->    |\ddot x(t)|\le A_{\max}
+>    |\frac{d^2X}{dT^2}(T)|\le A_{\max}
 >    \qquad
->    \text{for }t_{\mathrm{turn}}\le t\le T(\psi);
+>    \text{for }T_{\mathrm{turn}}\le T\le T(\psi);
 >    $$
 > 4. **bounded return time:**
 >    the first inbound section return satisfies
 >    $$
->    0<T(\psi)-t_{\mathrm{turn}}\le T_{\mathrm{ret},\max};
+>    0<T(\psi)-T_{\mathrm{turn}}\le T_{\mathrm{ret},\max};
 >    $$
 > 5. **bounded inbound section speed:**
 >    $$
->    -\dot x(T(\psi))\le U_{\max};
+>    -\frac{dX}{dT}(T(\psi))\le U_{\max};
 >    $$
 > 6. **returned-history control:**
 >    the translated segment
 >    $$
->    x_{T(\psi)}
+>    X_{T(\psi)}
 >    $$
 >    satisfies the same acceleration, Jacobian, and branch-count bounds required by the tame envelope.
 >
@@ -7467,7 +7472,7 @@ Once the local post-crossing theorem has produced a turning point, the remaining
 > $$
 > is well defined on the corresponding tame class with
 > $$
-> P_\eta(\psi)\in \mathcal{C}_{x_\ast,\eta}.
+> P_\eta(\psi)\in \mathcal{C}_{X_\ast,\eta}.
 > $$
 
 This theorem is the last missing dynamical segment of the cycle. The collapse-to-crossing theorem feeds the local recapture theorem; the turn-to-section return theorem feeds the invariant-envelope and Schauder steps.
@@ -7483,22 +7488,22 @@ The intended proof order for the return half is:
 3. **Reflected-section lemma.**
    Show that after the second crossing, the trajectory reaches
    $$
-   x=x_\ast
+   X=X_\ast
    $$
    on the right exterior branch with
    $$
-   \dot x>0
+   \frac{dX}{dT}>0
    $$
 4. **Outer-turn closure lemma.**
    Show that after one further outer turn on the right branch, the trajectory returns to
    $$
-   x=x_\ast
+   X=X_\ast
    $$
    again on an inbound branch.
 5. **Return-speed bound.**
    Estimate the inbound speed at the section and show
    $$
-   -\dot x(T(\psi))\le U_{\max}
+   -\frac{dX}{dT}(T(\psi))\le U_{\max}
    $$
 6. **Returned-history tameness.**
    Prove that the translated return segment inherits the tame acceleration, Jacobian, and branch-count bounds.
@@ -7508,17 +7513,17 @@ The first, fourth, and fifth items are the real analytic bottlenecks on the retu
 **Lemma 14: Post-turn inward-drive lemma.**
 Let
 $$
-t_{\mathrm{turn}}
+T_{\mathrm{turn}}
 $$
 be a turning time produced by the local origin-crossing recapture theorem, so that
 $$
-\rho(t_{\mathrm{turn}})=\rho_{\max}>0,
+\rho(T_{\mathrm{turn}})=\rho_{\max}>0,
 \qquad
-\dot\rho(t_{\mathrm{turn}})=0
+\frac{d\rho}{dT}(T_{\mathrm{turn}})=0
 $$
 Assume there exists a post-turn window
 $$
-[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
+[T_{\mathrm{turn}},\,T_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
 $$
 and a constant
 $$
@@ -7526,66 +7531,66 @@ a_{\mathrm{ret}}>0
 $$
 such that on that window the radial acceleration satisfies
 $$
-\ddot\rho(t)\le -a_{\mathrm{ret}}
+\frac{d^2\rho}{dT^2}(T)\le -a_{\mathrm{ret}}
 $$
 Then:
 
 1. the trajectory cannot re-escape outward on that window,
 2. the radial speed becomes strictly inward immediately after the turn,
    $$
-   \dot\rho(t)\le -a_{\mathrm{ret}}(t-t_{\mathrm{turn}})
+   \frac{d\rho}{dT}(T)\le -a_{\mathrm{ret}}(T-T_{\mathrm{turn}})
    \qquad
-   \text{for }t\in[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
+   \text{for }T\in[T_{\mathrm{turn}},\,T_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
    $$
 3. and the radius decreases monotonically there, with
    $$
-   \rho(t)\le
+   \rho(T)\le
    \rho_{\max}
    -
-   \frac{a_{\mathrm{ret}}}{2}(t-t_{\mathrm{turn}})^2
+   \frac{a_{\mathrm{ret}}}{2}(T-T_{\mathrm{turn}})^2
    $$
 
 In particular, a sufficient realization is
 $$
-A_p^\rho(t)-A_s^\rho(t)\ge a_{\mathrm{ret}}>0
+A_p^\rho(T)-A_s^\rho(T)\ge a_{\mathrm{ret}}>0
 \qquad
-\text{for }t\in[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
+\text{for }T\in[T_{\mathrm{turn}},\,T_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
 $$
 because then
 $$
-\ddot\rho(t)\le -a_{\mathrm{ret}}
+\frac{d^2\rho}{dT^2}(T)\le -a_{\mathrm{ret}}
 $$
 
 Proof.
 Integrating the radial acceleration bound from the turning time gives
 $$
-\dot\rho(t)
+\frac{d\rho}{dT}(T)
 =
-\dot\rho(t_{\mathrm{turn}})
+\frac{d\rho}{dT}(T_{\mathrm{turn}})
 +
-\int_{t_{\mathrm{turn}}}^{t}\ddot\rho(s)\,ds
+\int_{T_{\mathrm{turn}}}^{T}\frac{d^2\rho}{dT^2}(S)\,dS
 \le
-0-a_{\mathrm{ret}}(t-t_{\mathrm{turn}})
+0-a_{\mathrm{ret}}(T-T_{\mathrm{turn}})
 $$
 which proves the velocity estimate and shows that
 $$
-\dot\rho(t)<0
+\frac{d\rho}{dT}(T)<0
 \qquad
-\text{for }t>t_{\mathrm{turn}}
+\text{for }T>T_{\mathrm{turn}}
 $$
 Thus the trajectory moves strictly inward immediately after the turn and cannot re-escape outward on the stated window.
 
 Integrating once more yields
 $$
-\rho(t)
+\rho(T)
 =
-\rho(t_{\mathrm{turn}})
+\rho(T_{\mathrm{turn}})
 +
-\int_{t_{\mathrm{turn}}}^{t}\dot\rho(s)\,ds
+\int_{T_{\mathrm{turn}}}^{T}\frac{d\rho}{dT}(S)\,dS
 \le
 \rho_{\max}
 -
-\frac{a_{\mathrm{ret}}}{2}(t-t_{\mathrm{turn}})^2
+\frac{a_{\mathrm{ret}}}{2}(T-T_{\mathrm{turn}})^2
 $$
 which proves the monotone decrease of the radius on the post-turn window.
 
@@ -7598,17 +7603,17 @@ $$
 $$
 Then the trajectory reaches the center again in finite time: there exists
 $$
-t_{\mathrm{cross}}^{(2)}
+T_{\mathrm{cross}}^{(2)}
 \in
 \left(
-t_{\mathrm{turn}},
+T_{\mathrm{turn}},
 \,
-t_{\mathrm{turn}}+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
+T_{\mathrm{turn}}+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
 \right]
 $$
 such that
 $$
-\rho\!\big(t_{\mathrm{cross}}^{(2)}\big)=0
+\rho\!\big(T_{\mathrm{cross}}^{(2)}\big)=0
 $$
 
 Equivalently, in signed coordinates the trajectory crosses the origin a second time by that time.
@@ -7616,22 +7621,22 @@ Equivalently, in signed coordinates the trajectory crosses the origin a second t
 Proof.
 Lemma 14 gives the comparison bound
 $$
-\rho(t)\le
+\rho(T)\le
 \rho_{\max}
 -
-\frac{a_{\mathrm{ret}}}{2}(t-t_{\mathrm{turn}})^2
+\frac{a_{\mathrm{ret}}}{2}(T-T_{\mathrm{turn}})^2
 $$
 for
 $$
-t\in[t_{\mathrm{turn}},\,t_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
+T\in[T_{\mathrm{turn}},\,T_{\mathrm{turn}}+\tau_{\mathrm{ret}}]
 $$
 Therefore
 $$
-\rho(t)\le 0
+\rho(T)\le 0
 $$
 whenever
 $$
-t-t_{\mathrm{turn}}
+T-T_{\mathrm{turn}}
 \ge
 \sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
 $$
@@ -7643,7 +7648,7 @@ $$
 $$
 the comparison reaches zero before the end of the return window. Since
 $$
-\rho(t_{\mathrm{turn}})=\rho_{\max}>0
+\rho(T_{\mathrm{turn}})=\rho_{\max}>0
 $$
 and
 $$
@@ -7651,250 +7656,250 @@ $$
 $$
 is continuous, there exists a first time
 $$
-t_{\mathrm{cross}}^{(2)}
+T_{\mathrm{cross}}^{(2)}
 \in
 \left(
-t_{\mathrm{turn}},
+T_{\mathrm{turn}},
 \,
-t_{\mathrm{turn}}+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
+T_{\mathrm{turn}}+\sqrt{\frac{2\rho_{\max}}{a_{\mathrm{ret}}}}
 \right]
 $$
 for which
 $$
-\rho\!\big(t_{\mathrm{cross}}^{(2)}\big)=0
+\rho\!\big(T_{\mathrm{cross}}^{(2)}\big)=0
 $$
 This proves the lemma.
 
 **Lemma 16: Return to the reflected section state after the second crossing.**
 Assume the hypotheses of Lemma 15 and let
 $$
-t_{\mathrm{cross}}^{(2)}
+T_{\mathrm{cross}}^{(2)}
 $$
-denote the second origin crossing. Assume, in addition, that there exists a post-second-crossing window
+denote the second origin crossing. Assume, in addition, that there exists a posT-T_{\mathrm{em}}econd-crossing window
 $$
-[t_{\mathrm{cross}}^{(2)},\,t_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
+[T_{\mathrm{cross}}^{(2)},\,T_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
 $$
 on which:
 
 - the trajectory lies on the right exterior branch,
   $$
-  x(t)\ge 0
+  X(T)\ge 0
   $$
 - the motion is outward,
   $$
-  \dot x(t)\ge v_{\ast}>0
+  \frac{dX}{dT}(T)\ge v_{\ast}>0
   $$
 - and the position remains bounded above by the global excursion envelope,
   $$
-  x(t)\le X_{\max}
+  X(T)\le X_{\max}
   $$
 
 If
 $$
-\tau_{\ast}\ge \frac{x_\ast}{v_{\ast}}
+\tau_{\ast}\ge \frac{X_\ast}{v_{\ast}}
 $$
 then there exists a first time
 $$
-t_{\ast}
+T_{\ast}
 \in
 \left[
-t_{\mathrm{cross}}^{(2)},
+T_{\mathrm{cross}}^{(2)},
 \,
-t_{\mathrm{cross}}^{(2)}+\frac{x_\ast}{v_{\ast}}
+T_{\mathrm{cross}}^{(2)}+\frac{X_\ast}{v_{\ast}}
 \right]
 $$
 such that
 $$
-x(t_{\ast})=x_\ast,
+X(T_{\ast})=X_\ast,
 \qquad
-\dot x(t_{\ast})\ge v_{\ast}>0
+\frac{dX}{dT}(T_{\ast})\ge v_{\ast}>0
 $$
 
 Equivalently, by reflection symmetry of the two-body state, the trajectory has returned to the reflected section state corresponding to the inbound section at radius
 $$
-x_\ast
+X_\ast
 $$
 
 Proof.
 For
 $$
-t\in[t_{\mathrm{cross}}^{(2)},\,t_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
+T\in[T_{\mathrm{cross}}^{(2)},\,T_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
 $$
 the lower speed bound gives
 $$
-x(t)
+X(T)
 =
-x(t_{\mathrm{cross}}^{(2)})
+X(T_{\mathrm{cross}}^{(2)})
 +
-\int_{t_{\mathrm{cross}}^{(2)}}^{t}\dot x(s)\,ds
+\int_{T_{\mathrm{cross}}^{(2)}}^{T}\frac{dX}{dT}(S)\,dS
 \ge
-v_{\ast}(t-t_{\mathrm{cross}}^{(2)})
+v_{\ast}(T-T_{\mathrm{cross}}^{(2)})
 $$
 because
 $$
-x(t_{\mathrm{cross}}^{(2)})=0
+X(T_{\mathrm{cross}}^{(2)})=0
 $$
 Hence
 $$
-x(t)\ge x_\ast
+X(T)\ge X_\ast
 $$
 whenever
 $$
-t-t_{\mathrm{cross}}^{(2)}\ge \frac{x_\ast}{v_{\ast}}
+T-T_{\mathrm{cross}}^{(2)}\ge \frac{X_\ast}{v_{\ast}}
 $$
 Since
 $$
-\tau_{\ast}\ge \frac{x_\ast}{v_{\ast}}
+\tau_{\ast}\ge \frac{X_\ast}{v_{\ast}}
 $$
 the trajectory reaches radius
 $$
-x_\ast
+X_\ast
 $$
 within the stated window. Continuity of
 $$
-x
+X
 $$
 then gives a first time
 $$
-t_\ast
+T_\ast
 \in
 \left[
-t_{\mathrm{cross}}^{(2)},
+T_{\mathrm{cross}}^{(2)},
 \,
-t_{\mathrm{cross}}^{(2)}+\frac{x_\ast}{v_{\ast}}
+T_{\mathrm{cross}}^{(2)}+\frac{X_\ast}{v_{\ast}}
 \right]
 $$
 such that
 $$
-x(t_\ast)=x_\ast
+X(T_\ast)=X_\ast
 $$
 The outward speed bound on the window implies
 $$
-\dot x(t_\ast)\ge v_\ast>0
+\frac{dX}{dT}(T_\ast)\ge v_\ast>0
 $$
 Thus the trajectory reaches the reflected section state in finite time.
 
 For the full return-map program this is the natural intermediate object: literal signed return to
 $$
-x=x_\ast
+X=X_\ast
 $$
 with
 $$
-\dot x<0
+\frac{dX}{dT}<0
 $$
 requires one further outer-turn control step, whereas return to the reflected section state is the immediate consequence of the second crossing plus outward continuation on the right branch.
 
 **Lemma 17: Outer-turn closure from the reflected section state.**
 Assume the hypotheses of Lemma 16 and let
 $$
-t_\ast
+T_\ast
 $$
 denote the reflected-section time, so that
 $$
-x(t_\ast)=x_\ast,
+X(T_\ast)=X_\ast,
 \qquad
-\dot x(t_\ast)\ge v_\ast>0
+\frac{dX}{dT}(T_\ast)\ge v_\ast>0
 $$
 Assume, in addition, that there exists a later outer turning time
 $$
-t_{\mathrm{turn}}^{\mathrm{out}}
+T_{\mathrm{turn}}^{\mathrm{out}}
 >
-t_\ast
+T_\ast
 $$
 with
 $$
-x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\ge x_\ast,
+X\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\ge X_\ast,
 \qquad
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 and a post-turn window
 $$
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
-t_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
+T_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
 \right]
 $$
 on which
 $$
-\ddot x(t)\le -a_{\mathrm{in}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in}}^{\mathrm{out}}<0
 $$
 If
 $$
 \tau_{\mathrm{in}}
 \ge
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
 $$
 then there exists a first return time
 $$
 T(\psi)
 \in
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
-t_{\mathrm{turn}}^{\mathrm{out}}+
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
+T_{\mathrm{turn}}^{\mathrm{out}}+
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
 \right]
 $$
 such that
 $$
-x(T(\psi))=x_\ast,
+X(T(\psi))=X_\ast,
 \qquad
-\dot x(T(\psi))<0
+\frac{dX}{dT}(T(\psi))<0
 $$
 
 Proof.
 Integrating the acceleration bound from the outer turning time gives
 $$
-\dot x(t)
+\frac{dX}{dT}(T)
 =
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)
 +
-\int_{t_{\mathrm{turn}}^{\mathrm{out}}}^{t}\ddot x(s)\,ds
+\int_{T_{\mathrm{turn}}^{\mathrm{out}}}^{T}\frac{d^2X}{dT^2}(S)\,dS
 \le
--a_{\mathrm{in}}^{\mathrm{out}}(t-t_{\mathrm{turn}}^{\mathrm{out}})
+-a_{\mathrm{in}}^{\mathrm{out}}(T-T_{\mathrm{turn}}^{\mathrm{out}})
 $$
 for
 $$
-t\in
+T\in
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
-t_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
+T_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
 \right]
 $$
 because
 $$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 Hence
 $$
-\dot x(t)<0
+\frac{dX}{dT}(T)<0
 $$
 for all
 $$
-t>t_{\mathrm{turn}}^{\mathrm{out}}
+T>T_{\mathrm{turn}}^{\mathrm{out}}
 $$
 in the window, so the trajectory moves strictly inward on the right branch after the outer turn.
 
 Integrating once more yields
 $$
-x(t)
+X(T)
 \le
 X_{\mathrm{out}}
 -
 \frac{a_{\mathrm{in}}^{\mathrm{out}}}{2}
-\big(t-t_{\mathrm{turn}}^{\mathrm{out}}\big)^2
+\big(T-T_{\mathrm{turn}}^{\mathrm{out}}\big)^2
 $$
 Therefore
 $$
-x(t)\le x_\ast
+X(T)\le X_\ast
 $$
 whenever
 $$
-t-t_{\mathrm{turn}}^{\mathrm{out}}
+T-T_{\mathrm{turn}}^{\mathrm{out}}
 \ge
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
 $$
 By the assumed lower bound on
 $$
@@ -7902,34 +7907,34 @@ $$
 $$
 the comparison reaches
 $$
-x_\ast
+X_\ast
 $$
 before the end of the window. Since
 $$
-x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\ge x_\ast
+X\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\ge X_\ast
 $$
 and
 $$
-x
+X
 $$
 is continuous, there exists a first time
 $$
 T(\psi)
 \in
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
-t_{\mathrm{turn}}^{\mathrm{out}}+
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
+T_{\mathrm{turn}}^{\mathrm{out}}+
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{\mathrm{in}}^{\mathrm{out}}}}
 \right]
 $$
 for which
 $$
-x(T(\psi))=x_\ast
+X(T(\psi))=X_\ast
 $$
 The strict inward velocity bound implies
 $$
-\dot x(T(\psi))<0
+\frac{dX}{dT}(T(\psi))<0
 $$
 Thus the trajectory returns to the inbound section in finite time.
 
@@ -7937,7 +7942,7 @@ Thus the trajectory returns to the inbound section in finite time.
 Assume the hypotheses of Lemma 17 and, in addition, that on the post-turn window
 $$
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
 T(\psi)
 \right]
@@ -7946,7 +7951,7 @@ the acceleration satisfies the two-sided bound
 $$
 -a_{+}^{\mathrm{out}}
 \le
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 \le
 -a_{-}^{\mathrm{out}}
 <
@@ -7957,15 +7962,15 @@ $$
 Then the inbound section speed satisfies
 $$
 0<
--\dot x(T(\psi))
+-\frac{dX}{dT}(T(\psi))
 \le
 a_{+}^{\mathrm{out}}
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{-}^{\mathrm{out}}}}
 $$
 In particular, a sufficient condition for the tame return-speed bound is
 $$
 a_{+}^{\mathrm{out}}
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{-}^{\mathrm{out}}}}
 \le
 U_{\max}
 $$
@@ -7973,74 +7978,74 @@ $$
 Proof.
 Integrating the upper acceleration bound from the outer turning time to the inbound section return gives
 $$
-\dot x(T(\psi))
+\frac{dX}{dT}(T(\psi))
 =
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)
 +
-\int_{t_{\mathrm{turn}}^{\mathrm{out}}}^{T(\psi)}\ddot x(s)\,ds
+\int_{T_{\mathrm{turn}}^{\mathrm{out}}}^{T(\psi)}\frac{d^2X}{dT^2}(S)\,dS
 \ge
 -a_{+}^{\mathrm{out}}
-\big(T(\psi)-t_{\mathrm{turn}}^{\mathrm{out}}\big)
+\big(T(\psi)-T_{\mathrm{turn}}^{\mathrm{out}}\big)
 $$
 because
 $$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 Since Lemma 17 already gives
 $$
-\dot x(T(\psi))<0
+\frac{dX}{dT}(T(\psi))<0
 $$
 this implies
 $$
 0<
--\dot x(T(\psi))
+-\frac{dX}{dT}(T(\psi))
 \le
 a_{+}^{\mathrm{out}}
-\big(T(\psi)-t_{\mathrm{turn}}^{\mathrm{out}}\big)
+\big(T(\psi)-T_{\mathrm{turn}}^{\mathrm{out}}\big)
 $$
 
 It remains to bound the elapsed time. By the lower acceleration floor,
 $$
-x(t)
+X(T)
 \le
 X_{\mathrm{out}}
 -
 \frac{a_{-}^{\mathrm{out}}}{2}
-\big(t-t_{\mathrm{turn}}^{\mathrm{out}}\big)^2
+\big(T-T_{\mathrm{turn}}^{\mathrm{out}}\big)^2
 $$
 on
 $$
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
 T(\psi)
 \right]
 $$
 Evaluating at
 $$
-t=T(\psi)
+T=T(\psi)
 $$
 and using
 $$
-x(T(\psi))=x_\ast
+X(T(\psi))=X_\ast
 $$
 yields
 $$
-T(\psi)-t_{\mathrm{turn}}^{\mathrm{out}}
+T(\psi)-T_{\mathrm{turn}}^{\mathrm{out}}
 \le
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{-}^{\mathrm{out}}}}
 $$
 Substituting this into the previous speed bound proves
 $$
 0<
--\dot x(T(\psi))
+-\frac{dX}{dT}(T(\psi))
 \le
 a_{+}^{\mathrm{out}}
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_{-}^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_{-}^{\mathrm{out}}}}
 $$
 The stated sufficient condition for
 $$
--\dot x(T(\psi))\le U_{\max}
+-\frac{dX}{dT}(T(\psi))\le U_{\max}
 $$
 is immediate.
 
@@ -8051,7 +8056,7 @@ T(\psi)
 $$
 be an inbound section return time produced by Lemma 17, and define the translated return history
 $$
-x_{T(\psi)}(\theta)=x\!\big(T(\psi)+\theta\big),
+X_{T(\psi)}(\theta)=X\!\big(T(\psi)+\theta\big),
 \qquad
 \theta\in[-h,0]
 $$
@@ -8063,31 +8068,31 @@ the trajectory satisfies:
 
 - the section anchoring and sign conditions
   $$
-  x(T(\psi))=x_\ast,
+  X(T(\psi))=X_\ast,
   \qquad
-  \dot x(T(\psi))<0
+  \frac{dX}{dT}(T(\psi))<0
   $$
 - the envelope bounds
   $$
-  0\le x(t)\le X_{\max},
+  0\le X(T)\le X_{\max},
   \qquad
-  |\dot x(t)|\le U_{\max},
+  |\frac{dX}{dT}(T)|\le U_{\max},
   \qquad
-  |\ddot x(t)|\le A_{\max}
+  |\frac{d^2X}{dT^2}(T)|\le A_{\max}
   $$
 - and the same Jacobian and active-root count bounds that define the tame return class.
 
 Then
 $$
-x_{T(\psi)}
+X_{T(\psi)}
 $$
 lies in the tame return envelope. In particular, if those final-window bounds are exactly the defining bounds of
 $$
-\mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 $$
 then
 $$
-P_\eta(\psi)=x_{T(\psi)}\in \mathcal{C}^{\mathrm{tame}}_{x_\ast,\eta}
+P_\eta(\psi)=X_{T(\psi)}\in \mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}
 $$
 
 Proof.
@@ -8097,7 +8102,7 @@ $$
 $$
 the translated history satisfies
 $$
-x_{T(\psi)}(\theta)=x\!\big(T(\psi)+\theta\big)
+X_{T(\psi)}(\theta)=X\!\big(T(\psi)+\theta\big)
 $$
 so every point of the history segment is sampled from the final window
 $$
@@ -8105,11 +8110,11 @@ $$
 $$
 Therefore the pointwise bounds on
 $$
-x,\qquad \dot x,\qquad \ddot x
+X,\qquad \frac{dX}{dT},\qquad \frac{d^2X}{dT^2}
 $$
 transfer directly to
 $$
-x_{T(\psi)},\qquad \dot x_{T(\psi)},\qquad \ddot x_{T(\psi)}
+X_{T(\psi)},\qquad \frac{dX}{dT}_{T(\psi)},\qquad \frac{d^2X}{dT^2}_{T(\psi)}
 $$
 The section anchoring conditions at
 $$
@@ -8117,9 +8122,9 @@ $$
 $$
 follow from
 $$
-x(T(\psi))=x_\ast,
+X(T(\psi))=X_\ast,
 \qquad
-\dot x(T(\psi))<0
+\frac{dX}{dT}(T(\psi))<0
 $$
 Likewise, because the Jacobian and active-root count bounds are assumed uniformly on the same final window, they transfer directly to the translated segment.
 
@@ -8132,9 +8137,9 @@ The remaining major dynamical gap on the return half is no longer kinematic. Lem
 > **Target Theorem (Outer-Turn Recapture).**
 > Fix a dual-mollified tame return class and suppose the return-half branch has already reached the reflected section state
 > $$
-> x=x_\ast,
+> X=X_\ast,
 > \qquad
-> \dot x>0
+> \frac{dX}{dT}>0
 > $$
 > on the right exterior branch. Assume there exist class constants
 > $$
@@ -8148,30 +8153,30 @@ The remaining major dynamical gap on the return half is no longer kinematic. Lem
 > 1. **bounded outward excursion:**
 >    the trajectory remains in
 >    $$
->    x_\ast\le x(t)\le X_{\mathrm{out},\max}
+>    X_\ast\le X(T)\le X_{\mathrm{out},\max}
 >    $$
 >    until the first outer turn;
 > 2. **outer-turn existence:**
 >    there exists a first time
 >    $$
->    t_{\mathrm{turn}}^{\mathrm{out}}
+>    T_{\mathrm{turn}}^{\mathrm{out}}
 >    $$
 >    with
 >    $$
->    \dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0,
+>    \frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0,
 >    \qquad
->    x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\in[x_\ast,X_{\mathrm{out},\max}];
+>    X\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}}\in[X_\ast,X_{\mathrm{out},\max}];
 >    $$
 > 3. **post-turn inward-force margin:**
 >    on a window after
 >    $$
->    t_{\mathrm{turn}}^{\mathrm{out}},
+>    T_{\mathrm{turn}}^{\mathrm{out}},
 >    $$
 >    the signed acceleration satisfies
 >    $$
 >    -a_{+}^{\mathrm{out}}
 >    \le
->    \ddot x(t)
+>    \frac{d^2X}{dT^2}(T)
 >    \le
 >    -a_{\mathrm{in}}^{\mathrm{out}}
 >    <
@@ -8199,7 +8204,7 @@ The intended proof order for the outer branch is:
 3. **Outer-force margin theorem.**
    Prove a quantitative inequality of the form
    $$
-   A_p(t)-A_s(t)\ge a_{\mathrm{in}}^{\mathrm{out}}>0
+   A_p(T)-A_s(T)\ge a_{\mathrm{in}}^{\mathrm{out}}>0
    $$
    on an apocenter window.
 4. **Outer-turn existence theorem.**
@@ -8214,31 +8219,31 @@ The intended proof order for the outer branch is:
 The third and fourth items are the main analytic bottlenecks. Once a robust outer-force margin is available, the remaining return-to-section estimates are already in place.
 
 **Lemma 20: Outer-branch partner lower bound.**
-Assume the post-second-crossing outer branch satisfies:
+Assume the posT-T_{\mathrm{em}}econd-crossing outer branch satisfies:
 
 - right exterior outbound geometry,
   $$
-  x_\ast\le x(t)\le X_{\mathrm{out},\max},
+  X_\ast\le X(T)\le X_{\mathrm{out},\max},
   \qquad
-  \dot x(t)\ge 0
+  \frac{dX}{dT}(T)\ge 0
   $$
 - at least one retained active partner branch for each
   $$
-  t\in[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+  T\in[T_\ast,T_{\mathrm{turn}}^{\mathrm{out}}]
   $$
 - the speed bound
   $$
-  |\dot x(t)|\le U_{\max}
+  |\frac{dX}{dT}(T)|\le U_{\max}
   $$
 - the partner roots retained in this lower bound remain inward exterior roots with
   $$
-  x(t)+x(t_p)>0,
+  X(T)+X(T_p)>0,
   \qquad
-  0\le x(t_p)\le X_{\mathrm{out},\max}
+  0\le X(T_p)\le X_{\mathrm{out},\max}
   $$
 - and the partner Jacobian upper bound
   $$
-  |J_p(t;t_p)|\le J_{p,\max}^{\mathrm{out}}
+  |J_p(T;T_p)|\le J_{p,\max}^{\mathrm{out}}
   $$
   on every retained active partner root.
   The speed bound permits the conservative choice
@@ -8248,43 +8253,43 @@ Assume the post-second-crossing outer branch satisfies:
 
 Then the partner contribution to the inward acceleration obeys the class-uniform lower bound
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}}
+A_p(T)\ge \underline A_p^{\mathrm{out}}
 \equiv
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 $$
 Equivalently, the partner acceleration satisfies
 $$
-a_p(t)=-A_p(t)\le -\underline A_p^{\mathrm{out}}<0
+a_p(T)=-A_p(T)\le -\underline A_p^{\mathrm{out}}<0
 $$
 on the outer branch.
 
 Proof.
 Along the retained inward exterior partner channel, the delayed source remains on the opposite side of the current right-hand particle, so each retained contribution points inward and therefore contributes with signed acceleration
 $$
-a_p(t)=-A_p(t)
+a_p(T)=-A_p(T)
 $$
 For any active partner root
 $$
-t_p<t
+T_p<T
 $$
 the delayed partner separation satisfies
 $$
-r_p(t;t_p)=x(t)+x(t_p)
+r_p(T;T_p)=X(T)+X(T_p)
 $$
 Because both the current and delayed positions remain within the outer excursion envelope,
 $$
-0\le x(t)\le X_{\mathrm{out},\max},
+0\le X(T)\le X_{\mathrm{out},\max},
 \qquad
-0\le x(t_p)\le X_{\mathrm{out},\max}
+0\le X(T_p)\le X_{\mathrm{out},\max}
 $$
 we obtain
 $$
-0<r_p(t;t_p)\le 2X_{\mathrm{out},\max}
+0<r_p(T;T_p)\le 2X_{\mathrm{out},\max}
 $$
 Hence the core-mollified denominator obeys
 $$
-r_p(t;t_p)^2+\epsilon_c^2
+r_p(T;T_p)^2+\epsilon_c^2
 \le
 4X_{\mathrm{out},\max}^2+\epsilon_c^2
 $$
@@ -8292,42 +8297,42 @@ $$
 Each retained active partner contribution therefore has magnitude at least
 $$
 \frac{\kappa\epsilon^2}{
-\left(r_p(t;t_p)^2+\epsilon_c^2\right)|J_p(t;t_p)|}
+\left(r_p(T;T_p)^2+\epsilon_c^2\right)|J_p(T;T_p)|}
 \ge
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 $$
 Summing over the retained active partner branches and retaining only one branch yields
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}}
+A_p(T)\ge \underline A_p^{\mathrm{out}}
 $$
 which proves the lemma.
 
 **Lemma 21: Conditional outer-branch self-drive upper bound.**
 Assume that on the outer branch
 $$
-[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+[T_\ast,T_{\mathrm{turn}}^{\mathrm{out}}]
 $$
 the active self branches satisfy:
 
 - a root-count bound
   $$
-  N_s(t)\le N_{s,\max}^{\mathrm{out}}
+  N_s(T)\le N_{s,\max}^{\mathrm{out}}
   $$
 - a self-Jacobian transversality bound
   $$
-  |J_s(t;t_s)|\ge \nu_s^{\mathrm{out}}>0
+  |J_s(T;T_s)|\ge \nu_s^{\mathrm{out}}>0
   $$
   on every active self root,
 - and a delayed self-separation lower bound
   $$
-  r_s(t;t_s)\ge r_{s,\min}^{\mathrm{out}}>0
+  r_s(T;T_s)\ge r_{s,\min}^{\mathrm{out}}>0
   $$
   on every active self root.
 
 Then the outward self contribution obeys the class-uniform upper bound
 $$
-A_s(t)\le \overline A_s^{\mathrm{out}}
+A_s(T)\le \overline A_s^{\mathrm{out}}
 \equiv
 N_{s,\max}^{\mathrm{out}}\,
 \frac{\kappa\epsilon^2}{
@@ -8337,25 +8342,25 @@ $$
 Proof.
 For each active self root
 $$
-t_s<t
+T_T_{\mathrm{em}}<T
 $$
 the contribution to the outward self-drive has magnitude bounded by
 $$
 \frac{\kappa\epsilon^2}{
-\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 $$
 Using the assumed lower bounds on
 $$
-r_s(t;t_s)
+r_s(T;T_s)
 \qquad
 \text{and}
 \qquad
-|J_s(t;t_s)|
+|J_s(T;T_s)|
 $$
 gives the branchwise estimate
 $$
 \frac{\kappa\epsilon^2}{
-\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
 \frac{\kappa\epsilon^2}{
 \big((r_{s,\min}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_s^{\mathrm{out}}}
@@ -8366,34 +8371,34 @@ N_{s,\max}^{\mathrm{out}}
 $$
 active self branches yields
 $$
-A_s(t)\le \overline A_s^{\mathrm{out}}
+A_s(T)\le \overline A_s^{\mathrm{out}}
 $$
 which proves the lemma.
 
 **Lemma 22: Outer-force margin on the apocenter window.**
 Assume that on an outer-branch window
 $$
-[t_\ast,\,t_\ast+\tau_{\mathrm{apo}}]
+[T_\ast,\,T_\ast+\tau_{\mathrm{apo}}]
 $$
 the signed dynamics can be written in the form
 $$
-\ddot x(t)\le -A_p(t)+A_s(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s(T)
 $$
 where
 $$
-A_p(t)
+A_p(T)
 $$
 is the inward partner contribution and
 $$
-A_s(t)
+A_s(T)
 $$
 is the total outward delayed self contribution on that window. If
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}}
+A_p(T)\ge \underline A_p^{\mathrm{out}}
 \qquad
 \text{and}
 \qquad
-A_s(t)\le \overline A_s^{\mathrm{out}}
+A_s(T)\le \overline A_s^{\mathrm{out}}
 $$
 there with
 $$
@@ -8403,11 +8408,11 @@ a_{\mathrm{in}}^{\mathrm{out}}>0
 $$
 then
 $$
-\ddot x(t)\le -a_{\mathrm{in}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in}}^{\mathrm{out}}<0
 $$
 for every
 $$
-t\in[t_\ast,\,t_\ast+\tau_{\mathrm{apo}}]
+T\in[T_\ast,\,T_\ast+\tau_{\mathrm{apo}}]
 $$
 
 In particular, Lemmas 20 and 21 reduce the outer-turn force margin to the parameter inequality
@@ -8425,11 +8430,11 @@ $$
 Proof.
 By hypothesis,
 $$
-\ddot x(t)\le -A_p(t)+A_s(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s(T)
 $$
 Using the lower bound for the inward partner term and the upper bound for the outward self term yields
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 \le
 -\underline A_p^{\mathrm{out}}+\overline A_s^{\mathrm{out}}
 \le
@@ -8440,13 +8445,13 @@ which proves the claim.
 **Lemma 23: Finite-radius outer turn under an apocenter force margin.**
 Assume the hypotheses of Lemma 22 and suppose, in addition, that at the reflected section time
 $$
-t_\ast
+T_\ast
 $$
 the trajectory satisfies
 $$
-x(t_\ast)=x_\ast,
+X(T_\ast)=X_\ast,
 \qquad
-\dot x(t_\ast)=v_\ast>0
+\frac{dX}{dT}(T_\ast)=v_\ast>0
 $$
 If the apocenter window is long enough to satisfy
 $$
@@ -8454,66 +8459,66 @@ $$
 $$
 then there exists a first outer turning time
 $$
-t_{\mathrm{turn}}^{\mathrm{out}}
+T_{\mathrm{turn}}^{\mathrm{out}}
 \in
 \left[
-t_\ast,
+T_\ast,
 \,
-t_\ast+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
+T_\ast+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
 \right]
 $$
 such that
 $$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 Moreover, the turning radius obeys the explicit bound
 $$
 X_{\mathrm{out}}
 =
-x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)
+X\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)
 \le
-x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}
+X_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}
 $$
 
 In particular, a sufficient condition for the outer-turn radius envelope is
 $$
-x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}\le X_{\mathrm{out},\max}
+X_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}\le X_{\mathrm{out},\max}
 $$
 
 Proof.
 Lemma 22 gives the uniform acceleration bound
 $$
-\ddot x(t)\le -a_{\mathrm{in}}^{\mathrm{out}}
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in}}^{\mathrm{out}}
 $$
 on
 $$
-[t_\ast,\,t_\ast+\tau_{\mathrm{apo}}]
+[T_\ast,\,T_\ast+\tau_{\mathrm{apo}}]
 $$
 Integrating from
 $$
-t_\ast
+T_\ast
 $$
 to any later time
 $$
-t
+T
 $$
 in that window yields
 $$
-\dot x(t)
+\frac{dX}{dT}(T)
 =
-\dot x(t_\ast)
+\frac{dX}{dT}(T_\ast)
 +
-\int_{t_\ast}^{t}\ddot x(s)\,ds
+\int_{T_\ast}^{T}\frac{d^2X}{dT^2}(S)\,dS
 \le
-v_\ast-a_{\mathrm{in}}^{\mathrm{out}}(t-t_\ast)
+v_\ast-a_{\mathrm{in}}^{\mathrm{out}}(T-T_\ast)
 $$
 Therefore
 $$
-\dot x(t)\le 0
+\frac{dX}{dT}(T)\le 0
 $$
 whenever
 $$
-t-t_\ast\ge \frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
+T-T_\ast\ge \frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
 $$
 Because
 $$
@@ -8521,42 +8526,42 @@ $$
 $$
 the comparison velocity reaches zero before the end of the apocenter window. Since
 $$
-\dot x(t_\ast)=v_\ast>0
+\frac{dX}{dT}(T_\ast)=v_\ast>0
 $$
 and
 $$
-\dot x
+\frac{dX}{dT}
 $$
 is continuous, there exists a first time
 $$
-t_{\mathrm{turn}}^{\mathrm{out}}
+T_{\mathrm{turn}}^{\mathrm{out}}
 \in
 \left[
-t_\ast,
+T_\ast,
 \,
-t_\ast+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
+T_\ast+\frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
 \right]
 $$
 for which
 $$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 
 Integrating the velocity estimate once more gives
 $$
-x(t)
+X(T)
 \le
-x_\ast+v_\ast(t-t_\ast)
+X_\ast+v_\ast(T-T_\ast)
 -
-\frac{a_{\mathrm{in}}^{\mathrm{out}}}{2}(t-t_\ast)^2
+\frac{a_{\mathrm{in}}^{\mathrm{out}}}{2}(T-T_\ast)^2
 $$
 Evaluating at
 $$
-t=t_{\mathrm{turn}}^{\mathrm{out}}
+T=T_{\mathrm{turn}}^{\mathrm{out}}
 $$
 and using
 $$
-t_{\mathrm{turn}}^{\mathrm{out}}-t_\ast
+T_{\mathrm{turn}}^{\mathrm{out}}-T_\ast
 \le
 \frac{v_\ast}{a_{\mathrm{in}}^{\mathrm{out}}}
 $$
@@ -8564,34 +8569,34 @@ yields
 $$
 X_{\mathrm{out}}
 \le
-x_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}
+X_\ast+\frac{v_\ast^2}{2a_{\mathrm{in}}^{\mathrm{out}}}
 $$
 which proves the radius bound.
 
 **Lemma 24: Post-turn acceleration bracket after the outer turn.**
 Assume the hypotheses of Lemma 23 and let
 $$
-t_{\mathrm{turn}}^{\mathrm{out}}
+T_{\mathrm{turn}}^{\mathrm{out}}
 $$
 be the first outer turning time, with
 $$
-x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}},
+X\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=X_{\mathrm{out}},
 \qquad
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 Assume, in addition, that there exists a post-turn window
 $$
 \left[
-t_{\mathrm{turn}}^{\mathrm{out}},
+T_{\mathrm{turn}}^{\mathrm{out}},
 \,
-t_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
+T_{\mathrm{turn}}^{\mathrm{out}}+\tau_{\mathrm{in}}
 \right]
 $$
 on which the delayed force contributions satisfy
 $$
-A_p(t)\ge \underline A_{p,\mathrm{post}}^{\mathrm{out}},
+A_p(T)\ge \underline A_{p,\mathrm{post}}^{\mathrm{out}},
 \qquad
-A_s(t)\le \overline A_{s,\mathrm{post}}^{\mathrm{out}}
+A_s(T)\le \overline A_{s,\mathrm{post}}^{\mathrm{out}}
 $$
 with
 $$
@@ -8603,13 +8608,13 @@ a_-^{\mathrm{out}}>0
 $$
 and also admit a class-uniform upper acceleration bound
 $$
-|\ddot x(t)|\le a_+^{\mathrm{out}}
+|\frac{d^2X}{dT^2}(T)|\le a_+^{\mathrm{out}}
 $$
 Then on that post-turn window one has the two-sided acceleration bracket
 $$
 -a_+^{\mathrm{out}}
 \le
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 \le
 -a_-^{\mathrm{out}}
 <
@@ -8620,7 +8625,7 @@ Consequently, if
 $$
 \tau_{\mathrm{in}}
 \ge
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_-^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_-^{\mathrm{out}}}}
 $$
 then the hypotheses of Lemmas 17 and 18 hold with
 $$
@@ -8630,11 +8635,11 @@ $$
 Proof.
 On the post-turn window the signed equation has the form
 $$
-\ddot x(t)\le -A_p(t)+A_s(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s(T)
 $$
 Using the assumed lower bound for the inward partner term and the upper bound for the outward self term yields
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 \le
 -\underline A_{p,\mathrm{post}}^{\mathrm{out}}
 +
@@ -8644,7 +8649,7 @@ $$
 $$
 The assumed absolute acceleration bound gives
 $$
-\ddot x(t)\ge -a_+^{\mathrm{out}}
+\frac{d^2X}{dT^2}(T)\ge -a_+^{\mathrm{out}}
 $$
 so the stated two-sided bracket follows.
 
@@ -8652,7 +8657,7 @@ If
 $$
 \tau_{\mathrm{in}}
 \ge
-\sqrt{\frac{2(X_{\mathrm{out}}-x_\ast)}{a_-^{\mathrm{out}}}}
+\sqrt{\frac{2(X_{\mathrm{out}}-X_\ast)}{a_-^{\mathrm{out}}}}
 $$
 then Lemma 17 applies with
 $$
@@ -8671,17 +8676,17 @@ The outer-turn force-margin lemmas are now in place, but Lemma 21 is still condi
 > **Target Theorem (Outer-Branch Self-Root Separation and Transversality).**
 > Fix a tame outer-branch class on the right exterior outbound interval
 > $$
-> [t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}].
+> [T_\ast,T_{\mathrm{turn}}^{\mathrm{out}}].
 > $$
 > Suppose the branch stays within the excursion tube
 > $$
-> x_\ast\le x(t)\le X_{\mathrm{out},\max},
+> X_\ast\le X(T)\le X_{\mathrm{out},\max},
 > \qquad
-> 0\le \dot x(t)\le U_{\max},
+> 0\le \frac{dX}{dT}(T)\le U_{\max},
 > $$
 > and that its same-side delayed self interactions are organized by the outer sorting map
 > $$
-> z(t)\equiv x(t)-c_f t.
+> z(T)\equiv X(T)-c_f T.
 > $$
 > Assume there exist class constants
 > $$
@@ -8694,15 +8699,15 @@ The outer-turn force-margin lemmas are now in place, but Lemma 21 is still condi
 > such that on the apocenter window:
 > 1. active self roots satisfy a uniform delayed-separation lower bound
 >    $$
->    r_s(t;t_s)\ge r_{s,\min}^{\mathrm{out}},
+>    r_s(T;T_s)\ge r_{s,\min}^{\mathrm{out}},
 >    $$
 > 2. active self roots stay on a noncaustic side of the outer sorting map with
 >    $$
->    |J_s(t;t_s)|\ge \nu_s^{\mathrm{out}},
+>    |J_s(T;T_s)|\ge \nu_s^{\mathrm{out}},
 >    $$
 > 3. and the number of active self branches obeys
 >    $$
->    N_s(t)\le N_{s,\max}^{\mathrm{out}}.
+>    N_s(T)\le N_{s,\max}^{\mathrm{out}}.
 >    $$
 >
 > Then Lemma 21 applies, and the outer-force margin reduces to the explicit parameter inequality of Lemma 22.
@@ -8739,25 +8744,25 @@ The second and third items are the real bottlenecks. Once they are available, th
 **Lemma 25: Outer sorting-map identity on the right exterior outbound branch.**
 Assume the trajectory lies on the right exterior outbound branch,
 $$
-x(t)\ge 0,
+X(T)\ge 0,
 \qquad
-\dot x(t)\ge 0
+\frac{dX}{dT}(T)\ge 0
 $$
 and consider same-side self roots
 $$
-t_s<t
+T_T_{\mathrm{em}}<T
 $$
 for which the delayed self-hit condition is
 $$
-x(t)-x(t_s)=c_f(t-t_s)
+X(T)-X(T_s)=c_f(T-T_s)
 $$
 Define the outer sorting map
 $$
-z(t)\equiv x(t)-c_f t
+z(T)\equiv X(T)-c_f T
 $$
 Then every such active self root is selected by the level-set identity
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 Consequently, the same-side outer self branches on the right exterior outbound leg are organized by level sets of
 $$
@@ -8767,15 +8772,15 @@ $$
 Proof.
 The same-side delayed self-hit condition is
 $$
-x(t)-x(t_s)=c_f(t-t_s)
+X(T)-X(T_s)=c_f(T-T_s)
 $$
 Rearranging gives
 $$
-x(t)-c_f t=x(t_s)-c_f t_s
+X(T)-c_f T=X(T_s)-c_f T_s
 $$
 which is exactly
 $$
-z(t)=z(t_s)
+z(T)=z(T_s)
 $$
 Thus every active same-side self root on the right exterior outbound branch is a level-set root of
 $$
@@ -8786,14 +8791,14 @@ which proves the lemma.
 **Lemma 26: Exact same-side self-root exclusion on a strictly sub-field-speed outer window.**
 Assume there exists an outer-branch window
 $$
-[t_a,t_b]\subseteq [t_\ast,\infty)
+[T_a,T_b]\subseteq [T_\ast,\infty)
 $$
 on which the outbound speed stays strictly below field speed:
 $$
-0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+0\le \frac{dX}{dT}(T)\le c_f-\sigma_{\mathrm{out}}
 <c_f
 \qquad
-\text{for }t\in[t_a,t_b]
+\text{for }T\in[T_a,T_b]
 $$
 with some
 $$
@@ -8801,25 +8806,25 @@ $$
 $$
 Then the outer sorting map
 $$
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 is strictly decreasing on that window. Consequently, there are no exact same-side self roots
 $$
-t_s<t
+T_T_{\mathrm{em}}<T
 $$
 with both
 $$
-t_s,t\in[t_a,t_b]
+T_s,T\in[T_a,T_b]
 $$
 and
 $$
-x(t)-x(t_s)=c_f(t-t_s)
+X(T)-X(T_s)=c_f(T-T_s)
 $$
 
 Proof.
 On the stated window one has
 $$
-\dot z(t)=\dot x(t)-c_f\le -\sigma_{\mathrm{out}}<0
+\frac{dz}{dT}(T)=\frac{dX}{dT}(T)-c_f\le -\sigma_{\mathrm{out}}<0
 $$
 so
 $$
@@ -8827,15 +8832,15 @@ z
 $$
 is strictly decreasing on
 $$
-[t_a,t_b]
+[T_a,T_b]
 $$
 If there existed an exact same-side self root pair
 $$
-t_s<t
+T_T_{\mathrm{em}}<T
 $$
 with both times in that window, Lemma 25 would give
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 But strict monotonicity of
 $$
@@ -8843,11 +8848,11 @@ z
 $$
 implies
 $$
-z(t_s)>z(t)
+z(T_s)>z(T)
 $$
 whenever
 $$
-t_s<t
+T_T_{\mathrm{em}}<T
 $$
 which is impossible. Therefore no such exact same-side self root exists on the strictly sub-field-speed outer window.
 
@@ -8856,7 +8861,7 @@ This shows that on a strictly sub-field-speed apocenter window the exact delayed
 **Lemma 27: Shell-tail bound on a strictly sub-field-speed outer window.**
 Assume the hypotheses of Lemma 26 on a window
 $$
-[t_a,t_b]\subseteq [t_\ast,\infty)
+[T_a,T_b]\subseteq [T_\ast,\infty)
 $$
 and assume that the same-side outer self contribution is evaluated in the dual-mollified integral form with:
 
@@ -8883,19 +8888,19 @@ and assume that the same-side outer self contribution is evaluated in the dual-m
 
 For each fixed
 $$
-t\in[t_a,t_b]
+T\in[T_a,T_b]
 $$
 let the **local** same-side shell contribution be integrated only over delayed times
 $$
-t_0\in[t_a,t]
+T_0\in[T_a,T]
 $$
 for which the outer sorting-map mismatch
 $$
-z(t_0)-z(t)
+z(T_0)-z(T)
 $$
 lies in the shell support. Then the local same-side outer self contribution obeys the pointwise bound
 $$
-A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(T)
 \le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}
@@ -8903,7 +8908,7 @@ $$
 
 This lemma controls only the same-window shell leakage. Same-side contributions from
 $$
-t_0<t_a
+T_0<T_a
 $$
 are deep-past channels and must be excluded or bounded separately by the later deep-past suppression package.
 
@@ -8916,31 +8921,31 @@ quantity, even though the exact same-side root set is empty.
 Proof.
 Fix
 $$
-t\in[t_a,t_b]
+T\in[T_a,T_b]
 $$
 By Lemma 26,
 $$
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 is strictly decreasing with derivative bounded above by
 $$
-\dot z(t)\le -\sigma_{\mathrm{out}}<0
+\frac{dz}{dT}(T)\le -\sigma_{\mathrm{out}}<0
 $$
 Hence for any delayed time
 $$
-t_0<t
+T_0<T
 $$
 in the same window one has
 $$
-z(t_0)-z(t)\ge \sigma_{\mathrm{out}}(t-t_0)
+z(T_0)-z(T)\ge \sigma_{\mathrm{out}}(T-T_0)
 $$
 Therefore, if
 $$
-|z(t_0)-z(t)|\le \eta
+|z(T_0)-z(T)|\le \eta
 $$
 then necessarily
 $$
-0\le t-t_0\le \frac{\eta}{\sigma_{\mathrm{out}}}
+0\le T-T_0\le \frac{\eta}{\sigma_{\mathrm{out}}}
 $$
 So the set of delayed times inside the shell support has measure at most
 $$
@@ -8951,23 +8956,23 @@ $$
 
 Evaluating the local same-side self term in integral form and using
 $$
-|x(t)-x(t_0)|^2+\epsilon_c^2\ge \epsilon_c^2
+|X(T)-X(T_0)|^2+\epsilon_c^2\ge \epsilon_c^2
 $$
 gives
 $$
-A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(T)
 \le
 \kappa\epsilon^2
-\int_{t_a}^{t}
-\frac{\delta_\eta(\cdots)}{|x(t)-x(t_0)|^2+\epsilon_c^2}\,dt_0
+\int_{T_a}^{T}
+\frac{\delta_\eta(\cdots)}{|X(T)-X(T_0)|^2+\epsilon_c^2}\,dT_0
 \le
 \frac{\kappa\epsilon^2\,\|\delta_\eta\|_\infty}{\epsilon_c^2}
 \cdot
-\left|\operatorname{supp}_t(\delta_\eta)\right|
+\left|\operatorname{supp}_T(\delta_\eta)\right|
 $$
 Using the support-measure bound yields
 $$
-A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(T)
 \le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}
@@ -8977,17 +8982,17 @@ which proves the lemma.
 **Corollary 28: Sub-field-speed outer-force margin from partner floor versus local shell tail.**
 Assume there exists an apocenter window
 $$
-[t_a,t_b]\subseteq [t_\ast,\infty)
+[T_a,T_b]\subseteq [T_\ast,\infty)
 $$
 on which the branch has not yet turned and:
 
 - the outer branch is strictly sub-field-speed,
   $$
-  0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f
+  0\le \frac{dX}{dT}(T)\le c_f-\sigma_{\mathrm{out}}<c_f
   $$
 - the partner lower bound of Lemma 20 holds with
   $$
-  A_p(t)\ge \underline A_p^{\mathrm{out}}
+  A_p(T)\ge \underline A_p^{\mathrm{out}}
   $$
 - the only local same-window outward self contribution on that window is the same-side shell tail estimated in Lemma 27,
 - and deep-past outward self channels are absent or have already been bounded by zero on this local-only corollary.
@@ -9003,7 +9008,7 @@ a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}>0
 $$
 then on that window one has the unconditional inward acceleration bound
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
 $$
 
 In particular, on a strictly sub-field-speed apocenter window with no remaining deep-past outward self channel, the outer-force margin reduces to a direct parameter race between the partner floor and the shell-mollified same-window self leakage.
@@ -9011,21 +9016,21 @@ In particular, on a strictly sub-field-speed apocenter window with no remaining 
 Proof.
 Lemma 20 gives
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}}
+A_p(T)\ge \underline A_p^{\mathrm{out}}
 $$
 By Lemma 26, there are no exact same-side self roots with both times on the stated window, and Lemma 27 therefore bounds the surviving same-window shell contribution by
 $$
-A_s^{\mathrm{out}}(t)=A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)\le
+A_s^{\mathrm{out}}(T)=A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(T)\le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}
 $$
 Using the signed dynamics
 $$
-\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s^{\mathrm{out}}(T)
 $$
 yields
 $$
-\ddot x(t)
+\frac{d^2X}{dT^2}(T)
 \le
 -\underline A_p^{\mathrm{out}}
 +
@@ -9049,33 +9054,33 @@ c_f-\sigma_{\mathrm{out}}
 $$
 Assume there is an outbound outer-entry interval
 $$
-I_{\mathrm{ent}}\equiv[t_0,t_1]
+I_{\mathrm{ent}}\equiv[T_0,T_1]
 $$
 on which the branch has not yet been shown to turn, but the following non-circular data are available:
 
 - the trajectory is on the right exterior outbound branch as long as no turn has occurred,
   $$
-  x_\ast\le x(t)\le X_{\mathrm{out},\max},
+  X_\ast\le X(T)\le X_{\mathrm{out},\max},
   \qquad
-  \dot x(t)\ge 0
+  \frac{dX}{dT}(T)\ge 0
   $$
 - the entry interval carries a coarse inward braking margin at the sub-field-speed boundary and above it:
   $$
-  \ddot x(t)\le -a_{\mathrm{ent}}^{\mathrm{out}}<0
+  \frac{d^2X}{dT^2}(T)\le -a_{\mathrm{ent}}^{\mathrm{out}}<0
   \qquad
   \text{whenever }
-  t\in I_{\mathrm{ent}}
+  T\in I_{\mathrm{ent}}
   \text{ and }
-  \dot x(t)\ge v_{\mathrm{sub}}^{\mathrm{out}}
+  \frac{dX}{dT}(T)\ge v_{\mathrm{sub}}^{\mathrm{out}}
   $$
 - the interval is long enough for entry plus a retained sub-field-speed window of length
   $$
   \tau_{\mathrm{sub}}^{\mathrm{out}}>0
   $$
   $$
-  t_1-t_0
+  T_1-T_0
   \ge
-  \frac{\big(\dot x(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+  \frac{\big(\frac{dX}{dT}(T_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
   {a_{\mathrm{ent}}^{\mathrm{out}}}
   +
   \tau_{\mathrm{sub}}^{\mathrm{out}}
@@ -9086,24 +9091,24 @@ Then one of the following alternatives holds:
 1. a finite outer turn occurs before the retained sub-field-speed window is exhausted; or
 2. there exists an entry time
    $$
-   t_a\in
+   T_a\in
    \left[
-   t_0,\,
-   t_0+
-   \frac{\big(\dot x(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+   T_0,\,
+   T_0+
+   \frac{\big(\frac{dX}{dT}(T_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
    {a_{\mathrm{ent}}^{\mathrm{out}}}
    \right]
    $$
    such that the branch remains strictly sub-field-speed and outbound on
    $$
    I_{\mathrm{sub}}\equiv
-   [t_a,t_a+\tau_{\mathrm{sub}}^{\mathrm{out}}]
+   [T_a,T_a+\tau_{\mathrm{sub}}^{\mathrm{out}}]
    $$
    namely
    $$
-   0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}
+   0\le \frac{dX}{dT}(T)\le c_f-\sigma_{\mathrm{out}}
    \qquad
-   \text{for every }t\in I_{\mathrm{sub}}
+   \text{for every }T\in I_{\mathrm{sub}}
    $$
 
 The coarse margin can be certified without using the sub-field-speed sorting argument. For example, it is enough to have on
@@ -9127,33 +9132,33 @@ includes all outward self, fold, shell, and deep-past channels on the entry inte
 Proof.
 Let
 $$
-v(t)\equiv \dot x(t)
+v(T)\equiv \frac{dX}{dT}(T)
 $$
 If
 $$
-v(t_0)\le v_{\mathrm{sub}}^{\mathrm{out}}
+v(T_0)\le v_{\mathrm{sub}}^{\mathrm{out}}
 $$
 set
 $$
-t_a=t_0
+T_a=T_0
 $$
 Otherwise, as long as
 $$
-v(t)\ge v_{\mathrm{sub}}^{\mathrm{out}}
+v(T)\ge v_{\mathrm{sub}}^{\mathrm{out}}
 $$
 and no turn has occurred, the coarse margin gives
 $$
-v'(t)=\ddot x(t)\le -a_{\mathrm{ent}}^{\mathrm{out}}
+v'(T)=\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{ent}}^{\mathrm{out}}
 $$
 Integrating from
 $$
-t_0
+T_0
 $$
 shows that
 $$
-v(t)
+v(T)
 \le
-v(t_0)-a_{\mathrm{ent}}^{\mathrm{out}}(t-t_0)
+v(T_0)-a_{\mathrm{ent}}^{\mathrm{out}}(T-T_0)
 $$
 throughout the portion of the interval where
 $$
@@ -9165,13 +9170,13 @@ v_{\mathrm{sub}}^{\mathrm{out}}
 $$
 no later than
 $$
-t_0+
-\frac{\big(v(t_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
+T_0+
+\frac{\big(v(T_0)-v_{\mathrm{sub}}^{\mathrm{out}}\big)_+}
 {a_{\mathrm{ent}}^{\mathrm{out}}}
 $$
 Call the first such time
 $$
-t_a
+T_a
 $$
 
 It remains to show that the trajectory cannot immediately exit back above
@@ -9180,11 +9185,11 @@ v_{\mathrm{sub}}^{\mathrm{out}}
 $$
 before the retained window is exhausted. Suppose instead that, after entry and before any turn, there is a first time
 $$
-t_{\mathrm{exit}}>t_a
+T_{\mathrm{exit}}>T_a
 $$
 at which
 $$
-v(t_{\mathrm{exit}})=v_{\mathrm{sub}}^{\mathrm{out}}
+v(T_{\mathrm{exit}})=v_{\mathrm{sub}}^{\mathrm{out}}
 $$
 and the velocity is about to cross from
 $$
@@ -9196,7 +9201,7 @@ v>v_{\mathrm{sub}}^{\mathrm{out}}
 $$
 At this boundary point the same coarse margin applies, so
 $$
-v'(t_{\mathrm{exit}})
+v'(T_{\mathrm{exit}})
 \le
 -a_{\mathrm{ent}}^{\mathrm{out}}<0
 $$
@@ -9208,37 +9213,37 @@ until a turn occurs.
 
 The length hypothesis ensures that
 $$
-[t_a,t_a+\tau_{\mathrm{sub}}^{\mathrm{out}}]\subseteq I_{\mathrm{ent}}
+[T_a,T_a+\tau_{\mathrm{sub}}^{\mathrm{out}}]\subseteq I_{\mathrm{ent}}
 $$
 If no turn occurs on that retained interval, then the outbound condition supplies
 $$
-v(t)\ge 0
+v(T)\ge 0
 $$
 and the forward-invariance argument supplies
 $$
-v(t)\le v_{\mathrm{sub}}^{\mathrm{out}}=c_f-\sigma_{\mathrm{out}}
+v(T)\le v_{\mathrm{sub}}^{\mathrm{out}}=c_f-\sigma_{\mathrm{out}}
 $$
 This is exactly the claimed strict sub-field-speed apocenter window. The final displayed partner-floor condition implies the coarse acceleration hypothesis directly from the signed dynamics
 $$
-\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s^{\mathrm{out}}(T)
 $$
 using
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}},
+A_p(T)\ge \underline A_p^{\mathrm{out}},
 \qquad
-A_s^{\mathrm{out}}(t)\le \overline A_{s,\mathrm{ent}}^{\mathrm{out}}
+A_s^{\mathrm{out}}(T)\le \overline A_{s,\mathrm{ent}}^{\mathrm{out}}
 $$
 
 **Corollary 29.1: Strict sub-field-speed apocenter window.**
 Assume there exists an apocenter window
 $$
-I_{\mathrm{sub}}\equiv[t_a,t_b]\subseteq[t_\ast,\infty)
+I_{\mathrm{sub}}\equiv[T_a,T_b]\subseteq[T_\ast,\infty)
 $$
 on which the branch has not yet turned and satisfies
 $$
-0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f
+0\le \frac{dX}{dT}(T)\le c_f-\sigma_{\mathrm{out}}<c_f
 \qquad
-\text{for every }t\in I_{\mathrm{sub}}
+\text{for every }T\in I_{\mathrm{sub}}
 $$
 Then the hypotheses of Lemmas 26 and 27 hold on
 $$
@@ -9257,21 +9262,21 @@ The displayed speed bound is exactly the strict sub-field-speed hypothesis used 
 **Proposition: Explicit sub-field-speed apocenter recapture regime.**
 Assume the outer branch reaches an apocenter window
 $$
-I_{\mathrm{sub}}\equiv[t_a,t_b]
+I_{\mathrm{sub}}\equiv[T_a,T_b]
 $$
 before any known outer turn, and on that window:
 
 - the branch remains outbound,
   $$
-  0\le \dot x(t)
+  0\le \frac{dX}{dT}(T)
   $$
 - the branch is strictly sub-field-speed,
   $$
-  \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f
+  \frac{dX}{dT}(T)\le c_f-\sigma_{\mathrm{out}}<c_f
   $$
 - the partner lower bound of Lemma 20 holds with
   $$
-  A_p(t)\ge \underline A_p^{\mathrm{out}}
+  A_p(T)\ge \underline A_p^{\mathrm{out}}
   $$
 - and deep-past outward self channels are absent or already bounded by zero, so the only outward self contribution on this local criterion is the same-window shell leakage of Lemma 27.
 
@@ -9291,24 +9296,24 @@ I_{\mathrm{sub}}
 $$
 one has the inward acceleration bound
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
 $$
 
 In particular, if
 $$
-t_b-t_a
+T_b-T_a
 \ge
-\frac{\dot x(t_a)}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}
+\frac{\frac{dX}{dT}(T_a)}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}
 $$
 then a finite outer turn occurs on
 $$
-\left[t_a,\,t_a+\frac{\dot x(t_a)}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}\right]
+\left[T_a,\,T_a+\frac{\frac{dX}{dT}(T_a)}{a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}\right]
 $$
 with radius bound
 $$
 X_{\mathrm{out}}
 \le
-x(t_a)+\frac{\dot x(t_a)^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}
+X(T_a)+\frac{\frac{dX}{dT}(T_a)^2}{2a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}}
 $$
 
 Proof.
@@ -9318,13 +9323,13 @@ I_{\mathrm{sub}}
 $$
 so the same-window outer self contribution is reduced to the shell-tail bound
 $$
-A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)\le
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(T)\le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}
 $$
 Combining this with the partner lower bound from Lemma 20 gives exactly the hypothesis of Corollary 28, hence
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}<0
 $$
 on
 $$
@@ -9333,19 +9338,19 @@ $$
 
 Integrating from
 $$
-t_a
+T_a
 $$
 to
 $$
-t\in I_{\mathrm{sub}}
+T\in I_{\mathrm{sub}}
 $$
 gives
 $$
-\dot x(t)\le \dot x(t_a)-a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}(t-t_a)
+\frac{dX}{dT}(T)\le \frac{dX}{dT}(T_a)-a_{\mathrm{in},\mathrm{shell}}^{\mathrm{out}}(T-T_a)
 $$
 If the displayed window-length condition holds, continuity of
 $$
-\dot x
+\frac{dX}{dT}
 $$
 forces a first zero of the velocity inside the stated interval. Integrating the same comparison once more gives the radius bound.
 
@@ -9353,51 +9358,51 @@ forces a first zero of the velocity inside the stated interval. Integrating the 
 
 The outer-turn program is now reduced to one explicit remaining issue. On the final sub-field-speed apocenter window, the local same-side self roots are annihilated by the monotonicity of
 $$
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 so the local outward self-drive is only the shell tail bounded in Lemma 27. The remaining possible outward self contributions are therefore the roots that come from much earlier times
 $$
-t_s<t_a
+T_T_{\mathrm{em}}<T_a
 $$
 outside the local sub-field-speed window but still satisfy
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 
 > **Target Theorem (Deep-Past Outer Self Suppression).**
 > Fix a final sub-field-speed apocenter window
 > $$
-> [t_a,t_b]\subseteq [t_\ast,\infty)
+> [T_a,T_b]\subseteq [T_\ast,\infty)
 > $$
 > on which
 > $$
-> 0\le \dot x(t)\le c_f-\sigma_{\mathrm{out}}<c_f.
+> 0\le \frac{dX}{dT}(T)\le c_f-\sigma_{\mathrm{out}}<c_f.
 > $$
 > Assume that every outward-driving same-side self root
 > $$
-> t_s<t_a
+> T_T_{\mathrm{em}}<T_a
 > $$
 > satisfying
 > $$
-> z(t_s)=z(t)
+> z(T_s)=z(T)
 > $$
 > obeys:
 > 1. a macroscopic delayed-separation lower bound
 >    $$
->    r_s(t;t_s)\ge R_{\mathrm{deep}}^{\mathrm{out}}>0,
+>    r_s(T;T_s)\ge R_{\mathrm{deep}}^{\mathrm{out}}>0,
 >    $$
 > 2. a deep-past transversality bound
 >    $$
->    |J_s(t;t_s)|\ge \nu_{s,\mathrm{deep}}^{\mathrm{out}}>0,
+>    |J_s(T;T_s)|\ge \nu_{s,\mathrm{deep}}^{\mathrm{out}}>0,
 >    $$
 > 3. and a deep-past root-count bound
 >    $$
->    N_{s,\mathrm{deep}}^{\mathrm{out}}(t)\le N_{s,\mathrm{deep},\max}^{\mathrm{out}}.
+>    N_{s,\mathrm{deep}}^{\mathrm{out}}(T)\le N_{s,\mathrm{deep},\max}^{\mathrm{out}}.
 >    $$
 >
 > Then the total outward self contribution from deep-past roots satisfies
 > $$
-> A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+> A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
 > \le
 > \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
 > \equiv
@@ -9427,11 +9432,11 @@ The intended proof order is:
 1. **Deep-past separation lemma.**
    Show that any same-side outer root with
    $$
-   t_s<t_a
+   T_T_{\mathrm{em}}<T_a
    $$
    must satisfy a macroscopic delay gap and hence a macroscopic spatial separation
    $$
-   r_s(t;t_s)\ge R_{\mathrm{deep}}^{\mathrm{out}}
+   r_s(T;T_s)\ge R_{\mathrm{deep}}^{\mathrm{out}}
    $$
 2. **Deep-past transversality lemma.**
    Prove that the emitting velocities at those earlier times stay away from the outer caustic side, giving
@@ -9448,39 +9453,39 @@ The first two items are the real bottlenecks. Once deep-past roots are diluted b
 **Lemma 30: Deep-past separation on a trimmed apocenter window.**
 Assume the hypotheses of Lemma 26 on a final sub-field-speed apocenter window
 $$
-[t_a,t_b]
+[T_a,T_b]
 $$
 and fix a trimming parameter
 $$
-0<\tau_{\mathrm{deep}}\le t_b-t_a
+0<\tau_{\mathrm{deep}}\le T_b-T_a
 $$
 Let
 $$
 I_{\mathrm{deep}}
 \equiv
-[t_a+\tau_{\mathrm{deep}},\,t_b]
+[T_a+\tau_{\mathrm{deep}},\,T_b]
 $$
 If
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 and
 $$
-t_s<t_a
+T_T_{\mathrm{em}}<T_a
 $$
 is a same-side outward-driving self root satisfying
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 then:
 
 1. the delayed time gap is uniformly bounded below,
    $$
-   t-t_s\ge \tau_{\mathrm{deep}}
+   T-T_s\ge \tau_{\mathrm{deep}}
    $$
 2. and the causal self separation is therefore macroscopic,
    $$
-   r_s(t;t_s)=c_f(t-t_s)\ge c_f\tau_{\mathrm{deep}}
+   r_s(T;T_s)=c_f(T-T_s)\ge c_f\tau_{\mathrm{deep}}
    $$
 
 In particular, on the trimmed subwindow
@@ -9495,39 +9500,39 @@ $$
 Proof.
 Because
 $$
-t\in[t_a+\tau_{\mathrm{deep}},\,t_b]
+T\in[T_a+\tau_{\mathrm{deep}},\,T_b]
 $$
 and
 $$
-t_s<t_a
+T_T_{\mathrm{em}}<T_a
 $$
 one immediately has
 $$
-t-t_s>(t_a+\tau_{\mathrm{deep}})-t_a=\tau_{\mathrm{deep}}
+T-T_s>(T_a+\tau_{\mathrm{deep}})-T_a=\tau_{\mathrm{deep}}
 $$
 hence in particular
 $$
-t-t_s\ge \tau_{\mathrm{deep}}
+T-T_s\ge \tau_{\mathrm{deep}}
 $$
 
 For an outward-driving same-side self root on the right exterior outbound branch, the causal relation is
 $$
-x(t)-x(t_s)=c_f(t-t_s)
+X(T)-X(T_s)=c_f(T-T_s)
 $$
 Therefore
 $$
-r_s(t;t_s)=c_f(t-t_s)\ge c_f\tau_{\mathrm{deep}}
+r_s(T;T_s)=c_f(T-T_s)\ge c_f\tau_{\mathrm{deep}}
 $$
 which proves the lemma.
 
 **Lemma 31: Deep-past transversality from a sub-field-speed source region.**
 Assume there exists a source interval
 $$
-I_{\mathrm{src}}^{\mathrm{deep}}\subseteq (-\infty,t_a]
+I_{\mathrm{src}}^{\mathrm{deep}}\subseteq (-\infty,T_a]
 $$
 on which the emitting velocities satisfy the strict sub-field-speed bound
 $$
-0\le \dot x(\theta)\le c_f-\nu_{\mathrm{deep}}
+0\le \frac{dX}{dT}(\theta)\le c_f-\nu_{\mathrm{deep}}
 <c_f
 \qquad
 \text{for every }\theta\in I_{\mathrm{src}}^{\mathrm{deep}}
@@ -9538,19 +9543,19 @@ $$
 $$
 Let
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 and let
 $$
-t_s\in I_{\mathrm{src}}^{\mathrm{deep}}
+T_s\in I_{\mathrm{src}}^{\mathrm{deep}}
 $$
 be a same-side outward-driving self root satisfying
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 Then the self Jacobian at the emitting time obeys
 $$
-J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}
+J_s(T;T_s)=1-\frac{\frac{dX}{dT}(T_s)}{c_f}
 \ge
 \frac{\nu_{\mathrm{deep}}}{c_f}>0
 $$
@@ -9563,29 +9568,29 @@ $$
 Proof.
 For a same-side outward-driving self root on the right exterior outbound branch one has
 $$
-x(t)-x(t_s)=c_f(t-t_s),
+X(T)-X(T_s)=c_f(T-T_s),
 \qquad
-x(t)>x(t_s)
+X(T)>X(T_s)
 $$
 so the line-of-action sign is
 $$
-\hat r_s(t;t_s)=+1
+\hat r_s(T;T_s)=+1
 $$
 Therefore the self Jacobian reduces to
 $$
-J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}
+J_s(T;T_s)=1-\frac{\frac{dX}{dT}(T_s)}{c_f}
 $$
 Because
 $$
-t_s\in I_{\mathrm{src}}^{\mathrm{deep}}
+T_s\in I_{\mathrm{src}}^{\mathrm{deep}}
 $$
 and the source interval is strictly sub-field-speed, we have
 $$
-\dot x(t_s)\le c_f-\nu_{\mathrm{deep}}
+\frac{dX}{dT}(T_s)\le c_f-\nu_{\mathrm{deep}}
 $$
 Substituting gives
 $$
-J_s(t;t_s)
+J_s(T;T_s)
 \ge
 1-\frac{c_f-\nu_{\mathrm{deep}}}{c_f}
 =
@@ -9598,24 +9603,24 @@ Assume:
 
 - the hypotheses of Lemma 30 on the trimmed apocenter window
   $$
-  I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+  I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b]
   $$
 - the hypotheses of Lemma 31 with a deep-past sub-field-speed source interval
   $$
-  I_{\mathrm{src}}^{\mathrm{deep}}\subseteq (-\infty,t_a]
+  I_{\mathrm{src}}^{\mathrm{deep}}\subseteq (-\infty,T_a]
   $$
 - and a deep-past root-count bound
   $$
-  N_{s,\mathrm{deep}}^{\mathrm{out}}(t)\le N_{s,\mathrm{deep},\max}^{\mathrm{out}}
+  N_{s,\mathrm{deep}}^{\mathrm{out}}(T)\le N_{s,\mathrm{deep},\max}^{\mathrm{out}}
   $$
   for
   $$
-  t\in I_{\mathrm{deep}}
+  T\in I_{\mathrm{deep}}
   $$
 
 Then the total outward self contribution from deep-past same-side roots satisfies
 $$
-A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
 \le
 \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
 \equiv
@@ -9625,12 +9630,12 @@ N_{s,\mathrm{deep},\max}^{\mathrm{out}}\,
 $$
 for every
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 
 In particular, on the trimmed apocenter window the full outward self-drive is bounded by
 $$
-A_s^{\mathrm{out}}(t)
+A_s^{\mathrm{out}}(T)
 \le
 \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
 +
@@ -9642,28 +9647,28 @@ provided the only remaining local same-side contribution is the shell tail of Le
 Proof.
 Fix
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 and let
 $$
-t_s<t_a
+T_T_{\mathrm{em}}<T_a
 $$
 be any outward-driving same-side deep-past root with
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 Lemma 30 gives the macroscopic separation bound
 $$
-r_s(t;t_s)\ge c_f\tau_{\mathrm{deep}}
+r_s(T;T_s)\ge c_f\tau_{\mathrm{deep}}
 $$
 Lemma 31 gives the transversality bound
 $$
-|J_s(t;t_s)|\ge \frac{\nu_{\mathrm{deep}}}{c_f}
+|J_s(T;T_s)|\ge \frac{\nu_{\mathrm{deep}}}{c_f}
 $$
 Therefore each deep-past branch contributes at most
 $$
 \frac{\kappa\epsilon^2}{
-\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
 \frac{\kappa\epsilon^2}{
 \big(c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2\big)\,(\nu_{\mathrm{deep}}/c_f)}
@@ -9674,7 +9679,7 @@ N_{s,\mathrm{deep},\max}^{\mathrm{out}}
 $$
 deep-past roots yields
 $$
-A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
 \le
 \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
 $$
@@ -9685,13 +9690,13 @@ If, in addition, the only local same-side outward contribution is the shell tail
 **Corollary 33: Full trimmed-apocenter outer-force margin.**
 Assume on the trimmed apocenter window
 $$
-I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b]
 $$
 that:
 
 - the partner lower bound of Lemma 20 holds,
   $$
-  A_p(t)\ge \underline A_p^{\mathrm{out}}
+  A_p(T)\ge \underline A_p^{\mathrm{out}}
   $$
 - the same-side local self contribution is only the shell tail controlled by Lemma 27,
 - and the deep-past outward self contribution satisfies the suppression estimate of Corollary 32.
@@ -9713,7 +9718,7 @@ I_{\mathrm{deep}}
 $$
 the full outward self-drive is dominated and one has the unconditional inward acceleration bound
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}<0
 $$
 
 In particular, if
@@ -9726,18 +9731,18 @@ where
 $$
 v_{\mathrm{deep}}
 \equiv
-\sup_{t\in I_{\mathrm{deep}}}\dot x(t)
+\sup_{T\in I_{\mathrm{deep}}}\frac{dX}{dT}(T)
 $$
 then the same comparison argument as in Lemma 23 forces a finite outer turn inside or immediately after the trimmed window.
 
 Proof.
 By Lemma 20,
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}}
+A_p(T)\ge \underline A_p^{\mathrm{out}}
 $$
 By Corollary 32,
 $$
-A_s^{\mathrm{out}}(t)
+A_s^{\mathrm{out}}(T)
 \le
 \overline A_{s,\mathrm{deep}}^{\mathrm{out}}
 +
@@ -9746,7 +9751,7 @@ A_s^{\mathrm{out}}(t)
 $$
 Therefore the signed dynamics satisfy
 $$
-\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s^{\mathrm{out}}(T)
 \le
 -\underline A_p^{\mathrm{out}}
 +
@@ -9757,7 +9762,7 @@ $$
 $$
 The assumed parameter inequality gives
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{trim}}^{\mathrm{out}}<0
 $$
 which proves the first claim.
 
@@ -9770,37 +9775,37 @@ then integrating the acceleration comparison exactly as in Lemma 23 forces the o
 **Lemma 34: Deep-past source localization by outer-level exclusion.**
 Assume the first origin crossing occurs at
 $$
-t=0,
+T=0,
 \qquad
-x(0)=0
+X(0)=0
 $$
 and let
 $$
-I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b]
 \subseteq
-[t_\ast,t_{\mathrm{turn}}^{\mathrm{out}}]
+[T_\ast,T_{\mathrm{turn}}^{\mathrm{out}}]
 $$
 be a trimmed apocenter window on the later right exterior outbound branch. Assume moreover that the outer sorting levels on the trimmed window lie strictly below the entire earlier outbound range:
 $$
-\sup_{t\in I_{\mathrm{deep}}} z(t)
+\sup_{T\in I_{\mathrm{deep}}} z(T)
 <
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 $$
 If
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 and
 $$
-t_s<t_a
+T_T_{\mathrm{em}}<T_a
 $$
 satisfies
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 then necessarily
 $$
-t_s<0
+T_s<0
 $$
 
 In particular, every deep-past same-side root on the trimmed apocenter window is forced onto the pre-crossing leg.
@@ -9808,29 +9813,29 @@ In particular, every deep-past same-side root on the trimmed apocenter window is
 Proof.
 Fix
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 and suppose for contradiction that
 $$
-0\le t_s\le t_a
+0\le T_s\le T_a
 $$
 Then by the assumed outbound-level exclusion one has
 $$
-z(t)
+z(T)
 \le
 \sup_{r\in I_{\mathrm{deep}}} z(r)
 <
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 \le
-z(t_s)
+z(T_s)
 $$
 which contradicts
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 Therefore
 $$
-t_s<0
+T_s<0
 $$
 as claimed.
 
@@ -9841,21 +9846,21 @@ $$
 $$
 satisfies
 $$
-\dot x(s)<0
+\frac{dX}{dT}(S)<0
 \qquad
-\text{for }s\in[-h,0]
+\text{for }S\in[-h,0]
 $$
 If
 $$
-t\in I_{\mathrm{deep}}
+T\in I_{\mathrm{deep}}
 $$
 and
 $$
-t_s<0
+T_s<0
 $$
 is a same-side outward-driving self root with
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 then:
 
@@ -9865,7 +9870,7 @@ then:
    $$
 2. the self Jacobian satisfies the automatic lower bound
    $$
-   J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}>1
+   J_s(T;T_s)=1-\frac{\frac{dX}{dT}(T_s)}{c_f}>1
    $$
 3. and hence one may take
    $$
@@ -9878,9 +9883,9 @@ then:
 Proof.
 On the pre-crossing inbound leg one has
 $$
-\dot z(s)=\dot x(s)-c_f<-c_f<0
+\frac{dz}{dT}(S)=\frac{dX}{dT}(S)-c_f<-c_f<0
 \qquad
-\text{for }s\in[-h,0]
+\text{for }S\in[-h,0]
 $$
 Therefore
 $$
@@ -9892,33 +9897,33 @@ $$
 $$
 Hence the level equation
 $$
-z(s)=z(t)
+z(S)=z(T)
 $$
 can have at most one solution
 $$
-s\in[-h,0]
+S\in[-h,0]
 $$
 which proves uniqueness of the deep-past source root on that interval.
 
 For a same-side outward-driving self root on the right exterior outbound branch one has
 $$
-\hat r_s(t;t_s)=+1
+\hat r_s(T;T_s)=+1
 $$
 so
 $$
-J_s(t;t_s)=1-\frac{\dot x(t_s)}{c_f}
+J_s(T;T_s)=1-\frac{\frac{dX}{dT}(T_s)}{c_f}
 $$
 Since
 $$
-\dot x(t_s)<0
+\frac{dX}{dT}(T_s)<0
 $$
 it follows immediately that
 $$
-J_s(t;t_s)>1
+J_s(T;T_s)>1
 $$
 Thus
 $$
-|J_s(t;t_s)|\ge 1
+|J_s(T;T_s)|\ge 1
 $$
 and the stated bounds
 $$
@@ -9933,19 +9938,19 @@ Assume:
 
 - the hypotheses of Lemma 30 on the trimmed apocenter window
   $$
-  I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+  I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b]
   $$
 - the outbound-level exclusion hypothesis of Lemma 34,
   $$
-  \sup_{t\in I_{\mathrm{deep}}} z(t)
+  \sup_{T\in I_{\mathrm{deep}}} z(T)
   <
-  \inf_{0\le s\le t_a} z(s)
+  \inf_{0\le S\le T_a} z(S)
   $$
 - and the pre-crossing inbound monotonicity hypothesis of Lemma 35,
   $$
-  \dot x(s)<0
+  \frac{dX}{dT}(S)<0
   \qquad
-  \text{for }s\in[-h,0]
+  \text{for }S\in[-h,0]
   $$
 
 Then every deep-past same-side outward-driving root on
@@ -9954,39 +9959,39 @@ I_{\mathrm{deep}}
 $$
 lies on the pre-crossing inbound leg, is unique, and satisfies
 $$
-|J_s(t;t_s)|\ge 1
+|J_s(T;T_s)|\ge 1
 $$
 Consequently,
 $$
-A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
 \le
 \frac{\kappa\epsilon^2}{
 c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
 \qquad
-\text{for every }t\in I_{\mathrm{deep}}
+\text{for every }T\in I_{\mathrm{deep}}
 $$
 
 Proof.
 By Lemma 34, any deep-past same-side root with
 $$
-z(t_s)=z(t)
+z(T_s)=z(T)
 $$
 must satisfy
 $$
-t_s<0
+T_s<0
 $$
 Lemma 35 then shows that on the pre-crossing inbound leg such a root is unique and obeys
 $$
-|J_s(t;t_s)|\ge 1
+|J_s(T;T_s)|\ge 1
 $$
 Lemma 30 gives the separation bound
 $$
-r_s(t;t_s)\ge c_f\tau_{\mathrm{deep}}
+r_s(T;T_s)\ge c_f\tau_{\mathrm{deep}}
 $$
 Therefore the single deep-past branch contributes at most
 $$
 \frac{\kappa\epsilon^2}{
-\big(r_s(t;t_s)^2+\epsilon_c^2\big)\,|J_s(t;t_s)|}
+\big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
 \frac{\kappa\epsilon^2}{
 c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
@@ -9996,18 +10001,18 @@ which proves the claim.
 **Corollary 37: Refined trimmed-apocenter outer-force margin.**
 Assume on the trimmed apocenter window
 $$
-I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b]
 $$
 that:
 
 - the partner lower bound of Lemma 20 holds,
   $$
-  A_p(t)\ge \underline A_p^{\mathrm{out}}
+  A_p(T)\ge \underline A_p^{\mathrm{out}}
   $$
 - the same-side local self contribution is only the shell tail controlled by Lemma 27,
 - the hypotheses of Corollary 36 hold, so the deep-past same-side contribution satisfies
   $$
-  A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+  A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
   \le
   \frac{\kappa\epsilon^2}{
   c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
@@ -10036,7 +10041,7 @@ I_{\mathrm{deep}}
 $$
 one has the unconditional inward acceleration bound
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
 $$
 
 In particular, if
@@ -10050,18 +10055,18 @@ then the same comparison argument as in Lemma 23 forces a finite outer turn on o
 Proof.
 By Lemma 20,
 $$
-A_p(t)\ge \underline A_p^{\mathrm{out}}
+A_p(T)\ge \underline A_p^{\mathrm{out}}
 $$
 By Corollary 36,
 $$
-A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
 \le
 \frac{\kappa\epsilon^2}{
 c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
 $$
 By Lemma 27, the local same-side shell leakage satisfies
 $$
-A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(t)
+A_{s,\mathrm{shell,loc}}^{\mathrm{out}}(T)
 \le
 \frac{2\kappa\epsilon^2\,\eta\,\|\delta_\eta\|_\infty}{
 \sigma_{\mathrm{out}}\,\epsilon_c^2}
@@ -10072,7 +10077,7 @@ I_{\mathrm{deep}}
 $$
 the full outward self contribution is bounded by the sum of those two terms. Therefore
 $$
-\ddot x(t)\le -A_p(t)+A_s^{\mathrm{out}}(t)
+\frac{d^2X}{dT^2}(T)\le -A_p(T)+A_s^{\mathrm{out}}(T)
 \le
 -\underline A_p^{\mathrm{out}}
 +
@@ -10084,7 +10089,7 @@ c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
 $$
 The assumed parameter inequality gives
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
 $$
 which proves the first claim.
 
@@ -10100,11 +10105,11 @@ then integrating the acceleration comparison exactly as in Lemma 23 forces the o
 
 The outer-turn and deep-past layers are now reduced to one remaining geometric hypothesis:
 $$
-\sup_{t\in I_{\mathrm{deep}}} z(t)
+\sup_{T\in I_{\mathrm{deep}}} z(T)
 <
-\inf_{0\le s\le t_a} z(s),
+\inf_{0\le S\le T_a} z(S),
 \qquad
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 This is an exclusion statement saying that the late apocenter levels of
 $$
@@ -10115,35 +10120,35 @@ have descended below the entire earlier outbound range. Once this holds, the dee
 > **Target Theorem (Outbound-Level Exclusion by z-Descent).**
 > Assume the right exterior outbound branch starts at the first origin crossing with
 > $$
-> x(0)=0,
+> X(0)=0,
 > \qquad
-> \dot x(0)=V_0>c_f,
+> \frac{dX}{dT}(0)=V_0>c_f,
 > $$
 > and later develops an outer hinge time
 > $$
-> t_{\mathrm{hinge}}^{\mathrm{out}}
+> T_{\mathrm{hinge}}^{\mathrm{out}}
 > $$
 > defined by
 > $$
-> \dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f.
+> \frac{dX}{dT}\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f.
 > $$
 > Assume further that on the post-hinge outbound branch there is a sub-field-speed deceleration window on which
 > $$
-> \ddot x(t)\le -a_{z}^{\mathrm{out}}<0.
+> \frac{d^2X}{dT^2}(T)\le -a_{z}^{\mathrm{out}}<0.
 > $$
 > If the resulting descent of
 > $$
-> z(t)=x(t)-c_f t
+> z(T)=X(T)-c_f T
 > $$
 > is large enough that, on a trimmed apocenter window
 > $$
-> I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b],
+> I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b],
 > $$
 > one has
 > $$
-> \sup_{t\in I_{\mathrm{deep}}} z(t)
+> \sup_{T\in I_{\mathrm{deep}}} z(T)
 > <
-> \inf_{0\le s\le t_a} z(s),
+> \inf_{0\le S\le T_a} z(S),
 > $$
 > then Lemma 34 applies and the deep-past same-side roots are forced onto the pre-crossing inbound leg.
 
@@ -10160,38 +10165,38 @@ The intended proof order is:
 1. **Outer-hinge lemma.**
    Show that the outbound branch has a first time
    $$
-   t_{\mathrm{hinge}}^{\mathrm{out}}
+   T_{\mathrm{hinge}}^{\mathrm{out}}
    $$
    with
    $$
-   \dot x=c_f
+   \frac{dX}{dT}=c_f
    $$
    so
    $$
-   \dot z=0
+   \frac{dz}{dT}=0
    $$
 2. **Post-hinge monotonicity lemma.**
    Prove that once
    $$
-   \dot x<c_f
+   \frac{dX}{dT}<c_f
    $$
    the sorting map
    $$
-   z(t)=x(t)-c_f t
+   z(T)=X(T)-c_f T
    $$
    is strictly decreasing.
 3. **Quadratic descent lemma.**
    Use the post-hinge acceleration floor to obtain an explicit estimate
    $$
-   z(t)\le z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+   z(T)\le z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
    -
    \frac{a_{z}^{\mathrm{out}}}{2}
-   \big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+   \big(T-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
    $$
 4. **Outbound-level exclusion corollary.**
    Compare this late-time upper bound with the earlier outbound range
    $$
-   [0,t_a]
+   [0,T_a]
    $$
    to verify the hypothesis of Lemma 34.
 
@@ -10204,209 +10209,209 @@ levels below the earlier outbound range, the deep-past topology is fully control
 **Lemma 38: Outer hinge and z-monotonicity on the outbound branch.**
 Assume the right exterior outbound branch satisfies
 $$
-\dot x(0)=V_0>c_f
+\frac{dX}{dT}(0)=V_0>c_f
 $$
 and later reaches a first outer turn at time
 $$
-t_{\mathrm{turn}}^{\mathrm{out}}
+T_{\mathrm{turn}}^{\mathrm{out}}
 $$
 with
 $$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0
 $$
 Then there exists a first outer hinge time
 $$
-t_{\mathrm{hinge}}^{\mathrm{out}}
+T_{\mathrm{hinge}}^{\mathrm{out}}
 \in
-(0,t_{\mathrm{turn}}^{\mathrm{out}})
+(0,T_{\mathrm{turn}}^{\mathrm{out}})
 $$
 such that
 $$
-\dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f
+\frac{dX}{dT}\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f
 $$
 Moreover, for
 $$
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 one has
 $$
-\dot z(t)=\dot x(t)-c_f
+\frac{dz}{dT}(T)=\frac{dX}{dT}(T)-c_f
 $$
 so
 $$
-\dot z(t)>0
+\frac{dz}{dT}(T)>0
 $$
 for
 $$
-0\le t<t_{\mathrm{hinge}}^{\mathrm{out}}
+0\le T<T_{\mathrm{hinge}}^{\mathrm{out}}
 $$
 and
 $$
-\dot z(t)\le 0
+\frac{dz}{dT}(T)\le 0
 $$
 for
 $$
-t_{\mathrm{hinge}}^{\mathrm{out}}\le t\le t_{\mathrm{turn}}^{\mathrm{out}}
+T_{\mathrm{hinge}}^{\mathrm{out}}\le T\le T_{\mathrm{turn}}^{\mathrm{out}}
 $$
 
 Proof.
 The velocity
 $$
-\dot x
+\frac{dX}{dT}
 $$
 is continuous on the outbound branch. At the crossing,
 $$
-\dot x(0)=V_0>c_f
+\frac{dX}{dT}(0)=V_0>c_f
 $$
 while at the outer turn,
 $$
-\dot x\!\big(t_{\mathrm{turn}}^{\mathrm{out}}\big)=0<c_f
+\frac{dX}{dT}\!\big(T_{\mathrm{turn}}^{\mathrm{out}}\big)=0<c_f
 $$
 By the intermediate value theorem there exists at least one time
 $$
-t\in(0,t_{\mathrm{turn}}^{\mathrm{out}})
+T\in(0,T_{\mathrm{turn}}^{\mathrm{out}})
 $$
 for which
 $$
-\dot x(t)=c_f
+\frac{dX}{dT}(T)=c_f
 $$
 Define
 $$
-t_{\mathrm{hinge}}^{\mathrm{out}}
+T_{\mathrm{hinge}}^{\mathrm{out}}
 $$
 to be the first such time. Then
 $$
-\dot x(t)>c_f
+\frac{dX}{dT}(T)>c_f
 \qquad
-\text{for }0\le t<t_{\mathrm{hinge}}^{\mathrm{out}}
+\text{for }0\le T<T_{\mathrm{hinge}}^{\mathrm{out}}
 $$
 and by definition
 $$
-\dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f
+\frac{dX}{dT}\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)=c_f
 $$
 Therefore
 $$
-\dot z(t)=\dot x(t)-c_f>0
+\frac{dz}{dT}(T)=\frac{dX}{dT}(T)-c_f>0
 $$
 before the hinge, and
 $$
-\dot z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)=0
+\frac{dz}{dT}\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)=0
 $$
 If in addition the post-hinge branch remains sub-field-speed, then
 $$
-\dot z(t)\le 0
+\frac{dz}{dT}(T)\le 0
 $$
 there. This proves the stated monotonicity.
 
 **Lemma 39: Quadratic post-hinge z-descent.**
 Assume there exists a post-hinge interval
 $$
-[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+[T_{\mathrm{hinge}}^{\mathrm{out}},\,T_c]
 \subseteq
-[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_{\mathrm{turn}}^{\mathrm{out}}]
+[T_{\mathrm{hinge}}^{\mathrm{out}},\,T_{\mathrm{turn}}^{\mathrm{out}}]
 $$
 on which
 $$
-\ddot x(t)\le -a_{z}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{z}^{\mathrm{out}}<0
 $$
 Then for every
 $$
-t\in[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+T\in[T_{\mathrm{hinge}}^{\mathrm{out}},\,T_c]
 $$
 one has
 $$
-\dot z(t)\le -a_{z}^{\mathrm{out}}\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+\frac{dz}{dT}(T)\le -a_{z}^{\mathrm{out}}\big(T-T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 $$
 and
 $$
-z(t)\le z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+z(T)\le z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 -\frac{a_{z}^{\mathrm{out}}}{2}
-\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+\big(T-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 $$
 
 Proof.
 Since
 $$
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 one has
 $$
-\ddot z(t)=\ddot x(t)
+\frac{d^2z}{dT^2}(T)=\frac{d^2X}{dT^2}(T)
 $$
 On the stated interval this gives
 $$
-\ddot z(t)\le -a_{z}^{\mathrm{out}}<0
+\frac{d^2z}{dT^2}(T)\le -a_{z}^{\mathrm{out}}<0
 $$
 At the outer hinge,
 $$
-\dot z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+\frac{dz}{dT}\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 =
-\dot x\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)-c_f
+\frac{dX}{dT}\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)-c_f
 =0
 $$
 Integrating the acceleration bound from
 $$
-t_{\mathrm{hinge}}^{\mathrm{out}}
+T_{\mathrm{hinge}}^{\mathrm{out}}
 $$
 to
 $$
-t
+T
 $$
 yields
 $$
-\dot z(t)
+\frac{dz}{dT}(T)
 \le
 -a_{z}^{\mathrm{out}}
-\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+\big(T-T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 $$
 which is the first claim. Integrating once more gives
 $$
-z(t)
+z(T)
 \le
-z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 -\frac{a_{z}^{\mathrm{out}}}{2}
-\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+\big(T-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 $$
 which proves the quadratic descent estimate.
 
 **Corollary 40: Outbound-level exclusion from explicit z-descent.**
 Assume the hypotheses of Lemma 39 and let
 $$
-I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b]
+I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b]
 \subseteq
-[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+[T_{\mathrm{hinge}}^{\mathrm{out}},\,T_c]
 $$
 be a trimmed apocenter window on the post-hinge branch. Define the earlier outbound floor
 $$
 m_{\mathrm{out}}^{\mathrm{early}}
 \equiv
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 $$
 If
 $$
-z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 -
 \frac{a_{z}^{\mathrm{out}}}{2}
-\big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+\big(T_a+\tau_{\mathrm{deep}}-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 <
 m_{\mathrm{out}}^{\mathrm{early}}
 $$
 then the outbound-level exclusion hypothesis of Lemma 34 holds:
 $$
-\sup_{t\in I_{\mathrm{deep}}} z(t)
+\sup_{T\in I_{\mathrm{deep}}} z(T)
 <
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 $$
 
 Proof.
 Because
 $$
 I_{\mathrm{deep}}\subseteq
-[t_{\mathrm{hinge}}^{\mathrm{out}},\,t_c]
+[T_{\mathrm{hinge}}^{\mathrm{out}},\,T_c]
 $$
 and Lemma 39 gives
 $$
-\dot z(t)\le -a_{z}^{\mathrm{out}}\big(t-t_{\mathrm{hinge}}^{\mathrm{out}}\big)\le 0
+\frac{dz}{dT}(T)\le -a_{z}^{\mathrm{out}}\big(T-T_{\mathrm{hinge}}^{\mathrm{out}}\big)\le 0
 $$
 on that interval, the function
 $$
@@ -10418,72 +10423,72 @@ I_{\mathrm{deep}}
 $$
 is attained at the left endpoint:
 $$
-\sup_{t\in I_{\mathrm{deep}}} z(t)=z(t_a+\tau_{\mathrm{deep}})
+\sup_{T\in I_{\mathrm{deep}}} z(T)=z(T_a+\tau_{\mathrm{deep}})
 $$
 Applying Lemma 39 at
 $$
-t=t_a+\tau_{\mathrm{deep}}
+T=T_a+\tau_{\mathrm{deep}}
 $$
 yields
 $$
-z(t_a+\tau_{\mathrm{deep}})
+z(T_a+\tau_{\mathrm{deep}})
 \le
-z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 -
 \frac{a_{z}^{\mathrm{out}}}{2}
-\big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+\big(T_a+\tau_{\mathrm{deep}}-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 $$
 If the right-hand side is strictly smaller than
 $$
 m_{\mathrm{out}}^{\mathrm{early}}
 =
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 $$
 then
 $$
-\sup_{t\in I_{\mathrm{deep}}} z(t)
+\sup_{T\in I_{\mathrm{deep}}} z(T)
 <
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 $$
 which is exactly the required outbound-level exclusion.
 
 **Remark (Simplified earlier-outbound floor).**
 Under the hypotheses of Lemma 38, the function
 $$
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 is strictly increasing on
 $$
-[0,t_{\mathrm{hinge}}^{\mathrm{out}})
+[0,T_{\mathrm{hinge}}^{\mathrm{out}})
 $$
 and nonincreasing on
 $$
-[t_{\mathrm{hinge}}^{\mathrm{out}},t_a]
+[T_{\mathrm{hinge}}^{\mathrm{out}},T_a]
 $$
 Therefore the earlier outbound floor satisfies
 $$
 m_{\mathrm{out}}^{\mathrm{early}}
 =
-\inf_{0\le s\le t_a} z(s)
+\inf_{0\le S\le T_a} z(S)
 =
-\min\{z(0),z(t_a)\}
+\min\{z(0),z(T_a)\}
 =
-\min\{0,z(t_a)\}
+\min\{0,z(T_a)\}
 $$
 because
 $$
-z(0)=x(0)-c_f\cdot 0=0
+z(0)=X(0)-c_f\cdot 0=0
 $$
 In particular, a sufficient condition for outbound-level exclusion is simply
 $$
-z(t_a+\tau_{\mathrm{deep}})<0
+z(T_a+\tau_{\mathrm{deep}})<0
 $$
 or more conservatively, the explicit descent inequality
 $$
-z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 -
 \frac{a_{z}^{\mathrm{out}}}{2}
-\big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+\big(T_a+\tau_{\mathrm{deep}}-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 <0
 $$
 
@@ -10491,22 +10496,22 @@ $$
 > Assume:
 > 1. the partner lower bound of Lemma 20 holds on a trimmed apocenter window
 >    $$
->    I_{\mathrm{deep}}=[t_a+\tau_{\mathrm{deep}},\,t_b],
+>    I_{\mathrm{deep}}=[T_a+\tau_{\mathrm{deep}},\,T_b],
 >    $$
 > 2. the same-side local self contribution on that window is only the shell tail controlled by Lemma 27,
 > 3. the pre-crossing inbound source interval satisfies
 >    $$
->    \dot x(s)<0
+>    \frac{dX}{dT}(S)<0
 >    \qquad
->    \text{for }s\in[-h,0],
+>    \text{for }S\in[-h,0],
 >    $$
 > 4. the post-hinge branch satisfies the quadratic descent estimate of Lemma 39,
 > 5. and the following two explicit inequalities hold:
 >    $$
->    z\!\big(t_{\mathrm{hinge}}^{\mathrm{out}}\big)
+>    z\!\big(T_{\mathrm{hinge}}^{\mathrm{out}}\big)
 >    -
 >    \frac{a_{z}^{\mathrm{out}}}{2}
->    \big(t_a+\tau_{\mathrm{deep}}-t_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
+>    \big(T_a+\tau_{\mathrm{deep}}-T_{\mathrm{hinge}}^{\mathrm{out}}\big)^2
 >    <0,
 >    $$
 >    $$
@@ -10528,9 +10533,9 @@ $$
 > 2. every deep-past same-side outward-driving root is forced onto the pre-crossing inbound leg and is unique there,
 > 3. the trimmed-apocenter acceleration satisfies
 >    $$
->    \ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+>    \frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
 >    \qquad
->    \text{for }t\in I_{\mathrm{deep}},
+>    \text{for }T\in I_{\mathrm{deep}},
 >    $$
 > 4. and if
 >    $$
@@ -10547,13 +10552,13 @@ $$
 $$
 Therefore Corollary 36 yields the deep-past bound
 $$
-A_{s,\mathrm{deep}}^{\mathrm{out}}(t)
+A_{s,\mathrm{deep}}^{\mathrm{out}}(T)
 \le
 \frac{\kappa\epsilon^2}{c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2}
 $$
 Combining that with the shell-tail bound of Lemma 27 and the partner floor of Lemma 20 gives exactly the second displayed inequality, so Corollary 37 applies and yields
 $$
-\ddot x(t)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
+\frac{d^2X}{dT^2}(T)\le -a_{\mathrm{in},\mathrm{ref}}^{\mathrm{out}}<0
 \qquad
 \text{on }I_{\mathrm{deep}}
 $$
@@ -10581,16 +10586,16 @@ If that picture is correct, the relevant mathematical object is an isolated fixe
 The scaffold is now coherent enough to freeze as a proof program, but the following scope boundaries still need to stay explicit.
 
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
-- **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
+- **State-space labeling.** The theorem program is safest in true signed coordinates $X\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|X|$. Any language suggesting a rebound on the same $X>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
 - **Apocenter-entry window.** Lemma 29 supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
-- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. Those lower bounds are still only source-normal diagnostics until the same retained record also supplies the receiver-normal numerator and branch strength.
-- **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
+- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\frac{dX}{dT}=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. Those lower bounds are still only source-normal diagnostics until the same retained record also supplies the receiver-normal numerator and branch strength.
+- **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(T)$ and therefore a lower bound on $A_p^{\rho}(T)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
-- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoint-scale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
+- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoinT-T_{\mathrm{em}}cale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
-- **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $t=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
+- **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $T=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
 
 ## Capstone Statement
 
@@ -10599,15 +10604,15 @@ The existence capstone of the manuscript is the Schauder theorem target above. I
 > **Theorem Target (Dual-Mollified Collinear Breather).**
 > For some nonempty parameter regime
 > $$
-> (\kappa,\epsilon,c_f,\eta,\epsilon_c,h,x_\ast)
+> (\kappa,\epsilon,c_f,\eta,\epsilon_c,h,X_\ast)
 > $$
 > and some closed convex tame envelope
 > $$
-> \mathcal{K}_{x_\ast,\eta}\subseteq \Sigma^-_{x_\ast,\eta},
+> \mathcal{K}_{X_\ast,\eta}\subseteq \Sigma^-_{X_\ast,\eta},
 > $$
 > the return map $P_\eta$ has a fixed point
 > $$
-> \phi^\ast_\eta \in \mathcal{K}_{x_\ast,\eta},
+> \phi^\ast_\eta \in \mathcal{K}_{X_\ast,\eta},
 > \qquad
 > P_\eta(\phi^\ast_\eta)=\phi^\ast_\eta.
 > $$
@@ -10639,11 +10644,11 @@ $$
 $$
 so the source-normal delay-map diagnostics reduce to explicit scalar factors
 $$
-J_p = 1+\frac{\dot x(t_0)\hat r_p}{c_f},
+J_p = 1+\frac{\frac{dX}{dT}(T_0)\hat r_p}{c_f},
 \qquad
-J_s = 1-\frac{\dot x(t_0)\hat r_s}{c_f}
+J_s = 1-\frac{\frac{dX}{dT}(T_0)\hat r_s}{c_f}
 $$
-The receiver-normal numerators $D_t$ are scalar factors as well. This makes
+The receiver-normal numerators $D_T$ are scalar factors as well. This makes
 the same-record binding of root identity, source-normal transversality, and
 receiver-normal branch strength much easier to track analytically.
 
@@ -10675,7 +10680,7 @@ This reduced problem fails as a stabilization test if:
 
 The following boxed aside is heuristic rather than theorem-level. Its purpose is not to prove a no-closed-form theorem, but to explain why the fixed-point and envelope route is mathematically more realistic than a search for an explicit formula
 $$
-x(t)=f(t,X_0,V_0)
+X(T)=f(T,X_0,V_0)
 $$
 Here "closed-form solution" means an elementary formula for the orbit. It does not mean that the evolution law itself is unavailable. The dual-mollified absolute-time integral law is already an exact certified-law target; branch sums are local reductions on simple-root charts.
 
@@ -10683,7 +10688,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 >
 > The symmetries of the 1D line make a closed formula tempting. One might hope for an expression
 > $$
-> x(t)=f(t,X_0,V_0)
+> X(T)=f(T,X_0,V_0)
 > $$
 > that captures the entire orbit from elementary initial data.
 >
@@ -10696,7 +10701,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > $$
 > in a finite-dimensional phase space. But the delayed master equation of $\mathbb{A}\mathbb{A}\mathbb{A}$ is non-Markovian. To compute the acceleration at
 > $$
-> t=0^+,
+> T=0^+,
 > $$
 > it is not enough to know only
 > $$
@@ -10717,14 +10722,14 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 > **2. The delays are state-dependent and implicit.**
 > Even a linear constant-delay equation already resists elementary closed forms. Here the delay times are not fixed constants at all; they are roots of the implicit equations
 > $$
-> |x(t)\pm x(t_s)|=c_f(t-t_s).
+> |X(T)\pm X(T_s)|=c_f(T-T_s).
 > $$
 > The timeline is being solved for at the same moment as the trajectory. The equation is not merely nonlinear; it is continually rewriting its own delayed arguments through the unknown path history.
 >
 > **3. The caustic changes the root topology.**
 > At the hinge
 > $$
-> \dot x=-c_f,
+> \frac{dX}{dT}=-c_f,
 > $$
 > a new self-hit branch is born. The number of active roots changes with the motion itself. Whatever one chooses to call a "closed form," it should not be expected to glide effortlessly across a dynamics in which the active branch structure changes as the trajectory passes through a causal fold.
 >
@@ -10741,7 +10746,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 >
 > In other words, we do not need a formula for
 > $$
-> x(t)
+> X(T)
 > $$
 > valid for arbitrary data. The proof needs one candidate cycle
 > $$

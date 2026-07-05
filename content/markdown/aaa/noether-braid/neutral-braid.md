@@ -2,6 +2,8 @@
 
 This chapter defines the base six-body family in the [Noether Braid](noether-braid.md) sequence. It owns the neutral inventory, all-pairs branch ledger, and retained-branch certificate target before shell support, exact binary grouping, or nested ordering is added.
 
+Neutral does not mean featureless. It means the signed polarity inventory balances before any further geometry is imposed. The branch still has many attractive and repellent channels, and the proof burden is to show that those channels can be organized into one coherent causal-return record rather than merely into a visually balanced arrangement.
+
 A **neutral braid** is the base six-architrino case. It contains three positrinos and three electrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
 
 $$
@@ -28,11 +30,11 @@ $$
 Its physical trajectory is allowed to move along that support with a bounded speed factor,
 
 $$
-X_i(t)=Y_i(\lambda_i(t)),
+X_i(T)=Y_i(\lambda_i(T)),
 \qquad
-\dot{\lambda}_i(t)=\nu_i(t),
+\frac{d\lambda_i}{dT}(T)=\nu_i(T),
 \qquad
-0<\nu_-\leq\nu_i(t)\leq\nu_+<\infty
+0<\nu_-\leq\nu_i(T)\leq\nu_+<\infty
 $$
 
 The bounded speed factor $\nu_i(t)$ is the place where speed-lapse behavior enters the architecture. A branch may temporarily push an architrino over a local hinge into a self-hit mode, but an admissible neutral braid must still return to a closed causal ledger within the branch's recovery tolerance. The neutral braid therefore allows changing support geometry, nonuniform speed, changing local curvature, and delayed multi-channel response without first reducing the motion to exact binary rows.

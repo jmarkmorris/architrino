@@ -2,11 +2,41 @@
 
 This notebook is a stylistic journal of major events in the evolution of $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+Read it as project memory. The notebook preserves the turning points that changed how the architecture is written, but it does not replace the current source documents, proofs, validators, or claim-status pages.
+
 It records turning points, major corrections, conceptual reframings, and other moments that materially changed how the theory was written, organized, or understood.
 
 Each dated section should preserve the reasoning of the moment closely enough that later readers can see what changed and why.
 
 Entries are maintained in descending date order, with the newest `##` section first.
+
+## 2026-07-04: Coordinate-Layer Notation Established
+
+Relevant files:
+
+- [Mathematical Style Guide](mathematics-style-guide.md)
+- [Mathematical Terminology](mathematics-terminology.md)
+- [Ontology](../foundations/ontology.md)
+- [Observer Framework](../spacetime/observer-framework.md)
+- [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
+
+The coordinate notation settled into a core layer rule: every equation must show whether it is using the native absolute frame or an effective observer/GR-comparison chart. The native substrate variables are $T$ for absolute time and $\mathbf X=(X^1,X^2,X^3)$ for position in the Euclidean void. Worldlines, velocities, causal-root conditions, and primitive wake geometry therefore use $\mathbf X_i(T)$, $\mathbf V_i=d\mathbf X_i/dT$, $dT$, $dX^i$, $\partial_T$, and $\nabla_{\mathbf X}$.
+
+The GR-relative Lorentz frame is not a second substrate. It is the effective observer chart reconstructed by Physical Observers from clocks, rulers, signals, Noether sea state, and retained records. Its coordinates are $t_{\mathrm{eff}}$ and $x_{\mathrm{eff}}^i$, with differentials and operators such as $dt_{\mathrm{eff}}$, $dx_{\mathrm{eff}}^i$, and $\partial_{t_{\mathrm{eff}}}$. Effective metric rows use $g_{\mu\nu}^{\mathrm{eff}}$ and related observer-sector objects only after that chart has been declared.
+
+The important realization is that the same physical dimensions do not make two coordinates the same object. $T$ and $t_{\mathrm{eff}}$ both measure time-like quantities, and $X^i$ and $x_{\mathrm{eff}}^i$ both carry length units, but they live on different sides of the theory. Treating them as interchangeable hides the constitutive map that the Lorentz and gravity programs are supposed to derive.
+
+That map is now named explicitly:
+$$
+(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)
+=
+\chi_{\mathrm{eff}}(T,\mathbf X,\mathcal N_{\mathrm{sea}},\text{observer record}).
+$$
+Unless a local document has already derived the needed row, $\chi_{\mathrm{eff}}$ remains a closure target. It cannot be smuggled into a derivation by reusing bare $t$, $x^i$, $dt$, or $dx^i$ as if the absolute and observer charts had already been identified.
+
+This notation change matters because it protects the central architecture of $\mathbb{A}\mathbb{A}\mathbb{A}$. The theory keeps absolute time, the Euclidean void, and the Euclidean-void rest frame at the substrate level, while still requiring Physical Observers to recover Lorentz-consistent records inside tested regimes. The notation now forces each calculation to say which side it is on: substrate dynamics in the absolute frame, or observer-accessible Lorentz/GR comparison after clock, ruler, signal, and Noether sea response have been projected into an effective chart.
+
+The milestone is therefore not a proof of Lorentz recovery. It is the establishment of the notation discipline needed for that proof to be honest. A valid-looking equation can no longer pass by dimensional similarity alone. It must carry its coordinate layer, its clock layer, and its map obligation visibly in the symbols.
 
 ## 2026-06-30: Original Blog Archive and GitHub Development Home
 
@@ -34,9 +64,9 @@ At the conceptual level, $\mathbb{A}\mathbb{A}\mathbb{A}$ adapts easily because 
 
 The correction should be treated as an opportunity as much as a repair. A better EOM may expose solution families that the earlier definition suppressed or distorted, especially in the search for stable retained branches, braid candidates on the path to certification, self-hit regimes, and Noether braid-scale assemblies. The right response is therefore not defensive preservation of superseded formulas. It is to let the corrected law discipline the candidate geometry and then audit every downstream claim whose proof depended on the superseded exact EOM.
 
-The standing burden is precise. Conceptual resilience does not license automatic theorem transfer. Any statement that used the previous EOM formula to claim branch stability, caustic control, action closure, conservation, binary support, three-binary selection, or effective geometry must be rechecked against the corrected law. The durable lesson is that the architecture survives by remaining level-separated: ontology, microscopic dynamics, retained-branch certification, and effective observer geometry are related, but they are not the same assertion.
+The standing burden is precise. Conceptual resilience does not license automatic theorem transfer. Any statement that used the previous EOM formula to claim branch stability, caustic control, action closure, conservation, binary support, rank-three braid selection, or effective geometry must be rechecked against the corrected law. The durable lesson is that the architecture survives by remaining level-separated: ontology, microscopic dynamics, retained-branch certification, and effective observer geometry are related, but they are not the same assertion.
 
-## 2026-06-22: Noether Braid and General Three-Binary Search Space
+## 2026-06-22: Noether Braid and General Rank-Three Search Space
 
 Relevant files:
 
@@ -49,9 +79,9 @@ The terminology shifted from `swarm` to `braid` because the older word suggested
 
 The term also helps keep topology visible. A braid can be deformed without losing its identity until a fold, reconnection, branch loss, or other declared surgery event changes the retained record. That is the right mental model for assembly topological charge: the integers and signs attached to a branch should be stable under branch-preserving deformation, and should change only when the delayed dynamics force a discrete transition. In that sense, `Noether braid` is both more precise and less misleading than the previous label. It names a retained dynamical organization rather than a population metaphor.
 
-The same day also clarified that three-binary notation must begin in the general, unordered configuration space. The raw search labels are $B_1:B_2:B_3$, not an assumed `I:M:O` hierarchy. For each retained binary row $a\in\{1,2,3\}$, the minimal state record is
+The same day also clarified that rank-three braid notation must begin in the general, unordered configuration space. The raw search labels are $B_1:B_2:B_3$, not an assumed `I:M:O` hierarchy. For each retained support row $a\in\{1,2,3\}$, the minimal state record is
 $$
-\mathcal{T}_{3B}
+\mathcal{T}_{3R}
 =
 \left\{
 \left(
@@ -69,13 +99,13 @@ Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic ra
 
 This generalization changes the search program. Instead of asking first whether the doubling-frequency `4:2:1` pattern, the role-assigned $(f+2,f,f-1)$ middle-hinge candidate, or another named row is correct, the solver should search the labeled but unordered domain
 $$
-\widetilde{\mathcal C}_{3B}
+\widetilde{\mathcal C}_{3R}
 =
 \left\{
 (\mathcal T_1,\mathcal T_2,\mathcal T_3)
 \right\}
 $$
-and then attach any `I:M:O` role map only after a retained branch supplies the evidence for inner, middle, and outer roles. The symmetric group $S_3$ acts on the three binary records, so repeated solutions under relabeling are not waste. They are confirmation that the search has found a symmetric sector. A quotient-sector summary may be useful later, but the raw search should not discard a row simply because a permuted copy has already appeared.
+and then attach any `I:M:O` role map only after a retained branch supplies the evidence for inner, middle, and outer roles. The symmetric group $S_3$ acts on the three support-row records, so repeated solutions under relabeling are not waste. They are confirmation that the search has found a symmetric sector. A quotient-sector summary may be useful later, but the raw search should not discard a row simply because a permuted copy has already appeared.
 
 The practical output of this search should be an atlas rather than a single row. Each candidate region should report the unsorted ratios
 $$
@@ -87,7 +117,7 @@ E_1:E_2:E_3,
 \qquad
 s_1:s_2:s_3,
 $$
-along with phase offsets, plane-orientation determinant, causal-root ledgers, response-center motion, group velocity, total momentum, total angular momentum, and assembly topological charge. Stable retained branches can then be compared by energy differentials $\Delta E_{ab}=E_a-E_b$, wake-history decomposition, sea stability, and accessory-architrino capture behavior. This is the beginning of a systematic periodic-table program for the Noether braid: classify stable six-body branches by topological labels and dynamical margins, then ask which architectures can bind additional architrinos without destroying the retained core ledger.
+along with phase offsets, plane-orientation determinant, causal-root ledgers, response-center motion, group velocity, total momentum, total angular momentum, and assembly topological charge. Stable retained branches can then be compared by energy differentials $\Delta E_{ab}=E_a-E_b$, wake-history decomposition, sea stability, and accessory-architrino capture behavior. This is the beginning of a systematic periodic-table program for the Noether braid: classify stable six-body branches by topological labels and dynamical margins, then ask which architectures can bind additional architrinos without destroying the retained braid ledger.
 
 The iso-frequency possibility became important in this wider space. A candidate can satisfy
 $$
@@ -146,11 +176,11 @@ Relevant files:
 - [Energy](../dynamics/energy.md)
 - [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md)
 
-The angular-momentum and spin proof route gained a sharper reduced candidate target around the three-binary middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
+The angular-momentum and spin proof route gained a sharper reduced candidate target around the rank-three middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
 The strongest evidence came from the combination of row lineage, self-hit parity, phase-lock coverage, point-event witnesses, route-local transport and recoil balance, and competitor auditing. The middle-hinge family remains on the candidate path because it keeps the strongest self-root parity proxy and phase-lock coverage among the tested families. At the same time, the retained branch claim remains false: common positive-width retained time-domain coverage, zero-slack retained transport, accepted wake energy, action scale, energy routing, and full point-event rules are still missing.
 
-This milestone matters because it replaced a broad question about whether a three-binary rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
+This milestone matters because it replaced a broad question about whether a rank-three rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
 
 ## 2026-06-20 Closure Scorecard Update
 
@@ -284,7 +314,7 @@ so the late comparison laws are no longer hiding qualitative path-history terms 
 
 This milestone also removed the last major vacuity risks. The chapter now contains an explicit symmetric planar seed packet in Jacobi variables, a delayed seed-margin persistence bridge from Coulomb-like proxy geometry to the exact delayed branch sums, and a seed-centered realization of the explicit convex tame core. That means the closed convex fixed-point domain is no longer only an abstract target: it is anchored to one concrete physical three-body seed configuration with positive leading margins and explicit slack.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$ theory development, this milestone matters because it upgrades the master equation from a law written mainly for pair interactions into a realistic candidate law for composite architrino assemblies. The whole theory depends on the claim that stable particles, nested binaries, and Noether braid-scale structures can survive the full delayed path-history dynamics rather than only reduced caricatures. This new planar three-body bridge is the first place where that claim is written in a mathematically serious many-body form. Delay hypergraphs, ancestry complexes, bounded caustic transit, and multi-channel recapture are exactly the structures needed once several interacting delayed source families are present at once. In other words, this is the first proof-program layer that begins to look like the delayed geometry actually required for emergent composite assemblies, rather than just for one protected binary toy model.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ theory development, this milestone matters because it upgrades the master equation from a law written mainly for pair interactions into a realistic candidate law for composite architrino assemblies. The whole theory depends on the claim that stable particles, nested shell braid branches, and Noether braid-scale structures can survive the full delayed path-history dynamics rather than only reduced caricatures. This new planar three-body bridge is the first place where that claim is written in a mathematically serious many-body form. Delay hypergraphs, ancestry complexes, bounded caustic transit, and multi-channel recapture are exactly the structures needed once several interacting delayed source families are present at once. In other words, this is the first proof-program layer that begins to look like the delayed geometry actually required for emergent composite assemblies, rather than just for one protected binary toy model.
 
 It also sharpens the status of the master-equation program itself. The central promise of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that apparently singular or chaotic delayed effects, such as self-hit amplification, fold events, and long path-history memory, can still organize into stable physical assemblies with finite effective behavior. This chapter now shows, at the theorem-program level, how that could happen in the first genuine many-body setting: caustic spikes become finite impulses, deep-past memory becomes a finite ancestry count, and candidate scattering channels are forced into a finite recapture competition. That is directly relevant to the broader theory because the same mechanisms are supposed to underwrite the existence of higher assemblies, shielding, and eventually the dynamics of Noether braid-like objects. The next phase is therefore no longer to invent more scaffold, but to prove that these delayed many-body control mechanisms really hold inside the master equation.
 

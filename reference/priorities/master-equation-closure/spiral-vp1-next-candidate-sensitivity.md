@@ -8,8 +8,8 @@ Claim level. Priority-only restart target.
 Next-candidate sensitivity must be recomputed from receiver-normal radial and
 tangential rows:
 $$
-W^{\mathrm{rec}}=\left|D_t/D_s\right|.
+W^{\mathrm{rec}}=\left|D_T/D_s\right|.
 $$
 
 No candidate-neighborhood exclusion is active until the sensitivity packet uses
-same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ intervals.
+same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ intervals.

@@ -4,6 +4,8 @@ This document establishes the ontological and mathematical mapping between the t
 
 It should be read alongside [Wavefunction Ontology](../../quantum/wavefunction-ontology.md), [Measurement Ontology](../../quantum/measurement-ontology.md), [Measurement Problem and Collapse](./measurement-problem-and-collapse.md), and [Pilot-Wave Character](./pilot-wave-character.md).
 
+The core distinction is effective envelope versus substrate state. A Hilbert-space superposition is a powerful way to track unresolved alternatives in a declared basis. It is not, by itself, a claim that the underlying assembly is literally many final records at once. The bridge must show when causal-wake addition, metastable basin geometry, and observer-access limits justify the effective superposition description.
+
 ### Traditional Quantum Mechanical View
 
 In standard quantum mechanics, a physical system can exist simultaneously in multiple mutually exclusive states. This is mathematically formalized by the superposition principle, where the state vector $|\psi\rangle$ is a linear combination of orthogonal basis states $|n\rangle$:

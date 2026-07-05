@@ -6,6 +6,10 @@ This chapter isolates the first higher-dimensional closure problem that can move
 
 The planar bridge is the first regime where the proof architecture must leave the line while still retaining enough symmetry to remain mathematically tractable. If this bridge closes, it becomes the substrate basis for planar lock, terminal aligned modes, and the horizon-facing chirality questions developed in [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md). If it fails, the failure should identify the exact geometric obstruction rather than leaving the whole closure program underdetermined.
 
+The simple reason this page matters is that one-dimensional success would not yet prove assembly physics. A line removes angular escape by construction. The plane reintroduces tangential motion, rotation, folds, and caustic crossing while keeping enough symmetry for a theorem attempt. This makes the planar bridge the first serious test of whether delayed causal dynamics can recapture an assembly rather than merely trap a line model.
+
+The recovery target is not "find a nice planar orbit." It is stronger: define a return section, control the delayed branch atlas, pass through necessary fold regions without blowing up the impulse, and show that radial recapture defeats tangential leakage on a declared envelope.
+
 ## Position in the Dynamics Stack
 
 This chapter sits between four existing layers:
@@ -21,11 +25,11 @@ The role of this chapter is narrower than the full breather program. It does not
 
 Work in the reflection-symmetric planar two-body subclass
 $$
-\mathbf{x}_1(t)=-\mathbf{r}(t),
+\mathbf X_1(T)=-\mathbf r(T),
 \qquad
-\mathbf{x}_2(t)=\mathbf{r}(t),
+\mathbf X_2(T)=\mathbf r(T),
 \qquad
-\mathbf{r}(t)\in \Pi\cong\mathbb{R}^2,
+\mathbf r(T)\in \Pi\cong\mathbb{R}^2,
 \qquad
 q_1=-\epsilon,
 \qquad
@@ -33,15 +37,15 @@ q_2=+\epsilon
 $$
 Write
 $$
-\rho(t)\equiv \|\mathbf{r}(t)\|,
+\rho(T)\equiv \|\mathbf r(T)\|,
 \qquad
-\hat{\mathbf e}_r(t)\equiv \frac{\mathbf r(t)}{\rho(t)},
+\hat{\mathbf e}_r(T)\equiv \frac{\mathbf r(T)}{\rho(T)},
 \qquad
-\hat{\mathbf e}_\theta(t)\equiv R_{\pi/2}\hat{\mathbf e}_r(t)
+\hat{\mathbf e}_\theta(T)\equiv R_{\pi/2}\hat{\mathbf e}_r(T)
 $$
 and decompose
 $$
-\dot{\mathbf r}(t)=u_r(t)\hat{\mathbf e}_r(t)+u_\theta(t)\hat{\mathbf e}_\theta(t)
+\frac{d\mathbf r}{dT}(T)=u_r(T)\hat{\mathbf e}_r(T)+u_\theta(T)\hat{\mathbf e}_\theta(T)
 $$
 
 This is the smallest regime that still contains all the new burdens that matter:
@@ -57,7 +61,7 @@ The natural section should remove rigid planar rotation locally and fix only one
 $$
 \mathbf r(0)=\rho_\ast \mathbf e_1,
 \qquad
-\mathbf e_2\cdot \dot{\mathbf r}(0)>0
+\mathbf e_2\cdot \frac{d\mathbf r}{dT}(0)>0
 $$
 so that the section-defining equality is
 $$
@@ -72,7 +76,7 @@ This choice serves three purposes:
 
 The first local target is stricter than mere section definition: histories in the seed packet should satisfy a quantitative transversality condition
 $$
-\dot{\rho}(0)\le -u_r<0
+\frac{d\rho}{dT}(0)\le -u_r<0
 $$
 so that the first return time is not born tangent to the section. Without such a margin, the gauge-reset map for the returned history need not depend continuously on the return event.
 
@@ -86,9 +90,9 @@ The target statement is of the following form:
 
 The right conceptual bridge to [Causal Action Functional](../dynamics/causal-action-functional.md) is the causal locus picture. In the regular regime, branch labels remain locally constant and can change only when
 $$
-F(t,t')=0,
+F(T,T_{\mathrm{em}})=0,
 \qquad
-\nabla F(t,t')=0
+\nabla F(T,T_{\mathrm{em}})=0
 $$
 So the opening burden is not yet a whole-cycle branch census. It is to prove enough local transversality that the planar delayed geometry stays away from the singular directions long enough to support a finite branch atlas on an initial excursion slab.
 
@@ -98,14 +102,14 @@ This local cone control is the first point at which the planar program can eithe
 
 The Jacobian
 $$
-J=1-\frac{\mathbf v\cdot \hat{\mathbf r}}{c_f}
+J=1-\frac{\mathbf V\cdot \hat{\mathbf r}}{c_f}
 $$
 depends on the angle between the instantaneous velocity and the delayed chord. Planar closure therefore needs a delay-adapted moving frame that tracks this angle directly rather than only through coarse Cartesian bounds.
 
 The working geometric data are:
 
 - the radial/tangential decomposition relative to $(\hat{\mathbf e}_r,\hat{\mathbf e}_\theta)$,
-- the angular offset between $\mathbf v(t)$ and each active delayed chord,
+- the angular offset between $\mathbf V(T)$ and each active delayed chord,
 - and a finite sector atlas controlling how those offsets evolve.
 
 The immediate theorem target is a finite-time cone-transversality estimate implying
@@ -128,11 +132,11 @@ This is the first place where the topological criterion from [Causal Action Func
 
 A planar breather is fundamentally a radial turnaround problem. The main escape channel is not an abstract vector norm; it is the centrifugal barrier generated by tangential motion. The correct recapture target is therefore a strict radial majorization of the form
 $$
-\ddot{\rho}
+\frac{d^2\rho}{dT^2}
 =
 a_r^{\mathrm{partner}}
 +a_r^{\mathrm{self}}
-+\rho\dot{\vartheta}^2
++\rho\left(\frac{d\vartheta}{dT}\right)^2
 \le
 -\mathfrak M_{\mathrm{in}}<0
 $$
@@ -171,30 +175,30 @@ stability.
 
 Let
 $$
-I_{\mathrm{turn}}=[t_a,t_b]
+I_{\mathrm{turn}}=[T_a,T_b]
 $$
 be the first candidate outward-to-inward turnaround window in the reduced
 planar history, with
 $$
-\dot\rho(t_a)>0
+\frac{d\rho}{dT}(T_a)>0
 $$
 Write the net radial acceleration from the delayed master equation as
 $$
-a_r(t)=\mathbf a(t)\cdot\hat{\mathbf e}_r(t)
+a_r(T)=\mathbf A(T)\cdot\hat{\mathbf e}_r(T)
 $$
 so that
 $$
-\ddot\rho(t)=a_r(t)+\frac{u_\theta^2(t)}{\rho(t)}
+\frac{d^2\rho}{dT^2}(T)=a_r(T)+\frac{u_\theta^2(T)}{\rho(T)}
 $$
 Define the inward delayed budget and tangential leakage budget by
 $$
 B_{\mathrm{in}}
 \equiv
-\int_{t_a}^{t_b}[-a_r(t)]_+\,dt,
+\int_{T_a}^{T_b}[-a_r(T)]_+\,dT,
 \qquad
 B_\theta
 \equiv
-\int_{t_a}^{t_b}\frac{u_\theta^2(t)}{\rho(t)}\,dt
+\int_{T_a}^{T_b}\frac{u_\theta^2(T)}{\rho(T)}\,dT
 $$
 Let
 $$
@@ -218,13 +222,13 @@ E_{\mathrm{branch}}
 -
 E_{\mathrm{gauge}}
 \ge
-\dot\rho(t_a)+\gamma_{\mathrm{turn}},
+\frac{d\rho}{dT}(T_a)+\gamma_{\mathrm{turn}},
 \qquad
 \gamma_{\mathrm{turn}}>0
 $$
 This implies
 $$
-\dot\rho(t_b)\le -\gamma_{\mathrm{turn}}
+\frac{d\rho}{dT}(T_b)\le -\gamma_{\mathrm{turn}}
 $$
 under the certified error budget. If the inequality cannot be made strict on
 any admissible seed packet, the planar bridge fails for a precise reason:
@@ -234,7 +238,7 @@ recapture before the return map can close.
 This budget also fixes what the later gauge-continuity row must provide. The
 return event must satisfy a transverse crossing margin
 $$
-|\dot\rho(T_{\mathrm{ret}})|\ge\nu_{\mathrm{ret}}>0
+\left|\frac{d\rho}{dT}(T_{\mathrm{ret}})\right|\ge\nu_{\mathrm{ret}}>0
 $$
 and the compensating rotation angle must have a bounded sensitivity on the same
 history box. Otherwise the gauge-reset map can lose continuity even if the
@@ -258,7 +262,7 @@ The gauge-reset operator must be included in that statement. After one excursion
 
 The planar bridge should therefore treat the phase, rotation, and section-time variables as collective coordinates rather than as ordinary stability directions. If
 $$
-\alpha=(t_0,\psi,\rho_\ast,\ldots)
+\alpha=(T_0,\psi,\rho_\ast,\ldots)
 $$
 records the finite chart data of a candidate reduced cycle, then the tangent rows
 $$

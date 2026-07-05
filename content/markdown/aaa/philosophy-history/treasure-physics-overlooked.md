@@ -324,9 +324,9 @@ $$
 =
 f_{\tau}\!\left(
 \beta,\,
-n(\mathbf{x},t),\,
-\chi_{\text{sea}}(\mathbf{x},t),\,
-\Phi_{\text{eff}}(\mathbf{x},t),\,
+n(\mathbf X,T),\,
+\chi_{\text{sea}}(\mathbf X,T),\,
+\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),\,
 \text{assembly state}
 \right),
 \qquad
@@ -825,13 +825,13 @@ E_{\mathrm{arch}}(t)
 +E_{\mathrm{wake}}(t)
 +E_{\mathrm{sea}}(t),
 \qquad
-\frac{dE_{\mathrm{tot}}}{dt}=0
+\frac{dE_{\mathrm{tot}}}{dT}=0
 $$
 
 where the three terms collect architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy. This global form is available only if the universe-state energy is finite or convergently summable on the constant-$t$ leaf. If an unbounded populated Noether sea does not admit that global sum, the safe statement is the bounded-region continuity law
 
 $$
-\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+\partial_T\rho_E+\nabla_{\mathbf X}\cdot\mathbf{S}_E=0
 $$
 
 or, for a finite region $\Omega$ after boundary flux is included,

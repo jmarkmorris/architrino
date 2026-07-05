@@ -2,11 +2,13 @@
 
 ## Purpose
 
-This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The electron is the clean charged-lepton reference case: stable, colorless, charge $-e$, and built from the lowest shielding-coherence version of the Noether braid plus axial-layer architecture.
 
 ## Framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is not a point particle with a primitive mass tag. It is a retained branch whose charge bookkeeping, inertial response, atomic detection map, and weak-reaction provenance must all come from the same assembly record.
+
+It is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
 
 ## Axial Inventory and Generation Core
 
@@ -39,14 +41,14 @@ The electron is not treated as a literal ontic-probability distribution. It is a
 A compact local target is
 
 $$
-\mathcal{D}_e^{(\ell)}(\mathbf{x}\mid \Theta_{\mathrm{atom}})
+\mathcal{D}_e^{(\ell)}(x_{\mathrm{eff}}^i\mid \Theta_{\mathrm{atom}})
 =
 \Pi_{\mathrm{det}}\!\left[
 \mathcal{B}_e,\,
 \mathcal{A}_{\mathrm{nuc}},\,
 \theta_{\mathrm{sea}}^{(\ell)},\,
 \mathcal{W}_{\mathrm{causal}}^{(\ell)}
-\right](\mathbf{x})
+\right](x_{\mathrm{eff}}^i)
 $$
 
 where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.

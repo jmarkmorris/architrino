@@ -877,7 +877,7 @@ $$
 \min_{a,b,\tau}
 \left(
 D_{s,ab},
-D_{t,ab},
+D_{T,ab},
 1-\beta_{\max}
 \right),
 $$
@@ -1018,7 +1018,7 @@ The diagnostic uses default coupling `1/36`, softening `0.05`, and reports the r
 $$
 \mathcal M_{\mathrm{root}}
 =
-\min(D_s,D_t,1-\beta_{\max}).
+\min(D_s,D_T,1-\beta_{\max}).
 $$
 
 The first sampled dense run used $u\in\{0,0.1,\ldots,0.6\}$, $v_{\mathrm{orb}}\in\{0.1,0.2,\ldots,0.8\}$, `sample-count=4`, `root-samples=160`, and `root-periods=2`. It produced `56` rows, `46` positive root-budget rows, `0` bounded-return rows, and minimum sampled normalized residual `0.667005989038545`. The absolute residual minimum in that run was outside the positive root-budget window: $(u,v_{\mathrm{orb}})=(0.6,0.7)$ had $\mathcal E_{\mathrm{norm}}\approx0.667006$, but $\beta_{\max}\approx1.229832$ and root margin $\approx-0.229832$.
@@ -1499,11 +1499,11 @@ $$
 \min\left[
 \min_a\{c_f-\|\dot{\mathbf x}_a(t)\|\},
 \min_{a,b,\tau\in\mathcal C_{ab}(t)}
-\{D_{s,ab}(t,\tau),D_{t,ab}(t,\tau)\}
+\{D_{s,ab}(t,\tau),D_{T,ab}(t,\tau)\}
 \right],
 $$
 
-where $D_s$ and $D_t$ are the source-normal and receiver-normal factors. An internal replacement must satisfy a post-tangent-authority reserve inequality over a declared tangent-response horizon $\Delta_T$:
+where $D_s$ and $D_T$ are the source-normal and receiver-normal factors. An internal replacement must satisfy a post-tangent-authority reserve inequality over a declared tangent-response horizon $\Delta_T$:
 
 $$
 \rho_T
@@ -1588,13 +1588,13 @@ $$
 If the active margin is the receiver-normal factor
 
 $$
-D_{t,ab}=c_f-\dot{\mathbf x}_a\cdot\hat{\mathbf r}_{ab},
+D_{T,ab}=c_f-\dot{\mathbf x}_a\cdot\hat{\mathbf r}_{ab},
 $$
 
 then the first-order velocity contribution is
 
 $$
-\delta D_{t,ab}
+\delta D_{T,ab}
 \approx
 \Delta_M\,
 \mathbf a_a^{\mathrm{margin}}
@@ -1908,7 +1908,7 @@ The next retained-solver source target is now explicit. A same-record provider r
 | Required row | Required equation or data |
 | --- | --- |
 | `retained_solver_tangent_target_vector_row` | $\mathbf T=\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}})$ with `a_ansatz_vector`, `a_wake_vector`, `a_support_vector`, `surface_normal_vectors`, `tangent_projector_matrix`, and `tangent_target_vector` |
-| `active_causal_margin_gradient_vector_row` | $\mathbf G_\mu$ as the gradient of the active $\min(c_f-\|\mathbf v\|,D_s,D_t)$ factor in the same global acceleration vector space, with an active margin channel and event reference |
+| `active_causal_margin_gradient_vector_row` | $\mathbf G_\mu$ as the gradient of the active $\min(c_f-\|\mathbf v\|,D_s,D_T)$ factor in the same global acceleration vector space, with an active margin channel and event reference |
 | `same_record_provider_acceleration_vector_row` | $\mathbf a_{\mathrm{provider}}^\ast=\mathbf T+\mathbf n_\ast$ with provider provenance and accepted provider reference |
 | `post_provider_root_margin_row` | $m_{\mathrm{dyn}}-\Delta_T\|\mathbf P_T\mathbf a_{\mathrm{provider}}^\ast\|+\Delta_M\langle\mathbf a_{\mathrm{provider}}^\ast,\mathbf G_\mu\rangle\ge\epsilon_\mu$ |
 | `same_record_closure_rows` | Same retained-root ledger, action-closure row, wake-history reference, and path-history reference for all vector rows |
@@ -2280,7 +2280,7 @@ The source-normal and receiver-normal factors are
 $$
 D_{s,ab}=c_f-\dot{\mathbf x}_b(t-\tau)\cdot\hat{\mathbf r}_{ab},
 \qquad
-D_{t,ab}=c_f-\dot{\mathbf x}_a(t)\cdot\hat{\mathbf r}_{ab},
+D_{T,ab}=c_f-\dot{\mathbf x}_a(t)\cdot\hat{\mathbf r}_{ab},
 $$
 
 with
@@ -2288,7 +2288,7 @@ with
 $$
 W_{ab}^{\mathrm{rec}}
 =
-\left|\frac{D_{t,ab}}{D_{s,ab}}\right|.
+\left|\frac{D_{T,ab}}{D_{s,ab}}\right|.
 $$
 
 The acceleration row for receiver $a$ is then the master-equation branch sum

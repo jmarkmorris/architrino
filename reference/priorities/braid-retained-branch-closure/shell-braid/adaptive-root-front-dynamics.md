@@ -221,7 +221,7 @@ $$
 The source-normal root-front quotient remains a diagnostic for finding and
 continuing the causal-root row. The force/action contribution is the
 receiver-normal branch strength $W_a^{\mathrm{rec}}=\lvert
-D_{t,a}/D_{s,a}\rvert$ on the same retained record.
+D_{T,a}/D_{s,a}\rvert$ on the same retained record.
 
 The retained intrinsic residual changes by
 

@@ -329,7 +329,7 @@ $$
 
 with $D^2\mathbf{R}_r[v,w]$ evaluated on the total delayed sheet.
 
-On a fixed $D_s,D_t$ sign stratum, the source-normal root sheet still carries
+On a fixed $D_s,D_T$ sign stratum, the source-normal root sheet still carries
 $D_{s,r}^{\nu}=J_r^{\nu}$, but force strength is the receiver-normal branch
 weight $W_{r,\nu}^{\mathrm{rec}}$.
 
@@ -550,7 +550,7 @@ Proof route:
 2. differentiate the implicit equation once to recover $D\eta_r[v]$ and the delayed phase variation;
 3. differentiate a second time at fixed receiver time to obtain the bilinear formula for $D^2\eta_r[v,w]$;
 4. propagate $D^2\eta_r[v,w]$ through $\lambda_j^-$, $\nu_j^-$, $\mathbf{T}_j^-$, $\widehat{\mathbf{R}}_r$, and $J_r^{\nu}$;
-5. differentiate $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$ on the fixed $D_s,D_t$ sign stratum;
+5. differentiate $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$ on the fixed $D_s,D_T$ sign stratum;
 6. assemble the second force envelope and push it through the bounded-speed residual rows to obtain the Krawczyk contribution.
 
 ---
@@ -565,7 +565,7 @@ A bounded-speed second root-variation packet must emit:
 | `first_variation` | $\phi_{v,i}$, $\Xi_{v,i}$, $D\eta_r[v]$, $D\lambda_j^-[v]$, $D\widehat{\mathbf{R}}_r[v]$, and $DJ_r^{\nu}[v]$ |
 | `second_root_variation` | $D^2\eta_r[v,w]$ from the implicit formula or an interval automatic-differentiation enclosure |
 | `second_jacobian_variation` | $D^2J_r^{\nu}[v,w]$, including clock, speed, tangent, direction, and second-root terms |
-| `force_weight_hessian` | $D^2(\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}})[v,w]$, $\ell_v$, $\ell_{vw}$, and $D_s,D_t$ sign-stratum data |
+| `force_weight_hessian` | $D^2(\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}})[v,w]$, $\ell_v$, $\ell_{vw}$, and $D_s,D_T$ sign-stratum data |
 | `force_hessian` | $D^2\mathbf{f}_r^{\nu}[v,w]$ or a certified enclosure |
 | `interval_floors` | $\eta_0$, $J_0$, speed band, inverse-clock, tail, support, action, event, inactive-gap, and noncollision margins |
 | `krawczyk_export` | $\Lambda_{\eta,r}^{(2)}$, $\Lambda_{J,r}^{(2)}$, $\Lambda_{n,r}^{(2)}$, $L_{f,r}^{(2),\nu}$, $L_R^{\mathrm{sheet},\nu}$, limiting root label, and first failed status |
@@ -582,7 +582,7 @@ A bounded-speed second root-variation packet must emit:
 | `bounded-speed-hessian-root-ledger-stale` | Hessian/action rows use a different root, support, action, event, or sign ledger |
 | `bounded-speed-force-weight-second-variation-open` | source-normal root-chart and receiver-normal branch-strength rows are differentiated only to first order |
 | `bounded-speed-second-jacobian-open` | $D^2J_r^{\nu}$ is missing clock, speed, tangent, direction, or second-root terms |
-| `bounded-speed-root-sheet-receiver-normal-sign-open` | $D_{s,r}^{\nu}$ or $D_{t,r}^{\nu}$ has no fixed sign label for differentiating the receiver-normal force weight |
+| `bounded-speed-root-sheet-receiver-normal-sign-open` | $D_{s,r}^{\nu}$ or $D_{T,r}^{\nu}$ has no fixed sign label for differentiating the receiver-normal force weight |
 | `bounded-speed-root-floor-failed` | the delay, Jacobian, inactive-gap, tail, support, event, or noncollision floor fails on the chart ball |
 | `bounded-speed-krawczyk-second-envelope-open` | the Krawczyk $Z$ row lacks $L_R^{\mathrm{sheet},\nu}$ |
 | `not-retained` | the second-variation row is diagnostic only and cannot support bounded-speed retention |

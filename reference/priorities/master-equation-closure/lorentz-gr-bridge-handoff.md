@@ -282,9 +282,9 @@ $$
 \mathcal{K}_{\mathrm{med}}:
 (h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}),
+(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}}),
 \qquad
-\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j.
+\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j.
 $$
 
 The observer-level effective line element is
@@ -292,11 +292,11 @@ The observer-level effective line element is
 $$
 ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right).
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right).
 $$
 
 The prepared first weak-field coefficient scaffold is
@@ -321,7 +321,7 @@ N
 $$
 
 $$
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 =
 h_{ij}
 \left(
@@ -335,7 +335,7 @@ h_{ij}
 $$
 
 $$
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 =
 B^i{}_j w^j\frac{U}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}).

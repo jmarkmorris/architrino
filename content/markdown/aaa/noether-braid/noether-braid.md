@@ -1,6 +1,10 @@
 # Noether Braid
 
-The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
+The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. It is the first place where the reader should think in terms of a retained six-body branch rather than a pair, point particle, or ordinary orbit.
+
+A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
+
+The simple idea is six persistent strands plus one shared ledger. The hard question is whether the delayed dynamics can keep that ledger coherent: the same six identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold.
 
 For the broader cross-axis classifier, see [Noether Braid Taxonomy](noether-braid-taxonomy.md). The base family chapters are:
 
@@ -14,7 +18,13 @@ These definitions name case structure, not retained-branch existence. A neutral 
 
 The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](noether-braid-topological-charge.md) program.
 
-Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, **nested shell braid**, and **nested binary** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, and **nested shell braid** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../spacetime/emergent-metric.md).
+
+## Simple Picture
+
+A Noether braid is a candidate way for six architrinos to keep coming back into a repeatable causal relationship. The important object is not a drawn knot or a fixed material ring. It is the full branch record: which architrinos are present, which causal wakes return, which root identities stay active, and which conserved or nearly conserved quantities survive around the cycle.
+
+That is why the family labels are deliberately modest. `Neutral`, `shell`, and `nested shell` say what structural constraints have been added. They do not prove stability, mass response, photon behavior, or Noether sea dominance. Those claims require retained branch certificates and downstream export rows.
 
 ## Document Role
 

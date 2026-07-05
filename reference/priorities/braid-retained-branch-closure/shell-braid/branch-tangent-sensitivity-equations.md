@@ -211,11 +211,11 @@ Let
 $$
 w_a^{\mathrm{rec}}=\eta_a^{-2}W_a^{\mathrm{rec}},
 \qquad
-W_a^{\mathrm{rec}}=\left|\frac{D_{t,a}}{D_{s,a}}\right|.
+W_a^{\mathrm{rec}}=\left|\frac{D_{T,a}}{D_{s,a}}\right|.
 $$
 
 Then the force-sensitivity row must be rebuilt from the same retained record
-that emits $D_{s,a}$, $D_{t,a}$, and $D_vW_a^{\mathrm{rec}}$:
+that emits $D_{s,a}$, $D_{T,a}$, and $D_vW_a^{\mathrm{rec}}$:
 
 $$
 \dot w_a^{\mathrm{rec}}

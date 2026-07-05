@@ -2,9 +2,13 @@
 
 This note records the geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../gauge-structure-emergence.md).
 
+The measured Weinberg angle is an observer-level electroweak fact. This note does not reduce that fact to a bare visual tilt. It asks a narrower implementation question: whether the same six-pole assembly geometry that organizes weak exposure also supplies a discrete axial-frame increment that participates in the dressed electroweak mixing calculation.
+
 ## Purpose
 
 The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. This note does not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, it uses the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for axial-frame misalignment.
+
+The distinction matters because one number can appear in two layers. The Standard Model angle is the effective coupling angle after electroweak dressing. The candidate branch increment below is a geometry-side input that would still need dressing, normalization, and comparison before it could be identified with measured electroweak data.
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -26,7 +30,7 @@ This is intentionally narrower than a claim that the H/M/L axes themselves tilt 
 
 ## Core Distinction
 
-We separate two structures that are often spoken about together but should not be conflated.
+We separate two structures that are often spoken about together but should not be conflated. The core frame is the neutral scaffold; the axial frame is the exposed six-pole load. Weak mixing can only be discussed cleanly after those two frames are kept separate.
 
 ### 1. Core frame
 
@@ -294,7 +298,7 @@ This gives a possible geometric interpretation of quark weak structure:
 - weak transitions couple to that rotated frame,
 - observed electroweak mixing then depends on both charge assignment and frame misalignment.
 
-This is a cleaner statement than saying that weak mixing directly rotates the core axes. The weak interaction sees the **axial geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
+This is a cleaner statement than saying that weak mixing directly rotates the braid axes. The weak interaction sees the **axial geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
 
 ---
 

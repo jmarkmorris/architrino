@@ -6,7 +6,7 @@ theorem-grade evidence.
 
 Claim level. Priority-only restart target.
 
-The next tangential evaluator must compute $D_s$, $D_t$, and
+The next tangential evaluator must compute $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ on the same retained branch boxes as the root topology rows.
 Only the receiver-normal weighted tangential interval can decide a pass or
 failure.

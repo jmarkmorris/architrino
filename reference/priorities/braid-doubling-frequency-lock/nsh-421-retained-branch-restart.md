@@ -13,10 +13,10 @@ Retained-branch evidence must close on one retained record under current receive
 The admissible local weight is
 
 $$
-W^{rec}=\left|\frac{D_t}{D_s}\right|.
+W^{rec}=\left|\frac{D_T}{D_s}\right|.
 $$
 
-Here `D_s` is the source-normal denominator and `D_t` is the receiver-normal numerator on the same active row. Source-normal-only rows, Jacobian-only rows, and historical $\eta^{-2} |J|^{-1}$ weights are diagnostics only. A frequency lock is not a retained branch.
+Here `D_s` is the source-normal denominator and `D_t` is the current diagnostic field name for the canonical receiver-normal numerator $D_T$ on the same active row. Source-normal-only rows, Jacobian-only rows, and historical $\eta^{-2} |J|^{-1}$ weights are diagnostics only. A frequency lock is not a retained branch.
 
 Primary receiver-normal references for this screen:
 
@@ -111,7 +111,7 @@ The minimum NSH-421 retained record must be a single accepted record, not a stit
   - geometry row id
   - `sourceNormalDenominator` / `D_s`
   - `receiverNormalNumerator` / `D_t`
-  - `receiverNormalFactor = D_t / D_s`
+  - `receiverNormalFactor = D_t / D_s` (canonical $D_T/D_s$)
   - `unsignedReceiverNormalFactor = abs(receiverNormalFactor)`
   - `branchWeight = unsignedReceiverNormalFactor`
   - regulator, sign, fold, and caustic status

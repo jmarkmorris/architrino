@@ -377,7 +377,7 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
   const range = PHOTON_CONTROL_RANGES.pairSeparationLog10Ratio;
   const initialTick = getPhotonSeparationLogTick(getPhotonSeparationLog10Ratio(state));
   const row = createElement(documentLike, "div", "photon-control-row photon-log-control-row");
-  const span = createElement(documentLike, "span", "photon-control-label", "Δx");
+  const span = createElement(documentLike, "span", "photon-control-label", "Δx app gap");
   const controlShell = createElement(documentLike, "span", "photon-separation-picker");
   const mantissaGroup = createElement(documentLike, "span", "photon-separation-mantissas");
   const exponentControl = createElement(documentLike, "span", "photon-separation-exponent-control");
@@ -405,16 +405,16 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
       "photon-separation-mantissa-button"
     );
     button.dataset.mantissa = String(mantissa);
-    button.setAttribute("aria-label", `Delta x coefficient ${mantissa}`);
+    button.setAttribute("aria-label", `App-coordinate Delta x coefficient ${mantissa}`);
     mantissaGroup.append(button);
   });
 
-  exponentButton.setAttribute("aria-label", "Choose Delta x exponent");
+  exponentButton.setAttribute("aria-label", "Choose app-coordinate Delta x exponent");
   exponentButton.setAttribute("aria-haspopup", "listbox");
   exponentButton.setAttribute("aria-expanded", "false");
   exponentMenu.hidden = true;
   exponentMenu.setAttribute("role", "listbox");
-  exponentMenu.setAttribute("aria-label", "Delta x exponent");
+  exponentMenu.setAttribute("aria-label", "App-coordinate Delta x exponent");
   for (let exponent = range.min; exponent <= range.max; exponent += 1) {
     const exponentOption = createButton(
       documentLike,
@@ -424,7 +424,7 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
     renderPhotonSeparationScaleLabel(documentLike, exponentOption, exponent);
     exponentOption.dataset.exponent = String(exponent);
     exponentOption.setAttribute("role", "option");
-    exponentOption.setAttribute("aria-label", `Delta x exponent ${exponent}`);
+    exponentOption.setAttribute("aria-label", `App-coordinate Delta x exponent ${exponent}`);
     exponentMenu.append(exponentOption);
   }
 
@@ -484,7 +484,7 @@ function createSeparationLogControl(documentLike, { state, getState, onInput }) 
     exponentButton.title = `Exponent ${selectedExponent}`;
     exponentButton.setAttribute(
       "aria-label",
-      `Choose Delta x exponent, current ${exponentLabel}`
+      `Choose app-coordinate Delta x exponent, current ${exponentLabel}`
     );
     Array.from(mantissaGroup.children).forEach((button) => {
       const mantissa = Number(button.dataset.mantissa);
@@ -1013,7 +1013,7 @@ export function createPhotonControlsRuntime({
   measurementControls.append(measurementZeroMarker);
   measurementSection.append(measurementControls);
   const absoluteHistoryControl = createCheckboxControl(documentLike, {
-    label: "Absolute history",
+    label: "Absolute source history",
     checked: state.measurement?.sourceHistoryMode === "absolute_history",
     onChange: (checked) => {
       getState().measurement.sourceHistoryMode = checked ? "absolute_history" : "co_moving";
@@ -1035,9 +1035,9 @@ export function createPhotonControlsRuntime({
   });
   measurementControls.append(speedModeControl.row);
   [
-    ["x", "Observer x", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
-    ["y", "Observer y", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
-    ["z", "Observer z", PHOTON_CONTROL_RANGES.virtualObserverZ, 2],
+    ["x", "Observer x app coordinate", PHOTON_CONTROL_RANGES.virtualObserverX, 2],
+    ["y", "Observer y app coordinate", PHOTON_CONTROL_RANGES.virtualObserverY, 2],
+    ["z", "Observer z app coordinate", PHOTON_CONTROL_RANGES.virtualObserverZ, 2],
   ].forEach(([key, label, range, digits]) => {
     const control = createRangeControl(documentLike, {
       label,

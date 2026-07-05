@@ -1,52 +1,54 @@
 # Constructing the Absolute Frame
 
-This chapter explains how a usable coordinate frame can be reconstructed from complete-state wake geometry rather than assumed from pre-labeled space. The ontological data are architrino worldlines, source-tagged causal wakes, Euclidean distances on an absolute-time slice, and the path-history records needed to compare them. The coordinate frame reconstructed from those data is a mathematical and computational representation, not an additional constituent of the ontology.
+This chapter answers a simple question: if the Euclidean void has no grid painted into it, how can the theory ever use coordinates? The answer is reconstruction. A usable frame is built from complete-state wake geometry, not assumed as a label already attached to space. The ontological data are architrino worldlines, source-tagged causal wakes, Euclidean distances on an absolute-time slice, and the path-history records needed to compare them. The coordinate frame reconstructed from those data is a mathematical and computational representation, not an additional constituent of the ontology.
 
 ## Overview
 
-Having established in the previous chapter that source-tagged wake centers identify the preferred rest structure, and that a stationary architrino supplies one convenient material origin when available, the next task is to reconstruct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are why coordinate reconstruction must be treated as an inference from complete-state geometry rather than as a primitive label attached to the void.
+The previous chapter showed how source-tagged wake centers identify the preferred rest structure, and how a stationary architrino can supply one convenient material origin when available. The next task is more ordinary but just as important: construct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are the reason coordinates must be inferred from complete-state geometry rather than treated as primitive labels attached to the void.
 
 The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate frame is in place.
 
-The coordinate system reconstructed here is a mathematical and computational tool: a representation used to state equations in components, run simulations, and compare descriptions. The universe itself requires none of this. Architrinos interact through source-tagged causal wakes according to invariant laws that can exhibit deterministic multistability at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
+The coordinate system reconstructed here is a workbench tool. It lets the theory state equations in components, run simulations, and compare descriptions. The universe itself requires none of it. Architrinos interact through source-tagged causal wakes according to invariant laws that can exhibit deterministic multistability at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
 
-The claim is therefore limited. This complete-state reconstruction is a mathematical existence proof demonstrating that a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed from the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective. It is not an operational laboratory protocol for Physical Observers made of assemblies.
+The reader should therefore treat the construction like assigning graph paper after the geometry is already there. The graph paper helps calculate and compare; it does not create the distances, the rest condition, the causal wakes, or the architrino worldlines. This is why the reconstruction can be mathematically exact at the complete-state level while still being unavailable as a direct laboratory procedure for an embedded observer.
 
-The mathematical content is small but useful: the Euclidean metric plus a nondegenerate ordered tuple supplies an origin, two axes, and a parity convention. The important points are the lemma, the exact failure conditions, and the fact that coordinate parity is not dynamical chirality.
+The claim is therefore narrow. From the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective, a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed. That is a mathematical existence proof. It is not an operational laboratory protocol for Physical Observers made of assemblies.
+
+The mathematical content is small but useful. The Euclidean metric plus a nondegenerate ordered tuple supplies an origin, two axes, and a parity convention. The important points are the lemma, the exact failure conditions, and the fact that coordinate parity is not dynamical chirality.
 
 ## Reconstruction Existence Lemma
 
-Fix one absolute-time slice $\Sigma_{t_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice, supplied either by a stationary architrino or by the fixed Euclidean-void point reconstructed from a source-tagged emission center, and two additional architrinos $A$ and $B$ whose positions on $\Sigma_{t_\ast}$ satisfy
+Fix one absolute-time slice $\Sigma_{T_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice. The origin can be supplied by a stationary architrino or by the fixed Euclidean-void point reconstructed from a source-tagged emission center. Now choose two additional architrinos $A$ and $B$ whose positions on $\Sigma_{T_\ast}$ satisfy
 $$
-\mathbf{d}_1=\mathbf{x}_A(t_\ast)-\mathbf{x}_O(t_\ast)\ne\mathbf{0}
+\mathbf{d}_1=\mathbf X_A(T_\ast)-\mathbf X_O(T_\ast)\ne\mathbf{0}
 $$
 and
 $$
-\mathbf{d}_2=\mathbf{x}_B(t_\ast)-\mathbf{x}_O(t_\ast),
+\mathbf{d}_2=\mathbf X_B(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
 \|\mathbf{d}_1\times\mathbf{d}_2\|\ne0
 $$
 Then the first two unit axes are fixed by
 $$
-\hat{\mathbf{x}}=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
+\hat{\mathbf e}_1=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
 $$
 $$
-\mathbf{d}_2^{\perp}=\mathbf{d}_2-(\mathbf{d}_2\cdot\hat{\mathbf{x}})\hat{\mathbf{x}},
+\mathbf{d}_2^{\perp}=\mathbf{d}_2-(\mathbf{d}_2\cdot\hat{\mathbf e}_1)\hat{\mathbf e}_1,
 \qquad
-\hat{\mathbf{y}}=\frac{\mathbf{d}_2^{\perp}}{\|\mathbf{d}_2^{\perp}\|}
+\hat{\mathbf e}_2=\frac{\mathbf{d}_2^{\perp}}{\|\mathbf{d}_2^{\perp}\|}
 $$
-The remaining completion has exactly two signs. Once an orientation convention is declared, the right-handed completion is
+Read the first displacement as the first arrow from the origin, and the second displacement as the arrow that fixes the plane. Once those are nondegenerate, only one binary choice remains. The remaining completion has exactly two signs. Once an orientation convention is declared, the right-handed completion is
 $$
-\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}
+\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2
 $$
 
-Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. The continuous freedoms removed are the translations and rotations of the Euclidean group
+Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. In plainer language, the tuple removes the freedom to slide the origin around and spin the axes freely. The continuous freedoms removed are the translations and rotations of the special Euclidean group
 $$
-E(3)=\mathbb{R}^3\rtimes SO(3),
+SE(3)=\mathbb{R}^3\rtimes SO(3),
 $$
-while the remaining parity choice is the disconnected component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
+the identity component of the full Euclidean group $E(3)=\mathbb{R}^3\rtimes O(3)$, while the remaining parity choice is the disconnected component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
 
-The construction fails precisely when the first displacement is coincident with the origin or the first two displacements are collinear:
+The construction fails only when the chosen reference data do not actually define a plane. That happens when the first displacement is coincident with the origin or the first two displacements are collinear:
 $$
 \|\mathbf{d}_1\|=0
 \qquad\text{or}\qquad
@@ -59,36 +61,36 @@ $$
 \ge
 \sin\theta_{\min} > 0
 $$
-on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf{y}}$ is ill-conditioned and the completed $\hat{\mathbf{z}}$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
+on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf e}_2$ is ill-conditioned and the completed $\hat{\mathbf e}_3$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
 
-This floor is one instance of the non-degeneracy floors used throughout the foundation stack. In each case the retained chart is accepted only when the smallest singular value of the relevant reconstruction map is bounded away from zero. For causal-root charts this is the transversality floor, such as $\lvert\partial_sF_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction it is the smallest singular value of the Gram map determined by $(\mathbf{d}_1,\mathbf{d}_2)$, equivalently the sine floor above. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
+This floor is one instance of the non-degeneracy floors used throughout the foundation stack. The common idea is simple: do not trust a reconstruction that would change wildly under a tiny perturbation. In each case the retained chart is accepted only when the smallest singular value of the relevant reconstruction map is bounded away from zero. For causal-root charts this is the transversality floor, such as $\lvert\partial_{T_{\mathrm{em}}}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction it is the smallest singular value of the Gram map determined by $(\mathbf{d}_1,\mathbf{d}_2)$, equivalently the sine floor above. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
 
 If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
 $$
-\mathbf{d}_3=\mathbf{x}_C(t_\ast)-\mathbf{x}_O(t_\ast),
+\mathbf{d}_3=\mathbf X_C(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
 V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
-Here $V\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}V$ only reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
+Here $V\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}V$ reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
 This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
 
 ## Minimal Reconstruction Procedure
 
-The lemma above is the full construction. Complete-state bookkeeping performs four choices:
+The lemma above is the full construction. Complete-state bookkeeping performs four choices. Each choice adds a piece of coordinate language without adding a new physical ingredient:
 
-1. Choose an origin point $O$ on $\Sigma_{t_\ast}$. A stationary architrino can supply a material origin, but a reconstructed source-tagged emission center also suffices. If the emission time is $s\ne t_\ast$, the origin on $\Sigma_{t_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original event on $\Sigma_s$.
-2. Choose a non-coincident architrino $A$ and set $\hat{\mathbf{x}}=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction but not a physically preferred direction; the tuple choice is conventional once the complete-state geometry is available.
-3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf{y}}$. This fixes the remaining continuous roll around $\hat{\mathbf{x}}$.
-4. Declare a parity convention and set $\hat{\mathbf{z}}=\hat{\mathbf{x}}\times\hat{\mathbf{y}}$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
+1. Choose an origin point $O$ on $\Sigma_{T_\ast}$. A stationary architrino can supply a material origin, but a reconstructed source-tagged emission center also suffices. If the emission time is $T_{\mathrm{em}}\ne T_\ast$, the origin on $\Sigma_{T_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original event on $\Sigma_{T_{\mathrm{em}}}$.
+2. Choose a non-coincident architrino $A$ and set $\hat{\mathbf e}_1=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction but not a physically preferred direction; the tuple choice is conventional once the complete-state geometry is available.
+3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf e}_2$. This fixes the remaining continuous roll around $\hat{\mathbf e}_1$.
+4. Declare a parity convention and set $\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
 
-The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{t_\ast}$, it transports rigidly across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf{s}_{o'}(t)-\mathbf{s}_j(s)\|=c_f(t-s)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
+The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{T_\ast}$, it transports rigidly across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf X_{o'}(T)-\mathbf X_j(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
 
-The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple; the failure is not a failure of the Euclidean void.
+The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple. The failure belongs to the selected chart data, not to the Euclidean void.
 
 ## Parity Convention and Dynamical Chirality
 
-Coordinate handedness is a basis convention: it chooses which side of the already-defined plane is called positive $\hat{\mathbf{z}}$. A complete-state side marker $C$ can report that choice through
+Coordinate handedness is a basis convention. It chooses which side of the already-defined plane is called positive $\hat{\mathbf e}_3$. A complete-state side marker $C$ can report that choice through
 $$
 V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
@@ -108,9 +110,9 @@ The self-linking row is defined only on a regular closed return cycle or on an e
 
 ## Coordinate Frames Are Not Ontology
 
-The Euclidean void has no preferred origin, no intrinsic axis labels, and no substrate-level marker for clockwise versus counterclockwise. At the ontological level, architrinos move and interact through Euclidean separations, source-tagged causal wakes, and line-of-action hits. The physics proceeds without coordinate labels.
+The Euclidean void has no preferred origin, no intrinsic axis labels, and no substrate-level marker for clockwise versus counterclockwise. At the ontological level, architrinos move and interact through Euclidean separations, source-tagged causal wakes, and line-of-action hits. Coordinates describe those relations; they do not cause them.
 
-The reconstruction procedure outlined here serves theory-building and simulation:
+The reconstruction procedure serves theory-building and simulation:
 - writing the master equation in component form,
 - running numerical simulations,
 - communicating results,
@@ -118,22 +120,22 @@ The reconstruction procedure outlined here serves theory-building and simulation
 
 The coordinate-invariant content of the laws does not depend on the selected frame. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the coordinate signs assigned to pseudovectors and pseudoscalars.
 
-The universe does not require a coordinate frame; theory and simulation use one because the relevant relationships need a stable component language. Origin, first axis, and plane are enough for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products, pseudovectors, pseudoscalars, or parity-sensitive coordinate quantities.
+The universe does not require a coordinate frame. Theory and simulation use one because the relevant relationships need a stable component language. Origin, first axis, and plane are enough for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products, pseudovectors, pseudoscalars, or parity-sensitive coordinate quantities.
 
 ## Complete-State and Physical-Observer Access
 
-This final distinction separates substrate ontology, complete-state reconstruction, and effective observer inference. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. The coordinate frame is inferred from that complete record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
+This final distinction separates three layers that are easy to confuse. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. Complete-state bookkeeping can infer a coordinate frame from that full record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
 
 **Complete-state reconstruction:**
 The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
 **Physical Observer access:**
 Physical Observers cannot directly measure the complete source-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
-- **Proper time** $\tau$, not absolute time $t$
+- **Proper time** $\tau$, not absolute time $T$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
-The obstruction is structural: no operator acting on the superposed received potential alone recovers the source-tagged center set $\{\mathbf{z}_a(s)\}$ without provenance data already in hand. Source identity, emission time, and wake-center provenance are complete-state ledger entries; once a Physical Observer has only a summed effective record, those tags are not restored by a more clever coordinate reconstruction.
+The obstruction is structural. No operator acting on the superposed received potential alone recovers the source-tagged center set $\{\mathbf Z_a(T_{\mathrm{em}})\}$ without provenance data already in hand. Source identity, emission time, and wake-center provenance are complete-state ledger entries; once a Physical Observer has only a summed effective record, those tags are not restored by a more clever coordinate reconstruction.
 
 This can be stated as a quotient obstruction. Let $\mathcal{T}$ denote the provenance-tagged configuration record containing source identity, emission time, and wake-center data, and let
 $$
@@ -141,6 +143,6 @@ Q_{\mathrm{erase}}:\mathcal{T}\to\mathcal{T}/\!\sim_{\mathrm{erase}}
 $$
 be the map that forgets the labels retained only by complete-state bookkeeping. The summed observer record lies in the quotient fiber, not in $\mathcal{T}$ itself. Absolute-frame reconstruction requires a section of $Q_{\mathrm{erase}}$ selecting the correct tagged representative. No such section is determined by the superposed potential alone, because many tagged configurations can lie over the same unlabeled record. This is the same kind of label-erasure map that appears in the provenance-leakage bound of [Architrino](architrino.md#provenance-and-persistence).
 
-The reconstruction described here is a **foundational consistency proof**: it shows the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
+The reconstruction described here is a **foundational consistency proof**. It shows that the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
 
 For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Emergent Metric](../spacetime/emergent-metric.md).

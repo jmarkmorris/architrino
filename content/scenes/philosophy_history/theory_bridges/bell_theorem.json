@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "theory_bridges__bell_theorem",
-    "title": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+    "title": "Bell's Theorem: QM Foundations vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

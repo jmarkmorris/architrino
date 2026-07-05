@@ -879,7 +879,7 @@ The wake-history derivation proof object must bind the same row, accepted
 evidence id, source record, and receiver-normal branch-strength derivative
 bundle. In particular, any wake-history row consumed by
 $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ must name the same retained
-branch list, $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+branch list, $D_s$, $D_T$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_T$, and
 reconstructed $D_vW^{\mathrm{rec}}$ rows used by the force/action packet. A
 declared event ledger without those rows remains
 `not_accepted_for_wake_history_closure`; a terminal aggregate, H39/theta3minus
@@ -891,8 +891,8 @@ that diagnostic. `energy_wake`, `momentum_wake`, `angular_momentum_wake`, and
 `medium_update` can each bind
 `receiver-normal-retained-branch-family-first-derivative/v0` to the same source
 record, event ledger, retained record key, source artifact hash, and consumer
-row, then recompute $D_vW^{\mathrm{rec}}$ from $D_s$, $D_t$, $D_vD_s$, and
-$D_vD_t$. The artifact emits
+row, then recompute $D_vW^{\mathrm{rec}}$ from $D_s$, $D_T$, $D_vD_s$, and
+$D_vD_T$. The artifact emits
 `receiver_normal_derivative_contract_summary`, which names accepted row ids,
 blocked row ids, the first failure code, and `required_object_blockers` for
 each row. Missing derivative bundles now surface as

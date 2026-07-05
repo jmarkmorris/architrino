@@ -2,6 +2,8 @@
 
 This note explains how readers can support the Architrino research program financially and why that support matters to the continuity of the work. Its purpose is practical, but it also frames support as part of sustaining a long-form independent research effort rather than as a generic donation request.
 
+Independent research depends on uninterrupted time: time to write, calculate, simulate, revise, answer criticism, and keep the public project usable. Support is a way to preserve that continuity.
+
 The sections below move from the basic support rationale to the available contribution routes.
 
 ## Purpose

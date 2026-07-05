@@ -1,8 +1,10 @@
 # Emergent Metric
 
-This chapter is the constitutive bridge from fixed-void substrate ontology to effective metric language. Its purpose is to say what the metric means in this framework, which medium variables are supposed to carry that structure, and what weak-field map has to be recovered before the spacetime branch can claim GR-level closure.
+This chapter explains how metric language enters a theory whose substrate is not metric spacetime. The Euclidean void remains fixed. The Noether sea changes state inside it. The effective metric is the observer-level description extracted from clock, ruler, signal, and medium-response channels. This chapter says what that metric means, which medium variables are supposed to carry it, and what weak-field map has to be recovered before the spacetime branch can claim GR-level closure.
 
 The opening fixes the ontological picture and the canonical symbols first. The later sections then move through equation-of-state support, refraction-versus-curvature language, weak-field constitutive maps, and closure interfaces.
+
+The one-line map is: Noether sea record to clock, ruler, signal, and drift response; those responses to an effective metric; that effective metric to GR benchmark observables. Each arrow has to be earned. A metric that fits only one channel is not yet a spacetime recovery, because Physical Observers need one coherent effective geometry across clocks, photons, matter motion, and gravitational-wave channels.
 
 ## Absolute Frame vs. Effective Geometry
 
@@ -12,55 +14,57 @@ The bridge is therefore constitutive rather than ontological. A successful metri
 
 ## Ontological Picture
 
-- **Substrate**: A fixed Euclidean 3D void with absolute time $t$. A chosen chart $(x,y,z)$ represents fixed void locations; the labels never move or curve.
+- **Substrate**: A fixed Euclidean 3D void with absolute time $T$. A chosen chart $(X,Y,Z)$ represents fixed void locations; the labels never move or curve.
 - **Noether sea**: The [Noether sea](noether-sea.md), a pervasive population of coupled pro/anti Noether braids. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
 - **$\mathbb{U}_{\text{now}}$ universe-state perspective**: Complete-state bookkeeping on the absolute-time slice, carrying:
-  - The full architrino microstate $S(t)$,
-  - The instantaneous state of the Noether sea (density $\rho_{\text{NS}}(\mathbf{x},t)$, alignment, stress),
-  - The effective potential field $\Phi_{\text{eff}}(\mathbf{x},t)$ and its gradients.
+  - The full architrino microstate $S(T)$,
+  - The instantaneous state of the Noether sea (density $\rho_{\text{NS}}(\mathbf X,T)$, alignment, stress),
+  - The effective potential field $\Phi_{\text{eff}}(\mathbf X,T)$ and its gradients.
 
 From this bookkeeping perspective, there is only:
 - Flat Euclidean geometry $h_{ij}=\delta_{ij}$,
 - A dynamic medium (Noether braids) moving and rearranging in that geometry.
 
+The metric appears only after a Physical Observer record is assembled from those ingredients.
+
 ## Canonical Symbols (Spacetime)
 
 Use the following symbols consistently across spacetime chapters:
 
-- $n(\mathbf{x},t)$: normalized Noether braid density.
-- $\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)$: physical Noether braid density.
-- $\chi_{\text{sea}}(\mathbf{x},t)=c_f/c_{\text{eff}}(\mathbf{x},t)$: Noether sea delay factor.
+- $n(\mathbf X,T)$: normalized Noether braid density.
+- $\rho_{\text{NS}}(\mathbf X,T)=\rho_{\text{NS},0}\,n(\mathbf X,T)$: physical Noether braid density.
+- $\chi_{\text{sea}}(\mathbf X,T)=c_f/c_{\text{eff}}(\mathbf X,T)$: Noether sea delay factor.
 - $c_0\equiv c_{\text{eff}}(\infty)$: asymptotic homogeneous observer-channel speed used in weak-field metric comparisons.
-- $\Phi_{\text{eff}}(\mathbf{x},t)$: constitutive potential inferred from the clock channel.
-- $\Phi_N(\mathbf{x},t)$: Newtonian benchmark potential used for weak-field matching.
+- $\Phi_{\text{eff}}(\mathbf X,T)$: constitutive potential inferred from the clock channel.
+- $\Phi_N(\mathbf X,T)$: Newtonian benchmark potential used for weak-field matching.
 - $U\equiv -\Phi_N>0$: positive weak-field PPN potential variable.
-- $N(\mathbf{x},t)$: observer-level lapse or clock-rate field reconstructed from Noether sea state.
-- $u^i_{\text{sea}}(\mathbf{x},t)$: Noether sea drift field in the observer-level bookkeeping map.
-- $e^a{}_i(\mathbf{x},t)$: spatial frame field carrying Noether sea compliance and orientation response.
-- $\gamma_{ij}(\mathbf{x},t)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
+- $N(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: observer-level lapse or clock-rate field reconstructed from Noether sea state.
+- $u^i_{\mathrm{sea,eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: Noether sea drift field in the observer-level bookkeeping map.
+- $e^a{}_i(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: spatial frame field carrying Noether sea compliance and orientation response.
+- $\gamma_{ij}^{\mathrm{eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
 
 ## What “Metric” Means Here
 
-- **Effective metric $g^{\text{eff}}_{\mu\nu}(x)$** is *not* a fundamental property of the void. It is a derived description of:
+- **Effective metric $g^{\text{eff}}_{\mu\nu}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
   - How assembly-based rulers measure distances,
   - How photon-channel packets and gravitational-wave channels propagate through the Noether sea.
 
 We define $g^{\text{eff}}_{\mu\nu}$ operationally:
 
-> At each point $x$, choose an idealized physical observer (Noether braid clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
+> At each effective-chart point $(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$, choose an idealized physical observer (Noether braid clock + ruler), and infer a local metric from their measured time intervals and spatial separations.
 
 The $\mathbb{U}_{\text{now}}$ universe-state perspective then maps substrate and medium data into observer-level ADM/Cartan fields:
 
 $$
 \big(h_{ij}, n, \chi_{\text{sea}}, \Phi_{\text{eff}}, \nabla\Phi_{\text{eff}}, \text{stress}, \text{alignment}\big)
 \;\Rightarrow\;
-\big(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij}\big)
+\big(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}}\big)
 \;\Rightarrow\;
 g^{\text{eff}}_{\mu\nu}
 $$
 
-The first arrow is the open constitutive problem. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
+The first arrow is the open constitutive problem. It carries the main closure burden: the Noether sea state must produce the clock, ruler, drift, and signal channels together. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
 
 ### Weak-Gravity Visibility Scale
 
@@ -88,12 +92,12 @@ The constitutive variable that sources $\Phi_{\text{eff}}$ may therefore be an e
 
 One candidate route from assembly wakes to weak gravity is an RMS excitation law. If local causal-wake hits alternate in sign, direction, or branch provenance, the mean signed force can cancel while the quadratic excitation of the Noether sea remains:
 $$
-\Phi_{\mathrm{eff}}^\theta(\mathbf{x})
+\Phi_{\mathrm{eff}}^\theta(\mathbf X,T)
 \propto
 \mathcal{K}_{\mathrm{sea}}
 \left\langle
-\left(\sum_s q_s A_s(\mathbf{x},t)\right)^2
-\right\rangle_{\Delta t}^{1/2}.
+\left(\sum_s q_s A_s(\mathbf X,T)\right)^2
+\right\rangle_{\Delta T}^{1/2}.
 $$
 Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
@@ -102,16 +106,16 @@ Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, a
 The metric bridge should be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
 $$
-ds_{\rm eff}^2
+ds_{\mathrm{eff}}^2
 =
--N^2c_0^2dt^2
+-N^2c_0^2dt_{\mathrm{eff}}^2
 +
-\gamma_{ij}
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\gamma_{ij}^{\mathrm{eff}}
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
 
-Here $N$ is the clock-rate or lapse channel, $u^i_{\text{sea}}$ is medium drift, and $\gamma_{ij}$ is the spatial compliance channel built from the frame field $e^a{}_i$. In the GR-matching regime the effective connection is the Levi-Civita connection of $g^{\text{eff}}_{\mu\nu}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables rather than substrate ontology.
+Here $N$ is the clock-rate or lapse channel, $u^i_{\mathrm{sea,eff}}$ is medium drift, and $\gamma_{ij}^{\mathrm{eff}}$ is the spatial compliance channel built from the frame field $e^a{}_i$. In the GR-matching regime the effective connection is the Levi-Civita connection of $g^{\text{eff}}_{\mu\nu}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables rather than substrate ontology.
 
 This form is the common handoff surface for clock redshift, Shapiro delay, lensing, geodesic motion, photon synchronization, and preferred-frame tests. A scalar speed map alone is therefore not enough for closure: it can support a first Shapiro-delay intuition, but the full PPN burden requires the lapse, drift, and spatial-compliance channels together.
 
@@ -119,14 +123,14 @@ The same handoff can be written as a local clock-and-signal quadratic form,
 $$
 d\tau^2
 =
-A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt_{\mathrm{eff}}^2
 -
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
-with $A$, $B_{ij}$, and $u^i_{\text{sea}}$ read from the same retained Noether sea state and Physical Observer record. In the local Noether sea rest frame, the photon-channel null condition $d\tau^2=0$ gives
+with $A$, $B_{ij}$, and $u^i_{\mathrm{sea,eff}}$ read from the same retained Noether sea state and Physical Observer record. In the local Noether sea rest frame, the photon-channel null condition $d\tau^2=0$ gives
 $$
 c_\gamma(\hat{\mathbf{k}},\mathcal{N}_{\mathrm{sea}})
 =
@@ -144,13 +148,13 @@ A\to1,
 \qquad
 B_{ij}\to\delta_{ij},
 \qquad
-u^i_{\text{sea}}\to0
+u^i_{\mathrm{sea,eff}}\to0
 $$
 This is a constitutive equation, not a new fundamental four-dimensional metric on absolute timespace.
 
 As a form-level recovery, the same handoff already has the correct weak-field clock shape once the clock-channel potential has been matched to the Newtonian benchmark. In a weak, slow comparison window,
 $$
-\frac{d\tau_{\mathcal A}}{dt}
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
 \approx
 1-\frac{U_N}{c_0^2}
 -\frac{\|\mathbf w\|^2}{2c_0^2},
@@ -176,7 +180,7 @@ N
 +O(c_0^{-6},\epsilon_{\mathrm{LV}})
 $$
 $$
-\gamma_{ij}
+\gamma_{ij}^{\mathrm{eff}}
 =
 h_{ij}
 \left(
@@ -189,12 +193,12 @@ h_{ij}
 +O(c_0^{-4},\epsilon_{\mathrm{LV}})
 $$
 $$
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 =
 B^i{}_j w^j\frac{U}{c_0^2}
 +O(c_0^{-5},\epsilon_{\mathrm{LV}}),
 \qquad
-\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j
+\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_i e^b{}_j
 $$
 Here $w^i$ is the Noether sea drift relative to the comparison frame and $U$ is the positive PPN potential. These are not new substrate fields. They are coefficient rows for the observer-level reconstruction. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must read from these rows as one shared constitutive record.
 
@@ -243,18 +247,18 @@ S_{\mathrm{clk}}
 d\tau
 =
 \frac{1}{c_0}
-\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu}
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
 and extremizing this observer-level action must give the same weak-field acceleration row used in the PPN bundle,
 $$
-\frac{d^2\mathbf{x}}{dt^2}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 =
--\nabla\Phi_{\text{eff}}
+-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O(c_0^{-2})
 $$
 For null signal records,
 $$
-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu=0
+g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu=0
 $$
 must match the eikonal path-time extremal of the Noether sea signal channel. In the point-mass weak-field limit, the recovered deflection target is
 $$
@@ -273,9 +277,9 @@ Hybrid dark-sector comparisons sharpen the metric burden: a modified force law t
 $$
 ds_{\mathrm{eff}}^2
 =
--\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt^2
+-\left(1+\frac{2\Phi_{\mathrm{dyn}}}{c_0^2}\right)c_0^2dt_{\mathrm{eff}}^2
 +
-\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)d\mathbf{x}^2
+\left(1-\frac{2\Psi_{\mathrm{sp}}}{c_0^2}\right)\gamma_{ij}^{\mathrm{eff}}dx_{\mathrm{eff}}^i dx_{\mathrm{eff}}^j
 $$
 
 Massive slow probes read the dynamical potential $\Phi_{\mathrm{dyn}}$, while weak lensing reads the Weyl combination
@@ -380,7 +384,7 @@ For axially symmetric or rotating sources, oblate spheroidal coordinates can be 
 $$
 ds^2
 =
--f(\xi,\eta)c_0^2dt^2
+-f(\xi,\eta)c_0^2dt_{\mathrm{eff}}^2
 +g_1(\xi,\eta)d\xi^2
 +g_2(\xi,\eta)d\eta^2
 +g_3(\xi,\eta)d\phi^2
@@ -412,7 +416,7 @@ The spacetime-condensate comparison makes the same point in hydrodynamic languag
 $$
 \Pi_{\mathrm{hydro}}:
 \left(
-S(t),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}
+S(T),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}
 \right)
 \longrightarrow
 g_{\mu\nu}^{\mathrm{eff}}
@@ -425,7 +429,7 @@ $$
 \left\|
 g_{\mu\nu}^{\mathrm{eff}}(\theta)
 -
-\Pi_{\mathrm{hydro}}[S(t),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}]
+\Pi_{\mathrm{hydro}}[S(T),\mathcal{H}_{\Omega}^{W},\mathcal{N}_{\mathrm{sea}}]
 \right\|
 }{\epsilon_g}
 $$
@@ -501,7 +505,7 @@ T_U^{(O)}
 \qquad
 a_O^2
 =
-\gamma_{ij}a_O^i a_O^j
+\gamma_{ij}^{\mathrm{eff}}a_O^i a_O^j
 $$
 with $a_O^i$ extracted from the same observer-channel metric record. The flux projection must then agree with the effective stress-energy flux computed from that record, and the local conservation residual
 $$
@@ -533,7 +537,7 @@ O_W,
 \mu_{\Omega,\theta}
 \right)
 $$
-Here $\mathcal{H}_{\Omega}^{W}$ is the retained path-history data on the window, $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the observer-accessible boundary-wake record, $\left.\mathcal{N}_{\mathrm{sea}}\right|_{\Omega,W}$ is the locally resolved Noether sea state, $O_W$ is the observer's clock, ruler, and readout state on the window, $\Pi_{\mathrm{eff}}$ is the projection to the observer-level fields $(N,u^i_{\text{sea}},\gamma_{ij},T_{\mu\nu}^{\mathrm{eff}})$, and $\mu_{\Omega,\theta}$ is the conditional measure over unresolved deterministic histories. This tuple is not a new substrate object. It only names the record that must supply entropy, temperature, flux, and effective metric data together.
+Here $\mathcal{H}_{\Omega}^{W}$ is the retained path-history data on the window, $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the observer-accessible boundary-wake record, $\left.\mathcal{N}_{\mathrm{sea}}\right|_{\Omega,W}$ is the locally resolved Noether sea state, $O_W$ is the observer's clock, ruler, and readout state on the window, $\Pi_{\mathrm{eff}}$ is the projection to the observer-level fields $(N,u^i_{\mathrm{sea,eff}},\gamma_{ij}^{\mathrm{eff}},T_{\mu\nu}^{\mathrm{eff}})$, and $\mu_{\Omega,\theta}$ is the conditional measure over unresolved deterministic histories. This tuple is not a new substrate object. It only names the record that must supply entropy, temperature, flux, and effective metric data together.
 
 Let $\delta_\ell$ denote an admissible local-horizon perturbation that keeps the observer, window, projection map, and comparison regime fixed while varying the resolved Noether sea state and boundary flux through the patch. The native closure target is
 $$
@@ -622,7 +626,7 @@ Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to
   - Light and free-falling matter appear to move along curved paths (geodesics) of an effective metric $g^{\text{eff}}_{\mu\nu}$.
   - Shapiro delay, light bending, and perihelion precession become **refractive-medium effects** rather than curvature of the void itself.
 
-A flat-space refraction analogy is therefore useful only when it is kept at the correct level. A scalar $c_{\text{eff}}(x)$ or scalar refractive-index map can encode a first signal-path delay, but it is not by itself an effective metric. GR/PPN recovery requires the same Noether sea record to determine the lapse $N$, drift $u^i_{\text{sea}}$, frame field $e^a{}_i$, and spatial compliance $\gamma_{ij}$, so clock, ruler, and signal projections cannot be tuned as separate channels.
+A flat-space refraction analogy is therefore useful only when it is kept at the correct level. A scalar $c_{\text{eff}}(x)$ or scalar refractive-index map can encode a first signal-path delay, but it is not by itself an effective metric. GR/PPN recovery requires the same Noether sea record to determine the lapse $N$, drift $u^i_{\mathrm{sea,eff}}$, frame field $e^a{}_i$, and spatial compliance $\gamma_{ij}^{\mathrm{eff}}$, so clock, ruler, and signal projections cannot be tuned as separate channels.
 
 The core task of this document will be to:
 
@@ -637,63 +641,63 @@ The core task of this document will be to:
 
 To make the mapping functional explicit at first post-Newtonian order, start in the local Noether sea rest gauge
 $$
-u^i_{\text{sea}}=0
+u^i_{\mathrm{sea,eff}}=0
 $$
 with observer-channel speed $c_0=c_{\text{eff}}(\infty)$. The weak-field target is
 $$
-N(\mathbf{x})
+N(x_{\mathrm{eff}}^k)
 =
-1+\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1+\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 $$
-\gamma_{ij}(\mathbf{x})
+\gamma_{ij}^{\mathrm{eff}}(x_{\mathrm{eff}}^k)
 =
 \left(
-1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-2\gamma_{\text{eff}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 \right)h_{ij}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
-Equivalently, using $x^0=c_0t$ in the observer-sector metric,
+Equivalently, using $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ in the observer-sector metric,
 $$
-g^{\text{eff}}_{00}(\mathbf{x})
+g^{\text{eff}}_{00}(x_{\mathrm{eff}}^k)
 =
--\left(1+\frac{2\Phi_N(\mathbf{x})}{c_0^2}\right)
+-\left(1+\frac{2\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}\right)
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 $$
-g^{\text{eff}}_{ij}(\mathbf{x})
+g^{\text{eff}}_{ij}(x_{\mathrm{eff}}^k)
 =
 \left(
-1-2\gamma_{\text{eff}}\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-2\gamma_{\text{eff}}\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 \right)h_{ij}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 The canonical Noether sea delay factor remains
 $$
-\chi_{\text{sea}}(\mathbf{x})\equiv \frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\chi_{\text{sea}}(x_{\mathrm{eff}}^k)\equiv \frac{c_f}{c_{\text{eff}}(x_{\mathrm{eff}}^k)}
 $$
 For PPN time-of-flight comparisons, normalize by the homogeneous observer speed:
 $$
-\frac{c_0}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^k)}
 =
-\frac{\chi_{\text{sea}}(\mathbf{x})}{\chi_{\text{sea}}(\infty)}
+\frac{\chi_{\text{sea}}(x_{\mathrm{eff}}^k)}{\chi_{\text{sea}}(\infty)}
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_0^2}
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^k)}{c_0^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 so travel time on a Euclidean anchor path $\Gamma$ is
 $$
-t[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(\mathbf{x})}\,ds
+t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}\,ds_{\mathrm{eff}}
 $$
 
 This is the concrete first-order realization of
 $$
 (h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
+(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})
 \mapsto
 g^{\text{eff}}_{\mu\nu}
 $$
@@ -705,7 +709,7 @@ This chapter is the constitutive anchor for the gravity-side closure:
 $$
 (h_{ij},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{stress})
 \mapsto
-(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})
+(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}})
 \mapsto
 g^{\text{eff}}_{\mu\nu}
 $$
@@ -718,18 +722,18 @@ Distribute proof obligations as:
 
 Minimal closure condition:
 1. Eikonal path-time extremals in the refractive picture match null geodesics of $g^{\text{eff}}_{\mu\nu}$ in weak field.
-2. The same $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ coefficients predict Shapiro delay, lensing, redshift, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
+2. The same $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$ coefficients predict Shapiro delay, lensing, redshift, weak-field acceleration, and preferred-frame residuals without re-fitting per observable.
 3. The long-distance GR-EFT correction to weak gravity is recovered from the same constitutive record, without treating the effective metric as microscopic ontology.
 
-A proposed recovery that supplies only $c_{\text{eff}}(\mathbf{x})$ or $\chi_{\text{sea}}(\mathbf{x})$ therefore closes only a refractive signal model. It becomes a metric recovery candidate only after that scalar row is embedded in one shared clock/ruler/signal map for $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$.
+A proposed recovery that supplies only $c_{\text{eff}}(x_{\mathrm{eff}}^i)$ or $\chi_{\text{sea}}(x_{\mathrm{eff}}^i)$ therefore closes only a refractive signal model. It becomes a metric recovery candidate only after that scalar row is embedded in one shared clock/ruler/signal map for $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$.
 
 ## Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
 The scalar/disformal bridge is the ADM/Cartan subclass obtained by choosing the local Noether sea rest gauge:
 $$
-u^i_{\text{sea}}=0,
+u^i_{\mathrm{sea,eff}}=0,
 \qquad
-\gamma_{ij}=\Omega^2(n,\lambda)h_{ij},
+\gamma_{ij}^{\mathrm{eff}}=\Omega^2(n,\lambda)h_{ij},
 \qquad
 N=\Omega(n,\lambda)\xi
 $$
@@ -745,7 +749,7 @@ c_0^2\ln\!\big(\Omega(x)\xi(x)\big),
 N(x)=e^{\Phi_{\text{eff}}(x)/c_0^2}
 $$
 
-With $x^0=c_0t$, the Noether sea rest-frame metric components are
+With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the Noether sea rest-frame metric components are
 $$
 g^{\text{eff}}_{00}=-N^2,
 \qquad
@@ -761,18 +765,18 @@ $$
 =
 \xi^{2}\frac{\partial^i\Phi_{\text{eff}}}{c_0^2}
 $$
-Using $dx^0/dt\approx c_0$, the spatial geodesic equation gives
+Using $dx_{\mathrm{eff}}^0/dt_{\mathrm{eff}}\approx c_0$, the spatial geodesic equation gives
 $$
-\frac{d^2x^i}{dt^2}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
 \approx
--\Gamma^i_{00}\left(\frac{dx^0}{dt}\right)^2
+-\Gamma^i_{00}\left(\frac{dx_{\mathrm{eff}}^0}{dt_{\mathrm{eff}}}\right)^2
 =
 -\xi^{2}\nabla^i\Phi_{\text{eff}}
 $$
 Hence, in weak field ($\xi\to 1$),
 $$
-\frac{d^2\mathbf{x}}{dt^2}
-=-\nabla\Phi_{\text{eff}}
+\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
+=-\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}
 +O\!\left(\left|1-\xi^{2}\right|\,\left|\nabla\Phi_{\text{eff}}\right|\right)
 $$
 which is the Newtonian limit.

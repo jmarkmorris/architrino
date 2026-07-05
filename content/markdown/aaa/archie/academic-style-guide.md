@@ -2,6 +2,8 @@
 
 This guide defines the prose standard for reader-facing textbook material in the webapp. Its purpose is to make voice, structure, tone, and editorial discipline consistent enough that chapters read like parts of one coherent corpus rather than isolated notes with incompatible habits.
 
+The core writing rule is simple: make the claim easy to locate, the mechanism easy to follow, and the claim level impossible to confuse. A reader should not have to guess whether a sentence is ontology, effective recovery, comparison, open proof work, or historical explanation.
+
 The sections below move from scope and core aims to concrete rules for headings, tone, explanation, and editorial review.
 
 ## Purpose
@@ -34,6 +36,20 @@ The prose should do three things at once:
 3. Distinguish what is established, what is inferred, and what remains open.
 
 For central theory passages, the strongest pattern combines explanatory prose, formal precision, and a small equation. Begin by naming what is happening in the substrate or effective layer. Then give a compact map, table, or list that separates the moving parts. Then introduce the equation that binds those parts together, followed immediately by plain-language meanings for the symbols and the closure question that remains. The equation should clarify the prose rather than replace it, and the prose should make the equation's conceptual burden visible.
+
+## Bright First Reader Pattern
+
+Use the Bright First Reader pattern when a section introduces a hard distinction, a dense proof target, a long ledger, or a formal equation stack. The internal shorthand is `bright5`: write for a bright first reader who can follow rigorous ideas, but who should not have to decode project machinery before seeing the physical point.
+
+The pattern is not simplification by dilution. It is ordered entry:
+
+1. Begin with the direct observation, physical intuition, or everyday distinction.
+2. Name the relevant level: substrate ontology, assembly behavior, effective recovery, inference, comparison, or open proof work.
+3. Introduce the canonical project term only after the reader knows what role it plays.
+4. Then introduce the equation, ledger, theorem target, or recovery burden.
+5. Immediately state what the symbols or rows mean and what remains unproven, inferred, or conditional.
+
+Preserve TeX, equations, canonical terminology, and claim level exactly. Do not rename concepts to make them friendlier. Do not remove formal content. Do not turn theorem targets into completed results or established claims into tentative prose. The point is to give the reader a clean first foothold before the machinery arrives.
 
 ## Style Principles
 
@@ -211,6 +227,8 @@ Historical or process context belongs only where it serves a specific purpose: h
 When referring to the theory in prose or math, use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$`.
 
 Do not replace it with plain-text variants except in literal file paths or code identifiers.
+
+For compact uses of `AAA`, follow the narrower policy in [terminology-usage.md](./terminology-usage.md#architrino-architecture-aaa-and-disallowed-variants). A-cubed forms are disallowed everywhere, including artwork, icons, badges, and title graphics; do not treat them as visual marks.
 
 ### TeX preservation
 

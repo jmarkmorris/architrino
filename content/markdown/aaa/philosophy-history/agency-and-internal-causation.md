@@ -50,7 +50,7 @@ This does not make every Noether braid an agent. A bare Noether braid has a thre
 
 The most primitive assembly that can make a decision is therefore not the first metastable assembly. It is the first assembly whose internal preparation changes the later basin distribution under the same external boundary context. A metastable middle binary supplies the possibility of alternatives; controlled threshold placement supplies the decision.
 
-Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(t)$.
+Reaction-channel multiplicity belongs one rung lower. A reactant configuration may have many possible exits because binary energies and phases, causal-wake phase history, Noether braid state, photon paths, thermal state, and Noether sea conditions vary across events. That is reaction provenance, not a decision, unless an assembly prepares and holds an internal bias that changes the basin distribution under the same $c_\Omega(T)$.
 
 ## Determinism and Predictability
 
@@ -60,28 +60,28 @@ The relevant contrast with a simple mechanical body is therefore structural. A n
 
 This distinction also keeps ontological and epistemic claims separate. Ontologically, the system evolves through physical dynamics. Epistemically, a Physical Observer may not have enough access to the microstate, wake-phase history, and threshold geometry to predict which attractor will be selected.
 
-The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_t$, write its resolved internal state as $X_\Omega(t)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<t}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(t)$. Its effective subsystem evolution has the form
+The same point can be stated as a local non-closure condition. For a candidate Decider or Switch complex occupying $\Omega\subset\Sigma_T$, write its resolved internal state as $X_\Omega(T)$, its relevant path-history as $\mathcal{H}_{\Omega}^{<T}$, and the causal wakes entering through its boundary as $\mathcal{B}_{\partial\Omega}(T)$. Its effective subsystem evolution has the form
 $$
-\frac{dX_\Omega}{dt}
+\frac{dX_\Omega}{dT}
 =
 F_\Omega\!\left(
-X_\Omega(t),
-\mathcal{H}_{\Omega}^{<t},
-\mathcal{B}_{\partial\Omega}(t),
-N_{\text{sea}}|_{\Omega}(t)
+X_\Omega(T),
+\mathcal{H}_{\Omega}^{<T},
+\mathcal{B}_{\partial\Omega}(T),
+N_{\text{sea}}|_{\Omega}(T)
 \right)
 $$
 The basin geometry and threshold control of the subsystem are therefore functions of internal state plus omitted boundary wakes and Noether sea conditions, not of the locally inspected state alone. Local prediction can fail for an open subsystem even when the $\mathbb{U}_{\text{now}}$ universe-state perspective remains globally deterministic, because the global state retains the finite-speed signals and path-history data that the Physical Observer has not resolved.
 
 A sharper validation condition is to hold the external boundary context fixed and ask whether internal preparation changes the basin weights. Let
 $$
-c_\Omega(t)=\left(\mathcal{H}_{\Omega}^{<t},\mathcal{B}_{\partial\Omega}(t),N_{\text{sea}}|_{\Omega}(t)\right)
+c_\Omega(T)=\left(\mathcal{H}_{\Omega}^{<T},\mathcal{B}_{\partial\Omega}(T),N_{\text{sea}}|_{\Omega}(T)\right)
 $$
-denote that fixed context. For a time window $T$, let $P_{c_\Omega,x,T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(t)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
+denote that fixed context. For a time window $W_T$, let $P_{c_\Omega,x,W_T}(k)$ be the normalized measure of admissible histories that resolve into basin $B_k$ when the internal state is prepared as $X_\Omega(T)=x$. A Switch or Decider claim has measurable internal content only if there are admissible internal states $x_a$ and $x_b$ such that
 $$
-D\!\left(P_{c_\Omega,x_a,T},P_{c_\Omega,x_b,T}\right)\ge\epsilon_I
+D\!\left(P_{c_\Omega,x_a,W_T},P_{c_\Omega,x_b,W_T}\right)\ge\epsilon_I
 $$
-where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(t)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
+where $D$ is a declared distance on outcome distributions and $\epsilon_I$ is the resolution threshold for the experiment or simulation. The same boundary context $c_\Omega(T)$ must be used on both sides, and the work, dissipation, and hold time needed to maintain $x_a$ or $x_b$ must be recorded. If this distance vanishes under fixed boundary context, the behavior is externally driven or observationally equivalent to a fixed-threshold response. If it is nonzero, the system's stored configuration changes the basin partition without breaking deterministic law.
 
 ## Will as Threshold Setting
 

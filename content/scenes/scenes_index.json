@@ -287,7 +287,7 @@
     },
     {
       "id": "fermions__color_charge_su3",
-      "name": "Color Charge SU3",
+      "name": "Color Charge SU(3)",
       "path": "content/scenes/assemblies/color_charge_su3.json"
     },
     {
@@ -1817,7 +1817,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json"
     },
     {

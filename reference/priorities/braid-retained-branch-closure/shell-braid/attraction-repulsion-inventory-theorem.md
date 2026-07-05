@@ -442,7 +442,7 @@ A bounded-speed packet should emit:
 | Field | Payload |
 | --- | --- |
 | `polarity_inventory` | $\sigma_i$, $A_i$, $R_i$, $N_{\mathrm{attr}}=3$, $N_{\mathrm{rep}}=2$ |
-| `bounded_speed_root_weights` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{t,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $W_{i,\nu}^{\mathrm{attr}}$, $W_{i,\nu}^{\mathrm{rep}}$ |
+| `bounded_speed_root_weights` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{T,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $W_{i,\nu}^{\mathrm{attr}}$, $W_{i,\nu}^{\mathrm{rep}}$ |
 | `bounded_speed_force_split` | $\widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{attr}}$, $\widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{rep}}$, self and medium rows if present |
 | `bounded_speed_projection_split` | attraction/repulsion contributions to $\mathcal{R}_{\parallel,i}^\nu$ and $\mathcal{R}_{\perp,i}^\nu$ |
 | `force_moment_decomposition` | handoff to weighted tangent-power, normal-drive, support-radial moment, and antipodal parity rows |

@@ -18,8 +18,8 @@ $$
 \longmapsto
 \left(
 N,
-u^i_{\text{sea}},
-\gamma_{ij},
+u^i_{\mathrm{sea,eff}},
+\gamma_{ij}^{\mathrm{eff}},
 \chi_{\text{sea}},
 \Gamma_N,
 \Phi_{\mathrm{eff}},

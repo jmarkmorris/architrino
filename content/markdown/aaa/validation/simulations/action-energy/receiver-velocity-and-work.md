@@ -1,12 +1,12 @@
 # Receiver velocity and work
 
-Because $\mathbf{a}_{o'\leftarrow o}(t;t_0)\parallel\hat{\mathbf{r}}$, a single hit changes only the radial velocity component:
+Because $\mathbf A_{o'\leftarrow o}(T;T_{\mathrm{em}})\parallel\hat{\mathbf{r}}$, a single hit changes only the radial velocity component:
 $$
-\frac{d}{dt}\mathbf{v}_\perp=\mathbf{0}\quad\text{from this hit},
+\frac{d}{dT}\mathbf V_\perp=\mathbf{0}\quad\text{from this hit},
 \qquad
-\frac{d}{dt}v_r
+\frac{d}{dT}V_r
 =
-\mathbf{a}_{o'\leftarrow o}(t;t_0)\cdot\hat{\mathbf{r}}
+\mathbf A_{o'\leftarrow o}(T;T_{\mathrm{em}})\cdot\hat{\mathbf{r}}
 =
 \frac{\kappa\,\sigma_{q_o q_{o'}}\,\lvert q_o q_{o'}\rvert}{r^2}
 $$
@@ -14,14 +14,14 @@ $$
 ## Decomposition and Energetics
 
 - Decomposition at a hit:
-  - Write $\mathbf{v} = v_r\,\hat{\mathbf{r}} + \mathbf{v}_\perp$, where $v_r=\mathbf{v}\cdot\hat{\mathbf{r}}$ and $\mathbf{v}_\perp\cdot\hat{\mathbf{r}}=0$.
-  - A single hit changes $v_r$ but not $\mathbf{v}_\perp$ instantaneously.
+  - Write $\mathbf V = V_r\,\hat{\mathbf{r}} + \mathbf V_\perp$, where $V_r=\mathbf V\cdot\hat{\mathbf{r}}$ and $\mathbf V_\perp\cdot\hat{\mathbf{r}}=0$.
+  - A single hit changes $V_r$ but not $\mathbf V_\perp$ instantaneously.
 
 - Power and work:
-  - Instantaneous power is $\mathbf{a}\cdot\mathbf{v} = |\mathbf{a}|\,v_r$.
+  - Instantaneous power is $\mathbf A\cdot\mathbf V = |\mathbf A|\,V_r$.
   - Orthogonal motion does no instantaneous work; only radial motion exchanges kinetic and potential energy at a hit.
 
 - Local trend via $1/r^2$:
-  - If $v_r<0$ (moving inward), near-future hits tend to be stronger because $r$ shrinks between events; if $v_r>0$, they tend to weaken.
+  - If $V_r<0$ (moving inward), near-future hits tend to be stronger because $r$ shrinks between events; if $V_r>0$, they tend to weaken.
 
 Plain language: Each hit only changes your along-the-line speed right then; sideways speed is untouched. Energy transfer happens only through the along-the-line part.

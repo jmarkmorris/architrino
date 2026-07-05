@@ -4,6 +4,10 @@ This chapter is the canonical home for the geometric footprint of the nested she
 
 The nested shell braid is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell braid's effective exclusion envelope.
 
+In plain terms, this chapter explains what a retained braid "looks like" to neighboring assemblies and to the Noether sea. The envelope is not a hard surface. It is the region where the assembly's locked wake activity is strong enough that other histories are deflected, excluded, phase-disrupted, or forced to retune.
+
+That is why this geometry matters downstream. Pressure, packing, clock/ruler response, effective metric behavior, and Noether sea density are all coarse readings of many such envelopes and their deformations. The page therefore keeps the geometric export rows separate from the proof that the branch itself is retained.
+
 ## Document Role
 
 This chapter is the envelope and export-interface chapter for nested shell braid geometry. It owns:
@@ -38,11 +42,11 @@ The dynamic exclusion envelope also supplies the native route from assembly geom
 For a compact region $\Omega$, the first packing-pressure readout is the trace of the exclusion-stress tensor already carried by the packing channel:
 
 $$
-P_{\mathrm{pack}}(\Omega,t)
+P_{\mathrm{pack}}(\Omega,T)
 =
 \frac{1}{3|\Omega|}
 \int_{\Omega}
-\operatorname{tr} S_{\mathrm{excl}}(\mathbf{x},t)\,d^3x
+\operatorname{tr} S_{\mathrm{excl}}(\mathbf X,T)\,d^3X
 $$
 
 Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
@@ -53,105 +57,105 @@ This is the Noether braid analogue of the familiar lesson from electron degenera
 
 The dynamic exclusion envelope supplies a spatial approximation to a deeper ledger boundary. At the exact level, an assembly is defined by the architrinos, closure labels, and wake-exchange records phase-locked to that assembly. The surrounding Noether sea is the neighboring neutral braid population and its ambient wake record after the assembly ledger has been excluded.
 
-For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)$ denote the ambient Noether sea contribution in the same region. A practical interface diagnostic is
+For an assembly $a$ and a declared response channel $X$, let $\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)$ denote the local coarse-grained wake/exclusion contribution tied to the assembly's accepted closure label, and let $\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)$ denote the ambient Noether sea contribution in the same region. A practical interface diagnostic is
 
 $$
-D_{a,X}(\mathbf{x},t)
+D_{a,X}(\mathbf X,T)
 =
 \frac{
-\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)\right\|
 }{
-\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T)\right\|
 +
-\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t)\right\|
+\left\|\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T)\right\|
 }
 $$
 
-The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining window $W_\ell$, a channel $X$ being tested, and a sample event $(\mathbf{x},t)$. For a source constituent $j$ at emission time $t_0$, define
+The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining window $W_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a source constituent $j$ at emission time $T_{\mathrm{em}}$, define
 
 $$
-r_{\mathbf{x}j}(t;t_0)
+r_{\mathbf Xj}(T;T_{\mathrm{em}})
 =
-\left\|\mathbf{x}-\mathbf{x}_j(t_0)\right\|,
+\left\|\mathbf X-\mathbf X_j(T_{\mathrm{em}})\right\|,
 \qquad
-g_{\mathbf{x}j}(t;t_0)
+g_{\mathbf Xj}(T;T_{\mathrm{em}})
 =
-r_{\mathbf{x}j}(t;t_0)-c_f(t-t_0)
+r_{\mathbf Xj}(T;T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}})
 $$
 
 $$
-J_{\mathbf{x}j}(t;t_0)
+J_{\mathbf Xj}(T;T_{\mathrm{em}})
 =
 1-
-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{\mathbf{x}j}(t;t_0)}{c_f},
+\frac{\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_{\mathrm{em}})}{c_f},
 \qquad
-\mathcal{C}_{\mathbf{x}j}(t)
+\mathcal{C}_{\mathbf Xj}(T)
 =
-\{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}
+\{T_{\mathrm{em}}<T:g_{\mathbf Xj}(T;T_{\mathrm{em}})=0\}
 $$
 
-Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$, and let $W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)=\lvert D_{t,\mathbf{x}j}/D_{s,\mathbf{x}j}\rvert$ be the receiver-normal branch strength on the same root row. Then the simple-root diagnostic is
+Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)$ retain the ambient branches, let $\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$, and let $W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})=\lvert D_{T,\mathbf Xj}/D_{s,\mathbf Xj}\rvert$ be the receiver-normal branch strength on the same root row. Then the simple-root diagnostic is
 
 $$
-\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t;\ell)
+\mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T;\ell)
 =
 W_\ell *
-\sum_{j\in\mathcal{I}_a(t)}
-\sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
-w_{j,a}^{\mathrm{lock}}(t_0;t)
-\frac{\alpha_{j,X}(\mathbf{x},t;t_0)W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)}
-{r_{\mathbf{x}j}^2(t;t_0)}
+\sum_{j\in\mathcal{I}_a(T)}
+\sum_{T_{\mathrm{em}}\in\mathcal{C}_{\mathbf Xj}(T)}
+w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)
+\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{r_{\mathbf Xj}^2(T;T_{\mathrm{em}})}
 $$
 
 and
 
 $$
-\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf{x},t;\ell)
+\mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T;\ell)
 =
 W_\ell *
-\sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
-\sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
-w_j^{\mathrm{sea}}(t_0;t)
-\frac{\alpha_{j,X}(\mathbf{x},t;t_0)W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)}
-{r_{\mathbf{x}j}^2(t;t_0)}
+\sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\sum_{T_{\mathrm{em}}\in\mathcal{C}_{\mathbf Xj}(T)}
+w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
+\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{r_{\mathbf Xj}^2(T;T_{\mathrm{em}})}
 $$
 
 These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record
 
 $$
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 =
 \left(
 j,\,
-t_0,\,
-\hat{\mathbf{r}}_{\mathbf{x}j},\,
-r_{\mathbf{x}j},\,
-J_{\mathbf{x}j},\,
+T_{\mathrm{em}},\,
+\hat{\mathbf{r}}_{\mathbf Xj},\,
+r_{\mathbf Xj},\,
+J_{\mathbf Xj},\,
 q_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}},\,
 \Lambda_j
-\right)_{(\mathbf{x},t;t_0)}
+\right)_{(\mathbf X,T;T_{\mathrm{em}})}
 $$
 
 Here $\mathcal{L}_{j}^{\mathrm{wake}}$ is the wake-history ledger carried by the source branch and $\Lambda_j$ is the closure label or neutral braid label available on that branch. The locked weight is the assembly projector
 
 $$
-w_{j,a}^{\mathrm{lock}}(t_0;t)
+w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)
 =
-\mathbf{1}_{j\in\mathcal{I}_a(t)}
+\mathbf{1}_{j\in\mathcal{I}_a(T)}
 \,
 \zeta_a
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 $$
 
-where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a(t)$ and zero for a rejected branch in the exact ledger limit. A regularized branch chart may replace this sharp value by
+where $\zeta_a\in[0,1]$ is one for an accepted phase-locked branch of $\Lambda_a(T)$ and zero for a rejected branch in the exact ledger limit. A regularized branch chart may replace this sharp value by
 
 $$
 \zeta_a^{(\eta_\Lambda)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
 \exp
@@ -160,7 +164,7 @@ $$
 \frac{
 d_{\Lambda_a}^2
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)}
 {\eta_\Lambda^2}
 \right]
@@ -169,48 +173,48 @@ $$
 where $d_{\Lambda_a}$ measures closure-label, phase, and branch-provenance mismatch against the accepted assembly ledger. The ambient weight is the complement projector
 
 $$
-w_j^{\mathrm{sea}}(t_0;t)
+w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
 =
-\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
 \,
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 $$
 
 where $\zeta_{\mathrm{sea}}^{(\ell)}\in[0,1]$ retains branches belonging to the neutral braid equilibrium record in the coarse window after all resolved assembly ledgers have been removed. Thus a branch cannot contribute to the locked numerator and the ambient denominator by relabeling alone; it must pass the corresponding ledger projector.
 
-The first symbolic form of this ambient projector comes from ledger complement plus local cadence smoothing. Let $\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)$ be the resolved assembly ledgers inside the same coarse window, including matter assemblies and any resolved corridor ledger that has not been declared ambient Noether sea. Define the complement factor
+The first symbolic form of this ambient projector comes from ledger complement plus local cadence smoothing. Let $\mathfrak A_{\mathrm{res}}(\Omega_\ell,T)$ be the resolved assembly ledgers inside the same coarse window, including matter assemblies and any resolved corridor ledger that has not been declared ambient Noether sea. Define the complement factor
 
 $$
 \chi_{\mathrm{comp}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
-\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
-\prod_{a'\in\mathfrak A_{\mathrm{res}}(\Omega_\ell,t)}
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+\prod_{a'\in\mathfrak A_{\mathrm{res}}(\Omega_\ell,T)}
 \left[
 1-
 \zeta_{a'}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right]
 $$
 
-For any neutral braid branch quantity $f_k(t)$, write the ambient window average after resolved assembly ledgers have been removed as
+For any neutral braid branch quantity $f_k(T)$, write the ambient window average after resolved assembly ledgers have been removed as
 
 $$
-\left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf{x},t)
+\left\langle f\right\rangle_{\mathrm{sea},\ell}(\mathbf X,T)
 =
 \frac{
-\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
-W_\ell(\mathbf{x}-\mathbf{X}_k(t))f_k(t)
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+W_\ell(\mathbf X-\mathbf{X}_k(T))f_k(T)
 }{
-\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
-W_\ell(\mathbf{x}-\mathbf{X}_k(t))
+\sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
+W_\ell(\mathbf X-\mathbf{X}_k(T))
 }
 $$
 
@@ -219,11 +223,11 @@ Let $\nu_k$ be the cadence variable of neutral braid $k$, let $\bar\nu_{\mathrm{
 $$
 \Delta_{\mathrm{cad}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
 \frac{
-\nu_j(t_0)-\bar\nu_{\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
+\nu_j(T_{\mathrm{em}})-\bar\nu_{\mathrm{sea}}^{(\ell)}(\mathbf X,T)
 }{
 \sqrt{\sigma_{\nu,\ell}^2+\epsilon_\nu^2}
 }
@@ -252,12 +256,12 @@ The ambient acceptance is then
 $$
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
 \chi_{\mathrm{comp}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \exp
 \!\left[
@@ -278,39 +282,39 @@ The channel intensity is the channel exposure of the same root-selected branch r
 $$
 \mathcal{E}_{X}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
 Q_X
 \!\left[
 \Pi_X
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right],
 \qquad
-\alpha_{j,X}(\mathbf{x},t;t_0)
+\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
 =
 \kappa\,
 \left\|
 \mathcal{E}_{X}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right\|_X
 $$
 
 The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after force signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the source branch record.
 
-The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf{x}j}^{(t_0)}$ plus derived local entries computed from the same branch. For the clock channel,
+The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}$ plus derived local entries computed from the same branch. For the clock channel,
 
 $$
 \Pi_{\mathrm{clock}}
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 =
 \left(
 \delta\theta_{\mathrm{clk}}^{(j)},\,
 \delta\omega_{\mathrm{clk}}^{(j)},\,
 \delta\chi_{\mathrm{sea}}^{(\ell,j)},\,
-J_{\mathbf{x}j},\,
+J_{\mathbf Xj},\,
 \Lambda_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{phase}}
 \right)
@@ -322,10 +326,10 @@ For a reaction corridor,
 
 $$
 \Pi_{\mathrm{corridor}}
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 =
 \left(
-\hat{\mathbf{r}}_{\mathbf{x}j},\,
+\hat{\mathbf{r}}_{\mathbf Xj},\,
 q_j,\,
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{oriented}},\,
 \mathcal{L}_{j}^{\mathrm{corr}},\,
@@ -340,7 +344,7 @@ For packing,
 
 $$
 \Pi_{\mathrm{packing}}
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 =
 \left(
 \left\|\mathcal{L}_{j}^{\mathrm{wake}}\right\|_{\mathrm{excl}},\,
@@ -354,23 +358,23 @@ $$
 
 where $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ is the local exclusion-stress entry and $(R_{\parallel,j},R_{\perp,j},\lambda_j,\xi_j)$ are the envelope entries exposed by the branch. Packing deliberately discards attraction/repulsion sign after the exclusion magnitude and stress tensor are retained, because the benchmark is stable adjacency rather than signed acceleration along one path.
 
-For penetration along a declared test path with tangent $\hat{\mathbf{u}}$ at $\mathbf{x}$,
+For penetration along a declared test path with tangent $\hat{\mathbf{u}}$ at $\mathbf X$,
 
 $$
 \Pi_{\mathrm{penetration}}
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 =
 \left(
-\mathbf{a}_{\mathbf{x}\leftarrow j}(t;t_0),\,
-\mathbf{a}_{\mathbf{x}\leftarrow j}(t;t_0)\cdot\hat{\mathbf{u}},\,
+\mathbf{a}_{\mathbf X\leftarrow j}(T;T_{\mathrm{em}}),\,
+\mathbf{a}_{\mathbf X\leftarrow j}(T;T_{\mathrm{em}})\cdot\hat{\mathbf{u}},\,
 \Delta\phi_{\mathrm{disrupt}}^{(j)},\,
-r_{\mathbf{x}j},\,
-J_{\mathbf{x}j},\,
+r_{\mathbf Xj},\,
+J_{\mathbf Xj},\,
 \Lambda_j
 \right)
 $$
 
-where $\mathbf{a}_{\mathbf{x}\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
+where $\mathbf{a}_{\mathbf X\leftarrow j}$ is the signed branch acceleration obtained from the same causal-root law and $\Delta\phi_{\mathrm{disrupt}}^{(j)}$ is the induced phase-disruption increment on the tested transit branch. Unlike packing, penetration keeps the signed line-of-action entry because the benchmark asks whether the transit path remains dynamically stable.
 
 The first channel norms are dimensionless stability diagnostics on these retained records. Their denominator scales are declared resolution or benchmark tolerances for the channel chart; they are not per-observable fit parameters. For clock coupling,
 
@@ -397,7 +401,7 @@ $$
 \mathcal E_{\mathrm{corridor}}
 \right\|_{\mathrm{corridor}}^2
 =
-\frac{1-\hat{\mathbf r}_{\mathbf{x}j}\cdot\hat{\mathbf c}_X}{\epsilon_{\mathrm{dir}}^2}
+\frac{1-\hat{\mathbf r}_{\mathbf Xj}\cdot\hat{\mathbf c}_X}{\epsilon_{\mathrm{dir}}^2}
 +
 \frac{\left\|
 \mathcal{L}_{j}^{\mathrm{wake}}\big|_{\mathrm{oriented}}
@@ -447,11 +451,11 @@ For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleratio
 $$
 a_{\parallel,j}
 =
-\mathbf a_{\mathbf{x}\leftarrow j}\cdot\hat{\mathbf u},
+\mathbf a_{\mathbf X\leftarrow j}\cdot\hat{\mathbf u},
 \qquad
 \mathbf a_{\perp,j}
 =
-\mathbf a_{\mathbf{x}\leftarrow j}
+\mathbf a_{\mathbf X\leftarrow j}
 -
 a_{\parallel,j}\hat{\mathbf u}
 $$
@@ -469,9 +473,9 @@ $$
 +
 \frac{\operatorname{dist}_{S^1}^2(\Delta\phi_{\mathrm{disrupt}}^{(j)},0)}{\epsilon_{\mathrm{disrupt}}^2}
 +
-\frac{\left(\Delta\ln r_{\mathbf{x}j}\right)^2}{\epsilon_r^2}
+\frac{\left(\Delta\ln r_{\mathbf Xj}\right)^2}{\epsilon_r^2}
 +
-\frac{\left(\Delta\ln|J_{\mathbf{x}j}|\right)^2}{\epsilon_J^2}
+\frac{\left(\Delta\ln|J_{\mathbf Xj}|\right)^2}{\epsilon_J^2}
 $$
 
 The signed entries in the penetration record remain available before the norm is taken, so a stabilizing tangent push and a destabilizing tangent push are not treated as the same path-history branch. The scalar norm is used only after the sign-sensitive admissibility test has decided which branch contributes to the penetration benchmark.
@@ -560,12 +564,12 @@ $$
 
 Thus tolerance derivation is a ledger-replay problem. A hydrogen line, packing calculation, or penetration test may choose a different channel tolerance because it asks a different stability question, but it may not retune the tolerance after seeing the observable.
 
-The mismatch metric used in the regularized locked projector must also be ledger-derived. Let $\mathcal{R}_a(t)$ be the accepted reduced record of assembly $a$ containing its closure label, phase state, active causal roots, provenance entries, and conserved ledger increments. The first symbolic mismatch is
+The mismatch metric used in the regularized locked projector must also be ledger-derived. Let $\mathcal{R}_a(T)$ be the accepted reduced record of assembly $a$ containing its closure label, phase state, active causal roots, provenance entries, and conserved ledger increments. The first symbolic mismatch is
 
 $$
 d_{\Lambda_a}^2
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
 d_{\mathrm{disc}}^2
@@ -600,16 +604,16 @@ $$
 
 Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
 
-For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf{x}j})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
+For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf Xj})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
 
 Then the effective assembly-Noether sea interface for a declared stability threshold $D_X$ is the level set
 
 $$
-\partial\Omega_a(D_X,t)
+\partial\Omega_a(D_X,T)
 =
 \left\{
-\mathbf{x}\in\Sigma_t:
-D_{a,X}(\mathbf{x},t)=D_X
+\mathbf X\in\Sigma_T:
+D_{a,X}(\mathbf X,T)=D_X
 \right\}
 $$
 
@@ -629,7 +633,7 @@ D_{\mathrm{penetration}}
 1
 $$
 
-Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether braid or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,t)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
+Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether braid or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,T)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
 
 ## Oblate Spheroidal Form
 
@@ -661,7 +665,7 @@ for the transverse scale ratio relative to a stated reference envelope. The pair
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt}\to\xi\to\frac{1}{\gamma}
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dT}\to\xi\to\frac{1}{\gamma}
 $$
 but this is a closure target linking the clock channel to the oblate spheroidal envelope. It should not be used to define $\xi$.
 

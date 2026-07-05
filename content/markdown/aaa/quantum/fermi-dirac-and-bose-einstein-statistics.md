@@ -1,10 +1,10 @@
 # Fermi-Dirac and Bose-Einstein Statistics
 
-This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. Its purpose is not to replace the standard counting rules at the observer level. Its purpose is to identify the assembly-level geometry that should determine which counting rule an effective excitation obeys once spin-statistics closure is derived.
+This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. The standard counting rules are not being replaced at the observer level. The question is what physical assembly geometry makes those counting rules appear.
 
-The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of nested shell braid orbits. A fully three-dimensional nested shell braid envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
+The working hypothesis is direct. Fermi-Dirac behavior belongs to assemblies whose nested shell braid support remains a genuine three-dimensional exclusion volume. Bose-Einstein behavior belongs to channels whose support has become strongly oblated into an effectively two-dimensional coherent mode. The same family of geometry is being used in two different regimes: volumetric packing on one side, shared phase-compatible support on the other.
 
-This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
+That is only the geometry half of the story. The fermionic exchange sign still depends on the ordered-frame spinor program in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the exchange phase or the full spin-statistics connection.
 
 ## Standard Observer-Level Roles
 
@@ -12,7 +12,7 @@ In standard quantum mechanics, Fermi-Dirac statistics apply to fermions. They en
 
 At the observer level, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover those rules. Electrons, quarks, and neutrino-like matter assemblies must behave as fermions in the regimes where ordinary matter is stable. Photon-like and other bosonic channel assemblies must allow coherent occupation and field-like superposition.
 
-The substrate question is: what assembly geometry makes those two statistical packages appear?
+The substrate question is simple to state: what makes one effective excitation behave like an object that excludes same-state neighbors, while another behaves like a shared coherent channel?
 
 The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation](../dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
 
@@ -20,9 +20,9 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 The relevant object is the nested shell braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
 
-In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
+In the low-apparent-energy matter regime, the nested shell braid support rows maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
-This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion.
+This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion: another same-channel assembly cannot be inserted into the same effective state without disturbing the retained branch.
 
 The good news for the pressure story is that this is not an alien mechanism. Electron degeneracy already teaches the observer-level lesson: when a population carries an exclusion rule, compression does not merely make the objects closer together; it changes the available state volume and produces a pressure response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same logic is pushed down one level. Noether braids have oblate spheroidal exclusion envelopes, so dense packing should produce an effective packing pressure before the language of a smooth continuum equation of state is introduced.
 
@@ -31,6 +31,8 @@ That statement has a controlled burden. The exclusion envelope can supply the ge
 ## Fermi-Dirac Regime: 3D Exclusion
 
 Fermi-Dirac behavior corresponds to nested shell braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+
+In plain terms, the exclusion is not a command written onto a point particle. It is the cost of trying to make two retained assembly ledgers occupy one record-facing state while their wake histories, branch closures, and exclusion envelopes still need separate room.
 
 The exclusion is not a hard material wall. It is a path-history and wake-geometry obstruction:
 
@@ -58,6 +60,8 @@ In the pullback notation of [Angular Momentum and Spin](../philosophy-history/th
 ## Bose-Einstein Regime: 2D Coherence
 
 Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell braid envelope is somewhat flattened. Ordinary nested shell braids are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+
+In plain terms, the channel stops acting like many separate volumetric packages and starts acting like a shared coherent support. Multiple excitations can then be counted as occupying the same effective state because the physical support is phase-compatible rather than volume-exclusive.
 
 In that limit, the dominant motion is organized by a shared plane, phase channel, or coaxial sheet-like support. The assembly no longer presents the same volumetric exclusion envelope to nearby same-channel excitations. Multiple excitations can then occupy one coherent effective state because their assembly-level support is phase-compatible rather than volume-exclusive.
 

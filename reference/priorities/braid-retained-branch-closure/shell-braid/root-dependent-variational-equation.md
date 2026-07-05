@@ -162,7 +162,7 @@ $$
 $$
 
 the force-term variation must be rebuilt on the same retained record that emits
-$D_s$, $D_t$, and $D_\xi W_a^{\mathrm{rec}}$:
+$D_s$, $D_T$, and $D_\xi W_a^{\mathrm{rec}}$:
 
 $$
 \delta\mathbf{f}_a[\xi]

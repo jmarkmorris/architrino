@@ -1,8 +1,12 @@
 # Algorithmic Resonance
 
+Quantum algorithms are usually introduced as operations on abstract state vectors. This page asks the implementation question: what physical assembly network could keep those effective state-vector operations coherent long enough for the algorithm to work? The circuit diagram by itself is observer-level bookkeeping; the underlying claim must name carriers, couplings, record channels, propagation delays, and the Noether sea conditions that keep the basin stable.
+
 ## Macroscopic Assembly Coherence
 
-This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
+This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify the physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
+
+The useful picture is simple. A register is a calibrated physical channel that lets many assemblies share a controlled phase and record structure. It behaves like a quantum register only while the apparatus keeps those assemblies inside the intended basin and prevents uncontrolled Noether sea coupling from turning phase information into an ordinary record or heat channel.
 
 - **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether braid assemblies.
 - **Noether sea context:** The local Noether sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
@@ -10,7 +14,9 @@ This note treats quantum algorithmic speedup as a demanding coherence problem fo
 
 ## The Quantum Fourier Transform as Physical Interference
 
-The Quantum Fourier Transform is the natural comparison point because it converts periodic structure into a sharply concentrated observer-level output. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, the corresponding closure target is to show that delayed causal-wake superposition can produce the same basin-weight concentration in a controlled register.
+The Quantum Fourier Transform is the natural comparison point because it converts periodic structure into a sharply concentrated observer-level output. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, the corresponding closure target is concrete: delayed causal-wake superposition must concentrate basin weight in the same places where the standard algorithm concentrates amplitude.
+
+That statement keeps the mathematics and the hardware tied together. The comparison is not merely that both stories use phase. The comparison is that a physical register must create the same constructive and destructive record channels that the abstract transform describes.
 
 - **Wake superposition:** The physical sum of delayed causal-wake contributions $\sum V(t_0)$ within the macroscopic assembly.
 - **Destructive interference:** Cancellation of opposing electrino/positrino fluxes for non-periodic path histories, suppressing the corresponding dynamical trajectories.
@@ -25,12 +31,14 @@ f(x)=a^x\bmod N
 $$
 is implemented by controlled assembly couplings rather than by abstract gate labels alone.
 
+This is where implementation cannot be skipped. The standard algorithm may treat modular exponentiation as a reversible operation in a circuit. The assembly account must say which physical carriers are coupled, how long the coupling remains coherent, which causal wakes carry the interaction, and which apparatus record confirms that the operation actually entered the intended channel.
+
 - **Hamiltonian mapping:** Translate the modular operation into a sequence of specific scattering events, coupling windows, or topological torques between the input and output registers.
 - **Entangled evaluation:** Show how strict orbital phase dependencies between those registers reproduce the effective entangled state used by the standard algorithm.
 
 ## Period Extraction (Shor's Algorithm)
 
-The full period-extraction pipeline can be stated as a sequence of closure targets:
+The full period-extraction pipeline can be stated as a sequence of closure targets. Each step has an observer-level name and a physical implementation burden:
 
 1. **Initialization:** Prepare Register 1 in the effective uniform precessional state.
 2. **Evaluation:** Apply the modular-exponentiation coupling sequence without losing register coherence.
@@ -39,15 +47,15 @@ The full period-extraction pipeline can be stated as a sequence of closure targe
 
 ## Falsifiability and Scaling Limits
 
-This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
+This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence. It is architecture-dependent deviation from ideal unitary behavior in large quantum processors.
 
 For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor is
 $$
 \tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_f}+\tau_{\mathrm{settle}}
 $$
-Inherited pair provenance is a separate case: it may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
+Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
-Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model; it is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
+Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model. The comparison is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
 $$
 \tau_{\mathrm{gate}},
 \qquad

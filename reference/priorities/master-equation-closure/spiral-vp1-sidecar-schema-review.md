@@ -11,9 +11,9 @@ Drive rows must carry receiver-normal data:
 
 | Row family | Required fields |
 | --- | --- |
-| radial | retained labels, retained boxes, $D_s$, $D_t$, $W^{\mathrm{rec}}$, $B_r^{\mathrm{rec}}$, negative control |
-| tangential | retained labels, retained boxes, $D_s$, $D_t$, $W^{\mathrm{rec}}$, weighted receiver-normal drive interval, negative control |
-| compatibility | retained labels, retained boxes, $D_s$, $D_t$, $W^{\mathrm{rec}}$, receiver-normal turn-center residual, negative control |
+| radial | retained labels, retained boxes, $D_s$, $D_T$, $W^{\mathrm{rec}}$, $B_r^{\mathrm{rec}}$, negative control |
+| tangential | retained labels, retained boxes, $D_s$, $D_T$, $W^{\mathrm{rec}}$, weighted receiver-normal drive interval, negative control |
+| compatibility | retained labels, retained boxes, $D_s$, $D_T$, $W^{\mathrm{rec}}$, receiver-normal turn-center residual, negative control |
 
 ## Promotion Rule
 

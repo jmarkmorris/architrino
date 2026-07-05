@@ -103,7 +103,7 @@ The active-root convention matches the earlier rigid and low-order screens:
 4. reject rows that lose the $5$-$5$ root count, collide, or approach a near-tangent root.
 
 The receiver-normal restart force sum removes the common dimensional factor and
-uses $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$:
+uses $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$:
 
 $$
 \mathbf{F}_i

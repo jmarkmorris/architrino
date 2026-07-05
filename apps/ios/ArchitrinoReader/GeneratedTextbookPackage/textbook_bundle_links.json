@@ -1,8 +1,16 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-04T20:17:43.372Z",
-  "total_links": 1635,
+  "generated_at": "2026-07-05T19:16:26.273Z",
+  "total_links": 1646,
   "links": [
+    {
+      "sourceChapterId": "archie-academic-style-guide",
+      "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
+      "target": "./terminology-usage.md#architrino-architecture-aaa-and-disallowed-variants",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/terminology-usage.md"
+    },
     {
       "sourceChapterId": "archie-academic-style-guide",
       "sourcePath": "content/markdown/aaa/archie/academic-style-guide.md",
@@ -18,6 +26,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "./academic-style-guide.md",
+      "kind": "markdown",
+      "status": "bundled_reference",
+      "targetBundlePath": "references/academic-style-guide.md"
     },
     {
       "sourceChapterId": "archie-terminology-usage",
@@ -3086,10 +3102,26 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3174,10 +3206,34 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/dynamics/energy.md#emergent-inertia-mass-from-shielded-energy",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -3295,6 +3351,14 @@
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#self-interaction-self-hit-dynamics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -3470,6 +3534,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/absolute-timespace.md#newton-cartan-data",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3535,6 +3607,14 @@
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/architrino.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
@@ -3934,6 +4014,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/general-relativity.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/general-relativity.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4198,6 +4286,14 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/spacetime/singularity-resolution.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4298,14 +4394,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
     },
     {
       "sourceChapterId": "noether_braid",

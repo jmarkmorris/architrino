@@ -5,7 +5,7 @@ finite certificates are closure evidence for the canonical Master EOM only if
 they carry receiver-normal branch strength. The ansatz program may reuse
 history-space, root-ledger, inactive-gap, finite-memory, and source-normal
 transversality structure, but every force, action, returned-history, and margin
-row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ before
 promotion.
 
 This is a restart, not a repair pass. Earlier ansatz constants, collocation
@@ -15,6 +15,10 @@ proof steps unless they are regenerated on the current receiver-normal record.
 This note starts a parallel ansatz program for the 1D collinear breather. It does not replace the fixed-point proof architecture in [collinear-breather.md](./collinear-breather.md). Its purpose is to generate certificate data for that proof program. A closed-form or closed-by-quadrature orbit is useful only insofar as it produces a candidate cycle, a branch chart, a mesh, and return residuals with strict audit slack.
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
+
+In plain terms, this page is a candidate-generator notebook, not the theorem. A visually plausible orbit, a small residual, or a familiar breather profile does not count unless it becomes a finite packet the proof can audit. The packet must say which history returns, which delayed roots are active, where the separators and folds live, and how much slack remains after receiver-normal branch strength is included.
+
+The useful outcome is therefore narrow and concrete: one certified candidate history that can be handed to the collinear fixed-point program. Everything else in this chapter, including analogies to nonlinear-wave breathers, is allowed only insofar as it helps produce that same auditable packet.
 
 The external breather literature supplies useful terminology pressure but not a
 mechanism that can be imported into this proof. In this chapter, `breather`
@@ -137,9 +141,9 @@ The first explicit velocity-class packet has sharpened this status without provi
 
 Work in the same reflection-symmetric 1D reduction as the main note:
 $$
-x_1(t)=-x(t),
+X_1(T)=-X(T),
 \qquad
-x_2(t)=x(t)
+X_2(T)=X(T)
 $$
 with field speed
 $$
@@ -147,7 +151,7 @@ c_f>0
 $$
 For this ansatz it is useful to introduce the radial speed
 $$
-u(t)\equiv |\dot x(t)|
+u(T)\equiv \left|\frac{dX}{dT}(T)\right|
 $$
 and the field-speed shorthand
 $$
@@ -158,34 +162,34 @@ The three speed classes are:
 
 1. **sub-field branch**
    $$
-   u(t)<v_f
+u(T)<v_f
    $$
 2. **field-speed separator**
    $$
-   u(t)=v_f
+u(T)=v_f
    $$
 3. **super-field branch**
    $$
-   u(t)>v_f
+u(T)>v_f
    $$
 
 The signed sorting maps from the main proof remain the natural branch variables:
 $$
-w(t)=x(t)+c_f t,
+w(T)=X(T)+c_f T,
 \qquad
-z(t)=x(t)-c_f t
+z(T)=X(T)-c_f T
 $$
 On an outbound right branch,
 $$
-\dot z(t)=\dot x(t)-c_f
+\frac{dz}{dT}(T)=\frac{dX}{dT}(T)-c_f
 $$
 Thus
 $$
-\dot x<c_f,
+\frac{dX}{dT}<c_f,
 \qquad
-\dot x=c_f,
+\frac{dX}{dT}=c_f,
 \qquad
-\dot x>c_f
+\frac{dX}{dT}>c_f
 $$
 mean, respectively, that
 $$
@@ -193,7 +197,7 @@ z
 $$
 is decreasing, stationary, or increasing. The separator
 $$
-\dot x=c_f
+\frac{dX}{dT}=c_f
 $$
 is therefore not merely a speed value; it is a causal sorting transition.
 
@@ -201,17 +205,17 @@ is therefore not merely a speed value; it is a causal sorting transition.
 
 The simplest way to see where a closed form might come from is to freeze the velocity locally. Suppose
 $$
-x(t_0)\approx x(t)-v(t-t_0),
+X(T_0)\approx X(T)-v(T-T_0),
 \qquad
-v=\dot x(t)
+v=\frac{dX}{dT}(T)
 $$
 For a partner hit, the causal equation is
 $$
-x(t)+x(t_0)=c_f(t-t_0)
+X(T)+X(T_0)=c_f(T-T_0)
 $$
 Writing
 $$
-\tau=t-t_0
+\tau=T-T_0
 $$
 gives
 $$
@@ -229,13 +233,13 @@ D_s=c_f+v.
 $$
 The receiver-normal numerator is
 $$
-D_t=c_f-v,
+D_T=c_f-v,
 $$
 so the receiver-normal branch strength is
 $$
 W_p^{\mathrm{rec}}
 =
-\left|\frac{D_t}{D_s}\right|
+\left|\frac{D_T}{D_s}\right|
 =
 \frac{c_f-v}{c_f+v}
 $$
@@ -259,34 +263,34 @@ this reads
 $$
 A_p
 \sim
-\frac{g(1-\beta^2)}{4x^2}
+\frac{g(1-\beta^2)}{4X^2}
 $$
 
 This is not, by itself, a conservative potential curve. The receiver-normal
 affine partner row remains velocity dependent:
 $$
-\ddot x
+\frac{d^2X}{dT^2}
 =
--\frac{g}{4x^2}
-\left(1-\frac{\dot x^2}{c_f^2}\right).
+-\frac{g}{4X^2}
+\left(1-\frac{(dX/dT)^2}{c_f^2}\right).
 $$
 Writing
 $$
-v(x)=\dot x,
+v(X)=\frac{dX}{dT},
 \qquad
-\ddot x=v\frac{dv}{dx}
+\frac{d^2X}{dT^2}=v\frac{dv}{dX}
 $$
 gives the separable phase equation
 $$
 \frac{v}{1-v^2/c_f^2}\,dv
 =
--\frac{g}{4x^2}\,dx
+-\frac{g}{4X^2}\,dX
 $$
 Hence the receiver-normal affine partner invariant is
 $$
 \ln\!\left(1-\frac{v^2}{c_f^2}\right)
 =
--\frac{g}{2c_f^2x}+C_{\mathcal{R}}
+-\frac{g}{2c_f^2X}+C_{\mathcal{R}}
 $$
 This implicit phase-space curve replaces the naive energy curve on the affine partner chart. The logarithmic term also exposes a useful topology check: in the unsoftened affine partner model, reaching
 $$
@@ -294,7 +298,7 @@ v=-c_f
 $$
 requires
 $$
-x\to0
+X\to0
 $$
 Thus the inbound field-speed separator and the origin-crossing layer are tightly coupled in the bare model. The dual core scale
 $$
@@ -308,7 +312,7 @@ soften this coincidence, but the certificate should still treat the separator an
 
 The exact core-mollified version replaces
 $$
-x^2
+X^2
 $$
 by the corresponding branch distance square plus
 $$
@@ -329,18 +333,18 @@ The sub-field comparison case must be generated from the receiver-normal force
 law, not prescribed as a future path. On the exterior affine partner chart
 above, fix initial data
 $$
-x(0)=x_0>0,
+X(0)=X_0>0,
 \qquad
-\dot x(0)=c_f\beta_0,
+\frac{dX}{dT}(0)=c_f\beta_0,
 \qquad
 -1<\beta_0\le0
 $$
 and evolve by
 $$
-\ddot x
+\frac{d^2X}{dT^2}
 =
--\frac{g}{4x^2}
-\left(1-\frac{\dot x^2}{c_f^2}\right).
+-\frac{g}{4X^2}
+\left(1-\frac{(dX/dT)^2}{c_f^2}\right).
 $$
 A held-release preparation may still supply initial data, but the solved
 fixture is purged. The held segment must now be solved from the
@@ -356,55 +360,55 @@ the exact receiver-normal phase invariant is
 $$
 \ln\!\left(\frac{1-\beta^2}{1-\beta_0^2}\right)
 =
--2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right),
+-2\alpha\left(\frac{1}{X}-\frac{1}{X_0}\right),
 \qquad
-\beta=\frac{\dot x}{c_f}
+\beta=\frac{dX/dT}{c_f}
 $$
 For the inbound branch,
 $$
-\beta_{\mathrm{in}}(x)
+\beta_{\mathrm{in}}(X)
 =
 -\sqrt{
 1-(1-\beta_0^2)
-\exp\!\left[-2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)\right]
+\exp\!\left[-2\alpha\left(\frac{1}{X}-\frac{1}{X_0}\right)\right]
 }
 $$
-and $-1<\beta_{\mathrm{in}}(x)<0$ for every $x>0$ on the exterior chart. The
+and $-1<\beta_{\mathrm{in}}(X)<0$ for every $X>0$ on the exterior chart. The
 opposite sign supplies the outbound square-root branch when the same invariant
 is continued away from the core layer. The branch time is recovered by
 $$
-t-t_0
+T-T_0
 =
-\int_x^{x_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}
+\int_X^{X_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}
 $$
 
 This gives only a receiver-normal restart scaffold for a sub-field-speed
 breather search. The exterior partner branch does not reach
 $$
-|\dot x|=c_f
+\left|\frac{dX}{dT}\right|=c_f
 $$
-at any finite $x>0$. Therefore a finite-radius field-speed separator is not
+at any finite $X>0$. Therefore a finite-radius field-speed separator is not
 produced by this receiver-normal affine partner chart. It must come from a
 core-layer effect, finite shell width, nonaffine path history, a self-image
 contribution, or a different certified branch chart.
 
 The same branch also supplies an exact self-root exclusion test in the sharp-shell limit. If a candidate history satisfies
 $$
-|\dot x(t)|\le c_f-\sigma
+\left|\frac{dX}{dT}(T)\right|\le c_f-\sigma
 \qquad
 \text{on a stored interval}
 $$
-for some $\sigma>0$, then for all $s<t$ in that interval,
+for some $\sigma>0$, then for all $T_{\mathrm{em}}<T$ in that interval,
 $$
-|x(t)-x(s)|
+|X(T)-X(T_{\mathrm{em}})|
 \le
-(c_f-\sigma)(t-s)
+(c_f-\sigma)(T-T_{\mathrm{em}})
 <
-c_f(t-s)
+c_f(T-T_{\mathrm{em}})
 $$
 Thus the exact same-side self-hit equation has no nontrivial solution there. For finite shell width $\eta$, the possible self contribution is confined to the near-diagonal collar
 $$
-0<t-s\le \frac{\eta}{\sigma}
+0<T-T_{\mathrm{em}}\le \frac{\eta}{\sigma}
 $$
 and must be bounded from the dual-mollified integral law rather than inserted as an exact simple-root branch. This separates the analytic sub-field test from the field-speed fold program: the test asks whether partner attraction plus the finite-width self-collar can close a return without ever producing a true field-speed separator.
 
@@ -412,19 +416,19 @@ and must be bounded from the dual-mollified integral law rather than inserted as
 
 The local affine partner calculation should now be kept as a table of certified branch data. Work on an exterior chart
 $$
-x(t)=\sigma q(t),
+X(T)=\sigma q(T),
 \qquad
-q(t)>0,
+q(T)>0,
 \qquad
 \sigma\in\{-1,+1\}
 $$
 with radial velocity
 $$
-u_r(t)\equiv \dot q(t)
+u_r(T)\equiv \frac{dq}{dT}(T)
 $$
 On a locally affine same-exterior window,
 $$
-q(s)\approx q(t)-u_r(t)(t-s)
+q(T_{\mathrm{em}})\approx q(T)-u_r(T)(T-T_{\mathrm{em}})
 $$
 the partner root has
 $$
@@ -436,7 +440,7 @@ r_p=c_f\tau_p,
 \qquad
 D_s=c_f+u_r,
 \qquad
-D_t=c_f-u_r,
+D_T=c_f-u_r,
 \qquad
 W_p^{\mathrm{rec}}=\frac{c_f-u_r}{c_f+u_r}
 $$
@@ -464,7 +468,7 @@ This table is only the partner column of the certificate packet. The self-image 
 
 For same-side self hits on an affine segment,
 $$
-|x(t)-x(t_0)|=\|\mathbf{v}\|\tau
+|X(T)-X(T_0)|=\|\mathbf V\|\tau
 $$
 The exact causal-isochron equation is
 $$
@@ -476,7 +480,7 @@ $$
 $$
 this is possible only when
 $$
-\|\mathbf{v}\|=c_f
+\|\mathbf V\|=c_f
 $$
 Therefore a perfectly affine segment has no same-side exact self root away from the field-speed separator. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
 
@@ -494,7 +498,7 @@ For certificate purposes, the field-speed separator is a codimension-one event s
 $$
 \Sigma_{\mathcal{B}}
 =
-\{(x,\mathbf{v},\mathcal{B}): \|\mathbf{v}\|=c_f\}
+\{(X,\mathbf V,\mathcal{B}): \|\mathbf V\|=c_f\}
 $$
 Here
 $$
@@ -506,7 +510,7 @@ $$
 $$
 can create, annihilate, or relabel path-history roots even when
 $$
-(x,v)
+(X,v)
 $$
 remains continuous.
 
@@ -522,7 +526,7 @@ are then small but fixed certificate parameters, not limiting symbols to be disc
 
 Let
 $$
-g(t,s;\lambda)=0
+g(T,T_{\mathrm{em}};\lambda)=0
 $$
 denote one signed causal-root defect on a local chart, with
 $$
@@ -530,7 +534,7 @@ $$
 $$
 the transverse separator coordinate. A generic branch-topology change has the fold normal form
 $$
-g(t,s;\lambda)
+g(T,T_{\mathrm{em}};\lambda)
 =
 a(s-s_\Sigma)^2+b\lambda
 +O(|s-s_\Sigma|^3+|\lambda||s-s_\Sigma|+\lambda^2),
@@ -592,11 +596,11 @@ $$
 $$
 containing the active partner and self-image data. On that chart the delayed force should first be written as a phase-space law
 $$
-v\frac{dv}{dx}
+v\frac{dv}{dX}
 =
-F_{\mathcal{R}}(x,v;\mathcal{I}_{\mathcal{R}}),
+F_{\mathcal{R}}(X,v;\mathcal{I}_{\mathcal{R}}),
 \qquad
-v=\dot x
+v=\frac{dX}{dT}
 $$
 with the path-history data in
 $$
@@ -606,28 +610,28 @@ held fixed by the certificate.
 
 The receiver-normal affine partner calculation gives the model row
 $$
-v\frac{dv}{dx}
+v\frac{dv}{dX}
 =
--\frac{g}{4x^2}\left(1-\frac{v^2}{c_f^2}\right)
+-\frac{g}{4X^2}\left(1-\frac{v^2}{c_f^2}\right)
 $$
 with exact implicit quadrature
 $$
 \ln\!\left(1-\frac{v^2}{c_f^2}\right)
 =
--\frac{g}{2c_f^2x}+C_{\mathcal{R}}
+-\frac{g}{2c_f^2X}+C_{\mathcal{R}}
 $$
 More generally, if the certified branch chart yields a separable
 receiver-normal velocity row
 $$
 \frac{v}{Q_{\mathcal{R}}(v)}\,dv
 =
-P_{\mathcal{R}}(x)\,dx
+P_{\mathcal{R}}(X)\,dX
 $$
 the quadrature invariant is
 $$
 \int^v \frac{\zeta}{Q_{\mathcal{R}}(\zeta)}\,d\zeta
 -
-\int^x P_{\mathcal{R}}(\xi)\,d\xi
+\int^X P_{\mathcal{R}}(\xi)\,d\xi
 =
 C_{\mathcal{R}}
 $$
@@ -636,9 +640,9 @@ velocity-dependent receiver-normal branch strength.
 
 A conservative potential is allowed only as a special certified reduction. The required condition is
 $$
-F_{\mathcal{R}}(x,v;\mathcal{I}_{\mathcal{R}})
+F_{\mathcal{R}}(X,v;\mathcal{I}_{\mathcal{R}})
 =
--\partial_x U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})
+-\frac{\partial U_{\mathcal{R}}}{\partial X}(X;\mathcal{I}_{\mathcal{R}})
 $$
 with no residual
 $$
@@ -646,7 +650,7 @@ v
 $$
 dependence after the active image data are fixed. If that identity is proved, the arc may use the energy equation
 $$
-\frac{1}{2}\dot x^2+U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})=E_{\mathcal{R}}
+\frac{1}{2}\left(\frac{dX}{dT}\right)^2+U_{\mathcal{R}}(X;\mathcal{I}_{\mathcal{R}})=E_{\mathcal{R}}
 $$
 Absent that proof, the chart must use the receiver-normal phase invariant,
 direct interval quadrature, or collocation residuals for the dual-mollified
@@ -669,9 +673,9 @@ A first closed-form skeleton should use four arcs:
 
 1. **Inbound sub-field arc**
    $$
-   x=x_\ast,
+   X=X_\ast,
    \qquad
-   \dot x=-u_\ast,
+   \frac{dX}{dT}=-u_\ast,
    \qquad
    0<u_\ast<c_f
    $$
@@ -689,39 +693,39 @@ A first closed-form skeleton should use four arcs:
 3. **Outbound super-field or near-field-speed arc**
    The right branch moves outward. If
    $$
-   \dot x>c_f
+   \frac{dX}{dT}>c_f
    $$
    the sorting map
    $$
-   z=x-c_f t
+   z=X-c_f T
    $$
    reverses monotonicity and the active image list must be updated.
 4. **Apocenter sub-field recapture arc**
    The branch enters
    $$
-   0\le \dot x<c_f
+   0\le \frac{dX}{dT}<c_f
    $$
    before turning. On this arc the partner term should dominate the outward self-image terms, producing the final turn and return to
    $$
-   x=x_\ast,
+   X=X_\ast,
    \qquad
-   \dot x<0
+   \frac{dX}{dT}<0
    $$
 
 ### Velocity-class itinerary ledger
 
 The four arc names above are a compressed return graph, not yet a complete velocity-class itinerary. Define
 $$
-\mathfrak{v}(t)\in
+\mathfrak{v}(T)\in
 \{\mathsf{S}_{\mathrm{sub}},\mathsf{S}_{\mathrm{sep}},\mathsf{S}_{\mathrm{sup}}\}
 $$
 by
 $$
-\mathsf{S}_{\mathrm{sub}}:\ |\dot x|<c_f,
+\mathsf{S}_{\mathrm{sub}}:\ \left|\frac{dX}{dT}\right|<c_f,
 \qquad
-\mathsf{S}_{\mathrm{sep}}:\ |\dot x|=c_f,
+\mathsf{S}_{\mathrm{sep}}:\ \left|\frac{dX}{dT}\right|=c_f,
 \qquad
-\mathsf{S}_{\mathrm{sup}}:\ |\dot x|>c_f
+\mathsf{S}_{\mathrm{sup}}:\ \left|\frac{dX}{dT}\right|>c_f
 $$
 A full origin-crossing breather may pass through more separator events than the compressed four-arc naming suggests. The current self-image table below assumes the simple compressed itinerary in which the apocenter recapture remains sub-field after the outer separator. Before using that table as a certificate input, the ansatz packet must specify the actual itinerary.
 
@@ -797,9 +801,9 @@ $$
 
 The decisive algebraic test is not the partner root. It is the same-path self-root equation
 $$
-|x(t)-x(s)|=c_f(t-s),
+|X(T)-X(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}}),
 \qquad
-s<t
+T_{\mathrm{em}}<T
 $$
 across the four-arc skeleton.
 
@@ -830,28 +834,28 @@ $$
 $$
 with
 $$
-t\in I_\alpha,
+T\in I_\alpha,
 \qquad
-s\in I_\beta,
+T_{\mathrm{em}}\in I_\beta,
 \qquad
-s<t
+T_{\mathrm{em}}<T
 $$
 solve the two signed defects
 $$
-g^{\pm}_{\alpha\beta}(t,s)
+g^{\pm}_{\alpha\beta}(T,T_{\mathrm{em}})
 \equiv
-\pm\bigl(x_\alpha(t)-x_\beta(s)\bigr)-c_f(t-s)
+\pm\bigl(X_\alpha(T)-X_\beta(T_{\mathrm{em}})\bigr)-c_f(T-T_{\mathrm{em}})
 =0
 $$
 subject to the sign consistency condition
 $$
-\pm\bigl(x_\alpha(t)-x_\beta(s)\bigr)>0
+\pm\bigl(X_\alpha(T)-X_\beta(T_{\mathrm{em}})\bigr)>0
 $$
 On an affine pair of arcs,
 $$
-x_\alpha(t)=a_\alpha+v_\alpha t,
+X_\alpha(T)=a_\alpha+v_\alpha T,
 \qquad
-x_\beta(s)=a_\beta+v_\beta s
+X_\beta(T_{\mathrm{em}})=a_\beta+v_\beta T_{\mathrm{em}}
 $$
 write the orientation sign as
 $$
@@ -859,9 +863,9 @@ $$
 $$
 The signed self-image defect is
 $$
-g_{\alpha\beta}^{\chi}(t,s)
+g_{\alpha\beta}^{\chi}(T,T_{\mathrm{em}})
 =
-\chi\bigl(x_\alpha(t)-x_\beta(s)\bigr)-c_f(t-s)
+\chi\bigl(X_\alpha(T)-X_\beta(T_{\mathrm{em}})\bigr)-c_f(T-T_{\mathrm{em}})
 $$
 If the source-side denominator has a certified floor
 $$
@@ -869,9 +873,9 @@ $$
 $$
 then the affine root is explicit:
 $$
-s_{\alpha\beta}^{\chi}(t)
+T_{\mathrm{em},\alpha\beta}^{\chi}(T)
 =
-\frac{(c_f-\chi v_\alpha)t-\chi(a_\alpha-a_\beta)}
+\frac{(c_f-\chi v_\alpha)T-\chi(a_\alpha-a_\beta)}
 {c_f-\chi v_\beta}
 $$
 The source Jacobian on that row is
@@ -884,16 +888,16 @@ J_{\alpha\beta}^{\chi}
 $$
 Thus every affine self-image row reduces to interval validation of the following predicates:
 $$
-t\in I_\alpha,
+T\in I_\alpha,
 \qquad
-s_{\alpha\beta}^{\chi}(t)\in I_\beta,
+T_{\mathrm{em},\alpha\beta}^{\chi}(T)\in I_\beta,
 \qquad
-s_{\alpha\beta}^{\chi}(t)<t
+T_{\mathrm{em},\alpha\beta}^{\chi}(T)<T
 $$
 $$
-0<t-s_{\alpha\beta}^{\chi}(t)\le h,
+0<T-T_{\mathrm{em},\alpha\beta}^{\chi}(T)\le h,
 \qquad
-\chi\bigl(x_\alpha(t)-x_\beta(s_{\alpha\beta}^{\chi}(t))\bigr)>0,
+\chi\bigl(X_\alpha(T)-X_\beta(T_{\mathrm{em},\alpha\beta}^{\chi}(T))\bigr)>0,
 \qquad
 \left|J_{\alpha\beta}^{\chi}\right|\ge \nu_{\alpha\beta}
 $$
@@ -903,31 +907,31 @@ If the denominator loses its floor, the row is not a simple affine branch; it is
 
 Before running interval root validation, reduce the search by a 1D Minkowski diagnostic. Use null coordinates
 $$
-u(t)=c_f t-x(t),
+u(T)=c_f T-X(T),
 \qquad
-w(t)=c_f t+x(t)
+w(T)=c_f T+X(T)
 $$
 The self-image equation
 $$
-|x(t)-x(s)|=c_f(t-s),
+|X(T)-X(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}}),
 \qquad
-s<t
+T_{\mathrm{em}}<T
 $$
 splits into two exact ledgers:
 $$
-x(t)>x(s)
+X(T)>X(T_{\mathrm{em}})
 \quad\Longleftrightarrow\quad
-u(t)=u(s)
+u(T)=u(T_{\mathrm{em}})
 $$
 and
 $$
-x(t)<x(s)
+X(T)<X(T_{\mathrm{em}})
 \quad\Longleftrightarrow\quad
-w(t)=w(s)
+w(T)=w(T_{\mathrm{em}})
 $$
 Geometrically, this is just the intersection of the path with the past-directed causal cone from
 $$
-(x(t),c_f t)
+(X(T),c_f T)
 $$
 Computationally, it means that each ordered arc pair
 $$
@@ -959,9 +963,9 @@ ledger is active.
 
 This also fixes the Jacobian sign test in a coordinate-free way:
 $$
-J_u=\frac{d u/ds}{c_f}=1-\frac{\dot x(s)}{c_f},
+J_u=\frac{d u/dT_{\mathrm{em}}}{c_f}=1-\frac{dX/dT(T_{\mathrm{em}})}{c_f},
 \qquad
-J_w=\frac{d w/ds}{c_f}=1+\frac{\dot x(s)}{c_f}
+J_w=\frac{d w/dT_{\mathrm{em}}}{c_f}=1+\frac{dX/dT(T_{\mathrm{em}})}{c_f}
 $$
 The interval validator should therefore start from a causal pre-ledger with three outcomes for each block:
 
@@ -980,9 +984,9 @@ The interval validator should therefore start from a causal pre-ledger with thre
 > $$
 > and a compact certificate tube around a candidate history. Suppose the interval enclosures for
 > $$
-> u=c_f t-x,
+> u=c_f T-X,
 > \qquad
-> w=c_f t+x
+> w=c_f T+X
 > $$
 > split every ordered receiver-source block
 > $$
@@ -990,9 +994,9 @@ The interval validator should therefore start from a causal pre-ledger with thre
 > $$
 > into finitely many subblocks, each of which is either range-disjoint, monotone with a positive derivative floor, or contained in a certified separator/fold layer. Then the self-image equation
 > $$
-> |x(t)-x(s)|=c_f(t-s),
+> |X(T)-X(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}}),
 > \qquad
-> s<t,
+> T_{\mathrm{em}}<T,
 > $$
 > admits a finite causal pre-ledger
 > $$
@@ -1031,17 +1035,17 @@ before the pre-ledger can feed the active branch chart.
 
 For every root branch, record
 $$
-\hat r_s=\operatorname{sgn}(x_\alpha(t)-x_\beta(s)),
+\hat r_s=\operatorname{sgn}(X_\alpha(T)-X_\beta(T_{\mathrm{em}})),
 \qquad
 J_s
 =
-1-\frac{\dot x_\beta(s)\hat r_s}{c_f}
+1-\frac{(dX_\beta/dT)(T_{\mathrm{em}})\hat r_s}{c_f}
 $$
 the interval of existence, and the contribution sign in the reduced equation. Also record the signed degree contribution
 $$
 D_{\alpha\beta}
 =
-\sum_{g_{\alpha\beta}^{\pm}(t,s)=0}
+\sum_{g_{\alpha\beta}^{\pm}(T,T_{\mathrm{em}})=0}
 \operatorname{sgn} J_s
 $$
 with the sum taken over certified root branches on that interval pair. On a simple-root chart with a positive Jacobian floor, this degree equals the unsigned root count. Near separators it is the invariant that survives the fold.
@@ -1238,33 +1242,33 @@ with interval validation of the finite active branches and the returned-history 
 
 At every separator time
 $$
-t_\Sigma
+T_\Sigma
 $$
 where
 $$
-|\dot x(t_\Sigma)|=c_f
+\left|\frac{dX}{dT}(T_\Sigma)\right|=c_f
 $$
 the matching law must come from the dual-mollified fold calculation rather than from an assumed conservative energy jump. Choose a fold layer
 $$
-[t_\Sigma-\Delta,t_\Sigma+\Delta]
+[T_\Sigma-\Delta,T_\Sigma+\Delta]
 $$
 on which the simple-root branch-sum chart is replaced by the dual-mollified integral law. The separator impulse is
 $$
 \Delta v_\Sigma
 =
-\int_{t_\Sigma-\Delta}^{t_\Sigma+\Delta}
-a^{\mathrm{fold}}_{\eta,\epsilon_c}(t)\,dt
+\int_{T_\Sigma-\Delta}^{T_\Sigma+\Delta}
+A^{\mathrm{fold}}_{\eta,\epsilon_c}(T)\,dT
 $$
 
 The ansatz must impose four matching conditions:
 
 1. **position continuity**
    $$
-   x(t_\Sigma^-)=x(t_\Sigma^+)
+   X(T_\Sigma^-)=X(T_\Sigma^+)
    $$
 2. **controlled velocity increment across the fold layer**
    $$
-   \dot x(t_\Sigma+\Delta)-\dot x(t_\Sigma-\Delta)=\Delta v_\Sigma
+   \frac{dX}{dT}(T_\Sigma+\Delta)-\frac{dX}{dT}(T_\Sigma-\Delta)=\Delta v_\Sigma
    $$
 3. **branch-list update**
    $$
@@ -1308,7 +1312,7 @@ or a sharper interval quadrature bound over the certified fold layer. The matchi
 
 This formulation keeps the separator tied to the same estimates used in [collinear-breather.md](./collinear-breather.md). Energy constants on the adjacent arcs may still be useful bookkeeping devices, but they are not the primitive matching data at
 $$
-|\dot x|=c_f
+\left|\frac{dX}{dT}\right|=c_f
 $$
 
 ## Fold-Adapted Fractional Basis
@@ -1319,7 +1323,7 @@ $$
 \qquad
 \Delta x(\tau)\sim |\tau|^{3/2},
 \qquad
-\tau=t-t_\Sigma
+\tau=T-T_\Sigma
 $$
 The dual mollifiers make the actual certificate function smooth at fixed
 $$
@@ -1420,9 +1424,9 @@ A candidate ansatz packet must produce:
    as section-fixed, symmetry-neutral, or genuinely deforming before monodromy or residual rows are interpreted;
 7. a null-coordinate causal pre-ledger in
    $$
-   u=c_f t-x,
+   u=c_f T-X,
    \qquad
-   w=c_f t+x
+   w=c_f T+X
    $$
    marking empty, candidate nonempty, and fold-split self-image blocks before interval root solving;
 8. a certificate mesh
@@ -1437,7 +1441,7 @@ A candidate ansatz packet must produce:
    or other interval-validated formulas for each arc;
 10. separator impulse laws at every
    $$
-   |\dot x|=c_f
+   \left|\frac{dX}{dT}\right|=c_f
    $$
    event, including the fold normal-form constants and finite impulse bounds;
 11. a bifurcation-parameter sweep over
@@ -1484,15 +1488,15 @@ $$
 $$
 The row is empty when the relevant gap is strictly positive. It is a simple-root row only when the corresponding source-side derivative floor is positive:
 $$
-\inf_{s\in I_\beta}
-\left|1-\frac{\dot x(s)}{c_f}\right|>0
+\inf_{T_{\mathrm{em}}\in I_\beta}
+\left|1-\frac{dX/dT(T_{\mathrm{em}})}{c_f}\right|>0
 \qquad
 \text{for the }u\text{ ledger}
 $$
 or
 $$
-\inf_{s\in I_\beta}
-\left|1+\frac{\dot x(s)}{c_f}\right|>0
+\inf_{T_{\mathrm{em}}\in I_\beta}
+\left|1+\frac{dX/dT(T_{\mathrm{em}})}{c_f}\right|>0
 \qquad
 \text{for the }w\text{ ledger}
 $$
@@ -1541,17 +1545,17 @@ receiver-normal phase invariant
 $$
 \ln\!\left(1-\frac{v^2}{c_f^2}\right)
 =
--\frac{g}{2c_f^2x}+C_{\mathcal{R}},
+-\frac{g}{2c_f^2X}+C_{\mathcal{R}},
 \qquad
-v=\dot x
+v=\frac{dX}{dT}
 $$
 When self-image terms are included, this invariant is replaced by the corresponding certified phase quadrature or by interval collocation of the dual-mollified absolute-time law. A potential curve of the form
 $$
-\frac{1}{2}\dot x^2+U_{\mathcal{R}}(x)=E_{\mathcal{R}}
+\frac{1}{2}\left(\frac{dX}{dT}\right)^2+U_{\mathcal{R}}(X)=E_{\mathcal{R}}
 $$
 is admissible only on a fixed branch chart where the delayed force has already been shown to be an exact
 $$
--\partial_x U_{\mathcal{R}}
+-\frac{\partial U_{\mathcal{R}}}{\partial X}
 $$
 derivative along that chart.
 
@@ -1577,7 +1581,7 @@ q(-\theta)=q(\theta),
 $$
 Equivalently, a signed-coordinate chart centered on an origin crossing may impose the odd sheet condition
 $$
-x(-\theta)=-x(\theta)
+X(-\theta)=-X(\theta)
 $$
 The certificate must state which symmetry chart is used and how the branch labels pair under the symmetry. When the paired branch ledger and regularization preserve this cycle-reversal symmetry, the net-work integral cancels by parity:
 $$
@@ -1595,9 +1599,9 @@ C_{>}
 $$
 are then chosen so that the returned section state satisfies
 $$
-x(T)=x_\ast,
+X(T)=X_\ast,
 \qquad
-\dot x(T)=-u_\ast
+\frac{dX}{dT}(T)=-u_\ast
 $$
 the outer and inner separator impulses match the adjacent arcs, and the sampled history residuals are minimized. In the intended symmetric case,
 $$
@@ -1631,7 +1635,7 @@ $$
 2. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
 3. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
    $$
-   |\dot x|=c_f
+   \left|\frac{dX}{dT}\right|=c_f
    $$
    event.
 4. Use the doubled four-arc itinerary as the first admissible velocity-class itinerary
@@ -1650,9 +1654,9 @@ $$
    and record the paired branch-label rule.
 6. Build and discharge the theorem target `Null-Coordinate Causal Pre-Ledger` in
    $$
-   u=c_f t-x,
+   u=c_f T-X,
    \qquad
-   w=c_f t+x
+   w=c_f T+X
    $$
    producing the finite ledger
    $$
@@ -1665,7 +1669,7 @@ $$
    $$
    to fill the itinerary-keyed self-image enumeration table for
    $$
-   |x(t)-x(s)|=c_f(t-s)
+   |X(T)-X(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}})
    $$
    on every ordered arc pair
    $$

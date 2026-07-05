@@ -2,7 +2,13 @@
 
 This chapter defines the three-band support family in the [Noether Braid](noether-braid.md) sequence. A nested shell braid adds ordered radial support bands to a [shell braid](shell-braid.md) and supplies the scaffold consumed by the nested dynamics, geometry, frequency-lock, and particle-architecture chapters.
 
-A **nested shell braid** is a shell braid with three ordered radial support bands. It is the case used by the downstream particle-architecture and Noether sea chapters.
+A **nested shell braid** is a shell braid with three ordered radial support bands. The simple picture is a neutral six-architrino branch whose activity is not all happening at one scale. There is an inner support band, a middle support band, and an outer support band, and the proof task is to show that the delayed causal-root ledger lets those bands stay coordinated.
+
+This is the case used by the downstream particle-architecture and Noether sea chapters. It should be read first as branch architecture, not as a completed particle identity. The labels describe the scaffold that later chapters try to certify.
+
+The reader-facing picture is a three-level rhythm, not three miniature solid shells. The inner, middle, and outer support bands are regions of recurring causal activity, phase return, and wake exchange. They matter because one retained branch must coordinate all three bands while still exporting the effective properties that later chapters call mass, spin, photon response, and Lorentz behavior.
+
+This makes the page a scaffold definition. It gives names to the support bands, role labels, and closure ledgers that the dynamics must later earn. It does not by itself prove that the scaffold is stable, minimal, or identical to any observed particle.
 
 The geometric shell labels are
 
@@ -45,7 +51,7 @@ A nested shell braid should be treated as a closed-cycle geometry before it is t
 $$
 \Theta_a(T)
 =
-\int_0^T\omega_a(t)\,dt
+\int_0^T\omega_a(T')\,dT'
 +
 \Phi_a^{\text{root}}(T)
 =
@@ -394,7 +400,7 @@ The same nested shell braid motion that supplies shielding also sweeps out a per
 The broader assembly program suggests reading the nested shell braid hierarchy as a natural hierarchy of fermion shielding tiers:
 
 -   **Isolated binary:** the most exposed shielding tier, corresponding to Generation III.
--   **Two-binary shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
+-   **Two-support-row shielding tier:** one shielding tier restored, corresponding to the Generation-II shielding tier.
 -   **Nested shell braid:** the fully shielded three-tier braid, corresponding to the Generation-I shielding tier.
 
 On this reading, the generation ladder is not an arbitrary label attached after the fact. It is the visible signature of how many nested shielding tiers still surround the deepest binary engine; this same shielding ladder is the starting point for [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md) and the charged-lepton story beginning with [Electron](../assemblies/fermions/electron.md).

@@ -89,10 +89,23 @@ The current first accepted-evidence blocker is unchanged:
 - field: `held_release_seed_path_rows.acceptance_certificate_ref`;
 - candidate artifact: `held_release_seed_path_rows:5833f18e53586201`.
 
-The first run-matrix implementation gap is smaller and diagnostic:
+The diagnostic run-matrix metadata gap is now implemented in two runner surfaces:
 
-1. add runner options or a new diagnostic runner that can set target-center group velocity `0`, transverse surface speed, and prehistory mode;
-2. emit the Proof ID, run handle, source artifact id/hash, retained record id, source row id, runner version, and evidence status in every output;
-3. keep `kick-at-release` and `moving-prehistory` outputs separate because they answer different questions about history priming.
+- [held-release-seed-path-rows.mjs](../../../scripts/braid-ideal/held-release-seed-path-rows.mjs) accepts `--proof-id`, `--run-handle`, `--source-row-id`, `--target-center-group-velocity`, `--surface-speed-fraction`, and `--prehistory-mode`.
+- [sh-0-sea-diagnostic-candidate-model.mjs](../../../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs) accepts `--run-handle`, `--embedded-central-run-handle`, `--source-row-id`, `--target-center-group-velocity`, `--surface-speed-fraction`, and `--prehistory-mode`.
+
+Both outputs carry source artifact id/hash, source row id, run handle, prehistory mode, target-center group velocity, surface speed, and fail-closed evidence status. `kick-at-release` and `moving-prehistory` remain separate because they answer different questions about history priming.
+
+Example isolated diagnostic row:
+
+```bash
+node scripts/braid-ideal/held-release-seed-path-rows.mjs --proof-id=SH-0 --run-handle=sh0-g0-vt080-moving-prehistory --source-row-id=diagnostic-source-row:sh0-g0-vt080-moving-prehistory --target-center-group-velocity=0,0,0 --surface-speed-fraction=0.8 --prehistory-mode=moving-prehistory --retained-record-id=retained-record:held-release-six-point:adapter-acceptance-certificate --provider-object-ref=candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327 --provider-artifact-hash=7d4a8fe0a97923270179f2ca0b49b4bc0d6b6ba3251b26e82569bdb4bd1f91df --pretty
+```
+
+Example embedded Noether sea diagnostic row:
+
+```bash
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --run-handle=sh0sea-g0-vt080-moving-prehistory --embedded-central-run-handle=sh0-g0-vt080-moving-prehistory --source-row-id=diagnostic-source-row:sh0-g0-vt080-moving-prehistory --target-center-group-velocity=0,0,0 --surface-speed-fraction=0.8 --prehistory-mode=moving-prehistory --pretty
+```
 
 Only after the accepted seed-path certificate, matching external accepted-authority package, repo authorization, retained-source adapter package, and same-record receiver-normal root-detail rows exist can any row in this matrix be used for retained force/action or stability closure.

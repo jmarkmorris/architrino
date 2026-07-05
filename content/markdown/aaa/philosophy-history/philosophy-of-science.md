@@ -20,6 +20,8 @@ This page is indexed by schools and conceptual disputes rather than by biography
 
 The main claim of this page is simple: if $\mathbb{A}\mathbb{A}\mathbb{A}$ is to function as a serious replacement architecture, it must be methodologically explicit about realism, reduction, inference, and falsifiability rather than relying on these commitments implicitly.
 
+The reader should treat method as part of the physics discipline, not as decoration around it. A substrate theory can fail by making wrong predictions, but it can also fail by moving between ontology, model fitting, inference, and analogy without saying which role each claim is playing.
+
 The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be summarized as follows:
 
 - **Ontological realism** about substrate entities and causal dynamics.
@@ -637,7 +639,7 @@ Emergence, on this view, is lawful novelty in organized systems, not metaphysica
 
 ### Context as Constraint
 
-The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(t)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
+The same point can be stated mathematically. A higher-level context is not a second causal substance layered on top of the lower-level system. It is a constraint or boundary condition on the admissible lower-level histories. Let $\mathcal{S}_L$ be the lower-level state space, including the path-history data required by delayed causal dynamics. For a lower-level state $X(T)\in\mathcal{S}_L$, a projection $\Pi_L X$ of the lower-level variables, and a surrounding context $c$, define
 
 $$
 K_c=\{\,X\in\mathcal{S}_L\mid G_\alpha(\Pi_L X,c)=0\ \text{for all}\ \alpha\,\}
@@ -646,10 +648,10 @@ $$
 The reduced flow then remains a lower-level flow constrained to $K_c$:
 
 $$
-\frac{dX}{dt}=F_L(X_t),\qquad X(t)\in K_c
+\frac{dX}{dT}=F_L(X_T),\qquad X(T)\in K_c
 $$
 
-Here $F_L$ represents the lower-level causal-wake dynamics, and $X_t$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
+Here $F_L$ represents the lower-level causal-wake dynamics, and $X_T$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
 
 For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. Then
 

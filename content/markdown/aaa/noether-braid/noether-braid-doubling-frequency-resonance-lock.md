@@ -103,7 +103,7 @@ For compact notation, the algebra below writes $v_M=c_f$ and $\beta_M=1$ for thi
 
 The branch-level motion may have microscopic crossings
 $$
-v_M(t)=c_f+\delta v_M(t),
+v_M(T)=c_f+\delta v_M(T),
 \qquad
 \langle \delta v_M\rangle_W=0
 $$
@@ -111,8 +111,8 @@ over the declared window $W$. Each regularized crossing of the $J=0$ boundary is
 $$
 \Delta\mathbf{v}_{M,n}
 =
-\int_{t_n^-}^{t_n^+}
-\mathbf{a}_M^{(\eta)}(t)\,dt,
+\int_{T_n^-}^{T_n^+}
+\mathbf{A}_M^{(\eta)}(T)\,dT,
 \qquad
 \left\|\Delta\mathbf{v}_{M,n}\right\|<\infty
 $$
@@ -246,7 +246,7 @@ $$
 S_L(t)
 =
 \sum_{k\in\{I,M,O\}}\sum_{a=1}^{L}
-A_{k,a}(\beta_k,r_k,\eta,D_s,D_t,W^{\mathrm{rec}},J)\,
+A_{k,a}(\beta_k,r_k,\eta,D_s,D_T,W^{\mathrm{rec}},J)\,
 e^{ia(q_k\Omega t+\phi_k)}
 $$
 The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
@@ -265,12 +265,12 @@ w_{M,a}^{\mathrm{rec}}(\theta_M)
 e^{-ia\theta_M}\,d\theta_M
 $$
 
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_T$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
 The cycle-averaged cancellation score is
 $$
 C_L(m,n;\phi)
 =
-\frac{1}{T}\int_0^T |S_L(t)|^2\,dt
+\frac{1}{T}\int_0^T |S_L(T')|^2\,dT'
 =
 \sum_{\nu}
 \left|
@@ -561,11 +561,11 @@ $$
 where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the rigid spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{MO},\delta\phi_{IO})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift.
 The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
 $$
-\Theta(t)
+\Theta(T)
 =
 \left(
-\phi_{MO}(t)-\phi_{MO}^\ast,\,
-\phi_{IO}(t)-\phi_{IO}^\ast
+\phi_{MO}(T)-\phi_{MO}^\ast,\,
+\phi_{IO}(T)-\phi_{IO}^\ast
 \right)
 $$
 has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
@@ -614,11 +614,11 @@ $$
 where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$, while the holonomy-defect coordinate is not quotiented:
 
 $$
-\Theta(t)
+\Theta(T)
 =
 \left(
-\phi_{MO}(t)-\phi_{MO}^\ast,\,
-\phi_{IO}(t)-\phi_{IO}^\ast
+\phi_{MO}(T)-\phi_{MO}^\ast,\,
+\phi_{IO}(T)-\phi_{IO}^\ast
 \right)
 $$
 

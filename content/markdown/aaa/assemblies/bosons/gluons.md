@@ -3,9 +3,15 @@
 **Scope:** Definition of color charge, gluon structure, and confinement.
 This chapter should be read together with [Quarks](../fermions/quarks.md), [Color Charge and SU(3)](../fermions/color-charge-su3.md), and [Gauge Symmetries](../gauge-symmetries.md).
 
+The standard gluon is a gauge-boson carrier of the strong interaction. This chapter keeps that role as the observer-level recovery target, but asks for the physical implementation underneath it. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, a gluon channel is a color-corridor event in the Noether sea: it routes axis exceptionality, flux-tube strain, recoil, and conserved ledgers between color-exposed quark assemblies.
+
+The key reader distinction is that a gluon is not introduced here as a new substrate particle. It is the effective record of a permitted strong-sector reconfiguration. The page therefore moves from color geometry, to the color-corridor event record, to the octet and confinement benchmarks that must reproduce QCD behavior.
+
 ## The Geometric Origin of Color Charge
 
 In the Standard Model, color is an abstract $SU(3)$ label. In $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
+
+Plainly, a quark is colored when the assembly has a "which axis is special" degree of freedom. A gluon event is then a controlled way of changing, transporting, or balancing that exceptional-axis information without breaking the event ledger.
 
 ### The Noether Braid Substrate
 
@@ -47,20 +53,22 @@ The conventional labels Red, Green, and Blue are therefore basis names for the t
 
 In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between Noether braids.
 
+The useful picture is a corridor, not a bead. A color-exposed quark leaves open axial traffic in the surrounding Noether sea; the gluon channel is the routed corridor that carries that traffic into another compatible color state while preserving the strong-sector record.
+
 ### Polar Vortices and Flux Tubes
 
 - **Source:** each circulating binary within the Noether braid generates a pair of persistent, high-intensity polar vortices along its rotation axis.
 - **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient nested shell braids carrying the open color corridor between exceptional-axis sectors.
 - **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether sea to its isotropic ground state.
 
-This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored cores therefore remain open at their poles unless another core accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
+This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored braids therefore remain open at their poles unless another braid accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
 
 ### The Gluon as an Axis-Reconfiguration Braid
 
 A gluon is a propagating disturbance in the Noether braid assembly network that reconfigures axis exceptionality within the quark color basis.
 
 - **The operator:** when a Red quark $|q_H\rangle$ interacts with a Green quark $|q_M\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between $H$ and $M$.
-- **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the cores and carries the topology required to move exceptionality from one axis sector to another.
+- **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the quark braids and carries the topology required to move exceptionality from one axis sector to another.
 
 ### Color-Corridor Provenance Target
 

@@ -11,13 +11,13 @@ In classical electrostatics, a static $1/r$ potential yields an electric field $
 This project does not posit a static near field. Instead:
 
 - Measure-valued expanding causal surfaces (no static $1/r$ near field):
-  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(t,s)=(q/(4\pi r^2))\delta(r-c_f\tau)H(\tau)$. The support at fixed $t$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
+  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_{\mathrm{em}})=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
 
 - $H(0)=0$ (no coincident self-kick):
-  - The instantaneous emission $(\tau=0)$ contributes nothing to the force on the emitter; $r=0$ roots beyond $\tau=0$ do not exist because $r=c_f(t-t_0)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
+  - The instantaneous emission $(\Delta=0)$ contributes nothing to the force on the emitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T-T_{\mathrm{em}})$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).
 
 - $\eta$-mollification (finite, well-defined work over resolved windows):
-  - Replace $\delta(r-c_f\tau)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and forces $-\nabla(q'\Phi_\eta)$ are then regular functions; on any resolved interval the work-energy identity holds:
+  - Replace $\delta(r-c_f\Delta)$ by a narrow Gaussian $\delta_\eta$ with width $\eta>0$ when differentiability is required. Potentials $\Phi_\eta$ and forces $-\nabla(q'\Phi_\eta)$ are then regular functions; on any resolved interval the work-energy identity holds:
     $\Delta E_k=-\Delta U$, with $U=q'\Phi_\eta$,
     and remains finite. As $\eta\to0$, integrals converge in the weak sense to the impulsive model without introducing infinities. See [Well-posedness and Regularization](well-posedness-and-regularization.md).
 

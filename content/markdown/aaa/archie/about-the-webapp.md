@@ -2,6 +2,8 @@
 
 This note is the reader-facing orientation to the Architrino webapp as a whole. Its purpose is to explain what the runtime is trying to be, how scenes and markdown cooperate, and why the project treats navigation, reading, and conceptual structure as one integrated system rather than as separate layers.
 
+The simple idea is that a difficult theory should not be trapped in a flat pile of documents. The webapp lets the reader move through the architecture spatially, open the prose when needed, and return to the surrounding graph without losing the conceptual neighborhood.
+
 Read this as the top conceptual overview of the app before drilling into navigation rules, scene taxonomy, or file-structure details.
 
 ## Purpose

@@ -2,24 +2,32 @@
 
 ## Quantum Summary
 
-This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It gathers the main observer-level replacements for standard quantum ontology while the branch continues to be refined.
+This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. The standard quantum formalism remains the comparison target: it predicts spectra, interference, statistics, and measurement frequencies with enormous success. The claim here is narrower and deeper. The formal quantum state is treated as an effective record-facing summary of deterministic assembly dynamics, causal wakes, basin weights, and measurement channels.
+
+Read this hub as a map of what must be recovered. The branch keeps ordinary quantum practice intact at the observer level, but it relocates the physical implementation below that practice: an assembly has provenance, a wake supplies distributed causal structure, a detector is another assembly network, and a probability is only valid after a declared record channel earns it.
 
 ### Core Quantum Spine
 
-- [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
-- [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md): what a measurement event is at the ontological level.
-- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md): finite-time separatrix-crossing replacement for collapse.
-- [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
-- [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
+The core spine answers one reader question: when the quantum textbook says "state," "superposition," "collapse," "particle," or "statistics," what is the physical object doing in assembly language?
+
+- [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md): how the effective wave picture, metastability, and substrate interpretation fit together.
+- [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md): what a measurement event is once the apparatus is treated as physical.
+- [measurement-problem-and-collapse.md](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md): collapse re-read as finite-time separatrix crossing and record formation.
+- [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md): the wavefunction as effective basin-weight bookkeeping, not a free-standing object.
+- [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection before a record forms.
 - [fermi-dirac-and-bose-einstein-statistics.md](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell braid geometry transition.
 
 ### Correlation and No-Go Interfaces
+
+The second spine protects the theory from easy mistakes. Bell constraints, spin measurements, and no-go results are not optional philosophy; they are the places where a deterministic causal account must recover the same operational correlations without smuggling in an observer-level probability rule.
 
 - [entanglement-nonlocality.md](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md): pair-provenance account of nonlocal correlations, with Bell-level operational equivalence kept as a joint response-kernel closure target and black-hole connected geometry treated as a special horizon-interface case.
 - [bell-theorem.md](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md): Bell constraints, the full singlet joint-law residual, and the causal-delay interpretation within the theory.
 - [reality-quantum-causality.md](../../../../markdown/aaa/quantum/reality-quantum-causality.md): wider ontology and determinism framing for the quantum branch.
 
 ### Closure Ledgers
+
+The ledgers below name the recovery work that keeps the interpretation honest. Each ledger asks for one physical source of truth underneath the formal symbols, rather than one story for probabilities, another for records, and another for conservation.
 
 - **Born-rule basin-measure ledger:** [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [superposition-mechanism.md](../../../../markdown/aaa/philosophy-history/theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../../../../markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
 - **Same-measure conservation ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [wavefunction-ontology.md](../../../../markdown/aaa/quantum/wavefunction-ontology.md), and [Measurement Problem and Collapse](../../../../markdown/aaa/philosophy-history/theory-bridges/measurement-problem-and-collapse.md) require quantum probabilities, thermodynamic summaries, record persistence, and event-ledger closure to be pushforwards of one retained deterministic provenance record. A measurement channel cannot use one ensemble for Born weights, another for heating or recoil, and another for the persisted record.
@@ -210,7 +218,7 @@ This is the retained content of hidden-variable language, stripped of the mislea
 $$
 \Gamma_T
 =
-\left(\Gamma(t_0),\{\mathbf{x}_i(t),\mathbf{v}_i(t),q_i\}_{t\in[t_0,t_1]},\mathcal{K}_{\mathrm{app}}\right)
+\left(\Gamma(T_0),\{\mathbf X_i(T),\mathbf V_i(T),q_i\}_{T\in[T_0,T_1]},\mathcal{K}_{\mathrm{app}}\right)
 $$
 
 where $\mathcal{K}_{\mathrm{app}}$ is the apparatus kernel retained for the declared record channel. Quantum randomness is closed only if pushing $\Gamma_T$ through the deterministic flow yields the same record frequencies, restartability behavior, and thermodynamic ledger used by the effective probability description.
@@ -257,7 +265,7 @@ The distinction matters because "free will" is a philosophically loaded term wit
 #### Determinism in This Framework
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
-- Every architrino has a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ at every absolute time $t$
+- Every architrino has a definite position $\mathbf X_i(T)$ and velocity $\mathbf V_i(T)$ at every absolute time $T$
 - The master equation is **lawful**: given complete initial conditions, the future is fixed, with **deterministic multistability** at threshold regimes
 - **There is no ontological randomness**, no stochastic law at the substrate level, and no violation of causality
 
@@ -438,7 +446,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 **1) Collapse**
 - **QM formalism:** $\rho \rightarrow |n\rangle\langle n|$ (projection onto an eigenstate).
-- **Architrino micro‑dynamics:** The full microstate $\Gamma(t)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action‑like variable $J$ crosses a basin boundary.
+- **Architrino micro‑dynamics:** The full microstate $\Gamma(T)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action‑like variable $J$ crosses a basin boundary.
 - **Coarse‑graining map:** Define $C[\Gamma] = f$ and $\rho_{\mathrm{eff}}(f)$ as an average over fast phases (inner/middle binaries). “Collapse” corresponds to conditioning on a realized basin label.
 - **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history‑dependent hysteresis is expected.
 
@@ -450,7 +458,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 **3) Branching / Many‑Worlds**
 - **QM formalism:** $\sum_n c_n |n\rangle$ treated as coexisting branches.
-- **Architrino micro‑dynamics:** One realized trajectory $\Gamma(t)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
+- **Architrino micro‑dynamics:** One realized trajectory $\Gamma(T)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
 - **Coarse‑graining map:** A single micro‑trajectory maps to multiple coarse‑grained histories near a threshold boundary.
 - **Difference (in principle):** No ontic branching; the “tree” is a bookkeeping device for incomplete knowledge.
 
@@ -517,9 +525,9 @@ The framework explicitly separates the **ontic reality** of architrino trajector
 
 ### Ontological Status of the Wavefunction
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the wavefunction $\psi(\mathbf{x}, t)$ is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the standard comparison notation $\psi(\mathbf{x}, t)$ translates to an effective chart variable $\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$. It is not a fundamental physical field propagating in a high-dimensional configuration space. Instead, it is an **effective, coarse-grained epistemic tool** utilized by Physical Observers.
 
-The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf{x}_i(t)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
+The universe at the ontic level, as represented by the $\mathbb{U}_{\text{now}}$ universe-state perspective, consists of point-like architrinos executing definite trajectories $\mathbf X_i(T)$ in a 3D Euclidean void, interacting via a continuous superposition of causal wake surfaces. Because Physical Observers (assemblies) cannot access the exact microstate or the full path-history of the Noether sea, they must rely on statistical descriptions.
 
 This requires a two-layer use of the word superposition. Substrate superposition means linear addition of causal-wake contributions and accelerations; it is part of the deterministic dynamics. Quantum superposition of mutually exclusive outcomes is different: it is an effective branch envelope used by a Physical Observer before a record has selected a basin. A deterministic substrate can therefore reject ontic superposition of mutually exclusive macroscopic states without rejecting the wake addition that produces the effective landscape.
 
@@ -538,9 +546,9 @@ The standard phrase particle-wave duality is a comparison label, not native onto
 
 For a declared preparation and apparatus channel, the retained effective state should be read as a lossy projection of a substrate packet
 $$
-\Gamma_\theta(t)=\left(X_{\mathrm{asm}}(t),\mathcal{W}_\theta(t),Z_\theta(t)\right)
+\Gamma_\theta(T)=\left(\mathbf X_{\mathrm{asm}}(T),\mathcal{W}_\theta(T),Z_\theta(T)\right)
 $$
-where $X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\theta$ denotes the causal-wake/path-history data still relevant to the record channel, and $Z_\theta$ denotes retained Noether sea and apparatus-environment context. Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\theta$.
+where $\mathbf X_{\mathrm{asm}}$ denotes the localized assembly coordinates retained by the chart, $\mathcal{W}_\theta$ denotes the causal-wake/path-history data still relevant to the record channel, and $Z_\theta$ denotes retained Noether sea and apparatus-environment context. Localization and countable detector records belong primarily to the assembly and apparatus basin. Interference and phase transport belong primarily to unresolved wake history in $\mathcal{W}_\theta$.
 
 The double-slit lesson is therefore not that an ontic particle becomes a wave before becoming a particle again. The lesson is that a localized assembly can leave and receive distributed wake structure whose path history remains live until an apparatus creates a restartable record. If no which-path record has formed at the slit plane, the effective wavefunction must continue to carry the unresolved branch envelope. If a which-path apparatus forms a durable record, the record channel changes and interference is removed by apparatus coupling, not by an observer's act of looking.
 
@@ -576,7 +584,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the chart, the inner pr
 
 #### Representation and Decomposition Discipline
 
-The state-vector contract also fixes what may not be imported from the notation. A representation such as $\psi(\mathbf{x},t)$, $\psi(\mathbf{p},t)$, or $\psi(q_1,\ldots,q_N)$ is a coordinate choice on the effective state, not a direct inventory of substrate contents. A position-space chart is physically licensed only when $\theta$ includes a projection from deterministic assembly, causal-wake, and apparatus data to the corresponding position records. A configuration-space wavefunction for many coordinates is therefore not a new physical arena layered over the Euclidean void; it is an observer-level bookkeeping chart over possible record tuples.
+The state-vector contract also fixes what may not be imported from the notation. A standard comparison representation such as $\psi(\mathbf{x},t)$, $\psi(\mathbf{p},t)$, or $\psi(q_1,\ldots,q_N)$ is a coordinate choice on the effective state, not a direct inventory of substrate contents. The layer-explicit position-space version is $\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, with $x_{\mathrm{eff}}^i$ supplied by the declared observer chart. A position-space chart is physically licensed only when $\theta$ includes a projection from deterministic assembly, causal-wake, and apparatus data to the corresponding position records. A configuration-space wavefunction for many coordinates is therefore not a new physical arena layered over the Euclidean void; it is an observer-level bookkeeping chart over possible record tuples.
 
 The same rule applies to subsystem decomposition. Standard quantum mechanics often writes a composite channel as
 $$
@@ -617,49 +625,64 @@ The first term tests the effective operator or channel residual against the loop
 
 #### Density-Current Closure Target
 
-Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, define
+Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. In standard comparison form, one writes
 $$
-\rho_\psi(\mathbf{x},t)=|\psi(\mathbf{x},t)|^2,
+\rho_{\psi,\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})=|\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})|^2,
 \qquad
-\mathbf{J}_\psi(\mathbf{x},t)
+\mathbf{J}_{\psi,\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 =
 \frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
-\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right)
+\left(\psi_{\mathrm{std}}^*\nabla_{\mathrm{std}}\psi_{\mathrm{std}}-\psi_{\mathrm{std}}\nabla_{\mathrm{std}}\psi_{\mathrm{std}}^*\right)
 $$
-The standard benchmark is
+and
 $$
-\partial_t\rho_\psi+\nabla\cdot\mathbf{J}_\psi=0
+\partial_{t_{\mathrm{std}}}\rho_{\psi,\mathrm{std}}+\nabla_{\mathrm{std}}\cdot\mathbf{J}_{\psi,\mathrm{std}}=0
 $$
-This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(\mathbf{x},t)$ and $\mathbf{J}_{\mathrm{rec}}(\mathbf{x},t)$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
+For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, the layer-explicit target is
 $$
-\mathcal{R}_{\rho J}(W,T;\theta)
+\rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
+=|\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})|^2,
+\qquad
+J_{\psi,\mathrm{eff}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
+=
+\frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
+\gamma_{\mathrm{eff}}^{ij}\left(\psi_{\mathrm{eff}}^*\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}^*\right),
+$$
+$$
+\partial_{t_{\mathrm{eff}}}\rho_{\psi,\mathrm{eff}}
++\partial_{x_{\mathrm{eff}}^i}J_{\psi,\mathrm{eff}}^i=0.
+$$
+This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
+$$
+\mathcal{R}_{\rho J}(W,\mathcal T_{\mathrm{eff}};\theta)
 =
 \max\left(
-\frac{\sup_{t\in T}\|\rho_{\mathrm{rec}}(\cdot,t)-\rho_\psi(\cdot,t)\|_{L^1(W)}}{\varepsilon_\rho},
-\frac{\|\partial_t\rho_{\mathrm{rec}}+\nabla\cdot\mathbf{J}_{\mathrm{rec}}\|_{\mathcal{D}'(W\times T)}}{\varepsilon_{\mathrm{cont}}},
-\frac{\sup_{t\in T}\|\mathbf{J}_{\mathrm{rec}}(\cdot,t)-\mathbf{J}_\psi(\cdot,t)\|_{W^{-1,1}(W)}}{\varepsilon_J}
+\frac{\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}\|\rho_{\mathrm{rec}}(\cdot,t_{\mathrm{eff}})-\rho_{\psi,\mathrm{eff}}(\cdot,t_{\mathrm{eff}})\|_{L^1(W)}}{\varepsilon_\rho},
+\frac{\|\partial_{t_{\mathrm{eff}}}\rho_{\mathrm{rec}}+\nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\mathrm{rec}}\|_{\mathcal{D}'(W\times \mathcal T_{\mathrm{eff}})}}{\varepsilon_{\mathrm{cont}}},
+\frac{\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}\|\mathbf{J}_{\mathrm{rec}}(\cdot,t_{\mathrm{eff}})-\mathbf{J}_{\psi,\mathrm{eff}}(\cdot,t_{\mathrm{eff}})\|_{W^{-1,1}(W)}}{\varepsilon_J}
 \right)
 \le 1
 $$
 The first term checks Born density, the second checks local conservation for the derived record flow, and the third checks the standard probability-current benchmark. A model that matches $|\psi|^2$ only after allowing probability to disappear from one region and reappear elsewhere before a record has formed has not recovered Schrödinger continuity.
 
-The same target can be sharpened into a guidance-ratio test. Wherever $\rho_\psi>0$, the effective quantum velocity field is
+The same target can be sharpened into a guidance-ratio test. Wherever $\rho_{\psi,\mathrm{eff}}>0$, the effective quantum velocity field is
 $$
-\mathbf{v}_\psi(\mathbf{x},t)
+\mathbf{v}_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
-\frac{\mathbf{J}_\psi(\mathbf{x},t)}{\rho_\psi(\mathbf{x},t)}
+\frac{\mathbf{J}_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
+{\rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
 $$
 Let $\mathbf{v}_{\mathrm{rec}}$ be the velocity field obtained by projecting the deterministic assembly-flow current through the same record chart. The local guidance residual is
 $$
-\mathcal{R}_{\mathrm{guid}}(W,T;\theta)
+\mathcal{R}_{\mathrm{guid}}(W,\mathcal T_{\mathrm{eff}};\theta)
 =
 \frac{
-\sup_{t\in T}
+\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}
 \left\|
-\mathbf{v}_{\mathrm{rec}}(\cdot,t)
+\mathbf{v}_{\mathrm{rec}}(\cdot,t_{\mathrm{eff}})
 -
-\mathbf{v}_\psi(\cdot,t)
-\right\|_{L^1(W,\rho_\psi)}
+\mathbf{v}_{\psi,\mathrm{eff}}(\cdot,t_{\mathrm{eff}})
+\right\|_{L^1(W,\rho_{\psi,\mathrm{eff}})}
 }{\epsilon_v}
 \le 1
 $$
@@ -687,59 +710,64 @@ Any attempt by a Physical Observer to resolve the microstate of an assembly requ
 
 The free Gaussian wavepacket is the simplest observer-level benchmark for this claim. In standard quantum mechanics, a Gaussian packet minimizes the position-momentum uncertainty product and then disperses under free Schrödinger evolution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is therefore not merely to state $\Delta x\,\Delta p\ge\hbar/2$, but to recover the minimal packet as an effective envelope of deterministic path-history data.
 
-The standard wavepacket construction makes that benchmark more specific. A single plane wave is useful as an ideal momentum eigenstate, but it is not a localized, normalizable packet. The observer-level packet must be built by superposing a spread of wave numbers. Narrowing the spatial envelope broadens the retained $k$-support, and the standard relation $p=\hbar k$ converts that Fourier constraint into the position-momentum uncertainty relation. A Gaussian amplitude distribution is the minimum case; other amplitude distributions increase the product, and free evolution spreads the packet. The recovery target is therefore a four-part benchmark: normalization, packet-center transport at the effective group velocity, the covariance tradeoff between position and momentum, and the standard free-packet spreading law. None of these steps imports a matter wave as substrate ontology; each is a required observer-level consequence of the extracted path-history envelope. The first residual form of that benchmark is:
+The standard wavepacket construction makes that benchmark more specific. A single plane wave is useful as an ideal momentum eigenstate, but it is not a localized, normalizable packet. The observer-level packet must be built by superposing a spread of wave numbers. Narrowing the spatial envelope broadens the retained $k$-support, and the standard relation $p=\hbar k$ converts that Fourier constraint into the position-momentum uncertainty relation. A Gaussian amplitude distribution is the minimum case; other amplitude distributions increase the product, and free evolution spreads the packet. The recovery target is therefore a four-part benchmark: normalization, packet-center transport at the effective group velocity, the covariance tradeoff between position and momentum, and the standard free-packet spreading law. None of these steps imports a matter wave as substrate ontology; each is a required observer-level consequence of the extracted path-history envelope. In layer-explicit effective notation, the first residual form of that benchmark is:
 $$
-\Delta_x(t)\Delta_p(t)\ge\frac{\hbar_{\mathrm{eff}}}{2},
+\Delta_{x,\mathrm{eff}}(t_{\mathrm{eff}})
+\Delta_{p,\mathrm{eff}}(t_{\mathrm{eff}})
+\ge\frac{\hbar_{\mathrm{eff}}}{2},
 \qquad
-\left|\Delta_x(0)\Delta_p(0)-\frac{\hbar_{\mathrm{eff}}}{2}\right|
+\left|\Delta_{x,\mathrm{eff}}(t_{\mathrm{eff},0})
+\Delta_{p,\mathrm{eff}}(t_{\mathrm{eff},0})
+-\frac{\hbar_{\mathrm{eff}}}{2}\right|
 \le
 \varepsilon_{\mathrm{G}}
 $$
 For a free retained chart, the same packet must move and spread with the standard effective kinematics,
 $$
 \left\|
-\frac{d}{dt}\langle\mathbf{x}\rangle_\theta(t)
+\frac{d}{dt_{\mathrm{eff}}}
+\langle x_{\mathrm{eff}}^i\rangle_\theta(t_{\mathrm{eff}})
 -
-\frac{\langle\mathbf{p}\rangle_\theta(t)}{m_{\mathrm{eff}}}
+\frac{\langle p_{\mathrm{eff}}^i\rangle_\theta(t_{\mathrm{eff}})}{m_{\mathrm{eff}}}
 \right\|
 \le
 \varepsilon_v,
 \qquad
-\sup_{t\in T}
+\sup_{t_{\mathrm{eff}}\in\mathcal T_{\mathrm{eff}}}
 \frac{
 \left|
-\Delta_x^{2,\mathbb{A}\mathbb{A}\mathbb{A}}(t)
+\Delta_{x,\mathrm{eff}}^{2,\mathbb{A}\mathbb{A}\mathbb{A}}(t_{\mathrm{eff}})
 -
-\Delta_x^{2,\mathrm{QM}}(t)
+\Delta_{x,\mathrm{eff}}^{2,\mathrm{QM}}(t_{\mathrm{eff}})
 \right|
 }{\varepsilon_{\mathrm{spread}}}
 \le 1
 $$
-Here $\Delta_x^{2,\mathrm{QM}}(t)$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
+Here $\Delta_{x,\mathrm{eff}}^{2,\mathrm{QM}}(t_{\mathrm{eff}})$ is the standard Gaussian spreading benchmark for the same initial covariance. If the derived envelope violates this bound in ordinary free-packet regimes, then the uncertainty explanation has remained qualitative rather than becoming a quantum closure.
 
-The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained chart with effective momentum
+The WKB comparison supplies the corresponding semi-classical envelope test. For a one-dimensional retained effective chart with effective momentum
 $$
-p_\theta(x;E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x)\right)}
+p_\theta(x_{\mathrm{eff}};E)=\sqrt{2m_{\mathrm{eff}}\left(E-V_{\mathrm{eff}}(x_{\mathrm{eff}})\right)}
 $$
 the standard oscillatory benchmark away from turning points is
 $$
-\psi_{\mathrm{WKB}}(x)
+\psi_{\mathrm{WKB}}(x_{\mathrm{eff}})
 \sim
-\frac{1}{\sqrt{p_\theta(x;E)}}
-\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^x p_\theta(x';E)\,dx'\right)
+\frac{1}{\sqrt{p_\theta(x_{\mathrm{eff}};E)}}
+\exp\!\left(\pm\frac{i}{\hbar_{\mathrm{eff}}}\int^{x_{\mathrm{eff}}} p_\theta(x'_{\mathrm{eff}};E)\,dx'_{\mathrm{eff}}\right)
 $$
 with validity only when the effective wavelength varies slowly across one wavelength. A closure packet should therefore report a WKB-envelope residual on the declared access interval $W$:
 $$
 \mathcal{R}_{\mathrm{WKB}}(W,E;\theta)
 =
 \max\left(
-\frac{\sup_{x\in W_{\mathrm{osc}}}\left|\rho_{\mathrm{rec}}(x)-C_E/p_\theta(x;E)\right|}{\varepsilon_{\mathrm{amp}}},
-\frac{\sup_{x\in W_{\mathrm{osc}}}\left|\partial_x\varphi_{\mathrm{rec}}(x)-p_\theta(x;E)/\hbar_{\mathrm{eff}}\right|}{\varepsilon_{\varphi}},
-\frac{\sup_{x\in W_{\mathrm{turn}}}\left|\mathcal{A}_{\mathrm{turn}}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\mathcal{A}_{\mathrm{Airy}}\right|}{\varepsilon_{\mathrm{turn}}}
+\frac{\sup_{x_{\mathrm{eff}}\in W_{\mathrm{osc}}}\left|\rho_{\mathrm{rec}}(x_{\mathrm{eff}})-C_E/p_\theta(x_{\mathrm{eff}};E)\right|}{\varepsilon_{\mathrm{amp}}},
+\frac{\sup_{x_{\mathrm{eff}}\in W_{\mathrm{osc}}}\left|\partial_{x_{\mathrm{eff}}}\varphi_{\mathrm{rec}}(x_{\mathrm{eff}})-p_\theta(x_{\mathrm{eff}};E)/\hbar_{\mathrm{eff}}\right|}{\varepsilon_{\varphi}},
+\frac{\sup_{x_{\mathrm{eff}}\in W_{\mathrm{turn}}}\left|\mathcal{A}_{\mathrm{turn}}^{\mathbb{A}\mathbb{A}\mathbb{A}}-\mathcal{A}_{\mathrm{Airy}}\right|}{\varepsilon_{\mathrm{turn}}}
 \right)
 \le 1
 $$
-The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x)$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\theta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
+The final term is the turning-point matching check: near $E=V_{\mathrm{eff}}(x_{\mathrm{eff}})$ the effective chart must pass through the Airy-function benchmark rather than pretending the WKB expression remains valid at $p_\theta=0$. This makes the semi-classical wavefunction comparison a falsifiable envelope recovery, not a visual analogy.
 
 For a metastable barrier, the same comparison gives a tunneling-action benchmark. If $x_0$ and $x_1$ are the effective turning points bounding the forbidden region, the standard exponent is
 $$
@@ -1049,7 +1077,9 @@ For the broader methodology of not mistaking successful formal control for settl
 
 ### Purpose and Scope
 
-This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the ontological level. It is narrower than the full Born-rule program. The aim is to state the minimum physical architecture:
+This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the ontological level. It is narrower than the full Born-rule program. The aim is to say what must physically happen before the observer-level sentence "a measurement occurred" is allowed.
+
+The short answer is that a measurement is not an extra rule added to the equations. It is an ordinary physical interaction that becomes special because it crosses a threshold, amplifies the result, and leaves a durable record. The chapter therefore defines the minimum physical architecture:
 
 - what counts as the system,
 - what counts as the apparatus,
@@ -1060,7 +1090,7 @@ This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A
 
 Measurement is not a primitive axiom and not a special observer intervention. It is a physical interaction between assemblies that drives a metastable target across a separatrix and then locks the resulting branch into a persistent macroscopic record.
 
-The ontology is therefore:
+The ontology is therefore a coupled record channel:
 
 - **system:** an assembly or coupled assembly-subsystem with reduced state $X$,
 - **apparatus:** another assembly network engineered so that its wake structure couples strongly to a chosen coordinate of $X$,
@@ -1068,11 +1098,13 @@ The ontology is therefore:
 - **measurement outcome:** the attractor basin into which the coupled system settles,
 - **record:** a durable asymmetry in apparatus/environment variables that can be re-read without reconstructing the original metastable state.
 
-The apparatus configuration is part of the record channel, not external decoration. In a concrete detector model, the geometry, coupling settings, thresholds, and readout coarse-graining are collected into an apparatus record kernel $\mathcal{K}_A$, so the separatrix and record variable are really $\Sigma_{\mathcal{K}_A}(X,A)=0$ and $R_{\mathcal{K}_A}(A)$. The unindexed $\Sigma$ and $R$ below are shorthand after the channel is fixed. This does not make the observer a creator of the target state; it means that a record is a coupled system-apparatus event with declared physical coupling.
+The apparatus configuration is part of the record channel, not external decoration. In a concrete detector model, the geometry, coupling settings, thresholds, and readout coarse-graining are collected into an apparatus record kernel $\mathcal{K}_A$, so the separatrix and record variable are really $\Sigma_{\mathcal{K}_A}(X,A)=0$ and $R_{\mathcal{K}_A}(A)$. The unindexed $\Sigma$ and $R$ below are shorthand after the channel is fixed. This does not make the observer a creator of the target state. It means that a record is a coupled system-apparatus event with declared physical coupling.
 
 ### No Heisenberg Cut
 
 The ontology rejects a fundamental system-observer split.
+
+The reason is direct. If the apparatus is made of assemblies, then it cannot sit outside physics while the target remains inside physics. The apparatus has its own causal wakes, thresholds, uncontrolled degrees of freedom, and Noether sea coupling. A measurement account must therefore include the apparatus in the same physical flow as the target.
 
 At the substrate level there are only:
 
@@ -1086,11 +1118,11 @@ What standard quantum mechanics calls a "measurement" is therefore just a specia
 2. amplification into many apparatus degrees of freedom,
 3. dissipation into the surrounding Noether sea so that coherent reversal becomes practically inaccessible.
 
-This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics below produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
+This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
 
 Expectation values, covariance matrices, correlation functions, and decoherence rates obey the same rule. They are legitimate observer-level summaries only after the target, apparatus, environment, access region, and record channel have been declared. In closed-system, cosmology, or quantum-gravity comparisons, an averaged quantity is therefore not automatically a statement about what the substrate is doing; it is a data product that must be tied back to $\Gamma_{\mathrm{tot}}$, the retained boundary data, and the record criteria below.
 
-The same discipline applies to ordinary measurement-rule language. A statement such as "measure an observable and obtain outcome $k$ with probability $p_k$" is not yet a substrate closure. It must be unpacked into a declared record packet
+The same discipline applies to ordinary measurement-rule language. A statement such as "measure an observable and obtain outcome $k$ with probability $p_k$" is a useful laboratory instruction, but it is not yet a substrate closure. It must be unpacked into a declared record packet
 $$
 (\mathcal{K}_A,\mathcal{Q},W,T,\{R_k\},\mu_{*,T})
 $$
@@ -1098,7 +1130,7 @@ whose apparatus kernel, coarse-graining, access region, record window, record cl
 $$
 p_k(\theta)=\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
 $$
-is valid only after a branch has earned a record. A record is not every formal correlation, only a branch that closes the full physical transition:
+and is valid only after a branch has earned a record. A record is not every formal correlation. It is a branch that closes the full physical transition:
 
 $$
 \mathsf R_\theta(\gamma_i,T)
@@ -1119,7 +1151,7 @@ p_k^{\mathrm{rec}}(\theta)=
 {\sum_j\mu_{*,T}\!\left(\pi^{-1}(R_j)\cap \mathsf R_\theta^{-1}(1)\right)}
 $$
 
-not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
+not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel. The formal rule survives; the unsupported cut between quantum target and classical apparatus does not.
 
 #### Laboratory Limit and Closed Cosmology
 
@@ -1191,7 +1223,7 @@ $$
 $$
 A differential Lindblad comparison is admissible only after the environment correlation time $\tau_{\mathrm{env}}$ is short compared with the retained record window. In that regime the benchmark generator has the form
 $$
-\partial_t\rho
+\partial_{t_{\mathrm{eff}}}\rho
 =
 -\frac{i}{\hbar}[H,\rho]
 +
@@ -1210,8 +1242,8 @@ $$
 =
 \max\left(
 \frac{\tau_{\mathrm{env}}}{T_{\mathrm{rec}}},
-\frac{\left\|\mathcal{T}_{t_0\to t_2}^{\mathcal{Q}}-\mathcal{T}_{t_1\to t_2}^{\mathcal{Q}}\mathcal{T}_{t_0\to t_1}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
-\frac{\left\|\partial_t\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
+\frac{\left\|\mathcal{T}_{t_{\mathrm{eff},0}\to t_{\mathrm{eff},2}}^{\mathcal{Q}}-\mathcal{T}_{t_{\mathrm{eff},1}\to t_{\mathrm{eff},2}}^{\mathcal{Q}}\mathcal{T}_{t_{\mathrm{eff},0}\to t_{\mathrm{eff},1}}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
+\frac{\left\|\partial_{t_{\mathrm{eff}}}\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
 \right)
 \le 1
 $$
@@ -1948,13 +1980,15 @@ This comparison must be kept separate from passive external-field atom-interfero
 In that comparison, two alternative mass distributions $\rho_1$ and $\rho_2$ are assigned a gravitational self-energy scale
 $$
 \Delta E_G \sim \frac{G}{2}\int\!\!\int
-\frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
-{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y
+\frac{(\rho_1-\rho_2)(x_{\mathrm{eff}}^i)(\rho_1-\rho_2)(y_{\mathrm{eff}}^i)}
+{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}\,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 $$
 and a corresponding lifetime estimate
 $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
+
+The layer-explicit effective-metric comparison replaces the displayed integration variables by $x_{\mathrm{eff}}^i$ and $y_{\mathrm{eff}}^i$ and computes the mass-density histories from the declared branch projection before interpreting $\Delta E_G$.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt fundamental gravitational collapse or a stochastic metric. The benchmark is useful because large-mass interferometry and Bose-Einstein-condensate proposals ask whether spatial superpositions involving roughly $10^9$ to $10^{10}$ atoms remain coherent long enough to distinguish ordinary environmental decoherence, finite-time threshold resolution, and any gravity-driven collapse model. For this chapter, the comparison target is therefore not to derive $\tau_G$ as an ontological law, but to show that the $\mathbb{A}\mathbb{A}\mathbb{A}$ separatrix-time estimate for massive-superposition records remains quantitatively distinguishable from, or explicitly bounded against, the Penrose-Diosi scale.
 
@@ -1996,20 +2030,20 @@ A measurement model that fits Born weights only by changing the thermodynamic en
 
 Massive-superposition tests also create a second external benchmark: whether the gravitational or effective-metric readout of two branches can carry which-path information. This comparison preserves the observable pressure without adopting a stochastic-metric ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the effective metric is an observer-level reconstruction, so a gravitational readout becomes measurement-relevant only when a Physical Observer apparatus can turn the branch-dependent response into an autonomous record.
 
-Let $\rho_1(\mathbf{x},t)$ and $\rho_2(\mathbf{x},t)$ be two alternative branch-level mass-density histories, and let $h_A(t;\rho_k,\theta)$ denote the detector response channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
+Let $\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be two alternative branch-level mass-density histories, and let $h_A(t_{\mathrm{eff}};\rho_k,\theta)$ denote the detector response channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 =
-h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)
+h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
-If $N_{AB}(t,t')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T$, the gravitational distinguishability diagnostic is
+If $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T$, the gravitational distinguishability diagnostic is
 $$
 \mathcal{D}_{\mathrm{grav}}(T;\theta)
 =
 \int_0^T\!\!\int_0^T
-\Delta h_A(t)\,
-N^{-1}_{AB}(t,t')\,
-\Delta h_B(t')\,dt\,dt'
+\Delta h_A(t_{\mathrm{eff}})\,
+N^{-1}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')\,
+\Delta h_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 $$
 
 The comparison criterion is:
@@ -2024,60 +2058,60 @@ The covariance $N_{AB}$ is not an ontological randomness postulate in this chapt
 
 A first calculation can be posed without choosing a full collapse interpretation. Let a target mass $M$ have two branch-level center histories
 $$
-\mathbf{X}_{\pm}(t)
+x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff}})
 =
-\mathbf{X}_0(t)\pm\frac{1}{2}\mathbf{d}(t)
+x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})\pm\frac{1}{2}d_{\mathrm{eff}}^i(t_{\mathrm{eff}})
 $$
 with branch densities
 $$
-\rho_{\pm}(\mathbf{x},t)
+\rho_{\pm}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
-M\,\delta_{\eta}\!\left(\mathbf{x}-\mathbf{X}_{\pm}(t)\right)
+M\,\delta_{\eta}\!\left(x_{\mathrm{eff}}^i-x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff}})\right)
 +
-\rho_{\mathrm{app}}(\mathbf{x},t)
+\rho_{\mathrm{app}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 where $\rho_{\mathrm{app}}$ is the shared apparatus and environmental mass density. For a differential gravity readout channel $A$, define
 $$
-h_A(t;\rho_{\pm},\theta)
+h_A(t_{\mathrm{eff}};\rho_{\pm},\theta)
 =
 e_A^i
 \left[
-a_i^{\mathrm{eff}}(\mathbf{y}_A,t;\rho_{\pm},\theta)
+a_i^{\mathrm{eff}}(y_{A,\mathrm{eff}}^i,t_{\mathrm{eff}};\rho_{\pm},\theta)
 -
-a_i^{\mathrm{eff}}(\mathbf{y}_0,t;\rho_{\pm},\theta)
+a_i^{\mathrm{eff}}(y_{0,\mathrm{eff}}^i,t_{\mathrm{eff}};\rho_{\pm},\theta)
 \right]
 $$
-where $\mathbf{y}_A$ and $\mathbf{y}_0$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
+where $y_{A,\mathrm{eff}}^i$ and $y_{0,\mathrm{eff}}^i$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
 
 In the weak, slowly varying limit, the branch difference has the schematic tidal form
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 \simeq
 G_{\mathrm{eff}}(\theta)M\,e_A^i
 \left[
-D_{ij}(\mathbf{y}_A-\mathbf{X}_0)
+D_{ij}(y_{A,\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i)
 -
-D_{ij}(\mathbf{y}_0-\mathbf{X}_0)
+D_{ij}(y_{0,\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i)
 \right]
-d^j(t)
+d_{\mathrm{eff}}^j(t_{\mathrm{eff}})
 $$
 with
 $$
-D_{ij}(\mathbf{R})
+D_{ij}(R_{\mathrm{eff}}^i)
 =
-\frac{3R_iR_j-\|\mathbf{R}\|^2 h_{ij}}{\|\mathbf{R}\|^5}
+\frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 h_{ij}}{\|R_{\mathrm{eff}}^i\|^5}
 $$
-If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t,t')=S_{AB}\delta(t-t')$, then
+If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
 $$
 \mathcal{D}_{\mathrm{grav}}(T;\theta)
 \simeq
 \int_0^T
-\Delta h_A(t)\,
+\Delta h_A(t_{\mathrm{eff}})\,
 S^{-1}_{AB}\,
-\Delta h_B(t)\,dt
+\Delta h_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
-This toy model turns the benchmark into a simulation target. The required inputs are $M$, $\mathbf{d}(t)$, $\mathbf{X}_0(t)$, detector geometry $(\mathbf{y}_A,\mathbf{y}_0,e_A)$, noise matrix $S_{AB}$, coherence time $T$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
+This toy model turns the benchmark into a simulation target. The required inputs are $M$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, detector geometry $(y_{A,\mathrm{eff}}^i,y_{0,\mathrm{eff}}^i,e_A)$, noise matrix $S_{AB}$, coherence time $T$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
 
 The observer-level covariance decomposition is owned by [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md#boundary-wake-covariance-scaffold). The concrete validation scaffold is [Massive-Superposition Gravity Validation Packet](../../../../markdown/aaa/validation/massive-superposition-gravity.md).
 
@@ -2116,9 +2150,13 @@ for real record-forming interactions, even if that time becomes extremely short 
 
 ## Algorithmic Resonance
 
+Quantum algorithms are usually introduced as operations on abstract state vectors. This page asks the implementation question: what physical assembly network could keep those effective state-vector operations coherent long enough for the algorithm to work? The circuit diagram by itself is observer-level bookkeeping; the underlying claim must name carriers, couplings, record channels, propagation delays, and the Noether sea conditions that keep the basin stable.
+
 ### Macroscopic Assembly Coherence
 
-This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify which physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
+This note treats quantum algorithmic speedup as a demanding coherence problem for many coupled assemblies. The immediate aim is not to rederive Shor's algorithm from the master equation. It is to identify the physical constraints a future derivation must satisfy if an effective quantum register is to remain coherent across many controlled operations.
+
+The useful picture is simple. A register is a calibrated physical channel that lets many assemblies share a controlled phase and record structure. It behaves like a quantum register only while the apparatus keeps those assemblies inside the intended basin and prevents uncontrolled Noether sea coupling from turning phase information into an ordinary record or heat channel.
 
 - **Ensemble phase-locking:** The closure problem is to maintain non-Markovian path-history coherence across a macroscopic array of Noether braid assemblies.
 - **Noether sea context:** The local Noether sea supplies the causal-wake background in which register-scale interference must remain stable. Any cavity analogy should be read as an effective description of bounded wake superposition, not as a new substrate ontology.
@@ -2126,7 +2164,9 @@ This note treats quantum algorithmic speedup as a demanding coherence problem fo
 
 ### The Quantum Fourier Transform as Physical Interference
 
-The Quantum Fourier Transform is the natural comparison point because it converts periodic structure into a sharply concentrated observer-level output. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, the corresponding closure target is to show that delayed causal-wake superposition can produce the same basin-weight concentration in a controlled register.
+The Quantum Fourier Transform is the natural comparison point because it converts periodic structure into a sharply concentrated observer-level output. In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, the corresponding closure target is concrete: delayed causal-wake superposition must concentrate basin weight in the same places where the standard algorithm concentrates amplitude.
+
+That statement keeps the mathematics and the hardware tied together. The comparison is not merely that both stories use phase. The comparison is that a physical register must create the same constructive and destructive record channels that the abstract transform describes.
 
 - **Wake superposition:** The physical sum of delayed causal-wake contributions $\sum V(t_0)$ within the macroscopic assembly.
 - **Destructive interference:** Cancellation of opposing electrino/positrino fluxes for non-periodic path histories, suppressing the corresponding dynamical trajectories.
@@ -2141,12 +2181,14 @@ f(x)=a^x\bmod N
 $$
 is implemented by controlled assembly couplings rather than by abstract gate labels alone.
 
+This is where implementation cannot be skipped. The standard algorithm may treat modular exponentiation as a reversible operation in a circuit. The assembly account must say which physical carriers are coupled, how long the coupling remains coherent, which causal wakes carry the interaction, and which apparatus record confirms that the operation actually entered the intended channel.
+
 - **Hamiltonian mapping:** Translate the modular operation into a sequence of specific scattering events, coupling windows, or topological torques between the input and output registers.
 - **Entangled evaluation:** Show how strict orbital phase dependencies between those registers reproduce the effective entangled state used by the standard algorithm.
 
 ### Period Extraction (Shor's Algorithm)
 
-The full period-extraction pipeline can be stated as a sequence of closure targets:
+The full period-extraction pipeline can be stated as a sequence of closure targets. Each step has an observer-level name and a physical implementation burden:
 
 1. **Initialization:** Prepare Register 1 in the effective uniform precessional state.
 2. **Evaluation:** Apply the modular-exponentiation coupling sequence without losing register coherence.
@@ -2155,15 +2197,15 @@ The full period-extraction pipeline can be stated as a sequence of closure targe
 
 ### Falsifiability and Scaling Limits
 
-This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence, but architecture-dependent deviations from ideal unitary behavior in large quantum processors.
+This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence. It is architecture-dependent deviation from ideal unitary behavior in large quantum processors.
 
 For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor is
 $$
 \tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_f}+\tau_{\mathrm{settle}}
 $$
-Inherited pair provenance is a separate case: it may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
+Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
-Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model; it is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
+Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model. The comparison is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
 $$
 \tau_{\mathrm{gate}},
 \qquad
@@ -2181,11 +2223,11 @@ with the additional requirement that the correction operation closes its energy,
 
 ## Fermi-Dirac & Bose-Einstein Statistics
 
-This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. Its purpose is not to replace the standard counting rules at the observer level. Its purpose is to identify the assembly-level geometry that should determine which counting rule an effective excitation obeys once spin-statistics closure is derived.
+This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. The standard counting rules are not being replaced at the observer level. The question is what physical assembly geometry makes those counting rules appear.
 
-The working hypothesis is direct: the transition between Fermi-Dirac and Bose-Einstein behavior is controlled by the oblation of nested shell braid orbits. A fully three-dimensional nested shell braid envelope supplies the candidate basis for exclusion-like packing. A strongly oblated, effectively two-dimensional orbital support opens the candidate coherent shared-state regime associated with Bose-Einstein behavior.
+The working hypothesis is direct. Fermi-Dirac behavior belongs to assemblies whose nested shell braid support remains a genuine three-dimensional exclusion volume. Bose-Einstein behavior belongs to channels whose support has become strongly oblated into an effectively two-dimensional coherent mode. The same family of geometry is being used in two different regimes: volumetric packing on one side, shared phase-compatible support on the other.
 
-This hypothesis is downstream of the ordered-frame spinor program in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the fermionic exchange sign or the spin-statistics connection.
+That is only the geometry half of the story. The fermionic exchange sign still depends on the ordered-frame spinor program in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the exchange phase or the full spin-statistics connection.
 
 ### Standard Observer-Level Roles
 
@@ -2193,7 +2235,7 @@ In standard quantum mechanics, Fermi-Dirac statistics apply to fermions. They en
 
 At the observer level, $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover those rules. Electrons, quarks, and neutrino-like matter assemblies must behave as fermions in the regimes where ordinary matter is stable. Photon-like and other bosonic channel assemblies must allow coherent occupation and field-like superposition.
 
-The substrate question is: what assembly geometry makes those two statistical packages appear?
+The substrate question is simple to state: what makes one effective excitation behave like an object that excludes same-state neighbors, while another behaves like a shared coherent channel?
 
 The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
 
@@ -2201,9 +2243,9 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 The relevant object is the nested shell braid described in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md).
 
-In the low-apparent-energy matter regime, the three nested binaries maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
+In the low-apparent-energy matter regime, the nested shell braid support rows maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
-This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion.
+This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion: another same-channel assembly cannot be inserted into the same effective state without disturbing the retained branch.
 
 The good news for the pressure story is that this is not an alien mechanism. Electron degeneracy already teaches the observer-level lesson: when a population carries an exclusion rule, compression does not merely make the objects closer together; it changes the available state volume and produces a pressure response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same logic is pushed down one level. Noether braids have oblate spheroidal exclusion envelopes, so dense packing should produce an effective packing pressure before the language of a smooth continuum equation of state is introduced.
 
@@ -2212,6 +2254,8 @@ That statement has a controlled burden. The exclusion envelope can supply the ge
 ### Fermi-Dirac Regime: 3D Exclusion
 
 Fermi-Dirac behavior corresponds to nested shell braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+
+In plain terms, the exclusion is not a command written onto a point particle. It is the cost of trying to make two retained assembly ledgers occupy one record-facing state while their wake histories, branch closures, and exclusion envelopes still need separate room.
 
 The exclusion is not a hard material wall. It is a path-history and wake-geometry obstruction:
 
@@ -2239,6 +2283,8 @@ In the pullback notation of [Angular Momentum and Spin](../../../../markdown/aaa
 ### Bose-Einstein Regime: 2D Coherence
 
 Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell braid envelope is somewhat flattened. Ordinary nested shell braids are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+
+In plain terms, the channel stops acting like many separate volumetric packages and starts acting like a shared coherent support. Multiple excitations can then be counted as occupying the same effective state because the physical support is phase-compatible rather than volume-exclusive.
 
 In that limit, the dominant motion is organized by a shared plane, phase channel, or coaxial sheet-like support. The assembly no longer presents the same volumetric exclusion envelope to nearby same-channel excitations. Multiple excitations can then occupy one coherent effective state because their assembly-level support is phase-compatible rather than volume-exclusive.
 

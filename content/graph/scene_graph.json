@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 595,
+      "nodes": 596,
       "edges": 1358,
       "scenes": 382,
       "markdownIndexes": 0,
-      "markdownDocs": 196,
+      "markdownDocs": 197,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -492,7 +492,7 @@
     },
     {
       "id": "fermions__color_charge_su3",
-      "name": "Color Charge SU3",
+      "name": "Color Charge SU(3)",
       "path": "content/scenes/assemblies/color_charge_su3.json",
       "nodeType": "scene"
     },
@@ -2328,7 +2328,7 @@
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene"
     },
@@ -2774,6 +2774,12 @@
       "id": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "name": "Cosmology Ontology",
       "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "name": "Cosmology Reconstruction",
+      "path": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -4144,7 +4150,7 @@
       "nodeId": "scene:content/scenes/assemblies/color_charge_su3.json",
       "nodeType": "scene",
       "id": "fermions__color_charge_su3",
-      "name": "Color Charge SU3",
+      "name": "Color Charge SU(3)",
       "path": "content/scenes/assemblies/color_charge_su3.json",
       "searchTarget": "content/scenes/assemblies/color_charge_su3.json",
       "implicit": false
@@ -6907,7 +6913,7 @@
       "nodeId": "scene:content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "nodeType": "scene",
       "id": "validation_simulations__sim_metric_observer__sim_hydrogen_gamma_n_spectral_row_toy_scan",
-      "name": "Hydrogen Gamma_N Spectral Coefficient Row Toy Scan",
+      "name": "Hydrogen Γ_N Spectral Coefficient Row Toy Scan",
       "path": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "searchTarget": "content/scenes/validation/sim_hydrogen_gamma_n_spectral_row_toy_scan.json",
       "implicit": false
@@ -7558,6 +7564,15 @@
       "name": "Cosmology Ontology",
       "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
       "searchTarget": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "name": "Cosmology Reconstruction",
+      "path": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "searchTarget": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
       "implicit": false
     },
     {

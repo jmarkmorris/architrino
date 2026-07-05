@@ -1,5 +1,9 @@
 # Causal Action Functional
 
+This chapter explains how action-like scalar summaries are allowed to enter a delayed, receiver-normal dynamics. The Master Equation remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
+
+The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, source-normal denominator, receiver-normal numerator, and receiver-normal strength. Otherwise the statistic has lost the causal information that made the branch physical.
+
 ## Problem Statement and Goal
 
 This chapter gives the action-functional side of the canonical receiver-normal Master EOM. Its
@@ -10,43 +14,43 @@ receiver-normal strength.
 
 The active branch strength is
 $$
-W_{ij}^{\mathrm{rec}}(t;t_0)
+W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 =
 \left|
-\frac{D_{t,ij}(t;t_0)}{D_{s,ij}(t;t_0)}
+\frac{D_{T,ij}(T;T_{\mathrm{em}})}{D_{s,ij}(T;T_{\mathrm{em}})}
 \right|,
 $$
 with
 $$
 D_{s,ij}
 =
-c_f-\mathbf v_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0),
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}}),
 \qquad
-D_{t,ij}
+D_{T,ij}
 =
-c_f-\mathbf v_i(t)\cdot\hat{\mathbf r}_{ij}(t;t_0).
+c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}}).
 $$
 
 A branch record that contains only $D_s$ is incomplete for current force/action
 use. $D_s$ remains the source-normal transversality denominator for root
 existence, caustic routing, and inactive-gap diagnostics. Force, action, power,
-wake-history charge, mass-response, and conservation rows require $D_t$ on the
+wake-history charge, mass-response, and conservation rows require $D_T$ on the
 same retained record.
 
 ## Core Functional Definitions
 
 On a retained chart $\mathfrak B$ with active causal roots
-$t_0\in\mathcal C_{ij}(t)$, the receiver-normal scalar branch statistic is
+$T_{\mathrm{em}}\in\mathcal C_{ij}(T)$, the receiver-normal scalar branch statistic over a native-time window $T_{\mathrm{win}}$ is
 $$
 \bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B]
 =
-\frac{1}{T}
-\int_0^T
+\frac{1}{T_{\mathrm{win}}}
+\int_0^{T_{\mathrm{win}}}
 \sum_{i,j}
-\sum_{t_0\in\mathcal C_{ij}(t)}
-\frac{W_{ij}^{\mathrm{rec}}(t;t_0)}
-{r_{ij}^2(t;t_0)+\epsilon_c^2}
-\,dt.
+\sum_{T_{\mathrm{em}}\in\mathcal C_{ij}(T)}
+\frac{W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{r_{ij}^2(T;T_{\mathrm{em}})+\epsilon_c^2}
+\,dT.
 $$
 
 This is a scalar statistic, not the vector Master EOM itself. It keeps the same
@@ -72,9 +76,9 @@ until the vector residuals close.
 
 The causal root locus is defined by
 $$
-g_{ij}(t,t_0)
+g_{ij}(T,T_{\mathrm{em}})
 =
-\|\mathbf x_i(t)-\mathbf x_j(t_0)\|-c_f(t-t_0)=0.
+\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})=0.
 $$
 
 On a simple retained root, $D_s\ne0$ supplies the local inverse-function
@@ -109,7 +113,7 @@ $$
 This notation records signed causal-locus crossings or linkages in the retained
 record. It does not supply force strength. Any use of $Wr_c$ in spin,
 chirality, confinement, or horizon-interface arguments must also state the
-branch record on which $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are available.
+branch record on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
 
 ## Circular Benchmark as a Branch-Count Theorem
 
@@ -124,11 +128,11 @@ A current circular benchmark must emit:
 | --- | --- |
 | retained roots | partner/self labels and windows |
 | $D_s$ | nonzero denominator floor or declared caustic route |
-| $D_t$ | receiver-normal numerator interval |
+| $D_T$ | receiver-normal numerator interval |
 | $W^{\mathrm{rec}}$ | same-record branch strength interval |
 | vector residual | radial and tangential Master EOM residuals |
 | scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
-| negative control | fail-closed result when $D_t$ is absent or mismatched |
+| negative control | fail-closed result when $D_T$ is absent or mismatched |
 
 Until those rows exist, circular material is not evidence for action closure.
 
@@ -160,7 +164,7 @@ A branch certificate that consumes this chapter must report:
 | Certificate row | Required content |
 | --- | --- |
 | branch identity | retained roots, inactive gaps, finite memory |
-| receiver-normal strength | same-box $D_s$, $D_t$, and $W^{\mathrm{rec}}$ |
+| receiver-normal strength | same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ |
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
 | Noether pullback | energy, momentum, and angular-momentum wake-history rows |
@@ -175,6 +179,6 @@ The current action-functional lane is a receiver-normal rebuild target. It keeps
 causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete receiver-normal branch records.
 The next useful mathematical artifact is one retained branch packet
-that binds root topology, $D_s$, $D_t$, $W^{\mathrm{rec}}$, vector residuals,
+that binds root topology, $D_s$, $D_T$, $W^{\mathrm{rec}}$, vector residuals,
 scalar statistic, Noether pullback, and fail-closed negative controls on the
 same record.

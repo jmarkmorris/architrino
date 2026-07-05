@@ -1,6 +1,6 @@
 # Detecting the Absolute Frame
 
-This chapter isolates the complete-state diagnostic problem of identifying absolute rest in $\mathbb{A}\mathbb{A}\mathbb{A}$, whose substrate is absolute time together with the Euclidean void. Its purpose is to show that the preferred frame is not a purely metaphysical declaration: at the ontological level, it is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
+This chapter asks how the theory can identify absolute rest without first painting a coordinate grid onto the Euclidean void. The answer is a complete-state diagnostic: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the preferred frame is encoded in the source-tagged geometry of causal wakes available to complete-state bookkeeping.
 
 ## Overview
 
@@ -8,14 +8,16 @@ This chapter answers the question that must be settled before any coordinate con
 
 This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Constructing the Absolute Frame](constructing-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
+The important separation is source-tagged geometry versus summed observation. Complete-state bookkeeping can ask where each causal isochron was emitted. A physical apparatus normally receives only a combined record after propagation, coupling, clocking, and Noether sea dressing. The preferred frame can be real in the first sense without becoming an easy observable in the second.
+
 ## The Fundamental Challenge
 
-The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "t = 0."
+The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "$T = 0$."
 
 This presents an apparent paradox:
-- We claim architrinos have **definite positions** $\mathbf{x}(t)$ and **definite velocities** $\mathbf{v}(t)$ in the Euclidean void as indexed by absolute time.
+- We claim architrinos have **definite positions** $\mathbf X(T)$ and **definite velocities** $\mathbf V(T)$ in the Euclidean void as indexed by absolute time.
 - Yet the Euclidean void is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
-- How can the theory internally distinguish absolute rest ($\mathbf{v} = \mathbf{0}$) from absolute motion ($\mathbf{v} \neq \mathbf{0}$) without reference coordinates?
+- How can the theory internally distinguish absolute rest ($\mathbf V = \mathbf{0}$) from absolute motion ($\mathbf V \neq \mathbf{0}$) without reference coordinates?
 
 This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity lack complete-state content and become only an imposed coordinate convention.
 
@@ -25,9 +27,11 @@ This is not merely a philosophical puzzle. It is a **practical requirement** for
 
 The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate creates a **dynamically preferred frame** available to complete-state reconstruction through purely geometric relationships.
 
+The idea is easiest to see by following the centers of emitted wake surfaces. A stationary source keeps emitting from the same void point. A moving source leaves a sequence of distinct emission centers behind it. The center pattern, not an external grid label, carries the rest diagnostic.
+
 ### The Nature of Causal Wakes
 
-Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $t_0$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time, that emitted isochron has radius $r = c_f \Delta t$ centered on the point where it was emitted.
+Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $T_{\mathrm{em}}$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time $T$, that emitted isochron has radius $r = c_f \Delta T$ centered on the point where it was emitted.
 
 The crucial point is that this expanding causal isochron carries source-tagged information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It continues expanding from its emission point in the Euclidean void.
 
@@ -39,22 +43,24 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 3. The geometric centers of all emitted and expanding causal wake surfaces,
 4. The absolute emission times associated with those wake surfaces.
 
-**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf{v} = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every source-tagged expanding causal isochron it has ever emitted during the rest interval.
+**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf V = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every source-tagged expanding causal isochron it has ever emitted during the rest interval.
 
 **The Physical Basis:**
-- At time $t_0$, the architrino emits potential from position $\mathbf{x}_0$, creating a causal isochron.
-- This causal isochron expands at speed $c_f$ relative to the void, centered on $\mathbf{x}_0$.
-- If the architrino is stationary, at later time $t_1 = t_0 + \Delta t$, it remains at $\mathbf{x}_0$.
-- The causal isochron has expanded to radius $r = c_f \Delta t$, but its center remains $\mathbf{x}_0$.
+- At time $T_{\mathrm{em}}$, the architrino emits potential from position $\mathbf X_{\mathrm{em}}$, creating a causal isochron.
+- This causal isochron expands at speed $c_f$ relative to the void, centered on $\mathbf X_{\mathrm{em}}$.
+- If the architrino is stationary, at later time $T_1 = T_{\mathrm{em}} + \Delta T$, it remains at $\mathbf X_{\mathrm{em}}$.
+- The causal isochron has expanded to radius $r = c_f \Delta T$, but its center remains $\mathbf X_{\mathrm{em}}$.
 - All successive emissions create perfectly **concentric causal isochrons**: nested potential distributions sharing a common geometric center.
 
 **If the architrino moves:**
-- At $t_0$, emission occurs at $\mathbf{x}_0$.
-- On a uniform segment, at $t_1$ the architrino has displaced to $\mathbf{x}_1 = \mathbf{x}_0 + \mathbf{v} \Delta t$.
-- The first causal isochron remains centered on $\mathbf{x}_0$ with radius $c_f \Delta t$.
+- At $T_{\mathrm{em}}$, emission occurs at $\mathbf X_{\mathrm{em}}$.
+- On a uniform segment, at $T_1$ the architrino has displaced to $\mathbf X_1 = \mathbf X_{\mathrm{em}} + \mathbf V \Delta T$.
+- The first causal isochron remains centered on $\mathbf X_{\mathrm{em}}$ with radius $c_f \Delta T$.
 - Subsequent causal isochrons are centered on displaced positions along the trajectory.
 - The emitted centers are **non-coincident**; the source-tagged wake stream is **non-concentric**.
 - The architrino lies closer to the expanding wake front in its direction of motion, producing the geometric asymmetry that later appears as Doppler-like structure at the observer level.
+
+The difference between these two cases is the whole diagnostic. Rest means one repeated center. Uniform motion means a straight center sequence. Accelerated motion means a curved center history.
 
 ### The Complete-State Diagnostic Procedure
 
@@ -63,57 +69,59 @@ Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to c
 **Step 2:** Test for spatial coincidence of these centers.
 
 **Result:**
-- **All centers coincident** means $\mathbf{v}_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
-- **Centers form a trajectory** means $\mathbf{v}_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf{x}$ per unit time $\Delta t$ yields the absolute velocity: $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
+- **All centers coincident** means $\mathbf V_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
+- **Centers form a trajectory** means $\mathbf V_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf X$ per unit time $\Delta T$ yields the absolute velocity: $\mathbf V_{\text{abs}} = \Delta \mathbf X / \Delta T$.
 
 This is definitionally a complete-state test. It assumes the individual source identity, emission time, and isochron support are already available in the provenance-bearing state. A physical apparatus receiving only the summed potential cannot recover the source-tagged centers by a clever superposition-resolving operation unless it already has access to the very provenance data the diagnostic assumes.
 
-**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $s$ and inspected at time $t>s$ have support
+That limitation is not a weakness of the ontology. It marks the difference between complete-state reconstruction and what embedded Physical Observers can infer after provenance has been erased into a summed received record.
+
+**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $T_{\mathrm{em}}$ and inspected at time $T>T_{\mathrm{em}}$ have support
 $$
-W_a(s;t)
+W_a(T_{\mathrm{em}};T)
 =
 \left\{
-\mathbf{y}\in\Sigma_t:
-\|\mathbf{y}-\mathbf{z}_a(s)\|=c_f(t-s)
+\mathbf Y\in\Sigma_T:
+\|\mathbf Y-\mathbf Z_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})
 \right\}
 $$
-In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(s;t)$ is known as a source-tagged support, its emission center $\mathbf{z}_a(s)$ is geometrically reconstructible without first assigning coordinates to the void.
+In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(T_{\mathrm{em}};T)$ is known as a source-tagged support, its emission center $\mathbf Z_a(T_{\mathrm{em}})$ is geometrically reconstructible without first assigning coordinates to the void.
 
 Equivalently, Euclidean geometry gives a bijection between nondegenerate metric spheres and center-radius pairs:
 $$
-W_a(s;t)\longleftrightarrow
-\left(\mathbf{z}_a(s),\,c_f(t-s)\right)
+W_a(T_{\mathrm{em}};T)\longleftrightarrow
+\left(\mathbf Z_a(T_{\mathrm{em}}),\,c_f(T-T_{\mathrm{em}})\right)
 $$
-for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf{y}_0,\ldots,\mathbf{y}_3$ whose displacement Gram determinant is bounded away from zero:
+for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ whose displacement Gram determinant is bounded away from zero:
 $$
 \Delta_{\mathrm{sph}}
 =
 \det
 \left[
-(\mathbf{y}_\alpha-\mathbf{y}_0)\cdot(\mathbf{y}_\beta-\mathbf{y}_0)
+(\mathbf Y_\alpha-\mathbf Y_0)\cdot(\mathbf Y_\beta-\mathbf Y_0)
 \right]_{\alpha,\beta=1}^{3}
 >
 0
 $$
-with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(t-s)$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
+with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(T-T_{\mathrm{em}})$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
 
-For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(s;t)\subset W_a(s;t)$, so the inverse-center problem needs its own conditioning floor. Let
+For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(T_{\mathrm{em}};T)\subset W_a(T_{\mathrm{em}};T)$, so the inverse-center problem needs its own conditioning floor. Let
 $$
-\omega_a(s;t)
+\omega_a(T_{\mathrm{em}};T)
 =
 \operatorname{area}_{S^2}
 \left\{
-\frac{\mathbf{y}-\mathbf{z}_a(s)}{\|\mathbf{y}-\mathbf{z}_a(s)\|}:
-\mathbf{y}\in U_a(s;t)
+\frac{\mathbf Y-\mathbf Z_a(T_{\mathrm{em}})}{\|\mathbf Y-\mathbf Z_a(T_{\mathrm{em}})\|}:
+\mathbf Y\in U_a(T_{\mathrm{em}};T)
 \right\}
 $$
 The reconstructed center is admissible only when
 $$
-\omega_a(s;t)\ge \omega_{\min} > 0
+\omega_a(T_{\mathrm{em}};T)\ge \omega_{\min} > 0
 $$
 on the declared support window. Below that solid-angle floor, the center may remain formally unique in the full-support idealization while the finite inverse problem becomes ill-conditioned.
 
-The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf{y}_k-\mathbf{z})/\|\mathbf{y}_k-\mathbf{z}\|$ with positive weights $w_k$, define the direction design matrix
+The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf Y_k-\mathbf Z)/\|\mathbf Y_k-\mathbf Z\|$ with positive weights $w_k$, define the direction design matrix
 $$
 G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
 $$
@@ -121,22 +129,22 @@ The finite-aperture inverse is accepted only when $\lambda_{\min}(G_a)\ge\lambda
 
 For a target architrino $a$ and emission interval $I$, define the source-tagged center set
 $$
-Z_a(I)=\{\mathbf{z}_a(s):s\in I\}
+Z_a(I)=\{\mathbf Z_a(T_{\mathrm{em}}):T_{\mathrm{em}}\in I\}
 $$
 and its Euclidean diameter
 $$
-D_a(I)=\sup_{s,u\in I}\|\mathbf{z}_a(s)-\mathbf{z}_a(u)\|
+D_a(I)=\sup_{T_{\mathrm{em}},T'_{\mathrm{em}}\in I}\|\mathbf Z_a(T_{\mathrm{em}})-\mathbf Z_a(T'_{\mathrm{em}})\|
 $$
 
 Equivalently,
 $$
 D_a(I)=\operatorname{diam}Z_a(I)
 $$
-With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf{z}_a(s)$ is constant on $I$, so the source is at absolute rest almost everywhere on that interval. For uniform motion, $D_a([t_0,t_0+T])=\|\mathbf{v}_a\|T$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
+With exact complete-state access and source-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf Z_a(T_{\mathrm{em}})$ is constant on $I$, so the source is at absolute rest almost everywhere on that interval. For uniform motion over a duration $\Delta T_I$, $D_a(I)=\|\mathbf V_a\|\Delta T_I$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the source-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
-The velocity readout in the uniform case assumes $\mathbf{z}_a(s)=\mathbf{z}_0+\mathbf{v}_a(s-t_0)$ on the interval. For accelerated or curved source histories, $D_a(I)$ measures only the chord-span of the center curve and cannot determine the velocity history by itself. The faithful complete-state object is the full center curve $s\mapsto\mathbf{z}_a(s)$, including its tangent, curvature, and torsion where those derivatives exist; that curve is the geometric record the self-hit ledger later samples.
+The velocity readout in the uniform case assumes $\mathbf Z_a(T_{\mathrm{em}})=\mathbf Z_0+\mathbf V_a(T_{\mathrm{em}}-T_0)$ on the interval. For accelerated or curved source histories, $D_a(I)$ measures only the chord-span of the center curve and cannot determine the velocity history by itself. The faithful complete-state object is the full center curve $T_{\mathrm{em}}\mapsto\mathbf Z_a(T_{\mathrm{em}})$, including its tangent, curvature, and torsion where those derivatives exist; that curve is the geometric record the self-hit ledger later samples.
 
-The resulting diagnostic hierarchy is a hierarchy of derivative data on the same center curve. Absolute rest is the zeroth-order condition that $Z_a(I)$ has zero diameter, equivalently $\mathbf{z}_a(s)$ is constant on the interval. Uniform absolute motion is the first-order condition $\dot{\mathbf{z}}_a=\mathbf{v}_0$ with vanishing curvature on the interval. Self-hit eligibility is a higher-order and global condition: curvature, torsion, recurrence, or super-field-speed history must bring the source into the forward isochron foliation generated by its own past centers. The Frenet framing is useful on regular curve segments, but the self-hit condition itself is the causal-root condition below, not merely a local curvature scalar.
+The resulting diagnostic hierarchy is a hierarchy of derivative data on the same center curve. Absolute rest is the zeroth-order condition that $Z_a(I)$ has zero diameter, equivalently $\mathbf Z_a(T_{\mathrm{em}})$ is constant on the interval. Uniform absolute motion is the first-order condition $d\mathbf Z_a/dT_{\mathrm{em}}=\mathbf V_0$ with vanishing curvature on the interval. Self-hit eligibility is a higher-order and global condition: curvature, torsion, recurrence, or super-field-speed history must bring the source into the forward isochron foliation generated by its own past centers. The Frenet framing is useful on regular curve segments, but the self-hit condition itself is the causal-root condition below, not merely a local curvature scalar.
 
 If no architrino is stationary over the diagnostic interval, complete-state reconstruction may still recover the preferred rest-frame structure from the centers of source-tagged wake isochrons. A coordinate origin can then be chosen conventionally from any reconstructed emission center at a chosen time. The stationary architrino is therefore a convenient material origin, not the definition of the preferred frame.
 
@@ -148,13 +156,13 @@ This distinction fixes the level of the claim. Ontologically, the preferred fram
 
 The concentricity diagnostic connects directly to the geometry developed in [Self-Interaction (Self-Hit Dynamics)](../dynamics/master-equation.md#self-interaction-self-hit-dynamics) and [Causal Interaction Set (The Geometry of Delay)](../dynamics/master-equation.md#causal-interaction-set-the-geometry-of-delay), but the two claims must remain distinct:
 
-- An architrino at rest ($\mathbf{v}=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $t_0<t$, the self-hit root condition would require $\|\mathbf{x}_i(t)-\mathbf{x}_i(t_0)\|=c_f(t-t_0)$; a stationary worldline has the left side equal to zero while the right side is positive.
+- An architrino at rest ($\mathbf V=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $T_{\mathrm{em}}<T$, the self-hit root condition would require $\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})$; a stationary worldline has the left side equal to zero while the right side is positive.
 - An architrino in ordinary sub-field-speed straight motion emits non-concentric source-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a source-identity root condition, not a synonym for nonzero absolute velocity.
 - Curved path history and super-field-speed history are the relevant self-hit ingredients. Once the source worldline folds through its own emitted causal isochrons, same-source roots can enter the causal-root ledger and produce non-Markovian feedback.
 - In exact center-curve terms, a same-source root exists when the source re-enters its own forward isochron:
   $$
-  \exists\,s < t:
-  \|\mathbf{z}_a(t)-\mathbf{z}_a(s)\|=c_f(t-s)
+  \exists\,T_{\mathrm{em}} < T:
+  \|\mathbf Z_a(T)-\mathbf Z_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})
   $$
   This is re-entry into the expanding-sphere foliation generated by the past center curve. It is not a requirement that the spatial curve literally intersect itself in $\mathbb{R}^3$. For closed or recurrent framed branches, the protected topology row should be stated as a linking or framed self-linking record, such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when the branch supplies a nonsingular frame. Thus absolute rest and self-hit are distinct invariants: rest is concentricity of source-tagged centers, while self-hit is a source-identity root with a retained wake/worldline linking or framing record when such a record is part of the branch certificate.
 - For bound assemblies, the corresponding closure problem is conditional: a translating nested shell braid must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
@@ -164,11 +172,11 @@ The concentricity diagnostic connects directly to the geometry developed in [Sel
 
 ### Master Equation Requirements
 
-The [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) demands **explicit positions** $\mathbf{x}_i(t)$ to compute:
+The [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) demands **explicit positions** $\mathbf X_i(T)$ to compute:
 - Separation distance $r_{ij}$ between architrinos $i$ and $j$
 - Path-history positions (where was architrino $j$ when the wake contribution currently reaching $i$ was emitted?)
 
-The concentric-wake diagnostic demonstrates that $\mathbf{x}_i(t)$ is physically meaningful within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinate labels; coordinates enter afterward as a convenient representation of the already-defined rest condition.
+The concentric-wake diagnostic demonstrates that $\mathbf X_i(T)$ is physically meaningful within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinate labels; coordinates enter afterward as a convenient representation of the already-defined rest condition.
 
 ### Foundational Validation
 
@@ -197,7 +205,7 @@ This prevents the preferred-frame claim from being empty inside the formal ontol
 
 The concentric-wake diagnostic requires access to full microdynamics: something only a $\mathbb{U}_{\text{now}}$ universe-state perspective can achieve. **Physical Observers** composed of assemblies measure through assembly-based apparatus:
 
-- **Proper time** $\tau$ via internal clocks, not absolute time $t$
+- **Proper time** $\tau$ via internal clocks, not absolute time $T$
 - **Effective coordinates** via local rulers
 - **Relative velocities** via Doppler shifts and aberration
 
@@ -212,7 +220,7 @@ This is analogous to **acoustic waves** in air: once a speaker emits sound, that
 
 The reason is structural rather than rhetorical. The complete-state diagnostic operates on source-tagged wake centers: source identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. Null drift constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the source-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
 
-The complete-state side also carries an injectivity assumption. Let $\mathcal{H}_{\mathrm{tag}}$ denote a tagged source-history record and let $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ denote its family of tagged emitted supports $(a,s,W_a(s;t))$ on the declared time window. The diagnostic assumes
+The complete-state side also carries an injectivity assumption. Let $\mathcal{H}_{\mathrm{tag}}$ denote a tagged source-history record and let $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ denote its family of tagged emitted supports $(a,T_{\mathrm{em}},W_a(T_{\mathrm{em}};T))$ on the declared time window. The diagnostic assumes
 $$
 \mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})
 =
@@ -251,7 +259,7 @@ This places the theory in the tradition of **Lorentz Ether Theory**:
 
 **Detection signatures:**
 - Absolute rest means all source-tagged wake centers are spatially coincident.
-- Absolute motion means wake centers form a displacement trajectory; for uniform segments, velocity $\mathbf{v}_{\text{abs}} = \Delta \mathbf{x} / \Delta t$.
+- Absolute motion means wake centers form a displacement trajectory; for uniform segments, velocity $\mathbf V_{\text{abs}} = \Delta \mathbf X / \Delta T$.
 
 **Why this works:**
 - Wake speed $c_f$ is isotropic in the void's rest frame

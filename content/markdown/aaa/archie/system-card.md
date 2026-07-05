@@ -2,6 +2,8 @@
 
 The Archie system card is the public status sphere for the Archie question interface. It collects the claim-status, validation, caveat, and launch-readiness material that should be easy to inspect without forcing every ordinary answer to restate the whole proof posture.
 
+The ordinary answer can be direct. The system card carries the heavier context: what is validated, what is open, what is only an app diagnostic, and what still has to be built before a public question service is safe.
+
 Archie can answer from an $\mathbb{A}\mathbb{A}\mathbb{A}$-native educational stance: the answer may use the framework as the working premise so the explanation can flow. The system card is where readers can inspect how that stance relates to validated closure, open proof burdens, known tensions, and launch gates.
 
 ## Core Status Surfaces

@@ -60,7 +60,7 @@ Interpretive saturation claim: compression approaches medium-defined ceilings $T
 2. **Outward Release and Cooling:**
 
 Material released from near-horizon regions undergoes rapid outward dilution and cooling.
-Effective cooling rate $dT/dt$ matches the freeze-out timing required for standard BBN yields.
+Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ matches the freeze-out timing required for standard BBN yields.
 This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution.
 Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
 
@@ -77,7 +77,7 @@ These abundances must be observationally consistent with "primordial" BBN if the
 ## Network-Level Description
 
 $$
-\frac{dn_i}{dt} = \sum_{j,k}\langle\sigma v_{\mathrm{rel}}\rangle_{jk\to i}n_jn_k
+\frac{dn_i}{dt_{\mathrm{eff}}} = \sum_{j,k}\langle\sigma v_{\mathrm{rel}}\rangle_{jk\to i}n_jn_k
 - \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l
 $$
 
@@ -199,8 +199,8 @@ where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-
 
 The BBN story is one continuous mechanism:
 
-1. The Noether sea evolves in absolute time $t$ within a fixed Euclidean container.
-2. This Noether sea evolution defines an effective expansion/cooling history and therefore an emergent $H(t)$ at observer level, matching the bookkeeping used in [Expansion Mechanism](./expansion-mechanism.md).
+1. The Noether sea evolves in absolute time $T$ within a fixed Euclidean container.
+2. This Noether sea evolution defines an effective expansion/cooling history and therefore an emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ at observer level, matching the bookkeeping used in [Expansion Mechanism](./expansion-mechanism.md).
 3. The resulting thermal history sets reaction-rate competition and freeze-out ordering in the standard network.
 4. The coupled light-element yields (H, D, He, trace Li) are outputs of this same Noether sea and assembly dynamics and must remain compatible with the observer-level chronology in [CMB](./CMB.md).
 

@@ -1,17 +1,17 @@
 # Absolute Timespace
 
-This chapter is the canonical substrate-level specification for **absolute timespace** in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the fixed product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
+This chapter specifies the fixed background in which the microscopic dynamics run. In $\mathbb{A}\mathbb{A}\mathbb{A}$, **absolute timespace** means the product of one universal time line and one fixed Euclidean 3-space. The chapter defines that product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
 
 Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](absolute-time.md) and the [Euclidean Void](euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether sea dynamics; it is not the substrate itself.
 
 ## Core Concept
 
-Absolute timespace is the formal, non-dynamical product background for all physical phenomena. It is the direct product of absolute time and the Euclidean void, forming a **foliated structure** where each leaf is a complete instantaneous Euclidean 3-space indexed by the universal time parameter $t$.
+Absolute timespace is the formal, non-dynamical product background for all physical phenomena. It is the direct product of absolute time and the Euclidean void. That product forms a **foliated structure**: each leaf is a complete instantaneous Euclidean 3-space indexed by the universal time parameter $T$.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 - Time and space are logically and mathematically separate at the kinematic level.
-- There is absolute simultaneity: all events with the same $t$ belong to the same simultaneity slice.
+- There is absolute simultaneity: all events with the same $T$ belong to the same simultaneity slice.
 - There is no fundamental 4D Lorentzian metric mixing temporal and spatial dimensions.
 - The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether sea.
 
@@ -27,10 +27,10 @@ $$
 $$
 with coordinates
 $$
-(t,\mathbf{x})=(t,x,y,z)
+(T,\mathbf X)=(T,X,Y,Z)
 $$
 
-Each point in $\mathcal{M}$ represents an event: a fixed location $\mathbf{x}$ in the Euclidean void at a definite instant $t$.
+Each point in $\mathcal{M}$ represents an event: a fixed location $\mathbf X$ in the Euclidean void at a definite instant $T$.
 
 The two factors have different ontological roles:
 
@@ -41,79 +41,79 @@ The product structure is fundamental. It is not an approximation to a deeper 4D 
 
 ## Foliation and Simultaneity Slices
 
-Each instant $t=t_0$ defines a global simultaneity slice
+Each instant $T=T_\ast$ defines a global simultaneity slice
 $$
-\Sigma_{t_0}=\{t_0\}\times\mathbb{R}^3\cong\mathbb{R}^3
+\Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
-Every event $(t,\mathbf{x})$ belongs to exactly one slice $\Sigma_t$. This foliation is absolute and frame-independent.
+Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent at the substrate level.
 
 An object or assembly traces a worldline through the product background:
 $$
 \gamma:I\subset\mathbb{R}\to\mathcal{M},
 \qquad
-t\mapsto(t,\mathbf{x}(t))
+T\mapsto(T,\mathbf X(T))
 $$
 
-For any alternate curve parameter $s$, admissible worldlines must satisfy
+For any alternate curve parameter $\lambda$, admissible worldlines must satisfy
 $$
-\frac{dt}{ds}>0
+\frac{dT}{d\lambda}>0
 $$
 
 There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the absolute time parameter.
 
-> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $t$. A worldline passes through one slice at each instant.
+> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $T$. A worldline passes through one slice at each instant.
 
 On a fixed slice, the canonical universe-now notation is
 $$
-\mathbb{U}_{\text{now}} \equiv S(t)
+\mathbb{U}_{\text{now}} \equiv S(T)
 $$
 
-This denotes the complete ontic universe state on $\Sigma_t$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
+This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
 Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
 $$
-S(t)
+S(T)
 =
 \big(
-X(t),
-H_t,
-\mathcal{N}_{\mathrm{sea}}(t,\cdot),
-\mathcal{B}_t
+X(T),
+H_T,
+\mathcal{N}_{\mathrm{sea}}(T,\cdot),
+\mathcal{B}_T
 \big)
 $$
-Here $X(t)$ contains instantaneous architrino and assembly data, $H_t$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_t$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
 
 ## Newton-Cartan Data
 
-The background geometry is encoded by a pair of structures rather than by a single non-degenerate 4D metric.
+The background geometry is encoded by a pair of structures rather than by a single non-degenerate 4D metric. One structure keeps time ordered; the other measures distances inside each slice.
 
 The substrate clock 1-form is the exact form
 $$
-dt
+dT
 $$
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_t$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$.
+This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_{\mathrm{em}}$, and causal delay is written $\Delta_{ij}=T-T_{\mathrm{em}}$.
 
 The spatial metric on each slice is
 $$
-h=dx^2+dy^2+dz^2
+h=dX^2+dY^2+dZ^2
 $$
 with Cartesian components
 $$
 h_{ij}=\delta_{ij}
 $$
 
-The metric $h$ acts only on spatial vectors tangent to $\Sigma_t$. Time and space are therefore encoded separately by $(dt,h)$.
+The metric $h$ acts only on spatial vectors tangent to $\Sigma_T$. Time and space are therefore encoded separately by $(dT,h)$.
 
 A flat, torsion-free connection $\nabla$ satisfies
 $$
-\nabla dt=0,
+\nabla dT=0,
 \qquad
 \nabla h=0
 $$
 
-These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dt,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dt,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
+These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dT,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dT,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
 $$
 \Gamma^\lambda_{\mu\nu}=0
 $$
@@ -128,19 +128,19 @@ with the corresponding boost or acceleration terms supplying the usual non-inert
 
 ### Non-Inertial Coordinate Terms
 
-A rotating coordinate chart can make ordinary motion acquire extra coordinate terms. If $\mathbf{x}=R(t)\mathbf{x}'$ with angular velocity $\boldsymbol{\Omega}$, then the Cartesian-rest-frame acceleration decomposes as
+A rotating coordinate chart can make ordinary motion acquire extra coordinate terms. If $\mathbf X=R(T)\mathbf X'$ with angular velocity $\boldsymbol{\Omega}$, then the Cartesian-rest-frame acceleration decomposes as
 $$
-\mathbf{a}
+\mathbf A
 =
-R(t)\left[
-\mathbf{a}'
-+2\boldsymbol{\Omega}\times\mathbf{v}'
-+\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')
-+\dot{\boldsymbol{\Omega}}\times\mathbf{x}'
+R(T)\left[
+\mathbf A'
++2\boldsymbol{\Omega}\times\mathbf V'
++\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')
++\frac{d\boldsymbol{\Omega}}{dT}\times\mathbf X'
 \right]
 $$
 
-The terms proportional to $2\boldsymbol{\Omega}\times\mathbf{v}'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf{x}')$, and $\dot{\boldsymbol{\Omega}}\times\mathbf{x}'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
+The terms proportional to $2\boldsymbol{\Omega}\times\mathbf V'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$, and $(d\boldsymbol{\Omega}/dT)\times\mathbf X'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
 
 The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no source identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
 
@@ -156,71 +156,71 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** define a fundamental non-degenerat
 
 This means:
 
-- There is no fundamental 4D interval mixing $dt$ and $d\mathbf{x}$.
+- There is no fundamental 4D interval mixing $dT$ and $d\mathbf X$.
 - There are no fundamental Lorentz boosts that rotate time into space.
 - Proper time is not a substrate interval.
 - Effective metric language belongs to observer-level spacetime reconstruction.
 
-The specified Newton-Cartan substrate data $(dt,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection.
+The specified Newton-Cartan substrate data $(dT,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection. Effective metric language enters only after clocks, rulers, and signal channels are reconstructed from assemblies and Noether sea response.
 
 ## Measurement and Geometry
 
 Spatial distance within a simultaneity slice is
 $$
-d_{\text{spatial}}(\mathbf{x}_1,\mathbf{x}_2)
+d_{\text{spatial}}(\mathbf X_1,\mathbf X_2)
 =
-\sqrt{(x_1-x_2)^2+(y_1-y_2)^2+(z_1-z_2)^2}
+\sqrt{\delta_{ij}(X_1^i-X_2^i)(X_1^j-X_2^j)}
 $$
 
 Temporal duration between events is
 $$
-\Delta t=|t_2-t_1|
+\Delta T=|T_2-T_1|
 $$
 
-Spatial arc length along a path $\mathbf{x}(t)$ from $t_1$ to $t_2$ is
+Spatial arc length along a path $\mathbf X(T)$ from $T_1$ to $T_2$ is
 $$
-L[\mathbf{x};t_1,t_2]
+L[\mathbf X;T_1,T_2]
 =
-\int_{t_1}^{t_2}\|\mathbf{v}(t)\|\,dt
+\int_{T_1}^{T_2}\|\mathbf V(T)\|\,dT
 =
-\int_{t_1}^{t_2}
+\int_{T_1}^{T_2}
 \sqrt{
-\left(\frac{dx}{dt}\right)^2+
-\left(\frac{dy}{dt}\right)^2+
-\left(\frac{dz}{dt}\right)^2
-}\,dt
+\left(\frac{dX}{dT}\right)^2+
+\left(\frac{dY}{dT}\right)^2+
+\left(\frac{dZ}{dT}\right)^2
+}\,dT
 $$
 
 A relativistic 4D arc length such as
 $$
 s=\int\sqrt{g_{\mu\nu}\,dx^\mu dx^\nu}
 $$
-is not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+is a standard comparison form, not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## Velocity, Acceleration, and Momentum
 
 Spatial velocity is the 3-vector
 $$
-\mathbf{v}(t)=\frac{d\mathbf{x}}{dt}
+\mathbf V(T)=\frac{d\mathbf X}{dT}
 $$
 
 Speed is
 $$
-v=\|\mathbf{v}\|
+\|\mathbf V\|
 $$
 
 Acceleration is
 $$
-\mathbf{a}(t)=\frac{d\mathbf{v}}{dt}
+\mathbf A(T)=\frac{d\mathbf V}{dT}
 =
-\frac{d^2\mathbf{x}}{dt^2}
+\frac{d^2\mathbf X}{dT^2}
 $$
 
 The usual 3-vector expressions follow:
 $$
-\mathbf{p}=m\mathbf{v},
+\mathbf p=m\mathbf V,
 \qquad
-T=\frac{1}{2}m v^2
+K=\frac{1}{2}m\|\mathbf V\|^2
 $$
 
 Forces cause accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, force, or clock dilation by itself.
@@ -235,7 +235,7 @@ $$
 =
 \mathcal{M}^{\mathrm{resp}}_{ij}
 \!\left(A;\mathcal{H}_A,\mathcal{S}_A,\left.\mathcal{N}_{\mathrm{sea}}\right|_A,R_A\right)
-\delta v^j,
+\delta V^j,
 \qquad
 \delta J_i
 =
@@ -277,55 +277,55 @@ The product background admits the usual Galilean kinematic transformations that 
 
 Time translation:
 $$
-t'=t+t_0,
+T'=T+T_0,
 \qquad
-\mathbf{x}'=\mathbf{x}
+\mathbf X'=\mathbf X
 $$
 
 Spatial translation:
 $$
-t'=t,
+T'=T,
 \qquad
-\mathbf{x}'=\mathbf{x}+\mathbf{a}
+\mathbf X'=\mathbf X+\mathbf X_0
 $$
 
 Rotation:
 $$
-t'=t,
+T'=T,
 \qquad
-\mathbf{x}'=R\mathbf{x},
+\mathbf X'=R\mathbf X,
 \qquad
 R\in SO(3)
 $$
 
 Galilean boost:
 $$
-t'=t,
+T'=T,
 \qquad
-\mathbf{x}'=\mathbf{x}+\mathbf{v}_0t
+\mathbf X'=\mathbf X+\mathbf V_0T
 $$
 
-The transformation preserves simultaneity slices because $t'=t$ up to a constant shift.
+The transformation preserves simultaneity slices because $T'=T$ up to a constant shift.
 
 The Galilean group may be summarized as a semidirect product combining time translations, spatial Euclidean transformations, and velocity boosts. This is a kinematic statement about the product background.
 
-## Preferred Rest Frame and Dynamical Symmetry Breaking
+## Preferred Rest Frame from the Wake Law
 
 Although Galilean boosts preserve the product foliation kinematically, the interaction law selects a preferred rest frame: the frame in which the wake speed $c_f$ is isotropic. This selects the rest structure for the dynamics, not a pre-labeled spatial origin or built-in axis orientation.
 
-The distinction is visible directly in the root equation. Under a Galilean coordinate change $\mathbf{x}'=\mathbf{x}-\mathbf{u}t$, the same primitive wake condition becomes
+The distinction is visible directly in the root equation. Under a Galilean coordinate change $\mathbf X'=\mathbf X-\mathbf U T$, the same primitive wake condition becomes
 $$
 \left\|
-\mathbf{x}'_i(t)-\mathbf{x}'_j(s)+\mathbf{u}(t-s)
+\mathbf X'_i(T)-\mathbf X'_j(T_{\mathrm{em}})+\mathbf U(T-T_{\mathrm{em}})
 \right\|
 =
-c_f(t-s),
+c_f(T-T_{\mathrm{em}}),
 \qquad
-s<t
+T_{\mathrm{em}}<T
 $$
-Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf{u}=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
+Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf U=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
-This preferred frame is not curvature of the background. It is a dynamical consequence of finite-speed causal wake propagation, Noether sea dynamics, and assembly dynamics built on top of the absolute timespace substrate.
+This preferred frame is not curvature of the background. It is a structural consequence of the wake law: finite-speed causal wake propagation fixes $c_f$ relative to the void, and Noether sea and assembly dynamics build on that distinguished frame.
 
 The observer-level task is therefore not to remove the absolute frame from the ontology. The task is to derive how physical clocks, rulers, and signals hide preferred-frame leakage to the required experimental precision. See [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
@@ -351,70 +351,70 @@ Three related objects must be kept separate: temporal order, the filled reachabi
 
 For two events
 $$
-A=(t_A,\mathbf{x}_A),
+A=(T_A,\mathbf X_A),
 \qquad
-B=(t_B,\mathbf{x}_B)
+B=(T_B,\mathbf X_B)
 $$
 event $A$ can causally precede $B$ only if
 $$
-t_A<t_B
+T_A<T_B
 $$
 
-A wake emitted at $(t_0,\mathbf{x}_0)$ reaches points on the causal wake surface
+A wake emitted at $(T_{\mathrm{em}},\mathbf X_{\mathrm{em}})$ reaches points on the causal wake surface
 $$
-\|\mathbf{x}-\mathbf{x}_0\|=c_f(t-t_0),
+\|\mathbf X-\mathbf X_{\mathrm{em}}\|=c_f(T-T_{\mathrm{em}}),
 \qquad
-t>t_0
+T>T_{\mathrm{em}}
 $$
 
 The filled causal future of that emission is
 $$
-\{(t,\mathbf{x}):t\geq t_0,\ \|\mathbf{x}-\mathbf{x}_0\|\leq c_f(t-t_0)\}
+\{(T,\mathbf X):T\geq T_{\mathrm{em}},\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_{\mathrm{em}})\}
 $$
 
-The equality surface is an expanding causal isochron: at each later $t$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
+The equality surface is an expanding causal isochron: at each later $T$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
 
 For source $j$ and receiver $i$, the canonical root function is
 $$
-F_{ij}(t,s)
+F_{ij}(T,T_{\mathrm{em}})
 =
-\|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|-c_f(t-s),
+\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}}),
 \qquad
-s<t
+T_{\mathrm{em}}<T
 $$
 with active causal-root set
 $$
-\mathcal{C}_{ij}(t)
+\mathcal{C}_{ij}(T)
 =
-\{\,s<t:F_{ij}(t,s)=0\,\}
+\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}
 $$
 The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
 $$
 \left|
-\partial_sF_{ij}(t,s)
+\partial_{T_{\mathrm{em}}}F_{ij}(T,T_{\mathrm{em}})
 \right|
 =
 \left|
-c_f-\hat{\mathbf{r}}_{ij}(t,s)\cdot\mathbf{v}_j(s)
+c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})
 \right|
 \ge
 \kappa_{\mathrm{hit}}>0
 $$
 where
 $$
-\mathbf{r}_{ij}(t,s)=\mathbf{x}_i(t)-\mathbf{x}_j(s),
+\mathbf{r}_{ij}(T,T_{\mathrm{em}})=\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}}),
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $s=s_\ell(t)$, differentiating
-$F_{ij}(t,s_\ell(t))=0$ gives the receiver-normal factor
+On a smooth retained branch $T_{\mathrm{em}}=T_{\mathrm{em},\ell}(T)$, differentiating
+$F_{ij}(T,T_{\mathrm{em},\ell}(T))=0$ gives the receiver-normal factor
 $$
-\frac{ds_\ell}{dt}
+\frac{dT_{\mathrm{em},\ell}}{dT}
 =
-\frac{c_f-\hat{\mathbf{r}}_{ij}(t,s_\ell)\cdot\mathbf{v}_i(t)}
-{c_f-\hat{\mathbf{r}}_{ij}(t,s_\ell)\cdot\mathbf{v}_j(s_\ell)}
+\frac{c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em},\ell})\cdot\mathbf V_i(T)}
+{c_f-\hat{\mathbf{r}}_{ij}(T,T_{\mathrm{em},\ell})\cdot\mathbf V_j(T_{\mathrm{em},\ell})}
 $$
 This identity is not a new coupling constant. It distinguishes the source-normal
 causal-root Jacobian from the rate at which a moving receiver path samples the
@@ -438,8 +438,8 @@ $$
 \chi_{\mathrm{root}}(A)
 =
 \sum_{i,j\in A}
-\sum_{s\in\mathcal{C}_{ij}}
-\operatorname{sgn}\!\left(\partial_sF_{ij}\right)
+\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}}
+\operatorname{sgn}\!\left(\partial_{T_{\mathrm{em}}}F_{ij}\right)
 $$
 with the sums taken over the retained self-hit and partner-hit rows on the branch chart. On a regular chart this signed count is locally constant. A structural-integrity failure near the wake-speed threshold should therefore appear as a jump in $\chi_{\mathrm{root}}(A)$, or in the more detailed causal-root ledger it summarizes, rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 
@@ -459,21 +459,21 @@ It must also show that approach to this limit yields Lorentzian kinematics rathe
 $$
 \frac{R_{\parallel}}{R_{\perp}}
 =
-\frac{1}{\gamma_0(v)}
+\frac{1}{\gamma_0(v_{\mathrm{eff}})}
 +O(\epsilon_{\mathrm{LV}}),
 \qquad
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 =
-\frac{1}{\gamma_0(v)}
+\frac{1}{\gamma_0(v_{\mathrm{eff}})}
 +O(\epsilon_{\mathrm{LV}}),
 \qquad
-\gamma_0(v)
+\gamma_0(v_{\mathrm{eff}})
 =
-\left(1-\frac{v^2}{c_0^2}\right)^{-1/2}
+\left(1-\frac{v_{\mathrm{eff}}^2}{c_0^2}\right)^{-1/2}
 $$
-The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v)$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
+The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v_{\mathrm{eff}})$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
 $$
-\mathcal{D}(v)=\exp(vK)
+\mathcal{D}(v_{\mathrm{eff}})=\exp(v_{\mathrm{eff}}K)
 $$
 with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
 
@@ -481,15 +481,15 @@ with a single generator $K$ producing both the envelope ratio and the clock-phas
 
 Allowed substrate coordinates preserve the product structure:
 
-- $t$ remains the absolute time parameter.
-- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_t$.
+- $T$ remains the absolute time parameter.
+- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_T$.
 - Spatial coordinate changes may rewrite $h_{ij}$ but do not curve the Euclidean void.
 
 Forbidden at the substrate level:
 
 - Lorentz boosts as fundamental time-space rotations.
-- Transformations of the form $t'=t+f(\mathbf{x})$ with nonconstant $f$.
-- Any operation that destroys the foliation into constant-$t$ slices.
+- Transformations of the form $T'=T+f(\mathbf X)$ with nonconstant $f$.
+- Any operation that destroys the foliation into constant-$T$ slices.
 - Any transformation that treats effective metric behavior as the fundamental background.
 
 These exclusions preserve the distinction between absolute timespace and emergent spacetime.
@@ -498,26 +498,26 @@ These exclusions preserve the distinction between absolute timespace and emergen
 
 The absolute time measure is
 $$
-dt
+dT
 $$
 
 The spatial volume element on a slice is
 $$
-dV=dx\,dy\,dz
+dV=dX\,dY\,dZ
 $$
 
 The product measure is
 $$
-d\mathcal{V}=dt\,dx\,dy\,dz=dt\,dV
+d\mathcal{V}=dT\,dX\,dY\,dZ=dT\,dV
 $$
 
 The spatial gradient is
 $$
 \nabla f=
 \left(
-\frac{\partial f}{\partial x},
-\frac{\partial f}{\partial y},
-\frac{\partial f}{\partial z}
+\frac{\partial f}{\partial X},
+\frac{\partial f}{\partial Y},
+\frac{\partial f}{\partial Z}
 \right)
 $$
 
@@ -525,14 +525,14 @@ The spatial Laplacian is
 $$
 \Delta f
 =
-\partial_x^2f+\partial_y^2f+\partial_z^2f
+\partial_X^2f+\partial_Y^2f+\partial_Z^2f
 =
 \delta^{ij}\partial_i\partial_j f
 $$
 
 The temporal derivative is
 $$
-\frac{\partial}{\partial t}
+\frac{\partial}{\partial T}
 $$
 
 All dynamical equations should make clear which derivatives are temporal, which are spatial, and when a calculation is using an effective metric approximation rather than substrate geometry.
@@ -542,19 +542,19 @@ All dynamical equations should make clear which derivatives are temporal, which 
 For well-posed dynamics on absolute timespace:
 
 - Worldlines are absolutely continuous with piecewise continuous velocities.
-- Any alternate parametrization $t(s)$ is strictly increasing.
+- Any alternate parametrization $T(s)$ is strictly increasing.
 - Source configurations are locally finite or represented by integrable measures.
 - Regularized wake surfaces should preserve total polarity and converge to the intended causal-wake limit as the regulator is removed.
 - Solutions should decay suitably at spatial infinity unless an incoming condition is explicitly imposed.
 
 ### Receiver-Centered Exhaustion Lemma
 
-Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,t)$, choose an increasing receiver-centered exhaustion of retained source events and take the limit in that order. In the simplest radial form the condition is
+Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,T)$, choose an increasing receiver-centered exhaustion of retained source events and take the limit in that order. In the simplest radial form the condition is
 $$
 \lim_{R\to\infty}
-\sum_{\substack{j,\ s\in\mathcal{C}_{ij}(t)\\
-\|\mathbf{x}_j(s)-\mathbf{x}_i(t)\|<R}}
-\mathbf{a}_{ij}(t;s)
+\sum_{\substack{j,\ T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)\\
+\|\mathbf X_j(T_{\mathrm{em}})-\mathbf X_i(T)\|<R}}
+\mathbf A_{ij}(T;T_{\mathrm{em}})
 $$
 with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used.
 
@@ -593,7 +593,7 @@ Relativistic spacetime remains the correct comparison target for recovered obser
 | **Manifold** | $\mathbb{R}\times\mathbb{R}^3$ | Four-dimensional spacetime manifold |
 | **Time** | Universal parameter | Coordinate dimension or proper-time relation |
 | **Spatial geometry** | Fixed Euclidean slices | Part of a dynamical metric |
-| **Metric** | Separate $(dt,h)$ data | Non-degenerate $g_{\mu\nu}$ |
+| **Metric** | Separate $(dT,h)$ data | Non-degenerate $g_{\mu\nu}$ |
 | **Simultaneity** | Absolute global foliation | Observer/frame dependent |
 | **Causality** | Absolute order plus finite wake speed | Effective metric light cones |
 | **Gravity** | Emergent from assembly and Noether sea dynamics | Spacetime curvature |
@@ -603,22 +603,22 @@ The effective metric used in GR-style recovery is a downstream constitutive obje
 $$
 d\tau^2
 =
-A^2(\mathcal{N}_{\mathrm{sea}})\,dt^2
+A^2(\mathcal{N}_{\mathrm{sea}})\,dt_{\mathrm{eff}}^2
 -
 \frac{1}{c_0^2}
 B_{ij}(\mathcal{N}_{\mathrm{sea}})
-\left(dx^i-u^i_{\text{sea}}dt\right)
-\left(dx^j-u^j_{\text{sea}}dt\right)
+\left(dx_{\mathrm{eff}}^i-u^i_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
+\left(dx_{\mathrm{eff}}^j-u^j_{\mathrm{sea,eff}}dt_{\mathrm{eff}}\right)
 $$
-with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x^0=c_0t$ gives the component export
+with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ gives the component export
 $$
 g^{\mathrm{eff}}_{00}
 =
--A^2+\frac{1}{c_0^2}B_{ij}u^i_{\text{sea}}u^j_{\text{sea}},
+-A^2+\frac{1}{c_0^2}B_{ij}u^i_{\mathrm{sea,eff}}u^j_{\mathrm{sea,eff}},
 \qquad
 g^{\mathrm{eff}}_{0i}
 =
--\frac{1}{c_0}B_{ij}u^j_{\text{sea}},
+-\frac{1}{c_0}B_{ij}u^j_{\mathrm{sea,eff}},
 \qquad
 g^{\mathrm{eff}}_{ij}
 =
@@ -630,12 +630,12 @@ This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../sp
 
 Absolute timespace is the formal product background in which all architrino dynamics unfold:
 
-- Architrino worldlines are curves $(t,\mathbf{x}(t))$ in $\mathcal{M}$.
+- Architrino worldlines are curves $(T,\mathbf X(T))$ in $\mathcal{M}$.
 - Causal wakes are emitted at earlier events and intersect receivers at later events.
-- Path history is well-defined because the past is the set of all events with smaller $t$.
+- Path history is well-defined because the past is the set of all events with smaller $T$.
 - Assembly motion, clock behavior, and effective spacetime geometry are built on this substrate but are not identical with it.
 - Proper time is a functional of physical observer dynamics, not a fundamental interval of $\mathcal{M}$.
 
 ## Summary Postulate
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dt$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law selects a preferred rest frame dynamically. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.

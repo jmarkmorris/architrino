@@ -281,5 +281,5 @@ certified. The row is blocked only by dependency failure or convention mismatch:
 
 Priority capture complete; receiver-normal rebuild pending. The A1
 root-transport row is not ready for authored corpus promotion as an isolated
-result because the A1 branch chart still requires same-record $D_s$, $D_t$, and
+result because the A1 branch chart still requires same-record $D_s$, $D_T$, and
 $W^{\mathrm{rec}}$ rows before force/action interpretation.

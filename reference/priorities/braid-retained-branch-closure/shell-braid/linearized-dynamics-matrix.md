@@ -8,7 +8,7 @@ Receiver-normal status: `receiver-normal-restart-required` for active
 force/action use. The displayed $|J|^{-1}$ rows in this packet are retained
 only as source-normal diagnostics for the old linearized matrix snapshot. A
 live matrix must rebuild the force and force derivative with same-record
-$W^{\mathrm{rec}}$, $D_s$, $D_t$, and $DW^{\mathrm{rec}}$ rows before action,
+$W^{\mathrm{rec}}$, $D_s$, $D_T$, and $DW^{\mathrm{rec}}$ rows before action,
 Krawczyk, or retention consumers may use it.
 
 ---

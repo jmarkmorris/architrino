@@ -11,14 +11,14 @@ Recommended corpus state:
   root-transport rows as conditional topology inputs.
 - Do not promote radial-turn, tangential-drive, tangential-compatibility,
   action, power, or finite-window conservation verdicts until the same retained
-  boxes carry $D_t/D_s$ branch-strength intervals.
+  boxes carry $D_T/D_s$ branch-strength intervals.
 
 Smallest promotion-worthy artifact:
 
 $$
 \left\{
 D_{s,\alpha},\,
-D_{t,\alpha},\,
+D_{T,\alpha},\,
 W_{\alpha}^{\mathrm{rec}},\,
 B_{r,\alpha}^{\mathrm{rec}},\,
 T_{\alpha}^{\mathrm{rec}}

@@ -1,6 +1,10 @@
 # Gauge Structure Emergence
 
-This chapter is a working emergence map from Noether sea and assembly language to observer-level gauge bookkeeping. It is not the formal symmetry theorem chapter; its role is to explain how Noether sea structure, effective fields, symmetry deformations, and measurement-facing quantities are interpreted before exact closure is finished. The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, and null results for non-baseline channels.
+This chapter explains how gauge language enters $\mathbb{A}\mathbb{A}\mathbb{A}$. The short version is that gauge fields are not added to the Euclidean void as new primitive substances. They are observer-level bookkeeping for repeatable patterns in Noether sea state, assembly geometry, axial-layer exposure, and causal-wake response.
+
+The target is the low-energy Standard Model gauge record, including $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, electroweak mixing, charge bookkeeping, anomaly cancellation, running couplings, and null results for non-baseline channels. This chapter is a working emergence map, not the formal symmetry theorem chapter. Its job is to show what must be recovered and which substrate records are allowed to carry that recovery before exact closure is finished.
+
+The reader should keep three layers separate. At the substrate layer there are architrinos, assemblies, causal wakes, and the Noether sea. At the effective layer there are potentials, fields, gauge connections, and symmetry labels. At the validation layer there are charge tables, scattering records, precision couplings, and absence-of-extra-channel constraints. The emergence claim is that one retained assembly and Noether sea record must project to the tested effective layer without turning the effective fields into final ontology.
 
 ## Physical Medium: From Vacuum Language to Noether Sea
 
@@ -330,15 +334,15 @@ This residual belongs to the observer-level recovery map. It passes only when th
 
 A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
 $$
-Q_{m,\mathrm{eff}}^\theta(t)
+Q_{m,\mathrm{eff}}^\theta(t_{\mathrm{eff}})
 =
 Q_{m,\mathrm{form}}^\theta
 +
-\int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
+\int_{t_{\mathrm{form}}}^{t_{\mathrm{eff}}}
+\Gamma_{m,\mathrm{cap}}^\theta(t'_{\mathrm{eff}})\,dt'_{\mathrm{eff}}
 -
-\int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'
+\int_{t_{\mathrm{form}}}^{t_{\mathrm{eff}}}
+\Gamma_{m,\mathrm{loss}}^\theta(t'_{\mathrm{eff}})\,dt'_{\mathrm{eff}}
 $$
 The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
@@ -351,10 +355,10 @@ In this map, electroweak "breaking" means a stabilizer and mass-coordinate recov
 $$
 S_{\text{fund}}
 =
-\int dt\left[
-\sum_i \frac{1}{2}\mu_{\text{arch}}\dot{\mathbf{x}}_i^2
+\int dT\left[
+\sum_i \frac{1}{2}\mu_{\text{arch}}\|\mathbf V_i(T)\|^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}
+\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|^2}
 \right]
 $$
 Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $W_{ij}^{\mathrm{rec}}$ is the receiver-normal branch factor on the active branch, so the electroweak closure map starts from the same receiver-normal causal geometry as the master equation rather than from a stripped inverse-square surrogate.
