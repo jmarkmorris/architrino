@@ -1,20 +1,24 @@
 # Absolute Time
 
-This chapter is the canonical substrate-level specification for absolute time in $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the absolute time parameter $t$, the ordering of events, the role of time in causal wake dynamics, and the distinction between fundamental absolute time and observer-level proper time.
+This chapter defines absolute time in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the substrate level. It says what the time parameter $t$ is, how it orders events, how causal wakes use it, and why observer proper time is a derived clock readout rather than a second fundamental time.
 
-The companion chapter [Absolute Time Defense](absolute-time-defense.md) gives the argumentative case for this choice. This chapter states the postulate itself and the mathematical structure that later dynamics use.
+The companion chapter [Absolute Time Defense](absolute-time-defense.md) gives the argumentative case for this choice. This chapter does the more basic job: it states the postulate and the mathematical structure used by the later dynamics.
 
 ## Core Concept
 
-Absolute time is a **one-dimensional, continuous, oriented parameter** that advances uniformly and independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces. Physical clocks are assemblies whose internal cycles are compared against this parameter; they do not generate the parameter itself.
+Absolute time is the one universal ordering parameter. It is **one-dimensional, continuous, and oriented**, and it advances independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces.
 
-The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented manifold $T\cong\mathbb{R}$ admits affine relabelings $t\mapsto at+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $t$, and the master equation keeps its receiving law form. A rescaling of $t$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations, not a second physical freedom to choose a different flow of time. Constancy of $c_f$ together with form-invariance of the receiving law pins $t$ to its affine class; a smooth nonlinear reclock $t\mapsto\phi(t)$ would introduce time-dependent propagation and derivative factors, so $\operatorname{Diff}^+(\mathbb{R})$ is not a substrate symmetry.
+Physical clocks are different. A clock is an assembly with repeatable internal cycles. The clock can speed up or slow down as an assembly, but the cycles are compared against the absolute parameter; they do not generate it.
+
+The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented manifold $T\cong\mathbb{R}$ admits affine relabelings $t\mapsto at+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $t$, and the master equation keeps its receiving law form.
+
+A rescaling of $t$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations. It is not a second physical freedom to choose a different flow of time. Constancy of $c_f$ together with form-invariance of the receiving law pins $t$ to its affine class; a smooth nonlinear reclock $t\mapsto\phi(t)$ would introduce time-dependent propagation and derivative factors, so $\operatorname{Diff}^+(\mathbb{R})$ is not a substrate symmetry.
 
 After that scale fixing, the remaining freedom is only translation by $b$. The background time line is therefore best understood as a principal homogeneous space for $(\mathbb{R},+)$: it has a global orientation and duration scale, but no marked origin. This makes the conventional status of $t=0$ precise without weakening the physical status of the affine scale chosen by the receiving law.
 
 ## Time Implementation Ladder
 
-Ordinary language often compresses three different roles into the word "time." In $\mathbb{A}\mathbb{A}\mathbb{A}$ they occupy different levels:
+Ordinary language uses the word "time" for several different things. $\mathbb{A}\mathbb{A}\mathbb{A}$ separates those things so the reader does not confuse the substrate parameter with clocks or observations:
 
 1. **Substrate ordering:** Absolute time $t$ orders universe states. It is not directly measured by a physical clock and has no natural origin; its affine scale is fixed only after the causal-wake law and unit convention are declared.
 2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A source event at emission time $s$ contributes at a receiver time $t$ only when the causal wake support satisfies
@@ -32,26 +36,30 @@ Motion through the Euclidean void and coupling to the Noether sea can retune the
 
 This ladder preserves the useful intuition that cycles make clocks while preventing cycles from being confused with time itself. A moving assembly may trace a helical history through absolute timespace, and its internal cycle may slow or speed relative to $t$; the substrate ordering parameter remains the same line.
 
+It also prevents a second confusion. Absolute simultaneity does not mean an observer can read the whole simultaneous universe state. It means there is a fact of the matter about the ordering parameter. What an observer can reconstruct is limited by assembly clocks, causal wakes, signal transport, and Noether sea coupling.
+
 ## Mathematical Description
 
-Time is modeled as the real number line:
+Mathematically, time is the real number line:
 $$
 \mathbb{R}
 $$
 
-A specific instant is represented by a point $t \in \mathbb{R}$.
+A specific instant is a point $t \in \mathbb{R}$.
 
-We equivalently encode the orientation of absolute time by the exact **clock 1-form**:
+The same orientation can be encoded by the exact **clock 1-form**:
 $$
 dt
 $$
-on the manifold $T \cong \mathbb{R}$. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$ rather than by reusing the proper-time symbol.
+on the manifold $T \cong \mathbb{R}$. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$.
 
-The level distinction is essential. The substrate structure is absolute time together with the Euclidean void, formally the absolute timespace $\mathcal{M}$. Effective spacetime geometry and proper time are later observer-level reconstructions from assembly dynamics, clock behavior, and Noether sea response; they are not additional time coordinates at the ontological level.
+The notation keeps the levels apart. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $s$, and causal delay is written $\Delta_{ij}=t-s$ rather than by reusing the proper-time symbol.
+
+The substrate structure is absolute time together with the Euclidean void, formally the absolute timespace $\mathcal{M}$. Effective spacetime geometry and proper time are later observer-level reconstructions from assembly dynamics, clock behavior, and Noether sea response. They are not additional time coordinates at the ontological level.
 
 ## Dimensionalization
 
-We **non-dimensionalize** time by choosing a reference timescale $T_0 > 0$ such that physical time $\hat{t}$ is given by:
+The equations are usually written in nondimensional form. Choose a reference timescale $T_0 > 0$ such that physical time $\hat{t}$ is given by:
 $$
 \hat{t} = T_0 \, t
 $$
@@ -65,7 +73,7 @@ $$
 \qquad
 c_f=\frac{\hat c_f T_0}{L_0}
 $$
-Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention the nondimensional causal-root condition keeps the same form,
+Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention, the nondimensional causal-root condition keeps the same form,
 $$
 \|\mathbf{x}_i(t)-\mathbf{x}_j(s)\|
 =
@@ -84,7 +92,7 @@ Choosing $T_0$ fixes the affine scale of $t$ for the declared model. Setting $c_
 
 ## Duration and Linear Advancement
 
-With the affine scale fixed by the declared dynamical normalization, time progresses at a constant, immutable rate. The **duration** between two instants $t_1$ and $t_2$ is the absolute difference:
+Once the affine scale is fixed by the declared dynamical normalization, duration is simple. The **duration** between two instants $t_1$ and $t_2$ is the absolute difference:
 $$
 \Delta t = |t_2 - t_1|
 $$
@@ -94,7 +102,7 @@ $$
 \Delta \hat{t} = T_0 \, \Delta t
 $$
 
-This metric is **invariant under time translation**: it is the same for all observers, regardless of their position or state of motion.
+This duration rule is **invariant under time translation**. It is the same for all observers, regardless of their position or state of motion.
 
 > **Plain language:** The gap between any two moments is always given by subtraction; there is no acceleration or deceleration of time itself.
 
@@ -110,9 +118,13 @@ $$
 t_1 < t_2, \quad t_1 = t_2, \quad \text{or} \quad t_1 > t_2
 $$
 
-**Temporal ordering:** Event A temporally precedes event B if and only if $t_A < t_B$. This ordering is absolute and observer-independent. Causal influence is stricter than temporal precedence: Event A can influence event B only when $t_A<t_B$ and event B lies on the finite-speed causal wake support emitted from A.
+**Temporal ordering:** Event A temporally precedes event B if and only if $t_A < t_B$. This ordering is absolute and observer-independent.
 
-**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $s<t$, and the theory excludes advanced or instantaneous interaction terms. The causal arrow is therefore a law-level feature of the master-equation support convention, while thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law.
+Causal influence is stricter than temporal precedence. Event A can influence event B only when $t_A<t_B$ and event B lies on the finite-speed causal wake support emitted from A. Being earlier is necessary; being on the received wake support is the additional physical condition.
+
+**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $t \mapsto -t$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $s<t$, and the theory excludes advanced or instantaneous interaction terms.
+
+The causal arrow is therefore a law-level feature of the master-equation support convention. Thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law.
 
 The entropy arrow is therefore a finite-window statement, not a definition of time itself. For a chosen coarse-graining $\mathcal{Q}$ and observer-accessible window $W(t)$, an entropy summary has the schematic form
 $$
@@ -174,13 +186,13 @@ The time coordinate $t$ is **absolute and universal**:
 - **No relativity of simultaneity:** Two events with equal $t$-coordinates are simultaneous for all observers in an objective, frame-independent sense.
 - **No time dilation at the kinematic level:** The advancement of the background parameter is not affected by motion or observer-level gravitational conditions.
 
-Any observed slowing of clocks for moving or bound assemblies is not a change in the background time flow, but a change in how those assemblies' internal dynamics map onto the absolute time parameter. Proper time is therefore an inferred clock readout in the observer sector, not a second substrate time. See [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
+Any observed slowing of clocks for moving or bound assemblies is not a change in the background time flow. It is a change in how those assemblies' internal dynamics map onto the absolute time parameter. Proper time is therefore an inferred clock readout in the observer sector, not a second substrate time. See [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).
 
 > **Implication:** In contrast to special relativity, simultaneity is an **objective, frame-independent property** in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ## No Absolute Origin and Completeness
 
-The choice of $t = 0$ is **arbitrary and purely conventional**, serving only as a reference point. The timeline extends infinitely into:
+The choice of $t = 0$ is **arbitrary and purely conventional**. It serves only as a reference point. The timeline extends infinitely into:
 
 - The **past**: $t \to -\infty$
 - The **future**: $t \to +\infty$
@@ -191,7 +203,7 @@ As a manifold, $\mathbb{R}$ is:
 - **Complete**: geodesically complete, with no edges or boundaries.
 - **Without endpoints**.
 
-This is a statement about the background time manifold used by the fundamental dynamics, not by itself a solved cosmological boundary condition. A particular cosmological solution may occupy all of $\mathbb{R}$ or a dynamically selected interval, depending on its boundary data. Modeling the time factor as $\mathbb{R}$ prevents artificial endpoints in the substrate parameter; it does not prove that every realized universe history has no initialization, cutoff, or external selection condition.
+This is a statement about the background time manifold used by the fundamental dynamics. It is not by itself a solved cosmological boundary condition. A particular cosmological solution may occupy all of $\mathbb{R}$ or a dynamically selected interval, depending on its boundary data. Modeling the time factor as $\mathbb{R}$ prevents artificial endpoints in the substrate parameter; it does not prove that every realized universe history has no initialization, cutoff, or external selection condition.
 
 ## Symmetries of Absolute Time
 
@@ -264,7 +276,7 @@ $$
 \{\,t_0<t:\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|=c_f(t-t_0)\,\}
 $$
 
-Only emission times in $\mathcal{C}_{ij}(t)$ contribute to the receiver at time $t$. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
+Only emission times in $\mathcal{C}_{ij}(t)$ contribute to the receiver at time $t$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
 
 Equivalently, define the root function
 $$
@@ -292,7 +304,7 @@ $$
 \qquad
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
-Failure of this transversality floor marks a caustic-like or degenerate wake-root regime, so it must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
+Failure of this transversality floor marks a caustic-like or degenerate wake-root regime. It must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
 For self-hits, the shared root function does not erase the additional geometry carried by source identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-source root existence together with the transversality floor.
 
@@ -318,7 +330,7 @@ This gives the postulate a hard failure wall. Postulate 1 fails if any accepted 
 
 ## Path History and Non-Markovian Memory
 
-A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**: the cumulative effect of the causal wake surfaces that reach an architrino from prior emission events.
+A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**. The present receiver does not respond to an instantaneous distant object. It responds to the cumulative causal wake surfaces that reach it from prior emission events.
 
 At time $T$, an architrino at position $\mathbf X(T)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $T' < T$; through the [Master Equation](../dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
 
@@ -355,7 +367,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dy
 
 They do **not** arise from any curvature or dynamics of the time coordinate itself.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**; any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether sea response within this rigid temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
+**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**. Any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether sea response within this rigid temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
 
 ## Distinction from Relativistic Time
 
