@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "archie__aaa_journey",
-    "title": "𝔸𝔸𝔸 Journey",
+    "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

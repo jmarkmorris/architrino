@@ -13,7 +13,7 @@ export const CANVAS_COLORS = Object.freeze([
 ]);
 
 export const SUBJECT_GROUPS = Object.freeze([
-  "𝔸𝔸𝔸 native ledgers",
+  "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
   "Classical mechanics",
   "Relativity and effective metric",
   "Conservation and Noether structure",
@@ -32,6 +32,18 @@ const EQUATION_SCALE_VALUES = new Set(["small", "medium", "large"]);
 const COMMENT_FONT_SIZE_VALUES = new Set(["small", "medium", "large"]);
 const SECTION_LINE_PLACEMENTS = new Set(["above", "below"]);
 const OVERLAY_TONES = new Set(["standard", "geometry"]);
+const STYLIZED_AAA_TEX = "\\mathbb{A}\\mathbb{A}\\mathbb{A}";
+const STYLIZED_AAA_UNICODE = "\u{1d538}\u{1d538}\u{1d538}";
+
+function normalizeEquationSearchText(value) {
+  return String(value ?? "")
+    .replaceAll(`$${STYLIZED_AAA_TEX}$`, "AAA")
+    .replaceAll(STYLIZED_AAA_TEX, "AAA")
+    .replaceAll(STYLIZED_AAA_UNICODE, "AAA")
+    .replace(/\s+/gu, " ")
+    .trim()
+    .toLowerCase();
+}
 
 function normalizeText(value, fallback = "") {
   const text = String(value ?? "").trim();
@@ -56,6 +68,14 @@ function normalizeWidthPercent(value, fallback = 24) {
     return fallback;
   }
   return Math.min(44, Math.max(16, number));
+}
+
+function normalizePixelWidth(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    return null;
+  }
+  return Math.min(720, Math.max(220, number));
 }
 
 export function getCanvasColorById(id) {
@@ -153,6 +173,9 @@ function normalizeOverlay(overlay = {}, index = 0, anchorIds = new Set()) {
       x: normalizePercent(overlay.position?.x, 12),
       y: normalizePercent(overlay.position?.y, 18),
       width: normalizeWidthPercent(overlay.position?.width, 24),
+      ...(normalizePixelWidth(overlay.position?.maxWidth) != null
+        ? { maxWidth: normalizePixelWidth(overlay.position?.maxWidth) }
+        : {}),
     },
     content,
     searchText: getContentSearchText(content),
@@ -230,7 +253,7 @@ function overlay(
   targetAnchorId,
   text,
   tex,
-  { x = 10, y = 12, width = 24, line = "above", tone = "standard" } = {}
+  { x = 10, y = 12, width = 24, maxWidth = null, line = "above", tone = "standard" } = {}
 ) {
   const content = [{ type: "text", text }];
   if (tex) {
@@ -243,7 +266,7 @@ function overlay(
     tone,
     targetAnchorId,
     sectionLinePlacement: line,
-    position: { x, y, width },
+    position: { x, y, width, ...(maxWidth != null ? { maxWidth } : {}) },
     content,
   };
 }
@@ -252,7 +275,7 @@ const equationMapSeedDocuments = [
   {
     id: "eq-00-coordinate-layer-key",
     title: "Coordinate Layer Key",
-    subject: "𝔸𝔸𝔸 native ledgers",
+    subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-source-reference",
     formulaTeX:
@@ -322,7 +345,7 @@ const equationMapSeedDocuments = [
   {
     id: "eq-01-causal-wake-master-equation",
     title: "Causal Wake Per-Hit Law",
-    subject: "𝔸𝔸𝔸 native ledgers",
+    subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
@@ -358,7 +381,7 @@ const equationMapSeedDocuments = [
         "polarity-coupling",
         "Sign and coupling",
         "polarity",
-        "A force law needs two things before distance matters: which way the effect points, and how strongly it couples. In 𝔸𝔸𝔸, this term stores the ordered source-receiver sign and coupling for the active root.",
+        "A force law needs two things before distance matters: which way the effect points, and how strongly it couples. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this term stores the ordered source-receiver sign and coupling for the active root.",
         "\\kappa\\sigma_{q_oq_{o'}}",
         { x: 35, y: 8, width: 30, line: "above" }
       ),
@@ -366,7 +389,7 @@ const equationMapSeedDocuments = [
         "wake-dilution",
         "Wake dilution",
         "inverseSquare",
-        "This is the distance part. The same influence spreads over a larger sphere as r grows, so the strength falls like 1/r². In 𝔸𝔸𝔸, that spreading is the finite-speed wake from the source.",
+        "This is the distance part. The same influence spreads over a larger sphere as r grows, so the strength falls like 1/r². In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that spreading is the finite-speed wake from the source.",
         "r^{-2}",
         { x: 65, y: 22, width: 30, line: "above" }
       ),
@@ -374,7 +397,7 @@ const equationMapSeedDocuments = [
         "receiver-normal",
         "History factor",
         "branchStrength",
-        "A delayed signal can arrive after its timing has been stretched, compressed, or weighted by the path. In 𝔸𝔸𝔸, this factor tells the receiver how source history and receiver history change the hit.",
+        "A delayed signal can arrive after its timing has been stretched, compressed, or weighted by the path. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this factor tells the receiver how source history and receiver history change the hit.",
         "W^{\\mathrm{rec}}=\\left|D_T/D_s\\right|",
         { x: 6, y: 68, width: 34, line: "below" }
       ),
@@ -382,7 +405,7 @@ const equationMapSeedDocuments = [
         "line-of-action",
         "Line of action",
         "direction",
-        "The unit vector is the arrow part of the law. It points from the source's point of emission toward the receiver, so the acceleration follows that line. In 𝔸𝔸𝔸, the direction and strength come from the same causal root.",
+        "The unit vector is the arrow part of the law. It points from the source's point of emission toward the receiver, so the acceleration follows that line. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the direction and strength come from the same causal root.",
         "\\hat{\\mathbf r}",
         { x: 60, y: 82, width: 34, line: "below" }
       ),
@@ -391,7 +414,7 @@ const equationMapSeedDocuments = [
   {
     id: "eq-01b-causal-wake-master-equation",
     title: "Causal Wake Master Equation",
-    subject: "𝔸𝔸𝔸 native ledgers",
+    subject: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ native ledgers",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
@@ -480,15 +503,15 @@ const equationMapSeedDocuments = [
         "drift-through-sea",
         "Drift through sea",
         "driftSpeed",
-        "This is the speed used inside γ. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, 𝔸𝔸𝔸 subtracts that flow first.",
+        "This is the speed used inside γ. It is not speed through nothing; it is speed relative to the local Noether sea flow. If the sea itself is moving, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ subtracts that flow first.",
         "\\mathbf w_{\\mathrm{eff}}=\\mathbf V_{\\mathrm{cm,eff}}-\\mathbf u_{\\mathrm{sea,eff}}",
-        { x: 6, y: 8, width: 34, line: "above" }
+        { x: 6, y: 8, width: 34, maxWidth: 480, line: "above" }
       ),
       overlay(
         "clock-consumer",
         "Clock rate",
         "clockRate",
-        "The right equation says the moving clock advances by 1/γ compared with the observer's time. In 𝔸𝔸𝔸, absolute time is steady and linear; the clock's tick rate is the local readout that changes.",
+        "The right equation says the moving clock advances by 1/γ compared with the observer's time. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, absolute time is steady and linear; the clock's tick rate is the local readout that changes.",
         "d\\tau/dt_{\\mathrm{eff}}=1/\\gamma_\\star",
         { x: 58, y: 68, width: 34, line: "below" }
       ),
@@ -496,7 +519,7 @@ const equationMapSeedDocuments = [
         "branch-blocker",
         "One Lorentz factor",
         "gammaFactor",
-        "γ is the Lorentz factor. Moving clocks use 1/γ, lengths along the motion use 1/γ, and momentum-energy uses γ. In 𝔸𝔸𝔸, one stored branch history produces all three readouts.",
+        "γ is the Lorentz factor. Moving clocks use 1/γ, lengths along the motion use 1/γ, and momentum-energy uses γ. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, one stored branch history produces all three readouts.",
         "\\gamma_\\star\\rightarrow S_{\\mathrm{eq}}",
         { x: 8, y: 82, width: 34, line: "below" }
       ),
@@ -530,7 +553,7 @@ const equationMapSeedDocuments = [
         "envelope-readout",
         "Envelope readout",
         "shapeRatio",
-        "This ratio compares size along the motion with size across the motion. In ordinary relativity, the along-motion size is the one that shrinks. In 𝔸𝔸𝔸, the moving Noether braid envelope makes that shrinkage.",
+        "This ratio compares size along the motion with size across the motion. In ordinary relativity, the along-motion size is the one that shrinks. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the moving Noether braid envelope makes that shrinkage.",
         "\\xi=R_{\\parallel}/R_{\\perp}",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -538,7 +561,7 @@ const equationMapSeedDocuments = [
         "return-cycle",
         "Lorentz target",
         "gammaEff",
-        "The target is 1 over effective γ. That means the along-motion radius is smaller by the Lorentz contraction factor. 𝔸𝔸𝔸 gets this from return-cycle history, not from a new scale knob.",
+        "The target is 1 over effective γ. That means the along-motion radius is smaller by the Lorentz contraction factor. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ gets this from return-cycle history, not from a new scale knob.",
         "\\xi\\to\\gamma_{\\mathrm{eff}}^{-1}",
         { x: 66, y: 68, width: 30, line: "below" }
       ),
@@ -546,7 +569,7 @@ const equationMapSeedDocuments = [
         "transverse-radius",
         "Perpendicular radius",
         "perpendicularRadius",
-        "This is the radius across the motion. Relativity leaves the crosswise direction as the reference radius. In 𝔸𝔸𝔸, R⊥ is the comparison radius while R∥ carries the contraction.",
+        "This is the radius across the motion. Relativity leaves the crosswise direction as the reference radius. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, R⊥ is the comparison radius while R∥ carries the contraction.",
         "R_{\\perp}(v_{\\mathrm{eff}})",
         { x: 35, y: 68, width: 30, line: "below" }
       ),
@@ -554,7 +577,7 @@ const equationMapSeedDocuments = [
         "scale-separation",
         "Parallel radius",
         "parallelRadius",
-        "This is the radius along the motion. It is the part expected to shrink. In 𝔸𝔸𝔸, that shape change stays separate from any overall growth or shrinkage of the whole envelope.",
+        "This is the radius along the motion. It is the part expected to shrink. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that shape change stays separate from any overall growth or shrinkage of the whole envelope.",
         "R_{\\parallel}(v_{\\mathrm{eff}})",
         { x: 6, y: 68, width: 30, line: "below" }
       ),
@@ -599,7 +622,7 @@ const equationMapSeedDocuments = [
         "energy-readout",
         "Energy readout",
         "energy",
-        "E² is total energy with exponent 2. It combines motion energy and rest energy. In 𝔸𝔸𝔸, this is the conserved energy readout of the branch history.",
+        "E² is total energy with exponent 2. It combines motion energy and rest energy. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is the conserved energy readout of the branch history.",
         "E^2",
         { x: 4, y: 8, width: 22, line: "above" }
       ),
@@ -615,7 +638,7 @@ const equationMapSeedDocuments = [
         "mass-response",
         "Mass response",
         "restMass",
-        "M0 is rest mass: energy carried even when the object is not moving in this frame. In 𝔸𝔸𝔸, rest mass reads as trapped internal causal history coupled to the Noether sea.",
+        "M0 is rest mass: energy carried even when the object is not moving in this frame. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, rest mass reads as trapped internal causal history coupled to the Noether sea.",
         "M_0^2c_{\\mathrm{eff}}^4",
         { x: 73, y: 8, width: 22, line: "above" }
       ),
@@ -623,7 +646,7 @@ const equationMapSeedDocuments = [
         "speed-role",
         "Speed role",
         "effectiveSpeed",
-        "Effective c is the conversion speed. It lets momentum and mass be compared as energy. In 𝔸𝔸𝔸, this speed is declared once for this ledger.",
+        "Effective c is the conversion speed. It lets momentum and mass be compared as energy. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this speed is declared once for this ledger.",
         "c_{\\mathrm{eff}}",
         { x: 51, y: 8, width: 22, line: "above" }
       ),
@@ -656,7 +679,7 @@ const equationMapSeedDocuments = [
         "finite-window-total",
         "Energy conserved",
         "energyConservation",
-        "This says total energy in the chosen window is not changing. If one part gains energy, another part or the wake must lose it. In 𝔸𝔸𝔸, the accounting window is finite and uses absolute time T.",
+        "This says total energy in the chosen window is not changing. If one part gains energy, another part or the wake must lose it. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the accounting window is finite and uses absolute time T.",
         "dE_{\\mathrm{tot}}/dT=0",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -664,7 +687,7 @@ const equationMapSeedDocuments = [
         "mechanical-side",
         "Mechanical side",
         "mechanicalMomentum",
-        "Mechanical momentum is carried by the visible moving pieces. In ordinary physics this is the part you would compute from masses and velocities. In 𝔸𝔸𝔸, it is only one entry in the total momentum ledger.",
+        "Mechanical momentum is carried by the visible moving pieces. In ordinary physics this is the part you would compute from masses and velocities. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is only one entry in the total momentum ledger.",
         "\\mathbf P_{\\mathrm{mech}}",
         { x: 8, y: 68, width: 34, line: "below" }
       ),
@@ -672,7 +695,7 @@ const equationMapSeedDocuments = [
         "wake-side",
         "Wake side",
         "wakeMomentum",
-        "Wake momentum is the balance not carried by the visible pieces. Think field momentum or delayed-signal momentum. In 𝔸𝔸𝔸, the delayed causal wake carries that balance so total momentum can still close.",
+        "Wake momentum is the balance not carried by the visible pieces. Think field momentum or delayed-signal momentum. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the delayed causal wake carries that balance so total momentum can still close.",
         "\\mathbf P_{\\mathrm{wake}}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -713,7 +736,7 @@ const equationMapSeedDocuments = [
         "transport-row",
         "Transport ledger",
         "flowDivergence",
-        "This is density carried by sea flow. The divergence operator compares flow in versus flow out. In 𝔸𝔸𝔸, uₛₑₐ is the Noether sea flow in native coordinates.",
+        "This is density carried by sea flow. The divergence operator compares flow in versus flow out. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, uₛₑₐ is the Noether sea flow in native coordinates.",
         "\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}}(\\mathbf X,T)",
         { x: 60, y: 22, width: 34, line: "above" }
       ),
@@ -721,7 +744,7 @@ const equationMapSeedDocuments = [
         "source-residual",
         "Source loading",
         "sourceTerm",
-        "Sᵨ is the known source term. It marks declared events that add or remove Noether sea density. In 𝔸𝔸𝔸, these sources are counted directly before the leftover term is read.",
+        "Sᵨ is the known source term. It marks declared events that add or remove Noether sea density. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, these sources are counted directly before the leftover term is read.",
         "S_{\\rho}",
         { x: 7, y: 68, width: 36, line: "below" }
       ),
@@ -729,7 +752,7 @@ const equationMapSeedDocuments = [
         "density-residual",
         "Leftover term",
         "residual",
-        "rᵨ is what remains after density change, flow, and known sources are counted. If it is not zero, 𝔸𝔸𝔸 shows the missing carrier or response ledger instead of hiding it.",
+        "rᵨ is what remains after density change, flow, and known sources are counted. If it is not zero, $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ shows the missing carrier or response ledger instead of hiding it.",
         "r_{\\rho}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -766,7 +789,7 @@ const equationMapSeedDocuments = [
         "observer-level",
         "Observer-level metric",
         "lineElement",
-        "A line element tells an observer how to measure intervals between nearby events. This one is effective: it describes what clocks and rulers see. In 𝔸𝔸𝔸, it is built from response ledgers, not treated as the underlying substrate.",
+        "A line element tells an observer how to measure intervals between nearby events. This one is effective: it describes what clocks and rulers see. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is built from response ledgers, not treated as the underlying substrate.",
         "ds_{\\mathrm{eff}}^2",
         { x: 3, y: 6, width: 30, line: "above" }
       ),
@@ -774,7 +797,7 @@ const equationMapSeedDocuments = [
         "clock-channel",
         "Clock channel",
         "lapse",
-        "The lapse term is the clock part of the metric. It tells how fast local clock time runs compared with the chosen time coordinate. In 𝔸𝔸𝔸, that cadence must come from the same Noether sea response as rulers and signals.",
+        "The lapse term is the clock part of the metric. It tells how fast local clock time runs compared with the chosen time coordinate. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that cadence must come from the same Noether sea response as rulers and signals.",
         "N^2c_0^2dt_{\\mathrm{eff}}^2",
         { x: 68, y: 7, width: 30, line: "above" }
       ),
@@ -782,7 +805,7 @@ const equationMapSeedDocuments = [
         "spatial-channel",
         "Spatial channel",
         "spatialCompliance",
-        "γᵢⱼ is the ruler part of the metric. It tells how spatial distances are measured in different directions. In 𝔸𝔸𝔸, this is the spatial-compliance ledger; a scalar delay-only story would miss it.",
+        "γᵢⱼ is the ruler part of the metric. It tells how spatial distances are measured in different directions. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is the spatial-compliance ledger; a scalar delay-only story would miss it.",
         "\\gamma_{ij}^{\\mathrm{eff}}",
         { x: 34, y: 7, width: 30, line: "above" }
       ),
@@ -790,7 +813,7 @@ const equationMapSeedDocuments = [
         "drift-channel",
         "Drift channel",
         "drift",
-        "The parentheses say: measure motion after subtracting the local sea flow. That is like using velocity relative to a moving current. In 𝔸𝔸𝔸, projected Noether sea drift affects paths, clocks, and weak-field readings.",
+        "The parentheses say: measure motion after subtracting the local sea flow. That is like using velocity relative to a moving current. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, projected Noether sea drift affects paths, clocks, and weak-field readings.",
         "u^i_{\\mathrm{sea,eff}}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -822,7 +845,7 @@ const equationMapSeedDocuments = [
         "cadence-readout",
         "Cadence readout",
         "clockRate",
-        "This left side is clock time per observer time. A value below 1 means the local clock is running slow relative to the observer coordinate. In 𝔸𝔸𝔸, that rate is read from Noether sea cadence, density, delay, and potential response.",
+        "This left side is clock time per observer time. A value below 1 means the local clock is running slow relative to the observer coordinate. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that rate is read from Noether sea cadence, density, delay, and potential response.",
         "\\Gamma_N\\rightarrow d\\tau/dt_{\\mathrm{eff}}",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -830,7 +853,7 @@ const equationMapSeedDocuments = [
         "potential-response",
         "Potential response",
         "potentialTerm",
-        "Φₙ over c₀² is the weak-gravity term. Near a gravitational potential, clock rates shift. In 𝔸𝔸𝔸, that shift comes from the same response ledger that also controls acceleration and path bending.",
+        "Φₙ over c₀² is the weak-gravity term. Near a gravitational potential, clock rates shift. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that shift comes from the same response ledger that also controls acceleration and path bending.",
         "\\Phi_N/c_0^2",
         { x: 8, y: 68, width: 34, line: "below" }
       ),
@@ -838,7 +861,7 @@ const equationMapSeedDocuments = [
         "moving-clock",
         "Moving clock",
         "motionTerm",
-        "This is the speed correction: a moving clock runs slower. It is the low-speed version of the γ effect. In 𝔸𝔸𝔸, it uses the same stored branch history as γ and ruler contraction.",
+        "This is the speed correction: a moving clock runs slower. It is the low-speed version of the γ effect. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it uses the same stored branch history as γ and ruler contraction.",
         "\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/(2c_0^2)",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -870,7 +893,7 @@ const equationMapSeedDocuments = [
         "lensing-readout",
         "Lensing readout",
         "deflection",
-        "Delta theta is the bend angle of a light path. In standard gravity, mass changes the path that light follows. In 𝔸𝔸𝔸, this is the null-path projection of the effective metric.",
+        "Delta theta is the bend angle of a light path. In standard gravity, mass changes the path that light follows. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is the null-path projection of the effective metric.",
         "\\Delta\\theta",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -878,7 +901,7 @@ const equationMapSeedDocuments = [
         "ppn-handoff",
         "Curvature factor",
         "ppn",
-        "γₚₚₙ is the standard weak-gravity factor for how much spatial curvature contributes to light bending. In 𝔸𝔸𝔸, the same response ledger also explains Shapiro delay, acceleration, and redshift.",
+        "γₚₚₙ is the standard weak-gravity factor for how much spatial curvature contributes to light bending. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the same response ledger also explains Shapiro delay, acceleration, and redshift.",
         "\\gamma_{\\mathrm{PPN}}",
         { x: 58, y: 22, width: 34, line: "above" }
       ),
@@ -886,7 +909,7 @@ const equationMapSeedDocuments = [
         "path-geometry",
         "Path geometry",
         "impact",
-        "b is the impact distance: how close the light ray passes to the mass. c₀² sets the light-speed scale. In 𝔸𝔸𝔸, this denominator keeps spatial compliance in the path geometry, not only clock delay.",
+        "b is the impact distance: how close the light ray passes to the mass. c₀² sets the light-speed scale. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this denominator keeps spatial compliance in the path geometry, not only clock delay.",
         "b c_0^2",
         { x: 7, y: 68, width: 34, line: "below" }
       ),
@@ -920,7 +943,7 @@ const equationMapSeedDocuments = [
         "factor-budget",
         "Frequency budget",
         "redshift",
-        "1+zₓ is the redshift factor: received wavelength compared with emitted wavelength. If it is bigger than 1, the light arrives redder. In 𝔸𝔸𝔸, the full product must account for endpoint clocks, source behavior, motion, and path history.",
+        "1+zₓ is the redshift factor: received wavelength compared with emitted wavelength. If it is bigger than 1, the light arrives redder. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the full product must account for endpoint clocks, source behavior, motion, and path history.",
         "1+z_X",
         { x: 6, y: 8, width: 34, line: "above" }
       ),
@@ -928,7 +951,7 @@ const equationMapSeedDocuments = [
         "endpoint-cadence",
         "Endpoint cadence",
         "emitterCadence",
-        "The emitter clock and receiver clock both affect frequency. If either clock runs differently, the comparison changes. In 𝔸𝔸𝔸, both cadence terms live on one signed transfer ledger.",
+        "The emitter clock and receiver clock both affect frequency. If either clock runs differently, the comparison changes. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, both cadence terms live on one signed transfer ledger.",
         "\\Gamma_{N,E}/\\Gamma_{N,R}",
         { x: 58, y: 22, width: 34, line: "above" }
       ),
@@ -936,7 +959,7 @@ const equationMapSeedDocuments = [
         "path-history",
         "Path history",
         "pathTransfer",
-        "This factor is what happens during the trip from emitter to receiver. It is not an endpoint clock and not simple Doppler motion. In 𝔸𝔸𝔸, the path ledger carries Noether sea transfer before any cosmology comparison.",
+        "This factor is what happens during the trip from emitter to receiver. It is not an endpoint clock and not simple Doppler motion. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the path ledger carries Noether sea transfer before any cosmology comparison.",
         "\\mathcal P_{E\\to R}",
         { x: 7, y: 68, width: 34, line: "below" }
       ),
@@ -944,7 +967,7 @@ const equationMapSeedDocuments = [
         "source-motion",
         "Source and motion",
         "sourceDoppler",
-        "Bₓ is the source behavior factor, and Dᵥ is the Doppler motion factor. They are familiar places where redshift can enter. In 𝔸𝔸𝔸, they are tied to endpoint cadence and path history, not fitted alone.",
+        "Bₓ is the source behavior factor, and Dᵥ is the Doppler motion factor. They are familiar places where redshift can enter. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, they are tied to endpoint cadence and path history, not fitted alone.",
         "B_XD_v",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -974,7 +997,7 @@ const equationMapSeedDocuments = [
         "least-clock-action",
         "Clock action",
         "clockAction",
-        "This action scores the clock path. In relativity, the natural free path is the one that makes proper time stationary. In 𝔸𝔸𝔸, this is the observer-facing action readout of the same retained clock history.",
+        "This action scores the clock path. In relativity, the natural free path is the one that makes proper time stationary. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is the observer-facing action readout of the same retained clock history.",
         "S_{\\mathrm{clk}}",
         { x: 6, y: 8, width: 30, line: "above" }
       ),
@@ -982,7 +1005,7 @@ const equationMapSeedDocuments = [
         "rest-energy-weight",
         "Rest-energy weight",
         "restMass",
-        "M₀c₀² is the rest-energy scale multiplying the clock path. It tells the action how much internal energy is carried. In 𝔸𝔸𝔸, that weight comes from trapped internal causal history.",
+        "M₀c₀² is the rest-energy scale multiplying the clock path. It tells the action how much internal energy is carried. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that weight comes from trapped internal causal history.",
         "M_0c_0^2",
         { x: 36, y: 8, width: 30, line: "above" }
       ),
@@ -990,7 +1013,7 @@ const equationMapSeedDocuments = [
         "proper-time-history",
         "Proper-time path",
         "properTime",
-        "dτ is the clock time along the path. Current physics treats it as the time measured by the moving clock. In 𝔸𝔸𝔸, it is the local clock readout produced by steady absolute time filtered through the branch history.",
+        "dτ is the clock time along the path. Current physics treats it as the time measured by the moving clock. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is the local clock readout produced by steady absolute time filtered through the branch history.",
         "\\int d\\tau",
         { x: 66, y: 8, width: 30, line: "above", tone: "geometry" }
       ),
@@ -1024,7 +1047,7 @@ const equationMapSeedDocuments = [
         "poisson-response",
         "Potential response",
         "potentialOperator",
-        "The Laplacian asks how the Newtonian potential curves through space. In standard weak gravity, this operator turns source density into a potential. In 𝔸𝔸𝔸, it is the weak-field response ledger of the Noether sea.",
+        "The Laplacian asks how the Newtonian potential curves through space. In standard weak gravity, this operator turns source density into a potential. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is the weak-field response ledger of the Noether sea.",
         "\\nabla^2\\Phi_N",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1032,7 +1055,7 @@ const equationMapSeedDocuments = [
         "density-source",
         "Source density",
         "massDensity",
-        "ρ is the source density that loads the field. Ordinary gravity reads it as mass-energy density. In 𝔸𝔸𝔸, this points to the missing carrier question: which Noether sea ledger stores that source loading?",
+        "ρ is the source density that loads the field. Ordinary gravity reads it as mass-energy density. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this points to the missing carrier question: which Noether sea ledger stores that source loading?",
         "\\rho_{\\mathrm{eff}}",
         { x: 36, y: 8, width: 30, line: "above", tone: "geometry" }
       ),
@@ -1040,7 +1063,7 @@ const equationMapSeedDocuments = [
         "einstein-response",
         "Curvature response",
         "einsteinTensor",
-        "G with two indices is the spacetime-curvature side of Einstein's equation. It packages clock and ruler effects together. In 𝔸𝔸𝔸, this is an effective metric response, not the substrate itself.",
+        "G with two indices is the spacetime-curvature side of Einstein's equation. It packages clock and ruler effects together. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is an effective metric response, not the substrate itself.",
         "G_{\\mu\\nu}^{\\mathrm{eff}}",
         { x: 6, y: 68, width: 34, line: "below" }
       ),
@@ -1048,7 +1071,7 @@ const equationMapSeedDocuments = [
         "stress-source",
         "Stress-energy source",
         "stressEnergy",
-        "T with two indices is the source side: energy density, pressure, and flow. In 𝔸𝔸𝔸, each part should trace to a stored carrier ledger instead of being only a fitted source table.",
+        "T with two indices is the source side: energy density, pressure, and flow. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, each part should trace to a stored carrier ledger instead of being only a fitted source table.",
         "T_{\\mu\\nu}^{\\mathrm{eff}}",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -1078,7 +1101,7 @@ const equationMapSeedDocuments = [
         "photon-energy",
         "Photon energy",
         "photonEnergy",
-        "Eγ equals h times frequency. That is the familiar photon energy rule. In 𝔸𝔸𝔸, the frequency is a clock-and-path readout, so photon energy must stay tied to the same carrier history.",
+        "Eγ equals h times frequency. That is the familiar photon energy rule. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the frequency is a clock-and-path readout, so photon energy must stay tied to the same carrier history.",
         "E_\\gamma=h\\nu",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1086,7 +1109,7 @@ const equationMapSeedDocuments = [
         "null-light-path",
         "Null light path",
         "nullPath",
-        "A null path has zero interval for light in the effective metric. This is how current relativity draws light cones. In 𝔸𝔸𝔸, the light cone is the geometry seen by signals moving through Noether sea response.",
+        "A null path has zero interval for light in the effective metric. This is how current relativity draws light cones. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the light cone is the geometry seen by signals moving through Noether sea response.",
         "ds_{\\mathrm{eff}}^2=0",
         { x: 36, y: 8, width: 30, line: "above", tone: "geometry" }
       ),
@@ -1094,7 +1117,7 @@ const equationMapSeedDocuments = [
         "wave-vector-test",
         "Wave-vector test",
         "eikonal",
-        "The eikonal condition is the wave version of a null path. It says the photon's wave vector is lightlike. In 𝔸𝔸𝔸, it is a sharp test that signal ledgers and metric ledgers are using one geometry.",
+        "The eikonal condition is the wave version of a null path. It says the photon's wave vector is lightlike. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is a sharp test that signal ledgers and metric ledgers are using one geometry.",
         "k_\\mu k^\\mu_{\\mathrm{eff}}=0",
         { x: 62, y: 76, width: 34, line: "below" }
       ),
@@ -1124,7 +1147,7 @@ const equationMapSeedDocuments = [
         "frequency-ledger",
         "Frequency energy",
         "frequencyEnergy",
-        "This says energy is proportional to frequency. It is one of the first quantum rules students learn. In 𝔸𝔸𝔸, the frequency must be a real retained cadence, not only a label on a wave.",
+        "This says energy is proportional to frequency. It is one of the first quantum rules students learn. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the frequency must be a real retained cadence, not only a label on a wave.",
         "E=h\\nu",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1132,7 +1155,7 @@ const equationMapSeedDocuments = [
         "wave-vector-row",
         "Momentum wave",
         "momentumWave",
-        "Momentum is tied to wave vector k. Larger k means shorter wavelength and larger momentum. In 𝔸𝔸𝔸, this points to a carrier ledger where phase advance and directed motion stay locked together.",
+        "Momentum is tied to wave vector k. Larger k means shorter wavelength and larger momentum. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this points to a carrier ledger where phase advance and directed motion stay locked together.",
         "\\mathbf p=\\hbar\\mathbf k",
         { x: 36, y: 8, width: 30, line: "above" }
       ),
@@ -1140,7 +1163,7 @@ const equationMapSeedDocuments = [
         "closed-action-row",
         "Closed action",
         "closedAction",
-        "The loop integral says only whole action counts fit around a closed cycle. In 𝔸𝔸𝔸, this is a geometry clue: a stable branch ledger must close its return cycle without a leftover phase.",
+        "The loop integral says only whole action counts fit around a closed cycle. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a geometry clue: a stable branch ledger must close its return cycle without a leftover phase.",
         "\\oint p\\,dq=nh",
         { x: 62, y: 76, width: 34, line: "below", tone: "geometry" }
       ),
@@ -1170,7 +1193,7 @@ const equationMapSeedDocuments = [
         "field-response",
         "Field response",
         "fieldDivergence",
-        "This is the Maxwell operator side. It tells how the electromagnetic field changes in spacetime. In 𝔸𝔸𝔸, it is a current-to-signal response ledger that must still respect finite propagation.",
+        "This is the Maxwell operator side. It tells how the electromagnetic field changes in spacetime. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is a current-to-signal response ledger that must still respect finite propagation.",
         "\\partial_\\nu F^{\\mu\\nu}",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1178,7 +1201,7 @@ const equationMapSeedDocuments = [
         "current-source",
         "Current source",
         "fourCurrent",
-        "J is charge and current in one four-vector. It is the source side of the field equation. In 𝔸𝔸𝔸, that source must be carried by signed branch history rather than being only a point label.",
+        "J is charge and current in one four-vector. It is the source side of the field equation. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that source must be carried by signed branch history rather than being only a point label.",
         "J^\\mu",
         { x: 36, y: 8, width: 30, line: "above" }
       ),
@@ -1186,7 +1209,7 @@ const equationMapSeedDocuments = [
         "wave-response",
         "Wave response",
         "waveOperator",
-        "The box operator is the spacetime wave operator. It is the part that makes disturbances propagate as waves. In 𝔸𝔸𝔸, it is a direct clue for the carrier geometry of signal ledgers.",
+        "The box operator is the spacetime wave operator. It is the part that makes disturbances propagate as waves. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is a direct clue for the carrier geometry of signal ledgers.",
         "\\Box A_\\mu",
         { x: 62, y: 76, width: 34, line: "below", tone: "geometry" }
       ),
@@ -1216,7 +1239,7 @@ const equationMapSeedDocuments = [
         "wave-law",
         "Wave evolution",
         "waveEvolution",
-        "The Schrodinger equation tells how the quantum state changes with effective observer time. In current physics, the Hamiltonian sets the energy rule. In 𝔸𝔸𝔸, the question becomes which retained ledger evolves under that rule.",
+        "The Schrodinger equation tells how the quantum state changes with effective observer time. In current physics, the Hamiltonian sets the energy rule. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the question becomes which retained ledger evolves under that rule.",
         "i\\hbar\\partial_{t_{\\mathrm{eff}}}\\psi_{\\mathrm{eff}}=\\hat H_{\\mathrm{eff}}\\psi_{\\mathrm{eff}}",
         { x: 5, y: 8, width: 34, line: "above" }
       ),
@@ -1224,7 +1247,7 @@ const equationMapSeedDocuments = [
         "density-readout",
         "Density readout",
         "recordDensity",
-        "ρ is the density being conserved. In ordinary quantum mechanics it is the Born probability density. In 𝔸𝔸𝔸, this points to a real ledger-density readout rather than a floating probability cloud.",
+        "ρ is the density being conserved. In ordinary quantum mechanics it is the Born probability density. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this points to a real ledger-density readout rather than a floating probability cloud.",
         "\\rho_{\\mathrm{rec}}",
         { x: 10, y: 76, width: 34, line: "below" }
       ),
@@ -1232,7 +1255,7 @@ const equationMapSeedDocuments = [
         "current-readout",
         "Current readout",
         "recordCurrent",
-        "J is the current that moves the density around. The equation says density is not lost; it flows. In 𝔸𝔸𝔸, this is a carrier-flow map for retained branch ledgers.",
+        "J is the current that moves the density around. The equation says density is not lost; it flows. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a carrier-flow map for retained branch ledgers.",
         "\\mathbf J_{\\mathrm{rec}}",
         { x: 58, y: 82, width: 34, line: "below", tone: "geometry" }
       ),
@@ -1264,7 +1287,7 @@ const equationMapSeedDocuments = [
         "cosmic-line-element",
         "Cosmic line element",
         "frwMetric",
-        "FRW is the standard large-scale metric used in cosmology. It separates clock time from the spatial size of the universe. In 𝔸𝔸𝔸, this is an effective observer map of the Noether sea at cosmic scale.",
+        "FRW is the standard large-scale metric used in cosmology. It separates clock time from the spatial size of the universe. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is an effective observer map of the Noether sea at cosmic scale.",
         "ds_{\\mathrm{FRW,eff}}^2",
         { x: 3, y: 8, width: 22, line: "above" }
       ),
@@ -1272,7 +1295,7 @@ const equationMapSeedDocuments = [
         "cosmic-clock-row",
         "Cosmic clock",
         "cosmicClock",
-        "This is the time part of the metric. It marks the clock used by a smooth cosmic observer. In 𝔸𝔸𝔸, absolute time remains steady; this term is the cosmology clock readout.",
+        "This is the time part of the metric. It marks the clock used by a smooth cosmic observer. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, absolute time remains steady; this term is the cosmology clock readout.",
         "d\\tau_c",
         { x: 75, y: 8, width: 22, line: "above" }
       ),
@@ -1280,7 +1303,7 @@ const equationMapSeedDocuments = [
         "scale-factor-row",
         "Scale factor",
         "scaleFactor",
-        "The effective scale factor is the ruler that tells how cosmic distances compare over effective observer time. In 𝔸𝔸𝔸, the same behavior should be read as Noether sea expansion or response history, not empty space stretching by itself.",
+        "The effective scale factor is the ruler that tells how cosmic distances compare over effective observer time. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the same behavior should be read as Noether sea expansion or response history, not empty space stretching by itself.",
         "a_{\\mathrm{eff}}(t_{\\mathrm{eff}})",
         { x: 27, y: 8, width: 22, line: "above", tone: "geometry" }
       ),
@@ -1288,7 +1311,7 @@ const equationMapSeedDocuments = [
         "spatial-curvature-row",
         "Spatial slice",
         "spatialSlice",
-        "This term is the spatial geometry at one cosmic time. k labels whether the idealized slice is flat, closed, or open. In 𝔸𝔸𝔸, it is an effective large-scale spatial-compliance ledger.",
+        "This term is the spatial geometry at one cosmic time. k labels whether the idealized slice is flat, closed, or open. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is an effective large-scale spatial-compliance ledger.",
         "d\\Sigma_k^2",
         { x: 51, y: 8, width: 22, line: "above" }
       ),
@@ -1325,7 +1348,7 @@ const equationMapSeedDocuments = [
         "hubble-readout",
         "Hubble rate",
         "hubble",
-        "H is the expansion rate of the large-scale universe. LCDM uses it as the main time-varying readout. In 𝔸𝔸𝔸, it should be a Noether sea response readout, not an independent dial.",
+        "H is the expansion rate of the large-scale universe. LCDM uses it as the main time-varying readout. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it should be a Noether sea response readout, not an independent dial.",
         "H_{\\mathrm{eff}}^2",
         { x: 3, y: 8, width: 21, line: "above" }
       ),
@@ -1333,7 +1356,7 @@ const equationMapSeedDocuments = [
         "density-loading",
         "Density loading",
         "density",
-        "ρ is the matter and energy density source. In LCDM it helps set the expansion rate. In 𝔸𝔸𝔸, this density must connect to source loading in the Noether sea.",
+        "ρ is the matter and energy density source. In LCDM it helps set the expansion rate. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this density must connect to source loading in the Noether sea.",
         "\\rho_{\\mathrm{eff}}",
         { x: 25, y: 8, width: 21, line: "above" }
       ),
@@ -1341,7 +1364,7 @@ const equationMapSeedDocuments = [
         "curvature-budget",
         "Curvature budget",
         "curvature",
-        "This term is the spatial curvature part. It changes the expansion budget if the large-scale slice is not flat. In 𝔸𝔸𝔸, it belongs to the effective spatial-compliance map.",
+        "This term is the spatial curvature part. It changes the expansion budget if the large-scale slice is not flat. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it belongs to the effective spatial-compliance map.",
         "kc_0^2/a_{\\mathrm{eff}}^2",
         { x: 47, y: 8, width: 21, line: "above" }
       ),
@@ -1349,7 +1372,7 @@ const equationMapSeedDocuments = [
         "lambda-pressure",
         "Lambda pressure",
         "lambda",
-        "Λ is the LCDM dark-energy term. It behaves like a smooth pressure or energy of the background. In 𝔸𝔸𝔸, this is a prime place to test whether the Noether sea has a constitutive pressure ledger.",
+        "Λ is the LCDM dark-energy term. It behaves like a smooth pressure or energy of the background. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a prime place to test whether the Noether sea has a constitutive pressure ledger.",
         "\\Lambda_{\\mathrm{eff}}/3",
         { x: 69, y: 8, width: 24, line: "above", tone: "geometry" }
       ),
@@ -1357,9 +1380,9 @@ const equationMapSeedDocuments = [
         "cosmic-continuity",
         "Cosmic continuity",
         "continuity",
-        "This conservation law says cosmic density changes when expansion dilutes it and pressure does work. In 𝔸𝔸𝔸, it should match a finite-window Noether sea continuity ledger.",
+        "This conservation law says cosmic density changes when expansion dilutes it and pressure does work. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it should match a finite-window Noether sea continuity ledger.",
         "\\partial_{t_{\\mathrm{eff}}}\\rho_{\\mathrm{eff}}+3H_{\\mathrm{eff}}(\\rho_{\\mathrm{eff}}+p_{\\mathrm{eff}}/c_0^2)=0",
-        { x: 58, y: 82, width: 34, line: "below" }
+        { x: 58, y: 82, width: 34, maxWidth: 580, line: "below" }
       ),
     ],
   },
@@ -1388,7 +1411,7 @@ const equationMapSeedDocuments = [
         "dark-pressure",
         "Dark-energy pressure",
         "pressureLaw",
-        "p is pressure. For dark energy, pressure is the part that makes the expansion behavior unusual. In 𝔸𝔸𝔸, pressure should be a Noether sea constitutive response, not only a name for acceleration.",
+        "p is pressure. For dark energy, pressure is the part that makes the expansion behavior unusual. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, pressure should be a Noether sea constitutive response, not only a name for acceleration.",
         "p_{\\mathrm{DE,eff}}",
         { x: 5, y: 8, width: 28, line: "above" }
       ),
@@ -1396,7 +1419,7 @@ const equationMapSeedDocuments = [
         "w-parameter",
         "Equation state",
         "equationState",
-        "w tells how pressure compares with energy density. LCDM uses w near negative one for a cosmological-constant-like term. In 𝔸𝔸𝔸, w should come from the medium response law.",
+        "w tells how pressure compares with energy density. LCDM uses w near negative one for a cosmological-constant-like term. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, w should come from the medium response law.",
         "w",
         { x: 36, y: 8, width: 28, line: "above" }
       ),
@@ -1404,7 +1427,7 @@ const equationMapSeedDocuments = [
         "lambda-density",
         "Lambda density",
         "lambdaDensity",
-        "This converts a smooth dark-energy density into Λ. In 𝔸𝔸𝔸, the geometry reading is direct: find the Noether sea ledger whose density and pressure create this effective term.",
+        "This converts a smooth dark-energy density into Λ. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, the geometry reading is direct: find the Noether sea ledger whose density and pressure create this effective term.",
         "\\rho_{\\mathrm{DE,eff}}\\to\\Lambda_{\\mathrm{eff}}",
         { x: 66, y: 8, width: 30, line: "above", tone: "geometry" }
       ),
@@ -1434,7 +1457,7 @@ const equationMapSeedDocuments = [
         "observed-g",
         "Observed acceleration",
         "observedAccel",
-        "g observed is the acceleration inferred from galaxy rotation. It is larger than the visible-baryon estimate in the low-acceleration regime. In 𝔸𝔸𝔸, this is a response readout of the Noether sea around galaxies.",
+        "g observed is the acceleration inferred from galaxy rotation. It is larger than the visible-baryon estimate in the low-acceleration regime. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this is a response readout of the Noether sea around galaxies.",
         "g_{\\mathrm{obs}}",
         { x: 5, y: 8, width: 28, line: "above", tone: "geometry" }
       ),
@@ -1442,7 +1465,7 @@ const equationMapSeedDocuments = [
         "baryon-g",
         "Baryon acceleration",
         "baryonAccel",
-        "g bar is the Newtonian acceleration expected from ordinary baryonic matter. It is the visible-source side of the relation. In 𝔸𝔸𝔸, this source side must be tied to the same mass-loading ledger.",
+        "g bar is the Newtonian acceleration expected from ordinary baryonic matter. It is the visible-source side of the relation. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, this source side must be tied to the same mass-loading ledger.",
         "g_{\\mathrm{bar}}",
         { x: 36, y: 8, width: 28, line: "above" }
       ),
@@ -1450,7 +1473,7 @@ const equationMapSeedDocuments = [
         "btfr-row",
         "Flat-velocity ledger",
         "flatVelocity",
-        "The second equation is the baryonic Tully-Fisher relation: flat rotation speed to the fourth tracks baryonic mass. The a₀ term is the low-acceleration scale. In 𝔸𝔸𝔸, it is a compact galaxy-scale response target.",
+        "The second equation is the baryonic Tully-Fisher relation: flat rotation speed to the fourth tracks baryonic mass. The a₀ term is the low-acceleration scale. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it is a compact galaxy-scale response target.",
         "v_f^4=G M_b a_0",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
@@ -1481,7 +1504,7 @@ const equationMapSeedDocuments = [
         "thermal-scale",
         "Temperature factor",
         "temperature",
-        "x compares photon energy hν with thermal energy kBT. It tells when a mode is easy or hard to populate. In 𝔸𝔸𝔸, temperature is a statistical readout of stored branch activity.",
+        "x compares photon energy hν with thermal energy kBT. It tells when a mode is easy or hard to populate. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, temperature is a statistical readout of stored branch activity.",
         "x_\\nu=h\\nu/k_BT",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
@@ -1489,7 +1512,7 @@ const equationMapSeedDocuments = [
         "thermal-occupancy",
         "Mode occupancy",
         "occupancy",
-        "This gives the average number of photons in a frequency mode at temperature T. It is the blackbody rule behind the cosmic microwave background spectrum. In 𝔸𝔸𝔸, it maps thermal ledgers to photon carrier counts.",
+        "This gives the average number of photons in a frequency mode at temperature T. It is the blackbody rule behind the cosmic microwave background spectrum. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, it maps thermal ledgers to photon carrier counts.",
         "\\bar n_\\nu",
         { x: 36, y: 8, width: 30, line: "above" }
       ),
@@ -1497,7 +1520,7 @@ const equationMapSeedDocuments = [
         "radiation-mode-density",
         "Radiation mode density",
         "modeDensity",
-        "uν is energy density per frequency. The ν cubed factor counts how many wave modes fit. In 𝔸𝔸𝔸, that mode-counting is a geometry clue for photon carrier ledgers in the Noether sea.",
+        "uν is energy density per frequency. The ν cubed factor counts how many wave modes fit. In $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, that mode-counting is a geometry clue for photon carrier ledgers in the Noether sea.",
         "u_\\nu",
         { x: 62, y: 76, width: 34, line: "below", tone: "geometry" }
       ),
@@ -1522,20 +1545,19 @@ export function createSeedEquationMapDocuments() {
 }
 
 export function getEquationSearchText(document = {}) {
-  return [
+  const searchText = [
     document.title,
     document.subject,
     document.formulaTeX,
     document.claimLevel,
     ...(document.anchors ?? []).map((anchor) => `${anchor.label} ${anchor.searchText}`),
     ...(document.overlays ?? []).map((overlay) => `${overlay.title} ${overlay.searchText}`),
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" ");
+  return normalizeEquationSearchText(searchText);
 }
 
 export function filterEquationMapDocuments(documents = [], query = "") {
-  const normalizedQuery = String(query ?? "").trim().toLowerCase();
+  const normalizedQuery = normalizeEquationSearchText(query);
   if (!normalizedQuery) {
     return documents;
   }

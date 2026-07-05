@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "theory_bridges__superposition_mechanism",
-    "title": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+    "title": "Superposition Mechanism: QM vs. $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

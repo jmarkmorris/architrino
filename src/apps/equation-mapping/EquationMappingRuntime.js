@@ -52,8 +52,6 @@ const CALLOUT_LAYOUT_BAND_PADDING_PX = 240;
 const CALLOUT_LAYOUT_TITLE_GAP_PX = 18;
 const COORDINATE_EFFECTIVE_OVERLAY_ID = "effective-coordinates";
 const COORDINATE_EFFECTIVE_ANCHOR_ID = "effectiveLayer";
-const COORDINATE_COMPARISON_OVERLAY_ID = "comparison-forms";
-const COORDINATE_COMPARISON_ANCHOR_ID = "comparisonLayer";
 const SIDE_CALLOUT_GAP_PX = 32;
 const COORDINATE_CAROUSEL_CLEARANCE_PX = 16;
 
@@ -308,25 +306,34 @@ function isCoordinateEffectiveSideCallout(document, overlay) {
   );
 }
 
-function isCoordinateComparisonCarouselCallout(document, overlay) {
-  return (
-    document?.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID &&
-    overlay?.id === COORDINATE_COMPARISON_OVERLAY_ID &&
-    overlay?.targetAnchorId === COORDINATE_COMPARISON_ANCHOR_ID
-  );
-}
-
 export function resolveCalloutPlacements(document = {}) {
   const overlays = document.overlays ?? [];
   const { anchorPositions, rowCount } = getFormulaAnchorPositions(document);
   const placementByOverlayId = new Map();
 
   if (rowCount > 1) {
-    overlays.forEach((overlay, index) => {
-      const targetPosition = getOverlayTargetPosition(overlay, anchorPositions, index);
+    const overlayTargets = overlays.map((overlay, index) => ({
+      overlay,
+      index,
+      targetPosition: getOverlayTargetPosition(overlay, anchorPositions, index),
+    }));
+    const crowdedFirstRowOverlays = overlayTargets
+      .filter(({ targetPosition }) => targetPosition.rowIndex === 0)
+      .sort((left, right) =>
+        left.targetPosition.partIndex - right.targetPosition.partIndex ||
+        left.index - right.index
+      );
+    const crowdedFirstRowPlacementById = new Map();
+    if (crowdedFirstRowOverlays.length >= 4) {
+      crowdedFirstRowOverlays.forEach(({ overlay }, index) => {
+        crowdedFirstRowPlacementById.set(overlay.id, index % 2 === 0 ? "above" : "below");
+      });
+    }
+    overlayTargets.forEach(({ overlay, targetPosition }) => {
       placementByOverlayId.set(
         overlay.id,
-        targetPosition.rowIndex === 0 ? "above" : "below"
+        crowdedFirstRowPlacementById.get(overlay.id) ??
+          (targetPosition.rowIndex === 0 ? "above" : "below")
       );
     });
     return placementByOverlayId;
@@ -602,6 +609,30 @@ function renderMath(windowLike, element, tex, { displayMode = false } = {}) {
   }
   element.textContent = displayMode ? `$$${tex}$$` : tex;
   element.classList.add("equation-mapping-math-fallback");
+}
+
+function appendInlineMathText(windowLike, documentLike, parent, text) {
+  const source = String(text ?? "");
+  const inlineMathPattern = /\$([^$\n]+)\$/g;
+  let cursor = 0;
+  let match;
+  while ((match = inlineMathPattern.exec(source))) {
+    if (match.index > cursor) {
+      parent.append(documentLike.createTextNode(source.slice(cursor, match.index)));
+    }
+    const math = createElement(documentLike, "span", "equation-mapping-inline-math");
+    renderMath(windowLike, math, match[1], { displayMode: false });
+    parent.append(math);
+    cursor = match.index + match[0].length;
+  }
+  if (cursor < source.length) {
+    parent.append(documentLike.createTextNode(source.slice(cursor)));
+  }
+  return parent;
+}
+
+function createInlineMathTextElement(windowLike, documentLike, tag, className, text) {
+  return appendInlineMathText(windowLike, documentLike, createElement(documentLike, tag, className), text);
 }
 
 function readSavedSettings(windowLike) {
@@ -1077,7 +1108,7 @@ export class EquationMappingRuntime {
       toggle.setAttribute("aria-expanded", String(isExpanded));
       toggle.append(
         createElement(this.document, "span", "equation-mapping-index-group-chevron", "›"),
-        createElement(this.document, "strong", "", subject),
+        createInlineMathTextElement(this.window, this.document, "strong", "", subject),
         createElement(this.document, "small", "", String(entries.length))
       );
       toggle.addEventListener("click", () => {
@@ -1212,7 +1243,7 @@ export class EquationMappingRuntime {
       button.type = "button";
       button.append(
         createElement(this.document, "strong", "", entry.title),
-        createElement(this.document, "span", "", entry.subject)
+        createInlineMathTextElement(this.window, this.document, "span", "", entry.subject)
       );
       button.addEventListener("click", () => {
         this.searchOpen = false;
@@ -1496,6 +1527,9 @@ export class EquationMappingRuntime {
       comment.style.setProperty("--overlay-x", String(overlay.position.x));
       comment.style.setProperty("--overlay-y", String(overlay.position.y));
       comment.style.setProperty("--overlay-width", String(overlay.position.width));
+      if (Number.isFinite(overlay.position.maxWidth)) {
+        comment.style.setProperty("--overlay-max-width", `${overlay.position.maxWidth}px`);
+      }
       const header = createElement(this.document, "header", "equation-mapping-comment-header");
       header.append(createElement(this.document, "strong", "", overlay.title));
       const body = createElement(this.document, "div", "equation-mapping-comment-body");
@@ -1507,7 +1541,7 @@ export class EquationMappingRuntime {
       });
       overlay.content.forEach((block) => {
         if (block.type === "text") {
-          body.append(createElement(this.document, "p", "", block.text));
+          body.append(createInlineMathTextElement(this.window, this.document, "p", "", block.text));
         }
       });
       comment.append(header, body);
@@ -1646,7 +1680,6 @@ export class EquationMappingRuntime {
       }
       items.push({
         id: overlay.id,
-        overlay,
         element: commentElement,
         width: commentRect.width,
         height: commentRect.height,
@@ -1671,7 +1704,7 @@ export class EquationMappingRuntime {
         if (!position) {
           return;
         }
-        if (isCoordinateComparisonCarouselCallout(this.activeDocument, item.overlay)) {
+        if (placement === "below") {
           position = resolveCarouselClearanceCalloutPosition({
             position,
             commentRect: item.commentRect,

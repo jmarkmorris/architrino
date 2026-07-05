@@ -1625,7 +1625,7 @@ class CausalDelayFeedbackRuntime {
     if (this.dom?.architrinoSpeedValue) {
       const value = this.formatArchitrinoSpeedFraction(this.getArchitrinoSpeedFraction());
       this.dom.architrinoSpeedValue.textContent = `${value} c_f`;
-      this.dom.architrinoSpeedValue.setAttribute("aria-label", `${value} field speed c sub f`);
+      this.dom.architrinoSpeedValue.setAttribute("aria-label", `${value} field speed c_f`);
       this.dom.architrinoSpeedValue.innerHTML = `${value} c<sub>f</sub>`;
     }
   }

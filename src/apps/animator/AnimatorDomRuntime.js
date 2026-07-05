@@ -150,7 +150,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
       {
         button: animatorHudLabelsToggle,
         key: "showLabels",
-        label: "Observer Labels",
+        label: "Observer View Labels",
       },
       {
         button: animatorHudPathsToggle,
@@ -190,7 +190,7 @@ export function getAnimatorDomElements(documentLike = globalThis.document) {
       {
         button: animatorHudCameraGuidesToggle,
         key: "showCameraGuides",
-        label: "Observer Guides",
+        label: "Observer View Guides",
       },
     ],
     animatorPathModeSelect: getElementById(documentLike, "animator-path-mode"),

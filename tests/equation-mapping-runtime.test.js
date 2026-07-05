@@ -228,6 +228,7 @@ test("equation mapping rejects overlays that do not target a formula section", (
 
 test("equation mapping search includes subject, formula text, anchors, and overlay content", () => {
   const documents = createSeedEquationMapDocuments();
+  assert.equal(filterEquationMapDocuments(documents, "AAA native").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "Lorentz factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "receiver-normal").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
@@ -239,12 +240,14 @@ test("equation mapping can target an inner Lorentz marker without splitting the 
     (entry) => entry.id === "eq-02-lorentz-clock-rate"
   );
   const driftSpeedPart = document.formulaParts.find((part) => part.id === "driftSpeed");
+  const driftOverlay = document.overlays.find((overlay) => overlay.id === "drift-through-sea");
 
   assert.equal(
     driftSpeedPart.tex,
     "\\frac{1}{\\rule{0pt}{1.06em}\\sqrt{1-\\lVert\\mathbf w_{\\mathrm{eff}}\\rVert^2/c_\\star^2}}"
   );
   assert.deepEqual(driftSpeedPart.sectionMarker, { left: 42, width: 24 });
+  assert.equal(driftOverlay.position.maxWidth, 480);
   assert.equal(
     document.overlays.find((overlay) => overlay.id === "drift-through-sea").targetAnchorId,
     "driftSpeed"
@@ -404,6 +407,32 @@ test("equation mapping keeps only the first row above on three-row maps", () => 
   ]);
 });
 
+test("equation mapping alternates crowded first-row callouts on multi-row maps", () => {
+  const placementByOverlayId = resolveCalloutPlacements({
+    formulaParts: [
+      { kind: "math", anchorId: "first" },
+      { kind: "math", anchorId: "second" },
+      { kind: "math", anchorId: "third" },
+      { kind: "math", anchorId: "fourth" },
+      { kind: "break" },
+      { kind: "math", anchorId: "solveLine" },
+    ],
+    overlays: [
+      { id: "first-note", targetAnchorId: "first", sectionLinePlacement: "above" },
+      { id: "second-note", targetAnchorId: "second", sectionLinePlacement: "above" },
+      { id: "fourth-note", targetAnchorId: "fourth", sectionLinePlacement: "above" },
+      { id: "third-note", targetAnchorId: "third", sectionLinePlacement: "above" },
+    ],
+  });
+
+  assert.deepEqual([...placementByOverlayId.entries()], [
+    ["first-note", "above"],
+    ["second-note", "below"],
+    ["fourth-note", "below"],
+    ["third-note", "above"],
+  ]);
+});
+
 test("equation mapping computes staggered master-equation callouts by target order", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-01-causal-wake-master-equation"
@@ -532,7 +561,12 @@ test("equation mapping energy-momentum map substitutes momentum before solving r
   );
   const motionOverlay = document.overlays.find((overlay) => overlay.id === "motion-response");
 
-  assert.equal([...resolveCalloutPlacements(document).values()].every((placement) => placement === "above"), true);
+  assert.deepEqual([...resolveCalloutPlacements(document).entries()], [
+    ["energy-readout", "above"],
+    ["motion-response", "below"],
+    ["mass-response", "below"],
+    ["speed-role", "above"],
+  ]);
   assert.equal(
     motionOverlay.content.some(
       (block) =>
@@ -576,6 +610,15 @@ test("equation mapping energy-momentum map substitutes momentum before solving r
     ),
     true
   );
+});
+
+test("equation mapping widens long coordinate-system callout headers selectively", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-19-friedmann-continuity-lcdm"
+  );
+  const continuity = document.overlays.find((overlay) => overlay.id === "cosmic-continuity");
+
+  assert.equal(continuity.position.maxWidth, 580);
 });
 
 test("equation mapping pointer geometry attaches comments to section line edges", () => {
@@ -1255,7 +1298,10 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
     html,
     /\.equation-mapping-comment \{[\s\S]*?left: var\(--overlay-layout-x, calc\(var\(--overlay-x\) \* 1%\)\);[\s\S]*?top: var\(--overlay-layout-y, calc\(var\(--overlay-y\) \* 1%\)\);/u
   );
-  assert.match(html, /\.equation-mapping-comment \{[\s\S]*?width: min\(calc\(var\(--overlay-width\) \* 1%\), 429px\);/u);
+  assert.match(
+    html,
+    /\.equation-mapping-comment \{[\s\S]*?width: min\(calc\(var\(--overlay-width\) \* 1%\), var\(--overlay-max-width, 429px\)\);/u
+  );
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
   assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
@@ -1263,7 +1309,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(html, /\.equation-mapping-index-item span \{[\s\S]*?font-size: 21px;/u);
   assert.match(html, /\.equation-mapping-index-item small \{[\s\S]*?font-size: 15px;/u);
   assert.equal(html.includes(".equation-mapping-equation-title span"), false);
-  assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?font-size: 21px;/u);
+  assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?flex: 0 1 auto;[\s\S]*?font-size: 21px;/u);
   assert.match(
     html,
     /\.equation-mapping-comment-target \{[\s\S]*?flex: 0 0 auto;[\s\S]*?margin-left: auto;[\s\S]*?text-align: right;[\s\S]*?white-space: nowrap;/u
@@ -1294,6 +1340,32 @@ test("equation mapping keeps overlay status out of visible comment labels", () =
   assert.equal(runtime.includes('"Status", "overlay-status"'), false);
   assert.equal(data.includes("overlay.title} ${overlay.status}"), false);
   assert.equal(editor.includes('normalizePlainText(draft.status, "candidate")'), false);
+});
+
+test("user-facing equation mapping and scene sources use TeX for stylized AAA", () => {
+  const equationData = readRepoFile("src/apps/equation-mapping/EquationMappingData.js");
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const sceneSources = [
+    "content/scenes/archie/aaa_journey.json",
+    "content/scenes/archie/presentations.json",
+    "content/scenes/archie/project.json",
+    "content/scenes/philosophy_history/crisis_in_physics.json",
+    "content/scenes/philosophy_history/theory_bridges/bell_theorem.json",
+    "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json",
+    "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json",
+    "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json",
+  ].map((path) => [path, readRepoFile(path)]);
+
+  assert.equal(equationData.includes("𝔸𝔸𝔸"), false);
+  assert.equal(
+    equationData.includes("$\\\\mathbb{A}\\\\mathbb{A}\\\\mathbb{A}$ native ledgers"),
+    true
+  );
+  assert.equal(runtime.includes("createInlineMathTextElement"), true);
+  sceneSources.forEach(([path, source]) => {
+    assert.equal(source.includes("𝔸𝔸𝔸"), false, path);
+    assert.equal(source.includes("$\\\\mathbb{A}\\\\mathbb{A}\\\\mathbb{A}$"), true, path);
+  });
 });
 
 test("equation mapping supports cabernet geometry-note callouts", () => {

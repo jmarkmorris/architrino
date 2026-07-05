@@ -59,10 +59,10 @@
     },
     {
       "id": "aaa_journey",
-      "title": "𝔸𝔸𝔸 Journey",
+      "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
       "radius": 2.2,
       "color": "#8b6f47",
-      "labelTitle": "𝔸𝔸𝔸 Journey",
+      "labelTitle": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
       "labelBadge": "doc"
     },
     {

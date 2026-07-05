@@ -184,7 +184,7 @@ export function createAnimatorCameraPathRuntime(options = {}) {
   function updateAnimatorWaypointCount() {
     const cameraFlightState = getCameraFlightState();
     if (dom.cameraWaypointCount) {
-      dom.cameraWaypointCount.textContent = `Observer points: ${cameraFlightState.waypoints.length}`;
+      dom.cameraWaypointCount.textContent = `Observer view points: ${cameraFlightState.waypoints.length}`;
     }
     if (dom.cameraFlightToggle) {
       dom.cameraFlightToggle.disabled = cameraFlightState.waypoints.length < 2;
@@ -216,18 +216,18 @@ export function createAnimatorCameraPathRuntime(options = {}) {
     const selectedPoint = selectedPointIndex != null ? pathState.points[selectedPointIndex] : null;
     if (cameraFlightState.poiMode === "selected") {
       if (selectedPoint) {
-        dom.cameraPoiStatus.textContent = `Selected point: ${selectedPointIndex + 1} (${selectedPoint.x.toFixed(2)}, ${selectedPoint.y.toFixed(2)}, ${selectedPoint.z.toFixed(2)})`;
+        dom.cameraPoiStatus.textContent = `Observer view target point ${selectedPointIndex + 1}: display-frame (${selectedPoint.x.toFixed(2)}, ${selectedPoint.y.toFixed(2)}, ${selectedPoint.z.toFixed(2)})`;
         dom.cameraPoiStatus.classList.remove("is-warning");
       } else {
-        dom.cameraPoiStatus.textContent = "Selected point: none. Click a path point in the canvas to target it.";
+        dom.cameraPoiStatus.textContent = "Observer view target: no selected display-frame path point.";
         dom.cameraPoiStatus.classList.add("is-warning");
       }
       return;
     }
     if (selectedPoint) {
-      dom.cameraPoiStatus.textContent = `Observer target: local origin. Selected point ${selectedPointIndex + 1} is available if you switch modes.`;
+      dom.cameraPoiStatus.textContent = `Observer view target: display-frame origin. Path point ${selectedPointIndex + 1} is available if you switch modes.`;
     } else {
-      dom.cameraPoiStatus.textContent = "Observer target: local origin.";
+      dom.cameraPoiStatus.textContent = "Observer view target: display-frame origin.";
     }
     dom.cameraPoiStatus.classList.remove("is-warning");
   }
@@ -446,7 +446,7 @@ export function createAnimatorCameraPathRuntime(options = {}) {
       cameraFlightState.savedPosition.copy(camera.position);
     }
     if (dom.cameraFlightToggle) {
-      dom.cameraFlightToggle.textContent = "Stop Observer Path";
+      dom.cameraFlightToggle.textContent = "Stop Observer View Path";
       dom.cameraFlightToggle.classList.add("is-active");
     }
   }
@@ -465,7 +465,7 @@ export function createAnimatorCameraPathRuntime(options = {}) {
       updateCamera();
     }
     if (dom.cameraFlightToggle) {
-      dom.cameraFlightToggle.textContent = "Preview Observer Path";
+      dom.cameraFlightToggle.textContent = "Preview Observer View Path";
       dom.cameraFlightToggle.classList.remove("is-active");
     }
   }

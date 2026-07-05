@@ -688,6 +688,33 @@ test("SH-0-sea accepted-provenance package verifier can match the FCC carrier wi
   assert.equal(badGeometryRun.authorization.scoreMovement, "no_score_increase");
 });
 
+test("SH-0-sea accepted-provenance package shape cannot bypass missing seed-path acceptance", () => {
+  const provisionalRun = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+  });
+  const provisionalPackage = {
+    ...provisionalRun.accepted_provenance_replacement_requirement
+      .accepted_provenance_package_verification.expected_package_payload,
+  };
+  const run = buildSh0SeaDiagnosticResponseRun({
+    producedResponseSource: true,
+    acceptedProvenancePackage: provisionalPackage,
+  });
+  const replacement = run.accepted_provenance_replacement_requirement;
+
+  assert.equal(
+    replacement.accepted_provenance_package_verification.package_conditionally_verified,
+    true
+  );
+  assert.equal(replacement.accepted, false);
+  assert.equal(replacement.requirement_passed, false);
+  assert.equal(replacement.status, "seed_path_acceptance_certificate_missing");
+  assert.equal(replacement.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(replacement.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(replacement.seed_path_acceptance.conditionally_verified, false);
+  assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
+});
+
 test("SH-0-sea diagnostic response run CLI emits JSON without authorizing evidence", () => {
   const output = execFileSync(
     process.execPath,

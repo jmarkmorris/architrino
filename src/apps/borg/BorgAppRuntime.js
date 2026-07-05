@@ -1825,7 +1825,7 @@ function formatValue(value) {
 }
 
 function formatTimelineLabel(time, frameIndex) {
-  return `t ${formatTimelineTime(time)} | frame ${frameIndex}`;
+  return `solver t ${formatTimelineTime(time)} | keyframe ${frameIndex}`;
 }
 
 function formatTimelineTime(value) {
