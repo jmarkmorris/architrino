@@ -2,6 +2,8 @@
 
 This document is the contributor-facing reference for reader-facing UI standards in the Architrino webapp. Its purpose is to provide one place where interface preferences can be recorded deliberately instead of being scattered across code, scenes, and ad hoc decisions.
 
+Interface rules are part of explanation. A reader who is wrestling with unfamiliar physics should not also have to decode inconsistent controls, unclear navigation, or mixed visual language.
+
 This document is intentionally lightweight. It uses a grouped inventory of UI elements and their preferred treatment, with undecided preferences left blank until they are explicitly decided.
 
 The third column is a comma-separated ledger of known web-facing docs or app surfaces that do not yet match the preferred treatment. It can remain blank until those mismatches are audited.

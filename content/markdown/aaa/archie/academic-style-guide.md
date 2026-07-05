@@ -2,6 +2,8 @@
 
 This guide defines the prose standard for reader-facing textbook material in the webapp. Its purpose is to make voice, structure, tone, and editorial discipline consistent enough that chapters read like parts of one coherent corpus rather than isolated notes with incompatible habits.
 
+The core writing rule is simple: make the claim easy to locate, the mechanism easy to follow, and the claim level impossible to confuse. A reader should not have to guess whether a sentence is ontology, effective recovery, comparison, open proof work, or historical explanation.
+
 The sections below move from scope and core aims to concrete rules for headings, tone, explanation, and editorial review.
 
 ## Purpose

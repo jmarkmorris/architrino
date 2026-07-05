@@ -2,6 +2,8 @@
 
 This scene is the PDF review shelf for textbook reading copies. The released webapp at [architrino.com](https://www.architrino.com) remains the content of record. A generated PDF review copy is a stable exchange artifact for reading, annotation, forwarding, citation, and offline review.
 
+Think of the PDF as a snapshot. It is useful when a reader wants a stable packet, but it is generated from the living source flow and should not be treated as a hand-authored canon file.
+
 ## Overview
 
 Use the scene nodes to open generated PDF review copies. The PDF layer is generated from the same textbook reading-copy Markdown that feeds the reader package; it is not the source of record.

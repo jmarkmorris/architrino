@@ -1,5 +1,7 @@
 # Photon Guide
 
+The photon app is an inspection workbench, not a proof document. It lets a reader inspect whether a paired planar Noether braid candidate can produce coherent field and polarization readouts before the full photon proof is available.
+
 ## What This App Shows
 
 The photon app is an exploratory diagnostic for a candidate photon modeled as two contra-rotating flat Noether braids. It is meant to help inspect the candidate geometry, Virtual Observer field readouts, and derived polarization diagnostics. It is not a proof of photon closure.

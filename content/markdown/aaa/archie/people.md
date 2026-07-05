@@ -1,5 +1,7 @@
 # People
 
+This page explains role separation. The founder/CEO profile, the CTO role, and the Architrino project identity should be visible as connected but distinct parts of the public presentation.
+
 ## Overview
 
 The People scene separates the founder/CEO profile, the CTO role, and the project/company description instead of compressing them into one partnership paragraph.

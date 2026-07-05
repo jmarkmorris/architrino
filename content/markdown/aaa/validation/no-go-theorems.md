@@ -2,6 +2,10 @@
 
 This chapter classifies the formal obstruction results that act as validation filters for $\mathbb{A}\mathbb{A}\mathbb{A}$. A no-go theorem is not useful here as a decorative citation. It is useful only when its assumptions, conclusion, and replacement burden can be recorded against a candidate closure.
 
+A no-go theorem has a simple shape: if these assumptions are accepted, this conclusion cannot be avoided. That does not automatically defeat a theory that rejects one of the assumptions. It does mean the theory now owes a replacement mechanism for the tested behavior that the theorem was protecting.
+
+This page is the bookkeeping layer for that debt. It separates direct falsifiers from assumption mismatches, and it prevents the easy mistake of saying "that theorem does not apply" while quietly keeping the theorem's validated target.
+
 The operational companion is [Failure Criteria](./failure-criteria.md). That page defines the shared closure intersection. This page defines how a theorem enters one sector gate: directly as a rejection condition, as an assumption mismatch, as a replacement constraint, or as an irrelevant comparison.
 
 ## Applicability Record

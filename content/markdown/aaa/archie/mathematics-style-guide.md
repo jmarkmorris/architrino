@@ -1,5 +1,9 @@
 # Mathematical Style Guide (Canonical Dialect)
 
+This guide keeps the mathematical language from switching layers without warning. The main danger is not a typo; it is a valid-looking equation that quietly treats absolute time, Euclidean void coordinates, effective observer charts, and standard comparison variables as if they were the same thing.
+
+Use the rules below as a wiring diagram for notation. Every symbol should tell the reader which layer it belongs to and what map, if any, is still owed.
+
 Purpose: Define a single, canonical mathematical and geometrical dialect for the Geometrical Model of Nature. All technical documents should adhere to this guide. Equations are presented in display math for clarity where appropriate.
 
 ---

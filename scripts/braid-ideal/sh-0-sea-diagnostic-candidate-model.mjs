@@ -25,6 +25,22 @@ export const CANDIDATE_RESPONSE_ROW_SCHEMA = "sh_0_sea_candidate_response_row.di
 export const PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA = "sh_0_sea_produced_response_source_row.diagnostic.v0";
 export const DEFAULT_RESPONSE_DEADBAND = 1e-9;
 export const DEFAULT_PRODUCED_SOURCE_MARGIN_STEP = 0.001;
+export const FCC_SEA_DIAGNOSTIC_ATTEMPT_ID = "aa";
+export const FCC_SEA_POPULATION_SIZE = 12;
+export const FCC_NEAREST_NEIGHBOR_DIRECTIONS = Object.freeze([
+  Object.freeze([1, 1, 0]),
+  Object.freeze([1, -1, 0]),
+  Object.freeze([-1, 1, 0]),
+  Object.freeze([-1, -1, 0]),
+  Object.freeze([1, 0, 1]),
+  Object.freeze([1, 0, -1]),
+  Object.freeze([-1, 0, 1]),
+  Object.freeze([-1, 0, -1]),
+  Object.freeze([0, 1, 1]),
+  Object.freeze([0, 1, -1]),
+  Object.freeze([0, -1, 1]),
+  Object.freeze([0, -1, -1]),
+]);
 
 const PROVIDER_PATH = new URL("../spacetime/noether-sea-density-compression-provider.v1.json", import.meta.url);
 
@@ -427,8 +443,34 @@ function buildSeaPopulationRow() {
     paired_center_condition: "X_kprime(t)-C(t)=-(X_k(t)-C(t))",
     paired_velocity_condition: "U_kprime(t)-dot_C(t)=-(U_k(t)-dot_C(t))",
     orientation_phase_status: "recorded_not_assumed",
+    diagnostic_specialization_row_ref: "sh_0_sea_model:fcc_nearest_neighbor_shell_row",
     selection_status: "diagnostic_symmetry_control_not_noether_sea_selection_rule",
     accepted: false,
+  };
+}
+
+function buildFccNearestNeighborShellRow() {
+  return {
+    row_id: "sh_0_sea_model:fcc_nearest_neighbor_shell_row",
+    schema: "sh_0_sea_fcc_nearest_neighbor_shell_row.diagnostic.v0",
+    authority_class: AUTHORITY_CLASS,
+    diagnostic_attempt_id: FCC_SEA_DIAGNOSTIC_ATTEMPT_ID,
+    population_size: FCC_SEA_POPULATION_SIZE,
+    shell_configuration: "FCC nearest-neighbor shell",
+    center_formula: "X_k(t)=C(t)+(a_FCC/2)d_k",
+    direction_basis:
+      "unscaled face-diagonal directions d_k in {(+/-1,+/-1,0),(+/-1,0,+/-1),(0,+/-1,+/-1)}",
+    nearest_neighbor_radius: "a_FCC/sqrt(2)",
+    neighbor_directions: FCC_NEAREST_NEIGHBOR_DIRECTIONS.map((direction, index) => ({
+      index,
+      direction: [...direction],
+    })),
+    paired_center_condition: "for each d_k, the shell includes -d_k",
+    velocity_condition: "U_k(t)=dot_C(t) for first static diagnostic shell unless wake rows supply motion",
+    orientation_phase_status: "recorded_not_assumed",
+    accepted: false,
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   };
 }
 
@@ -608,6 +650,7 @@ export function buildSh0SeaDiagnosticCandidateModel(options = {}) {
   const rows = [
     buildTargetSourceRow(targetArtifact),
     buildSeaPopulationRow(),
+    buildFccNearestNeighborShellRow(),
     buildFrameRow(targetArtifact),
     buildSeaStateRow(provider),
     buildBoundaryRow(),

@@ -2,6 +2,8 @@
 
 This protocol turns the shared calibration gate in [Dark Energy](../../cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN comparison packets can consume one shared Noether sea state record without silently replacing the state per observable family.
 
+A cosmology fit can cheat without looking like a cheat. It can use one hidden state for supernovae, another for BAO, another for the CMB, and another for growth, while reporting one attractive summary. This protocol exists to stop that split: one shared Noether sea state record must feed the observable families that claim to belong to the same cosmology.
+
 This is not a cosmological parameter fit and not an empirical claim. The first runtime artifact is a mock packet that fixes the object shape, residual accounting, projection-penalty semantics, gates, and failure codes that a real survey-facing packet must later populate.
 
 ## Residual Object

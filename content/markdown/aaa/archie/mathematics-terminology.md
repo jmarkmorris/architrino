@@ -2,6 +2,8 @@
 
 This table lists the symbols and mathematical terms used across the Geometrical Model of Nature and explains their meaning in this project’s context.
 
+Treat this as the legend for the equations. When a chapter uses a symbol such as $T$, $\mathbf X$, $g_{\mu\nu}^{\mathrm{eff}}$, $\xi$, or $\chi_{\text{sea}}$, this page records the intended layer and prevents nearby standard notation from taking over by habit.
+
 | Symbol / Term | Meaning in this project | Extended explanation |
 | --- | --- | --- |
 | $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ | Absolute timespace: formal product of absolute time and Euclidean 3-space; no non-degenerate 4D metric. | Treat as a product manifold with a global time coordinate and a flat 3D Riemannian metric; differential operators split into absolute-time derivatives $d/dT$ and spatial operators on slices $\Sigma_T$. Worldlines are ODEs in $T$, and fields are distributions on $\Sigma_T$ parametrized by $T$. Use `absolute timespace` when the formal product structure matters; otherwise name the factors directly as `absolute time` and `Euclidean void`. |

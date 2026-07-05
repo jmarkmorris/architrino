@@ -2,6 +2,8 @@
 
 This notebook is a stylistic journal of major events in the evolution of $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
+Read it as project memory. The notebook preserves the turning points that changed how the architecture is written, but it does not replace the current source documents, proofs, validators, or claim-status pages.
+
 It records turning points, major corrections, conceptual reframings, and other moments that materially changed how the theory was written, organized, or understood.
 
 Each dated section should preserve the reasoning of the moment closely enough that later readers can see what changed and why.

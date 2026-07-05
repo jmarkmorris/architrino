@@ -2,6 +2,8 @@
 
 This chapter reconstructs the discovery path by which the current $\mathbb{A}\mathbb{A}\mathbb{A}$ architecture emerged from earlier Architrino and NPQG-era writing. It is a historical and methodological map, not an independent proof of the theory. Early terms such as point charge, electrino, positrino, spacetime aether, source-era Noether-braid language, and personality charge are treated here as source-era signals that later had to be translated into the current vocabulary of [architrino ontology](../foundations/ontology.md), [binary dynamics](../dynamics/binary-dynamics.md), [Noether braid](../noether-braid/noether-braid.md), [Noether sea](../spacetime/noether-sea.md), axial-layer bookkeeping, and [strong-sector recovery](../assemblies/fermions/color-charge-su3.md).
 
+Read this as a record of how the architecture learned to name itself. The early archive matters because it shows recurring pressures and motifs, but the proof burden lives in the present equations, branch certificates, simulations, and validation gates.
+
 The history does not look like a finished core being uncovered by stripping away outer layers. It is closer to a crystal being grown and annealed. Small seed structures appeared first: two polarities, Euclidean void, emitted potential histories, physical medium, binaries, and assembly grammar. Later passes bonded those seeds into larger patterns: nested neutral assemblies, axial attachments, generation mapping, strong-sector links, path-history dynamics, and Noether sea response. The mature theory then reheated those rough bonds under stricter proof pressure, replacing legacy vocabulary with controlled terms and separating discovery intuition from derivation.
 
 ## 2018: Search Frame And Medium Intuition

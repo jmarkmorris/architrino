@@ -51,6 +51,7 @@ The candidate row's dynamic replay metadata uses field speed `c_f=1`, coupling `
 | --- | --- | --- |
 | Target source row | Candidate `SH-0` source identity above, treated as the central target around which the sea is built. | Candidate only; blocked at `held_release_seed_path_rows_acceptance_certificate.v0`. |
 | Sea population row | A finite local population of like Noether braid assemblies around the central target, paired across the target center to keep the first diagnostic environment center-neutral and torque-neutral. | Candidate only; no accepted `SH-0-sea` population row exists. |
+| FCC nearest-neighbor shell row | Attempt `aa` specializes the diagnostic population to `N_sea=12` like Noether braid assemblies in the FCC nearest-neighbor shell around the central target, using face-diagonal directions $(\pm1,\pm1,0)$, $(\pm1,0,\pm1)$, and $(0,\pm1,\pm1)$ scaled by $a_{\mathrm{FCC}}/2$. | Candidate only; this is a diagnostic geometry specialization, not an accepted Noether sea selection rule or same-target wake/source row. |
 | Local target-sea frame row | Target-center frame with target center `C(t)`, relative positions `y_a(t)=x_a(t)-C(t)`, and local sea velocity `u_sea(C,t)`. The first diagnostic rest condition is `\dot C(t)-u_sea(C,t)=0` after frame normalization. | Candidate only; the accepted density provider has `u_sea=(0,0,0)` for its own window, not for this target record. |
 | Boundary-condition row | Local region `\Omega_C` around the target and boundary history `\mathcal H_{\partial\Omega}` carrying incoming sea wake/event data. No hard wall is allowed; the boundary must represent nearby Noether braid population response. | Candidate only. |
 | Sea-response row | Candidate acceleration `\mathbf a_a^{\mathrm{sea}}=\mathcal A_a^{\mathrm{sea}}(B,\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal H_{\partial\Omega})`, projected onto the target reduced-radius direction. | Candidate only; not an accepted Noether sea response row. |
@@ -92,6 +93,23 @@ U_{k'}(t)-\dot C(t)=-(U_k(t)-\dot C(t)),
 $$
 
 with orientation and phase choices recorded rather than assumed. This paired condition is only a diagnostic symmetry control. It is not an accepted Noether sea selection rule.
+
+Attempt `aa` specializes the first diagnostic population to an FCC nearest-neighbor shell:
+
+$$
+N_{\mathrm{sea}}=12,
+\qquad
+X_k(t)=C(t)+\frac{a_{\mathrm{FCC}}}{2}d_k,
+$$
+
+with
+
+$$
+d_k\in
+\{(\pm1,\pm1,0),(\pm1,0,\pm1),(0,\pm1,\pm1)\}.
+$$
+
+This places twelve like Noether braid assemblies on the face-diagonal nearest-neighbor shell around the central target. The specialization preserves the paired-center condition because each direction `d_k` has the opposite direction `-d_k` in the shell. In the first static diagnostic shell, `U_k(t)=\dot C(t)` unless future accepted boundary-wake rows supply motion.
 
 The local Noether sea state is
 
@@ -385,6 +403,7 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 | --- | --- |
 | Central target identity | Diagnostic/candidate, not accepted |
 | Like-braid Noether sea population | Diagnostic/candidate |
+| Attempt `aa` FCC nearest-neighbor shell | Diagnostic/candidate; `N_sea=12` geometry specialization only |
 | Local target-sea frame | Diagnostic/candidate |
 | Boundary-condition row | Diagnostic/candidate |
 | Candidate sea-response equation | Diagnostic/candidate |

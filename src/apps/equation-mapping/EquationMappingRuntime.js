@@ -50,6 +50,10 @@ const CALLOUT_LAYOUT_EQUATION_GAP_PX = 28;
 const CALLOUT_LAYOUT_ITEM_GAP_PX = 24;
 const CALLOUT_LAYOUT_BAND_PADDING_PX = 150;
 const CALLOUT_LAYOUT_TITLE_GAP_PX = 18;
+const COORDINATE_EFFECTIVE_OVERLAY_ID = "effective-coordinates";
+const COORDINATE_EFFECTIVE_ANCHOR_ID = "effectiveLayer";
+const SIDE_CALLOUT_GAP_PX = 32;
+const SIDE_CALLOUT_VERTICAL_OFFSET_PX = 16;
 
 function createElement(documentLike, tag, className = "", textContent) {
   const element = documentLike.createElement(tag);
@@ -294,6 +298,14 @@ function getOverlayTargetPosition(overlay, anchorPositions, fallbackIndex) {
   };
 }
 
+function isCoordinateEffectiveSideCallout(document, overlay) {
+  return (
+    document?.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID &&
+    overlay?.id === COORDINATE_EFFECTIVE_OVERLAY_ID &&
+    overlay?.targetAnchorId === COORDINATE_EFFECTIVE_ANCHOR_ID
+  );
+}
+
 export function resolveCalloutPlacements(document = {}) {
   const overlays = document.overlays ?? [];
   const { anchorPositions, rowCount } = getFormulaAnchorPositions(document);
@@ -448,6 +460,31 @@ export function resolveCalloutRowLayout({
   );
 }
 
+export function resolveSideCalloutPosition({
+  stageWidth = 0,
+  stageHeight = 0,
+  targetRect = null,
+  commentRect = null,
+  marginPx = CALLOUT_LAYOUT_MARGIN_PX,
+  gapPx = SIDE_CALLOUT_GAP_PX,
+} = {}) {
+  if (!targetRect || !commentRect || stageWidth <= 0 || stageHeight <= 0) {
+    return null;
+  }
+  const hardLeft = marginPx;
+  const hardRight = Math.max(hardLeft, stageWidth - marginPx);
+  const hardBottom = Math.max(marginPx, stageHeight - marginPx);
+  const preferredX = targetRect.left - commentRect.width - gapPx;
+  const preferredY =
+    commentRect.height > targetRect.height
+      ? targetRect.top + SIDE_CALLOUT_VERTICAL_OFFSET_PX
+      : targetRect.top + targetRect.height / 2 - commentRect.height / 2;
+  return {
+    x: clamp(preferredX, hardLeft, Math.max(hardLeft, hardRight - commentRect.width)),
+    y: clamp(preferredY, marginPx, Math.max(marginPx, hardBottom - commentRect.height)),
+  };
+}
+
 export function calculateEquationAutoFit({
   availableWidth = 0,
   naturalWidth = 0,
@@ -504,6 +541,21 @@ export function createPointerLineGeometry(
     x1: sourceX - stageRect.left,
     y1: sourceY - stageRect.top,
     x2: targetX - stageRect.left,
+    y2: targetY - stageRect.top,
+  };
+}
+
+export function createSidePointerLineGeometry(stageRect, targetRect, commentRect) {
+  const targetY = targetRect.top + targetRect.height / 2;
+  const sourceY = clamp(
+    targetY,
+    commentRect.top + COMMENT_CONNECTOR_INSET_PX,
+    commentRect.bottom - COMMENT_CONNECTOR_INSET_PX
+  );
+  return {
+    x1: commentRect.right - stageRect.left,
+    y1: sourceY - stageRect.top,
+    x2: targetRect.left - stageRect.left,
     y2: targetY - stageRect.top,
   };
 }
@@ -1354,7 +1406,9 @@ export class EquationMappingRuntime {
     const targetPlacementByAnchor = new Map(
       document.overlays.map((overlay) => [
         overlay.targetAnchorId,
-        placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT,
+        isCoordinateEffectiveSideCallout(document, overlay)
+          ? "side-left"
+          : placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT,
       ])
     );
     const targetToneByAnchor = new Map(
@@ -1362,7 +1416,9 @@ export class EquationMappingRuntime {
     );
     document.formulaParts.forEach((part) => {
       if (part.kind === "break") {
-        equation.append(createElement(this.document, "span", "equation-mapping-formula-break"));
+        const breakElement = createElement(this.document, "span", "equation-mapping-formula-break");
+        breakElement.dataset.partId = part.id;
+        equation.append(breakElement);
         return;
       }
       const partElement = createElement(
@@ -1527,6 +1583,7 @@ export class EquationMappingRuntime {
       ["above", []],
       ["below", []],
     ]);
+    const sideItems = [];
     const placementByOverlayId = resolveCalloutPlacements(this.activeDocument);
     this.activeDocument.overlays.forEach((overlay) => {
       const anchorElement = this.anchorElements.get(overlay.targetAnchorId);
@@ -1542,6 +1599,15 @@ export class EquationMappingRuntime {
       }
       const commentRect = commentElement.getBoundingClientRect();
       const targetRect = getLocalRect(anchorElement.getBoundingClientRect(), stageRect);
+      if (isCoordinateEffectiveSideCallout(this.activeDocument, overlay)) {
+        sideItems.push({
+          id: overlay.id,
+          element: commentElement,
+          commentRect: getLocalRect(commentRect, stageRect),
+          targetRect,
+        });
+        return;
+      }
       const placement = placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT;
       const items = itemsByPlacement.get(placement);
       if (!items) {
@@ -1576,6 +1642,20 @@ export class EquationMappingRuntime {
         item.element.style.setProperty("--overlay-layout-y", `${position.y.toFixed(1)}px`);
         placements.push({ id: item.id, placement, ...position });
       });
+    });
+    sideItems.forEach((item) => {
+      const position = resolveSideCalloutPosition({
+        stageWidth: stageRect.width,
+        stageHeight: stageRect.height,
+        targetRect: item.targetRect,
+        commentRect: item.commentRect,
+      });
+      if (!position) {
+        return;
+      }
+      item.element.style.setProperty("--overlay-layout-x", `${position.x.toFixed(1)}px`);
+      item.element.style.setProperty("--overlay-layout-y", `${position.y.toFixed(1)}px`);
+      placements.push({ id: item.id, placement: "side-left", ...position });
     });
     return placements;
   }
@@ -1639,12 +1719,18 @@ export class EquationMappingRuntime {
       if (!anchorElement || !commentElement) {
         return;
       }
-      const geometry = createPointerLineGeometry(
-        stageRect,
-        getSectionMarkerTargetRect(anchorElement),
-        commentElement.getBoundingClientRect(),
-        placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT
-      );
+      const geometry = isCoordinateEffectiveSideCallout(this.activeDocument, overlay)
+        ? createSidePointerLineGeometry(
+            stageRect,
+            anchorElement.getBoundingClientRect(),
+            commentElement.getBoundingClientRect()
+          )
+        : createPointerLineGeometry(
+            stageRect,
+            getSectionMarkerTargetRect(anchorElement),
+            commentElement.getBoundingClientRect(),
+            placementByOverlayId.get(overlay.id) ?? DEFAULT_SECTION_LINE_PLACEMENT
+          );
       const line = createSvgElement(this.document, "line");
       line.classList.add("equation-mapping-pointer-line");
       line.dataset.tone = overlay.tone ?? "standard";

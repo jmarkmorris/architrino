@@ -1,5 +1,7 @@
 # Licenses & Attributions
 
+This page is the public receipt drawer for third-party material and project-owned media. It tells readers where assets, libraries, data, and generated or curated media came from, and which license or attribution rule travels with them.
+
 - For plain-language use boundaries, see [Legal Terms](legal-terms.md).
 
 - The [Architrino Assembly Architecture repo on GitHub](https://github.com/jmarkmorris/architrino) is open source with this license: [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris.

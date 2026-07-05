@@ -2,6 +2,10 @@
 
 This chapter collects the observer-level and simulation-level checks that the framework must pass if it is to retain an absolute frame without contradicting established data. Its purpose is to translate foundational claims into concrete validation tasks: null tests, atomic comparisons, and frame-proxy checks.
 
+Validation is where ontology has to pay its bills. A preferred frame can exist in the theory only if ordinary Physical Observers still recover the null results, clock behavior, atomic spectra, and frame-proxy observations that experiments already constrain.
+
+The practical question is therefore not "can the framework say there is an absolute frame?" The question is whether the same machinery that contains that frame also hides it from ordinary operational tests to the observed precision.
+
 It should be used with [Failure Criteria](failure-criteria.md), [Constraint Ledger](constraint-ledger.md), [No-Go Theorems](no-go-theorems.md), [Detecting the Absolute Frame](../foundations/detecting-the-absolute-frame.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 The note is therefore a gatekeeping document. It should tell the reader what has to be reproduced, what mechanism is being claimed, and where falsification would occur.

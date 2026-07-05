@@ -24,11 +24,13 @@ import {
   calculateEquationAutoFit,
   createEquationMappingHomeHref,
   createPointerLineGeometry,
+  createSidePointerLineGeometry,
   EquationMappingRuntime,
   resolveCalloutPlacements,
   resolveCalloutRowLayout,
   resolveEquationLineClearancePx,
   resolveEquationVerticalShift,
+  resolveSideCalloutPosition,
 } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -593,6 +595,30 @@ test("equation mapping pointer geometry attaches comments to section line edges"
   });
 });
 
+test("equation mapping can place a side callout on the same line as its target", () => {
+  const position = resolveSideCalloutPosition({
+    stageWidth: 1200,
+    stageHeight: 900,
+    targetRect: { left: 700, top: 420, right: 980, bottom: 540, width: 280, height: 120 },
+    commentRect: { left: 0, top: 0, right: 260, bottom: 160, width: 260, height: 160 },
+  });
+
+  assert.deepEqual(position, { x: 408, y: 436 });
+  assert.deepEqual(
+    createSidePointerLineGeometry(
+      { left: 100, top: 50, width: 1200, height: 900 },
+      { left: 700, top: 420, right: 980, bottom: 540, width: 280, height: 120 },
+      { left: 408, top: 436, right: 668, bottom: 596, width: 260, height: 160 }
+    ),
+    {
+      x1: 568,
+      y1: 430,
+      x2: 600,
+      y2: 430,
+    }
+  );
+});
+
 test("equation mapping compact callout layout stays near the equation until width requires edges", () => {
   const layout = resolveCalloutRowLayout({
     stageWidth: 1400,
@@ -1138,6 +1164,14 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(
     html,
     /\.equation-mapping-stage\[data-document-id="eq-00-coordinate-layer-key"\] \.equation-mapping-equation-shell \{[\s\S]*?width: min\(96vw, 1600px\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-stage\[data-document-id="eq-00-coordinate-layer-key"\] \.equation-mapping-formula-part\[data-anchor-id="effectiveLayer"\] \{[\s\S]*?transform: translateX\(clamp\(96px, 10vw, 180px\)\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-stage\[data-document-id="eq-00-coordinate-layer-key"\] \.equation-mapping-formula-break\[data-part-id="comparison-layer-break"\] \{[\s\S]*?height: clamp\(56px, 5vw, 88px\);/u
   );
   assert.match(
     html,

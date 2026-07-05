@@ -587,6 +587,14 @@
         width: min(96vw, 1600px);
       }
 
+      .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-formula-part[data-anchor-id="effectiveLayer"] {
+        transform: translateX(clamp(96px, 10vw, 180px));
+      }
+
+      .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-formula-break[data-part-id="comparison-layer-break"] {
+        height: clamp(56px, 5vw, 88px);
+      }
+
       .equation-mapping-equation-title {
         position: absolute;
         top: max(22px, env(safe-area-inset-top));
@@ -888,6 +896,10 @@
           position: static;
           width: 100%;
           min-width: 0;
+        }
+
+        .equation-mapping-stage[data-document-id="eq-00-coordinate-layer-key"] .equation-mapping-formula-part[data-anchor-id="effectiveLayer"] {
+          transform: none;
         }
 
         .equation-mapping-popover {

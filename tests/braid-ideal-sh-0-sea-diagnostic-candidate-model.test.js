@@ -9,6 +9,8 @@ import {
   AUTHORITY_CLASS,
   CANDIDATE_RESPONSE_ROW_SCHEMA,
   DEFAULT_RESPONSE_DEADBAND,
+  FCC_SEA_DIAGNOSTIC_ATTEMPT_ID,
+  FCC_SEA_POPULATION_SIZE,
   PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
   RESPONSE_RUN_SCHEMA,
   REQUIRED_INWARD_RESPONSE_FLOOR,
@@ -55,8 +57,35 @@ test("SH-0-sea diagnostic candidate model binds the candidate central target", (
 
 test("SH-0-sea diagnostic candidate model defines sea, frame, response, support, action, and receiver-normal rows", () => {
   const model = buildSh0SeaDiagnosticCandidateModel();
+  const fccShell = rowById(model, "fcc_nearest_neighbor_shell_row");
 
   assert.equal(rowById(model, "like_braid_population_row").accepted, false);
+  assert.equal(
+    rowById(model, "like_braid_population_row").diagnostic_specialization_row_ref,
+    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  );
+  assert.equal(fccShell.diagnostic_attempt_id, FCC_SEA_DIAGNOSTIC_ATTEMPT_ID);
+  assert.equal(fccShell.population_size, FCC_SEA_POPULATION_SIZE);
+  assert.equal(fccShell.neighbor_directions.length, 12);
+  assert.deepEqual(
+    fccShell.neighbor_directions.map((row) => row.direction),
+    [
+      [1, 1, 0],
+      [1, -1, 0],
+      [-1, 1, 0],
+      [-1, -1, 0],
+      [1, 0, 1],
+      [1, 0, -1],
+      [-1, 0, 1],
+      [-1, 0, -1],
+      [0, 1, 1],
+      [0, 1, -1],
+      [0, -1, 1],
+      [0, -1, -1],
+    ]
+  );
+  assert.equal(fccShell.accepted, false);
+  assert.equal(fccShell.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
   assert.equal(rowById(model, "local_target_sea_frame_row").accepted, false);
   assert.equal(rowById(model, "theta_sea_state_row").accepted_for_sh_0_sea, false);
   assert.equal(rowById(model, "boundary_condition_row").hard_wall_allowed, false);

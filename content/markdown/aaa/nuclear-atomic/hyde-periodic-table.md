@@ -2,6 +2,10 @@
 
 [Open the interactive Hyde Periodic Table](../../../scenes/chemistry/hyde_periodic_table_scene.json).
 
+Read the Hyde table as a geometry lesson, not as a replacement for chemistry. The periodic table is the data product: atomic-number order, shell capacities, recurring valence behavior, and measured element properties. The Hyde layout is a way of making some of those recurrences easier to see by bending the same sequence into a continuous spiral.
+
+The useful question is therefore not whether the spiral is the law. The useful question is what physical regularities the spiral preserves, what it highlights, and which of those highlights can become recovery targets for assembly geometry.
+
 ## Scope
 
 This document treats the periodic table as a scientific structure first, then analyzes how the Hyde format re-encodes that structure geometrically. The objective is technical clarity on:

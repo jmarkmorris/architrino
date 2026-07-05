@@ -2,6 +2,8 @@
 
 Architrino is the company and public project organized around the Architrino Assembly Architecture, written as $\mathbb{A}\mathbb{A}\mathbb{A}$ in the research corpus. The company, the theory, the public webapp, and the supporting repository are connected, but they are not the same object.
 
+The simple split is this: the theory makes the physics claim, the webapp helps readers inspect it, the repository keeps the work versioned, and the company gives the public project an accountable home.
+
 Use `architrino.com` for the literal domain. Use Architrino for the company, project, and public identity.
 
 ## What Architrino Provides
