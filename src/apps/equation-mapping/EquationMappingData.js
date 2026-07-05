@@ -256,7 +256,7 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-aaa-derivation",
     formulaTeX:
-      "\\mathbf a_{o'\\leftarrow o}=\\kappa\\sigma_{q_oq_{o'}}\\frac{|q_oq_{o'}|}{r^2}W_{o'\\leftarrow o}^{\\mathrm{rec}}\\hat{\\mathbf r}",
+      "\\mathbf A_{o'\\leftarrow o}=\\kappa\\sigma_{q_oq_{o'}}\\frac{|q_oq_{o'}|}{r^2}W_{o'\\leftarrow o}^{\\mathrm{rec}}\\hat{\\mathbf r}",
     anchors: [
       anchor("acceleration", "acceleration response", "per-hit acceleration active root"),
       anchor("polarity", "source polarity", "kappa sigma source receiver polarity"),
@@ -265,7 +265,7 @@ const equationMapSeedDocuments = [
       anchor("direction", "line of action", "line-of-action causal-root direction"),
     ],
     formulaParts: [
-      mathPart("acceleration", "\\mathbf a_{o'\\leftarrow o}", "acceleration"),
+      mathPart("acceleration", "\\mathbf A_{o'\\leftarrow o}", "acceleration"),
       textPart("eq", " = "),
       mathPart("polarity", "\\kappa\\sigma_{q_oq_{o'}}", "polarity"),
       textPart("space-1", " "),
@@ -281,7 +281,7 @@ const equationMapSeedDocuments = [
         "Acceleration response",
         "acceleration",
         "Start with the left side: this is acceleration, the receiver's change in velocity. In AAA, one causal root reaches the receiver, and this symbol is the receiver's response to that hit.",
-        "\\mathbf a_{o'\\leftarrow o}",
+        "\\mathbf A_{o'\\leftarrow o}",
         { x: 5, y: 8, width: 30, line: "above" }
       ),
       overlay(
@@ -305,7 +305,7 @@ const equationMapSeedDocuments = [
         "History factor",
         "branchStrength",
         "A delayed signal can arrive after its timing has been stretched, compressed, or weighted by the path. In AAA, this factor tells the receiver how source history and receiver history change the hit.",
-        "W^{\\mathrm{rec}}=\\left|D_t/D_s\\right|",
+        "W^{\\mathrm{rec}}=\\left|D_T/D_s\\right|",
         { x: 6, y: 68, width: 34, line: "below" }
       ),
       overlay(
@@ -922,7 +922,7 @@ const equationMapSeedDocuments = [
     subject: "Quantum and QFT",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "E_\\gamma=h\\nu,\\quad g^{\\mathrm{eff}}_{\\mu\\nu}dx^\\mu dx^\\nu=0,\\quad k_\\mu k^\\mu_{\\mathrm{eff}}=0",
+    formulaTeX: "E_\\gamma=h\\nu,\\quad g^{\\mathrm{eff}}_{\\mu\\nu}dx_{\\mathrm{eff}}^\\mu dx_{\\mathrm{eff}}^\\nu=0,\\quad k_\\mu k^\\mu_{\\mathrm{eff}}=0",
     anchors: [
       anchor("photonEnergy", "photon energy", "Planck photon energy"),
       anchor("nullPath", "null path", "effective metric light path"),
@@ -931,7 +931,7 @@ const equationMapSeedDocuments = [
     formulaParts: [
       mathPart("photonEnergy", "E_\\gamma=h\\nu", "photonEnergy"),
       mathPart("comma-1", ",\\quad", ""),
-      mathPart("nullPath", "g^{\\mathrm{eff}}_{\\mu\\nu}dx^\\mu dx^\\nu=0", "nullPath"),
+      mathPart("nullPath", "g^{\\mathrm{eff}}_{\\mu\\nu}dx_{\\mathrm{eff}}^\\mu dx_{\\mathrm{eff}}^\\nu=0", "nullPath"),
       mathPart("comma-2", ",\\quad", ""),
       mathPart("eikonal", "k_\\mu k^\\mu_{\\mathrm{eff}}=0", "eikonal"),
     ],
@@ -1060,26 +1060,26 @@ const equationMapSeedDocuments = [
     subject: "Quantum and QFT",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "i\\hbar\\partial_t\\psi=\\hat H\\psi,\\quad \\partial_t\\rho_{\\mathrm{rec}}+\\nabla\\cdot\\mathbf J_{\\mathrm{rec}}=0",
+    formulaTeX: "i\\hbar\\partial_{t_{\\mathrm{eff}}}\\psi_{\\mathrm{eff}}=\\hat H_{\\mathrm{eff}}\\psi_{\\mathrm{eff}},\\quad \\partial_{t_{\\mathrm{eff}}}\\rho_{\\mathrm{rec}}+\\nabla_{\\mathrm{eff}}\\cdot\\mathbf J_{\\mathrm{rec}}=0",
     anchors: [
       anchor("waveEvolution", "wave evolution", "Schrodinger equation"),
       anchor("recordDensity", "record density", "Born density readout"),
       anchor("recordCurrent", "record current", "probability current conservation"),
     ],
     formulaParts: [
-      mathPart("waveEvolution", "i\\hbar\\partial_t\\psi=\\hat H\\psi", "waveEvolution"),
+      mathPart("waveEvolution", "i\\hbar\\partial_{t_{\\mathrm{eff}}}\\psi_{\\mathrm{eff}}=\\hat H_{\\mathrm{eff}}\\psi_{\\mathrm{eff}}", "waveEvolution"),
       mathPart("comma", ",\\quad", ""),
-      mathPart("recordDensity", "\\partial_t\\rho_{\\mathrm{rec}}", "recordDensity"),
+      mathPart("recordDensity", "\\partial_{t_{\\mathrm{eff}}}\\rho_{\\mathrm{rec}}", "recordDensity"),
       textPart("plus", " + "),
-      mathPart("recordCurrent", "\\nabla\\cdot\\mathbf J_{\\mathrm{rec}}=0", "recordCurrent"),
+      mathPart("recordCurrent", "\\nabla_{\\mathrm{eff}}\\cdot\\mathbf J_{\\mathrm{rec}}=0", "recordCurrent"),
     ],
     overlays: [
       overlay(
         "wave-law",
         "Wave evolution",
         "waveEvolution",
-        "The Schrodinger equation tells how the quantum state changes with time. In current physics, the Hamiltonian sets the energy rule. In AAA, the question becomes which retained record evolves under that rule.",
-        "i\\hbar\\partial_t\\psi=\\hat H\\psi",
+        "The Schrodinger equation tells how the quantum state changes with effective observer time. In current physics, the Hamiltonian sets the energy rule. In AAA, the question becomes which retained record evolves under that rule.",
+        "i\\hbar\\partial_{t_{\\mathrm{eff}}}\\psi_{\\mathrm{eff}}=\\hat H_{\\mathrm{eff}}\\psi_{\\mathrm{eff}}",
         { x: 5, y: 8, width: 34, line: "above" }
       ),
       overlay(
@@ -1106,7 +1106,7 @@ const equationMapSeedDocuments = [
     subject: "Cosmology and astrophysics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "ds_{\\mathrm{FRW,eff}}^2=-c_0^2d\\tau_c^2+a_{\\mathrm{eff}}^2(t)d\\Sigma_k^2",
+    formulaTeX: "ds_{\\mathrm{FRW,eff}}^2=-c_0^2d\\tau_c^2+a_{\\mathrm{eff}}^2(t_{\\mathrm{eff}})d\\Sigma_k^2",
     anchors: [
       anchor("frwMetric", "FRW metric", "effective cosmology metric"),
       anchor("cosmicClock", "cosmic clock", "cosmic proper time"),
@@ -1118,7 +1118,7 @@ const equationMapSeedDocuments = [
       textPart("eq", " = "),
       mathPart("cosmicClock", "-c_0^2d\\tau_c^2", "cosmicClock"),
       textPart("plus", " + "),
-      mathPart("scaleFactor", "a_{\\mathrm{eff}}^2(t)", "scaleFactor"),
+      mathPart("scaleFactor", "a_{\\mathrm{eff}}^2(t_{\\mathrm{eff}})", "scaleFactor"),
       mathPart("spatialSlice", "d\\Sigma_k^2", "spatialSlice"),
     ],
     overlays: [
@@ -1142,8 +1142,8 @@ const equationMapSeedDocuments = [
         "scale-factor-row",
         "Scale factor",
         "scaleFactor",
-        "a(t) is the scale factor: the ruler that tells how cosmic distances compare over time. In AAA, the same behavior should be read as Noether sea expansion or response history, not empty space stretching by itself.",
-        "a_{\\mathrm{eff}}(t)",
+        "The effective scale factor is the ruler that tells how cosmic distances compare over effective observer time. In AAA, the same behavior should be read as Noether sea expansion or response history, not empty space stretching by itself.",
+        "a_{\\mathrm{eff}}(t_{\\mathrm{eff}})",
         { x: 51, y: 8, width: 22, line: "above", tone: "geometry" }
       ),
       overlay(
@@ -1163,7 +1163,7 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "H_{\\mathrm{eff}}^2=\\frac{8\\pi G_{\\mathrm{eff}}}{3}\\rho_{\\mathrm{eff}}-\\frac{kc_0^2}{a_{\\mathrm{eff}}^2}+\\frac{\\Lambda_{\\mathrm{eff}}}{3},\\quad \\dot\\rho+3H(\\rho+p/c_0^2)=0",
+      "H_{\\mathrm{eff}}^2=\\frac{8\\pi G_{\\mathrm{eff}}}{3}\\rho_{\\mathrm{eff}}-\\frac{kc_0^2}{a_{\\mathrm{eff}}^2}+\\frac{\\Lambda_{\\mathrm{eff}}}{3},\\quad \\partial_{t_{\\mathrm{eff}}}\\rho_{\\mathrm{eff}}+3H_{\\mathrm{eff}}(\\rho_{\\mathrm{eff}}+p_{\\mathrm{eff}}/c_0^2)=0",
     anchors: [
       anchor("hubble", "Hubble rate", "effective cosmic expansion rate"),
       anchor("density", "density source", "effective cosmic density source"),
@@ -1180,7 +1180,7 @@ const equationMapSeedDocuments = [
       textPart("plus", " + "),
       mathPart("lambda", "\\frac{\\Lambda_{\\mathrm{eff}}}{3}", "lambda"),
       mathPart("comma", ",\\quad", ""),
-      mathPart("continuity", "\\dot\\rho+3H(\\rho+p/c_0^2)=0", "continuity"),
+      mathPart("continuity", "\\partial_{t_{\\mathrm{eff}}}\\rho_{\\mathrm{eff}}+3H_{\\mathrm{eff}}(\\rho_{\\mathrm{eff}}+p_{\\mathrm{eff}}/c_0^2)=0", "continuity"),
     ],
     overlays: [
       overlay(
@@ -1220,7 +1220,7 @@ const equationMapSeedDocuments = [
         "Cosmic continuity",
         "continuity",
         "This conservation law says cosmic density changes when expansion dilutes it and pressure does work. In AAA, it should match a finite-window Noether sea continuity ledger.",
-        "\\dot\\rho+3H(\\rho+p/c_0^2)=0",
+        "\\partial_{t_{\\mathrm{eff}}}\\rho_{\\mathrm{eff}}+3H_{\\mathrm{eff}}(\\rho_{\\mathrm{eff}}+p_{\\mathrm{eff}}/c_0^2)=0",
         { x: 58, y: 82, width: 34, line: "below" }
       ),
     ],

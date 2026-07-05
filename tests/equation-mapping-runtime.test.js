@@ -328,6 +328,32 @@ test("equation mapping gives oblate-envelope perpendicular radius its own callou
   );
 });
 
+test("equation mapping seed formulas use layer-explicit coordinate notation", () => {
+  const renderedTeX = createSeedEquationMapDocuments()
+    .flatMap((document) => [
+      document.formulaTeX,
+      ...document.formulaParts.map((part) => part.tex ?? ""),
+      ...document.overlays.flatMap((overlay) =>
+        overlay.content
+          .filter((block) => block.type === "math")
+          .map((block) => block.tex)
+      ),
+    ])
+    .join("\n");
+
+  [
+    "D_t",
+    "\\partial_t",
+    "dx^\\mu",
+    "a_{\\mathrm{eff}}^2(t)",
+    "a_{\\mathrm{eff}}(t)",
+    "\\dot\\rho",
+    "\\mathbf a",
+  ].forEach((stalePattern) => {
+    assert.equal(renderedTeX.includes(stalePattern), false, `stale pattern: ${stalePattern}`);
+  });
+});
+
 test("equation mapping energy-momentum map adds corrected motion relation and rest-mass solve row", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-04-energy-momentum-rest-energy"
