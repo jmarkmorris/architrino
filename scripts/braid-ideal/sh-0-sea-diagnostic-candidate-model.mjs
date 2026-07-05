@@ -21,7 +21,10 @@ export const ACCEPTED_EVIDENCE_BLOCKER_OBJECT = "held_release_seed_path_rows_acc
 export const ACCEPTED_EVIDENCE_BLOCKER_FIELD = "held_release_seed_path_rows.acceptance_certificate_ref";
 export const REQUIRED_INWARD_RESPONSE_FLOOR = -0.0934863484737535;
 export const RESPONSE_RUN_SCHEMA = "sh_0_sea_diagnostic_response_run.v0";
+export const CANDIDATE_RESPONSE_ROW_SCHEMA = "sh_0_sea_candidate_response_row.diagnostic.v0";
+export const PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA = "sh_0_sea_produced_response_source_row.diagnostic.v0";
 export const DEFAULT_RESPONSE_DEADBAND = 1e-9;
+export const DEFAULT_PRODUCED_SOURCE_MARGIN_STEP = 0.001;
 
 const PROVIDER_PATH = new URL("../spacetime/noether-sea-density-compression-provider.v1.json", import.meta.url);
 
@@ -78,7 +81,48 @@ function rowBySuffix(model, suffix) {
   return model.rows.find((row) => row.row_id === `sh_0_sea_model:${suffix}`) ?? null;
 }
 
-function buildDiagnosticResponseProbe({ model, options }) {
+function ceilToStep(value, step) {
+  const positiveStep = Math.max(Number.EPSILON, normalizeNumber(step, DEFAULT_PRODUCED_SOURCE_MARGIN_STEP));
+  return cleanNumber(Math.ceil((value - Number.EPSILON) / positiveStep) * positiveStep);
+}
+
+function requiredPhiAtCurrentCoefficients({ probe, deadband }) {
+  const weakestToyAcceleration = -REQUIRED_INWARD_RESPONSE_FLOOR;
+  const denominator = probe.K_NS_diag;
+  const numerator =
+    weakestToyAcceleration +
+    deadband -
+    probe.Gamma_NS_diag * probe.dot_Phi_probe +
+    probe.W_boundary_projection;
+  return denominator > 0 ? cleanNumber(Math.max(0, numerator / denominator)) : null;
+}
+
+function buildTargetBinding(model) {
+  const targetRow = rowBySuffix(model, "target_source_row");
+  return {
+    target_artifact_id: model.target_artifact_id,
+    target_artifact_hash: model.target_artifact_hash,
+    target_source_row_id: model.target_source_row_id,
+    retained_record_id: targetRow?.retained_record_id ?? TARGET_RETAINED_RECORD_ID,
+    provider_object_ref: targetRow?.provider_object_ref ?? TARGET_PROVIDER_OBJECT_REF,
+    provider_artifact_hash: targetRow?.provider_artifact_hash ?? TARGET_PROVIDER_ARTIFACT_HASH,
+    target_path_row_ids: targetRow?.path_rows?.map((row) => row.row_id) ?? [],
+  };
+}
+
+function buildLocalRowRefs(model) {
+  return {
+    sea_population_row_ref: rowBySuffix(model, "like_braid_population_row")?.row_id ?? null,
+    local_target_sea_frame_row_ref: rowBySuffix(model, "local_target_sea_frame_row")?.row_id ?? null,
+    theta_sea_state_row_ref: rowBySuffix(model, "theta_sea_state_row")?.row_id ?? null,
+    boundary_condition_row_ref: rowBySuffix(model, "boundary_condition_row")?.row_id ?? null,
+    sea_response_equation_row_ref: rowBySuffix(model, "sea_response_equation_row")?.row_id ?? null,
+    support_envelope_row_ref: rowBySuffix(model, "support_envelope_row")?.row_id ?? null,
+    action_exchange_row_ref: rowBySuffix(model, "action_exchange_row")?.row_id ?? null,
+  };
+}
+
+function buildDiagnosticResponseProbe({ model, options, producedSourceRow = null }) {
   const seaStateRow = rowBySuffix(model, "theta_sea_state_row");
   const thetaSea = seaStateRow?.theta_sea_rho_NS ?? {};
   const responseInputs = seaStateRow?.response_inputs ?? {};
@@ -87,6 +131,7 @@ function buildDiagnosticResponseProbe({ model, options }) {
   const eSea = normalizeNumber(thetaSea.e_sea, 0);
   const c1111 = normalizeNumber(responseInputs.C1111_X, 0);
   const providerStiffness = c1111 * rhoNs * normalizedDensity;
+  const producedPhi = producedSourceRow?.produced_response_components?.Phi_probe;
   return {
     schema: "sh_0_sea_diagnostic_response_probe.v0",
     probe_id:
@@ -95,7 +140,8 @@ function buildDiagnosticResponseProbe({ model, options }) {
     coefficient_source: "theta_sea_rho_NS provider row",
     stiffness_source: "C1111_X * rho_NS * n",
     radial_displacement_source:
-      options.responseAmplitude == null ? "theta_sea_rho_NS.e_sea" : "cli:response-amplitude",
+      producedSourceRow?.row_id ??
+      (options.responseAmplitude == null ? "theta_sea_rho_NS.e_sea" : "cli:response-amplitude"),
     radial_rate_source: options.responseRate == null ? "default_zero_radial_rate_probe" : "cli:response-rate",
     boundary_wake_source:
       options.boundaryWakeProjection == null
@@ -107,39 +153,146 @@ function buildDiagnosticResponseProbe({ model, options }) {
     C1111_X: cleanNumber(c1111),
     K_NS_diag: cleanNumber(normalizeNumber(options.responseStiffness, providerStiffness)),
     Gamma_NS_diag: cleanNumber(normalizeNumber(options.responseDamping, 0)),
-    Phi_probe: cleanNumber(normalizeNumber(options.responseAmplitude, eSea)),
+    Phi_probe: cleanNumber(producedPhi ?? normalizeNumber(options.responseAmplitude, eSea)),
     dot_Phi_probe: cleanNumber(normalizeNumber(options.responseRate, 0)),
     W_boundary_projection: cleanNumber(normalizeNumber(options.boundaryWakeProjection, 0)),
+    produced_response_source_row_ref: producedSourceRow?.row_id ?? null,
   };
 }
 
-function projectDiagnosticSeaResponse(probe) {
+function buildProducedResponseSourceRow({ model, seedProbe, options }) {
+  const responseKind = normalizeStringRef(options.responseRowKind) ?? "pressure_tension";
+  const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
+  const requiredPhi = requiredPhiAtCurrentCoefficients({ probe: seedProbe, deadband });
+  const step = normalizeNumber(options.producedSourceMarginStep, DEFAULT_PRODUCED_SOURCE_MARGIN_STEP);
+  const producedPhi =
+    options.producedSourcePhi == null
+      ? ceilToStep(requiredPhi ?? seedProbe.Phi_probe, step)
+      : cleanNumber(normalizeNumber(options.producedSourcePhi, seedProbe.Phi_probe));
+  const targetBinding = buildTargetBinding(model);
+  const localRowRefs = buildLocalRowRefs(model);
+  const rowKey = {
+    schema: PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
+    responseKind,
+    targetBinding,
+    localRowRefs,
+    requiredPhi,
+    producedPhi,
+    step,
+  };
+  const rowHash = stableHash(rowKey);
+  const rowId = `sh_0_sea_produced_response_source:${responseKind}:${rowHash.slice(0, 16)}`;
+  return {
+    schema: PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
+    row_id: rowId,
+    authority_class: AUTHORITY_CLASS,
+    response_kind: responseKind,
+    claim_level: "diagnostic produced same-target response source only",
+    target_binding: targetBinding,
+    event_provenance: {
+      boundary_event_row_ref: `${rowId}:boundary-event`,
+      boundary_condition_row_ref: localRowRefs.boundary_condition_row_ref,
+      event_source: "candidate_same_target_boundary_pressure_tension_event",
+      accepted_event_row: false,
+    },
+    support_provenance: {
+      support_envelope_row_ref: localRowRefs.support_envelope_row_ref,
+      weakest_outward_post_turn_ddot_R_toy: cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR),
+      inward_deadband: deadband,
+      required_projected_response_floor: cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband),
+      required_Phi_probe_at_current_coefficients: requiredPhi,
+      producer_rule: `ceil(required_Phi_probe_at_current_coefficients, ${step})`,
+    },
+    action_provenance: {
+      action_exchange_row_ref: localRowRefs.action_exchange_row_ref,
+      response_work_rate_ref: rowBySuffix(model, "action_exchange_row")?.response_work_rate ?? null,
+      diagnostic_action_residual_ref: rowBySuffix(model, "action_exchange_row")?.diagnostic_action_residual ?? null,
+      accepted_same_record_action_closure: false,
+    },
+    produced_response_components: {
+      K_NS_diag: seedProbe.K_NS_diag,
+      Gamma_NS_diag: seedProbe.Gamma_NS_diag,
+      Phi_probe: producedPhi,
+      dot_Phi_probe: seedProbe.dot_Phi_probe,
+      W_boundary_projection: seedProbe.W_boundary_projection,
+      source_margin_over_required_Phi:
+        requiredPhi == null ? null : cleanNumber(Math.max(0, producedPhi - requiredPhi)),
+    },
+    accepted: false,
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+    retained_evidence_authorized: false,
+  };
+}
+
+function buildCandidateResponseRow({ model, probe, options }) {
+  const responseKind = normalizeStringRef(options.responseRowKind) ?? "pressure_tension";
+  const targetBinding = buildTargetBinding(model);
+  const rowKey = {
+    schema: CANDIDATE_RESPONSE_ROW_SCHEMA,
+    responseKind,
+    targetBinding,
+    probe,
+  };
+  const rowHash = stableHash(rowKey);
+  return {
+    schema: CANDIDATE_RESPONSE_ROW_SCHEMA,
+    row_id: `sh_0_sea_candidate_response_row:${responseKind}:${rowHash.slice(0, 16)}`,
+    authority_class: AUTHORITY_CLASS,
+    response_kind: responseKind,
+    claim_level: "candidate same-target response row only",
+    target_binding: targetBinding,
+    local_row_refs: buildLocalRowRefs(model),
+    response_components: {
+      K_NS_diag: probe.K_NS_diag,
+      Gamma_NS_diag: probe.Gamma_NS_diag,
+      Phi_probe: probe.Phi_probe,
+      dot_Phi_probe: probe.dot_Phi_probe,
+      W_boundary_projection: probe.W_boundary_projection,
+      coefficient_source: probe.coefficient_source,
+      radial_displacement_source: probe.radial_displacement_source,
+      boundary_wake_source: probe.boundary_wake_source,
+      produced_response_source_row_ref: probe.produced_response_source_row_ref,
+    },
+    response_equation:
+      "Pi_R A_sea=-K_NS_diag*Phi_probe-Gamma_NS_diag*dot_Phi_probe+W_boundary_projection",
+    accepted: false,
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+    retained_evidence_authorized: false,
+  };
+}
+
+function projectDiagnosticSeaResponse(candidateResponseRow) {
+  const components = candidateResponseRow.response_components;
   return cleanNumber(
-    -probe.K_NS_diag * probe.Phi_probe -
-      probe.Gamma_NS_diag * probe.dot_Phi_probe +
-      probe.W_boundary_projection
+    -components.K_NS_diag * components.Phi_probe -
+      components.Gamma_NS_diag * components.dot_Phi_probe +
+      components.W_boundary_projection
   );
 }
 
-function buildResponseFloorEvaluation({ probe, piRASea, options }) {
+function buildResponseFloorEvaluation({ candidateResponseRow, piRASea, options }) {
+  const components = candidateResponseRow.response_components;
   const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
   const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
   const weakestToyAcceleration = cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR);
   const totalPostTurnAcceleration = cleanNumber(weakestToyAcceleration + piRASea);
   const crosses = piRASea < requiredProjection;
   const additionalInwardProjectionNeeded = cleanNumber(Math.max(0, piRASea - requiredProjection));
-  const denominator = probe.K_NS_diag;
+  const denominator = components.K_NS_diag;
   const numerator =
     weakestToyAcceleration +
     deadband -
-    probe.Gamma_NS_diag * probe.dot_Phi_probe +
-    probe.W_boundary_projection;
+    components.Gamma_NS_diag * components.dot_Phi_probe +
+    components.W_boundary_projection;
   const requiredPhi =
     denominator > 0 ? cleanNumber(Math.max(0, numerator / denominator)) : null;
   const multiplier =
-    requiredPhi != null && probe.Phi_probe > 0 ? cleanNumber(requiredPhi / probe.Phi_probe) : null;
+    requiredPhi != null && components.Phi_probe > 0 ? cleanNumber(requiredPhi / components.Phi_probe) : null;
   return {
     schema: "sh_0_sea_response_floor_evaluation.diagnostic.v0",
+    candidate_response_row_id: candidateResponseRow.row_id,
     weakest_outward_post_turn_ddot_R_toy: weakestToyAcceleration,
     inward_deadband: deadband,
     required_projected_response_floor: requiredProjection,
@@ -512,10 +665,16 @@ export function evaluateSh0SeaDiagnosticCandidateModelEvidence(candidate) {
 
 export function buildSh0SeaDiagnosticResponseRun(options = {}) {
   const model = buildSh0SeaDiagnosticCandidateModel(options);
-  const probe = buildDiagnosticResponseProbe({ model, options });
-  const piRASea = projectDiagnosticSeaResponse(probe);
+  const seedProbe = buildDiagnosticResponseProbe({ model, options });
+  const producedSourceRow =
+    options.producedResponseSource === true
+      ? buildProducedResponseSourceRow({ model, seedProbe, options })
+      : null;
+  const probe = buildDiagnosticResponseProbe({ model, options, producedSourceRow });
+  const candidateResponseRow = buildCandidateResponseRow({ model, probe, options });
+  const piRASea = projectDiagnosticSeaResponse(candidateResponseRow);
   const floorEvaluation = buildResponseFloorEvaluation({
-    probe,
+    candidateResponseRow,
     piRASea,
     options,
   });
@@ -530,6 +689,8 @@ export function buildSh0SeaDiagnosticResponseRun(options = {}) {
     run_matrix_metadata: model.run_matrix_metadata ?? null,
     model_artifact_hash: model.artifact_hash,
     response_probe: probe,
+    produced_response_source_row: producedSourceRow,
+    candidate_response_row: candidateResponseRow,
     response_equation:
       "Pi_R A_sea=-K_NS_diag*Phi_probe-Gamma_NS_diag*dot_Phi_probe+W_boundary_projection",
     floor_evaluation: floorEvaluation,
@@ -584,8 +745,10 @@ function parseArgs(args) {
   return {
     pretty: args.includes("--pretty"),
     responseRun: args.includes("--response-run"),
+    producedResponseSource: args.includes("--produced-response-source"),
     runHandle: stringOption("run-handle"),
     responseRunHandle: stringOption("response-run-handle"),
+    responseRowKind: stringOption("response-row-kind"),
     embeddedCentralRunHandle: stringOption("embedded-central-run-handle"),
     targetSourceRowId: stringOption("source-row-id"),
     targetCenterGroupVelocity: vectorOption("target-center-group-velocity") ?? vectorOption("group-velocity"),
@@ -597,12 +760,14 @@ function parseArgs(args) {
     responseDamping: numberOption("response-damping"),
     boundaryWakeProjection: numberOption("boundary-wake-projection"),
     inwardDeadband: numberOption("inward-deadband"),
+    producedSourcePhi: numberOption("produced-source-phi"),
+    producedSourceMarginStep: numberOption("produced-source-margin-step"),
   };
 }
 
 function printUsage() {
   console.log(
-    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>]`
+    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--produced-response-source] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-row-kind=pressure_tension|boundary_wake] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>] [--produced-source-phi=<number>] [--produced-source-margin-step=<number>]`
   );
 }
 

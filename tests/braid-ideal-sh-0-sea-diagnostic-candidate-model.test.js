@@ -7,6 +7,7 @@ import {
   ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
   AUTHORITY_CLASS,
+  CANDIDATE_RESPONSE_ROW_SCHEMA,
   DEFAULT_RESPONSE_DEADBAND,
   RESPONSE_RUN_SCHEMA,
   REQUIRED_INWARD_RESPONSE_FLOOR,
@@ -161,6 +162,18 @@ test("SH-0-sea diagnostic response run uses provider-seeded probe and does not c
   assert.equal(run.response_probe.Phi_probe, 0.008);
   assert.equal(run.response_probe.Gamma_NS_diag, 0);
   assert.equal(run.response_probe.W_boundary_projection, 0);
+  assert.equal(run.candidate_response_row.schema, CANDIDATE_RESPONSE_ROW_SCHEMA);
+  assert.equal(run.candidate_response_row.response_kind, "pressure_tension");
+  assert.equal(run.candidate_response_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(run.candidate_response_row.target_binding.target_artifact_hash, run.target_artifact_hash);
+  assert.equal(run.candidate_response_row.target_binding.target_source_row_id, run.target_source_row_id);
+  assert.equal(run.candidate_response_row.target_binding.target_path_row_ids.length, 6);
+  assert.equal(run.candidate_response_row.accepted, false);
+  assert.equal(run.candidate_response_row.retained_evidence_authorized, false);
+  assert.equal(
+    run.floor_evaluation.candidate_response_row_id,
+    run.candidate_response_row.row_id
+  );
   assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.01992);
   assert.equal(
     run.floor_evaluation.required_projected_response_floor,
@@ -187,6 +200,11 @@ test("SH-0-sea diagnostic response run can cross the floor only as a non-authori
   });
 
   assert.equal(run.response_probe.probe_id, "sh0sea-provider-stiffness-crossing-probe");
+  assert.equal(run.candidate_response_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(
+    run.candidate_response_row.response_components.Phi_probe,
+    0.04
+  );
   assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.0996);
   assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
   assert.equal(run.floor_evaluation.post_turn_return_condition_passed, true);
@@ -205,6 +223,11 @@ test("SH-0-sea diagnostic response run CLI emits JSON without authorizing eviden
   const run = JSON.parse(output);
 
   assert.equal(run.schema, RESPONSE_RUN_SCHEMA);
+  assert.equal(run.candidate_response_row.schema, CANDIDATE_RESPONSE_ROW_SCHEMA);
+  assert.equal(
+    run.floor_evaluation.candidate_response_row_id,
+    run.candidate_response_row.row_id
+  );
   assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
   assert.equal(run.evidence_status.accepted, false);
   assert.equal(run.accepted_evidence_blocker.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);

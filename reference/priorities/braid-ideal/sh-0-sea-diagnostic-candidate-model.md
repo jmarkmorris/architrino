@@ -238,7 +238,16 @@ The executable response-run mode is:
 node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --pretty
 ```
 
-This instantiates the first provider-seeded diagnostic response probe:
+This instantiates the first provider-seeded diagnostic pressure/tension response row and binds it to the same target/source identity:
+
+- target artifact: `held_release_seed_path_rows:5833f18e53586201`;
+- target artifact hash: `5833f18e53586201775fdcd490efcc1e649841e5268a15eea022cad9ff706063`;
+- source row: `two-speed-preferred-row:u0.8:v0.2`;
+- retained record: `retained-record:held-release-six-point:adapter-acceptance-certificate`;
+- provider object: `candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327`;
+- six target path-row refs from the same candidate source artifact.
+
+The default provider-seeded row uses:
 
 $$
 K_{\mathrm{NS}}^{\mathrm{diag}}
@@ -283,7 +292,15 @@ Therefore the provider-seeded response run does not cross the floor:
 | Required `Phi_probe` at current coefficients | `0.03754471866415803` |
 | Required multiplier over current `Phi_probe` | `4.693089833019754` |
 
-A non-authorizing parameter probe with `--response-amplitude=0.04` crosses the same diagnostic floor:
+A bound non-authorizing pressure/tension response row with `--response-amplitude=0.04 --response-row-kind=pressure_tension` crosses the same diagnostic floor:
+
+```bash
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --response-amplitude=0.04 --response-row-kind=pressure_tension --pretty
+```
+
+The consumed candidate row is:
+
+`sh_0_sea_candidate_response_row:pressure_tension:2d220af8b82c1266`
 
 $$
 \Pi_R\mathcal A^{\mathrm{sea}}=-0.09960000000000001,
@@ -292,7 +309,7 @@ $$
 =-0.006113651526246502.
 $$
 
-That crossing is only a parameter sensitivity result. It does not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+That crossing is a same-target diagnostic candidate row, not accepted proof evidence. It does not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
 
 ## Action And Exchange Variables
 
@@ -375,6 +392,6 @@ The response run now instantiates this model with:
 4. a boundary row `\mathcal H_{\partial\Omega}` carrying candidate wake/event input from the surrounding population;
 5. a response functional that reports `\Pi_R\mathcal A^{\mathrm{sea}}(t)` and checks whether it crosses the diagnostic inward floor.
 
-The first provider-seeded result does not cross the floor. The next executable proof target is a same-record response producer, not another free parameter probe: bind a candidate boundary-wake or pressure/tension response row to the same target/source identity and rerun the floor test while preserving the accepted-evidence blocker.
+The first provider-seeded result does not cross the floor. A bound candidate pressure/tension row can cross the floor at `Phi_probe=0.04`, but it remains diagnostic. The next executable proof target is to replace the pressure/tension probe amplitude with a produced boundary-wake or pressure/tension response source row that carries event/support/action provenance on the same target/source identity while preserving the accepted-evidence blocker.
 
 Passing a later diagnostic would justify a sharper retained-source request. It would still not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
