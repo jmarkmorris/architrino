@@ -3748,7 +3748,7 @@ we can introduce **effective assemblies** with:
 
 - Effective masses $M_A$,
 - Positions $\mathbf{X}_A$,
-- Momenta $\mathbf{P}_A = M_A \dot{\mathbf{X}}_A$,
+- Momenta $\mathbf{P}_A = M_A\,d\mathbf X_A/dT$,
 - An approximate instantaneous interaction potential $U_\text{eff}(\{\mathbf{X}_A\})$,
 
 and write a **local canonical Hamiltonian**:

@@ -6,6 +6,8 @@ The primitive definition also includes definite polarity, persistent identity, c
 
 Architrinos live in [absolute timespace](absolute-timespace.md): absolute time $T$ together with the [Euclidean void](euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
 
+That distinction does most of the work. A point transceiver is not a tiny electron, quark, or field quantum with familiar particle properties already attached. It is the minimal entity whose location, polarity, wake emission, wake reception, and path history can later assemble into the objects that Physical Observers call particles.
+
 The teaching order is deliberately narrow. First fix the primitive ontology. Then separate polarity from observer-level charge bookkeeping. Then mark the boundary with dynamics and effective reconstruction. This chapter does not derive particle phenomenology; it states what must already exist before any assembly-level derivation can begin.
 
 ## Core Definition

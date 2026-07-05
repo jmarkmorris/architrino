@@ -2,6 +2,8 @@
 
 This bridge maps relativistic scalar-field language, especially the Klein-Gordon equation, onto the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer. It is a bridge document, not the canonical owner of scalar collective dynamics. The broad theory entry remains in [Theory Mapping](../theory-mapping.md), while the relevant $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanisms live in [Noether sea](../../spacetime/noether-sea.md), [Particle Masses](../../assemblies/particle-masses.md), [Emergent Metric](../../spacetime/emergent-metric.md), and [Master Equation](../../dynamics/master-equation.md).
 
+The bridge question is not whether scalar fields are useful. They are. The question is what physical record supplies the scalar value: Noether sea density, compression, radial breathing, an assembly mode, or an observer-level occupation variable. Without that carrier, the scalar is a successful comparison object but not yet implementation.
+
 ## Bridge Thesis
 
 The Klein-Gordon equation is the canonical relativistic wave equation for a spin-0 scalar degree of freedom. It is not a complete particle-physics theory by itself, but it is the simplest bridge between scalar fields in quantum theory, curved-spacetime field theory, and cosmological scalar-field models.

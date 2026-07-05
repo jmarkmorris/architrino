@@ -157,7 +157,7 @@ The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relax
 This narrative must be made quantitative through a constitutive relation linking the Noether sea state variables to an effective pressure. The minimal parameterization is:
 
 $$
-p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;\dot{\rho}_{\text{NS}},\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr)
+p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr)
 $$
 
 where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target.
@@ -389,7 +389,7 @@ The historical steady-state comparison is useful because it separates two ideas 
 
 For an effective matter component, write the sourced continuity comparison as
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
 \mathcal{S}_{m,\mathrm{eff}}
@@ -469,9 +469,9 @@ where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy 
 If the dark-energy term dominates and remains effectively constant, then the comparison equation gives nearly constant $H$. The corresponding homogeneous observer variable has the exponential form
 
 $$
-a_{\mathrm{eff}}(t)
+a_{\mathrm{eff}}(t_{\mathrm{eff}})
 \propto
-\exp(H_{\mathrm{eff}}t)
+\exp(H_{\mathrm{eff}}t_{\mathrm{eff}})
 $$
 
 This is the clean comparison reason that a constant density produces accelerated expansion. The negative-pressure statement is mathematically equivalent in the standard acceleration equation, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it should not be translated into a literal force that pushes on the Euclidean void.
@@ -479,7 +479,7 @@ This is the clean comparison reason that a constant density produces accelerated
 The effective dark-energy density evolves according to:
 
 $$
-\dot{\rho}_{\mathrm{DE,eff}} + 3H(1 + w_{\mathrm{eff}})\,\rho_{\mathrm{DE,eff}} = \mathcal{S}_{\mathrm{relax}}
+\frac{d\rho_{\mathrm{DE,eff}}}{dt_{\mathrm{eff}}} + 3H_{\mathrm{eff}}(1 + w_{\mathrm{eff}})\,\rho_{\mathrm{DE,eff}} = \mathcal{S}_{\mathrm{relax}}
 $$
 
 where $w_{\mathrm{eff}} = p_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$ and $\mathcal{S}_{\mathrm{relax}}$ is a source term encoding energy exchange between the dark-energy sector and other components during medium relaxation. In the $\Lambda\mathrm{CDM}$ limit, $w_{\mathrm{eff}} = -1$ and $\mathcal{S}_{\mathrm{relax}} = 0$.

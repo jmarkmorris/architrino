@@ -181,7 +181,7 @@ The later Berezhiani-Khoury BEC long-range-interaction paper sharpens a separate
 | Instability for the opposite coupling sign | For attractive coupling in the strongly deformed regime, soft modes become unstable once the same deformation threshold is crossed. | A BEC analogy fails if the native coupling sign or dense-source response destroys the coherent phase on the window being used for comparison. |
 | Galactic dark-matter application | The paper treats the force as galactic-scale and model-dependent, with screening and finite condensate-core size restricting where it can compete with gravity. | This is only a comparison framework for range-limited collective response; it does not establish MOND-like scaling, dark matter ontology, or a Noether sea force law. |
 
-A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf{x},t)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
+A compact derivative-coupling handoff can be expressed at bridge level. Let $S_A(\mathbf X,T)$ be the ordinary-assembly source channel under comparison, $q_{\text{coh}}$ a candidate collective Noether sea coordinate, and $\mathcal{D}_{\text{coh}}$ the native gradient or path-history operator that couples them. The comparison is admissible only if the effective interaction has the schematic form
 
 $$
 \mathcal{L}_{\text{handoff}}

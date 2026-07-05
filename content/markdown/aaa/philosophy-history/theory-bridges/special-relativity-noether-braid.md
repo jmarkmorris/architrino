@@ -2,6 +2,8 @@
 
 This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../noether-braid/nested-shell-braid-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
 
+The bridge keeps both sides honest. Special relativity supplies the tested observer contract: clocks, rulers, signals, energy, and momentum must transform together. The Noether braid story supplies the proposed implementation: moving assemblies must deform, retune, and export one shared effective record rather than separate fitted factors.
+
 ## Bridge Thesis
 
 Special relativity gives the observer-level invariant bookkeeping for clocks, rulers, energy, and momentum. The Noether braid account proposes the underlying implementation layer: a moving Noether braid assembly must preserve finite-speed causal wake closure while translating through the Noether sea. That requirement deforms the braid's exclusion envelope, retunes its internal clock channel, and changes its medium-dressed response to acceleration.
@@ -76,11 +78,11 @@ The observer-level interval $s_{\mathrm{eff}}^2(E,R)$ is then an export of $\The
 
 ## Clock Channel
 
-In special relativity, the moving-clock law is usually written
+In special relativity, the moving-clock law is usually written as a standard comparison form
 $$
-\frac{d\tau}{dt}=\frac{1}{\gamma},
+\frac{d\tau}{dt_{\mathrm{std}}}=\frac{1}{\gamma_{\mathrm{std}}},
 \qquad
-\gamma=\frac{1}{\sqrt{1-v^2/c^2}}
+\gamma_{\mathrm{std}}=\frac{1}{\sqrt{1-v_{\mathrm{std}}^2/c^2}}
 $$
 The equation is an observer-level statement: it tells Physical Observers how many proper-time units a moving clock records relative to an inertial coordinate description.
 
@@ -97,9 +99,9 @@ $$
 \frac{1}{\sqrt{1-\|\mathbf{w}\|^2/c_{\text{eff}}^2}}
 $$
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $t$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The proper-time map is therefore an extracted frequency ratio:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the primitive time parameter is absolute time $T$. A clock is not primitive time itself; it is a stable assembly that counts internal cycles. For a Noether braid clock, a natural clock channel is the middle binary or a transition built from the coupled nested shell braid ledger. The native clock-map row is therefore an extracted frequency ratio:
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dT}
 =
 \frac{\omega_{\text{clk}}(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{geometry})}{\omega_0}
 $$
@@ -129,7 +131,7 @@ c_{\text{eff}}
 $$
 Clock slowing is the observer-facing readout of this retuning:
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 =
 \frac{c_{\perp}}{c_{\text{eff}}}
 =

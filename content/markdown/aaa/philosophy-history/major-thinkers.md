@@ -1,15 +1,15 @@
 # Major Thinkers in the Foundations of Nature: Impact Analysis for the Architrino Framework
 
----
-
 ## Overview
 
 This document maps key historical and contemporary figures who have shaped foundational thinking about nature, reality, and the structure of physics. For each, it identifies the thinker's core commitments and assesses how $\mathbb{A}\mathbb{A}\mathbb{A}$ supports, challenges, reframes, or supersedes them.
 
 It should be read alongside [Philosophy of Science](philosophy-of-science.md), [Historical Context and Missed Opportunities](historical-context-and-missed-opportunities.md), [Theory Mapping](theory-mapping.md), and [Information / Computation](information-computation.md).
 
+This document is not a ranking of thinkers. It is a stack-placement exercise. A thinker may be right about mechanism but wrong about ontology, right about method but wrong about physics, or wrong in final form while still preserving a clue that becomes useful after the substrate is rebuilt.
+
 The current $\mathbb{A}\mathbb{A}\mathbb{A}$ position assumed throughout is:
-- **Reductionist**: All complexity derives from one fundamental entity type (architrinos = eternal, equal-and-opposite architrinos) and their interaction rules.
+- **Reductionist**: All complexity derives from one fundamental entity type, the architrino, with two polarity signs and shared interaction rules.
 - **Causal substrate with emergent quantum behavior**: Pilot-wave-like aspects without fundamental randomness in the base interactions, with **deterministic multistability** at self-hit branch points.
 - **Euclidean 3D void + absolute time**: Rejecting spacetime as fundamental; making Lorentz symmetry, clock slowing, ruler contraction, and GR effective behavior emergent through Noether sea response.
 - **No creation, no annihilation**: Architrinos are eternal. All change is reconfiguration.

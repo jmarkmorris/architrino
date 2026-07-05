@@ -4,6 +4,8 @@ This chapter defines the **Noether sea** as the physical medium inside the fixed
 
 The Noether sea is not the substrate. The substrate is [absolute timespace](../foundations/absolute-timespace.md): absolute time together with the [Euclidean void](../foundations/euclidean-void.md). The Noether sea is physical content inside that background: an emergent, coupled population of neutral Noether braid assemblies whose collective response appears to physical observers as spacetime behavior.
 
+The easiest mistake is to treat the Noether sea as another name for space. It is not. Space is the fixed container. The Noether sea is the organized medium inside that container. Effective spacetime is the observer-level reconstruction built from how that medium changes clocks, rulers, signals, and matter response.
+
 This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. The intended picture is a fixed container populated by organized assemblies, not a flexible container that curves by itself. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
 $$
 \rho_{\text{NS}}(\mathbf X,T)

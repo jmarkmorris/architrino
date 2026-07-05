@@ -26,7 +26,7 @@ Core symbols:
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\tau)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
+  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth pushes so that standard ODE integration applies and pointwise quantities (like gradients) are well-defined.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver’s instantaneous curvature radius along its path and the local inter-source separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Polarity-unit magnitude ($\epsilon>0$):
@@ -55,9 +55,9 @@ Core symbols:
     A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta=1$.
   - **Delay/window ratio:** use
     $$
-    \Theta_\tau=\frac{\tau_{\max}}{T_{\mathrm{win}}}
+    \Theta_{\Delta T}=\frac{\Delta T_{\max}}{T_{\mathrm{win}}}
     $$
-    where $\tau_{\max}$ is the longest active causal lookback time and $T_{\mathrm{win}}$ is the averaging, diagnostic, or return-map window. The stored history horizon $h$ must satisfy $h\ge\tau_{\max}$ on the scanned branch chart.
+    where $\Delta T_{\max}$ is the longest active causal lookback time and $T_{\mathrm{win}}$ is the averaging, diagnostic, or return-map window. The stored history horizon $h$ must satisfy $h\ge\Delta T_{\max}$ on the scanned branch chart.
   - **Regularization thickness:** use
     $$
     \hat{\eta}=\frac{\eta}{L_\star}
@@ -74,14 +74,14 @@ Core symbols:
     In field-speed units this reduces to $g_\kappa=\kappa\epsilon^2/L_\star$.
   - **Branch/root tolerances:** for the causal-root residual
     $$
-    g_{ij}(\tau,\phi)
+    g_{ij}(\Delta T,\phi)
     =
-    \|\phi_i(0)-\phi_j(-\tau)\|-c_f\tau
+    \|\phi_i(0)-\phi_j(-\Delta T)\|-c_f\Delta T
     $$
-    accept a root only when $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$, keep distinct roots separated by $|\tau_a-\tau_b|/T_\star>\varepsilon_{\mathrm{sep}}$, and treat $|J|\le\varepsilon_J$ as a branch-birth or caustic zone rather than an ordinary stable branch.
+    accept a root only when $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$, keep distinct roots separated by $|\Delta T_a-\Delta T_b|/T_\star>\varepsilon_{\mathrm{sep}}$, and treat $|J|\le\varepsilon_J$ as a branch-birth or caustic zone rather than an ordinary stable branch.
   - A branch-scan report should therefore include at least
     $$
-    (\beta_{\max}\ \text{or}\ s,\ \Theta_\tau,\ \hat{\eta},\ g_\kappa,\ \varepsilon_{\mathrm{root}},\ \varepsilon_{\mathrm{sep}},\ \varepsilon_J)
+    (\beta_{\max}\ \text{or}\ s,\ \Theta_{\Delta T},\ \hat{\eta},\ g_\kappa,\ \varepsilon_{\mathrm{root}},\ \varepsilon_{\mathrm{sep}},\ \varepsilon_J)
     $$
     together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.
 

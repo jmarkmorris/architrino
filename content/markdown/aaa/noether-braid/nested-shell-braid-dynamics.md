@@ -1020,7 +1020,7 @@ $$
 \frac{1}{T}
 \int_0^T
 \left\|
-\ddot{\mathbf X}_{\ell,\alpha}(T)
+\frac{d^2\mathbf X_{\ell,\alpha}}{dT^2}(T)
 -
 \sum_{b:\,o_b=(\ell,\alpha)}
 \mathbf{a}_{o_b\leftarrow j_b}(T;t-\Delta_b)
@@ -1201,13 +1201,13 @@ a_{b,\tau}(u)
 $$
 On the symmetric terminal circle, with $\mathbf{e}_{\perp}(\psi)=d\mathbf{e}(\psi)/d\psi$, the target acceleration has only inward radial component,
 $$
-\ddot{\mathbf X}_{\ell_o,\alpha_o}(T)
+\frac{d^2\mathbf X_{\ell_o,\alpha_o}}{dT^2}(T)
 \cdot
 \alpha_o\mathbf{e}(q_{\ell_o}u+\phi_{\ell_o})
 =
 -R_{\ell_o}(q_{\ell_o}\omega_O)^2,
 \qquad
-\ddot{\mathbf X}_{\ell_o,\alpha_o}(T)
+\frac{d^2\mathbf X_{\ell_o,\alpha_o}}{dT^2}(T)
 \cdot
 \alpha_o\mathbf{e}_{\perp}(q_{\ell_o}u+\phi_{\ell_o})
 =
@@ -1745,15 +1745,15 @@ t-t'
 $$
 by a normalized $\delta_\eta(g_{ij})$, while keeping $H(0)=0$ and excluding the trivial coincidence self-branch. Such a regularizer depends on Euclidean distance and time difference, not on a coordinate origin, absolute phase convention, or observer record.
 
-The wake-history increments are then the Noether boundary terms of this same action. For the time-translation channel, a branch contribution across a time boundary $t_\ast$ has the form
+The wake-history increments are then the Noether boundary terms of this same action. For the time-translation channel, a branch contribution across a time boundary $T_\ast$ has the form
 $$
-E_{b}^{\mathrm{wake}}(t_\ast)
+E_{b}^{\mathrm{wake}}(T_\ast)
 =
 \frac{1}{2}
-\int_{\{(T_1,T_{\mathrm{em}})\in b:\,T_{\mathrm{em}}\le t_\ast<T_1\}}
+\int_{\{(T_1,T_{\mathrm{em}})\in b:\,T_{\mathrm{em}}\le T_\ast<T_1\}}
 \partial_{T_1}
 \mathcal{K}_{b}^{(\eta)}(T_1,T_{\mathrm{em}})\,
-dt_0\,dt_1
+dT_{\mathrm{em}}\,dT_1
 $$
 where $\mathcal{K}_{b}^{(\eta)}$ is the weighted regularized causal kernel restricted to branch $b$,
 $$
@@ -2062,7 +2062,7 @@ $$
 $$
 Track $\Delta_{\mathbf{k}}$ along scans in declared $\beta_f = v_{\text{trans}}/c_f$ and $G_{\text{grad}}$. Stable rungs have $\Delta_{\mathbf{k}}>0$; rung termination, separator cycle-period divergence, and gradient-driven failure should all coincide with $\Delta_{\mathbf{k}}\to 0^+$.
 
-**Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf V\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{t-t_*}$ along the eigenvector of the newly activated self-hit root when the crossing parameter satisfies $s(T)-1\sim \dot{s}(t_*)(t-t_*)$ with $\dot{s}(t_*)\ne0$. Two simulation tests follow:
+**Grazing-bifurcation diagnostics at the separator:** Near $\|\mathbf V\|=c_f$, the post-crossing trajectory deviation is predicted to scale as $\sqrt{T-T_*}$ along the eigenvector of the newly activated self-hit root when the crossing parameter satisfies $s(T)-1\sim (ds/dT)(T_*)(T-T_*)$ with $(ds/dT)(T_*)\ne0$. Two simulation tests follow:
 
 - log-log fit of phase-deviation versus time-since-crossing, expected to yield slope $1/2$;
 - parameter sweep across the separator looking for a period-adding cascade in the integer ledger, with each adding event respecting $\Delta N\in 2\mathbb{Z}$.
@@ -2147,7 +2147,7 @@ The stronger claim that this architecture supplies the basis for rest mass, obse
 
 **Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
-\ddot{\mathbf X}_i(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
+\frac{d^2\mathbf X_i}{dT^2}(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
 $$
 with delay constraints (causal roots):
 $$

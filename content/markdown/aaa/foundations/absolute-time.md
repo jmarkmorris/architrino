@@ -4,6 +4,8 @@ This chapter defines absolute time in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the su
 
 The companion chapter [Absolute Time Defense](absolute-time-defense.md) gives the argumentative case for this choice. This chapter does the more basic job: it states the postulate and the mathematical structure used by the later dynamics.
 
+The safest way to read the chapter is to keep three uses of time separate. Absolute time is the substrate ordering parameter. Causal-wake timing is how that ordering becomes active in interactions. Clock time is a physical assembly readout extracted from repeatable cycles. The later spacetime chapters can compare those readouts with relativistic proper time, but they do not add a second ontological clock.
+
 ## Core Concept
 
 Absolute time is the one universal ordering parameter. It is **one-dimensional, continuous, and oriented**, and it advances independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces.

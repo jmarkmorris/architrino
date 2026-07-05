@@ -103,7 +103,7 @@ For compact notation, the algebra below writes $v_M=c_f$ and $\beta_M=1$ for thi
 
 The branch-level motion may have microscopic crossings
 $$
-v_M(t)=c_f+\delta v_M(t),
+v_M(T)=c_f+\delta v_M(T),
 \qquad
 \langle \delta v_M\rangle_W=0
 $$
@@ -111,8 +111,8 @@ over the declared window $W$. Each regularized crossing of the $J=0$ boundary is
 $$
 \Delta\mathbf{v}_{M,n}
 =
-\int_{t_n^-}^{t_n^+}
-\mathbf{a}_M^{(\eta)}(t)\,dt,
+\int_{T_n^-}^{T_n^+}
+\mathbf{A}_M^{(\eta)}(T)\,dT,
 \qquad
 \left\|\Delta\mathbf{v}_{M,n}\right\|<\infty
 $$
@@ -270,7 +270,7 @@ The cycle-averaged cancellation score is
 $$
 C_L(m,n;\phi)
 =
-\frac{1}{T}\int_0^T |S_L(t)|^2\,dt
+\frac{1}{T}\int_0^T |S_L(T')|^2\,dT'
 =
 \sum_{\nu}
 \left|

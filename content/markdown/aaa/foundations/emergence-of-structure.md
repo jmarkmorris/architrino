@@ -2,6 +2,8 @@
 
 Emergence in this chapter means persistent organization formed by architrino dynamics. It does not mean that a second kind of substance or law is added on top. The substrate claim is that architrinos move in absolute time through the Euclidean void and interact through causal wakes. The effective claim is that repeated delayed interactions can settle into assemblies, branch records, and coarse variables useful at observer scales. The inferential claim is narrower still: once a preparation and measure source are declared, unresolved basin selection can be assigned branch weights without treating those weights as ontic randomness.
 
+The chapter is therefore about how order can be real without being primitive. Architrinos supply the persistent inventory and the causal-wake law supplies the motion. Assemblies, stable patterns, and statistical weights appear only after histories are constrained, repeated, and coarse-grained. Nothing mystical is added; the hard part is proving which delayed histories become stable enough to deserve higher-level names.
+
 ### Conway's Game of Life: A Discrete Touchstone
 
 Conway's Game of Life is useful only as an introductory picture of emergence. It is a zero-player cellular automaton: cells live on a 2D grid, all cells update together at discrete time steps, and each next state depends only on the current states of nearby cells.
@@ -48,10 +50,10 @@ Here $\mathcal H_\gamma$ denotes the path-history domain associated with the bra
 The constrained flow is still the lower-level causal-wake dynamics,
 
 $$
-\frac{dX}{dt}=F_L(X_t),\qquad X_t\in \mathcal K_c
+\frac{dX}{dT}=F_L(X_T),\qquad X_T\in \mathcal K_c
 $$
 
-where $X_t(\theta)=X(t+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+where $X_T(\theta)=X(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
 
 The load-bearing object is therefore the context-to-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$. One may regard the allowed context space $\mathfrak C$ as stratified: on an open top stratum, the admitted chart set is locally constant, while codimension-one walls mark contexts where a branch chart opens, closes, or changes regularity. A context change that turns $\mu_c(B_k)=0$ into $\mu_{c'}(B_k)>0$ is then a wall-crossing in $\mathfrak C$, not a second causal law. This places context changes in the same geometric family as root folds and basin separatrices: the active branch topology changes when a retained chart crosses a declared stratum.
 
@@ -121,7 +123,7 @@ The row below is a closure template until $E_{\text{wake}}$ has been defined con
 
 When this route closes, $E_{\text{wake}}$ should be read as the Noether charge of the delayed action under absolute-time translation, not as a primitive local energy density placed on one slice. For a memory depth $h$, the charge is expected to be a functional of the retained history segment
 $$
-X_t\in C([-h,0])
+X_T\in C([-h,0])
 $$
 with boundary and memory-window terms built from the same causal kernel that supplies the force. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
 

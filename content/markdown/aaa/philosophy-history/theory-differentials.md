@@ -2672,11 +2672,11 @@ t_f(M),\;
 \Delta C_\ell,\;
 \Delta P(k,z),\;
 \Omega_{\mathrm{GW}}(f),\;
-\Delta\mathbf{x}_{\mathrm{ephem}}(t),\;
+\Delta x_{\mathrm{ephem,eff}}^i(t_{\mathrm{eff}}),\;
 \Phi_{\mathrm{HE}}(E,t)
 \right)
 $$
-where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta\mathbf{x}_{\mathrm{ephem}}$ is a solar-system ephemeris perturbation, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
+where $\psi(M)$ is the compact-object mass function, $f_{\mathrm{PBH}}$ is the dark-matter fraction in that comparison model, $t_f(M)$ is the inferred formation epoch, $\Delta x_{\mathrm{ephem,eff}}^i$ is a solar-system ephemeris perturbation in the effective observer chart, and $\Phi_{\mathrm{HE}}$ denotes any high-energy particle or radiation flux tied to evaporation or analogous release. This projection is useful precisely because it separates observables from the interpretation that produced them.
 
 #### 4. $\mathbb{A}\mathbb{A}\mathbb{A}$ Assessment
 
@@ -2760,12 +2760,12 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the mapping target is to separate the soun
 
 Steady State Cosmology is a theory in the cosmic history alternative domain. It tried to combine an expanding comparison history with constant large-scale matter density, usually by adding some continuous source of matter. Einstein's unpublished 1931 attempt is the sharp failure prototype: with dust-like matter, constant density and nonzero expansion require an explicit source term, but the source was not present in the field equations. In effective notation the pressure is
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
 \mathcal{S}_{m,\mathrm{eff}}
 $$
-so $\dot{\rho}_{m,\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
+so $d\rho_{m,\mathrm{eff}}/dt_{\mathrm{eff}}=0$ and $H_{\mathrm{eff}}\ne0$ require $\mathcal{S}_{m,\mathrm{eff}}=3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}$. Without that term, the nontrivial constant-density branch is not closed.
 
 #### 2. Ontological Commitments
 

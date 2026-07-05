@@ -2,6 +2,8 @@
 
 The standard formulation of quantum mechanics relies on the abstract unitary evolution of state vectors in a complex Hilbert space. Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, this linear algebraic structure is an effective, continuum-limit approximation of a fundamentally non-linear, non-Markovian dynamical system. This document establishes the formal mapping between abstract quantum operators and the topological torques acting on nested shell braid assemblies, bounded by the causal-delay master equation.
 
+The reader should treat an operator as a recovered record-channel map unless the local derivation says otherwise. Hilbert-space algebra is the target language that experiments already validate; the implementation question is which branch records, apparatus kernels, path-history ledgers, and coarse-grainings make that algebra emerge.
+
 ## The Nested Shell Braid Qubit and Phase Space
 
 A physical qubit corresponds to the stable orientational states of a nested shell braid assembly. Let $\hat{\mathbf{n}}_{\text{in}}$, $\hat{\mathbf{n}}_{\text{mid}}$, and $\hat{\mathbf{n}}_{\text{out}}$ denote the normal vectors of the inner ($v > c_f$), middle ($v = c_f$), and outer ($v < c_f$) binary orbital planes, respectively.

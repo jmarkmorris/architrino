@@ -8,6 +8,8 @@ This chapter is the canonical home for derived clock time, observer clocks, cloc
 
 For the detailed comparison between special-relativistic clock language and the deformable Noether braid implementation story, see [the special-relativity bridge](../philosophy-history/theory-bridges/special-relativity-noether-braid.md).
 
+The practical rule is to never ask only how fast two clock centers move relative to each other. Ask which assembly cycle is being counted, what local Noether sea state it samples, how the clock is oriented and drifting, and which effective observer chart receives the record. Relative velocity becomes the familiar time-dilation variable only after those native records collapse to the homogeneous weak-field limit.
+
 The primary clock law is phase extraction from a declared assembly channel. A clock is usable only when some internal cycle remains stable enough to count:
 $$
 \frac{d\tau_{\mathcal A}}{dT}
@@ -144,7 +146,7 @@ c_\star\sqrt{1-\frac{\|\mathbf{w}\|^2}{c_\star^2}}
 $$
 An accepted clock branch must then extract
 $$
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 =
 \frac{c_{\perp}}{c_\star}
 =
@@ -933,7 +935,7 @@ $$
 
 For each $a\in\mathcal{A}$ evolve
 $$
-m_a\ddot{\mathbf X}_a(T)=
+m_a\frac{d^2\mathbf X_a}{dT^2}(T)=
 \sum_{b\in\mathcal{A}}
 \kappa\,\sigma_{ab}\lvert q_aq_b\rvert
 \int_{-\infty}^{T}\!dT_0\;

@@ -103,7 +103,7 @@ The internal plane data do not encode group velocity. The plane normals $\hat{\m
 $$
 \mathbf{V}_{\mathrm{grp}}
 =
-\frac{d\mathbf{X}_{\mathrm{resp}}}{dt}
+\frac{d\mathbf{X}_{\mathrm{resp}}}{dT}
 \quad
 \text{relative to the declared Noether sea record.}
 $$
@@ -156,7 +156,7 @@ $$
 \to
 \frac{1}{\gamma},
 \qquad
-\frac{d\tau}{dt}
+\frac{d\tau}{dt_{\mathrm{eff}}}
 \to
 \frac{1}{\gamma},
 $$

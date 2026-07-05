@@ -6,6 +6,8 @@ The main separation is the whole point of this chapter. The Euclidean void is th
 
 The order is deliberately simple. First fix the geometry. Then explain how coordinates and event identity work in that geometry. Then mark the boundary where the story leaves the void and becomes medium dynamics, effective metric closure, or observational inference.
 
+This page is also a guardrail for cosmology and gravity language. If a later chapter speaks about expansion, curvature, lensing, or clock redshift, the first question is not "what did space do?" The first question is which contents, transport histories, clocks, rulers, or observer reconstructions changed inside the fixed Euclidean void.
+
 ## Core Concept
 
 The Euclidean void is three-dimensional, continuous, flat, and non-dynamical. It is the arena in which architrinos move and interact. It does not curve, expand, contract, or respond to matter.
@@ -338,7 +340,7 @@ Keep the layers separate:
 
 At any time $T$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether sea cell, or empty of local architrino content. Those are different content states at the same location. None changes the identity or metric of the underlying void point.
 
-This gives a direct no-expanding-void criterion for cosmology. After an observer chart is declared, effective cosmology variables such as $a(t_{\mathrm{eff}})$, $H(t_{\mathrm{eff}})$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
+This gives a direct no-expanding-void criterion for cosmology. After an observer chart is declared, effective cosmology variables such as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
 $$
 a_{\mathrm{eff}}(t_{\mathrm{eff}})=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(T),O(t_{\mathrm{eff}})]
 $$

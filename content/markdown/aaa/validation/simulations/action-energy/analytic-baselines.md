@@ -211,7 +211,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 - Measure-driven/event-driven solvers with mollification: replace surface deltas by narrow Gaussians ($\eta>0$) to obtain $C^1$ trajectories; take $\eta\to 0$ in the weak sense after validating work–energy over resolved windows.
 - Linear constant-delay benchmarks: for linear DDEs (e.g., $dX/dT = aX + bX(T-\Delta)$) use Laplace transforms/characteristic equations and Lambert W; helpful for validation and step-size/error control, even though the canonical two-body problems here are nonlinear and state-dependent.
 - A posteriori error control: use defect/residual of collocation, step halving with history re-interpolation, and event-time error estimates for adaptive step and tolerance selection.
-- Fixed-point frameworks: establish local existence/uniqueness by contraction on history spaces $C([-\tau_{\max},0])$ (or their mollified variants); use Picard iterations as a solver preconditioner.
+- Fixed-point frameworks: establish local existence/uniqueness by contraction on history spaces $C([-\Delta T_{\max},0])$ (or their mollified variants); use Picard iterations as a solver preconditioner.
 
 Deliverables:
 - Precise DDE forms and causal-root conditions for use in analysis and computation.

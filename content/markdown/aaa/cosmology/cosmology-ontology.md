@@ -87,7 +87,7 @@ ds_{\mathrm{FRW,eff}}^2
 +\chi^2d\Omega^2
 \right]
 $$
-but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv \dot a_{\mathrm{eff}}/a_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records. Dots in this ledger mean derivatives with respect to the effective cosmological clock $\tau_c$.
+but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/d\tau_c$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
 
 The useful comparison equations are therefore recovery targets:
 $$
@@ -98,7 +98,7 @@ H_{\mathrm{eff}}^2
 +\frac{\Lambda_{\mathrm{eff}}}{3}
 $$
 $$
-\dot\rho_{\mathrm{eff}}
+\frac{d\rho_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
 =0
 $$
@@ -150,12 +150,12 @@ Historical steady-state cosmologies are useful here as failure tests, not as ont
 
 In the effective FRW layer, a dust-like component obeys the no-source comparison equation
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}=0
 $$
-If one imposes $\dot{\rho}_{m,\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
+If one imposes $d\rho_{m,\mathrm{eff}}/dt_{\mathrm{eff}}=0$ while $H_{\mathrm{eff}}\ne0$, the equation forces $\rho_{m,\mathrm{eff}}=0$. A nontrivial constant-density branch therefore requires
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}\rho_{m,\mathrm{eff}}
 =
 \mathcal{S}_{m,\mathrm{eff}},

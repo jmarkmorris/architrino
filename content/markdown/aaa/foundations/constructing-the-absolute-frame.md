@@ -10,6 +10,8 @@ The conceptual sequence is: [Detecting the Absolute Frame](detecting-the-absolut
 
 The coordinate system reconstructed here is a workbench tool. It lets the theory state equations in components, run simulations, and compare descriptions. The universe itself requires none of it. Architrinos interact through source-tagged causal wakes according to invariant laws that can exhibit deterministic multistability at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
 
+The reader should therefore treat the construction like assigning graph paper after the geometry is already there. The graph paper helps calculate and compare; it does not create the distances, the rest condition, the causal wakes, or the architrino worldlines. This is why the reconstruction can be mathematically exact at the complete-state level while still being unavailable as a direct laboratory procedure for an embedded observer.
+
 The claim is therefore narrow. From the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective, a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed. That is a mathematical existence proof. It is not an operational laboratory protocol for Physical Observers made of assemblies.
 
 The mathematical content is small but useful. The Euclidean metric plus a nondegenerate ordered tuple supplies an origin, two axes, and a parity convention. The important points are the lemma, the exact failure conditions, and the fact that coordinate parity is not dynamical chirality.

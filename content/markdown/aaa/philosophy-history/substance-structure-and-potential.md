@@ -6,6 +6,8 @@ This document gives a philosophical orientation for a central $\mathbb{A}\mathbb
 
 The guiding problem is that modern physics often lets predictive objects carry more ontology than their derivation warrants. A metric, field, vacuum state, wavefunction, mass parameter, or particle label may be indispensable within its regime while still failing to identify the implementation layer that produces the observed behavior. The task here is not to dismiss those formalisms. It is to separate their effective success from the stronger claim that their native objects are the fundamental furniture of reality.
 
+The rule is simple: do not promote a useful descriptor into a primitive just because it works. Ask what exists, what causal structure it emits or records, what medium response it joins, and what observer-level summary is being read from it.
+
 ## Ontological Discipline
 
 The first discipline is to distinguish an entity from a description of behavior. A theory can describe a system accurately while naming the wrong layer as primitive. General Relativity describes gravitational phenomena through effective metric geometry; quantum field theory describes scattering and excitation through continuum fields and operators; statistical and information-theoretic methods describe distinguishable states and correlations. Those descriptions may be powerful without being final ontology.

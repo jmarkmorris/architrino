@@ -135,7 +135,7 @@ for the quadratic proxy. A nonzero value is not by itself an energy-conservation
 
 For finite retained windows, missing energy must be routed to boundary exchange rather than hidden in $E_{\text{wake}}$. The finite-window balance target is
 $$
-\frac{dE_{\Omega}^{(\eta)}}{dt}
+\frac{dE_{\Omega}^{(\eta)}}{dT}
 +
 \int_{\partial\Omega}
 \mathbf{J}_E^{(\eta)}
@@ -178,7 +178,7 @@ $$
 \varepsilon
 }
 $$
-where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dt$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the force residual.
+where $\Phi_{\partial\Omega,E}^{(\eta)}(W)=\int_W\int_{\partial\Omega}\mathbf{J}_E^{(\eta)}\cdot\hat{\mathbf{n}}\,dA\,dT$ is the declared boundary energy flux. The chart promotes only if $\Delta_{\mathrm{E,cross}}^{(\eta)}\to0$ under the same refinement limit used for the force residual.
 
 ## Conservation Residual
 

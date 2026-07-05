@@ -218,7 +218,7 @@ Demonstrating this terminal aligned mode is an **open dynamical problem** for th
 
 ## Energy as Causal-Wake Interaction History
 
-This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf{x}, t)$ and its gradient $\nabla \phi$.
+This framing keeps emitters implicit and treats the architrino as a minimal mover responding to the local superposed causal-wake potential $\phi(\mathbf X,T)$ and its gradient $\nabla_{\mathbf X}\phi$.
 
 1. An architrino moves through a sea of potential gradients from many emitters.  
 2. Each emitter’s influence arrives after a delay.  

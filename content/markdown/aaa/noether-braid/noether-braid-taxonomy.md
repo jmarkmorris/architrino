@@ -1,5 +1,9 @@
 # Noether Braid Taxonomy
 
+This chapter is a naming and classification map for candidate Noether braid branches. It tells the reader which structural choices are being discussed before proof status is assigned. A taxonomy row can say that a candidate has neutral inventory, shell support, a frequency family, or a handedness marker; it does not by itself say that the candidate is retained, stable, or physically exported.
+
+The distinction matters because the proof stack uses many compact IDs. A Proof ID is a coordinate in the search space. Retention is an evidence status attached only after the same branch record closes the required ledgers.
+
 ## Local Terms
 
 This chapter uses four evidence-level terms in a controlled way:

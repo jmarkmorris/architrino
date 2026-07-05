@@ -4,6 +4,8 @@ This chapter explains how cosmological expansion language is translated into a f
 
 The sections below move from the core idea to redshift, photon propagation, dark-energy language, tension interfaces, and the effective Friedmann comparison layer.
 
+Here `expansion` is comparison language. The chapter keeps the standard cosmology word because readers, data products, and equations are organized around it, but the native claim is different: ledgers, photons, clocks, and structures move through a changing Noether sea inside a fixed Euclidean void.
+
 ## Core Idea
 
 The [Euclidean void](../foundations/euclidean-void.md) does not expand. What evolves is the Noether sea and the state of assemblies moving through it.
@@ -1500,7 +1502,7 @@ $$
 
 with $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ interpreted as a Noether sea state parameter and $G_{\text{eff}},k_{\text{eff}}$ as effective summaries of assembly-Noether sea response. If a pressure variable is used in the same projection, it must satisfy the comparison continuity row
 $$
-\dot\rho_{\mathrm{eff}}
+\frac{d\rho_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_{\mathrm{eff}}(\rho_{\mathrm{eff}}+P_{\mathrm{eff}})
 =0
 $$

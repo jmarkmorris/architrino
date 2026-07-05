@@ -44,37 +44,37 @@ $Q$ depends on the global shape of $R$ (the amplitude of $\psi$), not on its loc
 
 ### Statistical Content and the Born Rule
 
-If the initial particle distribution is $|\psi(\mathbf{Q}, t_0)|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
+If the initial particle distribution is $|\psi_{\mathrm{std}}(\mathbf{Q}, t_{\mathrm{std},0})|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi_{\mathrm{std}}|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
 
-The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{t-t_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
+The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{T-T_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
 $$
-\mu_t
+\mu_T
 =
-(\Phi_{t-t_0})_*\mu_0
+(\Phi_{T-T_0})_*\mu_0
 $$
-is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(t)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
+is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(T)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
 $$
-\Delta_{\mathrm{Born}}^\theta(t)
+\Delta_{\mathrm{Born}}^\theta(T)
 =
 \max_k
 \frac{
 \left|
-\mu_t(B_k^\theta(t))
+\mu_T(B_k^\theta(T))
 -
-\int_{\Omega_k^\theta(t)}
-|\psi_{\mathrm{eff}}(q,t)|^2\,dq
+\int_{\Omega_k^\theta(T)}
+|\psi_{\mathrm{eff}}(q,T)|^2\,dq
 \right|
 }{\varepsilon_k}
 $$
-The closure target is $\Delta_{\mathrm{Born}}^\theta(t)\le1$ over the declared record window, with the same $\mu_t$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
+The closure target is $\Delta_{\mathrm{Born}}^\theta(T)\le1$ over the declared record window, with the same $\mu_T$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
 
-The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,t)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
+The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,T)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
 $$
-\partial_t\rho_\theta(q,t)
+\partial_T\rho_\theta(q,T)
 +
-\nabla_q\cdot \mathbf{J}_\theta(q,t)
+\nabla_q\cdot \mathbf{J}_\theta(q,T)
 =
-\mathcal{R}_{\mathrm{eq}}^\theta(q,t)
+\mathcal{R}_{\mathrm{eq}}^\theta(q,T)
 $$
 with
 $$
@@ -198,20 +198,20 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but eq
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
-De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf{X}(t)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(t)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf{x},t)=S_{\mathrm{eff}}(\mathbf{x},t)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
+De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf X(T)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(T)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf X,T)=S_{\mathrm{eff}}(\mathbf X,T)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
 $$
 \mathcal{R}_{\mathrm{phase}}(\gamma)
 =
 \max\left(
-\sup_{t\in[0,T]}
-\frac{|\theta_{\mathrm{int}}(t)-\theta_{\mathrm{wake}}(\mathbf{X}(t),t)-2\pi k(t)|}{\varepsilon_\theta},
-\sup_{t\in[0,T]}
-\frac{\left|\,\mathbf{v}_{\mathrm{group}}(\mathbf{X}(t),t)-\dot{\mathbf{X}}(t)\,\right|}{\varepsilon_v},
-\frac{\left|\oint_\gamma \mathbf{p}_{\mathrm{eff}}\cdot d\mathbf{x}-n h_{\mathrm{eff}}\right|}{\varepsilon_I}
+\sup_{T'\in[0,T]}
+\frac{|\theta_{\mathrm{int}}(T')-\theta_{\mathrm{wake}}(\mathbf X(T'),T')-2\pi k(T')|}{\varepsilon_\theta},
+\sup_{T'\in[0,T]}
+\frac{\left|\,\mathbf V_{\mathrm{group}}(\mathbf X(T'),T')-\frac{d\mathbf X}{dT}(T')\,\right|}{\varepsilon_v},
+\frac{\left|\oint_\gamma p_i^{\mathrm{eff}}\,dX^i-n h_{\mathrm{eff}}\right|}{\varepsilon_I}
 \right)
 \le 1
 $$
-with $k(t),n\in\mathbb{Z}$, $\mathbf{p}_{\mathrm{eff}}=\nabla S_{\mathrm{eff}}$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
+with $k(T),n\in\mathbb{Z}$, $p_i^{\mathrm{eff}}=\partial S_{\mathrm{eff}}/\partial X^i$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
 
 ### Boundary Conditions and Spectral Quantization
 
@@ -262,11 +262,11 @@ Here $\mathcal{P}_{T_n}$ is the retained assembly return map, $\Delta\varphi_n$ 
 
 Central potentials add a second comparison target. Standard quantum mechanics uses
 $$
-\hat{\mathbf{L}}=-i\hbar\,\mathbf{x}\times\nabla,
+\hat L_{\mathrm{std}}^i=-i\hbar\,\epsilon^i{}_{jk}x_{\mathrm{std}}^j\nabla_{\mathrm{std}}^k,
 \qquad
-[\hat L_i,\hat L_j]=i\hbar\,\epsilon_{ijk}\hat L_k,
+[\hat L_{\mathrm{std}}^i,\hat L_{\mathrm{std}}^j]=i\hbar\,\epsilon^{ij}{}_{k}\hat L_{\mathrm{std}}^k,
 \qquad
-[\hat H,\hat L_i]=[\hat H,\hat L^2]=0
+[\hat H_{\mathrm{std}},\hat L_{\mathrm{std}}^i]=[\hat H_{\mathrm{std}},\hat L_{\mathrm{std}}^2]=0
 $$
 for a central potential, allowing states to be labeled by $n,l,m$. The hydrogen benchmark is
 $$
@@ -459,12 +459,12 @@ Keep this chain separate from the spin-statistics / exchange ledger in [Fermi-Di
 
 Minimal mathematical spine:
 $$
-\text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(t,\mathbf{x},\mathbf{v})
-\Longrightarrow\ \psi=\sqrt{\rho}\,e^{iS/\hbar_{\mathrm{eff}}}
+\text{master delay dynamics}\ \Longrightarrow\ \text{kinetic closure for }f(T,\mathbf X,\mathbf V)
+\Longrightarrow\ \psi_{\mathrm{eff}}=\sqrt{\rho}\,e^{iS_{\mathrm{eff}}/\hbar_{\mathrm{eff}}}
 $$
 $$
-i\hbar_{\mathrm{eff}}\partial_t\psi=
-\left(-\frac{\hbar_{\mathrm{eff}}^2}{2m}\nabla^2+V_{\mathrm{eff}}\right)\psi
+i\hbar_{\mathrm{eff}}\partial_{t_{\mathrm{eff}}}\psi_{\mathrm{eff}}=
+\left(-\frac{\hbar_{\mathrm{eff}}^2}{2m_{\mathrm{eff}}}\nabla_{\mathrm{eff}}^2+V_{\mathrm{eff}}\right)\psi_{\mathrm{eff}}
 \quad (\text{in closure regime})
 $$
 $$

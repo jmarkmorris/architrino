@@ -8,6 +8,8 @@ This chapter answers the question that must be settled before any coordinate con
 
 This argument sits between [Euclidean Void](euclidean-void.md), which states the underlying substrate, and [Constructing the Absolute Frame](constructing-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](absolute-time-defense.md) and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
+The important separation is source-tagged geometry versus summed observation. Complete-state bookkeeping can ask where each causal isochron was emitted. A physical apparatus normally receives only a combined record after propagation, coupling, clocking, and Noether sea dressing. The preferred frame can be real in the first sense without becoming an easy observable in the second.
+
 ## The Fundamental Challenge
 
 The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "$T = 0$."

@@ -9,6 +9,8 @@ The key split is simple:
 
 This page owns the level distinction. The clock law itself belongs in [Proper Time and Time Dilation](proper-time-and-time-dilation.md), and the effective metric bridge belongs in [Emergent Metric](emergent-metric.md).
 
+This is not an idealist or measurement-created ontology. The complete state exists whether or not any Physical Observer reads it. The point is that any actual observer is made of assemblies and can only infer the world through finite records, local clocks, signals, calibrations, and access boundaries.
+
 ## The $\mathbb{U}_{\text{now}}$ Universe-State Perspective
 
 The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the theory's complete ledger for one slice of [absolute timespace](../foundations/absolute-timespace.md). It represents complete knowledge of the architrino microstate on that slice, including the history data needed for the next step of deterministic evolution.

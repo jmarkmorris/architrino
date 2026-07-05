@@ -176,7 +176,7 @@ $$
 \|\mathbf A_{o'\leftarrow o}\|\,V_r
 $$
 
-On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+\dot{x}/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
+On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
 
 Thus the potential to do work is broadly available wherever causal wakes pass, but work is realized only through an actual receiver trajectory. A quiet region is not a region with no causal activity; it is a region where the active wake contributions sum to negligible net acceleration and negligible net power for the assemblies present there.
 
@@ -477,7 +477,7 @@ The stronger same-record requirement is that $G_{\mathrm{eff}}^{(\zeta,\mathcal{
 
 **Theorem target (center of response).** The standard center-of-mass theorem depends on equal-time internal force cancellation. In delayed causal dynamics that cancellation is not available as a particle-only statement on $\Sigma_T$: the reciprocal hit generally belongs to a different emission time, a different causal-root branch, or a boundary wake record not retained by the finite window. For an assembly window $W_A(T)$, the replacement target is to prove that there is a response center $\mathbf X_{\mathrm{resp}}(T)$ and an assembly response tensor $M_A^{ij}$ such that the finite-window momentum balance reduces, over resolved windows, to
 $$
-\frac{d}{dT}\left(M_A^{ij}\dot{X}_{\mathrm{resp},j}\right)
+\frac{d}{dT}\left(M_A^{ij}\frac{dX_{\mathrm{resp},j}}{dT}\right)
 =
 F_{\mathrm{ext},W_A}^i
 -
@@ -542,7 +542,7 @@ $$
 }{
 T_{\mathcal Q}+\varepsilon_T
 }
-dt
+dT
 \right]_+
 }{
 |\Delta_W S_{\mathcal Q}|
@@ -550,7 +550,7 @@ dt
 \int_W
 \left|
 \frac{\mathcal D_{\mathcal Q}}{T_{\mathcal Q}+\varepsilon_T}
-\right|dt
+\right|dT
 +\varepsilon
 }
 $$
@@ -1102,10 +1102,10 @@ The discrete step is a causal-root ledger effect, not an assumption that energy 
 
 The mechanical event behind such a ledger change can be a caustic-grazing impulse. When a regularized branch crosses a $J=0$ caustic, the pointwise branch expression may become large while the integrated velocity change remains finite, as in [Caustic Transit and Finite Impulse](master-equation.md#caustic-transit-and-finite-impulse):
 $$
-\Delta\mathbf{v}_{a,n}
+\Delta\mathbf{V}_{a,n}
 =
-\int_{t_n^-}^{t_n^+}
-\mathbf{a}_a^{(\eta)}(t)\,dt
+\int_{T_n^-}^{T_n^+}
+\mathbf{A}_a^{(\eta)}(T)\,dT
 $$
 This finite impulse is a candidate substrate mechanism for changing the active causal-root ledger by a discrete amount without making primitive energy granular.
 
@@ -1235,11 +1235,11 @@ $$
 $$
 the interior adiabatic theorem target is
 $$
-\frac{dI_a}{dt}
+\frac{dI_a}{dT}
 =
 O(\epsilon_{\mathrm{ad},a})
 +
-\mathcal{R}_{\mathrm{int},a}(t)
+\mathcal{R}_{\mathrm{int},a}(T)
 $$
 Here $\ell_{\lambda}$ is the declared scale over which the reduced Hamiltonian changes appreciably, and $\mathcal{R}_{\mathrm{int},a}$ records omitted wake-history exchange, non-characteristic boundary leakage, or small chart error while the branch stays inside one ledger cell. At a separator crossing or root-fold boundary, the interior estimate is void. The crossing rule is instead
 $$

@@ -4,6 +4,8 @@ This note states a bounded working hypothesis for the Noether sea: the sea is no
 
 For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
 
+The claim level is intentionally narrower than the Noether sea ontology page. The ontology page says what the medium is. This page asks whether complementary pro/anti orientation populations are part of how that medium stays transparent, balanced, and responsive.
+
 ## Pro/Anti Noether Braid Basis
 
 The starting picture is deliberately simple. A Noether sea carrier is a Noether braid whose state can appear in two complementary orientations:

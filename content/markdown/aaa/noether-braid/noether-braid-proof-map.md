@@ -2,6 +2,8 @@
 
 This chapter is the live proof-map companion to [Noether Braid Taxonomy](noether-braid-taxonomy.md). The taxonomy chapter defines the configuration axes and Proof ID grammar. This proof map records current proof-run targets, work status, detailed proof-record fields, and environment-qualified rounds such as `SH-0-sea`.
 
+A proof map is not a trophy case. It is the place where candidates, diagnostics, failures, blocked packets, retained rows, and downstream consumers are kept separate. The reader should first ask which branch configuration is being tested, then what job the packet is doing, and only then whether the evidence has reached retained or certified status.
+
 A proof ID names a specific branch-configuration effort and does not assert success. Row evidence, diagnostics, fixtures, charts, and downstream physics packets should name the branch Proof ID they test or consume only after the support base, group-velocity regime, and local variation are declared.
 
 A negative diagnostic remains scoped to the branch chart and assumptions that produced it. A photon, mass-response, Lorentz-export, topological-charge, GR-export, measurement, or app-runtime packet is downstream of branch retention unless the same retained record supplies the rows being exported. A planar reduced chart names a restricted proof or simulation representation; it should not be treated as a branch Proof ID unless the local calculation is explicitly testing a planar lower-rank branch or the terminal hinge. A proof fixture remains an overlay on the relevant branch Proof ID, not a Proof ID of its own.

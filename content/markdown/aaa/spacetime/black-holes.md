@@ -904,10 +904,10 @@ $$
 \mathcal{Q}_{\mathrm{jet}}
 =
 \left(
-\dot M_{\mathrm{out}},
-\dot{\mathbf{P}}_{\mathrm{out}},
-\dot E_{\mathrm{out}},
-\dot{\mathbf{J}}_{\mathrm{out}},
+\frac{dM_{\mathrm{out}}}{dt_{\mathrm{eff}}},
+\frac{d\mathbf P_{\mathrm{out}}}{dt_{\mathrm{eff}}},
+\frac{dE_{\mathrm{out}}}{dt_{\mathrm{eff}}},
+\frac{d\mathbf J_{\mathrm{out}}}{dt_{\mathrm{eff}}},
 \theta_j,
 \eta_j,
 \mathcal{A}_{\mathrm{NS}},
@@ -915,7 +915,7 @@ $$
 \right)
 $$
 
-where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $\dot E_{\mathrm{out}}$ and $\dot{\mathbf{J}}_{\mathrm{out}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
+where $\theta_j$ is the opening angle, $\eta_j$ is the observer-level jet-to-ambient density ratio, and $\mathcal{A}_{\mathrm{NS}}$ is the local Noether sea anisotropy and loading state mapped to effective magnetic-like collimation. In a black-hole branch, spin-powered extraction, disk-powered extraction, hot-corona loading, and supercritical accretion are comparison mechanisms until the native horizon-interface ledger shows which terms actually supply $dE_{\mathrm{out}}/dt_{\mathrm{eff}}$ and $d\mathbf J_{\mathrm{out}}/dt_{\mathrm{eff}}$. A model fails this selection packet if it produces a horizon recycling source but leaves the launch-speed scale, angular-momentum drain, or collimation angle unrelated to the same boundary data.
 
 AGN jets sharpen this packet because the same source class ties near-hole launching to large-scale environmental work. The observer-level review signal is not "spin alone makes a jet." Powerful radio jets appear to require a rotating compact object plus a strongly loaded disk or inflow state that can sustain large-scale ordered stress; lower-power or differently loaded systems may stay radio quiet, form weak steady jets, or degrade into plumes. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a release-channel selector rather than a new ontology. Let
 
@@ -939,7 +939,7 @@ $$
 \Pi_{\mathrm{AGN}}[\Theta_{\mathrm{AGN}}]
 \mapsto
 \left(
-\dot E_j,\dot{\mathbf{P}}_j,\dot{\mathbf{J}}_j,
+\frac{dE_j}{dt_{\mathrm{eff}}},\frac{d\mathbf P_j}{dt_{\mathrm{eff}}},\frac{d\mathbf J_j}{dt_{\mathrm{eff}}},
 \Gamma_j,\theta_j,
 \sigma_j(R),
 f_p(R),

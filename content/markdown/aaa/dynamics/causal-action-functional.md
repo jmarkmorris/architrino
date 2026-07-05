@@ -1,5 +1,9 @@
 # Causal Action Functional
 
+This chapter explains how action-like scalar summaries are allowed to enter a delayed, receiver-normal dynamics. The Master Equation remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
+
+The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, source-normal denominator, receiver-normal numerator, and receiver-normal strength. Otherwise the statistic has lost the causal information that made the branch physical.
+
 ## Problem Statement and Goal
 
 This chapter gives the action-functional side of the canonical receiver-normal Master EOM. Its

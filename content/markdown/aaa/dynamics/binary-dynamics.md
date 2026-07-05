@@ -4,6 +4,8 @@ This chapter starts with the simplest possible assembly question: what happens w
 
 That delay makes the binary the first serious test of the Master Equation. Partner hits, self-hits, branch birth, caustic onset, circular anti-damping, non-circular spiral hypotheses, and maximum-curvature binary analysis all appear here before they are used in larger Noether braid structures. **Status:** (1) self-hit makes the dynamics non-Markovian (path-history dependent), and (2) stability/attractor claims are conjectural unless explicitly established.
 
+Read the chapter as a branch atlas, not as a single orbit story. The partner-only row shows why ordinary circular central-force intuition fails. The self-hit rows show where the system becomes path-history dependent. The maximum-curvature and spiral sections are candidate ways to control that delayed feedback, and each must close its own root, action, wake, and stability ledger before it can become an assembly building block.
+
 This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
 ## The Spiral Orbiting Binary and the Contraction Phase
@@ -118,8 +120,8 @@ $$
 \ell_{\mathrm{self},0}^{\mathrm{esc}}(1^+)
 =
 \lim_{\eta\to0^+}
-\int_{t^-}^{t^+}
-R(t)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(t)\,dt
+\int_{T^-}^{T^+}
+R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic row rather than a promoted angular-momentum ledger entry.
 
@@ -241,7 +243,7 @@ The exact residual definitions and Theorem G role are recorded in [Lorentz Kinem
 
 The moving-branch test also has a root-starvation obligation. If a forward source row has minimum forward separation $d_{\min}$ in the direction of motion, then the causal delay needed to receive that row obeys the elementary bound
 $$
-\tau_{\mathrm{forward}}(u)\geq \frac{d_{\min}}{c_f-u}.
+\Delta_{\mathrm{forward}}(u)\geq \frac{d_{\min}}{c_f-u}.
 $$
 This divergence is stronger than the Lorentz factor divergence,
 $$
@@ -251,7 +253,7 @@ as $u\to c_f^-$. Therefore a bare translating binary cannot be promoted to the L
 $$
 \mathcal{R}_{\mathrm{Lor\text{-}root}}(u)
 =
-\frac{\tau_{\mathrm{forward}}(u)/T_u}
+\frac{\Delta_{\mathrm{forward}}(u)/T_u}
 {M_b^{\mathrm{mem}}(u)+\epsilon_h},
 \qquad
 M_b^{\mathrm{mem}}(u)=\frac{h_b^{\mathrm{lock}}(u)}{T_u},
@@ -600,7 +602,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 2. **Finite-window energy balance**:
   $$
   \left\langle
-  \frac{dK_{\mu}}{dt}
+  \frac{dK_{\mu}}{dT}
   \right\rangle_W
   +
   \left\langle
@@ -1137,7 +1139,7 @@ b,\mathbf{X}_b,P_b,R_b,s_b,\mathfrak{B}_b,\mathcal{P}_b,\mathcal{E}_b
 \right),
 $$
 
-where $\mathbf{X}_b(t)$ is the two-body history, $P_b$ is its return period, $R_b$ and $s_b$ are the circular benchmark radius and speed when that reduction is valid, $\mathfrak{B}_b$ is the branch chart of active and excluded roots, $\mathcal{P}_b$ is the history-space return map, and $\mathcal{E}_b$ is the constructive energy packet of [Delay-Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md). The packet must report the following residuals before the branch can be used as a closed result.
+where $\mathbf X_b(T)$ is the two-body history, $P_b$ is its return period, $R_b$ and $s_b$ are the circular benchmark radius and speed when that reduction is valid, $\mathfrak{B}_b$ is the branch chart of active and excluded roots, $\mathcal{P}_b$ is the history-space return map, and $\mathcal{E}_b$ is the constructive energy packet of [Delay-Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md). The packet must report the following residuals before the branch can be used as a closed result.
 
 The equation-of-motion residual is
 
@@ -1148,14 +1150,14 @@ $$
 \int_0^{P_b}
 \frac{
 \left\|
-\ddot{\mathbf{X}}_b(t)
+\frac{d^2\mathbf X_b}{dT^2}(T)
 -
-F_{\eta,b}[\mathbf{X}_{b,t}]
+F_{\eta,b}[\mathbf X_{b,T}]
 \right\|
 }{
-1+\left\|F_{\eta,b}[\mathbf{X}_{b,t}]\right\|
+1+\left\|F_{\eta,b}[\mathbf X_{b,T}]\right\|
 }
-\,dt,
+\,dT,
 $$
 
 where $F_{\eta,b}$ is the regularized two-body branch force obtained from the active self and partner rows in $b$. The period residual is
@@ -1322,7 +1324,7 @@ We denote the position of the $i$-th architrino as $\mathbf X_i(T) \in \mathbb{R
 
 ### Functional Phase Space
 
-To define the evolution at time $T$, we require knowledge of the trajectory over an interval $[T - \tau_{\max}, T]$, where $\tau_{\max}$ is the maximum causal lookback time relevant to the current dynamics.
+To define the evolution at time $T$, we require knowledge of the trajectory over an interval $[T - \Delta_{\max}, T]$, where $\Delta_{\max}$ is the maximum causal lookback time relevant to the current dynamics.
 
 #### Definition 1 (The History Space)
 Let $h > 0$ be a history horizon (sufficiently large to capture all active causal roots). On a smooth simple-root branch, the **smooth history space** $\mathcal{H}_{\mathrm{sm}}$ is the Banach space of continuously differentiable functions mapping the delay interval to the configuration space:
@@ -1335,7 +1337,7 @@ $$
 $$
 The norm on the smooth chart is the standard $C^1$ sup-norm: $\|\phi\|_{\mathcal{H}_{\mathrm{sm}}} = \sup_{\theta \in [-h,0]} (\|\phi(\theta)\| + \|\dot{\phi}(\theta)\|)$.
 
-**Remark:** We require $C^1$ rather than $C^0$ because the delay $\tau$ depends on the state (state-dependent delay). In such systems, the vector field is typically not Lipschitz continuous in the $C^0$ topology, endangering uniqueness.
+**Remark:** We require $C^1$ rather than $C^0$ because the causal delay $\Delta$ depends on the state. In such systems, the vector field is typically not Lipschitz continuous in the $C^0$ topology, endangering uniqueness.
 
 For caustic-grazing packets this smooth space is not the whole story. The working extension is
 $$
@@ -1507,7 +1509,7 @@ $$
 =c_f[T-(T_{\mathrm{em}}-\Delta T)]
 $$
 Hence the same branch contributions appear with shifted times, and
-$\ddot{\mathbf Y}_i(T)=\ddot{\mathbf X}_i(T+\Delta T)$ satisfies the same force law.
+$\frac{d^2\mathbf Y_i}{dT^2}(T)=\frac{d^2\mathbf X_i}{dT^2}(T+\Delta T)$ satisfies the same force law.
 
 For spatial isometries, set $\mathbf Y_i(T)=R\mathbf X_i(T)+\mathbf b$,
 $R\in O(3)$. Distances are preserved:
@@ -1522,7 +1524,7 @@ $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are preserved by the same spatial
 isometry. Therefore each force term transforms as
 $\mathbf A_{ij}^Y=R\mathbf A_{ij}^X$, and
 $$
-\ddot{\mathbf Y}_i(T)=R\ddot{\mathbf X}_i(T)
+\frac{d^2\mathbf Y_i}{dT^2}(T)=R\frac{d^2\mathbf X_i}{dT^2}(T)
 =\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\sigma_{ij}\frac{|q_iq_j|\,W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
 {r_{ij}^2}\,\hat{\mathbf{r}}_{ij}^Y
@@ -1535,7 +1537,7 @@ Thus $\mathbf Y$ solves the same equations. $\square$
 
 ### Conservation of Generalized Momentum
 
-In a delay system, Newton's Third Law ($\mathbf{F}_{12}(t) = -\mathbf{F}_{21}(t)$) fails instantaneously because $\mathbf{F}_{12}(t)$ originates from architrino 2 at $t-\tau_1$, while $\mathbf{F}_{21}(t)$ originates from architrino 1 at $t-\tau_2$.
+In a delay system, Newton's Third Law ($\mathbf{F}_{12}(T) = -\mathbf{F}_{21}(T)$) fails instantaneously because $\mathbf{F}_{12}(T)$ originates from architrino 2 at $T-\Delta_1$, while $\mathbf{F}_{21}(T)$ originates from architrino 1 at $T-\Delta_2$.
 
 #### Definition 2 (Mechanical Momentum)
 The instantaneous mechanical momentum is:

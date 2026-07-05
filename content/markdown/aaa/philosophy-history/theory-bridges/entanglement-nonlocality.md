@@ -58,10 +58,10 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is handled as a projection issue
 
 ### Ontological Starting Point
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf{x}_i(t)$ and velocity $\mathbf{v}_i(t)$ in the Euclidean void at every absolute time $t$. There is no ontological indeterminacy. The complete microstate of a system is:
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, every architrino possesses a definite position $\mathbf X_i(T)$ and velocity $\mathbf V_i(T)$ in the Euclidean void at every absolute time $T$. There is no ontological indeterminacy. The complete microstate of a system is:
 
 $$
-\Gamma(t) = \bigl\{(\mathbf{x}_i(t),\, \mathbf{v}_i(t),\, q_i)\bigr\}_{i=1}^{N}
+\Gamma(T) = \bigl\{(\mathbf X_i(T),\, \mathbf V_i(T),\, q_i)\bigr\}_{i=1}^{N}
 $$
 
 and the Master Equation determines its future evolution given path-history data, with deterministic multistability at threshold regimes.
@@ -76,22 +76,22 @@ Ordinary entanglement in this framework is not a primitive relation between dist
 
 Consider the production of an entangled pair, for example a neutral pion dissociating into an electron-positron pair, or parametric down-conversion producing correlated photon branches in the observer-level description.
 
-At the absolute time $t_0$ of the source event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(t_0)$ and $\Gamma_B(t_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
+At the absolute time $T_0$ of the source event, the parent assembly fragments into two daughter assemblies $A$ and $B$. The fragmentation is governed by the Master Equation and conserves total charge, momentum, angular momentum, and energy. The daughter microstates $\Gamma_A(T_0)$ and $\Gamma_B(T_0)$ are therefore **jointly constrained** by the parent's microstate and the conservation laws:
 
 $$
-\Gamma_{\text{parent}}(t_0^-) \;\longrightarrow\; \Gamma_A(t_0^+),\; \Gamma_B(t_0^+) \quad \text{subject to conservation constraints.}
+\Gamma_{\text{parent}}(T_0^-) \;\longrightarrow\; \Gamma_A(T_0^+),\; \Gamma_B(T_0^+) \quad \text{subject to conservation constraints.}
 $$
 
 The crucial point is that the architrino trajectories, wake phases, and internal binary orientations of $A$ and $B$ are **deterministically correlated** from this moment forward. These correlations are not imposed by any nonlocal influence. They are recorded in the pair-provenance ledger inherited from the shared causal past.
 
 ### Correlation Maintenance: Path-History Memory
 
-After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta t$, they evolve **causally independently** in the sense that no new information passes between them.
+After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta T$, they evolve **causally independently** in the sense that no new information passes between them.
 
-The correlations established at $t_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
+The correlations established at $T_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
 
 - **Definite** at all times (no ontological indeterminacy),
-- **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(t)$ (epistemic indeterminacy),
+- **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(T)$ (epistemic indeterminacy),
 - **Jointly constrained** by the source event (correlated hidden variables).
 
 ### Measurement as Threshold Resolution
@@ -128,11 +128,11 @@ $$
 \lambda_{AB}^{\text{prov}}
 =
 \big(
-\Gamma_{\text{parent}}(t_0^-),
-\Gamma_A(t_0^+),
-\Gamma_B(t_0^+),
-\mathcal{H}_A[t_0,t_A],
-\mathcal{H}_B[t_0,t_B],
+\Gamma_{\text{parent}}(T_0^-),
+\Gamma_A(T_0^+),
+\Gamma_B(T_0^+),
+\mathcal{H}_A[T_0,T_A],
+\mathcal{H}_B[T_0,T_B],
 \Delta\Theta_{AB}^{\text{bin/wake}},
 \mathsf{Cons}_{AB}
 \big)
@@ -365,7 +365,7 @@ The Bell-correlation recovery is admissible only with $\Delta_{\mathrm{screen}}\
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework supports a clean two-level interpretation of entanglement:
 
-**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(t)$ is always definite and global. After a source event at $t_0$, the daughter microstates $\Gamma_A(t)$ and $\Gamma_B$ are each fully determined for all $t > t_0$. For ordinary pair-provenance cases, the "entanglement" is the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
+**Ontic level ($\mathbb{U}_{\text{now}}$ universe-state perspective).** The microstate $\Gamma(T)$ is always definite and global. After a source event at $T_0$, the daughter microstates $\Gamma_A(T)$ and $\Gamma_B$ are each fully determined for all $T > T_0$. For ordinary pair-provenance cases, the "entanglement" is the fact that $\Gamma_A$ and $\Gamma_B$ are jointly constrained: a bookkeeping statement about the initial conditions, not a dynamical link. Special black-hole and horizon-interface cases may additionally admit effective connected-geometry descriptions, but those belong to the strong-field geometry program rather than to ordinary pair provenance by default.
 
 **Epistemic level (Physical Observer).** The PO has access only to coarse-grained observables (effective fields, detector clicks). Unable to track the full microstate, the PO describes the system with a density matrix $\rho_{AB}$ that is non-separable. The PO interprets correlations as "entanglement" and the resolution of metastability as "collapse." These are accurate operational descriptions but do not reflect ontological indeterminacy or nonlocal influence.
 
@@ -380,7 +380,7 @@ The persistent philosophical puzzles of entanglement—how can a measurement "he
 | **Copenhagen** | No | Ambiguous | Yes (axiom) | Rejects collapse axiom; $\lvert\psi\rangle$ is epistemic. |
 | **Many-Worlds** | No | No (all branches real) | No | Rejects ontic branching; one realized trajectory. |
 | **de Broglie–Bohm** | Yes (positions) | Yes (pilot wave) | Effective | Closest structural analogue; $\mathbb{A}\mathbb{A}\mathbb{A}$ replaces pilot wave with causal wake geometry. |
-| **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(t)$ is objective. |
+| **QBism** | No (probabilities are personal) | No | No (belief update) | Shares epistemic reading of $\lvert\psi\rangle$ but rejects subjectivism; $\Gamma(T)$ is objective. |
 | **Superdeterminism** | Yes | No | No | Rejects; measurement independence preserved. |
 | **$\mathbb{A}\mathbb{A}\mathbb{A}$** | Yes (full microstate $\Gamma$) | No causal signal; Bell closure requires non-separable $\lambda$ | Effective (threshold crossing) | — |
 
@@ -398,7 +398,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework is most naturally compared to Boh
 **Working closure route:** Ordinary entanglement correlations should be derived from a deterministic, nonseparable pair-provenance record established at a shared source event, maintained through path-history structure, and resolved by local detector kernels without superluminal influence. Special black-hole entanglement can carry effective connected-geometry meaning at the horizon-interface level, but that is a separate strong-field case rather than a general rule for arbitrary entanglement.
 
 **Assumptions:**
-- Complete microstate $\Gamma(t)$ is definite at all $t$.
+- Complete microstate $\Gamma(T)$ is definite at all $T$.
 - Conservation constraints at the source event constrain the joint hidden-variable distribution; the Bell gate must derive the remaining measure structure rather than assume it.
 - Measurement is a local threshold crossing (no distant causal input).
 - Measurement independence holds (no superdeterminism).

@@ -4,6 +4,8 @@ The **Noether braid** is the reader-facing class of neutral six-architrino assem
 
 A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
 
+The simple idea is six persistent strands plus one shared ledger. The hard question is whether the delayed dynamics can keep that ledger coherent: the same six identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold.
+
 For the broader cross-axis classifier, see [Noether Braid Taxonomy](noether-braid-taxonomy.md). The base family chapters are:
 
 | Term | Definition | Additional structure |

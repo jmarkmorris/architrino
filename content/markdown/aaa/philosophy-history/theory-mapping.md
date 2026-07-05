@@ -551,10 +551,23 @@ dark matter (CDM) in an expanding universe.
 **Conceptual View:** Uses the Friedmann equations with a cosmological constant
 and pressureless dark matter to fit CMB, BAO, and LSS data.
 
-**Key Equation:** Friedmann equation:
+**Key Equation (standard comparison form):** Friedmann equation:
 $$
 H^2 = \left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho + \frac{\Lambda}{3}
  - \frac{k}{a^2}
+$$
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation treats the same row as an effective observer projection:
+$$
+H_{\mathrm{eff}}^2(t_{\mathrm{eff}})
+=
+\left(
+\frac{1}{a_{\mathrm{eff}}}
+\frac{d a_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
+\right)^2
+=
+\frac{8\pi G_{\mathrm{eff}}}{3}\rho_{\mathrm{eff}}
++\frac{\Lambda_{\mathrm{eff}}}{3}
+-\frac{k_{\mathrm{eff}}}{a_{\mathrm{eff}}^2}.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
 
@@ -575,9 +588,21 @@ horizon/flatness problems.
 **Conceptual View:** A scalar field with nearly constant potential energy drives an
 accelerated expansion; quantum fluctuations seed structure.
 
-**Key Equation:** Slow-roll condition and expansion:
+**Key Equation (standard comparison form):** Slow-roll condition and expansion:
 $$
 \ddot a > 0, \quad \epsilon = \frac{M_P^2}{2}\left(\frac{V'}{V}\right)^2 \ll 1
+$$
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation replaces the expansion variable by an effective observer projection:
+$$
+\frac{d^2a_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}>0,
+\qquad
+\epsilon_{\mathrm{eff}}
+=
+\frac{M_{P,\mathrm{eff}}^2}{2}
+\left(
+\frac{dV_{\mathrm{eff}}/d\phi_{\mathrm{eff}}}{V_{\mathrm{eff}}}
+\right)^2
+\ll1.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** An inflationary phase can be interpreted as a high-energy regime where inner nested shell braid components operate in the $v>c_f$ self-hit domain, driving rapid effective expansion/deflation of the Noether braid assembly-density record. The “inflaton” is a coarse-grained scalar describing the average state of this regime; its potential $V$ encodes how nested shell braid configurations relax toward lower-curvature, more equilibrated states.
 
@@ -619,10 +644,22 @@ $$
 **Conceptual View:** Nuclear reaction networks freeze out as the universe cools,
 predicting H, He, D, and Li abundances.
 
-**Key Equation:** Reaction-rate balance (schematic):
+**Key Equation (standard comparison form):** Reaction-rate balance (schematic):
 $$
 \frac{dn_i}{dt} = \sum_{j,k} \langle \sigma v \rangle_{jk\to i}\, n_j n_k
  - \sum_{l} \langle \sigma v \rangle_{i l}\, n_i n_l
+$$
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation keeps this as an effective abundance ledger:
+$$
+\frac{dn_{i,\mathrm{eff}}}{dt_{\mathrm{eff}}}
+=
+\sum_{j,k}
+\langle \sigma v_{\mathrm{rel}}\rangle_{jk\to i}^{\mathrm{eff}}\,
+n_{j,\mathrm{eff}}n_{k,\mathrm{eff}}
+-
+\sum_l
+\langle \sigma v_{\mathrm{rel}}\rangle_{il}^{\mathrm{eff}}\,
+n_{i,\mathrm{eff}}n_{l,\mathrm{eff}}.
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** BBN is the period when nested shell braid-based nucleon assemblies combine into light nuclear assemblies (e.g., deuteron, helium) at rates set by their architrino-level interaction cross sections and the cooling history of the Noether sea. The standard reaction network remains valid, but each “species” corresponds to a distinct architrino assembly topology.
 
@@ -785,7 +822,7 @@ The source-mined update sharpens the comparison: the live Turok--Boyle line trie
 
 **Key Equation:** Contracting equation-of-state:
 $$
-w \gg 1 \Rightarrow a(t) \propto (-t)^{2/3(1+w)}
+w \gg 1 \Rightarrow a_{\mathrm{std}}(t_{\mathrm{std}}) \propto (-t_{\mathrm{std}})^{2/3(1+w)}
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Cyclic behavior is possible if the Noether sea admits global attractor cycles: contraction into dense, high self-hit regimes followed by deflation/relaxation into expansion. The ekpyrotic $w \gg 1$ phase reflects an effective equation of state for dense assembly configurations approaching their maximal-curvature limits before bouncing.
 
@@ -1162,7 +1199,9 @@ quantum randomness reflects ignorance of initial conditions.
 
 **Key Equation:** Guiding equation:
 $$
-\dot{\mathbf{x}} = \frac{\hbar}{m}\,\text{Im}\left(\frac{\nabla \psi}{\psi}\right)
+\frac{dx_{\mathrm{std}}^i}{dt_{\mathrm{std}}}
+=
+\frac{\hbar}{m}\,\text{Im}\left(\frac{\nabla_{\mathrm{std}}^i \psi_{\mathrm{std}}}{\psi_{\mathrm{std}}}\right)
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** This is particularly close to the $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. Architrinos and assemblies follow definite trajectories, while their path-history wake (self-hit plus interactions with all other architrinos) acts as a deterministic guiding “field.” The Bohmian guiding equation is an effective law summarizing how these causal wakes steer assemblies in appropriate limits; $\psi$ is a compact encoding of the relevant wake/phase information.
 

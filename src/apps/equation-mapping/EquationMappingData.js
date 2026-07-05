@@ -256,7 +256,7 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "accepted-source-reference",
     formulaTeX:
-      "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)\\quad \\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)\\\\ \\mathrm{effective}:\\ (t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i;\\ c_{\\mathrm{eff}},c_0)\\\\ \\mathrm{imported}:\\ (x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}})\\Rightarrow\\mathrm{translated\\ form}",
+      "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)\\\\ \\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)\\\\ \\mathrm{effective}:\\ (t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i;\\ c_{\\mathrm{eff}},c_0)\\\\ \\mathrm{imported}:\\ (x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}})\\Rightarrow\\mathrm{translated\\ form}",
     anchors: [
       anchor("nativeLayer", "native coordinates", "absolute time Euclidean void primitive wake speed"),
       anchor("layerMap", "coordinate-layer map", "native variables to effective observer chart"),
@@ -265,7 +265,7 @@ const equationMapSeedDocuments = [
     ],
     formulaParts: [
       mathPart("nativeLayer", "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)", "nativeLayer"),
-      textPart("native-map-space", "  "),
+      breakPart("layer-map-break"),
       mathPart(
         "layerMap",
         "\\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)",
@@ -291,7 +291,7 @@ const equationMapSeedDocuments = [
         "nativeLayer",
         "Use T for absolute time and X for position in the Euclidean void. The primitive wake speed belongs to this native layer.",
         "T,\\mathbf X,c_f",
-        { x: 5, y: 8, width: 31, line: "above" }
+        { x: 66, y: 8, width: 29, line: "above" }
       ),
       overlay(
         "layer-map",
@@ -307,7 +307,7 @@ const equationMapSeedDocuments = [
         "effectiveLayer",
         "Use effective observer time and spatial chart coordinates only after that chart has been declared. Same units do not mean same variable.",
         "t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i,c_{\\mathrm{eff}},c_0",
-        { x: 66, y: 8, width: 29, line: "above" }
+        { x: 35, y: 68, width: 31, line: "below" }
       ),
       overlay(
         "comparison-forms",
@@ -315,7 +315,7 @@ const equationMapSeedDocuments = [
         "comparisonLayer",
         "GR, QM, and Lambda-CDM variables can appear for recognition and benchmark matching. They are imported comparison variables until translated into the working layer.",
         "x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}}",
-        { x: 33, y: 68, width: 34, line: "below" }
+        { x: 66, y: 68, width: 29, line: "below" }
       ),
     ],
   },

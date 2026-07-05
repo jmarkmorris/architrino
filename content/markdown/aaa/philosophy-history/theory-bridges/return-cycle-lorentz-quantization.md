@@ -4,6 +4,8 @@ This bridge gives a compact reader-facing account of the Lorentz milestone devel
 
 The formal derivation of the axis-ratio law belongs to [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#closed-return-derivation-of-the-lorentz-axis-ratio). The canonical geometry variables belong to [Nested Shell Braid Geometry](../../noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). The special-relativity dictionary remains in [Special Relativity and Deformable Noether Braids](./special-relativity-noether-braid.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
 
+The key point is easy to lose: the smooth Lorentz formula remains the effective observer law. The discrete object is the material route by which an assembly realizes that law. A Noether braid cannot choose an arbitrary continuous internal return state; it must close through admissible causal-root ledger classes that project to the smooth envelope in the observer limit.
+
 ## Naming And Scope
 
 The older working phrase `branch-quantized Lorentz response` remains mathematically accurate. It says that a stable material assembly realizes Lorentz behavior through branch classes of the causal-root ledger. The preferred topic name, **Return-Cycle Lorentz Quantization**, is better for a bridge document because it names the mechanism before the classification:

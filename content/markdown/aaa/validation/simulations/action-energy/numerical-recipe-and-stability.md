@@ -4,7 +4,7 @@ Event-aware integration (practical algorithm):
 
 1. Root finding:
    - For each source $o$ (including $o'=o$ for potential self-hits), solve $F(T_{\mathrm{em}};T)=\|\mathbf X_{o'}(T)-\mathbf X_o(T_{\mathrm{em}})\|-(T-T_{\mathrm{em}})=0$ for $T_{\mathrm{em}}< T$.
-   - Discard non-physical roots by convention $H(0)=0$ (exclude $\tau=0$); note $r=0$ occurs only at $\tau=0$ and is thus excluded.
+   - Discard non-physical roots by convention $H(0)=0$ (exclude $\Delta T=0$); note $r=0$ occurs only at $\Delta T=0$ and is thus excluded.
 
 2. Per-hit accumulation:
    - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,

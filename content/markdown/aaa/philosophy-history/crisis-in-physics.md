@@ -393,12 +393,12 @@ $$
 where $\mathcal{D}_{O}(t_{\mathrm{eff}})$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf X,T)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
 
 $$
-\mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]
+\mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t_{\mathrm{eff}})\right]
 \longmapsto
 \left(
-H_{\mathrm{eff}}(t),
-w_{\mathrm{eff}}(t),
-S_{\mathrm{hor}}^{(O)}(t)
+H_{\mathrm{eff}}(t_{\mathrm{eff}}),
+w_{\mathrm{eff}}(t_{\mathrm{eff}}),
+S_{\mathrm{hor}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
@@ -406,7 +406,7 @@ that matches late-time expansion, horizon entropy, CMB/BAO/SN/growth benchmarks,
 
 ### What Would Count As Resolution
 
-Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t)$, $w_{\mathrm{eff}}(t)$, horizon-access entropy, and structure-growth behavior from the same Noether sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
+Resolution would require a quantum-gravity account of late-time cosmological horizons that preserves the consistency lessons of AdS/CFT while working in the observed de Sitter-like regime. For $\mathbb{A}\mathbb{A}\mathbb{A}$, that means deriving the observer-level $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, $w_{\mathrm{eff}}(t_{\mathrm{eff}})$, horizon-access entropy, and structure-growth behavior from the same Noether sea variables used in local gravity, radiation, and reaction ledgers. The long-term relevance of this crisis is as a gate against false confidence: mathematical control in a comparison spacetime is not yet ontological closure of the observed universe.
 
 ---
 

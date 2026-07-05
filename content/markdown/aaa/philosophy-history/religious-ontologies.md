@@ -12,6 +12,8 @@ This comparative map pairs naturally with [Cosmology Ontology](../cosmology/cosm
 
 **Disclaimer:** This chapter is a comparative map rather than an exhaustive theological history. Each tradition contains multiple schools, internal debates, and historical shifts. Terms such as creator, substance, origin, and end-state are cross-tradition approximations and should be read as analytical labels rather than exact doctrinal equivalents.
 
+The comparison is conceptual, not adjudicative. Religious cosmologies can illuminate deep human questions about origin, order, end-state, agency, and meaning, but those comparisons do not supply physical mechanisms. In this corpus they are used to clarify contrasts between symbolic, theological, metaphysical, and substrate-physical explanation.
+
 Religious cosmologies address three core questions:
 1. **Ontology (What exists fundamentally?):** What are the "elements" or substances from which reality is composed? What is real?
 2. **Cosmogony (How did it begin?):** What is the origin story of the universe or cosmos? Where did it come from?

@@ -139,10 +139,12 @@ test("equation mapping opens with coordinate layer terminology", () => {
   assert.equal(document.formulaTeX.includes("x^\\mu_{\\mathrm{GR}}"), true);
   assert.deepEqual(
     document.formulaParts.slice(0, 4).map((part) => part.id),
-    ["nativeLayer", "native-map-space", "layerMap", "effective-layer-break"]
+    ["nativeLayer", "layer-map-break", "layerMap", "effective-layer-break"]
   );
   assert.equal(placementByOverlayId.get("native-coordinates"), "above");
   assert.equal(placementByOverlayId.get("layer-map"), "above");
+  assert.equal(placementByOverlayId.get("effective-coordinates"), "below");
+  assert.equal(placementByOverlayId.get("comparison-forms"), "below");
   assert.equal(
     layerMap.content.some(
       (block) => block.type === "text" && block.text.includes("handoff from native variables")

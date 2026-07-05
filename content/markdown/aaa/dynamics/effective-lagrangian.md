@@ -10,56 +10,56 @@ The bridge is deliberately conditional. The Master EOM remains the primary dynam
 
 ### Ordinary Lagrangian Orientation
 
-In a standard comparison form for ordinary local mechanics, one chooses generalized coordinates $q^a(t)$ and writes a Lagrangian $L(q,\dot q,t)$, often in the simple form
+In a standard comparison form for ordinary local mechanics, one chooses generalized coordinates $q_{\mathrm{std}}^a(t_{\mathrm{std}})$ and writes a Lagrangian $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$, often in the simple form
 $$
-L = K - V
+L_{\mathrm{std}} = K - V
 $$
 where $K$ is kinetic energy and $V$ is potential energy. The corresponding action is
 $$
-S[q]=\int_{t_a}^{t_b}L(q,\dot q,t)\,dt
+S_{\mathrm{std}}[q_{\mathrm{std}}]=\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}L_{\mathrm{std}}\!\left(q_{\mathrm{std}},\frac{dq_{\mathrm{std}}}{dt_{\mathrm{std}}},t_{\mathrm{std}}\right)\,dt_{\mathrm{std}}
 $$
 and fixed-endpoint stationarity,
 $$
-\delta S=0
+\delta S_{\mathrm{std}}=0
 $$
 gives the Euler-Lagrange equation
 $$
-\frac{d}{dt}\frac{\partial L}{\partial \dot q^a}
+\frac{d}{dt_{\mathrm{std}}}\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mathrm{std}})}
 -
-\frac{\partial L}{\partial q^a}
+\frac{\partial L_{\mathrm{std}}}{\partial q_{\mathrm{std}}^a}
 =0
 $$
-for each coordinate $q^a$. This equation is not a separate force postulate. It is the recovery condition that the chosen scalar $L$ must satisfy if the action is to generate the equations of motion.
+for each coordinate $q_{\mathrm{std}}^a$. This equation is not a separate force postulate. It is the recovery condition that the chosen scalar $L_{\mathrm{std}}$ must satisfy if the action is to generate the equations of motion.
 
 Operationally, stationarity is tested by nearby trial paths
-$q_\epsilon^a(t)=q^a(t)+\epsilon\xi^a(t)$ with
-$\xi^a(t_a)=\xi^a(t_b)=0$. Because $\xi^a$ is otherwise arbitrary,
-setting the first variation of $S$ to zero forces the Euler-Lagrange expression
+$q_{\mathrm{std},\epsilon}^a(t_{\mathrm{std}})=q_{\mathrm{std}}^a(t_{\mathrm{std}})+\epsilon\xi^a(t_{\mathrm{std}})$ with
+$\xi^a(t_{\mathrm{std},a})=\xi^a(t_{\mathrm{std},b})=0$. Because $\xi^a$ is otherwise arbitrary,
+setting the first variation of $S_{\mathrm{std}}$ to zero forces the Euler-Lagrange expression
 itself to vanish. The action is therefore a history functional with units of
 energy times time, not an instruction to minimize instantaneous energy.
 
-A minimal recovery check is the one-dimensional harmonic oscillator. For a mass $m$ attached to an ideal spring of stiffness $k$ with displacement $x(t)$,
+A minimal recovery check is the one-dimensional harmonic oscillator. In the standard comparison form, for a mass $m$ attached to an ideal spring of stiffness $k$ with displacement $x_{\mathrm{std}}(t_{\mathrm{std}})$,
 $$
-L(x,\dot{x})
+L_{\mathrm{std}}\!\left(x_{\mathrm{std}},\frac{dx_{\mathrm{std}}}{dt_{\mathrm{std}}}\right)
 =
-\frac{1}{2}m\dot{x}^2-\frac{1}{2}kx^2
+\frac{1}{2}m\left(\frac{dx_{\mathrm{std}}}{dt_{\mathrm{std}}}\right)^2-\frac{1}{2}kx_{\mathrm{std}}^2
 $$
 so the Euler-Lagrange equation gives
 $$
-\frac{d}{dt}(m\dot{x})-(-kx)=0
+\frac{d}{dt_{\mathrm{std}}}\left(m\frac{dx_{\mathrm{std}}}{dt_{\mathrm{std}}}\right)-(-kx_{\mathrm{std}})=0
 $$
 or equivalently
 $$
-m\ddot{x}=-kx
+m\frac{d^2x_{\mathrm{std}}}{dt_{\mathrm{std}}^2}=-kx_{\mathrm{std}}
 $$
 which is the same equation obtained from Newton's law and Hooke's law. The value of the example is not that Lagrangian mechanics replaces the tested motion, but that it recovers the same equation from an energy scalar and generalizes cleanly to many coordinates.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ correction to this toy example is more informative than the recovery itself. A real assembly-level spring is a delayed restoring channel, so the first effective model is not exactly $m\ddot x=-kx$ but
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ correction to this toy example is more informative than the recovery itself. A real assembly-level spring is a delayed restoring channel, so the first effective model is not exactly $m_{\mathrm{eff}}d^2x_{\mathrm{eff}}/dt_{\mathrm{eff}}^2=-k_{\mathrm{eff}}x_{\mathrm{eff}}$ but
 
 $$
-m\ddot x(t)
+m_{\mathrm{eff}}\frac{d^2x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}(t_{\mathrm{eff}})
 =
--k\,x(t-\tau_{\mathrm{eff}})
+-k_{\mathrm{eff}}\,x_{\mathrm{eff}}(t_{\mathrm{eff}}-\tau_{\mathrm{eff}})
 +\cdots
 $$
 
@@ -67,15 +67,15 @@ for an effective causal-wake delay $\tau_{\mathrm{eff}}$ across the assembly. Ex
 
 $$
 \left(
-m+\frac{1}{2}k\tau_{\mathrm{eff}}^2
+m_{\mathrm{eff}}+\frac{1}{2}k_{\mathrm{eff}}\tau_{\mathrm{eff}}^2
 \right)
-\ddot x
+\frac{d^2x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
 -
-k\tau_{\mathrm{eff}}\dot x
+k_{\mathrm{eff}}\tau_{\mathrm{eff}}\frac{dx_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +
-kx
+k_{\mathrm{eff}}x_{\mathrm{eff}}
 =
-O(k\tau_{\mathrm{eff}}^3 x^{(3)})
+O\!\left(k_{\mathrm{eff}}\tau_{\mathrm{eff}}^3\frac{d^3x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^3}\right)
 $$
 
 on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, the same local pattern that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
@@ -85,11 +85,11 @@ The two displayed corrections are not independent parameters. They are the first
 $$
 m_{\mathrm{delay}}
 \sim
-\frac{1}{2}k\tau_{\mathrm{eff}}^2,
+\frac{1}{2}k_{\mathrm{eff}}\tau_{\mathrm{eff}}^2,
 \qquad
 \Gamma_{\mathrm{delay}}
 \sim
-k\tau_{\mathrm{eff}}
+k_{\mathrm{eff}}\tau_{\mathrm{eff}}
 $$
 
 where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{delay}}$ denotes the signed anti-damping coefficient for this convention. On a fixed branch, their ratio is a kernel-shape consequence of the same causal-wake delay, not two fitted material constants. This toy calculation is the finite-dimensional seed of the continuum statement below: even-frequency kernel moments feed inertia-like response, while odd-frequency moments feed dissipation or anti-damping channels.
@@ -100,7 +100,7 @@ The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing t
 
 The operational bridge is:
 
-1. ordinary mechanics uses $L(q,\dot q,t)$ and tests $\delta S=0$;
+1. ordinary mechanics uses $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$ and tests $\delta S_{\mathrm{std}}=0$;
 2. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a regularized delayed action $S_\eta[\{\mathbf X_i\}]$ over path history;
 3. the action is promoted only if its variation yields the Master EOM on the retained branch chart;
 4. failure is measured by the variation residual $\mathbf{R}_i^{(\eta)}(T)$ and the window diagnostic $\epsilon_{\mathrm{var}}^{(\eta)}(W)$ defined below.
@@ -109,30 +109,30 @@ Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether 
 
 ### Ordinary Hamiltonian Orientation
 
-Hamiltonian mechanics repackages the same standard comparison dynamics into coordinates and canonical momenta. Starting from a local Lagrangian $L(q,\dot q,t)$, define the canonical momentum
+Hamiltonian mechanics repackages the same standard comparison dynamics into coordinates and canonical momenta. Starting from a local Lagrangian $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$, define the canonical momentum
 $$
-p_a\equiv\frac{\partial L}{\partial \dot q^a}
+p_a\equiv\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mathrm{std}})}
 $$
 and, when the velocity-momentum map can be inverted, define the Hamiltonian by the Legendre transform
 $$
-H(q,p,t)=p_a\dot q^a-L(q,\dot q,t)
+H_{\mathrm{std}}(q_{\mathrm{std}},p,t_{\mathrm{std}})=p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-L_{\mathrm{std}}\!\left(q_{\mathrm{std}},\frac{dq_{\mathrm{std}}}{dt_{\mathrm{std}}},t_{\mathrm{std}}\right)
 $$
-with the velocities rewritten in terms of $(q,p,t)$. Hamilton's equations are
+with the velocities rewritten in terms of $(q_{\mathrm{std}},p,t_{\mathrm{std}})$. Hamilton's equations are
 $$
-\dot q^a=\frac{\partial H}{\partial p_a},
+\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}=\frac{\partial H_{\mathrm{std}}}{\partial p_a},
 \qquad
-\dot p_a=-\frac{\partial H}{\partial q^a}
+\frac{dp_a}{dt_{\mathrm{std}}}=-\frac{\partial H_{\mathrm{std}}}{\partial q_{\mathrm{std}}^a}
 $$
-so one second-order equation in $q^a$ becomes a first-order flow on phase space $(q^a,p_a)$. In simple time-independent mechanical systems $H$ is often the total energy $T+V$, but the defining statement is the Legendre transform and the canonical flow, not the energy slogan by itself.
+so one second-order equation in $q_{\mathrm{std}}^a$ becomes a first-order flow on phase space $(q_{\mathrm{std}}^a,p_a)$. In simple time-independent mechanical systems $H_{\mathrm{std}}$ is often the total energy $K+V$, but the defining statement is the Legendre transform and the canonical flow, not the energy slogan by itself.
 
 The same equations can also be read from the phase-space action
 $$
-S_H[q,p]=\int_{t_a}^{t_b}\left(p_a\dot q^a-H(q,p,t)\right)dt
+S_H[q_{\mathrm{std}},p]=\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}\left(p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-H_{\mathrm{std}}(q_{\mathrm{std}},p,t_{\mathrm{std}})\right)dt_{\mathrm{std}}
 $$
-when variations in both $q^a$ and $p_a$ are admitted and endpoint variations of
-$q^a$ vanish. Variation with respect to $p_a$ gives
-$\dot q^a=\partial H/\partial p_a$, while variation with respect to $q^a$ gives
-$\dot p_a=-\partial H/\partial q^a$. This is the action-level form of the
+when variations in both $q_{\mathrm{std}}^a$ and $p_a$ are admitted and endpoint variations of
+$q_{\mathrm{std}}^a$ vanish. Variation with respect to $p_a$ gives
+$dq_{\mathrm{std}}^a/dt_{\mathrm{std}}=\partial H_{\mathrm{std}}/\partial p_a$, while variation with respect to $q_{\mathrm{std}}^a$ gives
+$dp_a/dt_{\mathrm{std}}=-\partial H_{\mathrm{std}}/\partial q_{\mathrm{std}}^a$. This is the action-level form of the
 canonical flow, and it is the part that matters when asking whether a reduced
 $\mathbb{A}\mathbb{A}\mathbb{A}$ chart is genuinely Hamiltonian rather than only
 an energy-like fit.
@@ -441,22 +441,22 @@ Here symmetry means an active transformation of the retained physical record, no
 
 The ordinary boundary-term identity makes the recovery burden precise. For a local action, the first variation splits into an interior Euler-Lagrange term and an endpoint term,
 $$
-\delta S
+\delta S_{\mathrm{std}}
 =
-\int_{t_a}^{t_b}
+\int_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}
 \left(
-\frac{\partial L}{\partial q^a}
+\frac{\partial L_{\mathrm{std}}}{\partial q_{\mathrm{std}}^a}
 -
-\frac{d}{dt}\frac{\partial L}{\partial \dot q^a}
-\right)\delta q^a\,dt
+\frac{d}{dt_{\mathrm{std}}}\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mathrm{std}})}
+\right)\delta q_{\mathrm{std}}^a\,dt_{\mathrm{std}}
 +
-\left[p_a\delta q^a-H\delta t\right]_{t_a}^{t_b}
+\left[p_a\delta q_{\mathrm{std}}^a-H_{\mathrm{std}}\delta t_{\mathrm{std}}\right]_{t_{\mathrm{std},a}}^{t_{\mathrm{std},b}}
 $$
 with
 $$
-p_a=\frac{\partial L}{\partial \dot q^a},
+p_a=\frac{\partial L_{\mathrm{std}}}{\partial (dq_{\mathrm{std}}^a/dt_{\mathrm{std}})},
 \qquad
-H=p_a\dot q^a-L.
+H_{\mathrm{std}}=p_a\frac{dq_{\mathrm{std}}^a}{dt_{\mathrm{std}}}-L_{\mathrm{std}}.
 $$
 On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the standard Noether route: a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
 
@@ -464,24 +464,24 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a 
 
 The more general local Noether form also matters. For an infinitesimal active transformation
 $$
-q^a\mapsto q^a+\epsilon X^a(q,t)
+q_{\mathrm{std}}^a\mapsto q_{\mathrm{std}}^a+\epsilon X^a(q_{\mathrm{std}},t_{\mathrm{std}})
 $$
 the action variation is unchanged when the Lagrangian changes at most by a total time derivative,
 $$
 \delta L
 =
-\epsilon\frac{dG}{dt}
+\epsilon\frac{dG}{dt_{\mathrm{std}}}
 $$
 On stationary paths this gives the conserved charge
 $$
-\frac{d}{dt}\left(p_aX^a-G\right)=0
+\frac{d}{dt_{\mathrm{std}}}\left(p_aX^a-G\right)=0
 $$
 Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
 
 **Energy Functional:**
 Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
 $$
-E_{\text{tot}}(t)=K(t)+E_{\text{wake}}(t)
+E_{\text{tot}}(T)=K(T)+E_{\text{wake}}(T)
 $$
 where the action-level nonlocal Noether charge can be written with the weighted causal kernel from [master-equation](./master-equation.md#action-level-wake-energy-functional-at-time-boundary-t). To avoid confusing the receiver-gradient kernel above with the Noether-energy kernel, write
 $$

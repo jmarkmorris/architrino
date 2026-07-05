@@ -60,7 +60,7 @@ d\tau_{\mathcal A}
 =
 \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}},
 \qquad
-\frac{d\tau_{\mathcal A}}{dt}
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
 =
 \frac{
 \Omega_{\mathcal A}
@@ -78,11 +78,11 @@ Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(
 $$
 w^i_{\mathcal A}
 =
-\frac{dX^i_{\mathcal A}}{dt}
+\frac{dx^i_{\mathcal A,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 -
-u^i_{\text{sea}}
+u^i_{\mathrm{sea,eff}}
 $$
-is velocity relative to the local Noether sea flow in the observer-level bookkeeping map for the clock worldline $X^i_{\mathcal A}(t)$.
+is velocity relative to the local Noether sea flow in the observer-level bookkeeping map for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
 This phase extraction is admissible only on a clock branch whose internal return map retains a hyperbolic attracting limit cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
 $$
@@ -129,15 +129,15 @@ Q_{ij},
 $$
 The scalar $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
-A broad constitutive expression $d\tau=F(\cdots)dt$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
+A broad constitutive expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
 
 The integral clock-frequency form is
 
 $$
-\tau(t_1)-\tau(t_0)=\int_{t_0}^{t_1}\frac{\omega_{\text{clk}}(s)}{\omega_0}\,ds
+\tau(t_{\mathrm{eff},1})-\tau(t_{\mathrm{eff},0})=\int_{t_{\mathrm{eff},0}}^{t_{\mathrm{eff},1}}\frac{\omega_{\text{clk}}(t_{\mathrm{eff}})}{\omega_0}\,dt_{\mathrm{eff}}
 $$
 
-where $\omega_{\text{clk}}(s)$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
+where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
 This definition avoids assigning proper time as an independent scalar, but it does not by itself prove relativity-compatible clock behavior. The non-circular closure statement is stronger: after phase extraction, all admitted low-energy clock and ruler assemblies in a tested comparison class must reduce to the same observer-level clock/ruler map. Equivalently, for each clock assembly $\mathcal A$,
 $$
@@ -192,7 +192,7 @@ The dressing caveat is essential. The simple common-wake argument works only aft
 
 The low-energy Lorentz-closure target for a declared clock branch has the form
 $$
-\frac{d\tau_{\mathcal A}}{dt}
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
 =
 A(\mathcal{N}_{\mathrm{sea}})
 \sqrt{
@@ -259,7 +259,7 @@ Required emergent limits:
 - Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. In this sense $c_0$ is the deformation-invariant fixed point of the dressing flow as $\mathcal{N}_{\mathrm{sea}}$ approaches the homogeneous neutral background, not a second primitive speed. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
 - Homogeneous medium, low velocities:
   $$
-  \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
+  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
   \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
   $$
   In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
@@ -267,7 +267,7 @@ Required emergent limits:
   $$
   \Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
   \qquad
-  \frac{d\tau_{\mathcal A}}{dt} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
+  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
   $$
   Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
   $$
@@ -275,7 +275,7 @@ Required emergent limits:
   $$
   so the first-order clock expansion reads
   $$
-  \frac{d\tau_{\mathcal A}}{dt}
+  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
   \approx
   1+\frac{\Phi_N}{c_0^2}
   -\frac{\|\mathbf{w}\|^2}{2c_0^2}

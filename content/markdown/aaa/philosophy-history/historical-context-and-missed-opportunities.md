@@ -509,13 +509,13 @@ The long-term relevance of this episode is permanent until the field/particle di
 
 What physics already had was unusually concentrated: Hubble's approximately linear redshift-distance relation, the instability of Einstein's static model, de Sitter-style exponential expansion, and the cosmological constant as a mathematical term in the field equations. The opening was to ask whether apparent expansion could be modeled while avoiding a one-time global origin and preserving a large-scale statistical steadiness. In modern comparison language, the relevant effective branch is
 $$
-a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t},
+a_{\mathrm{eff}}(t_{\mathrm{eff}})=a_0e^{H_*t_{\mathrm{eff}}},
 \qquad
-\dot{\rho}_{m,\mathrm{eff}}=0
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}=0
 $$
 The mathematical pressure is immediate. With no source term, dust continuity gives
 $$
-\dot{\rho}_{m,\mathrm{eff}}
+\frac{d\rho_{m,\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +3H_*\rho_{m,\mathrm{eff}}=0
 $$
 so a nonzero constant density requires a provenance source $\mathcal{S}_{m,\mathrm{eff}}=3H_*\rho_{m,\mathrm{eff}}$.
