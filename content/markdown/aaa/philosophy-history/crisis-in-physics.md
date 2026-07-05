@@ -379,18 +379,18 @@ The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly targeted as a com
 A compact closure target is an observer-accessible de Sitter comparison ledger. For a Physical Observer $O$, let the relevant coarse state be written schematically as
 
 $$
-\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)
+\mathcal{Q}_{\mathrm{dS}}^{(O)}(t_{\mathrm{eff}})
 =
 \left(
-\mathcal{D}_{O}(t),
-\rho_{\text{NS}}(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t),
-\mathcal{M}_{\mathrm{sea}}^{ab}(\mathbf{x},t),
-S_{\mathrm{out}}^{(O)}(t)
+\mathcal{D}_{O}(t_{\mathrm{eff}}),
+\rho_{\text{NS}}(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T),
+\mathcal{M}_{\mathrm{sea}}^{ab}(\mathbf X,T),
+S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})
 \right)
 $$
 
-where $\mathcal{D}_{O}(t)$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf{x},t)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf{x},t)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t)$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
+where $\mathcal{D}_{O}(t_{\mathrm{eff}})$ is the observer-accessible effective horizon domain, $\rho_{\text{NS}}(\mathbf X,T)$ is physical Noether braid density, $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor, $\mathcal{M}_{\mathrm{sea}}^{ab}$ summarizes the medium response channel, and $S_{\mathrm{out}}^{(O)}(t_{\mathrm{eff}})$ records accessible outgoing entropy. The de Sitter recovery problem is then not "find a boundary CFT"; it is to derive a Noether sea state map
 
 $$
 \mathcal{F}_{\mathrm{sea}}\!\left[\mathcal{Q}_{\mathrm{dS}}^{(O)}(t)\right]

@@ -86,20 +86,20 @@ function createFakeFormulaChild(width, className = "") {
 
 test("equation mapping seed document carries static layer anchors and comments", () => {
   const documents = createSeedEquationMapDocuments();
-  assert.equal(documents.length, 22);
+  assert.equal(documents.length, 23);
   const [document] = documents;
   assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
   assert.equal(document.schema, "equation-map-document.v1");
   assert.equal(document.backgroundId, "architrinoPurple");
-  assert.equal(document.claimLevel, "accepted-aaa-derivation");
+  assert.equal(document.claimLevel, "accepted-source-reference");
   assert.deepEqual(
     document.anchors.map((anchor) => anchor.id),
-    ["acceleration", "polarity", "inverseSquare", "branchStrength", "direction"]
+    ["nativeLayer", "layerMap", "effectiveLayer", "comparisonLayer"]
   );
-  assert.equal(document.formulaParts.some((part) => part.anchorId === "branchStrength"), true);
-  assert.equal(document.overlays.length, 5);
-  assert.equal(document.overlays[0].targetAnchorId, "acceleration");
-  assert.equal(document.overlays.some((overlay) => overlay.targetAnchorId === "polarity"), true);
+  assert.equal(document.formulaParts.some((part) => part.anchorId === "layerMap"), true);
+  assert.equal(document.overlays.length, 4);
+  assert.equal(document.overlays[0].targetAnchorId, "nativeLayer");
+  assert.equal(document.overlays.some((overlay) => overlay.targetAnchorId === "comparisonLayer"), true);
   assert.equal(document.overlays[0].content.some((block) => block.type === "math"), true);
   assert.equal(documents.some((entry) => entry.id === "eq-17-redshift-factorization"), true);
   assert.equal(documents.some((entry) => entry.id === "eq-19-friedmann-continuity-lcdm"), true);
@@ -111,26 +111,49 @@ test("equation mapping seed document carries static layer anchors and comments",
   assert.deepEqual(
     documents.slice(0, 4).map((entry) => entry.title),
     [
+      "Coordinate Layer Key",
       "Causal Wake Per-Hit Law",
       "Causal Wake Master Equation",
       "Lorentz Factor And Clock Rate",
-      "Oblate Spheroidal Envelope",
     ]
   );
   assert.deepEqual(
     documents.slice(0, 4).map((entry) => entry.id),
     [
+      "eq-00-coordinate-layer-key",
       "eq-01-causal-wake-master-equation",
       "eq-01b-causal-wake-master-equation",
       "eq-02-lorentz-clock-rate",
-      "eq-03-oblate-spheroidal-envelope",
     ]
+  );
+});
+
+test("equation mapping opens with coordinate layer terminology", () => {
+  const document = createSeedEquationMapDocuments()[0];
+  const layerMap = document.overlays.find((overlay) => overlay.id === "layer-map");
+  const placementByOverlayId = resolveCalloutPlacements(document);
+
+  assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
+  assert.equal(document.title, "Coordinate Layer Key");
+  assert.equal(document.formulaTeX.includes("\\chi_{\\mathrm{eff}}"), true);
+  assert.equal(document.formulaTeX.includes("x^\\mu_{\\mathrm{GR}}"), true);
+  assert.deepEqual(
+    document.formulaParts.slice(0, 4).map((part) => part.id),
+    ["nativeLayer", "native-map-space", "layerMap", "effective-layer-break"]
+  );
+  assert.equal(placementByOverlayId.get("native-coordinates"), "above");
+  assert.equal(placementByOverlayId.get("layer-map"), "above");
+  assert.equal(
+    layerMap.content.some(
+      (block) => block.type === "text" && block.text.includes("handoff from native variables")
+    ),
+    true
   );
 });
 
 test("equation mapping names the causal wake entry as the per-hit law", () => {
   const document = createSeedEquationMapDocuments().find(
-    (entry) => entry.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID
+    (entry) => entry.id === "eq-01-causal-wake-master-equation"
   );
   const acceleration = document.overlays.find((overlay) => overlay.id === "native-root");
   const accelerationText = acceleration.content.find((block) => block.type === "text").text;
@@ -142,7 +165,7 @@ test("equation mapping names the causal wake entry as the per-hit law", () => {
 
 test("equation mapping places the full master equation immediately after the per-hit law", () => {
   const documents = createSeedEquationMapDocuments();
-  const masterEquation = documents[1];
+  const masterEquation = documents[2];
   const perHitOverlay = masterEquation.overlays.find((overlay) => overlay.id === "per-hit-contribution");
 
   assert.equal(masterEquation.id, "eq-01b-causal-wake-master-equation");
@@ -168,7 +191,7 @@ test("equation mapping places the full master equation immediately after the per
 
 test("equation mapping line-of-action callout names the emission point", () => {
   const document = createSeedEquationMapDocuments().find(
-    (entry) => entry.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID
+    (entry) => entry.id === "eq-01-causal-wake-master-equation"
   );
   const lineOfAction = document.overlays.find((overlay) => overlay.id === "line-of-action");
 
@@ -350,7 +373,7 @@ test("equation mapping places explicit formula rows by row instead of per-equati
 
 test("equation mapping computes staggered master-equation callouts by target order", () => {
   const document = createSeedEquationMapDocuments().find(
-    (entry) => entry.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID
+    (entry) => entry.id === "eq-01-causal-wake-master-equation"
   );
   const placementByOverlayId = resolveCalloutPlacements(document);
 
@@ -451,7 +474,26 @@ test("equation mapping seed formulas use layer-explicit coordinate notation", ()
   });
 });
 
-test("equation mapping energy-momentum map derives rest mass directly from the displayed relation", () => {
+test("equation mapping effective FRW scale factor starts with the positive spatial term", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-18-effective-frw-scale-factor"
+  );
+
+  assert.equal(
+    document.formulaTeX,
+    "ds_{\\mathrm{FRW,eff}}^2=a_{\\mathrm{eff}}^2(t_{\\mathrm{eff}})d\\Sigma_k^2-c_0^2d\\tau_c^2"
+  );
+  assert.deepEqual(
+    document.formulaParts.map((part) => part.id),
+    ["frwMetric", "eq", "scaleFactor", "spatialSlice", "minus", "cosmicClock"]
+  );
+  assert.equal(
+    document.formulaParts.find((part) => part.id === "cosmicClock").tex,
+    "c_0^2d\\tau_c^2"
+  );
+});
+
+test("equation mapping energy-momentum map substitutes momentum before solving rest mass", () => {
   const document = createSeedEquationMapDocuments().find(
     (entry) => entry.id === "eq-04-energy-momentum-rest-energy"
   );
@@ -476,9 +518,19 @@ test("equation mapping energy-momentum map derives rest mass directly from the d
   assert.equal(
     document.formulaParts.some(
       (part) =>
+        part.id === "momentumSubstitution" &&
+        part.anchorId === "" &&
+        part.tex ===
+          "p=\\gamma_{\\mathrm{eff}}M_0v_{\\mathrm{eff}}\\Rightarrow E^2=\\gamma_{\\mathrm{eff}}^2M_0^2c_{\\mathrm{eff}}^4"
+    ),
+    true
+  );
+  assert.equal(
+    document.formulaParts.some(
+      (part) =>
         part.id === "restMassSolve" &&
         part.anchorId === "" &&
-        part.tex === "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}"
+        part.tex === "M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}"
     ),
     true
   );
@@ -486,8 +538,8 @@ test("equation mapping energy-momentum map derives rest mass directly from the d
     motionOverlay.content.some(
       (block) =>
         block.type === "text" &&
-        block.text.includes("From the displayed energy relation alone") &&
-        block.text.includes("If a branch also supplies")
+        block.text.includes("first substitute") &&
+        block.text.includes("collapses the motion and rest terms")
     ),
     true
   );
@@ -884,9 +936,9 @@ test("equation mapping renders bottom carousel controls for equations", () => {
   });
 
   assert.equal(runtime.getDocumentByOffset(-1), null);
-  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-01b-causal-wake-master-equation");
+  assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-01-causal-wake-master-equation");
   runtime.activeDocumentId = "eq-01b-causal-wake-master-equation";
-  assert.equal(runtime.getDocumentByOffset(-1)?.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
+  assert.equal(runtime.getDocumentByOffset(-1)?.id, "eq-01-causal-wake-master-equation");
   assert.equal(runtime.getDocumentByOffset(1)?.id, "eq-02-lorentz-clock-rate");
   assert.equal(runtimeSource.includes("renderEquationCarousel()"), true);
   assert.equal(runtimeSource.includes('this.renderCarouselButton("previous", -1, "Previous equation")'), true);
@@ -964,7 +1016,7 @@ test("equation mapping resolves semantic hashes without renaming stable document
   );
 });
 
-test("equation mapping defaults to the AAA master equation instead of saved document state", () => {
+test("equation mapping defaults to the coordinate layer key instead of saved document state", () => {
   const staleSettings = JSON.stringify({
     activeDocumentId: "eq-02-lorentz-clock-rate",
     activeOverlayId: "clock-consumer",
@@ -987,8 +1039,8 @@ test("equation mapping defaults to the AAA master equation instead of saved docu
   });
 
   assert.equal(runtime.activeDocumentId, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
-  assert.equal(runtime.activeOverlayId, "native-root");
-  assert.equal(runtime.activeAnchorId, "acceleration");
+  assert.equal(runtime.activeOverlayId, "native-coordinates");
+  assert.equal(runtime.activeAnchorId, "nativeLayer");
 });
 
 test("equation mapping subject selector defaults to folded groups", () => {
@@ -1161,7 +1213,9 @@ test("equation mapping defaults to medium comment font size", () => {
 });
 
 test("equation mapping editor creates a formula section anchor without mutating seed data", () => {
-  const [document] = createSeedEquationMapDocuments();
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-01-causal-wake-master-equation"
+  );
   const nextDocument = normalizeEquationMapDocument(
     createEquationAnchor(document, {
       label: "retained carrier",
@@ -1177,7 +1231,9 @@ test("equation mapping editor creates a formula section anchor without mutating 
 });
 
 test("equation mapping editor updates anchor labels and formula TeX", () => {
-  const [document] = createSeedEquationMapDocuments();
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-01-causal-wake-master-equation"
+  );
   const nextDocument = normalizeEquationMapDocument(
     updateEquationAnchor(document, "branchStrength", {
       label: "receiver-normal factor",
@@ -1194,7 +1250,9 @@ test("equation mapping editor updates anchor labels and formula TeX", () => {
 });
 
 test("equation mapping editor creates and retargets overlay comments", () => {
-  const [document] = createSeedEquationMapDocuments();
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-01-causal-wake-master-equation"
+  );
   const withOverlay = normalizeEquationMapDocument(
     createEquationOverlay(document, {
       title: "Polarity note",

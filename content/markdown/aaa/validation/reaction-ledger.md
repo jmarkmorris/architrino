@@ -89,8 +89,8 @@ X
 \left(
 \Gamma,
 \mathcal{H},
-\rho_{\text{NS}}(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T),
 Z_S
 \right)
 $$
@@ -355,7 +355,7 @@ The contract for each serious channel is:
 
 A reaction record may be promoted beyond a provisional map only when all of the following conditions have been met in the same sector case:
 
-1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
+1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, and explicitly named sector variables, with no hidden sector-specific residual term.
 2. **Boundary selection:** each selected channel has a stated boundary test $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either fails its boundary test or is ruled out by a compatibility condition.
 3. **Admissible output:** $Y_{\mathsf e}$ names all outgoing assemblies, recoil targets, medium updates, remnant states, and provenance records required by the selected channel set.
 4. **Ledger closure:** $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)=\mathbf{0}$ after adding the sector-required charge, polarity, architrino-inventory, identity-routing, path-history, Noether sea, and remnant rows.

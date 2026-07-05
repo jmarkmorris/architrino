@@ -41,14 +41,14 @@ The electron is not treated as a literal ontic-probability distribution. It is a
 A compact local target is
 
 $$
-\mathcal{D}_e^{(\ell)}(\mathbf{x}\mid \Theta_{\mathrm{atom}})
+\mathcal{D}_e^{(\ell)}(x_{\mathrm{eff}}^i\mid \Theta_{\mathrm{atom}})
 =
 \Pi_{\mathrm{det}}\!\left[
 \mathcal{B}_e,\,
 \mathcal{A}_{\mathrm{nuc}},\,
 \theta_{\mathrm{sea}}^{(\ell)},\,
 \mathcal{W}_{\mathrm{causal}}^{(\ell)}
-\right](\mathbf{x})
+\right](x_{\mathrm{eff}}^i)
 $$
 
 where $\mathcal{D}_e^{(\ell)}$ is the observer-level electron detection map at coarse window $\ell$, $\mathcal{B}_e$ is the realized electron-envelope branch, $\mathcal{A}_{\mathrm{nuc}}$ is the nuclear assembly ledger, $\theta_{\mathrm{sea}}^{(\ell)}$ is the local Noether sea state record, and $\mathcal{W}_{\mathrm{causal}}^{(\ell)}$ is the retained causal-wake history. This map is not the electron itself. It is the statistical readout obtained after unresolved branch data, apparatus coupling, and local medium response have been projected into an observer-level record.

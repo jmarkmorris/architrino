@@ -164,16 +164,16 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Worldline kinematics | $\mathbf X_a(T)$, $\mathbf V_a=d\mathbf X_a/dT$, $\mathbf A_a=d\mathbf V_a/dT$ | Native absolute-time kinematics | Particle-specific inertial mass or $\mathbf{F}=m\mathbf{a}$ as primitive law |
 | Complete state and path history | $\mathbb{U}_{\text{now}}\equiv S(T)$ with history ledger $H_T$ and branch data $\mathcal{B}_T$ | Native bookkeeping requirement for deterministic delayed dynamics | A history-free Markov state or observer-accessible complete state |
 | Polarity and sign bookkeeping | $q_a=\sigma_a\epsilon$, $\sigma_a\in\{-1,+1\}$, $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ | Native polarity bookkeeping with observer-charge calibration | A completed derivation of electric, weak, color, or generation structure |
-| Causal wake support | $\lVert\mathbf{x}-\mathbf{x}_0\rVert=c_f(t-t_0)$ with $t>t_0$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
-| Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
-| Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
+| Causal wake support | $\lVert\mathbf X-\mathbf X_{\mathrm{em}}\rVert=c_f(T-T_{\mathrm{em}})$ with $T>T_{\mathrm{em}}$ | Native causal support rule | A filled light cone, Lorentzian metric cone, or instantaneous action |
+| Causal-root set | $F_{ij}(T,T_{\mathrm{em}})=\lVert\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\rVert-c_f(T-T_{\mathrm{em}})$ and $\mathcal{C}_{ij}(T)=\{\,T_{\mathrm{em}}<T:F_{ij}(T,T_{\mathrm{em}})=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
+| Causal surface density | $\rho(T,\mathbf X)=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
 | Root Jacobian and transversality | $D_{s,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct source-normal branch-analysis tool in the native law | Replacing branch strength by source-normal data alone, speed magnitude, or ignoring caustic/fold regimes |
 | Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
-| Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
+| Total acceleration | $\dfrac{d^2\mathbf X_i}{dT^2}=\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}\mathbf A_{ij}(T;T_{\mathrm{em}})$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
-| Potential reconstruction | $\Phi_{\text{net}}(\mathbf{x},t)=\sum_o\Phi_o(\mathbf{x},t)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
+| Potential reconstruction | $\Phi_{\text{net}}(\mathbf X,T)=\sum_o\Phi_o(\mathbf X,T)$ and $U_{o'}=q_{o'}\Phi_{\text{net}}[\text{history}]$ | Fixed-history bookkeeping and effective diagnostic | Static electrostatic ontology or source-position-only potential |
 | Gradient force identity | $\mathbf{F}_{o'}=-\nabla_{\mathbf{s}_{o'}}U_{o'}$ for mollified fixed-history channels | Conditional diagnostic equivalent after normalization and fixed-history convention | Replacement of the Master EOM by an unrestricted potential theory |
 | Work and kinetic bookkeeping | $dK/dt=\mu_K(\lVert\mathbf{v}\rVert)\mathbf{a}\cdot\mathbf{v}$ and optional $\mathbf{F}=\mu_{\text{arch}}\mathbf{a}$ | Energy bookkeeping after a kinetic proxy is declared | Primitive particle-specific mass or universal quadratic kinetic energy by assumption |
 | $1/r$ potential/action scaffold | $\delta(g_{ij})/r_{ij}$ in path-history or Fokker-type action calculations | Calibration and partial variational scaffold | A universal proof that the scalar $1/r$ action alone derives the Master EOM |
@@ -190,13 +190,13 @@ and taking a spatial gradient connects that amplitude to inverse-square force
 scaling. In the full delayed dynamics, however, the accepted branch law remains
 
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2}
+\frac{d^2 \mathbf X_i}{dT^2}
 =
-\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
+\sum_j\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \kappa\sigma_{ij}
-\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(t;t_0)}
-{r_{ij}^2(t;t_0)}
-\hat{\mathbf{r}}_{ij}(t;t_0).
+\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+{R_{ij}^2(T;T_{\mathrm{em}})}
+\hat{\mathbf R}_{ij}(T;T_{\mathrm{em}}).
 $$
 
 The pure scalar $1/r$ action scaffold is not yet an unconditional foundation
@@ -343,17 +343,17 @@ the observables $\mathcal{Q}$ relevant to the inherited comparison. A bulk
 variable has the schematic form
 
 $$
-Y_{\mathcal{Q},W}(t)
+Y_{\mathcal{Q},W}(T)
 =
 \mathcal{P}_{\mathcal{Q},W}
 \left(
-\{\Gamma_A(t),\mathcal{H}_A(t)\}_{A\in \mathcal{A}_W},
-\rho_{\text{NS}}(\mathbf{x},t)
+\{\Gamma_A(T),\mathcal{H}_A(T)\}_{A\in \mathcal{A}_W},
+\rho_{\text{NS}}(\mathbf X,T)
 \right),
 $$
 
 where $\rho_{\text{NS}}$ is the Noether sea state sampled by the same window.
-In residuals below, $\Gamma(t)$ abbreviates the full sampled collection of
+In residuals below, $\Gamma(T)$ abbreviates the full sampled collection of
 assembly states, path histories, and Noether sea state.
 
 A proposed bulk equation
@@ -370,9 +370,9 @@ $$
 \mathcal{R}_{\mathrm{bulk}}
 =
 \left\|
-\frac{d}{dt}\mathcal{P}_{\mathcal{Q},W}(\Gamma(t))
+\frac{d}{dT}\mathcal{P}_{\mathcal{Q},W}(\Gamma(T))
 -
-F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(t)\right)
+F_{\mathrm{bulk}}\!\left(Y_{\mathcal{Q},W}(T)\right)
 \right\|_{\mathcal{Q},W}.
 $$
 

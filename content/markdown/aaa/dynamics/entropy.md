@@ -90,7 +90,7 @@ Equivalently, entropy is a functional on the quotient $\Gamma_t/\!\sim_{\mathcal
 
 ### Receiver Inference Fibers And Provenance Graphs
 
-The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf{x}_i(t),t)$, let the retained hit record be
+The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf X_i(T),T)$, let the retained hit record be
 
 $$
 \mathcal{H}_i^{\mathrm{hit}}(t)

@@ -438,8 +438,8 @@ $$
 \chi_{\mathrm{root}}(A)
 =
 \sum_{i,j\in A}
-\sum_{s\in\mathcal{C}_{ij}}
-\operatorname{sgn}\!\left(\partial_sF_{ij}\right)
+\sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}}
+\operatorname{sgn}\!\left(\partial_{T_{\mathrm{em}}}F_{ij}\right)
 $$
 with the sums taken over the retained self-hit and partner-hit rows on the branch chart. On a regular chart this signed count is locally constant. A structural-integrity failure near the wake-speed threshold should therefore appear as a jump in $\chi_{\mathrm{root}}(A)$, or in the more detailed causal-root ledger it summarizes, rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 

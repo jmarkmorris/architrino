@@ -334,15 +334,15 @@ This residual belongs to the observer-level recovery map. It passes only when th
 
 A magnetic-charge comparison branch must also separate formation from capture. In observer-level language a magnetically charged compact object can form with charge or later capture charged defects. The $\mathbb{A}\mathbb{A}\mathbb{A}$ gauge map should not import either story as ontology, but it can retain the provenance distinction as a residual on the effective flux record:
 $$
-Q_{m,\mathrm{eff}}^\theta(t)
+Q_{m,\mathrm{eff}}^\theta(t_{\mathrm{eff}})
 =
 Q_{m,\mathrm{form}}^\theta
 +
-\int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{cap}}^\theta(t')\,dt'
+\int_{t_{\mathrm{form}}}^{t_{\mathrm{eff}}}
+\Gamma_{m,\mathrm{cap}}^\theta(t'_{\mathrm{eff}})\,dt'_{\mathrm{eff}}
 -
-\int_{t_{\mathrm{form}}}^{t}
-\Gamma_{m,\mathrm{loss}}^\theta(t')\,dt'
+\int_{t_{\mathrm{form}}}^{t_{\mathrm{eff}}}
+\Gamma_{m,\mathrm{loss}}^\theta(t'_{\mathrm{eff}})\,dt'_{\mathrm{eff}}
 $$
 The loop-phase target above then requires the same branch record to support both the effective magnetic-flux label and the allowed electric axial-layer charge set. A compact object that solves a monopole-abundance problem by hiding charge in an untracked capture channel has not recovered gauge structure; it has moved the charge ledger outside the derivation.
 
@@ -355,10 +355,10 @@ In this map, electroweak "breaking" means a stabilizer and mass-coordinate recov
 $$
 S_{\text{fund}}
 =
-\int dt\left[
-\sum_i \frac{1}{2}\mu_{\text{arch}}\dot{\mathbf{x}}_i^2
+\int dT\left[
+\sum_i \frac{1}{2}\mu_{\text{arch}}\|\mathbf V_i(T)\|^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}
+\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|^2}
 \right]
 $$
 Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $W_{ij}^{\mathrm{rec}}$ is the receiver-normal branch factor on the active branch, so the electroweak closure map starts from the same receiver-normal causal geometry as the master equation rather than from a stripped inverse-square surrogate.

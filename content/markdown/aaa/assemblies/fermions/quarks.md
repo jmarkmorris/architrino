@@ -6,6 +6,8 @@ This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in 
 
 The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
 
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch, generation tier, and matter/antimatter orientation. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
+
 At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 The chapter uses axis strings and tables so the catalog is explicit without depending on artwork.
@@ -14,7 +16,7 @@ The chapter uses axis strings and tables so the catalog is explicit without depe
 
 ### Braid and axial split
 
-The quark construction used here follows the same Noether braid-plus-axial split already used in the fermion mapping chapters:
+The quark construction used here follows the same Noether braid-plus-axial split already used in the fermion mapping chapters. This split prevents three common confusions: charge is not color, color is not generation, and generation is not a new electric inventory.
 
 - The **Noether braid** is the neutral braid scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.

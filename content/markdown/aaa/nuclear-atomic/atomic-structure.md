@@ -1,16 +1,18 @@
 # Atomic Structure
 
-This chapter sketches the assembly-level picture of atomic structure inside a dense Noether sea. Its purpose is to connect nucleons, residual nuclear binding, and orbital resonance ideas into one substrate-level frame before the quantitative closure work is finished.
+This chapter sketches the assembly-level picture of atomic structure inside a dense Noether sea. The standard atom is familiar as a nucleus plus electron orbitals. The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is what physical assemblies, causal wakes, exclusion envelopes, and local Noether sea response make that familiar picture appear.
+
+The chapter is therefore a bridge. It connects nucleons, residual nuclear binding, electron resonance envelopes, and medium response into one substrate-level frame before the quantitative closure work is finished.
 
 Its natural companion notes are [Nucleon Structure](nucleon-structure.md), [Nuclear Binding](nuclear-binding.md), [Electron](../assemblies/fermions/electron.md), [Atomic Spectra](atomic-spectra.md), and [Condensed Matter](condensed-matter.md).
 
-The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter.
+The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter. Its value is to keep the levels separated: quarks close into nucleons, nucleons close into nuclei, electrons occupy atomic resonance envelopes, and the Noether sea supplies the local medium record through which effective clocks, spectra, and binding descriptions are reconstructed.
 
 Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-assembly angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
 
 ## Multi-Body Assembly Structure
 
-Atomic structure sits on three coupled layers:
+Atomic structure sits on three coupled layers. Each layer is real at its own resolution, but none of them should be mistaken for the whole atom by itself:
 
 1. **Nucleon layer:** Protons and neutrons are modeled as stable color-singlet nucleon assemblies embedded in the Noether sea.
 2. **Residual nuclear layer:** The strong-sector interaction that matters for atoms is the short-range residual coupling between nucleons, including meson-like corridors and over-compression costs near the self-hit threshold.
@@ -18,13 +20,15 @@ Atomic structure sits on three coupled layers:
 
 The Noether sea enters this picture as ambient substrate contents, not as the fixed spatial container. Binding and spectral calculations should therefore use the canonical local density $\rho_{\text{NS}}(\mathbf X,T)$ and normalized density $n(\mathbf X,T)=\rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ on $\Sigma_T$, evaluated against the $\mathbb{U}_{\text{now}}$ state record.
 
+In plainer terms, an atom is not a tiny solar system placed in empty space. It is a multi-assembly system embedded in a local medium record. The electron resonance, the proton source envelope, the nuclear binding corridors, and the surrounding Noether sea response all have to be read together.
+
 The Noether sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
 For the underlying assembly carrier of the Noether sea, see [Noether Braid](../noether-braid/noether-braid.md).
 
 ## Hydrogen as a Four-Fermion Boundary Test
 
-A resolved hydrogen atom is the cleanest local test of where matter assemblies end and the Noether sea begins. In the Generation-I inventory, the electron is one charged fermion assembly, while the proton contains three quark fermion assemblies, conventionally $uud$. Thus a hydrogen atom contains four charged fermion assemblies at the matter-inventory level:
+A resolved hydrogen atom is the cleanest local test of where matter assemblies end and the Noether sea begins. It is simple enough to count and hard enough to expose the boundary problem. In the Generation-I inventory, the electron is one charged fermion assembly, while the proton contains three quark fermion assemblies, conventionally $uud$. Thus a hydrogen atom contains four charged fermion assemblies at the matter-inventory level:
 
 $$
 \mathrm{H}
@@ -35,6 +39,8 @@ e^-
 $$
 
 Each of those four fermions carries a Noether braid plus an axial layer. The proton's three Noether braids should not be read as three free objects floating independently in the Noether sea; they are joined by the color-singlet strong-sector closure of the proton. The electron assembly is external to that proton closure and occupies an atomic resonance envelope determined by the nuclear causal-wake envelope, local Noether sea state, and its own assembly ledger.
+
+This is why hydrogen is a boundary test rather than only a spectrum test. The model must decide what belongs to the proton, what belongs to the electron, what belongs to the local Noether sea, and which coarse-grained variables an observer is allowed to use after that separation is declared.
 
 The local spacetime description is therefore not the four Noether braids themselves. It is the coarse-grained Noether sea response around, between, and outside the four matter assemblies. At a chosen resolution $\ell$, write schematically
 
@@ -152,13 +158,13 @@ The clock threshold marks where weak locked-wake tails can bias local rates. The
 In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles:
 
 $$
-w_{j,f}^{\mathrm{lock}}(t_0;t)
+w_{j,f}^{\mathrm{lock}}(T_{\mathrm{em}};T)
 =
-\mathbf{1}_{j\in\mathcal{I}_f(t)}
+\mathbf{1}_{j\in\mathcal{I}_f(T)}
 \,
 \zeta_f
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right),
 \qquad
 f\in\{e,u_1,u_2,d\}
@@ -167,13 +173,13 @@ $$
 while the ambient term is
 
 $$
-w_j^{\mathrm{sea}}(t_0;t)
+w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
 =
-\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_{\mathrm{H}},t)}
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_{\mathrm{H}},T)}
 \,
 \zeta_{\mathrm{sea}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 $$
 
@@ -182,38 +188,38 @@ For a hydrogen window this ambient projector has an explicit ledger-complement p
 $$
 \chi_{\mathrm{comp,H}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
-\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_{\mathrm H},t)}
+\mathbf{1}_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_{\mathrm H},T)}
 \left[
 1-\zeta_e
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right]
 \left[
 1-\zeta_{u_1}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right]
 \left[
 1-\zeta_{u_2}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right]
 \left[
 1-\zeta_d
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right]
 \left[
 1-\zeta_{\mathrm{strong}}^{uud}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right]
 $$
@@ -223,12 +229,12 @@ The branch then remains ambient only if it also passes the local neutral-core eq
 $$
 \zeta_{\mathrm{sea,H}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 =
 \chi_{\mathrm{comp,H}}^{(\ell)}
 \!\left(
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \exp
 \!\left[
@@ -242,19 +248,19 @@ $$
 \right]
 $$
 
-where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(t_0)$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
+where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(T_{\mathrm{em}})$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
 
 The strong-sector ledger $\mathcal{L}_{\mathrm{strong}}^{uud}$ is part of the proton/hydrogen matter record for corridor calculations. It is not counted as ambient Noether sea merely because it lies between the three quark assemblies. Channel intensity then follows the same sector-exposure rule,
 
 $$
-\alpha_{j,X}(\mathbf{x},t;t_0)
+\alpha_{j,X}(\mathbf X,t;T_{\mathrm{em}})
 =
 \kappa
 \left\|
 Q_X
 \!\left[
 \Pi_X
-\mathcal{B}_{\mathbf{x}j}^{(t_0)}
+\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right]
 \right\|_X
 $$
@@ -275,28 +281,28 @@ The corresponding first norm packet for hydrogen is inherited from the channel n
 $$
 \mathfrak N_{\mathrm H,X}^{(\ell)}(f)
 =
-\sum_{j\in\mathcal I_f(t)}
-\sum_{t_0\in\mathcal C_{\mathbf{x}j}(t)}
+\sum_{j\in\mathcal I_f(T)}
+\sum_{T_{\mathrm{em}}\in\mathcal C_{\mathbf Xj}(T)}
 \zeta_f
 \!\left(
-\mathcal B_{\mathbf{x}j}^{(t_0)}
+\mathcal B_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \frac{
 \left\|
 \mathcal E_X
 \!\left(
-\mathcal B_{\mathbf{x}j}^{(t_0)}
+\mathcal B_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \right\|_X
-W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)
+W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 }{
-r_{\mathbf{x}j}^2
+r_{\mathbf Xj}^2
 },
 \qquad
 f\in\{e,u_1,u_2,d\}
 $$
 
-The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-normal factor $W_{\mathbf{x}j}^{\mathrm{rec}}=\lvert D_{t,\mathbf{x}j}/D_{s,\mathbf{x}j}\rvert$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
+The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-normal factor $W_{\mathbf Xj}^{\mathrm{rec}}=\lvert D_{T,\mathbf Xj}/D_{s,\mathbf Xj}\rvert$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
 Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
 
@@ -343,7 +349,7 @@ d_{\mathrm{prov}}
 \quad
 \mathcal L_{\mathrm{strong}}^{uud}
 \subset
-\mathcal A_{\mathrm H}(t)
+\mathcal A_{\mathrm H}(T)
 \right\}
 $$
 
@@ -382,7 +388,7 @@ $$
 
 ## Hydrogen Boundary Theorem Target
 
-The hydrogen boundary claim is a theorem target about the relation between exact assembly ledgers, effective spatial envelopes, and local Noether sea response. The target is not that hydrogen has a literal material surface. The target is that the exact matter ledger $\mathcal A_{\mathrm H}(t)$ and the complementary medium record $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ determine the channel-specific interface diagnostics $D_{f,X}$ and the atom-local response variables used by clocks, spectra, transport, and reaction corridors.
+The hydrogen boundary claim is a theorem target about the relation between exact assembly ledgers, effective spatial envelopes, and local Noether sea response. The target is not that hydrogen has a literal material surface. The target is that the exact matter ledger $\mathcal A_{\mathrm H}(T)$ and the complementary medium record $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(T)$ determine the channel-specific interface diagnostics $D_{f,X}$ and the atom-local response variables used by clocks, spectra, transport, and reaction corridors.
 
 Fix a response channel $X$ and a coarse-graining scale $\ell$ satisfying the appropriate resolution window above. Let $C_{\ell,X}$ denote the declared coarse-graining projection for that channel. The first nuclear handoff is the proton source-envelope target
 
@@ -425,10 +431,10 @@ Here $\Theta_{\mathrm{bg},X}^{(\ell)}$ is the ambient Noether sea response in th
 
 The proof route has four candidate lemmas:
 
-1. **Ledger-complement lemma:** if $\mathcal A_{\mathrm H}(t)$ is the exact hydrogen matter ledger, then $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ contains no architrino, bound wake-exchange record, or strong-sector corridor record phase-locked to $\mathcal A_{\mathrm H}(t)$.
+1. **Ledger-complement lemma:** if $\mathcal A_{\mathrm H}(T)$ is the exact hydrogen matter ledger, then $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(T)$ contains no architrino, bound wake-exchange record, or strong-sector corridor record phase-locked to $\mathcal A_{\mathrm H}(T)$.
 2. **Proton-envelope lemma:** the $uud$ color-singlet ledger projects to a stable $\mathcal W_{p,X}^{\mathrm{locked}}$ at atomic resolution, while changes below $\ell_{\mathrm{proton}}$ affect only retained multipole, shielding, or corridor coefficients.
 3. **Electron-envelope lemma:** the electron assembly remains external to the proton closure and contributes through $\mathcal B_e$ and $D_{e,X}$, not by redefining the electron's Noether braid boundary as the orbital envelope.
-4. **Response-consistency lemma:** the same $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$ and locked-wake records determine the density, delay, cadence, envelope, and response-tensor entries of $\Theta_{\mathrm H,X}^{(\ell)}$ without separate fitted rules for spectra, clocks, or transport.
+4. **Response-consistency lemma:** the same $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(T)$ and locked-wake records determine the density, delay, cadence, envelope, and response-tensor entries of $\Theta_{\mathrm H,X}^{(\ell)}$ without separate fitted rules for spectra, clocks, or transport.
 
 The first computable test is therefore a channel-by-channel scan in which $X$ is chosen, $\ell$ is varied inside the admissible window, and the extracted pair
 
@@ -526,7 +532,7 @@ where $I_X$ is the selected admissible window and $\Delta_X^{\mathrm{tol}}$ is t
 
 The scan should report failures in a form that identifies which proof obligation broke:
 
-1. **Ledger failure:** a source branch contributes both to the locked hydrogen ledger and to $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(t)$.
+1. **Ledger failure:** a source branch contributes both to the locked hydrogen ledger and to $S_{\mathrm{sea}}^{\Omega_{\mathrm H}}(T)$.
 2. **Window failure:** the scan uses an $\ell$ that erases the electron envelope, resolves the proton as free quarks at atomic resolution, or fails to average many ambient Noether sea braids.
 3. **Density-delay failure:** $n(\mathbf X,T)$ and $\chi_{\text{sea}}(\mathbf X,T)$ are not independently recoverable from $\Theta_{\mathrm H,X}^{(\ell)}$.
 4. **Source-envelope failure:** $\mathcal W_{p,X}^{\mathrm{locked}}$ cannot be recovered as a color-singlet proton envelope after proton-sensitive resolution.
@@ -539,11 +545,11 @@ Hydrogen fixes the clean boundary case, but heavier atoms should use the same le
 For an atomic window $\Omega_E$ with proton number $Z$, neutron number $N$, electron-envelope branch $\mathcal B_e$, and optional bonding or lattice branch $\mathcal B_{\mathrm{lat}}$, write the nuclear assembly ledger schematically as
 
 $$
-\mathcal A_{\mathrm{nuc}}^{Z,N}(t)
+\mathcal A_{\mathrm{nuc}}^{Z,N}(T)
 =
-\bigcup_{\alpha=1}^{Z}\mathcal A_{p_\alpha}(t)
+\bigcup_{\alpha=1}^{Z}\mathcal A_{p_\alpha}(T)
 \cup
-\bigcup_{\nu=1}^{N}\mathcal A_{n_\nu}(t)
+\bigcup_{\nu=1}^{N}\mathcal A_{n_\nu}(T)
 \cup
 \mathcal L_{\mathrm{nuc}}^{Z,N}(T)
 $$
@@ -691,7 +697,7 @@ A schematic handoff is
 $$
 \bigl(k_I,k_M,k_O,\mathcal R\bigr)_{\text{nuc}}
 \longrightarrow
-\mathcal W_{\text{nuc}}(r,\hat{\mathbf r},t)
+\mathcal W_{\text{nuc}}(r,\hat{\mathbf r},T)
 \longrightarrow
 \Psi_{\text{e-env}}(r,\theta,\phi)
 \sim

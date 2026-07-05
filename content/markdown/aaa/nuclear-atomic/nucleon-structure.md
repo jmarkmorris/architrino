@@ -1,10 +1,14 @@
 # Nucleon Structure
 
-This chapter fixes the proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md).
+This chapter fixes the proton and neutron picture used by the nuclear branch. A nucleus does not usually need to reopen every quark-level detail, but it cannot treat a nucleon as a featureless dot either. The nucleon has to enter later nuclear and atomic chapters as one accepted color-singlet source envelope with retained mass, charge, spin, shielding, and corridor behavior.
+
+This is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md). Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
 
 ## Purpose
 
 This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
+
+The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one stable nucleon envelope unless the calculation is explicitly resolving the strong-sector interior.
 
 ## Core Claim
 
@@ -13,7 +17,7 @@ A nucleon is a confined three-quark color-singlet assembly built from three Gene
 - a **proton** is the ground-state `uud` nested shell braid,
 - a **neutron** is the ground-state `udd` nested shell braid.
 
-Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md).
+Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; it is the accepted branch formed when those three quark records close as one color-singlet assembly.
 
 ## Constituents and Counting
 
@@ -27,7 +31,7 @@ Therefore a nucleon contains
 $$
 3\times 12 = 36
 $$
-architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing.
+architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing. This count is inventory, not a mass formula. The observed nucleon mass response is produced only after color closure, corridor terms, cross terms, shielding, and local Noether sea response are included.
 
 The constituent content is:
 $$
@@ -51,7 +55,7 @@ $$
 
 ## Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a color-closed nested shell braid braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
+The nucleon is not three independent quarks sitting side by side. It is a color-closed nested shell braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
@@ -70,11 +74,13 @@ In geometric language:
 - the three exceptional axes occur once each across the nested shell braid,
 - the shared flux structure closes the color braid into a singlet.
 
-That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients.
+That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients. Later nuclear binding chapters can therefore use proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources.
 
 ## Proton Source-Envelope Closure Target
 
-Hydrogen calculations need the proton to enter the atomic window as one color-singlet source envelope, not as three free quark assemblies. For a proton branch, let the three quark color sectors be
+Hydrogen calculations need the proton to enter the atomic window as one color-singlet source envelope, not as three free quark assemblies. This is the first practical test of the nucleon boundary: the atom should feel a stable proton envelope, while the quark-level color corridor remains internal to the proton branch.
+
+For a proton branch, let the three quark color sectors be
 
 $$
 s_{u_1},s_{u_2},s_d\in\{H,M,L\},

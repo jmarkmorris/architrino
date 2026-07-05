@@ -29,7 +29,7 @@ All cosmological observables are computed from absolute-state evolution and then
 
 - [expansion-mechanism.md](./expansion-mechanism.md): canonical expansion and redshift mapping in fixed void ontology.
 - [inflation-model.md](./inflation-model.md): emergent early rapid-expansion model and conceptual inflation framing.
-- [BBN-constraints.md](./BBN-constraints.md): light-element abundance constraints under emergent $H(t)$.
+- [BBN-constraints.md](./BBN-constraints.md): light-element abundance constraints under emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$.
 - [CMB.md](./CMB.md): integrated CMB origin narrative plus quantitative prediction mapping in the same ontology.
 - [structure-formation.md](./structure-formation.md): growth dynamics and large-scale structure tests.
 - [hubble-s8-tensions.md](./hubble-s8-tensions.md): joint treatment of late-time cosmology tensions.
@@ -233,35 +233,35 @@ Directional tests are part of this ledger. If a data reduction assumes a cosmic 
 
 Gamow's 1946 rotating-universe proposal is useful as comparison pressure here because it converts a story-level anisotropy claim into an all-sky radial-velocity test. The surviving discipline is not the rotating universe itself, but the requirement that any claimed large-scale anisotropy leave a declared directional residual after CMB-frame correction, matter-dipole residuals, local bulk-flow subtraction, and survey-window effects have been separated.
 
-For tracer $i$ with direction $\hat{\mathbf{n}}_i$ from observer position $\mathbf{x}_{\mathrm{eff},o}$, inferred effective position $\mathbf{x}_{\mathrm{eff},i}=\mathbf{x}_{\mathrm{eff},o}+D_i\hat{\mathbf{n}}_i$, and corrected line-of-sight velocity or redshift residual $\delta v_i$, the shared Noether sea record should first supply its native prediction
+For tracer $i$ with direction $\hat{\mathbf n}_i$ from observer position $x_{\mathrm{eff},o}^i$, inferred effective position $x_{\mathrm{eff},i}^i=x_{\mathrm{eff},o}^i+D_i\hat n_i^i$, and corrected line-of-sight velocity or redshift residual $\delta v_i$, the shared Noether sea record should first supply its native prediction
 $$
 \epsilon_i(\theta_{\mathrm{sea}})
 =
 \delta v_i
 -
-\Pi_v(\theta_{\mathrm{sea}};\mathbf{x}_{\mathrm{eff},i},\hat{\mathbf{n}}_i)
+\Pi_v(\theta_{\mathrm{sea}};x_{\mathrm{eff},i}^i,\hat n_i^i)
 $$
 where $\Pi_v$ includes the declared Noether sea flow, density, delay, clock-rate, CMB-frame, and local-calibration terms. A historical rotation-like comparison can then be expressed only as a residual template,
 $$
-T_i(\mathbf{x}_{\mathrm{eff},c},\boldsymbol{\omega},g)
+T_i(x_{\mathrm{eff},c}^i,\boldsymbol{\omega},g)
 =
-\hat{\mathbf{n}}_i\cdot
+\hat{\mathbf n}_i\cdot
 \left[
-g(D_i)\,\boldsymbol{\omega}\times(\mathbf{x}_{\mathrm{eff},i}-\mathbf{x}_{\mathrm{eff},c})
--g(0)\,\boldsymbol{\omega}\times(\mathbf{x}_{\mathrm{eff},o}-\mathbf{x}_{\mathrm{eff},c})
+g(D_i)\,\boldsymbol{\omega}\times(x_{\mathrm{eff},i}^i-x_{\mathrm{eff},c}^i)
+-g(0)\,\boldsymbol{\omega}\times(x_{\mathrm{eff},o}^i-x_{\mathrm{eff},c}^i)
 \right]
 $$
-with the center $\mathbf{x}_{\mathrm{eff},c}$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
+with the center $x_{\mathrm{eff},c}^i$, angular-rate vector $\boldsymbol{\omega}$, and distance profile $g$ declared as comparison parameters rather than new ontology. The corresponding all-sky antisymmetric-flow residual on a survey shell $S$ is
 $$
 \mathcal{R}_{\mathrm{rot}}(\theta_{\mathrm{sea}};S)
 =
-\inf_{\mathbf{x}_{\mathrm{eff},c},\boldsymbol{\omega},g\in\mathcal{G}_{\mathrm{decl}}}
+\inf_{x_{\mathrm{eff},c}^i,\boldsymbol{\omega},g\in\mathcal{G}_{\mathrm{decl}}}
 \left[
 \frac{1}{W_S}
 \sum_{i\in S}
 w_i\left(
 \epsilon_i(\theta_{\mathrm{sea}})
--T_i(\mathbf{x}_{\mathrm{eff},c},\boldsymbol{\omega},g)
+-T_i(x_{\mathrm{eff},c}^i,\boldsymbol{\omega},g)
 \right)^2
 \right]^{1/2},
 \qquad
@@ -275,7 +275,7 @@ L_{W_{\mathrm{eff}}}^2(t_{\mathrm{eff}})
 =
 \frac{2}{N_{W_{\mathrm{eff}}}\left(N_{W_{\mathrm{eff}}}-1\right)}
 \sum_{i<j\in I_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})}
-\|\mathbf{x}_{\mathrm{eff},i}(t_{\mathrm{eff}})-\mathbf{x}_{\mathrm{eff},j}(t_{\mathrm{eff}})\|^2
+\|x_{\mathrm{eff},i}^i(t_{\mathrm{eff}})-x_{\mathrm{eff},j}^i(t_{\mathrm{eff}})\|^2
 $$
 The corresponding dimensionless pair-separation distribution is
 $$
@@ -284,7 +284,7 @@ $$
 \frac{2}{N_{W_{\mathrm{eff}}}\left(N_{W_{\mathrm{eff}}}-1\right)}
 \sum_{i<j\in I_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})}
 \delta\!\left(
-u-\frac{\|\mathbf{x}_{\mathrm{eff},i}(t_{\mathrm{eff}})-\mathbf{x}_{\mathrm{eff},j}(t_{\mathrm{eff}})\|}{L_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})}
+u-\frac{\|x_{\mathrm{eff},i}^i(t_{\mathrm{eff}})-x_{\mathrm{eff},j}^i(t_{\mathrm{eff}})\|}{L_{W_{\mathrm{eff}}}(t_{\mathrm{eff}})}
 \right)
 $$
 For a declared family of same-scale windows $\mathcal{W}_L(t_{\mathrm{eff}})$ and a declared distribution distance $d$, a candidate Noether sea state record should expose

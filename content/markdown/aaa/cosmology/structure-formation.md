@@ -20,34 +20,41 @@ No metric expansion of space occurs. The Euclidean void is static. What changes 
 
 ### Background Noether Sea State
 
-Define a spatially averaged Noether sea state at absolute time $t$:
+Define a spatially averaged Noether sea state at absolute time $T$:
 
-- $u_{\text{sea}}(t)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf{x},t)$,
-- $\rho_m(t)$: mean energy density of matter assemblies (baryonic + neutral/dark),
-- $\bar{\rho}_{\text{NS}}(t)$: mean Noether braid density in physical units,
-- $\bar{R}_{\text{braid}}(t)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
+- $u_{\text{sea}}(T)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf X,T)$,
+- $\rho_m(T)$: mean energy density of matter assemblies (baryonic + neutral/dark),
+- $\bar{\rho}_{\text{NS}}(T)$: mean Noether braid density in physical units,
+- $\bar{R}_{\text{braid}}(T)$: mean outer-binary radius of Noether braid assemblies in the Noether sea.
 
-An effective Hubble-like parameter $H(t)$ is defined operationally through the rate of change of the Noether sea's bulk properties. Specifically, if one defines an effective scale variable $a(t)$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H = \dot{a}/a$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
+An effective Hubble-like parameter $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ is defined operationally through the rate of change of the Noether sea's bulk properties as read by observer clocks. Specifically, if one defines an effective scale variable $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H_{\mathrm{eff}}=d\ln a_{\mathrm{eff}}/dt_{\mathrm{eff}}$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H_{\mathrm{eff}}$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
 
 ### Density Contrast and the Growth Equation
 
-Let $\delta(\mathbf{x}, t) = (\rho_m(\mathbf{x}, t) - \bar{\rho}_m(t))/\bar{\rho}_m(t)$ be the matter density contrast. In the linear regime ($|\delta| \ll 1$), perturbations in the matter field obey an effective second-order equation that can be written in the familiar comparison form:
+Let $\delta_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) = (\rho_m(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) - \bar{\rho}_m(t_{\mathrm{eff}}))/\bar{\rho}_m(t_{\mathrm{eff}})$ be the observer-level matter density contrast. In the linear regime ($|\delta_{\mathrm{eff}}| \ll 1$), perturbations in the matter field obey an effective second-order equation that can be written in the familiar standard comparison form:
 
 $$
-\ddot{\delta} + 2H(t)\,\dot{\delta} - 4\pi G_{\text{eff}}(t, k)\,\bar{\rho}_m(t)\,\delta = 0
+\ddot{\delta}_{\mathrm{std}} + 2H_{\mathrm{std}}(t_{\mathrm{std}})\,\dot{\delta}_{\mathrm{std}} - 4\pi G_{\text{eff,std}}(t_{\mathrm{std}}, k)\,\bar{\rho}_{m,\mathrm{std}}(t_{\mathrm{std}})\,\delta_{\mathrm{std}} = 0
+$$
+The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is
+$$
+\frac{d^2\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
++2H_{\mathrm{eff}}(t_{\mathrm{eff}})\frac{d\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
+-4\pi G_{\text{eff}}(t_{\mathrm{eff}}, k)\,\bar{\rho}_m(t_{\mathrm{eff}})\,\delta_{\mathrm{eff}}
+=0
 $$
 
 Each symbol carries a specific medium-level meaning:
 
-- **$H(t)$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
+- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (outer binaries expanding, frequencies decreasing), inter-assembly separations grow, diluting the gravitational source density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
 
-- **$G_{\text{eff}}(t, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
-  - the local Noether braid density $\bar{\rho}_{\text{NS}}(t)$, which sets Noether sea stiffness,
-  - the outer-binary radius $\bar{R}_{\text{braid}}(t)$, which controls the compliance of Noether sea assemblies to deformation,
+- **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
+  - the local Noether braid density $\bar{\rho}_{\text{NS}}(T)$, which sets Noether sea stiffness,
+  - the outer-binary radius $\bar{R}_{\text{braid}}(T)$, which controls the compliance of Noether sea assemblies to deformation,
   - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes.
   The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../spacetime/emergent-metric.md).
 
-- **$\bar{\rho}_m(t)$**: the mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](./dark-matter.md)).
+- **$\bar{\rho}_m(t_{\mathrm{eff}})$**: the observer-level mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](./dark-matter.md)).
 
 **Mechanism for the source term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local Noether sea delay factor $\chi_{\text{sea}}$, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: the received flux is also receiver-normal weighted, so local branch geometry and source/receiver motion can bunch or dilute the effective gravitational signal. Surrounding matter assemblies, following geodesics of the emergent metric (equivalently, responding to the gradient of the effective potential), drift inward. This positive feedback loop is gravitational instability, recast as medium-response dynamics.
 
@@ -61,13 +68,13 @@ Each symbol carries a specific medium-level meaning:
 
 ### The Growth Factor
 
-Define the linear growth factor $D(t)$ as the growing-mode solution of the perturbation equation, normalized so that $\delta(\mathbf{x}, t) = D(t)\,\delta_0(\mathbf{x})$ in the linear regime. In standard cosmology:
+Define the linear growth factor $D(t_{\mathrm{eff}})$ as the growing-mode solution of the perturbation equation, normalized so that $\delta_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) = D(t_{\mathrm{eff}})\,\delta_0(x_{\mathrm{eff}}^i)$ in the linear regime. In standard cosmology:
 
 $$
 D(a) \propto H(a) \int_0^a \frac{da'}{[a' H(a')]^3}
 $$
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds, with $H(a)$ and $G_{\text{eff}}$ determined by the Noether sea equation of state. The growth rate $f(a) = d\ln D / d\ln a$ is a direct observable (via redshift-space distortions) and provides a clean test:
+Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds in the observer chart, with $H_{\mathrm{eff}}(a_{\mathrm{eff}})$ and $G_{\text{eff}}$ determined by the Noether sea equation of state. The growth rate $f(a_{\mathrm{eff}}) = d\ln D / d\ln a_{\mathrm{eff}}$ is a direct observable (via redshift-space distortions) and provides a clean test:
 
 - If $G_{\text{eff}}$ is constant and the Noether sea equation of state matches $\Lambda$CDM, then $f(a) \approx \Omega_m(a)^{0.55}$ as in GR.
 - If $G_{\text{eff}}$ carries scale dependence from medium compliance, $f$ acquires a $k$-dependent correction that is absent in standard gravity and can be tested against galaxy survey data.
@@ -143,8 +150,8 @@ below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly 
 $$
 \lambda_{\mathrm{FS}}^\theta
 =
-\int_0^{t_{\mathrm{eq}}^\theta}
-\frac{v^\theta(t)}{a_\theta(t)}\,dt
+\int_0^{t_{\mathrm{eff,eq}}^\theta}
+\frac{v^\theta(t_{\mathrm{eff}})}{a_\theta(t_{\mathrm{eff}})}\,dt_{\mathrm{eff}}
 \approx
 1.2\,\mathrm{Mpc}
 \left(\frac{1\,\mathrm{keV}}{m_s^\theta}\right)
@@ -209,11 +216,11 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ admits multiple dark-matter scenarios (detailed
 - **Thermal history**: if produced thermally in the early medium, their relic abundance and free-streaming length determine the small-scale cutoff of the matter power spectrum. Cold (non-relativistic at decoupling) neutral assemblies reproduce CDM-like behavior; warm candidates (lighter, with residual thermal velocity) suppress small-scale power.
 - **Self-interaction**: if neutral assemblies interact among themselves through residual short-range forces (e.g., van der Waals-like wake overlap at close range), this modifies halo profiles at small scales—a potential handle on the core-cusp and too-big-to-fail problems.
 
-The effective growth equation accommodates both CDM-like and self-interacting scenarios through the form of $G_{\text{eff}}(t,k)$ and any additional pressure or viscosity terms.
+The effective growth equation accommodates both CDM-like and self-interacting scenarios through the form of $G_{\text{eff}}(t_{\mathrm{eff}},k)$ and any additional pressure or viscosity terms.
 
 ### Medium Energy (Dark-Energy Role)
 
-The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H(t)$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying outer-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(t)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
+The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying outer-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(T)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
 
 ---
 

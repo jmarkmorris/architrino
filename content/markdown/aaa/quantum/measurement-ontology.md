@@ -2,7 +2,9 @@
 
 ## Purpose and Scope
 
-This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the ontological level. It is narrower than the full Born-rule program. The aim is to state the minimum physical architecture:
+This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the ontological level. It is narrower than the full Born-rule program. The aim is to say what must physically happen before the observer-level sentence "a measurement occurred" is allowed.
+
+The short answer is that a measurement is not an extra rule added to the equations. It is an ordinary physical interaction that becomes special because it crosses a threshold, amplifies the result, and leaves a durable record. The chapter therefore defines the minimum physical architecture:
 
 - what counts as the system,
 - what counts as the apparatus,
@@ -13,7 +15,7 @@ This chapter fixes what a measurement event is in $\mathbb{A}\mathbb{A}\mathbb{A
 
 Measurement is not a primitive axiom and not a special observer intervention. It is a physical interaction between assemblies that drives a metastable target across a separatrix and then locks the resulting branch into a persistent macroscopic record.
 
-The ontology is therefore:
+The ontology is therefore a coupled record channel:
 
 - **system:** an assembly or coupled assembly-subsystem with reduced state $X$,
 - **apparatus:** another assembly network engineered so that its wake structure couples strongly to a chosen coordinate of $X$,
@@ -21,11 +23,13 @@ The ontology is therefore:
 - **measurement outcome:** the attractor basin into which the coupled system settles,
 - **record:** a durable asymmetry in apparatus/environment variables that can be re-read without reconstructing the original metastable state.
 
-The apparatus configuration is part of the record channel, not external decoration. In a concrete detector model, the geometry, coupling settings, thresholds, and readout coarse-graining are collected into an apparatus record kernel $\mathcal{K}_A$, so the separatrix and record variable are really $\Sigma_{\mathcal{K}_A}(X,A)=0$ and $R_{\mathcal{K}_A}(A)$. The unindexed $\Sigma$ and $R$ below are shorthand after the channel is fixed. This does not make the observer a creator of the target state; it means that a record is a coupled system-apparatus event with declared physical coupling.
+The apparatus configuration is part of the record channel, not external decoration. In a concrete detector model, the geometry, coupling settings, thresholds, and readout coarse-graining are collected into an apparatus record kernel $\mathcal{K}_A$, so the separatrix and record variable are really $\Sigma_{\mathcal{K}_A}(X,A)=0$ and $R_{\mathcal{K}_A}(A)$. The unindexed $\Sigma$ and $R$ below are shorthand after the channel is fixed. This does not make the observer a creator of the target state. It means that a record is a coupled system-apparatus event with declared physical coupling.
 
 ## No Heisenberg Cut
 
 The ontology rejects a fundamental system-observer split.
+
+The reason is direct. If the apparatus is made of assemblies, then it cannot sit outside physics while the target remains inside physics. The apparatus has its own causal wakes, thresholds, uncontrolled degrees of freedom, and Noether sea coupling. A measurement account must therefore include the apparatus in the same physical flow as the target.
 
 At the substrate level there are only:
 
@@ -39,11 +43,11 @@ What standard quantum mechanics calls a "measurement" is therefore just a specia
 2. amplification into many apparatus degrees of freedom,
 3. dissipation into the surrounding Noether sea so that coherent reversal becomes practically inaccessible.
 
-This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics below produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
+This also sets the comparison boundary for path-integral and generalized-quantum-mechanics language. A history-sum formalism can reproduce ordinary pointer-record probabilities and may assign measures to microscopic event statements, but those measures are not automatically $\mathbb{A}\mathbb{A}\mathbb{A}$ records. The native question remains whether the apparatus-target dynamics produce a separatrix crossing, a durable record variable, and a persistence window without invoking an external classical observer.
 
 Expectation values, covariance matrices, correlation functions, and decoherence rates obey the same rule. They are legitimate observer-level summaries only after the target, apparatus, environment, access region, and record channel have been declared. In closed-system, cosmology, or quantum-gravity comparisons, an averaged quantity is therefore not automatically a statement about what the substrate is doing; it is a data product that must be tied back to $\Gamma_{\mathrm{tot}}$, the retained boundary data, and the record criteria below.
 
-The same discipline applies to ordinary measurement-rule language. A statement such as "measure an observable and obtain outcome $k$ with probability $p_k$" is not yet a substrate closure. It must be unpacked into a declared record packet
+The same discipline applies to ordinary measurement-rule language. A statement such as "measure an observable and obtain outcome $k$ with probability $p_k$" is a useful laboratory instruction, but it is not yet a substrate closure. It must be unpacked into a declared record packet
 $$
 (\mathcal{K}_A,\mathcal{Q},W,T,\{R_k\},\mu_{*,T})
 $$
@@ -51,7 +55,7 @@ whose apparatus kernel, coarse-graining, access region, record window, record cl
 $$
 p_k(\theta)=\mu_{*,T}\!\left(\pi^{-1}(R_k)\right)
 $$
-is valid only after a branch has earned a record. A record is not every formal correlation, only a branch that closes the full physical transition:
+and is valid only after a branch has earned a record. A record is not every formal correlation. It is a branch that closes the full physical transition:
 
 $$
 \mathsf R_\theta(\gamma_i,T)
@@ -72,7 +76,7 @@ p_k^{\mathrm{rec}}(\theta)=
 {\sum_j\mu_{*,T}\!\left(\pi^{-1}(R_j)\cap \mathsf R_\theta^{-1}(1)\right)}
 $$
 
-not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel.
+not an extra rule assigned after the dynamics. This keeps the empirical measurement formalism intact while forcing the words "measurement," "outcome," and "probability" to earn a physical record channel. The formal rule survives; the unsupported cut between quantum target and classical apparatus does not.
 
 ### Laboratory Limit and Closed Cosmology
 
@@ -144,7 +148,7 @@ $$
 $$
 A differential Lindblad comparison is admissible only after the environment correlation time $\tau_{\mathrm{env}}$ is short compared with the retained record window. In that regime the benchmark generator has the form
 $$
-\partial_t\rho
+\partial_{t_{\mathrm{eff}}}\rho
 =
 -\frac{i}{\hbar}[H,\rho]
 +
@@ -163,8 +167,8 @@ $$
 =
 \max\left(
 \frac{\tau_{\mathrm{env}}}{T_{\mathrm{rec}}},
-\frac{\left\|\mathcal{T}_{t_0\to t_2}^{\mathcal{Q}}-\mathcal{T}_{t_1\to t_2}^{\mathcal{Q}}\mathcal{T}_{t_0\to t_1}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
-\frac{\left\|\partial_t\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
+\frac{\left\|\mathcal{T}_{t_{\mathrm{eff},0}\to t_{\mathrm{eff},2}}^{\mathcal{Q}}-\mathcal{T}_{t_{\mathrm{eff},1}\to t_{\mathrm{eff},2}}^{\mathcal{Q}}\mathcal{T}_{t_{\mathrm{eff},0}\to t_{\mathrm{eff},1}}^{\mathcal{Q}}\right\|_{\mathrm{TV}\to\mathrm{TV}}}{\varepsilon_{\mathrm{div}}},
+\frac{\left\|\partial_{t_{\mathrm{eff}}}\rho_{\mathrm{rec}}-\mathcal{L}_{\mathrm{Lind}}[\rho_{\mathrm{rec}}]\right\|}{\varepsilon_L}
 \right)
 \le 1
 $$
@@ -901,13 +905,15 @@ This comparison must be kept separate from passive external-field atom-interfero
 In that comparison, two alternative mass distributions $\rho_1$ and $\rho_2$ are assigned a gravitational self-energy scale
 $$
 \Delta E_G \sim \frac{G}{2}\int\!\!\int
-\frac{(\rho_1-\rho_2)(\mathbf{x})(\rho_1-\rho_2)(\mathbf{y})}
-{\|\mathbf{x}-\mathbf{y}\|}\,d^3x\,d^3y
+\frac{(\rho_1-\rho_2)(x_{\mathrm{eff}}^i)(\rho_1-\rho_2)(y_{\mathrm{eff}}^i)}
+{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}\,d^3x_{\mathrm{eff}}\,d^3y_{\mathrm{eff}}
 $$
 and a corresponding lifetime estimate
 $$
 \tau_G\sim \frac{\hbar}{\Delta E_G}
 $$
+
+The layer-explicit effective-metric comparison replaces the displayed integration variables by $x_{\mathrm{eff}}^i$ and $y_{\mathrm{eff}}^i$ and computes the mass-density histories from the declared branch projection before interpreting $\Delta E_G$.
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ does not adopt fundamental gravitational collapse or a stochastic metric. The benchmark is useful because large-mass interferometry and Bose-Einstein-condensate proposals ask whether spatial superpositions involving roughly $10^9$ to $10^{10}$ atoms remain coherent long enough to distinguish ordinary environmental decoherence, finite-time threshold resolution, and any gravity-driven collapse model. For this chapter, the comparison target is therefore not to derive $\tau_G$ as an ontological law, but to show that the $\mathbb{A}\mathbb{A}\mathbb{A}$ separatrix-time estimate for massive-superposition records remains quantitatively distinguishable from, or explicitly bounded against, the Penrose-Diosi scale.
 
@@ -949,20 +955,20 @@ A measurement model that fits Born weights only by changing the thermodynamic en
 
 Massive-superposition tests also create a second external benchmark: whether the gravitational or effective-metric readout of two branches can carry which-path information. This comparison preserves the observable pressure without adopting a stochastic-metric ontology. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the effective metric is an observer-level reconstruction, so a gravitational readout becomes measurement-relevant only when a Physical Observer apparatus can turn the branch-dependent response into an autonomous record.
 
-Let $\rho_1(\mathbf{x},t)$ and $\rho_2(\mathbf{x},t)$ be two alternative branch-level mass-density histories, and let $h_A(t;\rho_k,\theta)$ denote the detector response channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
+Let $\rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\rho_2(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be two alternative branch-level mass-density histories, and let $h_A(t_{\mathrm{eff}};\rho_k,\theta)$ denote the detector response channel $A$ predicted by the same effective-metric constitutive record $\theta$ for branch $k$. Define
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 =
-h_A(t;\rho_1,\theta)-h_A(t;\rho_2,\theta)
+h_A(t_{\mathrm{eff}};\rho_1,\theta)-h_A(t_{\mathrm{eff}};\rho_2,\theta)
 $$
-If $N_{AB}(t,t')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T$, the gravitational distinguishability diagnostic is
+If $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')$ is the covariance of unresolved detector, environmental, and boundary-wake contributions over the coherence window $T$, the gravitational distinguishability diagnostic is
 $$
 \mathcal{D}_{\mathrm{grav}}(T;\theta)
 =
 \int_0^T\!\!\int_0^T
-\Delta h_A(t)\,
-N^{-1}_{AB}(t,t')\,
-\Delta h_B(t')\,dt\,dt'
+\Delta h_A(t_{\mathrm{eff}})\,
+N^{-1}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')\,
+\Delta h_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 $$
 
 The comparison criterion is:
@@ -977,60 +983,60 @@ The covariance $N_{AB}$ is not an ontological randomness postulate in this chapt
 
 A first calculation can be posed without choosing a full collapse interpretation. Let a target mass $M$ have two branch-level center histories
 $$
-\mathbf{X}_{\pm}(t)
+x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff}})
 =
-\mathbf{X}_0(t)\pm\frac{1}{2}\mathbf{d}(t)
+x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})\pm\frac{1}{2}d_{\mathrm{eff}}^i(t_{\mathrm{eff}})
 $$
 with branch densities
 $$
-\rho_{\pm}(\mathbf{x},t)
+\rho_{\pm}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
-M\,\delta_{\eta}\!\left(\mathbf{x}-\mathbf{X}_{\pm}(t)\right)
+M\,\delta_{\eta}\!\left(x_{\mathrm{eff}}^i-x_{\pm,\mathrm{eff}}^i(t_{\mathrm{eff}})\right)
 +
-\rho_{\mathrm{app}}(\mathbf{x},t)
+\rho_{\mathrm{app}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 $$
 where $\rho_{\mathrm{app}}$ is the shared apparatus and environmental mass density. For a differential gravity readout channel $A$, define
 $$
-h_A(t;\rho_{\pm},\theta)
+h_A(t_{\mathrm{eff}};\rho_{\pm},\theta)
 =
 e_A^i
 \left[
-a_i^{\mathrm{eff}}(\mathbf{y}_A,t;\rho_{\pm},\theta)
+a_i^{\mathrm{eff}}(y_{A,\mathrm{eff}}^i,t_{\mathrm{eff}};\rho_{\pm},\theta)
 -
-a_i^{\mathrm{eff}}(\mathbf{y}_0,t;\rho_{\pm},\theta)
+a_i^{\mathrm{eff}}(y_{0,\mathrm{eff}}^i,t_{\mathrm{eff}};\rho_{\pm},\theta)
 \right]
 $$
-where $\mathbf{y}_A$ and $\mathbf{y}_0$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
+where $y_{A,\mathrm{eff}}^i$ and $y_{0,\mathrm{eff}}^i$ are detector reference points, $e_A^i$ is the channel projection, and $a_i^{\mathrm{eff}}$ is the effective metric or weak-field acceleration readout derived from the same constitutive record $\theta$ used in the spacetime chapters.
 
 In the weak, slowly varying limit, the branch difference has the schematic tidal form
 $$
-\Delta h_A(t)
+\Delta h_A(t_{\mathrm{eff}})
 \simeq
 G_{\mathrm{eff}}(\theta)M\,e_A^i
 \left[
-D_{ij}(\mathbf{y}_A-\mathbf{X}_0)
+D_{ij}(y_{A,\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i)
 -
-D_{ij}(\mathbf{y}_0-\mathbf{X}_0)
+D_{ij}(y_{0,\mathrm{eff}}^i-x_{0,\mathrm{eff}}^i)
 \right]
-d^j(t)
+d_{\mathrm{eff}}^j(t_{\mathrm{eff}})
 $$
 with
 $$
-D_{ij}(\mathbf{R})
+D_{ij}(R_{\mathrm{eff}}^i)
 =
-\frac{3R_iR_j-\|\mathbf{R}\|^2 h_{ij}}{\|\mathbf{R}\|^5}
+\frac{3R_{\mathrm{eff},i}R_{\mathrm{eff},j}-\|R_{\mathrm{eff}}^i\|^2 h_{ij}}{\|R_{\mathrm{eff}}^i\|^5}
 $$
-If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t,t')=S_{AB}\delta(t-t')$, then
+If the unresolved readout noise is approximately stationary over the coherence window, $N_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')=S_{AB}\delta(t_{\mathrm{eff}}-t_{\mathrm{eff}}')$, then
 $$
 \mathcal{D}_{\mathrm{grav}}(T;\theta)
 \simeq
 \int_0^T
-\Delta h_A(t)\,
+\Delta h_A(t_{\mathrm{eff}})\,
 S^{-1}_{AB}\,
-\Delta h_B(t)\,dt
+\Delta h_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
-This toy model turns the benchmark into a simulation target. The required inputs are $M$, $\mathbf{d}(t)$, $\mathbf{X}_0(t)$, detector geometry $(\mathbf{y}_A,\mathbf{y}_0,e_A)$, noise matrix $S_{AB}$, coherence time $T$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
+This toy model turns the benchmark into a simulation target. The required inputs are $M$, $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$, $x_{0,\mathrm{eff}}^i(t_{\mathrm{eff}})$, detector geometry $(y_{A,\mathrm{eff}}^i,y_{0,\mathrm{eff}}^i,e_A)$, noise matrix $S_{AB}$, coherence time $T$, and the constitutive weak-field map in $\theta$. An interference-preserving run passes the gravitational which-path gate only if $\mathcal{D}_{\mathrm{grav}}(T;\theta)\le\varepsilon_{\mathrm{wp}}$ or if the same apparatus model derives a record-forming separatrix crossing with a persistent record variable.
 
 The observer-level covariance decomposition is owned by [Observer Framework](../spacetime/observer-framework.md#boundary-wake-covariance-scaffold). The concrete validation scaffold is [Massive-Superposition Gravity Validation Packet](../validation/massive-superposition-gravity.md).
 

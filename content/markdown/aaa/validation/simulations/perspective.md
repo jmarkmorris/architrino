@@ -39,7 +39,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - What we assume:
 - Same-source self-hit is accepted only when the root equation
   $$
-  \mathcal{C}_{aa}(t)=\{\,s<t:\|\mathbf{x}_a(t)-\mathbf{x}_a(s)\|=c_f(t-s)\,\}
+  \mathcal{C}_{aa}(T)=\{\,T_{\mathrm{em}}<T:\|\mathbf X_a(T)-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
   $$
   is nonempty and the active root passes the transversality/Jacobian floor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
@@ -119,7 +119,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Use $\Phi_\eta$ to evaluate $U$ and verify $\Delta E_k = -\,\Delta U$ across events that cross the self-hit onset boundary; in the $\eta\to 0$ limit, impulses integrate to the same work.
 
 4) Numerical recipe (robust, minimal assumptions)
-- For each receiver time $t$: (i) root-find causal emission times $t_0$ for all sources (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(t;t_0)$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
+- For each receiver time $T$: (i) root-find causal emission times $T_{\mathrm{em}}$ for all sources (and self), (ii) discard non-physical roots ($H(0)=0$, handle $r=0$ by symmetry), (iii) sum $a_{o′\leftarrow o}(T;T_{\mathrm{em}})$, (iv) integrate velocity and position with an event-aware scheme. Use $\varepsilon$-thickening for smooth integration when needed.
 
 ---
 
@@ -148,15 +148,15 @@ Plain language summary: radial hits, time delay, constant per-wavefront amplitud
 
 Premise: single-hit information is sparse. At an instant, a receiver learns only (i) the net magnitude of the push and (ii) an unoriented line of action through its current position. The $\mathbb{U}_{\text{now}}$ universe-state perspective can include the full source-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer cannot infer that hidden ledger from a single hit.
 
-- Emission ledger (microstate): the set of tuples $(t_0,\mathbf{s}_j(t_0),\mathbf{v}_j(t_0),q_j)$ over all sources $j$ that causally affect the receiver.
+- Emission ledger (microstate): the set of tuples $(T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),\mathbf V_j(T_{\mathrm{em}}),q_j)$ over all sources $j$ that causally affect the receiver.
 - Observational map: ledgers map to histories of hits $\{A(t_k),L(t_k)\}$ across one or more receivers and over time.
 - Observational equivalence: two ledgers are equivalent if they induce indistinguishable hit histories at the chosen resolution (including mollifier width $\eta$, temporal sampling, and receiver geometry).
 
 
 - Coarse-grained PDE observables (Method 1):
-  - Number density $n(\mathbf{x}, t)$: count-per-volume of architrinos.
-  - Polarity density $\rho(\mathbf{x}, t)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
-  - Energy density $\mathcal{E}(\mathbf{x}, t)$: local kinetic + potential energy density for validation and conservation checks.
+  - Number density $n(\mathbf X,T)$: count-per-volume of architrinos.
+  - Polarity density $\rho(\mathbf X,T)$: net $+\epsilon-\epsilon$ per unit volume; natural source term in continuum PDE variants.
+  - Energy density $\mathcal{E}(\mathbf X,T)$: local kinetic + potential energy density for validation and conservation checks.
   - Use: these fields are the natural inputs/targets for grid-based PDE runs and for validating event-driven simulations in aggregate.
 
 Observability axioms:

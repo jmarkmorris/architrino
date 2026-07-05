@@ -135,12 +135,12 @@ This is a ledger identity target, not yet a derived equation of state. It says w
 
 The strong claim is that this material scale ledger should also project into the effective spatial-compliance ledger used by the metric description. If $\gamma_{ij}^{\mathrm{eff}}$ is the observer-level spatial compliance metric and $h_{ij}$ is the fixed Euclidean spatial metric, the corresponding isotropic scale readout is
 $$
-\mathcal{S}_{\mathrm{metric}}(\Omega,t)
+\mathcal{S}_{\mathrm{metric}}(\Omega,t_{\mathrm{eff}})
 =
 \left\langle
 \frac{1}{6}
 \ln
-\frac{\det\gamma_{ij}^{\mathrm{eff}}(\mathbf{x},t)}
+\frac{\det\gamma_{ij}^{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})}
 {\det h_{ij}}
 \right\rangle_{\Omega}
 $$
@@ -708,9 +708,9 @@ This point sharpens the role of the horizon interface. The interface is not just
 The strong-field closure should therefore be posed as a Noether sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. A schematic horizon-interface condition has the form
 $$
 F_H\!\left[
-\rho_{\text{NS}}(\mathbf{x},t),
-\Sigma_{\text{medium}}(\mathbf{x},t),
-\mathbf{u}_{\text{medium}}(\mathbf{x},t),
+\rho_{\text{NS}}(\mathbf X,T),
+\Sigma_{\text{sea}}(\mathbf X,T),
+\mathbf u_{\text{sea}}(\mathbf X,T),
 \{\Lambda_{\text{NS}}\};
 \partial\Omega
 \right]
@@ -721,7 +721,7 @@ $$
 
 Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
-The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](./singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether sea ledger and maximum-curvature closure must not become arbitrary.
+The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](./singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf X,T)$, $\Sigma_{\text{sea}}(\mathbf X,T)$, and $\mathbf u_{\text{sea}}(\mathbf X,T)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether sea ledger and maximum-curvature closure must not become arbitrary.
 
 Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant or anisotropic-fluid source becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the external comparison, that requires apparent-horizon rather than static-horizon discipline, local/cosmological backreaction, and a mass split such as Misner-Sharp accounting so the compact-object contribution is not silently confused with the cosmological density term. In the local ontology, the same lesson translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the interface record used for exterior mass, redshift, and release-channel comparisons.
 
@@ -1017,11 +1017,11 @@ The clean constitutive chain is:
 
 This means black holes are candidate contributors to dark-energy phenomenology, not substitutes for the Noether sea ontology.
 
-The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether braid cadence distribution of the surrounding Noether sea. If $f_N(\nu,\mathbf{x},t)$ records the local distribution of Noether braid cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
+The equilibrium-transport version of this claim is more specific. Strong-field recycling may act as a source term for the Noether braid cadence distribution of the surrounding Noether sea. If $f_N(\nu,\mathbf X,T)$ records the local distribution of Noether braid cadence states with $E_N=h\nu_N$, then a black-hole contribution appears as $S_{\mathrm{BH}}$ in a medium equation of the form
 
 $$
-\partial_t f_N
-+\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
+\partial_T f_N
++\nabla_{\mathbf X}\cdot(\mathbf u_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
 S_{\mathrm{BH}}

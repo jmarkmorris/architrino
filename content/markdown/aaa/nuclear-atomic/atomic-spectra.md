@@ -1,16 +1,18 @@
 # Atomic Spectra
 
-This chapter records the working $\mathbb{A}\mathbb{A}\mathbb{A}$ picture of atomic spectra as resonance structure in the Noether sea rather than as a purely abstract orbital postulate. The immediate goal is to identify which spectral constants and redshift effects should be read as medium-sensitive resonance data.
+This chapter records the working $\mathbb{A}\mathbb{A}\mathbb{A}$ picture of atomic spectra as resonance structure in the Noether sea rather than as a purely abstract orbital postulate. A spectral line is treated as a record of an assembly transition, a photon-channel event, and a local clock/rate conversion. The immediate goal is to identify which spectral constants and redshift effects should be read as medium-sensitive resonance data.
 
 It should be read alongside [Atomic Structure](atomic-structure.md), [Electron](../assemblies/fermions/electron.md), [Condensed Matter](condensed-matter.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md), since the spectral shifts proposed here depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
 
-The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation.
+The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation. The discipline is to keep the direction of explanation straight: recover the familiar orbital and spectral labels from the assembly and Noether sea record, rather than using those labels as if they were already the substrate mechanism.
 
 Spin-sensitive spectral structure is downstream of the angular-momentum proof program. This chapter may use observer-level labels such as fine structure, spin-orbit structure, Zeeman splitting, and hyperfine splitting as recovery targets, but those labels must inherit the single-assembly angular-momentum ledger, ordered-frame spinor closure, and measurement-response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). They are not independent derivations of spin.
 
 ## Atomic Orbitals as Lattice Resonances
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
+
+The simple picture is that an electron assembly does not orbit an isolated point nucleus in empty space. It settles into stable envelope basins shaped by the proton source envelope, the surrounding Noether sea state, and the record-facing clock/rate conversion. The standard orbital labels are kept because they organize the observed spectra, but they are recovery labels for those basins.
 
 The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether braid ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
 
@@ -24,7 +26,7 @@ $$
 \text{observer-level labels }(n,\ell,m)
 $$
 
-The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether braid ledgers have already been derived.
+The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether braid ledgers have already been derived. The label is the observer-level tag on a recovered basin; it is not the cause of the basin.
 
 The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
 
@@ -72,7 +74,9 @@ $$
 
 In the standard Schrödinger calculation, the second condition is enforced by terminating the radial power series into the associated Laguerre family; that is the mathematical source of discrete principal labels in the ideal Coulomb problem. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an input postulate: the same hydrogen spectral channel must first supply the effective central envelope, its non-separable residual, and the radial energy functional from the electron branch, proton source envelope, and local Noether sea record.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, the normalized density $n(\mathbf X,T)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$, and the local clock/rate response encoded by $\Gamma_N(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
+
+That separation matters because spectra are one of the main ways observers infer the wider cosmos. A line frequency can change because the emitting assembly differs, because the local Noether sea and clock/rate conversion differ, because the photon path changes the received channel, or because the receiver's own clock comparison changes. A spectral model that merges those effects into one fitted number has lost the implementation.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
 

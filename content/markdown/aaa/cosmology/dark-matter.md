@@ -18,7 +18,7 @@ The historical route through spiral-galaxy rotation curves should not make those
 
 ### The Noether Sea as Gravitational Medium
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is a dense coupled population of neutral Noether braid assemblies occupying the fixed Euclidean void. In the nested shell case, each Noether braid consists of three nested electrino-positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$ and normalized density $n(\mathbf{x},t)$ alter the Noether sea delay factor $\chi_{\text{sea}}$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is a dense coupled population of neutral Noether braid assemblies occupying the fixed Euclidean void. In the nested shell case, each Noether braid consists of three nested electrino-positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$ and normalized density $n(\mathbf X,T)$ alter the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
 
 Massive composite assemblies (protons, atoms, stars) are nested shell braid configurations with axial layers; they locally compress the Noether sea, increasing $\rho_{\text{NS}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to Noether sea compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
 
@@ -36,23 +36,37 @@ Two substrate-level mechanisms can satisfy these conditions, either separately o
 Strong gravitational lensing is a high-value dark-sector constraint, but it is an inverse problem rather than a direct image of dark matter. In the standard thin-lens comparison language, source-plane and image-plane positions satisfy
 
 $$
-\mathbf{y}
+x_{\mathrm{src,eff}}^i
 =
-\mathbf{x}
+x_{\mathrm{img,eff}}^i
 -
-\nabla\psi(\mathbf{x}),
+\nabla_{\mathrm{eff}}^i\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i),
 \qquad
-\Delta\psi(\mathbf{x})=2\kappa(\mathbf{x})
+\Delta_{\mathrm{eff}}\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
 $$
 
-where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The local image distortion is encoded by the Jacobian
-
+where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units.
+The layer-explicit observer-chart version is
 $$
-A(\mathbf{x})
-\equiv
-\frac{\partial\mathbf{y}}{\partial\mathbf{x}}
+y_{\mathrm{eff}}^i
 =
-(1-\kappa)
+x_{\mathrm{eff}}^i
+-
+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i),
+\qquad
+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
+=
+2\kappa_{\mathrm{eff}}(x_{\mathrm{eff}}^i)
+$$
+
+The layer-explicit local image distortion is encoded by the Jacobian
+
+$$
+(A_{\mathrm{eff}})^i{}_j(x_{\mathrm{eff}}^k)
+\equiv
+\frac{\partial y_{\mathrm{eff}}^i}{\partial x_{\mathrm{eff}}^j}
+=
+(1-\kappa_{\mathrm{eff}})
 \begin{pmatrix}
 1-g_1 & -g_2\\
 -g_2 & 1+g_1
@@ -64,15 +78,15 @@ where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ 
 $$
 T_{ij}
 =
-A(\mathbf{x}_j)^{-1}A(\mathbf{x}_i)
+A_{\mathrm{eff}}(x_{\mathrm{eff},j}^k)^{-1}A_{\mathrm{eff}}(x_{\mathrm{eff},i}^k)
 $$
 
-This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(\mathbf{x})$ be its local Jacobian, and let
+This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(x_{\mathrm{eff}}^i)$ be its local Jacobian, and let
 
 $$
 T_{ij}^{\theta}
 =
-A_\theta(\mathbf{x}_j)^{-1}A_\theta(\mathbf{x}_i)
+A_\theta(x_{\mathrm{eff},j}^i)^{-1}A_\theta(x_{\mathrm{eff},i}^i)
 $$
 
 The data-supported local part of the lensing comparison can then be recorded as
@@ -88,14 +102,14 @@ $$
 
 where $C_{ij}$ is the covariance model for the measured image-to-image transformation. This residual tests what the multiple-image data constrain before a global mass profile is imposed.
 
-The remaining global map should be labeled by how much of its convergence field is supported near the observed images. If the image centers are $\mathbf{x}_i$ with declared support widths $\sigma_i$, define
+The remaining global map should be labeled by how much of its convergence field is supported near the observed images. If the image centers are $x_{\mathrm{eff},i}^i$ with declared support widths $\sigma_i$, define
 
 $$
-w_{\mathrm{img}}(\mathbf{x})
+w_{\mathrm{img}}(x_{\mathrm{eff}}^i)
 =
 \max_i
 \exp\!\left(
--\frac{\|\mathbf{x}-\mathbf{x}_i\|^2}{2\sigma_i^2}
+-\frac{\|x_{\mathrm{eff}}^i-x_{\mathrm{eff},i}^i\|^2}{2\sigma_i^2}
 \right)
 $$
 
@@ -105,12 +119,12 @@ $$
 M_{\mathrm{supported}}
 =
 \int_\Omega
-w_{\mathrm{img}}(\mathbf{x})\,\kappa_\theta(\mathbf{x})\,d^2x,
+w_{\mathrm{img}}(x_{\mathrm{eff}}^i)\,\kappa_\theta(x_{\mathrm{eff}}^i)\,d^2x_{\mathrm{eff}},
 \qquad
 M_{\mathrm{extrapolated}}
 =
 \int_\Omega
-\left(1-w_{\mathrm{img}}(\mathbf{x})\right)\kappa_\theta(\mathbf{x})\,d^2x
+\left(1-w_{\mathrm{img}}(x_{\mathrm{eff}}^i)\right)\kappa_\theta(x_{\mathrm{eff}}^i)\,d^2x_{\mathrm{eff}}
 $$
 
 These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether sea state record.
@@ -126,7 +140,7 @@ CMB lensing supplies a different but equally important dark-sector constraint. I
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the conservative requirement is therefore two-stage:
 
 1. recover the CMB-lensing observable $C_L^{\phi\phi}$ from the same CMB history used for TT/TE/EE, damping, and blackbody preservation;
-2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, and medium-response variables used by the structure-formation module.
+2. project that lensing record into the same neutral-assembly density $\rho_A$, Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, and medium-response variables used by the structure-formation module.
 
 A dark-matter interpretation fails if it treats CMB lensing as direct proof of one substrate while using a different Noether sea state to fit galaxy clustering, weak lensing, or cluster offsets.
 
@@ -363,10 +377,10 @@ These difficulties motivate retaining Candidate A as the primary dark-matter sub
 | Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
 | Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
 
-**Coupled equations (schematic).** Let $\rho_A(\mathbf{x},t)$ denote the neutral-assembly density and $\rho_{\text{NS}}(\mathbf{x},t)$ the Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
+**Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
 
 $$
-\nabla^2 \Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\nabla\Phi,\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}(\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
 $$
 
 where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in the low-acceleration limit, $G_{\mathrm{eff}}$ stiffens and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
@@ -453,7 +467,7 @@ $$
 1-\zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
 $$
 
-Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{NS}}(\mathbf{x},t)$, $n(\mathbf{x},t)$, and $\chi_{\text{sea}}(\mathbf{x},t)$:
+Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, and $\chi_{\text{sea}}(\mathbf X,T)$:
 
 $$
 \zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
@@ -461,9 +475,9 @@ $$
 Z_{\mathrm{cond}}\!\left(
 \Pi_E\theta_{\mathrm{sea}},
 \rho_A,
-\rho_{\text{NS}}(\mathbf{x},t),
-n(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T),
+n(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T)
 \right),
 \qquad
 \zeta_{\mathrm{norm}}^{\mathrm{cmp}}(E)
@@ -471,9 +485,9 @@ n(\mathbf{x},t),
 Z_{\mathrm{norm}}\!\left(
 \Pi_E\theta_{\mathrm{sea}},
 \rho_A,
-\rho_{\text{NS}}(\mathbf{x},t),
-n(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T),
+n(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T)
 \right)
 $$
 
@@ -551,9 +565,9 @@ f_J
 \mathcal{J}_{\mathrm{dark}}\!\left(
 \Pi_{\mathrm{cos}}\theta_{\mathrm{sea}},
 \rho_A,
-\rho_{\text{NS}}(\mathbf{x},t),
-n(\mathbf{x},t),
-\chi_{\text{sea}}(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T),
+n(\mathbf X,T),
+\chi_{\text{sea}}(\mathbf X,T)
 \right)
 $$
 

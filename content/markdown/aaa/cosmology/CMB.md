@@ -290,13 +290,13 @@ Y_p,
 $$
 where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
 
-The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t)$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
+The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t_{\mathrm{eff}})$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
 $$
 \mathcal{R}_{\gamma,\mathrm{CMB}}^\theta
 =
 \frac{
 \left|
-u_\gamma^\theta(t_{\mathrm{obs}})
+u_\gamma^\theta(t_{\mathrm{eff,obs}})
 -
 u_{\gamma,\mathrm{Planck}}(T_0)
 \right|
@@ -310,7 +310,7 @@ B_{\mathrm{therm}}^\theta
 -
 B_{\mathrm{loss}}^\theta
 -
-\int \mathcal{F}_\gamma^\theta\,dA\,dt
+\int \mathcal{F}_\gamma^\theta\,dA_{\mathrm{eff}}\,dt_{\mathrm{eff}}
 \right|
 }{\epsilon_E}
 $$
@@ -369,20 +369,20 @@ The blackbody claim should be carried as a theorem target, not as a source-story
 $$
 \mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}(\nu)
 =
-\int_{t_{\text{src}}}^{t_{\text{dec}}}
-\tau_{\mathrm{th}}^{-1}(\nu,t)\,dt
+\int_{t_{\mathrm{eff,src}}}^{t_{\mathrm{eff,dec}}}
+\tau_{\mathrm{th}}^{-1}(\nu,t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 
 where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
 
-The same theorem target has a line-of-sight version for steady-state or distributed-source branches. An effective microwave photosphere is not a new ontological origin surface; it is the comparison locus where the declared photon-channel transport becomes optically thin enough that photons stop being repeatedly thermalized along a given direction. For observer position $\mathbf{x}_{\mathrm{obs}}$, sky direction $\hat{\mathbf{n}}$, Euclidean path length $\ell$, and path-history time $t_\ell$ supplied by the same transport record, define
+The same theorem target has a line-of-sight version for steady-state or distributed-source branches. An effective microwave photosphere is not a new ontological origin surface; it is the comparison locus where the declared photon-channel transport becomes optically thin enough that photons stop being repeatedly thermalized along a given direction. For observer position $\mathbf X_{\mathrm{obs}}$, sky direction $\hat{\mathbf n}$, Euclidean path length $\ell$, and path-history time $T_\ell$ supplied by the same transport record, define
 
 $$
 \tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)
 =
 \int_0^D
 \chi_{\mathrm{op}}^\theta
-\left(\nu,\mathbf{x}_{\mathrm{obs}}+\ell\hat{\mathbf{n}},t_\ell\right)
+\left(\nu,\mathbf X_{\mathrm{obs}}+\ell\hat{\mathbf n},T_\ell\right)
 \,d\ell,
 \qquad
 D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})
@@ -695,7 +695,7 @@ where $\mathcal{S}_{\gamma}$ is the photon-channel source and release record, $\
 CMB frequency scaling to present observers is interpreted through medium evolution plus environment-dependent clock-rate comparison, consistent with the expansion-mechanism framing:
 
 $$
-\frac{d\tau}{dt}=F\!\left(\mathbf{v},\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\chi_{\text{sea}}(\mathbf{x},t),\Phi_{\text{eff}},\text{clock geometry}\right)
+\frac{d\tau}{dt_{\mathrm{eff}}}=F\!\left(\mathbf V,\rho_{\text{NS}}(\mathbf X,T),n(\mathbf X,T),\chi_{\text{sea}}(\mathbf X,T),\Phi_{\text{eff}},\text{clock geometry}\right)
 $$
 
 So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.

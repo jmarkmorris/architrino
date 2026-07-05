@@ -45,11 +45,11 @@ For a QFT-like reconstruction claim, the campaign must also state the presentati
 
 The state history is
 $$
-S_\eta(t)
+S_\eta(T)
 =
-\{(\mathbf{x}_i(t),\mathbf{v}_i(t),q_i)\}_{i=1}^{N},
+\{(\mathbf X_i(T),\mathbf V_i(T),q_i)\}_{i=1}^{N},
 \qquad
-S_{\eta,t}(\theta)=S_\eta(t+\theta),\quad \theta\in[-h,0]
+S_{\eta,T}(\theta)=S_\eta(T+\theta),\quad \theta\in[-h,0]
 $$
 A Tier 1 packet must state whether this history is evaluated in $C^1([-h,0])$, $W^{1,\infty}([-h,0])$, or a stricter history class. A missing history class is an incomplete artifact, because the delayed source-state evaluation cannot be audited without it.
 
@@ -59,7 +59,7 @@ $$
 $$
 where $\Omega_h\subset\mathbb{R}^3$ is the Euclidean-void computational domain, $\{x_k\}$ are the fixed $\mathbb{U}_{\text{now}}$ sample points, $\Theta_h\subset[-h,0]$ is the stored path-history mesh, $\Delta h$ is the history resolution, and $\mathsf{bc}$ records boundary conditions. The interpolation operator $I_h^q$ is part of the packet; delayed source states cannot be reconstructed by an implicit or undocumented lookup rule.
 
-The path-history part of $\mathcal{G}_h$ and $\Pi_{\mathbb{U}_{\text{now}}}$ should distinguish authoritative kinematic segments from attached audit rows. Authoritative segments reconstruct $\mathbf{x}_i(t)$ and $\mathbf{v}_i(t)$ over declared intervals with error bounds. Causal-root rows, delayed source-state rows, assembly-membership intervals, reaction-event references, and display projections attach to those segments by identifier and time range. Chunking, compression, and broad-phase indices are allowed as storage or acceleration layers; they do not replace authoritative replay when a promoted claim depends on provenance.
+The path-history part of $\mathcal{G}_h$ and $\Pi_{\mathbb{U}_{\text{now}}}$ should distinguish authoritative kinematic segments from attached audit rows. Authoritative segments reconstruct $\mathbf X_i(T)$ and $\mathbf V_i(T)$ over declared intervals with error bounds. Causal-root rows, delayed source-state rows, assembly-membership intervals, reaction-event references, and display projections attach to those segments by identifier and time range. Chunking, compression, and broad-phase indices are allowed as storage or acceleration layers; they do not replace authoritative replay when a promoted claim depends on provenance.
 
 ## Executable Diagnostic Contract
 

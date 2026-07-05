@@ -1,5 +1,5 @@
 export const EQUATION_MAP_SCHEMA = "equation-map-document.v1";
-export const DEFAULT_EQUATION_MAP_DOCUMENT_ID = "eq-01-causal-wake-master-equation";
+export const DEFAULT_EQUATION_MAP_DOCUMENT_ID = "eq-00-coordinate-layer-key";
 export const DEFAULT_BACKGROUND_ID = "architrinoPurple";
 export const DEFAULT_SECTION_LINE_PLACEMENT = "below";
 export const DEFAULT_EQUATION_SCALE = "medium";
@@ -250,6 +250,76 @@ function overlay(
 
 const equationMapSeedDocuments = [
   {
+    id: "eq-00-coordinate-layer-key",
+    title: "Coordinate Layer Key",
+    subject: "AAA native ledgers",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "accepted-source-reference",
+    formulaTeX:
+      "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)\\quad \\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)\\\\ \\mathrm{effective}:\\ (t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i;\\ c_{\\mathrm{eff}},c_0)\\\\ \\mathrm{imported}:\\ (x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}})\\Rightarrow\\mathrm{translated\\ form}",
+    anchors: [
+      anchor("nativeLayer", "native coordinates", "absolute time Euclidean void primitive wake speed"),
+      anchor("layerMap", "coordinate-layer map", "native variables to effective observer chart"),
+      anchor("effectiveLayer", "effective observer coordinates", "observer chart effective speed measured speed"),
+      anchor("comparisonLayer", "imported comparison coordinates", "GR QM Lambda-CDM imported comparison translated form"),
+    ],
+    formulaParts: [
+      mathPart("nativeLayer", "\\mathrm{native}:\\ (T,\\mathbf X;\\ c_f)", "nativeLayer"),
+      textPart("native-map-space", "  "),
+      mathPart(
+        "layerMap",
+        "\\chi_{\\mathrm{eff}}:(T,\\mathbf X,\\mathcal N_{\\mathrm{sea}})\\mapsto(t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i)",
+        "layerMap"
+      ),
+      breakPart("effective-layer-break"),
+      mathPart(
+        "effectiveLayer",
+        "\\mathrm{effective}:\\ (t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i;\\ c_{\\mathrm{eff}},c_0)",
+        "effectiveLayer"
+      ),
+      breakPart("comparison-layer-break"),
+      mathPart(
+        "comparisonLayer",
+        "\\mathrm{imported}:\\ (x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}})\\Rightarrow\\mathrm{translated\\ form}",
+        "comparisonLayer"
+      ),
+    ],
+    overlays: [
+      overlay(
+        "native-coordinates",
+        "Native coordinates",
+        "nativeLayer",
+        "Use T for absolute time and X for position in the Euclidean void. The primitive wake speed belongs to this native layer.",
+        "T,\\mathbf X,c_f",
+        { x: 5, y: 8, width: 31, line: "above" }
+      ),
+      overlay(
+        "layer-map",
+        "Layer map",
+        "layerMap",
+        "This map marks the handoff from native variables into an effective observer chart. It must be declared before symbols are reused.",
+        "\\chi_{\\mathrm{eff}}",
+        { x: 35, y: 8, width: 31, line: "above" }
+      ),
+      overlay(
+        "effective-coordinates",
+        "Effective observer",
+        "effectiveLayer",
+        "Use effective observer time and spatial chart coordinates only after that chart has been declared. Same units do not mean same variable.",
+        "t_{\\mathrm{eff}},x_{\\mathrm{eff}}^i,c_{\\mathrm{eff}},c_0",
+        { x: 66, y: 8, width: 29, line: "above" }
+      ),
+      overlay(
+        "comparison-forms",
+        "Imported comparison",
+        "comparisonLayer",
+        "GR, QM, and Lambda-CDM variables can appear for recognition and benchmark matching. They are imported comparison variables until translated into the working layer.",
+        "x^\\mu_{\\mathrm{GR}},x^a_{\\mathrm{QM}},a_{\\Lambda\\mathrm{CDM}}",
+        { x: 33, y: 68, width: 34, line: "below" }
+      ),
+    ],
+  },
+  {
     id: "eq-01-causal-wake-master-equation",
     title: "Causal Wake Per-Hit Law",
     subject: "AAA native ledgers",
@@ -497,7 +567,7 @@ const equationMapSeedDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
+      "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4\\\\ p=\\gamma_{\\mathrm{eff}}M_0v_{\\mathrm{eff}}\\Rightarrow E^2=\\gamma_{\\mathrm{eff}}^2M_0^2c_{\\mathrm{eff}}^4\\\\ M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
     anchors: [
       anchor("energy", "energy", "observer exposed energy"),
       anchor("momentum", "momentum term", "momentum response"),
@@ -511,10 +581,16 @@ const equationMapSeedDocuments = [
       mathPart("effectiveSpeed", "c_{\\mathrm{eff}}^2", "effectiveSpeed"),
       textPart("plus", " + "),
       mathPart("restMass", "M_0^2c_{\\mathrm{eff}}^4", "restMass"),
+      breakPart("momentum-substitution-break"),
+      mathPart(
+        "momentumSubstitution",
+        "p=\\gamma_{\\mathrm{eff}}M_0v_{\\mathrm{eff}}\\Rightarrow E^2=\\gamma_{\\mathrm{eff}}^2M_0^2c_{\\mathrm{eff}}^4",
+        ""
+      ),
       breakPart("rest-mass-solve-break"),
       mathPart(
         "restMassSolve",
-        "M_0=\\frac{\\sqrt{E^2-p^2c_{\\mathrm{eff}}^2}}{c_{\\mathrm{eff}}^2}",
+        "M_0=\\frac{E}{\\gamma_{\\mathrm{eff}}c_{\\mathrm{eff}}^2}",
         ""
       ),
     ],
@@ -531,7 +607,7 @@ const equationMapSeedDocuments = [
         "motion-response",
         "Motion response",
         "momentum",
-        "p is the momentum term. From the displayed energy relation alone, M₀ solves to the square-root expression below. If a branch also supplies p = effective γ times M₀ times effective v, the same relation reduces to E = effective γ times M₀ times effective c with exponent 2.",
+        "p is the momentum term. To get the γ form, first substitute p = effective γ times M₀ times effective v. The γ identity then collapses the motion and rest terms into one total energy term.",
         "p^2c_{\\mathrm{eff}}^2=\\gamma_{\\mathrm{eff}}^2M_0^2v_{\\mathrm{eff}}^2c_{\\mathrm{eff}}^2",
         { x: 26, y: 8, width: 25, line: "above" }
       ),
@@ -1168,7 +1244,7 @@ const equationMapSeedDocuments = [
     subject: "Cosmology and astrophysics",
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
-    formulaTeX: "ds_{\\mathrm{FRW,eff}}^2=-c_0^2d\\tau_c^2+a_{\\mathrm{eff}}^2(t_{\\mathrm{eff}})d\\Sigma_k^2",
+    formulaTeX: "ds_{\\mathrm{FRW,eff}}^2=a_{\\mathrm{eff}}^2(t_{\\mathrm{eff}})d\\Sigma_k^2-c_0^2d\\tau_c^2",
     anchors: [
       anchor("frwMetric", "FRW metric", "effective cosmology metric"),
       anchor("cosmicClock", "cosmic clock", "cosmic proper time"),
@@ -1178,10 +1254,10 @@ const equationMapSeedDocuments = [
     formulaParts: [
       mathPart("frwMetric", "ds_{\\mathrm{FRW,eff}}^2", "frwMetric"),
       textPart("eq", " = "),
-      mathPart("cosmicClock", "-c_0^2d\\tau_c^2", "cosmicClock"),
-      textPart("plus", " + "),
       mathPart("scaleFactor", "a_{\\mathrm{eff}}^2(t_{\\mathrm{eff}})", "scaleFactor"),
       mathPart("spatialSlice", "d\\Sigma_k^2", "spatialSlice"),
+      textPart("minus", " - "),
+      mathPart("cosmicClock", "c_0^2d\\tau_c^2", "cosmicClock"),
     ],
     overlays: [
       overlay(
@@ -1198,7 +1274,7 @@ const equationMapSeedDocuments = [
         "cosmicClock",
         "This is the time part of the metric. It marks the clock used by a smooth cosmic observer. In AAA, absolute time remains steady; this term is the cosmology clock readout.",
         "d\\tau_c",
-        { x: 27, y: 8, width: 22, line: "above" }
+        { x: 75, y: 8, width: 22, line: "above" }
       ),
       overlay(
         "scale-factor-row",
@@ -1206,7 +1282,7 @@ const equationMapSeedDocuments = [
         "scaleFactor",
         "The effective scale factor is the ruler that tells how cosmic distances compare over effective observer time. In AAA, the same behavior should be read as Noether sea expansion or response history, not empty space stretching by itself.",
         "a_{\\mathrm{eff}}(t_{\\mathrm{eff}})",
-        { x: 51, y: 8, width: 22, line: "above", tone: "geometry" }
+        { x: 27, y: 8, width: 22, line: "above", tone: "geometry" }
       ),
       overlay(
         "spatial-curvature-row",
@@ -1214,7 +1290,7 @@ const equationMapSeedDocuments = [
         "spatialSlice",
         "This term is the spatial geometry at one cosmic time. k labels whether the idealized slice is flat, closed, or open. In AAA, it is an effective large-scale spatial-compliance ledger.",
         "d\\Sigma_k^2",
-        { x: 75, y: 8, width: 22, line: "above" }
+        { x: 51, y: 8, width: 22, line: "above" }
       ),
     ],
   },

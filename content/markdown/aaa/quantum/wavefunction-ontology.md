@@ -114,32 +114,32 @@ The first term tests the effective operator or channel residual against the loop
 
 Born probability is only half of the effective wavefunction contract. Standard Schrödinger evolution also carries a local conservation law. In standard comparison form, one writes
 $$
-\rho_\psi(\mathbf{x},t)=|\psi(\mathbf{x},t)|^2,
+\rho_{\psi,\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})=|\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})|^2,
 \qquad
-\mathbf{J}_\psi(\mathbf{x},t)
+\mathbf{J}_{\psi,\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 =
 \frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
-\left(\psi^*\nabla\psi-\psi\nabla\psi^*\right)
+\left(\psi_{\mathrm{std}}^*\nabla_{\mathrm{std}}\psi_{\mathrm{std}}-\psi_{\mathrm{std}}\nabla_{\mathrm{std}}\psi_{\mathrm{std}}^*\right)
 $$
 and
 $$
-\partial_t\rho_\psi+\nabla\cdot\mathbf{J}_\psi=0
+\partial_{t_{\mathrm{std}}}\rho_{\psi,\mathrm{std}}+\nabla_{\mathrm{std}}\cdot\mathbf{J}_{\psi,\mathrm{std}}=0
 $$
 For an effective single-assembly chart with mass parameter $m_{\mathrm{eff}}$ and action constant $\hbar_{\mathrm{eff}}$, the layer-explicit target is
 $$
 \rho_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =|\psi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})|^2,
 \qquad
-\mathbf{J}_{\psi,\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
+J_{\psi,\mathrm{eff}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
 =
 \frac{\hbar_{\mathrm{eff}}}{2m_{\mathrm{eff}}i}
-\left(\psi_{\mathrm{eff}}^*\nabla_{\mathrm{eff}}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\nabla_{\mathrm{eff}}\psi_{\mathrm{eff}}^*\right),
+\gamma_{\mathrm{eff}}^{ij}\left(\psi_{\mathrm{eff}}^*\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}-\psi_{\mathrm{eff}}\partial_{x_{\mathrm{eff}}^j}\psi_{\mathrm{eff}}^*\right),
 $$
 $$
 \partial_{t_{\mathrm{eff}}}\rho_{\psi,\mathrm{eff}}
-+\nabla_{\mathrm{eff}}\cdot\mathbf{J}_{\psi,\mathrm{eff}}=0.
++\partial_{x_{\mathrm{eff}}^i}J_{\psi,\mathrm{eff}}^i=0.
 $$
-This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\mathbf{J}_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
+This equation should be read as an effective continuity target, not as a claim that probability is a physical fluid. Let $\rho_{\mathrm{rec}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $J_{\mathrm{rec}}^i(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ be the position density and record-facing flux obtained by pushing the same finite-window basin measure $\mu_{*,T}$ through the deterministic assembly flow and the declared position projection. A Born-current recovery should report
 $$
 \mathcal{R}_{\rho J}(W,\mathcal T_{\mathrm{eff}};\theta)
 =

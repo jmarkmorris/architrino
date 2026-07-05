@@ -83,7 +83,7 @@ In this framework, the candidate substrate-level quantities are:
 ### Category C: Assembly Geometry (Emergent but Calculable)
 - **Nested shell braid radius ratios** (inner/middle/outer scales)
 - **Maximum curvature binary radius** $r_{\text{max-curv}}$ (where $v \gg c_f$)
-- **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf{x},t)$)
+- **Reference Noether braid density** $\rho_{\text{NS},0}$ (the normalization scale for $n(\mathbf X,T)$)
 
 **Everything else** (masses, coupling constants, cosmological parameters) should be **derivable** from these via:
 - Self-hit dynamics (non-Markovian evolution)
@@ -152,9 +152,9 @@ The speed of light $c$ is **not fundamental**. It is the low-gradient operationa
 
 **Key relation:**
 $$
-c_\gamma(\mathbf{x},t)=\frac{c_f}{\chi_\gamma(\mathbf{x},t)},
+c_\gamma(\mathbf X,T)=\frac{c_f}{\chi_\gamma(\mathbf X,T)},
 \qquad
-\chi_\gamma(\mathbf{x},t)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf{x},t),n(\mathbf{x},t),\text{Noether sea state}\right)
+\chi_\gamma(\mathbf X,T)=f_\gamma\!\left(\rho_{\text{NS}}(\mathbf X,T),n(\mathbf X,T),\text{Noether sea state}\right)
 $$
 
 In the low-energy limit (flat spacetime, weak Noether sea gradients):

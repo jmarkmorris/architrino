@@ -1,23 +1,31 @@
 # Quantum Summary
 
-This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It gathers the main observer-level replacements for standard quantum ontology while the branch continues to be refined.
+This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. The standard quantum formalism remains the comparison target: it predicts spectra, interference, statistics, and measurement frequencies with enormous success. The claim here is narrower and deeper. The formal quantum state is treated as an effective record-facing summary of deterministic assembly dynamics, causal wakes, basin weights, and measurement channels.
+
+Read this hub as a map of what must be recovered. The branch keeps ordinary quantum practice intact at the observer level, but it relocates the physical implementation below that practice: an assembly has provenance, a wake supplies distributed causal structure, a detector is another assembly network, and a probability is only valid after a declared record channel earns it.
 
 ## Core Quantum Spine
 
-- [pilot-wave-character.md](../philosophy-history/theory-bridges/pilot-wave-character.md): synthesis page for the effective wave picture, metastability, and substrate interpretation.
-- [measurement-ontology.md](./measurement-ontology.md): what a measurement event is at the ontological level.
-- [measurement-problem-and-collapse.md](../philosophy-history/theory-bridges/measurement-problem-and-collapse.md): finite-time separatrix-crossing replacement for collapse.
-- [wavefunction-ontology.md](./wavefunction-ontology.md): wavefunction as effective basin-weight bookkeeping.
-- [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection.
+The core spine answers one reader question: when the quantum textbook says "state," "superposition," "collapse," "particle," or "statistics," what is the physical object doing in assembly language?
+
+- [pilot-wave-character.md](../philosophy-history/theory-bridges/pilot-wave-character.md): how the effective wave picture, metastability, and substrate interpretation fit together.
+- [measurement-ontology.md](./measurement-ontology.md): what a measurement event is once the apparatus is treated as physical.
+- [measurement-problem-and-collapse.md](../philosophy-history/theory-bridges/measurement-problem-and-collapse.md): collapse re-read as finite-time separatrix crossing and record formation.
+- [wavefunction-ontology.md](./wavefunction-ontology.md): the wavefunction as effective basin-weight bookkeeping, not a free-standing object.
+- [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md): metastability, separatrices, and branch selection before a record forms.
 - [fermi-dirac-and-bose-einstein-statistics.md](./fermi-dirac-and-bose-einstein-statistics.md): Fermi-Dirac and Bose-Einstein statistics as a nested shell braid geometry transition.
 
 ## Correlation and No-Go Interfaces
+
+The second spine protects the theory from easy mistakes. Bell constraints, spin measurements, and no-go results are not optional philosophy; they are the places where a deterministic causal account must recover the same operational correlations without smuggling in an observer-level probability rule.
 
 - [entanglement-nonlocality.md](../philosophy-history/theory-bridges/entanglement-nonlocality.md): pair-provenance account of nonlocal correlations, with Bell-level operational equivalence kept as a joint response-kernel closure target and black-hole connected geometry treated as a special horizon-interface case.
 - [bell-theorem.md](../philosophy-history/theory-bridges/bell-theorem.md): Bell constraints, the full singlet joint-law residual, and the causal-delay interpretation within the theory.
 - [reality-quantum-causality.md](./reality-quantum-causality.md): wider ontology and determinism framing for the quantum branch.
 
 ## Closure Ledgers
+
+The ledgers below name the recovery work that keeps the interpretation honest. Each ledger asks for one physical source of truth underneath the formal symbols, rather than one story for probabilities, another for records, and another for conservation.
 
 - **Born-rule basin-measure ledger:** [wavefunction-ontology.md](./wavefunction-ontology.md), [measurement-ontology.md](./measurement-ontology.md), [superposition-mechanism.md](../philosophy-history/theory-bridges/superposition-mechanism.md), and [pilot-wave-character.md](../philosophy-history/theory-bridges/pilot-wave-character.md) own the transfer-operator, invariant-measure, finite-time separatrix, and effective wave-equation targets.
 - **Same-measure conservation ledger:** [measurement-ontology.md](./measurement-ontology.md), [wavefunction-ontology.md](./wavefunction-ontology.md), and [Measurement Problem and Collapse](../philosophy-history/theory-bridges/measurement-problem-and-collapse.md) require quantum probabilities, thermodynamic summaries, record persistence, and event-ledger closure to be pushforwards of one retained deterministic provenance record. A measurement channel cannot use one ensemble for Born weights, another for heating or recoil, and another for the persisted record.

@@ -556,7 +556,7 @@ $$
 H^2 = \left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho + \frac{\Lambda}{3}
  - \frac{k}{a^2}
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The scale factor $a(t)$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The effective scale factor $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ summarizes large-scale evolution of the Noether sea’s density and energy content. Dark matter corresponds to additional, weakly-coupled architrino assemblies; $\Lambda$ reflects baseline energy of the Noether sea. Friedmann dynamics are effective equations for averaged assembly densities and their equation of state, not direct statements about the underlying Euclidean container.
 
 **What Still Works:** Lambda-CDM (Big Bang Cosmology) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -998,14 +998,14 @@ The main breakdown points are therefore specific: the characteristic speed is no
 
 **Key Equation:** Time-dependent Schrödinger equation:
 $$
-i\hbar \frac{\partial}{\partial t}\psi(\mathbf{x},t)=\hat H\psi(\mathbf{x},t)
+i\hbar \frac{\partial}{\partial t_{\mathrm{std}}}\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})=\hat H\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 $$
 
-For a single non-relativistic particle in a potential $V(\mathbf{x},t)$,
+For a single non-relativistic particle in a potential $V_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})$,
 $$
-i\hbar \frac{\partial}{\partial t}\psi(\mathbf{x},t)
+i\hbar \frac{\partial}{\partial t_{\mathrm{std}}}\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 =
-\left(-\frac{\hbar^2}{2m}\nabla^2+V(\mathbf{x},t)\right)\psi(\mathbf{x},t)
+\left(-\frac{\hbar^2}{2m}\nabla_{\mathrm{std}}^2+V_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})\right)\psi_{\mathrm{std}}(x_{\mathrm{std}}^i,t_{\mathrm{std}})
 $$
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Schrödinger evolution is an effective low-energy, low-velocity envelope law. It is not the substrate-level dynamics. It should emerge only in the non-relativistic, weak-field, fixed-particle-number regime, where the coarse-grained wake or assembly-state envelope reduces to a linear wavefunction description. Outside that regime, the underlying nonlinear, history-dependent architrino dynamics should generate relativistic corrections, particle-number-changing behavior, or medium-coupled departures.

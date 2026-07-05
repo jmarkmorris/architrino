@@ -51,7 +51,8 @@ $$
 \frac{16\pi G_{\text{eff}}}{(c_{\text{GW}}^{\mathrm{eff}})^4}\,T_{\mu\nu}^{\text{TT}},
 \qquad
 \Box_{c_{\text{GW}}^{\mathrm{eff}}}\equiv
--\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_t^2+\nabla^2
+-\frac{1}{(c_{\text{GW}}^{\mathrm{eff}})^2}\partial_{t_{\mathrm{eff}}}^2
++\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}
 $$
 
 *Derivation sketch:* If the effective field equations induced by the metric constitutive map exist in this regime, linearize them around the homogeneous background, then project onto the TT sector.
@@ -111,8 +112,8 @@ This is a forecast and comparison gate. It does not license a massive-graviton o
 For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether braid equilibrium packet,
 
 $$
-\partial_t f_N
-+\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
+\partial_T f_N
++\nabla_{\mathbf X}\cdot(\mathbf u_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
 S_{\mathrm{BH}}

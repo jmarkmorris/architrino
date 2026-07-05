@@ -4,6 +4,8 @@ This chapter gives the compact theorem-facing version of the gauge bridge. Gauge
 
 The page is deliberately stricter than the emergence narrative. It does not ask whether a larger symmetry package sounds attractive. It asks whether the effective gauge record can be recovered from one retained branch and medium state while every non-baseline channel remains absent.
 
+The reader-facing rule is direct: gauge symmetry is a recovery constraint on the record, not a new ontology for the void. The Standard Model gauge structure survives here only if it can be produced as effective bookkeeping over real assembly histories, with no extra observable channels introduced by the same move.
+
 Interface chapters:
 - Electroweak emergence narrative: [Gauge Structure Emergence](./gauge-structure-emergence.md)
 - Color $SU(3)$ algebra closure: [Color Charge SU3](fermions/color-charge-su3.md)
@@ -12,6 +14,8 @@ Interface chapters:
 ## Regularized Setting
 
 Work in the $\eta>0$ regularized regime, with coarse-grained fields obtained from the same kernel used in the master/effective-action chapters.
+
+This section starts in the effective layer on purpose. The symbols look like field theory because the benchmark is field-theoretic. The substrate claim is weaker and harder: those effective fields must be recoverable from regularized assembly, wake, and Noether sea records.
 
 Assume:
 - **(G1)** Existence of coarse-grained matter field $\Psi$ and finite-energy histories on bounded windows.

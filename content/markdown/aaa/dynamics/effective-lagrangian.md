@@ -765,7 +765,7 @@ S[\varphi]
 \left(
 \varphi_{\mathrm{eff}}^A,
 \partial_{t_{\mathrm{eff}}}\varphi_{\mathrm{eff}}^A,
-\nabla_{\mathbf x_{\mathrm{eff}}}\varphi_{\mathrm{eff}}^A,
+\partial_{x_{\mathrm{eff}}^i}\varphi_{\mathrm{eff}}^A,
 \ldots
 \right).
 $$

@@ -220,7 +220,7 @@ A distance improvement that raises the shared-state penalty or worsens $f\sigma_
 
 MOND-like comparison models often expose a numerical proximity between a galaxy acceleration scale and an effective Hubble scale. In this ontology that proximity is not a derivation. It becomes useful only when it is tested as a shared Noether sea projection connecting distance transfer, growth, and nonlinear dark-sector response.
 
-Let $a_\star(E)$ denote the observer-level acceleration transition extracted from environment class $E$, such as disc galaxies or clusters. Let $H_{\mathrm{eff}}^\theta(t)$ be the corrected redshift-transfer coefficient from the same Noether sea state record. A minimal coupling diagnostic is
+Let $a_\star(E)$ denote the observer-level acceleration transition extracted from environment class $E$, such as disc galaxies or clusters. Let $H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})$ be the corrected redshift-transfer coefficient from the same Noether sea state record. A minimal coupling diagnostic is
 
 $$
 \mathcal{R}_{aH}(\theta_{\mathrm{sea}})

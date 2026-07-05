@@ -77,7 +77,7 @@ Only after those well-posedness rows pass may the packet promote closed-cycle ac
 
 The group-velocity anisotropy entry uses the reduced centered covariance of the six-worldline state. With
 $$
-\mathbf{C}_{A_0}(t)=\frac{1}{6}\sum_{a\in A_0}\mathbf{s}_a(t)
+\mathbf{C}_{A_0}(T)=\frac{1}{6}\sum_{a\in A_0}\mathbf X_a(T)
 $$
 define
 $$
@@ -85,8 +85,8 @@ D^{ij}_{A_0}(\mathbf{V}_{\text{cm}})
 =
 \left\langle
 \sum_{a\in A_0}
-\left(s_a^i-C_{A_0}^i\right)
-\left(s_a^j-C_{A_0}^j\right)
+\left(X_a^i-C_{A_0}^i\right)
+\left(X_a^j-C_{A_0}^j\right)
 \right\rangle_{T_{\mathbf{k}}}
 $$
 $$
@@ -193,15 +193,15 @@ Tier 1 passes only if the same branch remains stable before any $\eta\to0^+$ ext
 
 The current fold-layer-locked compact fixture is a controlled negative result, not an accepted attractor and not a broad falsification of the $A_0$ program. The direct one-period runner can preserve the locked self-root keys in $\mathcal{R}_{\text{lock}}$ without solving the branch equations: state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure still fail. The scalar branch-native relation basis over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leaves a relative acceleration residual far above the Tier 1 tolerance, so the next allowed rerun must predeclare either a non-circular carrier correction $\mathbf{d}_\ell(t)$ or a richer branch-native interaction basis before residual fitting.
 
-For a declared period window $W=[t_0,t_0+T_{\mathbf{k}}]$, the corrected carrier has the form
+For a declared period window $W=[T_0,T_0+T_{\mathbf{k}}]$, the corrected carrier has the form
 $$
-\mathbf{x}_{a,\ell}^{\star}(t)
+\mathbf X_{a,\ell}^{\star}(T)
 =
-\mathbf{x}_{a,\ell}^{(0)}(t)+\mathbf{d}_\ell(t),
+\mathbf X_{a,\ell}^{(0)}(T)+\mathbf D_\ell(T),
 \qquad
-\mathbf{d}_\ell(t+T_{\mathbf{k}})=\mathbf{d}_\ell(t),
+\mathbf D_\ell(T+T_{\mathbf{k}})=\mathbf D_\ell(T),
 \qquad
-\left\langle\mathbf{d}_\ell\right\rangle_W=0
+\left\langle\mathbf D_\ell\right\rangle_W=0
 $$
 The one-period residual is
 $$
@@ -212,17 +212,17 @@ $$
 \int_W
 \sum_a
 \left\|
-\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})
+\mathbf A^{\mathrm{ME}}_a(T;\mathbf D)
 -
 \sum_{B\in\{B_{\text{self}},B_{\text{partner}},B_{\text{inter}}\}}
-\alpha_B\,\mathbf{A}_{a,B}(t;\mathbf{d})
-\right\|^2 dt
+\alpha_B\,\mathbf A_{a,B}(T;\mathbf D)
+\right\|^2 dT
 \right)^{1/2}
 }{
 \left(
 \int_W
 \sum_a
-\|\mathbf{a}^{\mathrm{ME}}_a(t;\mathbf{d})\|^2 dt
+\|\mathbf A^{\mathrm{ME}}_a(T;\mathbf D)\|^2 dT
 \right)^{1/2}
 +\varepsilon_0
 }
@@ -231,7 +231,7 @@ The rerun may proceed toward monodromy only if
 $$
 \mathcal{R}_{\mathrm{1per}}\le 0.02
 $$
-with $\mathbf{d}_\ell(t)$, the basis terms $\mathbf{A}_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
+with $\mathbf D_\ell(T)$, the basis terms $\mathbf A_{a,B}$, the coefficient rule for $\alpha_B$, and any held-out interval declared before fitting. A scalar-basis no-go is therefore a chart or basis failure; it does not become an attractor failure unless every admissible corrected carrier and branch-native basis inside the declared search class fails the same residual boundary.
 
 ## Tier 2: Energy and Shielding
 

@@ -2144,11 +2144,11 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > **Benchmark Proposition (Circular branch-count bound).**
 > In the symmetric circular benchmark, if the speed ratio obeys
 > $$
-> |\beta(t)|\le \beta_\ast<\infty
+> |\beta(T)|\le \beta_\ast<\infty
 > $$
 > uniformly, then the active circular self-hit count is uniformly bounded:
 > $$
-> N_{\mathrm{self}}(t)
+> N_{\mathrm{self}}(T)
 > \le
 > \frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
 > $$
@@ -3931,19 +3931,21 @@ For an exact finite-dimensional Hamiltonian reduction, $\mathcal{R}_{\Omega}=0$ 
 $$
 L_{\mathrm{EM}}
 =
-\frac{1}{2}m\left\|\frac{d\mathbf x_{\mathrm{eff}}}{dt_{\mathrm{eff}}}\right\|^2
--e\phi_{\mathrm{eff}}(\mathbf x_{\mathrm{eff}},t_{\mathrm{eff}})
-+e\,\frac{d\mathbf x_{\mathrm{eff}}}{dt_{\mathrm{eff}}}\cdot\mathbf A_{\mathrm{eff}}(\mathbf x_{\mathrm{eff}},t_{\mathrm{eff}}),
+\frac{1}{2}m\,\gamma_{ij}^{\mathrm{eff}}
+\frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
+\frac{dx_{\mathrm{eff}}^j}{dt_{\mathrm{eff}}}
+-e\phi_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})
++e\,\frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}A_i^{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
 \qquad
-\mathbf p_{\mathrm{can,eff}}
+p_{i,\mathrm{can,eff}}
 =
-m\frac{d\mathbf x_{\mathrm{eff}}}{dt_{\mathrm{eff}}}+e\mathbf A_{\mathrm{eff}}
+m\gamma_{ij}^{\mathrm{eff}}\frac{dx_{\mathrm{eff}}^j}{dt_{\mathrm{eff}}}+eA_i^{\mathrm{eff}}
 $$
 The velocity-coupled one-form shifts canonical momentum and yields the effective Lorentz-force law. Under
 $$
 \phi_{\mathrm{eff}}\mapsto\phi_{\mathrm{eff}}-\partial_{t_{\mathrm{eff}}}\chi,
 \qquad
-\mathbf A_{\mathrm{eff}}\mapsto\mathbf A_{\mathrm{eff}}+\nabla_{\mathbf x_{\mathrm{eff}}}\chi
+A_i^{\mathrm{eff}}\mapsto A_i^{\mathrm{eff}}+\partial_{x_{\mathrm{eff}}^i}\chi
 $$
 the Lagrangian changes only by $e\,d\chi/dt_{\mathrm{eff}}$, so the effective equations are unchanged. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a comparison structure, not substrate ontology: the primitive kernel still contains only radial causal hits. The corresponding closure target is to extract an assembly-level effective one-form
 $$
@@ -3957,11 +3959,12 @@ $$
 =
 \int_W
 \left\|
-\mu_A\mathbf a_{A,\mathrm{eff}}(t_{\mathrm{eff}})
+\mu_A a_{A,\mathrm{eff}}^i(t_{\mathrm{eff}})
 -
 e_A\left(
-\mathbf E_{\mathrm{eff}}(\mathbf x_{A,\mathrm{eff}},t_{\mathrm{eff}})
-+\mathbf V_{A,\mathrm{eff}}(t_{\mathrm{eff}})\times\mathbf B_{\mathrm{eff}}(\mathbf x_{A,\mathrm{eff}},t_{\mathrm{eff}})
+E_{\mathrm{eff}}^i(x_{A,\mathrm{eff}}^i,t_{\mathrm{eff}})
++
+\epsilon^i{}_{jk}V_{A,\mathrm{eff}}^j(t_{\mathrm{eff}})B_{\mathrm{eff}}^k(x_{A,\mathrm{eff}}^i,t_{\mathrm{eff}})
 \right)
 \right\|dt_{\mathrm{eff}}
 $$

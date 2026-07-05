@@ -371,8 +371,8 @@ $$
 \mathcal{C}_{\mathrm{cap}}(B)
 =
 \left\{
-(\mathbf{x},\mathbf{v},q,\phi):
-\mathrm{Retain}_{\mathrm{acc}}(B;\mathbf{x},\mathbf{v},q,\phi)=1
+(\mathbf X,\mathbf V,q,\phi):
+\mathrm{Retain}_{\mathrm{acc}}(B;\mathbf X,\mathbf V,q,\phi)=1
 \right\}.
 $$
 The capture predicate must use the same causal-root, action, energy, and return-map conventions as the braid branch. A site is not merely a low potential region. It must preserve the braid ledger while giving the added architrino a persistent delayed-return row, finite energy exchange, and bounded phase drift.

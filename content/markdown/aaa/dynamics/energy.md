@@ -20,9 +20,9 @@ An architrino in motion possesses kinetic energy and momentum.
 
 - **Kinetic Energy $E_k$**
   
-  A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf{v}_a(t)$, we write
+  A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf V_a(T)$, we write
   
-  $$E_{k,a}(t) = K\big(\|\mathbf{v}_a(t)\|\big),$$
+  $$E_{k,a}(T) = K\big(\|\mathbf V_a(T)\|\big),$$
   
   where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
 
@@ -30,11 +30,11 @@ An architrino in motion possesses kinetic energy and momentum.
   
   The vector counterpart of kinetic energy:
   
-  $$\mathbf{p}_a(t) = P\big(\|\mathbf{v}_a(t)\|\big)\,\hat{\mathbf{v}}_a(t), \quad \hat{\mathbf{v}}_a = \frac{\mathbf{v}_a}{\|\mathbf{v}_a\|},$$
+  $$\mathbf p_a(T) = P\big(\|\mathbf V_a(T)\|\big)\,\hat{\mathbf V}_a(T), \quad \hat{\mathbf V}_a = \frac{\mathbf V_a}{\|\mathbf V_a\|},$$
   
   where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
 
-  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf{F}=d\mathbf{p}/dt$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
+	  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf F=d\mathbf p/dT$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
   $$
   P'(s)=\frac{K'(s)}{s}=\mu_K(s),
   \qquad
@@ -51,7 +51,7 @@ An architrino in motion possesses kinetic energy and momentum.
 
 **No fundamental mass:**
 
-In this model, there is no **particle-specific substrate mass** assigned to individual architrinos. We do **not** assume $E_k = \frac{1}{2}m\|\mathbf{v}\|^2$ or $\mathbf{p} = m \mathbf{v}$ at the substrate level for distinct architrino species. Instead:
+In this model, there is no **particle-specific substrate mass** assigned to individual architrinos. We do **not** assume $E_k = \frac{1}{2}m\|\mathbf V\|^2$ or $\mathbf p = m \mathbf V$ at the substrate level for distinct architrino species. Instead:
 
 - Kinetic energy and momentum are **primitive kinematic quantities** of architrinos.
 - The substrate law is written in **acceleration-first** form.
@@ -62,22 +62,22 @@ In this model, there is no **particle-specific substrate mass** assigned to indi
 
 ## Work–Energy Relation and Per-Hit Power
 
-Kinetic-energy accounting is controlled by the acceleration-first master law, but the familiar quadratic work-energy form applies only after a kinetic proxy has been chosen. For a general primitive kinetic scalar with $s_a=\|\mathbf{v}_a\|$,
+Kinetic-energy accounting is controlled by the acceleration-first master law, but the familiar quadratic work-energy form applies only after a kinetic proxy has been chosen. For a general primitive kinetic scalar with $s_a=\|\mathbf V_a\|$,
 
 $$
-\frac{dE_{k,a}}{dt}
+\frac{dE_{k,a}}{dT}
 =
-K'(s_a)\frac{\mathbf{v}_a\cdot\mathbf{a}_a}{s_a}
+K'(s_a)\frac{\mathbf V_a\cdot\mathbf A_a}{s_a}
 =
-\mu_K(s_a)\,\mathbf{a}_a\cdot\mathbf{v}_a,
+\mu_K(s_a)\,\mathbf A_a\cdot\mathbf V_a,
 \qquad
 \mu_K(s)\equiv\frac{K'(s)}{s}
 $$
 
-If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf{F}_a \equiv \mu_{\text{arch}}\mathbf{a}_a$, then the quadratic bookkeeping proxy $K_{\mu,a}=\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_a\|^2$ satisfies
+If one introduces the optional universal bookkeeping constant $\mu_{\text{arch}}$ and defines $\mathbf F_a \equiv \mu_{\text{arch}}\mathbf A_a$, then the quadratic bookkeeping proxy $K_{\mu,a}=\frac{1}{2}\mu_{\text{arch}}\|\mathbf V_a\|^2$ satisfies
 
 $$
-\frac{dK_{\mu,a}}{dt} = \mathbf{F}_a(t)\cdot\mathbf{v}_a(t)
+\frac{dK_{\mu,a}}{dT} = \mathbf F_a(T)\cdot\mathbf V_a(T)
 $$
 
 Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated with the net acceleration from all causal hits; it is not a particle-specific substrate mass law.
@@ -249,19 +249,19 @@ and is constant in time for exact isolated solutions of the causal action. In mo
 The same distinction governs cosmological redshift. Because the Euclidean void does not expand and absolute time supplies the comparison parameter, a transparent redshift branch cannot treat the photon's missing energy as a bookkeeping disappearance. At the universe-state level, the conservation target is a scalar ledger of architrino kinetic/configuration energy, causal-wake energy in flight, and Noether sea constitutive energy:
 
 $$
-E_{\mathrm{tot}}(t)
+E_{\mathrm{tot}}(T)
 =
-E_{\mathrm{arch}}(t)
-+E_{\mathrm{wake}}(t)
-+E_{\mathrm{sea}}(t),
+E_{\mathrm{arch}}(T)
++E_{\mathrm{wake}}(T)
++E_{\mathrm{sea}}(T),
 \qquad
-\frac{dE_{\mathrm{tot}}}{dt}=0
+\frac{dE_{\mathrm{tot}}}{dT}=0
 $$
 
-This global target requires the total energy on the constant-$t$ leaf to be finite or convergently summable. For an unbounded or observationally truncated cosmology, the safe conservation statement is local continuity,
+This global target requires the total energy on the constant-$T$ leaf to be finite or convergently summable. For an unbounded or observationally truncated cosmology, the safe conservation statement is local continuity,
 
 $$
-\partial_t\rho_E+\nabla\cdot\mathbf{S}_E=0
+\partial_T\rho_E+\nabla_{\mathbf X}\cdot\mathbf S_E=0
 $$
 
 tested through finite windows and boundary fluxes. In the pure transparent-path limit, after source, recoil, remnant, and boundary terms have been separated, a bundle redshifted by $1+z$ carries the deficit
@@ -433,10 +433,10 @@ E_{\mathrm{bind},W}^{\mathrm{grav}}
 =
 -\frac{1}{2}
 \int_W\!\int_W
-\frac{G_{\mathrm{eff}}(\theta;\mathbf{x},\mathbf{y})\,
-\rho_{\mathrm{eff}}(\mathbf{x})\rho_{\mathrm{eff}}(\mathbf{y})}
-{\|\mathbf{x}-\mathbf{y}\|}
-\,dV_{\mathbf{x}}\,dV_{\mathbf{y}}
+\frac{G_{\mathrm{eff}}(\theta;x_{\mathrm{eff}}^i,y_{\mathrm{eff}}^i)\,
+\rho_{\mathrm{eff}}(x_{\mathrm{eff}}^i)\rho_{\mathrm{eff}}(y_{\mathrm{eff}}^i)}
+{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}
+\,dV_{x_{\mathrm{eff}}}\,dV_{y_{\mathrm{eff}}}
 +
 \mathcal{B}_{\partial W}
 $$
@@ -487,17 +487,17 @@ F_{\mathrm{ext},W_A}^i
 $$
 The pair $(\mathbf{X}_{\mathrm{resp}},M_A^{ij})$ is not free to be chosen after the balance is fitted. The response center must be pinned independently by the exposed internal-energy ledger,
 $$
-\mathbf{X}_{\mathrm{resp}}(t)
+X_{\mathrm{resp}}^i(t_{\mathrm{eff}})
 \equiv
 \frac{
 \displaystyle\int_{W_A}
-\mathbf{x}\,
-\zeta_{\mathrm{loc}}(\mathbf{x},t)\,
-e_{\text{internal}}(\mathbf{x},t)\,dV
+x_{\mathrm{eff}}^i\,
+\zeta_{\mathrm{loc}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,
+e_{\text{internal}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,dV_{\mathrm{eff}}
 }{
 \displaystyle\int_{W_A}
-\zeta_{\mathrm{loc}}(\mathbf{x},t)\,
-e_{\text{internal}}(\mathbf{x},t)\,dV
+\zeta_{\mathrm{loc}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,
+e_{\text{internal}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,dV_{\mathrm{eff}}
 }
 $$
 whenever the denominator is positive and the window contains the exposed assembly record. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
@@ -833,13 +833,13 @@ on the same window. More anisotropic exposure therefore permits less deep scalar
 At the matter-to-medium interface, a Standard Model fermion assembly should therefore be treated as a localized source of exposed response, not as an unshielded transfer of all internal energy into the surrounding Noether sea. For a coarse cell $\Omega_\ell$, the source supplied by stable matter assemblies can be written schematically as
 
 $$
-S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}(\mathbf{x},t)
+S_{\mathrm{mat}\to\mathrm{sea}}^{(\ell)}(\mathbf X,T)
 =
 \sum_{A\subset\Omega_\ell}
-W_\ell(\mathbf{x}-\mathbf{X}_A(t))\,
+W_\ell(\mathbf X-\mathbf X_A(T))\,
 E_{\text{sea-coupled}}(A)
 +
-S_{\mathrm{aniso}}^{(\ell)}(\mathbf{x},t)
+S_{\mathrm{aniso}}^{(\ell)}(\mathbf X,T)
 $$
 
 where $W_\ell$ is the coarse-graining window, $\mathbf{X}_A$ is the assembly center, and $S_{\mathrm{aniso}}^{(\ell)}$ records exposed tensor, orientation, spin, or wake-history residue that cannot be collapsed into the scalar shielding factor. This source then perturbs the local Noether sea state through a constitutive response map,
@@ -1205,7 +1205,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a certified hard inner bound **supplies** a
 
 If the model has a hard inner bound, **set the potential zero at that bound** and measure all energies outward from it.
 
-**Adiabatic branch invariant target.** On a certified branch chart for binary layer $a$, suppose the reduced cycle admits a canonical pair $(Q_a,\Pi_a)$ and a slowly varying branch parameter $\lambda(t)$, such as a local Noether sea response variable, shielding parameter, or neighboring-layer phase parameter. Define the rotational action
+**Adiabatic branch invariant target.** On a certified branch chart for binary layer $a$, suppose the reduced cycle admits a canonical pair $(Q_a,\Pi_a)$ and a slowly varying branch parameter $\lambda(T)$, such as a local Noether sea response variable, shielding parameter, or neighboring-layer phase parameter. Define the rotational action
 $$
 I_a(\lambda)
 \equiv
@@ -1217,10 +1217,10 @@ If the parameter changes slowly compared with the cycle period $T_a(\lambda)$,
 $$
 \epsilon_{\mathrm{ad},a}
 \equiv
-\max_{t\in W}
+\max_{T\in W}
 \left(
-T_a(\lambda(t))\,
-\left\|\frac{d\lambda}{dt}\right\|\,
+T_a(\lambda(T))\,
+\left\|\frac{d\lambda}{dT}\right\|\,
 \ell_{\lambda}^{-1}
 \right)
 \ll1

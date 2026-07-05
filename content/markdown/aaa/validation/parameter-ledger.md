@@ -47,11 +47,11 @@ as the canonical symbol for the physical field speed, while $v=1$ or $c_f=1$ den
 
 The following should **not** be treated as free global constants:
 
-- $n(\mathbf{x},t)$,
-- $\rho_{\text{NS}}(\mathbf{x},t)$,
-- $\Phi_{\text{eff}}(\mathbf{x},t)$,
-- $c_{\text{eff}}(\mathbf{x})$,
-- $\chi_{\text{sea}}(\mathbf{x},t)$,
+- $n(\mathbf X,T)$,
+- $\rho_{\text{NS}}(\mathbf X,T)$,
+- $\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$,
+- $c_{\text{eff}}(\mathbf X,T)$,
+- $\chi_{\text{sea}}(\mathbf X,T)$,
 - $m_{\text{inertial}}(A)$ for a specific assembly $A$.
 
 These are state variables, constitutive fields, or derived outputs. They may be controlled by a smaller parameter set, but they are not themselves independent parameters.
@@ -65,7 +65,7 @@ The following observer-level quantities are closure targets, not primitive input
 - $G$,
 - $\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i$,
 - particle masses and electroweak angles,
-- observer-level redshift and expansion summaries such as $Z_X$, $a(t)$, $H(t)$, and $H_{\mathrm{eff}}$.
+- observer-level redshift and expansion summaries such as $Z_X$, $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $H_{\mathrm{eff}}$.
 
 If the theory must reset them independently for each chapter, parameter closure has failed.
 
@@ -217,19 +217,19 @@ R_*=\frac{\kappa\epsilon^2}{c_f^2},
 \qquad
 T_*=\frac{R_*}{c_f}=\frac{\kappa\epsilon^2}{c_f^3}
 $$
-For $\tilde{\mathbf{x}}=\mathbf{x}/R_*$, $\tilde t=t/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
+For $\tilde{\mathbf X}=\mathbf X/R_*$, $\tilde T=T/T_*$, and $\tilde q_i=q_i/\epsilon=\pm1$, the causal constraint and bare acceleration law reduce to
 $$
-\tilde r_{ij}=\tilde t-\tilde t_0
+\tilde R_{ij}=\tilde T-\tilde T_{\mathrm{em}}
 $$
 and
 $$
-\frac{d^2\tilde{\mathbf{x}}_i}{d\tilde t^2}
+\frac{d^2\tilde{\mathbf X}_i}{d\tilde T^2}
 =
-\sum_j\sum_{\tilde t_0\in\tilde{\mathcal{C}}_{ij}(\tilde t)}
+\sum_j\sum_{\tilde T_{\mathrm{em}}\in\tilde{\mathcal{C}}_{ij}(\tilde T)}
 \sigma_{ij}
 \frac{|\tilde q_i\tilde q_j|\,\tilde W_{ij}^{\mathrm{rec}}}
-{\tilde r_{ij}^2}
-\hat{\mathbf{r}}_{ij}
+{\tilde R_{ij}^2}
+\hat{\mathbf R}_{ij}
 $$
 up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
 
@@ -270,11 +270,11 @@ These symbols control the handoff from the Euclidean substrate plus Noether sea 
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether braid density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C2 | $n(\mathbf{x},t)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C3 | $\Omega(\mathbf{x}),\xi(\mathbf{x})$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
-| C4 | $\Phi_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C5 | $c_{\text{eff}}(\mathbf{x},t)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
-| C5a | $\chi_{\text{sea}}(\mathbf{x},t)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether sea propagation maps | [../spacetime/noether-sea.md](../spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C2 | $n(\mathbf X,T)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C3 | $\Omega(x_{\mathrm{eff}}^i),\xi(x_{\mathrm{eff}}^i)$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
+| C4 | $\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
+| C5 | $c_{\text{eff}}(\mathbf X,T)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C5a | $\chi_{\text{sea}}(\mathbf X,T)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether sea propagation maps | [../spacetime/noether-sea.md](../spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C6 | $\gamma_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C7 | $C_2$ or $\beta_{\text{eff}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C8 | $\Xi_1,\Xi_2,\Xi_3,\Xi_4$ | Constitutive closure target | Open | preferred-frame leakage coefficients in the weak-field constitutive expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -307,12 +307,13 @@ $$
 $$
 A representative regularized form is
 $$
-\mathbf{a}_a(t)=
+\frac{d^2\mathbf X_a}{dT^2}
+=
 \sum_b
 \kappa\,\sigma_{ab}|q_aq_b|
-\int_{-\infty}^{t}\!dt_0\;
-\frac{\hat{\mathbf{r}}_{ab}(t;t_0)}{r_{ab}(t;t_0)^2}\,
-\delta_\eta\!\big(r_{ab}(t;t_0)-c_f(t-t_0)\big)
+\int_{-\infty}^{T}\!dT_{\mathrm{em}}\;
+\frac{\hat{\mathbf R}_{ab}(T;T_{\mathrm{em}})}{R_{ab}(T;T_{\mathrm{em}})^2}\,
+\delta_\eta\!\big(R_{ab}(T;T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}})\big)
 $$
 
 This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.
@@ -336,13 +337,13 @@ This equation is a normalization-sensitive substrate-to-observer reconstruction,
 
 The constitutive spacetime layer uses
 $$
-\rho_{\text{NS}}(\mathbf{x},t)=\rho_{\text{NS},0}\,n(\mathbf{x},t)
+\rho_{\text{NS}}(\mathbf X,T)=\rho_{\text{NS},0}\,n(\mathbf X,T)
 $$
 and
 $$
-\Phi_{\text{eff}}(\mathbf{x})
+\Phi_{\text{eff}}(x_{\mathrm{eff}}^i)
 =
-c_f^2\ln\!\big(\Omega(\mathbf{x})\xi(\mathbf{x})\big)
+c_f^2\ln\!\big(\Omega(x_{\mathrm{eff}}^i)\xi(x_{\mathrm{eff}}^i)\big)
 $$
 
 Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed.
@@ -358,11 +359,11 @@ $$
 
 The observable weak-field coefficients are read from the constitutive map through
 $$
-\chi_{\text{sea}}(\mathbf{x})
+\chi_{\text{sea}}(\mathbf X,T)
 \equiv
-\frac{c_f}{c_{\text{eff}}(\mathbf{x})}
+\frac{c_f}{c_{\text{eff}}(\mathbf X,T)}
 =
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(\mathbf{x})}{c_f^2}
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_f^2}
 +\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right)
 $$
 and
@@ -495,7 +496,7 @@ Parameter closure fails if any of the following occurs:
 
 - a symbol advertised as fundamental changes meaning across chapters,
 - a constitutive coefficient must be re-fit independently for different observable classes,
-- a state field such as $n(\mathbf{x},t)$ is implicitly treated as a free global constant to rescue a calculation,
+- a state field such as $n(\mathbf X,T)$ is implicitly treated as a free global constant to rescue a calculation,
 - or observer-level benchmarks such as $e$, $G$, or particle masses are matched only by introducing one-off per-sector normalizations.
 
 In compact form, the closure target is a nonempty shared parameter set

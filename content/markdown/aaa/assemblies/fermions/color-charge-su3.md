@@ -2,6 +2,10 @@
 
 This chapter gives the assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell braid scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
 
+The standard color label is extremely successful as algebra. The implementation question is different: what physical feature of a quark assembly can be counted in three ways, transformed by an octet of corridor modes, and hidden inside color-singlet hadrons? This chapter answers at the recovery-target level: color is axis exceptionality in the axial frame of a Noether braid assembly.
+
+That means the word `color` should be read as a structured bookkeeping channel, not as a colored substance. The three color states are the three possible exceptional-axis records; `SU(3)` is the effective transformation algebra that must be recovered when those records are compressed into observer-level quark language.
+
 ---
 
 ## Ontology, Notation, and Generations
@@ -9,6 +13,8 @@ This chapter gives the assembly-level interpretation of color charge and effecti
 ### Nested Shell Braid Scaffold
 
 Each fermion is built on a **nested shell braid scaffold**: three nested electrino:positrino binaries sharing a center. We use **Noether braid** for the broader class of conserved-quantity-bearing braids; see [Noether Braid](../../noether-braid/noether-braid.md).
+
+The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
 
 We label the three binaries by their dynamical regime:
 
@@ -92,6 +98,8 @@ This **braid chirality** will underpin our distinction between particles and ant
 
 **Core rule:**  
 Color charge appears only when the nested shell braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+
+This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out an H, M, or L axis. Quarks are colored because their axial pattern does.
 
 ### Stealth and color neutrality
 

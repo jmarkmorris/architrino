@@ -47,7 +47,7 @@ A nested shell braid should be treated as a closed-cycle geometry before it is t
 $$
 \Theta_a(T)
 =
-\int_0^T\omega_a(t)\,dt
+\int_0^T\omega_a(T')\,dT'
 +
 \Phi_a^{\text{root}}(T)
 =
