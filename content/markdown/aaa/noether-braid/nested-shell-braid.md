@@ -26,7 +26,7 @@ $$
 
 for **high**, **middle**, and **low** branch role. In the weak-stress nested shell braid chart, $H$ is the high-cadence or high-stress role, $M$ is the hinge or transfer role, and $L$ is the low-cadence or external-coupling role. The letter $M$ is therefore context-dependent: in $I/M/O$ it means middle radius, while in $H/M/L$ it means the middle role between high and low branch response. The usual weak-stress branch is expected to align these two orderings approximately, but that alignment is a branch result rather than a naming axiom.
 
-The recursive binary picture remains valuable inside this case. Just as an Electrino and a Positrino can form a stable binary, a declared binary can participate in a larger coupled support structure, and three energy-separated binaries can form a nested shell hierarchy. The key to stability is still separation of scale: each surrounding support band must have a larger radius, a lower cadence, and a compatible causal-root ledger than the deeper support band.
+The recursive binary picture remains valuable inside this case. Just as an Electrino:Positrino pair is hypothesized to stabilize into a bound binary, a declared binary can participate in a larger coupled support structure, and three energy-separated candidate binaries can form a nested shell hierarchy. The candidate stability mechanism is still separation of scale: each surrounding support band must have a larger radius, a lower cadence, and a compatible causal-root ledger than the deeper support band.
 
 Nested shell braid diagrams may therefore use logarithmic radius rather than literal radius. A log-radius diagram is a visualization convention: it may compress empty intervals between support bands and label the bands by scale, but it must preserve the declared inner/middle/outer radial order, cadence ordering, support-band widths, and branch-ledger quantities. It must not be read as evidence that a stable branch exists or that the three bands have fixed spacing in physical radius.
 
@@ -38,7 +38,7 @@ In this case, a candidate stable configuration is the **nested shell braid with 
 
 ## Properties of the Nested Shell Braid
 
--   **Energy-Separated Scales:** In low-energy nested shell braid conditions, the three shell binaries have energy-separated orbital radii and cadences. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the system's stability.
+-   **Energy-Separated Scales:** In low-energy nested shell braid conditions, the three shell binaries have energy-separated orbital radii and cadences. The innermost binary is the smallest and fastest, while the outermost is the largest and slowest. This separation of scales is crucial for the stability mechanism under study.
 
 -   **Internal Stabilization:** The system is expected to be stable only on branches where the high-frequency causal-wake emissions from the innermost binary, inter-layer wake exchange, and outer-layer shielding close into a persistent return cycle. The time-averaged potential picture is useful, but the theorem burden is to show that the root ledger, phase closure, and separator conditions keep the coupled hierarchy on the same branch.
 
@@ -46,14 +46,14 @@ In this case, a candidate stable configuration is the **nested shell braid with 
 
 ## Integer Phase-Closure States
 
-A nested shell braid should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return period $T$, each binary must return its phase together with the relevant causal-root ledger:
+A nested shell braid should be treated as a closed-cycle geometry before it is treated as a particle label. Over a stable return duration $T_{\mathrm{ret}}$ beginning at a chosen absolute-time origin $T_0$, each binary must return its phase together with the relevant causal-root ledger:
 
 $$
-\Theta_a(T)
+\Theta_a(T_0;T_{\mathrm{ret}})
 =
-\int_0^T\omega_a(T')\,dT'
+\int_{T_0}^{T_0+T_{\mathrm{ret}}}\omega_a(T')\,dT'
 +
-\Phi_a^{\text{root}}(T)
+\Phi_a^{\text{root}}(T_0;T_{\mathrm{ret}})
 =
 2\pi k_a,
 \qquad
@@ -62,40 +62,40 @@ k_a\in\mathbb{Z},
 a\in\{I,M,O\}
 $$
 
-The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
+The integers $k_a$ are winding counts over the closure period. They are not a claim that the layer frequencies are integer-valued at every instant. When ordinary layer frequency is used below, $\omega_a=2\pi f_a$. The surrounding root ledger records which self-hit, partner-hit, and inter-layer branches made the closure admissible.
 
-On this reading, an accepted energy-level change is a one-$h$ closed-cycle action transaction that moves the nested shell braid from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned braid should therefore carry information about the braid's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the braid.
+On the retuning hypothesis below, an accepted energy-level change is a one-$h_{\mathrm{act}}$ closed-cycle action transaction that moves the nested shell braid from one admissible integer-and-root ledger to another. The causal wake emitted by the retuned braid should therefore carry information about the braid's closure state. Higher-level atomic orbital configurations, when they are recovered, should appear as electron-assembly resonance envelopes in that structured nuclear and Noether sea wake environment, not as primitive labels pasted onto the braid.
 
-The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving nested shell braid should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the usual effective $\gamma(v)$ within the preferred-frame leakage bound.
+The same closure-label machinery is the native carrier for branch-quantized Lorentz response. A moving nested shell braid should not be assigned a Lorentz factor independently of its internal ledger. Instead, a stable closure label should determine the all-layer retuning of radii, frequencies, characteristic speeds, and wake exchange; the outer envelope then projects the ruler factor seen by Physical Observers. In the homogeneous weak-field limit, the admitted labels must collapse to the observer-calibrated $\gamma_0(v_{\mathrm{eff}})=(1-v_{\mathrm{eff}}^2/c_0^2)^{-1/2}$ within the preferred-frame leakage bound.
 
 ## Cadence-Scale Retuning Hypothesis
 
-The single-braid version of the $h$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to a rigid object. It moves the nested shell braid from one admissible closure branch toward another, and the braid resolves that transaction by retuning its cadence-scale closure.
+The single-braid version of the $h_{\mathrm{act}}$-step claim is geometric rather than merely thermal. An accepted action transaction does not add energy to a rigid object. It moves the nested shell braid from one admissible closure branch toward another, and the braid resolves that transaction by retuning its cadence-scale closure. The symbol $h_{\mathrm{act}}$ denotes the closed-cycle action unit in this chart; it is distinct from the finite-memory depth $h_{\mathrm{mem}}$ used in dynamics chapters, and its comparison with the observer-level Planck constant $h$ remains part of action-scale closure.
 
 The bookkeeping distinction is
 
 $$
-h=\text{action per accepted cycle},
+h_{\mathrm{act}}=\text{action per accepted cycle},
 \qquad
-A_N=Nh,
+A_N=Nh_{\mathrm{act}},
 \qquad
-E_N=A_N\nu_N
+E_N=A_N f_N
 $$
 
-Here $h$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $\nu_N$ is a representative cadence extracted from the closed nested shell braid branch. A one-$h$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables:
+Here $h_{\mathrm{act}}$ is the fixed closed-cycle action unit, $N$ is the integer number of accepted action units carried by the branch, $A_N$ is the total branch action level, and $f_N$ is a representative cadence extracted from the closed nested shell braid branch. A one-$h_{\mathrm{act}}$ transaction changes the action ledger; a branch with many accepted units is scaled by $Nh_{\mathrm{act}}$. The accepted branch may answer through one or more of the cadence, layer radii, envelope scale, envelope ratio, orientation, strain, and inter-layer wake-exchange variables. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ are defined in [Reduced Nested Shell Braid Closure Label](#reduced-nested-shell-braid-closure-label):
 
 $$
-\Delta A_{\mathrm{cyc}}=\pm h
+\Delta A_{\mathrm{cyc}}=\pm h_{\mathrm{act}}
 \quad\Rightarrow\quad
-(\nu_N,\ R_I,R_M,R_O,\ \lambda,\ \xi,\ \mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO})
+(f_N,\ R_I,R_M,R_O,\ \lambda,\ \xi,\ \mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO})
 \longmapsto
-(\nu_N',\ R_I',R_M',R_O',\ \lambda',\ \xi',\ \mathcal{G}_{IM}',\mathcal{G}_{IO}',\mathcal{G}_{MO}')
+(f_N',\ R_I',R_M',R_O',\ \lambda',\ \xi',\ \mathcal{G}_{IM}',\mathcal{G}_{IO}',\mathcal{G}_{MO}')
 $$
 
 In the simplest fixed-speed layer estimate,
 
 $$
-v_\ell\sim 2\pi R_\ell\nu_\ell,
+v_\ell\sim 2\pi R_\ell f_\ell,
 \qquad
 \ell\in\{I,M,O\}
 $$
@@ -103,11 +103,11 @@ $$
 If a branch keeps $v_\ell$ approximately fixed while accepting the transaction, then
 
 $$
-R_\ell\nu_\ell\approx\text{constant},
+R_\ell f_\ell\approx\text{constant},
 \qquad
-\Delta\nu_\ell>0\Rightarrow\Delta R_\ell<0,
+\Delta f_\ell>0\Rightarrow\Delta R_\ell<0,
 \qquad
-\Delta\nu_\ell<0\Rightarrow\Delta R_\ell>0
+\Delta f_\ell<0\Rightarrow\Delta R_\ell>0
 $$
 
 The proof target is the constrained map, not only this sign rule. On a fixed branch chart $q$, collect the logarithmic retuning variables into
@@ -116,7 +116,7 @@ $$
 \mathbf{y}_q
 =
 \left(
-\ln\nu_I,\ln\nu_M,\ln\nu_O,\,
+\ln f_I,\ln f_M,\ln f_O,\,
 \ln R_I,\ln R_M,\ln R_O,\,
 \ln\lambda,\ln\xi
 \right)_q^{T}
@@ -128,14 +128,14 @@ $$
 \mathcal{C}_q(\mathbf{y},\mathcal{G})=0
 $$
 
-collect the integer phase-closure, causal-root, separator, inter-layer wake-exchange, and stability conditions that define the branch. A first-order accepted retuning with sign $\sigma\in\{+1,-1\}$ must satisfy
+collect the integer phase-closure, causal-root, separator, inter-layer wake-exchange, and stability conditions that define the branch. A first-order accepted retuning with action sign $s_{\mathrm{act}}\in\{+1,-1\}$ must satisfy
 
 $$
 D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 +
 \Delta A_{\mathrm{wake}}
 =
-\sigma h
+s_{\mathrm{act}}h_{\mathrm{act}}
 $$
 
 together with the branch-preservation condition
@@ -152,25 +152,25 @@ If $\Delta\mathcal{C}_{\mathcal{G}}=0$, the retuning stays on the same causal-ro
 The local cadence-scale retuning map is therefore the closure target
 
 $$
-\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}
+\mathcal{R}_{\mathrm{cyc}}^{(q,s_{\mathrm{act}})}
 :
 (\Lambda_{\text{NS}},\theta_{\mathrm{env}})
 \longmapsto
 \left(
-\Delta\nu_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
+\Delta f_N,\Delta R_I,\Delta R_M,\Delta R_O,\Delta\lambda,\Delta\xi
 \right)
 $$
 
-where $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
+where $\Lambda_{\text{NS}}$ is defined in [Reduced Nested Shell Braid Closure Label](#reduced-nested-shell-braid-closure-label), and $\theta_{\mathrm{env}}$ records the local Noether sea state and neighboring-assembly conditions. The representative cadence increment is an extraction from the layer increments, for example
 
 $$
-\Delta\ln\nu_N
+\Delta\ln f_N
 =
-w_I^{(q)}\Delta\ln\nu_I
+w_I^{(q)}\Delta\ln f_I
 +
-w_M^{(q)}\Delta\ln\nu_M
+w_M^{(q)}\Delta\ln f_M
 +
-w_O^{(q)}\Delta\ln\nu_O,
+w_O^{(q)}\Delta\ln f_O,
 \qquad
 w_I^{(q)}+w_M^{(q)}+w_O^{(q)}=1
 $$
@@ -181,10 +181,10 @@ This is the local branchwise origin of the smoother Noether sea equilibrium-curr
 
 ## Rest-Level Scaling Curve
 
-The cadence-scale retuning map becomes more predictive when a homogeneous pool of group-velocity-zero Noether braids is assumed to occupy the same reduced closure label and the same integer rest level. In that case the pool is made of equal braids at one level $N$, while the scaling curve compares neighboring admissible rest levels along the same branch. The scaling variable is not $h$ itself. The fixed quantity is the closed-cycle action unit $h$; the branch variable is the total action level
+The cadence-scale retuning map becomes more predictive when a homogeneous pool of group-velocity-zero Noether braids is assumed to occupy the same reduced closure label and the same integer rest level. In that case the pool is made of equal braids at one level $N$, while the scaling curve compares neighboring admissible rest levels along the same branch. The scaling variable is not $h_{\mathrm{act}}$ itself. The fixed quantity is the closed-cycle action unit $h_{\mathrm{act}}$; the branch variable is the total action level
 
 $$
-A_N=Nh,
+A_N=Nh_{\mathrm{act}},
 \qquad
 N\in\mathbb{Z}_{>0}
 $$
@@ -194,27 +194,29 @@ For the outer binary, write the outer action allocation as
 $$
 N_O=p_O^{(q)}N,
 \qquad
-I_O=N_O\hbar
-=p_O^{(q)}N\frac{h}{2\pi}
+I_O=N_O\hbar_{\mathrm{act}}
+=p_O^{(q)}N\frac{h_{\mathrm{act}}}{2\pi}
 $$
 
-Here $p_O^{(q)}$ is the branch share carried by the outer binary. With the reduced circular-action chart
+Here $p_O^{(q)}$ is the branch share carried by the outer binary and $\hbar_{\mathrm{act}}\equiv h_{\mathrm{act}}/(2\pi)$. With the reduced circular-action chart
 
 $$
 I_O=\mu_O^{\mathrm{rot}}R_O v_O
 $$
 
-the action ledger determines the product
+Here $\mu_O^{\mathrm{rot}}$ is an effective rotational branch-response coefficient for this reduced chart. It is not a primitive mass assigned to architrinos; it is a bookkeeping response factor that must ultimately be extracted from the same branch record used by the mass-map program.
+
+With this declaration, the action ledger determines the product
 
 $$
 \boxed{
 R_O(N)\,v_O(N)
 =
-\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}}.
+\frac{p_O^{(q)}Nh_{\mathrm{act}}}{2\pi\mu_O^{\mathrm{rot}}}.
 }
 $$
 
-This is the part fixed directly by the $Nh$ action ledger. It says that a higher rest level must carry a larger radius-speed product, but it does not by itself decide whether the extra product appears as larger outer radius, higher outer speed, or both. The separate functions $R_O(N)$, $v_O(N)$, and
+This is the part fixed directly by the $Nh_{\mathrm{act}}$ action ledger. It says that a higher rest level must carry a larger radius-speed product, but it does not by itself decide whether the extra product appears as larger outer radius, higher outer speed, or both. The separate functions $R_O(N)$, $v_O(N)$, and
 
 $$
 f_O(N)=\frac{v_O(N)}{2\pi R_O(N)}
@@ -234,12 +236,12 @@ $$
 \boxed{
 R_O(N)
 =
-\frac{p_O^{(q)}Nh}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
+\frac{p_O^{(q)}Nh_{\mathrm{act}}}{2\pi\mu_O^{\mathrm{rot}}\beta_Oc_f},
 \qquad
 f_O(N)
 =
 \frac{\mu_O^{\mathrm{rot}}\beta_O^2c_f^2}
-{p_O^{(q)}Nh}.
+{p_O^{(q)}Nh_{\mathrm{act}}}.
 }
 $$
 
@@ -260,10 +262,10 @@ A different closure comes from a bare inverse-square radial balance. If the dela
 $$
 \frac{v_O^2}{R_O}
 =
-\frac{K_O}{4R_O^2}\mathcal{B}_O(\beta_O;\Lambda_O)
+\frac{K_O}{4R_O^2}\mathcal{B}_O(\beta_O;\Lambda_{\text{NS},O})
 $$
 
-and if $\mathcal{B}_O$ is approximately constant on the compared segment, then the same action product gives
+Here the factor $1/(4R_O^2)$ is the inverse-square factor for an opposite member at diameter $d=2R_O$. The coefficient $K_O$ is the reduced outer-channel coupling combination, $\mathcal{B}_O(\beta_O;\Lambda_{\text{NS},O})$ is the dimensionless delayed-root radial balance factor, and $\Lambda_{\text{NS},O}$ is the outer-channel sublabel inherited from the reduced nested shell braid closure label. If $\mathcal{B}_O$ is approximately constant on the compared segment, then the same action product gives
 
 $$
 \boxed{
@@ -275,7 +277,7 @@ f_O\propto N^{-3}.
 }
 $$
 
-Thus the $Nh$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether sea return terms decide the actual rest-level scaling.
+Thus the $Nh_{\mathrm{act}}$ ledger alone does not canonize a single radius curve. It supplies the product law; the branch speed, delayed-root radial balance, tangential closure, and any Noether sea return terms decide the actual rest-level scaling.
 
 If the outer binary instead carries a declared outer energy projection
 
@@ -293,7 +295,7 @@ v_O(N)
 \qquad
 R_O(N)
 =
-\frac{p_O^{(q)}Nh\sqrt{\zeta_O^{(q)}}}
+\frac{p_O^{(q)}Nh_{\mathrm{act}}\sqrt{\zeta_O^{(q)}}}
 {2\pi\sqrt{\mu_O^{\mathrm{rot}}E_O(N)}}.
 }
 $$
@@ -322,7 +324,7 @@ $$
 \frac{1}{4\sqrt{2}R_{\mathrm{excl}}^3}
 $$
 
-The density symbol functions as packing notation for this chart. It names the maximum center density of the relevant Noether braid exclusion envelopes, not a separate braid type. Therefore the packing curve inherits the radius closure:
+The density symbol functions as packing notation for this chart, distinct from the physical Noether sea density field $\rho_{\text{NS}}(\mathbf X,T)$; the $\#$ marks a center number density for the relevant Noether braid exclusion envelopes. Therefore the packing curve inherits the radius closure:
 
 $$
 \rho_{\mathrm{NS},\max}^{\#}(N)
@@ -335,9 +337,9 @@ For example, the fixed-speed branch gives $\rho_{\mathrm{NS},\max}^{\#}\propto N
 This packing formula is only the spherical leading estimate. At high relative velocity, high Noether sea delay, or high gravitational strain, the branch data cannot be kept constant:
 
 $$
-p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambda_O)
+p_O^{(q)},\ \mu_O^{\mathrm{rot}},\ \alpha_O^{(q)},\ \mathcal{B}_O(\beta_O;\Lambda_{\text{NS},O})
 \longrightarrow
-p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_O,\theta_{\mathrm{env}})
+p_O(q,\theta_{\mathrm{env}}),\ \mu_O^{\mathrm{rot}}(q,\theta_{\mathrm{env}}),\ \alpha_O(q,\theta_{\mathrm{env}}),\ \mathcal{B}_O(\beta_O;\Lambda_{\text{NS},O},\theta_{\mathrm{env}})
 $$
 
 The scaling curve is therefore piecewise by branch. Once the branch supplies $\xi$ and $\lambda$, the exclusion envelope must be treated as an oblate spheroidal envelope rather than a sphere, and the center-density calculation must inherit orientation, strain, and Noether sea delay data from the same branch label.
@@ -357,7 +359,7 @@ k_I,k_M,k_O;\
 \right)
 $$
 
-Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered braid chirality; the current candidate data are the `HML/HLM` ordered-braid distinction together with $Wr_c$ or a multi-component causal-writhe parity.
+Here $k_I,k_M,k_O$ are the layer winding counts over the chosen return period. The layer ledgers $\mathcal{G}_I,\mathcal{G}_M,\mathcal{G}_O$ record active self-hit and partner-hit branches, root multiplicities, winding or phase branch, emission-order data, and separator history. The inter-layer ledgers $\mathcal{G}_{IM},\mathcal{G}_{IO},\mathcal{G}_{MO}$ record delayed exchange roots and phase-lock constraints between binary layers. The branch label $\chi_c$ records ordered braid chirality; the current candidate data are the `HML/HLM` ordered-braid distinction together with $\operatorname{Wr}_c$ or a multi-component causal-writhe parity.
 
 This label is reduced because it omits the full architrino trajectories and retains only the closure data needed for branch comparison. It is useful only under a theorem-target burden: smooth branch-preserving deformations should keep $\Lambda_{\text{NS}}$ fixed, while a change of label should be tied to a causal-root bifurcation, separator crossing, or causal-locus reconnection. The chirality entry $\chi_c$ is not yet proved by this definition; it names the entry that the later causal-writhe or ordered-frame proof must fill.
 
@@ -377,23 +379,23 @@ v_M=c_f,\;v_O\to c_f\\
 $$
 with the remaining admissible entries inherited from the layer ledgers, inter-layer ledgers, chirality entry, and emitted wake envelope. For a connected block $U$ of alignment-area patches, the local label set to be counted has the schematic form
 $$
-\mathcal{L}_U(\theta)
+\mathcal{L}_U(\theta_{\mathrm{env}})
 =
 \left\{
 \left(\Lambda_{\text{NS},a}^{\mathrm{align}}\right)_{a\in U}
 :
 \mathcal{G}_{\partial U},\,
-\mathcal{B}_{\partial\Omega}^{(O)}(\theta;W),\,
+\mathcal{B}_{\partial\Omega}^{(O)}(\theta_{\mathrm{env}};W),\,
 \text{conservation and interface compatibility hold}
 \right\}
 /
-\sim_{O,\theta,W}
+\sim_{O,\theta_{\mathrm{env}},W}
 $$
 Here $\mathcal{G}_{\partial U}$ records the causal-root and wake-exchange compatibility across the edge of the block. This expression does not yet derive the entropy coefficient. It identifies the native object whose block entropy density must be computed before $\log|\mathcal{L}_U|/|U|\to1/4$ can be treated as more than a comparison target.
 
 ## Geometry and Exclusion Envelope
 
-The same nested shell braid motion that supplies shielding also sweeps out a persistent dynamic exclusion envelope. That envelope is not the braid definition itself; it is the geometric footprint of the nested assembly. For the oblate spheroidal form, exclusion-envelope interpretation, and deformation channels, see [the nested shell braid geometry chapter](nested-shell-braid-geometry.md).
+The same nested shell braid motion that supplies shielding is the geometric footprint a retained branch would sweep into a dynamic exclusion envelope. That envelope is not the braid definition itself; it is the candidate excluded-region readout of the nested assembly. For the oblate spheroidal form, exclusion-envelope interpretation, and deformation channels, see [the nested shell braid geometry chapter](nested-shell-braid-geometry.md).
 
 ## The Nested Shell Braid Hierarchy and Fermion Generations
 

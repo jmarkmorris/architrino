@@ -231,7 +231,7 @@ The closure row is the interval witness
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232],
+[0.19802220088,0.19802220091],
 $$
 
 so the fixed-speed tangential row cannot vanish for every required receiver and phase. This rejection does not consume or close the broader neutral braid master certificate; it only removes the rigid zero-offset fixed-speed octahedral seed from the retained-branch candidate set.
@@ -289,7 +289,7 @@ The certificate is a direct counterexample: the rigid octahedral all-pairs ledge
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232].
+[0.19802220088,0.19802220091].
 $$
 
 Thus structural attraction bias remains a required inventory row, but it is not a sufficient proof of fixed-speed force closure.
@@ -318,7 +318,7 @@ The certificate is again a direct counterexample: at the same rigid octahedral w
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232].
+[0.19802220088,0.19802220091].
 $$
 
 Thus resolved root rows are necessary force-ledger inputs, but they do not by themselves make the fixed-speed tangential residual vanish.

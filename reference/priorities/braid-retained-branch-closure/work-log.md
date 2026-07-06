@@ -6,6 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-06 Neutral-Braid Reviewer Integration
+
+Integrated the Fable review of [Neutral Braid](../../../content/markdown/aaa/noether-braid/neutral-braid.md) by normalizing native vector/time notation, compact inventory notation, `NB-0` certificate tags, all-pairs ledger definitions, and the octahedral diagnostic explanation. During interval verification, the current executable receiver-normal witness in `scripts/neutral-braid/octahedral-fixed-speed-witness.mjs` validated $\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)\in[0.19802220088,0.19802220091]$. A follow-on reconciliation pass updated the older neutral-braid priority packets to that receiver-normal interval, corrected the reduced no-go scalar to remove the stale source-convention denominator, and removed the temporary tracker item `octahedral_residual_normalization_reconciliation`.
+
 ### 2026-07-02 Same-Pass Action-Measure Update
 
 Migrated from `priorities.md` task item 20 so the tracker retains the compact failure state while preserving the detailed same-pass attempt narrative.

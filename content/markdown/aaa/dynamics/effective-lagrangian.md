@@ -59,23 +59,23 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ correction to this toy example is more info
 $$
 m_{\mathrm{eff}}\frac{d^2x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}(t_{\mathrm{eff}})
 =
--k_{\mathrm{eff}}\,x_{\mathrm{eff}}(t_{\mathrm{eff}}-\tau_{\mathrm{eff}})
+-k_{\mathrm{eff}}\,x_{\mathrm{eff}}(t_{\mathrm{eff}}-\Delta_{\mathrm{eff}})
 +\cdots
 $$
 
-for an effective causal-wake delay $\tau_{\mathrm{eff}}$ across the assembly. Expanding the delayed displacement gives
+for an effective causal-wake delay $\Delta_{\mathrm{eff}}$ across the assembly. Expanding the delayed displacement gives
 
 $$
 \left(
-m_{\mathrm{eff}}+\frac{1}{2}k_{\mathrm{eff}}\tau_{\mathrm{eff}}^2
+m_{\mathrm{eff}}+\frac{1}{2}k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^2
 \right)
 \frac{d^2x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
 -
-k_{\mathrm{eff}}\tau_{\mathrm{eff}}\frac{dx_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
+k_{\mathrm{eff}}\Delta_{\mathrm{eff}}\frac{dx_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +
 k_{\mathrm{eff}}x_{\mathrm{eff}}
 =
-O\!\left(k_{\mathrm{eff}}\tau_{\mathrm{eff}}^3\frac{d^3x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^3}\right)
+O\!\left(k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^3\frac{d^3x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^3}\right)
 $$
 
 on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, the same local pattern that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
@@ -85,11 +85,11 @@ The two displayed corrections are not independent parameters. They are the first
 $$
 m_{\mathrm{delay}}
 \sim
-\frac{1}{2}k_{\mathrm{eff}}\tau_{\mathrm{eff}}^2,
+\frac{1}{2}k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^2,
 \qquad
 \Gamma_{\mathrm{delay}}
 \sim
-k_{\mathrm{eff}}\tau_{\mathrm{eff}}
+k_{\mathrm{eff}}\Delta_{\mathrm{eff}}
 $$
 
 where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{delay}}$ denotes the signed anti-damping coefficient for this convention. On a fixed branch, their ratio is a kernel-shape consequence of the same causal-wake delay, not two fitted material constants. This toy calculation is the finite-dimensional seed of the continuum statement below: even-frequency kernel moments feed inertia-like response, while odd-frequency moments feed dissipation or anti-damping channels.
@@ -182,20 +182,22 @@ path-history solution is written, but only if the same causal-root ledger and
 retained branch record make the closed-cycle integral and canonical residual
 stable.
 
-The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
+The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A retained outer return cycle can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_O:S^1_O\to\mathfrak B$ denoting one outer return cycle,
 
 $$
 c_1[\theta^O,\theta^M,\theta^I]
 =
-\frac{1}{2\pi}
-\oint_{\gamma}
-d(\text{relative phase})
-\in\mathbb{Z}
+\left(
+\operatorname{deg}(\theta^M\circ\rho_O),\,
+\operatorname{deg}(\theta^I\circ\rho_O)
+\right)
+=(m,n)
+\in\mathbb{Z}^2
 $$
 
-when the relative phase closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md) make the phase-bundle data integral rather than irrationally drifting. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
-More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the relative phase winding closes by an integer multiple of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
+More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the phase-return degree pair closes by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
 
 $$
 \oint_{\gamma_\alpha}\Pi\,dQ
@@ -219,10 +221,10 @@ S_\eta[\{\mathbf X_i\}]
 \int dT \sum_i \frac{1}{2} \mu_{\text{arch}} \|\mathbf V_i(T)\|^2
 - \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
 \int dT \int_{-\infty}^{T} dT_{\mathrm{em}}\,
-\frac{\phi_\eta\!\big(g_{ij}(T,T_{\mathrm{em}})\big)}{r_{ij}(T;T_{\mathrm{em}})}
+\frac{\phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)}{r_{ij}(T;T_{\mathrm{em}})}
 $$
 $$
-g_{ij}(T,T_{\mathrm{em}})\equiv T-T_{\mathrm{em}}-\frac{r_{ij}(T;T_{\mathrm{em}})}{c_f},
+\tilde g_{ij}(T,T_{\mathrm{em}})\equiv T-T_{\mathrm{em}}-\frac{r_{ij}(T;T_{\mathrm{em}})}{c_f},
 \qquad
 r_{ij}(T;T_{\mathrm{em}})=\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|,
 \qquad
@@ -241,9 +243,9 @@ Here:
 The derivation below is valid under:
 
 - **(EL1)** $\mathbf X_i\in C^2([T_a,T_b];\mathbb{R}^3)$ and variations $\boldsymbol{\xi}_i$ are $C^1$ with $\boldsymbol{\xi}_i(T_a)=\boldsymbol{\xi}_i(T_b)=0$.
-- **(EL2)** $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$.
-- **(EL3)** Collision and trivial-self exclusion on active support: $r_{ij}(T;T_{\mathrm{em}})\ge r_{\min}>0$ whenever $\phi_\eta(g_{ij}(T,T_{\mathrm{em}}))\neq0$, and for $i=j$ the active support also satisfies $T-T_{\mathrm{em}}\ge\Delta_{\min}>0$ unless a separate core regularization supplies the same lower-bound control.
-- **(EL4)** Delay-root transversality on active branches: $\partial_{T_{\mathrm{em}}}g_{ij}(T,T_{\mathrm{em}})\neq0$ when $g_{ij}(T,T_{\mathrm{em}})=0$.
+- **(EL2)** $\phi_\eta$ is a normalized $C^1$ approximate identity: either $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$, or a Gaussian/sufficiently fast-decaying mollifier with an explicit tail bound on the chosen analysis window.
+- **(EL3)** Collision and trivial-self exclusion on active support, or on the tail-controlled analysis window for noncompact mollifiers: $r_{ij}(T;T_{\mathrm{em}})\ge r_{\min}>0$ whenever the retained window admits $\phi_\eta(\tilde g_{ij}(T,T_{\mathrm{em}}))$, and for $i=j$ the retained window also satisfies $T-T_{\mathrm{em}}\ge\Delta_{\min}>0$ unless a separate core regularization supplies the same lower-bound control.
+- **(EL4)** Delay-root transversality on active branches: $\partial_{T_{\mathrm{em}}}\tilde g_{ij}(T,T_{\mathrm{em}})\neq0$ when $\tilde g_{ij}(T,T_{\mathrm{em}})=0$.
 - **(EL5)** Integrability on the chosen history window, either by finite support or sufficient tail falloff, so differentiation under the time integrals is justified.
 - **(EL6)** Delayed branch convention: only $T_{\mathrm{em}}\le T$ contributes (equivalently, the $\Theta(T-T_{\mathrm{em}})$ branch of the causal selector).
 
@@ -262,7 +264,7 @@ $$
 
 For the interaction kernel
 $$
-\mathcal{K}_{ij}(T,T_{\mathrm{em}})\equiv \frac{\phi_\eta(g_{ij}(T,T_{\mathrm{em}}))}{r_{ij}(T;T_{\mathrm{em}})},
+\mathcal{K}_{ij}(T,T_{\mathrm{em}})\equiv \frac{\phi_\eta(\tilde g_{ij}(T,T_{\mathrm{em}}))}{r_{ij}(T;T_{\mathrm{em}})},
 \qquad
 \hat{\mathbf{r}}_{ij}\equiv\frac{\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})}{r_{ij}(T;T_{\mathrm{em}})}
 $$
@@ -272,13 +274,13 @@ $$
 =
 -\hat{\mathbf{r}}_{ij}
 \left[
-\frac{\phi_\eta(g_{ij})}{r_{ij}^2}
+\frac{\phi_\eta(\tilde g_{ij})}{r_{ij}^2}
 +
-\frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
+\frac{\phi_\eta'(\tilde g_{ij})}{c_f\,r_{ij}}
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -291,6 +293,8 @@ d\Phi_{ij}^{(\eta)}
 $$
 
 where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
+
+Plain language: the same delayed kernel current can separate into an exact scalar part and a curl-like recoil part. A scalar repair can handle only the exact part unless another declared action term carries the recoil channel.
 
 On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
 $$
@@ -305,17 +309,17 @@ W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,
 {r_{ij}(T;T_{\mathrm{em}})^2}
 $$
 where $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
-including self-hit branches $j=i$ when the trivial coincidence root is excluded.
+This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
 $$
-\partial_{T_{\mathrm{em}}}g_{ij}(T,T_{\mathrm{em}})
+\partial_{T_{\mathrm{em}}}\tilde g_{ij}(T,T_{\mathrm{em}})
 =
 -\left(1-\frac{\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})}{c_f}\right)
 $$
 any branch-local smooth $f$ satisfies
 $$
-\lim_{\eta\to0^+}\int_{-\infty}^{T} f(T_{\mathrm{em}})\phi_\eta\!\big(g_{ij}(T,T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
+\lim_{\eta\to0^+}\int_{-\infty}^{T} f(T_{\mathrm{em}})\phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
 =
 \sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \frac{f(T_{\mathrm{em}})}{
@@ -330,7 +334,7 @@ $$
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \int_{-\infty}^{T}dT_{\mathrm{em}}\,
 \frac{\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})}{r_{ij}(T;T_{\mathrm{em}})^2}\,
-\phi_\eta\!\big(g_{ij}(T,T_{\mathrm{em}})\big)
+\phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)
 $$
 with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be redriven so that the retained branch law carries the receiver-normal factor $W^{\mathrm{rec}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed. In a recoil-inclusive reading, this sentence is replaced by a stronger requirement: the derivative term is retained as $\mathbf{C}_{ij}^{(\eta)}$ and tested as part of the force and conservation ledger rather than being forced to zero.
 
@@ -368,17 +372,19 @@ The scale-only receiver-normal branch target is theorem-grade on $W$ only when t
 
 The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only receiver-normal branch target; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](energy.md#wake-escapement).
 
-The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On a coarse product chart with native variables $(T,\mathbf X)$, write the recoil current schematically as
+The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the time-normalized causal phase function $\tilde g_{ij}$ itself. On a coarse product chart with native variables $(T,\mathbf X)$, write the recoil current schematically as
 
 $$
 \mathcal{A}_{\mu}^{\mathrm{wake}}(\mathbf X,T)
 \propto
 \left\langle
-\phi_{\eta}'(g_{ij})\,\partial_{\mu}g_{ij}
+\phi_{\eta}'(\tilde g_{ij})\,\partial_{\mu}\tilde g_{ij}
 \right\rangle_{\mathrm{cg}}
 $$
 
 where $\mu$ indexes the absolute-time component and the three spatial components of the coarse chart; this is not a substrate Lorentz four-vector. The point is structural: the scalar/vector split $(\Phi_{\mathrm{wake}},\mathbf{A}_{\mathrm{wake}})$ introduced in the continuum reduction is forced by the scale/recoil split of the first variation. The scale term is the scalar-potential channel, while the retained recoil current is the vector-transport channel. In the Hodge-type language above, the electric-like channel is the exact scalar part and the magnetic-like channel is the co-exact transport part of the same delayed kernel current.
+
+Plain language: $\mathcal A_{\mu}^{\mathrm{wake}}$ is a coarse record of the derivative-of-causal-phase channel. It is not a new fundamental field and not a Lorentz four-vector at the substrate level.
 
 Before this continuum reduction, the primitive vector object is the received branch row itself. A single causal hit carries source identity, receiver identity, emission time $T_{\mathrm{em}}$, receiver time $T$, $r_{ij}(T;T_{\mathrm{em}})$, $\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}})$, polarity sign $\sigma_{ij}$, and Jacobian $J_{ij}(T;T_{\mathrm{em}})$. It is vectorial because the per-hit acceleration is directed along $\hat{\mathbf r}_{ij}$, but it is not the electromagnetic vector potential. Scalar wake potentials and vector transport potentials are reconstructed or coarse-grained variables obtained only after many such line-of-action rows are integrated over a declared chart.
 
@@ -396,13 +402,13 @@ as the curl of the coarse recoil current and test whether its spatial and tempor
 
 The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](./master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
 $$
-u=g+\frac{r}{c_f}
+u=\tilde g+\frac{r}{c_f}
 $$
 the endpoint-clear candidate is
 $$
-K_{\mathrm{eff}}^{(\eta)}(r,g)
+K_{\mathrm{eff}}^{(\eta)}(r,\tilde g)
 =
-\int_{-\infty}^{g}
+\int_{-\infty}^{\tilde g}
 \frac{\delta_\eta(s)}
 {c_f(u-s)^2}
 ds
@@ -410,12 +416,12 @@ $$
 or the finite-endpoint variant with lower limit $-h_{+}$ after the characteristic gauge has cancelled the endpoint-clearance term. It satisfies
 $$
 \left(
-\partial_r-\frac{1}{c_f}\partial_g
+\partial_r-\frac{1}{c_f}\partial_{\tilde g}
 \right)
 K_{\mathrm{eff}}^{(\eta)}
 =
 -
-\frac{\delta_\eta(g)}{r^2}
+\frac{\delta_\eta(\tilde g)}{r^2}
 $$
 so it cancels the derivative-of-constraint residual without changing the accepted inverse-square scale term. Effective Lagrangian reductions should still inherit the Master EOM directly unless they explicitly choose the normalized characteristic-tail kernel and carry its boundary-increment convention on the retained chart.
 
@@ -423,9 +429,9 @@ The operator in this identity is the derivative along the causal characteristic.
 $$
 D_{\mathrm{char}}
 \equiv
-\partial_r-\frac{1}{c_f}\partial_g,
+\partial_r-\frac{1}{c_f}\partial_{\tilde g},
 \qquad
-u=g+\frac{r}{c_f},
+u=\tilde g+\frac{r}{c_f},
 $$
 one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the force law rather than merely clearing a boundary.
 
@@ -489,7 +495,7 @@ $$
 =
 \frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
 \Theta(T_1-T_0)
-\frac{\delta\!\big(g_{ij}(T_1,T_0)\big)}
+\frac{\delta\!\big(\tilde g_{ij}(T_1,T_0)\big)}
 {r_{ij}(T_1,T_0)}
 $$
 For the delayed-interior characteristic-tail candidate, the Noether-energy kernel must instead be built from the same normalized action kernel,
@@ -501,7 +507,7 @@ $$
 K_{\mathrm{eff}}^{(\eta)}
 \!\left(
 r_{ij}(T_1,T_0),
-g_{ij}(T_1,T_0)
+\tilde g_{ij}(T_1,T_0)
 \right)
 $$
 The scalar $1/r$ expression remains the diagnostic scaffold only when this replacement has not been declared for the chart.
@@ -520,7 +526,7 @@ For compatible trajectory reconstruction one may use the work-integral form
 $$
 U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\mathbf V_i(T')\,dT'
 $$
-when it is derived from the same action-level force and boundary convention. Otherwise $U(t)$ is a diagnostic history functional, not an independently proved Noether charge.
+when it is derived from the same action-level force and boundary convention. Otherwise $U(T)$ is a diagnostic history functional, not an independently proved Noether charge.
 
 The corresponding finite-window energy residual is
 $$
@@ -552,10 +558,10 @@ K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
 \qquad
 \mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}
 $$
-defined on the same retained branch rows that enter the force residual. The energy residual above is theorem-level only after this chart declares the action-level $g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(t)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
+defined on the same retained branch rows that enter the force residual. The energy residual above is theorem-level only after this chart declares the action-level $\tilde g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
 
 **Generalized Momentum:**
-Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}(t)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
+Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
 
 For an effective reduction to promote a retained chart rather than fit it, it must also report vector residuals for the same branch pullback:
 $$
@@ -608,7 +614,7 @@ At the level of a branch-collapsed delayed causal action, the exact multi-time i
 $$
 S_{\text{int}}^{\text{cg}} = - \frac{\kappa}{2c_f} \int dT \int d^3X \int d^3X' \,
 \frac{\rho_q(\mathbf X, T) \rho_q(\mathbf X', T - \|\mathbf X-\mathbf X'\|/c_f)}
-{\|\mathbf X-\mathbf X'\|\,J_{\mathrm{eff}}(\mathbf X,T;\mathbf X',T')}
+{\|\mathbf X-\mathbf X'\|}
 $$
 with delayed source time
 $$
@@ -626,15 +632,9 @@ $$
 \frac{\mathbf{j}_q(\mathbf X',T')}{\rho_q(\mathbf X',T')}
 \qquad (\rho_q\neq 0)
 $$
-and effective Jacobian
-$$
-J_{\mathrm{eff}}(\mathbf X,T;\mathbf X',T')
-=
-\left|1-\frac{\mathbf{u}(\mathbf X',T')\cdot\hat{\mathbf{n}}(\mathbf X,\mathbf X')}{c_f}\right|
-$$
-This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. In the canonical Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
+This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional source-normal denominator: the delayed density $\rho_q(\mathbf X',T')$ already carries the source-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point source, the familiar source-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. The correction still required by the canonical Master EOM is receiver-normal: differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
 
-The source-normal denominator is also one continuum location of the per-hit third-law defect. The corrected branch factor must additionally include the receiver-normal numerator, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
+The receiver-normal correction is also one continuum location of the per-hit third-law defect. The branch chart must distinguish source-side density transport from receiver-side crossing strength, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
 $$
 \Pi_q^{ij}
@@ -653,7 +653,7 @@ $$
 \right)
 $$
 
-where $\Pi_{q,J}^{[ij]}$ is the source-normal diagnostic contribution generated by the velocity dependence of the branch chart. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
+where $\Pi_{q,J}^{[ij]}$ is the antisymmetric branch-correction contribution generated when source-side density transport and receiver-normal crossing strength are derived on the same branch chart. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
 
 The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
 $$
@@ -691,7 +691,7 @@ E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 \zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 +\Pi_{\mathrm{mem}}^{ij}
 $$
-where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law.
+where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
 
 The constructive route is to read the transport coefficients as low-frequency moments of the delayed response kernel, not as independent material constants. If $\widetilde K_{\mathrm{shear}}(\omega)$ and $\widetilde K_{\mathrm{bulk}}(\omega)$ are the shear and bulk projections of the same branch-derived causal kernel, then the leading near-equilibrium coefficients have the schematic form
 
@@ -737,15 +737,17 @@ $$
 \left|
 \Delta_W K_{\mathrm{cg}}
 +\int_W
-2\eta_{\mathrm{cg}}E_{ij}E^{ij}
-+\zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})^2\,dT\,dV
+\left(
+2\eta_{\mathrm{cg}}\mathring E_{ij}\mathring E^{ij}
++\zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})^2
+\right)\,dT\,dV
 +\Delta_W E_{\mathrm{wake}}
 \right|
 }{
 |\Delta_W K_{\mathrm{cg}}|
 +\int_W
 \left(
-2\eta_{\mathrm{cg}}E_{ij}E^{ij}
+2\eta_{\mathrm{cg}}\mathring E_{ij}\mathring E^{ij}
 +\zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})^2
 \right)dT\,dV
 +|\Delta_W E_{\mathrm{wake}}|
@@ -874,7 +876,7 @@ $$
 2\pi\hbar_{\mathrm{eff}}\mathbb{Z}
 $$
 
-with the integer tied to the phase-bundle winding above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
+with the integer tied to the phase-return degree pair above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
 
 ### Topological Constraints and Assembly Stability
 
@@ -896,22 +898,22 @@ c_1[\theta^O,\theta^M,\theta^I]
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2
 $$
 
-where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked Noether braid chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-return degree pair of the resonance-locked Noether braid chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
 
 The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
 
-In the action-counting notation of [Causal Action Functional](causal-action-functional.md#branch-barrier-and-transition-cost), the same target is
+In the action-counting notation of [Causal Action Functional](causal-action-functional.md#branch-barrier-and-transition-cost), let $\mathfrak B_{\lambda_0(\eta)}$ and $\mathfrak B_{\lambda_1(\eta)}$ be retained finite-regulator branch charts on opposite sides of a path that crosses the specific codimension-one wall $\Sigma_{\mathrm{fold}}$. The same target is
 
 $$
 \Delta_{\mathrm{gap}}
 =
 \liminf_{\eta\to0^+}
-B_{\eta,h}(\Sigma_{\mathrm{fold}})
+B_{\mathrm{rec}}(\lambda_0(\eta),\lambda_1(\eta))
 >
 0
 $$
 
-for the specific codimension-one wall $\Sigma_{\mathrm{fold}}$ that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. The mass gap is positive exactly when the regularized fold-crossing cost survives refinement; this is the action view of the same uniform-in-$\eta$ fold-survival problem that stability packets test through Conley, Lyapunov, or Floquet data.
+for the wall that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. The mass gap is positive exactly when the receiver-normal fold-crossing cost survives regulator refinement with the finite memory and regulator state declared by those charts; this is the action view of the same uniform-in-$\eta$ fold-survival problem that stability packets test through Conley, Lyapunov, or Floquet data.
 
 ### Closure Interface: Action-to-Envelope Reduction
 

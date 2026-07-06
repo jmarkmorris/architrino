@@ -194,13 +194,13 @@ $$
 S_{\mathrm{partner}}
 =
 \frac{\sin y_*}
-{y_*^3\left(1+\frac{\sin y_*}{y_*}\right)}.
+{y_*^3}.
 $$
 
 Numerically,
 
 $$
-S_{\mathrm{partner}}\approx0.1842069963.
+S_{\mathrm{partner}}\approx0.3082910449.
 $$
 
 ### 3.2 Cross-binary $(2,\pm)$ contribution
@@ -304,7 +304,7 @@ $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 =
 \frac{\sin y_*}
-{y_*^3\left(1+\frac{\sin y_*}{y_*}\right)}
+{y_*^3}
 -
 \frac{\cos\sqrt{2}}{\sqrt{2}},
 $$
@@ -322,10 +322,10 @@ The executable witness gives
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \approx
-0.0739381522956.
+0.198022200895.
 $$
 
-Therefore the current sampled/numeric witness rejects the rigid zero-offset octahedral fixed-speed pointwise tangential hypothesis under this force convention once the root convention is certified at this node:
+Therefore the current receiver-normal sampled/numeric witness rejects the rigid zero-offset octahedral fixed-speed pointwise tangential hypothesis once the root convention is certified at this node:
 
 $$
 \texttt{rejected\_by\_single\_phase\_fixed\_speed\_tangential\_residual}.
@@ -342,7 +342,7 @@ The exact analytic closure target is:
 $$
 \boxed{
 \frac{\sin y_*}
-{y_*^3\left(1+\frac{\sin y_*}{y_*}\right)}
+{y_*^3}
 \ne
 \frac{\cos\sqrt{2}}{\sqrt{2}}
 }
@@ -363,17 +363,17 @@ The executable witness emits the interval certificate:
 | Row | Required certificate |
 | --- | --- |
 | Partner root enclosure | $y_*\in[1.47817026642,1.47817026644]$ for the unique root of $y=2\cos(y/2)$ on $0<y<\pi$ |
-| Partner tangent contribution | $S_{\mathrm{partner}}\in[0.18420699634,0.18420699636]$ |
+| Partner tangent contribution | $S_{\mathrm{partner}}\in[0.30829104493,0.30829104496]$ |
 | Cross $(2,\pm)$ contribution | $S_{2,\pm}\in[-0.11026884406,-0.11026884404]$ |
 | Cross $(3,\pm)$ contribution | $S_{3,\pm}=0$ at $\theta=0$ |
-| Tangent obstruction interval | $\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)\in[0.07393815228,0.07393815232]$ |
+| Tangent obstruction interval | $\widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)\in[0.19802220088,0.19802220091]$ |
 
 Thus
 
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \ge
-0.07393815228
+0.19802220088
 >
 0.
 $$

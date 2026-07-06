@@ -136,7 +136,7 @@ gives
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232].
+[0.19802220088,0.19802220091].
 $$
 
 Since the interval excludes zero, the fixed-speed tangential force row fails at a required node even though the receiver has the neutral source-site inventory
@@ -160,7 +160,7 @@ The proof has the form of a direct counterexample:
 | Neutral source-site inventory | passed: $N_{\mathrm{attr},i}=3$, $N_{\mathrm{rep},i}=2$ for every receiver |
 | Consumed ledger | rigid octahedral fixed-speed all-pairs distinct-site ledger |
 | Witness node | $(i,\theta)=((1,+),0)$ |
-| Tangential residual interval | $[0.07393815228,0.07393815232]$ |
+| Tangential residual interval | $[0.19802220088,0.19802220091]$ |
 | Fixed-speed force closure | failed at the witness node |
 
 The closure status is
