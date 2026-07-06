@@ -35,7 +35,7 @@ Definition (geometric, working): A neutrino is a near-planar pro/anti Noether br
   - Emission/capture selection rules are chiral: axial phase winding favored in typical sources matches observed handedness of weak processes (alignment with W/Z-like corridor re-couplings).
 
 - Weak interactions as corridor re-coupling:
-  - Charged-current processes correspond to brief, localized corridor connections that reassign the weak-coupling ledger and axial architrinos between the participating assemblies (W-like), while neutral-current scattering corresponds to energy/momentum exchange with zero net charge transfer (Z-like). Cross sections are tiny because the neutrino’s exterior field is only a faint residue; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md).
+  - Charged-current processes correspond to brief, localized corridor connections that reassign the weak-coupling ledger and axial architrinos between the participating assemblies (W-like), while neutral-current scattering corresponds to energy/momentum exchange with zero net charge transfer (Z-like). Cross sections are tiny because the neutrino's exterior coupling residue is small; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md).
 
 At the phase-generator level, the intended split is
 $$
@@ -51,21 +51,31 @@ The exposed-energy row should be kept separate from the internal energy row. For
 $$
 E_{\nu,\mathrm{int}}
 =
-E_{\nu,\mathrm{exp}}(t)
-+E_{\nu,\mathrm{sh}}(t),
+E_{\nu,\mathrm{exp}}(T)
++E_{\nu,\mathrm{sh}}(T),
 $$
-where $E_{\nu,\mathrm{exp}}(t)$ is the weak-channel exposed part and $E_{\nu,\mathrm{sh}}(t)$ is the internally shielded part of the same retained branch. A compact closure target is
+where $E_{\nu,\mathrm{exp}}(T)$ is the weak-channel exposed part and $E_{\nu,\mathrm{sh}}(T)$ is the internally shielded part of the same retained branch. The state $|\psi_\nu(T)\rangle$ lives in the three-mode residual-binary space on which $H_{\mathrm{geo}}$ acts. Because $H_{\mathrm{geo}}$ carries mass-squared-response units rather than energy units, the weak-projected response must first be mapped into an energy-facing phase row for a declared ultrarelativistic comparison energy $E_\nu$:
+$$
+\mu_{\nu,W}^2(T)
+\equiv
+\langle\psi_\nu(T)|\Pi_W H_{\mathrm{geo}}\Pi_W|\psi_\nu(T)\rangle,
+\qquad
+\mathcal{E}_{\nu,W}(T;E_\nu)
+\equiv
+\frac{\mu_{\nu,W}^2(T)}{2E_\nu}.
+$$
+A compact closure target is
 $$
 \mathcal{R}_{\nu,\mathrm{shield}}
 =
 \left\|
-E_{\nu,\mathrm{exp}}(t)
+E_{\nu,\mathrm{exp}}(T)
 -
-\langle\psi_\nu(t)|\Pi_W H_{\mathrm{geo}}\Pi_W|\psi_\nu(t)\rangle
+\mathcal{E}_{\nu,W}(T;E_\nu)
 \right\|
 +
 \left\|
-\frac{d}{dt}
+\frac{d}{dT}
 \left(
 E_{\nu,\mathrm{exp}}+E_{\nu,\mathrm{sh}}
 \right)
@@ -75,22 +85,22 @@ with $\Pi_W$ the weak-exposure projector on the near-photon branch. This does no
 
 The three residual internal binaries should remain visible in the closure record before PMNS fitting begins. A resolved near-photon branch may be written schematically as
 $$
-\Theta_{\nu}^{(3B)}(t)
+\Theta_{\nu}^{(3B)}(T)
 =
 \left\{
 \left(
-E_{\ell}(t),
-R_{\ell}(t),
-\hat{\mathbf{J}}_{\ell}(t),
-\phi_{\ell}(t),
-\zeta_{\ell W}(t)
+E_{\ell}(T),
+R_{\ell}(T),
+\hat{\mathbf{J}}_{\ell}(T),
+\phi_{\ell}(T),
+\zeta_{\ell W}(T)
 \right)
 \right\}_{\ell=1}^{3},
 \qquad
-E_{\nu,\mathrm{exp}}(t)
+E_{\nu,\mathrm{exp}}(T)
 =
 \sum_{\ell=1}^{3}
-\zeta_{\ell W}(t)E_{\ell}(t).
+\zeta_{\ell W}(T)E_{\ell}(T).
 $$
 Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
 
@@ -112,14 +122,14 @@ Use a three-mode internal phase operator with mass-squared-response units:
 $$
 H_{\mathrm{geo}}=
 \begin{pmatrix}
-\epsilon_1 & \Omega_{12}e^{-i\phi_{12}} & \Omega_{13}e^{-i\phi_{13}}\\
-\Omega_{12}e^{i\phi_{12}} & \epsilon_2 & \Omega_{23}e^{-i\phi_{23}}\\
-\Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \epsilon_3
+\varpi_1 & \Omega_{12}e^{-i\phi_{12}} & \Omega_{13}e^{-i\phi_{13}}\\
+\Omega_{12}e^{i\phi_{12}} & \varpi_2 & \Omega_{23}e^{-i\phi_{23}}\\
+\Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \varpi_3
 \end{pmatrix}
 $$
-with $(\epsilon_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
+with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
-Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\epsilon_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
+Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\varpi_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
 $$
 H_{\mathrm{geo}}=U_{\mathrm{PMNS}}\Lambda U_{\mathrm{PMNS}}^\dagger,\qquad
 \Lambda=\operatorname{diag}(\lambda_1,\lambda_2,\lambda_3),\qquad
@@ -137,6 +147,7 @@ $$
 $$
 \Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}
 $$
+The displayed CP-odd sign fixes the neutrino convention for the basis above. Antineutrino comparisons use the complex-conjugated mixing matrix, so the CP-odd term changes sign; in matter, the charged-current part of the matter potential also reverses sign.
 
 The two-basis distinction is part of the recovery target, not optional notation. Weak reactions create and detect flavor-basis states $|\nu_\alpha\rangle$, while propagation follows the eigenbasis $|\nu_i\rangle$ of $H_{\mathrm{geo}}$. In the two-state limit this reduces to the benchmark form
 $$
@@ -149,13 +160,36 @@ using the same mass-squared-response eigenvalue gap convention as the three-flav
 
 The experimental implementation makes this split operational. A long-baseline beam creates a flavor-tagged neutrino through a weak reaction, lets the neutral branch propagate over a declared baseline, and reads the detector flavor from the charged products of the rare interaction that finally occurs. The beamline may be described as a muon-neutrino source, but in the propagation interval the retained state is not a flavor eigenstate; it is a superposition of mass-response eigencomponents whose relative phases change with $L/E$ and with the intervening matter record. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is therefore one event ledger with source, propagation, and detector rows: source flavor tag, energy spectrum, baseline, in-medium phase correction, detector flavor tag, recoil, and missing neutral-lepton row must all refer to the same near-photon branch history. Oscillation measurements then constrain eigenvalue gaps and ordering pressure, not the absolute mass scale by themselves.
 
-Matter correction enters through the Noether sea state:
+Matter correction enters through a flavor-structured operator sourced by the local matter record carried with the Noether sea state. The normalized Noether braid density remains
 $$
-H_{\mathrm{eff}}=H_{\mathrm{geo}}+V_{\mathrm{sea}}(n(\mathbf X,T)),
-\qquad
 n(\mathbf X,T)\equiv\frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
-The matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
+but the MSW-facing correction must also sample the embedded electron, proton, and neutron assembly content through the weak-exposure projector. Let $\theta_{\mathrm{sea}}(\mathbf X,T)$ denote that local Noether sea record, including $n(\mathbf X,T)$ and the matter-assembly content relevant to coherent weak scattering. The effective operator is
+$$
+H_{\mathrm{eff}}^{\alpha\beta}
+=
+H_{\mathrm{geo}}^{\alpha\beta}
++
+V_{\mathrm{mat}}^{\alpha\beta}
+\left(
+\theta_{\mathrm{sea}}(\mathbf X,T),
+\Pi_W;
+E_\nu
+\right)
+$$
+where $V_{\mathrm{mat}}^{\alpha\beta}$ is a flavor-structured mass-squared-response operator. In the Standard Model comparison limit it must reduce, up to the oscillation-irrelevant identity part, to the charged-current MSW row,
+$$
+V_{\mathrm{mat}}^{\alpha\beta}
+\longrightarrow
+2E_\nu
+\begin{pmatrix}
+V_{\mathrm{CC}}(n_e(\mathbf X,T)) & 0 & 0\\
+0 & 0 & 0\\
+0 & 0 & 0
+\end{pmatrix}^{\alpha\beta}
++2E_\nu V_{\mathrm{NC}}(\mathbf X,T)\delta^{\alpha\beta}.
+$$
+Here $n_e$ is the local electron density in the matter record. The charged-current term tracks that electron density, while the neutral-current identity term contributes only a common phase unless sterile or right-handed branches are being compared. The full matter term must be normalized to the same mass-squared-response units as $H_{\mathrm{geo}}$ before the $\Delta\lambda L/(4E)$ phase formula is used.
 
 Closure criterion for this chapter: one near-photon geometric phase-operator family must reproduce PMNS angles/phases and the observed $L/E$ pattern without introducing unconstrained flavor-specific ad hoc terms. For the electroweak-angle side of the same lepton sector, see [Weak Mixing Angle](./weak-mixing-angle.md); for validation targets, see [Constraint Ledger](../../validation/constraint-ledger.md).
 
@@ -163,7 +197,7 @@ Closure criterion for this chapter: one near-photon geometric phase-operator fam
 
 The neutral-lepton branch should be revised only by observable gates, not by importing a sterile-neutrino or Majorana interpretation as doctrine.
 
-- **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
+- **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible, through the same comparison-layer map from mass-squared response to ordinary mass language, with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
 - **Dirac/Majorana gate:** a confirmed neutrinoless double-beta signal would require a lepton-number-violating reaction provenance channel. A null result instead tightens the allowed Majorana-like coupling or sterile-branch mixing, but does not by itself prove the current Dirac-like geometry.
 - **Right-handed or sterile branch gate:** a $\nu_R$-like branch may be added only if the weak-coupling-triad exposure, anomaly bookkeeping, PMNS map, and reaction provenance all remain compatible. Such a branch must be an $SU(2)$ singlet with $Y=0$ in observer-level bookkeeping and must not become a hidden patch for unrelated dark-sector mass.
 - **Dark-sector gate:** a neutral-lepton dark-matter interpretation is admissible only if the candidate branch supplies cosmological stability, abundance, and free-streaming behavior while preserving BBN, CMB, and structure-formation constraints.

@@ -53,7 +53,7 @@ $$
 \mathcal{F}_{\text{ax}} = \{\hat{\mathbf{p}}_1,\hat{\mathbf{p}}_2,\hat{\mathbf{p}}_3\}
 $$
 
-For a perfectly symmetric lepton-like axial layer, these two frames coincide. For a quark-like axial layer with axis exceptionality, they need not coincide; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
+For a perfectly symmetric lepton-like axial layer, the axial moment record is isotropic, so no independent axial frame is distinguished; the core frame supplies the natural zero-misalignment convention. For a quark-like axial layer with axis exceptionality, the axial moment record can select a nontrivial axial frame; compare the charge-and-axis bookkeeping in [Quantum Number Mapping](./quantum-number-mapping.md).
 
 The geometric object of interest is therefore the relative rotation
 $$
@@ -102,19 +102,25 @@ For up-type and down-type quarks the imbalance differs:
 - up-type: $5\epsilon_+,1\epsilon_-$,
 - down-type: $2\epsilon_+,4\epsilon_-$.
 
-This means the axial layer does not merely carry a net observer-level charge. It also carries a nontrivial anisotropic load. That anisotropic load can be encoded in an axial-moment tensor
+This means the axial layer does not merely carry a net observer-level charge. It also carries nontrivial even and odd polarity moments. The signed even moment is
 $$
 M_{ij} = \sum_{a=1}^{6} q_a\,n_i^{(a)} n_j^{(a)}
 $$
 where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
 
-The eigenvectors of $M_{ij}$ define the principal axial axes. For leptons, symmetry tends to force these axes to align with the core frame. For quarks, the relevant residual is not a commutator with the identity tensor. It is the off-diagonal axial-tensor load measured in the core basis,
+Because $M_{ij}$ is even under $\mathbf{n}\mapsto-\mathbf{n}$, it detects signed same-polarity dyad loading but is blind to a perfectly antipodal mixed polar dyad. A mixed dyad with one $\epsilon_+$ and one $\epsilon_-$ cancels in $M_{ij}$ even though it is exactly the local axis-exceptional structure that matters for up-type quarks and one down-type family. The complementary odd moment is therefore required:
+$$
+d_i = \sum_{a=1}^{6}q_a\,n_i^{(a)}
+$$
+A same-polarity polar dyad gives no contribution to $d_i$, while a mixed polar dyad contributes a vector $\pm2\epsilon\,\hat{\mathbf n}$ according to which pole carries which polarity. The axial frame should therefore be read from the joint moment record $(M_{ij},d_i)$, not from $M_{ij}$ alone.
+
+This also limits what the idealized on-axis polarity count can prove. In the symmetric charged-lepton limit $M_{ij}$ is proportional to the identity and $d_i=0$, so the axial frame is not separately distinguished. In an idealized quark pattern, $(M_{ij},d_i)$ can identify the exceptional axis while still remaining diagonal or axis-aligned in the core frame. The actual misalignment diagnostic belongs to the displaced equilibrium selected by the effective energy, with the off-diagonal axial-tensor load measured after the polar-site directions have relaxed:
 $$
 \mathcal{R}_{\mathrm{off}}(M;\mathcal{F}_{\text{core}})
 =
 \sum_{i\ne j}|M_{ij}|^2
 $$
-The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$. If $\mathcal{R}_{\mathrm{off}}=0$ but the eigenvalues of $M_{ij}$ differ, the axial layer is anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
+The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$ on that relaxed record, or equivalently a joint principal frame for $(M_{ij},d_i)$ that is rotated away from $\mathcal{F}_{\text{core}}$. If $\mathcal{R}_{\mathrm{off}}=0$ while $d_i$ selects a core axis or the eigenvalues of $M_{ij}$ differ, the axial layer is exceptional or anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
 
@@ -146,6 +152,8 @@ $$
 $$
 with additional identifications made by symmetry.
 
+This set is explicitly pre-quotient. In particular, the $90^\circ$ entry survives only if pole reversal and axis-flip equivalences do not reduce it to a lower representative.
+
 The electron occupies the $\alpha=0$ branch. Quarks would then occupy one of the nonzero branches.
 
 ---
@@ -156,7 +164,7 @@ To avoid ambiguity, this idea should be stated in operational terms.
 
 The following are allowed to rotate relative to the fixed core frame:
 
-- the principal axes of the six-site axial-distribution tensor,
+- the principal axes of the six-site axial moment record $(M_{ij},d_i)$,
 - the coarse orientation of the weak-coupling triad,
 - the effective exposed-vs-shielded partition in the forward coupling geometry,
 - the dominant dipole/quadrupole direction associated with quark asymmetry.
@@ -262,7 +270,7 @@ $$
 $$
 at
 $$
-\alpha = n\theta_W^{\text{bare}}
+\alpha = n\theta_{\mathrm{inc}}
 $$
 and that these stationary points are true minima for the stable branches.
 
@@ -270,7 +278,7 @@ A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in 
 $$
 E_{\text{polarity}}(\alpha)=A\sin^2\!\left(\frac{\alpha}{\theta_{\mathrm{inc}}}\pi\right)+B\,f_{\text{type}}(\alpha)
 $$
-where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the bare angle.
+where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the branch increment.
 
 ### Closure handoff
 
@@ -298,7 +306,7 @@ This gives a possible geometric interpretation of quark weak structure:
 - weak transitions couple to that rotated frame,
 - observed electroweak mixing then depends on both charge assignment and frame misalignment.
 
-This is a cleaner statement than saying that weak mixing directly rotates the braid axes. The weak interaction sees the **axial geometry that is exposed to the Sea**, not necessarily a reorientation of the neutral scaffold.
+This is a cleaner statement than saying that weak mixing directly rotates the braid axes. The weak interaction sees the **axial geometry that is exposed to the Noether sea**, not necessarily a reorientation of the neutral scaffold.
 
 ---
 

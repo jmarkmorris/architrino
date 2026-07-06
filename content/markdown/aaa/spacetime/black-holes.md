@@ -18,15 +18,15 @@ The chapter does not replace weak-field or observer-level black-hole phenomenolo
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea driven into an extreme alignment and compression regime by sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the interior ontology is not a geometric singularity. It is a structured nested shell braid regime with three coupled zones:
 
-| Zone | Nested shell braid role | Speed regime | Effective black-hole language |
+| Zone | Nested shell braid role | Constituent branch-speed regime | Effective black-hole language |
 | :--- | :--- | :--- | :--- |
-| Exterior bulk | outer-dominant volumetric assemblies | $v < c_f$ | outside observer region |
-| Horizon interface | middle-layer locking with outer-layer terminal alignment | $v = c_f$ for the locked interface components | event/apparent horizon comparison |
-| Interior core | self-hit-dominant maximal-curvature assemblies | $v > c_f$ | black-hole interior |
+| Exterior bulk | outer-dominant volumetric assemblies | outer branch $v_O < c_f$ in ordinary exterior coupling | outside observer region |
+| Horizon interface | middle-layer locking with outer-layer terminal alignment | $v_M=c_f$ with $v_O\to c_f$ for the locked interface components | event/apparent horizon comparison |
+| Interior core | self-hit-dominant maximal-curvature assemblies | inner self-hit branch speed exceeds $c_f$ | black-hole interior |
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether sea.
 
-The same regime map already appears locally inside the nested shell braid. The middle binary is the symmetry-breaking threshold, the inner self-hit binary is the beyond-threshold interior row, and the outer binary is the exterior-coupling row that strong-field collapse drives toward terminal alignment. In this sense a Noether braid contains the primitive black-hole dual: a local horizon/interior pattern that can later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model. It is the native claim that black-hole structure is the large-scale continuation of a branch pattern already present in the assembly ontology.
+The same regime map already appears locally inside the nested shell braid. The middle binary is the symmetry-breaking threshold, the inner self-hit binary is the beyond-threshold interior row, and the outer binary is the exterior-coupling row that strong-field collapse drives toward terminal alignment. In this sense a Noether braid contains the primitive black-hole analogue: a local horizon/interior pattern that can later be population-amplified into an observer-level compact object. This is not an imported primordial-black-hole model. It is the native claim that black-hole structure is the large-scale continuation of a branch pattern already present in the assembly ontology.
 
 When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the middle hinge remains at $c_f$, the outer row is driven to the same terminal threshold, and the inner self-hit row supplies the interior continuation.
 
@@ -367,7 +367,7 @@ $$
 +
 \left(1-\frac{v_O}{c_f}\right)^2
 +
-d_{\mathrm{curv}}\!\left(\{\Lambda_{\text{NS}}\},\mathcal{B}_H\right)
+d_{\mathrm{curv}}\!\left(\mathcal{B}_H\right)
 +
 d_{\mathrm{ent}}\!\left(
 S_H,
@@ -377,7 +377,7 @@ k_B\log|\mathcal{B}_H|
 \mathcal{R}_{\mathrm{release}}(E;\theta)
 \right]
 $$
-Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted Noether braid labels are finite maximum-curvature labels, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
+Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}$ checks that the admitted horizon-interface labels carry finite maximum-curvature rows, $d_{\mathrm{ent}}$ checks horizon-interface entropy bookkeeping, and $\mathcal{R}_{\mathrm{release}}$ checks the outgoing $E$, $\mathbf{p}$, $\mathbf{J}$, polarity, provenance, medium-update, and remnant rows through the event ledger.
 
 The closure condition is $\mathcal{R}_{E\to H}(\theta)\le\epsilon_{E\to H}$ using the same strong-field branch record that recovers exterior compact-object observables. A model fails this gate if it claims arbitrarily short-distance resolution in the active compact-object regime, or if it activates the horizon scale while leaving maximum-curvature labels, entropy capacity, or release-channel accounting undefined.
 
@@ -485,14 +485,14 @@ A_{\mathrm{eff}}\!\left(\gamma_A^{\mathrm{eff}}(\theta)\right)
 $$
 The event-horizon reading is justified only in the $\eta_H\to1$ regime. When $\eta_H=0$ or remains bounded away from one, the holographic comparison is still useful as an access-region entropy test, but it is not evidence that the boundary surface is the horizon-interface ontology.
 
-A useful way to state that native task is through a horizon-interface label ensemble. Let $\Lambda_{\text{NS}}$ denote the reduced Noether braid closure label from [Noether Braid](../noether-braid/noether-braid.md). For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
+A useful way to state the native task is through a horizon-interface label ensemble. Let $\lambda_i^H$ denote a retained horizon-interface ledger label selected by the strong-field record. Such a label may include neutral Noether braid closure rows, charged assembly rows, and allowed interface-channel rows; its charge and polarity ledger has exterior scalar readout $q_i$. For an effective exterior black-hole label $(M,\mathbf{J},Q)$, define the schematic ensemble
 $$
 \mathcal{B}_{H}(M,\mathbf{J},Q)
 =
 \left\{
-\{\Lambda_{\text{NS},i}\}_{i=1}^{N}
+\{\lambda_i^H\}_{i=1}^{N}
 :
-\sum_i E_i = M c_{\text{eff}}^2,\quad
+\sum_i E_i = M c_0^2,\quad
 \sum_i \mathbf{J}_i = \mathbf{J},\quad
 \sum_i q_i = Q,\quad
 v_M=c_f,\quad
@@ -501,7 +501,7 @@ v_O\to c_f,\quad
 \right\}
 $$
 
-In plain language, $\mathcal{B}_{H}$ is the set of strong-field Noether braid ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
+The use of $c_0$ in the energy row marks the observer-level exterior calibration of the no-hair label; a local $c_{\text{eff}}$ row belongs to the constitutive map that produces the exterior record. In plain language, $\mathcal{B}_{H}$ is the set of strong-field horizon-interface ledger arrangements that look identical to exterior probes once the probe can resolve only effective mass, angular momentum, charge, and allowed interface channels. This gives a precise no-hair reading: exterior no-hair is a coarse-graining over many compatible closure labels, not evidence that the interior has no microstate.
 
 The corresponding thermodynamic closure target is
 $$
@@ -648,11 +648,11 @@ $$
 =
 \min\left\{
 N:
-G_N\circ\cdots\circ G_1(\Lambda_a)=\Lambda_b,\
-G_i\in\mathcal{G}_{\mathrm{loc}}
+U_N\circ\cdots\circ U_1(\Lambda_a)=\Lambda_b,\
+U_i\in\mathcal{U}_{\mathrm{loc}}
 \right\}
 $$
-where $\mathcal{G}_{\mathrm{loc}}$ is the permitted set of local Noether braid, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
+where $\mathcal{U}_{\mathrm{loc}}$ is the permitted set of local horizon-interface, assembly, path-history, and release-ledger updates inside the horizon-interface model. For a horizon history, write $\mathcal{C}_{H}^{(O)}(t)$ for the minimum such update count between the observer-accessible initial ledger and the compatible ledger class at time $t$.
 
 The comparison burden is then:
 $$
@@ -663,27 +663,27 @@ without breaking exterior no-hair behavior, Page-compatible release accounting, 
 
 ### Finite-Boundary Endpoint Closure
 
-The endpoint and information questions should be posed on a compact strong-field region rather than by assuming an observer at asymptotic infinity. For a region $\Omega$ bounded by finite observer-accessible data between times $t_i$ and $t_f$, the native closure target is a single continuation map
+The endpoint and information questions should be posed on a compact strong-field region rather than by assuming an observer at asymptotic infinity. For a region $\Omega$ bounded by finite observer-accessible data between absolute times $T_i$ and $T_f$, the native closure target is a single continuation map
 $$
 \mathcal{T}_{\Omega}:
 \left(
-X_\Omega(t_i),
-\mathcal{H}_{\Omega}^{<t_i},
-\mathcal{B}_{\partial\Omega}|_{[t_i,t_f]},
-N_{\text{sea}}|_{\Omega\times[t_i,t_f]}
+X_\Omega(T_i),
+\mathcal{H}_{\Omega}^{<T_i},
+\mathcal{B}_{\partial\Omega}|_{[T_i,T_f]},
+N_{\text{sea}}|_{\Omega\times[T_i,T_f]}
 \right)
 \longrightarrow
 \left(
-X_\Omega(t_f),
-\mathcal{B}_{H}^{(O)}(t_f),
-S_{\mathrm{out}}^{(O)}(t_f)
+X_\Omega(T_f),
+\mathcal{B}_{H}^{(O)}(T_f),
+S_{\mathrm{out}}^{(O)}(T_f)
 \right)
 $$
-Here $X_\Omega$, $\mathcal{H}_{\Omega}^{<t}$, and $\mathcal{B}_{\partial\Omega}$ are the finite-region variables from [Observer Framework](observer-framework.md#ontic-and-epistemic-levels). The closure requirement is not that a particular remnant, bounce, or asymptotic boundary story be adopted. It is that the same finite boundary data determine a finite strong-field continuation:
+Here $X_\Omega$, $\mathcal{H}_{\Omega}^{<T}$, and $\mathcal{B}_{\partial\Omega}$ are the finite-region variables from [Observer Framework](observer-framework.md#ontic-and-epistemic-levels). The closure requirement is not that a particular remnant, bounce, or asymptotic boundary story be adopted. It is that the same finite boundary data determine a finite strong-field continuation:
 $$
 F_H=0,\qquad
 \mathcal{R}_H(\Omega)<\infty,\qquad
-0<\left|\mathcal{B}_{H}^{(O)}(t_f)\right|<\infty
+0<\left|\mathcal{B}_{H}^{(O)}(T_f)\right|<\infty
 $$
 with outgoing energy, momentum, angular momentum, charge, polarity, provenance, and medium-update rows accounted for through the release-channel ledger.
 
@@ -711,7 +711,7 @@ F_H\!\left[
 \rho_{\text{NS}}(\mathbf X,T),
 \Sigma_{\text{sea}}(\mathbf X,T),
 \mathbf u_{\text{sea}}(\mathbf X,T),
-\{\Lambda_{\text{NS}}\};
+\{\lambda_i^H\};
 \partial\Omega
 \right]
 =0,
@@ -811,7 +811,7 @@ A small compact object passing through material is therefore a response problem,
 $$
 \frac{dE_{\mathrm{dep}}}{d\ell}
 =
-\mathcal{S}_{\mathrm{mat}}(M_X,R_X,v_X;\theta_{\mathrm{mat}}),
+\mathcal{S}_{\mathrm{stop}}(M_X,R_X,v_X;\theta_{\mathrm{mat}}),
 \qquad
 r_{\mathrm{dam}}
 =
@@ -926,14 +926,14 @@ $$
 M,\mathbf{J},
 \dot M_{\mathrm{in}}(R_{\inf},t),
 \dot M_{\mathrm{acc}}(R_{\mathrm{launch}},t),
-\Phi_{\mathrm{eff}}^{\mathrm{obs}}(t),
+\Phi_{\mathrm{BH}}^{\mathrm{obs}}(t),
 \mathcal{A}_{\mathrm{NS}}(R,t),
 \Sigma_{\mathrm{wind}}(R,t),
 \mathcal{B}_{H}(t)
 \right)
 $$
 
-where $R_{\inf}$ is the observer-level black-hole influence scale, $\Phi_{\mathrm{eff}}^{\mathrm{obs}}$ is the standard magnetic-flux comparison diagnostic rather than substrate field ontology, $\mathcal{A}_{\mathrm{NS}}$ is the mapped Noether sea anisotropy and loading state, and $\Sigma_{\mathrm{wind}}$ records disk-wind or sheath confinement. The local selector must then produce one channel record
+where $R_{\inf}$ is the observer-level black-hole influence scale, $\Phi_{\mathrm{BH}}^{\mathrm{obs}}$ is the standard black-hole magnetic-flux comparison diagnostic rather than substrate field ontology, $\mathcal{A}_{\mathrm{NS}}$ is the mapped Noether sea anisotropy and loading state, and $\Sigma_{\mathrm{wind}}$ records disk-wind or sheath confinement. The local selector must then produce one channel record
 
 $$
 \Pi_{\mathrm{AGN}}[\Theta_{\mathrm{AGN}}]
@@ -962,7 +962,7 @@ $$
 w_{\mathrm{launch}}\,
 d_{\mathrm{launch}}\!\left[
 \Pi_{\mathrm{AGN}}(\Theta_{\mathrm{AGN}}),
-\left(M,\mathbf{J},\dot M_{\mathrm{in}},\Phi_{\mathrm{eff}}^{\mathrm{obs}},\mathcal{A}_{\mathrm{NS}}\right)
+\left(M,\mathbf{J},\dot M_{\mathrm{in}},\Phi_{\mathrm{BH}}^{\mathrm{obs}},\mathcal{A}_{\mathrm{NS}}\right)
 \right]
 \\
 &+

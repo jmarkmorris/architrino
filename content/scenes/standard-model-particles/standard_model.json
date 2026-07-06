@@ -12,6 +12,9 @@
     "layout": {
       "type": "rings"
     },
+    "textbookToc": {
+      "hideChapterLabels": true
+    },
     "children": [
       {
         "scenePath": "content/scenes/standard-model-particles/up_quark.json",

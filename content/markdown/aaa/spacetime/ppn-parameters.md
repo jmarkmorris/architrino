@@ -125,12 +125,12 @@ In the forward projection below, the missing half is precisely the $\gamma_{\tex
 ### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
 * **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether sea constitutive nonlinearity.
-* **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
+* **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$. For a declared weak-field branch, expand the static clock law with branch-local constitutive coefficient $C_2$:
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}}\bigg|_{v=0}
 =
 1-\frac{U}{c_0^2}
-+C_2(a,k)\frac{U^2}{c_0^4}
++C_2\frac{U^2}{c_0^4}
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Since $-g_{00}=(d\tau/dt_{\mathrm{eff}})^2$ for a static observer,
@@ -139,7 +139,7 @@ g_{00}
 =
 -1
 +2\frac{U}{c_0^2}
--\bigl[1+2C_2(a,k)\bigr]\frac{U^2}{c_0^4}
+-\bigl[1+2C_2\bigr]\frac{U^2}{c_0^4}
 +\mathcal{O}\!\left(\frac{U^3}{c_0^6}\right)
 $$
 Match to the PPN form
@@ -150,17 +150,9 @@ g_{00}^{\mathrm{PPN}}
 $$
 to obtain
 $$
-\boxed{\beta_{\mathrm{eff}}(a,k)=\frac{1+2C_2(a,k)}{2}}
+\boxed{\beta_{\mathrm{eff}}=\frac{1+2C_2}{2}}
 $$
-Equivalently, if $\alpha(\mathcal{I})=1+\lambda_t\mathcal{I}+\frac{1}{2}\lambda_{tt}\mathcal{I}^2$ and
-$\mathcal{I}=\chi_1(a,k)\,U/c_0^2+\chi_2(a,k)\,U^2/c_0^4+\cdots$, then
-$$
-\beta_{\mathrm{eff}}(a,k)
-=
-\frac{1}{2}
-+\lambda_t\chi_2(a,k)
-+\frac{1}{2}\lambda_{tt}\chi_1(a,k)^2
-$$
+No cosmological $(a,k)$ dependence is implied here; those arguments are reserved for effective cosmology transfer variables such as $\mu(a,k)$ and $G_{\mathrm{eff}}(a,k)$.
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
 ### Exponential clock-law subclass (direct map)
@@ -187,41 +179,42 @@ without additional fit freedom.
 
 Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt_{\mathrm{eff}}$ in this subclass. The Noether sea cadence-stretch factor used in redshift bookkeeping is its inverse, $\Gamma_N=(\Omega\xi)^{-1}$, when the same local clock channel is being compared.
 
-The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
-When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.
+The general $C_2$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
+When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_f^2)$ at the native constitutive level, one has $U_{\Phi}=U+O(U^2/c_f^2)$ at weak field before observer-channel normalization to the $c_0$-based PPN expansion.
 
 ### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
-* **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the Noether sea drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
+* **Constitutive leakage ansatz:** Let $\mathbf{w}=\mathbf V_{\mathrm{cm}}-\mathbf u_{\mathrm{sea}}$ be the barycentric laboratory or source-frame drift through the local Noether sea, matching the clock convention in which the material assembly moves relative to the sea. Write the lowest-order drift terms as
 $$
 g_{0i}^{\text{leak}}
 =
--\frac{1}{2}\Xi_1(a,k)\frac{w_i U}{c_0^3}
--\Xi_2(a,k)\frac{w^j U_{ij}}{c_0^3}
+-\frac{1}{2}\Xi_1\frac{w_i U}{c_0^3}
+-\Xi_2\frac{w^j U_{ij}}{c_0^3}
 $$
 $$
 g_{00}^{\text{leak}}
 =
--\Xi_3(a,k)\frac{w^2 U}{c_0^4}
--\Xi_2(a,k)\frac{w^i w^j U_{ij}}{c_0^4}
-+\Xi_4(a,k)\frac{w^i V_i}{c_0^3}
+-\Xi_3\frac{w^2 U}{c_0^4}
+-\Xi_2\frac{w^i w^j U_{ij}}{c_0^4}
++\Xi_4\frac{w^i V_i}{c_0^3}
 $$
 Matching to standard PPN preferred-frame structure gives
 $$
-\boxed{\alpha_1(a,k)=\Xi_1(a,k)},\qquad
-\boxed{\alpha_2(a,k)=\Xi_2(a,k)}
+\boxed{\alpha_1=\Xi_1},\qquad
+\boxed{\alpha_2=\Xi_2}
 $$
 $$
-\boxed{\alpha_3(a,k)=\Xi_1(a,k)-\Xi_2(a,k)-\Xi_3(a,k)}
+\boxed{\alpha_3=\Xi_1-\Xi_2-\Xi_3}
 $$
 with consistency relation
 $$
-\Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3
+\Xi_4=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3
 $$
+If a comparison source instead defines $\mathbf w_{\mathrm{sea}}=-\mathbf w$, all odd-in-$\mathbf w$ preferred-frame terms must be sign-translated before reading off the $\Xi_i\to\alpha_i$ map.
 
 ## Zero-Leakage Conditions (Preferred-Frame Closure)
 
-The effective theory is preferred-frame safe iff all drift couplings vanish:
+The effective theory is preferred-frame safe if and only if all drift couplings vanish:
 $$
 \Xi_1=\Xi_2=\Xi_3=\Xi_4=0
 \quad\Longleftrightarrow\quad
@@ -242,9 +235,9 @@ The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakag
 
 ## Preferred-Motion Null-Test Bundle
 
-Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent fit parameters. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether sea rest comparison frame, write the leading fractional readout as
+Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent fit parameters. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t_{\mathrm{eff}})$ and laboratory drift $\mathbf{w}(t_{\mathrm{eff}})$ through the local Noether sea, write the leading fractional readout as
 $$
-y_A(t)
+y_A(t_{\mathrm{eff}})
 =
 y_{A,0}
 +\mathbf{s}_A^{\mathsf T}
@@ -253,15 +246,15 @@ y_{A,0}
 \alpha_2\\
 \alpha_3
 \end{pmatrix}
-\frac{w^2(t)}{c_0^2}
+\frac{w^2(t_{\mathrm{eff}})}{c_0^2}
 +\zeta_A
 \frac{
-\left(\mathbf{w}(t)\cdot\hat{\mathbf{n}}_A(t)\right)^2
--w^2(t)/3
+\left(\mathbf{w}(t_{\mathrm{eff}})\cdot\hat{\mathbf{n}}_A(t_{\mathrm{eff}})\right)^2
+-w^2(t_{\mathrm{eff}})/3
 }{c_0^2}
-+n_A(t)
++n_A(t_{\mathrm{eff}})
 $$
-Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, and $n_A$ is detector/environment noise. The shared preferred-frame residual is
+Here $\mathbf{s}_A$ is the PPN sensitivity row for the channel, $\zeta_A$ is an allowed apparatus-calibration nuisance fixed by the instrument model, $n_A$ is detector/environment noise, and $y_A^\theta$ is the model readout projected from the retained record tuple $\theta$. The shared preferred-frame residual is
 $$
 \mathcal{R}_{\mathrm{PF\text{-}bundle}}
 =
@@ -419,7 +412,7 @@ $$
 \alpha_3=\Xi_1-\Xi_2-\Xi_3
 $$
 
-For a declared observation window $W$, the shared weak-field residual can be recorded as
+For a declared observation window $W$ and retained record tuple $\theta$, the shared weak-field residual can be recorded as
 $$
 \mathbf{r}_{\mathrm{weak}}(\theta;W)
 =
@@ -442,15 +435,15 @@ R_{\mathrm{acc}}
 \frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
 {\left\|\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
 $$
-The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
+The other residuals are the redshift, Shapiro, and lensing differences computed from the same retained record tuple $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
 ## Numeric Closure Pipeline and Global Objective
 
 To enforce cross-observable closure without parameter bloat, use a single constitutive vector and a fixed projection to the PPN decision manifold.
 
-Define
+Define the PPN constitutive vector
 $$
-\mathbf{\theta}
+\boldsymbol{\vartheta}_{\mathrm{PPN}}
 \equiv
 \begin{pmatrix}
 \gamma_{\text{eff}}\\
@@ -478,7 +471,7 @@ $$
 $$
 the map is the exact linear projection
 $$
-\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\mathbf{\theta}-\mathbf{p}_0
+\mathbf{p}_{\mathrm{PPN}}=\mathbf{J}\boldsymbol{\vartheta}_{\mathrm{PPN}}-\mathbf{p}_0
 $$
 with
 $$
@@ -502,14 +495,14 @@ $$
 \end{pmatrix}
 $$
 
-If $\Sigma_\theta$ is the covariance of the constitutive fit from micro-simulations, propagate uncertainty by
+If $\Sigma_{\vartheta}$ is the covariance of the constitutive fit from micro-simulations, propagate uncertainty by
 $$
-\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_\theta\mathbf{J}^{\mathsf T}
+\Sigma_{\mathrm{PPN}}=\mathbf{J}\Sigma_{\vartheta}\mathbf{J}^{\mathsf T}
 $$
 
 Define the single Tier-1 weighted closure objective
 $$
-\mathcal{L}(\mathbf{\theta})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
+\mathcal{L}(\boldsymbol{\vartheta}_{\mathrm{PPN}})=\mathbf{p}_{\mathrm{PPN}}^{\mathsf T}\mathbf{W}\,\mathbf{p}_{\mathrm{PPN}}
 $$
 where $\mathbf{W}$ is the precision matrix from ledger tolerances.
 With the source-mined benchmark vector above,
@@ -526,8 +519,8 @@ $$
 $$
 
 Forward-only evaluation rule:
-1. Calibrate $\mathbf{\theta}$ and $\Sigma_\theta$ from micro-scale clock/refraction simulations.
-2. Project once to $(\mathbf{p}_{\mathrm{PPN}},\Sigma_{\mathrm{PPN}})$ and evaluate $\mathcal{L}(\mathbf{\theta})$.
+1. Calibrate $\boldsymbol{\vartheta}_{\mathrm{PPN}}$ and $\Sigma_{\vartheta}$ from micro-scale clock/refraction simulations.
+2. Project once to $(\mathbf{p}_{\mathrm{PPN}},\Sigma_{\mathrm{PPN}})$ and evaluate $\mathcal{L}(\boldsymbol{\vartheta}_{\mathrm{PPN}})$.
 3. Predict macroscopic observables (Shapiro, precession, redshift, lensing) with this fixed parameter set.
 4. If any observable fails its ledger gate, reject the constitutive map; do not refit per observable.
 
@@ -535,7 +528,7 @@ Forward-only evaluation rule:
 
 To force cross-observable closure in a single forward pass, define
 $$
-\mathbf{O}(\mathbf{\theta})
+\mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})
 \equiv
 \begin{pmatrix}
 \Delta t_{\text{Shap}}\\
@@ -548,7 +541,7 @@ Using the weak-field constitutive map of $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
 1. Shapiro delay:
 $$
-O_1(\mathbf{\theta})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
+O_1(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Shap}}(1+\gamma_{\text{eff}}),
 \qquad
 K_{\text{Shap}}=
 \frac{GM}{c_0^3}
@@ -557,13 +550,13 @@ $$
 For two-way radar-style Shapiro measurements, apply the same kernel on each leg and sum the two one-way contributions.
 2. Light deflection:
 $$
-O_2(\mathbf{\theta})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
+O_2(\boldsymbol{\vartheta}_{\mathrm{PPN}})=K_{\text{Def}}(1+\gamma_{\text{eff}}),
 \qquad
 K_{\text{Def}}=\frac{2GM}{b\,c_0^2}
 $$
 3. Perihelion precession per orbit:
 $$
-O_3(\mathbf{\theta})
+O_3(\boldsymbol{\vartheta}_{\mathrm{PPN}})
 =
 K_{\text{Prec}}\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 =
@@ -574,7 +567,7 @@ K_{\text{Prec}}=\frac{2\pi GM}{a(1-e^2)c_0^2}
 $$
 4. Gravitational redshift (to retained order):
 $$
-O_4(\mathbf{\theta})
+O_4(\boldsymbol{\vartheta}_{\mathrm{PPN}})
 =
 K_{\text{Red1}}-K_{\text{Red2}}C_2,
 \qquad
@@ -587,7 +580,7 @@ First-order observable sensitivities are
 $$
 \mathbf{J}_O
 \equiv
-\frac{\partial\mathbf{O}}{\partial\mathbf{\theta}}
+\frac{\partial\mathbf{O}}{\partial\boldsymbol{\vartheta}_{\mathrm{PPN}}}
 =
 \begin{pmatrix}
 K_{\text{Shap}} & 0 & 0 & 0 & 0\\
@@ -598,7 +591,7 @@ K_{\text{Def}} & 0 & 0 & 0 & 0\\
 $$
 and the propagated covariance is
 $$
-\Sigma_O=\mathbf{J}_O\Sigma_\theta\mathbf{J}_O^{\mathsf T}
+\Sigma_O=\mathbf{J}_O\Sigma_{\vartheta}\mathbf{J}_O^{\mathsf T}
 $$
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
 
@@ -624,7 +617,7 @@ K_{\text{Red2}}=4.50\times 10^{-12}
 $$
 Take a synthetic constitutive fit
 $$
-\mathbf{\theta}
+\boldsymbol{\vartheta}_{\mathrm{PPN}}
 =
 \begin{pmatrix}
 1+1.2\times 10^{-5}\\
@@ -635,7 +628,7 @@ $$
 \end{pmatrix}
 $$
 $$
-\Sigma_\theta=
+\Sigma_{\vartheta}=
 \operatorname{diag}\!\left(
 0.25\times 10^{-10},
 0.16\times 10^{-10},
@@ -679,24 +672,24 @@ $$
 Failure rule for this closure layer:
 if any observed value lies outside
 $$
-\mathbf{O}(\mathbf{\theta})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
+\mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})\pm 3\sqrt{\operatorname{diag}(\Sigma_O)}
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
-## Real-Data Joint Likelihood (Benchmark Inputs)
+## Benchmark-Input Joint Likelihood (Reduced Fit)
 
-Using the forward map above, define the joint likelihood
+This reduced likelihood uses benchmark rows as inputs to test internal projection consistency; it is not an archived end-to-end reprocessing of the raw experiments. Using the forward map above, define the joint likelihood
 $$
-\ln \mathcal{L}(\mathbf{\theta})
+\ln \mathcal{L}(\boldsymbol{\vartheta}_{\mathrm{PPN}})
 =
 -\frac{1}{2}
-\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)^{\mathsf T}
+\bigl(\mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})-\mathbf{O}_{\text{obs}}\bigr)^{\mathsf T}
 \Sigma_{\text{obs}}^{-1}
-\bigl(\mathbf{O}(\mathbf{\theta})-\mathbf{O}_{\text{obs}}\bigr)
+\bigl(\mathbf{O}(\boldsymbol{\vartheta}_{\mathrm{PPN}})-\mathbf{O}_{\text{obs}}\bigr)
 $$
 with
 $$
-\mathbf{\theta}=
+\boldsymbol{\vartheta}_{\mathrm{PPN}}=
 \left(\gamma_{\text{eff}},C_2,\Xi_1,\Xi_2,\Xi_3\right)^{\mathsf T}
 $$
 
@@ -718,9 +711,9 @@ $$
 $$
 so the Fisher matrix is rank-2 in this fit and $(\Xi_1,\Xi_2,\Xi_3)$ remain unconstrained by this subset alone.
 
-Reducing to $\mathbf{\theta}_{\text{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, the inferred covariance is
+Reducing to $\boldsymbol{\vartheta}_{\mathrm{red}}=(\gamma_{\text{eff}},C_2)^{\mathsf T}$, the inferred covariance is
 $$
-\Sigma_{\theta_{\text{red}}}
+\Sigma_{\mathrm{red}}
 =
 \begin{pmatrix}
 5.1\times 10^{-10} & 1.02\times 10^{-9}\\
@@ -801,10 +794,9 @@ if this criterion is met with real timing data, the posterior over $(\Xi_1,\Xi_2
 Failure mode for the constitutive cosmology map:
 if the inferred $\boldsymbol{\Xi}$ is significantly nonzero and incompatible with the independently inferred medium-drift direction from the CMB dipole, the single preferred-frame mapping in $\mathbb{A}\mathbb{A}\mathbb{A}$ is broken.
 
-Simulation-to-data interface requirement:
-populate
+The acceptance record for this layer requires Noether sea continuum simulations to supply
 $$
 \nabla_{\boldsymbol{\Xi}}\dot e,\qquad
 \nabla_{\boldsymbol{\Xi}}\dot P
 $$
-from Noether sea continuum simulations before final numerical acceptance testing.
+for the drift-sensitive channels that lift the preferred-frame degeneracy.

@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 595,
-      "edges": 1361,
-      "scenes": 381,
+      "nodes": 596,
+      "edges": 1363,
+      "scenes": 382,
       "markdownIndexes": 0,
       "markdownDocs": 197,
       "runtimeEdges": 476,
@@ -2435,6 +2435,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "fermions__muon_tau",
+      "name": "Muon and Tau",
+      "path": "content/scenes/assemblies/muon_tau.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -4201,6 +4207,15 @@
       "name": "Mesons",
       "path": "content/scenes/assemblies/mesons_doc.json",
       "searchTarget": "content/scenes/assemblies/mesons_doc.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/muon_tau.json",
+      "nodeType": "scene",
+      "id": "fermions__muon_tau",
+      "name": "Muon and Tau",
+      "path": "content/scenes/assemblies/muon_tau.json",
+      "searchTarget": "content/scenes/assemblies/muon_tau.json",
       "implicit": false
     },
     {
@@ -9572,38 +9587,45 @@
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/neutrinos.json",
+      "to": "scene:content/scenes/assemblies/muon_tau.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/quantum_number_mapping.json",
+      "to": "scene:content/scenes/assemblies/neutrinos.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/quarks.json",
+      "to": "scene:content/scenes/assemblies/quantum_number_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/quarks.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/assemblies/weak_mixing_angle.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
@@ -9617,7 +9639,7 @@
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -13985,6 +14007,13 @@
       "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/mesons_doc.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/muon_tau.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/muon_tau.json",
       "field": "scene.source.path"
     },
     {

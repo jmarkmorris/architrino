@@ -113,7 +113,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ### Right-handed singlet bookkeeping
 
-The image-level implementation candidate for right-handed pro-braid couplings matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The right-handed pro-braid weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -135,14 +135,14 @@ This gives the standard singlet assignments:
 | $u^R,c^R,t^R$ | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
 | $d^R,s^R,b^R$ | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |
 
-The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the weak-coupling triad is no longer exposed, the only remaining electroweak datum is the net axial charge. In that sense, the right-handed quark state is not defined by a new axial pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
+The same count logic is what places the right-handed quark sector on the singlet branch of the electroweak bookkeeping: once the weak-coupling triad is no longer exposed, the only remaining electroweak datum is the net axial charge. In that sense, the right-handed quark state is not defined by a new axial pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
 
 ### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed image suggests a useful implementation candidate for pro-braid weak couplings:
+The corresponding left-handed pro-braid weak-coupling posture gives a useful implementation candidate:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
-- the up-type and down-type quarks then sit on the same electroweak doublet arc,
+- the up-type and down-type quarks then occupy the two branches of the same electroweak doublet,
 - and the distinction between them is carried by the exposed weak-coupling triad rather than by a different total axial inventory.
 
 In this bookkeeping:
@@ -172,11 +172,11 @@ The value of this conjecture is that it places the quark doublet in the same six
 - $2\epsilon_+,4\epsilon_-$ for down-type quarks,
 - $5\epsilon_+,1\epsilon_-$ for up-type quarks.
 
-That makes the quark sector look less like a separate lookup table and more like a continuous family of exposed coupling postures on the same axial-inventory wheel. At present this should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
+That places the quark sector in the same ordered axial-inventory ledger as the lepton sector rather than in a separate lookup table. At present, the geometric continuity across that ledger should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
-### Anti-braid mirror bookkeeping (conjectural reverse-engineered candidate)
+### Anti-braid mirror bookkeeping and implementation status
 
-The two anti-braid images suggest a clean mirror rule that is worth recording explicitly. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by pro/anti orientation plus retained path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label.
+Once the pro-braid rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that anti-braid branch orientation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by pro/anti orientation plus retained path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label.
 
 Start by mapping the quark axial inventories to their charged-sector conjugate rows:
 
@@ -189,7 +189,7 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
   4\epsilon_+,2\epsilon_-,\qquad Q=+\frac{1}{3}
   $$
 
-The conjectural rule then reads:
+The geometric implementation candidate then reads:
 
 - **right-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid left-handed doublets,
 - **left-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid right-handed singlets.
@@ -199,7 +199,7 @@ At a broader bookkeeping level, it also suggests a compact charged-fermion rule:
 
 #### Right-handed antiquark bookkeeping
 
-In this reverse-engineered candidate:
+At the fixed comparison-bookkeeping layer:
 
 | State family | Axial count | Electric charge $Q$ | Right-handed anti-braid assignment |
 | --- | --- | ---: | ---: |
@@ -227,13 +227,13 @@ $$
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
-The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows by anti-braid branch orientation, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by anti-braid branch orientation, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
 
-This remains a conjectural bookkeeping layer derived by reverse engineering from the weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
+The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the pro-braid rows are declared. The open claim is the substrate implementation: anti-braid orientation, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
 
-### Electroweak-plane embedding (conjectural map to the standard diagram)
+### Electroweak-plane embedding (conjectural map)
 
-The larger comparative picture suggested by the diagram is that the six-site axial-inventory wheel may be embedded directly into the familiar electroweak plane with coordinates
+The larger comparative map embeds the six-site axial-inventory ledger directly into the familiar electroweak plane with coordinates
 $$
 (T_3,Y)
 $$
@@ -255,14 +255,14 @@ For quarks, this gives a compact map:
 | $\bar u^L,\bar c^L,\bar t^L$ | $\left(0,-\frac{4}{3}\right)$ | $0-\frac{2}{3}=-\frac{2}{3}$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $\left(0,+\frac{2}{3}\right)$ | $0+\frac{1}{3}=+\frac{1}{3}$ |
 
-What makes this useful is not merely that it reproduces the standard charge formula. It also suggests that the axial-inventory wheel may be functioning as a geometric pre-mixing chart:
+What makes this useful is not merely that it reproduces the standard charge formula. It also suggests that the axial-inventory ledger may be functioning as a geometric pre-mixing chart:
 
 - horizontal separation distinguishes weak-isospin splitting,
 - vertical separation distinguishes hypercharge loading,
 - the diagonal coordinate is the observed electromagnetic charge,
 - and quark versus antiquark states appear as charge-conjugate reflections within the same plane.
 
-This should still be treated cautiously. The image supports a candidate mapping to the standard electroweak diagram, but it does not yet derive the Weinberg-angle mixing itself from quark microgeometry. In other words, the map looks structurally compatible with the standard diagram, but it is not yet a closure proof for electroweak mixing.
+This should still be treated cautiously. The table supports a candidate mapping to the standard electroweak plane, but it does not yet derive the Weinberg-angle mixing itself from quark microgeometry. In other words, the map looks structurally compatible with that plane, but it is not yet a closure proof for electroweak mixing.
 
 ## Six-flavor catalog
 
@@ -351,7 +351,7 @@ So for an up quark:
 - **Green** means the M-axis is the mixed axis,
 - **Blue** means the L-axis is the mixed axis.
 
-This matches the intuitive “minority carrier” language already used elsewhere in the repo, but it sharpens it: the minority electrino is most naturally understood as living on one of the one polar dyad of the exceptional axis, not as replacing one member of the neutral source binary itself.
+This matches the intuitive “minority carrier” language already used elsewhere in the repo, but it sharpens it: the minority electrino is most naturally understood as living on one of the two polar sites of the exceptional axis's polar dyad, not as replacing one member of the neutral source binary itself.
 
 The two orderings
 $$

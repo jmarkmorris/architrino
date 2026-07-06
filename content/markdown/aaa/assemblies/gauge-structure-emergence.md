@@ -13,8 +13,8 @@ In standard QFT, the vacuum is represented by quantum fields and their ground-st
 In this chapter, the Noether sea means the dense, permeating medium of coupled, neutral Noether braids occupying the [Euclidean void](../foundations/euclidean-void.md); see [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md). It is not empty space and is not the Euclidean void itself.
 
 - **Occupancy:** Nonzero occupancy of pro/anti Noether braid assemblies.
-- **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows.
-- **Medium response:** The Noether sea is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. These are not fundamental constants of the void but derived measures of Noether sea response, including resistance to polarization and density-like occupation.
+- **Net properties:** Balanced charge and angular-momentum bookkeeping at the medium scale, schematically $\sum q = 0$ and $\sum S = 0$ over neutral coarse windows, where $S$ denotes spin/angular-momentum bookkeeping rather than the action.
+- **Medium response:** The Noether sea is the working source for the effective local permeability $\mu_0$ and permittivity $\epsilon_0$ read by observer-level electrodynamics. The subscripted $\epsilon_0$ is the standard effective permittivity symbol and is unrelated to the polarity unit $\epsilon=|e|/6$. These are not fundamental constants of the void but derived measures of Noether sea response, including resistance to polarization and density-like occupation.
 
 One useful assembly-level picture is that long-lived Noether sea units arise when complementary pro/anti braids pair in antiparallel fashion so that local polar-site leakage is mutually suppressed. In that reading, Noether sea transparency is not emptiness but a successful cancellation strategy: the Noether sea remains quiet because its local polar-site leakage is internally routed and its large-scale moments stay near zero.
 
@@ -26,7 +26,7 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
 
 - **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
 - **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
-  - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
+  - **$\mathbf{E}$ and $\mathbf{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
   - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
 ### Gauss-Law Source and Closure Benchmarks
@@ -60,7 +60,7 @@ $$
 \left(
 I_{\mathrm{cond}}
 +
-\epsilon_0\frac{d\Phi_E}{dt}
+\epsilon_0\frac{d\Phi_E}{dt_{\mathrm{eff}}}
 \right)
 $$
 
@@ -78,7 +78,11 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
     *   *SM View:* Non-Abelian rotation in isospin space.
     *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A **chiral twist** or structural strain in Noether braid assemblies. Because the assemblies have internal handedness, deformations can be order-dependent, mirroring the non-Abelian nature of $SU(2)$ at the effective level.
 
-The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether sea state and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $g_1$, $g_2$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
+3.  **SU(3) (Color):**
+    *   *SM View:* Non-Abelian color rotation among three quark color labels.
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A color-sector recovery target for axis-exceptionality bookkeeping in the axial frame of the Noether braid assembly; see [Color Charge SU(3)](fermions/color-charge-su3.md).
+
+The emergence claim in this chapter is therefore a mapping target with four required parts. The mechanism is delayed causal-wake coupling through Noether sea state and axial-layer deformation. The mapping is from closure labels, axial inventories, exposed weak-coupling triads, color axis-exceptionality records, and medium-response variables to the observer-level symbols $U(1)_Y$, $SU(2)_L$, $SU(3)_c$, $g_1$, $g_2$, $g_3$, $\theta_W$, and the charge table. The regime is the low-energy observer sector where stable assemblies, weak gradients, and resolved apparatus records make the coarse variables meaningful. The breakdown occurs at root-ledger changes, unstable axial inventories, unresolved Noether sea updates, or any branch that predicts extra low-energy partners or transport modes.
 
 A compact reader-facing residual for this map is
 $$
@@ -247,16 +251,16 @@ The Standard Model recovery sequence is still important. In the effective field 
 - **Symmetry breaking:** Electroweak phase transition language is treated as a phase-change closure target. The high-energy plasma record must relax into the stable, coupled Noether sea inferred today, but the order parameter and transition dynamics still have to be derived.
 - **Mass as medium-dressed response:** A fermion assembly moving or accelerating through the Noether sea must relock its internal causal ledger against the surrounding Noether sea.
   - Photon channels propagate as coherent planar-mode transport through the sea rather than as massive bodies.
-  - Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether sea](particle-masses.md).
+  - Massive assemblies expose more shielded internal causal history to external probes. The measured inertial response is not ordinary dissipative drag; see [Particle Masses: Emergent Inertia in the Noether Sea](particle-masses.md).
 
 ## Resolving the Unruh Ambiguity
 
-General Relativity predicts that an accelerating observer sees a thermal bath of particles (Unruh radiation), while an inertial observer sees a vacuum. This creates an ontological paradox: do the particles exist or not?
+Quantum field theory for uniformly accelerated, Rindler observers predicts that an accelerating detector sees a thermal bath of particles (Unruh radiation), while an inertial detector sees a vacuum. This flat-spacetime comparison is distinct from Hawking radiation in curved-spacetime settings. It creates an ontological paradox: do the particles exist or not?
 
 **The $\mathbb{A}\mathbb{A}\mathbb{A}$ resolution:**
 - **Objective existence:** To the $\mathbb{U}_{\text{now}}$ universe-state perspective, assemblies have a definite substrate status. Their existence is not frame-dependent.
 - **Acceleration-conditioned detector response:** The warm bath detected by the accelerating Physical Observer is an effective response of the detector's assembly state to accelerated coupling with the Noether sea.
-- **Mechanism:** Acceleration through the Noether sea ($\vec{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether braids). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
+- **Mechanism:** Acceleration through the Noether sea ($\mathbf{a} \neq 0$) changes the rate and geometry of coupling with background binaries (Noether braids). The altered coupling manifests as thermal energy in the detector. The particles inferred by the detector are detector excitations, not frame-dependent ontic creation.
 
 ## Quantization from Stability (Selection Rules)
 
@@ -278,7 +282,7 @@ Why do observer-level electric charges appear in units of $e/3$?
 |     1:5     |         1         |         5         |          +2/3          |
 |     0:6     |         0         |         6         |           +1           |
 
-Under the six-unit polarity inventory target, sweeping all Electrino:Positrino splits across the six retained slots yields exactly the Standard Model charge values listed below and no other total charge values within that fixed six-unit inventory. The six-site axial-layer hypothesis is one geometric realization of those slots. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
+Under the six-unit polarity inventory target, sweeping all Electrino:Positrino splits across the six retained slots yields exactly the Standard Model charge values listed in the table above and no other total charge values within that fixed six-unit inventory. The six-site axial-layer hypothesis is one geometric realization of those slots. Dynamical exclusion of non-Standard-Model stable assemblies remains a separate closure burden.
 
 ### Combinatorial Proof (Six $\pm\epsilon$ Slots)
 
@@ -348,9 +352,9 @@ The loop-phase target above then requires the same branch record to support both
 
 ## Observer-Level Electroweak Closure Map (Working)
 
-To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:
-
 In this map, electroweak "breaking" means a stabilizer and mass-coordinate recovery problem for the effective gauge chart. It does not mean that gauge redundancy is a primitive substrate symmetry that literally breaks. The substrate task is to derive the observer-level photon, $W^\pm$, $Z$, charge, and weak-mixing records from one branch state while preserving the gauge-invariant record of measured reactions.
+
+To connect microdynamics to observer-sector electroweak equations, start from the causal path-history action:
 
 $$
 S_{\text{fund}}
@@ -358,10 +362,10 @@ S_{\text{fund}}
 \int dT\left[
 \sum_i \frac{1}{2}\mu_{\text{arch}}\|\mathbf V_i(T)\|^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\tau)\|^2}
+\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf X_i(T)-\mathbf X_j(T-\Delta_{ij})\|^2}
 \right]
 $$
-Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $W_{ij}^{\mathrm{rec}}$ is the receiver-normal branch factor on the active branch, so the electroweak closure map starts from the same receiver-normal causal geometry as the master equation rather than from a stripped inverse-square surrogate.
+Here $\Delta_{ij}=T-T_{\mathrm{em},ij}$ is the causal travel delay on the active branch, $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant, and $W_{ij}^{\mathrm{rec}}$ is the receiver-normal branch factor on the active branch, so the electroweak closure map starts from the same receiver-normal causal geometry as the master equation rather than from a stripped inverse-square surrogate.
 After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}
@@ -373,7 +377,7 @@ $$
 $$
 with
 $$
-D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'Y B_\mu
+D_\mu=\partial_\mu-i g\frac{\tau^a}{2}W_\mu^a-i g'\frac{Y}{2} B_\mu
 $$
 The leading composite correction is modeled as
 $$
@@ -388,11 +392,17 @@ For the formal closure layer beneath this working map, see [Gauge Symmetries](./
 
 ### Parameter Dictionary (Substrate -> Electroweak)
 
-Use the working map:
+Use the charge-bookkeeping identity:
 $$
-e = 6\epsilon \sqrt{\kappa c_f}\,Z_e
+|e|=6\epsilon
 $$
-where $Z_e$ is the coarse-graining normalization factor ($Z_e=1$ under canonical normalization choice).
+This is separate from the dimensionful electromagnetic coupling normalization used by the force-response map:
+$$
+\mathcal{G}_{\mathrm{em}}
+=
+6\epsilon \sqrt{\kappa c_f}\,Z_e
+$$
+where $Z_e$ is the coarse-graining normalization factor ($Z_e=1$ under canonical normalization choice). In dimensional units $\mathcal{G}_{\mathrm{em}}$ scales as $[\epsilon]\sqrt{[\kappa][c_f]}$ rather than as electric charge, so it must not be identified with the charge label $e$.
 
 Weak mixing is represented as a geometric overlap functional:
 $$
@@ -414,8 +424,9 @@ $$
 $$
 Fermion masses are cycle-averaged attractor energies:
 $$
-m_f = c_f^{-2}\,\langle T+V\rangle_f
+m_f \approx \frac{\langle E_{\mathrm{kin}}+U_{\text{pot}}\rangle_f}{c_{\text{eff}}^2}
 $$
+in the weak homogeneous branch where the scalar mass-map roadmap applies. The sharper closure still belongs to the medium-response tensor and shielding map in [Particle Masses: Emergent Inertia in the Noether Sea](particle-masses.md).
 
 ### Precision Interface to Measured Quantities
 
@@ -439,7 +450,7 @@ F(s)=1-\frac{sR_L^2}{4},
 \qquad
 \sigma_{\text{model}}(s)=\sigma_{\text{SM}}(s)\,|F(s)|^2
 $$
-For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at both $\sqrt{s}=10.58\,\text{GeV}$ and $\sqrt{s}=91.19\,\text{GeV}$ relative to current luminosity/systematic floors.
+For $R_L\sim 10^{-19}\,\text{m}$, this predicts negligible deviations at $\sqrt{s}=10.58\,\text{GeV}$ but a marginal Gate 1-level deviation near the $Z$ pole at $\sqrt{s}=91.19\,\text{GeV}$. Calling the $Z$-pole shift negligible requires a substantially smaller outer-binary scale, for example $R_L\lesssim3\times10^{-20}\,\text{m}$.
 
 ### Falsification Gates for This Map
 

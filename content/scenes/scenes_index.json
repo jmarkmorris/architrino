@@ -1904,6 +1904,11 @@
       "id": "noether_braid__proof_map",
       "name": "Noether Braid Proof Map",
       "path": "content/scenes/noether-braid/noether_braid_proof_map.json"
+    },
+    {
+      "id": "fermions__muon_tau",
+      "name": "Muon and Tau",
+      "path": "content/scenes/assemblies/muon_tau.json"
     }
   ]
 }

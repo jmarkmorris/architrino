@@ -107,7 +107,7 @@ Here:
 - $E_{\text{res-strong}}<0$ is the attractive residual strong contribution,
 - $E_{\text{Coul}}>0$ is proton-proton electrical repulsion,
 - $E_{\text{excl}}>0$ is short-range core exclusion or over-compression cost,
-- $E_{\text{shell}}$ is the nuclear-structure term associated with filling and pairing patterns,
+- $E_{\text{shell}}$ is the nuclear-structure term associated with filling and pairing patterns; its sign is left open because shell and pairing corrections can raise or lower the ledger relative to a smooth baseline,
 - $E_{\text{sea-pol}}<0$ is the energy gain from local Noether sea polarization and meson-like corridor formation.
 
 Then the binding energy is
@@ -150,7 +150,7 @@ For proton-proton channels, add the ordinary repulsive term
 $$
 V_{\text{Coul}}(r)\approx +\frac{e^2}{4\pi\epsilon_{\text{eff}}\,r}
 $$
-at effective level. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
+at effective level. Here $\epsilon_{\text{eff}}$ is an in-medium dressing of the observer-level $\epsilon_0$ response described in [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md), not the polarity unit $\epsilon=|e|/6$. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
 
 ### Sea polarization
 
@@ -200,6 +200,8 @@ The qualitative reasons this channel is favored are:
 - no proton-proton Coulomb penalty on the neutron side,
 - efficient pion-like charge-exchange corridor between proton and neutron,
 - and a two-nucleon geometry that can share medium polarization without severe core-overlap cost.
+
+This list is not enough without the spin-channel constraint. The $pn$ benchmark must recover a bound triplet channel while the identical-proton $pp$ channel is spin-statistics-restricted to the singlet sector; that singlet channel must remain unbound even before the Coulomb term is added. This dependency is inherited from the spin-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md) and the same-record spinor-label pullback in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), not solved locally by the nuclear potential shorthand.
 
 If the eventual effective potential cannot bind the deuteron while staying compatible with proton-proton nonbinding, the nuclear branch is in immediate trouble.
 
@@ -267,7 +269,7 @@ So a realistic nuclear theory here must eventually combine:
 This chapter will count as successful only if a later quantitative version can reproduce at least the following:
 
 1. a bound deuteron,
-2. no bound diproton in ordinary conditions,
+2. no bound diproton in ordinary conditions, with the singlet channel unbound before Coulomb correction,
 3. saturation of binding per nucleon,
 4. special alpha-like stability,
 5. the qualitative valley of beta stability.
