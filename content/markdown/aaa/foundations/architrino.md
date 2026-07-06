@@ -248,11 +248,11 @@ emits a concentric wake stream centered on one fixed point of the Euclidean void
 
 Over a diagnostic interval $I$, the relevant complete-state object is the source-tagged center curve
 $$
-Z_a(I)=\{\mathbf{z}_a(s):s\in I\},
+Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
-\mathbf{z}_a(s)=\mathbf X_a(s),
+\mathbf Z_a(s)=\mathbf X_a(s),
 $$
-where $\mathbf{z}_a(s)$ is the center of the wake isochron emitted at time $s$.
+where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$.
 Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-source wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](detecting-the-absolute-frame.md), [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md).

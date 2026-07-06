@@ -1,0 +1,879 @@
+{
+  "schema": "aaa-foundational-impact-contracts/v1",
+  "description": "Diff-routing manifest for foundational AAA contracts. A contract is an equation, postulate, sign convention, normalization, or ontology rule that downstream proofs, simulations, applications, or validation gates consume.",
+  "severityWeights": {
+    "P0": 5,
+    "P1": 3,
+    "P2": 1
+  },
+  "diffIgnorePaths": [
+    ".githooks/pre-commit",
+    "scripts/check-foundational-impact.mjs",
+    "scripts/config/foundational-impact-contracts.json"
+  ],
+  "contracts": [
+    {
+      "id": "master-equation.causal-root-geometry",
+      "title": "Master Equation causal-root geometry",
+      "severity": "P0",
+      "rationale": "The causal-hit constraint, emission-root selection, and delayed separation convention feed the solver, proof programs, simulations, photon app, and causal-delay app.",
+      "pathTriggers": [
+        "content/markdown/aaa/dynamics/master-equation.md",
+        "content/markdown/aaa/foundations/architrino.md",
+        "content/markdown/aaa/foundations/absolute-time.md",
+        "content/markdown/aaa/validation/simulations/action-energy/**",
+        "src/solver/**",
+        "src/apps/causal-delay-feedback/**",
+        "scripts/simulations/**"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "Master Equation" },
+        { "type": "literal", "value": "F_{ij}" },
+        { "type": "literal", "value": "F_a" },
+        { "type": "literal", "value": "T_{\\mathrm{em}}" },
+        { "type": "literal", "value": "causal root" },
+        { "type": "literal", "value": "delayed separation" },
+        { "type": "literal", "value": "self-hit" },
+        { "type": "literal", "value": "self-reception" },
+        { "type": "regex", "value": "\\bcausal[- ]delay\\b" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "topological causal-root ledger",
+          "closed-ledger source-record diagnostics",
+          "event wake-history pullback diagnostics"
+        ],
+        "simulations": [
+          "T3 universe simulator",
+          "action-energy delayed dynamics",
+          "causal-delay feedback runtime"
+        ],
+        "applications": [
+          "SolverAppBridge",
+          "Photon app",
+          "Causal Delay Feedback app",
+          "Animator delayed-hit rows"
+        ],
+        "validation": [
+          "strict content indexes",
+          "scene graph",
+          "receiver-normal clean slate"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch markdown/index drift after source equation or foundation prose changes."
+          },
+          {
+            "command": "node scripts/build-scene-graph.mjs --check --strict",
+            "reason": "Catch scene graph and textbook navigation drift after foundation/dynamics edits."
+          },
+          {
+            "command": "node scripts/check-receiver-normal-clean-slate.mjs",
+            "reason": "Catch stale source-normal force/action wording around root geometry."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/topological-causal-root-ledger-checker.test.js tests/closed-ledger-source-record-contract-diagnostic.test.js tests/closed-ledger-pullback-diagnostic.test.js tests/event-wake-history-pullback-diagnostic.test.js",
+            "reason": "Recheck proof-program ledgers that depend on causal-root records."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/t3-universe-simulator.test.js tests/absolute-history-root-runtime.test.js tests/causal-delay-feedback-runtime.test.js",
+            "reason": "Recheck delayed-root simulation and runtime surfaces."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/solver-app-bridge-native-master-equation-status.test.js tests/solver-app-bridge-native-pair-status.test.js tests/photon-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "reason": "Recheck application bridges that surface delayed-hit or Master Equation state."
+          }
+        ],
+        "solver": [
+          {
+            "command": "node scripts/check-solver-contract-fixtures.mjs",
+            "reason": "Recheck solver request/response contracts that carry root and hit rows."
+          },
+          {
+            "command": "node scripts/check-solver-app-bridge.mjs",
+            "reason": "Recheck bridge schema and app adapter expectations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "master-equation.receiver-normal",
+      "title": "Receiver-normal branch-strength accounting",
+      "severity": "P0",
+      "rationale": "Receiver-normal branch strength decides whether a row is active force/action evidence or only a source-normal/transversality diagnostic.",
+      "pathTriggers": [
+        "content/markdown/aaa/dynamics/master-equation.md",
+        "content/markdown/aaa/foundations/architrino.md",
+        "content/markdown/aaa/proof-programs/**",
+        "reference/priorities/proof-programs/**",
+        "reference/priorities/braid-nested-shell-causal-closure/**",
+        "scripts/check-receiver-normal-clean-slate.mjs",
+        "scripts/proof-programs/**",
+        "scripts/braid-ideal/**",
+        "scripts/nested-shell-braid/**",
+        "src/apps/photon/**",
+        "src/solver/app/**"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "W^{\\mathrm{rec}}" },
+        { "type": "literal", "value": "W_{ij}^{\\mathrm{rec}}" },
+        { "type": "literal", "value": "branchWeight" },
+        { "type": "literal", "value": "receiverNormalFactor" },
+        { "type": "literal", "value": "receiverNormalNumerator" },
+        { "type": "literal", "value": "sourceNormalDenominator" },
+        { "type": "literal", "value": "D_{s" },
+        { "type": "literal", "value": "D_{T" },
+        { "type": "literal", "value": "\\kappa_{\\mathrm{hit}}" },
+        { "type": "literal", "value": "source-normal" },
+        { "type": "literal", "value": "receiver-normal" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "breather proof",
+          "topological causal-root ledger",
+          "nested-shell branch-retention screens",
+          "theta3minus restart diagnostics"
+        ],
+        "simulations": [
+          "nested-shell action-increment packet",
+          "held-release path-history stream",
+          "field-speed self-hit scans"
+        ],
+        "applications": [
+          "PhotonFormulaRuntime",
+          "SolverAppBridge"
+        ],
+        "validation": [
+          "receiver-normal clean slate",
+          "solver app bridge contracts"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/check-receiver-normal-clean-slate.mjs",
+            "reason": "Primary guard for stale Jacobian/source-normal force wording."
+          },
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch generated index drift if canonical proof/dynamics prose changed."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/braid-ideal-central-solver-retained-source-adapter.test.js tests/braid-ideal-central-solver-retained-source-adapter-acceptance-certificate.test.js tests/braid-ideal-self-hit-held-release-solver-row.test.js tests/topological-causal-root-ledger-checker.test.js",
+            "reason": "Recheck same-record retained-source and causal-ledger proof intake."
+          },
+          {
+            "command": "node --test tests/torque-wake-same-row-diagnostic-report.test.js tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
+            "reason": "Recheck nested-shell rows that distinguish force/action weight from diagnostics."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js tests/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.test.js",
+            "reason": "Recheck self-hit/action scans that consume branch-strength rows."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/solver-app-bridge-native-master-equation-status.test.js tests/solver-app-bridge-native-pair-status.test.js tests/photon-constituent-root-route-diagnostic.test.js",
+            "reason": "Recheck app-facing receiver-normal field requirements."
+          }
+        ]
+      }
+    },
+    {
+      "id": "foundations.absolute-time-wake-law",
+      "title": "Absolute time and finite-speed wake law",
+      "severity": "P0",
+      "rationale": "The affine time class, delayed-only support, and field speed define the substrate causal cone used by Bell routing, simulations, Lorentz recovery, and apps.",
+      "pathTriggers": [
+        "content/markdown/aaa/foundations/absolute-time.md",
+        "content/markdown/aaa/foundations/ontology.md",
+        "content/markdown/aaa/dynamics/master-equation.md",
+        "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+        "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+        "src/solver/**",
+        "src/apps/causal-delay-feedback/**"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "c_f" },
+        { "type": "literal", "value": "field speed" },
+        { "type": "literal", "value": "delayed-only" },
+        { "type": "literal", "value": "advanced" },
+        { "type": "literal", "value": "preferred rest frame" },
+        { "type": "literal", "value": "void rest frame" },
+        { "type": "literal", "value": "affine" },
+        { "type": "literal", "value": "wake law" },
+        { "type": "regex", "value": "\\bno admissible parametrization\\b" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "field-speed action self-hit source binding",
+          "special-relativity recovery proof route"
+        ],
+        "simulations": [
+          "T3 universe simulator",
+          "causal-delay feedback"
+        ],
+        "applications": [
+          "Causal Delay Feedback app",
+          "Animator motion source",
+          "SolverAppBridge"
+        ],
+        "validation": [
+          "content integrity",
+          "receiver-normal clean slate"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch corpus reference drift after time/wake postulate changes."
+          },
+          {
+            "command": "node scripts/build-scene-graph.mjs --check --strict",
+            "reason": "Catch generated navigation drift after foundation edits."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/field-speed-action-self-hit-scan-source-binding-report.test.js tests/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.test.js",
+            "reason": "Recheck proof-program packets that consume field-speed causal windows."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/t3-universe-simulator.test.js tests/absolute-history-root-runtime.test.js tests/causal-delay-feedback-runtime.test.js",
+            "reason": "Recheck simulation surfaces with absolute-time or delayed-hit assumptions."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/causal-delay-feedback-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js tests/animator-motion-source-runtime.test.js",
+            "reason": "Recheck app surfaces that expose causal-delay behavior."
+          }
+        ]
+      }
+    },
+    {
+      "id": "foundations.euclidean-void-symmetry",
+      "title": "Euclidean void metric and orientation symmetry",
+      "severity": "P1",
+      "rationale": "The spatial container's metric and orientation group constrain chirality, parity bookkeeping, angular momentum, and geometry bridges.",
+      "pathTriggers": [
+        "content/markdown/aaa/foundations/euclidean-void.md",
+        "content/markdown/aaa/foundations/ontology.md",
+        "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+        "content/markdown/aaa/spacetime/emergent-metric.md",
+        "src/solver/src/Geometry.cpp",
+        "src/solver/include/architrino/solver/Geometry.hpp"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "E(3)" },
+        { "type": "literal", "value": "SE(3)" },
+        { "type": "literal", "value": "O(3)" },
+        { "type": "literal", "value": "SO(3)" },
+        { "type": "literal", "value": "reflection" },
+        { "type": "literal", "value": "parity" },
+        { "type": "literal", "value": "chirality" },
+        { "type": "literal", "value": "oriented orthonormal frame" },
+        { "type": "literal", "value": "divergence" },
+        { "type": "literal", "value": "Laplacian" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "matter-antimatter chirality retained-history target",
+          "neutral-braid polarity and phase retention witnesses"
+        ],
+        "simulations": [
+          "geometry and affine exposure probes"
+        ],
+        "applications": [
+          "solver geometry smoke",
+          "ideal braid visual surfaces"
+        ],
+        "validation": [
+          "content validation",
+          "scene graph"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch references and generated content after foundation geometry edits."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/braid-ideal-matter-antimatter-chirality-retained-history-target.test.js tests/neutral-braid-octahedral-polarity-phase-retention-witness.test.js tests/neutral-braid-octahedral-affine-exposure-probe.test.js",
+            "reason": "Recheck chirality, parity, and orientation-sensitive proof surfaces."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/neutral-braid-octahedral-affine-force-mean-derivative.test.js tests/neutral-braid-octahedral-force-residual.test.js",
+            "reason": "Recheck geometry-sensitive force and affine-response probes."
+          }
+        ],
+        "solver": [
+          {
+            "command": "node scripts/build-solver-smoke.mjs geometry",
+            "reason": "Recheck solver geometry smoke if the Euclidean metric contract changes."
+          }
+        ]
+      }
+    },
+    {
+      "id": "architrino.polarity-force-sign",
+      "title": "Polarity and primitive force-sign convention",
+      "severity": "P0",
+      "rationale": "Polarity sign conventions feed reactions, particle inventories, primitive acceleration laws, weak-channel routing, and simulations.",
+      "pathTriggers": [
+        "content/markdown/aaa/foundations/architrino.md",
+        "content/markdown/aaa/dynamics/master-equation.md",
+        "content/markdown/aaa/reactions/**",
+        "content/markdown/aaa/interactions/**",
+        "scripts/check-polarity-notation-drift.mjs",
+        "scripts/nuclear-atomic/**",
+        "tests/*polarity*",
+        "tests/*weak-channel*"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "\\sigma_{ij}" },
+        { "type": "literal", "value": "polarity" },
+        { "type": "literal", "value": "\\epsilon_+" },
+        { "type": "literal", "value": "\\epsilon_-" },
+        { "type": "literal", "value": "attract" },
+        { "type": "literal", "value": "repel" },
+        { "type": "literal", "value": "force sign" },
+        { "type": "literal", "value": "weak channel" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "polarity phase retention witness",
+          "weak-channel source target check"
+        ],
+        "simulations": [
+          "neutral-braid force residual",
+          "assembly configuration explorer"
+        ],
+        "applications": [
+          "molecule app",
+          "assembly explorer",
+          "PDG edit surfaces"
+        ],
+        "validation": [
+          "polarity notation drift"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/check-polarity-notation-drift.mjs",
+            "reason": "Primary guard for legacy polarity notation and inventory drift."
+          },
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch reaction/foundation content drift."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/neutral-braid-octahedral-polarity-phase-retention-witness.test.js tests/weak-channel-source-target-check.test.js tests/neutral-braid-octahedral-force-residual.test.js",
+            "reason": "Recheck sign-sensitive proof and force residual surfaces."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js tests/neutral-braid-octahedral-inventory-closure-witness.test.js",
+            "reason": "Recheck inventory and assembly surfaces after polarity convention changes."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js tests/pdgedit-contracts.test.js",
+            "reason": "Recheck app surfaces that present polarity/inventory records."
+          }
+        ]
+      }
+    },
+    {
+      "id": "observer.bell-live-channel",
+      "title": "Bell route and live finite-speed coordination",
+      "severity": "P0",
+      "rationale": "The Bell route decides whether correlations are carried by local kernels, measurement-independence relaxation, or live c_f coordination.",
+      "pathTriggers": [
+        "content/markdown/aaa/foundations/ontology.md",
+        "content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md",
+        "content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md",
+        "content/markdown/aaa/quantum/**",
+        "content/markdown/aaa/validation/simulations/bell-family-record-measure.md",
+        "scripts/quantum/**"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "\\Pi_{\\mathrm{obs}}" },
+        { "type": "literal", "value": "\\Pi_{\\mathrm{record}}" },
+        { "type": "literal", "value": "measurement independence" },
+        { "type": "literal", "value": "no-signaling" },
+        { "type": "literal", "value": "Bell" },
+        { "type": "literal", "value": "CHSH" },
+        { "type": "literal", "value": "local detector kernel" },
+        { "type": "literal", "value": "live finite-speed" },
+        { "type": "literal", "value": "pair-provenance" },
+        { "type": "literal", "value": "nonfactorizable" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "Bell-family residual harness",
+          "local-response contract adapter",
+          "source-measure replay"
+        ],
+        "simulations": [
+          "Bell-family record measure",
+          "Stern-Gerlach toy emitters"
+        ],
+        "applications": [],
+        "validation": [
+          "content validation",
+          "quantum residual harness"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch bridge and quantum document reference drift."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node scripts/quantum/bell-family-residual-harness.mjs --candidate scripts/quantum/source-measure-joint-basin-candidate.json --scenario all --out /tmp/aaa-bell-family-residual-harness.json",
+            "reason": "Recheck Bell-family residual scenarios after route changes."
+          },
+          {
+            "command": "node scripts/quantum/source-measure-local-response-replay.mjs --candidate scripts/quantum/product-screened-axis-candidate.json --scenario all --out /tmp/aaa-source-measure-local-response-replay.json",
+            "reason": "Recheck product-screening negative control after Bell-route wording changes."
+          },
+          {
+            "command": "node scripts/quantum/local-response-contract-adapter.mjs --input scripts/quantum/product-screened-axis-candidate.json --out /tmp/aaa-local-response-contract-adapter.json",
+            "reason": "Recheck local-response intake contract if local-kernel language changes."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node scripts/quantum/bell-family-residual-harness.mjs --candidate scripts/quantum/source-measure-joint-basin-candidate.json --scenario all --out /tmp/aaa-bell-family-record-measure.json",
+            "reason": "Recheck Bell-family record-measure simulation scaffold."
+          }
+        ]
+      }
+    },
+    {
+      "id": "noether-braid.exchange-statistics",
+      "title": "Noether-braid exchange, chirality, and retained-history invariants",
+      "severity": "P0",
+      "rationale": "Exchange classes, retained-history ledgers, chirality, and linking conventions feed statistics, particle identity, branch retention, and proof-program screens.",
+      "pathTriggers": [
+        "content/markdown/aaa/foundations/ontology.md",
+        "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+        "content/markdown/aaa/assemblies/**",
+        "reference/priorities/braid-nested-shell-causal-closure/**",
+        "reference/priorities/proof-programs/**",
+        "scripts/braid-ideal/**",
+        "scripts/neutral-braid/**",
+        "tests/neutral-braid-*",
+        "tests/braid-ideal-*"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "exchange" },
+        { "type": "literal", "value": "\\mathbb{Z}_2" },
+        { "type": "literal", "value": "holonomy" },
+        { "type": "literal", "value": "framed braid" },
+        { "type": "literal", "value": "Noether braid" },
+        { "type": "literal", "value": "retained history" },
+        { "type": "literal", "value": "linking" },
+        { "type": "literal", "value": "writhe" },
+        { "type": "literal", "value": "chirality" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "neutral-braid octahedral proof family",
+          "topological causal-root ledger",
+          "matter-antimatter chirality retained-history target"
+        ],
+        "simulations": [
+          "ideal braid runtime",
+          "nested-shell action-increment packet"
+        ],
+        "applications": [
+          "Ideal Braid app",
+          "Animator",
+          "PDG edit surfaces"
+        ],
+        "validation": [
+          "frequency-triplet notation drift",
+          "content validation"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs",
+            "reason": "Catch stale angular-momentum/frequency-triplet notation around braid invariants."
+          },
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch corpus reference drift after braid/statistics edits."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/topological-causal-root-ledger-checker.test.js tests/braid-ideal-matter-antimatter-chirality-retained-history-target.test.js tests/neutral-braid-octahedral-root-ledger.test.js tests/neutral-braid-octahedral-root-force-closure-witness.test.js",
+            "reason": "Recheck root-ledger and retained-history proof surfaces."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/ideal-braid-runtime.test.js tests/nested-shell-braid-action-increment-source-contract.test.js",
+            "reason": "Recheck braid runtime and nested-shell action-increment surfaces."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/ideal-braid-runtime.test.js tests/animator-field-shell-runtime.test.js tests/pdgedit-contracts.test.js",
+            "reason": "Recheck app surfaces that render or consume braid records."
+          }
+        ]
+      }
+    },
+    {
+      "id": "mass-action.energy-ledger",
+      "title": "Mass, action, and internal energy ledgers",
+      "severity": "P1",
+      "rationale": "Energy/action/mass ledger changes affect the mass-map program, A0 continuation, branch certificates, action-energy simulations, and validation ledgers.",
+      "pathTriggers": [
+        "content/markdown/aaa/dynamics/energy.md",
+        "content/markdown/aaa/dynamics/causal-action-functional.md",
+        "content/markdown/aaa/assemblies/particle-masses.md",
+        "content/markdown/aaa/foundations/ontology.md",
+        "content/markdown/aaa/validation/parameter-ledger.md",
+        "content/markdown/aaa/validation/simulations/action-energy/**",
+        "reference/priorities/braid-mass-response-map/**",
+        "scripts/mass-map/**",
+        "tests/a0-*"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "E_{\\mathrm{internal}}" },
+        { "type": "literal", "value": "mass map" },
+        { "type": "literal", "value": "mass-map" },
+        { "type": "literal", "value": "causal action" },
+        { "type": "literal", "value": "action-energy" },
+        { "type": "literal", "value": "action increment" },
+        { "type": "literal", "value": "energy ledger" },
+        { "type": "literal", "value": "A_0" },
+        { "type": "literal", "value": "shielding" },
+        { "type": "literal", "value": "assembly inertia" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "A0 root transport",
+          "mass-response map",
+          "branch-coordinate checker"
+        ],
+        "simulations": [
+          "action-energy simulation family",
+          "nested-shell action-increment packet"
+        ],
+        "applications": [
+          "assembly explorer",
+          "molecule app"
+        ],
+        "validation": [
+          "parameter ledger",
+          "closure scorecard"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch corpus drift after mass/action/energy ledger edits."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/a0-root-transport-refinement-certificate.test.js tests/a0-root-transport-phase-origin-variant.test.js tests/a0-root-ledger-refinement-stability-certificate.test.js tests/a0-carrier-frame-branch-coordinate-checker.test.js tests/a0-mode-band-source-eligibility.test.js",
+            "reason": "Recheck A0 and mass-response proof surfaces."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/nested-shell-braid-action-increment-source-contract.test.js tests/action-boundary-pullback-diagnostic.test.js",
+            "reason": "Recheck action-increment and boundary-pullback simulations."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/assembly-configuration-explorer-runtime.test.js",
+            "reason": "Recheck assembly-facing mass/action display assumptions."
+          }
+        ]
+      }
+    },
+    {
+      "id": "noether-sea.effective-metric-response",
+      "title": "Noether sea constitutive and effective-metric response",
+      "severity": "P1",
+      "rationale": "Noether sea response and effective-metric mappings feed spacetime recovery, cosmology residuals, photon propagation, and mass-response work.",
+      "pathTriggers": [
+        "content/markdown/aaa/spacetime/noether-sea.md",
+        "content/markdown/aaa/spacetime/emergent-metric.md",
+        "content/markdown/aaa/spacetime/**",
+        "content/markdown/aaa/cosmology/**",
+        "content/markdown/aaa/philosophy-history/theory-bridges/spacetime-models-and-noether-sea.md",
+        "reference/priorities/braid-mass-response-map/**",
+        "scripts/spacetime/**",
+        "scripts/nuclear-atomic/**",
+        "tests/noether-sea-*",
+        "tests/effective-*",
+        "tests/eq*"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "Noether sea" },
+        { "type": "literal", "value": "\\rho_{\\text{NS}}" },
+        { "type": "literal", "value": "\\chi_{\\text{sea}}" },
+        { "type": "literal", "value": "effective metric" },
+        { "type": "literal", "value": "constitutive" },
+        { "type": "literal", "value": "medium response" },
+        { "type": "literal", "value": "spacetime medium" },
+        { "type": "literal", "value": "pressure" },
+        { "type": "literal", "value": "compression" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "Noether sea compatibility handoff",
+          "density compression provider intake",
+          "effective metric residual"
+        ],
+        "simulations": [
+          "cosmology shared residual fit",
+          "pressure effective lambda residual",
+          "galaxy response child residual"
+        ],
+        "applications": [
+          "cosmology scenes",
+          "photon app"
+        ],
+        "validation": [
+          "content integrity",
+          "closure scorecard"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch spacetime/cosmology reference drift."
+          },
+          {
+            "command": "node scripts/build-scene-graph.mjs --check --strict",
+            "reason": "Catch generated graph drift after spacetime/cosmology edits."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/noether-sea-compatibility-handoff-diagnostic.test.js tests/noether-sea-density-compression-provider-intake.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-response-source-target-check.test.js tests/effective-metric-weak-field-residual.test.js",
+            "reason": "Recheck Noether sea and effective metric proof/intake surfaces."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/eq32-galaxy-response-child-residual.test.js tests/effective-frw-handoff-residual.test.js",
+            "reason": "Recheck constitutive and cosmology residual simulations."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/photon-runtime.test.js tests/causal-delay-feedback-runtime.test.js",
+            "reason": "Recheck app surfaces that expose effective propagation assumptions."
+          }
+        ]
+      }
+    },
+    {
+      "id": "photon.channel-closure",
+      "title": "Photon channel, speed, and polarization closure",
+      "severity": "P1",
+      "rationale": "Photon branch geometry and speed/polarization recovery feed photon app runtime, proof diagnostics, and effective metric recovery.",
+      "pathTriggers": [
+        "content/markdown/aaa/quantum/**",
+        "content/markdown/aaa/spacetime/emergent-metric.md",
+        "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
+        "src/apps/photon/**",
+        "scripts/photon-helical-self-hit-phase-lock-sweep.mjs",
+        "scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs",
+        "tests/photon-*"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "photon" },
+        { "type": "literal", "value": "c_0" },
+        { "type": "literal", "value": "c_{\\gamma}" },
+        { "type": "literal", "value": "polarization" },
+        { "type": "literal", "value": "coaxial contra-rotating" },
+        { "type": "literal", "value": "self-hit phase" },
+        { "type": "literal", "value": "helical" },
+        { "type": "literal", "value": "phase lock" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "photon constituent root-route diagnostic",
+          "photon self-hit phase-lock sweep"
+        ],
+        "simulations": [
+          "photon helical self-hit phase-lock sweep"
+        ],
+        "applications": [
+          "Photon app",
+          "SolverAppBridge"
+        ],
+        "validation": [
+          "content validation",
+          "solver bridge checks"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/validate-content.mjs --check --strict",
+            "reason": "Catch quantum/spacetime content drift after photon edits."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/photon-constituent-root-route-diagnostic.test.js tests/solver-app-bridge-native-pair-status.test.js",
+            "reason": "Recheck photon route diagnostics and pair bridge rows."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node scripts/photon-helical-self-hit-phase-lock-sweep.mjs",
+            "reason": "Recheck photon self-hit phase-lock sweep."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node --test tests/photon-runtime.test.js tests/solver-app-bridge-native-pair-status.test.js",
+            "reason": "Recheck photon app and solver bridge surfaces."
+          }
+        ]
+      }
+    },
+    {
+      "id": "simulation.central-solver-contract",
+      "title": "Central solver bridge and production solver contract",
+      "severity": "P0",
+      "rationale": "Production solver schema and bridge changes can invalidate simulations, apps, proof fixtures, and generated solver package manifests.",
+      "pathTriggers": [
+        "src/solver/**",
+        "src/apps/animator/**",
+        "src/apps/photon/**",
+        "src/apps/ideal-braid/**",
+        "src/apps/borg/**",
+        "src/apps/causal-delay-feedback/**",
+        "scripts/check-solver-*.mjs",
+        "scripts/build-solver-*.mjs",
+        "tests/solver-*",
+        "tests/*solver*"
+      ],
+      "textTriggers": [
+        { "type": "literal", "value": "SolverAppBridge" },
+        { "type": "literal", "value": "SolverContract" },
+        { "type": "literal", "value": "field_shell_events" },
+        { "type": "literal", "value": "branchWeight" },
+        { "type": "literal", "value": "central solver" },
+        { "type": "literal", "value": "production solver" }
+      ],
+      "consumers": {
+        "proofPrograms": [
+          "solver-backed retained-history rows",
+          "topological causal-root ledger"
+        ],
+        "simulations": [
+          "T3 simulator",
+          "Borg native solver",
+          "causal-delay feedback",
+          "ideal braid solver bridge"
+        ],
+        "applications": [
+          "Animator",
+          "Photon",
+          "Ideal Braid",
+          "Borg",
+          "Causal Delay Feedback"
+        ],
+        "validation": [
+          "solver contract fixtures",
+          "solver app bridge",
+          "solver migration parity",
+          "solver smoke"
+        ]
+      },
+      "reevaluation": {
+        "validation": [
+          {
+            "command": "node scripts/check-solver-contract-fixtures.mjs",
+            "reason": "Recheck solver schema fixtures."
+          },
+          {
+            "command": "node scripts/check-solver-app-bridge.mjs",
+            "reason": "Recheck app bridge schema and generated types."
+          },
+          {
+            "command": "node scripts/check-solver-migration-parity.mjs",
+            "reason": "Recheck migration parity for solver-backed app paths."
+          }
+        ],
+        "proofPrograms": [
+          {
+            "command": "node --test tests/braid-ideal-central-solver-retained-history-row.test.js tests/braid-ideal-central-solver-retained-history-provider-object.test.js tests/solver-work-packet-transport-contract.test.js",
+            "reason": "Recheck proof fixtures that consume solver-backed retained-history rows."
+          }
+        ],
+        "simulations": [
+          {
+            "command": "node --test tests/t3-universe-simulator.test.js tests/borg-native-solver-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "reason": "Recheck solver-backed simulation paths."
+          }
+        ],
+        "applications": [
+          {
+            "command": "node scripts/check-animator-runtime-wiring.mjs",
+            "reason": "Recheck animator runtime wiring after solver bridge changes."
+          },
+          {
+            "command": "node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-native-solver-contract.test.js tests/causal-delay-feedback-central-bridge-adapter.test.js",
+            "reason": "Recheck app runtimes that use the central solver bridge."
+          }
+        ],
+        "solver": [
+          {
+            "command": "node scripts/build-solver-smoke.mjs all",
+            "reason": "Rebuild and smoke-test the native solver package."
+          }
+        ]
+      }
+    }
+  ]
+}

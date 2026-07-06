@@ -72,6 +72,7 @@ These are mandatory before commit and before PR publication.
 ```bash
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/check-foundational-impact.mjs --base origin/main --run
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/check-receiver-normal-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
@@ -112,6 +113,7 @@ node scripts/build-scene-graph.mjs --write --strict
 node scripts/build-textbook-md-pdf.mjs --write
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/check-foundational-impact.mjs --base origin/main --run
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/check-receiver-normal-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
@@ -574,6 +576,7 @@ This is the standard sequence for one completed branch rolling into the next:
 git status -sb
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/check-foundational-impact.mjs --base origin/main --run
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/check-receiver-normal-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
