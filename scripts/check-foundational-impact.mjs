@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const DEFAULT_MANIFEST = "scripts/config/foundational-impact-contracts.json";
+const DEFAULT_BRANCH_BASE = "origin/main";
 const TEXT_EXTENSIONS = new Set([
   ".c",
   ".cc",
@@ -70,7 +71,10 @@ if (!args.warnOnly && args.strict && report.summary.impactedContracts > 0) {
 function parseArgs(argv) {
   const options = {
     manifest: DEFAULT_MANIFEST,
-    base: "HEAD",
+    base: null,
+    baseProvided: false,
+    branchBase: DEFAULT_BRANCH_BASE,
+    branchBaseProvided: false,
     staged: false,
     working: false,
     allContracts: false,
@@ -92,8 +96,16 @@ function parseArgs(argv) {
       options.manifest = arg.slice("--manifest=".length);
     } else if (arg === "--base") {
       options.base = requireValue(argv, (index += 1), arg);
+      options.baseProvided = true;
     } else if (arg.startsWith("--base=")) {
       options.base = arg.slice("--base=".length);
+      options.baseProvided = true;
+    } else if (arg === "--branch-base") {
+      options.branchBase = requireValue(argv, (index += 1), arg);
+      options.branchBaseProvided = true;
+    } else if (arg.startsWith("--branch-base=")) {
+      options.branchBase = arg.slice("--branch-base=".length);
+      options.branchBaseProvided = true;
     } else if (arg === "--staged") {
       options.staged = true;
     } else if (arg === "--working") {
@@ -118,6 +130,9 @@ function parseArgs(argv) {
   if (options.staged && options.working) {
     fail("Use at most one of --staged or --working.");
   }
+  if (options.baseProvided && options.branchBaseProvided) {
+    fail("Use --base for an exact comparison ref or --branch-base for branch accumulation, not both.");
+  }
 
   return options;
 }
@@ -133,7 +148,8 @@ function printHelp() {
   console.log(`Usage: node scripts/check-foundational-impact.mjs [options]
 
 Options:
-  --base REF          Compare working tree against REF. Defaults to HEAD.
+  --branch-base REF   Compare accumulated branch changes against merge-base with REF. Defaults to ${DEFAULT_BRANCH_BASE}.
+  --base REF          Compare against an exact ref instead of branch accumulation.
   --staged           Inspect staged changes only.
   --working          Inspect unstaged changes only.
   --all-contracts    Print the full foundational contract dependency map.
@@ -213,10 +229,14 @@ function assertNonemptyString(value, label) {
 
 function collectChangeSet(options) {
   const diffArgs = ["diff", "--unified=0", "--no-ext-diff", "--no-color"];
+  let mode = "working";
   if (options.staged) {
     diffArgs.push("--cached");
+    mode = "staged";
   } else if (!options.working) {
-    diffArgs.push(options.base);
+    const comparison = resolveComparisonBase(options);
+    diffArgs.push(comparison.diffRef);
+    mode = comparison.mode;
   }
   diffArgs.push("--");
 
@@ -237,13 +257,49 @@ function collectChangeSet(options) {
     .sort((left, right) => left.path.localeCompare(right.path));
 
   return {
-    mode: options.staged
-      ? "staged"
-      : options.working
-        ? "working"
-        : `base:${options.base}`,
+    mode,
     files,
   };
+}
+
+function resolveComparisonBase(options) {
+  if (options.baseProvided) {
+    return {
+      diffRef: options.base,
+      mode: `base:${options.base}`,
+    };
+  }
+
+  const branchBase = resolveBranchMergeBase(options.branchBase, options.branchBaseProvided);
+  return {
+    diffRef: branchBase.mergeBase,
+    mode: `branch:${branchBase.ref}@${branchBase.mergeBase.slice(0, 12)}`,
+  };
+}
+
+function resolveBranchMergeBase(preferredRef, strict) {
+  const candidates = strict
+    ? [preferredRef]
+    : uniqueStrings([preferredRef, DEFAULT_BRANCH_BASE, "main", "origin/master", "master"]);
+
+  for (const candidate of candidates) {
+    if (!tryGit(["rev-parse", "--verify", `${candidate}^{commit}`])) {
+      continue;
+    }
+    const mergeBase = tryGit(["merge-base", "HEAD", candidate]);
+    if (mergeBase) {
+      return {
+        ref: candidate,
+        mergeBase: mergeBase.trim(),
+      };
+    }
+  }
+
+  fail(
+    strict
+      ? `Could not resolve a merge-base with ${preferredRef}.`
+      : `Could not resolve a branch merge-base. Tried: ${candidates.join(", ")}.`,
+  );
 }
 
 function runGit(gitArgs, action) {
@@ -259,6 +315,15 @@ function runGit(gitArgs, action) {
     fail(`Could not ${action}: ${result.stderr.trim() || `git exited ${result.status}`}`);
   }
   return result.stdout;
+}
+
+function tryGit(gitArgs) {
+  const result = spawnSync("git", gitArgs, {
+    cwd: ROOT_DIR,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  return result.status === 0 ? result.stdout : null;
 }
 
 function parseUnifiedDiff(diffText) {
@@ -670,6 +735,10 @@ function normalizePath(value) {
 
 function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.filter((value) => typeof value === "string" && value.trim() !== ""))];
 }
 
 function fail(message) {

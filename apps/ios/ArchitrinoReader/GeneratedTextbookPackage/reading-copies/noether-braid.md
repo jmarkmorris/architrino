@@ -5630,7 +5630,7 @@ A useful refinement is a branch-preserving chirality label
 $$
 \chi_{\mathrm{fr}}\in\mathbb{Z}_2.
 $$
-This is not part of the base triple until the branch chart supplies a deformation-stable handed marker, such as framed self-linking parity or a certified maximal-curvature-binary circulation sign. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
+This is not part of the base triple until the branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ### Invariance And Allowed Transitions
 

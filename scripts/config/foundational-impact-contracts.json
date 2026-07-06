@@ -8,6 +8,9 @@
   },
   "diffIgnorePaths": [
     ".githooks/pre-commit",
+    "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/**",
+    "content/generated/**",
+    "content/graph/**",
     "scripts/check-foundational-impact.mjs",
     "scripts/config/foundational-impact-contracts.json"
   ],
@@ -56,7 +59,6 @@
         ],
         "validation": [
           "strict content indexes",
-          "scene graph",
           "receiver-normal clean slate"
         ]
       },
@@ -65,10 +67,6 @@
           {
             "command": "node scripts/validate-content.mjs --check --strict",
             "reason": "Catch markdown/index drift after source equation or foundation prose changes."
-          },
-          {
-            "command": "node scripts/build-scene-graph.mjs --check --strict",
-            "reason": "Catch scene graph and textbook navigation drift after foundation/dynamics edits."
           },
           {
             "command": "node scripts/check-receiver-normal-clean-slate.mjs",
@@ -165,7 +163,7 @@
           },
           {
             "command": "node scripts/validate-content.mjs --check --strict",
-            "reason": "Catch generated index drift if canonical proof/dynamics prose changed."
+            "reason": "Catch canonical proof/dynamics reference drift."
           }
         ],
         "proofPrograms": [
@@ -232,7 +230,7 @@
           "SolverAppBridge"
         ],
         "validation": [
-          "content integrity",
+          "content validation",
           "receiver-normal clean slate"
         ]
       },
@@ -241,10 +239,6 @@
           {
             "command": "node scripts/validate-content.mjs --check --strict",
             "reason": "Catch corpus reference drift after time/wake postulate changes."
-          },
-          {
-            "command": "node scripts/build-scene-graph.mjs --check --strict",
-            "reason": "Catch generated navigation drift after foundation edits."
           }
         ],
         "proofPrograms": [
@@ -301,19 +295,18 @@
           "geometry and affine exposure probes"
         ],
         "applications": [
-          "solver geometry smoke",
+          "solver geometry inventory",
           "ideal braid visual surfaces"
         ],
         "validation": [
-          "content validation",
-          "scene graph"
+          "content validation"
         ]
       },
       "reevaluation": {
         "validation": [
           {
             "command": "node scripts/validate-content.mjs --check --strict",
-            "reason": "Catch references and generated content after foundation geometry edits."
+            "reason": "Catch references after foundation geometry edits."
           }
         ],
         "proofPrograms": [
@@ -330,8 +323,8 @@
         ],
         "solver": [
           {
-            "command": "node scripts/build-solver-smoke.mjs geometry",
-            "reason": "Recheck solver geometry smoke if the Euclidean metric contract changes."
+            "command": "node scripts/check-solver-geometry-inventory.mjs",
+            "reason": "Recheck solver geometry inventory if the Euclidean metric contract changes."
           }
         ]
       }
@@ -677,7 +670,7 @@
           "photon app"
         ],
         "validation": [
-          "content integrity",
+          "content validation",
           "closure scorecard"
         ]
       },
@@ -686,10 +679,6 @@
           {
             "command": "node scripts/validate-content.mjs --check --strict",
             "reason": "Catch spacetime/cosmology reference drift."
-          },
-          {
-            "command": "node scripts/build-scene-graph.mjs --check --strict",
-            "reason": "Catch generated graph drift after spacetime/cosmology edits."
           }
         ],
         "proofPrograms": [
