@@ -6,11 +6,13 @@ This document defines the standard repo process for ending a work session, publi
 
 ## Branch Naming Convention
 
-The active branch series for this repo is currently the moon sequence, using
-the committed [moon branch registry](moon-branch-registry.md). The moon
-sequence ends at `codex/sao`. When a branch series is exhausted, continue
-with the next series in [Branch Series Rollover Order](#branch-series-rollover-order)
-rather than reusing retired branch names.
+The active branch series for this repo is currently the minerals/gemstones
+sequence, using the committed
+[mineral/gemstone branch registry](mineral-gemstone-branch-registry.md). The
+moon sequence ended at `codex/sao` and is consumed. When a branch series is
+exhausted, continue with the next series in
+[Branch Series Rollover Order](#branch-series-rollover-order) rather than
+reusing retired branch names.
 The branch-series index and configured counts are tracked in
 [branch-series-registry.md](branch-series-registry.md).
 
@@ -529,7 +531,7 @@ After the previous PR is merged and the previous branch is retired, start the ne
 ### 1. Create the next branch from current `main`
 
 - Use the next item in the active branch series.
-- The active series is currently the moon sequence; after `codex/sao`, advance to the minerals/gemstones sequence with the first item from the committed mineral/gemstone registry.
+- The active series is currently the minerals/gemstones sequence; advance to the first unused item from the committed mineral/gemstone registry.
 - An optional `-<topic>` suffix is allowed when it materially improves clarity, but the series item prefix should still advance in order.
 - Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.

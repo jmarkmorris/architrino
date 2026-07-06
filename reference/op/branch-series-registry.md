@@ -15,8 +15,8 @@ Dakota becomes `codex/north-dakota`.
 | ---: | --- | ---: | --- | --- |
 | 1 | Periodic table elements | 118 | Canonical element order in [codex-pr-branch.md](codex-pr-branch.md) | consumed |
 | 2 | IAU planets | 8 | Canonical planet order in [codex-pr-branch.md](codex-pr-branch.md) | consumed |
-| 3 | Moons in our solar system | 43 | [moon-branch-registry.md](moon-branch-registry.md) | active |
-| 4 | Minerals and gemstones | 48 | `mineral-gemstone-branch-registry.md` | pending |
+| 3 | Moons in our solar system | 43 | [moon-branch-registry.md](moon-branch-registry.md) | consumed |
+| 4 | Minerals and gemstones | 48 | [mineral-gemstone-branch-registry.md](mineral-gemstone-branch-registry.md) | active |
 | 5 | NASA space missions and probes | 64 | `nasa-space-mission-branch-registry.md` | pending |
 | 6 | Dog and cat breeds | 44 | `breed-branch-registry.md` | pending |
 | 7 | U.S. state names | 50 | `us-state-branch-registry.md` | pending |
