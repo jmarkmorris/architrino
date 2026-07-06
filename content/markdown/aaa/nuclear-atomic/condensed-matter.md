@@ -245,7 +245,7 @@ $$
 D_{ij}(\mathbf k)\epsilon_{s,j}(\mathbf k)
 $$
 
-In a long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x,t)$ with strain
+In a long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x,t)$ in the local observer-level material chart. Here $t$ and $\mathbf x$ are the effective elastic coordinates; the native closure still owes the map from $(T,\mathbf X)$ into that material chart. The strain is
 
 $$
 u_{ij}
@@ -263,16 +263,16 @@ and elastic action
 $$
 S_{\mathrm{el}}
 =
-\int dtd^3x
+\int dt\,d^3x
 \left[
 \frac{\rho_{\mathrm{mat}}}{2}
 \left(
 \frac{\partial u_i}{\partial t}
 \right)^2
 -
-2\mu u_{ij}u_{ij}
+\mu u_{ij}u_{ij}
 -
-\lambda u_{ii}u_{jj}
+\frac{\lambda}{2}u_{ii}u_{jj}
 \right]
 $$
 
@@ -451,7 +451,7 @@ E_{\gamma,\mathrm{out}}
 \Delta E_{\mathrm{rem}}
 $$
 
-For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For a Vantablack-like branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
+For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For an ultra-black multiple-capture branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
 
 ### Earth-Core Iron as a Boundary Case
 
@@ -515,7 +515,9 @@ $$
 
 along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether braid density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
 
-A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. For a material branch $X$, let
+[Atomic Structure](atomic-structure.md#element-dependent-sea-response) states the general $\Delta\mu_{E/Y}^{B}$ record. This section specializes that record to Earth-core iron and carries the packing sufficient condition explicitly.
+
+A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. The exclusion-envelope geometry is inherited from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#dynamic-exclusion-envelope), while [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md#levels-of-excluded-volume) keeps the ordinary matter-channel occupancy baseline separate from Noether sea response. Use a convex packing-penalty function $\Psi(z)$ on the occupancy ratio $z_X$; $\Psi'(z_X)$ is the marginal penalty for pushing the branch toward its oblate exclusion-envelope packing ceiling. For a material branch $X$, let
 
 $$
 z_X(n)
@@ -559,7 +561,16 @@ $$
 
 This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether sea coupling, and $\mathcal{D}_X$ comes from the same local Noether sea state record used for clock, delay, strain, and transport response.
 
-The support-function version of the packing burden is concrete. For branch-cell directions $\hat{\mathbf{b}}_{X,i}$, define support-function spacings
+The support-function version of the packing burden is concrete. For a declared branch exclusion envelope $E_X$, let
+
+$$
+\bar{s}_X(\hat{\mathbf n})
+=
+\sup_{\mathbf y\in E_X}
+\hat{\mathbf n}\cdot\mathbf y
+$$
+
+be its support function in direction $\hat{\mathbf n}$. For branch-cell directions $\hat{\mathbf{b}}_{X,i}$, define support-function spacings
 
 $$
 D_{X,i}
@@ -609,11 +620,11 @@ $$
 \rho_{\text{NS}},
 \chi_{\text{sea}},
 \mathcal{M}_{\text{sea}}^{ab},
-S_{ij}
+\Sigma_{\text{sea},ij}
 \right)
 $$
 
-The $\delta G_{\mathrm{sea}}$ term is admissible as a medium-response correction to phase stability, conductivity, elastic response, or transport. It is not admissible as a hidden transmutation channel. Branch-preserving retuning of an iron assembly must keep the nuclear inventory fixed, for example $\Delta Z_{\mathrm{Fe}}=0$ and $\Delta A_{\mathrm{Fe}}=0$, while any cadence, envelope, or transport change remains subordinate to the clock and retuning programs in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) and [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md).
+The $\delta G_{\mathrm{sea}}$ term is admissible as a medium-response correction to phase stability, conductivity, elastic response, or transport. The stress argument uses $\Sigma_{\text{sea},ij}$, the component form of the canonical Noether sea stress $\Sigma_{\text{sea}}$ from [Noether sea](../spacetime/noether-sea.md). It is not admissible as a hidden transmutation channel. Branch-preserving retuning of an iron assembly must keep the nuclear inventory fixed, for example $\Delta Z_{\mathrm{Fe}}=0$ and $\Delta A_{\mathrm{Fe}}=0$, while any cadence, envelope, or transport change remains subordinate to the clock and retuning programs in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) and [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md).
 
 The corresponding closure residual is
 

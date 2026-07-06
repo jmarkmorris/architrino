@@ -22,6 +22,10 @@
         "scenePath": "content/scenes/standard-model-particles/electron.json"
       },
       {
+        "nodeId": "muon_tau",
+        "scenePath": "content/scenes/assemblies/muon_tau.json"
+      },
+      {
         "nodeId": "neutrinos",
         "scenePath": "content/scenes/assemblies/neutrinos.json"
       },
@@ -62,6 +66,14 @@
       "radius": 2.688,
       "color": "#5a1f2e",
       "labelTitle": "Electron, Muon, Tau"
+    },
+    {
+      "id": "muon_tau",
+      "title": "Muon and Tau",
+      "radius": 2.688,
+      "color": "#7a3f5f",
+      "labelTitle": "Muon and Tau",
+      "labelBadge": "doc"
     },
     {
       "id": "neutrinos",

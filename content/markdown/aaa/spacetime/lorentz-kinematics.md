@@ -137,16 +137,17 @@ Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
 $$
 \beta\equiv \frac{v}{c_f}\qquad s\equiv \frac{T}{T_0}\qquad
 \boldsymbol{\rho}_i(s)\equiv \frac{\mathbf r_i(T)}{a_0}\qquad
-\chi\equiv \frac{c_f T_0}{a_0}
+\chi_{\mathrm{dd}}\equiv \frac{c_f T_0}{a_0}
 $$
 Then delay closure in co-moving coordinates is
 $$
-\hat{\tau}_{ij}(s)=\frac{1}{\chi}\left\|
+\hat{\tau}_{ij}(s)=\frac{1}{\chi_{\mathrm{dd}}}\left\|
 \boldsymbol{\rho}_i(s)-\boldsymbol{\rho}_j\!\left(s-\hat{\tau}_{ij}(s)\right)
-+\chi\beta\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
++\chi_{\mathrm{dd}}\beta\,\hat{\mathbf{e}}_{\parallel}\hat{\tau}_{ij}(s)
 \right\|
 $$
 with $\hat{\tau}_{ij}\equiv \tau_{ij}/T_0$.
+The $\mathrm{dd}$ subscript marks this as a local drift-delay scale, not the Noether sea delay factor $\chi_{\text{sea}}$ or the effective coordinate map $\chi_{\mathrm{eff}}$.
 
 Let $\boldsymbol{\rho}^\star(s;\beta)$ be a $P(\beta)$-periodic translating attractor. Linearization gives a delay-Floquet system
 $$
@@ -274,7 +275,7 @@ S=\int dT\left[
 $$
 The exact substrate symmetry group is
 $$
-G_{\text{fund}}=E(3)\times \mathbb{R}
+G_{\text{fund}}=E(3)\times \mathbb{R}_T
 $$
 and the associated delayed-Noether proof target is that conserved totals close only after wake and medium channels are included:
 $$
@@ -590,7 +591,7 @@ a_{\perp,q}(v)\equiv \sqrt{\frac{q_{\perp,1}(v)+q_{\perp,2}(v)}{2}}
 $$
 The moving-assembly contraction residual is
 $$
-R_{\parallel}^{(q)}(v)
+R_\xi^{(q)}(v)
 \equiv
 \frac{a_{\parallel,q}(v)}{a_{\perp,q}(v)}
 -
@@ -598,7 +599,7 @@ R_{\parallel}^{(q)}(v)
 $$
 and the theorem target is the leakage bound
 $$
-\left|R_{\parallel}^{(q)}(v)\right|
+\left|R_\xi^{(q)}(v)\right|
 \le
 C_{\parallel}\epsilon_{\text{LV}}\beta_\star^2
 $$
@@ -674,7 +675,7 @@ $$
 
 Dimensionless factorization exposes Category A coupling:
 $$
-K_i(\beta)=\frac{\kappa\,\epsilon^2}{a_0^3}\,\mathcal{I}_i(\beta,\chi,\eta,\dots)
+K_i(\beta)=\frac{\kappa\,\epsilon^2}{a_0^3}\,\mathcal{I}_i(\beta,\chi_{\mathrm{dd}},\eta,\dots)
 \qquad i\in\{\parallel,\perp\}
 $$
 Hence
@@ -781,9 +782,9 @@ with the following structured components:
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
-### Open mapping: perceived time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
+### Open mapping: observer-level time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The human-observed "time dilation" channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
+The observer-level clock-dilation channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
 $$
 \tau_{\text{op}}=\tau_{\text{op}}(f_H,f_M,f_L,\mathbf{A},\mathcal{E}_{\text{excl}},v_{\text{tr}})
 $$
@@ -833,7 +834,7 @@ Consistency checks required for this scenario:
 3. Residual anisotropy harmonics must remain below empirical bounds after observer construction.
 4. Local axial-coupling encounters must be modeled separately from passerby-transfer events.
 
-Status: scenario is a structured hypothesis, not yet a proved derivation. It is retained as an evolving design model for theorem and simulation development.
+Status: scenario is a structured hypothesis, not yet a proved derivation. Its proof burden is to recover the theorem targets and simulation residuals below from the same branch ledger.
 
 ### Two-channel deformation: shape plus scale
 
@@ -1094,6 +1095,7 @@ For weak drift, slowly varying Noether sea flow, and quasi-static fields in a lo
 $$
 \Phi_{\text{eff}}(x_{\mathrm{eff}}^i)\equiv c_0^2\ln\!\big(\Omega(n,\lambda)\,\xi\big)
 $$
+The $c_0^2$ prefactor marks this as an observer-sector potential calibration; in the weak homogeneous branch, $c_f$ and $c_0$ differ only by $O(\epsilon_{\mathrm{LV}}c_0)$.
 Then the nonrelativistic geodesic limit becomes
 $$
 \frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}
@@ -1144,7 +1146,7 @@ $$
 $$
 Define closure residuals on a primitive calibration band $0\le\beta\le\beta_{\max}$, or on the dressed band after replacing $\beta$ by $\beta_\star$ and $\gamma$ by $\gamma_\star$:
 $$
-R_{\parallel}^{(q)}(\beta)
+R_\xi^{(q)}(\beta)
 \equiv
 \hat{\alpha}(\beta)-\frac{1}{\gamma(\beta)}
 $$
@@ -1158,7 +1160,7 @@ $$
 \mathcal{E}_{\text{shape}}
 \equiv
 \sup_{0\le \beta\le \beta_{\max}}
-\left|R_{\parallel}^{(q)}(\beta)\right|
+\left|R_\xi^{(q)}(\beta)\right|
 $$
 $$
 \mathcal{E}_{\text{clock}}
@@ -1173,7 +1175,7 @@ $$
 $$
 and enforce
 $$
-\sup_{0\le \beta\le \beta_\star}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}
+\sup_{0\le \beta\le \beta_{\max}}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}
 $$
 
 ### Analytic derivation of kinematic closure coefficients
@@ -1298,7 +1300,7 @@ m\in\mathcal{R}^{\mathrm{act}}_{ab}(\beta)
 $$
 Here $a$ is the receiver, $b$ is the source, $m$ labels an active delayed branch, $T_{\mathrm{em},m}$ is the emission time, $J_{ab}^{(m)}$ is the causal Jacobian, and $\sigma_{ab}^{(m)}$ records the interaction sign or channel orientation used by the local branch chart. The ledger is quantum-facing because stable assembly states depend on integer branch counts, separator events, and admissible self-hit / partner-hit histories. It is Lorentz-facing because the same roots determine the cycle-averaged stiffness tensor and clock period.
 
-The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta)$ on a drift band $0\le\beta\le\beta_\star$ such that
+The local prediction can be stated as a closure condition. There must exist one admissible branch-chart class $\mathfrak{B}_{\mathrm{mov}}(\beta)$ on a drift band $0\le\beta\le\beta_{\max}$ such that
 $$
 K_{ab}(\beta)
 =
@@ -1434,7 +1436,7 @@ u\Delta+d_{\min}
 $$
 and therefore
 $$
-\left(c_f-u\right)\tau\ge d_{\min}
+\left(c_f-u\right)\Delta\ge d_{\min}
 $$
 No such forward partner root exists for $u\ge c_f$; for $u<c_f$ its required delay is at least $d_{\min}/(c_f-u)$. Thus a bound translating assembly whose structural closure requires leading-side partner rows cannot preserve its causal-root ledger at or above primitive field speed. This proves the upper-bound side
 $$

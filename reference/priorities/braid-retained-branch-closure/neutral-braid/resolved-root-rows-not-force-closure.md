@@ -134,13 +134,13 @@ For the same witness node, the interval certificate gives
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232].
+[0.19802220088,0.19802220091].
 $$
 
 Since
 
 $$
-0\notin[0.07393815228,0.07393815232],
+0\notin[0.19802220088,0.19802220091],
 $$
 
 the fixed-speed tangential force row fails at a node where all five ordered distinct-source rows are resolved with `root_count=1` and positive Jacobian data. Therefore the implication
@@ -167,7 +167,7 @@ The proof has the form of a direct counterexample:
 | Ordered distinct-source rows | five |
 | Root count row | every ordered distinct-source row has `root_count=1` |
 | Jacobian row | every ordered distinct-source row has positive Jacobian data |
-| Tangential residual interval | $[0.07393815228,0.07393815232]$ |
+| Tangential residual interval | $[0.19802220088,0.19802220091]$ |
 | Fixed-speed force closure | failed at the witness node |
 
 The closure status is

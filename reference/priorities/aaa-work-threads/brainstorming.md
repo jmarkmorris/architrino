@@ -4,6 +4,19 @@ This file preserves loose work-thread ideas, scratch notes, and open questions. 
 
 ## Idea Routing Notes
 
+### 2026-07-06 atomic and nuclear review cleanup themes
+
+- Claim level: provisional corpus-cleanup routing from the Atomic and Nuclear Assemblies Fable review pass, not accepted proof evidence.
+- Batchable cleanup theme: normalize remaining Noether sea stress component notation from $S_{ij}$ to the owner symbol $\Sigma_{\text{sea},ij}$ or an explicitly declared projection in `content/markdown/aaa/spacetime/black-holes.md`; `content/markdown/aaa/nuclear-atomic/atomic-structure.md` was normalized during the review-1 integration pass, and `content/markdown/aaa/nuclear-atomic/condensed-matter.md` was normalized during the review-7 integration pass.
+- Residual cleanup target: verify the review-reported composite-braid terminology and bare $t\to T$ notation drift in `content/markdown/aaa/nuclear-atomic/nucleon-structure.md` against its source review before editing; the review-7 attachment names the item but does not include enough local context to change the chapter safely.
+
+### 2026-07-06 spacetime directory review cleanup themes
+
+- Claim level: provisional corpus-cleanup routing from the completed spacetime Fable review pass, not accepted proof evidence.
+- Promotion targets: route concrete fixes into the owning spacetime, Noether braid, Lorentz/effective-metric, and pro/anti orientation documents before treating them as corpus-wide rules.
+- Batchable cleanup themes: settle the $c_0^2$ versus $c_f^2$ $\Phi_{\text{eff}}$ convention in the affected spacetime files; replace duplicated derivation displays with import-by-reference where the owner is clear; repair broken imports into `nested-shell-braid-dynamics.md` for the transverse-causal-budget lemma and ADM/Cartan target; run a symbol-collision pass for $\theta$, $\sigma$, $\chi$, $f$, $\Phi_{\mathrm{eff}}^{\mathrm{obs}}$, $\mathcal S_{\mathrm{mat}}$, and $(a,k)$.
+- Already integrated in the 2026-07-06 horizon-chirality pass: promote the pro/anti `HML/HLM` orientation basis into `noether-sea-pro-anti-coupling.md` and keep `horizon-chirality.md` plus `color-charge-su3.md` as consumers.
+
 ### kinetic energy - do we need to track electrino and positrino separately? we may as well? reduce later.
 
 ### potential energy (of attraction). (of repulsion).

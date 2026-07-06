@@ -160,7 +160,7 @@ The no-go closure is sharpened in [rigid-octahedral-fixed-speed-no-go.md](rigid-
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232],
+[0.19802220088,0.19802220091],
 $$
 
 which excludes zero. Therefore the rigid zero-offset fixed-speed neutral row is `closed-rejected` under this source-pair and same-source policy.

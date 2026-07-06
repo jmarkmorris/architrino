@@ -1,6 +1,6 @@
 # Causal Action Functional
 
-This chapter explains how action-like scalar summaries are allowed to enter a delayed, receiver-normal dynamics. The Master Equation remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
+This chapter explains how action-like scalar summaries are allowed to enter a delayed, receiver-normal dynamics. The [Master Equation](master-equation.md#the-master-equation-canonical-form) remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
 
 The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, source-normal denominator, receiver-normal numerator, and receiver-normal strength. Otherwise the statistic has lost the causal information that made the branch physical.
 
@@ -31,6 +31,8 @@ D_{T,ij}
 c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}}).
 $$
 
+Plain language: a retained hit must say both how the source laid down the wake and how the receiver crossed that same wake. The ratio above is the receiver-normal strength attached to that one retained root.
+
 A branch record that contains only $D_s$ is incomplete for current force/action
 use. $D_s$ remains the source-normal transversality denominator for root
 existence, caustic routing, and inactive-gap diagnostics. Force, action, power,
@@ -52,6 +54,20 @@ $$
 {r_{ij}^2(T;T_{\mathrm{em}})+\epsilon_c^2}
 \,dT.
 $$
+
+This statistic is sign-blind and coupling-normalized: it suppresses
+$\kappa$, $|q_iq_j|$, and the polarity sign
+$\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive rows therefore
+add by received magnitude rather than canceling by direction. After the
+native-time average, $\bar{\mathcal A}_{\mathrm{rec}}$ has inverse-area units;
+it is action-like only in the sense that it accumulates receiver-normal
+branch-magnitude density on the retained causal record. It is not automatically
+the exact Fokker-type variational action, whose causal kernel is tested
+separately in [Master Equation](master-equation.md#exact-causal-delay-fokker-type-interaction-term).
+
+Plain language: this number asks how much same-record causal-hit magnitude a
+branch carries over the window after signs, coupling scale, and push direction
+have been stripped off.
 
 This is a scalar statistic, not the vector Master EOM itself. It keeps the same
 causal roots and receiver-normal strength while discarding the line-of-action
@@ -81,8 +97,16 @@ g_{ij}(T,T_{\mathrm{em}})
 \|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})=0.
 $$
 
+Plain language: the root condition says that a wake emitted by source $j$ at
+$T_{\mathrm{em}}$ reaches receiver $i$ exactly at absolute time $T$.
+
 On a simple retained root, $D_s\ne0$ supplies the local inverse-function
-condition. The branch label persists as long as the same retained record keeps:
+condition. A retained record is the branch-local data packet that binds the
+root, source identity, receiver identity, regulator state, and force/action
+rows to one history chart. A retained box is an interval or chart neighborhood
+that encloses those rows together; outward-rounded intervals have endpoints
+rounded away from the computed value so the true row remains enclosed. The
+branch label persists as long as the same retained record keeps:
 
 | Row | Required status |
 | --- | --- |
@@ -96,7 +120,8 @@ condition. The branch label persists as long as the same retained record keeps:
 
 Branch labels may change only at declared boundaries: a root enters or leaves
 the memory window, an inactive gap closes, $D_s$ reaches a caustic boundary, a
-collision regulator is invoked, or the retained record fails same-box identity.
+collision regulator is invoked, or the retained rows no longer occupy the same
+box.
 
 ## Causal Writhe and Topological Use
 
@@ -111,16 +136,56 @@ Wr_c(\mathfrak B)
 $$
 
 This notation records signed causal-locus crossings or linkages in the retained
-record. It does not supply force strength. Any use of $Wr_c$ in spin,
-chirality, confinement, or horizon-interface arguments must also state the
-branch record on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
+record. Here $\alpha$ and $\beta$ index oriented retained causal-locus strands
+or strand segments in the declared projection. The indicator
+$\chi_{\mathrm{causal}}(\alpha,\beta)$ equals $1$ only when the two strands form
+an admissible crossing or linkage event on the same retained record, and equals
+$0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is the orientation
+sign of the ordered strand pair relative to the declared branch framing; it is
+not defined at a fold, framing slip, or unresolved collision row.
 
-## Circular Benchmark as a Branch-Count Theorem
+$Wr_c$ is therefore a causal-locus crossing statistic, not a replacement for
+the canonical framed-topology rows such as
+$Lk=\operatorname{Wr}+\operatorname{Tw}$ in
+[Constructing the Absolute Frame](../foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality)
+and [Architrino](../foundations/architrino.md#provenance-and-persistence). It
+does not supply force strength. Any use of $Wr_c$ in spin, chirality,
+confinement, or horizon-interface arguments must also state the branch record
+on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
+
+## Circular Benchmark (Branch-Count Theorem)
 
 The circular branch-count benchmark is topology only. Circular self-hit births,
 Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root
 structure, but they do not imply a circular no-go, force-balance result, action
 minimum, or mass scale.
+
+The theorem spine is the circular no-proliferation result already used by the
+delayed dynamics stack. In the symmetric circular benchmark, write
+$$
+\beta(T)=\frac{\omega(T)R(T)}{c_f}.
+$$
+If $|\beta(T)|\le\beta_\ast<\infty$ uniformly, then the active circular
+self-hit count is uniformly bounded:
+$$
+N_{\mathrm{self}}(T)
+\le
+\frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
+$$
+where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the
+circular root equation. On a one-sign subchart this has the sharper asymptotic
+form
+$$
+N_{\mathrm{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1).
+$$
+The branch births occur at tangencies of the circular root equation, so the
+root census, Jacobian-null thresholds, and inactive-gap changes are one
+topological ledger. On the non-translating circular chart,
+$D_T=D_s$ and $W^{\mathrm{rec}}=1$ away from degenerate endpoints, so the
+branch-count theorem uses the root structure and does not certify force
+balance, action closure, or stability. The detailed circular derivations are in
+[Master Equation](master-equation.md) and the winding-index census in
+[Binary Dynamics](binary-dynamics.md#root-multiplicity-vs-speed).
 
 A current circular benchmark must emit:
 
@@ -138,24 +203,31 @@ Until those rows exist, circular material is not evidence for action closure.
 
 ## Branch Barrier and Transition Cost
 
-For a path of retained charts $\mathfrak B_\lambda$, define the candidate
-receiver-normal barrier
+For a path $\Gamma:\lambda\mapsto\mathfrak B_\lambda$ of retained charts with
+endpoints $\mathfrak B_{\lambda_0}$ and $\mathfrak B_{\lambda_1}$, define the
+candidate receiver-normal barrier by the reparametrization-invariant saddle
+height
 $$
 B_{\mathrm{rec}}(\lambda_0,\lambda_1)
 =
-\inf_{\mathfrak B_\lambda}
-\int_{\lambda_0}^{\lambda_1}
+\inf_{\Gamma:\mathfrak B_{\lambda_0}\to\mathfrak B_{\lambda_1}}
+\sup_{\lambda\in[\lambda_0,\lambda_1]}
 \left[
 \bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_\lambda]
 -
-\min_{\lambda'}\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda'}]
+\max\!\left(
+\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda_0}],
+\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda_1}]
+\right)
 \right]_+
-d\lambda.
 $$
 
 This is a transition-cost target, not a proof of stability. A promoted barrier
 must state the retained branch path, the root identity across the path, the
-regulator state, and the same-record receiver-normal branch-strength rows.
+regulator state, and the same-record receiver-normal branch-strength rows. If a
+later certificate uses an integral barrier instead, the promoted record must
+also declare the path measure, for example arclength in a stated metric on
+chart space.
 
 ## Reduced Branch-Certificate Targets
 
@@ -164,10 +236,10 @@ A branch certificate that consumes this chapter must report:
 | Certificate row | Required content |
 | --- | --- |
 | branch identity | retained roots, inactive gaps, finite memory |
-| receiver-normal strength | same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ |
+| receiver-normal strength | $D_s$, $D_T$, and $W^{\mathrm{rec}}$ enclosed on the same retained box |
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
-| Noether pullback | energy, momentum, and angular-momentum wake-history rows |
+| Noether pullback | energy, momentum, and angular-momentum wake-history rows from the same action or realized-trajectory record; see [Energy](energy.md#energy-conservation-and-exchange) and [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) |
 | negative controls | rejection of missing, mismatched, or receiver-normal-incomplete rows |
 
 The branch certificate is not promoted if any of those rows are supplied by
@@ -175,7 +247,7 @@ different root boxes, different regulator states, or different history records.
 
 ## Summary and Status
 
-The current action-functional lane is a receiver-normal rebuild target. It keeps
+The current action-functional program is a receiver-normal rebuild target. It keeps
 causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete receiver-normal branch records.
 The next useful mathematical artifact is one retained branch packet

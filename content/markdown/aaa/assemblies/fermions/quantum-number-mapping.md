@@ -24,7 +24,7 @@ The six-unit inventory has seven possible net charge sums. The table records the
 | $0\epsilon_+,6\epsilon_-$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
 | $1\epsilon_+,5\epsilon_-$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
 | $2\epsilon_+,4\epsilon_-$ | $-2\epsilon=-1/3e$ | down-type quark row |
-| $3\epsilon_+,3\epsilon_-$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer |
+| $3\epsilon_+,3\epsilon_-$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer; see the neutrino exception below |
 | $4\epsilon_+,2\epsilon_-$ | $+2\epsilon=+1/3e$ | anti-down-type charge row when paired with the corresponding antimatter geometry |
 | $5\epsilon_+,1\epsilon_-$ | $+4\epsilon=+2/3e$ | up-type quark row |
 | $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
@@ -48,9 +48,11 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
     *   **Electrino:** negative-polarity architrino, labeled $\epsilon_-$ in electric bookkeeping.
 
 ### The Noether Braid
-Every fermion contains a neutral Noether braid scaffold.
-*   **Composition:** The broad Noether braid carries three Positrinos and three Electrinos on one retained causal-return ledger.
+Generation-I charged leptons and quarks contain the full neutral Noether braid scaffold. Higher-generation charged fermions retain depleted shielding branches of the same braid family: the gauge-facing axial frame persists as a delayed branch record, while one or more coherent shielding tiers are no longer assembled as part of the active scaffold.
+
+*   **Composition:** The broad Noether braid class carries three Positrinos and three Electrinos on one retained causal-return ledger.
 *   **Generation-I Noether braid (nested shell braid):** Three ordered support bands (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
+*   **Higher-generation shielding branches:** Generation II keeps the inner and middle coherent supports ($2\epsilon_+,2\epsilon_-$); Generation III keeps only the inner support ($1\epsilon_+,1\epsilon_-$). These are depleted branches, not full Noether braids in the six-architrino scaffold sense.
 *   **Nested-scale picture:** The support bands should be read as a genuine radial hierarchy, not just as three items in a list. The middle support band sits inside the shielding domain of the outer support band, and the inner support band sits inside the shielding domains of both. In that sense, the higher-generation inner scaffold may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
@@ -344,7 +346,7 @@ At the representation and charge-bookkeeping layer, the dictionary recovers the 
 - **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
 - **$U(1)_Y$ (weak hypercharge):** net charge of the **Shielded Triad** (three hidden sites) plus braid offset; mixes with $T_3$ to give electric charge via $Q = T_3 + Y/2$.
-- **Electromagnetism (U(1)_\mathrm{EM}):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../bosons/electroweak-bosons.md).
+- **Electromagnetism ($U(1)_{\mathrm{EM}}$):** photon is the post-mixing planar mode; $W^\pm$ and $Z$ are the chiral corridors moving weak-coupling-triad charge/phase; see [Electroweak Bosons](../bosons/electroweak-bosons.md).
 
 This is not yet a derivation of local gauge dynamics. The remaining closure targets are:
 
@@ -373,7 +375,8 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 - **$B_\mu$ (hypercharge):** corridor tracking Shielded-Triad charge; mixes with $W^3$ to yield photon and $Z$.
 - **Photon:** mixed planar mode aligned to leave Shielded + weak-coupling-triad combination invariant ($Q$-coupling only).
 
-*Boson details:* see [assemblies/bosons/gluons.md](../bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.) 
+*Boson details:* see [assemblies/bosons/gluons.md](../bosons/gluons.md) (color sector) and [assemblies/bosons/electroweak-bosons.md](../bosons/electroweak-bosons.md) (electroweak sector) for geometry and quantum numbers of the gauge fields; they use the same $Q, T_3, Y$ conventions. (Color decoherence suppression remains a hypothesis pending simulation.)
+
 ### Hypercharge bookkeeping (Shielded triad → $Y$)
 
 Hypercharge is set by the net charge on the **Shielded Triad** (three hidden polar sites) plus any braid offset; with $Y = 2(Q - T_3)$ this reduces to $Y = 2\,Q_{\text{shielded}}/e$ for doublets, and for singlets $T_3=0$ so $Y=2Q$.
@@ -660,7 +663,7 @@ T_{\mathrm{gen}}:
 $$
 where the last arrow is a quotient-closure check, not a claim that an exposed Generation III assembly dynamically rebuilds the missing shielding tiers.
 
-The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. Let the axial dyads be
+The entries of $\mathsf{s}_{\mathrm{sh}}$ are shielding-coherence bits, not a deletion of the gauge-facing axial frame. They do record real scaffold-count reduction: depleted tiers are absent or unassembled as coherent shielding supports, while the H/M/L axial frame persists as a delayed branch record for gauge projection. Let the axial dyads be
 $$
 \mathcal{D}_{\mathrm{ax}}(A)=\{D_H,D_M,D_L\}
 $$
@@ -842,13 +845,13 @@ Two qualifications remain useful without adding new rows to the taxonomy:
 
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
-    *   **Mapping:** This is covered by the **Baryon/Lepton Number (Braid Topology)** row.
-        *   Pro-Braid (Matter) = $+$.
-        *   Anti-Braid (Antimatter) = $-$.
-    *   So, we have this covered implicitly.
+    *   **Mapping hypothesis:** Pro-braid versus anti-braid orientation supplies the branch label that should map to intrinsic parity after the spinor/export layer is derived.
+        *   Pro-Braid (Matter) is the candidate $+$ branch.
+        *   Anti-Braid (Antimatter) is the candidate $-$ branch.
+    *   This is a parity-closure interface, not a completed derivation of the Dirac parity eigenvalue.
 
 **Verdict:**
-The table is sufficient. It connects the geometry to every parameter needed to calculate a scattering amplitude or a dissociation rate (except for Mass, which is a derived energy scale, not a quantum number).
+The table is sufficient as a quantum-number bookkeeping dictionary. It identifies the geometry each Standard Model label is supposed to read and connects scattering-amplitude or dissociation-rate calculations to the needed representation rows. Spin, intrinsic parity, mass response, and rate normalization remain separate closure interfaces rather than completed consequences of the table alone.
 
 ## Closure Interfaces (Integration Map)
 
@@ -899,11 +902,7 @@ where $\Delta_{\text{wake}}$ is the causal-wake/polarization correction of the N
 
 ### Charge normalization hook
 
-In the six-site axial realization, the charge normalization hook uses:
-$$
-e = 6\epsilon \sqrt{\kappa c_f}\,Z_e
-$$
-with $Z_e$ fixed by canonical field normalization when mapping to observer-level kinetic terms.
+In the six-site axial realization, this dictionary uses the charge-bookkeeping identity $|e|=6\epsilon$. The dimensionful electromagnetic response normalization is owned by the Parameter Dictionary in [Gauge Structure Emergence](../gauge-structure-emergence.md); it is the observer-coupling normalization of the force-response map, not the electric charge label itself.
 
 ### Inertial response and magnetic-moment interface
 
@@ -951,15 +950,7 @@ where $\mathcal{P}_\ell$ denotes the observer-channel projection into the measur
 
 ### Lepton magnetic moments
 
-The leading finite-size correction is encoded as
-$$
-a_\ell^{\text{model}}
-=
-a_\ell^{\text{SM,ref}}
-+\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4)
-$$
-Channel scaling then gives
+The shared precision interface in [Gauge Structure Emergence](../gauge-structure-emergence.md#precision-interface-to-measured-quantities) owns the leading finite-size correction, shared $R_L$ scale, and common lepton-pair form factor. This dictionary keeps only the channel-projection consequence. Channel scaling gives
 $$
 \frac{\Delta a_e}{\Delta a_\mu}
 \approx
@@ -970,14 +961,7 @@ which keeps electron-channel corrections highly suppressed when $\mathcal{C}_e\s
 
 ### Lepton-pair production form factor
 
-In natural units ($\hbar=c=1$),
-$$
-F(s)=1-\frac{sR_L^2}{4},
-\qquad
-\sigma_{\text{model}}(e^+e^-\to \mu^+\mu^-;s)
-=
-\sigma_{\text{SM}}(s)\,|F(s)|^2
-$$
+The same shared precision interface owns the lepton-pair production form factor and its $Z$-pole reading. This dictionary records only the representation-level failure condition: the same response map must keep lepton-pair production, electroweak precision residuals, and charged-lepton magnetic moments inside one common branch record.
 
 ### Closure and failure checks linked to this dictionary
 

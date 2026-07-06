@@ -6,6 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-06 Energy Probe-Channel Integration Note
+
+Integrator review of [Energy](../../../content/markdown/aaa/dynamics/energy.md) accepted the exposed-energy partition as the sharper current statement for mass-response use. Raw $\zeta(A)E_{\text{internal}}(A)$ is the total exposed ledger before splitting into $E_{\text{probe}}$, $E_{\text{sea-coupled}}$, and $E_{\text{unresolved}}$; the scalar inertial trace now consumes $E_{\text{probe}}(A)=\zeta_{\text{probe}}(A)E_{\text{internal}}(A)$, while the matter-to-sea source consumes $E_{\text{sea-coupled}}(A)$. The compact tracker was updated to require the partition before mass-map consumers use the scalar trace. Reader-facing follow-up remains: sweep [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md), [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md), and priority proof packets that still use raw $\zeta E_{\text{internal}}$ as the mass-map source.
+
 ### 2026-07-02 Receiver-Normal Audit Update
 
 Migrated from `priorities.md` task item 4 to preserve the H39/theta3minus provider audit while keeping the task queue compact.

@@ -10,7 +10,7 @@
     },
     "counts": {
       "nodes": 596,
-      "edges": 1358,
+      "edges": 1363,
       "scenes": 382,
       "markdownIndexes": 0,
       "markdownDocs": 197,
@@ -2045,12 +2045,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "strong_field_regime",
-      "name": "Strong-Field Regime",
-      "path": "content/scenes/spacetime/strong_field_regime.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "bottom",
       "name": "Bottom Quark",
       "path": "content/scenes/standard-model-particles/bottom.json",
@@ -2438,6 +2432,12 @@
       "id": "noether_braid__proof_map",
       "name": "Noether Braid Proof Map",
       "path": "content/scenes/noether-braid/noether_braid_proof_map.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "fermions__muon_tau",
+      "name": "Muon and Tau",
+      "path": "content/scenes/assemblies/muon_tau.json",
       "nodeType": "scene"
     },
     {
@@ -4207,6 +4207,15 @@
       "name": "Mesons",
       "path": "content/scenes/assemblies/mesons_doc.json",
       "searchTarget": "content/scenes/assemblies/mesons_doc.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/assemblies/muon_tau.json",
+      "nodeType": "scene",
+      "id": "fermions__muon_tau",
+      "name": "Muon and Tau",
+      "path": "content/scenes/assemblies/muon_tau.json",
+      "searchTarget": "content/scenes/assemblies/muon_tau.json",
       "implicit": false
     },
     {
@@ -6484,15 +6493,6 @@
       "name": "Noether Sea and Effective Spacetime",
       "path": "content/scenes/spacetime/spacetime.json",
       "searchTarget": "content/scenes/spacetime/spacetime.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/spacetime/strong_field_regime.json",
-      "nodeType": "scene",
-      "id": "strong_field_regime",
-      "name": "Strong-Field Regime",
-      "path": "content/scenes/spacetime/strong_field_regime.json",
-      "searchTarget": "content/scenes/spacetime/strong_field_regime.json",
       "implicit": false
     },
     {
@@ -9587,38 +9587,45 @@
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/neutrinos.json",
+      "to": "scene:content/scenes/assemblies/muon_tau.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/quantum_number_mapping.json",
+      "to": "scene:content/scenes/assemblies/neutrinos.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
-      "to": "scene:content/scenes/assemblies/quarks.json",
+      "to": "scene:content/scenes/assemblies/quantum_number_mapping.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
       "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
+      "to": "scene:content/scenes/assemblies/quarks.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/assemblies/fermions.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/assemblies/weak_mixing_angle.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
       "to": "scene:content/scenes/standard-model-particles/down_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/assemblies/fermions.json",
@@ -9632,7 +9639,7 @@
       "to": "scene:content/scenes/standard-model-particles/up_quark.json",
       "edgeType": "subscene",
       "source": "content/scenes/assemblies/fermions.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/cosmology/cosmology.json",
@@ -13031,10 +13038,45 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/effective_metric.json",
+      "to": "scene:content/scenes/spacetime/black_holes.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/emergent_metric.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/general_relativity_observables.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/gravitational_waves.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/horizon_chirality.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[12]"
+    },
+    {
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/lorentz_kinematics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
@@ -13059,45 +13101,31 @@
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/physical_observers.json",
+      "to": "scene:content/scenes/spacetime/observer_framework.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
       "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/spacetime/spacetime.json",
-      "to": "scene:content/scenes/spacetime/strong_field_regime.json",
+      "to": "scene:content/scenes/spacetime/ppn_parameters.json",
       "edgeType": "subscene",
       "source": "content/scenes/spacetime/spacetime.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[8]"
     },
     {
-      "from": "scene:content/scenes/spacetime/strong_field_regime.json",
-      "to": "scene:content/scenes/philosophy_history/cosmic_censorship_holography.json",
+      "from": "scene:content/scenes/spacetime/spacetime.json",
+      "to": "scene:content/scenes/spacetime/proper_time_and_time_dilation.json",
       "edgeType": "subscene",
-      "source": "content/scenes/spacetime/strong_field_regime.json",
-      "field": "scene.children[3]"
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[4]"
     },
     {
-      "from": "scene:content/scenes/spacetime/strong_field_regime.json",
-      "to": "scene:content/scenes/spacetime/black_holes.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/strong_field_regime.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/strong_field_regime.json",
-      "to": "scene:content/scenes/spacetime/horizon_chirality.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/spacetime/strong_field_regime.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/spacetime/strong_field_regime.json",
+      "from": "scene:content/scenes/spacetime/spacetime.json",
       "to": "scene:content/scenes/spacetime/singularity_resolution.json",
       "edgeType": "subscene",
-      "source": "content/scenes/spacetime/strong_field_regime.json",
-      "field": "scene.children[1]"
+      "source": "content/scenes/spacetime/spacetime.json",
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/standard-model-particles/bottom.json",
@@ -13979,6 +14007,13 @@
       "to": "markdown_doc:content/markdown/aaa/assemblies/mesons/mesons.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/assemblies/mesons_doc.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/assemblies/muon_tau.json",
+      "to": "markdown_doc:content/markdown/aaa/assemblies/fermions/muon-tau.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/assemblies/muon_tau.json",
       "field": "scene.source.path"
     },
     {

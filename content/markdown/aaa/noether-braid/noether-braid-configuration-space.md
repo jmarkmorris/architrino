@@ -1,6 +1,6 @@
 # Noether Braid Configuration Space
 
-This chapter gives the Noether braid search space for cases where three retained angular-momentum rows may form a full internal 3D frame. It comes after the family map in [Noether Braid](noether-braid.md) and the base branch definitions in [Neutral Braid](neutral-braid.md), [Shell Braid](shell-braid.md), and [Nested Shell Braid](nested-shell-braid.md), and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within that sublocus, a rank-three branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
+This chapter gives the Noether braid search space for cases where three retained angular-momentum rows may form a full internal 3D frame. It comes after the family map in [Noether Braid](noether-braid.md) and the base branch definitions in [Neutral Braid](neutral-braid.md), [Shell Braid](shell-braid.md), and [Nested Shell Braid](nested-shell-braid.md), and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within the rank-three sublocus, a branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
 
 This is a search architecture and theorem target, not a completed classification theorem. The goal is to find which regions of the Noether braid configuration space support stable retained branches in a Noether sea populated by like assemblies, identify which branches remain candidate braids and which can be promoted to certified braids, and then use those branches as the entry point for assembly topological charge, energy differentials, shielding, and accessory-architrino capture.
 
@@ -20,7 +20,7 @@ The three-row exact-binary hypothesis is a decomposition strategy, not an exhaus
 
 This also means that the word `binary` names a retained angular-momentum row, not necessarily a perfectly circular two-body orbit at every instant. A certified row may have a conserved or slowly bounded angular-momentum ledger while the actual architrino paths on the retained support are quasiperiodic, braided, or chaotic. On such a row, $f_a$ is a return or winding frequency, $r_a$ is a characteristic lever arm, $s_a$ is a speed row or speed statistic, and $E_a$ is the retained branch-energy row. A circular carrier chart is the cleanest comparison case, not the only admissible path geometry.
 
-In geometric language, the three rows are derived from three retained angular-momentum two-form classes on the branch, not from three assumed circular sub-orbits. Write these classes schematically as
+In geometric language, the three rows are derived from three retained angular-momentum two-form classes on the branch, not from three assumed circular sub-orbits. The brackets do not mean de Rham cohomology classes of $\mathbb{R}^3$; they mean the declared equivalence of branch-window angular-momentum bivectors that preserve the same retained ledger row. Write these classes schematically as
 $$
 [\omega_J^{(a)}],
 \qquad
@@ -33,7 +33,7 @@ $$
 \frac{\star[\omega_J^{(a)}]}
 {\|\star[\omega_J^{(a)}]\|},
 $$
-whenever the numerator is nonzero. Thus axis language means a ledger direction derived from the retained branch record. It is not an assumption that constituent paths are axial, circular, or disjoint.
+whenever the numerator is nonzero. The Hodge dual is applied to a representative after the branch ledger row is declared; a refinement that changes the dual direction is a different retained row, not the same class. Thus axis language means a ledger direction derived from the retained branch record. It is not an assumption that constituent paths are axial, circular, or disjoint.
 
 ## Why Three Retained Rows
 
@@ -93,7 +93,7 @@ s_a,\,
 \right)
 \right\}_{a=1}^{3}.
 $$
-Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{v}_a\|$ is the scalar tangential speed or speed statistic, $\phi_a$ is the phase origin or offset, $\hat{\mathbf n}_a$ is the orbital-plane normal, and $\mathcal{L}_a$ is the active causal-root ledger data for that layer. On a circular carrier chart,
+Here $f_a$ is the layer frequency or return rate, $r_a$ is the characteristic radius or retained lever arm, $E_a$ is the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ is the scalar tangential speed or speed statistic, $\phi_a$ is the phase origin or offset, $\hat{\mathbf n}_a$ is the orbital-plane normal, and $\mathcal{L}_a$ is the active causal-root ledger data for that layer. On a circular carrier chart,
 $$
 s_a=2\pi f_a r_a.
 $$
@@ -136,13 +136,13 @@ A **candidate braid** is a proposed Noether braid branch or branch family whose 
 
 The retained record is not an arbitrary internal diary and it is not an arbitrary collection of architrinos. It is the finite branch chart for one Noether braid: the six-body polarity-neutral inventory of three positive-polarity and three negative-polarity architrinos, together with the path-history rows, causal-root ledger, wake-tail rows, energy/action rows, momentum and angular-momentum rows, phase data, plane-orientation data, response-center data, group-velocity row, and Noether sea record that can still affect the next delayed update of that same six-body branch. A path-history segment belongs to the retained record only while it can still enter a self-hit, partner-hit, wake-tail, boundary, or branch-return row on the declared memory window.
 
-Let $P_T^{(\mathbf{V})}$ be the finite-memory return map over one branch period $T$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, rigid spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
+Let $P_{T_{\mathrm{ret}}}^{(\mathbf{V})}$ be the finite-memory return map over one branch return duration $T_{\mathrm{ret}}$, including translation by the branch group velocity $\mathbf{V}_{\mathrm{grp}}$. Let $\mathcal G_{\mathrm{sym}}$ contain only declared neutral symmetries such as global phase shift, rigid spatial rotation, translation of the response center, and permitted $S_3$ layer relabeling. A rank-three Noether braid branch $B_{3B}$ is a candidate for certified-braid promotion when there exists $g\in\mathcal G_{\mathrm{sym}}$ such that
 $$
 \mathcal R_{\mathrm{cert}}
 =
 d_{\mathfrak B}
 \left(
-P_T^{(\mathbf{V})}(B_{3B}),\,
+P_{T_{\mathrm{ret}}}^{(\mathbf{V})}(B_{3B}),\,
 g\cdot B_{3B}
 \right)
 \le
@@ -150,7 +150,7 @@ g\cdot B_{3B}
 $$
 on the same retained branch chart $\mathfrak B$, with the non-symmetry return directions carrying a positive stability margin. The metric $d_{\mathfrak B}$ must compare the same branch rows: causal-root ledger, energy/action ledger, angular-momentum rows, phase data, plane-orientation data, response-center motion, group velocity, Noether sea record, and assembly topological charge.
 
-The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing rank-three Noether braid chart is not quotiented. In that sense, the certified-braid certificate is the branch-symplectic-promotion test evaluated on the retained branch chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction.
+The quotient group $\mathcal G_{\mathrm{sym}}$ is not a convenience list. It must be the neutral group of the retained return map: directions removed from the stability test have zero Floquet exponent because they are declared symmetries of the full branch chart. A direction that is neutral in an isolated sub-row but unstable in the enclosing rank-three Noether braid chart is not quotiented. In that sense, the certified-braid certificate is the branch-symplectic promotion test evaluated on the retained branch chart: the finite-memory return map must recur modulo true neutral symmetries while contracting or bounding every non-symmetry direction, and an action-derived reduced Hamiltonian promotion must also report the return-map symplectic residual $\mathcal R_{\Omega}$ defined in [Master Equation](../dynamics/master-equation.md#return-map-symplectic-residual-for-action-derived-branch-promotion).
 
 The branch-intrinsic conserved record must also export Lorentz-compatible observer rows before certification. In the homogeneous moving-branch regime, the same retained record must recover the ruler and clock deformation laws,
 $$
@@ -176,7 +176,7 @@ C_{\mathrm{obs}}
 C_{\mathrm{branch}}
 +O(\epsilon_{\mathrm{LV}}),
 $$
-when Lorentz closure applies. The export may dress energy-momentum, angular-momentum components, clock rates, and ruler geometry, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
+when Lorentz closure applies. Here $C_{\mathrm{branch}}$ is the branch-intrinsic component vector being exported, such as an energy-momentum, angular-momentum, clock, or ruler row, and $C_{\mathrm{obs}}$ is the corresponding effective observer-chart component vector. The map $\Lambda_{\mathrm{eff}}$ is the effective export map, not the Noether sea label $\Lambda_{\text{NS}}$ used in nested shell closure. The export may dress those components, but it does not replace the branch record itself. Topological rows such as assembly topological charge remain branch-intrinsic invariants unless the branch crosses a fold, reconnection, or other declared surgery event.
 
 ## Momentum And Principal-Direction Decomposition
 
@@ -228,9 +228,9 @@ $$
 \sum_{a=1}^{3}
 J_a\,\hat n_a^i\hat n_a^j,
 $$
-with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
+with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. This is an orthogonality-sensitive test: when the normals are not mutually orthogonal, the eigenvectors of $\mathsf{J}_{\mathfrak B}^{ij}$ need not coincide with $\{\hat{\mathbf n}_a\}$ even if the retained weights are nonzero. If two $J_a$ are equal within tolerance, the certificate must use an eigenvalue-gap condition or a subspace-match criterion rather than a unique eigenvector match. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
 
-The oblate spheroidal envelope is the coarse geometry associated with this decomposition. In the rest branch, $\mathbf{P}_{\mathfrak B}=0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz-closure asks whether the envelope deforms with a longitudinal-to-transverse ratio
+The oblate spheroidal envelope is the coarse geometry associated with this decomposition. In the rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz-closure asks whether the envelope deforms with a longitudinal-to-transverse ratio
 $$
 \xi
 =
@@ -275,7 +275,7 @@ $$
 \frac{|S_3|}
 {|\operatorname{Stab}_{S_3}(B)|}.
 $$
-The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$ or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct certified braids.
+The unquotiented solver rows are useful evidence, but they are not independent physical branches. Any comparison to the finite-continuation family $\mathfrak S_{\Omega,W}^{\mathrm{ME},\eta}$, the regularized Master Equation continuation set over window $W$ and mollifier $\eta$, or to basin measures must reduce by the same $S_3$ orbit accounting rather than overcounting six label copies as six distinct certified braids.
 
 The general configuration ratios are
 $$
@@ -329,6 +329,7 @@ In a certified row, the important event is not speed alone but the appearance of
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
+This is the layerwise specialization of the [signed causal-root complex](../dynamics/master-equation.md#signed-causal-root-complex): simple same-source roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
 A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
 
 ## Stability In A Sea Of Like Assemblies
@@ -357,7 +358,7 @@ The result of this search should be an atlas of stable regions in $\widetilde{\m
 
 The phrase "periodic table of the Noether braid" names the classification program, not an already completed table. The proposed atlas should classify retained branches by:
 
-1. The compact assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$ and its signed-degree refinement.
+1. The compact assembly topological charge $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$ and its signed-degree refinement, where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ is the phase-return degree slot defined in [Noether Braid Topological Charge](noether-braid-topological-charge.md).
 2. The frequency, radius, energy, and speed ratios of $\mathcal{T}_{3B}$.
 3. The plane-orientation determinant $D_{\mathrm{plane}}$ and handedness data.
 4. The energy differentials $\Delta E_{ab}$ and their wake-history decomposition.
@@ -407,10 +408,27 @@ The six-site axial-layer target should therefore be read as a derived capture pa
 
 ## Frame Orthogonality And Framing Anisotropy
 
-The configuration-space program also supplies a compact theorem target for anisotropy leakage. A faithful rank-three Noether braid branch has two related order parameters: the frame determinant $D_{\mathrm{plane}}$ and a trace-free framing quadrupole $Q_A$ extracted from the same retained normal/eigenframe data. Schematically,
+The configuration-space program also supplies a compact theorem target for anisotropy leakage. A faithful rank-three Noether braid branch has two related order parameters: the frame determinant $D_{\mathrm{plane}}$ and the trace-free framing quadrupole $Q_A$ used by [Absolute Timespace](../foundations/absolute-timespace.md). Let $w_a$ be normalized spectral weights supplied by the retained action, energy, or angular-momentum tensor row, with $\sum_a w_a=1$. The finite retained-frame representative of the foundation average is
 $$
 Q_A^{ij}
 =
+\sum_{a=1}^{3}
+w_a
+\left(
+\hat n_a^i\hat n_a^j
+-\frac{1}{3}h^{ij}
+\right)
+$$
+Writing $\lambda_a=w_a-\frac{1}{3}$ separates this into two channels:
+$$
+Q_A^{ij}
+=
+\frac{1}{3}
+\left(
+\sum_{a=1}^{3}\hat n_a^i\hat n_a^j
+-h^{ij}
+\right)
++
 \sum_{a=1}^{3}
 \lambda_a
 \left(
@@ -418,17 +436,29 @@ Q_A^{ij}
 -\frac{1}{3}h^{ij}
 \right),
 \qquad
-\sum_a\lambda_a=0,
+\sum_a\lambda_a=0
 $$
-with the weights $\lambda_a$ fixed by the retained action, energy, or angular-momentum tensor row rather than chosen after the fact.
+where the first term measures non-orthogonal-frame leakage and the second term measures spectral-weight anisotropy. The weights are branch data, not parameters chosen after the fact.
 
-The reachable theorem target is:
+The reachable theorem target is therefore two-part:
 $$
 |D_{\mathrm{plane}}|\to1
 \quad\Longrightarrow\quad
-\|Q_A\|\ \text{small under faithful spectral weighting},
+\left\|
+\frac{1}{3}
+\left(
+\sum_{a=1}^{3}\hat n_a^i\hat n_a^j
+-h^{ij}
+\right)
+\right\|\to0,
+\qquad
+|D_{\mathrm{plane}}|\to1
+\quad\text{and}\quad
+\max_a|\lambda_a|\to0
+\quad\Longrightarrow\quad
+\|Q_A\|\to0
 $$
-while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy. If this implication is proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. This chapter does not prove that result; it defines the configuration-space objects on which that proof can be attempted.
+while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. This chapter does not prove that result; it defines the configuration-space objects on which that proof can be attempted.
 
 ## Relation To The Doubling-frequency Chapter
 

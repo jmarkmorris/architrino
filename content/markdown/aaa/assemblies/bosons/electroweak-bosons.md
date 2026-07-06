@@ -396,7 +396,9 @@ $$
 
 The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\mathbf a}}=d\eta$. If this pushforward is biased, the deviation $P_{\text{pass}}(\rho)-\rho$ is a material calibration diagnostic rather than a new photon law. The concrete substrate proof still has to compute the return map and basin filtration from an analyzer assembly simulation.
 
-The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat. In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
+The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat.
+
+In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
 
 The same return-map language distinguishes common polarization material effects without adding new photon species. A local material response maps the incoming transverse ledger to the outgoing ledger by
 $$
@@ -442,7 +444,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Lifetime ($\tau$):** Impulsive. The bundle exists only long enough to perform the transaction.
 *   **Tether vs. Free:**
     *   **Tethered:** In close-range interactions (e.g., within a nucleus), the boson acts as a temporary bridge physically linking the source and destination braids.
-    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating near the field speed ($v \approx 1$) along its axis before dissociating (rupturing) due to internal instability.
+    *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
 *   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
@@ -472,7 +474,7 @@ E_{\mathrm{sh}\to W/Z},
 \mathcal Q_{\mathrm{sea}}
 \right)
 $$
-Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, closure requires a balance of the form
+Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, the superscript $0$ marks the leading event-window contribution after the surrounding baseline has been subtracted, and closure requires a balance of the form
 $$
 \Delta\mathcal Q_{\mathrm{src}}^{0}
 +
@@ -562,8 +564,8 @@ This is not a new substrate interaction. It is the low-energy observer limit of 
 The Higgs comparison is modeled here as a candidate resonance of the Noether sea structure rather than as a propagating assembly *through* the ambient Noether sea. That identification remains a closure target until the same branch record predicts the observed scalar mass, channel rates, and coupling pattern.
 
 ### Geometric Structure
-*   **The Substrate:** The Noether sea is a coupled population of neutral nested shell braid units ($1\epsilon_+ + 1\epsilon_-$).
-*   **Scalar Target:** The candidate Higgs channel is a **radial breathing mode** ($r \to r + \delta r$) of these Noether sea units.
+*   **The Substrate:** The Noether sea is a coupled population of neutral Noether braid assemblies; in the nested shell braid case, each assembly carries the balanced inventory $3\epsilon_+ + 3\epsilon_-$, organized as three nested $(1\epsilon_+ + 1\epsilon_-)$ binaries.
+*   **Scalar Target:** The candidate Higgs channel is a **radial breathing mode** ($r \to r + \delta r$) of these Noether braid assemblies.
 *   **Spin-$0$:** The oscillation is purely radial (scalar), possessing no vector orientation.
 
 ### Mass-Channel Matching
@@ -583,7 +585,7 @@ g_{H,A}^{\mathrm{eff}}(\theta)
 $$
 The Higgs comparison closes only if this derivative reproduces the observed Higgs-coupling pattern while the radial mode's own resonance scale gives $M_H^{\mathrm{breath}}\approx 125$ GeV on the same Noether sea branch. The scalar mode is therefore a shared medium-response benchmark, not a license to add independent Yukawa parameters or a separate mass-generating substance.
 
-At the electroweak-boson level, the scalar benchmark is also a channel ledger. For collider energy $s$, decay channel $c$, detector category $k$, and production route $p\in\{\mathrm{ggF},\mathrm{VBF},WH/ZH,t\bar tH\}$, the observer-level event-count target has the schematic form
+At the electroweak-boson level, the scalar benchmark is also a channel ledger. For collider energy $s$, final-state channel $c$, detector category $k$, and production route $p\in\{\mathrm{ggF},\mathrm{VBF},WH/ZH,t\bar tH\}$, the observer-level event-count target has the schematic form
 $$
 N_{s,c,k}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
 =
@@ -605,9 +607,9 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
 | **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
-| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c_f$, ruptures) | Confinement Energy / Noether sea Response |
-| **Z Boson** | Inflated Neutral Vortex | Neutral ($3\epsilon_+ + 3\epsilon_-$) | Short-lived Corridor (near-$c_f$, ruptures) | Confinement Energy / Noether sea Response |
-| **Higgs** | Radial Noether sea Oscillation | N/A | Local Resonance | Medium stiffness |
+| **W Boson** | Thickened charged recoupling corridor | Charged ($\pm 6\epsilon$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
+| **Z Boson** | Thickened neutral recoupling corridor | Neutral ($3\epsilon_+ + 3\epsilon_-$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
+| **Higgs** | Radial Noether sea oscillation | N/A | Local resonance | Medium stiffness |
 
 ## Pair production (note)
 
@@ -631,7 +633,7 @@ $$
 $$
 with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
 - The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
-- Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether-pair bookkeeping relaxes back into the Sea.
+- Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether Pair bookkeeping relaxes back into the Noether sea.
 
 ## Closure Interface: Corridor Operators for Mixing
 

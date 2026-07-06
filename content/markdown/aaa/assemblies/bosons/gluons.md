@@ -59,7 +59,7 @@ The useful picture is a corridor, not a bead. A color-exposed quark leaves open 
 
 - **Source:** each circulating binary within the Noether braid generates a pair of persistent, high-intensity polar vortices along its rotation axis.
 - **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient nested shell braids carrying the open color corridor between exceptional-axis sectors.
-- **The glue:** the strong force is the tension of these coupled vortices trying to shorten and restore the surrounding Noether sea to its isotropic ground state.
+- **The glue:** the strong force is the coupled-vortex tension that drives shortening and restores the surrounding Noether sea toward its isotropic ground state.
 
 This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored braids therefore remain open at their poles unless another braid accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
 
@@ -87,7 +87,7 @@ a_{\mathrm{out}},
 \mathcal Q_{\mathrm{recoil}}
 \right).
 $$
-Here $a_{\mathrm{in}}$ and $a_{\mathrm{out}}$ name the exceptional-axis sectors before and after the corridor acts, $\Delta A_{\mathrm{ax}}$ records any axial-inventory rerouting, $\mathcal Q_{\mathrm{corr}}$ records the corridor payload, $\mathcal Q_{\mathrm{tube}}$ records the Noether sea flux-tube strain, and $\mathcal Q_{\mathrm{recoil}}$ records the balancing response of the source, target, and surrounding hadron.
+Here $a_{\mathrm{in}}$ and $a_{\mathrm{out}}$ name the exceptional-axis sectors before and after the corridor acts, $\Delta A_{\mathrm{ax}}$ records any axial-inventory rerouting, $\mathcal Q_{\mathrm{corr}}$ records the corridor payload, $\mathcal Q_{\mathrm{tube}}$ records the Noether sea flux-tube strain, and $\mathcal Q_{\mathrm{recoil}}$ records the balancing response of the source, target, and surrounding hadron. The allowed-actions rule from [Quarks](../fermions/quarks.md#allowed-gluon-actions) constrains $\Delta A_{\mathrm{ax}}$: it may describe within-flavor captive-potential transfer or axis-sector rerouting, but it must preserve the total six-site axial inventory, electric charge, generation tier, and selected down-family sector rather than licensing a strong flavor change.
 
 For each routed quantity
 $$
@@ -116,7 +116,7 @@ This is a provenance target, not a new interaction law. It prevents the gluon st
 
 ### The 8 Gluon Modes (Deriving the Octet)
 
-Why are there 8 gluons?
+The octet count comes from the color-basis operator space.
 
 - **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(H,M,L)$.
 - **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
@@ -167,17 +167,17 @@ The validation gate is therefore:
 - **Mass-gap recovery:** closed pure strong-sector braids must have a finite lowest excitation scale instead of a continuum of arbitrarily soft color modes.
 - **Shared record:** the same Noether sea state variables must control tension, screening, and closed-braid excitation energy; otherwise the model has only matched separate QCD-looking observables by retuning.
 
-The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling):
+The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling). Here $R$ and $T$ are the standard rectangular loop extents, with $T$ kept as a lattice-comparison label rather than the native absolute-time coordinate:
 $$
 \left\langle W(C_{R,T})\right\rangle_{\theta}
 \sim
-\exp[-\sigma_{\mathrm{eff}}(\theta)RT]
+\exp[-\sigma_{\mathrm{eff}}(\theta)R\,T]
 $$
 in the confining window. At the assembly level, this says that an open color corridor must accumulate energy proportional to the swept corridor area in the comparison geometry, while a closed singlet branch avoids that open-sector cost. A gluon-corridor story that cannot be read through this gauge-invariant diagnostic has not yet recovered QCD confinement.
 
 ### The Color Singlet (White)
 
-A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Mesons](../mesons/mesons.md).
+A proton such as $(u_R,u_G,d_B)$ is stable because the three quarks occupy the three exceptional-axis sectors once each; see also [Nucleon Structure](../../nuclear-atomic/nucleon-structure.md) and [Mesons](../mesons/mesons.md). This fixed assignment is a schematic component of the color-singlet state. The physical singlet is the fully antisymmetrized superposition over the $3!$ H/M/L assignments, with the Levi-Civita color tensor supplying the color-sector sign pattern.
 
 1. Red: H-exceptional
 2. Green: M-exceptional

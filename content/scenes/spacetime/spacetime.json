@@ -26,16 +26,44 @@
         "scenePath": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json"
       },
       {
-        "nodeId": "physical_observers",
-        "scenePath": "content/scenes/spacetime/physical_observers.json"
+        "nodeId": "observer_framework",
+        "scenePath": "content/scenes/spacetime/observer_framework.json"
       },
       {
-        "nodeId": "effective_metric",
-        "scenePath": "content/scenes/spacetime/effective_metric.json"
+        "nodeId": "proper_time_and_time_dilation",
+        "scenePath": "content/scenes/spacetime/proper_time_and_time_dilation.json"
       },
       {
-        "nodeId": "strong_field_regime",
-        "scenePath": "content/scenes/spacetime/strong_field_regime.json"
+        "nodeId": "lorentz_kinematics",
+        "scenePath": "content/scenes/spacetime/lorentz_kinematics.json"
+      },
+      {
+        "nodeId": "emergent_metric",
+        "scenePath": "content/scenes/spacetime/emergent_metric.json"
+      },
+      {
+        "nodeId": "general_relativity_observables",
+        "scenePath": "content/scenes/spacetime/general_relativity_observables.json"
+      },
+      {
+        "nodeId": "ppn_parameters",
+        "scenePath": "content/scenes/spacetime/ppn_parameters.json"
+      },
+      {
+        "nodeId": "gravitational_waves",
+        "scenePath": "content/scenes/spacetime/gravitational_waves.json"
+      },
+      {
+        "nodeId": "black_holes",
+        "scenePath": "content/scenes/spacetime/black_holes.json"
+      },
+      {
+        "nodeId": "singularity_resolution",
+        "scenePath": "content/scenes/spacetime/singularity_resolution.json"
+      },
+      {
+        "nodeId": "horizon_chirality",
+        "scenePath": "content/scenes/spacetime/horizon_chirality.json"
       }
     ]
   },
@@ -65,25 +93,84 @@
       "labelBadge": "doc"
     },
     {
-      "id": "physical_observers",
-      "title": "Physical Observers",
+      "id": "observer_framework",
+      "title": "Observer Framework",
       "radius": 2.05,
       "color": "#2f6b6f",
-      "labelTitle": "Physical Observers"
+      "labelTitle": "Observer Framework",
+      "labelBadge": "doc"
     },
     {
-      "id": "effective_metric",
-      "title": "Effective Metric",
+      "id": "proper_time_and_time_dilation",
+      "title": "Proper Time and Time Dilation",
+      "radius": 2.05,
+      "color": "#3a5f9f",
+      "labelTitle": "Proper Time and Time Dilation",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "lorentz_kinematics",
+      "title": "Lorentz Kinematics",
+      "radius": 2.05,
+      "color": "#3657a6",
+      "labelTitle": "Lorentz Kinematics",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "emergent_metric",
+      "title": "Emergent Metric",
       "radius": 2.05,
       "color": "#243d8f",
-      "labelTitle": "Effective Metric"
+      "labelTitle": "Emergent Metric",
+      "labelBadge": "doc"
     },
     {
-      "id": "strong_field_regime",
-      "title": "Strong-Field Regime",
+      "id": "general_relativity_observables",
+      "title": "General Relativity",
+      "radius": 2.05,
+      "color": "#2f6b6f",
+      "labelTitle": "General Relativity",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "ppn_parameters",
+      "title": "PPN Parameters",
+      "radius": 2.05,
+      "color": "#4b0082",
+      "labelTitle": "PPN Parameters",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "gravitational_waves",
+      "title": "Gravitational Waves",
+      "radius": 2.05,
+      "color": "#5a1f2e",
+      "labelTitle": "Gravitational Waves",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "black_holes",
+      "title": "Black Holes",
       "radius": 2.05,
       "color": "#4a3b6f",
-      "labelTitle": "Strong-Field Regime"
+      "labelTitle": "Black Holes",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "singularity_resolution",
+      "title": "Singularity Resolution",
+      "radius": 2.05,
+      "color": "#2f4f7a",
+      "labelTitle": "Singularity Resolution",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "horizon_chirality",
+      "title": "Horizon Chirality",
+      "radius": 2.05,
+      "color": "#8b5e34",
+      "labelTitle": "Horizon Chirality",
+      "labelBadge": "doc"
     }
   ]
 }

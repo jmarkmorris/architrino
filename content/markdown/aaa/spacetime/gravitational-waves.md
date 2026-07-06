@@ -22,7 +22,9 @@ $$
 \bar h_{\mu\nu}=h_{\mu\nu}-\frac12\eta_{\mu\nu}h,\qquad
 h=\eta^{\alpha\beta}h_{\alpha\beta}
 $$
-and impose Lorenz gauge
+Here $h_{\mu\nu}$, $\bar h_{\mu\nu}$, and the trace $h$ are observer-sector perturbation variables of $g_{\mu\nu}^{\text{eff}}$. They are distinct from the native Euclidean spatial metric $h_{ij}=\delta_{ij}$ on $\Sigma_T$, which does not appear below.
+
+Impose Lorenz gauge
 $$
 \partial^\mu \bar h_{\mu\nu}=0
 $$
@@ -76,9 +78,9 @@ In validated frequency bands the constitutive map must satisfy
 $$
 \left|\frac{v_{\mathrm{g,GW}}-c_0}{c_0}\right|<\epsilon_{\mathrm{GW}},
 \qquad
-\left|\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}}\leq\epsilon_{\mathrm{disp}}
+\left|\frac{\omega}{c_0^2}\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}}\leq\epsilon_{\mathrm{disp}}
 $$
-with the integrated phase drift across the source distance below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
+so $\epsilon_{\mathrm{disp}}$ is a dimensionless band tolerance. The integrated phase drift across the source distance must remain below the detector residual bound. A finite-range cosmological response is not acceptable if it leaks into already-tested gravitational-wave timing as measurable dispersion.
 
 The same finite-range comparison must also supply a low-frequency forecast rather than leaving drift unconstrained below current ground-based event bands. For a declared pulsar-timing or space-interferometer band $\mathcal{B}_{\mathrm{low}}$, define the accumulated phase drift
 $$
@@ -162,7 +164,7 @@ $$
 =
 \left(
 \frac{v_{\mathrm{g,GW}}-c_0}{c_0},\;
-\left.\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}},\;
+\left.\frac{\omega}{c_0^2}\frac{\partial^2\omega}{\partial k^2}\right|_{\mathrm{band}},\;
 \frac{\mathcal{P}_{\mathrm{extra}}}{\mathcal{P}_{\mathrm{TT}}},\;
 \mathrm{FAR},\;
 R_{\mathrm{cal}}
@@ -200,7 +202,7 @@ This residual is the modern version of the separated-detector check: a signal mu
 Public GWOSC/LVK claims must also pass the packet protocol in [Simulation Run Protocols](../validation/simulations/run-protocols.md#public-gravitational-wave-benchmark-protocol) before they support strong-field or effective-metric claims. The public packet fixes event version, strain files, detector masks, parameter-estimation release, waveform family, calibration notes, analysis window, nuisance record, and artifact hashes before residual evaluation. This makes the detector-side gate replayable rather than a general statement that gravitational-wave observations are available.
 
 **Closure Target 2A (graviton-comparison detectability residual).**
-When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $f$, retain the occupation lower bound
+When a detector record is compared with a quantum-gravity language, keep the comparison at observer level. A calibrated classical strain event does not become a single-quantum detection merely because a graviton basis can be used for bookkeeping. For a narrowband comparison with angular frequency $\omega$ and strain amplitude $A_{\mathrm{GW}}$, retain the occupation lower bound
 $$
 N_{\mathrm{occ}}
 \ge
@@ -212,7 +214,7 @@ N_{\mathrm{occ}}
 \qquad
 \rho_{\mathrm{GW}}
 \sim
-\frac{c_0^2}{32\pi G_{\mathrm{eff}}}\omega^2 f^2,
+\frac{c_0^2}{32\pi G_{\mathrm{eff}}}\omega^2 A_{\mathrm{GW}}^2,
 \qquad
 \rho_1
 \lesssim
@@ -262,7 +264,7 @@ d_{\mathrm{nohair}}\!\left(
 +
 d_{\mathrm{shared}}(\theta_H,\theta_{\mathrm{GW}},\theta_{\mathrm{BH}})
 $$
-Here $\mathcal{P}_{\mathrm{det}}$ is the detector projection and $d_{\mathrm{shared}}$ penalizes any fit that uses one state record for the strain channel, another for the horizon-interface label, and another for the black-hole entropy or release ledger. The gate is satisfied only if $\mathcal{R}_{\mathrm{merge}}(\theta_H)$ is below the declared tolerance while preserving the validated inspiral limit, the two tensor polarizations, and the final exterior no-hair coarse-graining. A predicted deviation is admissible only as a bounded residual or a falsifiable template, not as permission to loosen already-tested gravitational-wave recovery.
+Here $Q_f$ is the final exterior charge/no-hair label in the Kerr-Newman comparison, not a quadrupole-deviation tensor. The projection $\mathcal{P}_{\mathrm{det}}$ is the detector projection, and $d_{\mathrm{shared}}$ penalizes any fit that uses one state record for the strain channel, another for the horizon-interface label, and another for the black-hole entropy or release ledger. The gate is satisfied only if $\mathcal{R}_{\mathrm{merge}}(\theta_H)$ is below the declared tolerance while preserving the validated inspiral limit, the two tensor polarizations, and the final exterior no-hair coarse-graining. A predicted deviation is admissible only as a bounded residual or a falsifiable template, not as permission to loosen already-tested gravitational-wave recovery.
 
 ## Early-Universe Stochastic Background Gate
 

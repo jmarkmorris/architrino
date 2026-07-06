@@ -22,9 +22,9 @@ An architrino in motion possesses kinetic energy and momentum.
   
   A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf V_a(T)$, we write
   
-  $$E_{k,a}(T) = K\big(\|\mathbf V_a(T)\|\big),$$
+  $$E_{k,a}(T) = K(s_a),\qquad s_a=\|\mathbf V_a(T)\|,$$
   
-  where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
+  where $s_a$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s_a)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf V_a\|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
   
@@ -34,7 +34,7 @@ An architrino in motion possesses kinetic energy and momentum.
   
   where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
 
-	  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf F=d\mathbf p/dT$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
+  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf F=d\mathbf p/dT$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
   $$
   P'(s)=\frac{K'(s)}{s}=\mu_K(s),
   \qquad
@@ -85,49 +85,49 @@ Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated w
 From the canonical per-hit law
 
 $$
-\mathbf A_{o'\leftarrow o}(T;T_{\mathrm{em}})
+\mathbf A_{o'\leftarrow j}(T;T_{\mathrm{em}})
 =
-\kappa\,\sigma_{q_o q_{o'}}\,
-\frac{|q_o q_{o'}|}{r^2}
-W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}
+\kappa\,\sigma_{q_j q_{o'}}\,
+\frac{|q_j q_{o'}|}{r_{o'j}^2}
+W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}_{o'j}
 $$
 
 where
 $$
-D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{s,o'j}(T;T_{\mathrm{em}})
 \equiv
-c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}},
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
-D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{T,o'j}(T;T_{\mathrm{em}})
 \equiv
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}},
+c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 \equiv
 \left|
-\frac{D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})}
-{D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})}
+\frac{D_{T,o'j}(T;T_{\mathrm{em}})}
+{D_{s,o'j}(T;T_{\mathrm{em}})}
 \right|
 $$
-is the receiver-normal branch strength. The source-normal denominator $D_s$
+is the receiver-normal branch strength. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The source-normal denominator $D_s$
 is the causal-root transversality diagnostic; the numerator $D_T$ records how
 the receiver cuts through the emitted causal wake sequence.
 
 Decompose the receiver's velocity into radial and transverse components:
 
-$$\mathbf V_{o'} = V_r \hat{\mathbf{r}} + \mathbf V_\perp, \quad V_r=\mathbf V_{o'}\cdot\hat{\mathbf{r}}.$$
+$$\mathbf V_{o'} = V_r \hat{\mathbf{r}}_{o'j} + \mathbf V_\perp, \quad V_r=\mathbf V_{o'}\cdot\hat{\mathbf{r}}_{o'j}.$$
 
-Because $\mathbf A_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
+Because $\mathbf A_{o'\leftarrow j}\parallel\hat{\mathbf{r}}_{o'j}$:
 
 - The **instantaneous work rate** from this hit is
   
   $$
   \frac{dK_\mu}{dT}\bigg|_{\text{hit}}
   =
-  \mu_{\text{arch}}\mathbf A_{o'\leftarrow o}\cdot\mathbf V_{o'}
+  \mu_{\text{arch}}\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
   =
-  \mu_{\text{arch}}\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|
-  \frac{W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})}{r^2}\,V_r
+  \mu_{\text{arch}}\kappa\,\sigma_{q_j q_{o'}}\,|q_j q_{o'}|
+  \frac{W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})}{r_{o'j}^2}\,V_r
   $$
 
   Only $V_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_{o'}\|)$.
@@ -155,25 +155,25 @@ The phrase "an architrino emits potential" should not be read as a source contin
 Potential energy is therefore relational. It is assigned when a receiver is placed in a source's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the source-normal root denominator, the receiver-normal branch factor, and the receiver's radial motion through the line of action. In the general per-hit law the source-normal denominator is
 
 $$
-D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{s,o'j}(T;T_{\mathrm{em}})
 =
-c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j}
 $$
 
 and the receiver-normal numerator is
 
 $$
-D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{T,o'j}(T;T_{\mathrm{em}})
 =
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}.
+c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j}.
 $$
 
 The branch strength is $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, while the instantaneous power delivered to the receiver is controlled by
 
 $$
-\mathbf A_{o'\leftarrow o}\cdot\mathbf V_{o'}
+\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
 =
-\|\mathbf A_{o'\leftarrow o}\|\,V_r
+\|\mathbf A_{o'\leftarrow j}\|\,V_r
 $$
 
 On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
@@ -194,7 +194,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 
 $$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
 
-and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf{F}_{o'}=\mu_{\text{arch}}\mathbf{a}_{o'}$ or the appropriate $\mu_K\mathbf{a}_{o'}$, has been declared.
+and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_{o'}=\mu_{\text{arch}}\mathbf A_{o'}$ or the appropriate $\mu_K\mathbf A_{o'}$, has been declared.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
 
 ### Macroscopic Cancellation and Localized Resonance
@@ -231,7 +231,7 @@ Phase-locked bound states are the important exception. In a localized assembly, 
 
 In the exact causal theory, energy conservation is enforced through exchange between kinetic motion and the causal-history interaction content encoded by wakes. This wake term should not be read as an independent material reservoir that drains from the emitter with every unreceived isochron; it is the nonlocal bookkeeping required by the same delayed causal action that generates the hits. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
 
-Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2T-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration row used by the Master EOM is generated by that potential over the declared window. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
+Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2K-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration row used by the Master EOM is generated by that potential over the declared window. Standard mechanics often writes $T$ for kinetic energy in this formula; here $K$ avoids collision with absolute time $T$. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
 For a single architrino:
 
@@ -438,7 +438,7 @@ E_{\mathrm{bind},W}^{\mathrm{grav}}
 \int_W\!\int_W
 \frac{G_{\mathrm{eff}}(\theta;x_{\mathrm{eff}}^i,y_{\mathrm{eff}}^i)\,
 \rho_{\mathrm{eff}}(x_{\mathrm{eff}}^i)\rho_{\mathrm{eff}}(y_{\mathrm{eff}}^i)}
-{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}
+{\|\mathbf x_{\mathrm{eff}}-\mathbf y_{\mathrm{eff}}\|}
 \,dV_{x_{\mathrm{eff}}}\,dV_{y_{\mathrm{eff}}}
 +
 \mathcal{B}_{\partial W}
@@ -490,23 +490,23 @@ F_{\mathrm{ext},W_A}^i
 $$
 The pair $(\mathbf{X}_{\mathrm{resp}},M_A^{ij})$ is not free to be chosen after the balance is fitted. The response center must be pinned independently by the exposed internal-energy ledger,
 $$
-X_{\mathrm{resp}}^i(t_{\mathrm{eff}})
+X_{\mathrm{resp}}^i(T)
 \equiv
 \frac{
-\displaystyle\int_{W_A}
-x_{\mathrm{eff}}^i\,
-\zeta_{\mathrm{loc}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,
-e_{\text{internal}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,dV_{\mathrm{eff}}
+\displaystyle\int_{W_A(T)}
+X^i\,
+\zeta_{\mathrm{loc}}(\mathbf X,T)\,
+e_{\text{internal}}(\mathbf X,T)\,dV
 }{
-\displaystyle\int_{W_A}
-\zeta_{\mathrm{loc}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,
-e_{\text{internal}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,dV_{\mathrm{eff}}
+\displaystyle\int_{W_A(T)}
+\zeta_{\mathrm{loc}}(\mathbf X,T)\,
+e_{\text{internal}}(\mathbf X,T)\,dV
 }
 $$
-whenever the denominator is positive and the window contains the exposed assembly record. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
+whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
 Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-promotion row.
 
-In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^i(t)$, and $L_W^i(t)$ together with their boundary fluxes and residuals. $E_{\text{total}}(t)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
+In practice, finite systems or simulation domains should monitor $E_W(T)$, $P_W^i(T)$, and $L_W^i(T)$ together with their boundary fluxes and residuals. $E_{\text{total}}(T)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
 
 ---
 
@@ -545,7 +545,7 @@ $$
 }{
 T_{\mathcal Q}+\varepsilon_T
 }
-dT
+dT'
 \right]_+
 }{
 |\Delta_W S_{\mathcal Q}|
@@ -553,7 +553,7 @@ dT
 \int_W
 \left|
 \frac{\mathcal D_{\mathcal Q}}{T_{\mathcal Q}+\varepsilon_T}
-\right|dT
+\right|dT'
 +\varepsilon
 }
 $$
@@ -607,7 +607,7 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**:
 
 - These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each nested shell braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
+- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; the nested shell braid is the best-developed three-band subtype, not the definition of the sea.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Effective causal-cone behavior and Lorentz-like behavior,
@@ -717,6 +717,14 @@ $$
 The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence.
 This is an exactness condition on one forgetting map. The full internal ledger is first projected to the exposed ledger $\zeta E_{\text{internal}}$, and the probe, sea-coupled, and unresolved channels are further projections of that same exposed ledger. The residual $\mathcal R_{\text{part}}$ measures whether those fibers close back to the once-projected total; it is therefore an anti-double-count rule, not an optional accounting convention.
 
+Define the probe-channel share
+$$
+\zeta_{\text{probe}}(A)
+\equiv
+\frac{E_{\text{probe}}(A)}{E_{\text{internal}}(A)}
+$$
+when $E_{\text{internal}}(A)>0$. The raw far-field scalar $\zeta(A)$ names the total exposed ledger before the probe, sea-coupled, and unresolved split. The probe-channel scalar $\zeta_{\text{probe}}(A)$ names only the trace part consumed by the inertial probe formulas below.
+
 ---
 
 ## Emergent Inertia (Mass) from Shielded Energy
@@ -728,10 +736,10 @@ This is an exactness condition on one forgetting map. The full internal ledger i
 For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operationally via:
 
 - Apply a small external wake potential (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
-- Measure the resulting acceleration of the response center; in regimes where the effective center-of-mass readout has been justified, denote this acceleration by $\mathbf{a}_{\text{cm}}$,
+- Measure the resulting acceleration of the response center; in regimes where the effective center-of-mass readout has been justified, denote this acceleration by $\mathbf A_{\text{cm}}$,
 - Define:
 
-$$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf{F}_{\text{ext}}\|}{\|\mathbf{a}_{\text{cm}}\|}.$$
+$$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf F_{\text{ext}}\|}{\|\mathbf A_{\text{cm}}\|}.$$
 
 Because the external wake couples mainly to the probe-facing exposed energy, not the full internal circulation, the scalar roadmap limit is:
 
@@ -741,7 +749,7 @@ The tensor handoff is more precise. In the formulas below, $\mathcal{Z}_A^{ab}$ 
 $$
 p_{\text{int}}^{a}
 \approx
-\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta_{\text{probe}}(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}\,
 V_{\text{cm},b}
 $$
@@ -754,7 +762,7 @@ A more complete first-order handoff keeps the scalar and trace-free exposure pie
 $$
 \mathcal{Z}_{A}^{ab}
 =
-\zeta(A)h^{ab}
+\zeta_{\text{probe}}(A)h^{ab}
 +
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A),
 \qquad
@@ -801,28 +809,28 @@ m_{\mathrm{tr}}(A)
 \alpha_{\mathrm{m}}
 \frac{E_{\text{internal}}(A)}{c_{\text{eff},0}^{2}}
 \left[
-\zeta(A)(1+\delta\mathcal{M}_{0})
+\zeta_{\text{probe}}(A)(1+\delta\mathcal{M}_{0})
 +
 \frac{1}{3}\mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
 \right]
 $$
 
-Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
+Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta_{\text{probe}}(A)$ names the probe-facing share of the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
 The trace-free exposure tensor is also the mass-side carrier of orientation and framing leakage. Clock-orientation leakage, Hughes-Drever-style matter anisotropy, and scalar-mass anisotropy should therefore be compared as different contractions of the same branch-emitted trace-free exposure record against different probe or medium-response tensors. If $\mathcal{Z}_{\mathrm{tf}}^{ab}=0$ for an accepted branch in a homogeneous response record, all of these trace-free leakage channels vanish at this order; if it is nonzero, scalar mass remains protected only when the retained medium response has no matching trace-free component.
 
 This scalar trace is admissible as a positive inertial mass only inside the shielding window
 $$
-\zeta(A)(1+\delta\mathcal{M}_{0})
+\zeta_{\text{probe}}(A)(1+\delta\mathcal{M}_{0})
 >
 \frac{1}{3}
 \left|
 \mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
 \right|
 $$
-with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus $\zeta\ll1$ is a constrained exposure window, not an unconstrained way to suppress all long-range response.
+with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta_{\text{probe}}$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus deep probe-channel shielding is a constrained exposure window, not an unconstrained way to suppress all long-range response.
 When $1+\delta\mathcal{M}_{0}>0$, a conservative sufficient lower bound is
 $$
-\zeta(A)
+\zeta_{\text{probe}}(A)
 >
 \frac{
 \left\|\mathcal{Z}_{\mathrm{tf}}(A)\right\|_h
@@ -860,7 +868,7 @@ $$
 
 with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether braids absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether braids; it should not be compressed into a generic statement that the braids simply gain energy and expand.
 
-This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species. Universality is a cross-species invariant, not a notation choice. For any certified assembly $A$, define the back-solved value
+This is the same shielding-based logic developed more directly in [Particle Masses](../assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, raw $\zeta$, $E_{\text{probe}}$ or $\zeta_{\text{probe}}$, the exposed-energy partition, and the medium-response map; it should not be fitted separately to each particle species. Universality is a cross-species invariant, not a notation choice. For any certified assembly $A$, define the back-solved value
 $$
 \alpha_{\mathrm{m}}(A)
 \equiv
@@ -869,7 +877,7 @@ m_{\mathrm{tr}}(A)c_{\text{eff},0}^2
 }{
 E_{\text{internal}}(A)
 \left[
-\zeta(A)(1+\delta\mathcal M_0)
+\zeta_{\text{probe}}(A)(1+\delta\mathcal M_0)
 +
 \frac{1}{3}\mathcal Z_{\mathrm{tf},ab}(A)\delta\mathcal M_{\mathrm{tf}}^{ab}
 \right]
@@ -902,10 +910,10 @@ The multi-scale status of $A_0$ matters for this accounting. Fast internal corre
 
 ### Noether Sea and Effective Relativistic Behavior
 
-The nested shell braid Noether sea adds an additional layer:
+The Noether sea adds an additional layer:
 
 - Moving assemblies must retune their internal causal ledger and reorganize local Noether sea coupling.
-- The effective resistance to high center-of-mass speed (near the internal nested shell braid causal-wake propagation scale) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
+- The effective resistance to high center-of-mass speed (near the relevant internal Noether braid causal-wake propagation scale) increases steeply, producing an emergent saturation speed scale $c_{\text{eff}}$ at which assemblies effectively saturate. Its identification with the photon-channel speed is a separate closure.
 
 Thus:
 
@@ -976,7 +984,7 @@ Cross-links:
 
 ## Energy and Self-Hit in the Noether Sea
 
-In the **super-field-speed** regime ($\|\mathbf{v}_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
+In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell braids and more complex assemblies, contributing to their stability.
 - Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell braid configuration.
@@ -1020,7 +1028,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 ## Appendix A: Energy Zero and Bookkeeping
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the self-hit / max-curvature radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
 
 Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
 
@@ -1032,7 +1040,7 @@ Because a lower bound exists, the natural reference is **not** "infinite separat
 
 ### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$ (the maximum curvature attractor), we fix the potential gauge at this wall.
+We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$ (the MCB attractor), we fix the potential gauge at this wall.
 
 $$U(r_{\min}) \equiv 0.$$
 

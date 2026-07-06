@@ -1581,11 +1581,6 @@
       "path": "content/scenes/spacetime/spacetime.json"
     },
     {
-      "id": "strong_field_regime",
-      "name": "Strong-Field Regime",
-      "path": "content/scenes/spacetime/strong_field_regime.json"
-    },
-    {
       "id": "bottom",
       "name": "Bottom Quark",
       "path": "content/scenes/standard-model-particles/bottom.json"
@@ -1909,6 +1904,11 @@
       "id": "noether_braid__proof_map",
       "name": "Noether Braid Proof Map",
       "path": "content/scenes/noether-braid/noether_braid_proof_map.json"
+    },
+    {
+      "id": "fermions__muon_tau",
+      "name": "Muon and Tau",
+      "path": "content/scenes/assemblies/muon_tau.json"
     }
   ]
 }

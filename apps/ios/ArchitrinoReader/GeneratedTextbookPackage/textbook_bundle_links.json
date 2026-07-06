@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-06T03:59:01.732Z",
-  "total_links": 1651,
+  "generated_at": "2026-07-06T15:48:35.978Z",
+  "total_links": 1717,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -214,6 +214,14 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#algebra-closure-rigorous-statement",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -234,6 +242,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/electron.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/electron.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/electron.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/electron.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -302,6 +326,22 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/neutrinos.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/neutrinos.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -319,6 +359,22 @@
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#candidate-generation-operator",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#candidate-generation-operator",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md"
@@ -358,6 +414,14 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/quarks.md#allowed-gluon-actions",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quarks.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -423,6 +487,46 @@
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#precision-interface-to-measured-quantities",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#precision-interface-to-measured-quantities",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#precision-interface-to-measured-quantities",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
@@ -474,6 +578,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/mesons/mesons.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -582,6 +710,14 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/foundations/euclidean-void.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -602,6 +738,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -758,10 +910,18 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -810,6 +970,38 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -878,6 +1070,14 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -938,6 +1138,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/validation/reaction-ledger.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/reaction-ledger.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -1886,6 +2094,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#root-multiplicity-vs-speed",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2086,7 +2302,7 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
@@ -2094,7 +2310,15 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/energy.md#theorem-target-center-of-response",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
@@ -2238,6 +2462,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#action-level-wake-energy-functional-at-time-boundary-t",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2263,6 +2495,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-causal-delay-fokker-type-interaction-term",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -2334,7 +2574,7 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-logarithmic-spiral-advanced-non-circular-benchmark",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-spiral-advanced-non-circular-benchmark",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -2342,7 +2582,15 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/foundations/absolute-time.md#time-orientation",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-time.md#time-orientation-and-causal-ordering",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/absolute-time.md"
@@ -2362,6 +2610,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2895,6 +3159,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md"
@@ -4574,10 +4846,42 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#return-map-symplectic-residual-for-action-derived-branch-promotion",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/foundations/absolute-timespace.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/foundations/absolute-timespace.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4791,6 +5095,14 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#reduced-nested-shell-braid-closure-label",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
@@ -5034,6 +5346,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -5348,6 +5668,38 @@
       "targetBundlePath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md"
     },
     {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "#reduced-nested-shell-braid-closure-label",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "#reduced-nested-shell-braid-closure-label",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../assets/images/nuclear/hyde-periodic-table-relationships-commons.svg",
+      "kind": "asset",
+      "status": "copied",
+      "targetBundlePath": "assets/content/assets/images/nuclear/hyde-periodic-table-relationships-commons.svg"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/archie/licenses-attributions.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/archie/licenses-attributions.md"
+    },
+    {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "target": "../../../../markdown/aaa/assemblies/bosons/gluons.md",
@@ -5434,6 +5786,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/quarks.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -5534,6 +5894,14 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#dynamic-exclusion-envelope",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5622,6 +5990,14 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#element-dependent-sea-response",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/nuclear-atomic/atomic-structure.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-boundary-theorem-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5671,6 +6047,14 @@
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/condensed-matter.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/nuclear-atomic/condensed-matter.md#earth-core-iron-as-a-boundary-case",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md"
@@ -5798,10 +6182,42 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -5886,10 +6302,26 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md#levels-of-excluded-volume",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -5938,6 +6370,22 @@
       "kind": "external",
       "status": "web_scene_redirect",
       "targetBundlePath": "https://architrino.com/#scene=content%2Fscenes%2Fchemistry%2Fhyde_periodic_table_scene.json"
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "#proton-spin-budget",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "nuclear_atomic",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
+      "target": "https://doi.org/10.70359/bhc2009v034p141",
+      "kind": "external",
+      "status": "external",
+      "targetBundlePath": ""
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -9318,7 +9766,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
@@ -9550,10 +9998,10 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/foundations/euclidean-void.md",
+      "target": "../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/foundations/euclidean-void.md"
+      "targetBundlePath": "content/markdown/aaa/foundations/constructing-the-absolute-frame.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -9574,10 +10022,10 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/foundations/euclidean-void.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/foundations/euclidean-void.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -9614,7 +10062,15 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#cadence-scale-retuning-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
@@ -9702,10 +10158,10 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -9758,6 +10214,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -9767,6 +10231,14 @@
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
@@ -9974,6 +10446,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/emergent-metric.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -10031,6 +10511,14 @@
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md#proanti-before-planar-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
@@ -10110,7 +10598,7 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
@@ -10174,10 +10662,26 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/observer-framework.md#boundary-wake-covariance-scaffold",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/observer-framework.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -10390,7 +10894,23 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#shared-clocksignal-delay-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
@@ -10551,6 +11071,14 @@
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/validation/constraint-ledger.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/validation/constraint-ledger.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/validation/constraint-ledger.md#gw-speed",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/validation/constraint-ledger.md"

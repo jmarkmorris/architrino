@@ -22,7 +22,7 @@ This chapter does not alter that constitutive rule. It asks what chirality infor
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md):
+Away from the horizon, the project treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis), while [color-charge-su3.md](../assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter) consumes the same convention in the fermion sector:
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
@@ -32,14 +32,19 @@ That distinction is natural in the ordinary nested shell braid because the three
 The strongest mathematical candidate beneath that datum comes from [causal-action-functional.md](../dynamics/causal-action-functional.md): the causal writhe
 
 $$
-Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}}
-\mathrm{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
+Wr_c(\mathfrak B)
+=
+\sum_{\alpha,\beta}
+\operatorname{sgn}(\alpha,\beta)\,
+\chi_{\mathrm{causal}}(\alpha,\beta)
 $$
 
-is a signed measure of handedness for the self-interaction pattern, and the same chapter states that changing $Wr_c$ requires tearing the causal locus. So the cleanest reading is:
+records signed causal-locus crossings or linkages in the retained branch record $\mathfrak B$. The indices $\alpha$ and $\beta$ label oriented retained causal-locus strands or strand segments in the declared projection; $\chi_{\mathrm{causal}}(\alpha,\beta)$ is $1$ only for an admissible same-record crossing or linkage event, and $0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is defined only relative to the declared branch framing and is not defined at a fold, framing slip, or unresolved collision row.
+
+So the cleanest reading is:
 
 - the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
-- the best formalization candidate is a topological branch label carried by the causal locus, with $Wr_c$ as the leading chirality measure.
+- the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_s$, $D_T$, and $W^{\mathrm{rec}}$.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
@@ -51,7 +56,7 @@ Several standing examples point in that direction.
 
 - **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
 - **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
-- **Higgs-like cluster:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
+- **$2+2$ pro/anti cluster hypothesis:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
 
 So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
 
@@ -79,7 +84,7 @@ The horizon question becomes clearer when compared against the main assembly sec
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
 | Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
-| Higgs-like cluster | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
+| $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
 | Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
@@ -141,16 +146,19 @@ The next question is whether a rapidly translating nested shell braid should dri
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Let the translation direction define the $z$-axis and use the oblate envelope from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md):
+The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) is
 
 $$
-\frac{x^2+y^2}{R_\perp^2} + \frac{z^2}{R_\parallel^2} = 1,
+\frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
++
+\frac{x_\parallel^2}{R_\parallel^2}
+= 1,
 \qquad
-R_\parallel = \frac{R_\perp}{\gamma},
+R_\parallel = \frac{R_\perp}{\gamma_f},
 \qquad
-\gamma = \frac{1}{\sqrt{1-\beta^2}},
+\gamma_f = \frac{1}{\sqrt{1-\beta_f^2}},
 \qquad
-\beta = \frac{v_{\text{trans}}}{c_f}
+\beta_f = \frac{v_{\text{trans}}}{c_f}
 $$
 
 Now let one binary orbit in a plane whose unit normal $\hat n$ makes angle $\alpha$ with the translation axis $\hat z$. The central cross-section of the oblate spheroidal envelope cut by that orbital plane has area
@@ -162,7 +170,7 @@ A(\alpha)
 {\sqrt{R_\perp^2\sin^2\alpha + R_\parallel^2\cos^2\alpha}}
 =
 \frac{\pi R_\perp^2}
-{\sqrt{\gamma^2\sin^2\alpha + \cos^2\alpha}}
+{\sqrt{\gamma_f^2\sin^2\alpha + \cos^2\alpha}}
 $$
 
 This area is maximal at $\alpha = 0$ or $\alpha = \pi$, meaning the orbital normal is parallel or antiparallel to the line of translation. It is minimal at $\alpha = \pi/2$, when the orbital normal is transverse to the motion.
@@ -171,7 +179,7 @@ So the delayed geometry creates a real high-speed bias:
 
 - planes with normals parallel or antiparallel to the line of translation inherit the largest available cross-section;
 - tilted planes suffer stronger anisotropic squeezing;
-- the penalty for tilt grows with $\gamma$.
+- the penalty for tilt grows with $\gamma_f$.
 
 For small tilt,
 
@@ -180,7 +188,7 @@ A(\alpha)
 \approx
 \pi R_\perp^2
 \left[
-1-\frac{\gamma^2-1}{2}\alpha^2
+1-\frac{\gamma_f^2-1}{2}\alpha^2
 \right]
 $$
 
@@ -268,7 +276,7 @@ On this reading, the horizon preserves only a compressed image of the deeper nes
 
 Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
 
-The history-lifted reading also sets a guardrail for nearby labels. Horizon `pro/anti`, boundary helicity, `CW/CCW`, `HML/HLM`, and weak left/right language should not be identified with one another by a visible planar sign alone. A stronger identification requires a component row carrying the lifted history $\widetilde r(s)$, the row-local parity checks $\Pi_{W,r}^{2\pi}$ and $\Pi_{W,r}^{4\pi}$, a quotient witness, doubled-path restoration, and gauge invariance. Without those rows, the horizon sign is a boundary-visible marker for a deeper branch history, not the whole chirality proof.
+The history-lifted reading also sets a guardrail for nearby labels. Horizon `pro/anti`, boundary helicity, `CW/CCW`, `HML/HLM`, and weak left/right language should not be identified with one another by a visible planar sign alone. A stronger identification requires the [same-record spinor-label pullback](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback): a component row carrying the lifted history $\widetilde r(s)$, the row-local parity checks $\Pi_{W,r}^{2\pi}$ and $\Pi_{W,r}^{4\pi}$, a quotient witness, doubled-path restoration, and gauge invariance. Without those rows, the horizon sign is a boundary-visible marker for a deeper branch history, not the whole chirality proof.
 
 ## Possible Left/Right Spin Mapping
 
@@ -313,7 +321,7 @@ This chapter mixes canonical inputs with stronger and weaker hypotheses. The dis
 | --- | --- |
 | horizon lock drives the nested shell braid toward coplanarity and suppresses precession | canonical in project framing |
 | `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
-| `Wr_c` and causal-locus topology supply the best formalization candidate for that chirality | strong structural candidate, not yet sole canonical definition |
+| `Wr_c` and causal-locus topology supply the best formalization candidate for that chirality | strong structural candidate only on the same retained branch record that supplies $D_s$, $D_T$, and $W^{\mathrm{rec}}$; not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
 | the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |

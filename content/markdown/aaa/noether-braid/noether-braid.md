@@ -1,8 +1,8 @@
 # Noether Braid
 
-The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. It is the first place where the reader should think in terms of a retained six-body branch rather than a pair, point particle, or ordinary orbit.
+The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used by the Noether sea chapters and particle-architecture chapters. It is the first place where the reader should think in terms of a retained six-body branch rather than a pair, point particle, or ordinary orbit.
 
-A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
+A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a polarity-neutral six-body branch whose architrino paths lie on closed support curves with speed factors bounded above and below. In that branch, three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
 
 The simple idea is six persistent strands plus one shared ledger. The hard question is whether the delayed dynamics can keep that ledger coherent: the same six identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold.
 
@@ -30,12 +30,23 @@ That is why the family labels are deliberately modest. `Neutral`, `shell`, and `
 
 This chapter is the overview and family map for the Noether braid stack. It defines the word **braid**, names the base family sequence, and explains why family labels are case structure rather than retained-branch results.
 
-It does not carry the detailed family derivations, select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here: [Neutral Braid](neutral-braid.md) owns the base six-body inventory and retained-branch certificate target, [Shell Braid](shell-braid.md) owns the one-band support family, [Nested Shell Braid](nested-shell-braid.md) owns the three-band support family, [Noether Braid Taxonomy](noether-braid-taxonomy.md) decodes configuration axes and compact Proof ID grammar, [Noether Braid Proof Map](noether-braid-proof-map.md) tracks detailed proof-run status and environment-qualified rounds, [Noether Braid Configuration Space](noether-braid-configuration-space.md) studies cases where three retained angular-momentum rows may form a full internal 3D frame, [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) tests the nested shell braid mechanism, [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) studies the `NSH-421` candidate family, [Noether Braid Topological Charge](noether-braid-topological-charge.md) classifies retained branch charts, and [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) supplies the envelope/export interface.
+It does not carry the detailed family derivations, select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here:
+
+- [Neutral Braid](neutral-braid.md) owns the base six-body inventory and retained-branch certificate target.
+- [Shell Braid](shell-braid.md) owns the one-band support family.
+- [Nested Shell Braid](nested-shell-braid.md) owns the three-band support family.
+- [Noether Braid Taxonomy](noether-braid-taxonomy.md) decodes configuration axes and compact Proof ID grammar.
+- [Noether Braid Proof Map](noether-braid-proof-map.md) records proof targets, proof statuses, and environment-qualified rounds.
+- [Noether Braid Configuration Space](noether-braid-configuration-space.md) studies cases where three retained angular-momentum rows may form a full internal 3D frame.
+- [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) tests the nested shell braid mechanism.
+- [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) studies the `NSH-421` candidate family.
+- [Noether Braid Topological Charge](noether-braid-topological-charge.md) classifies retained branch charts.
+- [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) supplies the envelope/export interface.
 
 ## Medium-Selection Burden
 
 Branch retention is not the same question as Noether sea primacy. A retained Noether braid branch would show that one neutral assembly class can persist. It would not yet show that this class is the dominant ambient structure in the universe, because many other architrino assemblies might also be imagined.
 
-The stronger claim is a selection theorem over candidate assembly classes. A class can serve as the ambient Noether sea population only if it can be retained as a branch and also form a dense, locally neutral, convergent, transparent, pressure-bearing, and constitutively useful medium. In the notation of [Noether Sea](../spacetime/noether-sea.md#composition), the nested shell braid route must pass the ambient selection residual while competing assembly classes either fail, remain local matter or reaction branches, or appear only as higher-energy, short-lived, or environment-specific excitations.
+The stronger claim is a selection theorem over candidate assembly classes. A class can serve as the ambient Noether sea population only if it can be retained as a branch and also form a dense, locally neutral, convergent, transparent, pressure-bearing, and constitutively useful medium. In the notation of [Noether sea](../spacetime/noether-sea.md#composition), the nested shell braid route must pass the ambient selection residual while competing assembly classes either fail, remain local matter or reaction branches, or appear only as higher-energy, short-lived, or environment-specific excitations.
 
 This distinction protects the proof order. The neutral braid, shell braid, and nested shell braid rows ask whether the six-site architecture can close. The Noether sea selection row asks why that architecture should dominate the weak homogeneous medium rather than a different assembly population. A particle-like success, a metric-like export, or an appealing exclusion volume is therefore not enough by itself; the same branch class must also supply the statistical abundance, far-field cancellation, packing, and shared-response properties needed by the Noether sea.

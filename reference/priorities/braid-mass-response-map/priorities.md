@@ -13,7 +13,7 @@
 
 1. `derive_first_attractor_family` — Treat the corrected compact fixture as a compact finite-coordinate no-go under the current $\mu=\texttt{receiver|source|relation|status}$, two-bin `I` observation-phase, low-degree $\mathcal{H}_I$ harmonic, first root-transport shear tests, root-transport residual-spectrum diagnostic, mode-band source-eligibility diagnostic, reciprocal inter-layer branch-equation no-go, carrier-frame residual localization, carrier-frame branch-coordinate no-go, reciprocal carrier-frame projection no-go, root-loop branch-coordinate no-go, and delayed source-direction branch-coordinate no-go; before any further corrected rerun, require the branch-chart revision contract and anti-overfit residual to pass for a predeclared coordinate that survives held-out residual. Status: `next`; compact-fixture source coverage, under-cap attempt budget, direct one-period runner, scalar relation-weight no-go, sampled-forcing emission, default chart-mode blockage, no-omitted-mode Fourier candidate, rerun-ready correction packet, center-preserving body-update waveform, reusable correction evaluator, fail-closed correction-packet runner, corrected negative rerun, direct prehistory correction fix, quotient-class refined-basis no-go, root-key-resolved refined-basis no-go, `I` phase-bin refined-basis no-go, compact-fixture decision witness, branch-chart revision contract, root-transport source-record emitter, source-declared root-transport shear no-go, diagnostic quotient probes, single-artifact transport-slot identity blocker, root-transport refinement certificate script, root-ledger refinement stability discriminator, carrier-replay root-ledger evidence packet, coordinate-specific root-transport checker, root-loop branch-coordinate checker, delayed source-direction branch-coordinate checker, root-transport feature-span scanner, residual-spectrum diagnostic, mode-band source-eligibility packet, reciprocal inter-layer branch-equation checker, reciprocal carrier-frame projection checker, carrier-frame residual spectrum, carrier-frame branch-coordinate checker, and fail-closed pre-rerun checker are now specified. Depends on: none.
 2. `a0_delayed_source_direction_successor` — Store the follow-up from the $A_0$ delayed source-direction no-go in the mass-map bucket. Status: `queued-follow-up`. Notes: [a0-delayed-source-direction-branch-coordinate-checker.md](a0-delayed-source-direction-branch-coordinate-checker.md) rules out the immediate receiver-polarity-signed delayed line-of-action coordinate in the corrected `I` carrier frame; its best held-out row is `im_delayed_direction` at `1.0408163198841647`, still above the `0.02` tolerance. The next packet should either raise the root-ledger sample count enough to test a true delay-sector coordinate or switch to a separator/fold-event branch coordinate declared in $z_\Lambda^\star$ before fitting. This row is a mass-map follow-up pointer only, not rerun authority. Depends on: `derive_first_attractor_family`.
-3. `derive_zeta` — Derive $\zeta(A)$ through the scalar exposure contract, including hidden-label invariance for $\zeta_d(A_0)E_{\text{internal}}[d]$, and target a baseline electron-mass prediction only after the branch, energy, shielding, and medium-response records pass. Status: `pending`. Depends on: `derive_first_attractor_family`.
+3. `derive_zeta` — Derive raw $\zeta(A)$ through the scalar exposure contract, then derive the exposed-energy partition and probe-channel share $\zeta_{\text{probe}}(A)=E_{\text{probe}}(A)/E_{\text{internal}}(A)$ before any mass-map consumer uses the scalar trace. Include hidden-label invariance for $\zeta_d(A_0)E_{\text{internal}}[d]$, and target a baseline electron-mass prediction only after the branch, energy, shielding, partition, and medium-response records pass. Status: `pending`. Depends on: `derive_first_attractor_family`.
 4. `exposure_quotient_theorem` — Generalize shielding extraction into a sector exposure/quotient theorem for mass, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. Status: `pending`; the $A_0$ scalar worked-case theorem target now includes the no-hidden-mass-handle condition, and the pressure-response coefficient packet now stages the branch-conditional no-hidden-pressure-mass-handle artifact for trace/isotropic and retained trace-free pressure rows. The pressure coefficient artifact now carries `branch_intake` as a fail-closed status with current value `finite_branch_evidence_missing`, backed by the executable [pressure-row branch-intake checker](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs): no pressure replay may upgrade beyond algebraic or empirical screening until one accepted non-fixture branch source emits accepted branch identity, accepted history segment, source path, quotient chart, pressure record, exposed source, trace-free numerator, source-pressure derivative, shared delay coefficients, receiver-normal $D_s$, $D_T$, $W^{\mathrm{rec}}$, retained root-row identities, Noether sea response, reversible-domain row, null-sector record, and medium-response coefficient on the same retained pressure row. The retained pressure-row receiver-normal simulation target now fixes the required same-record $D_s$, $D_T$, $W^{\mathrm{rec}}$, exposure, energy, Noether sea response, and pressure rows, with current status `finite_branch_evidence_missing`. The accepted-source boundary now composes the upstream same-domain provider requirement with the 33-field pressure-row requirement and remains blocked at `accepted_non_fixture_source_missing`: the nearest provider partial still lacks `provider_source_status=accepted_non_fixture_source`, a non-fixture `source_ref`, and `branch_certificate_ref`, while the nearest pressure-row probe still carries target-required or literal field provenance. The exact next producer is an accepted non-fixture same-domain branch-provider report outside `scripts/**/fixtures/**`, followed by an accepted retained pressure-row report emitted by that same provider source. Depends on: `derive_zeta`.
 
    Shared H39 provider boundary: [branch-provider evidence report](../app-solver/branch-provider-evidence-report.md) maps the H39 aggregate-$P$ construction attempt to rank 4 as target-only evidence, not a retained pressure-row branch intake. The readout verifies the five-cell source-contract boundary replay and records a source-provenance refinement: the signed-radius subinterval primitive, projected source-term producer-image fields, and lambda terminal witness branch intervals are present, but source-map provider-object branch intervals remain unavailable. The report still returns `same_domain_branch_provider_missing`; the two open H39 blockers are `source_term_provider_directed_source_certification_open` and `source_term_provider_term_width_realization_open`. It does not populate the same-row branch certificate, active-root or live-ledger identity, branch-local projection/normalization identity, pre-aggregate branch rows, projection map, pushforward operator, or normalization identity, so pressure coefficients remain non-authorized.
@@ -83,10 +83,11 @@ $$
 - The working derivation target is therefore
 
 $$
-m(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A),
+m(A)c_{\text{eff}}^2\sim E_{\text{probe}}(A)
+=\zeta_{\text{probe}}(A)E_{\text{internal}}(A),
 $$
 
-Here $\zeta(A)$ is the shielding or exposure coefficient and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state.
+Here raw $\zeta(A)E_{\text{internal}}(A)$ is the total exposed ledger before the probe, sea-coupled, and unresolved split; $E_{\text{probe}}(A)$ is the distant-probe channel used by the mass map, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state.
 
 - Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
 - Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
@@ -101,7 +102,7 @@ The mass-map residual should separate elementary-lepton, hadron, quark-scheme, v
 
 | Benchmark family | Current rows to preserve | Mass-map role |
 | --- | --- | --- |
-| Charged leptons | $m_e=0.51099895000\pm0.00000000015\,\mathrm{MeV}$, $m_\mu=105.6583755\pm0.0000023\,\mathrm{MeV}$, $m_\tau=1776.93\pm0.09\,\mathrm{MeV}$ | First hierarchy checks after $A_0$, $E_{\text{internal}}$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are fixed, including the priority-only charged-lepton Koide residual from branch-derived exposed-source numerators. |
+| Charged leptons | $m_e=0.51099895000\pm0.00000000015\,\mathrm{MeV}$, $m_\mu=105.6583755\pm0.0000023\,\mathrm{MeV}$, $m_\tau=1776.93\pm0.09\,\mathrm{MeV}$ | First hierarchy checks after $A_0$, $E_{\text{internal}}$, raw $\zeta(A)$, $\zeta_{\text{probe}}(A)$, the exposed-energy partition, and $\mathcal{M}_{\text{sea}}^{ab}$ are fixed, including the priority-only charged-lepton Koide residual from branch-derived exposed-source numerators. |
 | Proton and neutron | $m_p=938.27208816\pm0.00000029\,\mathrm{MeV}$, $m_n=939.5654205\pm0.0000005\,\mathrm{MeV}$, $\tau_n=878.4\pm0.5\,\mathrm{s}$ | Hadronic binding and isospin-splitting checks; neutron lifetime belongs to weak-reaction closure, not rest-mass calibration. |
 | Pions and kaons | $m_{\pi^\pm}=139.57039\pm0.00018\,\mathrm{MeV}$, $\tau_{\pi^\pm}=(2.6033\pm0.0005)\times10^{-8}\,\mathrm{s}$; $m_{\pi^0}=134.9768\pm0.0005\,\mathrm{MeV}$, $\tau_{\pi^0}=(8.43\pm0.13)\times10^{-17}\,\mathrm{s}$; $m_{K^\pm}=493.677\pm0.015\,\mathrm{MeV}$, $\tau_{K^\pm}=(1.2380\pm0.0020)\times10^{-8}\,\mathrm{s}$ | Light-meson confinement, chiral/isospin splitting, and weak/electromagnetic decay-channel checks. |
 | Quarks | $\overline m_u(2\,\mathrm{GeV})=2.16\pm0.07\,\mathrm{MeV}$, $\overline m_d(2\,\mathrm{GeV})=4.70\pm0.07\,\mathrm{MeV}$, $\overline m_s(2\,\mathrm{GeV})=93.5\pm0.8\,\mathrm{MeV}$, $\overline m_c(\overline m_c)=1.2730\pm0.0046\,\mathrm{GeV}$, $\overline m_b(\overline m_b)=4.183\pm0.007\,\mathrm{GeV}$, $m_t^{\mathrm{direct}}=172.56\pm0.31\,\mathrm{GeV}$ | Scheme-declared quark mass targets for geometry-first flavor checks; these are not direct stable-assembly rest masses. |
@@ -134,17 +135,19 @@ The current mass-side corpus should be read as reducing observer-facing mass to 
 $$
 m_{\text{inertial}}(A)
 \approx
-\alpha_{\mathrm{m}}\,\frac{\zeta(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
+\alpha_{\mathrm{m}}\,\frac{E_{\text{probe}}(A)}{c_{\text{eff}}^2}
+=
+\alpha_{\mathrm{m}}\,\frac{\zeta_{\text{probe}}(A)E_{\text{internal}}(A)}{c_{\text{eff}}^2},
 $$
 
-with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit particle by particle. In this expression, $E_{\text{internal}}(A)$ is the closed assembly energy ledger, $\zeta(A)$ is the far-field shielding or exposure coefficient, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state. Here $\alpha_{\mathrm{m}}$ is the mass-map normalization; bare $\alpha$ remains reserved for measured fine-structure or locally declared angle and phase uses.
+with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit particle by particle. In this expression, $E_{\text{internal}}(A)$ is the closed assembly energy ledger, raw $\zeta(A)$ is the far-field shielding or exposure coefficient before partition, $\zeta_{\text{probe}}(A)$ is the probe-channel share, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state. Here $\alpha_{\mathrm{m}}$ is the mass-map normalization; bare $\alpha$ remains reserved for measured fine-structure or locally declared angle and phase uses.
 
 For directional or environment-dependent response, the scalar denominator should be treated as the homogeneous isotropic limit of a medium-response tensor:
 
 $$
 p_{\text{int}}^a
 \approx
-\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta_{\text{probe}}(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}V_{\text{cm},b},
 \qquad
 \mathcal{M}_{\text{sea}}^{ab}
@@ -152,9 +155,9 @@ p_{\text{int}}^a
 \frac{h^{ab}}{c_{\text{eff}}^2}.
 $$
 
-Promotion note, 2026-05-20: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#reference-normalized-mass-ratio) now carries the reference-normalized mass-ratio invariant and its directional tensor extension. In a shared homogeneous isotropic response record, $\alpha_{\mathrm{m}}$ cancels from scalar mass ratios, so the hierarchy burden moves to $\zeta(A)E_{\text{internal}}(A)$ and its scalar exposure quotient rather than to another adjustable normalization. In anisotropic or pressure-dependent cells, the corresponding ratio uses $\hat v_a\mathsf{I}_{A}^{ab}\hat v_b$ and therefore keeps trace-free exposure and trace-free medium response visible.
+Promotion note, 2026-05-20, revised 2026-07-06 for the exposed-energy partition: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#reference-normalized-mass-ratio) carries the reference-normalized mass-ratio invariant and its directional tensor extension, but its compact scalar wording still needs a scoped follow-up sweep from raw $\zeta(A)E_{\text{internal}}(A)$ to $E_{\text{probe}}(A)=\zeta_{\text{probe}}(A)E_{\text{internal}}(A)$ where the mass map is the consumer. In a shared homogeneous isotropic response record, $\alpha_{\mathrm{m}}$ cancels from scalar mass ratios, so the hierarchy burden moves to the probe-channel exposed source and its scalar exposure quotient rather than to another adjustable normalization. In anisotropic or pressure-dependent cells, the corresponding ratio uses $\hat v_a\mathsf{I}_{A}^{ab}\hat v_b$ and therefore keeps trace-free exposure and trace-free medium response visible.
 
-Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed Noether braid root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
+Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode the probe/sea partition, medium-dressed inertial response, Noether sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, raw $\zeta(A)$, $\zeta_{\text{probe}}(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed Noether braid root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
 
 ### Receiver-Normal Constitutive Exposure Row
 
@@ -365,7 +368,7 @@ the static intake precheck passes.
 | Energy ledger source | [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Energy-zero convention, assembly energy bookkeeping, and the operational definition of inertial mass. |
 | Dynamics baseline | [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | Noether braid roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
 | Reduced branch certificate | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | First finite proof/simulation packet for the reduced $A_0$ branch search: carrier ansatz, root-ledger enumeration, averaging/locking/leakage lemmas, continuation gates, and promotion rules. |
-| Energy/shielding extraction | [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff from a stable branch into $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, anisotropic leakage, and failure codes. |
+| Energy/shielding extraction | [$A_0$ Energy and Shielding Extraction Packet](a0-energy-shielding-extraction.md) | Tier 2 handoff from a stable branch into $E_{\text{internal}}(A_0)$, raw $\zeta(A_0)$, anisotropic leakage, the exposed-energy partition, and failure codes. |
 | Exposure/quotient theorem | [Exposure-Quotient Theorem](exposure-quotient-theorem.md) | Shared projection/quotient theorem for mass shielding, weak chirality, color exceptionality, photon transverse support, and vector-corridor visibility. |
 | Medium-response probe | [$A_0$ Medium-Response Tensor Probe](a0-medium-response-tensor-probe.md) | Tier 3 acceleration/gradient probe for $\mathcal{M}_{\text{sea}}^{ab}$ after closure, stability, energy, and shielding pass, with retained response-direction accounting for trace-free scalar-mass visibility. |
 | Mass-trace composition proof chain | [Mass-Trace Composition Proof Chain](mass-trace-composition-proof-chain.md) | Proof-synthesis packet that composes exposed-source descent, inertial-response trace, symmetric response, pressure response, composed trace quotient descent, response-direction projection, and packing-headroom limits into one mass-trace formula. |
@@ -385,7 +388,7 @@ the static intake precheck passes.
 
 ### Roadmap
 
-- Derive $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$ from a closed Noether braid root ledger rather than using it as a heuristic.
+- Derive $m_0(A)c_{\text{eff}}^2\sim E_{\text{probe}}(A)=\zeta_{\text{probe}}(A)E_{\text{internal}}(A)$ from a closed Noether braid root ledger and exposed-energy partition rather than using raw $\zeta(A)E_{\text{internal}}(A)$ as a heuristic mass source.
 - Generalize $\zeta(A)$ into a sector exposure/quotient theorem that states $\mathcal{E}_S(A)=Q_S[\Pi_S\mathcal{L}_A]$ before weak, color, photon, or vector-corridor visibility is promoted.
 - Derive the first-order momentum skew that makes trapped internal energy behave as inertial mass under acceleration.
 - Show that inertial and gravitational response share the same shielded-energy coefficient within equivalence-principle bounds.
@@ -396,7 +399,7 @@ the static intake precheck passes.
 ### Priority
 
 - Compute one robust three-binary attractor family with radii, frequencies, branch data, and Floquet stability gap.
-- Extract $\zeta(A)$ from far-field wake cancellation and shielding geometry.
+- Extract raw $\zeta(A)$ from far-field wake cancellation and shielding geometry, then split the exposed ledger into $E_{\text{probe}}$, $E_{\text{sea-coupled}}$, and unresolved channels.
 - State which projection and quotient turn the accepted branch ledger into each sector-visible response, and report leakage or residue instead of hiding it.
 - Produce a baseline electron-mass prediction and at least one hierarchy check, such as $m_\mu/m_e$ or the branch-derived charged-lepton Koide residual.
 - Treat branch-preserving Noether sea response as the symmetric medium-dressed response tensor $\mathcal{M}_{+}^{ab}$ rather than as a separate additive mass contribution; only loss, orientation, Hall-like transverse, or branch-transition residues remain outside scalar rest mass.
@@ -407,12 +410,12 @@ the static intake precheck passes.
 - For scorecard purposes, this is the main Parameter Closure + Mass Formulas bucket.
 - If the goal is the fastest score lift, pair this workstream with [source-mining](../source-mining/priorities.md) for Parameter Closure + Coverage.
 - Keep the constants question attached to the mass map only when it sharpens the derivation. Otherwise it belongs in background notes, not in the active deliverable.
-- Use the CODATA benchmark contract in [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) as a downstream scoring surface, not as a source of branch inputs. The first mass map may compare against $\alpha$, $m_p/m_e$, $m_e c^2$, $m_\mu c^2$, the charged-lepton Koide residual, and hadronic mass rows only after $A_0$, $E_{\text{internal}}$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ have been fixed without those rows.
+- Use the CODATA benchmark contract in [parameter-ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) as a downstream scoring surface, not as a source of branch inputs. The first mass map may compare against $\alpha$, $m_p/m_e$, $m_e c^2$, $m_\mu c^2$, the charged-lepton Koide residual, and hadronic mass rows only after $A_0$, $E_{\text{internal}}$, raw $\zeta(A)$, $\zeta_{\text{probe}}(A)$, the exposed-energy partition, and $\mathcal{M}_{\text{sea}}^{ab}$ have been fixed without those rows.
 
 ## Concrete Deliverables
 
 - Derive one three-binary attractor family with radii, frequencies, binding scales, and a shielding-extraction protocol.
-- Derive $\zeta(A)$ strongly enough to predict a baseline electron mass and a first hierarchy check such as $m_\mu / m_e$.
+- Derive raw $\zeta(A)$ and $\zeta_{\text{probe}}(A)$ strongly enough to predict a baseline electron mass and a first hierarchy check such as $m_\mu / m_e$.
 - Decide which shared inputs survive across the mass-side program, especially $\kappa$, the role of $\eta$, and whether the first map also constrains $h$ and $G$.
 
 ## First Quantitative Deliverable: Reference Attractor Family $A_0$
@@ -437,10 +440,10 @@ This reference family should be solved first in the local rest frame of the Noet
 | Phase and winding | $\omega_I,\omega_M,\omega_O$; $T_I,T_M,T_O$; closed-cycle period $T_{\mathbf{k}}$; phase offsets; layer windings $(k_I,k_M,k_O)$; inter-layer closure integers $q_{ij}$ | Turns the causal knot into an integer-labeled attractor rather than a loose configuration sketch. |
 | Root ledger | partner-hit counts; self-hit counts; inter-layer hit channels; signed parity/degree data; any separator events $\Delta N\in 2\mathbb{Z}$ | Supplies the causal-history inventory whose trapped energy is proposed to appear externally as mass response. |
 | Stability | closure residuals; return-map residuals; leading Floquet multipliers; basin gap $\Delta_{\mathbf{k}}$; sensitivity to small perturbations | Distinguishes accepted attractors from integer-closed but dynamically unstable rungs. |
-| Internal energy ledger | layer energies $E_I,E_M,E_O$; interaction/wake terms; total $E_{\text{internal}}(A_0)$ in dimensionless units; action per closed cycle | Provides the unshielded energy reservoir in $m_0(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A)$. |
-| Shielding extraction | far-field multipole coefficients; exposed leading amplitude; naive constituent sum; preliminary $\zeta(A_0)$; angular anisotropy/leakage tensor | Converts stored internal motion into the externally visible response coefficient instead of assuming $\zeta$. |
+| Internal energy ledger | layer energies $E_I,E_M,E_O$; interaction/wake terms; total $E_{\text{internal}}(A_0)$ in dimensionless units; action per closed cycle | Provides the unshielded energy reservoir that the exposed-energy partition projects into probe and sea-coupled channels. |
+| Shielding extraction | far-field multipole coefficients; exposed leading amplitude; naive constituent sum; preliminary raw $\zeta(A_0)$; angular anisotropy/leakage tensor | Converts stored internal motion into the externally visible response coefficient before the exposed ledger is partitioned. |
 | Medium response | local lapse precursor $N$; spatial compliance response $\gamma_{ij}^{\mathrm{eff}}$ or homogeneous baseline; response tensor for acceleration and gradient probes; equivalence residual placeholder | Connects inertial response, gravitational response, and the later Cartan/ADM reconstruction. |
-| Mass-facing summary | dimensionless exposed-energy coefficient $\zeta(A_0)E_{\text{internal}}(A_0)/E_0$; unresolved constants list; calibration-free comparison handles | Gives the first object that can later be compared with a particle mass after constants and dressing are fixed. |
+| Mass-facing summary | dimensionless probe-channel coefficient $E_{\text{probe}}(A_0)/E_0=\zeta_{\text{probe}}(A_0)E_{\text{internal}}(A_0)/E_0$; sea-coupled and unresolved exposed-energy channels; unresolved constants list; calibration-free comparison handles | Gives the first object that can later be compared with a particle mass after constants and dressing are fixed. |
 
 ### Acceptance Gates
 
@@ -451,7 +454,7 @@ The $A_0$ deliverable is not accepted until all of the following are true:
 3. The reported branch has no secular drift in the local rest frame after symmetry modes are removed.
 4. The shielding estimate is stable under increasing far-field extraction radius and angular resolution.
 5. No observed particle mass, electron radius, charged-lepton ratio, or measured $\alpha$ value is used as a fitting input.
-6. The output is sufficient to evaluate the roadmap expression $m_0(A)c_{\text{eff}}^2\sim\zeta(A)E_{\text{internal}}(A)$ as a prediction once the dressing constants are supplied.
+6. The output is sufficient to evaluate the roadmap expression $m_0(A)c_{\text{eff}}^2\sim E_{\text{probe}}(A)=\zeta_{\text{probe}}(A)E_{\text{internal}}(A)$ as a prediction once the dressing constants are supplied.
 
 ### State Vector
 

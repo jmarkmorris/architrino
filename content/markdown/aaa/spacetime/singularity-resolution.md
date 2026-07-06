@@ -12,7 +12,7 @@ Use the following regime definition near the horizon:
 $$
 v_M=c_f,\qquad v_O\to c_f
 $$
-with middle/outer binaries becoming coplanar and co-linear with the inner binary at alignment and precession ceasing in that limit.
+The arrow records approach from ordinary exterior coupling. At terminal alignment, the outer row reaches the same field-speed threshold, with middle/outer binaries becoming coplanar and co-linear with the inner binary and precession ceasing in that limit.
 
 This condition is a constitutive boundary condition on Noether sea state, not an isolated metric ansatz imported from an asymptotically flat solution. The horizon is therefore treated as an interface problem: what packed assembly state is allowed, what boundary data reach the exterior, and which continuation labels remain finite? In schematic form, the horizon-interface closure problem is
 $$
@@ -34,10 +34,8 @@ The boundary data $\partial\Omega$ record the surrounding Noether sea state and 
 A maximum-curvature interior is not assigned an ordinary physical-observer clock unless a recoverable clock channel survives. At the horizon-interface boundary, exterior records remain ordered by absolute time and by the observer-level clocks recovered outside the compact region. Inside a hard packed regime, the local Noether braid cadence, signal access, and material ruler channels may no longer supply a Physical Observer state. The safe statement is therefore:
 $$
 \mathrm{Clock}_{\mathrm{PO}}(\Omega_{\mathrm{int}})=\varnothing
-\quad\text{while}\quad
-T\ \text{still orders exterior and boundary records.}
 $$
-This prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed. Absolute time still orders the ontology; a readable interior clock is a separate recovered channel.
+This boundary statement holds while $T$ still orders exterior and boundary records. It prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed. Absolute time still orders the ontology; a readable interior clock is a separate recovered channel.
 
 ### Trapped-Surface Comparison Pressure
 
@@ -69,9 +67,9 @@ F_H=0,\qquad \mathcal{R}_H(\Omega)<\infty
 $$
 for the corresponding compact strong-field region $\Omega$, after the effective variables are translated into native Noether sea boundary data. In plain terms, whenever the observer-level GR description says collapse has passed the generic trapped-surface threshold, the native model must enter a finite maximum-curvature or horizon-interface regime rather than requiring symmetry, a zero-volume endpoint, or an arbitrary branch choice.
 
-Equivalently, the finite-boundary-data closure target is the residual
+Equivalently, let the trapped-region premise be
 $$
-\mathcal{P}_{H}(\Omega)
+\mathcal{P}_{H}^{\mathrm{trap}}(\Omega)
 =
 \left(
 \theta_+^{\mathrm{eff}}<0,\,
@@ -79,14 +77,12 @@ $$
 T_{\mu\nu}^{\mathrm{eff}}k^\mu k^\nu\ge 0,\,
 \mathcal{C}^{\mathrm{eff}}
 \right)
-\Longrightarrow
-\left(
-\neg\,\mathrm{NullComplete}^{\mathrm{eff}}_+
-\quad\mathrm{is\ replaced\ by}\quad
-F_H=0,\,
-\mathcal{R}_H(\Omega)<\infty,\,
+$$
+When this premise holds, the finite-boundary-data replacement target is not to preserve future null completeness as a substrate axiom. It is to supersede that effective global-completeness failure with
+$$
+F_H=0,\qquad
+\mathcal{R}_H(\Omega)<\infty,\qquad
 0<\left|\mathcal{B}_{H}\right|<\infty
-\right)
 $$
 The theorem burden is not to deny the trapped-surface comparison result. It is to show exactly which effective global-completeness assumption is superseded by compact Noether sea boundary data, while preserving the non-negative local energy comparison and producing a finite, labeled strong-field continuation.
 
@@ -94,21 +90,21 @@ The theorem burden is not to deny the trapped-surface comparison result. It is t
 
 The useful comparison lesson from analytic singularity-removal programs is not an imported mirror boundary or complex-time ontology. It is the regularity criterion. A candidate strong-field replacement must keep the native variables finite and the continuation rule unambiguous in the regime where the effective metric description would otherwise diverge.
 
-For a compact strong-field region $\Omega$, a minimal diagnostic is
+For a compact strong-field region $\Omega$, declared positive reference scales $\rho_{\text{NS},0}$ and $\Sigma_0$, and field speed $c_f$, a minimal dimensionless diagnostic at absolute time $T$ is
 $$
-\mathcal{R}_H(\Omega)
+\mathcal{R}_H(\Omega,T)
 =
-\sup_{\Omega}
-\left(
-|\rho_{\text{NS}}(\mathbf X,T)|
-+
-\|\Sigma_{\text{sea}}(\mathbf X,T)\|
-+
-\|\mathbf u_{\text{sea}}(\mathbf X,T)\|
-\right)
+\max\left\{
+\sup_{\mathbf X\in\Omega}
+\frac{\left|\rho_{\text{NS}}(\mathbf X,T)\right|}{\rho_{\text{NS},0}},
+\sup_{\mathbf X\in\Omega}
+\frac{\left\|\Sigma_{\text{sea}}(\mathbf X,T)\right\|}{\Sigma_0},
+\sup_{\mathbf X\in\Omega}
+\frac{\left\|\mathbf u_{\text{sea}}(\mathbf X,T)\right\|}{c_f}
+\right\}
 <\infty
 $$
-together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success. The strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
+A windowed statement writes $\sup_{T\in W}\mathcal{R}_H(\Omega,T)<\infty$; the shorthand $\mathcal{R}_H(\Omega)<\infty$ means this rowwise normalized diagnostic is finite on the declared single-time or windowed comparison. It is used together with the horizon-interface condition $F_H=0$ and a finite Noether braid closure-label ensemble. This is a theorem target, not a definition of success. The strong-field model must show that finite boundary data determine a finite maximum-curvature replacement rather than a zero-volume endpoint or an arbitrary branch choice.
 
 The packed-state replacement must also keep interior storage distinct from interface exposure. A dense interior may carry a large finite energy inventory while only the surface, defect, or horizon-interface rows couple efficiently to exterior clock, ruler, lensing, release, or dark-sector readouts. In ordinary terms, not everything stored inside is automatically visible outside. For a compact region $\Omega$, write the exposed response schematically as
 $$
@@ -129,6 +125,7 @@ $$
 \mathcal{T}_{\Omega}:
 \left(
 X_\Omega(T_i),
+\mathcal{H}_{\Omega}^{<T_i},
 \mathcal{B}_{\partial\Omega}|_{[T_i,T_f]},
 N_{\text{sea}}|_{\Omega\times[T_i,T_f]}
 \right)

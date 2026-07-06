@@ -30,7 +30,7 @@ When residual strong channels, beta stability, or nuclear reaction routes become
 
 | Benchmark | Required closure |
 | --- | --- |
-| Deuteron | Bind $p+n$ while keeping $p+p$ unbound or Coulomb-suppressed in the corresponding channel. |
+| Deuteron / diproton split | Bind the $p+n$ triplet channel while keeping the singlet channel unbound before Coulomb; the $p+p$ channel must then remain unbound after identical-proton spin-statistics restrictions and Coulomb are applied. |
 | Saturation | Show why binding energy per nucleon does not grow without bound as $A$ increases. |
 | Alpha-like cluster | Explain why $2p+2n$ is an especially favorable local minimum. |
 | Beta stability | Combine nuclear energy, proton-neutron mass difference, electron/neutrino channel, and medium contribution into one stability condition. |
@@ -51,7 +51,7 @@ V_{\pi/\text{corr}}(r)
 V_{\text{sea-pol}}(r).
 $$
 
-The proof burden is to derive or constrain the signs, range, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, and local Noether sea polarization. It is not enough to borrow the nuclear-force shape and relabel it.
+The proof burden is to derive or constrain the signs, range, channel dependence, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, spin-statistics restrictions, and local Noether sea polarization. It is not enough to borrow the nuclear-force shape and relabel it. In the deuteron/diproton split, the potential must be channel-indexed before Coulomb is allowed to do explanatory work: the $p+n$ triplet channel may bind, while the singlet channel must remain unbound before adding the $p+p$ Coulomb penalty.
 
 ### First Confinement-Energetics Consumer
 
@@ -96,7 +96,7 @@ $$
 r\to\infty,
 $$
 
-with no open-color far field between color-singlet nucleons. The first useful calculation is therefore not a fitted Yukawa curve; it is the comparison between two isolated closed nucleon corridors and a paired closed-corridor minimization. The row is rejected if it needs an independent residual-force parameter, leaves unscreened color leakage, or binds $p+p$ as easily as $p+n$ after $V_{\text{Coul}}$, orientation, and branch-interface rows are included.
+with no open-color far field between color-singlet nucleons. The first useful calculation is therefore not a fitted Yukawa curve; it is the comparison between two isolated closed nucleon corridors and a paired closed-corridor minimization. The row is rejected if it needs an independent residual-force parameter, leaves unscreened color leakage, or binds $p+p$ as easily as $p+n$ after spin-channel, $V_{\text{Coul}}$, orientation, and branch-interface rows are included.
 
 [NN Corridor Overlap First Evaluation](nn-corridor-overlap-first-evaluation.md) records the first reduced numerical row for that comparison. It gives a candidate $p+n$ attractive window and keeps the corresponding $p+p$ row positive after orientation suppression, branch-interface mismatch, and Coulomb are included. Its channel weights now come from a first $\mathcal B_{ij}^{\mathrm{int}}$ extraction; the ranges and scales remain source leads until the same confinement functional produces them directly.
 

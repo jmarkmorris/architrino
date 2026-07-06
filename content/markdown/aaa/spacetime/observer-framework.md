@@ -71,7 +71,7 @@ C_A,
 \mathcal{B}_{\partial\Omega}^{(O)}(W)
 \right)
 $$
-where $Y_A(t_{\mathrm{eff}})$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, and $\mathcal{N}_A$ is the declared nuisance family. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t_{\mathrm{eff}})$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
+where $Y_A(t_{\mathrm{eff}})$ is the measured readout, $\mathcal{K}_A$ is the apparatus response kernel, $\mathcal{M}_A$ is the modulation or timing protocol, $C_A$ is calibration covariance, $\mathcal{N}_A$ is the declared nuisance family, and $\mathcal{B}_{\partial\Omega}^{(O)}(W)$ is the retained boundary-wake family defined below. Redshift measurements, torsion balances, preferred-frame clock tests, CMB radiometers, and interferometric gravitational-wave detectors differ mainly in these record fields. A comparison that keeps $Y_A(t_{\mathrm{eff}})$ while replacing $\mathcal{K}_A$, $\mathcal{M}_A$, $C_A$, or $\mathcal{N}_A$ after seeing the result is not the same Physical Observer record.
 
 Photon-distance records need the same separation. For an emission event $E$, reception event $R$, and transported photon-channel packet $\gamma$, a Physical Observer should not collapse three different quantities into one distance:
 $$
@@ -94,7 +94,7 @@ z_\gamma,
 \mathcal{N}_O
 \right).
 $$
-Here $d_{\mathrm{void}}$ is the Euclidean coordinate separation of the two recorded events in the fixed void, $L_\gamma$ is the photon-channel path-history length through the Noether sea, and $D_O$ is the Physical Observer's inferred distance under a declared inference map. Redshift may constrain $D_O$, but it is not by itself a measurement of either absolute separation or photon path length unless the endpoint clock, launch, path-history, and calibration rows are held fixed in the same record.
+Here $d_{\mathrm{void}}$ is the Euclidean coordinate separation of the two recorded events in the fixed void, $L_\gamma$ is the photon-channel path-history length through the Noether sea, and $D_O$ is the Physical Observer's inferred distance under a declared inference map. In this expression $\mathcal{K}_O$ and $\mathcal{N}_O$ are inference-stage kernel and nuisance choices, distinct from the apparatus-stage response and nuisance fields already retained inside $\Theta_{\gamma}^{(O,W)}$. Redshift may constrain $D_O$, but it is not by itself a measurement of either absolute separation or photon path length unless the endpoint clock, launch, path-history, and calibration rows are held fixed in the same record.
 
 This is the central observational warning for cosmology: photons are the dominant observation channel, but a photon record is a transport record through the Noether sea before it is a direct distance label.
 
@@ -119,18 +119,25 @@ This distinction protects several recurring claims:
 
 For the quantum side of this distinction, see [Wavefunction Ontology](../quantum/wavefunction-ontology.md) and [Measurement Ontology](../quantum/measurement-ontology.md).
 
-Formal note: a local subsystem is not generally closed under the primitive dynamics. A Physical Observer may model a region as though it were isolated, but finite-speed wake history still crosses the boundary. Let $\Omega\subset\Sigma_T$ be the spatial region resolved by a Physical Observer, let $X_\Omega(T)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<T}$ be the path-history data for the relevant architrino trajectories and causal wakes before $T$. The missing exterior influence can be represented as boundary wake data
+Formal note: a local subsystem is not generally closed under the primitive dynamics. A Physical Observer may model a region as though it were isolated, but finite-speed wake history still crosses the boundary. Let $\Omega\subset\Sigma_T$ be the spatial region resolved by a Physical Observer, let $X_\Omega(T)$ be the internal assembly state represented inside that region, and let $\mathcal{H}_{\Omega}^{<T}$ be the retained path-history data for internal trajectories and locally resolved causal wakes before $T$. The missing exterior influence is represented by the accumulated incoming boundary-wake ledger
 $$
 \mathcal{B}_{\partial\Omega}(T)
 =
+\mathcal{B}_{\partial\Omega}^{\mathrm{in}}(\le T)
+=
 \left\{
-(j,T_{\mathrm{em}},\mathbf X_j(T_{\mathrm{em}}),q_j)
+(j,T_{\mathrm{em}},T_{\mathrm{cross}},\mathbf X_{\mathrm{cross}},
+\mathbf X_j(T_{\mathrm{em}}),\mathbf V_j(T_{\mathrm{em}}),q_j)
 \;:\;
-T_{\mathrm{em}}<T,\quad
-\|\mathbf X-\mathbf X_j(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}}),\quad
-\mathbf X\in\partial\Omega
+\mathbf X_j(T_{\mathrm{em}})\notin\Omega,\quad
+T_{\mathrm{em}}<T_{\mathrm{cross}}\le T,\quad
+\mathbf X_{\mathrm{cross}}\in\partial\Omega,\quad
+\|\mathbf X_{\mathrm{cross}}-\mathbf X_j(T_{\mathrm{em}})\|
+=c_f(T_{\mathrm{cross}}-T_{\mathrm{em}})
 \right\}
 $$
+
+The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior isochron still intersects $\partial\Omega$ at the evaluation time.
 
 The subsystem evolution therefore has the schematic form
 $$
@@ -146,6 +153,8 @@ $$
 where $N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea state. A Physical Observer who models only $X_\Omega(T)$ has omitted finite-speed signals, incoming causal wakes, and path-history branches crossing the boundary. That omission can make local prediction fail without implying indeterminism in the $\mathbb{U}_{\text{now}}$ universe-state perspective, because the complete state includes the boundary wake data and the path-history ledger needed for deterministic continuation.
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
+
+The following diagnostics have different status. The ambiguity indicator $\Delta_P^{(O,W)}$ and the boundary-wake family $\mathcal{B}_{\partial\Omega}^{(O)}$ are consumed by validation, effective-metric, and local-horizon comparison arguments as observer-record discipline. The covariance split, causal-order residual, reconstruction-uniqueness residual, and process-table mismatch are comparison scaffolds unless an apparatus-specific benchmark or closure proof consumes them. None of these objects adds substrate ontology; each tests whether one declared Physical Observer record is being reused rather than refit.
 
 ### Global-Reconstruction Ambiguity
 
@@ -220,7 +229,7 @@ N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
 \delta Y_B(t_{\mathrm{eff}}';\mathcal{B},\theta)\,
 d\mu_{\Omega,\theta}(\mathcal{B})
 $$
-It must be positive semidefinite as a channel covariance:
+It is positive semidefinite by construction as a channel covariance:
 $$
 \int\!\!\int
 f_A(t_{\mathrm{eff}})\,
@@ -228,7 +237,7 @@ N^{\mathrm{bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)\,
 f_B(t_{\mathrm{eff}}')\,dt_{\mathrm{eff}}\,dt_{\mathrm{eff}}'
 \ge 0
 $$
-for every resolved test channel $f_A(t_{\mathrm{eff}})$ on the observation window.
+for every resolved test channel $f_A(t_{\mathrm{eff}})$ on the observation window. A model that violates this condition has broken the covariance decomposition rather than discovered a new observer-layer effect.
 
 A detector model may add separately calibrated residuals,
 $$
@@ -242,7 +251,7 @@ N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 $$
 The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
-For weak-field GR comparisons, the observer record should carry the whole channel bundle at once:
+For weak-field GR comparisons, this page treats the ADM/Cartan projection defined by [Emergent Metric](emergent-metric.md) as an input consumed by the observer record. The observer layer should carry the whole channel bundle at once:
 $$
 \Theta_{\mathrm{weak}}^{(O,W)}
 =
@@ -258,7 +267,7 @@ N^{\mathrm{env}}_{AB},
 \Pi_{\mathrm{ADM}}
 \right)
 $$
-where $\Pi_{\mathrm{ADM}}$ is the observer-level projection to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
+where $\Pi_{\mathrm{ADM}}$ is the observer-level projection, owned by the effective-metric map, to $(N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},\Phi_{\text{eff}},\chi_{\text{sea}})$. Here the lapse $N$ inside $\Pi_{\mathrm{ADM}}$, the medium-state notation $N_{\text{sea}}$, and the covariance kernels $N^{\mathrm{bw}}_{AB}$, $N^{\mathrm{det}}_{AB}$, and $N^{\mathrm{env}}_{AB}$ are distinct objects despite sharing the same roman letter. Redshift, Shapiro delay, lensing, weak-field acceleration, and preferred-frame residuals must be read from $\Theta_{\mathrm{weak}}^{(O,W)}$ with the same covariance and boundary-data model. A channel-specific replacement of $\mu_{\Omega,\theta}$, $N^{\mathrm{bw}}_{AB}$, or the imported $\Pi_{\mathrm{ADM}}$ is therefore a retuning residual, not an improved observer model.
 
 The same declared-measure discipline applies to observer-level probability tables and ensemble summaries. For a Physical Observer record $\theta$, observation window $W$, readout channel $Y_A$, and event set $B$, the probability assigned to that readout should be a pushforward of the conditional measure already tied to retained boundary data:
 $$
@@ -302,7 +311,7 @@ The disagreement is epistemic rather than ontological:
 
 External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels. All three are assembly and Noether sea outputs rather than substrate intervals.
 
-For a declared GR comparison metric and a candidate Noether sea state and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact recovery diagnostic is
+For a declared GR comparison metric supplied by the effective-metric map and a candidate Noether sea state and observer-state parameter record $\theta$, let $\prec_{\mathrm{eff}}(\theta)$ be the causal order inferred by Physical Observers from photon-channel records and clock synchronization, and let $\prec_{\mathrm{GR}}$ be the causal order of the target effective metric. A compact observer-layer recovery diagnostic is
 $$
 \mathcal{R}_{\mathrm{causal}}(\theta)
 =
@@ -318,16 +327,16 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \lambda_{\mathrm{PF}}
 \sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
-Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
+Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN drift coefficients. The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout; they are not additional substrate time variables. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
-A causal-set comparison adds a useful uniqueness discipline. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and GR proper-time terms. Define the effective reconstruction-uniqueness residual
+A causal-set comparison adds a useful uniqueness discipline after the effective-metric map has supplied the candidate metric family. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and GR proper-time terms. Define the observer-side reconstruction-uniqueness residual
 $$
 \mathcal{H}_{\mathrm{eff}}(\theta;\ell,\varepsilon)
 =
 \sup_{g_1,g_2\in\mathcal{G}_{\ell,\varepsilon}(\theta)}
 d_{\mathrm{geom},\ell}(g_1,g_2)
 $$
-Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
+Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This residual is unrelated to the path-history ledger $\mathcal{H}_{\Omega}^{<T}$ above. It is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
 
 Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. They test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
 $$

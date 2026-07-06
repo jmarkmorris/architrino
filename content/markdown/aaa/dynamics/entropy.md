@@ -24,23 +24,23 @@ The quantum version says the same thing in a sharper language. A complete compar
 
 ## Core Definition
 
-Let $\mu_T$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $T_0$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[T_0-h,T_0]$ and let $\mathcal{F}_{T_0\to T}$ be the deterministic delayed-flow map. Then
+Let $\mu_T$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $T_{\mathrm{prep}}$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[T_{\mathrm{prep}}-h,T_{\mathrm{prep}}]$ and let $\mathcal{F}_{T_{\mathrm{prep}}\to T}$ be the deterministic delayed-flow map. Then
 
 $$
 \mu_T
 =
-\left(\mathcal{F}_{T_0\to T}\right)_*\nu_{\mathrm{prep}}
+\left(\mathcal{F}_{T_{\mathrm{prep}}\to T}\right)_*\nu_{\mathrm{prep}}
 $$
 
 This is the official reading of $\mu_T$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
 
-Let $W(t)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
+Let $W(T)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
 
 $$
-\Pi_{\mathcal{Q},W}:\Gamma_t\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
+\Pi_{\mathcal{Q},W}:\Gamma_T\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
 $$
 
-maps complete histories into retained record variables. Here $\Gamma_t$ is the preparation-conditioned complete-history space at time $t$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
+maps complete histories into retained record variables. Here $\Gamma_T$ is the preparation-conditioned complete-history space at absolute time $T$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
 
 $$
 \nu_{\mathcal{Q},W,T}
@@ -48,16 +48,16 @@ $$
 (\Pi_{\mathcal{Q},W})_*\mu_T
 =
 (\Pi_{\mathcal{Q},W})_*
-\left(\mathcal{F}_{T_0\to T}\right)_*
+\left(\mathcal{F}_{T_{\mathrm{prep}}\to T}\right)_*
 \nu_{\mathrm{prep}}
 $$
 
 and the corresponding observer-window entropy is
 
 $$
-S_{\Pi,W}(t)
+S_{\Pi,W}(T)
 =
-k_B\,\mathcal{H}\!\left(\nu_{\mathcal{Q},W,t}\right)
+k_B\,\mathcal{H}\!\left(\nu_{\mathcal{Q},W,T}\right)
 $$
 
 where $\mathcal{H}$ is the entropy functional appropriate to the retained record measure.
@@ -75,58 +75,58 @@ $$
 For a microcanonical retained window, the same idea is written as
 
 $$
-S_{\mathcal{Q},W}(t)
+S_{\mathcal{Q},W}(T)
 =
-k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right)
+k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(T)}\right)
 $$
 
-where $\Gamma_{\mathcal{Q},W(t)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window.
+where $\Gamma_{\mathcal{Q},W(T)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window.
 
 Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
 The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
 
-Equivalently, entropy is a functional on the quotient $\Gamma_t/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
+Equivalently, entropy is a functional on the quotient $\Gamma_T/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the active-cell log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
 
-### Receiver Inference Fibers And Provenance Graphs
+### Receiver Inference Fibers and Provenance Graphs
 
 The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf X_i(T),T)$, let the retained hit record be
 
 $$
-\mathcal{H}_i^{\mathrm{hit}}(t)
+\mathcal{H}_i^{\mathrm{hit}}(T)
 =
 \left\{
-\left(\ell_a,\|\mathbf{a}_a\|\right)
-\right\}_{a\in A_i(t)}
+\left(\ell_\rho,\|\mathbf{A}_\rho\|\right)
+\right\}_{\rho\in R_i(T)}
 $$
 
-where $\ell_a$ is the retained unoriented line of action and $\|\mathbf{a}_a\|$ is the retained hit strength for an active received root. If an apparatus retains oriented directions or source tags, those data are added to $\mathcal{H}_i^{\mathrm{hit}}$ explicitly. The receiver inference fiber is
+where $\rho\in R_i(T)$ indexes an active received root, $\ell_\rho$ is the retained unoriented line of action, and $\|\mathbf{A}_\rho\|$ is the retained hit strength. If an apparatus retains oriented directions or source tags, those data are added to $\mathcal{H}_i^{\mathrm{hit}}$ explicitly. The receiver inference fiber is
 
 $$
-\Gamma_i^{\mathrm{hit}}(t)
+\Gamma_i^{\mathrm{hit}}(T)
 =
 \left\{
-\gamma\in\Gamma_t:
+\gamma\in\Gamma_T:
 \text{the delayed branch sum of }\gamma
 \text{ reproduces }
-\mathcal{H}_i^{\mathrm{hit}}(t)
+\mathcal{H}_i^{\mathrm{hit}}(T)
 \right\}
 $$
 
 and the receiver-hit entropy is
 
 $$
-S_i^{\mathrm{hit}}(t)
+S_i^{\mathrm{hit}}(T)
 =
 k_B\,\mathcal{H}
 \left(
-\mu_t\big|_{\Gamma_i^{\mathrm{hit}}(t)}
+\mu_T\big|_{\Gamma_i^{\mathrm{hit}}(T)}
 \right)
 $$
 
-This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
+This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(T)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
-When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
+When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(T)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
 
 For windows with many retained roots, define the causal-wake provenance graph $G_{\mathrm{prov}}(W)$: vertices are retained causal roots in $W$, and two vertices are joined when their roots trace to a common emitter worldline segment in the compatible complete histories. This graph is the common native carrier for three entropy uses below: its connectedness supplies history-backed concordance, its edge cuts supply access-cut entropy, and its boundary-crossing edges supply the wake-escapement contribution to the arrow-of-time ledger.
 
@@ -134,11 +134,11 @@ More precisely, $G_{\mathrm{prov}}(W)$ is the 1-skeleton of the receiver-source 
 
 ## Minimum Specification
 
-Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_t$ on compatible deterministic histories. Second, it should name the access window $W(t)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation packet. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
+Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_T$ on compatible deterministic histories. Second, it should name the access window $W(T)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation packet. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
 
 This checklist is not extra ontology. It is the minimum context needed for an entropy claim to say something definite. Without these ingredients, a phrase such as "the entropy increased," "the system is maximally entropic," or "information was lost" has not yet specified which alternatives were unresolved, which record retained them, or which comparison class made the claim meaningful.
 
-## Temperature As A Same-Record Ensemble Variable
+## Temperature as a Same-Record Ensemble Variable
 
 Temperature inherits the same discipline. It is not a primitive substrate property of an architrino, a single Noether braid, or the Euclidean void. It is an effective ensemble variable admitted only when a declared coarse-graining retains enough accessible energy exchange, state counting, and local stability for a thermodynamic or kinetic readout to be meaningful.
 
@@ -185,18 +185,18 @@ At human scales, the temperature of matter is therefore a bulk property of Stand
 
 For Noether sea cadence transport, the same-record condition means temperature may bias the rates of accepted branch-ledger transitions but may not be treated as a direct single-braid heat property. The theorem target is stated in [Noether Sea](../spacetime/noether-sea.md#temperature-conditioned-branch-transition-target).
 
-## Work Availability And Energy Spread
+## Work Availability and Energy Spread
 
 Traditional thermodynamics often introduces entropy as a measure of energy spread. In this chapter that is the work-availability face of record coarse-graining. A hot reservoir, chemical store, coherent photon-channel stream, or gravitational potential gradient is low entropy only relative to a work channel and comparison record that can use the concentration. After the same energy is distributed among many thermal, boundary, or wake-history microrecords, the total energy ledger may still close, but the retained record supports less extractable work.
 
 For a fixed reference bath or readout channel with temperature $T_R$ declared by the same record, define the availability diagnostic
 
 $$
-A_{\mathcal{Q},W}^{(T_R)}(t)
+A_{\mathcal{Q},W}^{(T_R)}(T)
 =
-E_{\mathcal{Q},W}(t)
+E_{\mathcal{Q},W}(T)
 -
-T_R S_{\mathcal{Q},W}(t)
+T_R S_{\mathcal{Q},W}(T)
 $$
 
 This is a diagnostic, not a new substrate property. In a closed isothermal comparison, the useful work extractable from the retained packet is bounded by the decrease of this same-record availability,
@@ -204,9 +204,9 @@ This is a diagnostic, not a new substrate property. In a closed isothermal compa
 $$
 W_{\mathrm{useful}}
 \le
-A_{\mathcal{Q},W}^{(T_R)}(t_i)
+A_{\mathcal{Q},W}^{(T_R)}(T_i)
 -
-A_{\mathcal{Q},W}^{(T_R)}(t_f)
+A_{\mathcal{Q},W}^{(T_R)}(T_f)
 $$
 
 up to declared control and boundary residuals. A packet that conserves $E_{\mathcal{Q},W}$ while increasing $S_{\mathcal{Q},W}$ has not lost energy. It has lost retained work availability in that comparison channel.
@@ -225,10 +225,10 @@ The value can change when the apparatus record contains which pressure side, mol
 This also disciplines heat-death language. A claim that a universe window has no usable work left is not a bare statement about the complete microstate; it is a statement about a declared class of controls, readouts, reservoirs, and final records. For a control family $\mathcal{C}^{\mathrm{ctrl}}$ over admissible windows, the remaining work-availability envelope can be written schematically as
 
 $$
-\mathcal{A}_{\mathrm{use}}(t;\mathcal{C}^{\mathrm{ctrl}})
+\mathcal{A}_{\mathrm{use}}(T;\mathcal{C}^{\mathrm{ctrl}})
 =
 \sup_{W,R_f}
-W_{\max}\!\left(\theta_W(t);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
+W_{\max}\!\left(\theta_W(T);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
 $$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this envelope must distinguish exposed gradients from shielded internal assembly energy. If the declared control class includes operations that can change shielding, write schematically
@@ -244,15 +244,16 @@ $$
 =
 \sup_{\alpha\in\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}}
 \sum_A
-\left(1-\zeta_\alpha(A)\right)E_{\text{internal}}(A)
+\left(\zeta_{\text{probe},\alpha}(A)-\zeta_{\text{probe},0}(A)\right)_+
+E_{\text{internal}}(A)
 $$
 
-Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can lower an assembly's shielding factor in the declared window. If topological assembly protection forbids such operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the shielded-reservoir term.
+Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can raise an assembly's probe-channel leakage in the declared window, $\zeta_{\text{probe},0}$ is the initial probe-channel leakage, and $[x]_+=\max(x,0)$. If topological assembly protection forbids such leakage-raising operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the accessible de-shielding term.
 
-This reservoir term is not unlimited. The de-shielding operation must remain inside the same scalar-mass shielding window used by the mass map, so lowering $\zeta(A)$ is constrained by the positivity condition in [Energy](energy.md#emergent-inertia-mass-from-shielded-energy):
+This reservoir term is not unlimited. The reservoir branch must begin inside the same scalar-mass shielding window used by the mass map. In the probe channel, deep shielding is constrained by the positivity condition in [Energy](energy.md#emergent-inertia-mass-from-shielded-energy):
 
 $$
-\zeta(A)(1+\delta\mathcal M_0)
+\zeta_{\text{probe}}(A)(1+\delta\mathcal M_0)
 >
 \frac{1}{3}
 \left|
@@ -260,7 +261,7 @@ $$
 \right|
 $$
 
-If a control lowers $\zeta$ past that window, the assembly has stopped being the same matter reservoir whose work availability was being counted. Deep shielding increases the hidden internal-energy store, but it also tightens the allowed de-shielding path because the trace-free exposure and medium-response channels can destroy positive scalar inertial response.
+If the initial branch lies below that window, it has not supplied a positive scalar-mass reservoir for this work-availability comparison. Raising $\zeta_{\text{probe}}$ can expose internal energy, but the extraction path is still constrained by branch survival: an assembly de-shielded so far that it exits the mass map or dissociates has stopped being the same matter reservoir whose work availability was being counted.
 
 A heat-death statement for that control family means $\mathcal{A}_{\mathrm{use}}$ tends to zero or below the declared operational threshold. It does not prove that every possible future record system, assembly class, or Noether sea access channel has no usable distinction. It proves only the exhaustion of usable gradients and accessible shielded reservoirs for the stated comparison class.
 
@@ -280,7 +281,7 @@ $$
 
 where $\rho_{\mathrm{in}}$ and $\rho_{\mathrm{out}}$ are retained spectral/angular records, not new ontological fluids. The entropy claim is physical only when this boundary record is the same one used for energy flux, internal work, heat, and observer readout.
 
-## Complexity And Driven Intermediate Windows
+## Complexity and Driven Intermediate Windows
 
 Entropy and complexity answer different questions. Entropy compares how many compatible histories remain unresolved after a coarse-graining. Complexity asks whether the path between low-entropy and high-entropy records passes through organized intermediate structures. Low entropy can be simple, high entropy can be simple, and the interesting dynamics often occur in a driven window between them.
 
@@ -317,7 +318,7 @@ $$
 
 The quantity peaks when a sharply organized coherent core coexists with substantial exported or surrounding incoherent entropy. Stable assemblies are therefore candidate local maxima or ridges of $\mathcal{C}_W$ under the second-law export constraint above. The collinear-breather and nested shell braid programs can test this directly by asking whether phase-locked trajectory bundles sit on such ridges while the surrounding Noether sea and wake-boundary ledger pay the entropy cost.
 
-## Mapping In From Standard Entropies
+## Mapping in from Standard Entropies
 
 Legacy entropy formulas survive as effective projections with different prerequisites.
 
@@ -379,17 +380,17 @@ $$
 w_k
 =
 \frac{
-\mu_t\!\left(
-\mathcal{F}_{t\to t_+}^{-1}(B_k)
+\mu_T\!\left(
+\mathcal{F}_{T\to T_+}^{-1}(B_k)
 \cap
 \Gamma_{\mathrm{prep}}
 \right)
 }{
-\mu_t\!\left(\Gamma_{\mathrm{prep}}\right)
+\mu_T\!\left(\Gamma_{\mathrm{prep}}\right)
 }
 $$
 
-and the effective outcome entropy is $-k_B\sum_k w_k\log w_k$. Entropy does not select which branch the actual complete microstate takes. The measure $\mu_t$ predicts the branch weights that any record-limited observer must assign before the missing path-history distinctions are recovered. This is the direct entropy handoff to Born-rule closure.
+and the effective outcome entropy is $-k_B\sum_k w_k\log w_k$. Entropy does not select which branch the actual complete microstate takes. The measure $\mu_T$ predicts the branch weights that any record-limited observer must assign before the missing path-history distinctions are recovered. This is the direct entropy handoff to Born-rule closure.
 
 Von Neumann and entanglement entropies map to a declared quantum comparison record, factorization, and access cut. For a retained sector $A$ and unresolved complement $\bar A$, the standard reduced record is
 
@@ -465,7 +466,7 @@ H_2(P,Q)
 -\sum_i p_i\log_2 q_i
 $$
 
-The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient. This is why next-symbol prediction and compression can be equivalent for a language model or other coding apparatus while remaining an observer-level modeling statement. The entropy becomes physical only after the symbol carrier, probability source, encoder, decoder, training or update channel, and device/boundary cost are part of the same record.
+The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient. This is why next-symbol prediction and compression can be equivalent for a predictive coding apparatus while remaining an observer-level modeling statement. The entropy becomes physical only after the symbol carrier, probability source, encoder, decoder, training or update channel, and device/boundary cost are part of the same record.
 
 Record entropy maps to durable alternatives in an apparatus or observer channel. A record is not merely a symbolic label. It is an assembly/environment state that persists long enough to be read, copied, or reset within a declared window.
 
@@ -473,7 +474,7 @@ Horizon entropy maps to observer-accessible boundary or horizon-interface label 
 
 Computation entropy maps to implemented device cost. Bit logic alone does not create a thermodynamic cost. A cost claim is physical only after the device state space, success criterion, reset operation, heat/work ledger, and boundary exchange have been declared.
 
-## Mapping Out To Effective Physics
+## Mapping out to Effective Physics
 
 The outward map from $\mathbb{A}\mathbb{A}\mathbb{A}$ to effective entropy has five steps.
 
@@ -490,14 +491,14 @@ $$
 \left(
 \mathbf{J}_S
 -
-s_{\mathcal{Q}}\mathbf{v}_{\partial W}
+s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \right)
 \cdot\hat{\mathbf{n}}\,dA
 +
 \mathcal{R}_{\mathcal{Q}}(T)
 $$
 
-Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{v}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{v}_{\partial W}=0$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
+Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{u}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
 
 $$
 \frac{dS_{\mathcal{Q},W}}{dT}\ge 0
@@ -508,14 +509,14 @@ $$
 \left(
 \mathbf{J}_S
 -
-s_{\mathcal{Q}}\mathbf{v}_{\partial W}
+s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \right)
 \cdot\hat{\mathbf{n}}\,dA
 $$
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
 
-The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
+The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),T)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
 \frac{d}{dT}S_{\Pi,W}(T)
@@ -535,7 +536,7 @@ on a fixed coarse-graining and boundary convention. In words: observer-window en
 
 The same memory-boundary flux has several readings in the dynamics stack. As an energy 0-form it is wake escapement; as a corrected symplectic 2-form it is the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](effective-lagrangian.md#effective-hamiltonian-domain-gate); as a momentum 1-form it is the response-center drift obstruction in [Energy](energy.md#energy-conservation-and-exchange); and as a record count it is entropy production. A retained branch is energy-flat, Hamiltonian-promotable, response-center stable, and entropy-flat only when this memory-boundary flux is recurrent over the return window. A secular boundary flux is the common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
 
-## Second Law And Same-Record Monotonicity
+## Second Law and Same-Record Monotonicity
 
 The traditional second law has several equivalent-looking forms only after the comparison class has been fixed. Clausius uses a cycle or reversible-comparison statement, Kelvin-Planck forbids a cyclic device from converting heat from one reservoir wholly into work, Boltzmann says overwhelmingly many compatible microstates lie in larger macrostates, and Maxwell-demon analyses require memory and reset costs to be included. These are not four independent substances called entropy. They are four projections of the same discipline: the complete thermodynamic packet must not shrink the retained compatible-history record for free.
 
@@ -605,9 +606,9 @@ This rule is why entropy appears as a discipline across many chapters. It protec
 
 In the language of the core definition, the same-record rule says that entropy, temperature, heat flux, basin weights, and record costs must all factor through one projection of the same fiber. Fitting them from separate ensembles is a split-fiber error: the quantities may be individually meaningful, but the packet has not shown that they are compatible projections of one physical record.
 
-## Entropy And Absolute Time
+## Entropy and Absolute Time
 
-Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $T_0 < T$ can contribute to a receiver at $T$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
+Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $T_{\mathrm{em}} < T$ can contribute to a receiver at $T$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
 
 Even if the complete deterministic dynamics preserve the underlying measure, the observer-window entropy $S_{\Pi,W}$ can increase when $\Pi_{\mathcal{Q},W}$ discards path-history, boundary-wake, or apparatus-record information. That increase is a projection effect inside the declared record. It is not evidence that time itself is generated by entropy.
 
@@ -658,19 +659,19 @@ $$
 
 with the denominator restricted to the retained incoming roots in the declared window. Equivalently, $\mathcal{K}$ is the local edge-connectivity fraction of $G_{\mathrm{prov}}$: it measures how many retained incoming roots share emitter-worldline edges with neighboring receivers' roots. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea emitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-emitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are dynamically suppressed by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent emitter-history coincidences, not only a memory snapshot. At this claim level, high-$\mathcal K$ fluctuations are treated as measure-suppressed rather than forbidden; forbiddance would require a separate theorem that no compatible emitter-history assignment exists.
 
-## Measurement And Computation
+## Measurement and Computation
 
 Measurement records require entropy locking. For a declared apparatus/environment channel,
 
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
 =
-S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_0+T_{\text{rec}})
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_{\mathrm{rec},0}+T_{\text{rec}})
 -
-S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_0)
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_{\mathrm{rec},0})
 $$
 
-is the entropy change associated with the candidate record. A strong record candidate satisfies
+is the entropy change associated with the candidate record, with $T_{\mathrm{rec},0}$ the start of the record-formation window. A strong record candidate satisfies
 
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
@@ -690,6 +691,8 @@ k_B\log N-k_B\varepsilon_\mu,
 N\ge2
 $$
 
+with $\varepsilon_\mu$ the declared measure/readout tolerance.
+
 For a non-uniform retained distribution, $k_B\log N$ is replaced by $-k_B\sum_i p_i\log p_i$.
 
 A Maxwell-demon packet therefore has two admissible readings. If the demon does not reset, it spends a low-entropy blank-memory record as a resource and converts that resource into a pressure, temperature, or sorting record. If the demon is required to act cyclically, the memory, actuator, partition, target system, and boundary environment must return to the same physical record. A cyclic packet that claims to sort a broad complete-history region into a narrower one while preserving the same boundary and memory record is not a thermodynamic miracle. It is a failed same-record closure.
@@ -708,7 +711,7 @@ $$
 
 The inequality is not a new law of symbols. It states the burden that the same physical record defining success must also supply the entropy, heat, work, and boundary terms used to claim a cost.
 
-## Horizons And Emergent Gravity
+## Horizons and Emergent Gravity
 
 Horizon entropy is the most stringent test of this mapping because it connects record counting, effective geometry, energy flux, and unitarity pressure. The useful comparison target is not that gravity is "really entropy." The target is that one strong-field Noether sea record supplies the observer-level entropy, temperature, flux, and metric response together.
 
@@ -796,7 +799,7 @@ A third failure mode is entropic gravity as a substitute for the mass mechanism.
 
 A fourth failure mode is fitted horizon bookkeeping. If a black-hole or local-horizon packet uses one record for entropy, another for temperature, another for stress, and another for release channels, the apparent agreement is not a native closure.
 
-The fifth failure mode is promoting entropy into time. Entropy can diagnose an emergent arrow inside a stated physical and inferential window. It does not supply the absolute ordering parameter $t$.
+The fifth failure mode is promoting entropy into time. Entropy can diagnose an emergent arrow inside a stated physical and inferential window. It does not supply the absolute ordering parameter $T$.
 
 A sixth failure mode is confusing entropy with complexity. Low entropy can be simple, maximum entropy can be simple, and complex organized structures normally belong to driven intermediate windows that export more entropy than they locally suppress. For $\mathbb{A}\mathbb{A}\mathbb{A}$, biological or self-organizing examples are open-window bookkeeping, not exceptions to deterministic dynamics.
 
@@ -810,6 +813,6 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 
 ## Interfaces
 
-The energy-side residuals are stated in [Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target).
+The energy-side residuals are stated in [Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation-and-causal-ordering). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.

@@ -144,12 +144,19 @@
       "sceneId": "spacetime",
       "sceneName": "Noether Sea and Effective Spacetime",
       "objects": {
-        "effective_metric": "Effective Metric",
+        "black_holes": "Black Holes",
+        "emergent_metric": "Emergent Metric",
+        "general_relativity_observables": "General Relativity",
+        "gravitational_waves": "Gravitational Waves",
+        "horizon_chirality": "Horizon Chirality",
+        "lorentz_kinematics": "Lorentz Kinematics",
         "molecular_exclusion_and_noether_sea_response": "Molecular Exclusion and Noether Sea Response",
         "noether_sea": "Noether Sea",
-        "physical_observers": "Physical Observers",
         "noether_sea_pro_anti_coupling": "Noether Sea Pro/Anti Coupling",
-        "strong_field_regime": "Strong-Field Regime"
+        "observer_framework": "Observer Framework",
+        "ppn_parameters": "PPN Parameters",
+        "proper_time_and_time_dilation": "Proper Time and Time Dilation",
+        "singularity_resolution": "Singularity Resolution"
       }
     },
     "content/scenes/spacetime/physical_observers.json": {
@@ -169,16 +176,6 @@
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
         "ppn_parameters": "PPN Parameters"
-      }
-    },
-    "content/scenes/spacetime/strong_field_regime.json": {
-      "sceneId": "strong_field_regime",
-      "sceneName": "Strong-Field Regime",
-      "objects": {
-        "black_holes": "Black Holes",
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
-        "horizon_chirality": "Horizon Chirality",
-        "singularity_resolution": "Singularity Resolution"
       }
     },
     "content/scenes/philosophy_history/philosophy_history.json": {

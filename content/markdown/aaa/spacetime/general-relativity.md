@@ -30,6 +30,8 @@ The closure demand is not merely qualitative resemblance. The same constitutive 
 
 Every row below should be treated as a test of the same medium record. If a clock result, a lensing result, and a gravitational-wave result require different hidden records, the branch has produced separate fits rather than a GR recovery.
 
+Notation convention: $G_N$ denotes the standard Newtonian and low-energy GR comparison constant in the observable benchmark formulas below. $G_{\mathrm{eff}}(\theta)$ denotes the recovered constitutive coefficient of a candidate Noether sea record, and a validated weak-field branch must make $G_{\mathrm{eff}}(\theta)\to G_N$ in the same record that recovers the clock, lensing, PPN, and gravitational-wave rows. Nearby standard-comparison formulas may retain $G$ as ordinary GR shorthand; this chapter writes $G_N$ when the constant belongs to the benchmark rather than to the constitutive map.
+
 ### Network evidence and nuisance separation
 
 The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases. The phenomenology gate therefore treats GR recovery as a network constraint:
@@ -44,7 +46,7 @@ where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, 
 
 ### Causal-order and scale recovery
 
-Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. This is the phenomenology-side version of the causal-order diagnostic in [observer-framework.md](./observer-framework.md#effective-causal-order-recovery):
+Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. The following diagnostic is imported unchanged from [observer-framework.md](./observer-framework.md#effective-causal-order-recovery):
 $$
 \mathcal{R}_{\mathrm{causal}}(\theta)
 =
@@ -61,6 +63,8 @@ d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
 \sum_{i=1}^{3}\alpha_i(\theta)^2
 $$
 The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
+
+The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout. They are scale readouts in the effective observer layer, not additional substrate time variables.
 
 In plain terms, the observer cannot be allowed to recover one causal story from photons, a different clock story from matter, and a third timing story from gravitational waves. The tested regime must look like one effective spacetime to the Physical Observer.
 
@@ -90,9 +94,9 @@ The clock channel must reproduce
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}}
 \approx
-\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{v^2}{c_0^2}}
+\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{\|\mathbf w\|^2}{c_0^2}}
 $$
-in the weak-field, low-velocity observer regime, where $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
+in the weak-field, low-velocity observer regime, where $\mathbf w$ is the sea-relative drift of the clock in the weak homogeneous limit and $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
 $$
 \frac{\Delta \nu}{\nu}
 \approx
@@ -123,7 +127,7 @@ For a point mass, the resulting delay is
 $$
 \Delta t_{\mathrm{eff}}
 =
-\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
+\frac{(1+\gamma_{\text{eff}})G_N M}{c_0^3}
 \ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
 +O(c_0^{-5})
 $$
@@ -136,11 +140,11 @@ $$
 \Delta\theta
 \approx
 2(1+\gamma_{\text{eff}})
-\frac{GM}{b\,c_0^2}
+\frac{G_N M}{b\,c_0^2}
 $$
 with impact parameter $b$. In the GR-matching limit $\gamma_{\text{eff}}=1$, this reduces to the standard
 $$
-\Delta\theta \approx \frac{4GM}{b\,c_0^2}
+\Delta\theta \approx \frac{4G_N M}{b\,c_0^2}
 $$
 
 So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.
@@ -202,13 +206,13 @@ The perihelion row should carry the explicit GR target rather than only the name
 $$
 \Delta\varpi_{\mathrm{GR}}
 =
-\frac{6\pi GM}{a(1-e^2)c_0^2}
+\frac{6\pi G_N M}{a(1-e^2)c_0^2}
 $$
 per orbit. In the PPN projection this is the special case of
 $$
 \Delta\varpi_{\mathrm{PPN}}
 =
-\frac{2\pi GM}{a(1-e^2)c_0^2}
+\frac{2\pi G_N M}{a(1-e^2)c_0^2}
 \left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
 $$
 so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
@@ -272,9 +276,13 @@ $$
 }
 \ll 1
 $$
-with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response. Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
+with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response.
 
 The same statement can be read in mechanism language. Inertial response and gravitational response need not have identical substrate triggers: one can come from imposed acceleration of the assembly ledger, while the other can come from a Noether sea gradient. They recover the equivalence principle only if both triggers perturb the same shielded internal ledger through the same weak homogeneous response map. Any Mach-like dependence on the surrounding matter distribution must therefore appear as a common-mode feature of $\theta_W$, not as a body-specific adjustment of inertia.
+
+Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue.
+
+A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
 
 $$
 \eta_{\mathrm{SEP}}
@@ -303,10 +311,12 @@ must be observationally negligible in validated regimes. This is not optional. I
 
 The Noether sea picture must recover the observed near-luminal propagation of gravitational disturbances:
 $$
-\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1
+\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right|
+\le
+\varepsilon_{\mathrm{GW}}
 $$
 
-In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
+Here $\varepsilon_{\mathrm{GW}}$ is the multi-messenger speed tolerance owned by the [GW Speed](../validation/constraint-ledger.md#gw-speed) ledger row. In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
 
 ## Strong-Field Regime
 
@@ -323,11 +333,11 @@ The strong-field interpretation is therefore:
 
 The exterior benchmark still includes the standard compact-object scales before any native horizon-interface departure is promoted:
 $$
-r_s=\frac{2GM}{c_0^2},
+r_s=\frac{2G_N M}{c_0^2},
 \qquad
-r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
+r_{\mathrm{ph}}=\frac{3G_N M}{c_0^2},
 \qquad
-r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
+r_{\mathrm{ISCO}}=\frac{6G_N M}{c_0^2}
 $$
 for the Schwarzschild comparison branch. The first is the effective horizon radius, the second the null photon-orbit radius, and the third the innermost stable circular orbit for massive test bodies in the nonrotating exterior comparison. A native black-hole record may reinterpret what the horizon is made of, but it must still recover these exterior scales, or provide a declared residual template, before using strong-field ontology to explain compact-object observations.
 

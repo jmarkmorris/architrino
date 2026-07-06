@@ -339,6 +339,112 @@ test("Scene-Index nodes receive textbook chapter labels from resolver", async ()
   );
 });
 
+test("Scene-Diagram nodes omit runtime textbook chapter labels by default", async () => {
+  const repository = createRepositoryWithScenes(
+    {},
+    {
+      resolveTextbookChapterLabel: async (node) =>
+        node.childScene === "content/scenes/example/particle.json" ? "Ch 3.2" : null,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/diagram.json",
+    {
+      scene: {
+        type: "Scene-Diagram",
+        children: [
+          {
+            nodeId: "particle",
+            scenePath: "content/scenes/example/particle.json",
+          },
+        ],
+      },
+      objects: [
+        {
+          id: "particle",
+        },
+      ],
+    }
+  );
+
+  assert.equal(
+    config.nodes.find((node) => node.id === "particle")?.textbookChapterLabel ?? null,
+    null
+  );
+});
+
+test("Scene-Index nodes omit runtime textbook chapter labels for child diagram scenes", async () => {
+  const repository = createRepositoryWithScenes(
+    {
+      "content/scenes/example/diagram_child.json": {
+        scene: {
+          type: "Scene-Diagram",
+        },
+        objects: [],
+      },
+    },
+    {
+      resolveTextbookChapterLabel: async (node) =>
+        node.childScene === "content/scenes/example/diagram_child.json" ? "Ch 6.6" : null,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/index.json",
+    {
+      scene: {
+        type: "Scene-Index",
+        children: [
+          {
+            nodeId: "diagram_child",
+            scenePath: "content/scenes/example/diagram_child.json",
+          },
+        ],
+      },
+      objects: [
+        {
+          id: "diagram_child",
+        },
+      ],
+    }
+  );
+  const node = config.nodes.find((entry) => entry.id === "diagram_child");
+
+  assert.equal(node?.childScene, "content/scenes/example/diagram_child.json");
+  assert.equal(node?.textbookChapterLabel ?? null, null);
+});
+
+test("Atomic and Nuclear Assemblies omits the Atom child diagram chapter label", async () => {
+  const nuclearAtomicSceneData = JSON.parse(
+    await readFile(
+      new URL("../content/scenes/nuclear/nuclear_atomic.json", import.meta.url),
+      "utf8"
+    )
+  );
+  const atomSceneData = JSON.parse(
+    await readFile(new URL("../content/scenes/nuclear/atom.json", import.meta.url), "utf8")
+  );
+  const repository = createRepositoryWithScenes(
+    {
+      "content/scenes/nuclear/atom.json": atomSceneData,
+    },
+    {
+      resolveTextbookChapterLabel: async (node) =>
+        node.childScene === "content/scenes/nuclear/atom.json" ? "Ch 6.4" : null,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/nuclear/nuclear_atomic.json",
+    nuclearAtomicSceneData
+  );
+  const node = config.nodes.find((entry) => entry.id === "atom");
+
+  assert.equal(node?.childScene, "content/scenes/nuclear/atom.json");
+  assert.equal(node?.textbookChapterLabel ?? null, null);
+});
+
 test("Scene-Index can opt out of runtime textbook chapter labels", async () => {
   const repository = createRepositoryWithScenes(
     {

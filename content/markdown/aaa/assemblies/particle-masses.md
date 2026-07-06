@@ -99,7 +99,15 @@ Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\g
 
 #### Exposed Inertial-Response Trace
 
-The scalar shielding coefficient $\zeta(A)$ should be read as the isotropic trace part of a larger exposed response. For an accepted assembly branch $A$, let $\mathcal{L}_A(\hat R)$ denote the mass-facing scalar angular far-field ledger over extraction direction $\hat R$, and let $\|\mathcal{L}_{\text{naive}}\|$ denote the corresponding unshielded constituent-sum norm. The trace-free exposed leakage is
+The scalar shielding coefficient $\zeta(A)$ should be read as the isotropic trace part of a larger exposed response. For an accepted assembly branch $A$, let $\mathcal{L}_A(\hat R)$ denote the mass-facing scalar angular far-field ledger over extraction direction $\hat R$, and let $\|\mathcal{L}_{\text{naive}}\|$ denote the corresponding unshielded constituent-sum norm. The monopole extraction is
+$$
+\zeta(A)
+=
+\frac{1}{4\pi\|\mathcal{L}_{\text{naive}}\|}
+\int_{S^2}
+\mathcal{L}_A(\hat R)\,d\Omega
+$$
+The trace-free exposed leakage is
 $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
 =
@@ -445,7 +453,7 @@ The useful ledger split is:
 Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested shell braid rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest mass $m c^2$.
+- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested shell braid rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest-energy scale $m c_{\text{eff}}^2$.
 - **Shielding:** The pro/anti structure of the [Noether braid](../noether-braid/noether-braid.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$
@@ -472,20 +480,20 @@ The mass thesis must recover not only an inertial response to imposed accelerati
 For a clock or mass-bearing assembly $A$, write the assembly-dependent clock/response factor in a weak cell as
 
 $$
-\chi_A(x_{\mathrm{eff}}^i)
+N_A(x_{\mathrm{eff}}^i)
 =
-N(x_{\mathrm{eff}}^i)\,[1+\epsilon_A(x_{\mathrm{eff}}^i)]
+N(x_{\mathrm{eff}}^i)\,[1+\delta_A(x_{\mathrm{eff}}^i)]
 $$
 
-where $N(x_{\mathrm{eff}}^i)$ is the universal effective lapse reconstructed from the local Noether sea state and $\epsilon_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
+where $N(x_{\mathrm{eff}}^i)$ is the universal effective lapse reconstructed from the local Noether sea state and $\delta_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
 
 $$
-|\epsilon_A-\epsilon_B|
+|\delta_A-\delta_B|
 \lesssim
 10^{-13}
 $$
 
-across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\epsilon_A$ carries unsuppressed composition dependence, or if the acceleration row and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
+across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\delta_A$ carries unsuppressed composition dependence, or if the acceleration row and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
 
 Equivalently, the tensor response that maps exposed internal energy into $p_{\text{int}}^a$ must have the same homogeneous low-energy limit in acceleration and gradient probes:
 
@@ -516,7 +524,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
 | **Architrino polarity bookkeeping unit ($\epsilon=|e|/6$)** | Fundamental at the polarity-bookkeeping layer; observer-level electric charge is assembly-level inventory |
-| **Noether sea State** | Emergent density, compliance, drift, and clock-response fields |
+| **Noether sea state** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
 | **Gravitational Mass** | **Emergent** (Noether sea gradient response) |
 
@@ -527,7 +535,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Architrinos do not carry a primitive particle-specific inertial mass. | Canonical framework assumption. |
 | Stable assemblies have externally measured inertial response. | Operational definition. |
 | The mass response is governed by shielded internal causal history. | Canonical thesis, still requiring quantitative derivation. |
-| $m_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$. | Roadmap formula, not yet a theorem. |
+| $M_0(A)c_{\text{eff}}^2\sim \zeta(A)E_{\text{internal}}(A)$. | Roadmap formula, not yet a theorem. |
 | $\zeta(A)$ explains the charged-lepton hierarchy. | Priority target. |
 | Inertial and gravitational mass share one shielded-energy response map. | Priority target constrained by equivalence-principle tests. |
 | The Higgs sector is recovered as an effective matching layer. | Open comparison target. |
@@ -807,7 +815,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 ### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
 2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
-3. **Why do neutrinos have mass at all?** If a neutrino is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
+3. **Why do neutrinos have mass at all?** If a [neutrino](./fermions/neutrinos.md) is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.

@@ -2,7 +2,7 @@
 
 This chapter is the live proof-map companion to [Noether Braid Taxonomy](noether-braid-taxonomy.md). The taxonomy chapter defines the configuration axes and Proof ID grammar. This proof map records current proof-run targets, work status, detailed proof-record fields, and environment-qualified rounds such as `SH-0-sea`.
 
-A proof map is not a trophy case. It is the place where candidates, diagnostics, failures, blocked packets, retained rows, and downstream consumers are kept separate. The reader should first ask which branch configuration is being tested, then what job the packet is doing, and only then whether the evidence has reached retained or certified status.
+A proof map records failures and blocks with the same care as successes. It is the place where candidates, diagnostics, failures, blocked packets, retained rows, and downstream consumers are kept separate. The reader should first ask which branch configuration is being tested, then what job the packet is doing, and only then whether the evidence has reached retained or certified status.
 
 A proof ID names a specific branch-configuration effort and does not assert success. Row evidence, diagnostics, fixtures, charts, and downstream physics packets should name the branch Proof ID they test or consume only after the support base, group-velocity regime, and local variation are declared.
 
@@ -28,7 +28,7 @@ The Proof IDs name configurations, but the proof burden closes in ordered rows. 
 | --- | --- | --- | --- |
 | Rest branch retention | Inventory, support, causal-root, wake-tail, dynamics, action, event, stability, and convergence rows in the declared rest environment. | `NB-0`, `SH-0`, `NSH-0`, `PL-NB-0`, `PL-SH-0`, `PL-NSH-0` | Candidate branch becomes a retained branch only in that declared environment. |
 | Noether sea embedded retention | The rest retention rows plus the local Noether sea population-response row from like assemblies. | `SH-0-sea`; later `NB-0-sea`, `NSH-0-sea`, or `PL-*-sea` packets if declared. | Isolation-only diagnostics become medium-stability evidence when the environment row closes. |
-| Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame leakage rows for $\mathbf{V}_{\mathrm{grp}}>0$. | `NB-L`, `SH-L`, `NSH-L`, `PL-NB-L`, `PL-SH-L`, `PL-NSH-L` | Retained branch can be promoted toward certified braid status only if Lorentz-compatible export closes. |
+| Moving observer export | Transport, response-center, clock, ruler, energy/action, and preferred-frame leakage rows for $\|\mathbf V_{\mathrm{grp}}\| > 0$. | `NB-L`, `SH-L`, `NSH-L`, `PL-NB-L`, `PL-SH-L`, `PL-NSH-L` | Retained branch can be promoted toward certified braid status only if Lorentz-compatible export closes. |
 | Assembly consumer rows | Topological charge, photon channel, mass response, accessory-architrino capture, generation behavior, GR/effective-metric export, and app-runtime packets consume the retained branch record. | Downstream packets tied back to the relevant retained Proof ID. | Consumer success classifies or exports a retained branch; it does not retroactively prove branch retention. |
 
 ## Evidence-Handle Cleanup Decisions
@@ -41,7 +41,7 @@ whose diagnostics must not be consumed as branch proof.
 | Proof ID | Existing evidence handles | Cleanup decision | First evidence blocker |
 | --- | --- | --- | --- |
 | `NB-0` | Neutral braid base certificate; all-pairs root ledger; rigid octahedral root/Jacobian diagnostics; finite-mode and bounded-speed successor targets when no shell support is declared. | Geometry, inventory, root-ledger, and negative diagnostics can stay under `NB-0`. Any force/action, stability, or retention read must be screened against the receiver-normal branch-strength row; source-normal/Jacobian-only or frozen-ledger rows remain diagnostic or restart-required. | No same-record neutral retained branch currently supplies accepted live roots plus $D_s$, $D_T$, $W^{\mathrm{rec}}$ / `branchWeight`, action/event/stability, convergence, and support rows. |
-| `SH-0` | Held-release common-sphere fixture; octahedral root-ledger and no-go diagnostics when the declared chart has one common shell support. | Source/evidence cleanup is needed before any retention read. Keep the handles as diagnostic row evidence until seed-path, retained-history, return-response, stability, and provenance rows bind to one accepted record. | Fresh/default rows fail at `held_release_seed_path_rows[*].retained_record_id`; the active provider-backed chain is blocked at `held_release_seed_path_rows_acceptance_certificate` / `held_release_seed_path_rows.acceptance_certificate_ref`. |
+| `SH-0` | Held-release common-sphere fixture; octahedral root-ledger and no-go diagnostics when the declared chart has one common shell support. | Source/evidence cleanup is needed before any retention read. Keep the handles as diagnostic row evidence until seed-path, retained-history, return-response, stability, and provenance rows bind to one accepted record. | Fresh/default rows fail at `held_release_seed_path_rows[*].retained_record_id`; the current automated evidence-acquisition chain is blocked at the missing object `held_release_seed_path_rows_acceptance_certificate` and its required field `held_release_seed_path_rows.acceptance_certificate_ref`. |
 | `SH-0-sea` | No inspected embedded packet is currently mapped; the row is the next environment round after isolated `SH-0` did not retain. | No legacy packet cleanup is available yet. First-packet modeling may inherit the diagnostic/candidate `SH-0` target identity, then add like-assembly population, boundary-condition, and sea-response rows. | Accepted retained-evidence claims still wait on an accepted central `SH-0` target/source record plus same-record receiver-normal, action, wake, support, event, and sea-response rows. |
 | `NSH-0` | Nested shell reduction row; radial-support and role-map packets; shared nested certificate and dynamics/geometry theorem targets. | Support, role, radial geometry, and taxonomy material can stay. Any retained-branch read requires a nested branch certificate with same-record receiver-normal root strength, action/energy, frame, event, stability, and convergence rows. Exact binaries and a rank-three frame are not assumed unless the packet supplies them. | No accepted nested branch certificate with same-record receiver-normal active rows is currently mapped; support-dependent $A_0$, mass-response, or observer-export material remains downstream until inspected. |
 | `NSH-421` | Doubling-frequency chapter; phase-bundle, caustic-score, Floquet, and torque/wake same-row diagnostics where used. | Source/evidence cleanup is needed to keep candidate row evidence separate from retained branch proof. The packet can remain a candidate-family theorem target until accepted branch-certificate and same-row active-ID refs exist. | Missing accepted `branch_certificate_ref`; downstream blockers include `same_retained_active_row_ids`, accepted branch chart, moving retained branch certificate, accepted transition source, and action-increment row. |
@@ -49,7 +49,7 @@ whose diagnostics must not be consumed as branch proof.
 
 ## Current Work Index
 
-In this index, work status is a proof-map status, not a certification claim. `Started` means at least one inspected proof packet, diagnostic, row-evidence packet, chart-boundary packet, or downstream export packet is mapped to the Proof ID. `Not started` means no inspected proof packet is currently mapped to the Proof ID. `Unassigned` means likely related material exists, but it has not been inspected enough to map without overclaiming.
+In this index, work status is a proof-map status, not a certification claim. `Started` means at least one inspected proof packet, diagnostic, or row-evidence packet is mapped directly to the Proof ID. `Downstream started` means export or consumer rows are mapped, but they wait on a retained rest branch. `Boundary started` means terminal-boundary evidence is mapped without branch retention. `Chart-boundary started` means reduced-chart boundary evidence is mapped without a retained lower-rank branch. `Not started` means no inspected proof packet is currently mapped to the Proof ID. `Unassigned` means likely related material exists, but it has not been inspected enough to map without overclaiming.
 
 | Proof ID | Proof focus | Work status | Current stage | Main proof question |
 | --- | --- | --- | --- | --- |
@@ -80,7 +80,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NB-0` -- Neutral braid rest qualification**
 
 - Fixed effort: Six-worldline $3:3$ inventory and one shared causal-return record.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: No shell support geometry declared.
 - Angular-momentum frame: Not assigned.
 - Axis setting: Not assigned by the base ID.
@@ -94,7 +94,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NB-L` -- Moving neutral braid continuation**
 
 - Fixed effort: Moving continuation of a retained neutral branch.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} > 0$.
+- Group velocity: $\|\mathbf V_{\mathrm{grp}}\| > 0$.
 - Support / shell count: Inherited from `NB-0`, if any.
 - Angular-momentum frame: Inherited or still unassigned.
 - Axis setting: Not assigned unless added.
@@ -110,7 +110,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`SH-0` -- Shell braid rest qualification**
 
 - Fixed effort: One controlled radial support band around a branch center.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: One support band or common shell.
 - Angular-momentum frame: Not assigned by shell support.
 - Axis setting: Not assigned by the base ID. Inspected fixtures include an axis-neutral held-release seed where the three positive sites occupy one triangular face and the three negative sites occupy the opposite face.
@@ -121,14 +121,14 @@ The detailed records below use the configuration decoder fields for each Proof I
 - Lorentz deformation: Not tested.
 - Success condition: Retain the shell support rows on the same branch record.
 - Started fixture / evidence handles: group-zero, axis-neutral, common-sphere held-release six-point fixture; rigid fixed-speed octahedral root-ledger and no-go diagnostics when their declared chart includes one common shell support.
-- Current fixture disposition: The held-release fixture preserves center-zero, common-sphere, common-speed, and antipodal-pair symmetry under the declared symmetry assumptions, then shows a single compression-to-expansion turn without a retained return response. It remains non-promoted diagnostic row evidence. Fresh/default seed-path rows still fail at the missing retained-record id, while the current provider-backed acquisition path is sharper: it is blocked at the missing same-record seed-path acceptance certificate. Without accepted seed-path, retained-history provenance, return, stability, and Noether sea rows, the fixture cannot count as retention evidence.
+- Current fixture disposition: The held-release fixture preserves center-zero, common-sphere, common-speed, and antipodal-pair symmetry under the declared symmetry assumptions, then shows a single compression-to-expansion turn without a retained return response. It remains non-promoted diagnostic row evidence. Fresh/default seed-path rows still fail at the missing retained-record id, while the current automated evidence-acquisition chain sharpens the blocker to the missing same-record seed-path acceptance certificate. Without accepted seed-path, retained-history provenance, return, stability, and Noether sea rows, the fixture cannot count as retention evidence.
 - Evidence cleanup decision: Clean this packet family before any retention read. The held-release and octahedral handles may support the `SH-0` diagnostic story, but retention requires the seed-path rows, retained-history provenance, return-response row, stability row, and later sea-response row to bind to one accepted record.
 - Next environment round: `SH-0-sea`, with an explicit like-assembly population record, boundary condition, and sea-response row tied to the same target branch.
 
 **`SH-0-sea` -- Noether sea embedded shell braid rest qualification**
 
 - Fixed effort: The same one-band shell branch as `SH-0`, embedded in a surrounding Noether sea of like assemblies.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$ for the target branch and local sea frame unless a packet declares otherwise.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$ for the target branch and local sea frame unless a packet declares otherwise.
 - Support / shell count: One target support band or common shell; the surrounding Noether sea does not add shells to the target branch.
 - Angular-momentum frame: Not assigned by shell support.
 - Axis setting: Inherited from the target `SH-0` fixture when the embedded test carries it forward.
@@ -144,7 +144,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`SH-L` -- Moving shell braid continuation**
 
 - Fixed effort: Moving continuation of a retained one-band shell, whether retained through `SH-0` or `SH-0-sea`.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} > 0$.
+- Group velocity: $\|\mathbf V_{\mathrm{grp}}\| > 0$.
 - Support / shell count: One support band under transport.
 - Angular-momentum frame: Optional; must be stated if used.
 - Axis setting: Optional.
@@ -160,7 +160,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NSH-0` -- Nested shell braid rest qualification**
 
 - Fixed effort: Three ordered support bands in a rest branch.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: Three support bands.
 - Angular-momentum frame: Must be solved; rank-three or lower-rank is not assumed.
 - Axis setting: Optional axis-neutral or axis-polarized placement.
@@ -174,7 +174,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NSH-L` -- Moving nested shell braid continuation**
 
 - Fixed effort: Moving continuation of a retained nested shell branch.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} > 0$.
+- Group velocity: $\|\mathbf V_{\mathrm{grp}}\| > 0$.
 - Support / shell count: Three transported support bands.
 - Angular-momentum frame: Inherited from `NSH-0` or solved during continuation.
 - Axis setting: Inherited if claimed.
@@ -183,12 +183,12 @@ The detailed records below use the configuration decoder fields for each Proof I
 - Energy-level relation: Moving nested-shell energy/action export required.
 - Noether sea environment: Inherited or declared by the packet.
 - Lorentz deformation: Required.
-- Success condition: Recover $\xi\to1/\gamma$, $d\tau/dt\to1/\gamma$, and bounded preferred-frame leakage from the same branch record.
+- Success condition: Recover $\xi\to1/\gamma$, $d\tau/dt_{\mathrm{eff}}\to1/\gamma$, and bounded preferred-frame leakage from the same branch record.
 
 **`NSH-AX` -- Nested shell braid axis-population comparison**
 
 - Fixed effort: Axis-population comparison.
-- Group velocity: Start at $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: Start at $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: Usually three support bands.
 - Angular-momentum frame: Must be solved separately.
 - Axis setting: Compare axis-neutral `-+`, `-+`, `-+` with axis-polarized `--`, `-+`, `++`.
@@ -202,7 +202,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NSH-ISO` -- Nested shell braid iso-frequency family**
 
 - Fixed effort: Common return-rate family.
-- Group velocity: Start at $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: Start at $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: Usually three support bands.
 - Angular-momentum frame: Must be solved separately.
 - Axis setting: Optional.
@@ -216,7 +216,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NSH-321` -- Nested shell braid integer-ratio family**
 
 - Fixed effort: Non-doubling integer frequency family.
-- Group velocity: Start at $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: Start at $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: Usually three support bands.
 - Angular-momentum frame: Must be solved separately.
 - Axis setting: Optional.
@@ -230,7 +230,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`NSH-421` -- Nested shell braid doubling-frequency lock**
 
 - Fixed effort: Doubling-frequency lock in role-assigned order.
-- Group velocity: Start at $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: Start at $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: Usually three support bands.
 - Angular-momentum frame: Must be solved separately.
 - Axis setting: Optional.
@@ -275,7 +275,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`PL-NB-0` -- Planar lower-rank neutral braid rest comparison**
 
 - Fixed effort: Rest-branch lower-rank comparison on the neutral-braid support base.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: No shell support fixed.
 - Angular-momentum frame: Lower-rank: $D_{\mathrm{plane}} = 0$ or no retained three-row frame.
 - Axis setting: Optional.
@@ -289,7 +289,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`PL-NB-L` -- Moving planar lower-rank neutral braid continuation**
 
 - Fixed effort: Moving continuation of a retained lower-rank neutral branch.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} > 0$.
+- Group velocity: $\|\mathbf V_{\mathrm{grp}}\| > 0$.
 - Support / shell count: Inherited from `PL-NB-0`.
 - Angular-momentum frame: Lower-rank.
 - Axis setting: Inherited if claimed.
@@ -303,7 +303,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`PL-SH-0` -- Planar lower-rank shell braid rest comparison**
 
 - Fixed effort: Rest-branch lower-rank comparison on one support band.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: One support band.
 - Angular-momentum frame: Lower-rank.
 - Axis setting: Optional.
@@ -317,7 +317,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`PL-SH-L` -- Moving planar lower-rank shell braid continuation**
 
 - Fixed effort: Moving continuation of a retained lower-rank shell branch.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} > 0$.
+- Group velocity: $\|\mathbf V_{\mathrm{grp}}\| > 0$.
 - Support / shell count: Inherited from `PL-SH-0`.
 - Angular-momentum frame: Lower-rank.
 - Axis setting: Inherited if claimed.
@@ -331,7 +331,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`PL-NSH-0` -- Planar lower-rank nested shell braid rest comparison**
 
 - Fixed effort: Rest-branch lower-rank or terminal-boundary comparison on nested support.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} = 0$.
+- Group velocity: $\mathbf V_{\mathrm{grp}} = \mathbf 0$.
 - Support / shell count: Three support bands or declared terminal nested support.
 - Angular-momentum frame: Lower-rank or degenerating frame.
 - Axis setting: Optional; coplanarity and co-linearity may be active near the terminal row.
@@ -345,7 +345,7 @@ The detailed records below use the configuration decoder fields for each Proof I
 **`PL-NSH-L` -- Moving planar lower-rank nested shell braid continuation**
 
 - Fixed effort: Moving continuation of a retained lower-rank nested shell branch.
-- Group velocity: $\mathbf{V}_{\mathrm{grp}} > 0$.
+- Group velocity: $\|\mathbf V_{\mathrm{grp}}\| > 0$.
 - Support / shell count: Inherited from `PL-NSH-0`.
 - Angular-momentum frame: Lower-rank or degenerating frame.
 - Axis setting: Inherited if claimed.

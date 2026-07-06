@@ -33,17 +33,17 @@ We label the three binaries by their dynamical regime:
   - Velocity $v_L < c_f$
   - Lowest curvature; outer envelope, expansion/contraction behavior
 
-Each binary defines one **axis** with two **polar sites**, each occupied by either:
+Each binary defines one **axis** with two **polar sites**. We use $\epsilon=|e|/6$ for the polarity-unit magnitude, with $\epsilon_-\equiv-\epsilon$ and $\epsilon_+\equiv+\epsilon$. Each polar site is occupied by either:
 
-- Electrino (−e/6), or  
-- Positrino (+e/6).
+- Electrino ($\epsilon_-$), or
+- Positrino ($\epsilon_+$).
 
 So each Noether braid has 3 axes (H, M, L) × 2 poles = **6 polar sites**.
 
 We distinguish:
 
-- **Scaffold architrinos**: the three e/p pairs in the H, M, L binaries (2 per binary → 6 per quark).
-- **Axial architrinos**: the 6 ±e/6 decorations on the poles.
+- **Scaffold architrinos**: the three electrino:positrino pairs in the H, M, L binaries (2 per binary → 6 per quark).
+- **Axial architrinos**: the six $\epsilon_\pm$ axial-inventory entries bound to the polar sites.
 
 For a Gen‑I quark:
 
@@ -79,7 +79,7 @@ Standard Model “generations” are interpreted as **excitation states** of the
 
 We treat these as **different assembly states**, not ordinary dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission, but the depletion signal still has to propagate to the weakly bound axial layer through causal wakes and relocking cycles before the branch opens its reaction corridor.
 
-In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
+In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Here $D_H,D_M,D_L$ denote the three polar-dyad records carried by the H, M, and L axes. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
 
 
@@ -90,7 +90,7 @@ Beyond which binaries are present, their **precession order** defines a braid or
 - **Matter** nested shell braid branch: precession order $H \to M \to L$ in time (one chirality).
 - **Antimatter** nested shell braid branch: precession order $H \to L \to M$ (opposite chirality).
 
-This **braid chirality** will underpin our distinction between particles and antiparticles across all sectors and will later feed into CP‑related questions. Here, we keep **color** as a vector‑like degree of freedom: it does **not** depend on braid chirality.
+This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). This **braid chirality** underpins the distinction between particles and antiparticles across all sectors and feeds into CP-related questions. Here, we keep **color** as a vector-like degree of freedom: it does **not** depend on braid chirality.
 
 
 
@@ -105,7 +105,7 @@ This is the entry point for the whole chapter. Leptons are colorless because the
 
 The guiding physical picture is that long-lived assemblies must suppress time-dependent far-field leakage. A useful test state is the equal-phase triad
 $$
-\phi \in \left(0,\frac{2\pi}{3},\frac{4\pi}{3}\right)
+\phi \in \left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\}
 $$
 for which
 $$
@@ -117,14 +117,14 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 - **Electron**:
   $(\text{H},\text{M},\text{L}) = (-/-,\ -/- ,\ -/-)$
-  - Each axis: net −2e/6.  
-  - Total: −6e/6 = −e.  
+  - Each axis: net $-2\epsilon$.
+  - Total: $-6\epsilon=-e$.
   - All axes identical → SU(3)$_c$ singlet.
 
 - **Positron**:
   $(+/+,\ +/+,\ +/+)$
-  - Each axis: net +2e/6.  
-  - Total: +e.  
+  - Each axis: net $+2\epsilon$.
+  - Total: $+6\epsilon=+e$.
   - All axes identical → singlet.
 
 ### Neutrinos: near-photon colorless neutral pairs
@@ -147,7 +147,7 @@ $$
 $$
 are therefore best read as effective exposure diagrams for weak-channel coupling, not as the canonical neutrino inventory. Residual internal-binary exposure inside the near-photon pair remains the natural place to seek neutrino mass eigenstates and oscillation structure.
 
-We do **not** claim a PMNS-level derivation yet; that is a targeted future calculation in the [neutrino section](./neutrinos.md).
+A PMNS-level derivation remains a closure target in the [neutrino section](./neutrinos.md).
 
 
 
@@ -259,7 +259,7 @@ $\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_H\rangle,|d_M\rangle,|d_L\rang
 
 #### Family selection: dynamic, not arbitrary
 
-We must not over‑predict.
+The branch rule must avoid over‑prediction.
 
 - If **both** families were independently stable and long‑lived for the same down‑flavor, we’d have extra down‑like quarks beyond d/s/b. That is not observed.
 - Therefore, the dynamics must:
@@ -286,12 +286,12 @@ and local Hessians
 $$
 H_F \equiv D^2\mathcal{E}(X_F^\star)
 $$
-For finite but low effective noise/temperature $T_{\mathrm{eff}}$, use the harmonic free-energy approximation
+For finite but low noise/temperature scale $T_{\mathcal Q,W}$, with temperature understood as a same-record ensemble variable in the sense of [Entropy](../../dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable), use the harmonic free-energy approximation
 $$
-\mathcal{F}_F(T_{\mathrm{eff}})
+\mathcal{F}_F(T_{\mathcal Q,W})
 =
-E_F^\star+\frac{T_{\mathrm{eff}}}{2}\log\det H_F
-+\mathcal{O}(T_{\mathrm{eff}}^2)
+E_F^\star+\frac{T_{\mathcal Q,W}}{2}\log\det H_F
++\mathcal{O}(T_{\mathcal Q,W}^2)
 $$
 
 Linearize the delay dynamics about each minimizer and let
@@ -308,17 +308,17 @@ Assume there exists $F_\star\in\{I,II\}$ such that:
 $$
 \Delta\mathcal{F}\equiv \mathcal{F}_{\bar F}-\mathcal{F}_{F_\star}>0
 $$
-3. **Low-energy regime:** $T_{\mathrm{eff}}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
+3. **Low-energy regime:** $T_{\mathcal Q,W}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
 
 Then stationary occupation satisfies
 $$
 \frac{\pi_{\bar F}}{\pi_{F_\star}}
 \lesssim
-\exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathrm{eff}}}\right)
+\exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathcal Q,W}}\right)
 $$
-so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
+so $\pi_{\bar F}\to 0$ as $T_{\mathcal Q,W}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
 
-*Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight.
+*Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight. The harmonic free-energy and Kramers steps are part of the approximation burden: the reduced state-dependent delay record must admit this metastable-well reduction before the criterion becomes quantitative.
 
 **Concrete screening corollary (Family II preference test).**  
 If the reduced minimum can be decomposed as
@@ -475,10 +475,12 @@ In nested shell braid geometry:
   - Quark 2 (u): exceptional on M → $|u_M\rangle$  
   - Quark 3 (d): exceptional on L within the selected down-type family $F_\star$ → $|d_L;F_\star\rangle$
 
+The displayed assignment is one component of the fully antisymmetrized color singlet; the physical SU(3) singlet sums the H/M/L assignments with the Levi-Civita color tensor.
+
 At large distances, axis‑dependent multipoles from each regime cancel:
 
 - H‑exceptionality from one quark is compensated by M and L exceptionality from others in the composite singlet combination.  
-- Net color flux into the surrounding Noether sea is zero; only isotropic monopole fields (charge, baryon number, mass) remain.
+- Net color flux into the surrounding Noether sea is zero; only isotropic observer-level monopole readouts (charge, baryon number, effective mass) remain.
 
 This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether braids: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
 
@@ -494,12 +496,12 @@ Heuristic:
 - At inter-nucleon separations ~ a few fm, outer L-axes (and to some degree M-axes) from neighboring nucleons begin to overlap and couple through the Noether sea.
 - These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to H/M structure.
 
-We will exploit:
+The downstream nucleon-potential derivation must use:
 
 - the selected down‑quark Family-I or Family-II sector,
 - Axis‑overlap geometry (L‑L, L‑M interactions),  
 
-to derive nucleon–nucleon potentials and binding energies in the nuclear section. Here we just note:
+as its inputs for nucleon–nucleon potentials and binding energies in the nuclear section. The local interface is:
 
 > Residual strong force emerges from the same axis/braid structure as color, via imperfect screening of H/M/L at finite nucleon separations.
 
@@ -509,15 +511,15 @@ The algebraic SU(3) closure above is necessary but not sufficient for full confi
 
 Energy-side target inherited from the topological program:
 $$
-E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0
+E_{\mathrm{open}}(\ell_{\mathrm{corr}})=\sigma_{\mathrm{eff}}\ell_{\mathrm{corr}}+E_0+\mathcal{O}(1/\ell_{\mathrm{corr}}),\qquad \sigma_{\mathrm{eff}}>0
 $$
 for open color braids/flux sectors, while closed singlet sectors satisfy
 $$
-E_{\mathrm{closed}}(L)\to E_{\infty}<\infty
+E_{\mathrm{closed}}(\ell_{\mathrm{corr}})\to E_{\infty}<\infty
 $$
-and vanishing far-field color flux.
+and vanishing far-field color flux. Here $\ell_{\mathrm{corr}}$ is the open color-corridor length, distinct from the L-binary axis label.
 
-The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, the strong-sector branch should recover
+The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, with $R$ and $T$ retained as standard lattice loop-extents rather than native axis or absolute-time labels, the strong-sector branch should recover
 $$
 \left\langle W(C_{R,T})\right\rangle_{\theta}
 \sim

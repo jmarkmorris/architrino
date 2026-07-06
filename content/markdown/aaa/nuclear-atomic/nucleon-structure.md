@@ -14,8 +14,8 @@ The guiding rule is level discipline. Quark branch structure matters inside the 
 
 A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In this architecture:
 
-- a **proton** is the ground-state `uud` nested shell braid,
-- a **neutron** is the ground-state `udd` nested shell braid.
+- a **proton** is the ground-state `uud` color-singlet baryon assembly,
+- a **neutron** is the ground-state `udd` color-singlet baryon assembly.
 
 Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; it is the accepted branch formed when those three quark records close as one color-singlet assembly.
 
@@ -55,7 +55,7 @@ $$
 
 ## Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a color-closed nested shell braid, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
+The nucleon is not three independent quarks sitting side by side. It is a closed 9-axis color-singlet baryon assembly, with the strong-sector closure picture matching the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
@@ -71,8 +71,8 @@ $$
 In geometric language:
 
 - each quark contributes one exceptional axis,
-- the three exceptional axes occur once each across the nested shell braid,
-- the shared flux structure closes the color braid into a singlet.
+- the three exceptional axes occur once each across the closed 9-axis braid,
+- the shared flux structure closes the baryon assembly into a singlet.
 
 That color closure is what makes the proton and neutron long-lived hadronic attractors rather than open-color transients. Later nuclear binding chapters can therefore use proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources.
 
@@ -90,7 +90,7 @@ s_{u_1},s_{u_2},s_d\in\{H,M,L\},
 \{H,M,L\}
 $$
 
-The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(t)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
+The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger that locks these three quark branches into one accepted proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
 
 $$
 \mathcal W_{p,X}^{\mathrm{locked}}
@@ -109,7 +109,7 @@ C_{\ell,X}^{p}
 d_N\ll\ell\ll R_p
 $$
 
-Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(t)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
+Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(T)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
 
 ### Proton Mass Is Not Current-Quark Mass Addition
 
@@ -249,7 +249,7 @@ $$
 \quad
 \mathcal L_{\mathrm{strong}}^{uud}
 \subset
-\mathcal A_{\mathrm H}(t)
+\mathcal A_{\mathrm H}(T)
 \right\}
 $$
 
@@ -259,15 +259,15 @@ The source-envelope closure fails if any of the following occurs:
 
 1. **Free-quark failure:** the atomic scan must keep three independent quark source envelopes to fit a hydrogen line or clock response.
 2. **Open-color failure:** $\mathcal E_{p,X}^{\mathrm{color}}$ exceeds the declared tolerance in the isolated proton branch.
-3. **Corridor-complement failure:** $\mathcal L_{\mathrm{strong}}^{uud}(t)$ or $\mathcal W_{\mathrm{strong},X}^{uud}$ is counted as ambient Noether sea rather than as part of the proton branch.
+3. **Corridor-complement failure:** $\mathcal L_{\mathrm{strong}}^{uud}(T)$ or $\mathcal W_{\mathrm{strong},X}^{uud}$ is counted as ambient Noether sea rather than as part of the proton branch.
 4. **Projection failure:** proton-sensitive refinements do not converge to one atomic-window envelope after $C_{\ell_{\mathrm{atom}},X}$ is applied.
 5. **Channel-retuning failure:** spectral, clock, packing, or corridor calculations require different proton ledgers instead of different projections of the same color-singlet branch.
 
-## Proton and Neutron as Ground-State Nested Shell Braids
+## Proton and Neutron as Color-Singlet Baryon Assemblies
 
 ### Proton
 
-The proton is the lowest stable nested shell braid with quark content `uud`.
+The proton is the lowest stable color-singlet baryon assembly with quark content `uud`.
 
 Using the current quark templates:
 
@@ -285,7 +285,7 @@ $$
 
 ### Neutron
 
-The neutron is the lowest stable nested shell braid with quark content `udd`.
+The neutron is the lowest stable color-singlet baryon assembly with quark content `udd`.
 
 Its total axial count is
 $$
@@ -302,7 +302,7 @@ The neutron is therefore not neutral because it lacks internal charge structure,
 
 The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../philosophy-history/solving-the-crisis.md#the-strong-cp-problem).
 
-Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell braid center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
+Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the neutron assembly center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
 $$
 \mathbf{d}_{n,\mathrm{ax}}
 =
@@ -344,7 +344,7 @@ $$
 \right\rangle_T
 =0
 $$
-up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the nested shell braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
+up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the closed 9-axis braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
 
 ## Effective Internal Geometry
 
@@ -360,7 +360,7 @@ Each constituent quark carries:
 
 ### 2. Shared strong-sector corridor
 
-The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed nested shell braid braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
+The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed 9-axis braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
 
 ### 3. External nucleon envelope
 
@@ -373,7 +373,7 @@ At nuclear scales, the nucleon is seen as one composite hadronic assembly with:
 
 ## Spin and Magnetic-Moment Expectations
 
-The nucleon chapter does not yet contain a full proton spin decomposition, but it can still state the minimal closure picture. This section is downstream of the braid ledger in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
+This section is the qualitative consumer of the proton spin ledger in [Proton Spin Budget](#proton-spin-budget). It remains downstream of the braid ledger in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
 
 ### Spin
 
@@ -381,7 +381,7 @@ The nucleon ground state is taken to have observer-level total spin quantum numb
 $$
 J=\frac{1}{2}
 $$
-for the coupled nested shell braid configuration. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
+for the coupled color-singlet baryon assembly. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
 
@@ -389,9 +389,9 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears
 - **strong-sector orbital circulation**, the analogue of quark and core orbital angular momentum inside the bound state;
 - **flux-network angular momentum**, the analogue of gluon or strong-field angular momentum in the standard QCD spin budget.
 
-The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the coupled Noether braid assembly, its orbital circulation, and its strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
+The closure target is therefore not to assign $1/2$ to one piece of the nucleon. The target is to show how the three quark Noether braids, their orbital circulation inside the baryon envelope, and the strong-sector flux network combine into one stable spin-$\tfrac{1}{2}$ hadronic channel.
 
-Until the single-assembly angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger are derived, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
+Until the terms in $\mathbf J_p(Q)$ are derived quantitatively from the single-assembly angular-momentum ledger, ordered-frame spinor closure, and color-corridor vector ledger, the three contributions above should be read as required accounting channels. They should not be treated as a closed proton-spin decomposition.
 
 ### Magnetic moments
 
@@ -400,7 +400,7 @@ Even before a quantitative derivation, the sign structure is already constrained
 - the proton should have a positive magnetic moment,
 - the neutron should have a nonzero negative magnetic moment.
 
-Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed nested shell braid moment rather than a qualitative sign check.
+Those sign expectations follow naturally from the dominance of up-type positive charge circulation in the proton and the residual uncompensated internal charge circulation in the neutron. A future derivation should turn this into a computed baryon-assembly magnetic moment rather than a qualitative sign check.
 
 ## Proton-Neutron Mass Difference
 
@@ -418,7 +418,7 @@ where:
 
 - $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,
 - $\Delta E_{\text{Coul}}$ is the electromagnetic self-energy difference,
-- $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two Noether braid assemblies.
+- $\Delta E_{\text{flux}}$ is the strong-sector closure difference between the two color-singlet baryon assemblies.
 
 The lattice QCD plus QED neutron-proton benchmark is a downstream acceptance test for this decomposition, not an input to any one term. A promoted comparison must compute the down/up, electromagnetic, and flux rows from the same proton and neutron branch ledgers before comparing their sum with the observed splitting.
 
@@ -430,7 +430,7 @@ The nucleon is the object that enters nuclear physics. The residual nuclear forc
 
 - polarization of the surrounding Noether sea,
 - meson-like exchange channels,
-- and geometric locking between the outer hadronic envelopes of neighboring Noether braid assemblies.
+- and geometric locking between the outer hadronic envelopes of neighboring nucleon assemblies.
 
 That is why this chapter feeds directly into [nuclear-binding.md](./nuclear-binding.md) and [mesons.md](../assemblies/mesons/mesons.md).
 

@@ -25,15 +25,15 @@ The modern periodic law is indexed by atomic number $Z$ (nuclear charge), not at
 
 ### Electronic shell and subshell capacities
 
-For principal quantum number $n$, the shell capacity is
+For principal quantum number $n$, the shell capacity is:
 
-$$N_{\text{shell}} = 2n^2.$$
+$$N_{\text{shell}} = 2n^2$$
 
-For subshell angular momentum $\ell$, the capacity is
+For subshell angular momentum $\ell$, the capacity is:
 
-$$N_{\ell} = 2(2\ell+1),$$
+$$N_{\ell} = 2(2\ell+1)$$
 
-which yields
+This yields:
 
 1. $s$ ($\ell=0$): 2
 2. $p$ ($\ell=1$): 6
@@ -89,7 +89,7 @@ In the Hyde artwork used in this project, small numeric annotations and labels a
 
 ### Genealogy of the Hyde form
 
-The Benfey (2009) analysis gives an explicit lineage for the Hyde table.
+Benfey's 2009 historical account gives an explicit lineage for the Hyde table.
 
 1. Clark (1933): early oval/spiral periodic chart architecture.
 2. Life (1949): high-visibility oval adaptation for a broad scientific audience.
@@ -161,18 +161,19 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Assumptions
 
-- The $s, p, d, f$ orbitals are treated not as abstract probability distributions, but as emergent volume-exclusion zones of oblate spheroidal electron nested shell braid envelopes carrying six axial architrinos.
-- Electron nested shell braids are assumed to couple to a central nuclear Noether braid through local Noether sea density gradients.
+- The $s, p, d, f$ orbital labels are treated as recovered labels for electron resonance and observer-level detection basins; the substrate-side hypothesis is that those basins are shaped by volume-exclusion zones of oblate spheroidal electron nested shell braid envelopes carrying six axial architrinos.
+- Electron nested shell braids are assumed to couple to the nuclear assembly ledger through the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$ and local Noether sea density gradients.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 ### Mechanism and Derivation Sketch
 
-- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology on the nuclear Noether braid, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
+- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology around the nuclear source envelope $\mathcal W_{\text{nuc}}$, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
 - Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell braids.
 - In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
 - Volume-exclusion mechanism: each electron nested shell braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
+- This is a candidate realization of the geometric packing side of Pauli behavior. It must inherit the exchange-sign and state-counting recovery from [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md) and the ordered-frame spinor proof program in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md), rather than standing as an independent Pauli derivation.
 - Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
 - Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in outer nested shell braids, which controls preferred bonding directions.
 - Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
@@ -203,3 +204,8 @@ The first constrained benchmark should be the Neon core ($Z=10$), with explicit 
 The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
 
 Only after Neon stability and node discreteness are established should the program extend to higher-$Z$ shells. At that point, the predicted high-$Z$ ionization-energy deviations can be compared against known relativistic, QED, and finite-nuclear-size corrections.
+
+## References
+
+- Theodor Benfey, "The Biography of a Periodic Spiral: from Chemistry magazine, via Industry, to a Foucault Pendulum," *Bulletin for the History of Chemistry* 34, no. 2 (2009): 141-145, [doi:10.70359/bhc2009v034p141](https://doi.org/10.70359/bhc2009v034p141).
+- Hyde artwork used in this project: Rezmason, "The chemical elements and their periodic relationships" SVG, CC BY-SA 4.0; see [Licenses & Attributions](../archie/licenses-attributions.md) and the [local asset](../../../assets/images/nuclear/hyde-periodic-table-relationships-commons.svg).

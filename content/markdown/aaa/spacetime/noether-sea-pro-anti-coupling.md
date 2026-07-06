@@ -13,9 +13,16 @@ The starting picture is deliberately simple. A Noether sea carrier is a Noether 
 - pro-Noether braid orientation
 - anti-Noether braid orientation
 
-In this project framing, pro-Noether braids are associated with pro-particle assemblies, and anti-Noether braids are associated with anti-particle assemblies. The key claim is not that the two orientations are optional labels. It is that stable large-scale Noether sea behavior requires both orientations to coexist and couple, so the Noether sea remains dynamically balanced rather than drifting into a single-sign ordering.
+For nested shell braid consumers, the working orientation convention is:
 
-At the assembly level, a useful physical picture is anti-parallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond net charge cancellation: local pole leakage is mutually plugged, so the composite remains comparatively transparent and non-reactive.
+- pro-Noether braid / matter branch: precession order $H \to M \to L$ in time;
+- anti-Noether braid / antimatter branch: precession order $H \to L \to M$ in time.
+
+This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the ordered nested shell braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](horizon-chirality.md#proanti-before-planar-lock).
+
+With that convention, pro-Noether braid orientations are associated with particle assemblies, and anti-Noether braid orientations are associated with antiparticle assemblies. This sea-level balance is distinct from the visible-sector [matter-antimatter asymmetry](../philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to branch chirality, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is not that the two orientations are optional labels. It is that stable large-scale Noether sea behavior requires both orientations to coexist and couple, so the Noether sea remains dynamically balanced rather than drifting into a single-sign ordering.
+
+At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
 
 At the continuum-medium level, represent local Noether braid density with canonical symbols
 $(\rho_{\text{NS}}, n)$ as two coupled components:
@@ -33,13 +40,13 @@ $$
 \Delta\rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) - \rho_{-}(\mathbf X,T)
 $$
 
-where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local pro/anti bias, but not unlimited one-sign domination.
+where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local pro/anti bias, but not unlimited one-sign domination. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti dynamics.
 
-This decomposition should not be duplicated in the Noether sea ontology page. The [Noether sea](noether-sea.md) page names the Noether sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
+The [Noether sea](noether-sea.md) page names the Noether sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
 ## 2 Pro + 2 Anti Coupling Hypothesis
 
-A recurring speculative motif is a minimal neutral cluster built from two pro-Noether braid and two anti-Noether braid constituents. The intuition is a compact four-member arrangement: enough pieces to balance orientation, suppress exposed circulation, and resist a one-constituent perturbation. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2P + 2N$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
+A recurring speculative motif is a minimal neutral cluster built from two pro-Noether braid constituents and two anti-Noether braid constituents. The intuition is a compact four-member arrangement: enough pieces to balance orientation, suppress exposed circulation, and resist a one-constituent perturbation. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2\mathrm{p}+2\mathrm{n}$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
 
 The analogy is structural:
 
@@ -58,7 +65,7 @@ Instead, the model uses the helium-like picture as a design intuition for why a 
 
 If the local Noether sea is assembled from balanced pro/anti Noether braid populations, then curvature-like behavior is read as collective reconfiguration of assembly states rather than purely geometric deformation of an otherwise structureless manifold. In that interpretation:
 
-- weak-field behavior tracks smooth perturbations in normalized density $n$ as used in [Emergent Metric](./emergent-metric.md),
+- weak-field behavior tracks smooth perturbations in normalized density $n$ as used in [Emergent Metric](emergent-metric.md),
 - strong-field behavior tracks approach to alignment and saturation limits,
 - wave channels track propagating phase disturbances through the coupled Noether braid assembly network.
 
@@ -85,4 +92,4 @@ This chapter does not own:
 
 ## Claim Scope
 
-This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether braid motifs may support effective spacetime behavior through Noether sea response. A completed version must derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same Noether sea variables used by the effective-metric program.
+This is a hypothesis note, not a closed derivation. The chapter's claim is limited to the organizing possibility that local pro/anti Noether braid motifs may support effective spacetime behavior through Noether sea response. A completed version must derive the orientation-classification invariant, derive the local coupling law, test whether the $2+2$ pro/anti cluster is an energy minimum or only a design intuition, and extract weak-field, strong-field, or cosmological signatures from the same Noether sea variables used by the effective-metric program.

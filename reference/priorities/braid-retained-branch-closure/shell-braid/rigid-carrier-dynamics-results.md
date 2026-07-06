@@ -68,7 +68,7 @@ The zero-offset fixed-speed row is now closed by rejection in [Rigid Octahedral 
 $$
 \widetilde{\mathcal{R}}_{\mathrm{tan},(1,+)}(0)
 \in
-[0.07393815228,0.07393815232],
+[0.19802220088,0.19802220091],
 $$
 
 so the fixed-speed tangential row cannot vanish at every required receiver and phase under the declared source-pair and same-source policies. This is a no-go only for the rigid zero-offset fixed-speed hypothesis.

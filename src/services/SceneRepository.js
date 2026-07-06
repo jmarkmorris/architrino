@@ -303,7 +303,7 @@ export class SceneRepository {
     return sceneChildDisplay.labelBadge ?? entry?.labelBadge ?? null;
   }
 
-  async resolveSceneChildMarkdownViewBadgeMap(sceneMeta) {
+  async resolveSceneChildMetadataMap(sceneMeta) {
     const refs = Array.isArray(sceneMeta?.children) ? sceneMeta.children : [];
     const map = new Map();
     if (typeof this.fetchImpl !== "function") {
@@ -330,13 +330,20 @@ export class SceneRepository {
           const childData = await response.json();
           const childScene = childData?.scene ?? {};
           const childSource = childScene.source ?? {};
+          const metadata = {};
+          if (typeof childScene.type === "string" && childScene.type.trim().length > 0) {
+            metadata.sceneType = childScene.type.trim();
+          }
           if (
             childScene.type === "Scene-Markdown-View" &&
             childSource.type === "markdown" &&
             typeof childSource.path === "string" &&
             childSource.path.trim().length > 0
           ) {
-            map.set(nodeId, "doc");
+            metadata.markdownViewBadge = "doc";
+          }
+          if (Object.keys(metadata).length > 0) {
+            map.set(nodeId, metadata);
           }
         } catch {
           // Missing child scene metadata should not block the parent scene.
@@ -348,8 +355,14 @@ export class SceneRepository {
   }
 
   resolveInferredNodeBadge(entry, context = {}) {
-    const badge = context.sceneChildMarkdownViewBadgeByNodeId?.get(entry?.id);
+    const metadata = context.sceneChildMetadataByNodeId?.get(entry?.id);
+    const badge = metadata?.markdownViewBadge;
     return typeof badge === "string" && badge.trim().length > 0 ? badge : null;
+  }
+
+  shouldSuppressNodeChapterLabel(entry, context = {}) {
+    const metadata = context.sceneChildMetadataByNodeId?.get(entry?.id);
+    return metadata?.sceneType === "Scene-Diagram";
   }
 
   resolveNodeLayoutSlot(entry, sceneChildRef = null) {
@@ -429,6 +442,7 @@ export class SceneRepository {
       baseOpacity: obj.baseOpacity ?? null,
       wrapLabel: obj.wrapLabel ?? context.wrapLabels ?? true,
       layoutSlot: this.resolveNodeLayoutSlot(obj, sceneChildRef),
+      suppressTextbookChapterLabel: this.shouldSuppressNodeChapterLabel(obj, context),
     };
     const childScene = this.resolveChildSceneTarget(obj, sceneChildRef, context);
     if (typeof childScene === "string" && childScene.length > 0) {
@@ -704,6 +718,10 @@ export class SceneRepository {
 
     await Promise.all(
       nodes.map(async (node) => {
+        if (node?.suppressTextbookChapterLabel === true) {
+          node.textbookChapterLabel = null;
+          return;
+        }
         const label = await this.resolveTextbookChapterLabel(node);
         node.textbookChapterLabel =
           typeof label === "string" && label.trim().length > 0 ? label.trim() : null;
@@ -744,11 +762,11 @@ export class SceneRepository {
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const hideTextbookChapterLabels =
+      sceneType === "Scene-Diagram" ||
       sceneMeta.textbookToc?.hideChapterLabels === true ||
       sceneMeta.textbookToc?.hideChildren === true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
-    const sceneChildMarkdownViewBadgeByNodeId =
-      await this.resolveSceneChildMarkdownViewBadgeMap(sceneMeta);
+    const sceneChildMetadataByNodeId = await this.resolveSceneChildMetadataMap(sceneMeta);
     const idMap = new Map(
       data.objects.map((obj) => [obj.id, this.resolveDisplayTitle(obj) ?? obj.id])
     );
@@ -757,7 +775,7 @@ export class SceneRepository {
         wrapLabels,
         idMap,
         sceneChildRefByNodeId,
-        sceneChildMarkdownViewBadgeByNodeId,
+        sceneChildMetadataByNodeId,
         sceneType,
       })
     );

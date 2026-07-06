@@ -14,7 +14,7 @@ It is the Generation-I charged-lepton reference case for [Noether Braid](../../n
 
 The electron uses the charged-fermion axial-layer rule in its lowest shielding-coherence class. The $e^-$ branch has a pro-nested shell braid with full inner/middle/outer shielding support and a six-site axial inventory of $6\epsilon_-$. The $e^+$ branch is the charge-conjugate branch with axial inventory $6\epsilon_+$. In both cases the charged lepton is a color singlet: the axial layer carries electric and weak bookkeeping, not color-axis exceptionality.
 
-The generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
+Using the shielding-quotient notation from [Quantum Number Mapping](./quantum-number-mapping.md#candidate-generation-operator), the generation-core record is therefore not a new charge pattern. It is the shielding-coherence class of the same charged-lepton axial inventory:
 
 $$
 \mathsf{s}_{\mathrm{sh}}(e)=(1,1,1),
@@ -36,7 +36,7 @@ The equality is a constraint on the mass-facing causal ledger: complete polarity
 
 ## Assembly and Detection Map
 
-The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether braid plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and spin-statistical behavior. The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
+The electron is not treated as a literal ontic-probability distribution. It is a coherent fermion assembly: a Noether braid plus axial layer whose internal causal ledger remains localized enough to preserve identity, charge bookkeeping, and the spin-statistical behavior routed through [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/fermi-dirac-and-bose-einstein-statistics.md). The diffuse object used in ordinary atomic language is an effective detection map for where that coherent assembly can resolve a record under a declared nuclear, apparatus, and Noether sea environment.
 
 A compact local target is
 
@@ -84,34 +84,17 @@ This is a derivation target, not a completed beta-reaction proof. The point of t
 
 ## Precision Validation Gates
 
-The electron is also the precision anchor for charged-lepton compositeness limits. The same response maps used for mass and shielding must pass the `g-2` and form-factor gates without per-lepton tuning:
-
-$$
-a_\ell^{\text{model}}
-=
-a_\ell^{\text{SM,ref}}
-+\mathcal{C}_\ell\,(m_\ell R_L)^2
-+O(R_L^4)
-$$
-
-and, in natural units,
-
-$$
-F(s)=1-\frac{sR_L^2}{4},
-\qquad
-\sigma_{\text{model}}(e^+e^-\to\mu^+\mu^-;s)
-=
-\sigma_{\text{SM}}(s)\,|F(s)|^2
-$$
-
-For the electron branch, the gate is conservative: any finite-size or Noether sea response correction large enough to explain a heavier-lepton magnetic-moment residual must still leave $a_e$, precision scattering, and lepton-pair production within their observed limits. If the same $R_L$, shielding map, and response projection cannot serve $e$, $\mu$, and $\tau$, the charged-lepton universality claim has not closed.
+The electron is also the precision anchor for charged-lepton compositeness limits. The shared precision interface in [Gauge Structure Emergence](../gauge-structure-emergence.md#precision-interface-to-measured-quantities) owns the composite magnetic-moment shift, lepton-pair form factor, shared $R_L$ scale, and $Z$-pole falsification reading. This chapter consumes that interface as an electron-specific constraint: any finite-size or Noether sea response correction large enough to explain a heavier-lepton magnetic-moment residual must still leave $a_e$, precision scattering, and lepton-pair production within their observed limits. If the same $R_L$, shielding map, and response projection cannot serve $e$, $\mu$, and $\tau$, the charged-lepton universality claim has not closed.
 
 ## Related Chapters
 
 - [Noether Braid](../../noether-braid/noether-braid.md)
 - [particle-masses.md](../particle-masses.md)
+- [gauge-structure-emergence.md](../gauge-structure-emergence.md)
 - [quantum-number-mapping.md](./quantum-number-mapping.md)
 - [muon-tau.md](./muon-tau.md)
+- [angular-momentum-and-spin.md](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
+- [fermi-dirac-and-bose-einstein-statistics.md](../../quantum/fermi-dirac-and-bose-einstein-statistics.md)
 - [weak-mixing-ckm.md](../../philosophy-history/theory-bridges/weak-mixing-ckm.md)
 - [reaction-ledger.md](../../validation/reaction-ledger.md)
 - [atomic-structure.md](../../nuclear-atomic/atomic-structure.md)

@@ -1,6 +1,6 @@
 # Mesons
 
-A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes them unstable unless they bind into hadrons that are overall **color neutral**.
+A **hadron** is a **composite particle made of quarks** that is held together by the **strong nuclear force** (the force described by quantum chromodynamics, QCD). Quarks have a characteristic called **color charge** that makes isolated open-color sectors unobservable as free asymptotic states; observed hadrons are overall **color neutral**.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ language, this page is about transient and stable composite assemblies in the strong sector. A meson is not a new fundamental primitive; it is a quark-antiquark assembly record whose color corridor, flux-tube geometry, lifetime, and dissociation channels must close in the same event ledger.
 
@@ -52,7 +52,7 @@ In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Inst
 *   **Topology:** The pion serves as an **effective flux loop** transporting axial-layer charge and phase orientation between the larger nested shell braid baryon assemblies. It is the "bucket brigade" of the nuclear binding energy.
 
 **The Yukawa Mechanism (Assembly Tension):**
-*   **Range vs. mass:** The force range scales as $R \sim \hbar/mc$ because heavier assemblies (higher internal curvature) expose stronger Noether sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
+*   **Range vs. mass:** The force range scales as $R \sim \hbar/(m c_0)$ in the observer-level comparison because heavier assemblies (higher internal curvature) expose stronger Noether sea response and decohere over shorter distances. The pion’s low mass/low curvature lets the binding signal span a femtometer.
 *   **Binding energy:** Nuclear mass defect (e.g., 28.3 MeV in ${}^4$He) is the energy stored in shared pion flux loops; the coupled, pion-sharing configuration sits at lower energy than isolated nucleons.
 *   **In-medium stabilization:** Inside nuclei, pions are not point projectiles but a **delocalized shared axial layer**. Rapid $p\!\leftrightarrow\!n$ exchange via these loops makes the neutron stable in-medium—the time-averaged state is a coupled multi-body assembly, akin to a strong-force chemical bond.
 *   **Geometric bound:** A pion flux tube that stretches beyond a critical length $L_c$ pays more tension energy than the Noether sea needs to rupture by dissociation. Its unusually low curvature keeps $L_c$ large, explaining the long nuclear-range reach.
@@ -74,22 +74,22 @@ Kaons are the lightest mesons containing a **strange quark** (Generation II). Th
 A Kaon connects a **Generation-I braid scaffold** (nested shell braid, e.g., $u$ or a selected $d$ branch) with a selected **Generation-II shielding branch** (observer-level $s$); this is the mesonic-side version of the generation-bridging problem treated more abstractly in [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). The down-type family-selection target is upstream of this meson shorthand: the kaon label assumes the relevant $d$ or $s$ branch has already survived the branch-selection criterion, rather than adding another observed down-type species.
 
 *   **Structure:** $u\bar{s}$ ($K^+$), $d\bar{s}$ ($K^0$), etc.
-*   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen-I braid scaffold presents a nested shell braid boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen-II braid scaffold presents a reduced two-tier boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. The induced torsion breaks reflection symmetry along the tube: unlike the pion (net $\int \tau\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
-*   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated torsion along the tube is the phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned weak-coupling triads setting the barrier height.
-*   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero torsion; $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}} = \int_0^L \tau(s)\,ds$ is that required torsion integrated along the tube. CP-even pieces track $\tau^2$; CP-odd pieces track $\text{sign}(\tau)$, so the asymmetry is geometric, not inserted.
+*   **Shielding Mismatch / Geometric torsion ($\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$):** The Gen-I braid scaffold presents a nested shell braid boundary ($S^1\!\times\!S^1\!\times\!S^1$); the Gen-II braid scaffold presents a reduced two-tier boundary ($S^1\!\times\!S^1$). Connecting these mismatched boundaries forces the flux manifold to twist. Let $\vartheta_{\mathrm{tw}}(s)$ denote the local twist density along the tube. Unlike the pion (net $\int \vartheta_{\mathrm{tw}}(s)\,ds=0$), the kaon carries non-zero twist charge $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ that sets the CP-odd asymmetry and keeps the tube from relaxing to a straight, cancellation-friendly lock.
+*   **Torsion energy:** The 3-ring ↔ 2-ring boundary mismatch forces a twisted mapping of the flux tube cross-section. The integrated twist density along the tube is the phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, storing potential energy that is *not* symmetric under $\phi\to-\phi$ when the geometry is chiral. The $K^0\!\leftrightarrow\!\bar K^0$ wobble is the system oscillating between two local minima of this torsion energy landscape, with the unaligned weak-coupling triads setting the barrier height.
+*   **Boundary-value framing:** The Gen I/Gen II interface is a boundary condition mismatch on the flux tube cross-section. A smooth solution requires non-zero twist density; $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}} = \int_0^{\ell_{\mathrm{tube}}} \vartheta_{\mathrm{tw}}(s)\,ds$ is that required twist integrated along the tube. CP-even pieces track $\vartheta_{\mathrm{tw}}(s)^2$; CP-odd pieces track $\text{sign}(\vartheta_{\mathrm{tw}}(s))$, so the asymmetry is geometric, not inserted.
 
 **Dynamical Role:**
 Kaons are the primary laboratory for observing how Generation I stability breaks down into Generation II instability. Their oscillation ($K^0 \leftrightarrow \bar{K}^0$) implies the ability of the assembly to effectively invert its internal chirality via a transient polarization of the surrounding Noether braid assembly network. The corkscrew twist keeps the quark and antiquark **weak-coupling triads** from locking into a neutralizing plane; that persistent misalignment is the $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue of the CKM weak phase for $s\!\to\! d$ transitions. When torsion energy pushes the system out of its local minimum, the stability criterion triggers the flip.
 
 ### CP/phase hook (Kaons)
 - The Gen-I nested shell braid to selected Gen-II shielding mismatch introduces a flux **twist phase**. Denote it $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$, defined as the relative axial rotation needed to mate the exposed Gen-II ring to a nested shell braid slot.
-- $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts CP violation magnitude tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress $K^0$–$\bar K^0$ mixing. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II shielding ring onto a nested shell braid docking site, and the residual unaligned portion is the torque that drives the oscillatory flip.
+- $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the geometric analogue of the SM weak phase that enters $s\to d$ transitions (e.g., the CKM combination relevant to $\epsilon_K$). $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts the CP-violating component of neutral-kaon mixing tracks the size of this twist; setting $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}\to 0$ would suppress the $\epsilon_K$-like asymmetry while the CP-even oscillation channel remains a separate overlap and barrier-height row. In practice, $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ would be estimated by the twist angle (or integer twist count) required to align a Gen-II shielding ring onto a nested shell braid docking site, and the residual unaligned portion supplies the CP-odd torque bias on the oscillatory flip.
 
 ### Transient/effective exchange records ($\mathbb{A}\mathbb{A}\mathbb{A}$ strings)
 - **Nuclear charge swap:** $p(uud)\;\otimes\;\pi^-(d\bar u)\ \rightarrow\ n(udd)$ is an in-medium residual-strong exchange record. The effective pion-like flux loop carries axial-layer charge and phase between coupled baryon assemblies, while the full event ledger keeps baryon identities, recoil, and medium response explicit. The loop relaxes or re-associates into the surrounding nuclear assembly once the charge-state handoff closes; it is not a free pion propagation story.
 - **Free pion weak dissociation:** A detached charged pion has its own weak lifetime and must route through a weak-corridor event ledger, for example $\pi^-\to\mu^-+\bar\nu_\mu$. That free weak record should be kept separate from the in-medium residual-strong exchange loop used in nuclear binding.
 - **Neutral pion two-photon route:** $\pi^0\to\gamma+\gamma$ is a photon Gate C reaction. The inverse $q\bar q$ axial pairing opens a fast radiative reconfiguration channel, but the two outgoing photon assemblies must inherit Gate A kinematics and Gate B transverse ledgers, with conservation and identity routing closed in the same event record.
-- **Kaon oscillation:** $K^0(d\otimes\bar s)\ \leftrightarrow\ \bar K^0(\bar d\otimes s)$ corresponds to a transient weak-sector reconfiguration between selected down-type shielding branches while preserving the meson-level flux record. The twist phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ controls the rate/asymmetry of this flip as a derivation target.
+- **Kaon oscillation:** $K^0(d\otimes\bar s)\ \leftrightarrow\ \bar K^0(\bar d\otimes s)$ corresponds to a transient weak-sector reconfiguration between selected down-type shielding branches while preserving the meson-level flux record. The CP-even oscillation rate and the CP-odd asymmetry must close as separate rows; the twist phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the CP-odd row's derivation target.
 
 ---
 
@@ -155,7 +155,7 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 
 ### Lifetime vs. geometry ($\mathbb{A}\mathbb{A}\mathbb{A}$ intuition)
 - **Pions:** Free charged $\pi^\pm$ associate as geometrically *non-inverse* braids ($u$ vs. $\bar d$ or $d$ vs. $\bar u$); their axis matrices do not expose the fast inverse-pair radiative route, so dissociation must open a weak $W^\pm$ corridor, giving the longer free lifetime. In nuclei, residual strong exchange is an in-medium effective flux-loop record, not the free weak lifetime. Neutral $\pi^0$ pairs exact inverse matrices ($u\otimes\bar u$ or $d\otimes\bar d$); axis-wise cancellation opens the rapid Gate C route $\pi^0\to\gamma\gamma$. Anti-aligned spins and relaxed flux also make the $\rho\to\pi\pi$ drop steep, keeping ground-state pions light.
-- **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and CP-violating oscillations.
+- **Kaons:** Gen-I/Gen-II shielding mismatch introduces a flux twist/phase that couples weakly to flavor; the partial mismatch aligns with their longer weak-scale lifetime and the CP-violating component of neutral-kaon oscillation.
 - **Delta baryons:** Parallel spins on all three constituent braids raise rotational energy and flux tension; the configuration sheds a pion almost immediately ($\sim10^{-24}$ s) to fall back to the mixed-spin nucleon.
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
@@ -165,18 +165,18 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
 - **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell braids).
-- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or over‑twist (ρ, Δ, kaon torsion) dissociate fast; non-inverse pairs that require a weak corridor (π±, $K$) live longer.
+- **Lifetime / width:** Depth of the stability basin or steepness of the unstable manifold. Inverse axis pairs (π^0) or strongly over-twisted excited states (ρ, Δ) dissociate fast; non-inverse pairs and Gen-I/Gen-II kaon mismatches that require weak corridors (π±, $K$) live longer.
 
 ### SM quantum numbers (cheat sheet for particles discussed)
-| Particle | Quark content | $Q$ | $B$ | $S$ | $I_3$ | $J^P$ | Lifetime / Width (typical) |
+| Particle | Quark content | $Q$ | $B$ | $S$ | $I_3$ | $J^P$ | Lifetime / Width (typical; neutral kaons use $K_S/K_L$ mass eigenstates) |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | $\pi^+$ | $u\bar d$ | +1 | 0 | 0 | +1 | $0^-$ | $2.60\times10^{-8}$ s |
 | $\pi^0$ | $(u\bar u-d\bar d)/\sqrt{2}$ | 0 | 0 | 0 | 0 | $0^-$ | $8.4\times10^{-17}$ s |
 | $\pi^-$ | $d\bar u$ | −1 | 0 | 0 | −1 | $0^-$ | $2.60\times10^{-8}$ s |
 | $K^+$ | $u\bar s$ | +1 | 0 | +1 | +1/2 | $0^-$ | $1.24\times10^{-8}$ s |
-| $K^0$ | $d\bar s$ | 0 | 0 | +1 | −1/2 | $0^-$ | $8.95\times10^{-11}$ s (short), $5.12\times10^{-8}$ s (long) |
+| $K^0$ | $d\bar s$ | 0 | 0 | +1 | −1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
 | $K^-$ | $\bar u s$ | −1 | 0 | −1 | −1/2 | $0^-$ | $1.24\times10^{-8}$ s |
-| $\bar K^0$ | $\bar d s$ | 0 | 0 | −1 | +1/2 | $0^-$ | $8.95\times10^{-11}$ s / $5.12\times10^{-8}$ s |
+| $\bar K^0$ | $\bar d s$ | 0 | 0 | −1 | +1/2 | $0^-$ | mixes into $K_S$: $8.95\times10^{-11}$ s; $K_L$: $5.12\times10^{-8}$ s |
 | $\rho^+,\,\rho^0,\,\rho^-$ | same as $\pi$ states | +1,0,−1 | 0 | 0 | +1,0,−1 | $1^-$ | $\Gamma \approx 150$ MeV ($\sim10^{-24}$ s) |
 | $\Delta^{++}$ | $uuu$ | +2 | 1 | 0 | +3/2 | $3/2^+$ | $\Gamma \approx 120$ MeV ($\sim10^{-23}$ s) |
 | $\Delta^{+}$ | $uud$ | +1 | 1 | 0 | +1/2 | $3/2^+$ | same as above |
@@ -201,13 +201,13 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * Color neutrality comes from superposing/permuting which axis is exceptional—no fixed axis per baryon.
 
 **Axis matrix as braid tag (visual cue)**
-- Each column is a braid-like axis; + / – are opposite winding directions of the binary pair (e.g., + counter-winding, – co-winding), 0 is alternating/mixed.
-- Example: $\left[\begin{smallmatrix}+\\-\\0\end{smallmatrix}\right]$ means top axis winds +, middle winds –, bottom alternates.
+- Each column records the polarity-dyad class on one shared H/M/L axis, not a separate winding-direction convention.
+- Example: $\left[\begin{smallmatrix}+\\-\\0\end{smallmatrix}\right]$ means top axis carries a positive-polarity dyad, middle axis carries a negative-polarity dyad, and bottom axis carries a mixed dyad.
 
 **Color/flux neutrality schematics**
 
 *Baryon nested shell braid (proton-like permutations)*
-$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d:\left[\begin{smallmatrix}0\\+\\+\end{smallmatrix}\right]\;\;\Rightarrow\;$ axes permuted across constituent braids $\Rightarrow$ net color 0.
+$u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\begin{smallmatrix}+\\0\\+\end{smallmatrix}\right],\quad d_{F_{\mathrm I},H}:\left[\begin{smallmatrix}+\\-\\-\end{smallmatrix}\right]\;\;\Rightarrow\;$ exceptionality appears once on each H/M/L axis across the selected down-type family, so the baryon is color neutral while the net electric charge is $+1$.
 
 *Meson quark–antiquark pairing*  
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
@@ -221,8 +221,8 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Pion + | $\pi^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Non-inverse braids lack the fast inverse-pair radiative route; free dissociation uses a $W^+$ corridor, while in-medium exchange is residual strong. |
 | Pion 0 | $\pi^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Isospin-triplet superposition; inverse matrices open the Gate C two-photon route $\pi^0\to\gamma\gamma$ and a very short lifetime. |
 | Pion - | $\pi^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Mirror of $\pi^+$: non-inverse braids, weak $W^-$ dissociation corridor. |
-| Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ drives CP/oscillation. |
-| Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral kaon oscillations set by torsion energy. |
+| Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ supplies the strange-sector CP-asymmetry handle. |
+| Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral-kaon oscillation and CP-odd asymmetry are separate closure rows. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
 | $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips braid/anti-braid. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |

@@ -76,12 +76,12 @@ The representation term is local gauge bookkeeping unless the branch also makes 
 
 The effective gauge variables are redundant coordinates on an observer-level record. In the bridge theory, a gauge transformation must move within one physical equivalence class rather than between two distinct substrate states:
 $$
-A_\mu\sim A_\mu+\partial_\mu\alpha,\qquad
+A_\mu\sim A_\mu+\frac{1}{g_1}\partial_\mu\alpha,\qquad
 W_\mu\sim U W_\mu U^{-1}+\frac{i}{g_2}U\partial_\mu U^{-1},
 \qquad
 G_\mu\sim V G_\mu V^{-1}+\frac{i}{g_3}V\partial_\mu V^{-1}
 $$
-This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
+The $U(1)$ parameter is normalized consistently with the sector convention below, so $g_1$ remains explicit rather than being absorbed into $\alpha$. This is why the chapter treats $A_\mu,W_\mu,G_\mu$ as effective connections. The substrate burden is not to find primitive gauge fields, but to recover one gauge-invariant record of forces, phases, holonomies, and charge ledgers from causal-wake and assembly histories.
 
 Global symmetries and gauge redundancies have different tests. For a genuine global transformation $\delta\Psi=\epsilon X(\Psi)$, the regularized effective action gives a Noether current through
 $$
@@ -189,6 +189,7 @@ $$
 \Psi\mapsto e^{i\alpha(x)}\Psi,\qquad
 A_\mu\mapsto A_\mu+\frac{1}{g_1}\partial_\mu\alpha
 $$
+Here $A_\mu$ is the generic $U(1)_Y$ connection before electroweak mixing, not the already-mixed photon connection.
 
 ### Aharonov-Bohm Holonomy Benchmark
 
@@ -216,7 +217,7 @@ $$
 \frac{q_{\mathrm{eff}}}{\hbar}\Phi_B
 \pmod{2\pi}
 $$
-Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. A useful residual is
+Here $\mathcal{S}_{\mathrm{wake}}[\gamma_a]$ is the effective action accumulated by the coarse-grained causal-wake history assigned to arm $\gamma_a$, and $\Phi_B$ is the standard enclosed magnetic-flux observable. The equality also carries a calibration burden: a validated branch must identify the emergent phase quantum with the measured one on this benchmark window, $\hbar_{\mathrm{eff}}=\hbar$, rather than fitting two independent phase scales. A useful residual is
 $$
 \Delta_{\mathrm{AB}}
 =
@@ -291,18 +292,18 @@ The global gauge-topology target passes only if $\Delta_{\mathrm{gauge,glob}}$ a
 
 ## SU(2) Weak Sector
 
-Let $\chi$ denote the local weak doublet (effective exposed-triad channel).
+Let $\psi_L$ denote the local left-handed weak doublet in the effective exposed weak-coupling-triad channel.
 
 **Proposition 2 (Local weak-basis rotations define an SU(2) connection).**  
 If physics is invariant under
 $$
-\chi(x)\mapsto U_2(x)\chi(x),\qquad U_2(x)\in SU(2)
+\psi_L(x)\mapsto U_2(x)\psi_L(x),\qquad U_2(x)\in SU(2)
 $$
 then the derivative must be promoted to
 $$
-D_\mu\chi
+D_\mu\psi_L
 =
-\left(\partial_\mu-i g_2 W_\mu^a\frac{\tau^a}{2}\right)\chi
+\left(\partial_\mu-i g_2 W_\mu^a\frac{\tau^a}{2}\right)\psi_L
 $$
 with curvature
 $$
@@ -310,6 +311,7 @@ F_{\mu\nu}^a
 =
 \partial_\mu W_\nu^a-\partial_\nu W_\mu^a+g_2\epsilon^{abc}W_\mu^bW_\nu^c
 $$
+Here $\epsilon^{abc}$ is the $SU(2)$ Levi-Civita structure constant; it is unrelated to the polarity-unit magnitude $\epsilon$ used in axial-inventory bookkeeping.
 
 *Proof sketch:* Standard principal-connection construction for local non-Abelian basis changes; the commutator term follows from non-commutativity of $SU(2)$ generators.
 
