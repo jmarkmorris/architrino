@@ -2,6 +2,7 @@
 
 import { spawnSync } from "node:child_process";
 import path from "node:path";
+import { performance } from "node:perf_hooks";
 import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
@@ -49,22 +50,37 @@ const CHECKS = [
   },
 ];
 
+function formatDuration(ms) {
+  const seconds = ms / 1000;
+  if (seconds < 60) {
+    return `${seconds.toFixed(seconds < 10 ? 2 : 1)}s`;
+  }
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds - minutes * 60;
+  return `${minutes}m ${remainingSeconds.toFixed(1)}s`;
+}
+
+const suiteStartedAt = performance.now();
+
 for (const check of CHECKS) {
   console.log(`[content-integrity] ${check.name}`);
+  const checkStartedAt = performance.now();
   const result = spawnSync(process.execPath, check.args, {
     cwd: ROOT_DIR,
     env: process.env,
     stdio: "inherit",
   });
+  const duration = formatDuration(performance.now() - checkStartedAt);
   if (result.error) {
-    console.error(`[content-integrity] failed to start ${check.name}: ${result.error.message}`);
+    console.error(`[content-integrity] failed to start ${check.name} after ${duration}: ${result.error.message}`);
     process.exit(1);
   }
   if (result.status !== 0) {
     const detail = result.signal ? `signal ${result.signal}` : `exit ${result.status ?? 1}`;
-    console.error(`[content-integrity] failed: ${check.name} (${detail})`);
+    console.error(`[content-integrity] failed: ${check.name} (${detail}, ${duration})`);
     process.exit(result.status ?? 1);
   }
+  console.log(`[content-integrity] passed: ${check.name} (${duration})`);
 }
 
-console.log("[content-integrity] all checks passed");
+console.log(`[content-integrity] all checks passed (${formatDuration(performance.now() - suiteStartedAt)})`);

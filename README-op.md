@@ -24,6 +24,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [ ] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
 - [ ] Keep the local push gate and GitHub Content Integrity gate in parity before treating a push as clean.
+- [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks expose their hot spot.
 - [ ] For broad advancement prompts, let the agent continue into safe direct follow-on work instead of stopping at a Priority Action Menu.
 - [ ] Treat "continue..." as approval to execute the last safe scoped recommendation or closure goal unless it requires a theory/canon decision, destructive action, or broad scope expansion.
 - [ ] For multi-hour self-running theory passes, state the desired checkpoint cadence or final artifact threshold when it differs from the default.
