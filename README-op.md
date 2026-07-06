@@ -17,6 +17,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Start new prompts with a one-sentence `Closure goal:` line so Codex goal mode begins from the intended objective.
 - [ ] Give the expected verification command, app path, or rendered target when that target is not obvious.
 - [ ] Default local web testing to the shared `5173` dev server; if another port is used, state why and include the active URL in the status or closeout.
+- [ ] Before any local browser or web-app turn, probe shared `5173`; if it is down, restart the server and verify `HTTP 200` before browser work or handoff.
 - [ ] Keep priority lists ordered by closure value rather than historical arrival order.
 - [ ] When pasting source material, mark what is canon, what is speculation, and what is only context.
 - [ ] Say whether you want implementation, review, planning, or brainstorming before long prompts with mixed signals.

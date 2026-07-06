@@ -58,7 +58,7 @@ The target is to reproduce, in the appropriate regime,
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
 $$
-and generalizes to strong-field and high-velocity conditions.
+and to generalize this map to strong-field and high-velocity conditions.
 
 Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is the canonical medium-density variable.
 The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$; use it for refractive-delay language so $n$ remains reserved for density.
@@ -772,22 +772,22 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a tri‑binary clock:
+Two coupled mechanisms change the internal frequency of a nested shell braid clock:
 
 ### Kinematic Effect (Velocity Dependence)
 
 When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material drift is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
-1. **Path‑length elongation:**
+1. **Path-length elongation:**
  Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
 
 2. **Finite causal speed:**
  Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
-3. **Shape deformation (Lorentz‑link hypothesis):**
- To remain dynamically stable under increased $\|\mathbf{w}\|$, the tri‑binary’s outer exclusion surface becomes **oblate**, flattened along the direction of motion:
- - At low $\|\mathbf{w}\|$, the outer exclusion surface is nearly spherical.
- - As $\|\mathbf{w}\|\to c_\star$, that exclusion surface contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding an oblate spheroidal envelope with semiaxes $(a_\perp, a_\perp, a_\parallel)$ and $a_\parallel < a_\perp$.
+3. **Shape deformation (Lorentz-link hypothesis):**
+ To remain dynamically stable under increased $\|\mathbf{w}\|$, the nested shell braid's outer boundary becomes an **oblate spheroidal exclusion envelope**, flattened along the direction of motion:
+ - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
+ - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
 Geometry terminology follows [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The derived clock-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt_{\mathrm{eff}}$ after an effective observer chart is declared. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
@@ -803,7 +803,7 @@ c_\star
 \quad \Rightarrow\quad
 \frac{d\tau}{dt_{\mathrm{eff}}}\bigg|_{\text{kin}} \approx \sqrt{1 - \frac{\|\mathbf{w}\|^2}{c_\star^2}}
 $$
-in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
+in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous comparison, the observer branch sets $c_\star$ to the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$; this is a declared branch status, not an independent replacement for the primitive wake speed $c_f$.
 
 ### Muon Lifetime Benchmark
 
@@ -838,8 +838,8 @@ Massive assemblies polarize and densify the surrounding Noether sea. A clock dee
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether braids).
  - From the clock's perspective, each internal wake contribution is delayed in the declared clock map.
 
-3. **Tidal distortion of tri‑binary geometry:**
- Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the tri‑binary differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
+3. **Tidal distortion of nested shell braid geometry:**
+ Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the nested shell braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
 **Gravitational hypothesis:**
 To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
@@ -884,7 +884,7 @@ $$
 $$
 in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether braid response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
-Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
+Outside that limit, the native clock map $F$ will in general deviate from the GR expression and define the theory's distinctive strong-field / high-velocity predictions.
 
 ### Effective Energy-Momentum Closure Test
 
@@ -938,8 +938,9 @@ $$
 \frac{d^2\mathbf X_a}{dT^2}(T)=
 \sum_{b\in\mathcal{A}}
 \kappa\,\sigma_{ab}\lvert q_aq_b\rvert
-\int_{-\infty}^{T}\!dT_0\;
-\frac{\hat{\mathbf{r}}_{ab}(T;T_0)}{r_{ab}(T;T_0)^2}\,
+\int_{T-h}^{T}\!dT_0\;
+\frac{\hat{\mathbf{r}}_{ab}(T;T_0)}
+{r_{ab}^2(T;T_0)+\epsilon_c^2}\,
 \delta_\eta\!\big(r_{ab}(T;T_0)-c_f(T-T_0)\big)
 $$
 $$
@@ -947,7 +948,7 @@ r_{ab}(T;T_0)=\|\mathbf X_a(T)-\mathbf X_b(T_0)\|,
 \qquad
 \hat{\mathbf{r}}_{ab}=\frac{\mathbf X_a(T)-\mathbf X_b(T_0)}{r_{ab}(T;T_0)}
 $$
-This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
+This is the dual-mollified finite-memory certification form used in the dynamical chapters. The memory depth $h<\infty$ bounds the retained causal history, $\eta>0$ thickens the causal wake surface, and $\epsilon_c>0$ caps the near-collision inverse-square amplitude. Exploratory scans may use a simpler $\delta_\eta$ causal-surface mollifier only when they label the run as a non-certification approximation.
 
 ### Clock Observable and Clock Map
 
@@ -1007,7 +1008,7 @@ $$
 
 This chapter keeps only the symbolic/numeric coefficient interface needed to bridge clock microdynamics to PPN observables.
 
-### Perturbative Expansion (Weak‑field, Low‑velocity)
+### Perturbative Expansion (Weak-field, Low-velocity)
 
 For the coefficient map in this section, observer-level PPN fits use the low-gradient comparison speed $c_\star=c_0$; primitive kernel-only scans must state separately when they keep $c_\star=c_f$.
 
@@ -1086,18 +1087,18 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 
 ## Failure Conditions and Red Flags
 
-This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
+This program fails, and the emergent-metric project is likely untenable, if any of the following hold:
 
 1. **Incorrect velocity dependence:**
- - If $T(v)$ cannot be made to fit $\propto \gamma(v)$ without fine‑tuning internal clock geometry or Noether sea parameters.
+ - If $T_q(\mathbf w)$ cannot be made to fit $\propto \gamma_\star(\mathbf w)$ without fine-tuning internal clock geometry or Noether sea parameters.
 
 2. **Wrong sign or magnitude of gravitational dilation:**
  - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.
 
 3. **Directional anisotropy:**
- - If $T(v)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
+ - If $T_q(\mathbf w)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
 
-4. **Clock‑dependence:**
+4. **Clock-dependence:**
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt_{\mathrm{eff}}$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
 
 5. **Parameter bloat:**
@@ -1105,8 +1106,8 @@ This program fails—and the emergent‑metric project is likely untenable—if 
 
 ---
 
-**Deliverable of this document:**
-A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
+**Chapter target:**
+A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a nested shell braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
 
 ### Closure Program Interface (clock-to-PPN bridge)
 
