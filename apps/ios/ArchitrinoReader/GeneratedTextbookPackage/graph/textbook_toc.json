@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 181,
-      "sections": 1480
+      "entries": 182,
+      "sections": 1486
     }
   },
   "tocRoot": {
@@ -3419,18 +3419,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Background Timespace vs. Implemented Medium",
+                "title": "Absolute Timespace vs. Implemented Medium",
                 "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
-                "markdownSection": "Background Timespace vs. Implemented Medium",
-                "sectionKey": "background timespace vs implemented medium",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Big Picture",
-                "markdownPath": "content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md",
-                "markdownSection": "Big Picture",
-                "sectionKey": "big picture",
+                "markdownSection": "Absolute Timespace vs. Implemented Medium",
+                "sectionKey": "absolute timespace vs implemented medium",
                 "headingLevel": 2
               }
             ]
@@ -3991,10 +3983,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Real-Data Joint Likelihood (Benchmark Inputs)",
+                "title": "Benchmark-Input Joint Likelihood (Reduced Fit)",
                 "markdownPath": "content/markdown/aaa/spacetime/ppn-parameters.md",
-                "markdownSection": "Real-Data Joint Likelihood (Benchmark Inputs)",
-                "sectionKey": "real data joint likelihood benchmark inputs",
+                "markdownSection": "Benchmark-Input Joint Likelihood (Reduced Fit)",
+                "sectionKey": "benchmark input joint likelihood reduced fit",
                 "headingLevel": 2
               },
               {
@@ -4727,6 +4719,72 @@
                 "markdownPath": "content/markdown/aaa/assemblies/fermions/electron.md"
               },
               {
+                "id": "fermions__muon_tau",
+                "title": "Muon and Tau",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/assemblies/muon_tau.json",
+                "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Purpose",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Purpose",
+                    "sectionKey": "purpose",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Framing",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Framing",
+                    "sectionKey": "framing",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Axial Inventory and Shielding-Coherence Classes",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Axial Inventory and Shielding-Coherence Classes",
+                    "sectionKey": "axial inventory and shielding coherence classes",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Weak-Reaction Provenance",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Weak-Reaction Provenance",
+                    "sectionKey": "weak reaction provenance",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "`g-2` and Form-Factor Gates",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "`g-2` and Form-Factor Gates",
+                    "sectionKey": "g 2 and form factor gates",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Related Chapters",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Related Chapters",
+                    "sectionKey": "related chapters",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Status",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Status",
+                    "sectionKey": "status",
+                    "headingLevel": 2
+                  }
+                ]
+              },
+              {
                 "id": "fermions__neutrinos",
                 "title": "Neutrinos",
                 "kind": "markdown-view",
@@ -5369,10 +5427,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Proton and Neutron as Ground-State Nested Shell Braids",
+                "title": "Proton and Neutron as Color-Singlet Baryon Assemblies",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Proton and Neutron as Ground-State Nested Shell Braids",
-                "sectionKey": "proton and neutron as ground state nested shell braids",
+                "markdownSection": "Proton and Neutron as Color-Singlet Baryon Assemblies",
+                "sectionKey": "proton and neutron as color singlet baryon assemblies",
                 "headingLevel": 2
               },
               {

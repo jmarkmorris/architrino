@@ -662,7 +662,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - **Ch 6.2.3** [Constituents and Counting](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Constituents+and+Counting)
     - **Ch 6.2.4** [Color-Singlet Closure](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Color-Singlet+Closure)
     - **Ch 6.2.5** [Proton Source-Envelope Closure Target](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Proton+Source-Envelope+Closure+Target)
-    - **Ch 6.2.6** [Proton and Neutron as Ground-State Nested Shell Braids](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Proton+and+Neutron+as+Ground-State+Nested+Shell+Braids)
+    - **Ch 6.2.6** [Proton and Neutron as Color-Singlet Baryon Assemblies](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Proton+and+Neutron+as+Color-Singlet+Baryon+Assemblies)
     - **Ch 6.2.7** [CP-Odd Neutron Dipole Scaffold](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=CP-Odd+Neutron+Dipole+Scaffold)
     - **Ch 6.2.8** [Effective Internal Geometry](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Effective+Internal+Geometry)
     - **Ch 6.2.9** [Spin and Magnetic-Moment Expectations](../../../markdown/aaa/nuclear-atomic/nucleon-structure.md?section=Spin+and+Magnetic-Moment+Expectations)

@@ -2594,6 +2594,28 @@ Several speed symbols must remain separated:
 
 The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
 
+#### Transverse Causal Budget Lemma
+
+When a retained moving branch is exported to a clock, ruler, or photon-synchronization channel, the branch must declare the channel speed used by that export. The primitive branch chart solves causal roots with $c_f$. A dressed clock/ruler comparison uses $c_\star=c_{\text{eff}}(\mathbf X,T)$ after the Noether sea dressing map has been declared, while a photon synchronization comparison uses its declared photon-channel speed $c_\gamma(\mathbf X,T)$. The weak homogeneous measured limit may identify the declared channel speed with $c_0$ only after the clock, ruler, and photon rows collapse to one observer-accessible speed within the preferred-frame leakage budget.
+
+For a branch whose response center drifts through the local Noether sea with material drift $\mathbf w$, the transverse budget is
+$$
+c_\star^2
+=
+\|\mathbf w\|^2+c_{\perp}^2,
+\qquad
+\beta_\star=\frac{\|\mathbf w\|}{c_\star},
+\qquad
+\gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}
+$$
+Thus an observer-export clock or ruler row must extract
+$$
+\frac{c_{\perp}}{c_\star}
+=
+\frac{1}{\gamma_\star}
+$$
+from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
+
 ### Multi-Scale Layer Locking
 
 The baseline nested shell braid is not a stack of three identical circular binaries. It is a nested causal lock whose shells operate in different speed regimes. Let $s_\ell$ denote the characteristic speed of one member of shell $\ell$ around that shell's center. In the ordinary weak-stress regime, the target ordering is
