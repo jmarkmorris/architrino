@@ -278,7 +278,6 @@ function buildOrientationMarkdown() {
     "| Source | Lines | SHA-256 |",
     "| --- | ---: | --- |",
     ...sourceRows.map((row) => `| ${sourceLink(row.path)} | ${row.lines} | \`${row.hash}\` |`),
-    "",
   ];
   return `${lines.join("\n")}\n`;
 }
