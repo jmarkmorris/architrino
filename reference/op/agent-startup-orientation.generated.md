@@ -75,7 +75,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [README.md](../../README.md) | 229 | `9edea65d550f36ce` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `15ba33ec6351c320` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 71 | `4821c6688ef3e37c` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 87 | `c4d4d71c71e7b1a0` |
 | [reference/op/README.md](README.md) | 27 | `d31ad2e0cbac42a5` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 197 | `00a79efd8882c06f` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
