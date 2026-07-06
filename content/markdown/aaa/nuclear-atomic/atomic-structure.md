@@ -679,7 +679,7 @@ $$
 0
 $$
 
-along the relevant planetary-interior branch. This inequality is a constitutive target. It must be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling; it cannot be assumed from ordinary density alone.
+along the relevant planetary-interior branch. This inequality is a constitutive target. It must be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling; it cannot be assumed from ordinary density alone. [Condensed Matter](condensed-matter.md#earth-core-iron-as-a-boundary-case) carries the Earth-core iron specialization and the packing sufficient condition.
 
 This map imposes four local failure tests:
 

@@ -74,7 +74,7 @@ $$
 
 In the standard Schrödinger calculation, the second condition is enforced by terminating the radial power series into the associated Laguerre family; that is the mathematical source of discrete principal labels in the ideal Coulomb problem. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an input postulate: the same hydrogen spectral channel must first supply the effective central envelope, its non-separable residual, and the radial energy functional from the electron branch, proton source envelope, and local Noether sea record.
 
-The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, the normalized density $n(\mathbf X,T)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$, and the local clock/rate response encoded by $\Gamma_N(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
+The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, the normalized density $n(\mathbf X,T)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$, and the local clock/rate response encoded by the native cadence-stretch diagnostic $\Gamma_N(\mathbf X,T)$. The spectral readout below uses the projected channel value $\Gamma_N^{(\ell)}$ after the hydrogen response map has selected an admissible resolution; it is not a separate observer-chart definition of $\Gamma_N$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 That separation matters because spectra are one of the main ways observers infer the wider cosmos. A line frequency can change because the emitting assembly differs, because the local Noether sea and clock/rate conversion differ, because the photon path changes the received channel, or because the receiver's own clock comparison changes. A spectral model that merges those effects into one fitted number has lost the implementation.
 
@@ -129,7 +129,7 @@ E_{\text{env}}^{(\ell)}(b)
 }{h}
 $$
 
-where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the corresponding clock-rate conversion from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). The spectral scan passes only if the same hydrogen ledger and Noether sea complement produce a stable line readout under admissible refinement:
+where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the corresponding clock-rate conversion from [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). The spectral scan first declares the composite residual that couples the clock norm to the envelope-gap readout:
 
 $$
 \left\|
@@ -158,6 +158,8 @@ $$
 $$
 
 This makes the spectral channel a composite readout, not a separate fitted surface. The clock norm supplies the phase/cadence/delay part, while the envelope-gap term tests whether the same electron branch and proton source envelope recover the line spacing. If the line can be matched only by changing $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, or the electron-envelope branch after the transition pair is chosen, the spectral channel has split from the hydrogen boundary scan.
+
+After this composite readout is declared, the spectral scan passes only if the same hydrogen ledger and Noether sea complement produce a stable line readout under the refinement condition inherited from the hydrogen channel scan:
 
 $$
 \Delta_{\mathrm{spec}}(\ell,\ell')
@@ -333,7 +335,14 @@ $$
 g_{\mathrm{eff}}\mu_B B
 $$
 
-The normal Zeeman limit gives a sharper staged benchmark. In that limit the external magnetic branch should split one observer-level line into the standard polarization-resolved pattern: a central component plus symmetric side components for the transverse view, and a circularly polarized doublet for the longitudinal view. A compact comparison can treat the side-component spacing as
+The normal Zeeman limit gives a sharper staged benchmark. In that limit the external magnetic branch should split one observer-level line into the standard polarization-resolved pattern:
+
+| Viewing direction | Observer-level components | Recovery burden |
+| --- | --- | --- |
+| Transverse to the magnetic branch | One central component plus symmetric side components | Recover the side spacing and linear polarization basis from the same magnetic-state map and photon-channel event record. |
+| Longitudinal along the magnetic branch | Circularly polarized doublet | Recover the handed polarization pair and equal spacing from the same record. |
+
+A compact comparison can treat the side-component spacing as
 
 $$
 \omega_{\pm}^{\mathrm{obs}}
@@ -345,7 +354,7 @@ $$
 \Omega_B^{\mathrm{orb}}\propto B\,\frac{q}{m_{\mathrm{resp}}}
 $$
 
-with the proportionality, polarization basis, and charge-to-mass readout recovered from the same magnetic-state map and photon-channel event record. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+Here $m_{\mathrm{resp}}$ is the exposed mass-response readout for the same branch environment; the nearby $m_*$ notation is reserved for the standard material or envelope effective-mass comparison, as in the Landau spacing. The proportionality, polarization basis, and charge-to-mass readout must be recovered from the same magnetic-state map and photon-channel event record. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
 
 Solar and stellar Zeeman observations sharpen this as a source-reconstruction
 benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot

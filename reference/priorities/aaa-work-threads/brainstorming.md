@@ -7,7 +7,8 @@ This file preserves loose work-thread ideas, scratch notes, and open questions. 
 ### 2026-07-06 atomic and nuclear review cleanup themes
 
 - Claim level: provisional corpus-cleanup routing from the Atomic and Nuclear Assemblies Fable review pass, not accepted proof evidence.
-- Batchable cleanup theme: normalize remaining Noether sea stress component notation from $S_{ij}$ to the owner symbol $\Sigma_{\text{sea},ij}$ or an explicitly declared projection in `content/markdown/aaa/spacetime/black-holes.md` and `content/markdown/aaa/nuclear-atomic/condensed-matter.md`; `content/markdown/aaa/nuclear-atomic/atomic-structure.md` was normalized during the review-1 integration pass.
+- Batchable cleanup theme: normalize remaining Noether sea stress component notation from $S_{ij}$ to the owner symbol $\Sigma_{\text{sea},ij}$ or an explicitly declared projection in `content/markdown/aaa/spacetime/black-holes.md`; `content/markdown/aaa/nuclear-atomic/atomic-structure.md` was normalized during the review-1 integration pass, and `content/markdown/aaa/nuclear-atomic/condensed-matter.md` was normalized during the review-7 integration pass.
+- Residual cleanup target: verify the review-reported composite-braid terminology and bare $t\to T$ notation drift in `content/markdown/aaa/nuclear-atomic/nucleon-structure.md` against its source review before editing; the review-7 attachment names the item but does not include enough local context to change the chapter safely.
 
 ### 2026-07-06 spacetime directory review cleanup themes
 

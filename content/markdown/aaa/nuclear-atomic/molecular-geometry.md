@@ -64,6 +64,7 @@ For a stable molecule, the small-oscillation target is
 $$
 \omega_s^2\,\epsilon_{s,Ai}
 =
+\sum_{C,k}
 \sum_{B,j}
 \left(M^{-1}\right)_{Ai,Ck}
 \mathcal H_{Ck,Bj}\,
@@ -74,7 +75,7 @@ where $M$ is the observer-level mass-response matrix of the participating nuclei
 
 ## Closure Targets
 
-A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, trigonal, tetrahedral, and bent arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
+A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, bent, trigonal-planar, trigonal-pyramidal, and tetrahedral arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{BF}_3$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
 
 The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md).
 
