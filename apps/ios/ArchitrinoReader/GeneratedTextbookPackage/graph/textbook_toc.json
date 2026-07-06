@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 185,
-      "sections": 1476
+      "sections": 1486
     }
   },
   "tocRoot": {
@@ -784,7 +784,89 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/foundations/emergence_of_structure.json",
-            "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md"
+            "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Conway's Game of Life: A Discrete Touchstone",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Conway's Game of Life: A Discrete Touchstone",
+                "sectionKey": "conway s game of life a discrete touchstone",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
+                "sectionKey": "emergence in the architrino universe continuous delay dynamics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Context as Constraint on Basin Selection",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Context as Constraint on Basin Selection",
+                "sectionKey": "context as constraint on basin selection",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Context Changes and Energy Ledger",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Context Changes and Energy Ledger",
+                "sectionKey": "context changes and energy ledger",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assembly Theory and Recursion",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Assembly Theory and Recursion",
+                "sectionKey": "assembly theory and recursion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bottom-Up Structural Ladder",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Bottom-Up Structural Ladder",
+                "sectionKey": "bottom up structural ladder",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergence Claim Discipline",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Emergence Claim Discipline",
+                "sectionKey": "emergence claim discipline",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Emergent Measures and Stability Markers",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Emergent Measures and Stability Markers",
+                "sectionKey": "emergent measures and stability markers",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Dynamics of Structure and Asymmetry",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "The Dynamics of Structure and Asymmetry",
+                "sectionKey": "the dynamics of structure and asymmetry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Provenance within Emergence",
+                "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
+                "markdownSection": "Provenance within Emergence",
+                "sectionKey": "provenance within emergence",
+                "headingLevel": 2
+              }
+            ]
           }
         ]
       },

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-05T19:16:26.273Z",
-  "package_version": "1.0.0-c6dd55fd",
+  "generated_at": "2026-07-06T03:59:01.732Z",
+  "package_version": "1.0.0-02096422",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "c6dd55fd51cb8fbea976a64ff3e09f6192b3f8214cbfdbd54e9a0db5b48d65e3",
-    "size": 701801
+    "sha256": "020964226cd60f90a24b40e4262dfda83dcfd5318307475e5516b60deb5c6e88",
+    "size": 706010
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 702232,
-      "sha256": "c6dd55fd51cb8fbea976a64ff3e09f6192b3f8214cbfdbd54e9a0db5b48d65e3"
+      "size": 706441,
+      "sha256": "020964226cd60f90a24b40e4262dfda83dcfd5318307475e5516b60deb5c6e88"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -204,32 +204,32 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 24396646,
-      "sha256": "4b2630fc9929eb20b84e25745ff6e98cd2a0e538f42894c65b1f214c16cb9b53"
+      "size": 24433155,
+      "sha256": "b1e27d60ba613ca9eeb26756369cbce529d343b53f6086374f17c66c98bd9f0c"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1327888,
-      "sha256": "84cc68c12f2bc23c7b5ca079f3fb456dfbd4d9bbb35125e37f7abca6822c01db"
+      "size": 1330572,
+      "sha256": "c12ce80cdb1b188baeab5c69f58fd43708fa9a26dae7b47e380dbfabac6e126d"
     },
     {
       "path": "reading-copies/foundations.html",
       "sourcePath": "__generated__/reading-copies/foundations.html",
       "role": "chapter",
       "type": "html",
-      "size": 2473085,
-      "sha256": "7224cc30475812748b0f2e964136eacc404629980e1f8dfafb37306f0a1bbe3c"
+      "size": 2530433,
+      "sha256": "cd634e95e0b6f5a9fbafc3e5360898117dabd0b9680aa91cf6f97f6f0809f335"
     },
     {
       "path": "reading-copies/foundations.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 271052,
-      "sha256": "ef30b018bfc5be4706126b22da7d79c832feda2cf1ca038ed1d330cb3c9c3c44"
+      "size": 275279,
+      "sha256": "7902de5cc2614c6556a2bca0ec60b9d3ecbac68db71fa246fe323bcdacb7a769"
     },
     {
       "path": "reading-copies/noether-braid.html",
@@ -237,7 +237,7 @@
       "role": "chapter",
       "type": "html",
       "size": 4888257,
-      "sha256": "44a113c3012b0425da23d39d8d0a4715dacaeb9007cbf524bd11fd626c1037e2"
+      "sha256": "35ab6b6d8832e4915c6624d6c9e1fe72a3bbab553b68fd92fa937f34c612be01"
     },
     {
       "path": "reading-copies/noether-braid.md",
@@ -245,7 +245,7 @@
       "role": "chapter",
       "type": "markdown",
       "size": 342159,
-      "sha256": "0462efafc59ea189d053284587dc59e55aaa2a0a2935c741afb3d9d755109e99"
+      "sha256": "324162b8e301c7d4ee9d58ac2f5bcd4a2fe9ea36b7bb07a4b17bff665fd8d19b"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.html",
@@ -413,7 +413,7 @@
       "role": "reference",
       "type": "html",
       "size": 94677,
-      "sha256": "ae9b9cb8737997bf0223d89038d1ad45e7d92cfb65c5b39ddc9a976f832f58b8"
+      "sha256": "2d4589ae8a8fb92a8a9f7c326e570cc213fad0d4e394bd3a01431ef47e70a2e3"
     },
     {
       "path": "references/terminology-usage.md",
@@ -421,15 +421,15 @@
       "role": "reference",
       "type": "markdown",
       "size": 45608,
-      "sha256": "03a9dc7eb84f0de6dd9f6e9cc1ac4cbf8896f494b74782d0cdbf7690103ed0a1"
+      "sha256": "3aa404f578b4811c722cda51e665f1bf78df678200363d118f72686b052cbf17"
     },
     {
       "path": "textbook_bundle_search_index.json",
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9932267,
-      "sha256": "3c8adbf2bf3f6821d52b08a30164bd2f22b89189639916a6de1e0ebfbc457d8f"
+      "size": 9939412,
+      "sha256": "fa18653ec99b58ba96a0a149691a3d8f6df9698c5ab19c9116488b1f04669acb"
     }
   ],
   "links": []

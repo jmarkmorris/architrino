@@ -72,6 +72,8 @@ These are mandatory before commit and before PR publication.
 ```bash
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/check-foundational-impact.mjs --base origin/main --run
+node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/check-receiver-normal-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
@@ -86,13 +88,17 @@ Textbook regeneration has two generated layers:
 - `node scripts/build-scene-graph.mjs --write --strict` regenerates the scene graph, Textbook TOC data, and Textbook TOC markdown.
 - `node scripts/build-textbook-md-pdf.mjs --write` regenerates the textbook reading-copy markdown under `content/generated/markdown/textbook/reading-copies/`.
 
+Agent startup orientation has one generated operational layer:
+
+- `node scripts/build-agent-startup-orientation.mjs --write` regenerates `reference/op/agent-startup-orientation.generated.md` from the current agent startup, prompt, style, and branch-process sources.
+
 Use a full regeneration checkpoint when the operator/developer requests `regenerate`, `full regeneration`, `full regen`, `regeneration checkpoint`, or the exact prompt:
 
 ```text
 Closure goal: Regenerate.
 ```
 
-A full regeneration checkpoint means running both write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only math packets, such as [adjoint-cokernel-equations.md](../priorities/braid-retained-branch-closure/shell-braid/adjoint-cokernel-equations.md), stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
+A full regeneration checkpoint means running the write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only math packets, such as [adjoint-cokernel-equations.md](../priorities/braid-retained-branch-closure/shell-braid/adjoint-cokernel-equations.md), stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
 
 Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 
@@ -105,13 +111,16 @@ Regenerate both layers before the final check pass whenever a PR touches any sou
 
 The local browser PDF made from a reading-copy view is not a committed repo artifact.
 
-During this final branch/PR process, if scene-graph or textbook reading-copy drift is reported, regenerate and re-check:
+During this final branch/PR process, if scene-graph, agent startup orientation, or textbook reading-copy drift is reported, regenerate and re-check:
 
 ```bash
 node scripts/build-scene-graph.mjs --write --strict
+node scripts/build-agent-startup-orientation.mjs --write
 node scripts/build-textbook-md-pdf.mjs --write
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/check-foundational-impact.mjs --base origin/main --run
+node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/check-receiver-normal-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
@@ -574,6 +583,8 @@ This is the standard sequence for one completed branch rolling into the next:
 git status -sb
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/check-foundational-impact.mjs --base origin/main --run
+node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
 node scripts/check-receiver-normal-clean-slate.mjs
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs

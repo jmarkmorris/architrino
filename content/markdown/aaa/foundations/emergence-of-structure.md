@@ -4,7 +4,7 @@ Emergence in this chapter means persistent organization formed by architrino dyn
 
 The chapter is therefore about how order can be real without being primitive. Architrinos supply the persistent inventory and the causal-wake law supplies the motion. Assemblies, stable patterns, and statistical weights appear only after histories are constrained, repeated, and coarse-grained. Nothing mystical is added; the hard part is proving which delayed histories become stable enough to deserve higher-level names.
 
-### Conway's Game of Life: A Discrete Touchstone
+## Conway's Game of Life: A Discrete Touchstone
 
 Conway's Game of Life is useful only as an introductory picture of emergence. It is a zero-player cellular automaton: cells live on a 2D grid, all cells update together at discrete time steps, and each next state depends only on the current states of nearby cells.
 
@@ -17,11 +17,11 @@ The lesson that carries over is narrow: simple deterministic rules can generate 
 
 The useful structural map is topological rather than cellular. A still life is the fixed-point analogue of an equilibrium link, an oscillator is the periodic-orbit analogue of a limit-cycle branch, and a glider is the translation-invariant analogue of a drift bundle in the assembly atlas.
 
-In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a drift bundle is a periodic branch in the quotient whose lift carries nonzero displacement per return.
+In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and, in the discrete-grid case, a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a drift bundle is a periodic branch in the quotient whose lift carries nonzero displacement per return.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when causal wake surfaces emitted in the past intersect its worldline, so active causal roots are not synchronized by a shared update tick. Each contribution has inverse-square falloff and depends on source and receiver path history. The effective evolution is therefore a nonlinear delay-differential system with formally infinite-range coupling rather than a cellular rule table.
 
-### Emergence in the Architrino Universe: Continuous Delay Dynamics
+## Emergence in the Architrino Universe: Continuous Delay Dynamics
 
 The closer pedagogical analogy is a population of coupled delayed-feedback oscillators, such as delayed Kuramoto-type phase systems, or nonlinear medium flows where phase-lagged feedback can produce synchronization, attractor basins, and persistent coherent structures. These analogies are not substitutes for the master equation. They are guides for the correct mental model. Structure forms through continuous delayed feedback and basin selection, not through grid-based cellular updates.
 
@@ -34,7 +34,7 @@ The stability of an assembly is therefore dynamic rather than static. It is not 
 
 This makes persistence a finite-window dynamical statement. For a declared observation window $W$ and surrounding context $c$, an assembly branch persists only while its path-history remains in an admitted stable or metastable basin and the retained causal-root, shielding, and provenance rows continue to close. If those rows fail, the branch has reconfigured or dissolved even when a coarse observer label could still be reused.
 
-### Context as Constraint on Basin Selection
+## Context as Constraint on Basin Selection
 
 Higher-level context does not add a rival ontology to the lower-level dynamics. It acts more like a constraint on which histories are available. A surrounding assembly or Noether sea state can select boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts histories, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether sea context. The context-restricted history set is then
 
@@ -47,13 +47,13 @@ G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
 $$
 Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
-The constrained flow is still the lower-level causal-wake dynamics,
+The native state is $\mathsf Z=(\mathbf X,\mathbf V)$. The constrained flow is still the lower-level causal-wake dynamics,
 
 $$
-\frac{dX}{dT}=F_L(X_T),\qquad X_T\in \mathcal K_c
+\frac{d\mathsf Z}{dT}=F_L(\mathsf Z_T),\qquad \mathsf Z_T\in \mathcal K_c
 $$
 
-where $X_T(\theta)=X(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
 
 The load-bearing object is therefore the context-to-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$. One may regard the allowed context space $\mathfrak C$ as stratified: on an open top stratum, the admitted chart set is locally constant, while codimension-one walls mark contexts where a branch chart opens, closes, or changes regularity. A context change that turns $\mu_c(B_k)=0$ into $\mu_{c'}(B_k)>0$ is then a wall-crossing in $\mathfrak C$, not a second causal law. This places context changes in the same geometric family as root folds and basin separatrices: the active branch topology changes when a retained chart crosses a declared stratum.
 
@@ -85,19 +85,19 @@ This clean partition is an admissibility target, not an automatic property of de
 $$
 S_{k\ell}(\phi)=0,
 \qquad
-\|DS_{k\ell}(\phi)\|_\ast \ge \kappa_{\mathrm{sep}} > 0.
+\|DS_{k\ell}(\phi)\|_\ast \ge \kappa_{\mathrm{sep}} > 0
 $$
 If no codimension-one separatrix row, equivalent null-boundary proof, or controlled fractal-boundary measure theorem is supplied, $P_c(k)$ remains a diagnostic basin volume rather than a closed branch-weight law.
 
 Local separator smoothness is not by itself enough in an infinite-dimensional or state-dependent delay system. A valid basin chart should also rule out uncontrolled accumulation of separator sheets on the compact return-section region being measured. One useful formulation is local finiteness: for every compact $K$ in the declared return section,
 $$
-\#\{(k,\ell,n):S_{k\ell}^{(n)}\cap K\ne\varnothing\}<\infty
+\#\{(k,\ell,n):\{S_{k\ell}^{(n)}=0\}\cap K\ne\varnothing\}<\infty
 $$
 after discarding a $\mu_c$-null exceptional set. Here $n$ indexes distinct separator sheets between the same branch pair when the delayed return map creates multiple folds. This condition prevents a countable pile-up of individually smooth sheets from producing a measure-thick or riddled basin boundary. It is the basin analogue of excluding cusp accumulation in a causal-root chart.
 
 Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
 
-### Context Changes and Energy Ledger
+## Context Changes and Energy Ledger
 
 A change in context is not a free semantic relabeling. Something physical must have changed. If a surrounding assembly or Noether sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
 
@@ -114,16 +114,16 @@ The reverse inequality pattern records branch closure, and partial changes in $\
 A physical transition should therefore be representable as a replayable event
 
 $$
-\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})
+\mathsf e=(\mathsf Z,I_{\mathsf e},Y_{\mathsf e})
 $$
 
-where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
+where $\mathsf Z$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
 
 The row below is a closure template until $E_{\text{wake}}$ has been defined constructively for the declared regularized delay system. Its job is to make every branch-opening event pay for itself. Time-translation invariance of a delay equation does not by itself supply a standard Noether energy. The current load-bearing route is the action-boundary or work-integral construction, because it can use the same non-Markovian causal-history rows that generate the force. A local potential reconstruction is a chart-local equivalent only after its crosswalk is stated, and a convergent boundary-flux account is admissible only after the retained branch supplies the needed far-field or exhaustion law, such as the [Receiver-Centered Exhaustion Lemma](absolute-timespace.md#receiver-centered-exhaustion-lemma) in the homogeneous neutral Noether sea case. The routes must be shown equivalent on the retained window before they can be treated as one conserved energy.
 
 When this route closes, $E_{\text{wake}}$ should be read as the Noether charge of the delayed action under absolute-time translation, not as a primitive local energy density placed on one slice. For a memory depth $h$, the charge is expected to be a functional of the retained history segment
 $$
-X_T\in C([-h,0])
+\mathsf Z_T\in C([-h,0])
 $$
 with boundary and memory-window terms built from the same causal kernel that supplies the force. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
 
@@ -145,11 +145,11 @@ W_{\partial\Omega}
 =0
 $$
 
-Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
+Here $K_{\mathrm{mech}}$ is the $\mu_{\text{arch}}$-weighted kinetic bookkeeping term from the [Master Equation](../dynamics/master-equation.md)'s regularized energy diagnostic for the retained architrino degrees of freedom, with assembly-level kinetic entries allowed only as derived ledger summaries after their constituent account is declared. The subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is boundary work, positive for work done on the retained subsystem. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
 
 The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
 
-### Assembly Theory and Recursion
+## Assembly Theory and Recursion
 
 Assemblies enter the chapter as recursive dynamical organizations rather than as new primitives. A larger assembly is not an unexplained new object; it is a higher-level pattern built from lower-level branch records that still have to close. The recursive description is useful only when each level preserves closure, shielding, and provenance from the level below.
 
@@ -165,11 +165,11 @@ $$
 \Sigma_{\mathrm{shield}}(A;W)
 =
 \frac{\Phi_{\mathrm{int}}^{\mathrm{root}}(A;W)}
-{\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon}
+{\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon_{\mathrm{reg}}}
 $$
-where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux and $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux. A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity, or equivalently increases $\Sigma_{\mathrm{shield}}$ under the declared convention, without breaking the energy and provenance ledger. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
+where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux, $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux, and $\varepsilon_{\mathrm{reg}}>0$ is a root-flux regulator. A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity; an increase in $\Sigma_{\mathrm{shield}}$ is a useful witness under the declared convention when the retained internal-flux account is fixed or separately controlled, and the energy and provenance ledger still closes. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
 
-### Bottom-Up Structural Ladder
+## Bottom-Up Structural Ladder
 
 The recursive picture is easiest to read as a bottom-up construction ladder. The ladder is a teaching map of claim levels, not a proof that every branch has already been derived. Its discipline is simple: a higher rung cannot be more closed than the weakest rung it depends on. Closure inheritance is strict: no rung may export effective claims with a stronger status than the weakest supporting rung below it. If a fermion, bosonic channel, or composite-matter claim depends on an unclosed binary or Noether braid branch, it inherits that lower branch's target status until the supporting certificate closes.
 
@@ -185,7 +185,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 
 This ladder matters because it prevents category drift. Fermions, bosonic channels, and observer-level spacetime are not separate ontological species added by hand. They are different organizational levels or effective descriptions of the same underlying architrino dynamics.
 
-### Emergence Claim Discipline
+## Emergence Claim Discipline
 
 When this corpus says that something "emerges," the claim should identify four pieces. These four pieces keep the word from becoming a shortcut for "we have not explained it yet":
 
@@ -206,17 +206,17 @@ Just as important, the ladder should not be read as a single unbranched stack af
 
 This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether sea on the same explanatory rung. They are different organizations of the same underlying ingredients.
 
-### Emergent Measures and Stability Markers
+## Emergent Measures and Stability Markers
 
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics. Their use depends on an effective mapping from persistent assembly behavior to a measured descriptor.
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
--   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as framed self-linking parity $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether braid closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as a framed self-linking sign $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma,\gamma^{\mathrm{fr}})$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether braid closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, shielding exposure factor $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 
-### The Dynamics of Structure and Asymmetry
+## The Dynamics of Structure and Asymmetry
 
 At the substrate level, structure is carried by **dynamical geometry**. Every architrino interacts with the wakes of other architrinos and, in the relevant regimes, with its own past isochrons. This creates an infinite-scale delayed N-body problem, so no single closed-form analytical solution is expected for the evolution of a generic structure.
 
@@ -245,7 +245,7 @@ $$
 \ne
 \varnothing
 $$
-If $\|\mathbf V_i(U)\|<c_f-\eta$ throughout the interval $[T_{\mathrm{em}},T]$, then no self-hit root can occur on that interval, because
+If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_{\mathrm{em}},T]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
 $$
 \|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
 \le
@@ -259,7 +259,7 @@ This creates a threshold asymmetry in the system. A small acceleration caused by
 
 The common geometric pattern is codimension-one transition. Self-hit onset is a fold in the same-source causal-root set, context opening is a wall-crossing in the admitted-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$, and basin branching is a separatrix crossing in the return section. In each case an integer or discrete branch label changes only when the retained chart crosses a singular stratum: an active-root count jumps, an admitted branch appears or disappears, or a basin label changes. Emergence is therefore not merely "larger patterns appear"; it is the formation and reorganization of persistent branches across stratified causal-root and basin geometry.
 
-### Provenance within Emergence
+## Provenance within Emergence
 
 A key feature of this model is that emergence does not erase identity. Since architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new primitive entity.
 

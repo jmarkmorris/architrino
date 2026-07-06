@@ -525,11 +525,11 @@ emits a concentric wake stream centered on one fixed point of the Euclidean void
 
 Over a diagnostic interval $I$, the relevant complete-state object is the source-tagged center curve
 $$
-Z_a(I)=\{\mathbf{z}_a(s):s\in I\},
+Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
-\mathbf{z}_a(s)=\mathbf X_a(s),
+\mathbf Z_a(s)=\mathbf X_a(s),
 $$
-where $\mathbf{z}_a(s)$ is the center of the wake isochron emitted at time $s$.
+where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$.
 Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
 The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-source wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from source-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
@@ -1411,12 +1411,7 @@ $$
 T\mapsto(T,\mathbf X(T))
 $$
 
-For any alternate curve parameter $\lambda$, admissible worldlines must satisfy
-$$
-\frac{dT}{d\lambda}>0
-$$
-
-There are no closed timelike curves, no backward-time propagation, and no fundamental reparametrization freedom that replaces the absolute time parameter.
+Worldlines are graphs over $T$: there is no admissible parametrization in which $T$ decreases, so closed timelike curves and backward-time propagation are excluded by construction, and there is no fundamental reparametrization freedom that replaces the absolute time parameter.
 
 > **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $T$. A worldline passes through one slice at each instant.
 
@@ -1549,9 +1544,9 @@ $$
 
 A relativistic 4D arc length such as
 $$
-s=\int\sqrt{g_{\mu\nu}\,dx^\mu dx^\nu}
+s=\int\sqrt{\left|g_{\mu\nu}\,dx^\mu dx^\nu\right|}
 $$
-is a standard comparison form, not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+with the sign of the integrand fixed by the declared signature convention, is a standard comparison form, not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
 ### Velocity, Acceleration, and Momentum
 
@@ -1789,15 +1784,17 @@ For standard-matter assemblies, the observer-level relativistic speed limit is a
 
 At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure. The leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition.
 
-A useful theorem-target diagnostic for this deformation is the active-root Euler characteristic of an assembly branch over a return cycle,
+A useful theorem-target diagnostic for this deformation is the sign-resolved active-root ledger of an assembly branch over a return cycle. Split the retained simple roots by Jacobian sign into counts $N_+(A)$ and $N_-(A)$, and record the pair together with the active-root Euler characteristic
 $$
 \chi_{\mathrm{root}}(A)
+=
+N_+(A)-N_-(A)
 =
 \sum_{i,j\in A}
 \sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}}
 \operatorname{sgn}\!\left(\partial_{T_{\mathrm{em}}}F_{ij}\right)
 $$
-with the sums taken over the retained self-hit and partner-hit rows on the branch chart. On a regular chart this signed count is locally constant. A structural-integrity failure near the wake-speed threshold should therefore appear as a jump in $\chi_{\mathrm{root}}(A)$, or in the more detailed causal-root ledger it summarizes, rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
+with the sums taken over the retained self-hit and partner-hit rows on the branch chart. The two components detect different failure channels. Generic fold events create or annihilate root pairs of opposite Jacobian sign, so they change the unsigned count $N=N_++N_-$ by $\pm 2$ while leaving $\chi_{\mathrm{root}}$ invariant; this is the fold-pair surgery conservation recorded in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md). A near-threshold fold cascade therefore appears as jumps in $(N_+,N_-)$, while a jump in $\chi_{\mathrm{root}}(A)$ signals a root crossing the chart or memory boundary, a pair-set change, or a degeneracy outside the generic fold class. A structural-integrity failure near the wake-speed threshold should appear in this sign-resolved ledger rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 
 This structural-integrity claim is the central Lorentz-closure theorem target for this chapter and is restated as Theorem G in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It must prove more than the qualitative statement that assemblies fail mechanically near $c_f$. A successful recovered observer branch must show that the matter-assembly limiting speed, Noether sea dressed clock/ruler speed, photon-channel speed, and weak-homogeneous calibration speed collapse to one common limit:
 $$
@@ -1829,9 +1826,11 @@ $$
 $$
 The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v_{\mathrm{eff}})$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
 $$
-\mathcal{D}(v_{\mathrm{eff}})=\exp(v_{\mathrm{eff}}K)
+\mathcal{D}(v_{\mathrm{eff}})=\exp\!\left(\varphi_{\text{eff}}K\right),
+\qquad
+\tanh\varphi_{\text{eff}}=\frac{v_{\mathrm{eff}}}{c_0},
 $$
-with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
+with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order; the rapidity parameter $\varphi_{\text{eff}}$ matches the observer-level convention in [Special Relativity and the Noether Braid](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md) and makes the one-parameter family additive if the branch composes boosts. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
 
 ### Coordinates and Forbidden Transformations
 
@@ -1912,7 +1911,7 @@ $$
 \|\mathbf X_j(T_{\mathrm{em}})-\mathbf X_i(T)\|<R}}
 \mathbf A_{ij}(T;T_{\mathrm{em}})
 $$
-with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used.
+with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_{\mathrm{em}})$ root pairs, not over sources: a super-wake-speed source history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 
 This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
 
@@ -2072,7 +2071,7 @@ H_{\mathcal A}
 \Omega_{\mathcal A}^{(0)}
 }
 $$
-Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, $H_{\mathcal A}$ is the relevant path-history ledger, and
+Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, and $H_{\mathcal A}$ is the relevant path-history ledger. Both $\Omega_{\mathcal A}$ and $\Omega_{\mathcal A}^{(0)}$ are phase rates per unit effective time $t_{\mathrm{eff}}$, so the ratio is dimensionless. The relative velocity entering the clock channel is
 $$
 w^i_{\mathcal A}
 =
@@ -2090,7 +2089,7 @@ $$
 \frac{\tilde P_{\mathcal A}^{\,n}(\theta)-\theta}{n}
 \quad \mathrm{mod}\ 1
 $$
-when the limit is independent of $\theta$. The clock-validity domain is the parameter region where $P_{\mathcal A}$ restricted to the clock circle is topologically conjugate to a rigid rotation, or reduces to a unique normally hyperbolic periodic orbit with a well-defined phase advance. In that regime $\varphi_{\mathcal A}$ can be chosen continuously and $\Omega_{\mathcal A}$ is a branch observable. If the moving or dressed branch loses normal hyperbolicity through a saddle-node of cycles, torus breakdown, quasiperiodic transition, or collapse of the cycle-stability floor, then a single rotation number no longer exists and $d\tau_{\mathcal A}$ is undefined for that branch. That event is a clock-failure mode, not a new proper-time law; in simulation it appears as a Floquet or Lyapunov-spectrum sign change in the transverse clock-cycle directions.
+defined mod 1 through the choice of lift. When $P_{\mathcal A}$ restricted to the retained clock circle is an orientation-preserving homeomorphism, this limit exists and is independent of $\theta$; that invertibility is the real hypothesis. If the restriction is only degree-one and non-invertible, the rotation set can be an interval rather than a point, and clock validity requires it to collapse to a point. The clock-validity domain is the parameter region where $P_{\mathcal A}$ restricted to the clock circle is topologically conjugate to a rigid rotation, or reduces to a unique normally hyperbolic periodic orbit with a well-defined phase advance. In that regime $\varphi_{\mathcal A}$ can be chosen continuously and $\Omega_{\mathcal A}$ is a branch observable. If the moving or dressed branch loses normal hyperbolicity through a saddle-node of cycles, torus breakdown, quasiperiodic transition, loss of return-map invertibility with an open rotation interval, or collapse of the cycle-stability floor, then a single rotation number no longer exists and $d\tau_{\mathcal A}$ is undefined for that branch. That event is a clock-failure mode, not a new proper-time law; in simulation it appears as a Floquet or Lyapunov-spectrum sign change in the transverse clock-cycle directions.
 
 In the Noether-braid clock class, this is the observer-side use of the [candidate and certified braid](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. A physical clock is an admitted branch whose retained record returns under the delayed return map, modulo only true neutral symmetries, with a positive non-symmetry Floquet margin. Its declared clock phase $\varphi_{\mathcal A}$ is the rotation coordinate of that relative periodic orbit. Thus the clock-validity certificate can be written schematically as
 $$
@@ -2100,7 +2099,7 @@ $$
 \qquad
 \Delta_{\mathrm{Floquet}}^{\perp}(\mathcal A)>0.
 $$
-Loss of this certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
+The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. Loss of this certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
 The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
 $$
@@ -2135,7 +2134,7 @@ $$
 \tau(t_{\mathrm{eff},1})-\tau(t_{\mathrm{eff},0})=\int_{t_{\mathrm{eff},0}}^{t_{\mathrm{eff},1}}\frac{\omega_{\text{clk}}(t_{\mathrm{eff}})}{\omega_0}\,dt_{\mathrm{eff}}
 $$
 
-where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
+where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency; this is the integral form of the same phase extraction, with $\omega_{\text{clk}}=\Omega_{\mathcal A}$ and $\omega_0=\Omega_{\mathcal A}^{(0)}$ on the declared branch. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
 
 This definition avoids assigning proper time as an independent scalar, but it does not by itself prove relativity-compatible clock behavior. The non-circular closure statement is stronger: after phase extraction, all admitted low-energy clock and ruler assemblies in a tested comparison class must reduce to the same observer-level clock/ruler map. Equivalently, for each clock assembly $\mathcal A$,
 $$
@@ -2445,7 +2444,7 @@ If these projections require separate sea records or independently tuned respons
 
 **Key point**
 
-Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The $\mathbb{U}_{\text{now}}$ formalism evolves in absolute time $t$; proper time $\tau$ is a derived clock functional. The closure burden is therefore not to remove the preferred foliation, but to derive clock, ruler, and signal behavior that bounds preferred-frame leakage to the required precision in the effective observer sector.
+Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The $\mathbb{U}_{\text{now}}$ formalism evolves in absolute time $T$; proper time $\tau$ is a derived clock functional. The closure burden is therefore not to remove the preferred foliation, but to derive clock, ruler, and signal behavior that bounds preferred-frame leakage to the required precision in the effective observer sector.
 
 The converse is a hard falsifiability wall. The defense fails if $\Delta_{\mathcal A}^{\mathrm{comp}}$ cannot be driven to the declared clock-comparison ceiling by a common-channel reduction. A sharp topological obstruction is disconnected clock moduli: if physically realized clock species occupy different deformation classes of the Noether braid atlas and no shared dressing path identifies their $A$ and $B_{ij}$ maps, then the composition residual is irreducible rather than a small correction. The defense also fails if a stable low-energy clock or ruler species retains orientation or preferred-frame leakage after branch-chart, dressing, and regularization terms have been accounted for, with residuals exceeding the relevant cavity or two-way anisotropy row, in particular at the $10^{-18}$ scale for the strictest resonator comparisons. Such leakage would not be an alternate interpretation of proper time; it would be a failed Lorentz-closure branch.
 
@@ -2476,13 +2475,13 @@ This is not merely a philosophical puzzle. It is a **practical requirement** for
 
 #### The Key Physical Mechanism
 
-The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate creates a **dynamically preferred frame** available to complete-state reconstruction through purely geometric relationships.
+The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate structurally distinguishes the void rest frame, making it available to complete-state reconstruction through purely geometric relationships.
 
 The idea is easiest to see by following the centers of emitted wake surfaces. A stationary source keeps emitting from the same void point. A moving source leaves a sequence of distinct emission centers behind it. The center pattern, not an external grid label, carries the rest diagnostic.
 
 #### The Nature of Causal Wakes
 
-Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $T_{\mathrm{em}}$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time $T$, that emitted isochron has radius $r = c_f \Delta T$ centered on the point where it was emitted.
+Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $T_{\mathrm{em}}$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time $T$, with $\Delta T=T-T_{\mathrm{em}}$, that emitted isochron has radius $r = c_f \Delta T$ centered on the point where it was emitted.
 
 The crucial point is that this expanding causal isochron carries source-tagged information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It continues expanding from its emission point in the Euclidean void.
 
@@ -2527,7 +2526,7 @@ This is definitionally a complete-state test. It assumes the individual source i
 
 That limitation is not a weakness of the ontology. It marks the difference between complete-state reconstruction and what embedded Physical Observers can infer after provenance has been erased into a summed received record.
 
-**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $T_{\mathrm{em}}$ and inspected at time $T>T_{\mathrm{em}}$ have support
+**Wake-center theorem:** Let a source-tagged causal isochron emitted by source $a$ at time $T_{\mathrm{em}}$ and inspected at time $T>T_{\mathrm{em}}$ have emission center $\mathbf Z_a(T_{\mathrm{em}})=\mathbf X_a(T_{\mathrm{em}})$ and support
 $$
 W_a(T_{\mathrm{em}};T)
 =
@@ -2679,7 +2678,7 @@ $$
 \quad\Longrightarrow\quad
 \mathcal{H}_{\mathrm{tag}}=\mathcal{H}'_{\mathrm{tag}}
 $$
-up to the declared Euclidean translation, rotation, and time-origin conventions. This is not an observer-accessible decomposition theorem for the summed potential. It is the ontic bookkeeping claim that distinct source histories produce distinct tagged wake records when provenance labels are retained. If this tagged map had a nontrivial kernel on admissible complete-state records, the complete-state diagnostic would fail; if only the later label-erasing observer map has large fibers, the preferred frame remains complete-state real but operationally hidden.
+For records expressed directly as tagged supports on absolute slices, no Euclidean quotient survives: equality of tagged supports reconstructs the same center curves and therefore the same worldlines, positions, almost-everywhere velocities, and identity-tagged polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts. This is not an observer-accessible decomposition theorem for the summed potential. It is the ontic bookkeeping claim that distinct source histories produce distinct tagged wake records when provenance labels are retained. If this tagged map had a nontrivial kernel on admissible complete-state records, the complete-state diagnostic would fail; if only the later label-erasing observer map has large fibers, the preferred frame remains complete-state real but operationally hidden.
 
 ### Philosophical Context
 
@@ -2726,16 +2725,17 @@ The next chapter, [Constructing the Absolute Frame](../../../../markdown/aaa/fou
 
 The risk-bearing claim is two-sided. The preferred-frame program fails at the complete-state level if source-tagged wake centers cannot define one consistent rest-frame structure. It fails at the observer level if physical clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or PPN ceilings after moving-assembly closure is applied. The framework is therefore committed both to a real complete-state preferred frame and to a quantitatively hidden observer-sector leakage row.
 
-In map language, the claim is injectivity plus approximate observer invariance. The tagged-emission map must be injective on complete-state records modulo Euclidean conventions, while the label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables:
+In map language, the claim is injectivity plus approximate observer invariance. The tagged-emission map must be injective on complete-state records, while the label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or drift family:
 $$
 \operatorname{diam}_{\mathrm{obs}}
-\left(
-\mathcal{O}\!\left[Q_{\mathrm{erase}}(\mathcal{H}_{\mathrm{tag}})\right]
-\right)
+\left\{
+\mathcal{O}\!\left[Q_{\mathrm{erase}}(\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)})\right]:
+\|\mathbf w\|\le w_{\max}
+\right\}
 \le
 \epsilon_{\mathrm{PF}}
 $$
-on the low-energy comparison window, where $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
+Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute drift $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
 
 ## Constructing the Absolute Frame
 
@@ -2757,7 +2757,7 @@ The mathematical content is small but useful. The Euclidean metric plus a nondeg
 
 ### Reconstruction Existence Lemma
 
-Fix one absolute-time slice $\Sigma_{T_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice. The origin can be supplied by a stationary architrino or by the fixed Euclidean-void point reconstructed from a source-tagged emission center. Now choose two additional architrinos $A$ and $B$ whose positions on $\Sigma_{T_\ast}$ satisfy
+Fix one absolute-time slice $\Sigma_{T_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice. Let $\mathbf X_O(T_\ast)$ denote that fixed Euclidean-void point, whether it is occupied by a stationary architrino or reconstructed from a source-tagged emission center and carried to $\Sigma_{T_\ast}$ by spatial identity. Now choose two architrinos $A$ and $B$ whose positions on $\Sigma_{T_\ast}$ satisfy
 $$
 \mathbf{d}_1=\mathbf X_A(T_\ast)-\mathbf X_O(T_\ast)\ne\mathbf{0}
 $$
@@ -2781,11 +2781,11 @@ $$
 \hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2
 $$
 
-Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. In plainer language, the tuple removes the freedom to slide the origin around and spin the axes freely. The continuous freedoms removed are the translations and rotations of the special Euclidean group
+Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. In plainer language, the tuple removes the freedom to slide the origin around and spin the axes freely. The continuous freedoms removed are the translations and rotations of the special Euclidean group:
 $$
-SE(3)=\mathbb{R}^3\rtimes SO(3),
+SE(3)=\mathbb{R}^3\rtimes SO(3)
 $$
-the identity component of the full Euclidean group $E(3)=\mathbb{R}^3\rtimes O(3)$, while the remaining parity choice is the disconnected component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
+This is the identity component of the full Euclidean group $E(3)=\mathbb{R}^3\rtimes O(3)$, while the remaining parity choice is the connected-component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
 
 The construction fails only when the chosen reference data do not actually define a plane. That happens when the first displacement is coincident with the origin or the first two displacements are collinear:
 $$
@@ -2802,15 +2802,15 @@ $$
 $$
 on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf e}_2$ is ill-conditioned and the completed $\hat{\mathbf e}_3$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
 
-This floor is one instance of the non-degeneracy floors used throughout the foundation stack. The common idea is simple: do not trust a reconstruction that would change wildly under a tiny perturbation. In each case the retained chart is accepted only when the smallest singular value of the relevant reconstruction map is bounded away from zero. For causal-root charts this is the transversality floor, such as $\lvert\partial_{T_{\mathrm{em}}}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction it is the smallest singular value of the Gram map determined by $(\mathbf{d}_1,\mathbf{d}_2)$, equivalently the sine floor above. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
+This floor is one instance of the non-degeneracy floors used throughout the foundation stack. The common idea is simple: do not trust a reconstruction that would change wildly under a tiny perturbation. In each case the retained chart is accepted only when the relevant reconstruction map has a scale-appropriate nonzero floor. For causal-root charts this is the transversality floor, such as $\lvert\partial_{T_{\mathrm{em}}}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction the scale-free floor is the conditioning of the normalized direction pair $(\mathbf{d}_1/\|\mathbf{d}_1\|,\mathbf{d}_2/\|\mathbf{d}_2\|)$, recorded above by the sine of their angle. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
 
 If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
 $$
 \mathbf{d}_3=\mathbf X_C(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
-V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
+V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
-Here $V\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}V$ reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
+Here $V_{\mathrm{vol}}\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}(V_{\mathrm{vol}})$ reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
 This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
 
@@ -2831,19 +2831,19 @@ The reconstruction fails only for degenerate or ill-conditioned reference data: 
 
 Coordinate handedness is a basis convention. It chooses which side of the already-defined plane is called positive $\hat{\mathbf e}_3$. A complete-state side marker $C$ can report that choice through
 $$
-V=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
+V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
-with $V>0$ and $V<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V$ does not turn coordinate parity into a dynamical handedness law.
+with $V_{\mathrm{vol}}>0$ and $V_{\mathrm{vol}}<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V_{\mathrm{vol}}$ does not turn coordinate parity into a dynamical handedness law.
 
-Equivalently, $\operatorname{sgn}V$ is gauge data for the selected coordinate chart, while dynamical chirality must be an invariant of the retained branch record. Coordinate parity lives in $\pi_0(O(3))$ for the chart; dynamical chirality lives in the connected-component data of framed worldline or assembly-branch configuration space. A simulation may align these signs as a reporting convention, but a nonzero $V$ does not imply that the assembly itself is chiral.
+Equivalently, $\operatorname{sgn}(V_{\mathrm{vol}})$ is gauge data for the selected coordinate chart, while dynamical chirality must be an invariant of the retained branch record. Coordinate parity lives in $\pi_0(O(3))$ for the chart; dynamical chirality lives in the connected-component data of framed worldline or assembly-branch configuration space. A simulation may align these signs as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ does not imply that the assembly itself is chiral.
 
-Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as framed self-linking parity
+Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as a framed self-linking sign
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
 =
-\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)
+\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma,\gamma^{\mathrm{fr}})
 $$
-for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}V$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
+for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
 
 The self-linking row is defined only on a regular closed return cycle or on an explicitly closed and nonsingular framed trace. A raw open worldline does not by itself carry a deformation-invariant writhe, and a near self-hit or fold crossing is exactly where the framing can degenerate. Chirality is therefore a regular-branch certificate: it is admissible where the retained roots and nonsingular frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ for the relevant causal-root rows. At a fold, reconnection, or framing slip, $Lk$ can jump; that jump is a branch-transition event, not a change in coordinate convention.
 
@@ -2892,7 +2892,7 @@ Emergence in this chapter means persistent organization formed by architrino dyn
 
 The chapter is therefore about how order can be real without being primitive. Architrinos supply the persistent inventory and the causal-wake law supplies the motion. Assemblies, stable patterns, and statistical weights appear only after histories are constrained, repeated, and coarse-grained. Nothing mystical is added; the hard part is proving which delayed histories become stable enough to deserve higher-level names.
 
-#### Conway's Game of Life: A Discrete Touchstone
+### Conway's Game of Life: A Discrete Touchstone
 
 Conway's Game of Life is useful only as an introductory picture of emergence. It is a zero-player cellular automaton: cells live on a 2D grid, all cells update together at discrete time steps, and each next state depends only on the current states of nearby cells.
 
@@ -2905,11 +2905,11 @@ The lesson that carries over is narrow: simple deterministic rules can generate 
 
 The useful structural map is topological rather than cellular. A still life is the fixed-point analogue of an equilibrium link, an oscillator is the periodic-orbit analogue of a limit-cycle branch, and a glider is the translation-invariant analogue of a drift bundle in the assembly atlas.
 
-In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a drift bundle is a periodic branch in the quotient whose lift carries nonzero displacement per return.
+In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and, in the discrete-grid case, a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a drift bundle is a periodic branch in the quotient whose lift carries nonzero displacement per return.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when causal wake surfaces emitted in the past intersect its worldline, so active causal roots are not synchronized by a shared update tick. Each contribution has inverse-square falloff and depends on source and receiver path history. The effective evolution is therefore a nonlinear delay-differential system with formally infinite-range coupling rather than a cellular rule table.
 
-#### Emergence in the Architrino Universe: Continuous Delay Dynamics
+### Emergence in the Architrino Universe: Continuous Delay Dynamics
 
 The closer pedagogical analogy is a population of coupled delayed-feedback oscillators, such as delayed Kuramoto-type phase systems, or nonlinear medium flows where phase-lagged feedback can produce synchronization, attractor basins, and persistent coherent structures. These analogies are not substitutes for the master equation. They are guides for the correct mental model. Structure forms through continuous delayed feedback and basin selection, not through grid-based cellular updates.
 
@@ -2922,7 +2922,7 @@ The stability of an assembly is therefore dynamic rather than static. It is not 
 
 This makes persistence a finite-window dynamical statement. For a declared observation window $W$ and surrounding context $c$, an assembly branch persists only while its path-history remains in an admitted stable or metastable basin and the retained causal-root, shielding, and provenance rows continue to close. If those rows fail, the branch has reconfigured or dissolved even when a coarse observer label could still be reused.
 
-#### Context as Constraint on Basin Selection
+### Context as Constraint on Basin Selection
 
 Higher-level context does not add a rival ontology to the lower-level dynamics. It acts more like a constraint on which histories are available. A surrounding assembly or Noether sea state can select boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts histories, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether sea context. The context-restricted history set is then
 
@@ -2935,13 +2935,13 @@ G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
 $$
 Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
-The constrained flow is still the lower-level causal-wake dynamics,
+The native state is $\mathsf Z=(\mathbf X,\mathbf V)$. The constrained flow is still the lower-level causal-wake dynamics,
 
 $$
-\frac{dX}{dT}=F_L(X_T),\qquad X_T\in \mathcal K_c
+\frac{d\mathsf Z}{dT}=F_L(\mathsf Z_T),\qquad \mathsf Z_T\in \mathcal K_c
 $$
 
-where $X_T(\theta)=X(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
 
 The load-bearing object is therefore the context-to-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$. One may regard the allowed context space $\mathfrak C$ as stratified: on an open top stratum, the admitted chart set is locally constant, while codimension-one walls mark contexts where a branch chart opens, closes, or changes regularity. A context change that turns $\mu_c(B_k)=0$ into $\mu_{c'}(B_k)>0$ is then a wall-crossing in $\mathfrak C$, not a second causal law. This places context changes in the same geometric family as root folds and basin separatrices: the active branch topology changes when a retained chart crosses a declared stratum.
 
@@ -2973,19 +2973,19 @@ This clean partition is an admissibility target, not an automatic property of de
 $$
 S_{k\ell}(\phi)=0,
 \qquad
-\|DS_{k\ell}(\phi)\|_\ast \ge \kappa_{\mathrm{sep}} > 0.
+\|DS_{k\ell}(\phi)\|_\ast \ge \kappa_{\mathrm{sep}} > 0
 $$
 If no codimension-one separatrix row, equivalent null-boundary proof, or controlled fractal-boundary measure theorem is supplied, $P_c(k)$ remains a diagnostic basin volume rather than a closed branch-weight law.
 
 Local separator smoothness is not by itself enough in an infinite-dimensional or state-dependent delay system. A valid basin chart should also rule out uncontrolled accumulation of separator sheets on the compact return-section region being measured. One useful formulation is local finiteness: for every compact $K$ in the declared return section,
 $$
-\#\{(k,\ell,n):S_{k\ell}^{(n)}\cap K\ne\varnothing\}<\infty
+\#\{(k,\ell,n):\{S_{k\ell}^{(n)}=0\}\cap K\ne\varnothing\}<\infty
 $$
 after discarding a $\mu_c$-null exceptional set. Here $n$ indexes distinct separator sheets between the same branch pair when the delayed return map creates multiple folds. This condition prevents a countable pile-up of individually smooth sheets from producing a measure-thick or riddled basin boundary. It is the basin analogue of excluding cusp accumulation in a causal-root chart.
 
 Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
 
-#### Context Changes and Energy Ledger
+### Context Changes and Energy Ledger
 
 A change in context is not a free semantic relabeling. Something physical must have changed. If a surrounding assembly or Noether sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
 
@@ -3002,16 +3002,16 @@ The reverse inequality pattern records branch closure, and partial changes in $\
 A physical transition should therefore be representable as a replayable event
 
 $$
-\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})
+\mathsf e=(\mathsf Z,I_{\mathsf e},Y_{\mathsf e})
 $$
 
-where $X$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
+where $\mathsf Z$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
 
 The row below is a closure template until $E_{\text{wake}}$ has been defined constructively for the declared regularized delay system. Its job is to make every branch-opening event pay for itself. Time-translation invariance of a delay equation does not by itself supply a standard Noether energy. The current load-bearing route is the action-boundary or work-integral construction, because it can use the same non-Markovian causal-history rows that generate the force. A local potential reconstruction is a chart-local equivalent only after its crosswalk is stated, and a convergent boundary-flux account is admissible only after the retained branch supplies the needed far-field or exhaustion law, such as the [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma) in the homogeneous neutral Noether sea case. The routes must be shown equivalent on the retained window before they can be treated as one conserved energy.
 
 When this route closes, $E_{\text{wake}}$ should be read as the Noether charge of the delayed action under absolute-time translation, not as a primitive local energy density placed on one slice. For a memory depth $h$, the charge is expected to be a functional of the retained history segment
 $$
-X_T\in C([-h,0])
+\mathsf Z_T\in C([-h,0])
 $$
 with boundary and memory-window terms built from the same causal kernel that supplies the force. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
 
@@ -3033,11 +3033,11 @@ W_{\partial\Omega}
 =0
 $$
 
-Here $K_{\mathrm{mech}}$ is the mechanical kinetic energy of the retained architrino or assembly degrees of freedom, the subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is work crossing the retained subsystem boundary. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
+Here $K_{\mathrm{mech}}$ is the $\mu_{\text{arch}}$-weighted kinetic bookkeeping term from the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md)'s regularized energy diagnostic for the retained architrino degrees of freedom, with assembly-level kinetic entries allowed only as derived ledger summaries after their constituent account is declared. The subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is boundary work, positive for work done on the retained subsystem. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
 
 The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../../../../markdown/aaa/validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
 
-#### Assembly Theory and Recursion
+### Assembly Theory and Recursion
 
 Assemblies enter the chapter as recursive dynamical organizations rather than as new primitives. A larger assembly is not an unexplained new object; it is a higher-level pattern built from lower-level branch records that still have to close. The recursive description is useful only when each level preserves closure, shielding, and provenance from the level below.
 
@@ -3053,11 +3053,11 @@ $$
 \Sigma_{\mathrm{shield}}(A;W)
 =
 \frac{\Phi_{\mathrm{int}}^{\mathrm{root}}(A;W)}
-{\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon}
+{\Phi_{\mathrm{ext}}^{\mathrm{root}}(A;W)+\varepsilon_{\mathrm{reg}}}
 $$
-where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux and $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux. A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity, or equivalently increases $\Sigma_{\mathrm{shield}}$ under the declared convention, without breaking the energy and provenance ledger. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
+where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux, $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux, and $\varepsilon_{\mathrm{reg}}>0$ is a root-flux regulator. A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity; an increase in $\Sigma_{\mathrm{shield}}$ is a useful witness under the declared convention when the retained internal-flux account is fixed or separately controlled, and the energy and provenance ledger still closes. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
 
-#### Bottom-Up Structural Ladder
+### Bottom-Up Structural Ladder
 
 The recursive picture is easiest to read as a bottom-up construction ladder. The ladder is a teaching map of claim levels, not a proof that every branch has already been derived. Its discipline is simple: a higher rung cannot be more closed than the weakest rung it depends on. Closure inheritance is strict: no rung may export effective claims with a stronger status than the weakest supporting rung below it. If a fermion, bosonic channel, or composite-matter claim depends on an unclosed binary or Noether braid branch, it inherits that lower branch's target status until the supporting certificate closes.
 
@@ -3073,7 +3073,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 
 This ladder matters because it prevents category drift. Fermions, bosonic channels, and observer-level spacetime are not separate ontological species added by hand. They are different organizational levels or effective descriptions of the same underlying architrino dynamics.
 
-#### Emergence Claim Discipline
+### Emergence Claim Discipline
 
 When this corpus says that something "emerges," the claim should identify four pieces. These four pieces keep the word from becoming a shortcut for "we have not explained it yet":
 
@@ -3094,17 +3094,17 @@ Just as important, the ladder should not be read as a single unbranched stack af
 
 This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether sea on the same explanatory rung. They are different organizations of the same underlying ingredients.
 
-#### Emergent Measures and Stability Markers
+### Emergent Measures and Stability Markers
 
 The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics. Their use depends on an effective mapping from persistent assembly behavior to a measured descriptor.
 
 -   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
--   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as framed self-linking parity $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma)$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether braid closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+-   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as a framed self-linking sign $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma,\gamma^{\mathrm{fr}})$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether braid closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
+-   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, shielding exposure factor $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
 In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
 
-#### The Dynamics of Structure and Asymmetry
+### The Dynamics of Structure and Asymmetry
 
 At the substrate level, structure is carried by **dynamical geometry**. Every architrino interacts with the wakes of other architrinos and, in the relevant regimes, with its own past isochrons. This creates an infinite-scale delayed N-body problem, so no single closed-form analytical solution is expected for the evolution of a generic structure.
 
@@ -3133,7 +3133,7 @@ $$
 \ne
 \varnothing
 $$
-If $\|\mathbf V_i(U)\|<c_f-\eta$ throughout the interval $[T_{\mathrm{em}},T]$, then no self-hit root can occur on that interval, because
+If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_{\mathrm{em}},T]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
 $$
 \|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|
 \le
@@ -3147,7 +3147,7 @@ This creates a threshold asymmetry in the system. A small acceleration caused by
 
 The common geometric pattern is codimension-one transition. Self-hit onset is a fold in the same-source causal-root set, context opening is a wall-crossing in the admitted-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$, and basin branching is a separatrix crossing in the return section. In each case an integer or discrete branch label changes only when the retained chart crosses a singular stratum: an active-root count jumps, an admitted branch appears or disappears, or a basin label changes. Emergence is therefore not merely "larger patterns appear"; it is the formation and reorganization of persistent branches across stratified causal-root and basin geometry.
 
-#### Provenance within Emergence
+### Provenance within Emergence
 
 A key feature of this model is that emergence does not erase identity. Since architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new primitive entity.
 

@@ -20,6 +20,10 @@ const CHECKS = [
     args: ["scripts/audit-title-filename-sync.mjs"],
   },
   {
+    name: "Validate generated agent startup orientation",
+    args: ["scripts/build-agent-startup-orientation.mjs", "--check"],
+  },
+  {
     name: "Validate generated textbook reading copies",
     args: ["scripts/build-textbook-md-pdf.mjs", "--check"],
   },
