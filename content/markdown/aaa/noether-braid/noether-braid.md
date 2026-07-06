@@ -6,6 +6,8 @@ A Noether braid is not assumed at the outset to be a set of exact binaries. The 
 
 The simple idea is six persistent strands plus one shared ledger. The hard question is whether the delayed dynamics can keep that ledger coherent: the same six identities, the same active root structure, compatible action and wake rows, and enough stability to serve as a reusable assembly scaffold.
 
+This question is the crux of the theory. The Noether sea, the particle architecture, the mass-response program, and the effective-metric recovery all rest on a retained six-body branch, so closing the retained-branch question — or decisively rejecting candidate routes — is the first priority of the proof program. The chapters of this scene are where that work happens: they carry the sharpest current derivations, candidate mechanisms, executable diagnostics, and scoped negative results, each at its stated claim level. A reader who wants the live frontier of the theory should read this scene first, and should expect it to change as candidate branches close or fail.
+
 For the broader cross-axis classifier, see [Noether Braid Taxonomy](noether-braid-taxonomy.md). The base family chapters are:
 
 | Term | Definition | Additional structure |

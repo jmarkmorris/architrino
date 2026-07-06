@@ -485,7 +485,7 @@ K_{\perp}^{(q)}
 $$
 The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. In the canonical Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any stiffness estimate that lacks same-record $D_T/D_s$ branch strength is a restart target.
 
-A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
+A one-$h_{\mathrm{act}}$ closed-cycle action transaction is a candidate map between stable branch states,
 $$
 B_q(\mathbf V_{\text{trans}})
 \longrightarrow
@@ -493,11 +493,11 @@ B_{q'}(\mathbf V_{\text{trans}}+\Delta\mathbf V)
 $$
 subject to the all-layer action and energy ledgers
 $$
-\Delta A_{\mathrm{cyc}}\equiv\Delta A_{\text{cycle}}=\varsigma h,
+\Delta A_{\mathrm{cyc}}\equiv\Delta A_{\text{cycle}}=s_{\mathrm{act}}h_{\mathrm{act}},
 \qquad
-\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=\varsigma\hbar,
+\Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}=s_{\mathrm{act}}\hbar_{\mathrm{act}},
 \qquad
-\varsigma\in\{-1,+1\}
+s_{\mathrm{act}}\in\{-1,+1\}
 $$
 $$
 \sum_{\ell\in\{I,M,O\}}
@@ -511,7 +511,7 @@ Thus acceleration, absorption, or any accepted transaction can change all three 
 
 ## Cadence-Scale Retuning Closure
 
-The retuning-map problem is the local dynamics version of the one-$h$ transaction. On a branch chart $q$, define
+The retuning-map problem is the local dynamics version of the one-$h_{\mathrm{act}}$ transaction. On a branch chart $q$, define
 
 $$
 \mathbf{y}_q
@@ -552,7 +552,7 @@ where primed quantities are evaluated after retuning and $\epsilon_M$ is the dec
 The first calculable closure can be written as a constrained compliance problem. Let $\mathcal{C}_q(\mathbf{y},\mathcal{G})=0$ collect the phase-closure, causal-root, separator, inter-layer exchange, and stability constraints. Let $\mathbf{K}^{\mathrm{ret}}_q$ be the positive semidefinite local compliance matrix for retuning costs on the declared branch chart. Then the candidate increment is
 
 $$
-\Delta\mathbf{y}_{q,\varsigma}
+\Delta\mathbf{y}_{q,s_{\mathrm{act}}}
 =
 \underset{\Delta\mathbf{y}}{\operatorname{arg\,min}}\;
 \frac{1}{2}
@@ -568,7 +568,7 @@ D A_{\mathrm{cyc},q}[\Delta\mathbf{y}]
 +
 \Delta A_{\mathrm{wake}}
 =
-\varsigma h,
+s_{\mathrm{act}}h_{\mathrm{act}},
 \qquad
 D\mathcal{C}_q[\Delta\mathbf{y}]
 +
@@ -581,12 +581,12 @@ and to the post-retuning speed-regime inequalities above. The matrix $\mathbf{K}
 The cadence-scale retuning map is then the projection
 
 $$
-\mathcal{R}_{\mathrm{cyc}}^{(q,\varsigma)}
+\mathcal{R}_{\mathrm{cyc}}^{(q,s_{\mathrm{act}})}
 =
 \Pi_{\mathrm{ret}}
 \left(
-\Delta\mathbf{y}_{q,\varsigma},
-\Delta\mathcal{G}_{q,\varsigma}
+\Delta\mathbf{y}_{q,s_{\mathrm{act}}},
+\Delta\mathcal{G}_{q,s_{\mathrm{act}}}
 \right)
 $$
 
@@ -604,7 +604,7 @@ $$
 \right)
 $$
 
-This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h$ transaction can become the Noether sea cadence current used in cosmology.
+This map is falsifiable at the branch level. It fails if no admissible minimizer exists, if the minimizer crosses a separator while being treated as same-branch drift, if the middle hinge leaves its declared tolerance, if the envelope projection and branch-period stretch come from different retained ledgers, or if the wake-ledger residual is large enough to survive hierarchy averaging. These are not bookkeeping nuisances; they are the diagnostics that decide whether the same one-$h_{\mathrm{act}}$ transaction can become the Noether sea cadence current used in cosmology.
 
 The first reduced validation model for this target is [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md), with runtime script `scripts/nested-shell-braid/retuning-map-toy-model.mjs`. That model solves the linearized constrained compliance problem and reports the induced $J_\nu$ estimate. It is a branch-bookkeeping scaffold, not delayed-dynamics validation.
 
@@ -1903,7 +1903,7 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 2. Model the nested shell braid as inner engine, middle fulcrum, and outer shielding/interface shell.
 3. Track how motion deforms the rest-state lock into braided spiral-helical geometry.
 4. Derive local cycle-period diagnostics from the absolute cycle-stretch theorem target.
-5. Solve all-layer branch updates for one-$h$ transactions and extract the branch-indexed period-stretch and envelope-oblation records.
+5. Solve all-layer branch updates for one-$h_{\mathrm{act}}$ transactions and extract the branch-indexed period-stretch and envelope-oblation records.
 6. Compute the terminal-alignment area-normalized label density $\bar{\alpha}_{\mathrm{align}}=s_{\mathrm{align}}/a_{\theta}$ from alignment-restricted closure labels, patch-area normalization, and edge wake compatibility.
 7. Output alignment, closure, Floquet, grazing, branch-residual, and observer-export diagnostics.
 8. Keep mass, photon, equivalence-principle, and full observer-geometry matching claims outside the primitive dynamics layer until their proof burdens close.
