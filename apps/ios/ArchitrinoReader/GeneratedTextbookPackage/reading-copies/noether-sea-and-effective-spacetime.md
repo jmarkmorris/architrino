@@ -1305,9 +1305,7 @@ In other words, the van der Waals volume is an exclusion region mainly for **ord
 
 ---
 
-## Physical Observers
-
-### Observer Framework
+## Observer Framework
 
 This chapter explains what an observer can access in $\mathbb{A}\mathbb{A}\mathbb{A}$. It separates the complete ontic universe-state perspective from Physical Observers, then shows how absolute simultaneity, operational simultaneity, derived clock time, and effective metric descriptions fit together.
 
@@ -1320,7 +1318,7 @@ This page owns the level distinction. The clock law itself belongs in [Proper Ti
 
 This is not an idealist or measurement-created ontology. The complete state exists whether or not any Physical Observer reads it. The point is that any actual observer is made of assemblies and can only infer the world through finite records, local clocks, signals, calibrations, and access boundaries.
 
-#### The $\mathbb{U}_{\text{now}}$ Universe-State Perspective
+### The $\mathbb{U}_{\text{now}}$ Universe-State Perspective
 
 The **$\mathbb{U}_{\text{now}}$ universe-state perspective** is the theory's complete ledger for one slice of [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md). It represents complete knowledge of the architrino microstate on that slice, including the history data needed for the next step of deterministic evolution.
 
@@ -1335,7 +1333,7 @@ In principle, it includes:
 
 It is not a physical device or observer. It does not measure, signal, compute with finite resources, or occupy a local assembly state. It is the bookkeeping perspective used to state the ontology and deterministic laws while keeping those laws separate from what an embedded observer can recover.
 
-#### Physical Observers
+### Physical Observers
 
 A **Physical Observer** is any observer, detector, clock, ruler, or measuring apparatus composed of architrino assemblies. The term is physical before it is psychological: a lab apparatus, atom, detector medium, or human observer all count only through the records their assemblies can produce and preserve.
 
@@ -1407,7 +1405,7 @@ Here $d_{\mathrm{void}}$ is the Euclidean coordinate separation of the two recor
 
 This is the central observational warning for cosmology: photons are the dominant observation channel, but a photon record is a transport record through the Noether sea before it is a direct distance label.
 
-#### Ontic and Epistemic Levels
+### Ontic and Epistemic Levels
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a two-level distinction:
 
@@ -1456,7 +1454,7 @@ where $N_{\text{sea}}|_{\Omega}(T)$ denotes the locally resolved Noether sea sta
 
 The same finite-boundary form is the local substitute for placing a hypothetical observer at infinity in compact strong-field comparisons. For black-hole and cosmology problems, $\mathcal{B}_{\partial\Omega}$ is the controlled interface between what a Physical Observer can access and what the complete state must carry for deterministic continuation.
 
-##### Global-Reconstruction Ambiguity
+#### Global-Reconstruction Ambiguity
 
 Finite observer records can underdetermine global reconstruction even when the local data are extremely rich. A record can be precise and still fail to select a unique global reconstruction. For a declared Physical Observer $O$, observation window $W$, data-product family $\mathcal{D}$, and tolerance $\epsilon$, let $\Pi_{\mathcal{D}}^{(O,W)}(\theta)$ be the data-product projection of a candidate closure record $\theta$. Relative to the promoted closure set $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ from [Failure Criteria](../../../../markdown/aaa/validation/failure-criteria.md), define
 $$
@@ -1496,7 +1494,7 @@ $$
 $$
 Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
-#### Boundary-Wake Covariance Scaffold
+### Boundary-Wake Covariance Scaffold
 
 The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether sea variables not resolved by a Physical Observer.
 
@@ -1579,7 +1577,7 @@ P_{\Omega,\theta,W}(Y_A\in B)
 $$
 If a comparison requires different measures for branch weights, thermodynamic noise, observer selection, or readout covariance while holding the same observer record $\theta$, it is a set of separately fitted summaries rather than one observer-model closure.
 
-#### Absolute and Operational Simultaneity
+### Absolute and Operational Simultaneity
 
 At the ontic level, simultaneity is absolute. Two events
 $$
@@ -1607,7 +1605,7 @@ The disagreement is epistemic rather than ontological:
 - Physical Observers recover only operational synchronization conventions.
 - In validated regimes, those operational conventions must reproduce Lorentz-consistent clock, ruler, and two-way signal phenomenology while bounding preferred-frame leakage below observational limits.
 
-#### Effective Causal-Order Recovery
+### Effective Causal-Order Recovery
 
 External causal-order reconstruction theorems provide a useful comparison discipline: effective causal relations can determine much of an observer-level geometry, but not the local scale by themselves. In this framework, that scale is supplied by Physical Observer clocks, rulers, and signal channels. All three are assembly and Noether sea outputs rather than substrate intervals.
 
@@ -1651,7 +1649,7 @@ P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})
 $$
 Small process-table mismatch with large $\mathcal{R}_{\mathrm{causal}}$ is a warning that the observer layer has not recovered an effective causal order. It is not evidence that the ontic substrate lacks absolute time. The admissible lesson is diagnostic: preserve the operational record constraint while forcing the Physical Observer account to say how causal order, clocks, and records are recovered together.
 
-#### Physical Observer Clocks and Rulers
+### Physical Observer Clocks and Rulers
 
 A Physical Observer clock measures **derived clock time** $\tau$ (standard bridge term: proper time), not the substrate parameter $T$ directly. A ruler is likewise an assembly whose measured length depends on its internal dynamics and medium coupling. In this observer-layer use, `proper` means clock-carried in the relativity comparison sense; it does not mean substrate-level or exemplary time.
 
@@ -1661,7 +1659,7 @@ This page does not own the clock law. Once a discussion asks how an internal clo
 
 Likewise, this page does not own the full Lorentz comparison. Once a discussion asks whether moving clocks and rulers reproduce Lorentz transformations, use [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
-#### Preferred-Frame Hiding
+### Preferred-Frame Hiding
 
 The ontology contains absolute time, a Euclidean void, and a real medium. Therefore the framework must still explain why Physical Observers do not see unacceptable preferred-frame effects.
 
@@ -1677,7 +1675,7 @@ This is not an optional rhetorical claim. It is a closure burden distributed acr
 - [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) for empirical thresholds,
 - and [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) for the current unresolved burden.
 
-#### Ownership Boundary
+### Ownership Boundary
 
 This chapter owns:
 
@@ -1695,11 +1693,11 @@ This chapter does not own:
 - PPN bounds; see [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md),
 - or quantum measurement ontology; see [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md).
 
-#### Summary Commitment
+### Summary Commitment
 
 > **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
 
-### Proper Time and Time Dilation
+## Proper Time and Time Dilation
 
 This chapter explains how clock time is recovered from assembly dynamics. Absolute time $T$ is the substrate evolution parameter used by the $\mathbb{U}_{\text{now}}$ universe-state perspective in the Euclidean void. Derived clock time $\tau$ is the readout of physical clocks built from Noether braid assemblies. The theorem target is to derive the map between them and show how GR-like time dilation and gravitational redshift arise as effective behavior when the clock map closes.
 
@@ -1767,9 +1765,9 @@ The clock-law derivation imports the [transverse causal budget lemma](../../../.
 
 ---
 
-#### Conceptual Setup
+### Conceptual Setup
 
-##### Absolute Time vs Derived Clock Time
+#### Absolute Time vs Derived Clock Time
 
 - **Absolute time $T$**
   - Fundamental evolution parameter for the complete architrino dynamics.
@@ -1785,7 +1783,7 @@ The fundamental claim is:
 
 > Time dilation is not a change in the rate of $T$; it is a change in how fast internal dynamics of assemblies proceed **relative to** $T$, and then how that clock readout projects into $t_{\mathrm{eff}}$, due to motion and medium coupling.
 
-##### Clocks as Dynamical Systems
+#### Clocks as Dynamical Systems
 
 A clock is any assembly with a **stable, countable internal cycle**. The native picture is not time itself slowing; the countable assembly cycle is what changes cadence:
 
@@ -1802,7 +1800,7 @@ where $\omega(\text{state})$ is the instantaneous internal oscillation frequency
 
 The central problem is to compute $\omega(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}})$ from the master dynamics rather than assigning the clock-rate factor by analogy with relativity.
 
-##### Moving-Branch Clock Retuning Target
+#### Moving-Branch Clock Retuning Target
 
 The homogeneous moving-clock extraction is independent from weak-field PPN matching. Primitive branch calculations solve causal roots with $c_f$:
 $$
@@ -1881,7 +1879,7 @@ uniformly on the drift band, with any surviving preferred-frame sideband reporte
 
 This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than clock-map closure.
 
-##### Noether Sea Braid Cadence
+#### Noether Sea Braid Cadence
 
 For redshift and cosmology work, the local Noether sea braid cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf X,T)$ be a representative cadence extracted from the local Noether sea braid population, with $T_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$. Relative to the weak homogeneous reference cadence, define
 
@@ -1931,7 +1929,7 @@ $$
 
 This is the clock-channel version of the weak gravitational-redshift benchmark. The derivation burden is to obtain the first equation from Noether sea constitutive response rather than impose it as an imported metric fact.
 
-##### GR Proper-Time Functional Benchmark
+#### GR Proper-Time Functional Benchmark
 
 The same clock map must also reproduce the observer-level proper-time functional that GR uses for timelike records. This is a bridge benchmark, not a substrate definition of time. For a candidate effective metric recovered from the Noether sea record,
 $$
@@ -1950,7 +1948,7 @@ g^{\text{eff}}_{\mu\nu}
 $$
 This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the clock map has not closed.
 
-##### Gamma-N Geometry Extraction Target
+#### Gamma-N Geometry Extraction Target
 
 The equations above define the endpoint benchmark, but they do not yet derive the Noether sea cadence factor from Noether braid geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether braid density $n$, Noether sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether braid scale $R_{\text{braid}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
 
@@ -2129,7 +2127,7 @@ $$
 
 This fixes a signal-delay response coefficient $a_\chi^{\mathrm{sig}}=1+\gamma_{\text{eff}}$, giving $a_\chi^{\mathrm{sig}}\approx2$ in the GR-matching solar-system branch. It becomes the clock-row coefficient $a_\chi$ only if the clock cadence and signal-propagation channel share the same scalar delay response in the tested branch. If they do not, the difference is not fit freedom; it is a channel-splitting residual that must be carried into PPN, redshift, and pressure-response comparisons.
 
-###### Shared Clock/Signal Delay Closure
+##### Shared Clock/Signal Delay Closure
 
 The equality between the clock coefficient and the Shapiro-delay coefficient is therefore a closure condition:
 
@@ -2242,7 +2240,7 @@ A_\chi
 \omega_i=-b_i
 $$
 
-###### Compensated Static-Family Validation Packet
+##### Compensated Static-Family Validation Packet
 
 The compensated family is a constrained endpoint row, not an additional redshift fit. Under shared clock/signal delay, define the non-$\chi_{\text{sea}}$ static response vector and coefficient row by
 
@@ -2372,7 +2370,7 @@ $$
 
 Here $B_X(E)$ is the source-branch factor, $D_v$ is the launch or relative-motion phase-compression factor, and $Y_{X,E\to R}=\ln\mathcal P_{E\to R,X}$ is the path-history propagation integral through the Noether sea. This chapter owns the extraction of $\Gamma_N$ and $C_N=\Gamma_N^{-1}$. The other factors are routed through the absolute-record transport map in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#equilibrium-transport-hypothesis) and must not be folded into $\Gamma_N$ unless a derivation proves the reduction in a declared limit.
 
-##### Hydrogen Spectral Clock-Rate Conversion Target
+#### Hydrogen Spectral Clock-Rate Conversion Target
 
 Hydrogen spectra give the first atom-local use of the $\Gamma_N$ extraction map. The cadence-stretch factor is not the frequency multiplier itself. In the sign convention above, $\Gamma_N>1$ means the local Noether sea cadence is stretched, so the corresponding local clock-rate factor is
 
@@ -2471,11 +2469,11 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ---
 
-#### Mechanisms for Time Dilation
+### Mechanisms for Time Dilation
 
 Two coupled mechanisms change the internal frequency of a tri‑binary clock:
 
-##### Kinematic Effect (Velocity Dependence)
+#### Kinematic Effect (Velocity Dependence)
 
 When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material drift is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
@@ -2506,7 +2504,7 @@ c_\star
 $$
 in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
-##### Muon Lifetime Benchmark
+#### Muon Lifetime Benchmark
 
 Cosmic-ray muons supply a compact observer-level benchmark for the moving-clock row. In the standard account, muons formed high in the atmosphere have a rest-frame mean lifetime near $2.2\,\mu\mathrm{s}$ and travel at a large fraction of $c_0$. Without time dilation, a particle moving near $c_0$ for only a few microseconds would cross less than a kilometer before the exponential survival law suppresses the population. Yet high-altitude and sea-level counts, such as the Frisch-Smith Mount Washington comparison, retain far more muons than the undilated lifetime permits.
 
@@ -2528,7 +2526,7 @@ $$
 
 The same event can be described in the muon's effective rest chart as length contraction of the atmospheric path. In $\mathbb{A}\mathbb{A}\mathbb{A}$ both descriptions are downstream exports of one moving-assembly response: the external observer sees a slowed internal reaction clock, while the muon-channel description compresses the traversed distance. The native burden is to derive the same $\gamma_\mu$ from the assembly and Noether sea record that also supports clocks, rulers, photon synchronization, and bounded preferred-frame leakage.
 
-##### Gravitational Effect (Medium Dependence)
+#### Gravitational Effect (Medium Dependence)
 
 Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
 
@@ -2551,7 +2549,7 @@ $$
 $$
 with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields **slower** clocks ($d\tau/dt_{\mathrm{eff}} < 1$), consistent with GR.
 
-##### Finite-Height Clock Benchmark
+#### Finite-Height Clock Benchmark
 
 Modern optical-clock comparisons turn gravitational time dilation into a finite-sample constraint, not only a satellite-scale or tower-scale effect. Near Earth's surface, two static clock elements separated by height $L$ should show
 $$
@@ -2575,7 +2573,7 @@ $$
 $$
 This coefficient must be derived from the same weak-field clock and phase map that produces the finite-height redshift benchmark. A fit to $\widehat{\beta}_{T^3}$ cannot be allowed to use one effective potential record while the redshift, Shapiro-delay, lensing, PPN, or gravitational-wave-speed channels use another.
 
-##### Combined Dilation
+#### Combined Dilation
 
 In a region with potential $\Phi_N(\mathbf X,T)$ and clock drift $\mathbf{w}$ relative to the Noether sea, we conjecture the observer-chart comparison
 $$
@@ -2587,7 +2585,7 @@ in the weak-field, low-velocity observer limit, with higher-order corrections ($
 
 Outside that limit, $F$ will in general deviate from the GR expression and define the theory’s distinctive strong‑field / high‑velocity predictions.
 
-##### Effective Energy-Momentum Closure Test
+#### Effective Energy-Momentum Closure Test
 
 In the same weak-field regime where the clock law is expected to be Lorentz-like, the center-of-mass kinematics should satisfy the effective mass-shell closure
 $$
@@ -2601,7 +2599,7 @@ $$
 This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level.
 For definitions and interpretation, see [Effective Energy-Momentum Closure](../../../../markdown/aaa/dynamics/energy.md#effective-energy-momentum-closure).
 
-##### Strong-Field / Horizon Alignment Note
+#### Strong-Field / Horizon Alignment Note
 
 For strong-field interpretation, use the canonical event-horizon alignment condition from
 [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition).
@@ -2609,11 +2607,11 @@ In this chapter, Planck-scale references inherit that same alignment definition.
 
 ---
 
-#### Clock Model and Equations of Motion
+### Clock Model and Equations of Motion
 
 To close the derivation gap, fix an explicit clock model and an explicit observable-extraction map.
 
-##### Concrete Nested Shell Braid Clock State
+#### Concrete Nested Shell Braid Clock State
 
 Use one neutral nested shell braid with six constituent architrinos:
 $$
@@ -2632,7 +2630,7 @@ $$
 R_i<R_m<R_o
 $$
 
-##### Microscopic Evolution Equation (Regularized)
+#### Microscopic Evolution Equation (Regularized)
 
 For each $a\in\mathcal{A}$ evolve
 $$
@@ -2650,7 +2648,7 @@ r_{ab}(T;T_0)=\|\mathbf X_a(T)-\mathbf X_b(T_0)\|,
 $$
 This is the same $\eta>0$ regularized kernel used in the dynamical chapters.
 
-##### Clock Observable and Clock Map
+#### Clock Observable and Clock Map
 
 Take the middle binary as the clock channel. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf{r}_m$, and define phase
 $$
@@ -2685,7 +2683,7 @@ $$
 
 Thus a boundary contribution may affect clock coupling only by changing the same phase increment, measured frequency, Noether sea delay factor, or phase-retained wake ledger used to compute $\omega_{\text{clk}}/\omega_0$. A separate clock fit that bypasses this projection would split the clock benchmark from the assembly/Noether sea interface diagnostic.
 
-##### Controlled Perturbation Family
+#### Controlled Perturbation Family
 
 Run the same nested shell braid under controlled backgrounds:
 
@@ -2704,11 +2702,11 @@ $$
 
 ---
 
-#### Derivation Interface and Coefficient Map
+### Derivation Interface and Coefficient Map
 
 This chapter keeps only the symbolic/numeric coefficient interface needed to bridge clock microdynamics to PPN observables.
 
-##### Perturbative Expansion (Weak‑field, Low‑velocity)
+#### Perturbative Expansion (Weak‑field, Low‑velocity)
 
 Linearize each trajectory as $\mathbf X_a(T)=\mathbf X_a^{(0)}(T)+\delta\mathbf X_a(T)$ around the periodic rest solution and expand the extracted clock ratio in
 $$
@@ -2752,7 +2750,7 @@ $$
 \hat{s}^2=\frac{\sum_j w_j(y_j-(X\hat{\mathbf{c}})_j)^2}{N-5}
 $$
 
-##### Coefficient Targets and PPN Map
+#### Coefficient Targets and PPN Map
 
 In the GR-matching weak-field observer limit, first-order targets are
 $$
@@ -2783,7 +2781,7 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 
 ---
 
-#### Failure Conditions and Red Flags
+### Failure Conditions and Red Flags
 
 This program fails—and the emergent‑metric project is likely untenable—if any of the following hold:
 
@@ -2807,7 +2805,7 @@ This program fails—and the emergent‑metric project is likely untenable—if 
 **Deliverable of this document:**
 A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a tri‑binary clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
 
-##### Closure Program Interface (clock-to-PPN bridge)
+#### Closure Program Interface (clock-to-PPN bridge)
 
 This chapter supplies the fitted coefficient bridge between microscopic clock dynamics and PPN observables.
 
@@ -2843,7 +2841,7 @@ $$
 $$
 Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.
 
-### Lorentz Kinematics
+## Lorentz Kinematics
 
 This chapter is the focused program statement for deriving operational Lorentz behavior from delayed substrate dynamics. The substrate has absolute time, a Euclidean void, and finite wake speed. Physical Observers nevertheless recover Lorentz-like clocks, rulers, and signal timing in tested regimes. The purpose of this chapter is to make that required compensation law explicit, distinguish the closure target from any already-proved result, and organize the derivation path from microdynamics to measurable clock-and-ruler behavior.
 
@@ -2853,7 +2851,7 @@ The reader should keep four moving pieces distinct. The substrate has a preferre
 
 For the theory-bridge version that maps special-relativistic terms directly to the deformable Noether braid story, see [the special-relativity bridge](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md). For the reader-facing synthesis of the branch-quantized Lorentz milestone, see [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md). For the interactive geometry surface, open [Ideal Noether Braid: Lorentz Geometry App](../../../../../ideal-braid.html).
 
-#### Coordinate Layers
+### Coordinate Layers
 
 This chapter uses two coordinate layers, and they must not be collapsed. Native substrate equations use the absolute frame: $T$ is absolute time, $\mathbf X=(X^1,X^2,X^3)$ is position in the Euclidean void, and worldlines are written as $\mathbf X_i(T)$ with native velocity $\mathbf V_i=d\mathbf X_i/dT$. Causal roots, wake intersections, branch histories, and assembly trajectories are first stated in this layer.
 
@@ -2867,7 +2865,7 @@ $$
 $$
 Unless a local derivation supplies the needed row, $\chi_{\mathrm{eff}}$ remains an obligation. A Lorentz formula counts in this chapter only when the same retained branch record supplies the map from absolute substrate quantities to effective observer records and keeps preferred-frame leakage inside the declared bounds. Bare symbols such as $t$, $\mathbf x$, $dt$, and $dx^i$ are therefore avoided as working notation because they hide which side of the map is being used.
 
-#### Abstract
+### Abstract
 
 This document develops a first-principles program for deriving effective Lorentz kinematics inside $\mathbb{A}\mathbb{A}\mathbb{A}$ from delayed architrino dynamics in a Euclidean void with absolute time. The central claim is not postulated covariance, but dynamical compensation: moving assemblies deform and retune their internal frequencies so that assembly-built observers recover Lorentz-consistent clock and ruler behavior. The objective is an exact or asymptotically controlled derivation of
 $$
@@ -2893,9 +2891,9 @@ Notation guardrail: $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ is the Noether sea de
 
 A stronger prediction is also available. The Lorentz formulas should not be imported as an independent observer-level rule and then copied onto assemblies. They should be recovered from the same causal-root progression that gives stable assemblies their discrete branch ledgers. In that sense the Lorentz factor is a closure target for the quantum-facing branch structure of the dynamics: the root ledger must generate the contraction, clock-retuning, and residual-leakage coefficients rather than merely coexist with them.
 
-#### Problem Statement
+### Problem Statement
 
-##### Kinematic closure target
+#### Kinematic closure target
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate ontology is:
 
@@ -2943,7 +2941,7 @@ with the $\Phi_{\text{eff}}$ sign convention declared, and must recover gravitat
 
 The absolute velocity used by the substrate solver cannot remain an observer-accessible quantity. In the accepted export, any dependence on absolute $v$ must be absorbed into nonseparable combinations of assembly-clock synchronization, ruler response, and signal-channel calibration, so Physical Observers recover Lorentz-invariant records rather than a direct preferred-frame speed meter.
 
-##### Mathematical objective
+#### Mathematical objective
 
 Given a translating bound assembly (binary and then nested shell braid), derive:
 
@@ -2952,9 +2950,9 @@ Given a translating bound assembly (binary and then nested shell braid), derive:
 3. Conditions under which $(Q(v),T(v))$ produce effective Lorentz ruler and clock laws.
 4. Residual non-Lorentz terms and their scaling.
 
-#### Governing Microdynamics
+### Governing Microdynamics
 
-##### Causal path-history interaction form
+#### Causal path-history interaction form
 
 For architrino labels $i,j\in\{1,\dots,N\}$, with positions $\mathbf X_i(T)$ and regularized inertial weights $m_i$,
 $$
@@ -2968,7 +2966,7 @@ The self-hit term $\mathbf{F}^{\text{self}}_i$ captures history-dependent wake r
 
 The weights $m_i$ in this reduced equation are not primitive architrino rest masses. They are regularized bookkeeping weights for an assembly-level branch chart, analogous to the universal conversion constant used in the master-equation energy diagnostic. A fundamental scan may set them equal before closure, while an effective assembly calculation may replace them with branch-extracted weights only after the relevant internal energy ledger has been specified.
 
-##### Co-moving decomposition
+#### Co-moving decomposition
 
 For an assembly center trajectory $\mathbf X_c(T)$ with mean velocity $\mathbf V$, write
 $$
@@ -2976,7 +2974,7 @@ $$
 $$
 The closure task is to solve for bounded relative motion $\mathbf r_i(T)$ under translation $\|\mathbf V\|<c_f$ and extract period and geometry renormalization.
 
-##### Dimensionless drift-delay form and variational closure
+#### Dimensionless drift-delay form and variational closure
 
 Fix a rest-attractor length scale $a_0$ and period $T_0$, and define
 $$
@@ -3003,7 +3001,7 @@ where $\mathbf{y}$ stacks positions and velocities in relative coordinates. Kine
 2. Spectral stability of the monodromy operator (all nontrivial Floquet multipliers inside the unit disk).
 3. Smooth coefficient maps for axis and period renormalization extracted from $\boldsymbol{\rho}^\star$.
 
-##### Translating binary benchmark
+#### Translating binary benchmark
 
 The first hard Lorentz-closure calculation is the moving version of the certified rest two-body branch. Let $\sigma\in\{+1,-1\}$ label the two opposite-polarity architrinos and choose the drift direction $\hat{\mathbf e}$. A translating binary branch has the substrate ansatz
 $$
@@ -3107,7 +3105,7 @@ R_0\left(
 $$
 in the planar orientation where the drift direction lies in the binary plane. A clean primitive result has $\mathcal{R}_{\mathrm{bin}}=0$ or a controlled residual traceable to named branch-ledger features. A nonzero residual is not a rhetorical failure; it is the first foundation-level pressure on the Lorentz-closure program, because the binary is the first available internal clock and ruler.
 
-##### Exact substrate symmetries and delay currents
+#### Exact substrate symmetries and delay currents
 
 At action level, use a causal path-history functional
 $$
@@ -3133,9 +3131,9 @@ E_{\text{tot}}
 $$
 Only after this particle-plus-wake-plus-medium ledger closes does an isolated translating assembly admit a co-moving reduction to a bounded periodic or quasi-periodic branch $\boldsymbol{\rho}^\star(s;\beta)$ with fixed mean drift $\mathbf V=\mathbf{P}_{\text{tot}}/M_{\text{tot}}$.
 
-#### Emergent Kinematics from Delay Anisotropy
+### Emergent Kinematics from Delay Anisotropy
 
-##### Directional delay asymmetry
+#### Directional delay asymmetry
 
 For a primitive benchmark drifting binary with instantaneous separation vector $\mathbf r=r\,\hat{\mathbf n}$ and center drift $\mathbf V=v\,\hat{\mathbf e}_{\parallel}$, causal-delay closure satisfies
 $$
@@ -3171,7 +3169,7 @@ $$
 K_{\parallel}(v)\neq K_{\perp}(v)
 $$
 
-##### Weak-velocity expansion to $O(\beta^4)$
+#### Weak-velocity expansion to $O(\beta^4)$
 
 Direct expansion of the symmetric lag gives
 $$
@@ -3196,7 +3194,7 @@ $$
 \mu=0:\ \bar{\tau}=\frac{r}{c_f}\gamma,\ \nu=\frac{c_f}{r}\frac{1}{\gamma}
 $$
 
-##### Closed-return derivation of the Lorentz axis ratio
+#### Closed-return derivation of the Lorentz axis ratio
 
 The one-way roots above expose the preferred branch chart. They are not yet an observer-facing Lorentz law, because a physical clock or ruler is not made from a single one-way leg. A stable material branch is admitted only when the relevant causal wake returns to a compatible phase. The primitive Lorentz-geometry object is therefore a closed return cycle.
 
@@ -3414,7 +3412,7 @@ Here $m_q$ is the observer-sector inertial response assigned to the admitted bra
 
 This derivation is stronger than assigning an oblate spheroidal envelope after the fact. The one-way longitudinal legs remain asymmetric; the Lorentz geometry appears only when the closed return cycle is allowed to choose the semiaxes that make longitudinal and transverse closure periods agree. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the envelope is the visible projection of a branch that has solved its return-cycle ledger.
 
-##### Effective shape law
+#### Effective shape law
 
 Fix a drift band $0\le\beta_f\le\beta_{\max}<1$, with $\beta_f=v/c_f$, and choose one admitted translating branch $q$. The primitive root ledger on that band is still solved at $c_f$; $\beta_\star=v/c_\star$ is introduced only for the declared primitive or dressed observer channel being tested.
 
@@ -3449,7 +3447,7 @@ C_{\parallel}\epsilon_{\text{LV}}\beta_\star^2
 $$
 uniformly on the declared drift band. This is a moving-assembly extraction condition. Weak-field PPN tests can later falsify the dressed medium response, but they are not inputs to this semiaxis extraction.
 
-##### Quadratic closure and coefficient constraints
+#### Quadratic closure and coefficient constraints
 
 On the attracting manifold, use principal-frame quadratic closure
 $$
@@ -3491,7 +3489,7 @@ $$
 4(\ell_4-k_4)+3k_2^2-2k_2\ell_2-\ell_2^2=-1
 $$
 
-##### Stiffness tensor from causal-wake surface integrals
+#### Stiffness tensor from causal-wake surface integrals
 
 To anchor coefficient matching in the microdynamics, define the pairwise causal-wake potential on a translating attractor $\boldsymbol{\rho}^\star(s;\beta)$:
 $$
@@ -3543,7 +3541,7 @@ k_4=
 $$
 Therefore the Lorentz-matching constraints in [Quadratic Closure and Coefficient Constraints](#quadratic-closure-and-coefficient-constraints) and [Clock-Channel Expansion and Minimal Closure Solution](#clock-channel-expansion-and-minimal-closure-solution) become explicit derivative identities on $\mathcal{I}_{\parallel},\mathcal{I}_{\perp}$ evaluated on the delay-Floquet attractor.
 
-##### Period renormalization
+#### Period renormalization
 
 Let $T_q(v)$ be the fundamental oscillation period of the assembly attractor in absolute time, extracted from the declared clock phase on the same branch ledger as the semiaxes. The clock retuning residual is
 $$
@@ -3561,7 +3559,7 @@ C_T\epsilon_{\text{LV}}\beta_\star^2
 $$
 Exact closure is the limit $\epsilon_{\text{LV}}\to 0$.
 
-##### Clock-channel expansion and minimal closure solution
+#### Clock-channel expansion and minimal closure solution
 
 Use a symmetric clock-frequency aggregator
 $$
@@ -3602,13 +3600,13 @@ k_4=-\frac{1}{9}\qquad \ell_4=\frac{2}{9}
 $$
 before leakage terms are added.
 
-##### Outer-binary transduction hypothesis (working)
+#### Outer-binary transduction hypothesis (working)
 
 Assume the outer binary $L$ is the dominant transducer for energy exchange with passerby assemblies (non-locally coupled encounters). Under this hypothesis, the leading kinematic response is boundary-driven at $L$, then propagated inward through $M$ and $H$ couplings.
 
 For locally coupled assemblies (strong axial coupling), interaction pathways are distinct and should be modeled as a separate regime, not merged with passerby-transfer fits.
 
-##### State update map for single-quantum uptake
+#### State update map for single-quantum uptake
 
 For an assembly state
 $$
@@ -3626,7 +3624,7 @@ with the following structured components:
 4. Exclusion-zone geometry shift: $\Delta\mathcal{E}_{\text{excl}}\neq 0$ (shape and orientation update).
 5. Operational time response shift: $\Delta\tau_{\text{op}}\neq 0$.
 
-##### Open mapping: perceived time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
+#### Open mapping: perceived time dilation in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The human-observed "time dilation" channel is not yet fully mapped in substrate variables. The working interpretation in this document is:
 $$
@@ -3636,7 +3634,7 @@ where $\tau_{\text{op}}$ is an emergent clock functional of assembly internal fr
 
 The immediate task is to identify which subset dominates $\partial \tau_{\text{op}}/\partial E$ in the passerby-transfer regime, with the default prior that outer-binary $L$ mediated updates are first-order.
 
-##### Evolving scenario: exclusion-volume driven effective spacetime
+#### Evolving scenario: exclusion-volume driven effective spacetime
 
 Working assumption:
 
@@ -3680,7 +3678,7 @@ Consistency checks required for this scenario:
 
 Status: scenario is a structured hypothesis, not yet a proved derivation. It is retained as an evolving design model for theorem and simulation development.
 
-##### Two-channel deformation: shape plus scale
+#### Two-channel deformation: shape plus scale
 
 Relevant to Lorentzian closure, the Noether braid deformation is not only axis-ratio change. A working two-channel model is:
 
@@ -3708,7 +3706,7 @@ $$
 (\beta_\star,E)\longmapsto (R_\parallel,R_\perp,V)
 $$
 
-##### Local deformation fields and effective geometry handoff
+#### Local deformation fields and effective geometry handoff
 
 For coarse-grained modeling, define local fields
 $$
@@ -3729,7 +3727,7 @@ $$
 $$
 for constructing effective kinematic and metric responses. The kinematic closure requirement is that observer-built rods/clocks from this Noether sea recover Lorentz-consistent operational laws to bounded leakage.
 
-##### Algebraic effective metric map from the handoff tuple
+#### Algebraic effective metric map from the handoff tuple
 
 To make Stage D constructive, introduce an observer-sector pseudo-Riemannian template
 $$
@@ -3764,13 +3762,13 @@ ds_{\text{eff}}^2=g_{\mu\nu}^{\text{eff}}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}
 $$
 Therefore the stationary ideal clock-rate factor extracted from the metric subclass is $\Omega\xi$, while the spatial ruler scale is governed by $\Omega$. This preserves the geometry-first interpretation: $\xi$ remains the oblate-envelope shape ratio, and the clock rate agrees with $\xi$ only after the geometry-to-clock closure is proved.
 
-#### Observer Construction and Operational Invariance
+### Observer Construction and Operational Invariance
 
-##### Assembly clocks and rods
+#### Assembly clocks and rods
 
 Physical observers are built from the same bound-state class that obeys the above deformation and period laws. Therefore, measurement devices inherit velocity-dependent retuning.
 
-##### Two-way signal speed criterion
+#### Two-way signal speed criterion
 
 For ruler and clock systems made of translated assemblies, two-way signal experiments must satisfy
 $$
@@ -3780,7 +3778,7 @@ uniformly in orientation $\theta$. This is the operational statement that maps s
 
 For clock-and-ruler synchronization, $c_{\text{iso}}$ is the dressed local assembly signal speed. For photon synchronization, it is the local photon-channel speed $c_\gamma$; photon Gate A must show when the photon branch shares the same homogeneous-cell limit as $c_{\text{eff}}$.
 
-##### Conditional synchronization-reabsorption lemma
+#### Conditional synchronization-reabsorption lemma
 
 The synchronization claim has a compact conditional form. In a weak homogeneous cell, suppose the same moving-assembly response supplies the photon-channel clock and ruler laws
 $$
@@ -3835,7 +3833,7 @@ $$
 $$
 Operational Lorentz closure therefore requires this residual to vanish, or remain below the declared timing bound, in the same weak homogeneous branch that supplies $c_{2w}(\theta,v)=c_{\text{iso}}+O(\epsilon_{\text{LV}})$. It is not enough to recover local two-way isotropy while leaving cosmological photon timing to a separately tuned channel record.
 
-##### Round-trip anisotropy cancellation through $O(\beta^4)$
+#### Round-trip anisotropy cancellation through $O(\beta^4)$
 
 Let arm lengths in the preferred frame be written using the declared two-way signal channel speed, with $\beta_\star=v/c_\star$:
 $$
@@ -3880,9 +3878,9 @@ $$
 $$
 which is precisely $L_{\parallel}=L_0/\gamma_\star+O(\beta_\star^6)$.
 
-#### Derivation Program
+### Derivation Program
 
-##### Stage A: binary analytic benchmark
+#### Stage A: binary analytic benchmark
 
 Start with a single causal path-history binary under constant drift $\mathbf V$. Derive:
 
@@ -3890,7 +3888,7 @@ Start with a single causal path-history binary under constant drift $\mathbf V$.
 2. Closed-form or asymptotic estimates for $(a_{\parallel}/a_{\perp})(\beta)$.
 3. First nonzero leakage coefficients in the $\beta$ expansion.
 
-##### Stage B: nested shell braid full closure
+#### Stage B: nested shell braid full closure
 
 Promote to a nested shell braid with coupled circulation scales. Establish:
 
@@ -3898,7 +3896,7 @@ Promote to a nested shell braid with coupled circulation scales. Establish:
 2. Factorization or controlled coupling of inner/middle/outer period shifts.
 3. Emergent universal $\gamma$-law independent of axial-structure details, within a defined class.
 
-##### Stage C: continuum handoff
+#### Stage C: continuum handoff
 
 Derive coarse-grained kinematic constitutive relations used by effective metric models:
 $$
@@ -3906,7 +3904,7 @@ $$
 $$
 so local assembly kinematics and macroscopic refractive geometry are mathematically linked.
 
-##### Stage D: effective-medium and weak-field closure sequence
+#### Stage D: effective-medium and weak-field closure sequence
 
 To connect the two-channel deformation model to observables, use the following sequence:
 
@@ -3916,7 +3914,7 @@ To connect the two-channel deformation model to observables, use the following s
 4. Weak-field consistency checks: verify Newtonian limit and required post-Newtonian behavior in the operational observer sector.
 5. Strong-field/cosmology consistency checks: test horizon-adjacent and expansion-regime implications of the same constitutive channels.
 
-##### Effective connection and geodesic emergence
+#### Effective connection and geodesic emergence
 
 Given $g_{\mu\nu}^{\text{eff}}$ from [Algebraic Effective Metric Map from the Handoff Tuple](#algebraic-effective-metric-map-from-the-handoff-tuple), define
 $$
@@ -3970,7 +3968,7 @@ $$
 $$
 in the weak-field refractive regime.
 
-##### Coefficient-extraction and closure estimators
+#### Coefficient-extraction and closure estimators
 
 For each simulated drift speed, keep the channel label explicit. Primitive branch calculations use $\beta=v/c_f$; dressed observer-channel fits use $\beta_\star=v/c_\star$ after the dressing map is declared. Extract from long-window attractor statistics:
 $$
@@ -4021,7 +4019,7 @@ $$
 \sup_{0\le \beta\le \beta_\star}|\mathcal{A}_{2m}(\beta)|\le C_m\epsilon_{\text{LV}}
 $$
 
-##### Analytic derivation of kinematic closure coefficients
+#### Analytic derivation of kinematic closure coefficients
 
 On the circular benchmark branch, take the rest-frame attractor $\boldsymbol{\rho}^\star(s;0)$ as a stable planar orbit of radius $r_0$ and frequency $\omega_0$. The cycle carries emergent phase symmetry $\phi\mapsto \phi+\text{const}$ with adiabatic invariant
 $$
@@ -4095,7 +4093,7 @@ $$
 $$
 The target vector is not a fit parameter, but this section no longer claims that the displayed scalar kernel derives it. A valid derivation must show that the completed action kernel, the causal-root ledger, branch phase closure, and fixed-action retuning together yield the derivative identities above on the same branch.
 
-##### Causal-root ledger progression as a Lorentz prediction
+#### Causal-root ledger progression as a Lorentz prediction
 
 The coefficient calculation above suggests a sharper interpretation of the Lorentz closure problem. In standard observer physics, the Lorentz formulas are usually treated as kinematic consequences of invariant signal speed and the relativity principle. In this chapter they are instead treated as emergent observer-level consequences of a delayed assembly dynamics. The additional $\mathbb{A}\mathbb{A}\mathbb{A}$ prediction is that the Lorentz coefficients are not merely smooth deformation coefficients. They should be generated by the same branch-chart structure that later appears, after coarse-graining, as discrete quantum behavior.
 
@@ -4195,7 +4193,7 @@ The technology-facing status is therefore conditional. The immediate test is not
 
 This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
-##### Nested shell braid adiabatic decoupling bound
+#### Nested shell braid adiabatic decoupling bound
 
 Let
 $$
@@ -4243,7 +4241,7 @@ $$
 \mathcal{D}_{23}\le C_{23}\epsilon_{\text{LV}}
 $$
 
-##### Spectral-decoupling vulnerability criterion
+#### Spectral-decoupling vulnerability criterion
 
 The [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound) assumes Diophantine nonresonance:
 $$
@@ -4261,9 +4259,9 @@ $$
 $$
 for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}}$, then small divisors invalidate the homological equations of the Lie transform. The resulting secular resonance destroys adiabatic decoupling, can break KAM tori, and drives $O(1)$ interlayer energy exchange. In that regime, coefficient drift can exceed the quadrupole estimate and local preferred-frame leakage can rise above $O(\epsilon_{\text{LV}})$ even when geometric hierarchy is large.
 
-#### Theorem Targets
+### Theorem Targets
 
-##### Theorem A0 (forward partner-root speed-limit lemma)
+#### Theorem A0 (forward partner-root speed-limit lemma)
 
 The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell braid deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
 $$
@@ -4287,7 +4285,7 @@ c_{\mathrm{mat}}^{\mathrm{lim}}\le c_f
 $$
 for that class of material branches. The remaining Lorentz program is the constructive side: proving that stable branch families exist for $u<c_f$, that their deformation and periods approach the common envelope, and that Noether sea dressing maps the primitive bound to the observer-channel speeds without an independent fit.
 
-##### Theorem A1 (translating binary Lorentz residual)
+#### Theorem A1 (translating binary Lorentz residual)
 
 The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, and positive Jacobian floors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
@@ -4327,11 +4325,11 @@ $$
 $$
 If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell braid averaging or Noether sea dressing is allowed to repair anything.
 
-##### Theorem A (attractor existence under drift)
+#### Theorem A (attractor existence under drift)
 
 For admissible coupling and regularization parameters, there exists a bounded translating attractor family for binary and nested shell braid systems for $\|\mathbf V\|<c_f$.
 
-##### Theorem B (anisotropic deformation law)
+#### Theorem B (anisotropic deformation law)
 
 Let $\beta_\star=v/c_\star$ and $\gamma_\star=(1-\beta_\star^2)^{-1/2}$ for the declared observer channel.
 
@@ -4347,7 +4345,7 @@ $$
 \frac{a_{\parallel}}{a_{\perp}}=\frac{1}{\gamma_\star}+R_1(\beta_\star)
 $$
 
-##### Theorem C (clock renormalization law)
+#### Theorem C (clock renormalization law)
 
 Fundamental period satisfies
 $$
@@ -4361,7 +4359,7 @@ $$
 \frac{T(v)}{T_0}=\gamma_\star+R_2(\beta_\star)
 $$
 
-##### Theorem D (operational Lorentz closure)
+#### Theorem D (operational Lorentz closure)
 
 For composite observers formed from this assembly class, two-way kinematic observables satisfy
 $$
@@ -4372,7 +4370,7 @@ $$
 $$
 uniformly on $0\le\beta_\star\le\beta_{\max}$.
 
-##### Theorem E (coefficient identifiability from attractor statistics)
+#### Theorem E (coefficient identifiability from attractor statistics)
 
 Given smooth attracting branches and nondegenerate Jacobian of the map
 $$
@@ -4380,7 +4378,7 @@ $$
 $$
 the drift-response coefficients are locally identifiable from $(a_{\parallel}/a_{\perp},T/T_0)$ data up to the leakage scale $O(\epsilon_{\text{LV}})$.
 
-##### Theorem F (cross-regime universality of closure coefficients)
+#### Theorem F (cross-regime universality of closure coefficients)
 
 If binary and nested shell braid attracting branches exist, are smooth in $\beta$, share the same coarse-grained causal kernel class, and satisfy nonresonant hierarchy
 $$
@@ -4403,7 +4401,7 @@ C_Q\left(\frac{r_M}{r_L}\right)^2
 $$
 In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Lorentz closure is universal across these two micro-regimes up to preferred-frame leakage.
 
-##### Theorem G (structural-integrity common-limit closure)
+#### Theorem G (structural-integrity common-limit closure)
 
 This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
@@ -4418,7 +4416,7 @@ c_0
 $$
 on the same causal-root ledger. The same branch record must then supply the longitudinal deformation $a_\parallel/a_\perp=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, clock cadence $d\tau/dt_{\mathrm{eff}}=\gamma_0^{-1}+O(\epsilon_{\text{LV}})$, two-way signal residual $\Delta_{\text{tw}}=O(\epsilon_{\text{LV}})$, and the gravitational-wave speed residual $|c_{\mathrm{GW}}/c_\gamma-1|\le\epsilon_{\mathrm{GW}}$ in the weak-field TT channel. Closure fails if the photon speed, gravitational-wave speed, material limiting speed, or deformation coefficients require independently fitted dressing records.
 
-#### Observable Interface
+### Observable Interface
 
 Key outputs to pass into validation and simulation layers:
 
@@ -4428,7 +4426,7 @@ Key outputs to pass into validation and simulation layers:
 4. Parameter surfaces where leakage remains below target bounds.
 5. Branch-sourced residual labels linking any nonzero $\Delta_{\text{tw}}$ sideband, clock residual, or shape residual to a specific causal-root ledger feature rather than to a free phenomenological coefficient.
 
-#### Failure Conditions
+### Failure Conditions
 
 The Lorentzian conspiracy program fails if any of the following occur:
 
@@ -4440,7 +4438,7 @@ The Lorentzian conspiracy program fails if any of the following occur:
 6. Diophantine nonresonance fails (small-divisor regime), causing secular interlayer resonance and invalidating the adiabatic mismatch bound used in [Nested Shell Braid Adiabatic Decoupling Bound](#nested-shell-braid-adiabatic-decoupling-bound).
 7. The extracted Lorentz coefficients cannot be traced to the causal-root ledger on a completed branch chart, or the same ledger cannot generate clock, ruler, and two-way signal closure without separate per-observable tuning.
 
-#### Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
+### Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program
 
 This priority is the first gate because it constrains all downstream bridges:
 
@@ -4448,7 +4446,7 @@ This priority is the first gate because it constrains all downstream bridges:
 2. Without universal assembly clock behavior, phenomenological mapping to GR tests is unstable.
 3. With kinematic closure established, metric constitutive derivations and PPN matching become sharply posed problems.
 
-#### Canonical Dependencies
+### Canonical Dependencies
 
 Primary theory anchors:
 
@@ -4460,9 +4458,7 @@ Primary theory anchors:
 6. [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../../../../markdown/aaa/validation/no-go-theorems.md)
 
-## Effective Metric
-
-### Emergent Metric
+## Emergent Metric
 
 This chapter explains how metric language enters a theory whose substrate is not metric spacetime. The Euclidean void remains fixed. The Noether sea changes state inside it. The effective metric is the observer-level description extracted from clock, ruler, signal, and medium-response channels. This chapter says what that metric means, which medium variables are supposed to carry it, and what weak-field map has to be recovered before the spacetime branch can claim GR-level closure.
 
@@ -4470,13 +4466,13 @@ The opening fixes the ontological picture and the canonical symbols first. The l
 
 The one-line map is: Noether sea record to clock, ruler, signal, and drift response; those responses to an effective metric; that effective metric to GR benchmark observables. Each arrow has to be earned. A metric that fits only one channel is not yet a spacetime recovery, because Physical Observers need one coherent effective geometry across clocks, photons, matter motion, and gravitational-wave channels.
 
-#### Absolute Frame vs. Effective Geometry
+### Absolute Frame vs. Effective Geometry
 
 The spacetime branch keeps two descriptions separate. The absolute frame is the fixed bookkeeping structure of absolute time and Euclidean position; it supplies the substrate coordinates in which architrino path histories and Noether sea state are recorded. Effective geometry is the observer-level metric reconstructed from clocks, rulers, signal propagation, and medium response.
 
 The bridge is therefore constitutive rather than ontological. A successful metric map must explain how the same Noether sea record produces lapse, spatial-compliance, drift, and signal-delay channels without treating the Euclidean void itself as curved.
 
-#### Ontological Picture
+### Ontological Picture
 
 - **Substrate**: A fixed Euclidean 3D void with absolute time $T$. A chosen chart $(X,Y,Z)$ represents fixed void locations; the labels never move or curve.
 - **Noether sea**: The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), a pervasive population of coupled pro/anti Noether braids. The bridge term *spacetime medium* is used when translating toward effective spacetime language.
@@ -4491,7 +4487,7 @@ From this bookkeeping perspective, there is only:
 
 The metric appears only after a Physical Observer record is assembled from those ingredients.
 
-#### Canonical Symbols (Spacetime)
+### Canonical Symbols (Spacetime)
 
 Use the following symbols consistently across spacetime chapters:
 
@@ -4507,7 +4503,7 @@ Use the following symbols consistently across spacetime chapters:
 - $e^a{}_i(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$: spatial frame field carrying Noether sea compliance and orientation response.
 - $\gamma_{ij}^{\mathrm{eff}}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)=\delta_{ab}e^a{}_i e^b{}_j$: observer-level spatial compliance metric.
 
-#### What “Metric” Means Here
+### What “Metric” Means Here
 
 - **Effective metric $g^{\text{eff}}_{\mu\nu}(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$** is *not* a fundamental property of the void. It is a derived description of:
   - How assembly-based clocks tick,
@@ -4530,7 +4526,7 @@ $$
 
 The first arrow is the open constitutive problem. It carries the main closure burden: the Noether sea state must produce the clock, ruler, drift, and signal channels together. The second arrow is the observer-level metric assembly; it does not curve the Euclidean void.
 
-##### Weak-Gravity Visibility Scale
+#### Weak-Gravity Visibility Scale
 
 For weak effective-metric recovery, the useful small parameter is not the material temperature measured against the Planck temperature. It is the dimensionless effective potential, together with the density-length scale that sources that potential. For a roughly uniform ordinary-matter body of characteristic size $L$ and standard-matter density $\rho_{\mathrm{mat}}$, the Newtonian comparison estimate is
 
@@ -4552,7 +4548,7 @@ $$
 $$
 The constitutive variable that sources $\Phi_{\text{eff}}$ may therefore be an energy, stress, or RMS excitation record, but the force-like observer readout still comes from the spatial gradient of the shared effective potential. A model that equates gravity directly with "more temperature" fails this center-gradient check even before PPN coefficients are tested.
 
-##### Alternating-Flux Constitutive Candidate
+#### Alternating-Flux Constitutive Candidate
 
 One candidate route from assembly wakes to weak gravity is an RMS excitation law. If local causal-wake hits alternate in sign, direction, or branch provenance, the mean signed force can cancel while the quadratic excitation of the Noether sea remains:
 $$
@@ -4565,7 +4561,7 @@ $$
 $$
 Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
-#### ADM/Cartan Reconstruction Surface
+### ADM/Cartan Reconstruction Surface
 
 The metric bridge should be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
@@ -4699,7 +4695,7 @@ $$
 $$
 The point is not to add a new spacetime ontology. It is to require the effective metric to behave as one constitutive summary of the same Noether sea state and observer record across clocks, rulers, signal propagation, and weak-field gravitational tests.
 
-##### Geodesic and Lensing Recovery Benchmarks
+#### Geodesic and Lensing Recovery Benchmarks
 
 The effective metric map must also recover the two standard variational benchmarks consumed by orbital, clock, and light-propagation tests. For timelike records,
 $$
@@ -4734,7 +4730,7 @@ $$
 $$
 so the GR limit $\gamma_{\text{eff}}=1$ gives $\Delta\theta=4GM/(b\,c_0^2)$. A lapse-only or scalar-delay-only map that supplies only $2GM/(b\,c_0^2)$ has recovered the Newtonian half-test, not the full effective metric. This is why the ADM/Cartan map must carry both the clock/lapse channel and the spatial-compliance channel.
 
-##### Lensing-Dynamics Equality Constraint
+#### Lensing-Dynamics Equality Constraint
 
 Hybrid dark-sector comparisons sharpen the metric burden: a modified force law that changes baryonic dynamics must also give the correct lensing potential, or the inferred dynamical mass and lensing mass will disagree. In weak-field comparison language, write the effective metric potentials as
 
@@ -4796,7 +4792,7 @@ $$
 
 This residual belongs to the effective-metric closure program, not to dark-sector ontology by itself. It is the condition that lets a medium-response explanation of galaxy or cluster dynamics remain compatible with the same lensing map.
 
-##### Matter-Channel Compatibility Target
+#### Matter-Channel Compatibility Target
 
 The same shared-record rule applies to the effective matter channels whose observations test the metric. The retained comparison lesson from matter-first gravity programs is not that their ontology should be imported, but that predictive matter dynamics and observer-level geometry cannot be chosen independently. In this framework, the matter channel, clock channel, ruler channel, and signal channel must remain projections of the same Noether sea record $\theta$.
 
@@ -4834,7 +4830,7 @@ The same-record condition is part of the metric claim. A fermion stress channel 
 
 In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matter}}\mathcal L_\star(\theta;W,r_\star)$. The fermion metric row therefore fails if spinor closure, weak exposure, and matter response are sourced from different retained rows, even when each reduced row is individually well fitted.
 
-#### Noether Braid Deformation and Metric Language
+### Noether Braid Deformation and Metric Language
 
 At the assembly level, an individual Noether braid has an oblate, deformable exclusion envelope; see [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md). This chapter does not identify that individual Noether braid envelope with the metric. The metric bridge uses many deforming Noether braids in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
 
@@ -4864,7 +4860,7 @@ The useful GR analogy is therefore limited but important:
 
 The assembly fact that a Noether braid is oblate belongs in [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md). The spacetime claim that a population of deformed Noether braids yields an effective metric belongs here and in [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md).
 
-#### Jacobson-Type Support: Metric as Equation of State
+### Jacobson-Type Support: Metric as Equation of State
 
 This Noether sea-first picture is strengthened by the general Jacobson-style lesson: Einstein equations are plausibly an **equation of state** for an underlying microscopic system rather than substrate-level laws of the void itself.
 
@@ -4905,7 +4901,7 @@ This support is useful but limited. A Jacobson-style argument would explain why 
 
 It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell braid dynamics programs.
 
-##### Local-Horizon Recovery Target
+#### Local-Horizon Recovery Target
 
 The Jacobson comparison gives this chapter a sharper recovery target than the general phrase "metric as equation of state." In the standard argument, a local horizon patch is assigned a boost-energy flux $dQ$, an Unruh temperature $T_U$, and an entropy change $dS$ proportional to horizon area. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation cannot assume those quantities as substrate facts. It must derive their observer-level analogues from one Noether sea record, using the same clock, signal, stress, and finite-boundary data that later recover weak-field GR.
 
@@ -4986,7 +4982,7 @@ $$
 $$
 must be small on the same windows. Thus the local-horizon pass condition is not only $\mathcal{R}_{\mathrm{thermo}}\le\epsilon_{\mathrm{thermo}}$, but also $\mathcal{R}_{E,\partial\Omega}^{(O)}\le\epsilon_E$ and the weak-field ADM/Cartan gates for the same $\theta$. A concrete simulation protocol for this target is [Thermodynamic Residual](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md).
 
-###### Native Shared-Record Variation Target
+##### Native Shared-Record Variation Target
 
 The residual above becomes a derivation only after the comparison record is made explicit. For a region $\Omega$, Physical Observer $O$, and finite analysis window $W$, use
 $$
@@ -5080,7 +5076,7 @@ $$
 $$
 Together with $\sum_{P_a\in\mathcal{P}_{\partial\Omega}}A_{\mathrm{eff}}(P_a)\to A_{\partial\Omega}^{\mathrm{eff}}$, these claims imply the area density above. This does not prove the coefficient by definition. It reduces the problem to a local aligned-interface calculation: terminal nested shell braid alignment must supply a universal block entropy density, its patch-area normalization, and surrounding Noether sea correlations short-range enough that the boundary count is additive up to edge residuals.
 
-#### Refraction vs. Curvature
+### Refraction vs. Curvature
 
 - From the **$\mathbb{U}_{\text{now}}$ universe-state perspective**:
   - Primitive causal-wake support is measured by Euclidean distances in $(x,y,z)$,
@@ -5101,7 +5097,7 @@ The core task of this document will be to:
 2. Show that in the weak-field regime this reproduces the standard GR metric (e.g. Schwarzschild) to PPN accuracy:
    $g^{\text{eff}}_{00} \approx -\left(1 + \frac{2\Phi_N}{c_0^2}\right), \quad g^{\text{eff}}_{ij} \approx h_{ij}\left(1 - \frac{2\Phi_N}{c_0^2}\right).$
 
-#### Minimal Weak-Field Constitutive Map (for PPN Matching)
+### Minimal Weak-Field Constitutive Map (for PPN Matching)
 
 To make the mapping functional explicit at first post-Newtonian order, start in the local Noether sea rest gauge
 $$
@@ -5167,7 +5163,7 @@ g^{\text{eff}}_{\mu\nu}
 $$
 with $\gamma_{\text{eff}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
-#### Closure Program Interface (metric constitutive map)
+### Closure Program Interface (metric constitutive map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$
@@ -5191,7 +5187,7 @@ Minimal closure condition:
 
 A proposed recovery that supplies only $c_{\text{eff}}(x_{\mathrm{eff}}^i)$ or $\chi_{\text{sea}}(x_{\mathrm{eff}}^i)$ therefore closes only a refractive signal model. It becomes a metric recovery candidate only after that scalar row is embedded in one shared clock/ruler/signal map for $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, and $\gamma_{ij}^{\mathrm{eff}}$.
 
-#### Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
+### Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
 The scalar/disformal bridge is the ADM/Cartan subclass obtained by choosing the local Noether sea rest gauge:
 $$
@@ -5257,12 +5253,403 @@ $$
 for the exponential clock-law channel, while $\gamma_{\text{PPN}}$ is fixed by
 first-order clock-channel partitioning between $\Omega$ and $\xi$.
 
-### PPN Parameters
+## General Relativity
+
+This chapter is the observer-facing checklist for the spacetime branch. It says, in one place, which general-relativistic observables must be matched by the constitutive medium picture and where the framework is allowed to differ only after that closure is secured.
+
+Read it as a phenomenology gate rather than as a derivation chapter. The metric and PPN notes carry the constitutive work; this page states the observable obligations and their regime boundaries.
+
+The central question is not whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can describe gravity in different words. The question is whether one Noether sea response record can reproduce the network of tested GR observables without switching hidden assumptions between rows. Redshift, Shapiro delay, bending, orbital precession, equivalence-principle behavior, and gravitational waves must come from the same effective-geometry map in the regime where GR already works.
+
+### Purpose
+
+This chapter is the observer-level checklist for where the spacetime branch of $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce general relativity and where it is allowed to differ. It is not the constitutive derivation itself. That work lives in the metric and PPN chapters. The role of this page is to collect the observable-facing map in one place.
+
+### Core Interpretation
+
+At the substrate level:
+
+- space remains Euclidean,
+- time remains absolute,
+- and the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the dynamical medium.
+
+At the observer level, the same Noether sea must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
+
+$$
+\text{medium response}
+\;\Longrightarrow\;
+\text{effective metric observables}
+$$
+
+The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
+
+Every row below should be treated as a test of the same medium record. If a clock result, a lensing result, and a gravitational-wave result require different hidden records, the branch has produced separate fits rather than a GR recovery.
+
+#### Network evidence and nuisance separation
+
+The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases. The phenomenology gate therefore treats GR recovery as a network constraint:
+$$
+\mathcal{E}_{\mathrm{GR}}(\theta)
+=
+\mathbf{r}_{\mathrm{net}}(\theta)^{\mathsf T}
+C_{\mathrm{net}}^{-1}
+\mathbf{r}_{\mathrm{net}}(\theta)
+$$
+where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
+
+#### Causal-order and scale recovery
+
+Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. This is the phenomenology-side version of the causal-order diagnostic in [observer-framework.md](../../../../markdown/aaa/spacetime/observer-framework.md#effective-causal-order-recovery):
+$$
+\mathcal{R}_{\mathrm{causal}}(\theta)
+=
+d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
++
+\lambda_{\tau}
+\left\|
+\frac{d\tau_{\mathrm{eff}}}{dt_{\mathrm{eff}}}(\theta)
+-
+\frac{d\tau_{\mathrm{GR}}}{dt_{\mathrm{eff}}}
+\right\|_{W}
++
+\lambda_{\mathrm{PF}}
+\sum_{i=1}^{3}\alpha_i(\theta)^2
+$$
+The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
+
+In plain terms, the observer cannot be allowed to recover one causal story from photons, a different clock story from matter, and a third timing story from gravitational waves. The tested regime must look like one effective spacetime to the Physical Observer.
+
+#### Global continuation and cosmic-censorship comparison
+
+Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether sea state, and closure-label ensemble determine the continuation.
+
+The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[T_i,T_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
+$$
+\mathcal{T}_{\Omega,W}^{\theta}:
+\left(
+X_\Omega(T_i),
+\mathcal{H}_{\Omega}^{<T_i},
+\mathcal{B}_{\partial\Omega}|_{W},
+N_{\text{sea}}|_{\Omega\times W}
+\right)
+\longrightarrow
+\mathcal{S}_{\Omega}(T_f)
+$$
+where $\mathcal{S}_{\Omega}(T_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(T_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
+
+### Weak-Field Observables That Must Match GR
+
+#### Gravitational redshift and clock rates
+
+The clock channel must reproduce
+$$
+\frac{d\tau}{dt_{\mathrm{eff}}}
+\approx
+\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{v^2}{c_0^2}}
+$$
+in the weak-field, low-velocity observer regime, where $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
+$$
+\frac{\Delta \nu}{\nu}
+\approx
+\frac{\Delta \Phi_N}{c_0^2}
+$$
+
+Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
+
+#### Shapiro delay
+
+In the refractive-medium picture, one-way path time is
+$$
+t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,ds_{\mathrm{eff}}
+$$
+with
+$$
+\bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)
+\equiv
+\frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}
+=
+\frac{c_0}{c_f}\chi_{\text{sea}}(x_{\mathrm{eff}}^i)
+=
+1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_0^2}
++O(c_0^{-4})
+$$
+
+For a point mass, the resulting delay is
+$$
+\Delta t_{\mathrm{eff}}
+=
+\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
+\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
++O(c_0^{-5})
+$$
+which must match the GR coefficient at current solar-system precision.
+
+#### Light bending
+
+The same refractive map must recover the 1PN deflection law
+$$
+\Delta\theta
+\approx
+2(1+\gamma_{\text{eff}})
+\frac{GM}{b\,c_0^2}
+$$
+with impact parameter $b$. In the GR-matching limit $\gamma_{\text{eff}}=1$, this reduces to the standard
+$$
+\Delta\theta \approx \frac{4GM}{b\,c_0^2}
+$$
+
+So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.
+
+#### Perihelion and 1PN orbital structure
+
+The effective metric subclass must also reproduce the standard 1PN orbital correction structure, summarized through the PPN parameters $\gamma_{\text{eff}}$ and $\beta_{\text{eff}}$. At the phenomenology level the requirement is simple:
+
+- Mercury-type precession,
+- geodetic precession,
+- and other weak-field orbital tests
+
+must all be reproduced by the same $(\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i)$ package already used for light and clock observables.
+
+For the classical weak-field suite, the comparison record can be made explicit. On an observation window $W$, let $\theta_W$ denote the retained Noether sea state, source assembly record, observer clock/ruler state, signal-channel data, boundary wake data, and the ADM/Cartan projection
+$$
+\theta_W
+\longmapsto
+\left(
+N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},
+\Phi_{\text{eff}},
+\chi_{\text{sea}}
+\right)
+$$
+The observable residual bundle is then
+$$
+\mathbf{r}_{\mathrm{GR}}(\theta_W)
+=
+\begin{pmatrix}
+R_{\mathrm{red}}\\
+R_{\mathrm{Shap}}\\
+R_{\mathrm{lens}}\\
+R_{\mathrm{acc}}\\
+R_{\mathrm{1PN}}\\
+\alpha_1\\
+\alpha_2\\
+\alpha_3
+\end{pmatrix},
+\qquad
+R_{\mathrm{acc}}
+=
+\frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
+{\left\|\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
+$$
+The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
+
+Solar oblateness supplies the nuisance-control version of the same rule. Mercury-type precession may be written as
+$$
+\Delta\varpi_{\mathrm{obs}}
+=
+\Delta\varpi_{\mathrm{PPN}}(\theta_W)
++\Delta\varpi_{J_{2,\odot}}
++\Delta\varpi_{\mathrm{asteroid}}
++\Delta\varpi_{\mathrm{noise}}
+$$
+where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
+
+The perihelion row should carry the explicit GR target rather than only the name of the test. For a weak-field bound orbit with semi-major axis $a$ and eccentricity $e$,
+$$
+\Delta\varpi_{\mathrm{GR}}
+=
+\frac{6\pi GM}{a(1-e^2)c_0^2}
+$$
+per orbit. In the PPN projection this is the special case of
+$$
+\Delta\varpi_{\mathrm{PPN}}
+=
+\frac{2\pi GM}{a(1-e^2)c_0^2}
+\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
+$$
+so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
+
+#### Low-Energy Quantum-Gravity EFT Benchmark
+
+The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.
+
+For two slowly moving masses, use the schematic benchmark
+
+$$
+V_{\mathrm{GR\text{-}EFT}}(r)
+=
+-\frac{G_N m_1 m_2}{r}
+\left[
+1
++\alpha_{\mathrm{1PN}}\frac{G_N(m_1+m_2)}{c_0^2 r}
++\alpha_{\hbar}\frac{G_N\hbar}{c_0^3 r^2}
++\cdots
+\right]
+$$
+
+where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
+
+$$
+\mathcal{R}_{\mathrm{qG}}(r;\theta)
+=
+\left|
+\frac{
+V_{\mathbb{A}\mathbb{A}\mathbb{A}}(r;\theta)
+-V_{\mathrm{GR\text{-}EFT}}(r)
+}{
+G_N m_1 m_2/r
+}
+\right|
+$$
+
+This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
+
+Massive-superposition entanglement experiments add a second low-energy quantum-gravity benchmark. If two isolated massive probes acquire an entanglement witness through gravity alone, the retained data product is the branch-dependent interaction phase, not a decision between graviton-field ontology and quantized-geometry ontology. The corresponding validation packet in [Massive-Superposition Gravity Validation Packet](../../../../markdown/aaa/validation/massive-superposition-gravity.md) requires the same effective-metric record $\theta$ to generate the mediated-entanglement phase while keeping non-gravitational coupling residuals bounded and preventing the gravity-side response from becoming an unmodeled which-path record.
+
+### Equivalence-Principle Channels
+
+The weak equivalence principle and the strong equivalence principle are distinct benchmark rows. For two compact test assemblies $A$ and $B$ falling toward an external source $S$, define the composition residual
+$$
+\eta_{AB}^{S}
+=
+\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
+$$
+The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
+$$
+\mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
+=
+\max_{A,B}
+\frac{
+\left\|
+\nabla\ln\!\left(\lambda_A/\lambda_B\right)
+\right\|_W
+}{
+\left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon
+}
+\ll 1
+$$
+with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response. Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
+
+The same statement can be read in mechanism language. Inertial response and gravitational response need not have identical substrate triggers: one can come from imposed acceleration of the assembly ledger, while the other can come from a Noether sea gradient. They recover the equivalence principle only if both triggers perturb the same shielded internal ledger through the same weak homogeneous response map. Any Mach-like dependence on the surrounding matter distribution must therefore appear as a common-mode feature of $\theta_W$, not as a body-specific adjustment of inertia.
+
+$$
+\eta_{\mathrm{SEP}}
+=
+\frac{\Delta a_{\mathrm{self}}}{a}
+\bigg/
+\left(
+\frac{E_{\mathrm{grav},1}}{m_1c_0^2}
+-
+\frac{E_{\mathrm{grav},2}}{m_2c_0^2}
+\right)
+$$
+where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
+
+### Preferred-Frame Leakage
+
+Because the ontology contains an absolute frame, the observer-level phenomenology must still suppress preferred-frame signatures.
+
+That means the effective PPN drift parameters
+$$
+\alpha_1,\alpha_2,\alpha_3
+$$
+must be observationally negligible in validated regimes. This is not optional. If the Noether sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
+
+### Gravitational-Wave Channel
+
+The Noether sea picture must recover the observed near-luminal propagation of gravitational disturbances:
+$$
+\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1
+$$
+
+In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
+
+### Strong-Field Regime
+
+Weak-field GR matching is the conservative requirement. Strong-field behavior is where the theory may differ.
+
+Use the canonical event-horizon alignment condition defined in
+[singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition).
+
+The strong-field interpretation is therefore:
+
+- outside the alignment regime, GR-like effective geometry should emerge to the accuracy already tested,
+- near the alignment regime, departures may appear through medium saturation, coplanarity, altered signal propagation, and assembly reconfiguration,
+- but those departures must be stated as predictions, not used as excuses to miss weak-field closure.
+
+The exterior benchmark still includes the standard compact-object scales before any native horizon-interface departure is promoted:
+$$
+r_s=\frac{2GM}{c_0^2},
+\qquad
+r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
+\qquad
+r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
+$$
+for the Schwarzschild comparison branch. The first is the effective horizon radius, the second the null photon-orbit radius, and the third the innermost stable circular orbit for massive test bodies in the nonrotating exterior comparison. A native black-hole record may reinterpret what the horizon is made of, but it must still recover these exterior scales, or provide a declared residual template, before using strong-field ontology to explain compact-object observations.
+
+### Closure Targets
+
+This chapter is closed only if the spacetime branch can demonstrate all of the following from one constitutive map:
+
+1. clock slowing / redshift,
+2. Shapiro delay,
+3. light bending,
+4. 1PN orbital corrections,
+5. the standard long-distance quantum-gravity EFT correction as an observer-level weak-field benchmark,
+6. negligible preferred-frame leakage in tested regimes,
+7. gravitational-wave speed, dispersion, and two-mode polarization compatibility,
+8. non-arbitrary finite-boundary continuation wherever a strong-field or cosmological comparison invokes global extension assumptions.
+
+The same coefficient set must survive all eight.
+
+### Falsification Gate
+
+The GR-observables interface fails if any of the following occur:
+
+- redshift, lensing, and Shapiro delay require different constitutive parameter choices,
+- the long-distance quantum correction to the Newtonian potential requires an independent weak-field coefficient set,
+- preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md),
+- gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
+- a strong-field or cosmology packet needs an unrecorded global assumption to select its continuation,
+- or the weak-field map cannot recover the GR coefficients to the required precision while remaining consistent with the rest of the substrate story.
+
+In compact form, the required acceptance set is
+$$
+\mathcal{C}_{\text{redshift}}
+\cap
+\mathcal{C}_{\text{Shapiro}}
+\cap
+\mathcal{C}_{\text{lensing}}
+\cap
+\mathcal{C}_{\text{1PN}}
+\cap
+\mathcal{C}_{\text{qG-EFT}}
+\cap
+\mathcal{C}_{\text{PF}}
+\cap
+\mathcal{C}_{\text{GW}}
+\cap
+\mathcal{C}_{\text{cont}}
+\neq \varnothing
+$$
+
+If that intersection is empty, the effective-metric program is not yet viable.
+
+### Related Chapters
+
+- [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md)
+- [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md)
+- [proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md)
+- [gravitational-waves.md](../../../../markdown/aaa/spacetime/gravitational-waves.md)
+- [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md)
+- [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md)
+- [../validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
+
+## PPN Parameters
 
 This chapter is the canonical home for weak-field/PPN expansion details used by
 the spacetime constitutive map.
 
-#### Canonical Symbols
+### Canonical Symbols
 
 - $n$: normalized Noether braid density, with $\rho_{\text{NS}}=\rho_{\text{NS},0}n$.
 - $\chi_{\text{sea}}$: Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$.
@@ -5272,7 +5659,7 @@ the spacetime constitutive map.
 - $U\equiv -\Phi_N>0$: positive PPN expansion variable (default).
 - $U_{\Phi}\equiv -\Phi_{\text{eff}}>0$: constitutive-channel variant used when expanding directly in $\Phi_{\text{eff}}$.
 
-#### Mapping to PPN Constraints
+### Mapping to PPN Constraints
 
 1. **Shapiro Delay**: Map the GR time-delay (longer path in curved space) to the $\mathbb{A}\mathbb{A}\mathbb{A}$ time-delay (slower $c_{\text{eff}}$ in the Noether sea).
 2. **Light Bending**: Calculate Noether sea signal propagation through the density gradient around the Sun.
@@ -5280,14 +5667,14 @@ the spacetime constitutive map.
 
 Here, geodetic precession means the de Sitter precession of a carried gyroscope: after the gyroscope moves through a weak gravitational field, its spin axis is rotated relative to a distant reference frame. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this should not be introduced as a separate torque law between angular momentum and a potential gradient. It is a closure target for the effective metric: the Noether sea-induced clock, ruler, and signal-response map must make transported assembly orientations precess by the same amount that GR predicts in the validated weak-field regime. Frame dragging from a rotating source is a separate test channel.
 
-#### Testing the Euclidean Anchor (Shapiro Delay)
+### Testing the Euclidean Anchor (Shapiro Delay)
 
 1. **The Test**: Calculate travel time of a signal from Earth to a probe behind the Sun using the Euclidean straight-line anchor supplied by the $\mathbb{U}_{\text{now}}$ state record.
 2. **$\mathbb{A}\mathbb{A}\mathbb{A}$ Model**: Signal follows a straight Euclidean line. Delay is caused by increased Noether sea response near the Sun, expressed by the Noether sea delay factor $\chi_{\text{sea}}$.
 3. **Comparison**: Contrast $\Delta t_{\mathrm{eff}}^{(\mathbb{A}\mathbb{A}\mathbb{A})}$ with the GR weak-field form.
 4. **$\mathbb{U}_{\text{now}}$ Role**: $\mathbb{U}_{\text{now}}$ provides the "straight line" benchmark against which the "curved path" of GR is compared.
 
-#### Explicit Weak-Field Noether Sea Delay Map (PPN $\gamma$)
+### Explicit Weak-Field Noether Sea Delay Map (PPN $\gamma$)
 
 Adopt a weak-field PPN-normalized Noether sea delay-factor ansatz for signal propagation in the Noether braid medium:
 $$
@@ -5359,9 +5746,9 @@ $$
 
 When this residual vanishes, Shapiro delay and gravitational clock redshift are using the same first-order Noether sea delay response. When it does not vanish, PPN delay, redshift, lensing, pressure-response, and cosmological redshift comparisons must carry the residual explicitly rather than refitting $\chi_{\text{sea}}$ per observable.
 
-#### PPN Parameters and the Euclidean Anchor
+### PPN Parameters and the Euclidean Anchor
 
-##### Parameter $\gamma$ (Space Curvature / Refraction)
+#### Parameter $\gamma$ (Space Curvature / Refraction)
 * **GR Context:** Measures the amount of space curvature produced by unit rest mass.
 * **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Measures the refractive response of the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). A massive body increases local assembly density, slowing the effective signal speed $c_{\text{eff}}(\mathbf X,T)$ relative to the asymptotic observer speed $c_0$, while $c_f$ remains the primitive wake speed.
 * **Observable:** Shapiro-delay coefficient in the explicit refractive integral above.
@@ -5380,7 +5767,7 @@ $$
 $$
 In the forward projection below, the missing half is precisely the $\gamma_{\text{eff}}$ spatial-compliance contribution. Therefore a constitutive map cannot claim PPN closure by matching Shapiro delay with a scalar delay factor while leaving the ruler/spatial-compliance row undefined.
 
-##### Parameter $\beta$ (Non-linearity of Gravity)
+#### Parameter $\beta$ (Non-linearity of Gravity)
 * **GR Context:** Measures the non-linearity in the superposition of gravitational fields.
 * **$\mathbb{A}\mathbb{A}\mathbb{A}$ Interpretation:** Captures second-order (in potential) clock/medium response from self-hit and Noether sea constitutive nonlinearity.
 * **Explicit map from constitutive expansion:** Let $U\equiv-\Phi_N>0$ and expand the static clock law
@@ -5421,7 +5808,7 @@ $$
 $$
 * **Observable:** Perihelion precession and other 1PN nonlinear-potential tests.
 
-##### Exponential clock-law subclass (direct map)
+#### Exponential clock-law subclass (direct map)
 
 If the constitutive clock channel is exactly
 $$
@@ -5448,7 +5835,7 @@ Here $\Omega\xi$ is the local clock-rate factor $d\tau/dt_{\mathrm{eff}}$ in thi
 The general $C_2(a,k)$ map above remains the umbrella constitutive form; the exponential channel is the closure-special case where it collapses to GR's $\beta=1$ exactly.
 When $\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2)$, one has $U_{\Phi}=U+O(U^2/c_0^2)$ at weak field.
 
-##### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
+#### Preferred Frame Parameters ($\alpha_1, \alpha_2, \alpha_3$)
 * **Crucial test:** In the effective relativistic limit these must vanish (no measurable preferred-frame leakage).
 * **Constitutive leakage ansatz:** Let $\mathbf{w}$ be the Noether sea drift velocity relative to the barycentric frame. Write the lowest-order drift terms as
 $$
@@ -5477,7 +5864,7 @@ $$
 \Xi_4(a,k)=2\alpha_3-\alpha_1=\Xi_1-2\Xi_2-2\Xi_3
 $$
 
-#### Zero-Leakage Conditions (Preferred-Frame Closure)
+### Zero-Leakage Conditions (Preferred-Frame Closure)
 
 The effective theory is preferred-frame safe iff all drift couplings vanish:
 $$
@@ -5498,7 +5885,7 @@ and no momentum-density coupling term $w^iV_i$ at the retained PN order.
 
 The coefficients $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$ parameterize preferred-frame leakage terms in the weak-field constitutive expansion.
 
-#### Preferred-Motion Null-Test Bundle
+### Preferred-Motion Null-Test Bundle
 
 Historical clock, interferometer, Zeeman-splitting, and gravimeter tests show how many different apparatus types can search for the same preferred-frame leakage without sharing the same dominant nuisance. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this becomes a bundle test on the same drift coefficients, not a set of independent fit parameters. For an apparatus channel $A$ with orientation $\hat{\mathbf{n}}_A(t)$ and laboratory velocity $\mathbf{w}(t)$ relative to the Noether sea rest comparison frame, write the leading fractional readout as
 $$
@@ -5533,7 +5920,7 @@ y_A^{\mathrm{obs}}-y_A^{\theta}
 $$
 The bundle fails if one clock or material channel requires a nonzero $\alpha_i$ that another channel excludes, or if the orientation/annual term is hidden in $\zeta_A$ rather than projected through $(\Xi_1,\Xi_2,\Xi_3,\Xi_4)$.
 
-#### Weak-Field Constraint Table (Decision Layer)
+### Weak-Field Constraint Table (Decision Layer)
 
 Use this table to close the constitutive loop against modern benchmarks.
 
@@ -5547,7 +5934,7 @@ Use this table to close the constitutive loop against modern benchmarks.
 
 Numeric pass/fail thresholds are taken from [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md).
 
-#### Source-Mined Benchmark Bound Vector
+### Source-Mined Benchmark Bound Vector
 
 The Will-style weak-field comparison is not a single "GR matches" flag. It is a bound vector on distinct leakage channels:
 $$
@@ -5605,7 +5992,7 @@ $$
 $$
 with $\tilde\kappa_{\bullet}^{\mathrm{eff}}$ used as photon-sector comparison coefficients and $\bar{s}^{\mu\nu}_{\mathrm{eff}}$ used as a gravity-sector comparison coefficient. These are observer-level projection diagnostics; they are not substrate coefficients added to the Euclidean void.
 
-#### Closure Program Interface (Observable Decision Layer)
+### Closure Program Interface (Observable Decision Layer)
 
 This chapter is the observable-side gate for the emergent-metric closure.
 
@@ -5625,7 +6012,7 @@ Cross-chapter integration:
 - clock-law coefficient extraction: [spacetime/proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - threshold enforcement: [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 
-#### ADM/Cartan Extraction Equations
+### ADM/Cartan Extraction Equations
 
 The PPN vector must be extracted from the same ADM/Cartan fields used by the effective metric map, not from observable-specific fits. With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the line element
 $$
@@ -5702,7 +6089,7 @@ R_{\mathrm{acc}}
 $$
 The other residuals are the redshift, Shapiro, and lensing differences computed from the same $\theta$ and the forward projection below. This strengthens the existing decision layer; it is not a separate gate.
 
-#### Numeric Closure Pipeline and Global Objective
+### Numeric Closure Pipeline and Global Objective
 
 To enforce cross-observable closure without parameter bloat, use a single constitutive vector and a fixed projection to the PPN decision manifold.
 
@@ -5789,7 +6176,7 @@ Forward-only evaluation rule:
 3. Predict macroscopic observables (Shapiro, precession, redshift, lensing) with this fixed parameter set.
 4. If any observable fails its ledger gate, reject the constitutive map; do not refit per observable.
 
-#### Forward Observable Projection (Weak-Field Classical Set)
+### Forward Observable Projection (Weak-Field Classical Set)
 
 To force cross-observable closure in a single forward pass, define
 $$
@@ -5860,7 +6247,7 @@ $$
 $$
 For this spherically symmetric classical set, preferred-frame channels $(\Xi_1,\Xi_2,\Xi_3)$ decouple at leading order; they are constrained by dedicated drift/leakage observables.
 
-#### Worked Solar-System Reference Projection (Synthetic Calibration Example)
+### Worked Solar-System Reference Projection (Synthetic Calibration Example)
 
 Use
 $$
@@ -5941,7 +6328,7 @@ $$
 $$
 the constitutive map fails this gate and must be replaced rather than re-fit per observable.
 
-#### Real-Data Joint Likelihood (Benchmark Inputs)
+### Real-Data Joint Likelihood (Benchmark Inputs)
 
 Using the forward map above, define the joint likelihood
 $$
@@ -6001,7 +6388,7 @@ Interpretation for closure:
 2. Preferred-frame channels require additional drift-sensitive observables (LLR, pulsar timing, dedicated anisotropy tests) to close $(\Xi_1,\Xi_2,\Xi_3)$.
 3. The positive $\gamma_{\text{eff}}$-$C_2$ covariance defines the accepted trade-off direction when matching precession jointly with refractive observables.
 
-#### Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)
+### Preferred-Frame Parameter Degeneracy Resolution (Augmented Likelihood)
 
 Define the preferred-frame constitutive vector
 $$
@@ -6067,398 +6454,7 @@ $$
 $$
 from Noether sea continuum simulations before final numerical acceptance testing.
 
-### General Relativity
-
-This chapter is the observer-facing checklist for the spacetime branch. It says, in one place, which general-relativistic observables must be matched by the constitutive medium picture and where the framework is allowed to differ only after that closure is secured.
-
-Read it as a phenomenology gate rather than as a derivation chapter. The metric and PPN notes carry the constitutive work; this page states the observable obligations and their regime boundaries.
-
-The central question is not whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can describe gravity in different words. The question is whether one Noether sea response record can reproduce the network of tested GR observables without switching hidden assumptions between rows. Redshift, Shapiro delay, bending, orbital precession, equivalence-principle behavior, and gravitational waves must come from the same effective-geometry map in the regime where GR already works.
-
-#### Purpose
-
-This chapter is the observer-level checklist for where the spacetime branch of $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce general relativity and where it is allowed to differ. It is not the constitutive derivation itself. That work lives in the metric and PPN chapters. The role of this page is to collect the observable-facing map in one place.
-
-#### Core Interpretation
-
-At the substrate level:
-
-- space remains Euclidean,
-- time remains absolute,
-- and the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the dynamical medium.
-
-At the observer level, the same Noether sea must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
-
-$$
-\text{medium response}
-\;\Longrightarrow\;
-\text{effective metric observables}
-$$
-
-The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
-
-Every row below should be treated as a test of the same medium record. If a clock result, a lensing result, and a gravitational-wave result require different hidden records, the branch has produced separate fits rather than a GR recovery.
-
-##### Network evidence and nuisance separation
-
-The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases. The phenomenology gate therefore treats GR recovery as a network constraint:
-$$
-\mathcal{E}_{\mathrm{GR}}(\theta)
-=
-\mathbf{r}_{\mathrm{net}}(\theta)^{\mathsf T}
-C_{\mathrm{net}}^{-1}
-\mathbf{r}_{\mathrm{net}}(\theta)
-$$
-where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
-
-##### Causal-order and scale recovery
-
-Before the individual observables are checked, the effective metric map has to pass a structural check: Physical Observers must infer the same causal ordering, local clock scale, and negligible preferred-frame leakage that the GR comparison metric would provide in the validated regime. This is the phenomenology-side version of the causal-order diagnostic in [observer-framework.md](../../../../markdown/aaa/spacetime/observer-framework.md#effective-causal-order-recovery):
-$$
-\mathcal{R}_{\mathrm{causal}}(\theta)
-=
-d_{\mathrm{ord}}\!\left(\prec_{\mathrm{eff}}(\theta),\prec_{\mathrm{GR}}\right)
-+
-\lambda_{\tau}
-\left\|
-\frac{d\tau_{\mathrm{eff}}}{dt_{\mathrm{eff}}}(\theta)
--
-\frac{d\tau_{\mathrm{GR}}}{dt_{\mathrm{eff}}}
-\right\|_{W}
-+
-\lambda_{\mathrm{PF}}
-\sum_{i=1}^{3}\alpha_i(\theta)^2
-$$
-The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps the absolute substrate frame hidden below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
-
-In plain terms, the observer cannot be allowed to recover one causal story from photons, a different clock story from matter, and a third timing story from gravitational waves. The tested regime must look like one effective spacetime to the Physical Observer.
-
-##### Global continuation and cosmic-censorship comparison
-
-Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether sea state, and closure-label ensemble determine the continuation.
-
-The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[T_i,T_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
-$$
-\mathcal{T}_{\Omega,W}^{\theta}:
-\left(
-X_\Omega(T_i),
-\mathcal{H}_{\Omega}^{<T_i},
-\mathcal{B}_{\partial\Omega}|_{W},
-N_{\text{sea}}|_{\Omega\times W}
-\right)
-\longrightarrow
-\mathcal{S}_{\Omega}(T_f)
-$$
-where $\mathcal{S}_{\Omega}(T_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(T_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
-
-#### Weak-Field Observables That Must Match GR
-
-##### Gravitational redshift and clock rates
-
-The clock channel must reproduce
-$$
-\frac{d\tau}{dt_{\mathrm{eff}}}
-\approx
-\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{v^2}{c_0^2}}
-$$
-in the weak-field, low-velocity observer regime, where $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
-$$
-\frac{\Delta \nu}{\nu}
-\approx
-\frac{\Delta \Phi_N}{c_0^2}
-$$
-
-Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
-
-##### Shapiro delay
-
-In the refractive-medium picture, one-way path time is
-$$
-t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,ds_{\mathrm{eff}}
-$$
-with
-$$
-\bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)
-\equiv
-\frac{c_0}{c_{\text{eff}}(x_{\mathrm{eff}}^i)}
-=
-\frac{c_0}{c_f}\chi_{\text{sea}}(x_{\mathrm{eff}}^i)
-=
-1-(1+\gamma_{\text{eff}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_0^2}
-+O(c_0^{-4})
-$$
-
-For a point mass, the resulting delay is
-$$
-\Delta t_{\mathrm{eff}}
-=
-\frac{(1+\gamma_{\text{eff}})GM}{c_0^3}
-\ln\!\left(\frac{r_1+r_2+R}{r_1+r_2-R}\right)
-+O(c_0^{-5})
-$$
-which must match the GR coefficient at current solar-system precision.
-
-##### Light bending
-
-The same refractive map must recover the 1PN deflection law
-$$
-\Delta\theta
-\approx
-2(1+\gamma_{\text{eff}})
-\frac{GM}{b\,c_0^2}
-$$
-with impact parameter $b$. In the GR-matching limit $\gamma_{\text{eff}}=1$, this reduces to the standard
-$$
-\Delta\theta \approx \frac{4GM}{b\,c_0^2}
-$$
-
-So Shapiro delay and lensing are not separate fit channels. They are two readouts of the same constitutive coefficient.
-
-##### Perihelion and 1PN orbital structure
-
-The effective metric subclass must also reproduce the standard 1PN orbital correction structure, summarized through the PPN parameters $\gamma_{\text{eff}}$ and $\beta_{\text{eff}}$. At the phenomenology level the requirement is simple:
-
-- Mercury-type precession,
-- geodetic precession,
-- and other weak-field orbital tests
-
-must all be reproduced by the same $(\gamma_{\text{eff}},\beta_{\text{eff}},\alpha_i)$ package already used for light and clock observables.
-
-For the classical weak-field suite, the comparison record can be made explicit. On an observation window $W$, let $\theta_W$ denote the retained Noether sea state, source assembly record, observer clock/ruler state, signal-channel data, boundary wake data, and the ADM/Cartan projection
-$$
-\theta_W
-\longmapsto
-\left(
-N,u^i_{\mathrm{sea,eff}},e^a{}_i,\gamma_{ij}^{\mathrm{eff}},
-\Phi_{\text{eff}},
-\chi_{\text{sea}}
-\right)
-$$
-The observable residual bundle is then
-$$
-\mathbf{r}_{\mathrm{GR}}(\theta_W)
-=
-\begin{pmatrix}
-R_{\mathrm{red}}\\
-R_{\mathrm{Shap}}\\
-R_{\mathrm{lens}}\\
-R_{\mathrm{acc}}\\
-R_{\mathrm{1PN}}\\
-\alpha_1\\
-\alpha_2\\
-\alpha_3
-\end{pmatrix},
-\qquad
-R_{\mathrm{acc}}
-=
-\frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
-{\left\|\gamma_{\mathrm{eff}}^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
-$$
-The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
-
-Solar oblateness supplies the nuisance-control version of the same rule. Mercury-type precession may be written as
-$$
-\Delta\varpi_{\mathrm{obs}}
-=
-\Delta\varpi_{\mathrm{PPN}}(\theta_W)
-+\Delta\varpi_{J_{2,\odot}}
-+\Delta\varpi_{\mathrm{asteroid}}
-+\Delta\varpi_{\mathrm{noise}}
-$$
-where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
-
-The perihelion row should carry the explicit GR target rather than only the name of the test. For a weak-field bound orbit with semi-major axis $a$ and eccentricity $e$,
-$$
-\Delta\varpi_{\mathrm{GR}}
-=
-\frac{6\pi GM}{a(1-e^2)c_0^2}
-$$
-per orbit. In the PPN projection this is the special case of
-$$
-\Delta\varpi_{\mathrm{PPN}}
-=
-\frac{2\pi GM}{a(1-e^2)c_0^2}
-\left(2+2\gamma_{\text{PPN}}-\beta_{\text{PPN}}\right)
-$$
-so Mercury-type precession is a joint test of the same spatial-compliance coefficient that controls lensing and the same nonlinear clock coefficient that controls $\beta_{\text{PPN}}$.
-
-##### Low-Energy Quantum-Gravity EFT Benchmark
-
-The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.
-
-For two slowly moving masses, use the schematic benchmark
-
-$$
-V_{\mathrm{GR\text{-}EFT}}(r)
-=
--\frac{G_N m_1 m_2}{r}
-\left[
-1
-+\alpha_{\mathrm{1PN}}\frac{G_N(m_1+m_2)}{c_0^2 r}
-+\alpha_{\hbar}\frac{G_N\hbar}{c_0^3 r^2}
-+\cdots
-\right]
-$$
-
-where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
-
-$$
-\mathcal{R}_{\mathrm{qG}}(r;\theta)
-=
-\left|
-\frac{
-V_{\mathbb{A}\mathbb{A}\mathbb{A}}(r;\theta)
--V_{\mathrm{GR\text{-}EFT}}(r)
-}{
-G_N m_1 m_2/r
-}
-\right|
-$$
-
-This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
-
-Massive-superposition entanglement experiments add a second low-energy quantum-gravity benchmark. If two isolated massive probes acquire an entanglement witness through gravity alone, the retained data product is the branch-dependent interaction phase, not a decision between graviton-field ontology and quantized-geometry ontology. The corresponding validation packet in [Massive-Superposition Gravity Validation Packet](../../../../markdown/aaa/validation/massive-superposition-gravity.md) requires the same effective-metric record $\theta$ to generate the mediated-entanglement phase while keeping non-gravitational coupling residuals bounded and preventing the gravity-side response from becoming an unmodeled which-path record.
-
-#### Equivalence-Principle Channels
-
-The weak equivalence principle and the strong equivalence principle are distinct benchmark rows. For two compact test assemblies $A$ and $B$ falling toward an external source $S$, define the composition residual
-$$
-\eta_{AB}^{S}
-=
-\frac{2(a_A^S-a_B^S)}{a_A^S+a_B^S}
-$$
-The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
-$$
-\mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
-=
-\max_{A,B}
-\frac{
-\left\|
-\nabla\ln\!\left(\lambda_A/\lambda_B\right)
-\right\|_W
-}{
-\left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon
-}
-\ll 1
-$$
-with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response. Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue. A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
-
-The same statement can be read in mechanism language. Inertial response and gravitational response need not have identical substrate triggers: one can come from imposed acceleration of the assembly ledger, while the other can come from a Noether sea gradient. They recover the equivalence principle only if both triggers perturb the same shielded internal ledger through the same weak homogeneous response map. Any Mach-like dependence on the surrounding matter distribution must therefore appear as a common-mode feature of $\theta_W$, not as a body-specific adjustment of inertia.
-
-$$
-\eta_{\mathrm{SEP}}
-=
-\frac{\Delta a_{\mathrm{self}}}{a}
-\bigg/
-\left(
-\frac{E_{\mathrm{grav},1}}{m_1c_0^2}
--
-\frac{E_{\mathrm{grav},2}}{m_2c_0^2}
-\right)
-$$
-where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
-
-#### Preferred-Frame Leakage
-
-Because the ontology contains an absolute frame, the observer-level phenomenology must still suppress preferred-frame signatures.
-
-That means the effective PPN drift parameters
-$$
-\alpha_1,\alpha_2,\alpha_3
-$$
-must be observationally negligible in validated regimes. This is not optional. If the Noether sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
-
-#### Gravitational-Wave Channel
-
-The Noether sea picture must recover the observed near-luminal propagation of gravitational disturbances:
-$$
-\left|\frac{v_{\mathrm{GW}}-c_0}{c_0}\right| \ll 1
-$$
-
-In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
-
-#### Strong-Field Regime
-
-Weak-field GR matching is the conservative requirement. Strong-field behavior is where the theory may differ.
-
-Use the canonical event-horizon alignment condition defined in
-[singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition).
-
-The strong-field interpretation is therefore:
-
-- outside the alignment regime, GR-like effective geometry should emerge to the accuracy already tested,
-- near the alignment regime, departures may appear through medium saturation, coplanarity, altered signal propagation, and assembly reconfiguration,
-- but those departures must be stated as predictions, not used as excuses to miss weak-field closure.
-
-The exterior benchmark still includes the standard compact-object scales before any native horizon-interface departure is promoted:
-$$
-r_s=\frac{2GM}{c_0^2},
-\qquad
-r_{\mathrm{ph}}=\frac{3GM}{c_0^2},
-\qquad
-r_{\mathrm{ISCO}}=\frac{6GM}{c_0^2}
-$$
-for the Schwarzschild comparison branch. The first is the effective horizon radius, the second the null photon-orbit radius, and the third the innermost stable circular orbit for massive test bodies in the nonrotating exterior comparison. A native black-hole record may reinterpret what the horizon is made of, but it must still recover these exterior scales, or provide a declared residual template, before using strong-field ontology to explain compact-object observations.
-
-#### Closure Targets
-
-This chapter is closed only if the spacetime branch can demonstrate all of the following from one constitutive map:
-
-1. clock slowing / redshift,
-2. Shapiro delay,
-3. light bending,
-4. 1PN orbital corrections,
-5. the standard long-distance quantum-gravity EFT correction as an observer-level weak-field benchmark,
-6. negligible preferred-frame leakage in tested regimes,
-7. gravitational-wave speed, dispersion, and two-mode polarization compatibility,
-8. non-arbitrary finite-boundary continuation wherever a strong-field or cosmological comparison invokes global extension assumptions.
-
-The same coefficient set must survive all eight.
-
-#### Falsification Gate
-
-The GR-observables interface fails if any of the following occur:
-
-- redshift, lensing, and Shapiro delay require different constitutive parameter choices,
-- the long-distance quantum correction to the Newtonian potential requires an independent weak-field coefficient set,
-- preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md),
-- gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
-- a strong-field or cosmology packet needs an unrecorded global assumption to select its continuation,
-- or the weak-field map cannot recover the GR coefficients to the required precision while remaining consistent with the rest of the substrate story.
-
-In compact form, the required acceptance set is
-$$
-\mathcal{C}_{\text{redshift}}
-\cap
-\mathcal{C}_{\text{Shapiro}}
-\cap
-\mathcal{C}_{\text{lensing}}
-\cap
-\mathcal{C}_{\text{1PN}}
-\cap
-\mathcal{C}_{\text{qG-EFT}}
-\cap
-\mathcal{C}_{\text{PF}}
-\cap
-\mathcal{C}_{\text{GW}}
-\cap
-\mathcal{C}_{\text{cont}}
-\neq \varnothing
-$$
-
-If that intersection is empty, the effective-metric program is not yet viable.
-
-#### Related Chapters
-
-- [emergent-metric.md](../../../../markdown/aaa/spacetime/emergent-metric.md)
-- [ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md)
-- [proper-time-and-time-dilation.md](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md)
-- [gravitational-waves.md](../../../../markdown/aaa/spacetime/gravitational-waves.md)
-- [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md)
-- [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md)
-- [../validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
-
-### Gravitational Waves
+## Gravitational Waves
 
 This chapter provides a conditional closure chain from the emergent-metric weak-field map to testable gravitational-wave observables. It is one branch of the observational closure stack summarized in [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) and constrained by [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md).
 
@@ -6467,7 +6463,7 @@ Interface chapters:
 - PPN closure and refractive weak field: [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md)
 - Phenomenology summary: [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md)
 
-#### Weak-Field Setup
+### Weak-Field Setup
 
 Assume an effective metric
 $$
@@ -6501,7 +6497,7 @@ The same row is also a $\chi_{\text{sea}}$ identity condition. The Noether sea d
 
 Coherent photon/gravity conversion comparisons belong at this same shared-record level. They are useful only if the photon channel and the effective gravitational channel read from one Noether sea state, one speed/delay convention, and one event ledger. A proposed conversion amplitude, phase lock, or common propagation speed cannot be used as evidence for a new carrier unless it also preserves the GW170817-style timing row, photon nondispersion, image coherence, and the tensor-mode detector record.
 
-#### Linear Wave Equation
+### Linear Wave Equation
 
 **Conditional Lemma 1 (linearized propagation equation).**
 Under weak-field, slow-background variation, and linear constitutive response, the transverse-traceless sector obeys
@@ -6567,7 +6563,7 @@ $$
 $$
 This is a forecast and comparison gate. It does not license a massive-graviton ontology; it only says that any cosmological-scale weakening channel must remain compatible with the low-frequency strain and timing residuals that would test long-wavelength dispersion.
 
-#### Medium-Transport Perturbation
+### Medium-Transport Perturbation
 
 For cosmology-facing transport work, gravitational waves should also be treated as bounded perturbations of the same Noether sea state used by redshift and dark-energy modules. In the provisional Noether braid equilibrium packet,
 
@@ -6595,7 +6591,7 @@ $$
 
 with the associated beam variance, chromaticity residual, and packet time-dilation residual below the same tolerances used for the redshift budget. If $S_{\mathrm{GW}}$ produces measurable photon dispersion, image blur, or gravitational-wave timing drift beyond the detector gates above, the perturbative transport branch fails.
 
-#### Polarization Content
+### Polarization Content
 
 In the project spin taxonomy, this is the effective **spin-2 / tensor** channel: the wave is not a scalar breathing mode or a single-axis vector mode, but a transverse-traceless deformation carrying quadrupolar shape data.
 
@@ -6613,7 +6609,7 @@ $$
 $$
 The numerator collects non-TT detector power after known instrumental and astrophysical residuals are removed.
 
-#### Detector-Side Inference Gate
+### Detector-Side Inference Gate
 
 The detector does not observe the effective tensor mode as a bare ontological object. It records a processed strain channel whose interpretation depends on calibration, background rejection, waveform matching, and coincidence checks across instruments. For a candidate gravitational-wave record $\theta_{\mathrm{GW}}$, keep the residual vector explicit:
 
@@ -6701,7 +6697,7 @@ This is the Dyson lesson in current terminology. The durable comparison is not t
 
 When $\theta_{\mathrm{GW}}$ is also used to support a finite-range or dark-energy comparison, $\mathcal{R}_{\mathrm{GW,low}}(\theta)$ must be carried beside this detector residual. Passing a high-frequency event-timing gate alone is not enough to promote a long-wavelength dispersion claim.
 
-#### Merger and Ringdown Horizon-Interface Gate
+### Merger and Ringdown Horizon-Interface Gate
 
 Stationary no-hair agreement is not enough to close the dynamical strong-field problem. If a black-hole model changes the horizon-interface boundary condition during formation, merger, or evaporation, the change must be tested against the detector-facing waveform packet and the same final compact-object labels used by exterior GR.
 
@@ -6724,7 +6720,7 @@ d_{\mathrm{shared}}(\theta_H,\theta_{\mathrm{GW}},\theta_{\mathrm{BH}})
 $$
 Here $\mathcal{P}_{\mathrm{det}}$ is the detector projection and $d_{\mathrm{shared}}$ penalizes any fit that uses one state record for the strain channel, another for the horizon-interface label, and another for the black-hole entropy or release ledger. The gate is satisfied only if $\mathcal{R}_{\mathrm{merge}}(\theta_H)$ is below the declared tolerance while preserving the validated inspiral limit, the two tensor polarizations, and the final exterior no-hair coarse-graining. A predicted deviation is admissible only as a bounded residual or a falsifiable template, not as permission to loosen already-tested gravitational-wave recovery.
 
-#### Early-Universe Stochastic Background Gate
+### Early-Universe Stochastic Background Gate
 
 A stochastic gravitational-wave background is a data product before it is an ontology claim. If an early-universe or pre-BBN comparison branch predicts a background, retain the detector-facing spectrum and its cosmology linkage, not the branch interpretation that generated it. For a candidate branch $X$, define
 $$
@@ -6738,7 +6734,7 @@ d_{\mathrm{shared}}\!\left(\theta_{\mathrm{GW}},\theta_{\mathrm{BBN}},\theta_{\m
 $$
 where $\mathcal{B}_{\mathrm{det}}$ is the validated detector band and $d_{\mathrm{shared}}$ penalizes any branch that requires a gravitational-wave source record inconsistent with the BBN, CMB, or structure-formation records. A positive stochastic signal would become observational pressure on the early medium history; a null result closes only the corresponding branch amplitude, not the whole cosmology program.
 
-#### Energy Flux
+### Energy Flux
 
 The source-side benchmark is also part of closure. In the GR weak-field comparison, isolated systems do not radiate monopole or dipole gravitational waves at leading order because total energy, momentum, and angular momentum conservation remove those channels. The first radiative source is quadrupolar. A compact observer-level target is
 $$
@@ -6761,15 +6757,13 @@ $$
 $$
 This is the quantity used for binary-orbit energy-loss consistency checks. Energy localization for gravitational waves is an observer-level effective description: the packet may use cycle-averaged fluxes and asymptotic energy loss, but it should not promote a gauge-dependent local gravitational energy density into substrate ontology.
 
-## Strong-Field Regime
-
-### Black Holes
+## Black Holes
 
 This chapter is the main black-hole orientation document for the spacetime branch. Its purpose is to tell the reader what survives from standard compact-object phenomenology, what is being reinterpreted at the constitutive level, and how the strong-field nested shell braid regime is supposed to replace singularity language without losing observational discipline.
 
 The opening establishes the three-layer distinction between observables, constitutive strong-field structure, and substrate ontology. The later sections then work through horizon conditions, interior regime structure, release channels, and cosmological embedding.
 
-#### Scope and Purpose
+### Scope and Purpose
 
 This chapter centralizes the black-hole story within $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to distinguish three levels that are often conflated in black-hole discussion:
 
@@ -6779,7 +6773,7 @@ This chapter centralizes the black-hole story within $\mathbb{A}\mathbb{A}\mathb
 
 The chapter does not replace weak-field or observer-level black-hole phenomenology. What survives from standard practice remains indispensable: compact-object mass inference, horizon-scale imaging, ringdown analysis, accretion and jet modeling, and the requirement that exterior predictions recover the tested general-relativistic limit to observational accuracy. The reinterpretation begins only when one asks what a black hole is made of, what replaces singularity language, and how strong-field interiors connect to cosmology.
 
-#### What the Framework Treats as a Black Hole
+### What the Framework Treats as a Black Hole
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean void. It is a region of the Noether sea driven into an extreme alignment and compression regime by sustained inward transport of matter, radiation, and medium deformation. The effective exterior still behaves like a compact gravitating source, but the interior ontology is not a geometric singularity. It is a structured nested shell braid regime with three coupled zones:
 
@@ -6795,7 +6789,7 @@ The same regime map already appears locally inside the nested shell braid. The m
 
 When the local branch is described from the assembly side, this transition is the braid symmetry-breaking point: the middle hinge remains at $c_f$, the outer row is driven to the same terminal threshold, and the inner self-hit row supplies the interior continuation.
 
-#### Collapse-Response Ladder
+### Collapse-Response Ladder
 
 The route from ordinary matter to a black-hole interior is not a single increase in temperature or a simple rise in material density. It is a sequence of assembly-regime changes in which more of the matter ledger becomes exposed to the surrounding Noether sea. In stable low-energy matter, the Noether sea normally receives only the externally exposed residual of shielded assemblies, not the full internal causal-history energy stored inside those assemblies. In compact collapse, that weak-response approximation progressively fails.
 
@@ -6812,7 +6806,7 @@ The useful ladder is:
 
 This ladder does not add a new validation gate. It identifies which existing variables must stop being interpreted in their weak-response limit as collapse progresses.
 
-##### Chandrasekhar Scaling and Assembly Compression
+#### Chandrasekhar Scaling and Assembly Compression
 
 The first mathematical warning that ordinary compact matter could lose its support branch is the Chandrasekhar scaling argument. In a white-dwarf-like object, electrons form a degenerate Fermi reservoir. If the electron number density is $n_e$, the Fermi momentum scales as
 $$
@@ -6911,7 +6905,7 @@ $$
 $$
 The factor $1/6$ appears because an isotropic spatial metric factor $\gamma_{ij}^{\mathrm{eff}}=a^2h_{ij}$ gives a determinant ratio $a^6$. The closure target is not that $\mathcal{S}_{\mathrm{mat}}$ and $\mathcal{S}_{\mathrm{metric}}$ merely correlate after fitting. The same retained compact-region record must generate the electron-support failure, the assembly scale compression, the Noether sea response, and the effective metric readout without hidden retuning.
 
-##### Iron-Core Collapse Handoff
+#### Iron-Core Collapse Handoff
 
 For an iron-group stellar core, the central Standard Model transition is electron capture,
 
@@ -6943,7 +6937,7 @@ $$
 \text{strong Noether sea constitutive regime}
 $$
 
-##### Neutron-Star Branch as a Radial Test
+#### Neutron-Star Branch as a Radial Test
 
 The neutron-star branch is the sharpest compact-object test before horizon-interface language becomes active. It is already far outside weak-field matter, but it remains a non-horizon branch as long as volumetric neutron-rich matter support has not been forced into terminal nested shell braid alignment. For a spherical bookkeeping radius $r$ inside a star of surface radius $R_*$, the useful local record is not a scalar density alone but a Noether sea state and matter-response bundle,
 
@@ -6982,7 +6976,7 @@ for all retained radii $0\le r\le R_*$. Here $v_O$ is the outer-binary speed in 
 
 The center of an ideal nonrotating neutron star is therefore not automatically horizon-like. The first radial gradients vanish there by symmetry, while pressure, stress, cadence stretch, and packing pressure can be maximal. If scalar density response is exhausted while $v_O<c_f$, the response must route into shape, strain, contact, transport, or dense-matter branch change. If the same record forces $v_O\to c_f$ and activates the horizon-interface condition, the neutron-star branch has ended and the continuation belongs to the horizon-interface branch below.
 
-#### Canonical Horizon Condition
+### Canonical Horizon Condition
 
 The canonical strong-field alignment condition is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md). Near the horizon interface, the working regime definition is
 
@@ -6996,7 +6990,7 @@ with the middle and outer binaries becoming coplanar and co-linear with the inne
 
 This condition fixes the local meaning of the horizon in the framework. The horizon is not merely a geometric surface drawn inside an effective metric. It is the constitutive interface where terminal alignment is reached and where ordinary volumetric assemblies are compressed into a boundary-like state. For Planck-language mapping, the rule used throughout the project is that the relevant "Planck scale" is this alignment condition unless a more specific derivation overrides it.
 
-##### Event and Apparent Horizon Comparison
+#### Event and Apparent Horizon Comparison
 
 Standard horizon language separates two comparison objects that should not be collapsed into one. The event horizon is a global causal boundary: at the effective GR level it is the boundary of the causal past of future null infinity,
 $$
@@ -7026,7 +7020,7 @@ $$
 
 This is a projection target, not a new ontology. If the local interface can match an apparent horizon only by changing the record used for exterior escape, or if the global event-horizon comparison requires a different strong-field record from the local trapped-surface comparison, the black-hole model has split into two fitted stories.
 
-##### Exterior GR Benchmark Packet
+#### Exterior GR Benchmark Packet
 
 Before any horizon-interface reinterpretation is promoted, the observer-level exterior must recover the standard nonrotating compact-object scales
 $$
@@ -7066,7 +7060,7 @@ $$
 $$
 The pass condition is not horizon absence. It is that $\mathcal{R}_{N\text{-}\mathrm{body}}$ stays within the declared tolerance while the same $\theta_W$ also recovers lensing, timing, ringdown, and horizon-scale imaging. If a burst, merger, or accretion model needs one record for exterior no-hair behavior and a separate record for the many-body energy release, then the compact-object closure has split into fitted stories.
 
-##### Horizon-Scale Imaging Benchmark
+#### Horizon-Scale Imaging Benchmark
 
 Event Horizon Telescope observations give the chapter a direct observer-level benchmark for the compact lensing scale. The retained result is not a literal image of the substrate ontology. It is a VLBI reconstruction problem in which calibrated visibilities, closure phases, closure amplitudes, sparse coverage, interstellar scattering, plasma emissivity, and polarization transport are converted into a ring-like compact-source inference.
 
@@ -7091,7 +7085,7 @@ The current benchmark values are sharp enough to state the separation. For M87$^
 
 The closure lesson is that geometry-facing and environment-facing terms must not be conflated. The compact ring scale and brightness depression test the effective photon-path and capture map. The azimuthal brightness, fractional width, resolved polarization, Faraday rotation, and jet-base emission test the surrounding plasma, magnetic-like stress, scattering, and release-channel environment. A native black-hole branch fails the benchmark if it can fit the visual image only by changing the mass-to-distance map, if it matches the image while failing the visibility-domain data, or if it treats variable plasma structure as evidence that the horizon-interface condition itself has changed.
 
-#### Singularity Replacement and the Maximum-Curvature Core
+### Singularity Replacement and the Maximum-Curvature Core
 
 The standard singularity story captures a real pressure: ordinary weak-field extrapolation cannot be trusted indefinitely toward arbitrarily high compression. What $\mathbb{A}\mathbb{A}\mathbb{A}$ changes is the replacement mechanism. The theory does not leave the divergence untreated, nor does it accept an ontic point singularity. Instead it replaces collapse by a maximum-curvature regime generated by delayed self-hit stabilization.
 
@@ -7101,7 +7095,7 @@ The constitutive claim is modest but important: singularity language remains a w
 
 One preserved strong-field intuition is that sufficiently old or sufficiently compressed interiors may approach an ordered collapse limit rather than a thermalized point. In that heuristic picture, maximal-curvature nested shell braids pack into a near-crystalline interior, while most entropy remains associated with the active shear and shredding layers nearer the horizon interface. This is not yet a constitutive derivation, but it is a useful candidate for how collapse can saturate without an ontic singularity.
 
-##### High-Energy Probe Closure Target
+#### High-Energy Probe Closure Target
 
 Standard quantum-gravity comparisons preserve a useful benchmark: increasing the energy of a scattering experiment does not grant unlimited access to shorter distances once the compact-object threshold is crossed. At that point the observer-level description must route the record through black-hole formation, horizon behavior, and release-channel accounting. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is that high-energy compression must enter the horizon-interface and maximum-curvature regimes rather than an arbitrary ultraviolet point description.
 
@@ -7119,7 +7113,7 @@ $$
 
 This is not a claim that the Euclidean void becomes quantized geometry. It is a benchmark on the native strong-field branch: when the effective comparison says that a probe has become a black hole, the same Noether sea state must activate the alignment condition, finite maximum-curvature bookkeeping, and entropy/release-channel ledger used below. If short-distance recovery requires an independent ultraviolet story that bypasses those variables, the black-hole closure has split from the rest of the spacetime program.
 
-###### Probe-to-Horizon Residual
+##### Probe-to-Horizon Residual
 
 For a high-energy scattering comparison, take the observer-level probe scale to be $\ell_{\mathrm{probe}}(E)\sim\hbar c_0/E$ unless the apparatus defines a sharper channel-specific scale. The compact-object gate is active when $\ell_{\mathrm{probe}}(E)\le R_H(E;\theta)$. A concrete residual for that regime is
 $$
@@ -7146,7 +7140,7 @@ Here $w(E)$ is the comparison weighting for the probe family, $d_{\mathrm{curv}}
 
 The closure condition is $\mathcal{R}_{E\to H}(\theta)\le\epsilon_{E\to H}$ using the same strong-field branch record that recovers exterior compact-object observables. A model fails this gate if it claims arbitrarily short-distance resolution in the active compact-object regime, or if it activates the horizon scale while leaving maximum-curvature labels, entropy capacity, or release-channel accounting undefined.
 
-###### First Worked Probe Gate
+##### First Worked Probe Gate
 
 In the weak exterior comparison limit, a single-energy scattering estimate can use
 $$
@@ -7186,7 +7180,7 @@ The worked classification is:
 
 The falsifier is not merely failure to choose a numerical Planck scale. The falsifier is a split record: if the short-distance probe uses one $\theta$ while the induced horizon-interface, entropy, and release-channel ledgers require another, then the high-energy closure has not survived promotion.
 
-#### Horizon Interface
+### Horizon Interface
 
 The horizon interface is the most important black-hole concept in the local dialect. It names the layer in which Noether braid assemblies are flattened into an alignment-locked sheet.
 
@@ -7199,7 +7193,7 @@ At this interface:
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
 
-##### Horizon-Adjacent Photon Channel
+#### Horizon-Adjacent Photon Channel
 
 The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
 
@@ -7403,7 +7397,7 @@ The proof burden is to define the observer-relative label ensemble $\mathcal{L}_
 
 This also disciplines the local semiclassical version of the information paradox. A statement that a horizon-straddling correlation has been lost is only a promoted comparison claim after the access region, reference resources, boundary wake data, and readout channel have been declared. Local QFT pair language remains useful near a smooth effective horizon, but it is an approximation to an observer-level calculation. The native black-hole closure must say which Physical Observer could recover which part of the release record, and which finite boundary data make that recovery meaningful.
 
-###### Complexity-Growth Comparison Target
+##### Complexity-Growth Comparison Target
 
 Black-hole complexity proposals add a narrower comparison target. Their useful content is not the claim that interior volume is primitive ontology. It is the observation that some black-hole interior comparisons continue to change long after ordinary thermal entropy has effectively saturated. The native translation is a horizon-interface ledger complexity, not a new spacetime substance.
 
@@ -7426,7 +7420,7 @@ S_H^{(O)}(t)\ \text{approximately saturates while}\
 $$
 without breaking exterior no-hair behavior, Page-compatible release accounting, or finite-boundary-data regularity. If this growth can be matched only by importing a literal boundary CFT, an AdS interior ontology, or an independent hidden state not present in $\mathcal{B}_{H}^{(O)}(t)$, then the complexity comparison has not been translated into the native black-hole closure.
 
-##### Finite-Boundary Endpoint Closure
+#### Finite-Boundary Endpoint Closure
 
 The endpoint and information questions should be posed on a compact strong-field region rather than by assuming an observer at asymptotic infinity. For a region $\Omega$ bounded by finite observer-accessible data between times $t_i$ and $t_f$, the native closure target is a single continuation map
 $$
@@ -7462,7 +7456,7 @@ $$
 $$
 This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space.
 
-#### Cosmological Embedding and Horizon Regularity
+### Cosmological Embedding and Horizon Regularity
 
 A viable black-hole account in $\mathbb{A}\mathbb{A}\mathbb{A}$ must work at two scales simultaneously. It must reproduce the compact-object phenomenology of the local exterior, and it must remain coherent when the object is embedded in the evolving large-scale medium. This requirement matters because many intuitive pictures of black holes tacitly treat them as if they lived in asymptotically isolated settings, whereas the cosmological sector requires a compact object to sit inside a time-dependent background.
 
@@ -7490,7 +7484,7 @@ The finite-boundary-data version of this requirement is inherited from [singular
 
 Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant or anisotropic-fluid source becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the external comparison, that requires apparent-horizon rather than static-horizon discipline, local/cosmological backreaction, and a mass split such as Misner-Sharp accounting so the compact-object contribution is not silently confused with the cosmological density term. In the local ontology, the same lesson translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the interface record used for exterior mass, redshift, and release-channel comparisons.
 
-#### Interior Dynamics and Recycling
+### Interior Dynamics and Recycling
 
 Inside the black-hole regime, the dominant language is recycling rather than annihilation. Matter and radiation driven inward do not disappear from ontology. They are processed through inner self-hit layers, middle-layer interface locking, and outer-layer reconfiguration. The resulting interior is best treated as a statistical medium of maximal-curvature assemblies rather than as a smooth classical fluid or a single deterministic orbit family.
 
@@ -7530,7 +7524,7 @@ $$
 
 with the hidden rows expanded when a release channel is being tested. The point is not that the compact object violates conservation. The point is that the observer-facing mass label is a projection of a larger strong-field, shielding, release, and medium-coupling record.
 
-#### Mass-Scale Traversal
+### Mass-Scale Traversal
 
 The exterior-to-core sequence is the same for black holes at every mass scale, but the relative weight of the local gradients, horizon-interface capacity, release channels, and cosmological embedding changes with mass. The useful comparison is therefore not a separate ontology for small, stellar, and supermassive black holes. It is one traversal map evaluated with different effective horizon scales.
 
@@ -7590,7 +7584,7 @@ If the object is horizon-like in the observer comparison, $R_X$ is bounded by th
 
 The scale map is a classification aid, not a new gate. It says which existing black-hole burdens become sharp as $M$ changes: small black holes emphasize endpoint and release accounting, intermediate-mass black holes emphasize collapse continuity, and supermassive black holes emphasize embedded recycling and Noether sea state source terms.
 
-#### Jets and Other Release Channels
+### Jets and Other Release Channels
 
 Jets should remain in the black-hole story, but they should be placed at the correct level. In $\mathbb{A}\mathbb{A}\mathbb{A}$, jets are not the definition of recycling. They are one candidate macroscopic manifestation of release from a recycling site. The deeper claim is that strong-field interiors can return some portion of their processed content to the surrounding Noether sea; the jet question is how much of that return becomes collimated, how much remains diffuse, and how much leaves in channels that are initially dark to ordinary electromagnetic observation.
 
@@ -7612,7 +7606,7 @@ The same distinction can be phrased as a sequence.
 
 This ordering preserves your original intuition that jets may inject recycled matter or energy into the surrounding Noether sea while keeping the framework open to the possibility that some released content leaves the horizon interface in forms that are not immediately visible.
 
-##### Dark-Sector Escape and Re-Entry
+#### Dark-Sector Escape and Re-Entry
 
 The local framework therefore keeps open the possibility that some processed content crosses outward through the horizon interface in a form that is initially dark to ordinary electromagnetic observation. In that case, "escape the event horizon" should be read in the constitutive sense: a mode successfully traverses outward through the alignment-locked interface after a state transition.
 
@@ -7622,7 +7616,7 @@ Three working possibilities remain live:
 - **Recycled dark assemblies:** the released content emerges as assembly populations that behave effectively like dark matter or dark energy after outward crossing, remaining weakly coupled to visible channels.
 - **Dark-sector photon-channel-adjacent escape with later conversion:** a released mode exits in an initially dark photon-channel-adjacent form and only farther from the horizon re-enters visible channels through dissipation, coupling, or geometric relaxation.
 
-##### Jet Production as a Selection Problem
+#### Jet Production as a Selection Problem
 
 The open physical question is not merely whether release occurs, but why some environments produce narrow, persistent jets while others favor broader or darker outflows. In this framework, that is a channel-selection problem governed by at least four ingredients:
 
@@ -7769,7 +7763,7 @@ The pass condition $\mathcal{R}_{\mathrm{AGN\,jet}}(\theta)\le\epsilon_{\mathrm{
 
 This residual also states a useful failure mode. A model that matches a near-hole jet image but cannot account for hot spots, lobes, cosmic-ray or neutrino limits, and environmental heating has not closed the AGN release channel. Conversely, a model that fits large radio lobes while leaving launch selection unrelated to spin, accretion, wind/sheath confinement, and $\mathcal{A}_{\mathrm{NS}}$ has only fit the downstream plume. The whole point of the AGN packet is to force the release selector to connect the black-hole branch, disk-interface branch, propagation branch, radiation branch, and feedback branch with one declared state record.
 
-#### Relation to Dark Energy and Expansion History
+### Relation to Dark Energy and Expansion History
 
 The black-hole chapter does not identify dark energy with black holes by definition. The baseline dark-energy mechanism in $\mathbb{A}\mathbb{A}\mathbb{A}$ remains Noether sea relaxation, as developed in [../cosmology/dark-energy.md](../../../../markdown/aaa/cosmology/dark-energy.md). Black holes enter that story only if strong-field recycling makes a measurable contribution to the slowly varying outer-binary tension sector.
 
@@ -7796,7 +7790,7 @@ $$
 
 This is the controlled sense of a bulk recycling movement: processed content from high-gradient recycling regions can load the Noether sea and then relax toward lower-energy Noether sea cadence states. The statement remains conditional because $S_{\mathrm{BH}}$ must be energy-accounted, population-history dependent, and small enough not to spoil weak-field gravity, photon coherence, CMB blackbody quality, or gravitational-wave propagation. If the resulting current $J_\nu$ has no signed large-scale component, the recycling channel may still heat or perturb local environments without becoming an effective expansion-history source.
 
-#### Cosmological Coupling Hypothesis
+### Cosmological Coupling Hypothesis
 
 One modern comparison target is the claim that some dormant supermassive black holes appear to gain mass in step with the late-time cosmological background more strongly than standard accretion and merger channels predict. The common phenomenological summary is
 
@@ -7812,7 +7806,7 @@ That interpretation remains conditional. The observational correlation must firs
 
 In local usage, $K$ should therefore be treated as a phenomenological diagnostic rather than as a primitive constant of nature. Its value summarizes how strongly the population of recycling sites appears to track the expansion history in a given observational reconstruction. The underlying $\mathbb{A}\mathbb{A}\mathbb{A}$ claim would remain deeper: any apparent coupling must emerge from nested shell braid alignment, maximum-curvature storage, interface transport, and outward medium loading.
 
-#### Population History and Source Accounting
+### Population History and Source Accounting
 
 If black holes contribute to late-time cosmology, the contribution cannot depend only on the state of one idealized object. It must also depend on the history by which the relevant population of recycling sites was produced and fed. In observational language this often appears as a dependence on star-formation history, compact-object formation history, merger history, or host-galaxy environment. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the deeper statement is that the source term inherits a memory of how matter was routed into strong-field processing zones over cosmic time.
 
@@ -7845,7 +7839,7 @@ where $D_{\mathrm{QSO}}^{\mathrm{obs}}$ is the observer-level quasar spectrum an
 
 This is one reason the black-hole contribution in $\mathbb{A}\mathbb{A}\mathbb{A}$ should remain subordinate to the Noether sea ontology. The Noether sea is still the quantity that carries the cosmological state. Black holes matter because they may be concentrated engines for changing that state, not because they replace the state itself.
 
-#### Observable Targets and Falsifiers
+### Observable Targets and Falsifiers
 
 The black-hole program in $\mathbb{A}\mathbb{A}\mathbb{A}$ earns credibility only if it constrains observation rather than merely renaming paradoxes. The main tests are the following.
 
@@ -7867,7 +7861,7 @@ The black-hole program in $\mathbb{A}\mathbb{A}\mathbb{A}$ earns credibility onl
 
 The clearest falsifier would be a precise, multi-probe data set showing that black-hole population evolution is fully explained by conventional accretion and merger history while late-time acceleration remains incompatible with any medium-relaxation channel sourced by the same constitutive variables. In that case, black holes would remain important compact objects, but not privileged drivers of the cosmological sector.
 
-#### Interfaces to Other Chapters
+### Interfaces to Other Chapters
 
 This chapter centralizes the black-hole ontology and hands specific tasks to adjacent chapters.
 
@@ -7879,17 +7873,17 @@ This chapter centralizes the black-hole ontology and hands specific tasks to adj
 - [../cosmology/CMB.md](../../../../markdown/aaa/cosmology/CMB.md): recycling cosmology and SMBH-sourced chronology mapping.
 - [../cosmology/dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md): dark-sector processing and SMBH recycling constraints.
 
-#### Summary
+### Summary
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, black holes are strong-field Noether sea regimes rather than ontic singularities or void defects. Their horizon is a terminal alignment interface, their interior is a maximum-curvature recycling regime, and their cosmological importance depends on whether that recycling measurably feeds the late-time Noether sea state. What remains strongest from standard black-hole theory is the observer-level phenomenology. What is reclassified is the underlying ontology: geometry becomes an effective summary of constitutive Noether sea behavior, and singularity language becomes a marker of failed extrapolation rather than the final story.
 
-### Singularity Resolution
+## Singularity Resolution
 
 This chapter explains what replaces a singularity in the strong-field part of the model. The guiding idea is not that an infinite-density point is hidden behind better coordinates. It is that compact Noether braid assemblies enter a finite maximum-curvature or horizon-interface regime whose boundary data must close. This is the canonical strong-field bridge for [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), and [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
 
 The important conversion is from an infinite-endpoint question to a finite-boundary-data question. The strong-field model must say what assembly state is packed, what exterior records remain readable, what boundary data determine continuation, and why no zero-volume or arbitrary branch endpoint is required.
 
-#### Canonical Strong-Field Alignment Condition
+### Canonical Strong-Field Alignment Condition
 
 This chapter is the canonical source for the strong-field event-horizon alignment condition used across spacetime documents. The condition marks the assembly-level state that the effective horizon description is trying to summarize.
 
@@ -7914,7 +7908,7 @@ v_M=c_f,\quad v_O\to c_f
 $$
 The boundary data $\partial\Omega$ record the surrounding Noether sea state and effective exterior state. A viable singularity replacement must solve the alignment condition with finite boundary data in embedded, non-isolated settings, rather than relying on asymptotic flatness as an implicit support.
 
-##### Observer-Time Boundary
+#### Observer-Time Boundary
 
 A maximum-curvature interior is not assigned an ordinary physical-observer clock unless a recoverable clock channel survives. At the horizon-interface boundary, exterior records remain ordered by absolute time and by the observer-level clocks recovered outside the compact region. Inside a hard packed regime, the local Noether braid cadence, signal access, and material ruler channels may no longer supply a Physical Observer state. The safe statement is therefore:
 $$
@@ -7924,7 +7918,7 @@ T\ \text{still orders exterior and boundary records.}
 $$
 This prevents a singularity replacement from smuggling in an interior observer time where the required clock-and-ruler carrier has already failed. Absolute time still orders the ontology; a readable interior clock is a separate recovered channel.
 
-##### Trapped-Surface Comparison Pressure
+#### Trapped-Surface Comparison Pressure
 
 Penrose-style singularity theorems are useful here because they remove a misleading loophole: collapse failure cannot be dismissed merely by abandoning exact spherical symmetry. At the effective GR comparison layer, a trapped surface is detected by both future-directed null expansions becoming negative,
 $$
@@ -7975,7 +7969,7 @@ F_H=0,\,
 $$
 The theorem burden is not to deny the trapped-surface comparison result. It is to show exactly which effective global-completeness assumption is superseded by compact Noether sea boundary data, while preserving the non-negative local energy comparison and producing a finite, labeled strong-field continuation.
 
-##### Finite-Boundary-Data Regularity
+#### Finite-Boundary-Data Regularity
 
 The useful comparison lesson from analytic singularity-removal programs is not an imported mirror boundary or complex-time ontology. It is the regularity criterion. A candidate strong-field replacement must keep the native variables finite and the continuation rule unambiguous in the regime where the effective metric description would otherwise diverge.
 
@@ -8028,7 +8022,7 @@ F_H=0,\qquad
 $$
 This is the singularity-resolution form of the black-hole endpoint gate. The replacement must be finite, ledger-preserving, and non-arbitrary using compact boundary data, without importing a remnant, bounce, or asymptotic boundary condition as doctrine.
 
-##### Cauchy-Horizon Comparison Pressure
+#### Cauchy-Horizon Comparison Pressure
 
 GR Cauchy-horizon and cosmic-censorship language is useful here only as comparison pressure. It asks whether an effective initial-data surface has a unique global continuation or whether the observer-level spacetime description admits extensions not determined by that surface. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the substrate answer is not to import global hyperbolicity as an axiom. The native answer must show that the finite region record selects a finite admissible continuation family.
 
@@ -8064,7 +8058,7 @@ with the same finite boundary data driving the transition across the whole inter
 
 Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,T)$ only in an isolated stationary chart.
 
-#### Maximal Curvature vs Planck Scale
+### Maximal Curvature vs Planck Scale
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell braid.
 
@@ -8074,7 +8068,7 @@ One preserved intuition, to be read only as a heuristic, is that this alignment 
 
 **Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-source root existence, transversality/Jacobian control, and retained ledger closure.
 
-### Horizon Chirality
+## Horizon Chirality
 
 This chapter studies one narrow theory question: how the Noether braid `pro/anti` distinction should be understood as a nested shell braid approaches the planar horizon state. For this note we set aside bookkeeping questions and focus on geometry, orbit direction, and the reduction from a 3D precessing scaffold to a planar exterior view.
 
@@ -8082,7 +8076,7 @@ The guiding problem is simple. In ordinary low-stress conditions, the nested she
 
 The chapter is therefore a reduction map, not a new chirality doctrine. It keeps three labels from collapsing into one another too early: the deeper 3D pro/anti branch distinction, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
-#### Canonical Horizon Condition
+### Canonical Horizon Condition
 
 The canonical horizon condition is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md) and [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md). Near the horizon interface, the working regime is
 
@@ -8096,7 +8090,7 @@ with the middle and outer binaries becoming coplanar and co-linear with the inne
 
 This chapter does not alter that constitutive rule. It asks what chirality information can still be distinguished once the nested shell braid has been compressed into that planar boundary-like state.
 
-#### Pro/Anti Before Planar Lock
+### Pro/Anti Before Planar Lock
 
 Away from the horizon, the project already treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The standard working convention appears in [noether-sea-pro-anti-coupling.md](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) and [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md):
 
@@ -8119,7 +8113,7 @@ is a signed measure of handedness for the self-interaction pattern, and the same
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
-#### Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
+### Broader Pro/Anti Balance in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 This chapter should also be read against a broader guardrail from the project framing: $\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** naturally suggest a large universal pro/anti imbalance in the substrate as a whole. The Noether sea picture is instead built around persistent local or mesoscopic balance between complementary Noether braid orientations.
 
@@ -8135,7 +8129,7 @@ The matter sector then becomes the special case. In this intuition, what we call
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
-#### Working Dictionary
+### Working Dictionary
 
 To keep terms from sliding into one another, use the following provisional dictionary throughout this chapter:
 
@@ -8147,7 +8141,7 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 This chapter treats these as related but not yet identical labels. One of its main goals is to understand how they may collapse onto one another in the terminal high-velocity regime.
 
-#### Comparison Across Sectors
+### Comparison Across Sectors
 
 The horizon question becomes clearer when compared against the main assembly sectors already present in the theory.
 
@@ -8162,7 +8156,7 @@ This comparison helps keep the horizon problem honest. The goal is not to prove 
 
 The photon row is also an interface to the radiation and cosmology stack. Because the photon carrier is already a moving planar pro/anti pair, it is the ordinary transport channel most naturally comparable to the flat symmetry-breaking state. That does not make every photon a horizon fragment, but it does make horizon-adjacent photon processing a serious candidate mechanism: the same planar branch logic can appear as free photon propagation, horizon-interface compression, strong-field blueshift, outward redshift, or release-channel conversion depending on the surrounding Noether sea record.
 
-#### Exterior Planar Angular-Momentum Basis
+### Exterior Planar Angular-Momentum Basis
 
 Fix one exterior viewing direction normal to the horizon disk. From that viewpoint, each planar binary appears to rotate either clockwise (`CW`) or counterclockwise (`CCW`). If the three binaries remain distinguishable by role as `H`, `M`, and `L`, then the full planar angular-momentum sign space contains exactly $2^3 = 8$ possibilities.
 
@@ -8179,7 +8173,7 @@ Fix one exterior viewing direction normal to the horizon disk. From that viewpoi
 
 This is the complete planar-sign table as viewed from one fixed exterior side of the black-hole horizon. Reversing the viewing side flips `CW` and `CCW`, so the table should always be read relative to a chosen exterior normal.
 
-#### Observer Views
+### Observer Views
 
 The planar angular-momentum table is viewpoint dependent in a controlled way.
 
@@ -8191,7 +8185,7 @@ So the physically stronger datum is not the literal word `CW` or `CCW` by itself
 
 This is also the right place to keep the substrate/effective split explicit: the substrate dynamics know about absolute path histories, delayed branch intersections, and topological branch labels. Observer-level helicity is a **dimensional reduction** of that deeper structure, not a primitive substrate variable, and boundary helicity should not be silently identified with weak-interaction chirality.
 
-#### Boundary Helicity Versus Deeper Chirality
+### Boundary Helicity Versus Deeper Chirality
 
 The table above does not by itself prove that all eight rows are equally meaningful as horizon identities.
 
@@ -8211,7 +8205,7 @@ That motivates the following working distinction:
 
 If this distinction is correct, then the horizon does not necessarily erase `pro/anti`, but it may compress it so strongly that the exterior observer sees only a reduced proxy.
 
-#### Translation-Axis Alignment at High Velocity
+### Translation-Axis Alignment at High Velocity
 
 The next question is whether a rapidly translating nested shell braid should drive the three orbital angular-momentum vectors toward the translation axis itself.
 
@@ -8264,7 +8258,7 @@ so the restoring pressure toward axial alignment strengthens as $v_{\text{trans}
 
 This gives a precise version of the intuition: a high-velocity nested shell braid should be driven toward a state in which the three orbital angular-momentum vectors are **coaxial with the line of translation**, not because momentum conservation alone demands it, but because delayed closure becomes least frustrated there.
 
-#### Exact Conservation Versus Dynamical Selection
+### Exact Conservation Versus Dynamical Selection
 
 This distinction is important enough to state plainly.
 
@@ -8274,7 +8268,7 @@ This distinction is important enough to state plainly.
 
 In symmetry language, the ambient substrate begins with the full spatial isotropy of $SO(3)$. A fast translating assembly supplies a distinguished direction $\hat{\mathbf V}$ and therefore selects a reduced effective symmetry around that axis, schematically $SO(3)\to SO(2)$, with the remaining planar phase behaving in the aligned limit like a $U(1)$-type degree of freedom. The near-horizon planar lock should therefore be read as a **symmetry-broken dynamical branch** of the underlying theory, not as a new exact conservation law.
 
-#### State-Transition Ladder
+### State-Transition Ladder
 
 The emerging picture is easier to reason about if written as a shape-and-label ladder:
 
@@ -8299,7 +8293,7 @@ The intended label flow along that ladder is:
 
 This ladder is still a working map, not a completed derivation. Its value is organizational: it shows where the theory expects information to be compressed, preserved, or potentially switched.
 
-#### Canonical Horizon Branch Hypothesis
+### Canonical Horizon Branch Hypothesis
 
 The most conservative horizon hypothesis is that the stable terminal branches are the two uniform planar rows:
 
@@ -8318,11 +8312,11 @@ This is only a working hypothesis. The theory does not yet derive that mixed-sig
 
 Under the translation-axis argument above, those two rows can be restated more sharply: in the terminal branch the three orbital normals are expected to become coaxial with $\pm \hat{\mathbf V}$, where $\hat{\mathbf V}$ is the unit translation direction. The remaining binary choice is then the sign of the common axial spin.
 
-#### Candidate Theories for Pro and Anti at the Horizon
+### Candidate Theories for Pro and Anti at the Horizon
 
 Two main theories are available.
 
-##### Theory A: direct planar identification
+#### Theory A: direct planar identification
 
 In the strongest reduction, `pro/anti` at the horizon is simply identified with the two uniform planar states:
 
@@ -8333,7 +8327,7 @@ or the reverse, depending on the chosen sign convention.
 
 This theory is attractive because it makes the horizon classification maximally simple and directly observable from outside.
 
-##### Theory B: history-lifted horizon identification
+#### Theory B: history-lifted horizon identification
 
 In the more cautious reduction, the two uniform planar states are still the visible horizon branches, but `pro/anti` is not exhausted by the observed `CW/CCW` sign. Instead:
 
@@ -8346,7 +8340,7 @@ Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, 
 
 The history-lifted reading also sets a guardrail for nearby labels. Horizon `pro/anti`, boundary helicity, `CW/CCW`, `HML/HLM`, and weak left/right language should not be identified with one another by a visible planar sign alone. A stronger identification requires a component row carrying the lifted history $\widetilde r(s)$, the row-local parity checks $\Pi_{W,r}^{2\pi}$ and $\Pi_{W,r}^{4\pi}$, a quotient witness, doubled-path restoration, and gauge invariance. Without those rows, the horizon sign is a boundary-visible marker for a deeper branch history, not the whole chirality proof.
 
-#### Possible Left/Right Spin Mapping
+### Possible Left/Right Spin Mapping
 
 The translation-axis picture opens one further possibility. If the terminal high-velocity attractor really forces the common orbital axis onto the line of translation, then the two axial branches
 
@@ -8381,7 +8375,7 @@ $$
 
 is not enough to identify weak left/right exposure. The same record must also pass the row-local parity and gauge-control checks used in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the $\Delta_{\mathrm{WCT}}$ exposure record used in [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). Until then, axial sign remains a candidate bridge variable rather than a weak-chirality derivation.
 
-#### Status Table
+### Status Table
 
 This chapter mixes canonical inputs with stronger and weaker hypotheses. The distinction should stay explicit.
 
@@ -8397,7 +8391,7 @@ This chapter mixes canonical inputs with stronger and weaker hypotheses. The dis
 | the axial sign $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$ supplies a candidate upstream variable for a later left/right spin distinction | live speculative hypothesis requiring the same retained spinor/gauge-control and weak-exposure record |
 | `pro/anti`, `CW/CCW`, and `left/right` all become the same label in the terminal regime | not yet established |
 
-#### Mixed-Sign Planar States
+### Mixed-Sign Planar States
 
 If mixed-sign rows are admitted at all, then the horizon theory becomes more complicated than a simple two-branch picture. Rows 2 through 7 would imply that the three binaries can remain role-distinct in the planar lock while not sharing a common in-plane circulation.
 
@@ -8411,7 +8405,7 @@ This note favors the third reading: mixed-sign planar states are more naturally 
 
 One reason for that preference is action-geometric rather than merely visual. In a strictly flattened disk, mixed-sign configurations plausibly generate stronger phase-slip and more severe branch competition, because not all tangential drives can cooperate in closing the delayed loop on one clean planar branch family. That does not yet amount to a theorem, but it points to the right criterion: mixed rows should be judged by whether they force larger Jacobian stress, larger cycle-to-cycle action variance, or repeated failure of singularity-free phase closure.
 
-#### Transition Rules for Pro/Anti Conversion
+### Transition Rules for Pro/Anti Conversion
 
 One of the biggest unresolved questions is whether a Noether braid can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
 
@@ -8433,7 +8427,7 @@ The safest working rule is:
 - planar degeneracy may permit branch ambiguity;
 - true branch conversion likely requires a reconfiguration event rather than a mild perturbation.
 
-#### Simulation Diagnostics
+### Simulation Diagnostics
 
 If this note is to become more than a conceptual sketch, the following diagnostics should be added to simulations of fast translating or horizon-adjacent nested shell braids:
 
@@ -8444,7 +8438,7 @@ If this note is to become more than a conceptual sketch, the following diagnosti
 - **Exposure diagnostic:** compare the sign of $\hat J_{\text{net}} \cdot \hat{\mathbf V}$ against forward exposure of the weak-active structure to test the left/right bridge hypothesis.
 - **Branch persistence diagnostic:** drive a Noether braid into and back out of the planar regime and test whether the same deeper branch label is recovered after re-expansion.
 
-#### Provisional Conclusion
+### Provisional Conclusion
 
 The full planar spin-sign space at the horizon has eight rows because each of the three labeled binaries can appear as either `CW` or `CCW` from a fixed exterior viewpoint. But the strongest theory is that only two of those rows are good candidates for canonical horizon identities: the two uniform common-sign locks.
 
@@ -8456,7 +8450,7 @@ That yields a disciplined provisional picture:
 - the two uniform rows are the best candidates for stable horizon branches;
 - the other six rows are most naturally read as transitional, frustrated, or unstable states unless future dynamics show otherwise.
 
-#### Interfaces to Other Chapters
+### Interfaces to Other Chapters
 
 - [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md): horizon interface and strong-field ontology.
@@ -8465,74 +8459,3 @@ That yields a disciplined provisional picture:
 - [angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
 - [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.
-
-### Cosmic Censorship and Holography
-
-This chapter groups three closely connected ideas about gravitational extremality and informational closure: cosmic censorship, holography, and AdS/CFT. Cosmic censorship concerns whether singular behavior is hidden behind horizons. Holography concerns whether bulk physics admits lower-dimensional encoding. AdS/CFT provides the strongest formal realization of that idea by relating a gravitational bulk theory to a non-gravitational boundary theory.
-
-The chapter treats these ideas as comparison pressure, not as imported ontology. They are valuable because they show how horizons, boundaries, and information accounting can become mathematically strict. They become $\mathbb{A}\mathbb{A}\mathbb{A}$ claims only after the horizon-interface regime is derived from nested shell braid alignment, Noether sea response, and finite boundary data.
-
-#### Conceptual View
-
-The common conceptual pressure is that horizons may not be merely geometric boundaries. They may also be informational interfaces. In weak cosmic censorship, naked singularities are excluded from ordinary outside observation. In strong cosmic censorship, generic evolution remains predictively closed in the relevant sense. Holography then strengthens the role of the boundary by treating it as an encoding surface rather than a passive edge. AdS/CFT turns that intuition into a duality statement between two different descriptions of one underlying structure.
-
-#### Key Equation
-
-A standard schematic form of the AdS/CFT correspondence is
-$$
-Z_{\mathrm{grav}}[\phi_0] = Z_{\mathrm{CFT}}[\phi_0]
-$$
-
-#### $\mathbb{A}\mathbb{A}\mathbb{A}$ View
-
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, these concepts are treated as high-level clues rather than as final ontology. The project does not start from a fundamental AdS bulk or a literal boundary CFT. Instead, it interprets horizon structure as a constitutive interface between different nested shell braid regimes. In that setting, cosmic censorship becomes a statement about access to maximal-curvature regimes, holography becomes a statement about compressed interface encoding, and AdS/CFT becomes a suggestive dual-language analogue rather than the primitive architecture itself.
-
-The same restraint applies to Ryu-Takayanagi, island, and replica-wormhole entropy results. They are strongest here as comparison mathematics showing how Page-curve recovery can be organized in controlled holographic settings. They should not be imported as horizon ontology. The $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping target is narrower: determine which boundary-encoding features survive as effective compression laws after the horizon-interface regime is derived from nested shell braid alignment and Noether sea dynamics.
-
-| Nested Shell Braid Region | $f$ | Speed Regime | Black Hole Region | Volume | AdS/CFT Side |
-| :--- | :--: | :---: | :--- | :--- | :--- |
-| Inner (self-hit) | 4 | $v > c_f$ | Inside the black hole | Inflation/deflation | AdS interior (gravity side) |
-| Middle (interface) | 2 | $v = c_f$ | Event horizon | Flat | Holographic horizon/interface |
-| Outer (non-self-hit) | 1 | $v < c_f$ | Outside observer region | Expansion/contraction | CFT (exterior QFT) |
-
-This table is a regime-map hypothesis, not a proved black-hole interior theorem. It is useful only if the native strong-field branch later supplies the same causal-root, transversality, Jacobian-floor, regularization, and bounded-energy rows required of self-hit dynamics elsewhere.
-
-The more precise architrino picture is a radial alignment state in which all three nested shell braid components share one axis while occupying different speed and deformation regimes. In that sense, "inside," "horizon," and "outside" should be read as a constitutive continuum parameterized by nested shell braid deformation rather than as three disconnected ontological zones.
-
-That continuum has both a local and a macroscopic reading. Locally, the Noether braid supplies a candidate black-hole analogue: inner self-hit behavior, a middle symmetry-breaking interface, and an outer exterior-coupling row. Macroscopically, the same regime split appears as black-hole interior, horizon interface, and exterior observer region. The holographic comparison is therefore not a separate metaphysics added on top of the theory; it is a dual-language description of a transition pattern already present in nested shell braid dynamics.
-
-For this reason the preferred local term is **Horizon interface**: surface degrees of freedom with Planck-aligned nested shell braids, without asserting that the interface is literally a conventional CFT. Horizon interface means:
-
-- Assemblies fixed at $v=c_f$ tangentially (middle and outer loops locked),
-- Planck-frequency hierarchy (inner 4x, middle 2x, outer 1x),
-- Information flow constrained to the interface sheet,
-- Ready to bifurcate into volumetric Noether braids as soon as the outer loop slows below $c_f$ (unfolding into bulk matter or Noether sea content).
-
-That yields a disciplined shorthand: Horizon interface for the Planck-aligned interface layer, bulk for $v<c_f$ volumetric cores, and AdS-like for the $v>c_f$ self-hit interior, all treated as regimes on one constitutive continuum.
-
-#### AdS/CFT Regime Map
-
-Maldacena's AdS/CFT correspondence is useful here as a precise comparison chart, not as imported ontology. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading, the CFT-like side corresponds to the exterior, observer-facing regime where assemblies, clocks, rulers, and light channels export volumetric expansion or contraction. The horizon interface corresponds to the symmetry-breaking threshold at $v=c_f$, where ordinary volumetric export is compressed into boundary-like records. The AdS-like side corresponds to the candidate self-hit interior regime, where the same record no longer exports as ordinary exterior volume.
-
-The "mirror" in holographic language is therefore not a separate ontological screen. It is the regime break itself: the point at which a single causal record crosses from partner-only volumetric behavior into interface bookkeeping and then into self-hit interior behavior. The comparison is strongest when the boundary description is read as an effective compression law for accessible records, not as a claim that the boundary field theory is the substrate.
-
-The inward and outward readings should be treated as direction-sensitive effective exports of one horizon-interface record. On inward approach, the oblate spheroidal envelope is driven toward terminal alignment, so the AdS-like comparison reads as compression or deflation relative to the exterior observer chart. On outward release, the same branch can export an inflation-like expansion record as it returns through the horizon interface toward volumetric Noether braid or Noether sea behavior. This is a mapping target: it must be derived from the same envelope variables, layer-speed regimes, causal-root ledger, and clock-export rows, not assigned separately for the exterior and interior descriptions.
-
-Time follows the same rule. Absolute time remains the substrate parameter. Exterior CFT-like time is the clock reconstruction available to observer-facing assemblies outside the horizon interface. At $v=c_f$, clock export is compressed with the boundary-like record. In the AdS-like self-hit interior, the relevant cadence is the retained self-hit cadence of the branch rather than ordinary exterior clock behavior. A successful map must show how these exported time descriptions are projections of one retained horizon-interface record.
-
-#### Status
-
-**What Still Works:** Cosmic censorship, holography, and AdS/CFT remain indispensable as standard predictive and organizational frameworks for the phenomena they were built to model, and any replacement must recover their empirical successes in the regime where practitioners currently use them.
-
-**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
-
-**Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
-
-**Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
-
-#### Geometric Proof Targets
-
-- Derive the horizon-interface regime as a constitutive transition between volumetric and self-hit nested shell braid states.
-- Show which elements of boundary encoding survive as effective compression laws without requiring fundamental boundary ontology.
-- Derive the AdS/CFT regime map from one horizon-interface record: exterior CFT-like clock and volume export, $v=c_f$ boundary compression, AdS-like self-hit cadence, inward deflationary compression, and outward inflation-like release.
-- Treat black-hole entropy and Page-curve recovery as downstream consistency targets after the native horizon-interface mechanism is specified, not as source derivations for the ontology.

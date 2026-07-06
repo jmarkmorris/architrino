@@ -4150,9 +4150,9 @@ An architrino in motion possesses kinetic energy and momentum.
 
   A scalar quantity representing the energy of motion. For a single architrino $a$ with velocity $\mathbf V_a(T)$, we write
 
-  $$E_{k,a}(T) = K\big(\|\mathbf V_a(T)\|\big),$$
+  $$E_{k,a}(T) = K(s_a),\qquad s_a=\|\mathbf V_a(T)\|,$$
 
-  where $s$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf{v}_a\|\to\infty$.
+  where $s_a$ denotes the speed argument and $K$ is a strictly convex, monotonically increasing function with $K(0)=0$. If an effective saturation proxy is being used, $K'(s_a)\to\infty$ at the saturation scale; in the primitive limit, $K$ grows unboundedly. $K$ is left unspecified because mass is emergent from interactions between assemblies, especially the Noether braids in the Noether sea. Strict convexity ensures a one-to-one mapping between kinetic energy and speed magnitude. Because a free architrino has no intrinsic speed limit in the micro-model, $E_k$ is, in principle, unbounded as $\|\mathbf V_a\|\to\infty$.
 
 - **Momentum $\mathbf{p}_a$**
 
@@ -4162,7 +4162,7 @@ An architrino in motion possesses kinetic energy and momentum.
 
   where $P$ is a speed-dependent magnitude. Its detailed form is not postulated at the architrino level; it emerges from matching to assembly behavior.
 
-	  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf F=d\mathbf p/dT$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
+  If this momentum is treated as the conjugate momentum for the primitive kinetic scalar and $\mathbf F=d\mathbf p/dT$ is used in the work-energy relation, then $P$ and $K$ are not independent. For arbitrary nonzero velocity and acceleration, consistency requires
   $$
   P'(s)=\frac{K'(s)}{s}=\mu_K(s),
   \qquad
@@ -4213,49 +4213,49 @@ Here $\mathbf{F}_a$ is the optional force-like bookkeeping quantity associated w
 From the canonical per-hit law
 
 $$
-\mathbf A_{o'\leftarrow o}(T;T_{\mathrm{em}})
+\mathbf A_{o'\leftarrow j}(T;T_{\mathrm{em}})
 =
-\kappa\,\sigma_{q_o q_{o'}}\,
-\frac{|q_o q_{o'}|}{r^2}
-W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}
+\kappa\,\sigma_{q_j q_{o'}}\,
+\frac{|q_j q_{o'}|}{r_{o'j}^2}
+W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,\hat{\mathbf{r}}_{o'j}
 $$
 
 where
 $$
-D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{s,o'j}(T;T_{\mathrm{em}})
 \equiv
-c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}},
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
-D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{T,o'j}(T;T_{\mathrm{em}})
 \equiv
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}},
+c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j},
 \qquad
-W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})
 \equiv
 \left|
-\frac{D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})}
-{D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})}
+\frac{D_{T,o'j}(T;T_{\mathrm{em}})}
+{D_{s,o'j}(T;T_{\mathrm{em}})}
 \right|
 $$
-is the receiver-normal branch strength. The source-normal denominator $D_s$
+is the receiver-normal branch strength. Here $r_{o'j}$ and $\hat{\mathbf r}_{o'j}$ are evaluated on the same retained causal branch. The source-normal denominator $D_s$
 is the causal-root transversality diagnostic; the numerator $D_T$ records how
 the receiver cuts through the emitted causal wake sequence.
 
 Decompose the receiver's velocity into radial and transverse components:
 
-$$\mathbf V_{o'} = V_r \hat{\mathbf{r}} + \mathbf V_\perp, \quad V_r=\mathbf V_{o'}\cdot\hat{\mathbf{r}}.$$
+$$\mathbf V_{o'} = V_r \hat{\mathbf{r}}_{o'j} + \mathbf V_\perp, \quad V_r=\mathbf V_{o'}\cdot\hat{\mathbf{r}}_{o'j}.$$
 
-Because $\mathbf A_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
+Because $\mathbf A_{o'\leftarrow j}\parallel\hat{\mathbf{r}}_{o'j}$:
 
 - The **instantaneous work rate** from this hit is
 
   $$
   \frac{dK_\mu}{dT}\bigg|_{\text{hit}}
   =
-  \mu_{\text{arch}}\mathbf A_{o'\leftarrow o}\cdot\mathbf V_{o'}
+  \mu_{\text{arch}}\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
   =
-  \mu_{\text{arch}}\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|
-  \frac{W_{o'\leftarrow o}^{\mathrm{rec}}(T;T_{\mathrm{em}})}{r^2}\,V_r
+  \mu_{\text{arch}}\kappa\,\sigma_{q_j q_{o'}}\,|q_j q_{o'}|
+  \frac{W_{o'j}^{\mathrm{rec}}(T;T_{\mathrm{em}})}{r_{o'j}^2}\,V_r
   $$
 
   Only $V_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf V_{o'}\|)$.
@@ -4283,25 +4283,25 @@ The phrase "an architrino emits potential" should not be read as a source contin
 Potential energy is therefore relational. It is assigned when a receiver is placed in a source's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the source-normal root denominator, the receiver-normal branch factor, and the receiver's radial motion through the line of action. In the general per-hit law the source-normal denominator is
 
 $$
-D_{s,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{s,o'j}(T;T_{\mathrm{em}})
 =
-c_f-\mathbf V_o(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{o'j}
 $$
 
 and the receiver-normal numerator is
 
 $$
-D_{T,o'\leftarrow o}(T;T_{\mathrm{em}})
+D_{T,o'j}(T;T_{\mathrm{em}})
 =
-c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}.
+c_f-\mathbf V_{o'}(T)\cdot\hat{\mathbf{r}}_{o'j}.
 $$
 
 The branch strength is $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, while the instantaneous power delivered to the receiver is controlled by
 
 $$
-\mathbf A_{o'\leftarrow o}\cdot\mathbf V_{o'}
+\mathbf A_{o'\leftarrow j}\cdot\mathbf V_{o'}
 =
-\|\mathbf A_{o'\leftarrow o}\|\,V_r
+\|\mathbf A_{o'\leftarrow j}\|\,V_r
 $$
 
 On the affine partner chart used in the [closed-form collinear breather ansatz](../../../../markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+(dX/dT)/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
@@ -4322,7 +4322,7 @@ When we work with the mollified effective potential $\Phi_\eta$, we can also wri
 
 $$\mathbf F_{o'}(T) = -\nabla_{\mathbf X_{o'}}U_{o'}(T) = -q_{o'} \nabla_{\mathbf X_{o'}} \Phi_\eta[\text{history}]\big(\mathbf X_{o'}(T),T\big),$$
 
-and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf{F}_{o'}=\mu_{\text{arch}}\mathbf{a}_{o'}$ or the appropriate $\mu_K\mathbf{a}_{o'}$, has been declared.
+and this is equivalent to the Master Equation in the quasi-static, resolved-in-time limit after the same force normalization, such as $\mathbf F_{o'}=\mu_{\text{arch}}\mathbf A_{o'}$ or the appropriate $\mu_K\mathbf A_{o'}$, has been declared.
 The force-as-gradient identity is valid only when taking the gradient at fixed causal history; the fundamental force law remains the per-hit sum of the Master EOM.
 
 #### Macroscopic Cancellation and Localized Resonance
@@ -4359,7 +4359,7 @@ Phase-locked bound states are the important exception. In a localized assembly, 
 
 In the exact causal theory, energy conservation is enforced through exchange between kinetic motion and the causal-history interaction content encoded by wakes. This wake term should not be read as an independent material reservoir that drains from the emitter with every unreceived isochron; it is the nonlocal bookkeeping required by the same delayed causal action that generates the hits. For mollified working models, the strongest exact conservation claims remain conditional on the regularization being derived from the same time-translation-invariant causal action rather than inserted only at the equation-of-motion level.
 
-Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2T-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration row used by the Master EOM is generated by that potential over the declared window. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../../../../markdown/aaa/validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
+Classical virial language is recovered only at branch level. The familiar comparison form $\langle 2K-pU\rangle=0$ is admissible after a retained branch chart supplies a branch-local potential, homogeneity degree, and proof that the same acceleration row used by the Master EOM is generated by that potential over the declared window. Standard mechanics often writes $T$ for kinetic energy in this formula; here $K$ avoids collision with absolute time $T$. Until those rows close, virial behavior remains a diagnostic on the causal-root ledger rather than a primitive substrate axiom; see the branch-virial target in [Analytic Baselines](../../../../markdown/aaa/validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
 For a single architrino:
 
@@ -4566,7 +4566,7 @@ E_{\mathrm{bind},W}^{\mathrm{grav}}
 \int_W\!\int_W
 \frac{G_{\mathrm{eff}}(\theta;x_{\mathrm{eff}}^i,y_{\mathrm{eff}}^i)\,
 \rho_{\mathrm{eff}}(x_{\mathrm{eff}}^i)\rho_{\mathrm{eff}}(y_{\mathrm{eff}}^i)}
-{\|x_{\mathrm{eff}}^i-y_{\mathrm{eff}}^i\|}
+{\|\mathbf x_{\mathrm{eff}}-\mathbf y_{\mathrm{eff}}\|}
 \,dV_{x_{\mathrm{eff}}}\,dV_{y_{\mathrm{eff}}}
 +
 \mathcal{B}_{\partial W}
@@ -4618,23 +4618,23 @@ F_{\mathrm{ext},W_A}^i
 $$
 The pair $(\mathbf{X}_{\mathrm{resp}},M_A^{ij})$ is not free to be chosen after the balance is fitted. The response center must be pinned independently by the exposed internal-energy ledger,
 $$
-X_{\mathrm{resp}}^i(t_{\mathrm{eff}})
+X_{\mathrm{resp}}^i(T)
 \equiv
 \frac{
-\displaystyle\int_{W_A}
-x_{\mathrm{eff}}^i\,
-\zeta_{\mathrm{loc}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,
-e_{\text{internal}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,dV_{\mathrm{eff}}
+\displaystyle\int_{W_A(T)}
+X^i\,
+\zeta_{\mathrm{loc}}(\mathbf X,T)\,
+e_{\text{internal}}(\mathbf X,T)\,dV
 }{
-\displaystyle\int_{W_A}
-\zeta_{\mathrm{loc}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,
-e_{\text{internal}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,dV_{\mathrm{eff}}
+\displaystyle\int_{W_A(T)}
+\zeta_{\mathrm{loc}}(\mathbf X,T)\,
+e_{\text{internal}}(\mathbf X,T)\,dV
 }
 $$
-whenever the denominator is positive and the window contains the exposed assembly record. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
+whenever the denominator is positive and the window contains the exposed assembly record on the native slice $\Sigma_T$. The tensor $M_A^{ij}$ must then reduce to the independently extracted response tensor $\mathsf{I}_A^{ij}$ on the same branch chart. Only when these independently defined objects satisfy the balance with $\mathcal{R}_{\mathrm{resp}}^i\to0$ does it reduce to the familiar center-of-mass form. A non-vanishing irreducible residual means the exposed-energy center is not the inertial response center for that branch, rather than a license to redefine the center. Until that theorem is closed, a center-of-mass trajectory is an effective readout of the assembly response, not a substrate-level proof that internal delayed forces cancel instantaneously.
 Equivalently, $\mathbf{X}_{\mathrm{resp}}$ and the inertial-response center are two different moment maps on the same retained assembly record: one weights exposed internal energy, while the other is inferred from momentum response. Their coincidence is a theorem target, not a definition. The obstruction is the finite-window wake-momentum flux across $\partial W_A$; if that boundary record has a secular or nonrecurrent component, the two centers can differ even when the equal-time particle picture looks nearly balanced. This is the center-of-response version of the memory-boundary recurrence condition used by the effective-Lagrangian symplectic-promotion row.
 
-In practice, finite systems or simulation domains should monitor $E_W(t)$, $P_W^i(t)$, and $L_W^i(t)$ together with their boundary fluxes and residuals. $E_{\text{total}}(t)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
+In practice, finite systems or simulation domains should monitor $E_W(T)$, $P_W^i(T)$, and $L_W^i(T)$ together with their boundary fluxes and residuals. $E_{\text{total}}(T)$ is the isolated-system limit when the declared window contains the full wake-history record and the boundary terms vanish.
 
 ---
 
@@ -4673,7 +4673,7 @@ $$
 }{
 T_{\mathcal Q}+\varepsilon_T
 }
-dT
+dT'
 \right]_+
 }{
 |\Delta_W S_{\mathcal Q}|
@@ -4681,7 +4681,7 @@ dT
 \int_W
 \left|
 \frac{\mathcal D_{\mathcal Q}}{T_{\mathcal Q}+\varepsilon_T}
-\right|dT
+\right|dT'
 +\varepsilon
 }
 $$
@@ -4735,7 +4735,7 @@ Here $\mathcal F_T$ is the packet's chosen fluctuation-dissipation map, and $\ch
 At the fundamental level, the Euclidean void is an empty container. **Effective spacetime** is the observer-level summary of a **sea of high-energy Noether braid assemblies**:
 
 - These Noether braids are extremely small compared to ordinary particles (electrons, protons, etc.).
-- Each nested shell braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy.
+- Each Noether braid is itself a tightly bound architrino assembly with very high internal kinetic and potential energy; the nested shell braid is the best-developed three-band subtype, not the definition of the sea.
 - As a sea, they form a **dense population of coupled assemblies** occupying the Euclidean void. This ambient Noether sea content carries non-zero assembly density and internal stress. It provides the constitutive relations (permittivity, permeability, and medium-dressed inertial response) that deform the primitive architrino dynamics into effective relativistic kinematics, providing the bridge-level spacetime medium for:
   - Emergent inertia and mass,
   - Effective causal-cone behavior and Lorentz-like behavior,
@@ -4845,6 +4845,14 @@ $$
 The mass map couples distant probes to $E_{\text{probe}}$ through the retuned Noether sea; the matter-to-sea source uses $E_{\text{sea-coupled}}$. A calculation that uses the raw $\zeta E_{\text{internal}}$ in both roles must report $\mathcal R_{\text{part}}$ as unresolved rather than treating the two uses as independent evidence.
 This is an exactness condition on one forgetting map. The full internal ledger is first projected to the exposed ledger $\zeta E_{\text{internal}}$, and the probe, sea-coupled, and unresolved channels are further projections of that same exposed ledger. The residual $\mathcal R_{\text{part}}$ measures whether those fibers close back to the once-projected total; it is therefore an anti-double-count rule, not an optional accounting convention.
 
+Define the probe-channel share
+$$
+\zeta_{\text{probe}}(A)
+\equiv
+\frac{E_{\text{probe}}(A)}{E_{\text{internal}}(A)}
+$$
+when $E_{\text{internal}}(A)>0$. The raw far-field scalar $\zeta(A)$ names the total exposed ledger before the probe, sea-coupled, and unresolved split. The probe-channel scalar $\zeta_{\text{probe}}(A)$ names only the trace part consumed by the inertial probe formulas below.
+
 ---
 
 ### Emergent Inertia (Mass) from Shielded Energy
@@ -4856,10 +4864,10 @@ This is an exactness condition on one forgetting map. The full internal ledger i
 For an assembly $A$, define its inertial mass $m_{\text{inertial}}(A)$ operationally via:
 
 - Apply a small external wake potential (from a distant test source) that exerts a known net force $\mathbf{F}_{\text{ext}}$ on $A$,
-- Measure the resulting acceleration of the response center; in regimes where the effective center-of-mass readout has been justified, denote this acceleration by $\mathbf{a}_{\text{cm}}$,
+- Measure the resulting acceleration of the response center; in regimes where the effective center-of-mass readout has been justified, denote this acceleration by $\mathbf A_{\text{cm}}$,
 - Define:
 
-$$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf{F}_{\text{ext}}\|}{\|\mathbf{a}_{\text{cm}}\|}.$$
+$$m_{\text{inertial}}(A) \equiv \frac{\|\mathbf F_{\text{ext}}\|}{\|\mathbf A_{\text{cm}}\|}.$$
 
 Because the external wake couples mainly to the probe-facing exposed energy, not the full internal circulation, the scalar roadmap limit is:
 
@@ -4869,7 +4877,7 @@ The tensor handoff is more precise. In the formulas below, $\mathcal{Z}_A^{ab}$ 
 $$
 p_{\text{int}}^{a}
 \approx
-\alpha_{\mathrm{m}}\,\zeta(A)E_{\text{internal}}(A)\,
+\alpha_{\mathrm{m}}\,\zeta_{\text{probe}}(A)E_{\text{internal}}(A)\,
 \mathcal{M}_{\text{sea}}^{ab}\,
 V_{\text{cm},b}
 $$
@@ -4882,7 +4890,7 @@ A more complete first-order handoff keeps the scalar and trace-free exposure pie
 $$
 \mathcal{Z}_{A}^{ab}
 =
-\zeta(A)h^{ab}
+\zeta_{\text{probe}}(A)h^{ab}
 +
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A),
 \qquad
@@ -4929,28 +4937,28 @@ m_{\mathrm{tr}}(A)
 \alpha_{\mathrm{m}}
 \frac{E_{\text{internal}}(A)}{c_{\text{eff},0}^{2}}
 \left[
-\zeta(A)(1+\delta\mathcal{M}_{0})
+\zeta_{\text{probe}}(A)(1+\delta\mathcal{M}_{0})
 +
 \frac{1}{3}\mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
 \right]
 $$
 
-Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta(A)$ names the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
+Only in the homogeneous isotropic limit does the scalar mass formula above follow. The trace formula gives a stricter diagnostic: pure exposure anisotropy does not shift scalar mass in an isotropic medium, and pure trace-free medium response does not shift scalar mass for scalar exposure. A scalar mass shift from anisotropy appears only through the contraction $\mathcal{Z}_{\mathrm{tf},ab}\delta\mathcal{M}_{\mathrm{tf}}^{ab}$; otherwise the residue remains directional inertia in $\mathsf{I}_{A}^{ab}$. Here $E_{\text{internal}}$ names the large internal energy circulation, while $\zeta_{\text{probe}}(A)$ names the probe-facing share of the small external leakage that survives cancellation and Noether sea shielding. The formula therefore explains weak long-range gravitational and inertial footprints without making the internal energy small: ordinary probes couple to the leaked pattern, not to every internal exchange branch.
 The trace-free exposure tensor is also the mass-side carrier of orientation and framing leakage. Clock-orientation leakage, Hughes-Drever-style matter anisotropy, and scalar-mass anisotropy should therefore be compared as different contractions of the same branch-emitted trace-free exposure record against different probe or medium-response tensors. If $\mathcal{Z}_{\mathrm{tf}}^{ab}=0$ for an accepted branch in a homogeneous response record, all of these trace-free leakage channels vanish at this order; if it is nonzero, scalar mass remains protected only when the retained medium response has no matching trace-free component.
 
 This scalar trace is admissible as a positive inertial mass only inside the shielding window
 $$
-\zeta(A)(1+\delta\mathcal{M}_{0})
+\zeta_{\text{probe}}(A)(1+\delta\mathcal{M}_{0})
 >
 \frac{1}{3}
 \left|
 \mathcal{Z}_{\mathrm{tf},ab}(A)\delta\mathcal{M}_{\mathrm{tf}}^{ab}
 \right|
 $$
-with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus $\zeta\ll1$ is a constrained exposure window, not an unconstrained way to suppress all long-range response.
+with the comparison sea state declared. If a certified $A_0$ branch reports $\zeta_{\text{probe}}$ so small that this inequality fails for plausible $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ in the accepted environment, the shielded-energy mass map is falsified for that branch. Thus deep probe-channel shielding is a constrained exposure window, not an unconstrained way to suppress all long-range response.
 When $1+\delta\mathcal{M}_{0}>0$, a conservative sufficient lower bound is
 $$
-\zeta(A)
+\zeta_{\text{probe}}(A)
 >
 \frac{
 \left\|\mathcal{Z}_{\mathrm{tf}}(A)\right\|_h
@@ -4988,7 +4996,7 @@ $$
 
 with $\delta\theta_{\mathrm{sea}}^{(\ell)}$ projecting into $n$, $\chi_{\text{sea}}$, $\Gamma_N$, strain, orientation, cadence, and envelope-scale variables. In this language, saying that neighboring Noether braids absorb the exposed potential means that they retune their branch state. Depending on the accepted branch, that retuning may appear as higher cadence, changed strain, stronger alignment, envelope-scale shift, or altered coupling to nearby Noether braids; it should not be compressed into a generic statement that the braids simply gain energy and expand.
 
-This is the same shielding-based logic developed more directly in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, $\zeta$, and the medium-response map; it should not be fitted separately to each particle species. Universality is a cross-species invariant, not a notation choice. For any certified assembly $A$, define the back-solved value
+This is the same shielding-based logic developed more directly in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The matching factor $\alpha_{\mathrm{m}}$ should be fixed only after a calibration-free reference attractor has supplied $E_{\text{internal}}$, raw $\zeta$, $E_{\text{probe}}$ or $\zeta_{\text{probe}}$, the exposed-energy partition, and the medium-response map; it should not be fitted separately to each particle species. Universality is a cross-species invariant, not a notation choice. For any certified assembly $A$, define the back-solved value
 $$
 \alpha_{\mathrm{m}}(A)
 \equiv
@@ -4997,7 +5005,7 @@ m_{\mathrm{tr}}(A)c_{\text{eff},0}^2
 }{
 E_{\text{internal}}(A)
 \left[
-\zeta(A)(1+\delta\mathcal M_0)
+\zeta_{\text{probe}}(A)(1+\delta\mathcal M_0)
 +
 \frac{1}{3}\mathcal Z_{\mathrm{tf},ab}(A)\delta\mathcal M_{\mathrm{tf}}^{ab}
 \right]
@@ -5030,10 +5038,10 @@ The multi-scale status of $A_0$ matters for this accounting. Fast internal corre
 
 #### Noether Sea and Effective Relativistic Behavior
 
-The nested shell braid Noether sea adds an additional layer:
+The Noether sea adds an additional layer:
 
 - Moving assemblies must retune their internal causal ledger and reorganize local Noether sea coupling.
-- The effective resistance to high center-of-mass speed (near the internal nested shell braid causal-wake propagation scale) increases steeply, producing an emergent "speed of light" scale $c_{\text{eff}}$ at which assemblies effectively saturate.
+- The effective resistance to high center-of-mass speed (near the relevant internal Noether braid causal-wake propagation scale) increases steeply, producing an emergent saturation speed scale $c_{\text{eff}}$ at which assemblies effectively saturate. Its identification with the photon-channel speed is a separate closure.
 
 Thus:
 
@@ -5104,7 +5112,7 @@ Cross-links:
 
 ### Energy and Self-Hit in the Noether Sea
 
-In the **super-field-speed** regime ($\|\mathbf{v}_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
+In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
 - Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell braids and more complex assemblies, contributing to their stability.
 - Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell braid configuration.
@@ -5148,7 +5156,7 @@ Architrinos and their assemblies are where the energy bookkeeping lives. The Noe
 
 ### Appendix A: Energy Zero and Bookkeeping
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the self-hit / max-curvature radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ uses a **binding-energy convention** that fixes the zero of potential energy at the **inner turning point** of an accepted bound branch (the maximum-curvature binary (MCB) radius when that branch has been certified). This choice is operational: on a branch with a self-hit lower boundary, the deepest accessible state supplies the reference. It should not be read as a proof that every isolated two-body candidate already has a unique, history-independent cutoff.
 
 Cosmology inventory prose uses the same convention only after declaring the comparison window. Positive component entries such as matter, radiation, dark-sector bookkeeping, and thermal reservoirs are mass-equivalent or energy-density terms measured relative to that window, while gravitational binding is a negative finite-window contribution. Mixing a local branch convention with a cosmological inventory convention without naming the window and boundary term risks double counting the same retained wake-history energy.
 
@@ -5160,7 +5168,7 @@ Because a lower bound exists, the natural reference is **not** "infinite separat
 
 #### The Bookkeeping Convention
 
-We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$ (the maximum curvature attractor), we fix the potential gauge at this wall.
+We adopt a **singular-boundary gauge**: on a certified branch chart with a declared self-hit lower boundary $r_{\min}$ (the MCB attractor), we fix the potential gauge at this wall.
 
 $$U(r_{\min}) \equiv 0.$$
 
@@ -7074,23 +7082,23 @@ The quantum version says the same thing in a sharper language. A complete compar
 
 ### Core Definition
 
-Let $\mu_T$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $T_0$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[T_0-h,T_0]$ and let $\mathcal{F}_{T_0\to T}$ be the deterministic delayed-flow map. Then
+Let $\mu_T$ be a measure on complete deterministic histories compatible with a declared preparation. In a deterministic substrate this measure is not fundamental randomness. It is the pushforward of preparation-limited ignorance over the unresolved initial history and incoming-wake data. If the preparation fixes the present record at $T_{\mathrm{prep}}$ only up to a retained history depth $h$, let $\nu_{\mathrm{prep}}$ be the measure on the unfixed segment $[T_{\mathrm{prep}}-h,T_{\mathrm{prep}}]$ and let $\mathcal{F}_{T_{\mathrm{prep}}\to T}$ be the deterministic delayed-flow map. Then
 
 $$
 \mu_T
 =
-\left(\mathcal{F}_{T_0\to T}\right)_*\nu_{\mathrm{prep}}
+\left(\mathcal{F}_{T_{\mathrm{prep}}\to T}\right)_*\nu_{\mathrm{prep}}
 $$
 
 This is the official reading of $\mu_T$ in this chapter: probabilities describe unresolved retained history under a declared preparation, not stochastic substrate law. Deterministic multistability becomes important because $\nu_{\mathrm{prep}}$ can spread over multiple basins before the flow sharpens it into a record-limited outcome distribution.
 
-Let $W(t)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
+Let $W(T)$ be the access window and let $\mathcal{Q}$ be the coarse-graining used by a Physical Observer, apparatus, or simulation packet. The record projection
 
 $$
-\Pi_{\mathcal{Q},W}:\Gamma_t\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
+\Pi_{\mathcal{Q},W}:\Gamma_T\longrightarrow \mathcal{Z}_{\mathcal{Q},W}
 $$
 
-maps complete histories into retained record variables. Here $\Gamma_t$ is the preparation-conditioned complete-history space at time $t$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
+maps complete histories into retained record variables. Here $\Gamma_T$ is the preparation-conditioned complete-history space at absolute time $T$, and $\mathcal{Z}_{\mathcal{Q},W}$ is the retained record-state space selected by the coarse-graining and access window. The pushed-forward record measure is
 
 $$
 \nu_{\mathcal{Q},W,T}
@@ -7098,16 +7106,16 @@ $$
 (\Pi_{\mathcal{Q},W})_*\mu_T
 =
 (\Pi_{\mathcal{Q},W})_*
-\left(\mathcal{F}_{T_0\to T}\right)_*
+\left(\mathcal{F}_{T_{\mathrm{prep}}\to T}\right)_*
 \nu_{\mathrm{prep}}
 $$
 
 and the corresponding observer-window entropy is
 
 $$
-S_{\Pi,W}(t)
+S_{\Pi,W}(T)
 =
-k_B\,\mathcal{H}\!\left(\nu_{\mathcal{Q},W,t}\right)
+k_B\,\mathcal{H}\!\left(\nu_{\mathcal{Q},W,T}\right)
 $$
 
 where $\mathcal{H}$ is the entropy functional appropriate to the retained record measure.
@@ -7125,58 +7133,58 @@ $$
 For a microcanonical retained window, the same idea is written as
 
 $$
-S_{\mathcal{Q},W}(t)
+S_{\mathcal{Q},W}(T)
 =
-k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(t)}\right)
+k_B\log \mu\!\left(\Gamma_{\mathcal{Q},W(T)}\right)
 $$
 
-where $\Gamma_{\mathcal{Q},W(t)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window.
+where $\Gamma_{\mathcal{Q},W(T)}$ is the set of complete microhistories compatible with the retained macroscopic records in that window.
 
 Plain language: entropy is not counted over reality in the abstract. It is counted over the alternatives left unresolved after the record map, measure, coarse-graining, and access window have been specified.
 
 The exact-record limit is useful as a guardrail. If the retained partition distinguishes one complete deterministic history from every other complete deterministic history, then the active cell has probability one and the corresponding entropy is zero. That does not mean thermodynamics has disappeared from the world. It means the record has been refined until it no longer asks a thermodynamic question. A thermodynamic macrostate is a physically declared grouping of histories: a pressure, temperature, density, spectral, boundary, apparatus, or control-relevant record that a real system can retain and use.
 
-Equivalently, entropy is a functional on the quotient $\Gamma_t/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
+Equivalently, entropy is a functional on the quotient $\Gamma_T/\!\sim_{\mathcal Q,W}$. Refining the quotient shrinks fibers and cannot increase the active-cell log-fiber measure when the underlying preparation measure is held fixed; coarsening the quotient merges fibers and can increase it. The number therefore has physical content only after the quotient map, measure, access window, and comparison job are declared.
 
-#### Receiver Inference Fibers And Provenance Graphs
+#### Receiver Inference Fibers and Provenance Graphs
 
 The wake-inclusive form has a canonical substrate construction. For a receiver $i$ at event $(\mathbf X_i(T),T)$, let the retained hit record be
 
 $$
-\mathcal{H}_i^{\mathrm{hit}}(t)
+\mathcal{H}_i^{\mathrm{hit}}(T)
 =
 \left\{
-\left(\ell_a,\|\mathbf{a}_a\|\right)
-\right\}_{a\in A_i(t)}
+\left(\ell_\rho,\|\mathbf{A}_\rho\|\right)
+\right\}_{\rho\in R_i(T)}
 $$
 
-where $\ell_a$ is the retained unoriented line of action and $\|\mathbf{a}_a\|$ is the retained hit strength for an active received root. If an apparatus retains oriented directions or source tags, those data are added to $\mathcal{H}_i^{\mathrm{hit}}$ explicitly. The receiver inference fiber is
+where $\rho\in R_i(T)$ indexes an active received root, $\ell_\rho$ is the retained unoriented line of action, and $\|\mathbf{A}_\rho\|$ is the retained hit strength. If an apparatus retains oriented directions or source tags, those data are added to $\mathcal{H}_i^{\mathrm{hit}}$ explicitly. The receiver inference fiber is
 
 $$
-\Gamma_i^{\mathrm{hit}}(t)
+\Gamma_i^{\mathrm{hit}}(T)
 =
 \left\{
-\gamma\in\Gamma_t:
+\gamma\in\Gamma_T:
 \text{the delayed branch sum of }\gamma
 \text{ reproduces }
-\mathcal{H}_i^{\mathrm{hit}}(t)
+\mathcal{H}_i^{\mathrm{hit}}(T)
 \right\}
 $$
 
 and the receiver-hit entropy is
 
 $$
-S_i^{\mathrm{hit}}(t)
+S_i^{\mathrm{hit}}(T)
 =
 k_B\,\mathcal{H}
 \left(
-\mu_t\big|_{\Gamma_i^{\mathrm{hit}}(t)}
+\mu_T\big|_{\Gamma_i^{\mathrm{hit}}(T)}
 \right)
 $$
 
-This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(t)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
+This is the entropy of the receiver's inference fiber. The electrino/positrino antipode ambiguity and the surrogate-location recast described in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#informational-ambiguity-at-the-receiver) are then measure-preserving involutions on $\Gamma_i^{\mathrm{hit}}(T)$ whenever the retained hit record is unchanged by the recast. Measurement uncertainty at this level is therefore a computable fiber multiplicity, not a slogan added after the dynamics.
 
-When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(t)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
+When $\mathcal{H}$ is evaluated as a probability entropy, the restricted measure is normalized on $\Gamma_i^{\mathrm{hit}}(T)$. If the fiber has zero or undefined measure under the declared preparation, the receiver-hit entropy is not licensed for that packet.
 
 For windows with many retained roots, define the causal-wake provenance graph $G_{\mathrm{prov}}(W)$: vertices are retained causal roots in $W$, and two vertices are joined when their roots trace to a common emitter worldline segment in the compatible complete histories. This graph is the common native carrier for three entropy uses below: its connectedness supplies history-backed concordance, its edge cuts supply access-cut entropy, and its boundary-crossing edges supply the wake-escapement contribution to the arrow-of-time ledger.
 
@@ -7184,11 +7192,11 @@ More precisely, $G_{\mathrm{prov}}(W)$ is the 1-skeleton of the receiver-source 
 
 ### Minimum Specification
 
-Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_t$ on compatible deterministic histories. Second, it should name the access window $W(t)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation packet. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
+Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five ingredients before the number is treated as physical. First, it should name the preparation and measure $\mu_T$ on compatible deterministic histories. Second, it should name the access window $W(T)$ and retained record carrier: apparatus state, boundary wake data, Noether sea state, Physical Observer record, or simulation packet. Third, it should name the coarse-graining $\mathcal{Q}$ and the projection $\Pi_{\mathcal{Q},W}$. Fourth, it should state the comparison job: work availability, heat flow, coding, measurement locking, horizon label counting, cosmology, or another defined use. Fifth, for open windows, it should include boundary flux and record-change residuals rather than silently treating the window as isolated.
 
 This checklist is not extra ontology. It is the minimum context needed for an entropy claim to say something definite. Without these ingredients, a phrase such as "the entropy increased," "the system is maximally entropic," or "information was lost" has not yet specified which alternatives were unresolved, which record retained them, or which comparison class made the claim meaningful.
 
-### Temperature As A Same-Record Ensemble Variable
+### Temperature as a Same-Record Ensemble Variable
 
 Temperature inherits the same discipline. It is not a primitive substrate property of an architrino, a single Noether braid, or the Euclidean void. It is an effective ensemble variable admitted only when a declared coarse-graining retains enough accessible energy exchange, state counting, and local stability for a thermodynamic or kinetic readout to be meaningful.
 
@@ -7235,18 +7243,18 @@ At human scales, the temperature of matter is therefore a bulk property of Stand
 
 For Noether sea cadence transport, the same-record condition means temperature may bias the rates of accepted branch-ledger transitions but may not be treated as a direct single-braid heat property. The theorem target is stated in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#temperature-conditioned-branch-transition-target).
 
-### Work Availability And Energy Spread
+### Work Availability and Energy Spread
 
 Traditional thermodynamics often introduces entropy as a measure of energy spread. In this chapter that is the work-availability face of record coarse-graining. A hot reservoir, chemical store, coherent photon-channel stream, or gravitational potential gradient is low entropy only relative to a work channel and comparison record that can use the concentration. After the same energy is distributed among many thermal, boundary, or wake-history microrecords, the total energy ledger may still close, but the retained record supports less extractable work.
 
 For a fixed reference bath or readout channel with temperature $T_R$ declared by the same record, define the availability diagnostic
 
 $$
-A_{\mathcal{Q},W}^{(T_R)}(t)
+A_{\mathcal{Q},W}^{(T_R)}(T)
 =
-E_{\mathcal{Q},W}(t)
+E_{\mathcal{Q},W}(T)
 -
-T_R S_{\mathcal{Q},W}(t)
+T_R S_{\mathcal{Q},W}(T)
 $$
 
 This is a diagnostic, not a new substrate property. In a closed isothermal comparison, the useful work extractable from the retained packet is bounded by the decrease of this same-record availability,
@@ -7254,9 +7262,9 @@ This is a diagnostic, not a new substrate property. In a closed isothermal compa
 $$
 W_{\mathrm{useful}}
 \le
-A_{\mathcal{Q},W}^{(T_R)}(t_i)
+A_{\mathcal{Q},W}^{(T_R)}(T_i)
 -
-A_{\mathcal{Q},W}^{(T_R)}(t_f)
+A_{\mathcal{Q},W}^{(T_R)}(T_f)
 $$
 
 up to declared control and boundary residuals. A packet that conserves $E_{\mathcal{Q},W}$ while increasing $S_{\mathcal{Q},W}$ has not lost energy. It has lost retained work availability in that comparison channel.
@@ -7275,10 +7283,10 @@ The value can change when the apparatus record contains which pressure side, mol
 This also disciplines heat-death language. A claim that a universe window has no usable work left is not a bare statement about the complete microstate; it is a statement about a declared class of controls, readouts, reservoirs, and final records. For a control family $\mathcal{C}^{\mathrm{ctrl}}$ over admissible windows, the remaining work-availability envelope can be written schematically as
 
 $$
-\mathcal{A}_{\mathrm{use}}(t;\mathcal{C}^{\mathrm{ctrl}})
+\mathcal{A}_{\mathrm{use}}(T;\mathcal{C}^{\mathrm{ctrl}})
 =
 \sup_{W,R_f}
-W_{\max}\!\left(\theta_W(t);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
+W_{\max}\!\left(\theta_W(T);\mathcal{C}^{\mathrm{ctrl}}_W,R_f\right)
 $$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this envelope must distinguish exposed gradients from shielded internal assembly energy. If the declared control class includes operations that can change shielding, write schematically
@@ -7294,15 +7302,16 @@ $$
 =
 \sup_{\alpha\in\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}}
 \sum_A
-\left(1-\zeta_\alpha(A)\right)E_{\text{internal}}(A)
+\left(\zeta_{\text{probe},\alpha}(A)-\zeta_{\text{probe},0}(A)\right)_+
+E_{\text{internal}}(A)
 $$
 
-Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can lower an assembly's shielding factor in the declared window. If topological assembly protection forbids such operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the shielded-reservoir term.
+Here $\mathcal{C}^{\mathrm{ctrl}}_{\mathrm{shield}}$ is the possibly empty class of operations that can raise an assembly's probe-channel leakage in the declared window, $\zeta_{\text{probe},0}$ is the initial probe-channel leakage, and $[x]_+=\max(x,0)$. If topological assembly protection forbids such leakage-raising operations, $\mathcal{A}_{\mathrm{deshield}}$ is not available to the control family. If shielding is reversible or partially controllable, heat-death language is stronger than exposed-gradient exhaustion and must include the accessible de-shielding term.
 
-This reservoir term is not unlimited. The de-shielding operation must remain inside the same scalar-mass shielding window used by the mass map, so lowering $\zeta(A)$ is constrained by the positivity condition in [Energy](../../../../markdown/aaa/dynamics/energy.md#emergent-inertia-mass-from-shielded-energy):
+This reservoir term is not unlimited. The reservoir branch must begin inside the same scalar-mass shielding window used by the mass map. In the probe channel, deep shielding is constrained by the positivity condition in [Energy](../../../../markdown/aaa/dynamics/energy.md#emergent-inertia-mass-from-shielded-energy):
 
 $$
-\zeta(A)(1+\delta\mathcal M_0)
+\zeta_{\text{probe}}(A)(1+\delta\mathcal M_0)
 >
 \frac{1}{3}
 \left|
@@ -7310,7 +7319,7 @@ $$
 \right|
 $$
 
-If a control lowers $\zeta$ past that window, the assembly has stopped being the same matter reservoir whose work availability was being counted. Deep shielding increases the hidden internal-energy store, but it also tightens the allowed de-shielding path because the trace-free exposure and medium-response channels can destroy positive scalar inertial response.
+If the initial branch lies below that window, it has not supplied a positive scalar-mass reservoir for this work-availability comparison. Raising $\zeta_{\text{probe}}$ can expose internal energy, but the extraction path is still constrained by branch survival: an assembly de-shielded so far that it exits the mass map or dissociates has stopped being the same matter reservoir whose work availability was being counted.
 
 A heat-death statement for that control family means $\mathcal{A}_{\mathrm{use}}$ tends to zero or below the declared operational threshold. It does not prove that every possible future record system, assembly class, or Noether sea access channel has no usable distinction. It proves only the exhaustion of usable gradients and accessible shielded reservoirs for the stated comparison class.
 
@@ -7330,7 +7339,7 @@ $$
 
 where $\rho_{\mathrm{in}}$ and $\rho_{\mathrm{out}}$ are retained spectral/angular records, not new ontological fluids. The entropy claim is physical only when this boundary record is the same one used for energy flux, internal work, heat, and observer readout.
 
-### Complexity And Driven Intermediate Windows
+### Complexity and Driven Intermediate Windows
 
 Entropy and complexity answer different questions. Entropy compares how many compatible histories remain unresolved after a coarse-graining. Complexity asks whether the path between low-entropy and high-entropy records passes through organized intermediate structures. Low entropy can be simple, high entropy can be simple, and the interesting dynamics often occur in a driven window between them.
 
@@ -7367,7 +7376,7 @@ $$
 
 The quantity peaks when a sharply organized coherent core coexists with substantial exported or surrounding incoherent entropy. Stable assemblies are therefore candidate local maxima or ridges of $\mathcal{C}_W$ under the second-law export constraint above. The collinear-breather and nested shell braid programs can test this directly by asking whether phase-locked trajectory bundles sit on such ridges while the surrounding Noether sea and wake-boundary ledger pay the entropy cost.
 
-### Mapping In From Standard Entropies
+### Mapping in from Standard Entropies
 
 Legacy entropy formulas survive as effective projections with different prerequisites.
 
@@ -7429,17 +7438,17 @@ $$
 w_k
 =
 \frac{
-\mu_t\!\left(
-\mathcal{F}_{t\to t_+}^{-1}(B_k)
+\mu_T\!\left(
+\mathcal{F}_{T\to T_+}^{-1}(B_k)
 \cap
 \Gamma_{\mathrm{prep}}
 \right)
 }{
-\mu_t\!\left(\Gamma_{\mathrm{prep}}\right)
+\mu_T\!\left(\Gamma_{\mathrm{prep}}\right)
 }
 $$
 
-and the effective outcome entropy is $-k_B\sum_k w_k\log w_k$. Entropy does not select which branch the actual complete microstate takes. The measure $\mu_t$ predicts the branch weights that any record-limited observer must assign before the missing path-history distinctions are recovered. This is the direct entropy handoff to Born-rule closure.
+and the effective outcome entropy is $-k_B\sum_k w_k\log w_k$. Entropy does not select which branch the actual complete microstate takes. The measure $\mu_T$ predicts the branch weights that any record-limited observer must assign before the missing path-history distinctions are recovered. This is the direct entropy handoff to Born-rule closure.
 
 Von Neumann and entanglement entropies map to a declared quantum comparison record, factorization, and access cut. For a retained sector $A$ and unresolved complement $\bar A$, the standard reduced record is
 
@@ -7515,7 +7524,7 @@ H_2(P,Q)
 -\sum_i p_i\log_2 q_i
 $$
 
-The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient. This is why next-symbol prediction and compression can be equivalent for a language model or other coding apparatus while remaining an observer-level modeling statement. The entropy becomes physical only after the symbol carrier, probability source, encoder, decoder, training or update channel, and device/boundary cost are part of the same record.
+The excess over $H_2(P)$ measures model mismatch, not a new substrate ingredient. This is why next-symbol prediction and compression can be equivalent for a predictive coding apparatus while remaining an observer-level modeling statement. The entropy becomes physical only after the symbol carrier, probability source, encoder, decoder, training or update channel, and device/boundary cost are part of the same record.
 
 Record entropy maps to durable alternatives in an apparatus or observer channel. A record is not merely a symbolic label. It is an assembly/environment state that persists long enough to be read, copied, or reset within a declared window.
 
@@ -7523,7 +7532,7 @@ Horizon entropy maps to observer-accessible boundary or horizon-interface label 
 
 Computation entropy maps to implemented device cost. Bit logic alone does not create a thermodynamic cost. A cost claim is physical only after the device state space, success criterion, reset operation, heat/work ledger, and boundary exchange have been declared.
 
-### Mapping Out To Effective Physics
+### Mapping out to Effective Physics
 
 The outward map from $\mathbb{A}\mathbb{A}\mathbb{A}$ to effective entropy has five steps.
 
@@ -7540,14 +7549,14 @@ $$
 \left(
 \mathbf{J}_S
 -
-s_{\mathcal{Q}}\mathbf{v}_{\partial W}
+s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \right)
 \cdot\hat{\mathbf{n}}\,dA
 +
 \mathcal{R}_{\mathcal{Q}}(T)
 $$
 
-Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{v}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{v}_{\partial W}=0$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
+Here $\sigma_W$ is local production inside the retained window, $\mathbf{J}_S$ is entropy flux through the boundary, $s_{\mathcal{Q}}$ is the retained entropy density, $\mathbf{u}_{\partial W}$ is the velocity of a moving window boundary, and $\mathcal{R}_{\mathcal{Q}}$ records changes in the coarse-graining or retained record set. For a fixed window, $\mathbf{u}_{\partial W}=\mathbf{0}$ and the expression reduces to the ordinary boundary-flux form. A monotone entropy statement is therefore conditional:
 
 $$
 \frac{dS_{\mathcal{Q},W}}{dT}\ge 0
@@ -7558,14 +7567,14 @@ $$
 \left(
 \mathbf{J}_S
 -
-s_{\mathcal{Q}}\mathbf{v}_{\partial W}
+s_{\mathcal{Q}}\mathbf{u}_{\partial W}
 \right)
 \cdot\hat{\mathbf{n}}\,dA
 $$
 
 for the declared record. The phrase "entropy of the universe" is not a complete claim unless it supplies the measure, window, boundary, and residual terms.
 
-The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),t)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
+The entropy-arrow theorem target ties this boundary term to wake escapement. Let $\mathcal{E}_{\mathrm{esc}}(W)$ be the wake-escapement set defined in [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement), and let $\Sigma_{\mathrm{esc}}(\mathcal{E}_{\mathrm{esc}}(W),T)$ be the rate at which retained path-history distinctions leave $W$ on causal wakes that no longer hit a retained receiver. The structural target is
 
 $$
 \frac{d}{dT}S_{\Pi,W}(T)
@@ -7585,7 +7594,7 @@ on a fixed coarse-graining and boundary convention. In words: observer-window en
 
 The same memory-boundary flux has several readings in the dynamics stack. As an energy 0-form it is wake escapement; as a corrected symplectic 2-form it is the $\omega_{\mathrm{mem}}$ leak in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#effective-hamiltonian-domain-gate); as a momentum 1-form it is the response-center drift obstruction in [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange); and as a record count it is entropy production. A retained branch is energy-flat, Hamiltonian-promotable, response-center stable, and entropy-flat only when this memory-boundary flux is recurrent over the return window. A secular boundary flux is the common source of apparent dissipation, non-Hamiltonian projection, center drift, and observer-window entropy growth.
 
-### Second Law And Same-Record Monotonicity
+### Second Law and Same-Record Monotonicity
 
 The traditional second law has several equivalent-looking forms only after the comparison class has been fixed. Clausius uses a cycle or reversible-comparison statement, Kelvin-Planck forbids a cyclic device from converting heat from one reservoir wholly into work, Boltzmann says overwhelmingly many compatible microstates lie in larger macrostates, and Maxwell-demon analyses require memory and reset costs to be included. These are not four independent substances called entropy. They are four projections of the same discipline: the complete thermodynamic packet must not shrink the retained compatible-history record for free.
 
@@ -7655,9 +7664,9 @@ This rule is why entropy appears as a discipline across many chapters. It protec
 
 In the language of the core definition, the same-record rule says that entropy, temperature, heat flux, basin weights, and record costs must all factor through one projection of the same fiber. Fitting them from separate ensembles is a split-fiber error: the quantities may be individually meaningful, but the packet has not shown that they are compatible projections of one physical record.
 
-### Entropy And Absolute Time
+### Entropy and Absolute Time
 
-Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $T_0 < T$ can contribute to a receiver at $T$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
+Absolute time is the ordering parameter of the substrate law. Entropy does not create it. The causal arrow enters the dynamics through delayed causal wakes: only emissions from $T_{\mathrm{em}} < T$ can contribute to a receiver at $T$. Thermodynamic, biological, measurement, and cosmological arrows are finite-window consequences of dynamics, boundary conditions, and retained records.
 
 Even if the complete deterministic dynamics preserve the underlying measure, the observer-window entropy $S_{\Pi,W}$ can increase when $\Pi_{\mathcal{Q},W}$ discards path-history, boundary-wake, or apparatus-record information. That increase is a projection effect inside the declared record. It is not evidence that time itself is generated by entropy.
 
@@ -7708,19 +7717,19 @@ $$
 
 with the denominator restricted to the retained incoming roots in the declared window. Equivalently, $\mathcal{K}$ is the local edge-connectivity fraction of $G_{\mathrm{prov}}$: it measures how many retained incoming roots share emitter-worldline edges with neighboring receivers' roots. History-backed records are expected to have $\mathcal{K}\to1$ because the same matter and Noether sea emitters illuminate a neighborhood with correlated causal timing. Isolated fluctuation records have $\mathcal{K}\to0$ unless they also fabricate shared-emitter concordance across neighboring receivers. Thus low-$\mathcal{K}$ configurations are dynamically suppressed by provenance mismatch, and high-$\mathcal{K}$ fluctuation records are costly because they require coherent emitter-history coincidences, not only a memory snapshot. At this claim level, high-$\mathcal K$ fluctuations are treated as measure-suppressed rather than forbidden; forbiddance would require a separate theorem that no compatible emitter-history assignment exists.
 
-### Measurement And Computation
+### Measurement and Computation
 
 Measurement records require entropy locking. For a declared apparatus/environment channel,
 
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
 =
-S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_0+T_{\text{rec}})
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_{\mathrm{rec},0}+T_{\text{rec}})
 -
-S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_0)
+S_{\mathcal{Q},W}^{\mathrm{app+env}}(T_{\mathrm{rec},0})
 $$
 
-is the entropy change associated with the candidate record. A strong record candidate satisfies
+is the entropy change associated with the candidate record, with $T_{\mathrm{rec},0}$ the start of the record-formation window. A strong record candidate satisfies
 
 $$
 \Delta S_{\mathcal{Q},W}^{\mathrm{app+env}}
@@ -7740,6 +7749,8 @@ k_B\log N-k_B\varepsilon_\mu,
 N\ge2
 $$
 
+with $\varepsilon_\mu$ the declared measure/readout tolerance.
+
 For a non-uniform retained distribution, $k_B\log N$ is replaced by $-k_B\sum_i p_i\log p_i$.
 
 A Maxwell-demon packet therefore has two admissible readings. If the demon does not reset, it spends a low-entropy blank-memory record as a resource and converts that resource into a pressure, temperature, or sorting record. If the demon is required to act cyclically, the memory, actuator, partition, target system, and boundary environment must return to the same physical record. A cyclic packet that claims to sort a broad complete-history region into a narrower one while preserving the same boundary and memory record is not a thermodynamic miracle. It is a failed same-record closure.
@@ -7758,7 +7769,7 @@ $$
 
 The inequality is not a new law of symbols. It states the burden that the same physical record defining success must also supply the entropy, heat, work, and boundary terms used to claim a cost.
 
-### Horizons And Emergent Gravity
+### Horizons and Emergent Gravity
 
 Horizon entropy is the most stringent test of this mapping because it connects record counting, effective geometry, energy flux, and unitarity pressure. The useful comparison target is not that gravity is "really entropy." The target is that one strong-field Noether sea record supplies the observer-level entropy, temperature, flux, and metric response together.
 
@@ -7846,7 +7857,7 @@ A third failure mode is entropic gravity as a substitute for the mass mechanism.
 
 A fourth failure mode is fitted horizon bookkeeping. If a black-hole or local-horizon packet uses one record for entropy, another for temperature, another for stress, and another for release channels, the apparent agreement is not a native closure.
 
-The fifth failure mode is promoting entropy into time. Entropy can diagnose an emergent arrow inside a stated physical and inferential window. It does not supply the absolute ordering parameter $t$.
+The fifth failure mode is promoting entropy into time. Entropy can diagnose an emergent arrow inside a stated physical and inferential window. It does not supply the absolute ordering parameter $T$.
 
 A sixth failure mode is confusing entropy with complexity. Low entropy can be simple, maximum entropy can be simple, and complex organized structures normally belong to driven intermediate windows that export more entropy than they locally suppress. For $\mathbb{A}\mathbb{A}\mathbb{A}$, biological or self-organizing examples are open-window bookkeeping, not exceptions to deterministic dynamics.
 
@@ -7860,7 +7871,7 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 
 ### Interfaces
 
-The energy-side residuals are stated in [Energy](../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#time-orientation). Measurement locking is stated in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target).
+The energy-side residuals are stated in [Energy](../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#time-orientation-and-causal-ordering). Measurement locking is stated in [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../../../../markdown/aaa/validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.
 
@@ -7868,7 +7879,7 @@ The consolidated rule is simple: entropy is accepted only as a declared projecti
 
 This chapter starts with the simplest possible assembly question: what happens when one Electrino and one Positrino try to stay together under delayed causal wakes? The answer is not ordinary central-force orbit mechanics. Each architrino responds to where the partner was when the relevant wake was emitted, not to where the partner sits at the same absolute time.
 
-That delay makes the binary the first serious test of the Master Equation. Partner hits, self-hits, branch birth, caustic onset, circular anti-damping, non-circular spiral hypotheses, and maximum-curvature binary analysis all appear here before they are used in larger Noether braid structures. **Status:** (1) self-hit makes the dynamics non-Markovian (path-history dependent), and (2) stability/attractor claims are conjectural unless explicitly established.
+That delay makes the binary the first serious test of the Master Equation. Partner hits, self-hits, branch birth, caustic onset, circular anti-damping, non-circular spiral hypotheses, and maximum-curvature binary analysis all appear here before they are used in larger Noether braid structures. Two status boundaries govern the chapter: self-hit makes the dynamics non-Markovian (path-history dependent), and stability or attractor claims are conjectural unless explicitly established.
 
 Read the chapter as a branch atlas, not as a single orbit story. The partner-only row shows why ordinary circular central-force intuition fails. The self-hit rows show where the system becomes path-history dependent. The maximum-curvature and spiral sections are candidate ways to control that delayed feedback, and each must close its own root, action, wake, and stability ledger before it can become an assembly building block.
 
@@ -7919,16 +7930,24 @@ V_{\mathrm{eff}}(r)=V(r)+\frac{ml^2}{2r^2}
 $$
 cannot be imported as the binary's governing reduction. A conserved angular-momentum-like quantity, if present, must include the causal-wake history term that balances the delayed torque.
 
-**Receiver-normal restart target for the sub-field partner row.** In units with $c_f=1$, the circular speed is $s=R\omega$. The source-normal circular sign diagnostic gives
+**Receiver-normal circular simplification for the sub-field partner row.** In units with $c_f=1$, the circular speed is $s=R\omega$. On the non-translating symmetric circular chart, the source and receiver velocity projections on every retained chord are equal. If two points on the circle have angles $a$ and $b$, then
 $$
-T_p^{\mathrm{src}}
+\mathbf e_\theta(a)\cdot(\mathbf e_r(a)-\mathbf e_r(b))
+=
+\sin(a-b)
+=
+\mathbf e_\theta(b)\cdot(\mathbf e_r(a)-\mathbf e_r(b)).
+$$
+Thus $D_T=D_s$ and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert=1$ for every retained root on this chart. The stripped circular partner row gives
+$$
+T_p
 \propto
 \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
 \quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. This is not a canonical force verdict. The receiver-normal row must recompute the partner contribution with same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
+where $\delta_p$ is the partner delay angle. This is a canonical force row only for the non-translating symmetric circular benchmark; deformed, translating, or non-circular histories must recompute the same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ before any force-balance conclusion is promoted.
 
--  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
+-  The circular geometry gives a positive tangential force row for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
 
 With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** force is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. For action or wake-history rates accumulated along a moving receiver path, the same root also carries the receiver-normal factor $dT_{\ell,\mathrm{em}}/dT=(c_f-\hat{\mathbf r}\cdot\mathbf V_i(T))/(c_f-\hat{\mathbf r}\cdot\mathbf V_j(T_{\ell,\mathrm{em}}))$. The evolution is therefore driven by delay geometry, branch bunching, receiver-path sampling, and, once active, self-interaction.
@@ -7937,7 +7956,7 @@ Initially, and as long as the speeds of both architrinos are less than or equal 
 $$
 \mathbf A_{1, \text{total}}(T) = \mathbf A_{1,2}(T) \quad \text{and} \quad \mathbf A_{2, \text{total}}(T) = \mathbf A_{2,1}(T)
 $$
-During this partner-only phase, the retained force has an inward radial component and a forward tangential work row. In the circular or near-circular reduction that combination is anti-damping: it accelerates the orbiting motion and prevents a partner-only constant-speed circle. It does not, by itself, prove a tightening spiral. Any sub-field-speed contraction claim must come from a certified non-circular branch, a capture basin, or an explicit finite-window wake/recoil ledger.
+During this partner-only phase, the retained circular row has an inward radial component and a forward tangential work row. That combination is anti-damping: it accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must come from a certified non-circular branch, a capture basin, or an explicit finite-window wake/recoil ledger.
 
 #### Ideal Symmetric Spiral Ansatz
 
@@ -7945,7 +7964,7 @@ The ideal binary spiral used in this opening analysis is not the same geometry a
 
 This matters because the ideal spiral is a **transient, scale-similar contraction ansatz**, not a consequence of the principal circular calculation. Within a fixed velocity regime and fixed active-root ledger, the model assumes that the local force geometry repeats after a scale change and phase advance: radii shrink by a common factor, speeds rise according to the same delayed-geometry rule, and the partner/self branch structure is symmetric between the two architrinos. When the trajectory crosses a threshold such as $\|\mathbf V\|=c_f$ or a higher root-birth boundary, that scale-similar description must be re-matched on a new branch chart.
 
-By contrast, the maximum-curvature binary section studies a **uniform circular benchmark**: fixed $R$, fixed $s$, and a single circular path geometry used to compute closed-form delay angles, branch Jacobians, and per-hit force components. That circular model is useful as a limiting or diagnostic case, and it gives the anti-damping obstruction that any non-circular contraction story must beat. The detailed non-circular benchmark for the symmetric logarithmic spiral belongs in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-logarithmic-spiral-advanced-non-circular-benchmark); this chapter uses it only as the conceptual two-body entry point.
+By contrast, the maximum-curvature binary section studies a **uniform circular benchmark**: fixed $R$, fixed $s$, and a single circular path geometry used to compute closed-form delay angles, branch Jacobians, and per-hit force components. That circular model is useful as a limiting or diagnostic case, and it gives the anti-damping obstruction that any non-circular contraction story must beat. The detailed non-circular benchmark for the symmetric logarithmic spiral belongs in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-spiral-advanced-non-circular-benchmark); this chapter uses it only as the conceptual two-body entry point.
 
 #### Translating Binary Trace
 
@@ -7991,7 +8010,7 @@ R(T)\,A_{\mathrm{self},0,\eta}^{\mathrm{tan}}(T)\,dT
 $$
 when that limit exists under the same finite-caustic transit convention used for the velocity impulse. If the impulse limit is regulator-dependent, the branch-birth jump remains a diagnostic row rather than a promoted angular-momentum ledger entry.
 
-This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history force sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the caustic onset already displayed below; after finite-window averaging its branch-entry impulse should still report the $(s-1)^{-3/2}$ wall inherited from the self radial coefficient, while the sharper raw tangential coefficient must be regularized before it is used in a cycle ledger.
+This section treats an exponential-in-angle spiral (logarithmic spiral) as a **modeling assumption** rather than a derived law. It sets the bookkeeping target: a path-history force sum whose signed branch-birth increments and boundary wake fluxes yield the spiral contraction. Near $s=1^+$ the principal self row inherits the source-normal caustic onset displayed below, but the canonical non-translating circular force row uses $W^{\mathrm{rec}}=1$. After finite-window averaging, its branch-entry impulse must therefore be computed from the receiver-normal force scaling rather than from the sharper source-normal root-density wall.
 
 ### Spiral Binary Symmetry-Breaking Point ($\|\mathbf V\| = c_f$)
 
@@ -8009,13 +8028,19 @@ The associated branch Jacobian is
 $$
 J_s = 1-s\cos(\delta_s/2)=1-\frac{\delta_s}{2}\cot(\delta_s/2)\sim 2\mu
 $$
-Therefore the self radial and tangential magnitudes scale as
+The source-normal root-density diagnostics therefore scale as
 $$
 \frac{1}{\sin(\delta_s/2)\,|J_s|}\sim \mu^{-3/2},
 \qquad
 \frac{1}{\sin^2(\delta_s/2)\,|J_s|}\sim \mu^{-2}
 $$
-This is the first major consequence of restoring the causal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset**. The principal self branch turns on with a sharply amplified outward radial response and an even more singular tangential drive. The tangential pump strengthens faster than the radial barrier as the hinge is approached, so the immediate super-hinge region cannot be treated as a quiet equilibrium. Any candidate maximum-curvature balance must therefore either avoid that region or supply a cancellation channel with comparable caustic scaling before appealing to higher-winding smoothing.
+This is the first major consequence of the source-normal Jacobian: the hinge is not merely a change in root count but a genuine **caustic onset** for root density and action counting. On the non-translating symmetric circular chart, however, the equal-projection lemma gives $D_T=D_s$ and $W^{\mathrm{rec}}=1$. The canonical self-hit force components scale instead as
+$$
+\frac{1}{\sin(\delta_s/2)}\sim \mu^{-1/2},
+\qquad
+\frac{1}{\sin^2(\delta_s/2)}\sim \mu^{-1}.
+$$
+The principal self branch still turns on sharply, but the force statement is an inverse-distance hinge rather than an additional $1/|J_s|$ amplification. Any candidate maximum-curvature balance must therefore keep the source-normal caustic ledger separate from the receiver-normal force ledger before appealing to higher-winding smoothing.
 
 ### Self-Hit: Definition and Diagnostics
 
@@ -8182,6 +8207,8 @@ and the chapter speed ratio as
 $$
 \beta=\frac{\omega R}{c_f}
 $$
+In this non-translating circular certificate, $\beta$ is the same speed ratio
+denoted $s$ elsewhere in the chapter.
 The principal partner-root equation is
 $$
 2\beta\cos\frac{\phi}{2}=\phi,
@@ -8217,14 +8244,14 @@ $$
 \frac{\beta^2c_f^2}{R}
 =
 \frac{\kappa\epsilon^2}
-{4R^2\cos(\phi/2)\left(1+\beta\sin(\phi/2)\right)}
+{4R^2\cos(\phi/2)}
 $$
 and therefore, with $R_*=\kappa\epsilon^2/c_f^2$,
 $$
 \frac{R}{R_*}
 =
 \frac{1}
-{4\beta^2\cos(\phi/2)\left(1+\beta\sin(\phi/2)\right)}
+{4\beta^2\cos(\phi/2)}
 $$
 As $\beta\to0$, the root satisfies $\phi\sim2\beta$, and the balance reduces to
 $$
@@ -8237,7 +8264,7 @@ $$
 a_\theta^{(\mathrm{part})}
 =
 \frac{\kappa\epsilon^2\sin(\phi/2)}
-{4R^2\cos^2(\phi/2)\left(1+\beta\sin(\phi/2)\right)}
+{4R^2\cos^2(\phi/2)}
 >
 0
 $$
@@ -8265,6 +8292,11 @@ $$
 2\pi k
 $$
 At equality the two roots are born at a tangency; above it they thicken the partner-hit ledger. The root census is therefore a computed branch diagram rather than an independent conjecture.
+
+This window census uses the full delay angle $\phi$. The same-sheet winding
+notation below quotients by the signed-sheet orientation, so its $m$ labels are
+not compared one-for-one with the $W_k$ tangencies until the sheet sign
+$\sigma$ has been restored.
 
 ##### Terminology: Roots and Winding Numbers
 
@@ -8339,24 +8371,36 @@ $$
 
 ##### Canonical Per-Hit Accelerations
 
-Using the delayed law with line-of-action direction and receiver-normal branch strength (where $\kappa$ is a coupling constant and $\epsilon = |e|/6$), define source-normal branch denominators
+Using the delayed law with line-of-action direction and receiver-normal branch strength (where $\kappa$ is a coupling constant and $\epsilon = |e|/6$), define the same-root factors
+
+$$
+W_s^{\mathrm{rec}}=\left|\frac{D_{T,s}}{D_{s,s}}\right|,
+\qquad
+W_p^{\mathrm{rec}}=\left|\frac{D_{T,p}}{D_{s,p}}\right|.
+$$
+
+The canonical per-hit rows are
+
+$$
+\mathbf A_s = +\kappa \epsilon^2 \frac{W_s^{\mathrm{rec}}}{r_s^2} \hat{u}_s,
+\qquad
+\mathbf A_p = -\kappa \epsilon^2 \frac{W_p^{\mathrm{rec}}}{r_p^2} \hat{u}_p.
+$$
+
+On the non-translating symmetric circular benchmark, the equal-projection lemma gives $D_T=D_s$ on every retained self or partner chord, so $W_s^{\mathrm{rec}}=W_p^{\mathrm{rec}}=1$. The circular canonical rows reduce to
+
+$$
+\mathbf A_s = +\kappa \epsilon^2 \frac{1}{r_s^2} \hat{u}_s,
+\qquad
+\mathbf A_p = -\kappa \epsilon^2 \frac{1}{r_p^2} \hat{u}_p.
+$$
+
+The source-normal denominators remain the root-density and transversality diagnostics:
 
 $$
 J_s \equiv 1-\frac{\mathbf V_{\text{self}}(T_{\mathrm{em}})\cdot \hat{u}_s}{c_f},
 \qquad
-J_p \equiv 1-\frac{\mathbf V_{\text{partner}}(T_{\mathrm{em}})\cdot \hat{u}_p}{c_f}
-$$
-
-These encode the geometric bunching or dilation of the received causal flux along the active self and partner branches.
-
-**Self-hit** (like polarities -> repulsive):
-$$
-\mathbf A_s = +\kappa \epsilon^2 \frac{1}{r_s^2\,|J_s|} \hat{u}_s
-$$
-
-**Partner hit** (opposite polarities -> attractive):
-$$
-\mathbf A_p = -\kappa \epsilon^2 \frac{1}{r_p^2\,|J_p|} \hat{u}_p
+J_p \equiv 1-\frac{\mathbf V_{\text{partner}}(T_{\mathrm{em}})\cdot \hat{u}_p}{c_f}.
 $$
 
 ---
@@ -8381,10 +8425,10 @@ J_s = 1-\frac{\delta_s}{2}\cot(\delta_s/2),
 \qquad
 J_p = 1+\frac{\delta_p}{2}\tan(\delta_p/2)
 $$
-These formulas make the asymmetry between the two branch types explicit:
+These formulas make the source-normal transversality asymmetry between the two branch types explicit:
 
-- The partner branch always satisfies $J_p > 1$, so delay geometry **dilutes** the received partner flux relative to the static inverse-square value.
-- The self branch can satisfy $J_s \to 0^+$, producing the causal bunching that sharpens self-hit into a null-separatrix wall.
+- The partner branch always satisfies $J_p > 1$, so the source-normal root-density diagnostic is diluted relative to a static inverse-square surrogate. The canonical non-translating circular force row is not diluted because the receiver-normal numerator cancels the same denominator.
+- The self branch can satisfy $J_s \to 0^+$, producing the causal bunching that sharpens self-hit into a null-separatrix wall for root density, action counting, and finite-$\eta$ branch certification.
 
 ---
 
@@ -8452,7 +8496,7 @@ $$
 T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. In the canonical Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens this diagnostic relative to a stripped inverse-square surrogate. In the canonical non-translating circular force row, the receiver-normal numerator cancels the same denominator, so the retained partner row is the stripped positive tangential coefficient. That still excludes a particle-only constant-speed circular orbit, while finite-window wake and recoil balances remain necessary for any retained branch.
 
 ---
 
@@ -8483,7 +8527,7 @@ For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
   On a declared branch chart $b$, this balance has an operational work row:
   $$
-  P_{b,\mathrm{work}}^{(\eta)}(t)
+  P_{b,\mathrm{work}}^{(\eta)}(T)
   =
   \sum_i
   \mu_{\text{arch}}\,
@@ -8568,10 +8612,13 @@ in the cycle cohomology of the branch chart. A compact escaped-action diagnostic
 $$
 N_{\mathrm{esc}}^{(b)}
 =
-\frac{1}{h}
+\frac{\mu_{\text{arch}}}{h}
+\int_0^{P_b} R\,T_{\mathrm{net}}^{(b)}(T)\,dT
+=
+\frac{\mu_{\text{arch}}}{h\,\omega_b}
 \oint R\,T_{\mathrm{net}}^{(b)}(\theta)\,d\theta,
 $$
-where $h$ is the declared action unit used by the branch packet. A bare two-body circular closure can pass only when this class is cancelled by an explicitly retained signed sheet, wake-boundary, recoil, or multi-body exchange row.
+where $h$ is the declared action unit used by the branch packet and the second equality assumes a uniform circular benchmark. If the primitive kinetic scalar is used instead of the quadratic proxy, the same packet must replace $\mu_{\text{arch}}$ by the declared $\mu_K$ row. A bare two-body circular closure can pass only when this class is cancelled by an explicitly retained signed sheet, wake-boundary, recoil, or multi-body exchange row.
 
 **Plain language**: On the same-sheet chart, the isolated pair shows persistent tangential drive at the per-hit level; cancellation is hard because every certified root pushes the same way. The stable-branch question is not "how can the drive disappear?" but "which wake flux, recoil, or multi-body channel balances the drive without destroying the retained branch?" This is a primary test of the MCB attractor hypothesis.
 
@@ -8579,16 +8626,18 @@ where $h$ is the declared action unit used by the branch packet. A bare two-body
 
 #### What "Maximum Curvature" Demands
 
-**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the decisive extra effect is receiver-normal branch strength: the self-hit response can sharpen dramatically as an active branch approaches its source-normal null-separatrix geometry, as the receiver-normal numerator changes the crossing cadence, and because **new self-hit roots appear** at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
+**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$. On the non-translating symmetric circular chart, the receiver-normal factor cancels the source-normal denominator, so the force balance depends on chord geometry, signed-root content, finite-window wake/recoil rows, and the birth of additional self-hit roots at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
 
-The current receiver-normal radial target uses same-root receiver-normal branch
-strengths:
+The non-translating symmetric circular radial target is therefore the stripped
+receiver-normal force row:
 
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{W_p^{\mathrm{rec}}}{\cos(\delta_p / 2)} - \frac{W_s^{\mathrm{rec}}}{\sin(\delta_s / 2)} \right),
-\qquad
-W_{\bullet}^{\mathrm{rec}}=\left|\frac{D_{T,\bullet}}{D_{s,\bullet}}\right|.
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)} - \frac{1}{\sin(\delta_s / 2)} \right).
 $$
+
+For translating, deformed, or non-circular branches, this target must be
+restored to the same-root form with
+$W_{\bullet}^{\mathrm{rec}}=\lvert D_{T,\bullet}/D_{s,\bullet}\rvert$.
 
 **Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial force**. This occurs when:
 
@@ -8597,10 +8646,12 @@ $$
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold denominator wall.**
-   On the principal self branch, $D_s$ loses its floor as $s\downarrow 1^+$.
-   The current force/action row must combine that denominator with the
-   receiver-normal numerator on the same root before claiming a radial balance.
+1. **Near-threshold inverse-distance hinge plus source-normal caustic.**
+   On the principal self branch, $D_s$ loses its floor as $s\downarrow 1^+$,
+   but the circular force row cancels that denominator against the
+   receiver-normal numerator. The remaining force sharpening is the
+   inverse-distance self chord, while the $D_s$ wall remains a caustic in root
+   density, action counting, and finite-$\eta$ certification.
 
 2. **Higher-speed multi-branch redistribution.**
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full receiver-normal weighted sum over all active branches rather than on the principal branch alone.
@@ -8757,11 +8808,12 @@ with
 $$
 J_p=1+s\sin\xi_p
 $$
-and branch coefficients
+as the source-normal transversality diagnostic. The canonical circular force
+coefficients are
 $$
-P_{\mathrm{rad}}(\xi_p,s)=\frac{1}{\cos\xi_p\,|J_p|},
+P_{\mathrm{rad}}(\xi_p,s)=\frac{1}{\cos\xi_p},
 \qquad
-P_{\mathrm{tan}}(\xi_p,s)=\frac{\sin\xi_p}{\cos^2\xi_p\,|J_p|}
+P_{\mathrm{tan}}(\xi_p,s)=\frac{\sin\xi_p}{\cos^2\xi_p}
 $$
 where radial is measured inward and tangential is measured in the direction of motion.
 
@@ -8775,11 +8827,12 @@ with
 $$
 J_s(\xi,\sigma;s)=1-s\sigma\cos\xi
 $$
-The outward radial and signed tangential coefficients are
+as the source-normal transversality diagnostic. The outward radial and signed
+tangential canonical circular coefficients are
 $$
-S_{\mathrm{rad}}(\xi,\sigma;s)=\frac{s}{\xi |J_s|},
+S_{\mathrm{rad}}(\xi,\sigma;s)=\frac{s}{\xi},
 \qquad
-S_{\mathrm{tan}}(\xi,\sigma;s)=\frac{s^2\sigma\cos\xi}{\xi^2 |J_s|}
+S_{\mathrm{tan}}(\xi,\sigma;s)=\frac{s^2\sigma\cos\xi}{\xi^2}
 $$
 Higher self-root births occur at tangencies:
 $$
@@ -8961,7 +9014,7 @@ H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
 $$
 tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, and the branch Jacobian floors.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(t)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(T)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
 $$
 K^{(b)}_{ab}
 =
@@ -9061,14 +9114,14 @@ The branch-chart admissibility certificate is
 $$
 \nu_J^{2\mathrm{B}}(b,\eta)
 =
-\inf_{\rho\in b,\ 0\leq t\leq P_b}
-|J_\rho(t)|
+\inf_{\rho\in b,\ 0\leq T\leq P_b}
+|J_\rho(T)|
 >0,
 \qquad
 \Delta_{\mathrm{gap}}^{2\mathrm{B}}(b,\eta)
 =
-\inf_{\rho\in b^{\mathrm{off}},\ 0\leq t\leq P_b}
-|g_\rho(t)|
+\inf_{\rho\in b^{\mathrm{off}},\ 0\leq T\leq P_b}
+|g_\rho(T)|
 >0.
 $$
 
@@ -9130,7 +9183,7 @@ $$
 \left(
 \epsilon_E^{(\eta)}(W_b;\mathfrak{B}_b),
 \Delta_{\mathrm{E,cross}}^{(\eta)}(W_b;\mathfrak{B}_b),
-U_{b,\mathrm{work}}^{(\eta)}(t),
+U_{b,\mathrm{work}}^{(\eta)}(T),
 U_{\min,b}^{(\eta)}
 \right),
 $$
@@ -9143,21 +9196,21 @@ $$
 \Delta_{\mathrm{E,cross}}^{(\eta)}(W_b;\mathfrak{B}_b)
 \leq \epsilon_{\mathrm{cross}}^\star,
 \qquad
-E_{\mathrm{wake},b}^{(\eta)}(t)\geq U_{\min,b}^{(\eta)}
+E_{\mathrm{wake},b}^{(\eta)}(T)\geq U_{\min,b}^{(\eta)}
 $$
 
 on the same window, branch chart, and regulator used for the motion residuals. The work reconstruction is
 $$
-U_{b,\mathrm{work}}^{(\eta)}(t)
+U_{b,\mathrm{work}}^{(\eta)}(T)
 =
-U_b(t_\ast)
+U_b(T_\ast)
 -
 \int_{T_\ast}^{T}
 \sum_i
 \mu_{\text{arch}}\,
-\mathbf A_{i,b}^{(\eta)}(U)
+\mathbf A_{i,b}^{(\eta)}(T')
 \cdot
-\mathbf V_i(U)\,dU
+\mathbf V_i(T')\,dT'
 $$
 for the quadratic proxy, with $\mu_K(\|\mathbf V_i\|)$ replacing $\mu_{\text{arch}}$ when the primitive kinetic scalar is used. The lower-bound entry applies to the constructed action-level wake charge when that route is available, or to the compatible work reconstruction when that is the declared route. This is the handoff point to the constructive delay-energy chapter: ordinary Noether language is not sufficient until $E_{\mathrm{wake},b}^{(\eta)}$ or its compatible work-integral reconstruction has been constructed for the chosen chart.
 
@@ -9244,12 +9297,13 @@ $(\Delta,\phi)\mapsto \phi_j(-\Delta)$ are $C^1$, hence $g_{ij}$ is $C^1$ on
 $\mathbb{R}^+\times\mathcal{H}$. At a root $(\Delta^*,\phi)$,
 $$
 \partial_\Delta g_{ij}
-=-\hat{\mathbf{r}}_{ij}\!\cdot\!\dot{\phi}_j(-\Delta^*)-c_f,
+=\hat{\mathbf{r}}_{ij}\!\cdot\!\dot{\phi}_j(-\Delta^*)-c_f,
 \quad
 \hat{\mathbf{r}}_{ij}
 \equiv
 \frac{\phi_i(0)-\phi_j(-\Delta^*)}{\|\phi_i(0)-\phi_j(-\Delta^*)\|}
 $$
+Equivalently, $\partial_\Delta g_{ij}=-D_{s,ij}$ on this root.
 The simple-root condition is exactly $\partial_\Delta g_{ij}\neq 0$, i.e. no
 delayed tangency/causal-shock degeneracy. Therefore, by the Banach-space
 Implicit Function Theorem, there exist a neighborhood $U$ of $\phi$ and a
@@ -9262,6 +9316,13 @@ $$
 F_i(\phi) = \sum_{j} \kappa \sigma_{ij} |q_i q_j| \int_{-h}^0 \frac{\phi_i(0) - \phi_j(\theta)}{\|\phi_i(0) - \phi_j(\theta)\|^3} \, \delta_\eta\left( \|\phi_i(0) - \phi_j(\theta)\| + c_f \theta \right) \, d\theta
 $$
 **Crucial Property:** For $\eta > 0$ and smooth $\delta_\eta$, this integral operator maps $C^1$ histories to continuous accelerations.
+
+This finite-$\eta$ functional is a source-normal certification surrogate unless
+the kernel also carries the receiver-normal numerator. When its sharp-limit
+branch reduction is used as a canonical acceleration row, each retained root
+must be corrected by the same-root factor $D_{T,ij}/c_f$ in magnitude
+(equivalently by $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ after
+the delta collapse supplies the source-normal denominator).
 
 On $\mathcal{H}_*$ this same formula is interpreted through the finite-$\eta$ integral first. The admissibility claim is weaker: the packet must show bounded velocity and finite total impulse across the grazing chart before it can pass to the $\eta\to0$ limit.
 
@@ -9327,7 +9388,7 @@ The solution $\mathbf X(T)$ can be extended as long as the state $\mathbf X_T$ r
 The solution ceases to exist at finite time $T^*$ if:
 1. **Collision:** $\inf_{i,j} \|\mathbf X_i(T) - \mathbf X_j(T')\| \to 0$ inside the regularization kernel support.
 2. **Infinite Speed:** $\sup_i \|\mathbf V_i(T)\| \to \infty$.
-3. **Causal Shock:** The derivative of the delay $d\Delta/dT$ diverges (Doppler factor becomes singular). This occurs if an architrino moves directly toward a receiver at speed $\|\mathbf V\| = c_f$.
+3. **Causal Shock:** The derivative of the delay $d\Delta/dT$ diverges because the source-normal denominator becomes singular. This occurs if an architrino moves directly toward a receiver at speed $\|\mathbf V\| = c_f$.
 
 ---
 
@@ -9335,7 +9396,7 @@ The solution ceases to exist at finite time $T^*$ if:
 
 #### Introduction
 
-Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's theorem to local Lagrangian densities. In this delayed setting, the force at time $t$ depends on the phase-space trajectory over the interval $[t - h, t]$.
+Standard conservation laws (energy, momentum, angular momentum) rely on the application of Noether's theorem to local Lagrangian densities. In this delayed setting, the force at absolute time $T$ depends on the phase-space trajectory over the interval $[T-h,T]$.
 
 For an action-derived, symmetry-preserving delayed model, symmetries of the substrate (Euclidean void + absolute time) imply conservation laws, but the conserved quantities are no longer simple functions of the instantaneous state $(\mathbf X, \mathbf V)$. Instead, they are **functionals on the history space** $\mathcal{H}$. For a working regularized kernel not yet derived from an action, the same expressions function as validation diagnostics rather than established Noether charges.
 
@@ -9424,23 +9485,23 @@ is conserved. For working regularized models, this same expression is a validati
 **Explicit Form (Weak Coupling Limit):**
 For $\eta \to 0$, the wake momentum can be approximated by integrating the force impulse over the delay time:
 $$
-\mathbf{P}_{\text{wake}} \approx \sum_{i \neq j} \int_{T - \Delta_{ij}(T)}^{T} \mathbf F_{ij}^{\text{emit}}(U) \, dU
+\mathbf{P}_{\text{wake}} \approx \sum_{i \neq j} \int_{T - \Delta_{ij}(T)}^{T} \mathbf F_{ij}^{\text{emit}}(T') \, dT'
 $$
 *Physical interpretation:* The "missing" momentum is accounted for by the causal wake surfaces currently traversing the space between sources and receivers in an action-derived model; otherwise this balance is the momentum diagnostic to verify.
 
 **Corollary (Center of Mass Motion):**
-For an isolated binary, the center of mass $\mathbf X_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](../../../../markdown/aaa/dynamics/energy.md#theorem-target-center-of-response): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
+For an isolated binary, the center of mass $\mathbf X_{\text{cm}}$ need not move at constant velocity in the mechanical coordinates alone. Instead, it can oscillate around a mean trajectory while wake momentum carries the compensating history term. This is the two-body version of the [center-of-response theorem target](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange): in an exactly symmetric circular binary, the exposed-energy response center $\mathbf{X}_{\mathrm{resp}}$ is pinned to the circle center by symmetry, while the particle-only mechanical center can still show finite-window oscillatory bookkeeping if wake momentum is not included. A runaway center-of-mass self-acceleration is forbidden only in an action-derived model whose regularization preserves translation symmetry; in working regularized models this is a conservation diagnostic to be checked.
 
 ---
 
 #### Energy and The Lyapunov Functional
 
-Energy conservation is the critical constraint preventing runaway solutions (MCB-09).
+Energy conservation is the critical constraint preventing runaway solutions.
 
 ##### Definition 3 (The History Hamiltonian)
 For an action-derived delayed model with time-translation symmetry, the target conserved quantity $\mathcal{H}$ is a history functional. For state-dependent delays, the useful comparison object is a **Lyapunov-Krasovskii-style functional**:
 $$
-\mathcal{H}(\mathbf X_T) = K(\mathbf V(T)) + \mathcal{U}_{\text{history}}(\mathbf X_T)
+\mathcal{H}(\mathbf X_T) = K(T) + \mathcal{U}_{\text{history}}(\mathbf X_T)
 $$
 
 1. **Kinetic Energy:** $K(T) = \sum \frac{1}{2} \mu_{\text{arch}} \|\mathbf V_i(T)\|^2$.
@@ -9452,14 +9513,14 @@ $$
 $$
 We define the **Interaction Potential Functional** $\mathcal{W}(T)$ such that:
 $$
-\mathcal{W}(T) = -\int_{T_0}^T \sum_i \mathbf V_i(U) \cdot \mathbf F_i(U) \, dU
+\mathcal{W}(T) = -\int_{T_0}^T \sum_i \mathbf V_i(T') \cdot \mathbf F_i(T') \, dT'
 $$
 This functional is nonlocal in time: it accumulates deferred work along the path-history of wakes and is not an instantaneous potential $U(r)$.
 Then, by construction along the realized trajectory, $\mathcal{E}_{\text{tot}} = K(T) + \mathcal{W}(T)$ is constant. It is an exact Noether charge only when $\mathcal{W}$ is the boundary term of the same symmetry-preserving delayed action; otherwise it is a diagnostic reconstruction.
 
 ##### Lemma 1 (Boundedness of the Potential)
 **Assumption:** The interaction is regularized with width $\eta > 0$ such that the maximum force is bounded: $\|\mathbf{F}_{ij}\| \le F_{\max}(\eta)$.
-**Statement:** For a bound system (architrinos confined to a finite volume $V$), the rate of work is bounded by $N F_{\max} v_{\max}$.
+**Statement:** For a bound system (architrinos confined to a finite volume $V$), the rate of work is bounded by $N F_{\max} V_{\max}$.
 
 ##### Conditional Target 4 (No-Runaway Criterion)
 This criterion is not a completed theorem until the same symmetry-preserving regularized action supplies $\mathcal{W}$ on the retained branch chart and a lower bound is proven for that branch. Under those hypotheses, in an action-derived master-equation branch with fixed $\eta>0$, an isolated binary cannot undergo runaway acceleration ($\|\mathbf V\| \to \infty$) *unless* the action-compatible potential energy functional $\mathcal{W}(T)$ diverges to $-\infty$.
@@ -9483,7 +9544,7 @@ For $K(T)$ to diverge, $\mathcal{W}(T)$ must decrease without bound.
 
 ## Causal Action Functional
 
-This chapter explains how action-like scalar summaries are allowed to enter a delayed, receiver-normal dynamics. The Master Equation remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
+This chapter explains how action-like scalar summaries are allowed to enter a delayed, receiver-normal dynamics. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) remains the vector law. The causal action functional is a branch statistic used to compare retained histories, estimate barriers, and feed stability or mass-response tests without replacing the line-of-action acceleration.
 
 The central warning is simple: a scalar action row is valid only on the same retained branch record that supplies the causal roots, source-normal denominator, receiver-normal numerator, and receiver-normal strength. Otherwise the statistic has lost the causal information that made the branch physical.
 
@@ -9514,6 +9575,8 @@ D_{T,ij}
 c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}}).
 $$
 
+Plain language: a retained hit must say both how the source laid down the wake and how the receiver crossed that same wake. The ratio above is the receiver-normal strength attached to that one retained root.
+
 A branch record that contains only $D_s$ is incomplete for current force/action
 use. $D_s$ remains the source-normal transversality denominator for root
 existence, caustic routing, and inactive-gap diagnostics. Force, action, power,
@@ -9535,6 +9598,20 @@ $$
 {r_{ij}^2(T;T_{\mathrm{em}})+\epsilon_c^2}
 \,dT.
 $$
+
+This statistic is sign-blind and coupling-normalized: it suppresses
+$\kappa$, $|q_iq_j|$, and the polarity sign
+$\sigma_{ij}=\mathrm{sign}(q_iq_j)$. Attractive and repulsive rows therefore
+add by received magnitude rather than canceling by direction. After the
+native-time average, $\bar{\mathcal A}_{\mathrm{rec}}$ has inverse-area units;
+it is action-like only in the sense that it accumulates receiver-normal
+branch-magnitude density on the retained causal record. It is not automatically
+the exact Fokker-type variational action, whose causal kernel is tested
+separately in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-causal-delay-fokker-type-interaction-term).
+
+Plain language: this number asks how much same-record causal-hit magnitude a
+branch carries over the window after signs, coupling scale, and push direction
+have been stripped off.
 
 This is a scalar statistic, not the vector Master EOM itself. It keeps the same
 causal roots and receiver-normal strength while discarding the line-of-action
@@ -9564,8 +9641,16 @@ g_{ij}(T,T_{\mathrm{em}})
 \|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|-c_f(T-T_{\mathrm{em}})=0.
 $$
 
+Plain language: the root condition says that a wake emitted by source $j$ at
+$T_{\mathrm{em}}$ reaches receiver $i$ exactly at absolute time $T$.
+
 On a simple retained root, $D_s\ne0$ supplies the local inverse-function
-condition. The branch label persists as long as the same retained record keeps:
+condition. A retained record is the branch-local data packet that binds the
+root, source identity, receiver identity, regulator state, and force/action
+rows to one history chart. A retained box is an interval or chart neighborhood
+that encloses those rows together; outward-rounded intervals have endpoints
+rounded away from the computed value so the true row remains enclosed. The
+branch label persists as long as the same retained record keeps:
 
 | Row | Required status |
 | --- | --- |
@@ -9579,7 +9664,8 @@ condition. The branch label persists as long as the same retained record keeps:
 
 Branch labels may change only at declared boundaries: a root enters or leaves
 the memory window, an inactive gap closes, $D_s$ reaches a caustic boundary, a
-collision regulator is invoked, or the retained record fails same-box identity.
+collision regulator is invoked, or the retained rows no longer occupy the same
+box.
 
 ### Causal Writhe and Topological Use
 
@@ -9594,16 +9680,56 @@ Wr_c(\mathfrak B)
 $$
 
 This notation records signed causal-locus crossings or linkages in the retained
-record. It does not supply force strength. Any use of $Wr_c$ in spin,
-chirality, confinement, or horizon-interface arguments must also state the
-branch record on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
+record. Here $\alpha$ and $\beta$ index oriented retained causal-locus strands
+or strand segments in the declared projection. The indicator
+$\chi_{\mathrm{causal}}(\alpha,\beta)$ equals $1$ only when the two strands form
+an admissible crossing or linkage event on the same retained record, and equals
+$0$ otherwise. The sign $\operatorname{sgn}(\alpha,\beta)$ is the orientation
+sign of the ordered strand pair relative to the declared branch framing; it is
+not defined at a fold, framing slip, or unresolved collision row.
 
-### Circular Benchmark as a Branch-Count Theorem
+$Wr_c$ is therefore a causal-locus crossing statistic, not a replacement for
+the canonical framed-topology rows such as
+$Lk=\operatorname{Wr}+\operatorname{Tw}$ in
+[Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality)
+and [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). It
+does not supply force strength. Any use of $Wr_c$ in spin, chirality,
+confinement, or horizon-interface arguments must also state the branch record
+on which $D_s$, $D_T$, and $W^{\mathrm{rec}}$ are available.
+
+### Circular Benchmark (Branch-Count Theorem)
 
 The circular branch-count benchmark is topology only. Circular self-hit births,
 Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root
 structure, but they do not imply a circular no-go, force-balance result, action
 minimum, or mass scale.
+
+The theorem spine is the circular no-proliferation result already used by the
+delayed dynamics stack. In the symmetric circular benchmark, write
+$$
+\beta(T)=\frac{\omega(T)R(T)}{c_f}.
+$$
+If $|\beta(T)|\le\beta_\ast<\infty$ uniformly, then the active circular
+self-hit count is uniformly bounded:
+$$
+N_{\mathrm{self}}(T)
+\le
+\frac{\beta_\ast}{\pi}+C_{\mathrm{circ}},
+$$
+where $C_{\mathrm{circ}}$ is an absolute endpoint-count constant for the
+circular root equation. On a one-sign subchart this has the sharper asymptotic
+form
+$$
+N_{\mathrm{self}}^{(+)}(\beta)=\frac{\beta}{\pi}+O(1).
+$$
+The branch births occur at tangencies of the circular root equation, so the
+root census, Jacobian-null thresholds, and inactive-gap changes are one
+topological ledger. On the non-translating circular chart,
+$D_T=D_s$ and $W^{\mathrm{rec}}=1$ away from degenerate endpoints, so the
+branch-count theorem uses the root structure and does not certify force
+balance, action closure, or stability. The detailed circular derivations are in
+[Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and the winding-index census in
+[Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#root-multiplicity-vs-speed).
 
 A current circular benchmark must emit:
 
@@ -9621,24 +9747,31 @@ Until those rows exist, circular material is not evidence for action closure.
 
 ### Branch Barrier and Transition Cost
 
-For a path of retained charts $\mathfrak B_\lambda$, define the candidate
-receiver-normal barrier
+For a path $\Gamma:\lambda\mapsto\mathfrak B_\lambda$ of retained charts with
+endpoints $\mathfrak B_{\lambda_0}$ and $\mathfrak B_{\lambda_1}$, define the
+candidate receiver-normal barrier by the reparametrization-invariant saddle
+height
 $$
 B_{\mathrm{rec}}(\lambda_0,\lambda_1)
 =
-\inf_{\mathfrak B_\lambda}
-\int_{\lambda_0}^{\lambda_1}
+\inf_{\Gamma:\mathfrak B_{\lambda_0}\to\mathfrak B_{\lambda_1}}
+\sup_{\lambda\in[\lambda_0,\lambda_1]}
 \left[
 \bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_\lambda]
 -
-\min_{\lambda'}\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda'}]
+\max\!\left(
+\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda_0}],
+\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda_1}]
+\right)
 \right]_+
-d\lambda.
 $$
 
 This is a transition-cost target, not a proof of stability. A promoted barrier
 must state the retained branch path, the root identity across the path, the
-regulator state, and the same-record receiver-normal branch-strength rows.
+regulator state, and the same-record receiver-normal branch-strength rows. If a
+later certificate uses an integral barrier instead, the promoted record must
+also declare the path measure, for example arclength in a stated metric on
+chart space.
 
 ### Reduced Branch-Certificate Targets
 
@@ -9647,10 +9780,10 @@ A branch certificate that consumes this chapter must report:
 | Certificate row | Required content |
 | --- | --- |
 | branch identity | retained roots, inactive gaps, finite memory |
-| receiver-normal strength | same-box $D_s$, $D_T$, and $W^{\mathrm{rec}}$ |
+| receiver-normal strength | $D_s$, $D_T$, and $W^{\mathrm{rec}}$ enclosed on the same retained box |
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
-| Noether pullback | energy, momentum, and angular-momentum wake-history rows |
+| Noether pullback | energy, momentum, and angular-momentum wake-history rows from the same action or realized-trajectory record; see [Energy](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange) and [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) |
 | negative controls | rejection of missing, mismatched, or receiver-normal-incomplete rows |
 
 The branch certificate is not promoted if any of those rows are supplied by
@@ -9658,7 +9791,7 @@ different root boxes, different regulator states, or different history records.
 
 ### Summary and Status
 
-The current action-functional lane is a receiver-normal rebuild target. It keeps
+The current action-functional program is a receiver-normal rebuild target. It keeps
 causal-root topology, branch labels, caustic routing, and scalar comparison
 targets, but action evidence requires complete receiver-normal branch records.
 The next useful mathematical artifact is one retained branch packet
@@ -9727,23 +9860,23 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ correction to this toy example is more info
 $$
 m_{\mathrm{eff}}\frac{d^2x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}(t_{\mathrm{eff}})
 =
--k_{\mathrm{eff}}\,x_{\mathrm{eff}}(t_{\mathrm{eff}}-\tau_{\mathrm{eff}})
+-k_{\mathrm{eff}}\,x_{\mathrm{eff}}(t_{\mathrm{eff}}-\Delta_{\mathrm{eff}})
 +\cdots
 $$
 
-for an effective causal-wake delay $\tau_{\mathrm{eff}}$ across the assembly. Expanding the delayed displacement gives
+for an effective causal-wake delay $\Delta_{\mathrm{eff}}$ across the assembly. Expanding the delayed displacement gives
 
 $$
 \left(
-m_{\mathrm{eff}}+\frac{1}{2}k_{\mathrm{eff}}\tau_{\mathrm{eff}}^2
+m_{\mathrm{eff}}+\frac{1}{2}k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^2
 \right)
 \frac{d^2x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
 -
-k_{\mathrm{eff}}\tau_{\mathrm{eff}}\frac{dx_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
+k_{\mathrm{eff}}\Delta_{\mathrm{eff}}\frac{dx_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
 +
 k_{\mathrm{eff}}x_{\mathrm{eff}}
 =
-O\!\left(k_{\mathrm{eff}}\tau_{\mathrm{eff}}^3\frac{d^3x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^3}\right)
+O\!\left(k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^3\frac{d^3x_{\mathrm{eff}}}{dt_{\mathrm{eff}}^3}\right)
 $$
 
 on a slowly varying branch. The leading correction is therefore sign-definite once the branch delay orientation is fixed. For the causal restoring convention displayed above it is anti-damping, the same local pattern that appears as positive tangential work in the circular binary. The mass-like coefficient is also shifted by the delayed response. This does not prove the full assembly mass map, but it shows in the simplest chart why inertia and dissipation-like terms are delayed-response quantities rather than primitive architrino constants.
@@ -9753,11 +9886,11 @@ The two displayed corrections are not independent parameters. They are the first
 $$
 m_{\mathrm{delay}}
 \sim
-\frac{1}{2}k_{\mathrm{eff}}\tau_{\mathrm{eff}}^2,
+\frac{1}{2}k_{\mathrm{eff}}\Delta_{\mathrm{eff}}^2,
 \qquad
 \Gamma_{\mathrm{delay}}
 \sim
-k_{\mathrm{eff}}\tau_{\mathrm{eff}}
+k_{\mathrm{eff}}\Delta_{\mathrm{eff}}
 $$
 
 where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{delay}}$ denotes the signed anti-damping coefficient for this convention. On a fixed branch, their ratio is a kernel-shape consequence of the same causal-wake delay, not two fitted material constants. This toy calculation is the finite-dimensional seed of the continuum statement below: even-frequency kernel moments feed inertia-like response, while odd-frequency moments feed dissipation or anti-damping channels.
@@ -9850,20 +9983,22 @@ path-history solution is written, but only if the same causal-root ledger and
 retained branch record make the closed-cycle integral and canonical residual
 stable.
 
-The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
+The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A retained outer return cycle can carry a phase-entry degree pair rather than a single scalar winding. With $\rho_O:S^1_O\to\mathfrak B$ denoting one outer return cycle,
 
 $$
 c_1[\theta^O,\theta^M,\theta^I]
 =
-\frac{1}{2\pi}
-\oint_{\gamma}
-d(\text{relative phase})
-\in\mathbb{Z}
+\left(
+\operatorname{deg}(\theta^M\circ\rho_O),\,
+\operatorname{deg}(\theta^I\circ\rho_O)
+\right)
+=(m,n)
+\in\mathbb{Z}^2
 $$
 
-when the relative phase closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) make the phase-bundle data integral rather than irrationally drifting. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally promotable only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
 
-More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the relative phase winding closes by an integer multiple of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
+More precisely, the action variables $I_\alpha$ are sections of a flat action bundle over the retained branch family. They are globally defined only when the return holonomy is trivial on the admitted observables; equivalently, the phase-return degree pair closes by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is therefore admissible only on this trivial-holonomy locus:
 
 $$
 \oint_{\gamma_\alpha}\Pi\,dQ
@@ -9887,10 +10022,10 @@ S_\eta[\{\mathbf X_i\}]
 \int dT \sum_i \frac{1}{2} \mu_{\text{arch}} \|\mathbf V_i(T)\|^2
 - \frac{1}{2}\sum_{i,j}^{\mathrm{adm}}\frac{\kappa \, \sigma_{ij} |q_i q_j|}{c_f}
 \int dT \int_{-\infty}^{T} dT_{\mathrm{em}}\,
-\frac{\phi_\eta\!\big(g_{ij}(T,T_{\mathrm{em}})\big)}{r_{ij}(T;T_{\mathrm{em}})}
+\frac{\phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)}{r_{ij}(T;T_{\mathrm{em}})}
 $$
 $$
-g_{ij}(T,T_{\mathrm{em}})\equiv T-T_{\mathrm{em}}-\frac{r_{ij}(T;T_{\mathrm{em}})}{c_f},
+\tilde g_{ij}(T,T_{\mathrm{em}})\equiv T-T_{\mathrm{em}}-\frac{r_{ij}(T;T_{\mathrm{em}})}{c_f},
 \qquad
 r_{ij}(T;T_{\mathrm{em}})=\|\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})\|,
 \qquad
@@ -9909,9 +10044,9 @@ Here:
 The derivation below is valid under:
 
 - **(EL1)** $\mathbf X_i\in C^2([T_a,T_b];\mathbb{R}^3)$ and variations $\boldsymbol{\xi}_i$ are $C^1$ with $\boldsymbol{\xi}_i(T_a)=\boldsymbol{\xi}_i(T_b)=0$.
-- **(EL2)** $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$.
-- **(EL3)** Collision and trivial-self exclusion on active support: $r_{ij}(T;T_{\mathrm{em}})\ge r_{\min}>0$ whenever $\phi_\eta(g_{ij}(T,T_{\mathrm{em}}))\neq0$, and for $i=j$ the active support also satisfies $T-T_{\mathrm{em}}\ge\Delta_{\min}>0$ unless a separate core regularization supplies the same lower-bound control.
-- **(EL4)** Delay-root transversality on active branches: $\partial_{T_{\mathrm{em}}}g_{ij}(T,T_{\mathrm{em}})\neq0$ when $g_{ij}(T,T_{\mathrm{em}})=0$.
+- **(EL2)** $\phi_\eta$ is a normalized $C^1$ approximate identity: either $\phi_\eta\in C_c^1(\mathbb{R})$, $\phi_\eta\ge0$, $\int\phi_\eta(s)\,ds=1$, or a Gaussian/sufficiently fast-decaying mollifier with an explicit tail bound on the chosen analysis window.
+- **(EL3)** Collision and trivial-self exclusion on active support, or on the tail-controlled analysis window for noncompact mollifiers: $r_{ij}(T;T_{\mathrm{em}})\ge r_{\min}>0$ whenever the retained window admits $\phi_\eta(\tilde g_{ij}(T,T_{\mathrm{em}}))$, and for $i=j$ the retained window also satisfies $T-T_{\mathrm{em}}\ge\Delta_{\min}>0$ unless a separate core regularization supplies the same lower-bound control.
+- **(EL4)** Delay-root transversality on active branches: $\partial_{T_{\mathrm{em}}}\tilde g_{ij}(T,T_{\mathrm{em}})\neq0$ when $\tilde g_{ij}(T,T_{\mathrm{em}})=0$.
 - **(EL5)** Integrability on the chosen history window, either by finite support or sufficient tail falloff, so differentiation under the time integrals is justified.
 - **(EL6)** Delayed branch convention: only $T_{\mathrm{em}}\le T$ contributes (equivalently, the $\Theta(T-T_{\mathrm{em}})$ branch of the causal selector).
 
@@ -9930,7 +10065,7 @@ $$
 
 For the interaction kernel
 $$
-\mathcal{K}_{ij}(T,T_{\mathrm{em}})\equiv \frac{\phi_\eta(g_{ij}(T,T_{\mathrm{em}}))}{r_{ij}(T;T_{\mathrm{em}})},
+\mathcal{K}_{ij}(T,T_{\mathrm{em}})\equiv \frac{\phi_\eta(\tilde g_{ij}(T,T_{\mathrm{em}}))}{r_{ij}(T;T_{\mathrm{em}})},
 \qquad
 \hat{\mathbf{r}}_{ij}\equiv\frac{\mathbf X_i(T)-\mathbf X_j(T_{\mathrm{em}})}{r_{ij}(T;T_{\mathrm{em}})}
 $$
@@ -9940,13 +10075,13 @@ $$
 =
 -\hat{\mathbf{r}}_{ij}
 \left[
-\frac{\phi_\eta(g_{ij})}{r_{ij}^2}
+\frac{\phi_\eta(\tilde g_{ij})}{r_{ij}^2}
 +
-\frac{\phi_\eta'(g_{ij})}{c_f\,r_{ij}}
+\frac{\phi_\eta'(\tilde g_{ij})}{c_f\,r_{ij}}
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf X_i(T)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(\tilde g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -9959,6 +10094,8 @@ d\Phi_{ij}^{(\eta)}
 $$
 
 where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
+
+Plain language: the same delayed kernel current can separate into an exact scalar part and a curl-like recoil part. A scalar repair can handle only the exact part unless another declared action term carries the recoil channel.
 
 On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
 $$
@@ -9973,17 +10110,17 @@ W_{ij}^{\mathrm{rec}}(T;T_{\mathrm{em}})\,
 {r_{ij}(T;T_{\mathrm{em}})^2}
 $$
 where $W_{ij}^{\mathrm{rec}}=\lvert D_{T,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
-including self-hit branches $j=i$ when the trivial coincidence root is excluded.
+This includes nontrivial self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
 $$
-\partial_{T_{\mathrm{em}}}g_{ij}(T,T_{\mathrm{em}})
+\partial_{T_{\mathrm{em}}}\tilde g_{ij}(T,T_{\mathrm{em}})
 =
 -\left(1-\frac{\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})\cdot\mathbf V_j(T_{\mathrm{em}})}{c_f}\right)
 $$
 any branch-local smooth $f$ satisfies
 $$
-\lim_{\eta\to0^+}\int_{-\infty}^{T} f(T_{\mathrm{em}})\phi_\eta\!\big(g_{ij}(T,T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
+\lim_{\eta\to0^+}\int_{-\infty}^{T} f(T_{\mathrm{em}})\phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
 =
 \sum_{T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)}
 \frac{f(T_{\mathrm{em}})}{
@@ -9998,7 +10135,7 @@ $$
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \int_{-\infty}^{T}dT_{\mathrm{em}}\,
 \frac{\hat{\mathbf{r}}_{ij}(T;T_{\mathrm{em}})}{r_{ij}(T;T_{\mathrm{em}})^2}\,
-\phi_\eta\!\big(g_{ij}(T,T_{\mathrm{em}})\big)
+\phi_\eta\!\big(\tilde g_{ij}(T,T_{\mathrm{em}})\big)
 $$
 with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be redriven so that the retained branch law carries the receiver-normal factor $W^{\mathrm{rec}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed. In a recoil-inclusive reading, this sentence is replaced by a stronger requirement: the derivative term is retained as $\mathbf{C}_{ij}^{(\eta)}$ and tested as part of the force and conservation ledger rather than being forced to zero.
 
@@ -10036,17 +10173,19 @@ The scale-only receiver-normal branch target is theorem-grade on $W$ only when t
 
 The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only receiver-normal branch target; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
 
-The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On a coarse product chart with native variables $(T,\mathbf X)$, write the recoil current schematically as
+The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the time-normalized causal phase function $\tilde g_{ij}$ itself. On a coarse product chart with native variables $(T,\mathbf X)$, write the recoil current schematically as
 
 $$
 \mathcal{A}_{\mu}^{\mathrm{wake}}(\mathbf X,T)
 \propto
 \left\langle
-\phi_{\eta}'(g_{ij})\,\partial_{\mu}g_{ij}
+\phi_{\eta}'(\tilde g_{ij})\,\partial_{\mu}\tilde g_{ij}
 \right\rangle_{\mathrm{cg}}
 $$
 
 where $\mu$ indexes the absolute-time component and the three spatial components of the coarse chart; this is not a substrate Lorentz four-vector. The point is structural: the scalar/vector split $(\Phi_{\mathrm{wake}},\mathbf{A}_{\mathrm{wake}})$ introduced in the continuum reduction is forced by the scale/recoil split of the first variation. The scale term is the scalar-potential channel, while the retained recoil current is the vector-transport channel. In the Hodge-type language above, the electric-like channel is the exact scalar part and the magnetic-like channel is the co-exact transport part of the same delayed kernel current.
+
+Plain language: $\mathcal A_{\mu}^{\mathrm{wake}}$ is a coarse record of the derivative-of-causal-phase channel. It is not a new fundamental field and not a Lorentz four-vector at the substrate level.
 
 Before this continuum reduction, the primitive vector object is the received branch row itself. A single causal hit carries source identity, receiver identity, emission time $T_{\mathrm{em}}$, receiver time $T$, $r_{ij}(T;T_{\mathrm{em}})$, $\hat{\mathbf r}_{ij}(T;T_{\mathrm{em}})$, polarity sign $\sigma_{ij}$, and Jacobian $J_{ij}(T;T_{\mathrm{em}})$. It is vectorial because the per-hit acceleration is directed along $\hat{\mathbf r}_{ij}$, but it is not the electromagnetic vector potential. Scalar wake potentials and vector transport potentials are reconstructed or coarse-grained variables obtained only after many such line-of-action rows are integrated over a declared chart.
 
@@ -10064,13 +10203,13 @@ as the curl of the coarse recoil current and test whether its spatial and tempor
 
 The same-support local scalar route and its finite delta-jet extension are ruled out under the restricted assumptions in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian): cancelling the derivative residual forces the counterterm to change the accepted inverse-square scale term. The remaining minimal scale-only repair is the delayed-interior characteristic-tail kernel stated there. With
 $$
-u=g+\frac{r}{c_f}
+u=\tilde g+\frac{r}{c_f}
 $$
 the endpoint-clear candidate is
 $$
-K_{\mathrm{eff}}^{(\eta)}(r,g)
+K_{\mathrm{eff}}^{(\eta)}(r,\tilde g)
 =
-\int_{-\infty}^{g}
+\int_{-\infty}^{\tilde g}
 \frac{\delta_\eta(s)}
 {c_f(u-s)^2}
 ds
@@ -10078,12 +10217,12 @@ $$
 or the finite-endpoint variant with lower limit $-h_{+}$ after the characteristic gauge has cancelled the endpoint-clearance term. It satisfies
 $$
 \left(
-\partial_r-\frac{1}{c_f}\partial_g
+\partial_r-\frac{1}{c_f}\partial_{\tilde g}
 \right)
 K_{\mathrm{eff}}^{(\eta)}
 =
 -
-\frac{\delta_\eta(g)}{r^2}
+\frac{\delta_\eta(\tilde g)}{r^2}
 $$
 so it cancels the derivative-of-constraint residual without changing the accepted inverse-square scale term. Effective Lagrangian reductions should still inherit the Master EOM directly unless they explicitly choose the normalized characteristic-tail kernel and carry its boundary-increment convention on the retained chart.
 
@@ -10091,9 +10230,9 @@ The operator in this identity is the derivative along the causal characteristic.
 $$
 D_{\mathrm{char}}
 \equiv
-\partial_r-\frac{1}{c_f}\partial_g,
+\partial_r-\frac{1}{c_f}\partial_{\tilde g},
 \qquad
-u=g+\frac{r}{c_f},
+u=\tilde g+\frac{r}{c_f},
 $$
 one has $D_{\mathrm{char}}u=0$. The tail kernel is therefore the characteristic integral of the regularized hit density along $u=\mathrm{const}$. This is why it carries an endpoint convention: the repair is energy-conserving only when the endpoint boundary is characteristic to the same order as the retained chart. If the endpoint cuts across the characteristic foliation, the endpoint term is an interior Euler source and the repair has changed the force law rather than merely clearing a boundary.
 
@@ -10157,7 +10296,7 @@ $$
 =
 \frac{\kappa\,\sigma_{ij}\,|q_iq_j|}{c_f}
 \Theta(T_1-T_0)
-\frac{\delta\!\big(g_{ij}(T_1,T_0)\big)}
+\frac{\delta\!\big(\tilde g_{ij}(T_1,T_0)\big)}
 {r_{ij}(T_1,T_0)}
 $$
 For the delayed-interior characteristic-tail candidate, the Noether-energy kernel must instead be built from the same normalized action kernel,
@@ -10169,7 +10308,7 @@ $$
 K_{\mathrm{eff}}^{(\eta)}
 \!\left(
 r_{ij}(T_1,T_0),
-g_{ij}(T_1,T_0)
+\tilde g_{ij}(T_1,T_0)
 \right)
 $$
 The scalar $1/r$ expression remains the diagnostic scaffold only when this replacement has not been declared for the chart.
@@ -10188,7 +10327,7 @@ For compatible trajectory reconstruction one may use the work-integral form
 $$
 U(T)=U_\ast-\int_{T_\ast}^{T}\sum_i \mu_{\text{arch}}\,\mathbf A_i(T')\cdot\mathbf V_i(T')\,dT'
 $$
-when it is derived from the same action-level force and boundary convention. Otherwise $U(t)$ is a diagnostic history functional, not an independently proved Noether charge.
+when it is derived from the same action-level force and boundary convention. Otherwise $U(T)$ is a diagnostic history functional, not an independently proved Noether charge.
 
 The corresponding finite-window energy residual is
 $$
@@ -10220,10 +10359,10 @@ K_{\mu,\mathfrak{B}}+E_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)},
 \qquad
 \mathbf{J}_{\mathrm{mech},\mathfrak{B}}+\mathbf{J}_{\mathrm{wake,eff},\mathfrak{B}}^{(\eta)}
 $$
-defined on the same retained branch rows that enter the force residual. The energy residual above is theorem-level only after this chart declares the action-level $g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(t)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
+defined on the same retained branch rows that enter the force residual. The energy residual above is theorem-level only after this chart declares the action-level $\tilde g$, endpoint convention, branch floors, and endpoint or period-cut leakage terms. The work-integral reconstruction $U(T)$ remains a trajectory diagnostic unless it is derived from that same normalized kernel and boundary convention.
 
 **Generalized Momentum:**
-Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(t) + \mathbf{P}_{\text{wake}}(t)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
+Spatial translation invariance guarantees the conservation of total momentum, $\mathbf{P}_{\text{tot}} = \mathbf{P}_{\text{mech}}(T) + \mathbf{P}_{\text{wake}}(T)$, where the mechanical momentum of the architrinos is balanced by the momentum flux propagating within the causal wake surfaces. Boundedness of the history-aware energy is therefore the natural diagnostic against runaway behavior, not a separate postulate.
 
 For an effective reduction to promote a retained chart rather than fit it, it must also report vector residuals for the same branch pullback:
 $$
@@ -10276,7 +10415,7 @@ At the level of a branch-collapsed delayed causal action, the exact multi-time i
 $$
 S_{\text{int}}^{\text{cg}} = - \frac{\kappa}{2c_f} \int dT \int d^3X \int d^3X' \,
 \frac{\rho_q(\mathbf X, T) \rho_q(\mathbf X', T - \|\mathbf X-\mathbf X'\|/c_f)}
-{\|\mathbf X-\mathbf X'\|\,J_{\mathrm{eff}}(\mathbf X,T;\mathbf X',T')}
+{\|\mathbf X-\mathbf X'\|}
 $$
 with delayed source time
 $$
@@ -10294,15 +10433,9 @@ $$
 \frac{\mathbf{j}_q(\mathbf X',T')}{\rho_q(\mathbf X',T')}
 \qquad (\rho_q\neq 0)
 $$
-and effective Jacobian
-$$
-J_{\mathrm{eff}}(\mathbf X,T;\mathbf X',T')
-=
-\left|1-\frac{\mathbf{u}(\mathbf X',T')\cdot\hat{\mathbf{n}}(\mathbf X,\mathbf X')}{c_f}\right|
-$$
-This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. In the canonical Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
+This Eulerian double-space functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. It contains no additional source-normal denominator: the delayed density $\rho_q(\mathbf X',T')$ already carries the source-side compression or dilation produced by the Lagrangian-to-Eulerian coarse-graining. For a point source, the familiar source-velocity factor appears when the particle delta is collapsed through its emission-time root; it is not an extra denominator to multiply into the Eulerian density kernel. The correction still required by the canonical Master EOM is receiver-normal: differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
 
-The source-normal denominator is also one continuum location of the per-hit third-law defect. The corrected branch factor must additionally include the receiver-normal numerator, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
+The receiver-normal correction is also one continuum location of the per-hit third-law defect. The branch chart must distinguish source-side density transport from receiver-side crossing strength, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
 $$
 \Pi_q^{ij}
@@ -10321,7 +10454,7 @@ $$
 \right)
 $$
 
-where $\Pi_{q,J}^{[ij]}$ is the source-normal diagnostic contribution generated by the velocity dependence of the branch chart. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
+where $\Pi_{q,J}^{[ij]}$ is the antisymmetric branch-correction contribution generated when source-side density transport and receiver-normal crossing strength are derived on the same branch chart. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
 
 The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
 $$
@@ -10359,7 +10492,7 @@ E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 \zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}
 +\Pi_{\mathrm{mem}}^{ij}
 $$
-where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law.
+where $E^{ij}=\frac{1}{2}(\partial_{X^i}u^j+\partial_{X^j}u^i)$ and $\mathring E^{ij}=E^{ij}-\frac{1}{3}(\nabla_{\mathbf X}\cdot\mathbf{u})h^{ij}$ is the deviatoric strain-rate tensor. This is a comparison form borrowed from continuum mechanics and kinetic theory. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it becomes native only after $\eta_{\mathrm{cg}}$, $\zeta_{\mathrm{cg}}$, and $\Pi_{\mathrm{mem}}^{ij}$ are derived from the same delayed branch record that supplies the force law. The subscript in $\eta_{\mathrm{cg}}$ marks a coarse-grained viscosity-like coefficient and is distinct from the regulator $\eta$ in $\delta_\eta$.
 
 The constructive route is to read the transport coefficients as low-frequency moments of the delayed response kernel, not as independent material constants. If $\widetilde K_{\mathrm{shear}}(\omega)$ and $\widetilde K_{\mathrm{bulk}}(\omega)$ are the shear and bulk projections of the same branch-derived causal kernel, then the leading near-equilibrium coefficients have the schematic form
 
@@ -10405,15 +10538,17 @@ $$
 \left|
 \Delta_W K_{\mathrm{cg}}
 +\int_W
-2\eta_{\mathrm{cg}}E_{ij}E^{ij}
-+\zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})^2\,dT\,dV
+\left(
+2\eta_{\mathrm{cg}}\mathring E_{ij}\mathring E^{ij}
++\zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})^2
+\right)\,dT\,dV
 +\Delta_W E_{\mathrm{wake}}
 \right|
 }{
 |\Delta_W K_{\mathrm{cg}}|
 +\int_W
 \left(
-2\eta_{\mathrm{cg}}E_{ij}E^{ij}
+2\eta_{\mathrm{cg}}\mathring E_{ij}\mathring E^{ij}
 +\zeta_{\mathrm{cg}}(\nabla_{\mathbf X}\cdot\mathbf{u})^2
 \right)dT\,dV
 +|\Delta_W E_{\mathrm{wake}}|
@@ -10542,7 +10677,7 @@ $$
 2\pi\hbar_{\mathrm{eff}}\mathbb{Z}
 $$
 
-with the integer tied to the phase-bundle winding above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
+with the integer tied to the phase-return degree pair above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
 
 #### Topological Constraints and Assembly Stability
 
@@ -10564,22 +10699,22 @@ c_1[\theta^O,\theta^M,\theta^I]
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2
 $$
 
-where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked Noether braid chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-return degree pair of the resonance-locked Noether braid chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
 
 The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
 
-In the action-counting notation of [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md#branch-barrier-and-transition-cost), the same target is
+In the action-counting notation of [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md#branch-barrier-and-transition-cost), let $\mathfrak B_{\lambda_0(\eta)}$ and $\mathfrak B_{\lambda_1(\eta)}$ be retained finite-regulator branch charts on opposite sides of a path that crosses the specific codimension-one wall $\Sigma_{\mathrm{fold}}$. The same target is
 
 $$
 \Delta_{\mathrm{gap}}
 =
 \liminf_{\eta\to0^+}
-B_{\eta,h}(\Sigma_{\mathrm{fold}})
+B_{\mathrm{rec}}(\lambda_0(\eta),\lambda_1(\eta))
 >
 0
 $$
 
-for the specific codimension-one wall $\Sigma_{\mathrm{fold}}$ that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. The mass gap is positive exactly when the regularized fold-crossing cost survives refinement; this is the action view of the same uniform-in-$\eta$ fold-survival problem that stability packets test through Conley, Lyapunov, or Floquet data.
+for the wall that changes the targeted entry of the assembly topological charge. The wall may be a causal-root fold, a phase-lock wall, or a frame-degeneracy wall. The mass gap is positive exactly when the receiver-normal fold-crossing cost survives regulator refinement with the finite memory and regulator state declared by those charts; this is the action view of the same uniform-in-$\eta$ fold-survival problem that stability packets test through Conley, Lyapunov, or Floquet data.
 
 #### Closure Interface: Action-to-Envelope Reduction
 

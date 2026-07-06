@@ -30,7 +30,7 @@ It is:
 
 The bridge term **spacetime medium** may be used when translating toward effective spacetime language. The canonical ontology name remains **Noether sea**.
 
-In prose, use **Noether sea** as the standalone proper noun. Use **Noether sea** only as a compound modifier before another noun, as in **Noether sea density** or **Noether sea delay factor**.
+In prose, use **Noether sea** both as the standalone proper noun and as the compound modifier before another noun, as in **Noether sea density** or **Noether sea delay factor**. Reserve **Noether Sea** for title contexts and never hyphenate the term.
 
 ## Boundary With the Euclidean Void
 
@@ -95,7 +95,7 @@ $$
 
 The entries are, respectively: retained-branch closure; local polarity neutrality and pro/anti balance; convergence of the far-population wake sum; dense packing without uncontrolled branch disruption; weak homogeneous transparency to ordinary matter, photon-channel packets, and neutrino-like assemblies; a shared constitutive response for $n$, $\chi_{\text{sea}}$, $\Gamma_N$, stress, and effective metric channels; compatibility with the particle-building branch program; and a production, recycling, or relaxation route that gives the class sufficient abundance.
 
-Transparency is therefore a bounded-response condition, not a claim of zero interaction. The Noether sea has to keep direct scattering and loss below tolerance while still supplying the response assigned to clocks, photons, matter, and neutrino-like channels. For a channel family $X\in\{\gamma,\tau,\mathrm{mat},\nu\}$, the Noether sea must make direct loss, scattering, and preferred-frame visibility small while still supplying the constitutive response that the channel is supposed to recover. A compact two-row check is
+Transparency is therefore a bounded-response condition, not a claim of zero interaction. The Noether sea has to keep direct scattering and loss below tolerance while still supplying the response assigned to clocks, photons, matter, and neutrino-like channels. For a channel family $X\in\{\gamma,\mathrm{clk},\mathrm{mat},\nu\}$, where $\mathrm{clk}$ denotes the physical-clock channel whose observer readout is derived clock time $\tau$, the Noether sea must make direct loss, scattering, and preferred-frame visibility small while still supplying the constitutive response that the channel is supposed to recover. A compact two-row check is
 
 $$
 \mathcal R_{\mathrm{vis/resp},X}
@@ -213,8 +213,6 @@ Here $\Omega_N$ is a representative local Noether sea braid cadence and $C_N$ is
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md).
 
-Older parameter-ledger language may denote the baseline ambient Noether sea density by $\rho_{vac}$. In spacetime chapters, the preferred medium-density notation is $\rho_{\text{NS},0}$ for the reference density and $\rho_{\text{NS}}(\mathbf X,T)$ for the local density. When both notations appear, read $\rho_{vac}$ as the baseline ambient density parameter, not as a separate kind of substance.
-
 ## Medium Properties
 
 The Noether sea is characterized by collective variables, not by a new point-particle inventory.
@@ -258,14 +256,22 @@ S_{\rho}
 =
 S_{\mathrm{prod}}
 +S_{\mathrm{return}}
--S_{\mathrm{capture}}
--S_{\mathrm{decay}}
+-S_{\mathrm{recruit}}
+-S_{\mathrm{dissoc}}
 -S_{\mathrm{reclass}}
 +S_{\mathrm{relax}}.
 $$
-Production, return, capture, decay, reclassification, and relaxation are not separate ontologies. They are bookkeeping channels for how neutral Noether braid content enters, leaves, or changes class inside the local Noether sea population. A long-time Noether sea model is credible only when these rows share one continuity ledger with the energy and reaction records.
+Production, return, recruitment, dissociation, reclassification, and relaxation are not separate ontologies. They are bookkeeping channels for how neutral Noether braid content enters, leaves, breaks apart, or changes class inside the local Noether sea population. A long-time Noether sea model is credible only when these rows share one continuity ledger with the energy and reaction records.
 
-Strong-field recycling and pair-channel activity sharpen the same requirement. A compact source may be a net source, sink, or reclassifier of Noether sea content only after the local balance separates diffuse medium loading from collimated release and from visible pair-channel products. One useful source term split is
+Strong-field recycling and pair-channel activity sharpen the production row in the same requirement. A compact source may be a net source, sink, or reclassifier of Noether sea content only after the local balance separates diffuse medium loading from collimated release and from visible pair-channel products. One useful refinement is
+$$
+S_{\mathrm{prod}}
+=
+S_{\mathrm{BH,diff}}
++S_{\mathrm{BH,col}}
++S_{\mathrm{pair}},
+$$
+which gives the full source balance
 $$
 S_{\rho}
 =
@@ -273,7 +279,8 @@ S_{\mathrm{BH,diff}}
 +S_{\mathrm{BH,col}}
 +S_{\mathrm{pair}}
 +S_{\mathrm{return}}
--S_{\mathrm{capture}}
+-S_{\mathrm{recruit}}
+-S_{\mathrm{dissoc}}
 -S_{\mathrm{reclass}}
 +S_{\mathrm{relax}}.
 $$
@@ -534,6 +541,8 @@ Y_{X,E\to R}
 \exp(Y_{X,E\to R})
 $$
 
+The factor $B_X(E)$ is the source-branch emission factor for family $X$: it relates the actual emitted line frequency in the source branch at $E$ to the reference frequency $\nu_{X,0}$, with $B_X(E)=1$ on the reference branch. It is fixed by the source emission or calibration record, not by endpoint cadence, launch geometry, or path propagation.
+
 The minimal state needed for the first executable closure is a projection of the absolute record, not a new ontology. For a segmented path $\gamma_{E\to R}=\{\Delta s_j\}_{j=1}^N$, use
 
 $$
@@ -710,6 +719,8 @@ f_N+\epsilon_f
 }
 $$
 
+Here $\mathcal C_N[f_N]$ is a cadence-space continuity residual for the distribution $f_N$; it is not the endpoint clock-rate factor $C_N=\Gamma_N^{-1}$.
+
 so that, away from the regularization floor,
 
 $$
@@ -746,7 +757,7 @@ p_{\sigma,X}
 \mathcal R_{\mathrm{coh},X}
 $$
 
-Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the trace-free anisotropic medium-response tensor seen by channel $X$ and vanishes in the isotropic weak limit. In a segmented calculation this is the computable update
+Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the channel-$X$, trace-free projection of the Noether sea stress $\Sigma_{\text{sea}}$ and vanishes in the isotropic weak limit. It is not a separate stress ontology. In a segmented calculation this is the computable update
 
 $$
 \alpha_{\mathrm{prop},X,j}
@@ -1008,7 +1019,7 @@ Their observed inertia and mass are expected to depend on:
 - medium-dressed compliance and inertial response,
 - and how the assembly closes its causal ledger relative to the surrounding Noether sea.
 
-The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md). This page only states that the Noether sea is the ambient Noether sea against which those assembly responses are defined.
+The canonical mass-side treatment is [Particle Masses: Emergent Inertia in the Noether sea](../assemblies/particle-masses.md). This page only states that the Noether sea is the ambient medium against which those assembly responses are defined.
 
 ## Cosmological Role
 

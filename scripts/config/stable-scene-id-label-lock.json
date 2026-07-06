@@ -145,7 +145,6 @@
       "sceneName": "Noether Sea and Effective Spacetime",
       "objects": {
         "black_holes": "Black Holes",
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
         "emergent_metric": "Emergent Metric",
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
@@ -177,16 +176,6 @@
         "general_relativity_observables": "General Relativity",
         "gravitational_waves": "Gravitational Waves",
         "ppn_parameters": "PPN Parameters"
-      }
-    },
-    "content/scenes/spacetime/strong_field_regime.json": {
-      "sceneId": "strong_field_regime",
-      "sceneName": "Strong-Field Regime",
-      "objects": {
-        "black_holes": "Black Holes",
-        "cosmic_censorship_holography": "Cosmic Censorship and Holography",
-        "horizon_chirality": "Horizon Chirality",
-        "singularity_resolution": "Singularity Resolution"
       }
     },
     "content/scenes/philosophy_history/philosophy_history.json": {
