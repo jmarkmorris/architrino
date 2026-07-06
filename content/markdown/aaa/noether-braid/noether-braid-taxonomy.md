@@ -17,7 +17,7 @@ This chapter uses four evidence-level terms in a controlled way:
 
 This chapter is the front door for classifying Noether braid configurations. It names the independent axes used to describe a candidate branch before a solver or proof program decides whether that branch is retained. The taxonomy is therefore a configuration language, not a classification theorem.
 
-A Noether braid taxonomy record can be written schematically as
+A Noether braid taxonomy record for a candidate branch $\mathfrak B$ can be written schematically as
 
 $$
 \mathsf{Tax}_{\mathfrak B}
@@ -67,15 +67,15 @@ The required branch is expected to satisfy the following obligations:
 | --- | --- | --- |
 | Noether sea stability | The branch remains coherent when embedded among like Noether braid assemblies. A Euclidean-void fixture may be used first as a reduced test, but failure to retain in the void case is not by itself a final rejection if the missing stabilizer is the surrounding Noether sea. | A physical Noether braid should be stable in the medium it helps populate, not only in an isolated calculation. |
 | Volume exclusion | The branch creates a finite exclusion envelope, support band, or nested support structure that prevents ordinary overlap and supplies a geometric occupancy boundary. | Matter-like assemblies need a way to occupy volume instead of being only pointlike ledger entries. |
-| Lorentz clock/ruler deformation | A moving retained branch exports the observer clock and ruler law: the envelope geometry supplies a longitudinal-to-transverse ratio approaching $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, the extracted clock row approaches $d\tau/dt\to1/\gamma$, and preferred-frame leakage stays bounded as $v\to c_f$. | This is the route by which the assembly can recover Lorentz-compatible observer kinematics. |
+| Lorentz clock/ruler deformation | A moving retained branch exports the observer clock and ruler law: the envelope geometry supplies a longitudinal-to-transverse ratio approaching $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, the extracted clock row approaches $d\tau/dt_{\mathrm{eff}}\to1/\gamma$, and preferred-frame leakage stays bounded as $\|\mathbf V_{\mathrm{grp}}\|\to c_f$. | This is the route by which the assembly can recover Lorentz-compatible observer kinematics. |
 | Accessory-charge coupling | The branch can couple to charge-carrying rows or axial architrino structures without losing its retained record. The location is still open: inside the support, on polar sites, at axial poles, or through an external attachment row. | Fermion and electroweak bookkeeping need a retained braid scaffold that can host or couple to additional charge structure. |
-| Generation behavior | The branch supplies a controlled path from generation I to generation II and III behavior. In the current nested shell candidate route, generation II and III behavior is modeled by destabilizing one retained binary row or two retained binary rows while preserving a disciplined transition record. | The braid cannot be only a rest object; it must explain why the same broad architecture can support the observed fermion family pattern. |
+| Generation behavior | The branch supplies a controlled path from generation I to generation II and III behavior. In the nested shell candidate route, generation II and III behavior is modeled by destabilizing one retained binary row or two retained binary rows while preserving a disciplined transition record. | The braid cannot be only a rest object; it must explain why the same broad architecture can support the observed fermion family pattern. |
 | Action and energy closure | The action, energy, wake, and event ledgers close on the same branch record under the declared finite-memory window. | A visually stable configuration is not enough if it cannot conserve or route the quantities needed by later reactions. |
 | Angular-momentum and orientation rows | The branch either supplies a retained rank-three angular-momentum frame, supplies a retained lower-rank alternative, or explains why the frame row is not required for that branch. | Spin, handedness, topological charge, and reduced planar charts need a disciplined orientation record. |
 | Perturbation and recovery | The retained branch survives bounded perturbations, or it has a well-defined transition rule when a binary row destabilizes, a hinge is reached, or a support band reorganizes. | A physical assembly must be more than a single finely tuned fixture state. |
 | Downstream export discipline | Photon-channel, mass-response, topological-charge, GR/effective-metric, and app-runtime packets consume rows from a retained branch instead of substituting diagnostics for branch retention. | This keeps downstream successes from being mistaken for proof that the underlying braid configuration has already been retained. |
 
-The first live proof target is therefore a rest retained branch. The active shell starting point is `SH-0`: a group-zero, axis-neutral, common-sphere held-release fixture treated as one-band shell row evidence. The isolated `SH-0` round has not supplied a retained row, so the next shell round is `SH-0-sea`: the same rest shell branch tested inside a surrounding Noether sea of like assemblies. If one shell still cannot carry the required rows in the embedded setting, the search expands to nested shell braid rows such as `NSH-0`, frequency families such as `NSH-ISO`, `NSH-321`, and `NSH-421`, moving export rows such as `SH-L` and `NSH-L`, and lower-rank boundary families such as `PL-SH-0` and `PL-NSH-0`. The compact index below lists the main targets; the proof-map companion tracks the detailed status and open obligations for each effort.
+The first proof target is therefore a rest retained branch. The shell sequence begins with `SH-0`: a group-zero, axis-neutral, common-sphere held-release fixture treated as one-band shell row evidence. The environment-qualified continuation is `SH-0-sea`: the same rest shell branch tested inside a surrounding Noether sea of like assemblies when the missing stabilizer may be environmental response. If one shell cannot carry the required rows in the embedded setting, the search expands to nested shell braid rows such as `NSH-0`, frequency families such as `NSH-ISO`, `NSH-321`, and `NSH-421`, moving export rows such as `SH-L` and `NSH-L`, and lower-rank boundary families such as `PL-SH-0` and `PL-NSH-0`. The compact index below lists the main targets; the proof-map companion tracks the detailed status and open obligations for each effort.
 
 These obligations close in layers. A rest branch can be retained before moving export is tested. A Euclidean-void fixture can be diagnostic before a Noether sea row is added. A retained branch can feed topological-charge, photon, mass-response, generation, and accessory-architrino packets only after those packets consume the same retained record rather than substituting their own reduced diagnostics. The proof map therefore tracks both Proof ID and current disposition; the taxonomy only defines what a candidate is claiming.
 
@@ -88,7 +88,7 @@ These obligations close in layers. A rest branch can be retained before moving e
 | Angular-momentum frame | Whether three retained angular-momentum rows form a full internal 3D frame | rank-three frame, planar lower-rank braid (`PL`) |
 | Polarity placement | How `+++` and `---` populate opposite axial pairs | axis-neutral, axis-polarized |
 | Angular-momentum handedness | Orientation of the ordered rank-three frame | positive-handed, negative-handed |
-| Speed regime | Whether branch speed rows sit below, at, or above the field speed $c_f$ | sub-field, field-speed, super-field, mixed |
+| Speed regime | Whether branch speed rows sit below, at, or above the field speed $c_f$ | sub-field-speed, field-speed, super-field-speed, mixed |
 | Field-speed hinge occupancy | Whether one or more rows sit near $c_f$, where self-hit access may change | no hinge row, single-hinge, multi-hinge, terminal hinge |
 | Frequency-ratio family | Return or winding-frequency relation | iso-frequency `1:1:1`, integer-ratio `3:2:1`, doubling-frequency `4:2:1` |
 
@@ -118,7 +118,7 @@ Support geometry records how the six paths occupy their branch support. These la
 | no declared shell support | Candidate branch whose base inventory has not declared a controlled radial band or common shell. | Absence of a support claim, not proof of branch failure. |
 | shell braid | Neutral braid with one declared controlled radial support band or common shell. | Support class requiring radial control rows for retention. |
 | nested shell braid | Shell braid with three ordered radial support bands. | Support class defined in [Nested Shell Braid](nested-shell-braid.md) and used by [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md). |
-| oblate spheroidal envelope | Candidate support or envelope geometry whose path-history boundary is flattened relative to a spherical shell while treating the two transverse semiaxes as equal. | Explored support variation, not a retained class by name alone and not proof of Lorentz deformation. |
+| oblate spheroidal envelope | Candidate support or envelope geometry whose path-history boundary is flattened relative to a spherical support while treating the two transverse semiaxes as equal. | Explored support variation, not a retained class by name alone and not proof of Lorentz deformation. |
 
 Support geometry should not be confused with binary grouping or with Lorentz deformation. A branch may have shell support before it proves three persistent binary rows. Conversely, a rank-three frame may be used as a reduced diagnostic without proving that the full six-body support is a retained nested shell braid. An oblate spheroidal envelope is a geometry label: it records a branch-envelope axis ratio such as $\xi=R_{\parallel}/R_{\perp} < 1$ on the declared chart. Lorentz deformation is tested separately as a moving-branch clock/ruler export law.
 
@@ -130,9 +130,9 @@ The angular-momentum-frame axis asks whether the retained branch emits enough an
 | --- | --- | --- |
 | not assigned | The branch has not yet supplied retained angular-momentum rows. | It does not reject the branch; it only leaves the frame axis open. |
 | rank-three frame | The branch supplies three retained angular-momentum rows with nonzero frame determinant. | It does not by itself prove shell support, frequency lock, polarity placement, or certification. |
-| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because $D_{\mathrm{plane}}=0$ or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal nested-shell boundary. |
+| planar lower-rank braid (`PL`) | The branch is lower-rank on this axis because $D_{\mathrm{plane}}=0$ (defined below) or because no retained three-row frame exists. | It is not automatically the planar reduced chart and not automatically a terminal nested-shell boundary. |
 
-For a rank-three frame, the branch record includes three angular-momentum two-form classes
+For a rank-three frame, the branch record includes three angular-momentum two-form classes. Here class means a ledger-extracted angular-momentum two-form row up to the declared branch-window equivalence, not a de Rham cohomology class of the Euclidean void:
 
 $$
 [\omega_J^{(a)}],
@@ -154,7 +154,7 @@ $$
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
-The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. Such a chart may represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating pro/anti planar pair. It should therefore be named as a chart, not used as a base-family name.
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating pro/anti planar pair. It should therefore be named as a chart, not used as a base-family name.
 
 ## Polarity Placement
 
@@ -192,9 +192,9 @@ When $D_{\mathrm{plane}}=0$ or the branch has no retained three-row frame, hande
 
 ## Speed, Hinge, And Frequency Families
 
-The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field rows enter regimes where delayed self-interaction can become available. In nested `I:M:O` notation, these rows are assigned only after the retained branch supplies the role map.
+The speed regime records how retained speed rows relate to the field speed $c_f$. Sub-field-speed rows satisfy speeds below the local field-speed hinge; field-speed rows sit at the transition scale; super-field-speed rows enter regimes where delayed self-interaction can become available. In nested `I:M:O` notation, these rows are assigned only after the retained branch supplies the role map.
 
-Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from target-hit-only access toward target plus self-hit access, provided the same-source causal-root ledger and transversality rows also close.
+Field-speed hinge occupancy is a separate axis. It asks which row, if any, operates within a declared tolerance of $c_f$, and it must say which speed statistic is being tested: transverse carrier speed, orbital/circulation speed, or another branch-declared component. A hinge row is not automatically a self-hit row. It is the speed-regime condition at which the branch can transition from the partner-only regime toward a ledger with both partner-hit and self-hit access, provided the same-source causal-root ledger and transversality rows also close.
 
 | Hinge value | Meaning |
 | --- | --- |
@@ -226,7 +226,7 @@ Proof status prevents taxonomy names from being mistaken for results. It is meta
 
 An isolated branch test is a diagnostic, not automatically a retention proof. It can show that a proposed ledger closes when neighboring braid response is suppressed or held fixed, but if the branch is stable only inside a Noether sea containing like assemblies, then retention has not been reached until that environmental row closes on the same record. That test belongs to the local Noether sea row and should not be inferred from the taxonomy name, the support geometry, or a successful rest-branch fixture.
 
-All certified braids must reproduce Lorentz-compatible clock and ruler deformation at the observer-export layer when they are tested in a homogeneous moving-branch regime. The same retained record must then export a ruler row whose longitudinal-to-transverse deformation approaches $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, a clock row whose extracted rate approaches $d\tau/dt\to1/\gamma$, and bounded preferred-frame leakage through the declared $\epsilon_{\text{LV}}$ or two-way anisotropy diagnostic. Here `Lorentz deformation` means that moving-branch export law, not the mere presence of an oblate support label. An oblate spheroidal envelope may supply the geometric projection used to read $\xi$, but it becomes Lorentz-compatible only when the moving branch supplies the clock row and leakage bound on the same retained record.
+All certified braids must reproduce Lorentz-compatible clock and ruler deformation at the observer-export layer when they are tested in a homogeneous moving-branch regime. The same retained record must then export a ruler row whose longitudinal-to-transverse deformation approaches $\xi=R_{\parallel}/R_{\perp}\to1/\gamma$, a clock row whose extracted rate approaches $d\tau/dt_{\mathrm{eff}}\to1/\gamma$, and bounded preferred-frame leakage through the declared $\epsilon_{\text{LV}}$ or two-way anisotropy diagnostic. Here `Lorentz deformation` means that moving-branch export law, not the mere presence of an oblate support label. An oblate spheroidal envelope may supply the geometric projection used to read $\xi$, but it becomes Lorentz-compatible only when the moving branch supplies the clock row and leakage bound on the same retained record.
 
 Proof fixtures are controlled proof or simulation setups, not base braid families. A fixture is usually idealized in at least one declared way: it may suppress perturbations, constrain the branch geometry, hold the group velocity fixed, freeze a frequency or hinge relation, or omit the surrounding Noether sea population while the local branch rows are tested. The purpose is to reduce the mathematical configuration space enough that a specific closure question can be asked. A fixture result is therefore conditional on the declared constraints. Whether a row is retained or rejected inside the fixture, the next proof stage may need to relax one constraint at a time, such as adding the surrounding Noether sea response.
 
@@ -249,8 +249,8 @@ The regime suffix names what is being tested:
 
 | Suffix | Meaning |
 | --- | --- |
-| `0` | Rest-branch qualification with $\mathbf{V}_{\mathrm{grp}}=0$. |
-| `L` | Moving-branch continuation with $\mathbf{V}_{\mathrm{grp}}>0$ and Lorentz clock/ruler export. |
+| `0` | Rest-branch qualification with $\mathbf{V}_{\mathrm{grp}}=\mathbf 0$. |
+| `L` | Moving-branch continuation with $\|\mathbf V_{\mathrm{grp}}\| > 0$ and Lorentz clock/ruler export. |
 | `AX` | Axis-population comparison across axis-neutral and axis-polarized placements. |
 | `ISO` | Iso-frequency family, `1:1:1`. |
 | `321` | Integer-ratio family, example `3:2:1`. |
@@ -270,7 +270,7 @@ Read a proof packet with three independent labels:
 | --- | --- | --- |
 | Proof ID | Which branch configuration and proof environment are being tested? | `NB-0`, `SH-0`, `SH-0-sea`, `NSH-421`, `PL-NSH-0` |
 | Proof-stack role | What job is this packet doing for that branch? | branch target, row evidence, diagnostic/rejection, fixture, chart, downstream consumer |
-| Current disposition | What is the present result under the packet's declared assumptions? | candidate, not tested, blocked, rejected, `not_retained`, retained |
+| Current disposition | What is the present result under the packet's declared assumptions? | candidate, not tested, blocked, rejected, not retained (runtime spelling `not_retained`), retained |
 
 The ID alone never supplies disposition. A candidate `SH-0-sea` embedded test, a retained `SH-0-sea` branch stable among like assemblies, and a certified `SH-0-sea` branch with observer-export closure are different proof states even though they share the same Proof ID.
 

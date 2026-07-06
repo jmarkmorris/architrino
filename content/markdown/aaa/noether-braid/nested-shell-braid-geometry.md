@@ -1,6 +1,6 @@
 # Nested Shell Braid Geometry
 
-This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It sits in the Noether sea and effective-spacetime branch because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Nested Shell Braid](nested-shell-braid.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md).
+This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Nested Shell Braid](nested-shell-braid.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md).
 
 The nested shell braid is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell braid's effective exclusion envelope.
 
@@ -71,7 +71,7 @@ D_{a,X}(\mathbf X,T)
 }
 $$
 
-The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining window $W_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a source constituent $j$ at emission time $T_{\mathrm{em}}$, define
+The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a source constituent $j$ at emission time $T_{\mathrm{em}}$, define
 
 $$
 r_{\mathbf Xj}(T;T_{\mathrm{em}})
@@ -94,16 +94,41 @@ J_{\mathbf Xj}(T;T_{\mathrm{em}})
 \{T_{\mathrm{em}}<T:g_{\mathbf Xj}(T;T_{\mathrm{em}})=0\}
 $$
 
-Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)$ retain the ambient branches, let $\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$, and let $W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})=\lvert D_{T,\mathbf Xj}/D_{s,\mathbf Xj}\rvert$ be the receiver-normal branch strength on the same root row. Then the simple-root diagnostic is
+Let $\mathcal{I}_a(T)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(T)$. Let $w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$.
+
+The receiver-normal factor needs a declared probe state because the sample event $(\mathbf X,T)$ is not itself an architrino worldline. For clock, packing, and stationary interface-level scans, use a void-stationary probe, $\mathbf V_{\mathrm{probe},X}(\mathbf X,T)=\mathbf 0$, so $D_{T,\mathbf Xj}^{(X)}=c_f$. For penetration along a declared test path, use $\mathbf V_{\mathrm{probe},\mathrm{penetration}}=v_{\mathrm{path}}\hat{\mathbf{u}}$ at the sample event. A moving reaction-corridor scan must declare its probe velocity before this diagnostic is evaluated. With that channel probe fixed, define
+
+$$
+D_{s,\mathbf Xj}(T;T_{\mathrm{em}})
+\equiv
+c_f-\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_{\mathrm{em}}),
+\qquad
+D_{T,\mathbf Xj}^{(X)}(T;T_{\mathrm{em}})
+\equiv
+c_f-\mathbf V_{\mathrm{probe},X}(\mathbf X,T)\cdot\hat{\mathbf{r}}_{\mathbf Xj}(T;T_{\mathrm{em}})
+$$
+
+and
+
+$$
+W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})
+\equiv
+\left|
+\frac{D_{T,\mathbf Xj}^{(X)}(T;T_{\mathrm{em}})}
+{D_{s,\mathbf Xj}(T;T_{\mathrm{em}})}
+\right|
+$$
+
+as the receiver-normal branch strength on the same root row. Then the simple-root diagnostic is
 
 $$
 \mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf X,T;\ell)
 =
-W_\ell *
+K_\ell *
 \sum_{j\in\mathcal{I}_a(T)}
 \sum_{T_{\mathrm{em}}\in\mathcal{C}_{\mathbf Xj}(T)}
 w_{j,a}^{\mathrm{lock}}(T_{\mathrm{em}};T)
-\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})}
 {r_{\mathbf Xj}^2(T;T_{\mathrm{em}})}
 $$
 
@@ -112,11 +137,11 @@ and
 $$
 \mathcal{W}_{\mathrm{sea},X}^{\mathrm{ambient}}(\mathbf X,T;\ell)
 =
-W_\ell *
+K_\ell *
 \sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
 \sum_{T_{\mathrm{em}}\in\mathcal{C}_{\mathbf Xj}(T)}
 w_j^{\mathrm{sea}}(T_{\mathrm{em}};T)
-\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})}
+\frac{\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})}
 {r_{\mathbf Xj}^2(T;T_{\mathrm{em}})}
 $$
 
@@ -211,10 +236,10 @@ $$
 =
 \frac{
 \sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
-W_\ell(\mathbf X-\mathbf{X}_k(T))f_k(T)
+K_\ell(\mathbf X-\mathbf{X}_k(T))f_k(T)
 }{
 \sum_{k\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,T)}
-W_\ell(\mathbf X-\mathbf{X}_k(T))
+K_\ell(\mathbf X-\mathbf{X}_k(T))
 }
 $$
 
@@ -293,7 +318,6 @@ Q_X
 \qquad
 \alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
 =
-\kappa\,
 \left\|
 \mathcal{E}_{X}
 \!\left(
@@ -302,7 +326,7 @@ Q_X
 \right\|_X
 $$
 
-The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after force signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the source branch record.
+The projection $\Pi_X$ selects the channel being tested and $Q_X$ removes only equivalences that preserve that channel's benchmark. The intensity $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios. The dimensional coupling $\kappa$ and polarity factors enter only through retained channel entries that already require them, such as the signed acceleration used by penetration. Clock-coupling keeps cadence and phase entries that perturb the clock functional. Reaction-corridor calculations keep the oriented exchange, line-defect, color, weak, or provenance entries declared by that corridor. Packing keeps scalar or tensor exclusion-stress magnitude after force signs are discarded. Penetration keeps the local acceleration and phase-disruption entries along the tested path. These channels may use different $\Pi_X$, but they must not change the causal-root kernel, the assembly/complement split, or the source branch record.
 
 The first concrete projector family can be stated as retained entries of $\mathcal{B}_{\mathbf Xj}^{(T_{\mathrm{em}})}$ plus derived local entries computed from the same branch. For the clock channel,
 
@@ -637,7 +661,7 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ## Oblate Spheroidal Form
 
-The nested shell braid structure is anisotropic. The three shell binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-apparent-energy conditions. The time-averaged envelope is therefore not perfectly spherical.
+The nested shell braid structure is anisotropic. The three shell binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-energy or weak-stress conditions. The time-averaged envelope is therefore not perfectly spherical.
 
 The leading boundary of the exclusion envelope is set primarily by the **outer binary**:
 
@@ -665,7 +689,7 @@ for the transverse scale ratio relative to a stated reference envelope. The pair
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
-\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dT}\to\xi\to\frac{1}{\gamma}
+\frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
 but this is a closure target linking the clock channel to the oblate spheroidal envelope. It should not be used to define $\xi$.
 
@@ -689,6 +713,7 @@ $$
 \equiv
 \frac{1}{\sqrt{1-v^2/c_{\text{eff}}^2}}
 $$
+Let $T_{\mathrm{ref}}$ denote the rest-branch reference period for the same homogeneous branch chart.
 The longitudinal return time for an envelope semiaxis $R_{\parallel}$ is
 $$
 T_{\parallel}
@@ -705,7 +730,7 @@ T_{\perp}
 =
 \frac{2R_{\perp}}{c_{\text{eff}}}\gamma_{\text{eff}}
 $$
-Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_0)$ gives
+Requiring $T_{\parallel}=T_{\perp}+O(\epsilon_{\mathrm{LV}}T_{\mathrm{ref}})$ gives
 $$
 \xi_q(v)
 =
@@ -718,7 +743,7 @@ The role of the geometry chapter is to record this as an envelope projection, no
 
 This distinction prevents an outer-only shortcut. An outer-binary oblation model can estimate the visible deformation channel, while a mature Lorentz closure must show that the same branch update also determines the clock factor
 $$
-\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_0}
+\gamma_{\mathrm{clk}}^{(q)}(v)=\frac{T_q(v)}{T_{\mathrm{ref}}}
 $$
 and that the admitted branches satisfy
 $$

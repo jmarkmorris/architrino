@@ -6,7 +6,7 @@ It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md
 
 The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
-This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{v}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
+This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
 ## Document Role
 
@@ -32,7 +32,7 @@ s_a,\,
 \right)
 \right\}_{a=1}^{3}.
 $$
-Here $f_a$ is the layer frequency, $r_a$ the characteristic radius or retained lever arm, $E_a$ the retained branch-energy row, $s_a=\|\mathbf{v}_a\|$ the scalar tangential speed, $\phi_a$ the phase origin or offset, $\hat{\mathbf n}_a$ the orbital-plane normal, and $\mathcal{L}_a$ the active causal-root ledger data for that layer. On a circular layer chart the kinematic identity is
+Here $f_a$ is the layer frequency, $r_a$ the characteristic radius or retained lever arm, $E_a$ the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ the scalar tangential speed, $\phi_a$ the phase origin or offset, $\hat{\mathbf n}_a$ the orbital-plane normal, and $\mathcal{L}_a$ the active causal-root ledger data for that layer. On a circular layer chart the kinematic identity is
 $$
 s_a=2\pi f_a r_a.
 $$
@@ -107,14 +107,14 @@ v_M(T)=c_f+\delta v_M(T),
 \qquad
 \langle \delta v_M\rangle_W=0
 $$
-over the declared window $W$. Each regularized crossing of the $J=0$ boundary is a caustic transit with finite impulse
+over the declared window $W$. Each regularized crossing of the $J_M^{\mathrm{src}}(\theta_M)=0$ boundary is a caustic transit with finite impulse
 $$
-\Delta\mathbf{v}_{M,n}
+\Delta\mathbf{V}_{M,j}
 =
-\int_{T_n^-}^{T_n^+}
+\int_{T_j^-}^{T_j^+}
 \mathbf{A}_M^{(\eta)}(T)\,dT,
 \qquad
-\left\|\Delta\mathbf{v}_{M,n}\right\|<\infty
+\left\|\Delta\mathbf{V}_{M,j}\right\|<\infty
 $$
 rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
@@ -123,7 +123,7 @@ It is not a claim that every Noether braid regime has the middle binary exactly 
 
 ### Assumption 2 (Exact Integer Phase Closure)
 
-Let the outer period be $T_O=\frac{1}{f_O}$. Assume that when the outer ring completes one full cycle, the middle and inner rings also land exactly at the beginning of their own cycles. Equivalently, there exist integers
+Let the outer period be $P_O=\frac{1}{f_O}$. Assume that when the outer ring completes one full cycle, the middle and inner rings also land exactly at the beginning of their own cycles. Equivalently, there exist integers
 $$
 m,n\in\mathbb{N},
 \qquad
@@ -131,29 +131,29 @@ m,n\in\mathbb{N},
 $$
 such that
 $$
-\theta_O(t+T_O)=\theta_O(t)+2\pi
+\theta_O(T+P_O)=\theta_O(T)+2\pi
 $$
 $$
-\theta_M(t+T_O)=\theta_M(t)+2\pi m
+\theta_M(T+P_O)=\theta_M(T)+2\pi m
 $$
 $$
-\theta_I(t+T_O)=\theta_I(t)+2\pi n
+\theta_I(T+P_O)=\theta_I(T)+2\pi n
 $$
 
 Therefore the canonical `I:M:O` frequency triplet is $f_I:f_M:f_O=n:m:1$. Equivalently, in outer-normalized order, $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
 
 Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
 
-This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_k=q_k\Omega t+\phi_k$ are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
+This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_k(T)=q_k\omega_O T+\phi_k$, with $\omega_O=2\pi f_O$, are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
 
 ### Assumption 3 (Fixed Relative Phase Lock)
 
 The lock is not just commensurate in frequency. It also carries fixed relative phase offsets over time. One convenient formulation is
 $$
-\phi_{MO}(t)\equiv \theta_M(t)-m\theta_O(t)=\phi_{MO}^\ast
+\phi_{MO}(T)\equiv \theta_M(T)-m\theta_O(T)=\phi_{MO}^\ast
 $$
 $$
-\phi_{IO}(t)\equiv \theta_I(t)-n\theta_O(t)=\phi_{IO}^\ast
+\phi_{IO}(T)\equiv \theta_I(T)-n\theta_O(T)=\phi_{IO}^\ast
 $$
 with constants $\phi_{MO}^\ast,\phi_{IO}^\ast$.
 
@@ -176,17 +176,17 @@ $$
 Exact integer phase closure says the covering degrees over one outer cycle are
 
 $$
-\frac{1}{2\pi}\oint_{T_O}d\theta_M=m,
+\frac{1}{2\pi}\oint_{S^1_O}d\theta_M=m,
 \qquad
-\frac{1}{2\pi}\oint_{T_O}d\theta_I=n
+\frac{1}{2\pi}\oint_{S^1_O}d\theta_I=n
 $$
 
 or equivalently
 
 $$
-\oint_{T_O}\vartheta_{MO}=0,
+\oint_{S^1_O}\vartheta_{MO}=0,
 \qquad
-\oint_{T_O}\vartheta_{IO}=0
+\oint_{S^1_O}\vartheta_{IO}=0
 \quad
 (\mathrm{mod}\ 2\pi)
 $$
@@ -231,23 +231,23 @@ In this branch, the middle binary is the curvature carrier. Between caustic even
 $$
 \Omega_{\mathrm{phase}}
 =
-\sum_n
-\mathcal{F}_n\,
-\delta_\eta(\theta_M-\theta_{M,n}^{\ast})\,
+\sum_j
+\mathcal{F}_j\,
+\delta_\eta(\theta_M-\theta_{M,j}^{\ast})\,
 d\theta_M\wedge d\theta_O
 +
 \Omega_{\mathrm{reg}}
 $$
 
-where $\theta_{M,n}^{\ast}$ are the middle caustic phases and $\mathcal{F}_n$ is proportional to the finite caustic impulse $\Delta\mathbf{v}_{M,n}$ and its wake-history increment on the retained branch. The fulcrum statement is therefore geometric: outer/inner energy routing changes only at the middle-caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
+where $\theta_{M,j}^{\ast}$ are the middle caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{M,j}$ and its wake-history increment on the retained branch. The fulcrum statement is therefore geometric: outer/inner energy routing changes only at the middle-caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
-A minimal test functional can be written before committing to a particular lock. Let $q_I=n$, $q_M=m$, and $q_O=1$, with phase variables $\theta_k=q_k\Omega t+\phi_k$. For a low-order truncation depth $L$, define
+A minimal test functional can be written before committing to a particular lock. Let $q_I=n$, $q_M=m$, and $q_O=1$, with phase variables $\theta_k(T)=q_k\omega_O T+\phi_k$ and $\omega_O=2\pi f_O$. For a low-order truncation depth $L$, define
 $$
-S_L(t)
+S_L(T)
 =
 \sum_{k\in\{I,M,O\}}\sum_{a=1}^{L}
-A_{k,a}(\beta_k,r_k,\eta,D_s,D_T,W^{\mathrm{rec}},J)\,
-e^{ia(q_k\Omega t+\phi_k)}
+A_{k,a}(\beta_k,r_k,\eta,D_s,D_T,W^{\mathrm{rec}},J_k^{\mathrm{src}})\,
+e^{ia(q_k\omega_O T+\phi_k)}
 $$
 The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
 They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
@@ -260,17 +260,17 @@ A_{M,a}
 \frac{
 w_{M,a}^{\mathrm{rec}}(\theta_M)
 }{
-|J_M(\theta_M)|+\eta_J
+|J_M^{\mathrm{src}}(\theta_M)|+\eta_J
 }
 e^{-ia\theta_M}\,d\theta_M
 $$
 
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_T$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
-The cycle-averaged cancellation score is
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_T$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M^{\mathrm{src}}$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
+The cycle-averaged cancellation score over one outer-period window starting at $T_\ast$ is
 $$
 C_L(m,n;\phi)
 =
-\frac{1}{T}\int_0^T |S_L(T')|^2\,dT'
+\frac{1}{P_O}\int_{T_\ast}^{T_\ast+P_O} |S_L(T')|^2\,dT'
 =
 \sum_{\nu}
 \left|
@@ -282,7 +282,7 @@ The doubling-frequency claim becomes a theorem target only if $(m,n)=(2,4)$ mini
 
 **Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two layers only when their finite harmonic supports overlap:
 $$
-\nu\in q_k\{1,\ldots,L\}\cap q_j\{1,\ldots,L\}
+\nu\in q_k\{1,\ldots,L\}\cap q_h\{1,\ldots,L\}
 $$
 If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the doubling-frequency candidate $(m,n)=(2,4)$, the first Outer/Middle overlap is $\nu=2$ via $(O,a=2)$ and $(M,a=1)$; the first all-layer overlap is
 $$
@@ -300,11 +300,11 @@ The selection therefore has two independent requirements. The topological requir
 Topologically, the same $\nu=4$ statement says the doubling-frequency lock is the first common cover of the three phase circles. The covering maps can be written
 
 $$
-T^O
+S^1_O
 \xleftarrow{\ \times m\ }
-T^M
+S^1_M
 \xleftarrow{\ \times n/m\ }
-T^I
+S^1_I
 $$
 
 when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each layer double-covers the one above it. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins.
@@ -472,7 +472,7 @@ $$
 C_{\eta}\,a^{-p_{\mathrm{fold}}}
 $$
 
-with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. For a generic Whitney $A_2$ fold, the normal form gives the square-root caustic scaling and the pre-cutoff exponent
+with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized middle-caustic impulse through the retained branch record; it is not the unintegrated force or potential row. In a local fold coordinate $x=\theta_M-\theta_{M,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $a^{-3/2}$. The corresponding unintegrated force-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
 $$
 p_{\mathrm{fold}}=\frac{3}{2}.
 $$
@@ -594,11 +594,11 @@ with flat phase connection, positive Floquet gap off $G$, and $|D_{\mathrm{plane
 
 ### Recurrence Diagnostic
 
-The finite-$\eta$ return-map test should also reject transient near-locks. For a sampled returned-branch trajectory
+The finite-$\eta$ return-map test should also reject transient near-locks. For a sampled returned-branch trajectory, let $\boldsymbol{\psi}_i=(\theta_{O,i},\phi_{MO,i},\phi_{IO,i})$ be the returned phase row, $\mathbf{r}^{\mathrm{lay}}_i=(r_{O,i},r_{M,i},r_{I,i})$ the layer-radius row, $\boldsymbol{\beta}_i=(\beta_{O,i},\beta_{M,i},\beta_{I,i})$ the speed-factor row, and $\mathcal{R}^{\mathrm{rec}}_i$ the returned branch record containing active-root ledger data, middle-caustic impulse rows, and retained causal-wake history variables. The sampled state is
 $$
-z_i=(\phi_i,a_i,\nu_i,\ell_i,\hat{\mathbf{n}}_{O,i},\hat{\mathbf{n}}_{M,i},\hat{\mathbf{n}}_{I,i})\in\mathcal{S}_{m,n}
+z_i=(\boldsymbol{\psi}_i,\mathbf{r}^{\mathrm{lay}}_i,\boldsymbol{\beta}_i,\mathcal{R}^{\mathrm{rec}}_i,\hat{\mathbf{n}}_{O,i},\hat{\mathbf{n}}_{M,i},\hat{\mathbf{n}}_{I,i})\in\mathcal{S}_{m,n}.
 $$
-define a recurrence matrix
+Define a recurrence matrix
 $$
 Q^{(\epsilon)}_{ij}
 =

@@ -46,49 +46,49 @@ It does not certify branch retention by itself and does not create a base Proof 
 
 ## Source Of The Three Entries
 
-The first two entries come from the causal-root complex of the Master Equation. On a retained branch chart, active roots are split by source identity and by Jacobian sign. For the self-hit sector,
+The first two entries come from the causal-root complex of the Master Equation. On a retained branch chart, active roots are split by source identity and by Jacobian sign. Let $b_\ell$ denote the formal generator attached to active root row $\ell$. The modules below are free $\mathbb{Z}$-modules, so the ledger invariant is their rank. For the self-hit sector,
 $$
 C_{s,+}(\mathfrak B)
 =
-\mathrm{span}\{s_\ell:\text{self root},\ J_\ell>0\},
+\mathbb{Z}\langle b_\ell:\text{self root},\ J_\ell>0\rangle,
 \qquad
 C_{s,-}(\mathfrak B)
 =
-\mathrm{span}\{s_\ell:\text{self root},\ J_\ell<0\}.
+\mathbb{Z}\langle b_\ell:\text{self root},\ J_\ell<0\rangle.
 $$
 For the partner-hit sector,
 $$
 C_{p,+}(\mathfrak B)
 =
-\mathrm{span}\{s_\ell:\text{partner root},\ J_\ell>0\},
+\mathbb{Z}\langle b_\ell:\text{partner root},\ J_\ell>0\rangle,
 \qquad
 C_{p,-}(\mathfrak B)
 =
-\mathrm{span}\{s_\ell:\text{partner root},\ J_\ell<0\}.
+\mathbb{Z}\langle b_\ell:\text{partner root},\ J_\ell<0\rangle.
 $$
 The unsigned ledgers are
 $$
 N_s
 =
-\dim C_{s,+}+\dim C_{s,-},
+\operatorname{rank}_{\mathbb{Z}} C_{s,+}+\operatorname{rank}_{\mathbb{Z}} C_{s,-},
 \qquad
 M_p
 =
-\dim C_{p,+}+\dim C_{p,-}.
+\operatorname{rank}_{\mathbb{Z}} C_{p,+}+\operatorname{rank}_{\mathbb{Z}} C_{p,-}.
 $$
 The signed degrees
 $$
 D_s
 =
-\dim C_{s,+}-\dim C_{s,-},
+\operatorname{rank}_{\mathbb{Z}} C_{s,+}-\operatorname{rank}_{\mathbb{Z}} C_{s,-},
 \qquad
 D_p
 =
-\dim C_{p,+}-\dim C_{p,-}
+\operatorname{rank}_{\mathbb{Z}} C_{p,+}-\operatorname{rank}_{\mathbb{Z}} C_{p,-}
 $$
 are not extra entries in the compact assembly topological charge, but they are required side data and form the conserved-degree refinement $[\mathfrak B]_{\mathrm{deg}}$. A solver that reports only $N_s$ and $M_p$ has counted roots without proving which opposite-sign pairs can be born, die, or persist under deformation.
 
-Equivalently, each source sector is a $\mathbb{Z}_2$-graded two-term root complex
+Equivalently, each source sector is a $\mathbb{Z}_2$-graded two-term root module, inheriting the signed causal-root-complex reading from [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex):
 $$
 C_{\sigma,\bullet}
 =
@@ -100,48 +100,48 @@ The unsigned ledgers $N_s$ and $M_p$ are ranks of a chosen presentation. They ar
 $$
 \chi(C_{\sigma,\bullet})
 =
-\dim C_{\sigma,+}-\dim C_{\sigma,-}
+\operatorname{rank}_{\mathbb{Z}} C_{\sigma,+}-\operatorname{rank}_{\mathbb{Z}} C_{\sigma,-}
 =
 D_\sigma.
 $$
 A generic fold birth adds one positive and one negative generator, so the presentation rank changes by two while $\chi(C_{\sigma,\bullet})$ is unchanged.
 
-The geometric reading is intersection-theoretic. On a lifted finite-memory strip, each connected retained causal-locus component has an oriented intersection number with a generic receiver-time fiber. Let $\mathcal L_\sigma$ be the retained causal-locus chain in sector $\sigma\in\{s,p\}$ and let $F_{t_0}$ be a generic receiver-time fiber. Then
+The geometric reading is intersection-theoretic. On a lifted finite-memory strip, each connected retained causal-locus component has an oriented intersection number with a generic receiver-time fiber. Let $\mathcal L_\sigma$ be the retained causal-locus chain in sector $\sigma\in\{s,p\}$ and let $F_{T_\ast}$ be a generic receiver-time fiber at fixed absolute time $T_\ast$. Then
 $$
 D_\sigma
 =
-\left\langle[\mathcal L_\sigma],[F_{t_0}]\right\rangle.
+\left\langle[\mathcal L_\sigma],[F_{T_\ast}]\right\rangle.
 $$
-On a regular one-parameter family,
+On a regular one-parameter family with parameter $\mu$,
 $$
-\frac{d}{d\lambda}
-\left\langle[\mathcal L_\sigma(\lambda)],[F_{t_0}]\right\rangle
+\frac{d}{d\mu}
+\left\langle[\mathcal L_\sigma(\mu)],[F_{T_\ast}]\right\rangle
 =0.
 $$
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
 
-The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
+The third entry comes from the phase-return chart of a resonance-locked Noether braid. Let $\theta_O,\theta_M,\theta_I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $P_O$ means
 $$
-\theta_O(t+T_O)=\theta_O(t)+2\pi,
+\theta_O(T+P_O)=\theta_O(T)+2\pi,
 $$
 $$
-\theta_M(t+T_O)=\theta_M(t)+2\pi m,
+\theta_M(T+P_O)=\theta_M(T)+2\pi m,
 \qquad
-\theta_I(t+T_O)=\theta_I(t)+2\pi n.
+\theta_I(T+P_O)=\theta_I(T)+2\pi n.
 $$
 Equivalently, the relative-phase one-forms
 $$
-\vartheta_M=d\theta^M-m\,d\theta^O,
+\vartheta_M=d\theta_M-m\,d\theta_O,
 \qquad
-\vartheta_I=d\theta^I-n\,d\theta^O
+\vartheta_I=d\theta_I-n\,d\theta_O
 $$
 have integer holonomy and become flat on a promoted phase-locked branch. Let $\rho_O:S^1_O\to\mathfrak B$ be one retained outer return cycle. The shorthand
 $$
-c_1[\theta^O,\theta^M,\theta^I]
+c_1[\theta_O,\theta_M,\theta_I]
 =
 \left(
-\operatorname{deg}(\theta^M\circ\rho_O),\,
-\operatorname{deg}(\theta^I\circ\rho_O)
+\operatorname{deg}(\theta_M\circ\rho_O),\,
+\operatorname{deg}(\theta_I\circ\rho_O)
 \right)
 =(m,n)
 $$
@@ -187,7 +187,7 @@ $$
 \left(
 N_s,\,
 M_p,\,
-c_1[\theta^O,\theta^M,\theta^I]
+c_1[\theta_O,\theta_M,\theta_I]
 \right)
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
@@ -198,19 +198,17 @@ A useful refinement is a branch-preserving chirality label
 $$
 \chi_{\mathrm{fr}}\in\mathbb{Z}_2.
 $$
-This is not part of the base triple until the branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
+The richer ordered-braid chirality label $\chi_c$ is introduced in [Nested Shell Braid](nested-shell-braid.md#reduced-nested-shell-braid-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ## Invariance And Allowed Transitions
 
 The assembly topological charge is designed to be locally invariant. Between branch boundaries, the implicit-function theorem transports each simple active root continuously, so $N_s$, $M_p$, $D_s$, and $D_p$ remain constant. At a generic fold, one positive and one negative root are created or annihilated. Therefore
 $$
-\Delta N_s\in 2\mathbb{Z}
-\quad\text{or}\quad
-\Delta M_p\in 2\mathbb{Z},
+\left(\Delta N_s,\Delta M_p\right)\in\{(\pm2,0),(0,\pm2)\},
 \qquad
 \Delta D_s=\Delta D_p=0
 $$
-for an ordinary fold-pair event in the corresponding sector.
+for an ordinary fold-pair event. In the sector where the fold occurs, the unsigned count changes by $\pm2$ while both signed degrees remain unchanged.
 
 Cusp or higher singular strata are not automatically governed by the generic fold law. They require a separate regularized normal form before their ledger surgery can be promoted. Likewise, $c_1=(m,n)$ remains fixed under deformation only while the return-map degree pair is unchanged, the relative-phase connection stays flat, and the plane-independence floor remains positive. A loss of resonance lock, a plane-degeneracy transition, or a branch-fold event that changes the return chart can change the phase entry.
 
