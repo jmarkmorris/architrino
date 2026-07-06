@@ -71,7 +71,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 201 | `d90617178262731f` |
+| [AGENTS.md](../../AGENTS.md) | 201 | `794ebe8ef9a8d1ff` |
 | [README.md](../../README.md) | 229 | `9edea65d550f36ce` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `15ba33ec6351c320` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
