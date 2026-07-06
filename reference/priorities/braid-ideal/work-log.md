@@ -6,6 +6,26 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-06 - Six-Point Equivariant Reduction Proof Audit
+
+Captured the operator-supplied proofing response in [Six-Point Equivariant Reduction Proof Audit](six-point-equivariant-reduction-proof-audit-2026-07-06.md). Decision: priority-only proof routing, no corpus promotion, no score movement, and no retained-branch claim. The audit reorders the first two local targets: `six_point_symmetry_invariant_lemma` is now the first proof-moving object, while `angular_momentum_held_release_sweep` is the capped diagnostic witness.
+
+Live scaffold: [six-point-symmetry-invariant-lemma-row.mjs](../../../scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs) remains fail-closed at `same_record_force_law_equivariance_proof_for_six_point_symmetry_invariant_lemma` / `six_point_symmetry_invariant_lemma_row.force_law_equivariance_proof_ref`. The audit explicitly forbids importing frozen-octahedral mean-power values as held-release no-return hypotheses; those values remain motivation only because they were certified on a different chart.
+
+### 2026-07-06 - Angular-Momentum Held-Release Sweep Spec
+
+Captured the operator-supplied angular-momentum construction in [Angular-Momentum Held-Release Sweep Spec](angular-momentum-held-release-sweep-spec.md). Decision: priority-only implementation and proofing spec, no corpus promotion, no score movement, and no retained-branch claim. The packet makes the first sweep axis-neutral rigid rotation about $(1,1,1)/\sqrt{3}$, defines surface-speed fraction as $v_t=f_v c_f$, separates `kick-at-release` from history-consistent `moving-prehistory`, and records the correction that causal roots use wake propagation at field speed $c_f$, not light delay.
+
+Implementation boundary: [held-release-causal-wake-toy.mjs](../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs) still needs `--surface-speed-fraction`, `--spin-axis`, and `--prehistory-mode`; outputs must keep kinematic angular momentum as a diagnostic unit-weight branch-ledger row, not a mass or retention claim.
+
+### 2026-07-06 - Noether Braid Strategy Memo Capture
+
+Captured the attached read-only strategy memo in [Noether Braid Retained-Branch Strategy Memo Capture](noether-braid-retained-branch-strategy-memo-2026-07-06.md). Decision: priority-only routing, no corpus promotion, no score movement, and no retained-branch claim. The memo drives `angular_momentum_held_release_sweep` as the top next braid-ideal target.
+
+Live-tree correction: [Shell-Braid Run Matrix](sh-run-matrix.md), [held-release-seed-path-rows.mjs](../../../scripts/braid-ideal/held-release-seed-path-rows.mjs), and [sh-0-sea-diagnostic-candidate-model.mjs](../../../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs) already carry transverse surface-speed and prehistory metadata. The missing object is the actual physics path in [held-release-causal-wake-toy.mjs](../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs): surface-speed fraction, spin axis, `kick-at-release`, and history-consistent `moving-prehistory` are not yet integrated there.
+
+Priority routing: raise the angular-momentum held-release sweep above further certificate search; turn repeated isolated escape into a scoped Euclidean-void no-return theorem target; replace fitted `SH-0-sea` response placeholders with a computed like-braid wake-sum route; sequence native central-solver retained-history promotion only after a diagnostic row is worth accepting; keep frozen octahedral refinement and acceptance-certificate acquisition sweeps frozen unless they directly support a return-turn chart or real accepted row.
+
 ### 2026-07-04 - Shell-Braid Run Matrix Runner Options
 
 Implemented diagnostic run-matrix metadata for the shell-braid variants in [Shell-Braid Run Matrix](sh-run-matrix.md). [held-release-seed-path-rows.mjs](../../../scripts/braid-ideal/held-release-seed-path-rows.mjs) now accepts Proof ID, run handle, source row id, target-center group velocity, transverse surface-speed fraction, and prehistory mode options, and emits source artifact id/hash plus fail-closed evidence status. [sh-0-sea-diagnostic-candidate-model.mjs](../../../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs) now passes the same metadata through for embedded `SH-0-sea` rows.

@@ -6,6 +6,27 @@ Claim level. Speculation and derivation-closure target. The central candidate is
 
 Working label. `ideal_braid` is a working label only. It is deliberately speculative: the point is to test whether the six-body Noether braid has a simple common-level attractor that would look obvious in retrospect if it exists.
 
+## Strategy Memo Hypothesis Capture - 2026-07-06
+
+Claim level. Priority-only hypothesis capture from the attached read-only strategy memo. No retained branch, accepted evidence, score movement, or corpus promotion is claimed here. The durable packet is [Noether Braid Retained-Branch Strategy Memo Capture](noether-braid-retained-branch-strategy-memo-2026-07-06.md).
+
+Live-tree correction. The run matrix and metadata emitters already carry transverse surface-speed and prehistory handles, but the held-release toy runner does not yet integrate the corresponding physics. [held-release-causal-wake-toy.mjs](../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs) still needs actual angular-momentum-bearing release and history-consistent moving-prehistory options before the `sh0-g0-vt025...vt099` rows become dynamical tests rather than metadata rows.
+
+Implementation capture. [Angular-Momentum Held-Release Sweep Spec](angular-momentum-held-release-sweep-spec.md) records the axis-neutral rigid-rotation construction, the corrected causal-wake terminology at field speed $c_f$, the distinction between `kick-at-release` and history-consistent `moving-prehistory`, and the kinematic angular-momentum bookkeeping boundary.
+
+Proofing capture. [Six-Point Equivariant Reduction Proof Audit](six-point-equivariant-reduction-proof-audit-2026-07-06.md) refines the route: the equivariant reduction lemma is the first proof-moving object, while the angular-momentum sweep is the capped executable witness. The frozen-octahedral mean-power value remains cross-chart motivation only and must not be imported as a held-release no-return hypothesis.
+
+Priority consequence. The next proof-moving braid-ideal object is `six_point_symmetry_invariant_lemma`; the next diagnostic witness is `angular_momentum_held_release_sweep`. The sweep tests whether a six-point seed with transverse surface motion produces post-first-turn inward reduced-radius acceleration, a second turning point, or a bounded window. If no row returns, the failure strengthens the isolated Euclidean-void no-return theorem target and raises the computed `SH-0-sea` wake-sum route.
+
+Hypothesis cards:
+
+1. Retention may be an environment theorem: isolated `SH-0` in the Euclidean void may be non-retainable, while `SH-0-sea` supplies the missing local Noether sea response row.
+2. Angular momentum may be a retained-branch coordinate rather than a decorative initial condition; a surface-speed threshold would connect this lane to angular-momentum/spin work.
+3. The symmetric escape channel may be a reaction or dissociation corridor, not merely failed retention.
+4. Retention may live in the self-hit fold layer, so controlled same-source delayed roots could be the missing return response.
+5. The Noether sea return term may be a delayed wake echo rather than a static pressure constant, predicting a density- and phase-dependent retention window.
+6. The six-point symmetry invariant lemma may reduce the isolated `SH-0` problem to a low-dimensional delay system suitable for a scoped no-return theorem.
+
 ## Seed Scenario
 
 The seed thought experiment uses an empty Euclidean void with six architrinos, three Positrinos and three Electrinos. Put the Positrinos at the positive coordinate sites
