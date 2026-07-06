@@ -20,6 +20,7 @@ The Archie path should therefore build many on-ramps: caregiver-led early learni
 - [treasure-physics-overlooked/](treasure-physics-overlooked/README.md): review briefs for the treasure-physics argument and its proof burdens.
 - [research-revolution/](research-revolution/README.md): review briefs for research transition, governance, and proof-burden audiences.
 - [archie-plan.md](archie-plan.md): audience, channel, and return-on-investment strategy.
+- [Archie prompt library](../entourage/archie/prompts/README.md): reusable agent/operator prompts for corpus review, review integration, priority-lane resumes, and theorem-review workflows.
 
 ## Message Discipline
 
