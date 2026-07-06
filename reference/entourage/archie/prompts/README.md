@@ -4,6 +4,8 @@ This directory holds reusable prompts for Archie-style repo work. Use it for pro
 
 All reusable prompts in this directory should begin with `Closure goal:` and should avoid addressing an agent by name. Role labels and reviewer lenses may appear inside the prompt when they are useful context.
 
+The compact cross-agent startup map is generated at [../../../op/agent-startup-orientation.generated.md](../../../op/agent-startup-orientation.generated.md). Use the generated map for quick routing, then read the live prompt file selected for the task.
+
 ## Current Prompts
 
 | Prompt | Use |

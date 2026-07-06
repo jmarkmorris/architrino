@@ -8,7 +8,11 @@ During the current core geometrical theory push, operational guidance should rou
 
 ## Thread Startup Routing
 
-For ordinary Codex thread startup, use this file as the index. Read only the specialized procedure needed for the selected workflow:
+For ordinary agent startup, begin with the generated compact orientation:
+
+- [agent-startup-orientation.generated.md](agent-startup-orientation.generated.md)
+
+That file is a routing aid, not an authority. If it conflicts with the live source files below, the live source files win. Use this file as the source index and read only the specialized procedure needed for the selected workflow:
 
 - Default meta-optimization wrapper for any Codex thread: [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md).
 - Multiple parallel Codex threads: start from [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md), then use [codex-multiprompt.md](codex-multiprompt.md) for worker boundaries and integration.

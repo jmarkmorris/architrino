@@ -141,6 +141,7 @@ Important generated outputs include:
 - `content/generated/markdown/textbook/toc.md`
 - `content/generated/markdown/textbook/reading-copies/`
 - `content/generated/pdf/textbook/review-copies/`
+- `reference/op/agent-startup-orientation.generated.md`
 
 ## Common Commands
 
@@ -149,6 +150,7 @@ Focused content and graph checks:
 ```bash
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/build-agent-startup-orientation.mjs --check
 node scripts/build-textbook-md-pdf.mjs --check
 ```
 
@@ -158,6 +160,7 @@ requires refreshed generated output:
 ```bash
 node scripts/validate-content.mjs --write
 node scripts/build-scene-graph.mjs --write --strict
+node scripts/build-agent-startup-orientation.mjs --write
 node scripts/build-textbook-md-pdf.mjs --write
 node scripts/build-textbook-review-pdfs.mjs --write
 ```
@@ -196,6 +199,8 @@ VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
 - `content/graph/`: generated scene graph, runtime routes, and textbook TOC
   manifests.
 - `content/generated/`: generated reading copies and review PDFs.
+- `reference/op/agent-startup-orientation.generated.md`: generated compact
+  startup orientation for repo agents.
 - `scripts/`: validators, generators, solver/proof tooling, and local dev
   utilities.
 - `tests/`: Node and Python tests for runtime, content, solver, and proof
