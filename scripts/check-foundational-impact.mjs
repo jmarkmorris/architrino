@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const DEFAULT_MANIFEST = "scripts/config/foundational-impact-contracts.json";
 const DEFAULT_BRANCH_BASE = "origin/main";
+const GIT_MAX_BUFFER_BYTES = 128 * 1024 * 1024;
 const TEXT_EXTENSIONS = new Set([
   ".c",
   ".cc",
@@ -238,7 +239,7 @@ function collectChangeSet(options) {
     diffArgs.push(comparison.diffRef);
     mode = comparison.mode;
   }
-  diffArgs.push("--");
+  diffArgs.push("--", ...diffPathspecs(manifest));
 
   const diff = runGit(diffArgs, "read git diff");
   const status = runGit(["status", "--porcelain=v1", "--untracked-files=all"], "read git status");
@@ -306,6 +307,7 @@ function runGit(gitArgs, action) {
   const result = spawnSync("git", gitArgs, {
     cwd: ROOT_DIR,
     encoding: "utf8",
+    maxBuffer: GIT_MAX_BUFFER_BYTES,
     stdio: ["ignore", "pipe", "pipe"],
   });
   if (result.error) {
@@ -321,6 +323,7 @@ function tryGit(gitArgs) {
   const result = spawnSync("git", gitArgs, {
     cwd: ROOT_DIR,
     encoding: "utf8",
+    maxBuffer: GIT_MAX_BUFFER_BYTES,
     stdio: ["ignore", "pipe", "pipe"],
   });
   return result.status === 0 ? result.stdout : null;
@@ -390,6 +393,13 @@ function ignoredPathMatchers(manifest) {
   return (manifest.diffIgnorePaths ?? []).map((trigger) => (filePath) =>
     matchesPathTrigger(filePath, trigger),
   );
+}
+
+function diffPathspecs(manifest) {
+  const excludes = (manifest.diffIgnorePaths ?? []).map(
+    (trigger) => `:(exclude)${normalizePath(trigger)}`,
+  );
+  return [".", ...excludes];
 }
 
 function addUntrackedFile(files, relativePath) {
