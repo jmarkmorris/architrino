@@ -70,6 +70,8 @@ $$
 \hat{\mathbf n}=\frac{(1,1,1)}{\sqrt3}
 $$
 
+A note on what these symmetry operations are. No physical process relabels a positrino as an electrino: every architrino is unique, with its own provenance and path history. The operations above are comparison maps between two possible configurations of the universe — they say that if one configuration solves the delayed dynamics, then its transformed twin solves it too. When the seed happens to be its own twin, the twins' shared trajectory is constrained, and that constraint is the entire content of the channel.
+
 Under four explicit assumptions — an equivariant delayed-force kernel whose magnitude depends only on invariant scalars times the polarity product, a complete symmetric causal-root policy with no label-dependent pruning, a well-posedness window with transversal roots and sub-field-speed histories, and symmetric initial path history — the unique solution remains on the fixed-point set of the acting group for as long as the window lasts. This is a derivation about the delayed dynamics, and it converts the six-body problem into small closed reduced systems: two scalar functions for the zero-angular-momentum channel, three for the axis-neutral rotating channel, and two representative worldlines ($\epsilon_{+,x}$ and $\epsilon_{-,x}$) once the branch also carries group velocity along $\hat{\mathbf n}$, because translation breaks $\iota$ while preserving $C_3$. Invariance of the channel does not prove stability transverse to it, and no statement in this section claims branch retention.
 
 ### Drum Geometry
@@ -86,7 +88,7 @@ $$
 3\left(\hat{\mathbf n}\cdot\left(\epsilon_{+,x}-\epsilon_{-,x}\right)\right)\hat{\mathbf n}
 $$
 
-The transverse dipole components cancel in balanced three-phase fashion. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast shell braid is dipole-quiet, with its first surviving structure at higher multipole order. This identity is the shell braid's native contribution to the energy-shielding story used by the nested chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
+The transverse dipole components cancel in balanced three-phase fashion. This cancellation is a statement about the braid's summed distant signature, not about the forces inside it: each architrino still receives the full delayed influence of all five partners through its own causal roots, and none of those per-receiver contributions vanish. What cancels is the collective polarity-signed moment that a distant receiver reconstructs from the superposed wakes. A branch that flattens toward the transverse plane therefore loses its leading polarity-signed moment entirely: the flattened fast shell braid is quiet at dipole order, with its first surviving structure at higher moment order. This identity is the shell braid's native contribution to the energy-shielding story used by the nested chapters, and it links the terminal planar limit to wake quietness rather than to increased exposure.
 
 ### Momentum Screw and Helicity
 
@@ -101,6 +103,22 @@ $$
 $$
 
 The axis-neutral direction is therefore the central axis of the branch's momentum screw: the unique direction that carries both linear and angular kinematic momentum, with the transport state reduced to the two scalars $P_\parallel$ and $J_\parallel$. Their origin-independent combination $\mathbf J\cdot\mathbf P$ — helicity in normalized form, screw pitch in geometric form — is the natural combined label, since an origin shift changes $\mathbf J$ only by a term orthogonal to $\mathbf P$. In delayed dynamics the particle-only momenta are not separately conserved; the causal wakes carry momentum and angular momentum of their own, and conservation is a statement about the combined particle and wake ledger. On the channel, symmetry fixes the momentum directions exactly while the magnitudes exchange with the wake ledger.
+
+### Exact Speed Budget on the Channel
+
+Because the rotation is about the same axis as the drift, every site's tangential velocity is exactly perpendicular to the group velocity at every instant. The field-frame speed of each architrino on the translating rotating channel is therefore an exact quadrature,
+
+$$
+\beta^2 c_f^2=u^2+v_t^2
+$$
+
+with no cycle-dependent cross terms — a special property of axis-neutral transport, since a generic drift direction mixes with the rotation and makes the maximum speed a phase-dependent quantity. If a branch additionally pins its site speed at a fixed fraction of field speed, $\beta=\beta_\ast$, the tangential speed available to the internal cycle is forced to
+
+$$
+v_t(u)=\sqrt{\beta_\ast^2c_f^2-u^2}
+$$
+
+so the internal cadence of a faster-translating branch slows by exactly the square-root factor familiar from the light-clock argument. On this channel the Lorentz-style clock relation is not imported; it is the arithmetic of a fixed speed budget split between getting somewhere and going around. The pinning of $\beta_\ast$ is a branch hypothesis that the retention program must earn; the quadrature itself is exact channel kinematics. At the $u\to\beta_\ast c_f$ endpoint the tangential budget vanishes and the internal cycle freezes, which is the channel's own statement of the terminal boundary: a branch cannot both translate at its full speed budget and keep an internal clock running.
 
 ### Isolated Release and the Return-Response Question
 
