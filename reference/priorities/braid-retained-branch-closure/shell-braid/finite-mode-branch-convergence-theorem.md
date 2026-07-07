@@ -1,6 +1,6 @@
 # Finite-Mode Branch Convergence Theorem
 
-Promotion status: `priority-only`. This packet states the convergence theorem target that connects certified finite Fourier/collocation rows to an actual curve-level same-level tri-binary dynamics branch. It depends on the root/Jacobian barriers, adaptive-memory certificates, delayed-force Lipschitz envelope, collocation-refinement certificate, and support-complete Newton/obstruction rows.
+Promotion status: `priority-only`. This packet states the convergence theorem target that connects certified finite Fourier/collocation rows to an actual curve-level same-level braid dynamics branch. It depends on the root/Jacobian barriers, adaptive-memory certificates, delayed-force Lipschitz envelope, collocation-refinement certificate, and support-complete Newton/obstruction rows.
 
 The point is to separate two claims:
 

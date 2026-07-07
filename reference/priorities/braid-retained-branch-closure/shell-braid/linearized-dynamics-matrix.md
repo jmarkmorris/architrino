@@ -865,4 +865,4 @@ A solver implementing this packet should emit:
 | `floor_screen` | $\Delta_x$, $\Delta_J$, $\Delta_{\rho}$, and root-bracket margin |
 | `failure_code` | `linear-range-defect`, `linear-solvable-but-floor-inadmissible`, or `linear-candidate-for-nonlinear-rescreen` |
 
-Priority decision: this matrix packet is not promotion-ready by itself. It becomes promotion material only if a later nonlinear candidate passes the same active-root, support-band, speed, tangential, radial, event/action, and stability rows required by the tri-binary decision gate.
+Priority decision: this matrix packet is not promotion-ready by itself. It becomes promotion material only if a later nonlinear candidate passes the same active-root, support-band, speed, tangential, radial, event/action, and stability rows required by the same-level braid decision gate.

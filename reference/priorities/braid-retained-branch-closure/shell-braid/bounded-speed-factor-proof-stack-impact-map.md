@@ -1,6 +1,6 @@
 # Bounded Speed Factor Proof Stack Impact Map
 
-Promotion status: `priority-only`. This packet maps the bounded speed factor extension across the same-level tri-binary proof stack. It does not retain a branch. It classifies the existing fixed-speed packets as the special case $\nu_i\equiv1$ and states the successor outputs required before a bounded speed factor branch can replace a fixed-speed certificate.
+Promotion status: `priority-only`. This packet maps the bounded speed factor extension across the same-level braid proof stack. It does not retain a branch. It classifies the existing fixed-speed packets as the special case $\nu_i\equiv1$ and states the successor outputs required before a bounded speed factor branch can replace a fixed-speed certificate.
 
 The source equation packet is [variable-speed-factor-extension.md](variable-speed-factor-extension.md). The executable bounded-speed solve is refined by [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md), and the neutral inventory force diagnostic is refined by [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md). This packet is an impact map: every downstream row that used the fixed-speed clock, fixed-speed Jacobian, fixed-speed tangential residual, or fixed-speed variational equation must either declare
 
@@ -859,7 +859,7 @@ Allowed self-row statuses are:
 
 ## 9. Impact Theorem Target
 
-**Theorem target: bounded speed factor proof-stack lift.** Fix one same-level tri-binary branch class, one source-pair policy, one same-source policy, one normalization scale $R_*$, one support descriptor, one finite-mode chart, and one bounded speed factor basis. Suppose:
+**Theorem target: bounded speed factor proof-stack lift.** Fix one same-level braid branch class, one source-pair policy, one same-source policy, one normalization scale $R_*$, one support descriptor, one finite-mode chart, and one bounded speed factor basis. Suppose:
 
 1. $0<\nu_-\le\nu_i\le\nu_+$ and $\chi_i^{-1}$ exists on the full event interval;
 2. equal physical periods or declared winding periods pass;

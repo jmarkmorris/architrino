@@ -1,6 +1,6 @@
 # Collocation Refinement Error Certificate
 
-Promotion status: `priority-only`. This packet supplies the mesh-refinement certificate needed for support-complete tri-binary dynamics rows. It explains how a finite collocation solve can bound off-grid residuals, root-ledger changes, and projection errors between sampled arclength nodes.
+Promotion status: `priority-only`. This packet supplies the mesh-refinement certificate needed for support-complete same-level braid dynamics rows. It explains how a finite collocation solve can bound off-grid residuals, root-ledger changes, and projection errors between sampled arclength nodes.
 
 The current $M=2$ and $M=3$ evidence repeatedly shows why this is necessary: a row can descend on a training grid while off-grid residual peaks, root-count changes, or memory-window exits appear on a refined grid. A retained branch packet needs an explicit refinement error row rather than an implicit trust in the sampled nodes.
 

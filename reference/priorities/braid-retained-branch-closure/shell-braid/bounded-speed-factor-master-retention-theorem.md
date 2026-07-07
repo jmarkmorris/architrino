@@ -518,7 +518,7 @@ $$
 
 ## 6. Theorem Target
 
-**Theorem target: bounded speed factor master retention.** Fix one same-level tri-binary branch class, one source-pair policy, one same-source policy, one bounded-speed chart, one endpoint convention, one support-complete memory convention, one action/event convention, and one row-weight convention. Suppose:
+**Theorem target: bounded speed factor master retention.** Fix one same-level braid branch class, one source-pair policy, one same-source policy, one bounded-speed chart, one endpoint convention, one support-complete memory convention, one action/event convention, and one row-weight convention. Suppose:
 
 1. the support descriptor, speed band, speed-ODE solvability row, and equal physical-period or winding rows hold;
 2. the causal-time root ledger has positive delay, Jacobian, gap, support, and noncollision margins;

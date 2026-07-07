@@ -841,7 +841,7 @@ Any continuation with $\nu_i\ne1$ must rerun the causal-time tail predicates, ta
 
 ## 8. Theorem Target And Output Schema
 
-**Theorem target: bounded speed factor support-tail Krawczyk certificate.** Fix one same-level tri-binary branch class, one bounded speed factor chart, one source-pair policy, one same-source policy, one endpoint convention, one support-tail interval, one causal-time cell cover, and one row-weight convention. Suppose:
+**Theorem target: bounded speed factor support-tail Krawczyk certificate.** Fix one same-level braid branch class, one bounded speed factor chart, one source-pair policy, one same-source policy, one endpoint convention, one support-tail interval, one causal-time cell cover, and one row-weight convention. Suppose:
 
 1. $0<\nu_-\le\nu_i\le\nu_+$ and the causal-time maps $\chi_i^{-1}$ are interval-enclosed on every required receiver and source cell;
 2. the equal-period or winding-period chart has a positive persistence margin;

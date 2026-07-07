@@ -1,6 +1,6 @@
 # Bounded Speed Factor Extension
 
-Promotion status: `priority-only`. This packet switches the same-level tri-binary branch model from strict fixed carrier speed to a bounded speed factor. It keeps the fixed-speed arclength model as the special case $\nu_i\equiv1$, but no longer treats $\|\dot{\mathbf{x}}_i\|=c_f$ as mandatory branch ontology.
+Promotion status: `priority-only`. This packet switches the same-level braid branch model from strict fixed carrier speed to a bounded speed factor. It keeps the fixed-speed arclength model as the special case $\nu_i\equiv1$, but no longer treats $\|\dot{\mathbf{x}}_i\|=c_f$ as mandatory branch ontology.
 
 The extension is motivated by the possibility that an architrino may briefly cross a same-source hinge into a controlled self-hit or fold-layer mode, then return to the ordinary partner/cross-binary ledger within a short time. It does not retain a branch. It states the equations and gate rows that a bounded-speed branch must emit before it can replace the current fixed-speed screens.
 

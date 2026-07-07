@@ -8,7 +8,7 @@ It does not retain a branch. It records the mathematical reason the speed ODE an
 
 ## 1. Coupled Unknown
 
-Work on one same-level tri-binary branch chart, one source-pair policy, one same-source policy, one support descriptor, one action/event convention, one period/winding convention, and one row-weight convention.
+Work on one same-level braid branch chart, one source-pair policy, one same-source policy, one support descriptor, one action/event convention, one period/winding convention, and one row-weight convention.
 
 The coupled unknown is
 

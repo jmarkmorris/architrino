@@ -213,7 +213,7 @@ $$
 F_R(u_*)=0.
 $$
 
-This form is often better for the tri-binary solver because the same SVD data supplies both the range projector and the approximate inverse. It also makes the distinction sharp: full column rank gives $U_R,\Sigma,V$, while the inequalities above are the constructive existence certificate.
+This form is often better for the same-level braid solver because the same SVD data supplies both the range projector and the approximate inverse. It also makes the distinction sharp: full column rank gives $U_R,\Sigma,V$, while the inequalities above are the constructive existence certificate.
 
 ---
 
@@ -290,7 +290,7 @@ If the cokernel row fails but the obstruction inequality in [support-complete-dy
 
 Then the finite-mode exact-antipodal row is a certified local dynamics-closure candidate within tolerance $\tau_{\mathrm{dyn}}$ on that support-complete ledger.
 
-It is still not a full same-level tri-binary retained branch until the inventory, event, action, stability, observer-export, and decision-gate rows are populated.
+It is still not a full same-level braid retained branch until the inventory, event, action, stability, observer-export, and decision-gate rows are populated.
 
 ---
 

@@ -1,6 +1,6 @@
 # Shell Braid Branch Mathematics
 
-This priority packet states theorem targets for same-level tri-binary branch mathematics. It is not a completed existence, stability, or observer-export proof. Its role is to make the DDE well-posedness and causal-root ledger obligations precise enough that a retained branch certificate can later be checked against [Braid Architecture](braid-architecture.md).
+This priority packet states theorem targets for same-level braid branch mathematics. It is not a completed existence, stability, or observer-export proof. Its role is to make the DDE well-posedness and causal-root ledger obligations precise enough that a retained branch certificate can later be checked against [Braid Architecture](braid-architecture.md).
 
 Promotion status: `priority-only`. Do not promote this document into `content/markdown/aaa` until a concrete same-level branch supplies the active causal roots, Jacobian floors, finite memory depth, tangential residual closure, polarity ledger, and weak-limit data required below.
 
@@ -312,7 +312,7 @@ If the branch declares a bounded speed factor, this fixed-speed tangent row is r
 
 ## 5. Lemma Targets For Branch Mathematics
 
-The statements below are theorem targets for a future retained branch packet. They identify what a proof must establish; they do not assert that any same-level tri-binary branch has already satisfied the hypotheses.
+The statements below are theorem targets for a future retained branch packet. They identify what a proof must establish; they do not assert that any same-level braid branch has already satisfied the hypotheses.
 
 ### Lemma Target 1: Finite Memory From Bounded Support
 
@@ -565,4 +565,4 @@ The shell braid branch mathematics program has four immediate theorem targets:
 3. A regularized DDE well-posedness proof for each declared $\eta>0$ force law.
 4. A weak-limit packet showing that $\eta\to0$ preserves the causal-root ledger, event ledger, and residual vector.
 
-Until those objects are populated by a concrete retained branch, the same-level tri-binary architecture remains an active theorem-target program rather than a canonical replacement for the nested branch machinery.
+Until those objects are populated by a concrete retained branch, the same-level braid architecture remains an active theorem-target program rather than a canonical replacement for the nested branch machinery.

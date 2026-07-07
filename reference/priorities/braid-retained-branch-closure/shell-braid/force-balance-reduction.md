@@ -1,6 +1,6 @@
 # Force-Balance Reduction
 
-Promotion status: `priority-only`. This packet derives necessary force-balance equations for a same-level tri-binary carrier. It does not prove existence, stability, energy/action closure, observer export, or migration readiness. Its role is to make the tangential and radial/support-band residuals from [Shell Braid Branch Mathematics](shell-braid-branch-mathematics.md) analytically checkable on the same active-root convention used by [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md).
+Promotion status: `priority-only`. This packet derives necessary force-balance equations for a same-level braid carrier. It does not prove existence, stability, energy/action closure, observer export, or migration readiness. Its role is to make the tangential and radial/support-band residuals from [Shell Braid Branch Mathematics](shell-braid-branch-mathematics.md) analytically checkable on the same active-root convention used by [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md).
 
 ---
 
@@ -67,7 +67,7 @@ force-margin consumer must therefore follow the same-record target in
 old shell-braid $1/\lvert J\rvert$ force weights and aggregate residues are
 not admissible force-margin evidence.
 
-For a six-site tri-binary carrier, let $b(i)\in\{1,2,3\}$ be the binary label and let $\bar{i}$ be the partner of $i$ in the same binary. For each receiver $i$, partition the retained architrino-root set into
+For a six-site same-level braid carrier, let $b(i)\in\{1,2,3\}$ be the binary label and let $\bar{i}$ be the partner of $i$ in the same binary. For each receiver $i$, partition the retained architrino-root set into
 
 $$
 \mathcal{P}_i(t)

@@ -23,7 +23,7 @@ Maintain a compact queue for taxonomy migration and terminology cleanup without 
 
 ## Task Queue
 
-1. Deferred terminology pass over the large `braid-retained-branch-closure/shell-braid/` proof-packet corpus: replace reader-facing `tri-binary` wording with Noether-braid wording, inspect-before-relabeling, packet by packet. Intentionally preserved and out of scope for bulk replacement: the canonical `planar tri-binary Noether braid reduced chart` term, script/schema identifiers such as `tri_binary_partition_rule`, generated indexes, archived source-mining summaries, and dormant legacy notes.
+No open migration-control tasks are currently queued. Add the next braid-document organization pass here when a new scoped cleanup objective is selected. Intentionally preserved `tri-binary` forms outside reader-facing prose remain in place: the canonical `planar tri-binary Noether braid reduced chart` term, script/schema identifiers such as `tri_binary_partition_rule`, generated indexes, archived source-mining summaries, and dormant legacy notes.
 
 ## Detailed Priority Files
 

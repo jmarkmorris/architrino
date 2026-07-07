@@ -1,6 +1,6 @@
-# Observer Export And Mass-Map Targets For Same-Level Tri-Binary Branches
+# Observer Export And Mass-Map Targets For Same-Level Braid Branches
 
-This priority note converts the same-level tri-binary observer-facing claims into export rows that a retained branch packet must compute before any downstream promotion. It is a priority-only theorem-target document. It does not authorize migration into `content/markdown/aaa`, scene assets, simulation defaults, or end-user language.
+This priority note converts the same-level braid observer-facing claims into export rows that a retained branch packet must compute before any downstream promotion. It is a priority-only theorem-target document. It does not authorize migration into `content/markdown/aaa`, scene assets, simulation defaults, or end-user language.
 
 Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, same-record $D_s$, $D_T$, and $W^{\mathrm{rec}}$ rows for every force/action or mass-response contribution, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
 
@@ -479,4 +479,4 @@ The minimum useful run is a $\beta$ sweep on one retained branch with all rows e
 
 ## 8. Priority Outcome
 
-This document stages the observer-export and mass-map target surface for the same-level tri-binary architecture. It does not decide the architecture. The next mathematical closure object is a retained moving branch packet that computes $\mathcal{O}_q(\mathbf{v};W)$, $\mathcal{R}_{\gamma}$, and $\mathcal{R}_m^{(A)}$ on the same active-root and event-ledger convention.
+This document stages the observer-export and mass-map target surface for the same-level braid architecture. It does not decide the architecture. The next mathematical closure object is a retained moving branch packet that computes $\mathcal{O}_q(\mathbf{v};W)$, $\mathcal{R}_{\gamma}$, and $\mathcal{R}_m^{(A)}$ on the same active-root and event-ledger convention.

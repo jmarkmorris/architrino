@@ -1,6 +1,6 @@
 # Medium-Response Constitutive Closure Theorem
 
-Promotion status: `priority-only`. This packet states the theorem target required before a Noether sea medium-response term may enter the same-level tri-binary dynamics ledger. It is the analogue of [fold-layer-regularization-action-theorem.md](fold-layer-regularization-action-theorem.md) for nonlocal medium response: a response term must be derived from a constitutive law with action, conservation, and event accounting, not fitted as an extra residual-canceling force.
+Promotion status: `priority-only`. This packet states the theorem target required before a Noether sea medium-response term may enter the same-level braid dynamics ledger. It is the analogue of [fold-layer-regularization-action-theorem.md](fold-layer-regularization-action-theorem.md) for nonlocal medium response: a response term must be derived from a constitutive law with action, conservation, and event accounting, not fitted as an extra residual-canceling force.
 
 This packet does not add a medium-response force to the current $M=3$ rows.
 

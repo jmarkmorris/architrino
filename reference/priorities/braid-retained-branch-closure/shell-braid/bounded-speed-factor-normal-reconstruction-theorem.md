@@ -8,7 +8,7 @@ It does not retain a branch. It states the normal/curve reconstruction problem: 
 
 ## 1. Input After The Speed ODE Closes
 
-Fix one same-level tri-binary branch chart, one source-pair policy, one same-source policy, one support descriptor, one bounded speed factor root ledger, one action/event convention, and one row-weight convention.
+Fix one same-level braid branch chart, one source-pair policy, one same-source policy, one support descriptor, one bounded speed factor root ledger, one action/event convention, and one row-weight convention.
 
 The scalar row is assumed to have already produced:
 
