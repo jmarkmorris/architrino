@@ -73,8 +73,20 @@ Each spectrum row carries a definite screw pitch and helicity sign. The interfac
 3. Caustic degeneracy ($D_s\to0$ on a needed root) voids the row's branch weight and blocks the kinematic identity.
 4. A found row is a relative equilibrium only; transverse instability, action or wake imbalance, or failed same-record rows keep it non-retained.
 
+## First Hunt Result - 2026-07-06
+
+Executable diagnostic: [axis-neutral-rotating-wave-residual-scan.mjs](../../../scripts/braid-ideal/axis-neutral-rotating-wave-residual-scan.mjs), tests in [braid-ideal-axis-neutral-rotating-wave-residual-scan.test.js](../../../tests/braid-ideal-axis-neutral-rotating-wave-residual-scan.test.js). Kernel: $c_f=1$, $\kappa=1$, zero softening, receiver-normal over floored source-normal branch weights, partner-wake only, no self-hits. Scaling removes the radius: the unknowns reduce to the drum aspect $\alpha=h/\rho$ and rim-speed fraction $\beta=\omega\rho$, with $\rho$ recovered from the radial equation when $\Phi_{\mathrm{rad}}<0$.
+
+**Result 1 - axial no-balance lemma (analytic; numerically witnessed).** For any $\alpha>0$, any sub-field $\beta$, any delays, and any branch weights: same-ring contributions have exactly zero axial component (the rings are rigid and level), while every opposite-ring contribution is attractive with axial part pulling the rings together. A sum of strictly one-signed terms cannot vanish, so the rigid two-ring rotating wave has no axial equilibrium; the grid witness gives maximum axial residual $-0.159<0$ over $\alpha\in[0.1,2]$, $\beta\in[0.05,0.95]$. The rigid single-frequency eigen-braid, if it existed, would be forced planar ($\alpha=0$): the hexagonal ring.
+
+**Result 2 - planar tangential anti-damping (sampled screen).** On the planar hexagon, the tangential residual is strictly positive across $\beta\in[0.02,0.985]$ (zero sign changes; minimum $+0.058$ at the low end; growth $\Phi_{\mathrm{tan}}\approx2.9\beta$, nearly linear, an anti-drag coefficient), while $\Phi_{\mathrm{rad}}\approx-0.67$ stays inward. Net wake force along the velocity: the delayed kernel pumps the rotation rather than braking it, so no rigid rotating-wave equilibrium exists in the scanned sub-field range.
+
+**Disposition.** `rigid_u0_rotating_wave_family_no_admissible_row_in_scan` — failure mode 1 of this packet, with a sharper mechanism than expected: the rigid class fails twice independently (axial collapse for $\alpha>0$; tangential pump at $\alpha=0$). This extends the anti-damping evidence family to a third independent chart: the frozen octahedral zero-mean obstruction, the held-release escape, and now the exact planar rotating channel all show the same sign phenomenon under their own conventions (qualitative consilience only; no cross-chart ledger consumption). Claim level: the axial lemma is a derivation; the tangential screen is a sampled diagnostic, certifiable later by interval methods if needed. Nothing here is a retained-branch statement.
+
+**Consequences for the spectrum program.** Admissible eigen-braids, if any, are necessarily non-rigid: the pumped tangential action must be exchanged with another internal channel (radial breathing against rotation — the two-frequency Lissajous class, where the closed figures are the integer phase-closure states), or absorbed by same-source rows at the field-speed hinge, or exported to a Noether sea environment. The rigid ansatz also cannot represent wake exhaust by construction, so its failure was arguably necessary: a retained branch must have somewhere to put the pumped action. This converts the spectrum hunt from relative equilibria to relative periodic orbits.
+
 ## Next Steps
 
-1. Write the explicit residual functions for the $u=0$ rotating form (three unknowns plus lags) and solve numerically as a priority-only diagnostic.
-2. Feed any candidate row to the angular-momentum sweep as a seed and to the interior-field and escape-certificate diagnostics.
-3. Classify traced figures per the lissajou lane once two-frequency generalizations (breathing against rotation) are added.
+1. Extend the residual system to the breathing ansatz $\rho(t)=\rho_0+\delta\cos(\Omega t+\phi_0)$ (two frequencies; delays become periodic rather than constant) and hunt for closed rows where the tangential pump averages to zero over the breathing cycle.
+2. Feed the anti-damping coefficient $\Phi_{\mathrm{tan}}(\beta)\approx2.9\beta$ to the escape-certificate lemma as the driving term the environment or breathing channel must beat.
+3. Classify any found rows per the lissajou lane; the closed-figure condition is the integer phase-closure label.
