@@ -2771,6 +2771,19 @@ Comparison frameworks and terminology:
 10. **'t Hooft cogwheel models.** The cellular-automaton cogwheel construction uses three-state cyclic evolution whose energy eigenstates are the discrete Fourier modes of $\mathbb Z_3$ — mathematically the same circulant/Fourier structure as the three-binary residual phase operator, with the same $120^\circ$ phases. Treat as a comparison framework (route: theory-bridges), potentially valuable for the quantum-recovery mapping and for the click picture in item 6.
 11. **Potential-superposition terminology.** The interior "field" phrasing in the accessory-trap discussion should be recast in native terms: what is computable is the superposed delayed potential and its gradient as it would act on a hypothetical receiver at that location; the polarity-sorting conclusion for a central test architrino survives the restatement, but the corpus should not lean on field ontology. Also adopted: prefer "net charge" / "net polarity inventory" over "monopole" in reader-facing braid prose (applied to nested-shell-braid.md).
 
+### 2026-07-06 - Synthesis Pass: Cross-Corpus Clicks
+
+Promoted this pass (see promotion ledger below):
+
+1. **Dipole-quiet horizon.** Terminal alignment (coplanarity at $c_f$) is also the vanishing point of the axial polarity dipole, so an assembly reaching the horizon condition goes silent in its loudest wake channel by geometry; the surviving higher-moment and phase data are exactly what $\Lambda_{\text{NS}}^{\mathrm{align}}$ counts. Promoted to the alignment section of nested-shell-braid.md at hypothesis level.
+2. **Precession as symmetry-distance meter.** The symmetric channel pins the angular-momentum axis, so precession is forbidden on it; precession amplitude measures distance from the symmetric channel, ring-down appears as precession decay, and terminal "precession ceases" is the strong-field endpoint of the same diagnostic. Promoted to the symmetric-channel relation section of nested-shell-braid.md.
+3. **Thomson organization at both levels.** The neutral braid's per-site $3+2$ channel count maps onto the drum: two repulsive channels are intra-ring (spacing each ring at $120^\circ$), three attractive channels are inter-ring (setting drum height). The core is two mutually repelling rings bound face-to-face — the same minimum-energy-under-containment principle as accessory dressing. Promoted to the drum section of shell-braid.md.
+4. **One pinned speed, two exports.** The $\beta_\ast$ pinning behind the exact transport quadrature is the same branch-pinned-speed hypothesis behind the rest-level $R_\ell f_\ell$ product law, so rest-level scaling and moving clock export are two projections of one branch commitment. Promoted to the speed-budget section of shell-braid.md.
+
+Held at capture level:
+
+5. **Neutrino mass as residual budget.** For a field-speed-pinned family ($\beta_\ast=1$), a row at $u$ just below $c_f$ retains only the sliver $v_t=\sqrt{c_f^2-u^2}$ of internal cadence; the neutrino's small exposed energy reads as this residual tangential budget, and the exact lock ($u=c_f$, $v_t=0$, frozen internal clock) is the photon-channel boundary. Speculation pending the iso-frequency family work.
+
 ### Promotion Ledger For This Log
 
 Promoted so far: axis-neutral invariant channel, drum geometry, axial dipole identity, momentum screw and helicity, polarity-conjugation degeneracy, fore-aft asymmetry, isolated-release/return-response reframing, exact speed budget (all shell-braid.md); accessory dressing quietness ladder, circulant neutrino reading, symmetric-channel relation with formation question (nested-shell-braid.md); crux framing (noether-braid.md). Remaining capture-level items above are queued for promotion after operator review or supporting derivation.

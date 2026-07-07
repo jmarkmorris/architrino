@@ -32,18 +32,22 @@ That is why the family labels are deliberately modest. `Neutral`, `shell`, and `
 
 This chapter is the overview and family map for the Noether braid stack. It defines the word **braid**, names the base family sequence, and explains why family labels are case structure rather than retained-branch results.
 
-It does not carry the detailed family derivations, select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here:
+It does not carry the detailed family derivations, select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here, and they play four distinct roles. The family ladder defines the objects in order of added structure; the bookkeeping chapters say how claims about those objects are classified and tracked; the mechanism chapters carry the live analysis of how a branch could close; the export chapters describe what a retained branch would hand to the rest of the theory.
 
-- [Neutral Braid](neutral-braid.md) owns the base six-body inventory and retained-branch certificate target.
-- [Shell Braid](shell-braid.md) owns the one-band support family.
-- [Nested Shell Braid](nested-shell-braid.md) owns the three-band support family.
-- [Noether Braid Taxonomy](noether-braid-taxonomy.md) decodes configuration axes and compact Proof ID grammar.
-- [Noether Braid Proof Map](noether-braid-proof-map.md) records proof targets, proof statuses, and environment-qualified rounds.
-- [Noether Braid Configuration Space](noether-braid-configuration-space.md) studies cases where three retained angular-momentum rows may form a full internal 3D frame.
-- [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) tests the nested shell braid mechanism.
-- [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) studies the `NSH-421` candidate family.
-- [Noether Braid Topological Charge](noether-braid-topological-charge.md) classifies retained branch charts.
-- [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) supplies the envelope/export interface.
+| Role | Chapter | What it owns |
+| --- | --- | --- |
+| Family ladder | [Neutral Braid](neutral-braid.md) | The base six-body inventory, all-pairs ledger, and retained-branch certificate target. |
+| Family ladder | [Shell Braid](shell-braid.md) | The one-band support family, the axis-neutral invariant channel, and the speed-budget kinematics. |
+| Family ladder | [Nested Shell Braid](nested-shell-braid.md) | The three-band support family, its relation to the symmetric shell channel, and the dressing and generation hypotheses. |
+| Bookkeeping | [Noether Braid Taxonomy](noether-braid-taxonomy.md) | Configuration axes and the compact Proof ID grammar. |
+| Bookkeeping | [Noether Braid Proof Map](noether-braid-proof-map.md) | Proof targets, proof statuses, and environment-qualified rounds. |
+| Mechanism | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Cases where three retained angular-momentum rows may form a full internal 3D frame. |
+| Mechanism | [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) | The nested mechanism tests: translation response, retuning closure, and terminal alignment. |
+| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) | The `NSH-421` candidate frequency family. |
+| Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
+| Export | [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) | The envelope and observer-export interface. |
+
+A first reading should walk the family ladder in order, consult the bookkeeping chapters whenever a claim's status matters, and treat the mechanism and export chapters as the working frontier.
 
 ## Medium-Selection Burden
 
