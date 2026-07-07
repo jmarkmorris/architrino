@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "noether_braid__shell_braid",
-    "title": "Symmetric Shell Braid",
+    "id": "noether_braid__braid_mathematics",
+    "title": "Braid Mathematics",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "path": "content/markdown/aaa/noether-braid/braid-mathematics.md"
     },
     "view": {
       "columns": 1,

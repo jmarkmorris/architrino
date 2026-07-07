@@ -21,7 +21,7 @@ $$
 
 Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf X,T)$ is the physical Noether braid density, $n(\mathbf X,T)$ is the normalized Noether braid density, and $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether braid ledgers of the nucleus or electron have already been derived.
 
-The observer-level line frequency is recovered only after local clock/rate conversion:
+The local line energy, before observer clock/rate conversion, is
 
 $$
 h\nu_{a\to b}^{\mathrm{loc}}
@@ -35,7 +35,7 @@ h\nu_{a\to b}^{\mathrm{loc}}
 \Delta E_{\mathrm{rem}}
 $$
 
-In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
+The observer-level frequency comparison then applies the $\left(\Gamma_N^{(\ell)}\right)^{-1}$ clock-rate conversion owned by [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md); this page does not perform that conversion. In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
 
 ## Hydrogen Line Benchmark Record
 
@@ -164,6 +164,8 @@ $$
 \mathbf 0
 $$
 
+Here $\Delta \mathbf p_{\mathrm{atom}}$ is the internal envelope-redistribution row and $\Delta \mathbf p_{\mathrm{recoil}}$ is the center-of-mass recoil row; for an isolated atom the internal row closes to zero and the recoil row is the atom's whole momentum change, so the two rows partition the atomic side rather than double-count it.
+
 Angular momentum and wake-carried angular momentum must close at the same vertex:
 
 $$
@@ -207,10 +209,16 @@ Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating pro
 $$
 b+\gamma \to a,
 \qquad
-E_\gamma+\Delta E_{\mathrm{med}}+\Delta E_{\mathrm{recoil}}
+E_\gamma
 \simeq
 \Delta E_{a\to b}^{\mathrm{env}}
++
+\Delta E_{\mathrm{recoil}}
++
+\Delta E_{\mathrm{med}}
 $$
+
+with all rows non-negative in the same convention as the emission ledger: the incoming photon must supply the envelope gap plus the recoil kinetic energy and any medium uptake, which is the source of the emission/absorption line offset measured by recoil-sensitive spectroscopy.
 
 This is ordinary photon capture by the same atomic assembly. It changes the assembly's envelope basin and closes the incoming photon ledger, but it is not a general particle-production rule. If the event has different outgoing Standard Model assemblies, the channel must be written as a reaction or pair channel with a separate identity-routing row for the target or Noether sea content that supplies those outgoing inventories.
 
@@ -254,19 +262,19 @@ The practical rule is that a line may not use one event record for its frequency
 
 ## Gate C Rate Target
 
-The native rate target should be a basin-measure statement over deterministic atomic, photon, and local Noether sea microstates. For a record window $T$, a schematic form is
+The native rate target should be a basin-measure statement over deterministic atomic, photon, and local Noether sea microstates. For a record window of duration $T_W$ — subscripted to keep it distinct from absolute time $T$ — a schematic form is
 
 $$
 \Gamma_{a\to b+\gamma}^{\mathbb{A}\mathbb{A}\mathbb{A}}
 =
-\frac{1}{T}\,
-\mu_T\!\left\{
+\frac{1}{T_W}\,
+\mu_{T_W}\!\left\{
 \zeta\in\mathcal B_a:
-\Phi_T(\zeta)\in\mathcal B_{b+\gamma}
+\Phi_{T_W}(\zeta)\in\mathcal B_{b+\gamma}
 \right\}
 $$
 
-The set $\mathcal B_a$ denotes the resolved microstate basin corresponding to the effective atomic state $a$, $\mathcal B_{b+\gamma}$ denotes the basin in which the lower atomic state and outgoing photon assembly are accepted, $\Phi_T$ is the deterministic return map across the record window, and $\mu_T$ is the unresolved-material measure induced by the local ensemble and path-history distribution.
+The set $\mathcal B_a$ denotes the resolved microstate basin corresponding to the effective atomic state $a$, $\mathcal B_{b+\gamma}$ denotes the basin in which the lower atomic state and outgoing photon assembly are accepted, $\Phi_{T_W}$ is the deterministic return map across the record window, and $\mu_{T_W}$ is the unresolved-material measure induced by the local ensemble and path-history distribution.
 
 In the validated weak-coupling limit, this rate must reduce to the familiar transition-rate structure:
 
@@ -286,11 +294,11 @@ The finite-window definition above supplies the provenance version of the same l
 $$
 \Gamma_{a\to f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
 \rightarrow
-2\pi\,
+\frac{2\pi}{\hbar}
 \left|\mathcal{M}_{a\to f}^{\mathrm{eff}}\right|^2
 \rho_f
 $$
-after unit conventions are fixed. The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
+The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
 
 Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local Noether sea constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
 

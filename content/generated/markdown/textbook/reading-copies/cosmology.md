@@ -4373,10 +4373,10 @@ The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relax
 This narrative must be made quantitative through a constitutive relation linking the Noether sea state variables to an effective pressure. The minimal parameterization is:
 
 $$
-p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{eff}}\bigr)
+p_{\mathrm{sea}} = p_{\mathrm{sea}}\bigl(\rho_{\text{NS}},\;d\rho_{\text{NS}}/dT,\;n,\;\chi_{\text{sea}},\;\langle R_{\mathrm{outer}} \rangle,\;T_{\mathrm{sea}}^{\mathrm{th}}\bigr)
 $$
 
-where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{eff}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target.
+where $\langle R_{\mathrm{outer}} \rangle$ is the mean outer-binary radius and $T_{\mathrm{sea}}^{\mathrm{th}}$ is an effective temperature characterizing internal mode excitation. Deriving this relation from the master equation applied to coupled Noether braid populations is a primary simulation target.
 
 ### Inference Dependency and Calibration Gates
 

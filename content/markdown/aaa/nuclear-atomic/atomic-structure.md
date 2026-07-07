@@ -137,23 +137,27 @@ $$
 
 with $0 < D_X < 1$ fixed by the stability criterion being tested. This is not a hard material wall. It is a stability interface between a bound assembly ledger and the surrounding Noether sea response, and it counts as a stable interface only where $D_{f,X}$ varies regularly across the level set; where that regularity fails, the scan reports a residual or branch event under the reconstruction-regularity discipline of [Ontology](../foundations/ontology.md) rather than a smooth surface.
 
-Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, reaction corridors, packing, and penetration sample the same locked-versus-ambient wake ledger at different strength levels:
+Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, spectral readout, reaction corridors, packing, transport, and penetration sample the same locked-versus-ambient wake ledger at different strength levels:
 
 $$
 0
 <
 D_{\mathrm{clock}}
 \le
+D_{\mathrm{spec}}
+\le
 D_{\mathrm{corridor}}
 \le
 D_{\mathrm{packing}}
+\le
+D_{\mathrm{transport}}
 \le
 D_{\mathrm{penetration}}
 <
 1
 $$
 
-The clock threshold marks where weak locked-wake tails can bias local rates. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not four different definitions of a fermion. The spectral and transport channels used later in this chapter add no new interface cuts: when a spectral or transport scan needs an interface surface, the spectral channel reads through the clock-type cut and the transport channel reads through the packing-type cut, so the dominance ordering remains this four-threshold chain.
+The clock threshold marks where weak locked-wake tails can bias local rates. The spectral threshold marks where the same locked-wake record resolves the electron-envelope gaps read by line comparisons. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The transport threshold marks where ambient flow and stress response past the envelope is materially reorganized rather than weakly perturbed. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not six different definitions of a fermion. The positions of the spectral and transport entries relative to their neighbors are a declared first-pass convention fixed by the readouts being protected, not derived inequalities.
 
 In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles:
 
@@ -275,6 +279,8 @@ At hydrogen resolution the four first projectors have distinct jobs:
 | $\Pi_{\mathrm{packing}}$ | Exclusion magnitude, exclusion-stress tensor, and envelope scale/shape entries | Determines stable adjacency and coarse excluded volume without treating signs of force as a packing criterion |
 | $\Pi_{\mathrm{penetration}}$ | Signed branch acceleration, path-tangent acceleration, and phase-disruption entries | Determines whether a trial path through the fermion envelope remains dynamically stable |
 
+The spectral and transport channels carry their own cuts $D_{\mathrm{spec}}$ and $D_{\mathrm{transport}}$ in the chain above. Their retained branch-ledger entries are the ones named by the $F_{\mathrm{spec}}$ and $F_{\mathrm{transport}}$ readout functionals in the channel-scan section below, extending the parent kernel's four-channel projector family at hydrogen scope.
+
 The corresponding first norm packet for hydrogen is inherited from the channel norms in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
 
 $$
@@ -320,6 +326,7 @@ where $\Delta_{\mathrm H,X}^{(\mu)}$ is the channel stability residual after per
 | --- | --- | --- |
 | Clock | $\Delta_{\Gamma}^{\mathrm{tol}}$, $\Delta_{\theta}^{\mathrm{tol}}$, and $\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}}$ | Allowed clock-rate, phase, and delay perturbation before the local cadence comparison changes |
 | Spectral | $\Delta_{\mathrm{spec}}^{\mathrm{tol}}$ and $\Delta_R^{\mathrm{tol}}$ | Allowed envelope-gap and common-Rydberg readout change across the chosen line set |
+| Transport | Accepted flow, stress, and tensor-response stability range in $\mathbf{u}_{\text{sea}}$, $\Sigma_{\text{sea},ij}$, and $\mathcal M_{\text{sea}}^{ab}$ | Allowed medium-flow and stress-response perturbation before the transport readout changes |
 | Corridor | $\Delta_{p,X}^{\mathrm{color}}$ and $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}$ | Allowed open-color and provenance residual after the proton is projected as one color-singlet source |
 | Packing | Accepted neighboring-core stability range in $(R_{\parallel},R_{\perp},\lambda,\xi,\mathcal S_{\mathrm{excl}}^{ab})$ | Allowed adjacency deformation before the branch ceases to count as stable packing |
 | Penetration | Trial-path acceleration, deflection, and phase-disruption limits | Allowed path disturbance before transit through the fermion envelope becomes dynamically unstable |

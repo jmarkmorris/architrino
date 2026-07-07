@@ -26,7 +26,7 @@ Terminology in this chapter follows [mode-taxonomy.md](mode-taxonomy.md): photon
 - $\mathcal{S}_{\gamma}^{\mathrm{br}}$: bremsstrahlung photon-channel drive inherited from the radiation planar-mode gate.
 - $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode threshold scale.
 - $E_{\gamma,\min}$: hypothesized minimum stable planar-mode energy.
-- $\Gamma_{\mathrm{eff}}$: absolute-time/proper-time conversion factor.
+- $\Gamma_{\mathrm{eff}}$: effective-time/proper-time conversion factor; this chapter's working name for the projected cadence-stretch conversion $\Gamma_N$.
 - $\rho_{\text{NS}}(\mathbf X,T)$: local physical Noether braid density.
 
 ## Physical Mechanism
@@ -37,7 +37,7 @@ At low photon energies, multiple small-angle encounters contribute strongly and 
 
 ## Prerequisites (Minimal)
 
-- Photon assembly ontology (planar-mode nested shell braid language at micro level).
+- Photon assembly ontology (planar-mode photon-assembly language at micro level).
 - Shared radiation routing in [Radiation](radiation.md).
 - Master Equation state-transition framework (emissive vs non-emissive microstates).
 - Emergent metric/geodesic transport framework (observer-level propagation and lensing).
@@ -72,16 +72,16 @@ $$
 \mathcal{R}_{\Theta}^{\mathrm{br}}
 =
 \mathcal{R}_{\Theta}\!\left(
-\Gamma_e(t),
-\mathcal{C}_{o'j}(t),
+\Gamma_e(T),
+\mathcal{C}_{o'j}(T),
 J_{o'j},
 \rho_{\text{NS}}(\mathbf X,T),
 \chi_{\text{sea}}(\mathbf X,T);
-Z,b,\left\|\frac{d\mathbf{v}_e}{dt}\right\|
+Z,b,\left\|\frac{d\mathbf{V}_e}{dT}\right\|
 \right)
 $$
 
-Here $\Gamma_e(t)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(t)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{v}_e/dt\right\|$ is the deceleration magnitude. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
+Here $\Gamma_e(T)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{V}_e/dT\right\|$ is the deceleration magnitude in absolute time. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
 
 The corresponding excitation energy is inherited from the radiation basin definition:
 
@@ -112,7 +112,7 @@ In this document, a **wake shock** is the bremsstrahlung name for the inherited 
 A minimal trigger condition is written as
 
 $$
-\mathcal{I}_e\!\left(\rho_{\text{NS}}(\mathbf X,T),\left\|\frac{d\mathbf{v}_e}{dt}\right\|,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}}
+\mathcal{I}_e\!\left(\rho_{\text{NS}}(\mathbf X,T),\left\|\frac{d\mathbf{V}_e}{dT}\right\|,\Xi_e\right) \ge \mathcal{I}_{\mathrm{crit}}
 $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
@@ -164,22 +164,22 @@ Interpretive takeaway: this section defines event-level state transition and boo
 To make the wake language calculable, the $\mathbb{A}\mathbb{A}\mathbb{A}$ program uses a provisional mapping ansatz. The variable $\mathcal{S}_{\mathrm{wake}}$ is an effective proxy for the inherited photon-channel drive $\mathcal{S}_{\gamma}^{\mathrm{br}}$, not a separate radiation ontology. This is a working effective form pending derivation from the Master Equation, not a claimed first-principles closure:
 
 $$
-\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf X,T)\bigr]^{\alpha} \left\|\frac{d\mathbf{v}_e}{dt}\right\|^{\beta}
+\mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf X,T)\bigr]^{p_\rho} \left\|\frac{d\mathbf{V}_e}{dT}\right\|^{p_a}
 $$
 
 Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating pro/anti planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local nested shell braid geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
-P_{\mathrm{nuc}}(E_\gamma) = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right]
+P_{\mathrm{nuc}} = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right]
 $$
 
-with $(x)_+ \equiv \max(x,0)$. Here $A_{\mathrm{tb}},\alpha,\beta,\mathcal{S}_*$ are effective Noether sea response parameters. This is explicitly a mapping goal, not yet a closed derivation.
+with $(x)_+ \equiv \max(x,0)$. The probability carries no per-photon-energy argument at this stage; a spectral decomposition of $P_{\mathrm{nuc}}$ over $E_\gamma$ is part of the pending derivation, not of this ansatz. Here $A_{\mathrm{tb}},p_\rho,p_a,\mathcal{S}_*$ are effective Noether sea response parameters. This is explicitly a mapping goal, not yet a closed derivation.
 
 Interpretation of coefficients:
 
 - $A_{\mathrm{tb}}$: normalization for assembly-to-medium coupling strength.
-- $\alpha$: sensitivity exponent to local Noether sea density.
-- $\beta$: sensitivity exponent to deceleration magnitude.
+- $p_\rho$: sensitivity exponent to local Noether sea density (subscripted to avoid the fine-structure constant $\alpha$).
+- $p_a$: sensitivity exponent to deceleration magnitude (subscripted to avoid the kinematic $\beta=\|\mathbf v\|/c$ used below).
 - $\mathcal{S}_*$: effective bremsstrahlung proxy for the inherited planar-mode onset scale $\mathcal{S}_{\gamma,*}$.
 
 Status and handling:
@@ -191,7 +191,7 @@ Status and handling:
 For gravity integration, the same source terms can be expressed through the emergent metric fields that govern local geodesics:
 
 $$
-\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g_{\mu\nu},\nabla g_{\mu\nu},u_e^\mu,\rho_{\text{NS}}(\mathbf X,T)\right)
+\mathcal{S}_{\mathrm{wake}} = \mathcal{S}_{\mathrm{wake}}\!\left(g^{\mathrm{eff}}_{\mu\nu},\nabla g^{\mathrm{eff}}_{\mu\nu},u_e^\mu,\rho_{\text{NS}}(\mathbf X,T)\right)
 $$
 
 ### Emergence of Radiation from Assembly Dynamics
@@ -199,11 +199,13 @@ $$
 This section states the mechanism-level emergence claim explicitly:
 
 1. **Mechanism:** deceleration-driven internal reconfiguration in the electron assembly produces a closure mismatch $\mathcal{R}_{\Theta}^{\mathrm{br}}$ and excitation energy $E_{\text{exc}}^{\mathrm{br}}$; if the inherited planar-mode threshold is crossed, a planar mode is nucleated and propagates as a photon assembly.
-2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit planar-mode nucleation probability $P_{\mathrm{nuc}}>0$.
+2. **Microstate mapping:** non-emissive states satisfy $\mathcal{I}_e < \mathcal{I}_{\mathrm{crit}}$; emissive states satisfy $\mathcal{I}_e \ge \mathcal{I}_{\mathrm{crit}}$ and admit planar-mode nucleation probability $P_{\mathrm{nuc}} > 0$.
 3. **Classical-limit recovery:** for many emissions over smooth trajectories, coarse-grained power recovers the standard acceleration-radiation scaling (Larmor/Lienard class) in weak-coupling validated regimes.
 4. **Declared breakdown regime:** near unresolved ultra-strong-field or ultra-high-energy domains, this effective mapping is not assumed complete and requires direct Master Equation treatment.
 
 ## Core Equations (Observer-Level Baselines)
+
+Observer-level baselines in this chapter use SI units (explicit $\epsilon_0$); the Gaussian-unit displays in [Mode Taxonomy](mode-taxonomy.md) declare their convention locally.
 
 A compact emissivity form for thermal free-free emission is
 
@@ -308,7 +310,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping, finite geometry is explicitly the s
 A gravity-coupled extension can be written as
 
 $$
-\frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi)\right]
+\frac{d\sigma}{dk} \propto Z_{\mathrm{eff}}^2 \, |F(q^2)|^2 \, \left[1+\delta_g(r,\Phi_{\text{eff}})\right]
 $$
 
 where $\delta_g$ parameterizes local metric/Noether sea corrections. For standard nuclei in laboratory regimes, $\delta_g$ is expected to be subdominant; the term is retained so compact-object surface applications can be treated in one formalism.
@@ -358,20 +360,20 @@ $$
 
 In validated weak-field bremsstrahlung regimes, $\Delta_{\mathrm{br,pow}}\rightarrow0$ and $\Delta_{\mathrm{br,ang}}(\theta)\rightarrow0$ after screening, recoil, and form-factor corrections are applied through the same event record. The emitted photon ledger must also pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](radiation.md); otherwise a correct-looking photon spectrum has not closed the local energy-momentum route.
 
-## Time Parameterization (Absolute vs Proper Time)
+## Time Parameterization (Effective Observer Time vs Proper Time)
 
-Rate equations in this file are observer-level unless noted. For substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ transport, convert via
+Rate equations in this file are observer-level unless noted, written against the effective observer time $t_{\mathrm{eff}}$; substrate evolution remains in absolute time $T$. Convert via
 
 $$
-\frac{dE_e}{d\tau_e} = \frac{dE_e}{dt}\,\frac{dt}{d\tau_e},
+\frac{dE_e}{d\tau_e} = \frac{dE_e}{dt_{\mathrm{eff}}}\,\frac{dt_{\mathrm{eff}}}{d\tau_e},
 \qquad
-\frac{dt}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{NS}}(\mathbf X,T),\Phi)
+\frac{dt_{\mathrm{eff}}}{d\tau_e} = \Gamma_{\mathrm{eff}}(v_e,\rho_{\text{NS}}(\mathbf X,T),\Phi_{\text{eff}})
 $$
 
-For operational closure in this chapter, use the provisional split
+Here $\Gamma_{\mathrm{eff}}$ is this chapter's working name for the projected cadence-stretch conversion $\Gamma_N$ of [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), with $\Gamma_{\mathrm{eff}}\to\Gamma_N\to\gamma$ in the homogeneous moving branch; it is not a new conversion family. For operational closure in this chapter, use the provisional split
 
 $$
-\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{NS}}(\mathbf X,T))+\delta_{\Phi}(\Phi)\right]
+\Gamma_{\mathrm{eff}} \approx \gamma(v_e)\,\left[1+\delta_{\rho}(\rho_{\text{NS}}(\mathbf X,T))+\delta_{\Phi}(\Phi_{\text{eff}})\right]
 $$
 
 with $\gamma(v_e)=1/\sqrt{1-v_e^2/c^2}$ and $|\delta_{\rho}|,|\delta_{\Phi}|\ll 1$ in laboratory and weak-field astrophysical regimes where standard relativistic timing is already validated. The full derivation and regime-dependent corrections are delegated to the metric/time foundations chapter; this file uses the above form as a controlled working map.
@@ -398,10 +400,10 @@ $$
 The observer-level mapping target is then
 
 $$
-\epsilon_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-4}\,\epsilon_{\nu(1+z_X)}^{\mathrm{ff}}(E)\,\mathcal{T}(\nu, E\to R)
+I_\nu^{\mathrm{obs}}(R) = (1+z_X)^{-3}\,I_{\nu(1+z_X)}(E)\,\mathcal{T}(\nu, E\to R)
 $$
 
-where $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma, and any Noether sea-specific opacity. The $Y_{X,\mathrm{path}}$ term records signed frequency exchange along the path; $\mathcal{T}$ must not hide an unlogged photon-energy gain or loss. In the standard homogeneous limit this reduces to the conventional redshift notation with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$.
+The mapped observable is the received per-frequency specific intensity along the ray, with $I_\nu(E)$ the source-side specific intensity assembled from the free-free emissivity $\epsilon_\nu^{\mathrm{ff}}$ along the emitting column. The $(1+z_X)^{-3}$ factor is the per-frequency intensity transfer implied by the invariance of $I_\nu/\nu^3$; the bolometric factor is $(1+z_X)^{-4}$ and must not be combined with a shifted per-frequency argument. Here $\mathcal{T}$ is the transfer factor for absorption, scattering in plasma, and any Noether sea-specific opacity. The $Y_{X,\mathrm{path}}$ term records signed frequency exchange along the path; $\mathcal{T}$ must not hide an unlogged photon-energy gain or loss. In the standard homogeneous limit this reduces to the conventional redshift notation with $1+z \equiv (1+z_{\mathrm{em}})/(1+z_{\mathrm{obs}})$, where the em and obs factors are the segment budgets accumulated at the emission and observation ends of the declared record pair, so the ratio is the net transfer between them.
 
 ## Thermal Equilibrium Assumptions in Evolving Noether Sea States
 
@@ -421,10 +423,20 @@ This ratio provides a diagnostic for when LTE-based closure is expected to hold.
 Bremsstrahlung photons, once emitted, are modeled as propagating on null geodesics of the emergent metric:
 
 $$
-ds^2 = 0,\qquad k^\mu \nabla_\mu k^\nu = 0
+ds_{\mathrm{eff}}^2 = 0,\qquad k^\mu \nabla^{\mathrm{eff}}_\mu k^\nu = 0
 $$
 
-This keeps transport treatment aligned with the same geometric sector used across the spacetime mapping.
+with $ds_{\mathrm{eff}}^2$ and $\nabla^{\mathrm{eff}}$ built from the effective metric $g^{\mathrm{eff}}_{\mu\nu}$. This keeps transport treatment aligned with the same geometric sector used across the spacetime mapping.
+
+## Observer-Level Closure Checks
+
+Per the authoring rule in [Mode Taxonomy](mode-taxonomy.md), the closure checks for this channel are collected here:
+
+- **Radiated-power closure:** $\Delta_{\mathrm{br,pow}}\to0$ and $\Delta_{\mathrm{br,ang}}(\theta)\to0$ in validated weak-field regimes after screening, recoil, and form-factor corrections are applied through the same event record.
+- **Photon ledger closure:** the emitted photon must pass $\Delta_{\gamma,\mathrm{flux}}=0$ from [Radiation](radiation.md).
+- **Event conservation:** the energy row $E_{\text{exc}}^{\mathrm{br}}=E_\gamma+\Delta E_{\mathrm{recoil}}+\Delta E_{\mathrm{med}}+\Delta E_{\mathrm{rem}}$ and the vertex momentum closure above.
+- **Equilibrium validity:** $\mathcal R_{\mathrm{LTE}}$ decides when the LTE free-free emissivity forms apply.
+- **Cross-section recovery:** $d\sigma/dk$ must recover screened standard behavior including the $Z^2\to Z$ coherence transition with form-factor suppression in the validated regime.
 
 ## Photon Ontology Note
 

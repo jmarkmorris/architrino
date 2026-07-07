@@ -65,8 +65,8 @@ Path history is part of identity bookkeeping in absolute time.
 
 4. **Characterize local Noether sea state**
 Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
-Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{eff}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local effective current density. These variables are mapping handles, not replacement observables.
+$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
+Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
@@ -143,7 +143,7 @@ Select the mode family:
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
 
-For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{e}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, material analyzer projector, helicity target, accepted/rejected capture channel, native capture measure, invariant unresolved-material measure, and no-longitudinal-mode status.
+For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{k}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, material analyzer projector, helicity target, accepted/rejected capture channel, native capture measure, invariant unresolved-material measure, and no-longitudinal-mode status.
 
 Gate B entries are bookkeeping requirements until the transverse planar-pair ledger is derived. A reaction chapter may require helicity, polarization, analyzer pass/reject routing, or no-longitudinal-mode closure, but it should not treat the mode taxonomy itself as the proof. Rejected photon action must route through local reflection, absorption, scattering, heat, or another allowed material update, not through an extra longitudinal free-photon branch.
 

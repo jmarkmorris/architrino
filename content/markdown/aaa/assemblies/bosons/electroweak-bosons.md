@@ -20,7 +20,7 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 ### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
-*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
+*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
@@ -35,7 +35,7 @@ This gives a useful interpretation of photon redshift and blueshift. A photon-ch
 
 ### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
-*   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
+*   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{k}}$ carrying the superposed $1/r^2$ wake surfaces.
 *   **Burst vs. continuous:**
     *   **Packet (particle-like):** A discrete atomic transition releases a short burst train—a finite segment of the planar-mode train.
     *   **Beam (classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
@@ -76,7 +76,7 @@ The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gau
 
 #### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf X,T)$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{k}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf X,T)$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$
@@ -137,7 +137,7 @@ The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homog
 
 #### Gate B Theorem Scaffold: Polarization and Spin
 
-Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
@@ -279,7 +279,7 @@ $$
 =
 \left|
 \frac{
-\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
 }{\hbar}
 -
 \lambda_{\mathrm{hel}}
@@ -294,14 +294,14 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 }
 $$
 
-A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
+A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf k}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
-An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
+An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{k}}_\gamma$, the closure target is
 
 $$
 \mathcal{A}_{\text{pass}}
 \propto
-\hat{\mathbf{e}}_\gamma\cdot\hat{\mathbf{a}}
+\hat{\mathbf{k}}_\gamma\cdot\hat{\mathbf{a}}
 =
 \cos\theta,
 \qquad
@@ -404,7 +404,7 @@ The same return-map language distinguishes common polarization material effects 
 $$
 a_{\perp,\mathrm{out}}^a
 =
-T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf e})\,
+T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf k})\,
 a_{\perp,\mathrm{in}}^b
 +r_\Omega^a,
 $$

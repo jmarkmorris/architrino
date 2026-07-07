@@ -46,7 +46,7 @@ It does not prove branch retention by itself. A Proof ID names a branch-configur
 | --- | --- | --- |
 | [Noether Braid](noether-braid.md) | Provides the overview and base-family map for the Noether braid stack. | Names the family sequence without carrying each family derivation. |
 | [Neutral Braid](neutral-braid.md) | Defines the base six-body branch inventory and retained-branch certificate target. | Establishes the broad case before shell support, exact binary grouping, or nested ordering. |
-| [Shell Braid](shell-braid.md) | Defines the one-band radial-support family. | Adds shell support without promoting the branch to nested shell structure. |
+| [Symmetric Shell Braid](symmetric-shell-braid.md) | Defines the one-band radial-support family. | Adds shell support without promoting the branch to nested shell structure. |
 | [Nested Shell Braid](nested-shell-braid.md) | Defines the three-band nested support family and its branch-label scaffold. | Names the nested family without certifying dynamics or observer export by itself. |
 | [Noether Braid Proof Map](noether-braid-proof-map.md) | Tracks current Proof IDs, work status, detailed proof records, and environment-qualified rounds. | Records proof work without redefining the configuration taxonomy. |
 | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Searches the cases where three retained angular-momentum rows may form a full internal 3D frame. | Supplies search variables and frame rows without saying every Noether braid must have exact binaries. |

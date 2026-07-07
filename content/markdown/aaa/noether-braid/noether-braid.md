@@ -15,7 +15,7 @@ For the broader cross-axis classifier, see [Noether Braid Taxonomy](noether-brai
 | Term | Definition | Additional structure |
 | --- | --- | --- |
 | [**neutral braid**](neutral-braid.md) | The broad six-architrino neutral case before any required binary grouping or radial organization. | Polarity balance and causal-return bookkeeping. |
-| [**shell braid**](shell-braid.md) | A neutral braid whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
+| [**shell braid**](symmetric-shell-braid.md) | A neutral braid whose six architrino paths remain in a controlled radial support band. | Radial support control, with near-antipodality only as an optional constraint. |
 | [**nested shell braid**](nested-shell-braid.md) | A shell braid with three ordered radial support bands. | Ordered support-band structure; exact binaries are an additional proof assumption, not a separate braid type. |
 
 These definitions name case structure, not retained-branch existence. A neutral braid requires six-body polarity balance and causal-return bookkeeping; a shell braid adds radial support and recovery residuals; a nested shell braid adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
@@ -34,22 +34,24 @@ That is why the family labels are deliberately modest. `Neutral`, `shell`, and `
 
 This chapter is the overview and family map for the Noether braid stack. It defines the word **braid**, names the base family sequence, and explains why family labels are case structure rather than retained-branch results.
 
-It does not carry the detailed family derivations, select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here, and they play four distinct roles. The family ladder defines the objects in order of added structure; the bookkeeping chapters say how claims about those objects are classified and tracked; the mechanism chapters carry the live analysis of how a branch could close; the export chapters describe what a retained branch would hand to the rest of the theory.
+It does not carry the detailed family derivations, select a frequency family, assign a Proof ID or proof disposition, compute assembly topological charge, or export Lorentz clock/ruler deformation by itself. Neighboring chapters consume the branch record named here, and they play distinct roles. The requirements chapter states the realization-independent proof contract; the mathematics chapter carries the machinery shared by every realization; the family ladder defines the objects in order of added structure; the bookkeeping chapters say how claims about those objects are classified and tracked; the mechanism chapters carry the live analysis of how a branch could close; the export chapters describe what a retained branch would hand to the rest of the theory.
 
 | Role | Chapter | What it owns |
 | --- | --- | --- |
 | Family ladder | [Neutral Braid](neutral-braid.md) | The base six-body inventory, all-pairs ledger, and retained-branch certificate target. |
-| Family ladder | [Shell Braid](shell-braid.md) | The one-band support family, the axis-neutral invariant channel, and the speed-budget kinematics. |
+| Requirements | [Braid Recovery Requirements](braid-recovery-requirements.md) | The realization-independent retention-certificate shape, proof-burden order, and recovery-target inventory. |
+| Mathematics | [Braid Mathematics](braid-mathematics.md) | The core-agnostic machinery: invariant channels and equivariant reductions, exact channel identities, scoped anti-damping results, eigen-braid spectrum framing, action clicks, and the Thomson dressing mechanism. |
+| Family ladder | [Symmetric Shell Braid](symmetric-shell-braid.md) | The one-band support family and its held-release fixture evidence, including the return-response question. |
 | Family ladder | [Nested Shell Braid](nested-shell-braid.md) | The three-band support family, its relation to the symmetric shell channel, and the dressing and generation hypotheses. |
+| Mechanism | [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) | The nested mechanism tests: translation response, retuning closure, and terminal alignment. |
+| Export | [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) | The envelope and observer-export interface. |
+| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) | The `NSH-421` candidate frequency family. |
+| Mechanism | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Cases where three retained angular-momentum rows may form a full internal 3D frame. |
+| Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 | Bookkeeping | [Noether Braid Taxonomy](noether-braid-taxonomy.md) | Configuration axes and the compact Proof ID grammar. |
 | Bookkeeping | [Noether Braid Proof Map](noether-braid-proof-map.md) | Proof targets, proof statuses, and environment-qualified rounds. |
-| Mechanism | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Cases where three retained angular-momentum rows may form a full internal 3D frame. |
-| Mechanism | [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) | The nested mechanism tests: translation response, retuning closure, and terminal alignment. |
-| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) | The `NSH-421` candidate frequency family. |
-| Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
-| Export | [Nested Shell Braid Geometry](nested-shell-braid-geometry.md) | The envelope and observer-export interface. |
 
-A first reading should walk the family ladder in order, consult the bookkeeping chapters whenever a claim's status matters, and treat the mechanism and export chapters as the working frontier.
+A first reading should follow the table order: the base family definition, its realization-independent requirements, and the shared mathematics first, then the featured symmetric shell braid realization, then the alternative nested-family chapters, with the bookkeeping chapters as the reference layer. Consult the bookkeeping chapters whenever a claim's status matters, and treat the mechanism and export chapters as the working frontier.
 
 ## Medium-Selection Burden
 
