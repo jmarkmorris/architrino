@@ -27,11 +27,7 @@ For Generation-I quarks:
 - each quark axial layer contributes 6 axial architrinos,
 - so each Generation-I quark contributes 12 architrinos total.
 
-Therefore a nucleon contains
-$$
-3\times 12 = 36
-$$
-architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing. This count is inventory, not a mass formula. The observed nucleon mass response is produced only after color closure, corridor terms, cross terms, shielding, and local Noether sea response are included.
+Therefore a nucleon contains $3 \times 12 = 36$ architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing. This count is inventory, not a mass formula. The observed nucleon mass response is produced only after color closure, corridor terms, cross terms, shielding, and local Noether sea response are included.
 
 The constituent content is:
 $$
@@ -110,76 +106,6 @@ d_N\ll\ell\ll R_p
 $$
 
 Here $C_{\ell,X}^{p}$ is the declared proton-window projection and $\mathcal W_{\mathrm{strong},X}^{uud}$ is the channel exposure of $\mathcal L_{\mathrm{strong}}^{uud}(T)$. The strong-sector term includes the closed color-corridor contribution needed to make the three quark branches one proton source; it is not ambient Noether sea and is not a fourth quark-like constituent.
-
-### Proton Mass Is Not Current-Quark Mass Addition
-
-The same source-envelope rule explains why the proton mass is not obtained by adding the Standard Model current-quark mass entries for two up quarks and one down quark. Those current-quark entries are comparison-layer parameters for quark fields inside the strong sector; they are not the observer-facing scalar masses of three isolated free quark branches. Free quarks are not accepted asymptotic branches.
-
-For the accepted proton branch, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
-
-$$
-\mathsf{I}_{p}^{ab}
-=
-\mathsf{I}_{u_1}^{ab}
-+
-\mathsf{I}_{u_2}^{ab}
-+
-\mathsf{I}_{d}^{ab}
-+
-\mathsf{I}_{\mathrm{strong},uud}^{ab}
-+
-\mathsf{I}_{\mathrm{cross},uud}^{ab}
-+
-\mathsf{I}_{\mathrm{sea},uud}^{ab},
-\qquad
-m_{\mathrm{tr}}(p)
-=
-\frac{1}{3}h_{ab}\mathsf{I}_{p}^{ab}.
-$$
-
-Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
-
-The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
-
-### Proton Spin Budget
-
-The proton spin comparison should be treated the same way as the mass comparison: the observer-level spin-$1/2$ label is a composite readout after the three quark branches, color-corridor structure, orbital terms, and Noether sea dressing are projected into one accepted proton source envelope. In a declared resolution window $Q$, write the proton angular-momentum ledger as
-$$
-\mathbf J_p(Q)
-=
-\sum_{q\in\{u_1,u_2,d\}}
-\left(
-\mathbf J_{q,\mathrm{braid}}(Q)
-+
-\mathbf L_{q,\mathrm{orb}}(Q)
-\right)
-+
-\mathbf J_{\mathrm{color\ corr}}(Q)
-+
-\mathbf L_{\mathrm{tube}}(Q)
-+
-\mathbf J_{\mathrm{sea}}(Q).
-$$
-
-Here $\mathbf J_{q,\mathrm{braid}}$ is the retained internal Noether braid angular-momentum contribution of each quark branch, $\mathbf L_{q,\mathrm{orb}}$ is the quark-branch orbital contribution inside the accepted proton envelope, $\mathbf J_{\mathrm{color\ corr}}$ is the angular momentum carried by color-corridor and flux-tube reconfiguration, $\mathbf L_{\mathrm{tube}}$ records tube geometry and recoil circulation, and $\mathbf J_{\mathrm{sea}}$ records Noether sea and sea-pair dressing that remains inside the proton branch rather than outside as ambient medium.
-
-The closure target is
-$$
-\mathcal R_{J_p}(Q)
-=
-\frac{
-\left\|
-\mathbf J_p(Q)
--
-\frac{\hbar}{2}\hat{\mathbf J}_p
-\right\|
-}{
-\hbar+\varepsilon_J
-}
-\le
-\Delta_{J_p}(Q).
-$$
-This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
 
 The first closure condition is absence of open color leakage at the proton boundary:
 
@@ -263,6 +189,78 @@ The source-envelope closure fails if any of the following occurs:
 4. **Projection failure:** proton-sensitive refinements do not converge to one atomic-window envelope after $C_{\ell_{\mathrm{atom}},X}$ is applied.
 5. **Channel-retuning failure:** spectral, clock, packing, or corridor calculations require different proton ledgers instead of different projections of the same color-singlet branch.
 
+### Proton Mass Is Not Current-Quark Mass Addition
+
+The same source-envelope rule explains why the proton mass is not obtained by adding the Standard Model current-quark mass entries for two up quarks and one down quark. Those current-quark entries are comparison-layer parameters for quark fields inside the strong sector; they are not the observer-facing scalar masses of three isolated free quark branches. Free quarks are not accepted asymptotic branches.
+
+For the accepted proton branch, the mass-facing response must be computed after color-singlet closure and the proton-window projection. Schematically,
+
+$$
+\mathsf{I}_{p}^{ab}
+=
+\mathsf{I}_{u_1}^{ab}
++
+\mathsf{I}_{u_2}^{ab}
++
+\mathsf{I}_{d}^{ab}
++
+\mathsf{I}_{\mathrm{strong},uud}^{ab}
++
+\mathsf{I}_{\mathrm{cross},uud}^{ab}
++
+\mathsf{I}_{\mathrm{sea},uud}^{ab},
+\qquad
+m_{\mathrm{tr}}(p)
+=
+\frac{1}{3}h_{ab}\mathsf{I}_{p}^{ab}.
+$$
+
+Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
+
+The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the accepted composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have already been accepted as nucleon branches.
+
+### Proton Spin Budget
+
+The proton spin comparison should be treated the same way as the mass comparison: the observer-level spin-$1/2$ label is a composite readout after the three quark branches, color-corridor structure, orbital terms, and Noether sea dressing are projected into one accepted proton source envelope. In a declared resolution window $Q$ (a resolution scale, echoing deep-inelastic $Q^2$; not one of the charge symbols $Q_u$, $Q_d$ above), write the proton angular-momentum ledger as
+$$
+\mathbf J_p(Q)
+=
+\sum_{q\in\{u_1,u_2,d\}}
+\left(
+\mathbf J_{q,\mathrm{braid}}(Q)
++
+\mathbf L_{q,\mathrm{orb}}(Q)
+\right)
++
+\mathbf J_{\mathrm{color\ corr}}(Q)
++
+\mathbf L_{\mathrm{tube}}(Q)
++
+\mathbf J_{\mathrm{sea}}(Q).
+$$
+
+Here $\mathbf J_{q,\mathrm{braid}}$ is the retained internal Noether braid angular-momentum contribution of each quark branch, $\mathbf L_{q,\mathrm{orb}}$ is the quark-branch orbital contribution inside the accepted proton envelope, $\mathbf J_{\mathrm{color\ corr}}$ is the angular momentum carried by color-corridor and flux-tube reconfiguration, $\mathbf L_{\mathrm{tube}}$ records tube geometry and recoil circulation, and $\mathbf J_{\mathrm{sea}}$ records Noether sea and sea-pair dressing that remains inside the proton branch rather than outside as ambient medium.
+
+The closure target is the magnitude closure
+$$
+\mathcal R_{J_p}(Q)
+=
+\frac{
+\Bigl|
+\left\|
+\mathbf J_p(Q)
+\right\|
+-
+\frac{\hbar}{2}
+\Bigr|
+}{
+\hbar+\varepsilon_J
+}
+\le
+\Delta_{J_p}(Q),
+$$
+with the realized proton spin axis defined as $\hat{\mathbf J}_p=\mathbf J_p(Q)/\lVert\mathbf J_p(Q)\rVert$; alignment of that axis with an external quantization direction is a measurement-layer question, not part of this residual. This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
+
 ## Proton and Neutron as Color-Singlet Baryon Assemblies
 
 ### Proton
@@ -335,16 +333,26 @@ d_n^{\mathrm{asm}}
 \frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}
 $$
 
-The first target lemma is a cancellation statement, not a numerical fit:
+where $d_n^{\max}$ is the declared experimental ceiling on the neutron electric dipole moment used as the comparison bound.
+
+The first target lemma is a bounded cancellation statement, not a numerical fit:
 $$
 \text{color-singlet }udd\text{ ground state}
 \quad\Longrightarrow\quad
+\left|
 \left\langle
 \vartheta_n+\vartheta_{\mathrm{flux}}+\vartheta_{\mathrm{sea}}
 \right\rangle_T
-=0
+\right|
+\le
+\vartheta_n^{\mathrm{tol}},
+\qquad
+\vartheta_n^{\mathrm{tol}}
+=
+\frac{d_n^{\max}}{\epsilon R_n}
 $$
-up to bounded CP-odd perturbations in the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the closed 9-axis braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
+
+with the surviving CP-odd perturbations carried by the same branch record that recovers the neutron magnetic moment and proton-neutron mass splitting. A proof should use the explicit `udd` color-singlet ledger: one $u$ core, two $d$ cores, one $H$, one $M$, and one $L$ exceptional axis across the closed 9-axis braid, with the two down-type branches paired by the same strong-sector closure map. If that quotient leaves a nonzero time-averaged spin-aligned first moment above $d_n^{\max}$, the strong-CP assembly repair fails.
 
 ## Effective Internal Geometry
 
@@ -436,7 +444,7 @@ That is why this chapter feeds directly into [nuclear-binding.md](./nuclear-bind
 
 ## Canonical Nucleon Table
 
-| Nucleon | Quark content | Charge | Baryon number | Generation tier of constituents | Total architrinos | Ground-state role |
+| Nucleon | Quark content | Charge | Baryon number | Generation tier of constituents | Architrino inventory (braid bookkeeping) | Ground-state role |
 | --- | --- | ---: | ---: | --- | ---: | --- |
 | Proton | `uud` | `+1` | `+1` | three Generation-I quarks | `36` | stable charged nucleon |
 | Neutron | `udd` | `0` | `+1` | three Generation-I quarks | `36` | neutral nucleon, stable in nuclei, weakly unstable free |
