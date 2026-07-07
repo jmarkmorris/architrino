@@ -85,7 +85,7 @@ At the architrino level, the ontological term is not `charge`. The primitive is 
 
 Polarity notation rule:
 
-- Use full words, `Positrino` and `Electrino`, when naming the entity species.
+- Use full words, `Electrino` and `Positrino`, when naming the entity species.
 - Use $\epsilon_+$ and $\epsilon_-$ when writing compact polarity inventories, axial-inventory counts, weak-coupling-triad inventories, or neutral Noether braid content.
 - Prefer count expressions such as $5\epsilon_+ + 1\epsilon_-$ or $A_{\Sigma}=3\epsilon_-$.
 - Avoid initial-letter polarity shorthand such as `6E`, `5P,1E`, `P/E`, `P+`, or `P-`. Those collide with electron/proton language, energy $E$, parity/probability/pressure $P$, and Standard Model notation.
@@ -163,7 +163,7 @@ Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space
 
 ## Noether Braid Usage
 
-Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three positrinos and three electrinos. The term is broader than an exact-binary nested-shell branch: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
+Use `Noether braid` as the canonical reader-facing term for the neutral six-architrino assembly scaffold made from three electrinos and three positrinos. The term is broader than an exact-binary nested-shell branch: it names the retained six-worldline branch and its causal-return ledger before exact binary grouping, shell support, or nested ordering has been certified.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
