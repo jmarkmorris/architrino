@@ -8864,6 +8864,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   textbookTocButton,
   detailClose,
   markdownClose,
+  markdownPanel,
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
@@ -8872,6 +8873,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   getCurrentLevel: () => currentLevel,
   isTransitionActive: () => transitionState.active,
   toggleTextbookToc,
+  documentLike: globalThis.document,
 });
 sceneImageGalleryRuntime = createSceneImageGalleryRuntime({
   document: globalThis.document,

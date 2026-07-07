@@ -3,6 +3,7 @@ export function createScenePanelUiRuntime(deps) {
     textbookTocButton,
     detailClose,
     markdownClose,
+    markdownPanel,
     markdownDocButton,
     markdownPdfButton,
     markdownLayoutToggle,
@@ -11,6 +12,7 @@ export function createScenePanelUiRuntime(deps) {
     getCurrentLevel,
     isTransitionActive,
     toggleTextbookToc,
+    documentLike = typeof document !== "undefined" ? document : null,
   } = deps;
 
   function openCurrentLevelDoc() {
@@ -24,11 +26,41 @@ export function createScenePanelUiRuntime(deps) {
     const docLevel = currentLevel.markdownSection
       ? { ...currentLevel, id: "", markdownSection: null }
       : currentLevel;
-    markdownRuntime.showMarkdownPanel(docLevel);
-    if (markdownDocButton && docLevel.markdownSection == null) {
-      markdownDocButton.classList.add("is-hidden");
-      markdownDocButton.disabled = true;
+    if (
+      typeof markdownRuntime.isActiveLevelMarkdown === "function" &&
+      markdownRuntime.isActiveLevelMarkdown(docLevel)
+    ) {
+      markdownRuntime.hideMarkdownPanel();
+      return;
     }
+    markdownRuntime.showMarkdownPanel(docLevel);
+  }
+
+  function isInsideNode(node, target) {
+    return !!node && typeof node.contains === "function" && node.contains(target);
+  }
+
+  function isMarkdownChromeTarget(target) {
+    return (
+      isInsideNode(markdownPanel, target) ||
+      isInsideNode(markdownDocButton, target) ||
+      isInsideNode(markdownPdfButton, target) ||
+      isInsideNode(markdownLayoutToggle, target)
+    );
+  }
+
+  function closeMarkdownFromOutsidePointer(event) {
+    if (
+      !markdownRuntime ||
+      typeof markdownRuntime.isMarkdownPanelOpen !== "function" ||
+      !markdownRuntime.isMarkdownPanelOpen()
+    ) {
+      return;
+    }
+    if (isMarkdownChromeTarget(event?.target)) {
+      return;
+    }
+    markdownRuntime.hideMarkdownPanel();
   }
 
   function wireListeners() {
@@ -88,6 +120,8 @@ export function createScenePanelUiRuntime(deps) {
         markdownRuntime.toggleMarkdownLayout();
       });
     }
+
+    documentLike?.addEventListener?.("pointerdown", closeMarkdownFromOutsidePointer);
   }
 
   return {

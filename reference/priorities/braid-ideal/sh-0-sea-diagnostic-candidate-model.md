@@ -1,6 +1,6 @@
 # SH-0-Sea Diagnostic Candidate Model
 
-Status: diagnostic/candidate model packet, 2026-07-04. Updated with diagnostic produced response-source row, 2026-07-05.
+Status: diagnostic/candidate model packet, 2026-07-04. Updated with the computed dipole wake-sum run and removal of the fitted response amplitude, 2026-07-07.
 
 Proof ID: `SH-0-sea`.
 
@@ -55,7 +55,7 @@ The candidate row's dynamic replay metadata uses field speed `c_f=1`, coupling `
 | Local target-sea frame row | Target-center frame with target center `C(t)`, relative positions `y_a(t)=x_a(t)-C(t)`, and local sea velocity `u_sea(C,t)`. The first diagnostic rest condition is `\dot C(t)-u_sea(C,t)=0` after frame normalization. | Candidate only; the accepted density provider has `u_sea=(0,0,0)` for its own window, not for this target record. |
 | Boundary-condition row | Local region `\Omega_C` around the target and boundary history `\mathcal H_{\partial\Omega}` carrying incoming sea wake/event data. No hard wall is allowed; the boundary must represent nearby Noether braid population response. | Candidate only. |
 | Sea-response row | Candidate acceleration `\mathbf a_a^{\mathrm{sea}}=\mathcal A_a^{\mathrm{sea}}(B,\Theta_{\mathrm{sea}},\Theta_{\mathrm{asm}},\mathcal H_{\partial\Omega})`, projected onto the target reduced-radius direction. | Candidate only; not an accepted Noether sea response row. |
-| Produced response source row | Diagnostic `pressure_tension` or `boundary_wake` source row bound to the same target identity, using attempt `aa` FCC nearest-neighbor shell as the geometry carrier and event, support, and action provenance refs from this model. | Diagnostic only; not accepted wake, support, action, response, or retained evidence. |
+| Computed dipole wake-sum source row | Diagnostic `dipole_wake_sum` source row bound to the same target identity: the master-equation-kernel delayed sum over the 12 held FCC neighbor braids, zero free amplitude, using attempt `aa` FCC nearest-neighbor shell as the geometry carrier and event, support, and action provenance refs from this model. | Diagnostic only; computed, not fitted; not accepted wake, support, action, response, or retained evidence. |
 | Accepted provenance replacement requirement | Fail-closed requirement and package verifier for the future `sh_0_sea_same_target_accepted_provenance_package.v0`, which must replace the diagnostic FCC geometry, event, support, and action refs after the seed-path certificate, external authority package, and repo authorization exist. | Requirement only; current status is blocked first at `held_release_seed_path_rows_acceptance_certificate`. |
 | Support/envelope row | Common-sphere or spheroid support variables, reduced radius `R(t)`, radial velocity `\dot R(t)`, and radial acceleration `\ddot R(t)`. | Candidate only. |
 | Action/exchange row | Diagnostic action/energy exchange variables for target, sea, and boundary. No physical architrino mass is introduced. | Candidate only; no same-record action closure. |
@@ -250,117 +250,52 @@ $$
 
 for at least one post-turn row, with `\epsilon_R>0` chosen as the diagnostic deadband. This is a model target only; it is not retained evidence.
 
-## Diagnostic Response Run Result
+## Computed Dipole Wake-Sum Result
 
-The executable response-run mode is:
-
-```bash
-node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --pretty
-```
-
-This instantiates the first provider-seeded diagnostic pressure/tension response row and binds it to the same target/source identity:
-
-- target artifact: `held_release_seed_path_rows:5833f18e53586201`;
-- target artifact hash: `5833f18e53586201775fdcd490efcc1e649841e5268a15eea022cad9ff706063`;
-- source row: `two-speed-preferred-row:u0.8:v0.2`;
-- retained record: `retained-record:held-release-six-point:adapter-acceptance-certificate`;
-- provider object: `candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327`;
-- six target path-row refs from the same candidate source artifact.
-
-The default provider-seeded row uses:
-
-$$
-K_{\mathrm{NS}}^{\mathrm{diag}}
-=C1111_X\,\rho_{\text{NS}}\,n
-=2.49,
-\qquad
-\Phi_{\mathrm{probe}}=e_{\mathrm{sea}}=0.008,
-\qquad
-\Gamma_{\mathrm{NS}}^{\mathrm{diag}}=0,
-\qquad
-W_{\partial\Omega}^{R}=0.
-$$
-
-The projected sea response is
-
-$$
-\Pi_R\mathcal A^{\mathrm{sea}}
-=
--K_{\mathrm{NS}}^{\mathrm{diag}}\Phi_{\mathrm{probe}}
--\Gamma_{\mathrm{NS}}^{\mathrm{diag}}\dot\Phi_{\mathrm{probe}}
-+W_{\partial\Omega}^{R}
-=-0.019920000000000004.
-$$
-
-With the diagnostic deadband `\epsilon_R=10^{-9}`, the required inward projected-response floor is
-
-$$
--0.0934863484737535-10^{-9}
-=-0.0934863494737535.
-$$
-
-Therefore the provider-seeded response run does not cross the floor:
-
-| Quantity | Value |
-| --- | ---: |
-| `Pi_R_A_sea` | `-0.019920000000000004` |
-| Required projected-response floor | `-0.0934863494737535` |
-| Total post-turn radial acceleration | `0.0735663484737535` |
-| Crosses inward response floor | `false` |
-| Post-turn return condition passed | `false` |
-| Additional inward projection needed | `0.0735663494737535` |
-| Required `Phi_probe` at current coefficients | `0.03754471866415803` |
-| Required multiplier over current `Phi_probe` | `4.693089833019754` |
-
-A produced, non-authorizing pressure/tension source row now uses the attempt `aa` FCC shell row as its diagnostic geometry carrier and crosses the same diagnostic floor without consuming a free `--response-amplitude` override:
+The executable wake-sum mode is:
 
 ```bash
-node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --response-run --produced-response-source --pretty
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --wake-sum-run --pretty
 ```
 
-The produced source row is:
+The fitted response amplitude is removed from the script. There is no `Phi_probe`, no produced amplitude row, and no free response parameter anywhere in the output path; the run emits `free_amplitude_parameter_count=0` and `fitted_response_amplitude_present=false` at the run, source-row, and spacing-row levels, and legacy fitted-amplitude CLI options have no effect on the output.
 
-`sh_0_sea_produced_response_source:pressure_tension:a8c1a969eb0ccb5e`
+The sea response is computed from the master-equation kernel over the 12 FCC nearest-neighbor braids with declared held histories:
 
-It is bound to the same target artifact, target hash, source row, retained-record id, provider object, provider hash, and six target path-row refs listed above. It also carries:
+- kernel: the same delayed-force kernel and constants as the escape-floor toy row — coupling $1$, softening $0.05$, $c_f=1$, with branch weight $1$ because held static sources give source Jacobian $1$ and release-time static receivers give receiver-normal factor $1$;
+- held histories: each neighbor braid holds the six-site face-opposite decoration (signed-polarity dipole $p=2(1,1,1)$, $|p|=2\sqrt3$) at $X_k=C+(a_{\mathrm{FCC}}/2)d_k$ with declared aligned orientation, static over $[-W,0]$ with declared window $W=24$; there are no undeclared environment degrees of freedom;
+- delayed sum: every directed receiver-source root ($6\times72=432$ per spacing) enters through its causal delay $d/c_f$ against the declared window, and the run reports root coverage and field-speed status per spacing;
+- projection: $\Pi_R\mathcal A^{\mathrm{sea}}=(1/6)\sum_a\hat y_a\cdot\sum_{k,b}\mathrm{kernel}(y_a,X_k+u_b)$.
 
-- `geometry_carrier.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
-- `geometry_carrier.diagnostic_attempt_id`: `aa`;
-- `geometry_carrier.population_size`: `12`;
-- `geometry_carrier.source_production_role`: `pressure_tension_diagnostic_geometry_carrier`;
-- `event_provenance.boundary_event_row_ref`: `sh_0_sea_produced_response_source:pressure_tension:a8c1a969eb0ccb5e:boundary-event`;
-- `event_provenance.boundary_condition_row_ref`: `sh_0_sea_model:boundary_condition_row`;
-- `event_provenance.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
-- `support_provenance.support_envelope_row_ref`: `sh_0_sea_model:support_envelope_row`;
-- `support_provenance.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
-- `support_provenance.required_Phi_probe_at_current_coefficients`: `0.03754471866415803`;
-- `support_provenance.producer_rule`: `ceil(required_Phi_probe_at_current_coefficients, 0.001)`;
-- `action_provenance.action_exchange_row_ref`: `sh_0_sea_model:action_exchange_row`;
-- `action_provenance.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`.
+It binds to the same target/source identity as before: target artifact `held_release_seed_path_rows:5833f18e53586201`, source row `two-speed-preferred-row:u0.8:v0.2`, retained record `retained-record:held-release-six-point:adapter-acceptance-certificate`, provider object `candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327`, and the six target path-row refs.
 
-The consumed candidate response row then points back to that produced source row instead of to a free amplitude probe:
+With the diagnostic deadband $\epsilon_R=10^{-9}$, the required inward projected-response floor is $-0.0934863484737535-10^{-9}=-0.0934863494737535$.
 
-`sh_0_sea_candidate_response_row:pressure_tension:81b7e914155b6fa1`
+Result over the declared spacing range $a_{\mathrm{FCC}}\in[3,12]$ (step $0.25$; all roots covered; field speed clean; every spacing above the shell-overlap constraint $2\sqrt2$):
 
-$$
-\Phi_{\mathrm{probe}}=0.038,
-\qquad
-\Pi_R\mathcal A^{\mathrm{sea}}=-0.09462000000000001,
-\qquad
-\ddot R_{\mathrm{toy}}+\Pi_R\mathcal A^{\mathrm{sea}}
-=-0.0011336515262465041.
-$$
+| $a_{\mathrm{FCC}}$ | $\Pi_R\mathcal A^{\mathrm{sea}}$ | Crosses floor |
+| ---: | ---: | --- |
+| `3.00` | `-1.0813766127282922` | `true` |
+| `4.00` | `-0.3712418671549982` | `true` |
+| `4.25` | `-0.2833417889031177` | `true` |
+| `5.25` | `-0.1024854319405312` | `true` |
+| `5.50` | `-0.0810539856349695` | `false` |
+| `6.00` | `-0.0519410281723061` | `false` |
+| `12.00` | `-0.0014065476498006` | `false` |
 
-The same carrier can emit a diagnostic boundary-wake source row with:
+A computed retention window in $a_{\mathrm{FCC}}$ exists with zero free amplitude:
 
-- produced row: `sh_0_sea_produced_response_source:boundary_wake:0bd98a2e2ea4a94f`;
-- candidate response row: `sh_0_sea_candidate_response_row:boundary_wake:be6db21692b6f9f8`;
-- `geometry_carrier.geometry_carrier_row_ref`: `sh_0_sea_model:fcc_nearest_neighbor_shell_row`;
-- `geometry_carrier.source_production_role`: `boundary_wake_diagnostic_geometry_carrier`.
+- `retention_window_exists`: `true`;
+- window: $a_{\mathrm{FCC}}\in[3,\,5.34690143]$, lower edge `bounded_by_declared_range_min` (above the shell-overlap constraint $2\sqrt2\approx2.8284$), upper edge `computed_floor_crossing` (bisected against the required floor);
+- ten eligible crossing rows; the far-field decay of the computed sum is approximately $a_{\mathrm{FCC}}^{-5}$ (observed);
+- named sea-spacing candidate: `sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25` with $\Pi_R=-0.2833417889031177$ and inward margin $0.1899$ below the required floor, selected as the eligible crossing row nearest the window midpoint;
+- fail-closed coverage discipline: shrinking the declared held-history window truncates the retention window at the last covered spacing with boundary status `truncated_by_root_coverage`.
 
-Those crossings are same-target diagnostic candidate rows fed by produced same-target source rows, not accepted proof evidence. They do not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+Because the held histories are static, this run tests amplitude-only retention: the computed environment response is a monotone spacing threshold. It supports the environment-theorem hypothesis (H1) with a computed inward projection that reverses the post-turn escape floor at sub-$5.35$ spacings, and it partially tests the delayed-echo hypothesis (H5): the delayed sum is computed through real causal delays, but the predicted density- and phase-dependent structure requires moving neighbor histories, which this run does not declare.
 
-The response run now also emits the exact future replacement requirement:
+The computed wake-sum source row is `sh_0_sea_dipole_wake_sum_source:2f3aad5e6cced01f` (`response_kind=dipole_wake_sum`), carrying the attempt `aa` FCC shell geometry carrier and the same event, support, and action provenance refs as the model rows. These results are computed same-target diagnostic rows, not accepted proof evidence. They do not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
+
+The wake-sum run also emits the exact future replacement requirement:
 
 - schema: `sh_0_sea_same_target_accepted_provenance_replacement_requirement.v0`;
 - required package: `sh_0_sea_same_target_accepted_provenance_package.v0`;
@@ -370,8 +305,7 @@ The response run now also emits the exact future replacement requirement:
 - first missing field: `held_release_seed_path_rows.acceptance_certificate_ref`;
 - required accepted provenance refs: `accepted_geometry_provenance_ref`, `accepted_event_provenance_ref`, `accepted_support_provenance_ref`, and `accepted_action_provenance_ref`;
 - accepted geometry ref prefix: `accepted:sh-0-sea:geometry:aa-fcc-nearest-neighbor-shell:`;
-- accepted pressure/tension event ref prefix: `accepted:sh-0-sea:event:pressure_tension:aa-fcc-shell:`;
-- accepted boundary-wake event ref prefix: `accepted:sh-0-sea:event:boundary_wake:aa-fcc-shell:`.
+- accepted dipole wake-sum event ref prefix: `accepted:sh-0-sea:event:dipole_wake_sum:aa-fcc-shell:`.
 
 This requirement is the executable bridge for the closure target. It propagates staged seed-path verifier states without changing claim level: with a matching certificate only, the first missing object becomes `held_release_seed_path_rows_external_accepted_authority_package`; with a matching certificate plus authority package, the first missing object becomes `repo_authorization_for_accepted_held_release_seed_path_rows`; with all three supplied and matching, the seed-path requirement passes and the next first missing object becomes `sh_0_sea_same_target_accepted_provenance_package`. The package verifier can check that a supplied future package matches the current FCC-carried diagnostic source row, geometry carrier, target binding, seed-path certificate ref, external authority package ref, exact repo authorization ref, and accepted geometry/event/support/action provenance ref prefixes. Even a shape-valid package cannot advance the top-level blocker past `held_release_seed_path_rows_acceptance_certificate` while the seed-path authority chain is absent. It still leaves `accepted=false`, `requirement_passed=false`, and `scoreMovement="no_score_increase"` until the seed-path authority chain is accepted. Once the seed-path certificate, matching external authority package, and repo authorization exist, the next package must replace the current FCC-carried diagnostic geometry/event/support/action refs with accepted same-target provenance.
 
@@ -437,7 +371,8 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 | Local target-sea frame | Diagnostic/candidate |
 | Boundary-condition row | Diagnostic/candidate |
 | Candidate sea-response equation | Diagnostic/candidate |
-| Produced response source row | Diagnostic/candidate; same-target provenance refs plus attempt `aa` FCC geometry carrier only |
+| Computed dipole wake-sum source row | Diagnostic/candidate; computed from the master-equation kernel with zero free amplitude; same-target provenance refs plus attempt `aa` FCC geometry carrier only |
+| Computed retention window in $a_{\mathrm{FCC}}$ | Diagnostic/candidate; $[3,\,5.34690143]$ at the declared kernel and held-history declaration; not retained evidence |
 | Accepted provenance replacement requirement | Requirement only; blocked first at the seed-path acceptance certificate |
 | Support/envelope variables | Diagnostic/candidate |
 | Action/exchange variables | Diagnostic/candidate |
@@ -451,19 +386,19 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 
 ## Next Executable Diagnostic Target
 
-The response run now instantiates this model with:
+The wake-sum run instantiates this model with:
 
 1. the central target row from `held_release_seed_path_rows:5833f18e53586201`;
 2. a paired local population of like Noether braid assemblies around the target;
 3. the accepted `theta_sea_rho_NS` provider rows as reusable local-state inputs, explicitly unbound to the target record;
 4. a boundary row `\mathcal H_{\partial\Omega}` carrying candidate wake/event input from the surrounding population;
-5. the attempt `aa` FCC nearest-neighbor shell row as the diagnostic geometry carrier for produced `pressure_tension` or `boundary_wake` source rows;
-6. a response functional that reports `\Pi_R\mathcal A^{\mathrm{sea}}(t)` and checks whether it crosses the diagnostic inward floor;
+5. the attempt `aa` FCC nearest-neighbor shell row as the diagnostic geometry carrier for the computed `dipole_wake_sum` source row;
+6. the computed master-equation-kernel delayed sum, which reports `\Pi_R\mathcal A^{\mathrm{sea}}` per declared spacing, checks the diagnostic inward floor, and reports the retention window in $a_{\mathrm{FCC}}$;
 7. a fail-closed accepted-provenance replacement requirement for the future same-target geometry, event, support, and action package.
 
-The first provider-seeded result does not cross the floor. The diagnostic produced pressure/tension and boundary-wake source rows cross the floor at `Phi_probe=0.038`, with same-target event/support/action provenance refs and the attempt `aa` FCC shell as the geometry carrier, but they remain diagnostic. The next executable proof target is to replace these diagnostic produced source rows with an accepted boundary-wake or pressure/tension source row carrying accepted same-target geometry, event, support, and action provenance while preserving the accepted-evidence blocker.
+The computed sum crosses the floor for $a_{\mathrm{FCC}}\le5.3469$ with zero free amplitude, naming `sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25` as the sea-spacing candidate, but it remains diagnostic. The next executable proof targets are, in order: run the delayed-echo variant with declared moving neighbor histories to test the phase-dependence prediction (H5); consume the named spacing candidate in the downstream same-record chain; and replace the computed diagnostic source row with an accepted same-target source row carrying accepted geometry, event, support, and action provenance while preserving the accepted-evidence blocker.
 
-This diagnostic pass justifies a sharper retained-source request. It still does not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
+This computed pass justifies a sharper retained-source request. It still does not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
 
 ## Replacement Audit 2026-07-05
 
