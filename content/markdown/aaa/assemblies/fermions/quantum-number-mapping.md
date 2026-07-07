@@ -44,20 +44,20 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
 ### The Fundamental Substrate
 *   **Architrino polarity unit ($\epsilon$):** Magnitude $|e/6|$ in observer-level electric bookkeeping, with positive and negative polarity units denoted $\epsilon_+$ and $\epsilon_-$.
 *   **Polarity:**
-    *   **Positrino:** positive-polarity architrino, labeled $\epsilon_+$ in electric bookkeeping.
     *   **Electrino:** negative-polarity architrino, labeled $\epsilon_-$ in electric bookkeeping.
+    *   **Positrino:** positive-polarity architrino, labeled $\epsilon_+$ in electric bookkeeping.
 
 ### The Noether Braid
 Generation-I charged leptons and quarks contain the full neutral Noether braid scaffold. Higher-generation charged fermions retain depleted shielding branches of the same braid family: the gauge-facing axial frame persists as a delayed branch record, while one or more coherent shielding tiers are no longer assembled as part of the active scaffold.
 
-*   **Composition:** The broad Noether braid class carries three Positrinos and three Electrinos on one retained causal-return ledger.
+*   **Composition:** The broad Noether braid class carries three Electrinos and three Positrinos on one retained causal-return ledger.
 *   **Generation-I Noether braid (nested shell braid):** Three ordered support bands (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
 *   **Higher-generation shielding branches:** Generation II keeps the inner and middle coherent supports ($2\epsilon_+,2\epsilon_-$); Generation III keeps only the inner support ($1\epsilon_+,1\epsilon_-$). These are depleted branches, not full Noether braids in the six-architrino scaffold sense.
 *   **Nested-scale picture:** The support bands should be read as a genuine radial hierarchy, not just as three items in a list. The middle support band sits inside the shielding domain of the outer support band, and the inner support band sits inside the shielding domains of both. In that sense, the higher-generation inner scaffold may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
     *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
-    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Positrino/Electrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
+    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Electrino/Positrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
 *   **Net Charge:** Always $0$.
 
 ### The Axial Layer
@@ -128,12 +128,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 
 **The Up Quark ($u$)**
 *   **Braid scaffold:** Pro nested shell braid.
-*   **Axial Layer:** 5 Positrinos, 1 Electrino ($5\epsilon_+,1\epsilon_-$).
+*   **Axial Layer:** 1 Electrino, 5 Positrinos ($1\epsilon_-,5\epsilon_+$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
 *   **Braid scaffold:** Pro nested shell braid.
-*   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2\epsilon_+,4\epsilon_-$).
+*   **Axial Layer:** 4 Electrinos, 2 Positrinos ($4\epsilon_-,2\epsilon_+$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
 ### Summary Table (Gen I)
@@ -154,7 +154,7 @@ Standard Model quantum numbers are observer-level bookkeeping rows extracted fro
 
 | Observer quantum-number row | $\mathbb{A}\mathbb{A}\mathbb{A}$ ledger source | Reaction use |
 | --- | --- | --- |
-| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved Positrino/Electrino routing and axial-layer exposure explain the before/after charge. |
+| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved Electrino/Positrino routing and axial-layer exposure explain the before/after charge. |
 | Weak isospin $T_3$ | Exposed weak-coupling triad selected from the axial frame or, for neutrinos, from the near-photon neutral weak projection. | Charged weak reactions change the exposed triad payload while preserving primitive polarity inventory. |
 | Hypercharge $Y$ | Complementary polar-site bookkeeping plus braid-offset and weak-sector exposure record. | The relation $Q=T_3+Y/2$ is a recovery target for the same assembly record, not an independent charge assignment. |
 | Color | Axis exceptionality of the Noether braid plus axial-layer pattern in quark rows. | Strong reactions must preserve color-singlet closure for observed hadrons while allowing axis reconfiguration through effective gluon channels. |
@@ -222,7 +222,7 @@ Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin,
 *   **The Transformation:** The $W^-$ boson is the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
 
 **The Quark Doublet ($u_L, d_L$)**
-*   **Base (Shielded):** 2 Positrinos, 1 Electrino ($2\epsilon_+,1\epsilon_-$).
+*   **Base (Shielded):** 1 Electrino, 2 Positrinos ($1\epsilon_-,2\epsilon_+$).
 *   **Up Quark ($u_L$):** Shielded ($2\epsilon_+,1\epsilon_-$) + Active ($3\epsilon_+$).
     *   Net: $5\epsilon_+,1\epsilon_-$ (Charge +2/3).
     *   State: weak-coupling triad is positive $\to T_3 = +1/2$.

@@ -4,7 +4,7 @@ This chapter defines the base six-body family in the [Noether Braid](noether-bra
 
 Neutral does not mean featureless. It means the signed polarity inventory balances before any further geometry is imposed. The branch still has many attractive and repulsive channels, and the proof burden is to show that those channels can be organized into one coherent causal-return record rather than merely into a visually balanced arrangement.
 
-A **neutral braid** is the base six-architrino case. It contains three positrinos and three electrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
+A **neutral braid** is the base six-architrino case. It contains three electrinos and three positrinos, indexed by $i\in\{1,\ldots,6\}$ with polarity signs $\sigma_i\in\{+1,-1\}$ satisfying
 
 $$
 \#\{i:\sigma_i=+1\}

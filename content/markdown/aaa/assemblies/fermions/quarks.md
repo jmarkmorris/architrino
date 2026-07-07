@@ -27,7 +27,7 @@ For matter quarks, the braid scaffold is a **pro-braid**. It is neutral in total
 - **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
 - **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
 
-The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either an electrino $(-\epsilon)$ or a positrino $(+\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
 ### Counting rule
 
@@ -55,7 +55,7 @@ To describe color and axial geometry compactly, use the three Noether braid axes
 
 In the fully shielded implementation picture, each axis contains:
 
-- one neutral source binary, with one orbiting positrino and one orbiting electrino,
+- one neutral source binary, with one orbiting electrino and one orbiting positrino,
 - plus one polar dyad attached to that binary axis.
 
 The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
