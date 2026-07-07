@@ -241,7 +241,7 @@ is still a Bell-local product form when $d\rho_{\mathrm{prov}}(\Pi)$ is independ
 $$
 P_\theta(\mathbf{r}|\mathbf{s})
 =
-\mu_{*,T}^{(n)}
+\mu_{*,T_W}^{(n)}
 \left(
 B_{\mathbf{r}}^{\mathbf{s}}
 \right)
@@ -253,7 +253,7 @@ The native proof packet must supply:
 
 1. a pair-provenance ledger $\Pi_{AB}$ or multiplet ledger $\Pi_{ABC}$;
 2. local apparatus kernels derived from the Stern-Gerlach-like or photon-analyzer channel;
-3. one finite-window measure $\mu_{*,T}^{(n)}$ on the retained joint record manifold;
+3. one finite-window measure $\mu_{*,T_W}^{(n)}$ on the retained joint record manifold;
 4. a compression audit showing why the completed record law does not reduce to Bell-local product screening;
 5. no-signaling and measurement-independence residuals evaluated on the same packet.
 
@@ -268,6 +268,6 @@ A future closure packet becomes promotable only if:
 1. the probability tables are generated from declared substrate variables rather than written by hand;
 2. $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ remain within tolerance;
 3. CHSH, GHZ, and Hardy benchmarks are evaluated together;
-4. the same $\mu_{*,T}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
+4. the same $\mu_{*,T_W}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
 5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
 6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.

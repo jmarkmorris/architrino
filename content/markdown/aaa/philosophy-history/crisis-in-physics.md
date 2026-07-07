@@ -152,7 +152,7 @@ Quantum theory gives the cleanest version of this crisis. Its statistical predic
 $$
 P_{\mathrm{rec}}(R_n\mid\theta)
 =
-\mu_{*,T}\!\left(\pi_T^{-1}(R_n)\right)
+\mu_{*,T_W}\!\left(\pi_{T_W}^{-1}(R_n)\right)
 $$
 
 for the same deterministic flow, apparatus kernel, coarse-graining, and record window $\theta$ that also recover the effective wave equation. Predictive success licenses the target distribution; it does not by itself identify the substrate that generates the measure.

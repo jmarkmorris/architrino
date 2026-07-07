@@ -12,7 +12,7 @@ Executable witnesses: the eleven `SH-0` toy rows recorded 2026-07-07 in the [She
 
 Notation: architrino sites use the signed polarity-unit labels $\epsilon_{+,\bullet}$ and $\epsilon_{-,\bullet}$. The kernel, branch weight, softening, coupling, Jacobian floor, and field speed $c_f$ are exactly those of the partner-wake master-equation kernel stated in the six-point packet. Propagation is at field speed $c_f$; no light-delay language is used.
 
-Step labels: (C), (WP), (S), (D$_{\mathrm{op}}$), (P), (M), (W), and (H) are hypothesis rows, each checkable or monitorable on one recorded state-plus-history row; Lemmas 1-4, Lemma A, the Theorem, and the Corollary are derivations under those hypotheses; the anti-damping remark consumes a sampled diagnostic (the planar tangential screen) and derives only its sign routing; the interval-certification section records an executed certificate, rigorous conditional on its declared rounding model, with the certified-clock corollary a derivation conditional on the labeled rigid-to-released transfer hypothesis; the persistence routes in the remaining obligations are labeled speculation.
+Step labels: (C), (WP), (S), (D$_{\mathrm{op}}$), (P), (M), (W), and (H) are hypothesis rows, each checkable or monitorable on one recorded state-plus-history row; Lemmas 1-4, Lemma A, the Theorem, and the Corollary are derivations under those hypotheses; the anti-damping remark consumes a sampled diagnostic (the planar tangential screen) and derives only its sign routing; the interval-certification section records an executed certificate, rigorous conditional on its declared rounding model; Lemma T and Corollary T are derivations whose coefficients are certified per $\beta$-box by the owner script, replacing the former transfer hypothesis with the checkable tube-residence condition (N$_{\delta,\nu}$); the persistence routes in the remaining obligations are labeled speculation.
 
 ## Object Under Proof
 
@@ -276,19 +276,151 @@ $$
 \Delta t\;\le\;\frac{c_f\,\rho^2}{c_1\,\kappa}\,\ln\!\frac{0.985}{\beta_0}\;\le\;1.353\,\frac{c_f\,\rho^2}{\kappa}.
 $$
 
-Under the transfer hypothesis — that the screen residual tracks the tangential wake force on near-channel released rows (hypothesis: the screen is evaluated on the rigid ansatz, released rows deviate from it) — an isolated rigid rotating row cannot keep (S) beyond this bound unless an internal or environmental absorber (breathing exchange, hinge clicks, Noether sea response; see `internal_tangent_authority_derivation`) removes the pumped tangential action: (S)-failure is now a certified clock, not a sampled trend. Whether released non-rigid rows inherit the clock — forcing $t_{\mathrm{viol}}<\infty$ for the isolated rotating channel without an absorber — remains labeled speculation pending the persistence obligation below.
+On the exact rigid channel this holds as stated: an isolated rigid rotating row cannot keep (S) beyond this bound unless an internal or environmental absorber (breathing exchange, hinge clicks, Noether sea response; see `internal_tangent_authority_derivation`) removes the pumped tangential action — (S)-failure is a certified clock, not a sampled trend. For released rows near the channel, Lemma T below replaces the former transfer hypothesis with a checkable tube-residence condition, making the clock unconditional inside the certified tube. The environmental branch of the absorber question is decided by Corollary S below: the aligned FCC Noether sea is a certified non-absorber, so the clock survives sea screening.
 
 No new validator, schema, or gate was added: the certificate is a finite directed-rounding computation in the existing diagnostic script family, and its output — the constant pair $(c_1,c_2)$ with its $\beta$-interval and the certified radial and source-normal rows — is recorded here and consumed by the anti-damping remark and the persistence obligation.
+
+## Lemma T - Rigid-to-Released Transfer Bound
+
+This lemma removes the transfer hypothesis from the certified-clock corollary: it bounds the deviation between a released near-channel row's along-velocity wake force and the rigid-ansatz screen value by an explicit linear function of the row's recorded distance to the rigid ansatz, with every coefficient built from the certified rigid floors above. The clock then runs unconditionally inside a certified tube around the rigid channel, with tube residence a monitored, checkable condition of the same class as (S) and (D$_{\mathrm{op}}$).
+
+Work in the scan's normalized units ($\rho=1$, $c_f=1$, $\kappa=1$; restore by measuring lengths in $\rho$, speeds in $c_f$, accelerations in $\kappa/\rho^2$). Fix a reception time $T$ and a comparison ansatz: a rigid planar-hexagon rotating history $\mathbf A_j(t)$ at rim fraction $\beta\in[0.02,0.985]$, with any labeling and phase alignment. The certified rigid floors are the per-partner root distances $d_j\ge d_j^{\mathrm{lo}}$, the source-normal floor $\mathrm{srcN}\ge S$, the band $c_1\beta\le\Phi_{\mathrm{tan}}\le c_2\beta$, and the vector bound $\lvert\boldsymbol\Phi\rvert\le F(\beta)$ (tangential and radial components certified; the axial component vanishes exactly by the ansatz's planar reflection symmetry), all evaluated per $\beta$-box by the owner script.
+
+**Deviation hypothesis (N$_{\delta,\nu}$).** For every site $j$ and every $t\in[T-3,\,T]$: $\lvert\mathbf X_j(t)-\mathbf A_j(t)\rvert\le\delta$ and $\lvert\dot{\mathbf X}_j(t)-\dot{\mathbf A}_j(t)\rvert\le\nu$, with $\nu<\beta$. The window depth $3$ covers every causal root of both configurations under the applicability caps below.
+
+**Applicability caps (A).** $D:=2\delta/(1-\beta)$ satisfies $D\le d_j^{\mathrm{lo}}/4$ for every partner $j$, and $E^{\mathrm{src}}_j\le S/2$ for every $j$ (with $E^{\mathrm{src}}_j$ as in step T5). Under (A) the perturbed row's source normals stay $\ge S/2=0.347>J_f=0.05$, so the floor never engages inside the tube either.
+
+**Statement.** Under (S) for the actual row (speeds $\le\beta+\nu$), (N$_{\delta,\nu}$), and (A), the actual receiver's along-velocity wake acceleration satisfies
+
+$$
+\left|\;\hat{\mathbf v}'\cdot\mathbf a' \;-\;\Phi_{\mathrm{tan}}(\beta)\;\right|
+\;\le\;
+T(\beta;\delta,\nu)
+\;=\;
+L_x(\beta)\,\delta+L_v(\beta)\,\nu,
+$$
+
+with $T$ assembled from the chain below; $L_x$, $L_v$ are explicit and monotone in the certified floors, so the owner script evaluates them per $\beta$-box as certified numbers.
+
+*Proof.*
+
+**T1 (root shift).** Per directed pair, the ansatz residual $\varphi(s)=\lvert\mathbf A_i(T)-\mathbf A_j(s)\rvert-(T-s)$ and the actual residual differ by at most $2\delta$ pointwise on the window, both are strictly increasing with slope $\ge1-\beta$ (ansatz) and $\ge1-\beta-\nu$ (actual, Lemma 5 mechanism), and each has exactly one root (Lemma 5; window-depth coverage as in Lemma 6). Since the actual root $t_r'$ gives $\lvert\varphi(t_r')\rvert\le2\delta$ and $\varphi$ has slope $\ge1-\beta$ through its root $t_r$: $\lvert t_r'-t_r\rvert\le2\delta/(1-\beta)$.
+
+**T2 (displacement at the root).** $\lvert\mathbf X_j(t_r')-\mathbf A_j(t_r)\rvert\le\delta+\beta\lvert t_r'-t_r\rvert$, so the pair vector deviates by $\lvert\Delta\mathbf d\rvert\le2\delta+2\beta\delta/(1-\beta)\le2\delta/(1-\beta)=D$, and the actual root distance obeys $d_j'\ge d_j^{\mathrm{lo}}-D\ge\tfrac34 d_j^{\mathrm{lo}}$ by (A).
+
+**T3 (unit vector).** From $\hat{\mathbf u}-\hat{\mathbf w}=(\mathbf u-\mathbf w)/\lvert\mathbf u\rvert+\mathbf w(\lvert\mathbf w\rvert-\lvert\mathbf u\rvert)/(\lvert\mathbf u\rvert\lvert\mathbf w\rvert)$: $\lvert\Delta\hat{\mathbf d}\rvert\le2D/d_j^{\mathrm{lo}}$.
+
+**T4 (velocities at the shifted events).** Receiver: $\lvert\Delta\mathbf v_{\mathrm{rec}}\rvert\le\nu$. Source, comparing the actual velocity at $t_r'$ with the ansatz velocity at $t_r$: $\lvert\Delta\mathbf v_{\mathrm{src}}\rvert\le\nu+\beta^2\lvert t_r'-t_r\rvert\le\nu+2\beta^2\delta/(1-\beta)=:\nu_s$, using the ansatz's exact acceleration magnitude $\beta^2$.
+
+**T5 (normals).** With $\lvert\Delta(\mathbf v\cdot\hat{\mathbf d})\rvert\le\lvert\Delta\mathbf v\rvert+(\beta+\nu)\lvert\Delta\hat{\mathbf d}\rvert$: $E^{\mathrm{rec}}_j:=\nu+(\beta+\nu)\,2D/d_j^{\mathrm{lo}}$ bounds the receiver-normal deviation and $E^{\mathrm{src}}_j:=\nu_s+(\beta+\nu)\,2D/d_j^{\mathrm{lo}}$ the source-normal deviation; by (A) the actual source normal stays $\ge S/2$.
+
+**T6 (branch weight).** $W=\mathrm{recN}/\mathrm{srcN}$ with $\mathrm{recN}\le1+\beta$, $\mathrm{srcN}\ge S$ on the ansatz and $\ge S/2$ on the actual row:
+
+$$
+\lvert\Delta W_j\rvert\;\le\;\frac{2E^{\mathrm{rec}}_j}{S}+\frac{2(1+\beta)E^{\mathrm{src}}_j}{S^2}.
+$$
+
+**T7 (row).** For $g(\mathbf u)=\mathbf u/\lvert\mathbf u\rvert^3$, $\lVert Dg\rVert=2/\lvert\mathbf u\rvert^3$ (eigenvalues $1/\lvert\mathbf u\rvert^3$ transverse, $-2/\lvert\mathbf u\rvert^3$ radial); the segment between the two pair vectors stays at norm $\ge d_j^{\mathrm{lo}}/2$ under (A), and $1/d_j'^2\le2/(d_j^{\mathrm{lo}})^2$, so with $W_j^+:=(1+\beta)/S$:
+
+$$
+\lvert\Delta\mathrm{row}_j\rvert
+\;\le\;
+\frac{2\,\lvert\Delta W_j\rvert}{(d_j^{\mathrm{lo}})^2}
++\frac{16\,W_j^+\,D}{(d_j^{\mathrm{lo}})^3}.
+$$
+
+**T8 (sum and projection).** $\lvert\Delta\boldsymbol\Phi\rvert\le\sum_j\lvert\Delta\mathrm{row}_j\rvert$, and with $\lvert\hat{\mathbf v}'-\hat{\mathbf v}\rvert\le2\nu/\beta$:
+
+$$
+\hat{\mathbf v}'\cdot\mathbf a'
+\;\ge\;
+\Phi_{\mathrm{tan}}(\beta)
+-\sum_j\lvert\Delta\mathrm{row}_j\rvert
+-\frac{2F(\beta)}{\beta}\,\nu,
+$$
+
+and the matching upper inequality. Every step is linear in $(\delta,\nu)$ once $\beta$ is fixed, which yields $T=L_x\delta+L_v\nu$. $\blacksquare$
+
+**Corollary T (unconditional clock in the certified tube).** Let $\theta\in(0,1)$ and let the actual rim fraction be $\beta'=\lvert\mathbf v'\rvert/c_f$, so $\lvert\beta'-\beta\rvert\le\nu$. The speed identity $d\lvert\mathbf v'\rvert/dt=\hat{\mathbf v}'\cdot\mathbf a'$ and Lemma T give
+
+$$
+\frac{d\beta'}{dt}\;\ge\;\frac{\kappa}{c_f\rho^2}\Bigl[c_1\beta'-\bigl(T(\beta;\delta,\nu)+c_1\nu\bigr)\Bigr],
+$$
+
+so on the certified tube $T+c_1\nu\le(1-\theta)\,c_1\beta'$ the actual speed grows at certified rate $d\beta'/dt\ge\theta c_1\kappa\beta'/(c_f\rho^2)$. Consequently, for any released row: **either the tube condition (N$_{\delta,\nu}$)-with-margin fails first — a monitored, checkable event on the recorded row — or (S) fails within**
+
+$$
+\Delta t\;\le\;\frac{c_f\rho^2}{\theta\,c_1\kappa}\,\ln\frac{0.985}{\beta'_0}.
+$$
+
+The transfer hypothesis is eliminated; what remains is tube residence, checkable on the same recorded row as (S) and (D$_{\mathrm{op}}$). An unconditional statement without any residence condition is impossible in principle: a row that leaves the neighborhood of the rigid channel is no longer described by the screen.
+
+**Consequence for the spectrum hunt (derivation).** Inside the certified tube no relative equilibrium, periodic row, or slowly varying sub-field row exists: every row there has certified strictly increasing speed. The rigid-family rejection of the rotating-wave packet upgrades from the exact ansatz to an open neighborhood of it, so any admissible eigen-braid row must sit at distance greater than the tube radius from the rigid family (in breathing amplitude, non-planarity, or history deviation) or be sea-coupled.
+
+**Certified coefficient values (recorded from the owner script, 2026-07-07, $\theta=\tfrac12$, $\delta=\nu$).** Certified per-partner root-distance floors over the whole $\beta$-interval: $d^{\mathrm{lo}}_{60^\circ}=0.524$, $d^{\mathrm{lo}}_{120^\circ}=1.029$, $d^{\mathrm{lo}}_{180^\circ}=1.486$, $d^{\mathrm{lo}}_{240^\circ}=1.749$, $d^{\mathrm{lo}}_{300^\circ}=1.018$ (units of $\rho$). Tube radii and coefficients at representative $\beta$: at $\beta=0.25$: tube $1.9\times10^{-3}$, $L_x=157$; at $\beta=0.5$: tube $1.7\times10^{-3}$, $L_x=382$; at $\beta=0.75$: tube $8.7\times10^{-4}$, $L_x=1207$; at $\beta=0.9$: tube $3.3\times10^{-4}$, $L_x=3891$; $L_v\approx33$-$51$ throughout; global minimum tube $4.8\times10^{-5}$ at $\beta\approx0.985$ (the $1/(1-\beta)$ root-shift factor dominates there). Adversarial witness: independently perturbing every site by static offsets at half the tube radius and re-solving the causal lags gives measured deviations of $0.46$-$2.1$ per unit $\delta$ against the certified $L_x$ — the bound holds with $340\times$-$1900\times$ conservatism, so the true tube is likely two to three orders wider than certified. Sharpening it (direction-resolved or second-order treatment of the mean-value factor $16D/(d_j^{\mathrm{lo}})^3$) is a named obligation, not a gap in the lemma.
+
+## Corollary S - Sea-Screened Clock: the Aligned FCC Sea is a Non-Absorber
+
+This section decides the sea-export branch of the (S)-persistence question: whether the `sh0sea` FCC sea environment's delayed along-velocity contribution can absorb the certified anti-damping pump. It extends the planar rotating-channel screen above with the computed sea term and certifies the sign of the net along-velocity force against the certified band. The result is a non-absorber decision: screening delays return turns but cannot prevent the (S) crossing, matching the recorded sea-screened rows. Owner script extension: `seaEnclosure`/`certifySea` in [planar-tangential-screen-interval-certificate.mjs](../../../scripts/braid-ideal/planar-tangential-screen-interval-certificate.mjs), tests in [braid-ideal-planar-tangential-screen-interval-certificate.test.js](../../../tests/braid-ideal-planar-tangential-screen-interval-certificate.test.js).
+
+**Sea screen construction (derivation).** Place the attempt `aa` FCC nearest-neighbor shell of the [SH-0-Sea Diagnostic Candidate Model](sh-0-sea-diagnostic-candidate-model.md) — twelve like Noether braids held static at $X_k=(a_{\mathrm{FCC}}/2)\,d_k$, dipole-aligned order, at the named spacing candidate $a_{\mathrm{FCC}}=4.25$ — around the axis-neutral rotating braid, and evaluate the sea's along-velocity wake contribution on the channel. Same kernel row as the screen ($c_f=1$, $\kappa=1$, zero softening, receiver-normal over source-normal branch weight, partner-wake only, zero fitted amplitude). Because the sea sources are held static, their source-normal Jacobian is $1$ and the causal delay does not move them: the sea wake is the instantaneous inverse-square kernel modulated only by the moving receiver's receiver-normal factor $1-\mathbf v_{\mathrm{rec}}\cdot\hat{\mathbf d}$. On the rotating channel $\mathbf v_{\mathrm{rec}}=\beta\,\hat{\mathbf t}$, so the sea along-velocity projection decomposes exactly as
+
+$$
+\Pi_{\mathrm{tan}}^{\mathrm{sea}}(\beta,\varphi)
+=
+c_0(\varphi)\;-\;\beta\,Q(\varphi),
+\qquad
+Q(\varphi)=\frac16\sum_{\ell,s}\frac{q_\ell q_s\,(\hat{\mathbf t}_\ell\cdot\hat{\mathbf d}_{\ell s})^2}{d_{\ell s}^2}\ge\text{(signed)},
+\qquad
+c_0(\varphi)=\frac16\sum_{\ell,s}\frac{q_\ell q_s\,(\hat{\mathbf t}_\ell\cdot\hat{\mathbf d}_{\ell s})}{d_{\ell s}^2},
+$$
+
+with $\varphi$ the rotation phase; both sums are $\beta$-independent geometric quantities. $c_0$ is the static orientation-locking torque (the frozen sea resolves the braid orientation); $Q$ is the sea's only velocity-linear along-velocity channel — its candidate anti-damping/damping coefficient. The velocity enters $\Pi_{\mathrm{tan}}^{\mathrm{sea}}$ exactly linearly because the static-source branch weight is exactly $1-\beta(\hat{\mathbf t}_\ell\cdot\hat{\mathbf d})$ on the sub-field channel (no absolute-value fold for $\beta<1$).
+
+**$c_0$ transacts no net tangential action (derivation, witnessed).** By the reflection symmetry of the aligned sea against the $C_3\times\langle\iota\rangle$ braid, $c_0(\varphi)$ is odd about the $C_3$-symmetric phases and vanishes at every multiple of $60^\circ$; its rotation-cycle average is therefore exactly zero (owner-script witness: cyclic mean $\le4\times10^{-17}$, oddness residual $\le3\times10^{-16}$). The static torque re-phases the braid within a cycle but removes no net along-velocity action — it is not an absorber, only an orientation coupling.
+
+**Certified $Q$ bound (interval certificate).** By `certifySea` (adaptive outward-rounded interval subdivision of the rotation phase over one $2\pi/3$ period, same rounding model as the pump certificate), the sea velocity-linear coefficient is enclosed
+
+$$
+-0.1269\;\le\;Q(\varphi)\;\le\;0.2746
+\qquad\Longrightarrow\qquad
+\sup_\varphi\,\lvert Q(\varphi)\rvert\;\le\;0.2746
+\;<\;c_1=2.881,
+$$
+
+at $a_{\mathrm{FCC}}=4.25$ (4096 accepted phase boxes, minimum sea distance certified $\ge1.469$, so no near-singular division), with certified non-absorber margin $c_1-\sup\lvert Q\rvert\ge2.606$. The sampled true values are $\sup\lvert Q\rvert=0.2704$ and cyclic mean $\langle Q\rangle=0.0678$. The octahedral chart used here reproduces the recorded `sh0sea` release-instant radial projection $\Pi_R=-0.2833417889031177$ to $12$ digits at $\beta\to0$ (softening $0.05$), and to $10^{-4}$ at zero softening — the sea screen and the recorded dipole wake sum are the same object.
+
+**Corollary S (non-absorber decision; derivation).** On the channel the net along-velocity acceleration is $\Phi_{\mathrm{tan}}(\beta)+\Pi_{\mathrm{tan}}^{\mathrm{sea}}(\beta,\varphi)$. Since $c_0$ has zero cyclic average and $\Phi_{\mathrm{tan}}(\beta)\ge c_1\beta$, the cycle-averaged net along-velocity coefficient obeys
+
+$$
+\bigl\langle\Phi_{\mathrm{tan}}+\Pi_{\mathrm{tan}}^{\mathrm{sea}}\bigr\rangle
+\;\ge\;\bigl(c_1-\sup_\varphi\lvert Q\rvert\bigr)\,\beta
+\;\ge\;2.606\,\beta\;>\;0 .
+$$
+
+The aligned FCC sea removes at most $\sup\lvert Q\rvert/c_1<10\%$ (cyclic mean $\langle Q\rangle/c_1\approx2.4\%$) of the pumped tangential action per rotation and can never cancel it. The pump is transverse and orthogonal to the radial support in Lemma 1, so the sea's certified inward radial projection $\Pi_R=-0.283<0$ holds the radius — inducing the recorded sub-field return turns — while the along-velocity pump keeps driving the sites toward $c_f$: radial support without a tangential absorber. Hence the certified-clock corollary survives sea screening, with the rate reduced only from $c_1$ to $c_1-\sup\lvert Q\rvert$:
+
+$$
+\frac{d\beta}{dt}\;\ge\;\frac{\kappa}{c_f\rho^2}\bigl(c_1-\sup_\varphi\lvert Q\rvert\bigr)\,\beta,
+\qquad
+\Delta t\;\le\;\frac{c_f\rho^2}{(c_1-\sup\lvert Q\rvert)\,\kappa}\,\ln\frac{0.985}{\beta_0}\;\le\;1.495\,\frac{c_f\rho^2}{\kappa}
+$$
+
+(isolated bound $1.353\,c_f\rho^2/\kappa$; the cyclic-mean estimate using $\langle Q\rangle$ gives $1.385$). Inside the Lemma T tube the same addition keeps the released-row rate positive: $\theta c_1-\sup\lvert Q\rvert\ge\tfrac12(2.881)-0.275=1.166>0$ at $\theta=\tfrac12$, so the sea-screened clock is unconditional in the certified tube as well. $\blacksquare$
+
+**Order-robustness (derivation).** The decision does not depend on the sea alignment mechanism. Conjugating the shell flips the sign of $Q$ and $c_0$ but preserves $\sup\lvert Q\rvert$ (owner-script `orientation:"conjugate"` gives the mirror range and the same non-absorber verdict); the paired-antiphase order gives $Q\equiv0$ and $\Pi_R\equiv0$ exactly; isotropic disorder averages both to zero. In every orientation order $\sup\lvert Q\rvert\le0.28\ll c_1$, so the tangential non-absorption is unconditional in the sea order, even though the radial retention window is not. The [orientational-order condition](sh-0-sea-diagnostic-candidate-model.md#orientational-order-condition-and-stochastic-retention) — aligned neighbor order is frustrated, not self-selected — is therefore a caveat on the sea's radial retention supply only; it does not threaten the non-absorber decision. All sea results here are conditional on a named alignment mechanism only through $\Pi_R$, never through the clock.
+
+**Consumption and claim level.** Corollary S closes the aligned-sea chart as a non-absorber and advances the persistence lemma: the (S)-persistence burden's sea-export branch is discharged (the sea cannot supply the tangential absorber), narrowing the remaining anti-damping absorption question to hinge clicks and induced sea polarization. Claim level: interval certificate conditional on the declared rounding model for the $Q$ bound; derivation for the decomposition, the $c_0$ cyclic-cancellation, the order-robustness, and the clock; no retained branch, no accepted evidence, no score movement. Assumptions: channel hypothesis (C), sub-field (S), static aligned sea at $a_{\mathrm{FCC}}=4.25$, partner-wake plus one-way static sea. Proof burden discharged: the sign of the net along-velocity force against the certified band. Intended corpus destination: the same [Symmetric Shell Braid](../../../content/markdown/aaa/noether-braid/symmetric-shell-braid.md#isolated-release-and-the-return-response-question) return-response section as the certificate, as the statement that a static like-braid environment supplies radial support but no tangential absorber.
 
 ## Remaining Obligations
 
 1. Operator review of this packet.
-2. Hypothesis-persistence lemma for the $t_{\mathrm{viol}}=\infty$ branch. (D$_{\mathrm{op}}$) at $\gamma_{\mathrm{op}}=1$ persists with the channel by Lemma A, and (M) persists under (S) by Theorem M, so the open persistence burden is (S) alone — exactly the anti-damping absorption question.
+2. Hypothesis-persistence lemma for the $t_{\mathrm{viol}}=\infty$ branch. (D$_{\mathrm{op}}$) at $\gamma_{\mathrm{op}}=1$ persists with the channel by Lemma A, and (M) persists under (S) by Theorem M, so the open persistence burden is (S) alone — the anti-damping absorption question. Corollary S discharges the sea-export branch of that question (the aligned FCC sea is a certified non-absorber); the remaining absorber candidates are hinge clicks (`self_hit_held_release_solver_row`) and induced sea orientational polarization (a linear response the fixed-source diagnostic cannot compute).
 3. Further sharpening beyond the polarity-resolved envelope: the remaining slack is the norm bound on the three opposite-polarity rows and the uniform $(1+\beta)$ delay factor; an exact signed pair-field evaluation on the reference geometry, or a delay-resolved treatment of the antipodal row, could tighten $K_{\mathrm{sgn}}$ further. The dominant deficit driver in the recorded rows is however $W_{\max}\to(1+\beta)/J_f$ as $\beta\to1$, which no separation-side sharpening removes.
-4. Rigid-to-released transfer lemma for the certified clock: bound the deviation of a released near-channel row's tangential wake force from the rigid-ansatz screen value, so the certified $(S)$-failure clock applies to released rows without the transfer hypothesis. Labeled speculation until a bounding route is named.
+4. Sharpening the Lemma T tube: the first-pass coefficients are conservative (mean-value factor $16D/(d_j^{\mathrm{lo}})^3$, uniform treatment of the perturbation direction); a direction-resolved or second-order treatment would widen the certified tube toward the smooth behavior the sampled scan suggests. The lemma itself is closed; only its constants are improvable.
 
 ## Promotion Classification
 
 - Corpus promotion: defer with blocker; candidate destinations after operator review are [Symmetric Shell Braid](../../../content/markdown/aaa/noether-braid/symmetric-shell-braid.md#isolated-release-and-the-return-response-question) (the certificate as the precise conditional form of the return-response question for isolated release) and [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) as a theorem-target restatement without priority links.
-- Priority status: conditional theorem proved at priority level with hypotheses checkable on sweep output rows; all eleven current witness rows fail-closed (no certified window); the signed envelope halves the margin requirement; the interval certification is executed with its band recorded; (S)-persistence — the anti-damping absorption question — is the sole open hypothesis burden, now carrying a certified clock on the rigid channel under the labeled transfer hypothesis.
-- Next proofing consumers: the (S)-persistence and rigid-to-released transfer lemmas, and `sh0sea_dipole_wake_sum`, which should compare its computed sea response against this packet's margin inequality through the owner checker.
+- Priority status: conditional theorem proved at priority level with hypotheses checkable on sweep output rows; all eleven current witness rows fail-closed (no certified window); the signed envelope halves the margin requirement; the interval certification is executed with its band recorded; Lemma T makes the (S)-failure clock unconditional inside the certified tube around the rigid channel, upgrading the rigid-family rejection to an open-neighborhood rejection; Corollary S certifies the aligned FCC sea as a non-absorber (net along-velocity coefficient $\ge(c_1-0.275)\beta\ge2.606\beta>0$), so the sea-export branch of (S)-persistence is discharged and the sea-screened clock survives; (S)-persistence via the remaining absorbers (hinge clicks, induced sea polarization) is the open burden.
+- Next proofing consumers: the (S)-persistence lemma via hinge clicks (`self_hit_held_release_solver_row`) and induced sea orientational polarization, and the Lemma T tube sharpening. Corollary S has consumed `sh0sea_dipole_wake_sum` against the certified band.

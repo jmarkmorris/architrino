@@ -292,6 +292,38 @@ test("fcc sea shell reproduces the computed wake-sum release projection and turn
   assert.equal(result.trajectoryDiagnostics.scoreMovement, "no_score_increase");
 });
 
+test("sea-screened self-hit probe opens same-source roots exactly at the field-speed hinge", () => {
+  const result = runToy([
+    "--fcc-sea-spacing",
+    "4.25",
+    "--include-self-hits",
+    "--prehistory-mode",
+    "moving-prehistory",
+    "--surface-speed-fraction",
+    "0.95",
+  ]);
+  // Sub-field trajectories admit no same-source roots, so the sea-screened
+  // return turn is self-hit-robust by construction and the first self root
+  // must coincide with the first recorded field-speed crossing (the hinge).
+  const firstSelfHit = result.events.firstSelfHitRoot;
+  const crossing = result.events.firstFieldSpeedCrossing;
+  assert.ok(firstSelfHit, "self-hit roots must open once the run crosses field speed");
+  assert.equal(firstSelfHit.time, crossing.time, "first self root must sit at the hinge");
+  const returnTurn = result.trajectoryDiagnostics.radialTurnRows.find(
+    (turn) => turn.turnKind === "expansion_to_compression"
+  );
+  assert.ok(returnTurn && returnTurn.time < crossing.time, "sub-field return turn survives self-hit enablement");
+  // The naive self-hit kernel ejects rather than absorbs: fail-closed discipline
+  // and the self-hit probe authority label must be preserved.
+  assert.ok(result.rootStats.selfHitRoots > 0);
+  assert.equal(result.trajectoryDiagnostics.retainedBranchClaim, false);
+  assert.equal(result.trajectoryDiagnostics.scoreMovement, "no_score_increase");
+  assert.equal(
+    result.closureDiagnostics.selfHitProbe.authority,
+    "priority_only_toy_probe_not_accepted_evidence"
+  );
+});
+
 test("fcc sea spacing below the shell overlap floor is rejected fail-closed", () => {
   const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "braid-ideal-held-release-sea-reject-"));
   assert.throws(

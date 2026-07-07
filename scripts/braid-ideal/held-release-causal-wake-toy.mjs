@@ -129,6 +129,7 @@ function parseArgs(argv) {
     causalWeight: true,
     includeSelfHits: false,
     selfHitMinDelay: null,
+    selfHitKernel: "naive",
     maxAcceleration: Infinity,
     surfaceSpeedFraction: 0,
     spinAxis: [1, 1, 1],
@@ -188,6 +189,12 @@ function parseArgs(argv) {
     } else if (arg === "--self-hit-min-delay") {
       parsed.selfHitMinDelay = nonnegativeFiniteNumber(requireNext(rawArgs, index, arg), "self-hit-min-delay");
       index += 1;
+    } else if (arg === "--self-hit-kernel") {
+      parsed.selfHitKernel = requireNext(rawArgs, index, arg);
+      if (!SELF_HIT_KERNELS.includes(parsed.selfHitKernel)) {
+        throw new TypeError(`--self-hit-kernel must be one of: ${SELF_HIT_KERNELS.join("|")}`);
+      }
+      index += 1;
     } else if (arg === "--no-causal-weight") {
       parsed.causalWeight = false;
     } else if (arg === "--surface-speed-fraction") {
@@ -232,6 +239,9 @@ function parseArgs(argv) {
       `--fcc-sea-spacing must be >= ${FCC_SEA_MIN_NON_OVERLAP_SPACING} (FCC shell overlap floor 2*sqrt(2))`
     );
   }
+  if (parsed.selfHitKernel !== "naive" && !parsed.includeSelfHits) {
+    throw new TypeError("--self-hit-kernel chart-click requires --include-self-hits");
+  }
   parsed.outputDir = parsed.outputDir ?? INITIAL_PARTICLE_PRESETS[parsed.preset].outputDir;
   parsed.selfHitMinDelay = parsed.selfHitMinDelay ?? parsed.dt;
   return parsed;
@@ -268,6 +278,7 @@ function runHeldRelease(options) {
     firstFieldSpeedCrossing: null,
     firstMissingRoot: null,
     firstSmallJacobian: null,
+    firstSelfHitRoot: null,
   };
   const rootStats = {
     totalRoots: 0,
@@ -1607,6 +1618,13 @@ function detectRootEvents(events, accelerationResult, state) {
       time: cleanNumber(state.time),
       stepIndex: state.stepIndex,
       smallJacobianRoots: accelerationResult.rootStats.smallJacobianRoots,
+    };
+  }
+  if (!events.firstSelfHitRoot && accelerationResult.rootStats.selfHitRoots > 0) {
+    events.firstSelfHitRoot = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      selfHitRoots: accelerationResult.rootStats.selfHitRoots,
     };
   }
 }

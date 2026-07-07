@@ -231,6 +231,10 @@ function makeAuthorization({ acceptedSameRecordEvidence = false } = {}) {
   ]);
 }
 
+export function buildFailClosedAuthorization() {
+  return makeAuthorization();
+}
+
 function rowBySuffix(model, suffix) {
   return model.rows.find((row) => row.row_id === `sh_0_sea_model:${suffix}`) ?? null;
 }
