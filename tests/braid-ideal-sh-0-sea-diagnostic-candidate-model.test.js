@@ -21,6 +21,8 @@ import {
   ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA,
   ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA,
   AUTHORITY_CLASS,
+  CANDIDATE_SAME_RECORD_REQUEST_SCHEMA,
+  DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA,
   DEFAULT_A_FCC_MAX,
   DEFAULT_A_FCC_MIN,
   DEFAULT_A_FCC_STEP,
@@ -44,8 +46,10 @@ import {
   REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX,
   WAKE_SUM_RESPONSE_KIND,
   buildSh0SeaDiagnosticCandidateModel,
+  buildSh0SeaDipoleWakeSumMotionRun,
   buildSh0SeaDipoleWakeSumRun,
   evaluateSh0SeaDiagnosticCandidateModelEvidence,
+  evaluateSh0SeaDipoleWakeSumMotionRunEvidence,
   evaluateSh0SeaDipoleWakeSumRunEvidence,
 } from "../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs";
 
@@ -853,4 +857,165 @@ test("SH-0-sea dipole wake-sum CLI propagates supplied seed-path authority diagn
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
+});
+
+test("SH-0-sea delayed-echo motion run reproduces the static sum in the zero-amplitude motion limit", () => {
+  const run = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "breathing",
+    motionDelta: 0,
+    motionOmegaGrid: [2],
+    motionPhaseSamples: 4,
+    aFccMin: 4,
+    aFccMax: 5,
+    aFccStep: 0.5,
+  });
+
+  assert.equal(run.schema, DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA);
+  assert.equal(run.neighbor_motion_declaration.kind, "breathing");
+  assert.equal(run.neighbor_motion_declaration.breathing_delta, 0);
+  assert.equal(run.neighbor_motion_declaration.undeclared_environment_degrees_of_freedom, 0);
+  assert.equal(run.free_amplitude_parameter_count, 0);
+  assert.equal(run.fitted_response_amplitude_present, false);
+  assert.equal(run.omega_results.length, 1);
+
+  const rowAtFour = run.omega_results[0].spacing_rows.find(
+    (row) => Math.abs(row.a_fcc - 4) <= 1e-9
+  );
+  assert.ok(rowAtFour.phase_envelope.spread <= 1e-12);
+  assertAlmostEqual(rowAtFour.phase_envelope.Pi_R_mean, -0.3712418671549982, 1e-9);
+  assert.equal(rowAtFour.floor_evaluation.crosses_inward_response_floor_all_phases, true);
+  assert.equal(rowAtFour.floor_evaluation.crosses_inward_response_floor_some_phase, true);
+  assert.equal(rowAtFour.root_coverage.pass, true);
+  assert.equal(rowAtFour.field_speed.pass, true);
+  assert.equal(rowAtFour.free_amplitude_parameter_count, 0);
+
+  const staticReference = run.static_reference_rows.find(
+    (row) => Math.abs(row.a_fcc - 4) <= 1e-9
+  );
+  assertAlmostEqual(rowAtFour.phase_envelope.Pi_R_mean, staticReference.Pi_R_A_sea, 1e-9);
+
+  assert.equal(run.evidence_status.accepted, false);
+  assert.equal(run.authorization.retained_branch_claim, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(evaluateSh0SeaDipoleWakeSumMotionRunEvidence(run), {
+    accepted: false,
+    reason: "diagnostic_wake_sum_motion_run_not_accepted_retained_evidence",
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+  });
+});
+
+test("SH-0-sea delayed-echo breathing run splits the retention window boundary by phase", () => {
+  const run = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "breathing",
+    motionDelta: 0.2,
+    motionOmegaGrid: [2],
+    motionPhaseSamples: 16,
+    aFccMin: 4,
+    aFccMax: 7,
+    aFccStep: 0.5,
+  });
+  const result = run.omega_results[0];
+  const guaranteed = result.retention_windows.guaranteed_all_phases;
+  const conditional = result.retention_windows.phase_conditional;
+
+  assert.equal(result.field_speed_pass, true);
+  assert.equal(guaranteed.retention_window_exists, true);
+  assert.equal(conditional.retention_window_exists, true);
+  assert.ok(guaranteed.a_fcc_window_max < conditional.a_fcc_window_max);
+  assert.ok(guaranteed.a_fcc_window_max < run.delayed_echo_verdict.static_reference_boundary);
+  assert.ok(conditional.a_fcc_window_max > run.delayed_echo_verdict.static_reference_boundary);
+  assert.equal(result.phase_dependence.observed, true);
+  assert.ok(result.candidate_spacing_status.phase_envelope.spread > 0.01);
+  assert.equal(result.candidate_spacing_status.a_fcc, 4.25);
+  assert.equal(run.delayed_echo_verdict.phase_dependence_observed, true);
+  assert.equal(run.delayed_echo_verdict.retention_window_boundary_split_observed, true);
+  assert.equal(run.delayed_echo_verdict.per_omega_boundaries.length, 1);
+  assert.equal(run.wake_sum_source_row.neighbor_motion_declaration.kind, "breathing");
+  assert.equal(run.authorization.accepted_noether_sea_response_closure, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+});
+
+test("SH-0-sea delayed-echo orbiting run reports phase-conditional retention and excludes super-field-speed rows fail-closed", () => {
+  const run = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "orbiting",
+    motionOmegaGrid: [0.5, 1.5],
+    motionPhaseSamples: 8,
+    motionSpinAxis: [0, 0, 1],
+    aFccMin: 4,
+    aFccMax: 5.5,
+    aFccStep: 0.5,
+  });
+  const subField = run.omega_results.find((result) => result.omega === 0.5);
+  const superField = run.omega_results.find((result) => result.omega === 1.5);
+
+  assert.deepEqual(run.neighbor_motion_declaration.spin_axis_unit, [0, 0, 1]);
+  assert.equal(subField.field_speed_pass, true);
+  assert.equal(subField.retention_windows.guaranteed_all_phases.retention_window_exists, false);
+  assert.equal(subField.retention_windows.phase_conditional.retention_window_exists, true);
+  assert.equal(subField.phase_dependence.observed, true);
+
+  assert.equal(superField.max_source_speed_bound, 1.5);
+  assert.equal(superField.field_speed_pass, false);
+  assert.equal(
+    superField.spacing_rows.every((row) => row.field_speed.pass === false),
+    true
+  );
+  assert.equal(superField.retention_windows.guaranteed_all_phases.retention_window_exists, false);
+  assert.equal(superField.retention_windows.phase_conditional.retention_window_exists, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+});
+
+test("SH-0-sea candidate same-record request feeds the a_FCC=4.25 candidate into the chain fail-closed", () => {
+  const run = buildSh0SeaDipoleWakeSumRun();
+  const request = run.candidate_same_record_request;
+
+  assert.equal(request.schema, CANDIDATE_SAME_RECORD_REQUEST_SCHEMA);
+  assert.equal(request.authority_class, AUTHORITY_CLASS);
+  assert.equal(request.candidate.a_fcc, 4.25);
+  assert.equal(request.candidate.candidate_id, "sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25");
+  assertAlmostEqual(request.candidate.Pi_R_A_sea, -0.2833417889031177, 1e-9);
+  assert.ok(request.candidate.inward_margin_below_required_floor > 0);
+  assert.equal(request.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(request.target_binding.retained_record_id, TARGET_RETAINED_RECORD_ID);
+  assert.equal(
+    request.required_same_record_objects.includes(
+      "held_release_seed_path_rows_acceptance_certificate.v0"
+    ),
+    true
+  );
+  assert.equal(
+    request.required_same_record_objects.includes(
+      "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0"
+    ),
+    true
+  );
+  assert.equal(request.downstream_consumers.includes("self_hit_held_release_solver_row"), true);
+  assert.equal(request.accepted, false);
+  assert.equal(request.retained_evidence_authorized, false);
+  assert.equal(request.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
+  assert.equal(request.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(request.authorization.accepted_same_record_evidence, false);
+  assert.equal(request.authorization.scoreMovement, "no_score_increase");
+
+  const motionRun = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "breathing",
+    motionDelta: 0.2,
+    motionOmegaGrid: [2],
+    motionPhaseSamples: 4,
+    aFccMin: 4,
+    aFccMax: 5,
+    aFccStep: 0.5,
+  });
+  const motionRequest = motionRun.candidate_same_record_request;
+  assert.equal(motionRequest.schema, CANDIDATE_SAME_RECORD_REQUEST_SCHEMA);
+  // The reduced test grid names its own midpoint candidate; the default declared
+  // range names a_FCC=4.25 (asserted on the static run above).
+  assert.equal(motionRequest.candidate.a_fcc, 4.5);
+  assert.equal(motionRequest.neighbor_motion_declaration.kind, "breathing");
+  assert.equal(
+    motionRequest.neighbor_motion_declaration.candidate_spacing_status_per_omega.length,
+    1
+  );
+  assert.equal(motionRequest.accepted, false);
 });

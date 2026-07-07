@@ -2123,7 +2123,9 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   }
   const options = parseArgs(process.argv.slice(2));
   const artifact = options.wakeSumRun
-    ? buildSh0SeaDipoleWakeSumRun(options)
+    ? options.neighborMotion != null
+      ? buildSh0SeaDipoleWakeSumMotionRun(options)
+      : buildSh0SeaDipoleWakeSumRun(options)
     : buildSh0SeaDiagnosticCandidateModel(options);
   console.log(JSON.stringify(artifact, null, options.pretty ? 2 : 0));
 }

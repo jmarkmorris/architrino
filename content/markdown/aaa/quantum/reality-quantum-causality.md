@@ -28,7 +28,7 @@ At the absolute level, any local neighborhood is crowded:
   - Translating through the void,
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
-- At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
+- At a given absolute time $T$, the **net potential** at a point is the **vector sum** of:
   - Wakes from local Noether braid assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
@@ -67,13 +67,13 @@ At the fundamental level:
 - Every wake segment satisfies:
 
   $$
-  t_{\text{arrival}} = t_{\text{emission}} + \frac{r}{c_f}
+  T_{\text{arrival}} = T_{\text{emission}} + \frac{r}{c_f}
   $$
-- Forces at time $t$ on a given architrino/assembly depend only on:
+- Forces at time $T$ on a given architrino/assembly depend only on:
   - Its own past trajectory (self-hit),
-  - Other architrinos’ past trajectories, via wakes that have reached the point by $t$.
+  - Other architrinos' past trajectories, via wakes that have reached the point by $T$.
 
-There is **no backward-in-$t$ influence**. The absolute-time ordering is strictly causal.
+There is **no backward-in-$T$ influence**. The absolute-time ordering is strictly causal.
 
 ### Emergent Acausality and Stealth Effects
 
@@ -143,7 +143,7 @@ $$
 B_k
 =
 \left\{
-S(t_0):\Phi_{t_0\to t_1}(S(t_0))\in\mathcal{A}_k
+S(T_0):\Phi_{T_0\to T_1}(S(T_0))\in\mathcal{A}_k
 \right\}.
 $$
 Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
@@ -252,7 +252,7 @@ This is deterministic navigation, not libertarian free will.
 
 ### Requirements (Expanded)
 
-I see at least **five** necessary ingredients.
+There are at least **five** necessary ingredients.
 
 ---
 
@@ -345,9 +345,11 @@ Finally, the way wake peaks update the internal variables must itself be **struc
 In minimal form:
 
 - Let $u$ evolve according to something like
-  \[
-  \dot u = F(u,\; \text{recent attractor visits},\; \text{coarse features of inputs}),
-  \]
+
+$$
+\dot u = F(u,\; \text{recent attractor visits},\; \text{coarse features of inputs}),
+$$
+
   where $F$ is not merely random but reflects the internal architecture.
 
 This is what makes the assembly a **selector of its own future sensitivity**, not just a passive recorder.

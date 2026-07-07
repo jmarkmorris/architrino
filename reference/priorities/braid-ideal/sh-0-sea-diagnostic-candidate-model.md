@@ -1,6 +1,6 @@
 # SH-0-Sea Diagnostic Candidate Model
 
-Status: diagnostic/candidate model packet, 2026-07-04. Updated with the computed dipole wake-sum run and removal of the fitted response amplitude, 2026-07-07.
+Status: diagnostic/candidate model packet, 2026-07-04. Updated with the computed dipole wake-sum run and removal of the fitted response amplitude, then the delayed-echo motion variant and the candidate same-record request, 2026-07-07.
 
 Proof ID: `SH-0-sea`.
 
@@ -291,7 +291,33 @@ A computed retention window in $a_{\mathrm{FCC}}$ exists with zero free amplitud
 - named sea-spacing candidate: `sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25` with $\Pi_R=-0.2833417889031177$ and inward margin $0.1899$ below the required floor, selected as the eligible crossing row nearest the window midpoint;
 - fail-closed coverage discipline: shrinking the declared held-history window truncates the retention window at the last covered spacing with boundary status `truncated_by_root_coverage`.
 
-Because the held histories are static, this run tests amplitude-only retention: the computed environment response is a monotone spacing threshold. It supports the environment-theorem hypothesis (H1) with a computed inward projection that reverses the post-turn escape floor at sub-$5.35$ spacings, and it partially tests the delayed-echo hypothesis (H5): the delayed sum is computed through real causal delays, but the predicted density- and phase-dependent structure requires moving neighbor histories, which this run does not declare.
+The static-held run tests amplitude-only retention: the computed environment response is a monotone spacing threshold supporting the environment-theorem hypothesis (H1) with a computed inward projection that reverses the post-turn escape floor at sub-$5.35$ spacings. The delayed-echo variant below supplies the moving-history phase structure.
+
+## Delayed-Echo Motion Result
+
+The executable delayed-echo mode is:
+
+```bash
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --wake-sum-run --neighbor-motion=breathing --pretty
+node scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs --wake-sum-run --neighbor-motion=orbiting --pretty
+```
+
+The 12 neighbor braids carry declared moving held histories over $[-W,0]$ with common phase: breathing scales each braid's sites by $1+\delta\cos(\Omega t+\varphi)$ (declared $\delta=0.2$, $\Omega\in\{1,2,4\}$), and orbiting rigidly rotates each braid about a declared axis (default $\hat z$, $\omega\in\{0.25,0.5,0.75\}$). Causal roots are solved per directed pair by bisection of the strictly increasing causal residual against the declared window; the branch weight is $|1/\max(J,0.05)|$ with source Jacobian $J=(c_f-\mathbf v_s\cdot\hat{\mathbf n})/c_f$ per the toy kernel, and receiver-normal factor $1$ at release. Motion parameters are declared history parameters, not response amplitudes; `free_amplitude_parameter_count=0` is preserved, and super-field-speed motion rows are excluded fail-closed. The run reports a per-spacing phase envelope ($\Pi_R$ min/max/mean over the declared phase grid) and two retention windows: guaranteed (all phases cross the floor) and phase-conditional (some phase crosses).
+
+Result: the H5 phase-dependence prediction holds at the declared level. The static boundary $5.3469$ splits:
+
+| Motion | Guaranteed window max | Phase-conditional window max | Spread at $a_{\mathrm{FCC}}=4.25$ |
+| --- | ---: | ---: | ---: |
+| breathing $\Omega=1$ | `5.022` | `5.908` | `0.070` |
+| breathing $\Omega=2$ | `4.948` | `6.253` | `0.125` |
+| breathing $\Omega=4$ | `3.512` | beyond declared range max | `1.333` (sign-reversing) |
+| orbiting $\omega=0.25$ | none | `5.946` | `0.345` |
+| orbiting $\omega=0.5$ | none | `6.869` | `0.614` |
+| orbiting $\omega=0.75$ | none | `8.223` | `0.837` |
+
+At the named candidate spacing $4.25$, breathing $\Omega=4$ fails the all-phase crossing while the some-phase crossing holds; orbiting collapses the phase-mean to $-0.0944$ (the rotating braid dipole averages away) at every tested $\omega$ while widening the phase-conditional reach. Reading (diagnostic-only): the sea's retention supply is phase- and orientation-dependent — dipole-aligned neighbor order (static or breathing) gives a guaranteed window, while freely reorienting neighbors give only phase-conditional retention. Sea orientational order is therefore a named condition on the environment-theorem route, and the $\delta\to0$ limit reproduces the static sum exactly (verified by test).
+
+Both wake-sum runs also emit `sh_0_sea_candidate_same_record_request.v0`: the named $a_{\mathrm{FCC}}=4.25$ candidate with its kernel, held-history and motion declarations, target binding, required same-record objects (seed-path certificate chain, retained-source adapter package, receiver-normal root-detail rows, action closure, accepted sea-response row at the candidate spacing), and downstream consumers (`self_hit_held_release_solver_row`, `native_retained_history_promotion`, SH-0-sea same-record rows). The request is fail-closed at the seed-path certificate and authorizes nothing.
 
 The computed wake-sum source row is `sh_0_sea_dipole_wake_sum_source:2f3aad5e6cced01f` (`response_kind=dipole_wake_sum`), carrying the attempt `aa` FCC shell geometry carrier and the same event, support, and action provenance refs as the model rows. These results are computed same-target diagnostic rows, not accepted proof evidence. They do not authorize a Noether sea response closure, stability claim, retained branch, score movement, or corpus promotion, because the accepted target/source certificate, external authority package, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row are still absent.
 
@@ -308,6 +334,23 @@ The wake-sum run also emits the exact future replacement requirement:
 - accepted dipole wake-sum event ref prefix: `accepted:sh-0-sea:event:dipole_wake_sum:aa-fcc-shell:`.
 
 This requirement is the executable bridge for the closure target. It propagates staged seed-path verifier states without changing claim level: with a matching certificate only, the first missing object becomes `held_release_seed_path_rows_external_accepted_authority_package`; with a matching certificate plus authority package, the first missing object becomes `repo_authorization_for_accepted_held_release_seed_path_rows`; with all three supplied and matching, the seed-path requirement passes and the next first missing object becomes `sh_0_sea_same_target_accepted_provenance_package`. The package verifier can check that a supplied future package matches the current FCC-carried diagnostic source row, geometry carrier, target binding, seed-path certificate ref, external authority package ref, exact repo authorization ref, and accepted geometry/event/support/action provenance ref prefixes. Even a shape-valid package cannot advance the top-level blocker past `held_release_seed_path_rows_acceptance_certificate` while the seed-path authority chain is absent. It still leaves `accepted=false`, `requirement_passed=false`, and `scoreMovement="no_score_increase"` until the seed-path authority chain is accepted. Once the seed-path certificate, matching external authority package, and repo authorization exist, the next package must replace the current FCC-carried diagnostic geometry/event/support/action refs with accepted same-target provenance.
+
+## Sea-Screened Held-Release Rows - 2026-07-07
+
+The dynamical consumption of the computed wake sum. Executable mode:
+
+```bash
+node scripts/braid-ideal/held-release-causal-wake-toy.mjs --fcc-sea-spacing 4.25 [--prehistory-mode ... --surface-speed-fraction ...]
+node scripts/braid-ideal/delayed-escape-certificate-check.mjs --result <out>/result.json
+```
+
+[held-release-causal-wake-toy.mjs](../../../scripts/braid-ideal/held-release-causal-wake-toy.mjs) gains `--fcc-sea-spacing` (rejected fail-closed below the shell-overlap floor $2\sqrt2$) and `--fcc-sea-held-window` (default $24$). When active, the released seed evolves inside the attempt `aa` FCC shell: $72$ held static sea sources (12 neighbors, face-opposite decoration, aligned orientation — the dipole-aligned order case where the delayed-echo guaranteed window holds) contribute delayed inverse-square forces with exact static causal roots ($J=1$), receiver-normal branch weights, and a declared one-way environment (held histories; no back-reaction). The default toy run is unchanged byte-for-byte when the flag is absent. Release-instant consistency: the toy's release sea radial projection reproduces the wake-sum row $\Pi_R=-0.283341788903118$ to $13$ digits; sea root coverage is complete in every executed row.
+
+**Result (return turns, no bounded window).** Eight rows executed at the named spacing $a_{\mathrm{FCC}}=4.25$ (toy defaults; `vt000` control, `vt025`/`vt050` kick-at-release, `vt025`-`vt099` moving-prehistory; per-row numbers in the [run matrix](sh-run-matrix.md)). The three rows that were outward-only in the isolated sweep (`vt080`/`vt095`/`vt099` moving-prehistory) now show an expansion-to-compression **return turn** at $t=0.176/0.346/0.390$, at $R\approx1.001$-$1.013$, strictly before the first recorded field-speed crossing ($t=0.466/0.430/0.422$): the first sub-field return turns in this program, removing the prior discount that every inward post-turn row sat after the crossing. The return is short-lived: each row then compresses or hovers near $R\approx1$ while the internal tangential channel accelerates the sites through $c_f$ (the radius barely moves as the speed crosses — radial support without a tangential absorber), and the subsequent bounce escapes through the shell with close sea passes; `vt095` extended to duration $6$ confirms escape. Compression-first rows turn earlier than isolated but show no second turn.
+
+**Checker consumption.** [delayed-escape-certificate-check.mjs](../../../scripts/braid-ideal/delayed-escape-certificate-check.mjs) evaluated all eight rows: fail-closed everywhere (`windowCertificateGranted=false`); the three return-turn rows carry $8$-$19$ signed admissible certificate times with escape margins failing at $-468$ to $-489$ under unit coupling; the ordering witness is consistent in every row. Caveat carried in the row output: the certificate envelope bounds partner sources only, so sea-screened margins are diagnostic, not lemma-backed; a sea-aware envelope extension is an open obligation of the escape-lemma packet if certificate work moves to embedded rows.
+
+**Disposition.** `sea_screened_return_turns_without_bounded_window` — the computed sea term converts the outward-only family into a return-turn family inside the sub-field window at the named spacing (the environment-theorem route survives its first dynamical test), but no bounded window exists in the toy because the pumped tangential action has no absorber: the branch dies at the field-speed hinge while the radius is held. This is the same missing-absorber conclusion as the breathing-hunt rejection, now witnessed dynamically in the embedded environment. Claim level: diagnostic rows only; no retained branch, no stability claim, no accepted evidence, no score movement; everything remains blocked at the central seed-path certificate.
 
 ## Action And Exchange Variables
 
@@ -373,6 +416,8 @@ Source-normal-only, Jacobian-only, and `eta^-2 |J|^-1` weights remain diagnostic
 | Candidate sea-response equation | Diagnostic/candidate |
 | Computed dipole wake-sum source row | Diagnostic/candidate; computed from the master-equation kernel with zero free amplitude; same-target provenance refs plus attempt `aa` FCC geometry carrier only |
 | Computed retention window in $a_{\mathrm{FCC}}$ | Diagnostic/candidate; $[3,\,5.34690143]$ at the declared kernel and held-history declaration; not retained evidence |
+| Delayed-echo motion windows | Diagnostic/candidate; guaranteed and phase-conditional windows at declared motion parameters; phase- and orientation-dependent; not retained evidence |
+| Candidate same-record request | Request only; feeds the named $a_{\mathrm{FCC}}=4.25$ candidate into the same-record chain; fail-closed at the seed-path certificate |
 | Accepted provenance replacement requirement | Requirement only; blocked first at the seed-path acceptance certificate |
 | Support/envelope variables | Diagnostic/candidate |
 | Action/exchange variables | Diagnostic/candidate |
@@ -396,7 +441,7 @@ The wake-sum run instantiates this model with:
 6. the computed master-equation-kernel delayed sum, which reports `\Pi_R\mathcal A^{\mathrm{sea}}` per declared spacing, checks the diagnostic inward floor, and reports the retention window in $a_{\mathrm{FCC}}$;
 7. a fail-closed accepted-provenance replacement requirement for the future same-target geometry, event, support, and action package.
 
-The computed sum crosses the floor for $a_{\mathrm{FCC}}\le5.3469$ with zero free amplitude, naming `sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25` as the sea-spacing candidate, but it remains diagnostic. The next executable proof targets are, in order: run the delayed-echo variant with declared moving neighbor histories to test the phase-dependence prediction (H5); consume the named spacing candidate in the downstream same-record chain; and replace the computed diagnostic source row with an accepted same-target source row carrying accepted geometry, event, support, and action provenance while preserving the accepted-evidence blocker.
+The computed sum crosses the floor for $a_{\mathrm{FCC}}\le5.3469$ with zero free amplitude, naming `sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25` as the sea-spacing candidate, and the delayed-echo variant confirms phase- and orientation-dependent window structure, but both remain diagnostic. The next executable proof targets are, in order: bind the emitted `sh_0_sea_candidate_same_record_request.v0` in the retained-source acquisition path so the accepted chain carries the candidate spacing; derive or declare the sea orientational-order condition (which neighbor orientation ensembles the Noether sea actually supplies) since guaranteed retention requires dipole-aligned order; and replace the computed diagnostic source row with an accepted same-target source row carrying accepted geometry, event, support, and action provenance while preserving the accepted-evidence blocker.
 
 This computed pass justifies a sharper retained-source request. It still does not authorize retained evidence until the seed-path certificate, external authority package, repo authorization, retained-source adapter package, same-record receiver-normal rows, same-record action closure, accepted wake/event/support rows, and accepted `SH-0-sea` sea-response row exist.
 

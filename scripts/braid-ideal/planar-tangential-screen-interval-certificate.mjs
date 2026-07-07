@@ -194,7 +194,7 @@ export function certify({
   betaHi = 0.985,
   maxBoxes = 500000,
   minWidth = 1e-8,
-  ratioTol = 0.02,
+  ratioTol = 0.004,
 } = {}) {
   const stack = [[betaLo, betaHi]];
   const failures = [];
