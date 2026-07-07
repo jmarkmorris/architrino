@@ -58,6 +58,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Avoid launching multiple agents on the same priority item unless their outputs are explicitly different.
 - [ ] Ask workers to return changed file paths, tests run, residual risks, and any priority item removed.
 - [ ] Reserve the main thread for integration, conflict resolution, and final technical judgment.
+- [ ] Treat Cowork-sandbox agents as read/edit-only for git: the sandbox can create `.git/index.lock` but cannot unlink inside `.git`, so every sandbox-side `git add`/`git commit` strands a lock for the operator to remove; have those agents hand the operator a ready-to-run commit command instead (2026-07-07).
 
 ## Technical Closure
 

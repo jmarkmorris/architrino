@@ -26,7 +26,7 @@ From the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, the released energy was h
 
 For that reason, ordinary fission and fusion should not be treated as direct releases of the deeply shielded internal energy of Standard Model particle assemblies. The shielded internal energy and far-field leakage pattern of each surviving proton or neutron mostly carry through the reaction. What changes is the higher-level nuclear binding ledger and the surrounding Noether sea response of the nuclear assembly. A reaction that actually opened, destroyed, or changed the internal branch of a nucleon would be a different claim and would require its own particle-level provenance and shielding ledger.
 
-This is the main implementation point. The same final energy can be reported as a mass defect in observer language, but the physical story still has to say where the released ledger difference goes: fragment kinetic energy, photons, recoil, medium excitation, local Noether sea update, or heat.
+This is the main accounting point. The same final energy can be reported as a mass defect in observer language, but the physical story still has to say where the released ledger difference goes: fragment kinetic energy, photons, recoil, medium excitation, local Noether sea update, or heat.
 
 The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. A schematic fission ledger is
 
@@ -46,7 +46,7 @@ K_{\mathrm{frag}}
 +\Delta E_{\mathrm{sea}},
 $$
 
-where the daughter masses $M_d$, emitted branch masses $M_b$, fragment kinetic energy, photon output, medium heating, recoil, and local Noether sea update all belong to the exposed nuclear ledger. That accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
+where the daughter masses $M_d$, emitted product masses $M_b$, fragment kinetic energy, photon output, medium heating, recoil, and local Noether sea update all belong to the exposed nuclear ledger. That accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
 
 ### Fusion Reaction Ledger Benchmark
 
@@ -104,11 +104,12 @@ with $A=Z+N$.
 
 Here:
 
-- $E_{\text{res-strong}}<0$ is the attractive residual strong contribution,
-- $E_{\text{Coul}}>0$ is proton-proton electrical repulsion,
-- $E_{\text{excl}}>0$ is short-range core exclusion or over-compression cost,
+- $M_a$ are the accepted isolated-nucleon mass readouts, the $m_{\mathrm{tr}}$ values of [Particle Masses](../assemblies/particle-masses.md), so that $B$ below reduces to the standard mass-defect definition,
+- $E_{\text{res-strong}} < 0$ is the attractive residual strong contribution,
+- $E_{\text{Coul}} > 0$ is proton-proton electrical repulsion,
+- $E_{\text{excl}} > 0$ is short-range core exclusion or over-compression cost,
 - $E_{\text{shell}}$ is the nuclear-structure term associated with filling and pairing patterns; its sign is left open because shell and pairing corrections can raise or lower the ledger relative to a smooth baseline,
-- $E_{\text{sea-pol}}<0$ is the energy gain from local Noether sea polarization and meson-like corridor formation.
+- $E_{\text{sea-pol}} < 0$ is the energy gain from local Noether sea polarization and meson-like corridor formation.
 
 Then the binding energy is
 $$
@@ -135,14 +136,14 @@ for separations in the nuclear window, with the attraction strongest where meson
 
 ### Short-range exclusion
 
-Nucleons are not point masses. Each is a structured Noether braid assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises sharply:
+Nucleons are not point masses. Each is a structured Noether braid assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises steeply, idealized here as a divergence:
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad
 r\to r_{\text{core}}^{+}
 $$
 
-This is the geometric origin of the short-range nuclear hard core.
+This is the geometric origin of the short-range nuclear hard core. The literal infinity is schematic shorthand: the assembly-level over-compression cost is steep but finite, ending in a branch transition near the self-hit threshold rather than an infinite wall.
 
 ### Coulomb repulsion
 
@@ -166,14 +167,14 @@ The minimal expected two-nucleon effective potential is therefore:
 
 In symbols, a first schematic form is
 $$
-V_{NN}(r)
+V_{NN}^{(c)}(r)
 =
 V_{\text{excl}}(r)
 +V_{\text{Coul}}(r)
 +V_{\pi/\text{corr}}(r)
 +V_{\text{sea-pol}}(r)
 $$
-with
+where $c \in \{pp, pn, nn\}$ labels the two-nucleon channel and $V_{\text{Coul}}$ is present only in the $pp$ channel, with
 $$
 V_{\pi/\text{corr}}(r)+V_{\text{sea-pol}}(r)<0
 $$
@@ -201,7 +202,7 @@ The qualitative reasons this channel is favored are:
 - efficient pion-like charge-exchange corridor between proton and neutron,
 - and a two-nucleon geometry that can share medium polarization without severe core-overlap cost.
 
-This list is not enough without the spin-channel constraint. The $pn$ benchmark must recover a bound triplet channel while the identical-proton $pp$ channel is spin-statistics-restricted to the singlet sector; that singlet channel must remain unbound even before the Coulomb term is added. This dependency is inherited from the spin-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md) and the same-record spinor-label pullback in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), not solved locally by the nuclear potential shorthand.
+This list is not enough without the spin-channel constraint. The $pn$ benchmark must recover a bound triplet channel while the identical-proton $pp$ channel is spin-statistics-restricted to the singlet sector in the s-wave ($L=0$) channel; that singlet channel must remain unbound even before the Coulomb term is added. This dependency is inherited from the spin-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md) and the same-record spinor-label pullback in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), not solved locally by the nuclear potential shorthand.
 
 If the eventual effective potential cannot bind the deuteron while staying compatible with proton-proton nonbinding, the nuclear branch is in immediate trouble.
 
@@ -251,11 +252,11 @@ Polonium-212 is a compact numerical check: the standard comparison channel is ${
 
 ## Beta Stability Interface
 
-Nuclear binding is tied to weak stability because a nucleus can trade between proton and neutron count through weak channels. At coarse level, beta stability is the condition that the total nuclear energy cannot be lowered by
+Nuclear binding is tied to weak stability because a nucleus can trade between proton and neutron count through weak channels. At coarse level, beta stability is the condition that the total nuclear energy cannot be lowered by the neutron-side channel
 $$
-n \leftrightarrow p + e^- + \bar\nu_e
+n \to p + e^- + \bar\nu_e
 $$
-or its inverse process inside the bound environment.
+or by the proton-side channels, positron emission $p \to n + e^+ + \nu_e$ and electron capture $p + e^- \to n + \nu_e$, inside the bound environment.
 
 So a realistic nuclear theory here must eventually combine:
 

@@ -1,8 +1,8 @@
 # Six-Point Symmetry Invariant Lemma Proof Packet
 
-Status: priority-only proof packet, 2026-07-06.
+Status: priority-only proof packet, 2026-07-06; operator-reviewed and accepted as staged, 2026-07-07.
 Claim level: derivation-closure proof for the invariance and reduction obligations only. This packet does not claim a retained branch, accepted evidence, force/action closure, stability, transverse-manifold stability, observer export, score movement, or corpus promotion.
-Corpus disposition: defer with blocker. Promote only after operator review and, for any retained-history application, same-record receiver-normal branch-strength evidence, action/wake/event/support rows, and stability evidence.
+Corpus disposition: operator review complete; theorem-target restatement is promotable in reader-facing form. Any retained-history application still requires same-record receiver-normal branch-strength evidence, action/wake/event/support rows, and stability evidence, and the native central-solver kernel still requires its own equivariance audit before native-record application.
 
 Owner scaffold: [six-point-symmetry-invariant-lemma-row.mjs](../../../scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs), tests in [braid-ideal-six-point-symmetry-invariant-lemma-row.test.js](../../../tests/braid-ideal-six-point-symmetry-invariant-lemma-row.test.js).
 Companion audit: [Six-Point Equivariant Reduction Proof Audit](six-point-equivariant-reduction-proof-audit-2026-07-06.md).

@@ -93,7 +93,7 @@ Benfey's 2009 historical account gives an explicit lineage for the Hyde table.
 
 1. Clark (1933): early oval/spiral periodic chart architecture.
 2. Life (1949): high-visibility oval adaptation for a broad scientific audience.
-3. Benfey/Jacobs Chemistry spiral (1964): the recognizable “snail” rendering, first used in Seaborg’s plutonium context.
+3. Benfey/Jacobs Chemistry spiral (1964): the recognizable "snail" rendering, first used in Seaborg's plutonium context.
 4. Hyde (1976): axis-modified refinement with H-C-Si central alignment.
 
 Therefore Hyde did not originate the spiral family; he modified an existing spiral lineage with a specific structural emphasis.
@@ -106,13 +106,13 @@ The historical account records two distinct geometric modifications over time.
 2. Later protrusion logic: associated with superactinide-era shell-filling discussions, including the Weiner-Seaborg exchange.
 3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in later superheavy-period speculation.
 
-### Hyde’s conceptual intervention
+### Hyde's conceptual intervention
 
-Hyde’s specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.
+Hyde's specific move was to place a horizontal axis through H, C, and Si, emphasizing C/Si centrality between electropositive and electronegative regions, with explicit biosphere/lithosphere framing in the historical account.
 
 ### Historical intent statement
 
-In Benfey’s own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.
+In Benfey's own account, the spiral was designed to improve visibility of periodic pattern structure relative to fragmented rectangular presentations; it was not presented as a replacement for the underlying periodic law.
 
 ---
 
@@ -132,7 +132,7 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 ### Carbon-silicon axis emphasis
 
-Hyde’s explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
+Hyde's explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four outer nested shell braids can achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency.
 
@@ -167,9 +167,9 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Mechanism and Derivation Sketch
 
-- Spiral-to-core symmetry mapping: Hyde’s 2D spiral is treated as a projection of 3D docking topology around the nuclear source envelope $\mathcal W_{\text{nuc}}$, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell braids.
-- In this view, the 8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
+- Spiral-to-core symmetry mapping: Hyde's 2D spiral is treated as a projection of 3D docking topology around the nuclear source envelope $\mathcal W_{\text{nuc}}$, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
+- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional shell of precessing nested shell braids; `pressure` here and below means the isotropic part of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a new medium variable.
+- In this view, the 2/8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
 - Volume-exclusion mechanism: each electron nested shell braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
 - Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
 - Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
@@ -180,13 +180,13 @@ The points below are collected as a framework-internal research program, not as 
 
 ### Predictions and Observables
 
-- If shell structure is a packing phenomenon, ionization-energy trends along Hyde’s spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
+- If shell structure is a packing phenomenon, ionization-energy trends along Hyde's spiral should show systematic high-$Z$ deviations from idealized Dirac-limit expectations.
 - Mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing inner-shell nested shell braids and driving middle-binary velocities toward field-speed limits.
 - This inner-shell geometric strain changes the effective shielding potential seen by valence nested shell braids, producing measurable departures from standard relativistic-correction-only trends.
 
 ### Failure Modes and Falsification Criteria
 
-- If multi-body simulations of nested shell braids with axial layers do not spontaneously produce discrete 8/18/32 packing regimes, the geometric-periodicity derivation fails.
+- If multi-body simulations of nested shell braids with axial layers do not spontaneously produce discrete 2/8/18/32 packing regimes, the geometric-periodicity derivation fails.
 - If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
 - If predicted high-$Z$ ionization-energy deviations are absent beyond uncertainty and known correction terms, the proposed finite-volume mechanism is disfavored.
 
@@ -196,12 +196,12 @@ The Hyde hypothesis becomes useful only if it can be converted into a closure pr
 
 The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
 
-- an inner phase-locked pair at maximum curvature,
+- an inner phase-locked electron-assembly pair at the innermost stable tier,
 - exactly eight outer electron assemblies,
 - a local Noether sea density and delay profile fixed before optimization,
 - and a no-overlap exclusion rule for precessing oblate spheroidal exclusion envelopes.
 
-The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked lattice that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
+The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked configuration that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
 
 Only after Neon stability and node discreteness are established should the program extend to higher-$Z$ shells. At that point, the predicted high-$Z$ ionization-energy deviations can be compared against known relativistic, QED, and finite-nuclear-size corrections.
 
