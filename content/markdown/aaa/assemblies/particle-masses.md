@@ -129,6 +129,8 @@ $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
 $$
 
+A candidate mechanism, at hypothesis level, says what sets the size of this exposure for dressed fermions: the geometry of the accessory dressing. Per the quietness ladder in [Symmetric Shell Braid](../noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy), the six-electrino octahedral dressing of the electron reveals no polarity-signed structure below hexadecapole order, the four-site and two-site quark dressings leak at octupole and quadrupole order respectively, and the undressed neutrino-like case exposes almost nothing at all. On this reading the exposed leakage $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$ and much of the shielding coefficient $\zeta(A)$ are controlled by the lowest nonvanishing moment of the accessory arrangement plus the strain the dressing induces in the core — a geometric ordering that tracks the observed pattern of light, resilient leptons, confinement-bound quarks, and nearly massless neutrinos. This remains a routing hypothesis for the mass map, not a computed extraction.
+
 For the scalar inertial readout, only the reversible symmetric part of the Noether sea response belongs in the mass trace. Define
 $$
 \mathcal{M}_{+}^{ab}
@@ -229,7 +231,7 @@ The equality of a particle's rest mass with the rest mass of its antiparticle is
 $$
 q_a(\bar A)=-q_a(A)
 $$
-Here $q_a$ is a polarity ledger entry in the charged-sector projection. Positrino/Electrino polarity is not the matter/antimatter label.
+Here $q_a$ is a polarity ledger entry in the charged-sector projection. Electrino/Positrino polarity is not the matter/antimatter label.
 
 If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
 $$
@@ -245,7 +247,7 @@ The odd channel is the exposed charge-like projection,
 $$
 Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A)
 $$
-not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Positrino versus Electrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
+not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Electrino versus Positrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
 
 Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
 

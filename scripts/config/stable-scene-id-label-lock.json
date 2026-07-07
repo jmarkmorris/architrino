@@ -70,7 +70,7 @@
         "noether_braid_proof_map": "Noether Braid Proof Map",
         "noether_braid_taxonomy": "Noether Braid Taxonomy",
         "noether_braid_topological_charge": "Noether Braid Topological Charge",
-        "shell_braid": "Shell Braid"
+        "shell_braid": "Symmetric Shell Braid"
       }
     },
     "content/scenes/foundations/foundations.json": {

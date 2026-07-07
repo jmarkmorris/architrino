@@ -47,7 +47,7 @@ The local spacetime description is therefore not the four Noether braids themsel
 $$
 \theta_{\mathrm{sea}}^{(\ell)}(\mathbf X,T)
 =
-W_\ell *
+K_\ell *
 \left(
 \rho_{\text{NS}},\,
 n,\,
@@ -57,7 +57,7 @@ n,\,
 \right)
 $$
 
-where the convolution averages ambient Noether sea variables over a window $W_\ell$, and $\Sigma_{\text{sea},ij}$ denotes the component form of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a separate entropy or action variable. For atomic orbital recovery, $\ell$ should be large enough to average many ambient Noether sea braids and small enough not to erase the electron resonance envelope. For proton-internal work, $\ell$ must be reduced and the three quark assemblies must be treated as resolved color-sector constituents rather than as a point proton.
+where the convolution averages ambient Noether sea variables over the coarse-graining kernel $K_\ell$ inherited from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic), and $\Sigma_{\text{sea},ij}$ denotes the component form of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a separate entropy or action variable. Throughout this chapter, lowercase $\theta$ denotes a generic coarse-grained windowed response tuple or decomposition slot, while uppercase $\Theta$ denotes an assembled response record consumed by channel readout functionals and constitutive maps. For atomic orbital recovery, $\ell$ should be large enough to average many ambient Noether sea braids and small enough not to erase the electron resonance envelope. For proton-internal work, $\ell$ must be reduced and the three quark assemblies must be treated as resolved color-sector constituents rather than as a point proton.
 
 On the outskirts of the solar system, the useful weak-gradient decomposition is
 
@@ -135,25 +135,29 @@ D_{f,X}(\mathbf X,T)=D_X
 \right\}
 $$
 
-with $0<D_X<1$ fixed by the stability criterion being tested. This is not a hard material wall. It is a stability interface between a bound assembly ledger and the surrounding Noether sea response.
+with $0 < D_X < 1$ fixed by the stability criterion being tested. This is not a hard material wall. It is a stability interface between a bound assembly ledger and the surrounding Noether sea response, and it counts as a stable interface only where $D_{f,X}$ varies regularly across the level set; where that regularity fails, the scan reports a residual or branch event under the reconstruction-regularity discipline of [Ontology](../foundations/ontology.md) rather than a smooth surface.
 
-Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, reaction corridors, packing, and penetration sample the same locked-versus-ambient wake ledger at different strength levels:
+Hydrogen therefore has no single all-purpose fermion radius. Clock-coupling, spectral readout, reaction corridors, packing, transport, and penetration sample the same locked-versus-ambient wake ledger at different strength levels:
 
 $$
 0
 <
 D_{\mathrm{clock}}
 \le
+D_{\mathrm{spec}}
+\le
 D_{\mathrm{corridor}}
 \le
 D_{\mathrm{packing}}
+\le
+D_{\mathrm{transport}}
 \le
 D_{\mathrm{penetration}}
 <
 1
 $$
 
-The clock threshold marks where weak locked-wake tails can bias local rates. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not four different definitions of a fermion.
+The clock threshold marks where weak locked-wake tails can bias local rates. The spectral threshold marks where the same locked-wake record resolves the electron-envelope gaps read by line comparisons. The corridor threshold marks where an oriented exchange path can remain coherent. The packing threshold marks where a neighboring Noether braid or assembly can remain stably adjacent without persistent phase disruption. The transport threshold marks where ambient flow and stress response past the envelope is materially reorganized rather than weakly perturbed. The penetration threshold marks where a trajectory enters wake dominance strong enough to destabilize transit through the fermion envelope. These are different cuts through one diagnostic, not six different definitions of a fermion. The positions of the spectral and transport entries relative to their neighbors are a declared first-pass convention fixed by the readouts being protected, not derived inequalities.
 
 In the hydrogen case, the branch weights are therefore ledger projectors rather than electron-envelope probabilities or fitted radial profiles:
 
@@ -241,21 +245,20 @@ $$
 -
 \frac{1}{2}
 \left(
-\Delta_{\mathrm{cad,H}}^2
+\left(\Delta_{\mathrm{cad,H}}^{(\ell)}\right)^2
 +
-\Delta_{\mathrm{bal,H}}^2
+\left(\Delta_{\mathrm{bal,H}}^{(\ell)}\right)^2
 \right)
 \right]
 $$
 
-where $\Delta_{\mathrm{cad,H}}$ compares the branch cadence $\nu_j(T_{\mathrm{em}})$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$, and $\Delta_{\mathrm{bal,H}}$ measures the remaining neutral-pairing and orientation-balance residual after the electron, quark, and strong-sector ledgers are removed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
+where $\Delta_{\mathrm{cad,H}}^{(\ell)}$ and $\Delta_{\mathrm{bal,H}}^{(\ell)}$ are the window-normalized residuals of the parent projector in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic), evaluated in $\Omega_{\mathrm H}$: the cadence residual compares the branch cadence $\nu_j(T_{\mathrm{em}})$ with the smoothed ambient Noether sea cadence $\bar\nu_{\mathrm{sea,H}}^{(\ell)}=\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$ in $\Omega_{\mathrm H}$ and divides by the window cadence spread, while the balance residual measures the tolerance-normalized neutral-pairing and orientation-balance mismatch after the electron, quark, and strong-sector ledgers are removed. Both residuals are dimensionless, so the exponential argument is well formed. A branch locked to the electron, to any of the three quark assemblies, or to the proton's color-singlet corridor is therefore rejected from the ambient denominator even when it lies inside the same spatial coarse window. A neighboring neutral Noether braid in the same window is retained when it is not phase-locked to those matter ledgers and matches the local equilibrium record.
 
 The strong-sector ledger $\mathcal{L}_{\mathrm{strong}}^{uud}$ is part of the proton/hydrogen matter record for corridor calculations. It is not counted as ambient Noether sea merely because it lies between the three quark assemblies. Channel intensity then follows the same sector-exposure rule,
 
 $$
 \alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
 =
-\kappa
 \left\|
 Q_X
 \!\left[
@@ -265,7 +268,7 @@ Q_X
 \right\|_X
 $$
 
-so the clock, corridor, packing, and penetration cuts differ by the retained branch-ledger channel $\Pi_X$, not by replacing the causal-root flux law or by redefining the matter/Noether sea complement.
+so the clock, corridor, packing, and penetration cuts differ by the retained branch-ledger channel $\Pi_X$, not by replacing the causal-root flux law or by redefining the matter/Noether sea complement. As in the parent kernel, $\alpha_{j,X}$ is dimensionless because the channel norms are tolerance ratios; the dimensional coupling $\kappa$ enters only through retained channel entries that already require it, such as the signed acceleration used by penetration.
 
 At hydrogen resolution the four first projectors have distinct jobs:
 
@@ -276,11 +279,14 @@ At hydrogen resolution the four first projectors have distinct jobs:
 | $\Pi_{\mathrm{packing}}$ | Exclusion magnitude, exclusion-stress tensor, and envelope scale/shape entries | Determines stable adjacency and coarse excluded volume without treating signs of force as a packing criterion |
 | $\Pi_{\mathrm{penetration}}$ | Signed branch acceleration, path-tangent acceleration, and phase-disruption entries | Determines whether a trial path through the fermion envelope remains dynamically stable |
 
+The spectral and transport channels carry their own cuts $D_{\mathrm{spec}}$ and $D_{\mathrm{transport}}$ in the chain above. Their retained branch-ledger entries are the ones named by the $F_{\mathrm{spec}}$ and $F_{\mathrm{transport}}$ readout functionals in the channel-scan section below, extending the parent kernel's four-channel projector family at hydrogen scope.
+
 The corresponding first norm packet for hydrogen is inherited from the channel norms in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic). In an atomic window, define the channel exposure scan
 
 $$
 \mathfrak N_{\mathrm H,X}^{(\ell)}(f)
 =
+K_\ell *
 \sum_{j\in\mathcal I_f(T)}
 \sum_{T_{\mathrm{em}}\in\mathcal C_{\mathbf Xj}(T)}
 \zeta_f
@@ -288,13 +294,9 @@ $$
 \mathcal B_{\mathbf Xj}^{(T_{\mathrm{em}})}
 \right)
 \frac{
-\left\|
-\mathcal E_X
-\!\left(
-\mathcal B_{\mathbf Xj}^{(T_{\mathrm{em}})}
-\right)
-\right\|_X
-W_{\mathbf Xj}^{\mathrm{rec}}(T;T_{\mathrm{em}})
+\alpha_{j,X}(\mathbf X,T;T_{\mathrm{em}})
+\,
+W_{\mathbf Xj}^{\mathrm{rec},X}(T;T_{\mathrm{em}})
 }{
 r_{\mathbf Xj}^2
 },
@@ -302,7 +304,7 @@ r_{\mathbf Xj}^2
 f\in\{e,u_1,u_2,d\}
 $$
 
-The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-normal factor $W_{\mathbf Xj}^{\mathrm{rec}}=\lvert D_{T,\mathbf Xj}/D_{s,\mathbf Xj}\rvert$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
+The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-normal factor $W_{\mathbf Xj}^{\mathrm{rec},X}=\lvert D_{T,\mathbf Xj}^{(X)}/D_{s,\mathbf Xj}\rvert$. The channel probe state behind $D_{T,\mathbf Xj}^{(X)}$ is inherited from the interface diagnostic in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic): void-stationary for clock and packing scans, the declared path velocity for penetration scans, and an explicitly declared probe velocity for moving corridor scans. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
 Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
 
@@ -318,12 +320,13 @@ $$
 \right\}
 $$
 
-where $\Delta_{\mathrm H,X}^{(\mu)}$ is the channel stability residual after perturbing only the retained ledger entry $y_\mu$ and projecting back to the same $\mathcal O_{\mathrm H,X}^{(\ell)}$. In the first hydrogen pass this gives the following routing:
+where $\Delta_{\mathrm H,X}^{(\mu)}$ is the channel stability residual after perturbing only the retained ledger entry $y_\mu$ and projecting back to the same $\mathcal O_{\mathrm H,X}^{(\ell)}$. The supremum may be infinite when the readout is insensitive to the entry $y_\mu$; an unconstrained entry simply imposes no tolerance. In the first hydrogen pass this gives the following routing:
 
 | Channel | Tolerance source | Hydrogen interpretation |
 | --- | --- | --- |
 | Clock | $\Delta_{\Gamma}^{\mathrm{tol}}$, $\Delta_{\theta}^{\mathrm{tol}}$, and $\Delta_{\chi}^{\mathrm{clk\text{-}sig,tol}}$ | Allowed clock-rate, phase, and delay perturbation before the local cadence comparison changes |
 | Spectral | $\Delta_{\mathrm{spec}}^{\mathrm{tol}}$ and $\Delta_R^{\mathrm{tol}}$ | Allowed envelope-gap and common-Rydberg readout change across the chosen line set |
+| Transport | Accepted flow, stress, and tensor-response stability range in $\mathbf{u}_{\text{sea}}$, $\Sigma_{\text{sea},ij}$, and $\mathcal M_{\text{sea}}^{ab}$ | Allowed medium-flow and stress-response perturbation before the transport readout changes |
 | Corridor | $\Delta_{p,X}^{\mathrm{color}}$ and $\Delta_{\mathrm{prov},X}^{\mathrm{tol}}$ | Allowed open-color and provenance residual after the proton is projected as one color-singlet source |
 | Packing | Accepted neighboring-core stability range in $(R_{\parallel},R_{\perp},\lambda,\xi,\mathcal S_{\mathrm{excl}}^{ab})$ | Allowed adjacency deformation before the branch ceases to count as stable packing |
 | Penetration | Trial-path acceleration, deflection, and phase-disruption limits | Allowed path disturbance before transit through the fermion envelope becomes dynamically unstable |
@@ -519,7 +522,7 @@ $$
 \ell,\ell'\in I_X
 $$
 
-with $\mathcal R_{\ell\leftarrow\ell'}$ the declared comparison projection and $\varepsilon_X>0$ the channel tolerance floor. The first pass condition is
+with $\mathcal R_{\ell\leftarrow\ell'}$ the declared comparison projection and $\varepsilon_X > 0$ the channel tolerance floor. The first pass condition is
 
 $$
 \sup_{\ell,\ell'\in I_X}
@@ -720,7 +723,7 @@ $$
 m\in\{-\ell,\ldots,\ell\}
 $$
 
-Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether braid spinor ledger of the electron itself.
+Here $\psi_{\text{orb}}$ is the azimuthal factor of the extracted envelope $\Psi_{\mathrm{env}}$ defined below, so the $\Delta_{2\pi}$ residual tests the same single-valuedness condition on the full envelope. Those labels describe the effective electron-assembly envelope around the nucleus. They should not be read as the internal Noether braid spinor ledger of the electron itself.
 
 The sharper recovery target is a residual on the declared envelope extractor. For an electron assembly branch $\mathcal B_e$, local Noether sea record $\theta_{\mathrm{sea}}^{(\ell)}$, central-potential approximation $V_{\mathrm{eff}}$, and record window $W$, write
 

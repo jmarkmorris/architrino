@@ -161,7 +161,7 @@ Let each axis pattern be coarse‑classified as:
 
 - **negative-polarity dyad**: two Electrinos, $(\epsilon_-,\epsilon_-)$
 - **positive-polarity dyad**: two Positrinos, $(\epsilon_+,\epsilon_+)$
-- **mixed dyad**: one Positrino and one Electrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
+- **mixed dyad**: one Electrino and one Positrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
 
 The key structural rule for **admissible, stable quark‑like Noether braids** is:
 
@@ -185,7 +185,7 @@ Color degree of freedom is then:
 
 Up‑type (u,c,t) Gen‑I quarks have:
 
-- 5 Positrinos and 1 Electrino among 6 polar sites.
+- 1 Electrino and 5 Positrinos among 6 polar sites.
 
 At axis‑class level:
 

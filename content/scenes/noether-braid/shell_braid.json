@@ -2,7 +2,7 @@
   "schemaVersion": "0.1",
   "scene": {
     "id": "noether_braid__shell_braid",
-    "title": "Shell Braid",
+    "title": "Symmetric Shell Braid",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/shell-braid.md"
+      "path": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
     },
     "view": {
       "columns": 1,

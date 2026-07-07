@@ -1177,7 +1177,7 @@
     },
     {
       "id": "noether_braid__shell_braid",
-      "name": "Shell Braid",
+      "name": "Symmetric Shell Braid",
       "path": "content/scenes/noether-braid/shell_braid.json"
     },
     {
@@ -1909,6 +1909,16 @@
       "id": "fermions__muon_tau",
       "name": "Muon and Tau",
       "path": "content/scenes/assemblies/muon_tau.json"
+    },
+    {
+      "id": "noether_braid__braid_mathematics",
+      "name": "Braid Mathematics",
+      "path": "content/scenes/noether-braid/braid_mathematics.json"
+    },
+    {
+      "id": "noether_braid__braid_recovery_requirements",
+      "name": "Braid Recovery Requirements",
+      "path": "content/scenes/noether-braid/braid_recovery_requirements.json"
     }
   ]
 }

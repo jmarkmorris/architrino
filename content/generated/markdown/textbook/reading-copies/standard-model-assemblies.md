@@ -966,6 +966,8 @@ $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
 $$
 
+A candidate mechanism, at hypothesis level, says what sets the size of this exposure for dressed fermions: the geometry of the accessory dressing. Per the quietness ladder in [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy), the six-electrino octahedral dressing of the electron reveals no polarity-signed structure below hexadecapole order, the four-site and two-site quark dressings leak at octupole and quadrupole order respectively, and the undressed neutrino-like case exposes almost nothing at all. On this reading the exposed leakage $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$ and much of the shielding coefficient $\zeta(A)$ are controlled by the lowest nonvanishing moment of the accessory arrangement plus the strain the dressing induces in the core — a geometric ordering that tracks the observed pattern of light, resilient leptons, confinement-bound quarks, and nearly massless neutrinos. This remains a routing hypothesis for the mass map, not a computed extraction.
+
 For the scalar inertial readout, only the reversible symmetric part of the Noether sea response belongs in the mass trace. Define
 $$
 \mathcal{M}_{+}^{ab}
@@ -1066,7 +1068,7 @@ The equality of a particle's rest mass with the rest mass of its antiparticle is
 $$
 q_a(\bar A)=-q_a(A)
 $$
-Here $q_a$ is a polarity ledger entry in the charged-sector projection. Positrino/Electrino polarity is not the matter/antimatter label.
+Here $q_a$ is a polarity ledger entry in the charged-sector projection. Electrino/Positrino polarity is not the matter/antimatter label.
 
 If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
 $$
@@ -1082,7 +1084,7 @@ The odd channel is the exposed charge-like projection,
 $$
 Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A)
 $$
-not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Positrino versus Electrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
+not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Electrino versus Positrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
 
 Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
 
@@ -1818,7 +1820,7 @@ Let each axis pattern be coarse‑classified as:
 
 - **negative-polarity dyad**: two Electrinos, $(\epsilon_-,\epsilon_-)$
 - **positive-polarity dyad**: two Positrinos, $(\epsilon_+,\epsilon_+)$
-- **mixed dyad**: one Positrino and one Electrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
+- **mixed dyad**: one Electrino and one Positrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
 
 The key structural rule for **admissible, stable quark‑like Noether braids** is:
 
@@ -1840,7 +1842,7 @@ Color degree of freedom is then:
 
 Up‑type (u,c,t) Gen‑I quarks have:
 
-- 5 Positrinos and 1 Electrino among 6 polar sites.
+- 1 Electrino and 5 Positrinos among 6 polar sites.
 
 At axis‑class level:
 
@@ -2641,20 +2643,20 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
 ##### The Fundamental Substrate
 *   **Architrino polarity unit ($\epsilon$):** Magnitude $|e/6|$ in observer-level electric bookkeeping, with positive and negative polarity units denoted $\epsilon_+$ and $\epsilon_-$.
 *   **Polarity:**
-    *   **Positrino:** positive-polarity architrino, labeled $\epsilon_+$ in electric bookkeeping.
     *   **Electrino:** negative-polarity architrino, labeled $\epsilon_-$ in electric bookkeeping.
+    *   **Positrino:** positive-polarity architrino, labeled $\epsilon_+$ in electric bookkeeping.
 
 ##### The Noether Braid
 Generation-I charged leptons and quarks contain the full neutral Noether braid scaffold. Higher-generation charged fermions retain depleted shielding branches of the same braid family: the gauge-facing axial frame persists as a delayed branch record, while one or more coherent shielding tiers are no longer assembled as part of the active scaffold.
 
-*   **Composition:** The broad Noether braid class carries three Positrinos and three Electrinos on one retained causal-return ledger.
+*   **Composition:** The broad Noether braid class carries three Electrinos and three Positrinos on one retained causal-return ledger.
 *   **Generation-I Noether braid (nested shell braid):** Three ordered support bands (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
 *   **Higher-generation shielding branches:** Generation II keeps the inner and middle coherent supports ($2\epsilon_+,2\epsilon_-$); Generation III keeps only the inner support ($1\epsilon_+,1\epsilon_-$). These are depleted branches, not full Noether braids in the six-architrino scaffold sense.
 *   **Nested-scale picture:** The support bands should be read as a genuine radial hierarchy, not just as three items in a list. The middle support band sits inside the shielding domain of the outer support band, and the inner support band sits inside the shielding domains of both. In that sense, the higher-generation inner scaffold may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
     *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
-    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Positrino/Electrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
+    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Electrino/Positrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
 *   **Net Charge:** Always $0$.
 
 ##### The Axial Layer
@@ -2725,12 +2727,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 
 **The Up Quark ($u$)**
 *   **Braid scaffold:** Pro nested shell braid.
-*   **Axial Layer:** 5 Positrinos, 1 Electrino ($5\epsilon_+,1\epsilon_-$).
+*   **Axial Layer:** 1 Electrino, 5 Positrinos ($1\epsilon_-,5\epsilon_+$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
 *   **Braid scaffold:** Pro nested shell braid.
-*   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2\epsilon_+,4\epsilon_-$).
+*   **Axial Layer:** 4 Electrinos, 2 Positrinos ($4\epsilon_-,2\epsilon_+$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
 ##### Summary Table (Gen I)
@@ -2751,7 +2753,7 @@ Standard Model quantum numbers are observer-level bookkeeping rows extracted fro
 
 | Observer quantum-number row | $\mathbb{A}\mathbb{A}\mathbb{A}$ ledger source | Reaction use |
 | --- | --- | --- |
-| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved Positrino/Electrino routing and axial-layer exposure explain the before/after charge. |
+| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved Electrino/Positrino routing and axial-layer exposure explain the before/after charge. |
 | Weak isospin $T_3$ | Exposed weak-coupling triad selected from the axial frame or, for neutrinos, from the near-photon neutral weak projection. | Charged weak reactions change the exposed triad payload while preserving primitive polarity inventory. |
 | Hypercharge $Y$ | Complementary polar-site bookkeeping plus braid-offset and weak-sector exposure record. | The relation $Q=T_3+Y/2$ is a recovery target for the same assembly record, not an independent charge assignment. |
 | Color | Axis exceptionality of the Noether braid plus axial-layer pattern in quark rows. | Strong reactions must preserve color-singlet closure for observed hadrons while allowing axis reconfiguration through effective gluon channels. |
@@ -2819,7 +2821,7 @@ Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin,
 *   **The Transformation:** The $W^-$ boson is the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
 
 **The Quark Doublet ($u_L, d_L$)**
-*   **Base (Shielded):** 2 Positrinos, 1 Electrino ($2\epsilon_+,1\epsilon_-$).
+*   **Base (Shielded):** 1 Electrino, 2 Positrinos ($1\epsilon_-,2\epsilon_+$).
 *   **Up Quark ($u_L$):** Shielded ($2\epsilon_+,1\epsilon_-$) + Active ($3\epsilon_+$).
     *   Net: $5\epsilon_+,1\epsilon_-$ (Charge +2/3).
     *   State: weak-coupling triad is positive $\to T_3 = +1/2$.
@@ -3597,7 +3599,7 @@ For matter quarks, the braid scaffold is a **pro-braid**. It is neutral in total
 - **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
 - **Generation III:** Generation-III shielding branch, 2 coherent scaffold architrinos; the outer and middle support tiers are depleted on the branch lifetime window.
 
-The axial layer stays six sites wide in all three generations. Each site is occupied by either a positrino $(+\epsilon)$ or an electrino $(-\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
+The axial layer stays six sites wide in all three generations. Each site is occupied by either an electrino $(-\epsilon)$ or a positrino $(+\epsilon)$, with $\epsilon = |e|/6$. The H/M/L axial dyads remain the branch-level record that color and electroweak bookkeeping read, even when one or more shielding tiers no longer supply coherent support.
 
 ##### Counting rule
 
@@ -3625,7 +3627,7 @@ To describe color and axial geometry compactly, use the three Noether braid axes
 
 In the fully shielded implementation picture, each axis contains:
 
-- one neutral source binary, with one orbiting positrino and one orbiting electrino,
+- one neutral source binary, with one orbiting electrino and one orbiting positrino,
 - plus one polar dyad attached to that binary axis.
 
 The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
@@ -4495,7 +4497,7 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 #### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
-*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{e}}$.
+*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
 *   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
@@ -4510,7 +4512,7 @@ This gives a useful interpretation of photon redshift and blueshift. A photon-ch
 
 #### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
-*   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{e}}$ carrying the superposed $1/r^2$ wake surfaces.
+*   **Mode train:** A quasi-cylindrical propagation structure aligned with $\hat{\mathbf{k}}$ carrying the superposed $1/r^2$ wake surfaces.
 *   **Burst vs. continuous:**
     *   **Packet (particle-like):** A discrete atomic transition releases a short burst train—a finite segment of the planar-mode train.
     *   **Beam (classical-like):** A continuous drive (antenna) releases a continuous stream of units, creating a long-range coherent beam.
@@ -4551,7 +4553,7 @@ The Aharonov-Bohm item in Gate C inherits the observer-level benchmark from [Gau
 
 ##### Gate A Theorem Scaffold: Kinematics and Optics
 
-Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{e}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf X,T)$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
+Gate A is the theorem-level bridge from the photon ontology above to the empirical light channel used by clocks, rulers, and scattering measurements. Its first hypothesis is a leading planar braid $L$ and trailing planar braid $T$, separated by $d$ along the propagation axis $\hat{\mathbf{k}}$, translating together at the local photon-channel speed $c_\gamma(\mathbf X,T)$. The primitive wake speed remains $c_f$; $c_\gamma$ is the declared photon synchronization speed in the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma) and the photon entry in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#two-way-signal-speed-criterion).
 
 The axial communication budget is asymmetric:
 $$
@@ -4612,7 +4614,7 @@ The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homog
 
 ##### Gate B Theorem Scaffold: Polarization and Spin
 
-Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{e}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
@@ -4754,7 +4756,7 @@ $$
 =
 \left|
 \frac{
-\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
+\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}
 }{\hbar}
 -
 \lambda_{\mathrm{hel}}
@@ -4769,14 +4771,14 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 }
 $$
 
-A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf e}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
+A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf k}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
-An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{e}}_\gamma$, the closure target is
+An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{k}}_\gamma$, the closure target is
 
 $$
 \mathcal{A}_{\text{pass}}
 \propto
-\hat{\mathbf{e}}_\gamma\cdot\hat{\mathbf{a}}
+\hat{\mathbf{k}}_\gamma\cdot\hat{\mathbf{a}}
 =
 \cos\theta,
 \qquad
@@ -4879,7 +4881,7 @@ The same return-map language distinguishes common polarization material effects 
 $$
 a_{\perp,\mathrm{out}}^a
 =
-T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf e})\,
+T_\Omega{}^a{}_{b}(\omega,\hat{\mathbf k})\,
 a_{\perp,\mathrm{in}}^b
 +r_\Omega^a,
 $$
@@ -5536,7 +5538,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * An overbar on the quark symbol denotes an anti-braid.
 * Constituents are concatenated with $\otimes$ to show distinct constituent braids (baryons chain three braids; mesons pair a quark with an antiquark).
 * Each matrix lists the three nested shell braid axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
-* Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
+* Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `-` = electrino pair, `0` = mixed electrino/positrino, `+` = positrino pair.
 * When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
 * Down-type rows with two matrix columns are branch-selection placeholders for candidate axial families with the same total inventory. They should not be read as two simultaneous observed species; a physical meson row assumes the declared $d$, $s$, or heavier down-type branch has already passed the single-family branch-selection target.
 * Color comes from which binary is the exception, not from a fixed physical orientation.
@@ -5554,7 +5556,7 @@ $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\b
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-braid.
+**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `-` = electrino pair, `0` = mixed pair, `+` = positrino pair. An overbar on the quark letter denotes an anti-braid.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |

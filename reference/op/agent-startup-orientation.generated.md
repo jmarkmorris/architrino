@@ -93,6 +93,6 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/entourage/archie/prompts/priority-lane-resume.md](../entourage/archie/prompts/priority-lane-resume.md) | 71 | `434d7a791d81c766` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 383 | `afc7b450bf43bee2` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 300 | `09a08308c99ad733` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 134 | `ebddf04b0e71f552` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 411 | `3aa404f578b4811c` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 156 | `3fe364aff01ec525` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 134 | `0db4d0b1f19f91ce` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 411 | `4bfca887fda297f2` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 156 | `3264b8515b68ca12` |

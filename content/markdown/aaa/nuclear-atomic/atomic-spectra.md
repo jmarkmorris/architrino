@@ -8,7 +8,7 @@ The note is still exploratory, so the opening should be read as a compact progra
 
 Spin-sensitive spectral structure is downstream of the angular-momentum proof program. This chapter may use observer-level labels such as fine structure, spin-orbit structure, Zeeman splitting, and hyperfine splitting as recovery targets, but those labels must inherit the single-assembly angular-momentum ledger, ordered-frame spinor closure, and measurement-response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). They are not independent derivations of spin.
 
-## Atomic Orbitals as Lattice Resonances
+## Atomic Orbitals as Noether Sea Resonances
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
 
@@ -56,7 +56,7 @@ R_{n\ell}(r)Y_\ell^m(\theta,\phi)
 \varepsilon_{\mathrm{sep}}
 $$
 
-The angular part is the $S^2$ eigenmode statement above. The radial part must be a normalizable envelope,
+Here $\left\|\cdot\right\|_\theta$ is the $L^2$ norm over the angular sector $S^2$ at fixed $r$, with the bound required to hold at every admissible radius, so $\varepsilon_{\mathrm{sep}}$ controls the worst-case angular non-separability. The angular part is the $S^2$ eigenmode statement above. The radial part must be a normalizable envelope,
 
 $$
 \int_0^\infty
@@ -76,7 +76,7 @@ In the standard Schrödinger calculation, the second condition is enforced by te
 
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, the normalized density $n(\mathbf X,T)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$, and the local clock/rate response encoded by the native cadence-stretch diagnostic $\Gamma_N(\mathbf X,T)$. The spectral readout below uses the projected channel value $\Gamma_N^{(\ell)}$ after the hydrogen response map has selected an admissible resolution; it is not a separate observer-chart definition of $\Gamma_N$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
-That separation matters because spectra are one of the main ways observers infer the wider cosmos. A line frequency can change because the emitting assembly differs, because the local Noether sea and clock/rate conversion differ, because the photon path changes the received channel, or because the receiver's own clock comparison changes. A spectral model that merges those effects into one fitted number has lost the implementation.
+That separation matters because spectra are one of the main ways observers infer the wider cosmos. A line frequency can change because the emitting assembly differs, because the local Noether sea and clock/rate conversion differ, because the photon path changes the received channel, or because the receiver's own clock comparison changes. A spectral model that merges those effects into one fitted number has lost the accounting.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
 
@@ -185,7 +185,7 @@ The failure modes are direct: the spectral target fails if $(n,\chi_{\text{sea}}
 
 ## Hydrogen Rydberg Benchmark Target
 
-The first calibration-free hydrogen benchmark should use ordinary isolated hydrogen lines only after the envelope labels have been recovered. Let $\mathcal L_{\mathrm H}^{0}$ be a chosen weak-homogeneous line set with transitions $a\to b$, where $a$ and $b$ carry recovered principal labels $n_a>n_b$ and no external field or material branch is active. Define the observer-level line factor
+The first calibration-free hydrogen benchmark should use ordinary isolated hydrogen lines only after the envelope labels have been recovered. Let $\mathcal L_{\mathrm H}^{0}$ be a chosen weak-homogeneous line set with transitions $a\to b$, where $a$ and $b$ carry recovered principal labels $n_a > n_b$ and no external field or material branch is active. Define the observer-level line factor
 
 $$
 \Lambda_{ab}
@@ -195,7 +195,7 @@ $$
 \frac{1}{n_a^2}
 $$
 
-Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a>n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
+Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a > n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
 
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
 
@@ -209,7 +209,7 @@ c_{\gamma,0}^{(\ell)}\,\Lambda_{ab}
 }
 $$
 
-where $c_{\gamma,0}^{(\ell)}$ is the local photon-channel speed in the same weak homogeneous reference used for the line comparison. The benchmark is not that the symbol $R_\infty$ is inserted by hand. The target is that the hydrogen line set has one transition-independent readout,
+where $c_{\gamma,0}^{(\ell)}$ is the local photon-channel speed in the same weak homogeneous reference used for the line comparison; in the weak homogeneous limit $c_{\gamma,0}^{(\ell)}\to c_0$, which ties this composite symbol to the canonical speed ladder. The benchmark is not that the symbol $R_\infty$ is inserted by hand. The target is that the hydrogen line set has one transition-independent readout,
 
 $$
 \max_{(a,b),(c,d)\in\mathcal L_{\mathrm H}^{0}}
@@ -270,9 +270,9 @@ $$
 
 This residual keeps the spectral benchmark tied to the envelope calculation. It fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are absorbed into the envelope energy without being named, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if the local Noether sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger that tests the same gaps belongs to [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
 
-The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$, satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
+The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$ (the inherited Lorentz-branch constraint entry), satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
 
-The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row without changing the line-by-line clock factor.
+The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row (the static Noether sea response row) without changing the line-by-line clock factor.
 
 The scaffold is therefore a coefficient-row constraint, not a completed hydrogen spectral derivation. The derivation closes only when the hydrogen branch supplies the envelope gaps, $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, observer frequencies, and static response row from the same spectral channel ledger and Noether sea cell.
 
@@ -281,11 +281,11 @@ For element comparisons, shell closure should enter through the realized envelop
 $$
 C_{\mathrm{shell}}(\mathcal B_e)
 =
-\min_{\delta\mathcal B_e\ne0}
+\min_{\mathcal B_e'\in\mathfrak B_{\mathrm{adm}}\setminus\{\mathcal B_e\}}
 \left[
 E_{\mathrm{env}}
 \!\left(
-\mathcal B_e+\delta\mathcal B_e;
+\mathcal B_e';
 \mathcal W_{\text{nuc}},
 \rho_{\text{NS}},
 n,
@@ -302,6 +302,8 @@ n,
 \right)
 \right]
 $$
+
+where $\mathfrak B_{\mathrm{adm}}$ is the discrete set of realized admissible electron-envelope branches for the same nuclear source and Noether sea record. The minimum runs over distinct stable branches, not over continuous deformations of $\mathcal B_e$, so a closed shell reads as a large energy gap to the nearest competing branch.
 
 Closed-shell atoms should correspond to large $C_{\mathrm{shell}}$ and weak low-order external envelope multipoles. Transition metals should correspond to several nearby anisotropic electron-envelope branches, especially in $d$-envelope recovery. Iron-group elements add isotope-specific nuclear binding and, in material states, magnetic or lattice branches. The words `closed shell`, `transition metal`, and `iron group` are therefore observer-level summaries until translated into $\mathcal B_e$, $\mathcal W_{\text{nuc}}$, $C_{\mathrm{shell}}$, and any realized bonding or lattice branch.
 
@@ -388,12 +390,12 @@ $$
 \qquad
 \Delta E_{\mathrm{lat}}
 =
-\sum_s\int_{\mathrm{BZ}}
+V\sum_s\int_{\mathrm{BZ}}
 \frac{d^3k}{(2\pi)^3}
 \hbar\omega_s(\mathbf k)\Delta N_s(\mathbf k)
 $$
 
-The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for the emitted or absorbed channel and with recoil assigned to the coherent material response rather than to a single free nucleus. This benchmark connects atomic spectra to [Condensed Matter](condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.
+with $V$ the crystal volume and $\Delta N_s(\mathbf k)$ the dimensionless per-mode occupation change. The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for the emitted or absorbed channel and with recoil assigned to the coherent material response rather than to a single free nucleus. This benchmark connects atomic spectra to [Condensed Matter](condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.
 
 ## Spin-Sensitive Spectral Targets
 

@@ -41,10 +41,12 @@ $$
 \mathcal E_{\mathrm{mol}}\!\left(
 \{\mathbf R_A\},
 \mathcal B_{e,1},\ldots,\mathcal B_{e,N},
-\mathcal B_{\mathrm{bond}},
+\mathcal B_{\mathrm{bond},1},\ldots,\mathcal B_{\mathrm{bond},K},
 \mathcal{N}_{\mathrm{sea}}^{(\ell)}
 \right)
 $$
+
+with one bonding-corridor record $\mathcal B_{\mathrm{bond},k}$ per realized bond.
 
 Equilibrium molecular geometry is the stationary branch
 
@@ -57,21 +59,21 @@ $$
 \succeq 0
 $$
 
-after removing overall translation and rotation modes. The Hessian $\mathcal H$ is the molecular analogue of the lattice dynamical matrix: its eigenvalues give the local vibrational stiffnesses, while its eigenvectors identify stretching, bending, and torsional response. This supplies a concrete way to test bond lengths and angles without importing an orbital-hybridization template as the cause.
+after removing overall translation and rotation modes: linear molecules reduce by five zero modes, nonlinear molecules by six. A rigid stable geometry requires $\mathcal H\succ0$ on the reduced space; the semidefinite boundary case is admitted only when a declared soft mode, such as a near-free torsion, remains. The Hessian $\mathcal H$ is the molecular analogue of the lattice dynamical matrix: its eigenvalues give the local vibrational stiffnesses, while its eigenvectors identify stretching, bending, and torsional response. This supplies a concrete way to test bond lengths and angles without importing an orbital-hybridization template as the cause.
 
 For a stable molecule, the small-oscillation target is
 
 $$
-\omega_s^2\,\epsilon_{s,Ai}
+\omega_s^2\,u_{s,Ai}
 =
 \sum_{C,k}
 \sum_{B,j}
 \left(M^{-1}\right)_{Ai,Ck}
 \mathcal H_{Ck,Bj}\,
-\epsilon_{s,Bj}
+u_{s,Bj}
 $$
 
-where $M$ is the observer-level mass-response matrix of the participating nuclei or molecular fragments. The normal-mode spectrum is therefore a validation surface for the same corridor, exclusion, and medium-response functional that fixes shape. A geometry fit fails if it recovers equilibrium angles only by using one functional while vibrational frequencies require an unrelated stiffness map.
+where $u_{s,Ai}$ are the displacement-eigenvector components of mode $s$ and $M$ is the observer-level mass-response matrix of the participating nuclei or molecular fragments. For numerical work the equivalent symmetric mass-weighted form $M^{-1/2}\mathcal H M^{-1/2}$ has the same eigenvalues. The normal-mode spectrum is therefore a validation surface for the same corridor, exclusion, and medium-response functional that fixes shape. A geometry fit fails if it recovers equilibrium angles only by using one functional while vibrational frequencies require an unrelated stiffness map.
 
 ## Closure Targets
 

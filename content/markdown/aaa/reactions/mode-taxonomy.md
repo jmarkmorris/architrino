@@ -65,33 +65,33 @@ Path history is part of identity bookkeeping in absolute time.
 
 4. **Characterize local Noether sea state**
 Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
-$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{eff}}, J_{\mathrm{loc}})$.
-These variables are mapping handles, not replacement observables.
+$(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
+Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
-For an assembly $A$ with $\|\mathbf{v}_A\|>0$, define
+For an assembly $A$ with $\|\mathbf{V}_A\| > 0$, define
 $$
 \Pi_{\perp}^{ij}(A)
 =
-\delta^{ij}-\hat v_A^i\hat v_A^j,
+\delta^{ij}-\hat V_A^i\hat V_A^j,
 \qquad
-\hat{\mathbf{v}}_A=\frac{\mathbf{v}_A}{\|\mathbf{v}_A\|}
+\hat{\mathbf{V}}_A=\frac{\mathbf{V}_A}{\|\mathbf{V}_A\|}
 $$
 
 A minimal transverse-channel map is
 $$
-F_{\perp,A}^{i}(t)
+F_{\perp,A}^{i}(T)
 =
 \Pi_{\perp}^{ij}(A)
-\sum_{k}\sum_{t_0\in\mathcal{C}_{Ak}(t)}
-W_{Ak}\!\left(t;t_0,\mathcal{V}_{\mathrm{NS}},R_A\right)
-\hat r_{Ak,j}(t;t_0)
+\sum_{k}\sum_{T_{\mathrm{em}}\in\mathcal{C}_{Ak}(T)}
+\mathcal{K}_{Ak}\!\left(T;T_{\mathrm{em}},\mathcal{V}_{\mathrm{NS}},R_A\right)
+\hat r_{Ak,j}(T;T_{\mathrm{em}})
 $$
 
-The weight $W_{Ak}$ packages the inverse-square causal-wake factor, polarity sign, causal Jacobian, and local Noether sea anisotropy/vorticity response. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the receiver-normal branch-strength factor of the $W^{\mathrm{rec}}$ family, the polarity sign, the causal Jacobian, and the local Noether sea anisotropy/vorticity response; it is named $\mathcal{K}$ rather than $W$ because it is a composite, not the canonical receiver-normal factor alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
 
-In this expression, $\mathcal{C}_{Ak}(t)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
+In this expression, $\mathcal{C}_{Ak}(T)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}(T;T_{\mathrm{em}})$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
 
 Electromagnetic field variables used in reaction chapters are effective observer/channel variables. They are not imported as substrate ontology. A reaction page that claims electromagnetic recovery should therefore pass an effective EM Gate residual,
 
@@ -120,13 +120,15 @@ $$
 and the gauge component requires every observer-level observable $\mathcal O$ used by the channel to obey
 
 $$
-\Delta_{\mathrm{gauge}}[\mathcal O,\chi]
+\Delta_{\mathrm{gauge}}[\mathcal O,\chi_{\mathrm g}]
 \equiv
-\mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi]
+\mathcal O[A_{\mu}^{\mathrm{eff}}+\partial_\mu\chi_{\mathrm g}]
 -
 \mathcal O[A_{\mu}^{\mathrm{eff}}]
 =0
 $$
+
+with $\chi_{\mathrm g}$ the gauge function, subscripted to keep it distinct from the delay-factor family $\chi_{\text{sea}}$, $\chi_\gamma$, $\chi_{\mathrm{eff}}$.
 
 The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
 
@@ -141,7 +143,7 @@ Select the mode family:
 - pair nucleation for $\gamma\gamma$ conversion channels,
 - corridor-mode for weak channels.
 
-For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{e}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, material analyzer projector, helicity target, accepted/rejected capture channel, native capture measure, invariant unresolved-material measure, and no-longitudinal-mode status.
+For photon channels, keep the two photon ledgers separate. Gate A records propagation and kinematics: $\hat{\mathbf{k}}$, $c_\gamma$, $E_\gamma$, $\mathbf{p}_\gamma$, phase frequency, and null-branch status. Gate B records polarization and spin closure: transverse basis, analyzer axis, material analyzer projector, helicity target, accepted/rejected capture channel, native capture measure, invariant unresolved-material measure, and no-longitudinal-mode status.
 
 Gate B entries are bookkeeping requirements until the transverse planar-pair ledger is derived. A reaction chapter may require helicity, polarization, analyzer pass/reject routing, or no-longitudinal-mode closure, but it should not treat the mode taxonomy itself as the proof. Rejected photon action must route through local reflection, absorption, scattering, heat, or another allowed material update, not through an extra longitudinal free-photon branch.
 
@@ -220,7 +222,7 @@ $$
 ### Detailed Scenario B: Synchrotron Emission and Pair-Loaded Loop
 
 Observer channels:
-- effective emission: $e^\pm + B \rightarrow e^\pm + \gamma_{\mathrm{syn}}$,
+- effective emission: $e^\pm \xrightarrow{B} e^\pm + \gamma_{\mathrm{syn}}$, with $B$ written over the arrow because the magnetic state is an environment, not a reaction participant,
 - pair channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
@@ -234,7 +236,7 @@ Step map:
 - Breit-Wheeler rate-limit recovery,
 - synchrotron cooling/polarization recovery in weak-gravity Lorentzian limits.
 
-Minimum closure equations:
+Minimum closure equations, with magnetic-energy expressions in Gaussian units, invariant-mass thresholds in $c=1$ units, and the synchrotron power taken in the ultrarelativistic limit $\beta\to1$ (the general form carries an extra $\beta^2$):
 
 $$
 P_{\mathrm{syn}}=\frac{4}{3}\sigma_T c\,U_B\,\gamma^2,
@@ -301,6 +303,8 @@ $$
 \text{Use standard weak-channel amplitudes/rates:}\quad \mathcal{M}_{\mathrm{map}} \rightarrow \mathcal{M}_{\mathrm{SM}}
 \quad \text{(validated limit)}
 $$
+
+Here $\mathcal{M}$ is standard amplitude notation for the comparison row, not the timespace manifold $\mathcal{M}$.
 
 $$
 \Gamma_{\mathrm{map}} \rightarrow \Gamma_{\mathrm{SM}},

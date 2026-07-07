@@ -5,11 +5,16 @@ import {
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  NEXT_MISSING_FIELD,
+  NEXT_MISSING_OBJECT,
   SCHEMA,
   buildSixPointSymmetryInvariantLemmaRow,
   evaluateSixPointSymmetryInvariantLemmaEvidence,
   validateSixPointSymmetryInvariantLemmaRow,
 } from "../scripts/braid-ideal/six-point-symmetry-invariant-lemma-row.mjs";
+
+const PROOF_PACKET_REF =
+  "priority-proof-packet:reference/priorities/braid-ideal/six-point-symmetry-invariant-lemma-proof-packet.md";
 
 test("six-point symmetry invariant lemma row is deterministic and fail closed", () => {
   const first = buildSixPointSymmetryInvariantLemmaRow();
@@ -130,4 +135,78 @@ test("evidence guard rejects non-evidence classes and schema-only rows", () => {
     reason: "force_law_equivariance_proof_missing",
     first_missing_field: FIRST_MISSING_FIELD,
   });
+});
+
+test("proof packet ref advances the ladder to the retained root ledger while remaining fail closed", () => {
+  const row = buildSixPointSymmetryInvariantLemmaRow({
+    forceLawEquivarianceProofRef: PROOF_PACKET_REF,
+  });
+  const defaultRow = buildSixPointSymmetryInvariantLemmaRow();
+
+  assert.equal(row.force_law_equivariance_proof_ref, PROOF_PACKET_REF);
+  assert.equal(row.artifact_status, "fail_closed_missing_retained_root_ledger");
+  assert.equal(row.source_status, "source_acquisition_blocked");
+  assert.equal(row.first_missing_object, NEXT_MISSING_OBJECT);
+  assert.equal(row.first_missing_field, NEXT_MISSING_FIELD);
+  assert.notEqual(row.artifact_hash, defaultRow.artifact_hash);
+  assert.deepEqual(validateSixPointSymmetryInvariantLemmaRow(row), []);
+
+  const obligations = Object.fromEntries(
+    row.proof_obligations.map((obligation) => [obligation.obligation_id, obligation])
+  );
+  assert.equal(
+    obligations.coordinate_permutation_equivariance_of_retained_force_law.proof_ref,
+    PROOF_PACKET_REF
+  );
+  assert.equal(
+    obligations.coordinate_permutation_equivariance_of_retained_force_law.first_missing_field,
+    null
+  );
+  assert.equal(
+    obligations.charge_conjugate_inversion_oddness_of_retained_force_law.proof_ref,
+    PROOF_PACKET_REF
+  );
+  assert.equal(
+    obligations.charge_conjugate_inversion_oddness_of_retained_force_law.first_missing_field,
+    null
+  );
+  assert.equal(
+    obligations.complete_retained_root_set_no_asymmetric_root_pruning.retained_root_ledger_ref,
+    null
+  );
+  assert.equal(
+    obligations.complete_retained_root_set_no_asymmetric_root_pruning.first_missing_field,
+    NEXT_MISSING_FIELD
+  );
+  assert.equal(obligations.same_record_binding_for_retained_history_rows.retained_record_id, null);
+  assert.equal(
+    obligations.same_record_binding_for_retained_history_rows.first_missing_field,
+    "six_point_symmetry_invariant_lemma_row.retained_record_id"
+  );
+
+  assert.equal(row.retained_root_ledger_ref, null);
+  assert.equal(row.retained_record_id, null);
+  assert.equal(row.provider_object_ref, null);
+  assert.deepEqual(row.evidence_evaluation, {
+    accepted: false,
+    reason: "retained_root_ledger_missing",
+    first_missing_field: NEXT_MISSING_FIELD,
+  });
+
+  for (const [flag, value] of Object.entries(row.authorization)) {
+    if (flag === "scoreMovement") {
+      assert.equal(value, "no_score_increase");
+    } else {
+      assert.equal(value, false, `${flag} must remain false with a proof ref`);
+    }
+  }
+});
+
+test("default row is unchanged by the proof-ref option pathway", () => {
+  const defaultRow = buildSixPointSymmetryInvariantLemmaRow();
+  const emptyRefRow = buildSixPointSymmetryInvariantLemmaRow({ forceLawEquivarianceProofRef: "" });
+
+  assert.deepEqual(defaultRow, emptyRefRow);
+  assert.equal(defaultRow.artifact_status, "fail_closed_missing_force_law_equivariance_proof");
+  assert.equal(defaultRow.first_missing_field, FIRST_MISSING_FIELD);
 });

@@ -255,7 +255,7 @@ For a Gate B-admissible photon row, helicity is the projection
 $$
 \lambda_{\mathrm{hel}}
 =
-\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar},
+\frac{\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar},
 \qquad
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
@@ -264,10 +264,10 @@ and the event balance bounds the projection error:
 
 $$
 \left|
-\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+\frac{\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
 -
 \frac{
-\hat{\mathbf e}\cdot
+\hat{\mathbf k}\cdot
 \left(
 \Delta\mathbf J_{\mathrm{src}}^{0}
 -

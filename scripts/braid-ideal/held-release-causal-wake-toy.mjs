@@ -11,6 +11,23 @@ const AXIS_SITE_PAIRS = Object.freeze([
   Object.freeze(["+z", "-z"]),
 ]);
 
+const PREHISTORY_MODES = Object.freeze([
+  "stationary-held-release",
+  "kick-at-release",
+  "moving-prehistory",
+]);
+
+const CYCLIC_SITE_MAP = Object.freeze({
+  "+x": "+y",
+  "+y": "+z",
+  "+z": "+x",
+  "-x": "-y",
+  "-y": "-z",
+  "-z": "-x",
+});
+
+const HOLD_ROTATION_MAX_ANGLE_STEP = 0.005;
+
 const TOY_CLOSURE_THRESHOLDS = Object.freeze({
   centerNorm: 1e-9,
   radiusStd: 1e-9,
@@ -61,7 +78,16 @@ writeOutputs(result, options);
 
 console.log(JSON.stringify(createConsoleSummary(result), null, 2));
 
-function parseArgs(rawArgs) {
+function parseArgs(argv) {
+  const rawArgs = [];
+  for (const arg of argv) {
+    if (arg.startsWith("--") && arg.includes("=")) {
+      const eq = arg.indexOf("=");
+      rawArgs.push(arg.slice(0, eq), arg.slice(eq + 1));
+    } else {
+      rawArgs.push(arg);
+    }
+  }
   const parsed = {
     help: false,
     duration: 3,
@@ -80,6 +106,9 @@ function parseArgs(rawArgs) {
     includeSelfHits: false,
     selfHitMinDelay: null,
     maxAcceleration: Infinity,
+    surfaceSpeedFraction: 0,
+    spinAxis: [1, 1, 1],
+    prehistoryMode: "stationary-held-release",
   };
 
   for (let index = 0; index < rawArgs.length; index += 1) {
@@ -135,11 +164,34 @@ function parseArgs(rawArgs) {
       index += 1;
     } else if (arg === "--no-causal-weight") {
       parsed.causalWeight = false;
+    } else if (arg === "--surface-speed-fraction") {
+      parsed.surfaceSpeedFraction = nonnegativeFiniteNumber(
+        requireNext(rawArgs, index, arg),
+        "surface-speed-fraction"
+      );
+      index += 1;
+    } else if (arg === "--spin-axis") {
+      parsed.spinAxis = vector3(requireNext(rawArgs, index, arg), "spin-axis");
+      index += 1;
+    } else if (arg === "--prehistory-mode") {
+      parsed.prehistoryMode = requireNext(rawArgs, index, arg);
+      if (!PREHISTORY_MODES.includes(parsed.prehistoryMode)) {
+        throw new TypeError(`--prehistory-mode must be one of: ${PREHISTORY_MODES.join("|")}`);
+      }
+      index += 1;
     } else {
       throw new TypeError(`Unknown argument: ${arg}`);
     }
   }
 
+  if (norm(parsed.spinAxis) === 0) {
+    throw new TypeError("spin-axis must be a nonzero vector");
+  }
+  if (parsed.prehistoryMode === "stationary-held-release" && parsed.surfaceSpeedFraction > 0) {
+    throw new TypeError(
+      "--surface-speed-fraction > 0 requires --prehistory-mode kick-at-release or moving-prehistory"
+    );
+  }
   parsed.outputDir = parsed.outputDir ?? INITIAL_PARTICLE_PRESETS[parsed.preset].outputDir;
   parsed.selfHitMinDelay = parsed.selfHitMinDelay ?? parsed.dt;
   return parsed;
@@ -149,25 +201,25 @@ function runHeldRelease(options) {
   const preset = INITIAL_PARTICLE_PRESETS[options.preset];
   const initialParticles = preset.particles;
   const groupVelocity = cloneVector(options.groupVelocity);
-  const particles = initialParticles.map((particle) => ({
+  const spinRelease = createAngularMomentumRelease(options, initialParticles);
+  const particles = initialParticles.map((particle, index) => ({
     ...particle,
     position: cloneVector(particle.position),
-    velocity: cloneVector(groupVelocity),
+    velocity: add(cloneVector(groupVelocity), spinRelease.releaseVelocities[index]),
   }));
   const state = {
     time: 0,
     stepIndex: 0,
     particles,
   };
-  const history = [
-    snapshotState(state, -options.holdTime, {
-      positions: initialParticles.map((particle) =>
-        add(cloneVector(particle.position), scale(groupVelocity, -options.holdTime))
-      ),
-      velocities: initialParticles.map(() => cloneVector(groupVelocity)),
-    }),
-    snapshotState(state),
-  ];
+  const history = createHoldWindowHistory(state, options, initialParticles, groupVelocity, spinRelease);
+  const releaseContinuity = computeReleaseContinuity(state, options, initialParticles, groupVelocity, spinRelease);
+  const kinematicAngularMomentum = cleanVector(
+    state.particles.reduce(
+      (sum, particle) => add(sum, cross(particle.position, particle.velocity)),
+      [0, 0, 0]
+    )
+  );
   const frames = [sampleFrame(state, history, options, null)];
   const events = {
     firstAnyClosePass: null,
@@ -221,6 +273,7 @@ function runHeldRelease(options) {
     events,
     rootStats,
     trajectoryAccumulator,
+    spinRelease,
   });
   const reducedRadiusDiagnostics = createReducedRadiusDiagnostics({
     options,
@@ -265,13 +318,39 @@ function runHeldRelease(options) {
       includeSelfHits: options.includeSelfHits,
       selfHitMinDelay: cleanNumber(options.selfHitMinDelay),
       maxAcceleration: Number.isFinite(options.maxAcceleration) ? options.maxAcceleration : null,
+      prehistoryMode: options.prehistoryMode,
+      angularMomentumRelease: {
+        prehistoryMode: options.prehistoryMode,
+        surfaceSpeedFraction: cleanNumber(options.surfaceSpeedFraction),
+        actualTangentialSpeed: cleanNumber(spinRelease.tangentialSpeed),
+        angularRate: cleanNumber(spinRelease.angularRate),
+        spinAxisInput: cleanVector(cloneVector(options.spinAxis)),
+        spinAxis: cleanVector(spinRelease.spinAxisUnit),
+        referencePerpendicularRadius: cleanNumber(spinRelease.referencePerpendicularRadius),
+        perpendicularRadii: spinRelease.perpendicularRadii.map(cleanNumber),
+        rotationActive: spinRelease.rotationActive,
+        kinematicAngularMomentum,
+        kinematicAngularMomentumNorm: cleanNumber(norm(kinematicAngularMomentum)),
+        kinematicAngularMomentumNote:
+          "diagnostic branch-ledger bookkeeping with unit integration weights; architrinos have no physical mass",
+        holdHistory: {
+          representation: spinRelease.holdHistoryRepresentation,
+          sampleStep: cleanNumber(spinRelease.holdHistorySampleStep),
+          rows: spinRelease.holdHistoryRows,
+        },
+        releaseContinuity,
+      },
     },
     modelNotes: [
       "Each directed pair contributes through all detected causal roots in the retained history window.",
       "The force law uses q_i q_j r / (|r|^2 + softening^2)^(3/2), multiplied by the optional causal branch weight.",
-      norm(groupVelocity) > 0
-        ? "The held prehistory is stationary in the moving center frame, with a declared group velocity through the Noether sea frame."
-        : "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
+      spinRelease.rotationActive && options.prehistoryMode === "moving-prehistory"
+        ? "The hold-window source path history rotates rigidly about the normalized spin axis at the release angular rate, and the release velocity is the exact derivative of that rotating path."
+        : spinRelease.rotationActive && options.prehistoryMode === "kick-at-release"
+          ? "The hold window stays static and a rigid-rotation release velocity is applied at t=0, deliberately testing the mismatch between stationary causal wakes and a suddenly rotating seed."
+          : norm(groupVelocity) > 0
+            ? "The held prehistory is stationary in the moving center frame, with a declared group velocity through the Noether sea frame."
+            : "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
       options.includeSelfHits
         ? "Same-source causal roots are included as a priority-only toy probe and filtered to delayed roots only."
         : "Same-source self-hits are disabled in the default toy run.",
@@ -286,6 +365,147 @@ function runHeldRelease(options) {
     finalMetrics,
     frames,
   };
+}
+
+function createAngularMomentumRelease(options, initialParticles) {
+  const spinAxisUnit = scale(options.spinAxis, 1 / norm(options.spinAxis));
+  const tangentialSpeed = options.surfaceSpeedFraction * options.fieldSpeed;
+  const perpendicularRadii = initialParticles.map((particle) =>
+    norm(cross(spinAxisUnit, particle.position))
+  );
+  const referencePerpendicularRadius = Math.max(...perpendicularRadii);
+  const rotationActive =
+    options.prehistoryMode !== "stationary-held-release" &&
+    tangentialSpeed > 0 &&
+    referencePerpendicularRadius > 0;
+  const angularRate = rotationActive ? tangentialSpeed / referencePerpendicularRadius : 0;
+  const releaseVelocities = initialParticles.map((particle) =>
+    rotationActive ? scale(cross(spinAxisUnit, particle.position), angularRate) : [0, 0, 0]
+  );
+  return {
+    spinAxisUnit,
+    tangentialSpeed,
+    angularRate,
+    perpendicularRadii,
+    referencePerpendicularRadius,
+    rotationActive,
+    releaseVelocities,
+    holdHistoryRepresentation: "stationary_two_row_hold_window",
+    holdHistorySampleStep: null,
+    holdHistoryRows: 2,
+  };
+}
+
+function createHoldWindowHistory(state, options, initialParticles, groupVelocity, spinRelease) {
+  if (!spinRelease.rotationActive) {
+    const history = [
+      snapshotState(state, -options.holdTime, {
+        positions: initialParticles.map((particle) =>
+          add(cloneVector(particle.position), scale(groupVelocity, -options.holdTime))
+        ),
+        velocities: initialParticles.map(() => cloneVector(groupVelocity)),
+      }),
+      snapshotState(state),
+    ];
+    spinRelease.holdHistoryRows = history.length;
+    return history;
+  }
+  if (options.prehistoryMode === "kick-at-release") {
+    const history = [
+      snapshotState(state, -options.holdTime, {
+        positions: initialParticles.map((particle) =>
+          add(cloneVector(particle.position), scale(groupVelocity, -options.holdTime))
+        ),
+        velocities: initialParticles.map(() => cloneVector(groupVelocity)),
+      }),
+      snapshotState(state, 0, {
+        positions: initialParticles.map((particle) => cloneVector(particle.position)),
+        velocities: initialParticles.map(() => cloneVector(groupVelocity)),
+      }),
+      snapshotState(state),
+    ];
+    spinRelease.holdHistoryRepresentation = "static_hold_window_with_release_kick_row";
+    spinRelease.holdHistoryRows = history.length;
+    return history;
+  }
+  const sampleStep = Math.max(
+    options.dt,
+    Math.min(options.holdTime, HOLD_ROTATION_MAX_ANGLE_STEP / spinRelease.angularRate)
+  );
+  const rows = Math.max(1, Math.ceil(options.holdTime / sampleStep));
+  const history = [];
+  for (let k = 0; k < rows; k += 1) {
+    const t = -options.holdTime + (k * options.holdTime) / rows;
+    history.push(
+      snapshotState(state, t, {
+        positions: initialParticles.map((particle) =>
+          add(
+            scale(groupVelocity, t),
+            rotateAboutAxis(particle.position, spinRelease.spinAxisUnit, spinRelease.angularRate * t)
+          )
+        ),
+        velocities: initialParticles.map((particle) =>
+          add(
+            cloneVector(groupVelocity),
+            scale(
+              cross(
+                spinRelease.spinAxisUnit,
+                rotateAboutAxis(particle.position, spinRelease.spinAxisUnit, spinRelease.angularRate * t)
+              ),
+              spinRelease.angularRate
+            )
+          )
+        ),
+      })
+    );
+  }
+  history.push(snapshotState(state));
+  spinRelease.holdHistoryRepresentation = "rigidly_rotating_hold_window_samples";
+  spinRelease.holdHistorySampleStep = options.holdTime / rows;
+  spinRelease.holdHistoryRows = history.length;
+  return history;
+}
+
+function computeReleaseContinuity(state, options, initialParticles, groupVelocity, spinRelease) {
+  let positionJumpMax = 0;
+  let velocityJumpMax = 0;
+  for (let index = 0; index < initialParticles.length; index += 1) {
+    const holdEndPosition =
+      options.prehistoryMode === "moving-prehistory" && spinRelease.rotationActive
+        ? rotateAboutAxis(initialParticles[index].position, spinRelease.spinAxisUnit, 0)
+        : cloneVector(initialParticles[index].position);
+    const holdEndVelocity =
+      options.prehistoryMode === "moving-prehistory" && spinRelease.rotationActive
+        ? add(
+            cloneVector(groupVelocity),
+            scale(cross(spinRelease.spinAxisUnit, holdEndPosition), spinRelease.angularRate)
+          )
+        : cloneVector(groupVelocity);
+    positionJumpMax = Math.max(
+      positionJumpMax,
+      norm(subtract(state.particles[index].position, holdEndPosition))
+    );
+    velocityJumpMax = Math.max(
+      velocityJumpMax,
+      norm(subtract(state.particles[index].velocity, holdEndVelocity))
+    );
+  }
+  return {
+    positionJumpMax: cleanNumber(positionJumpMax),
+    velocityJumpMax: cleanNumber(velocityJumpMax),
+    intentionalReleaseKick:
+      options.prehistoryMode === "kick-at-release" && spinRelease.rotationActive,
+  };
+}
+
+function rotateAboutAxis(vector, axisUnit, angle) {
+  const cosAngle = Math.cos(angle);
+  const sinAngle = Math.sin(angle);
+  const axialComponent = dot(axisUnit, vector);
+  return add(
+    add(scale(vector, cosAngle), scale(cross(axisUnit, vector), sinAngle)),
+    scale(axisUnit, axialComponent * (1 - cosAngle))
+  );
 }
 
 function evaluateAccelerations(state, history, options) {
@@ -530,6 +750,30 @@ function computeMetrics(state, history, options) {
       return radius > 0 ? dot(offset, relativeVelocities[index]) / radius : 0;
     })
   );
+  const particleBySite = new Map(state.particles.map((particle) => [particle.site, particle]));
+  let fixedPointCyclicPositionResidual = 0;
+  let fixedPointCyclicVelocityResidual = 0;
+  for (const particle of state.particles) {
+    const image = particleBySite.get(CYCLIC_SITE_MAP[particle.site]);
+    fixedPointCyclicPositionResidual = Math.max(
+      fixedPointCyclicPositionResidual,
+      norm(
+        subtract(
+          subtract(image.position, center),
+          cyclicPermuteVector(subtract(particle.position, center))
+        )
+      )
+    );
+    fixedPointCyclicVelocityResidual = Math.max(
+      fixedPointCyclicVelocityResidual,
+      norm(
+        subtract(
+          subtract(image.velocity, centerVelocity),
+          cyclicPermuteVector(subtract(particle.velocity, centerVelocity))
+        )
+      )
+    );
+  }
   return {
     time: cleanNumber(state.time),
     center: cleanVector(center),
@@ -550,6 +794,8 @@ function computeMetrics(state, history, options) {
     pairOppositionMean: cleanNumber(mean(pairedOppositionErrors)),
     pairOppositionMax: cleanNumber(Math.max(...pairedOppositionErrors)),
     radialVelocityMean: cleanNumber(radialVelocityMean),
+    fixedPointCyclicPositionResidual: cleanNumber(fixedPointCyclicPositionResidual),
+    fixedPointCyclicVelocityResidual: cleanNumber(fixedPointCyclicVelocityResidual),
     retainedHistoryRows: history.length,
     fieldSpeedRatioMax: cleanNumber(Math.max(...speeds) / options.fieldSpeed),
   };
@@ -726,10 +972,13 @@ function createTrajectoryAccumulator() {
       maxFieldSpeedRatio: null,
       minSameDistance: null,
       minOppositeDistance: null,
+      maxFixedPointCyclicPositionResidual: null,
+      maxFixedPointCyclicVelocityResidual: null,
     },
     previousRadialSign: 0,
     previousRadialVelocityMean: 0,
     radialTurnRows: [],
+    radialSignSequence: [],
     previousRadialAccelerationSample: null,
     radialAccelerationRows: [],
   };
@@ -751,10 +1000,33 @@ function recordTrajectorySample(accumulator, metrics, state) {
   updateExtremum(accumulator.extrema, "maxFieldSpeedRatio", metrics, "fieldSpeedRatioMax", "max", state);
   updateExtremum(accumulator.extrema, "minSameDistance", metrics, "minSameDistance", "min", state);
   updateExtremum(accumulator.extrema, "minOppositeDistance", metrics, "minOppositeDistance", "min", state);
+  updateExtremum(
+    accumulator.extrema,
+    "maxFixedPointCyclicPositionResidual",
+    metrics,
+    "fixedPointCyclicPositionResidual",
+    "max",
+    state
+  );
+  updateExtremum(
+    accumulator.extrema,
+    "maxFixedPointCyclicVelocityResidual",
+    metrics,
+    "fixedPointCyclicVelocityResidual",
+    "max",
+    state
+  );
   recordRadialAccelerationSample(accumulator, metrics, state);
 
   const radialSign = signWithDeadband(metrics.radialVelocityMean, TOY_CLOSURE_THRESHOLDS.radialTurnEpsilon);
   if (radialSign !== 0) {
+    if (radialSign !== accumulator.previousRadialSign) {
+      accumulator.radialSignSequence.push({
+        sign: radialSign > 0 ? "outward" : "inward",
+        time: cleanNumber(metrics.time),
+        stepIndex: state.stepIndex,
+      });
+    }
     if (accumulator.previousRadialSign !== 0 && radialSign !== accumulator.previousRadialSign) {
       accumulator.radialTurnRows.push({
         time: cleanNumber(metrics.time),
@@ -797,8 +1069,28 @@ function recordRadialAccelerationSample(accumulator, metrics, state) {
   };
 }
 
-function createTrajectoryDiagnostics({ options, events, rootStats, trajectoryAccumulator }) {
+function createTrajectoryDiagnostics({ options, events, rootStats, trajectoryAccumulator, spinRelease }) {
   const extrema = cleanExtrema(trajectoryAccumulator.extrema);
+  const fixedPointGroupApplicable = options.preset === "face-opposite";
+  const fixedPointDrift = {
+    group: fixedPointGroupApplicable
+      ? spinRelease.rotationActive
+        ? "C3_x_inversion_axis_neutral_rotating"
+        : "S3_x_inversion_zero_angular_momentum"
+      : "not_applicable_to_preset",
+    applicable: fixedPointGroupApplicable,
+    cyclicPositionResidualMax: extrema.maxFixedPointCyclicPositionResidual,
+    cyclicVelocityResidualMax: extrema.maxFixedPointCyclicVelocityResidual,
+    pairOppositionResidualMax: extrema.maxPairOppositionMax,
+    residualMax: cleanNumber(
+      Math.max(
+        extrema.maxFixedPointCyclicPositionResidual.value ?? 0,
+        extrema.maxFixedPointCyclicVelocityResidual.value ?? 0,
+        extrema.maxPairOppositionMax.value ?? 0
+      )
+    ),
+    note: "fixed_point_drift_is_a_runner_or_root_selection_defect_not_a_physical_signal",
+  };
   const windowResiduals = {
     centerNormMax: extrema.maxCenterNorm.value,
     centerDriftResidualMax: extrema.maxCenterDriftResidual.value,
@@ -868,7 +1160,9 @@ function createTrajectoryDiagnostics({ options, events, rootStats, trajectoryAcc
     },
     windowResiduals,
     extrema,
+    fixedPointDrift,
     radialTurnRows: trajectoryAccumulator.radialTurnRows,
+    radialSignSequence: trajectoryAccumulator.radialSignSequence,
     firstCompressionToExpansionTurn,
     firstExpansionToCompressionTurnAfterFirstExpansion,
     checks: {
@@ -975,6 +1269,7 @@ function createReducedRadiusDiagnostics({ options, trajectoryAccumulator, trajec
       radialTurnEpsilon: TOY_CLOSURE_THRESHOLDS.radialTurnEpsilon,
       radialAccelerationEpsilon: epsilon,
     },
+    radialSignSequence: trajectoryAccumulator.radialSignSequence,
     firstCompressionToExpansionTurn: firstTurn,
     radialAccelerationAtFirstCompressionToExpansionTurn: firstTurnAccelerationRow,
     firstPostFirstExpansionInwardAccelerationRow,
@@ -1253,6 +1548,18 @@ function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
+function cross(a, b) {
+  return [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0],
+  ];
+}
+
+function cyclicPermuteVector(v) {
+  return [v[2], v[0], v[1]];
+}
+
 function norm(a) {
   return Math.sqrt(dot(a, a));
 }
@@ -1366,6 +1673,10 @@ Options:
   --include-self-hits          include delayed same-source roots as a priority-only toy probe
   --self-hit-min-delay <num>   minimum delayed self-hit root delay, default dt
   --no-causal-weight           disable causal branch weighting
+  --surface-speed-fraction <f> tangential surface-speed fraction f_v with v_t = f_v * c_f, default 0
+  --spin-axis <x,y,z>          spin axis, normalized internally, default 1,1,1 (axis-neutral)
+  --prehistory-mode <mode>     one of ${PREHISTORY_MODES.join("|")},
+                               default stationary-held-release
   --out <path>                 output directory, default ${DEFAULT_OUTPUT_DIR}
 `);
   process.exit(exitCode);

@@ -194,7 +194,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 * An overbar on the quark symbol denotes an anti-braid.
 * Constituents are concatenated with $\otimes$ to show distinct constituent braids (baryons chain three braids; mesons pair a quark with an antiquark).
 * Each matrix lists the three nested shell braid axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
-* Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `+` = positrino pair, `-` = electrino pair, `0` = mixed positrino/electrino.
+* Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `-` = electrino pair, `0` = mixed electrino/positrino, `+` = positrino pair.
 * When two patterns are allowed, they appear as a **3×2 matrix** whose columns are the options: $\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$.
 * Down-type rows with two matrix columns are branch-selection placeholders for candidate axial families with the same total inventory. They should not be read as two simultaneous observed species; a physical meson row assumes the declared $d$, $s$, or heavier down-type branch has already passed the single-family branch-selection target.
 * Color comes from which binary is the exception, not from a fixed physical orientation.
@@ -212,7 +212,7 @@ $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\b
 *Meson quark–antiquark pairing*  
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `+` = positrino pair, `-` = electrino pair, `0` = mixed pair. An overbar on the quark letter denotes an anti-braid.
+**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `-` = electrino pair, `0` = mixed pair, `+` = positrino pair. An overbar on the quark letter denotes an anti-braid.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |

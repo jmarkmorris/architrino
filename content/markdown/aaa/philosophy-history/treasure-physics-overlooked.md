@@ -636,7 +636,7 @@ Gell-Mann's later complexity writing adds a second witness. The durable lesson i
 
 The point is historical, not a license to import old medium language wholesale. Complexity theory respected emergence, and high-energy physics had compressed particle regularities, but neither supplied a source-resolved causal-wake record grounded in architrinos and assemblies.
 
-The proposed reduction is not to free little charges of $|e|/3$ floating beneath quarks. It is to a six-site axial polarity inventory with site magnitude $\epsilon=|e|/6$. Visible charge would then be an integer-count outcome of how many positrino and electrino sites the assembly exposes. The quark charge fractions look less like primitive fractions and more like surviving assembly inventories.
+The proposed reduction is not to free little charges of $|e|/3$ floating beneath quarks. It is to a six-site axial polarity inventory with site magnitude $\epsilon=|e|/6$. Visible charge would then be an integer-count outcome of how many electrino and positrino sites the assembly exposes. The quark charge fractions look less like primitive fractions and more like surviving assembly inventories.
 
 The invariant to prove is additive polarity count: in units of $\epsilon$, observed charge is a signed integer sum over the axial inventory, and the same inventory must reproduce the observed charge set without predicting stable free assemblies carrying the hidden subunit as an isolated particle.
 

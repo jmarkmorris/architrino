@@ -434,6 +434,8 @@ At this interface:
 
 This is why the project treats holographic language as suggestive but not primitive. The horizon behaves like an information-compression interface because the constitutive degrees of freedom have been forced into a constrained alignment state. That motivates the analogy to holography and AdS/CFT without requiring a literal boundary-field ontology.
 
+The alignment state also silences the assemblies geometrically, at hypothesis level. The [axial polarity dipole identity](../noether-braid/braid-mathematics.md#moments-and-the-axial-polarity-dipole) places a braid's leading polarity-signed moment entirely on its axial extent, so flattening into the alignment-locked sheet extinguishes the leading term of each assembly's wake signature: the horizon condition and the dipole-quiet condition are the same limit. Darkness at the interface is then not only a causal-escape statement — the loudest broadcast channel of every aligned assembly closes as a matter of geometry, and what remains distinguishable is exactly the higher-moment and phase content that the alignment-restricted closure label $\Lambda_{\text{NS}}^{\mathrm{align}}$ enumerates for the entropy count. The collapse of precession in the same limit is the matching symmetry statement: precession measures distance from the symmetric channel, so an alignment-locked sheet is also a precession-silenced sheet, and the two observables should extinguish together. Both statements are exported from the braid scene and inherit its evidence boundary; neither is a retained-branch claim.
+
 ### Horizon-Adjacent Photon Channel
 
 The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
@@ -705,21 +707,14 @@ For that reason, the framework treats horizon regularity under cosmological embe
 
 This point sharpens the role of the horizon interface. The interface is not just the place where local assembly geometry reaches terminal alignment. It is also the layer through which the compact object remains connected to the surrounding Noether sea without forcing a curvature blowup at the very location where the constitutive transition is most intense. In that sense, horizon regularity is not cosmetic. It is a closure test for whether the black-hole regime can genuinely communicate with cosmology.
 
-The strong-field closure should therefore be posed as a Noether sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. A schematic horizon-interface condition has the form
+The strong-field closure should therefore be posed as a Noether sea boundary-condition problem, not as the direct importation of an isolated Schwarzschild or Kerr metric. The horizon-interface condition is the canonical closure problem stated in [Singularity Resolution](./singularity-resolution.md#canonical-strong-field-alignment-condition), written here in shorthand as
 $$
-F_H\!\left[
-\rho_{\text{NS}}(\mathbf X,T),
-\Sigma_{\text{sea}}(\mathbf X,T),
-\mathbf u_{\text{sea}}(\mathbf X,T),
-\{\lambda_i^H\};
-\partial\Omega
-\right]
-=0,
+F_H=0,
 \qquad
 v_M=c_f,\quad v_O\to c_f
 $$
 
-Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
+This chapter instantiates the canonical continuation-label slot $\{\Lambda_{\text{NS}}\}$ with the horizon-interface label ensemble $\{\lambda_i^H\}$ defined above, and $\partial\Omega$ denotes the boundary data supplied by the surrounding Noether sea and the effective exterior comparison region. The equation is a closure target, not a completed model: the task is to show that the same Noether sea variables that recover weak-field gravity can also admit a regular terminal-alignment interface under non-isolated embedding conditions. Compact, topologically identified, or otherwise non-asymptotically-flat comparison settings are useful stress tests for this requirement, but they do not add extra dimensions to the substrate ontology.
 
 The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](./singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf X,T)$, $\Sigma_{\text{sea}}(\mathbf X,T)$, and $\mathbf u_{\text{sea}}(\mathbf X,T)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether sea ledger and maximum-curvature closure must not become arbitrary.
 

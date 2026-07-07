@@ -52,7 +52,7 @@ $$
 \Theta_a(T;\mathbf{V}_{\text{after}},G_{\text{grad}})
 $$
 
-Here $\Theta_a$ denotes the layer's phase-closure ledger over the comparison interval $T$, $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The notation $\{I,M,O\}$ refers to the same inner, middle, and outer nested shell braid roles that ordered-axis chapters often write as $(H,M,L)$.
+Here $\Theta_a$ denotes the layer's phase-closure ledger over the comparison interval $T$ — distinct from the coarse Noether sea response record $\Theta_E^{(\ell)}$ used in the material sections below — $\mathbf{V}$ denotes the transport state being retuned, and $G_{\text{grad}}$ denotes the local gradient data that modifies the delay loops. The notation $\{I,M,O\}$ refers to the same inner, middle, and outer nested shell braid roles that ordered-axis chapters often write as $(H,M,L)$.
 
 A compact residual magnitude can be treated as a derivation target:
 
@@ -132,12 +132,11 @@ $$
 \Delta P^\mu_{\mathrm{wake}}
 +
 \Delta P^\mu_{\mathrm{mass/rem}}
-=0
 $$
 
-where $\Delta P^\mu_{\mathrm{near}}$ is the reversible near-field or acceleration-energy comparison row, $\Delta P^\mu_{\mathrm{wake}}$ is the causal-wake branch exchange computed from delayed path-history data, and $\Delta P^\mu_{\mathrm{mass/rem}}$ is the finite internal mass or remnant ledger that prevents electromagnetic self-energy from being mistaken for the whole mass story. A completed radiation-reaction derivation must show that the observer-level damping term is the irreversible part of this conservation residual after the reversible near-field row is separated, not an independently appended self-force.
+where $\Delta P^\mu_{\mathrm{near}}$ is the reversible near-field or acceleration-energy comparison row, $\Delta P^\mu_{\mathrm{wake}}$ is the causal-wake branch exchange computed from delayed path-history data, and $\Delta P^\mu_{\mathrm{mass/rem}}$ is the finite internal mass or remnant ledger that prevents electromagnetic self-energy from being mistaken for the whole mass story. The radiation-reaction target is $\mathcal{D}_{\mathrm{rad}}=0$ with every row individually finite. A completed radiation-reaction derivation must show that the observer-level damping term is the irreversible part of this conservation residual after the reversible near-field row is separated, not an independently appended self-force.
 
-Classical decompositions that compare outgoing and incoming field pieces can be used only as effective recovery tools. In the corpus notation their role is to test whether the same causal-wake history yields a finite $\mathcal{D}_{\mathrm{rad}}$ when the comparison tube around the source is shrunk. They do not license acausal substrate dynamics: any nonlocal-looking term must be re-expressed as branch accounting over the event window, with delayed path-history provenance and a named residual row for every unmatched energy-momentum component.
+Classical decompositions that compare outgoing and incoming field pieces can be used only as effective recovery tools. In the corpus notation their role is to test whether the same causal-wake history keeps every row of $\mathcal{D}_{\mathrm{rad}}$ finite when the comparison tube around the source is shrunk. They do not license acausal substrate dynamics: any nonlocal-looking term must be re-expressed as branch accounting over the event window, with delayed path-history provenance and a named residual row for every unmatched energy-momentum component.
 
 ## Excitation Basins
 
@@ -151,12 +150,12 @@ E_C(\Gamma_{\text{post shock}})
 E_C(\Gamma_{\text{nearest stable rung}})
 $$
 
-An excitation basin is the set of post-drive states that share the same available relaxation routes. The simplest basin classification is:
+where $E_C$ is the closure-class energy functional evaluated on the assembly microstate. An excitation basin is the set of post-drive states that share the same available relaxation routes. The simplest basin classification is:
 
 | Basin | Condition | Radiation meaning |
 | --- | --- | --- |
-| Retuning basin | $\mathcal{R}_{\Theta}<\mathcal{R}_{\text{retune}}$ | no resolved event; the core returns to the same rung |
-| Excited basin | $\mathcal{R}_{\text{retune}}\le\mathcal{R}_{\Theta}<\mathcal{R}_{\gamma}$ | excess energy exists, but stable photon output is not guaranteed |
+| Retuning basin | $\mathcal{R}_{\Theta} < \mathcal{R}_{\text{retune}}$ | no resolved event; the core returns to the same rung |
+| Excited basin | $\mathcal{R}_{\text{retune}} \le \mathcal{R}_{\Theta} < \mathcal{R}_{\gamma}$ | excess energy exists, but stable photon output is not guaranteed |
 | Planar-mode basin | $\mathcal{R}_{\Theta}\ge\mathcal{R}_{\gamma}$ with sufficient channel geometry | photon-channel nucleation is allowed |
 | Dissociation or reaction basin | closure residual destabilizes assembly identity | energy routes into products, recoil, and medium excitation |
 
@@ -176,7 +175,7 @@ $$
 E_{\text{exc}}\ge E_{\gamma,\min}
 $$
 
-Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
+Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, $J_{\text{loc}}$ is the local causal-root/Jacobian data as declared in [Mode Taxonomy](mode-taxonomy.md), and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
 
 Once the planar mode nucleates, the event record must carry the photon Gate A and Gate B data without treating those gates as locally proven. Gate A supplies kinematics and optics: $E_\gamma$, $\mathbf{p}_{\gamma}$, direction, phase frequency, and local photon-channel speed $c_\gamma$. Gate B supplies transverse angular-momentum, polarization, helicity, and capture/rejection ledgers. This radiation overview uses those records as requirements; their proofs remain in the photon and angular-momentum workstreams.
 
@@ -204,11 +203,11 @@ In weak-coupling comparison limits, the same ledger must also recover the standa
 $$
 \Gamma_{\mathbb{A}\mathbb{A}\mathbb{A}\to f}
 \rightarrow
-2\pi\,
+\frac{2\pi}{\hbar}
 \left|\mathcal{M}_{\mathrm{eff}}\right|^2
 \rho_f
 $$
-after unit conventions are declared, with $\rho_f$ the density of accepted final records. For scattering channels, cross sections must be the same transition probability divided by incoming flux and integrated over the outgoing phase-space ledger. Thus amplitudes, decay widths, and cross sections are comparison-layer summaries of one provenance record, not independent event ontologies.
+with $\rho_f$ the density of accepted final records. For scattering channels, cross sections must be the same transition probability divided by incoming flux and integrated over the outgoing phase-space ledger. Thus amplitudes, decay widths, and cross sections are comparison-layer summaries of one provenance record, not independent event ontologies.
 
 Momentum and angular momentum must close at the same vertex:
 
@@ -248,7 +247,7 @@ h(\nu^+-\nu^-)
 }{\epsilon_E}
 $$
 
-The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu^+-\nu^-)>0$ and therefore requires a corresponding loss from the target or medium rows. A frequency depletion requires a named gain in target, medium, recoil, remnant, or thermalization rows. The photon Gate A and Gate B records also persist through the segment: the outgoing packet must retain a valid photon-channel kinematic and polarization handoff, or else the process becomes absorption plus re-emission, pair production, or another reaction channel with a different event record.
+The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu^+-\nu^-) > 0$ and therefore requires a corresponding loss from the target or medium rows. A frequency depletion requires a named gain in target, medium, recoil, remnant, or thermalization rows. The photon Gate A and Gate B records also persist through the segment: the outgoing packet must retain a valid photon-channel kinematic and polarization handoff, or else the process becomes absorption plus re-emission, pair production, or another reaction channel with a different event record.
 
 This distinction is cosmologically important. A redshift or blueshift accumulated along a path is not an unexplained energy loss or gain if the path-frequency exchange ledger closes. It is also not automatically evidence of geometric expansion. The corresponding cosmology pages must consume this radiation record before promoting redshift-distance, CMB temperature, or SZ/kSZ data products into expansion, dark-energy, or growth claims.
 
@@ -262,7 +261,7 @@ $$
 \frac{d\hat{\mathbf{k}}}{d\ell}
 \right\|
 $$
-the Euclidean path-curvature proxy along the transported packet. The coherent-lensing branch requires
+the Euclidean path-curvature proxy along the transported packet; during coherent transport the path tangent $\hat{\mathbf{k}}(\ell)$ coincides at each point with the Gate A propagation axis $\hat{\mathbf k}$ of the packet. The coherent-lensing branch requires
 $$
 E_{\gamma}^{+}
 =
@@ -341,16 +340,18 @@ B_{\mathrm{eff}}^iB_{\mathrm{eff}}^j
 \right)
 $$
 
+Note the sign convention: $\sigma_{\mathrm{EM}}^{ij}$ is the momentum flux out of $V$, the negative of the textbook Maxwell stress tensor $T_{\mathrm{Maxwell}}^{ij}$, which is why it enters the momentum residual below with a plus sign.
+
 For a control volume $V$ with outward unit normal $\hat{\mathbf{n}}$, the effective energy residual is
 
 $$
 \Delta_E^{\mathrm{EM}}(V)
 =
-\frac{d}{dt}\int_V u_{\mathrm{EM}}\,d^3x
+\frac{d}{dt_{\mathrm{eff}}}\int_V u_{\mathrm{EM}}\,d^3x_{\mathrm{eff}}
 +
 \int_{\partial V}\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}}\,dA
 +
-\int_V\mathbf{J}_{\mathrm{eff}}\cdot\mathbf{E}_{\mathrm{eff}}\,d^3x
+\int_V\mathbf{J}_{\mathrm{eff}}\cdot\mathbf{E}_{\mathrm{eff}}\,d^3x_{\mathrm{eff}}
 $$
 
 The effective Lorentz-force density is
@@ -368,11 +369,11 @@ and the momentum residual is
 $$
 \Delta_{p,i}^{\mathrm{EM}}(V)
 =
-\frac{d}{dt}\int_V g_{\mathrm{EM}}^i\,d^3x
+\frac{d}{dt_{\mathrm{eff}}}\int_V g_{\mathrm{EM}}^i\,d^3x_{\mathrm{eff}}
 +
 \int_{\partial V}\sigma_{\mathrm{EM}}^{ij}\hat n_j\,dA
 +
-\int_V f_{\mathrm{L}}^i\,d^3x
+\int_V f_{\mathrm{L}}^i\,d^3x_{\mathrm{eff}}
 $$
 
 The angular-momentum residual is the corresponding moment of the momentum ledger:
@@ -397,14 +398,14 @@ $$
 \left(
 E_\gamma
 -
-\int_{t_i}^{t_f}\int_{\partial V}
-\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}}\,dA\,dt,
+\int_{t_{\mathrm{eff},i}}^{t_{\mathrm{eff},f}}\int_{\partial V}
+\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}}\,dA\,dt_{\mathrm{eff}},
 \quad
 \mathbf{p}_\gamma
 -
-\frac{1}{c^2}
-\int_{t_i}^{t_f}\int_{\partial V}
-(\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}\,dA\,dt
+\frac{1}{c}
+\int_{t_{\mathrm{eff},i}}^{t_{\mathrm{eff},f}}\int_{\partial V}
+(\mathbf{S}_{\mathrm{EM}}\cdot\hat{\mathbf{n}})\hat{\mathbf{n}}\,dA\,dt_{\mathrm{eff}}
 \right)
 $$
 
@@ -454,7 +455,7 @@ $$
 
 For Gate B, the $\mathcal Q=\mathbf J$ component is the transverse angular-momentum balance. Photon polarization, helicity, and analyzer handoff are therefore not detached labels; they are the photon-side component of one event-window conservation record.
 
-The event-window helicity projection is the $\hat{\mathbf e}$ component of that same balance. Define
+The event-window helicity projection is the $\hat{\mathbf k}$ component of that same balance. Define
 
 $$
 \mathbf B_{\gamma}^{0}
@@ -479,10 +480,10 @@ Then
 $$
 \lambda_{\mathrm{hel}}
 =
-\frac{\hat{\mathbf e}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
+\frac{\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}}{\hbar}
 =
 \frac{
-\hat{\mathbf e}\cdot
+\hat{\mathbf k}\cdot
 \left(
 \Delta\mathbf J_{\mathrm{src}}^{0}
 -
@@ -763,7 +764,7 @@ $$
 \Delta t_{\mathrm{eff}}<0
 $$
 
-Therefore the frequency-domain response $\mathcal X_\Omega(\omega;x_{\mathrm{eff}}^i)$ must be analytic for $\operatorname{Im}\omega>0$ in the validated linear-response regime. The Noether sea dressing map for material response must recover the Kramers-Kronig residuals
+Throughout this response-function subsection the harmonic convention is $e^{-i\omega t_{\mathrm{eff}}}$; the Kramers-Kronig signs, the conductor combination $\epsilon_{\mathrm{eff}}=\epsilon+i\sigma/\omega$, and the analyticity domain all assume it. Therefore the frequency-domain response $\mathcal X_\Omega(\omega;x_{\mathrm{eff}}^i)$ must be analytic for $\operatorname{Im}\omega > 0$ in the validated linear-response regime. The Noether sea dressing map for material response must recover the Kramers-Kronig residuals
 
 $$
 \Delta_{\mathrm{KK}}^{\operatorname{Re}}(\omega)
@@ -843,12 +844,12 @@ $$
 (\omega>\omega_p)
 $$
 
-while $\omega<\omega_p$ routes to an evanescent reflection/skin-depth row rather than to an untracked disappearance of the photon ledger. If $\epsilon_{\mathrm{eff}}(\omega)=0$ supports a longitudinal plasma oscillation, that excitation belongs in the medium-excitation row; it is not a hidden longitudinal free-photon branch.
+while $\omega < \omega_p$ routes to an evanescent reflection/skin-depth row rather than to an untracked disappearance of the photon ledger. If $\epsilon_{\mathrm{eff}}(\omega)=0$ supports a longitudinal plasma oscillation, that excitation belongs in the medium-excitation row; it is not a hidden longitudinal free-photon branch.
 
 For a surface event normalized by incoming flux and polarization branch $b\in\{\perp,\parallel\}$, the material-response ledger is
 
 $$
-\mathcal M_{\mathrm{surf}}(\omega,\theta,b)
+\mathsf L_{\mathrm{surf}}(\omega,\theta,b)
 =
 \left(
 R_b,
@@ -1023,8 +1024,8 @@ The routing skeleton above becomes useful only if each benchmark is carried as a
 | Compton-like scattering | derivation target | Treat photon capture and re-release by a charged assembly as a Gate C vertex and recover the observer-level Compton shift $\lambda'-\lambda=(h/(m_ec))(1-\cos\theta)$, the Thomson low-energy limit, and the Klein-Nishina high-energy correction. | The same vertex record must close incoming photon data, charged-assembly recoil, shifted outgoing photon data, heat or residual excitation, and energy-momentum transfer. | If scattering is modeled only as phenomenological frequency loss, or if recoil and shifted photon provenance cannot close together, the Compton-like branch fails. |
 | Photoelectric effect | derivation target | Treat photoelectric emission as a Gate C material-capture event, not as proof that photon energy is free-standing ontology. The threshold target is $h\nu\ge\Phi_{\mathrm{work}}$, with $K_{\max}=h\nu-\Phi_{\mathrm{work}}$ and $eV_s=K_{\max}$ in the validated limit. | The same surface event record must close incoming photon data, electron-envelope release, work-function threshold, recoil, heat or remnant excitation, and outgoing electron energy. Above threshold, intensity changes the event count while frequency controls the per-event energy available. | If subthreshold intensity can accumulate into emission without a declared intermediate excitation ledger, if stopping-potential linearity is fitted separately from the photon energy-frequency row, or if recoil, heat, and remnant rows disappear, the photoelectric branch fails. |
 | Effective EM Gate residual | derivation target | Any use of Maxwell-level variables must satisfy $\mathcal{G}_{\mathrm{EM}}=(\Delta_{\mathrm{cont}},\Delta_E^{\mathrm{EM}},\Delta_{\mathbf{p}}^{\mathrm{EM}},\Delta_{\mathbf{J}}^{\mathrm{EM}},\Delta_{\mathrm{gauge}})$ in the declared standard-limit regime, with nonzero residuals routed into named event rows. The capacitor-gap comparison is the minimal loop-surface check: the same boundary loop must give the same magnetic circulation whether the chosen surface cuts conduction current or changing electric flux. | Evaluate the effective continuity, Poynting-flux, Maxwell-stress, angular-momentum, and gauge-invariance residuals on the same event record used for photon or material routing. | If the channel recovers a spectrum while hiding charge continuity, stress recoil, gauge dependence, loop-surface dependence, or energy-momentum mismatch in the effective field layer, the EM comparison gate has failed. |
-| Causal response-function analyticity | derivation target | Material and Noether sea dressing response kernels must obey $\mathcal X_\Omega(\Delta t)=0$ for $\Delta t<0$, analyticity for $\operatorname{Im}\omega>0$, and $\Delta_{\mathrm{KK}}^{\operatorname{Re}}=\Delta_{\mathrm{KK}}^{\operatorname{Im}}=0$ in the linear-response regime. | Check that absorption and dispersion are paired by the same response kernel rather than fitted independently, and that response poles remain outside the upper-half $\omega$ plane. | If a material map tunes attenuation without the corresponding dispersion, or uses an acausal response kernel, the surface or medium-routing derivation is invalid. |
-| Material absorption/reflection/skin-depth ledger | derivation target | Surface events must use one ledger $\mathcal M_{\mathrm{surf}}(\omega,\theta,b)$ for reflection, transmission, absorption, remnant excitation, skin depth, complex wavenumber, response analyticity, and EM energy-momentum residuals. | Recover Fresnel/Snell/Brewster behavior in transparent limits, $\delta_{\mathrm{skin}}\rightarrow(2/(\mu\omega\sigma_{\mathrm{DC}}))^{1/2}$ in low-frequency Drude conductors, and plasma cutoff behavior near $\omega_p$. | If reflection is a hard bounce, absorption is untracked heat, skin depth is detached from conductivity, or longitudinal plasma oscillation is treated as a free photon mode, the material route fails. |
+| Causal response-function analyticity | derivation target | Material and Noether sea dressing response kernels must obey $\mathcal X_\Omega(\Delta t)=0$ for $\Delta t < 0$, analyticity for $\operatorname{Im}\omega > 0$, and $\Delta_{\mathrm{KK}}^{\operatorname{Re}}=\Delta_{\mathrm{KK}}^{\operatorname{Im}}=0$ in the linear-response regime. | Check that absorption and dispersion are paired by the same response kernel rather than fitted independently, and that response poles remain outside the upper-half $\omega$ plane. | If a material map tunes attenuation without the corresponding dispersion, or uses an acausal response kernel, the surface or medium-routing derivation is invalid. |
+| Material absorption/reflection/skin-depth ledger | derivation target | Surface events must use one ledger $\mathsf L_{\mathrm{surf}}(\omega,\theta,b)$ for reflection, transmission, absorption, remnant excitation, skin depth, complex wavenumber, response analyticity, and EM energy-momentum residuals. | Recover Fresnel/Snell/Brewster behavior in transparent limits, $\delta_{\mathrm{skin}}\rightarrow(2/(\mu\omega\sigma_{\mathrm{DC}}))^{1/2}$ in low-frequency Drude conductors, and plasma cutoff behavior near $\omega_p$. | If reflection is a hard bounce, absorption is untracked heat, skin depth is detached from conductivity, or longitudinal plasma oscillation is treated as a free photon mode, the material route fails. |
 | Blackbody recovery | derivation target | Show that repeated emission, absorption, Compton-like redistribution, pair channels, and non-radiative exchange reach detailed balance with Planck occupation $\bar n_\gamma(\nu)=1/(\exp(h\nu/(k_B T))-1)$ and effective photon chemical potential driven to zero. | Recover the Planck spectrum, thermalization depth, damping, anisotropy, polarization handoff, and redshift handoff using one provenance record and one Noether sea state map. | If blackbody recovery needs per-observable retuning, unbalanced photon loading, or a different transport map from the source channels, the thermal branch fails. |
 | Free photon polarization boundary | derivation target | Radiation pages may record polarization basis, transverse angular-momentum ledger, and observer-level polarization recoveries as downstream requirements, but free photon polarization, helicity, Malus' law, and analyzer statistics are Gate B results. | Every radiation, scattering, pair, or cosmology use of photon polarization must point back to the Gate B handoff instead of deriving new free-photon polarization rules locally. | If a channel page invents its own free photon polarization derivation, adds a longitudinal free mode, or treats Gate B as already proven inside radiation, the closure boundary is violated. |
 | Noether sea-dependent radiation deviations | speculation | Deviations tied to $\rho_{\text{NS}}(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, anisotropy, threshold floors, or source-history transport are candidate predictions only after the validated limits above are recovered. | A proposed deviation must state the benchmark-preserving limit, the residual term, and the measurable regime before being used in a source model. | If a deviation is used to rescue a failed standard recovery or is fitted independently per observable, it is not accepted as radiation closure. |

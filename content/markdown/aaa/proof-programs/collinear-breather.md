@@ -430,7 +430,7 @@ At $T=0$ with $X_0=1$, this compact shell also sets the partner term exactly to 
 
 A held source remains a lawful way to specify pre-release history, but the
 held-release solution is purged as a solution artifact because it used the
-superseded branch law. Let a right-hand Positrino and left-hand Electrino
+superseded branch law. Let a left-hand Electrino and right-hand Positrino
 be held at
 $$
 X_2(T)=+X_0,\qquad X_1(T)=-X_0,\qquad X_0 > 0

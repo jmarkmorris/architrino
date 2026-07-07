@@ -26,7 +26,7 @@ The acceleration vector for the Electrino is attractive, pointing towards the Po
 $$
 \mathbf A_1(T) \propto -\hat{\mathbf{r}}_{21} = - \frac{\mathbf X_1(T) - \mathbf X_2(T_{\mathrm{em}})}{\|\mathbf X_1(T) - \mathbf X_2(T_{\mathrm{em}})\|}
 $$
-A symmetric set of equations governs the Positrino's motion based on the Electrino's emissions.
+The Electrino's emissions govern the Positrino's symmetric response through the corresponding partner equation.
 
 In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf V\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
 

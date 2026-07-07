@@ -6,6 +6,10 @@ export const FIRST_MISSING_OBJECT =
   "same_record_force_law_equivariance_proof_for_six_point_symmetry_invariant_lemma";
 export const FIRST_MISSING_FIELD =
   "six_point_symmetry_invariant_lemma_row.force_law_equivariance_proof_ref";
+export const NEXT_MISSING_OBJECT =
+  "same_record_retained_root_ledger_for_six_point_symmetry_invariant_lemma";
+export const NEXT_MISSING_FIELD =
+  "six_point_symmetry_invariant_lemma_row.retained_root_ledger_ref";
 
 const DEFAULT_A = 1;
 const DEFAULT_B = 0;
@@ -235,32 +239,36 @@ function makeTangentChecks(accelerationRows) {
   };
 }
 
-function makeProofObligations() {
+function makeProofObligations(proofRef = null) {
   return [
     {
       obligation_id: "coordinate_permutation_equivariance_of_retained_force_law",
       required: true,
-      proof_ref: null,
-      first_missing_field: FIRST_MISSING_FIELD,
+      proof_ref: proofRef,
+      first_missing_field: proofRef == null ? FIRST_MISSING_FIELD : null,
     },
     {
       obligation_id: "charge_conjugate_inversion_oddness_of_retained_force_law",
       required: true,
-      proof_ref: null,
-      first_missing_field: FIRST_MISSING_FIELD,
+      proof_ref: proofRef,
+      first_missing_field: proofRef == null ? FIRST_MISSING_FIELD : null,
     },
     {
       obligation_id: "complete_retained_root_set_no_asymmetric_root_pruning",
       required: true,
+      proof_ref: proofRef,
       retained_root_ledger_ref: null,
-      first_missing_field: FIRST_MISSING_FIELD,
+      first_missing_field: proofRef == null ? FIRST_MISSING_FIELD : NEXT_MISSING_FIELD,
     },
     {
       obligation_id: "same_record_binding_for_retained_history_rows",
       required: true,
       retained_record_id: null,
       provider_object_ref: null,
-      first_missing_field: FIRST_MISSING_FIELD,
+      first_missing_field:
+        proofRef == null
+          ? FIRST_MISSING_FIELD
+          : "six_point_symmetry_invariant_lemma_row.retained_record_id",
     },
   ];
 }
@@ -307,6 +315,11 @@ export function buildSixPointSymmetryInvariantLemmaRow(options = {}) {
   const b = normalizeNumber(options.b, DEFAULT_B);
   const A = normalizeNumber(options.A, DEFAULT_A_ACCEL);
   const B = normalizeNumber(options.B, DEFAULT_B_ACCEL);
+  const proofRef =
+    typeof options.forceLawEquivarianceProofRef === "string" &&
+    options.forceLawEquivarianceProofRef.length > 0
+      ? options.forceLawEquivarianceProofRef
+      : null;
   const artifactKey = {
     schema: SCHEMA,
     a,
@@ -314,6 +327,7 @@ export function buildSixPointSymmetryInvariantLemmaRow(options = {}) {
     A,
     B,
     selectedDecorationClass: "face-opposite",
+    ...(proofRef == null ? {} : { forceLawEquivarianceProofRef: proofRef }),
   };
   const artifactHash = stableHash(artifactKey);
   const rowPrefix = `six_point_symmetry_invariant_lemma_row:${artifactHash.slice(0, 16)}`;
@@ -370,17 +384,23 @@ export function buildSixPointSymmetryInvariantLemmaRow(options = {}) {
       acceleration_rows: accelerationRows,
       checks: tangentChecks,
     },
-    proof_obligations: makeProofObligations(),
-    force_law_equivariance_proof_ref: null,
+    proof_obligations: makeProofObligations(proofRef),
+    force_law_equivariance_proof_ref: proofRef,
     retained_root_ledger_ref: null,
     retained_record_id: null,
     provider_object_ref: null,
     retained_source_binding_ref: null,
-    artifact_status: "fail_closed_missing_force_law_equivariance_proof",
+    artifact_status:
+      proofRef == null
+        ? "fail_closed_missing_force_law_equivariance_proof"
+        : "fail_closed_missing_retained_root_ledger",
     source_status: "source_acquisition_blocked",
-    first_missing_object: FIRST_MISSING_OBJECT,
-    first_missing_field: FIRST_MISSING_FIELD,
-    evidence_evaluation: evaluateSixPointSymmetryInvariantLemmaEvidence({ schema: SCHEMA }),
+    first_missing_object: proofRef == null ? FIRST_MISSING_OBJECT : NEXT_MISSING_OBJECT,
+    first_missing_field: proofRef == null ? FIRST_MISSING_FIELD : NEXT_MISSING_FIELD,
+    evidence_evaluation: evaluateSixPointSymmetryInvariantLemmaEvidence({
+      schema: SCHEMA,
+      ...(proofRef == null ? {} : { force_law_equivariance_proof_ref: proofRef }),
+    }),
     authorization: makeAuthorization(),
     negative_controls: Object.entries(NEGATIVE_CONTROL_REASONS).map(([evidence_class, reason]) => ({
       evidence_class,
@@ -395,11 +415,24 @@ export function validateSixPointSymmetryInvariantLemmaRow(row) {
   if (row?.schema !== SCHEMA) {
     errors.push(`schema must be ${SCHEMA}`);
   }
-  if (row?.artifact_status !== "fail_closed_missing_force_law_equivariance_proof") {
-    errors.push("artifact must fail closed at missing force-law equivariance proof");
-  }
-  if (row?.first_missing_field !== FIRST_MISSING_FIELD) {
-    errors.push(`first missing field must be ${FIRST_MISSING_FIELD}`);
+  const proofRef = row?.force_law_equivariance_proof_ref ?? null;
+  if (proofRef == null) {
+    if (row?.artifact_status !== "fail_closed_missing_force_law_equivariance_proof") {
+      errors.push("artifact must fail closed at missing force-law equivariance proof");
+    }
+    if (row?.first_missing_field !== FIRST_MISSING_FIELD) {
+      errors.push(`first missing field must be ${FIRST_MISSING_FIELD}`);
+    }
+  } else {
+    if (row?.artifact_status !== "fail_closed_missing_retained_root_ledger") {
+      errors.push("artifact with a proof ref must fail closed at the missing retained root ledger");
+    }
+    if (row?.first_missing_field !== NEXT_MISSING_FIELD) {
+      errors.push(`first missing field must be ${NEXT_MISSING_FIELD}`);
+    }
+    if (row?.retained_root_ledger_ref != null) {
+      errors.push("retained_root_ledger_ref must remain null in this producer");
+    }
   }
   if (row?.decoration_classification?.face_opposite?.split_axis_count !== 3) {
     errors.push("face-opposite decoration must split all three opposite axes");
@@ -434,14 +467,27 @@ export function validateSixPointSymmetryInvariantLemmaRow(row) {
 }
 
 function runCli() {
-  const row = buildSixPointSymmetryInvariantLemmaRow();
+  const args = process.argv.slice(2);
+  const options = {};
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--force-law-equivariance-proof-ref") {
+      options.forceLawEquivarianceProofRef = args[index + 1];
+      index += 1;
+    } else if (arg.startsWith("--force-law-equivariance-proof-ref=")) {
+      options.forceLawEquivarianceProofRef = arg.slice(
+        "--force-law-equivariance-proof-ref=".length
+      );
+    }
+  }
+  const row = buildSixPointSymmetryInvariantLemmaRow(options);
   const errors = validateSixPointSymmetryInvariantLemmaRow(row);
   if (errors.length > 0) {
     console.error(errors.join("\n"));
     process.exitCode = 1;
     return;
   }
-  const pretty = process.argv.includes("--pretty");
+  const pretty = args.includes("--pretty");
   console.log(JSON.stringify(row, null, pretty ? 2 : 0));
 }
 

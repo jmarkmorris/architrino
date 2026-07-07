@@ -134,6 +134,129 @@ test("axial-paired control loses the same-level symmetry window", () => {
   assert.ok(wiggle.windowResiduals.pairOppositionMax > 1);
 });
 
+test("angular-momentum release option metadata round-trips in kick-at-release mode", () => {
+  const result = runToy([
+    "--duration",
+    "0.5",
+    "--prehistory-mode=kick-at-release",
+    "--surface-speed-fraction=0.8",
+    "--spin-axis=2,2,2",
+  ]);
+  const release = result.configuration.angularMomentumRelease;
+  const invSqrt3 = 1 / Math.sqrt(3);
+  const referencePerpendicularRadius = Math.sqrt(2 / 3);
+
+  assert.equal(result.configuration.prehistoryMode, "kick-at-release");
+  assert.equal(release.prehistoryMode, "kick-at-release");
+  assert.equal(release.surfaceSpeedFraction, 0.8);
+  assert.equal(release.actualTangentialSpeed, 0.8);
+  assert.ok(Math.abs(release.angularRate - 0.8 / referencePerpendicularRadius) < 1e-12);
+  assert.deepEqual(release.spinAxisInput, [2, 2, 2]);
+  for (const component of release.spinAxis) {
+    assert.ok(Math.abs(component - invSqrt3) < 1e-12);
+  }
+  assert.ok(Math.abs(release.referencePerpendicularRadius - referencePerpendicularRadius) < 1e-12);
+  assert.equal(release.rotationActive, true);
+  assert.equal(release.holdHistory.representation, "static_hold_window_with_release_kick_row");
+  assert.equal(release.holdHistory.rows, 3);
+  assert.equal(release.releaseContinuity.intentionalReleaseKick, true);
+  assert.equal(release.releaseContinuity.positionJumpMax, 0);
+  assert.ok(Math.abs(release.releaseContinuity.velocityJumpMax - 0.8) < 1e-12);
+  assert.ok(Math.abs(release.kinematicAngularMomentumNorm - 4 * release.angularRate) < 1e-9);
+  const kinematicUnit = release.kinematicAngularMomentum.map(
+    (component) => component / release.kinematicAngularMomentumNorm
+  );
+  for (const component of kinematicUnit) {
+    assert.ok(Math.abs(component - invSqrt3) < 1e-9);
+  }
+  assert.match(release.kinematicAngularMomentumNote, /no physical mass/);
+
+  const wiggle = result.trajectoryDiagnostics;
+  assert.equal(wiggle.fixedPointDrift.group, "C3_x_inversion_axis_neutral_rotating");
+  assert.equal(wiggle.fixedPointDrift.applicable, true);
+  assert.ok(Number.isFinite(wiggle.fixedPointDrift.residualMax));
+  assert.ok(Array.isArray(wiggle.radialSignSequence));
+  assert.ok(Array.isArray(result.reducedRadiusDiagnostics.radialSignSequence));
+  for (const diagnostics of [
+    result.closureDiagnostics,
+    result.trajectoryDiagnostics,
+    result.reducedRadiusDiagnostics,
+  ]) {
+    assert.equal(diagnostics.priorityOnly, true);
+    assert.equal(diagnostics.retainedBranchClaim, false);
+    assert.equal(diagnostics.acceptedSameLevelBranchClaim, false);
+    assert.equal(diagnostics.scoreMovement, "no_score_increase");
+  }
+});
+
+test("moving-prehistory rotating hold window releases without discontinuity", () => {
+  const result = runToy([
+    "--duration",
+    "0.5",
+    "--prehistory-mode",
+    "moving-prehistory",
+    "--surface-speed-fraction",
+    "0.5",
+  ]);
+  const release = result.configuration.angularMomentumRelease;
+
+  assert.equal(release.prehistoryMode, "moving-prehistory");
+  assert.equal(release.holdHistory.representation, "rigidly_rotating_hold_window_samples");
+  assert.ok(release.holdHistory.rows > 2);
+  assert.ok(release.holdHistory.sampleStep > 0);
+  assert.equal(release.releaseContinuity.intentionalReleaseKick, false);
+  assert.equal(release.releaseContinuity.positionJumpMax, 0);
+  assert.equal(release.releaseContinuity.velocityJumpMax, 0);
+  assert.equal(result.trajectoryDiagnostics.fixedPointDrift.group, "C3_x_inversion_axis_neutral_rotating");
+  assert.ok(result.trajectoryDiagnostics.fixedPointDrift.residualMax < 1e-9);
+  assert.equal(result.closureDiagnostics.retainedBranchClaim, false);
+  assert.equal(result.closureDiagnostics.scoreMovement, "no_score_increase");
+});
+
+test("default stationary-held-release run is unchanged by the angular-momentum options", () => {
+  const defaultResult = runToy(["--duration", "1"]);
+  const explicitResult = runToy([
+    "--duration",
+    "1",
+    "--prehistory-mode",
+    "stationary-held-release",
+    "--surface-speed-fraction",
+    "0",
+    "--spin-axis",
+    "1,1,1",
+  ]);
+
+  assert.equal(defaultResult.configuration.prehistoryMode, "stationary-held-release");
+  assert.equal(defaultResult.configuration.angularMomentumRelease.surfaceSpeedFraction, 0);
+  assert.equal(defaultResult.configuration.angularMomentumRelease.rotationActive, false);
+  assert.deepEqual(defaultResult.configuration.angularMomentumRelease.kinematicAngularMomentum, [0, 0, 0]);
+  assert.equal(
+    defaultResult.configuration.angularMomentumRelease.holdHistory.representation,
+    "stationary_two_row_hold_window"
+  );
+  assert.deepEqual(defaultResult.finalMetrics, explicitResult.finalMetrics);
+  assert.deepEqual(defaultResult.frames, explicitResult.frames);
+  assert.deepEqual(
+    defaultResult.trajectoryDiagnostics.radialTurnRows,
+    explicitResult.trajectoryDiagnostics.radialTurnRows
+  );
+  assert.deepEqual(defaultResult.events, explicitResult.events);
+  assert.deepEqual(defaultResult.modelNotes, explicitResult.modelNotes);
+});
+
+test("stationary-held-release rejects a nonzero surface-speed fraction", () => {
+  const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "braid-ideal-held-release-reject-"));
+  assert.throws(
+    () =>
+      execFileSync(
+        process.execPath,
+        [SCRIPT_PATH, "--surface-speed-fraction", "0.5", "--out", outputDir],
+        { encoding: "utf8", stdio: "pipe" }
+      ),
+    /surface-speed-fraction > 0 requires/
+  );
+});
+
 test("face-opposite group-velocity baseline separates center drift from same-level loss", () => {
   const result = runToy([
     "--field-speed",

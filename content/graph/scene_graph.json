@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 596,
-      "edges": 1363,
-      "scenes": 382,
+      "nodes": 600,
+      "edges": 1367,
+      "scenes": 384,
       "markdownIndexes": 0,
-      "markdownDocs": 197,
+      "markdownDocs": 199,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -1560,7 +1560,7 @@
     },
     {
       "id": "noether_braid__shell_braid",
-      "name": "Shell Braid",
+      "name": "Symmetric Shell Braid",
       "path": "content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene"
     },
@@ -2441,6 +2441,18 @@
       "nodeType": "scene"
     },
     {
+      "id": "noether_braid__braid_mathematics",
+      "name": "Braid Mathematics",
+      "path": "content/scenes/noether-braid/braid_mathematics.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__braid_recovery_requirements",
+      "name": "Braid Recovery Requirements",
+      "path": "content/scenes/noether-braid/braid_recovery_requirements.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2909,6 +2921,18 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "name": "Braid Mathematics",
+      "path": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "name": "Braid Recovery Requirements",
+      "path": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "name": "Nested Shell Braid Dynamics",
       "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
@@ -2969,9 +2993,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/shell-braid.md",
-      "name": "Shell Braid",
-      "path": "content/markdown/aaa/noether-braid/shell-braid.md",
+      "id": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "name": "Symmetric Shell Braid",
+      "path": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5668,6 +5692,24 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-braid/braid_mathematics.json",
+      "nodeType": "scene",
+      "id": "noether_braid__braid_mathematics",
+      "name": "Braid Mathematics",
+      "path": "content/scenes/noether-braid/braid_mathematics.json",
+      "searchTarget": "content/scenes/noether-braid/braid_mathematics.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/noether-braid/braid_recovery_requirements.json",
+      "nodeType": "scene",
+      "id": "noether_braid__braid_recovery_requirements",
+      "name": "Braid Recovery Requirements",
+      "path": "content/scenes/noether-braid/braid_recovery_requirements.json",
+      "searchTarget": "content/scenes/noether-braid/braid_recovery_requirements.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "nodeType": "scene",
       "id": "noether_braid__nested_shell_braid_dynamics",
@@ -5770,7 +5812,7 @@
       "nodeId": "scene:content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene",
       "id": "noether_braid__shell_braid",
-      "name": "Shell Braid",
+      "name": "Symmetric Shell Braid",
       "path": "content/scenes/noether-braid/shell_braid.json",
       "searchTarget": "content/scenes/noether-braid/shell_braid.json",
       "implicit": false
@@ -7765,6 +7807,24 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "name": "Braid Mathematics",
+      "path": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "name": "Braid Recovery Requirements",
+      "path": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
@@ -7855,12 +7915,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/shell-braid.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/shell-braid.md",
-      "name": "Shell Braid",
-      "path": "content/markdown/aaa/noether-braid/shell-braid.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/shell-braid.md",
+      "id": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "name": "Symmetric Shell Braid",
+      "path": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
       "implicit": false
     },
     {
@@ -12450,24 +12510,38 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/braid_mathematics.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/braid_recovery_requirements.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/nested_shell_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12481,14 +12555,14 @@
       "to": "scene:content/scenes/noether-braid/noether_braid_configuration_space.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12502,14 +12576,14 @@
       "to": "scene:content/scenes/noether-braid/noether_braid_proof_map.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/noether_braid_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12523,7 +12597,7 @@
       "to": "scene:content/scenes/noether-braid/shell_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/nuclear/atom.json",
@@ -14227,6 +14301,20 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/noether-braid/braid_mathematics.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-mathematics.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-braid/braid_mathematics.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/braid_recovery_requirements.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-braid/braid_recovery_requirements.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
       "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
       "edgeType": "markdown_doc",
@@ -14298,7 +14386,7 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/shell_braid.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/shell-braid.md",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/noether-braid/shell_braid.json",
       "field": "scene.source.path"
