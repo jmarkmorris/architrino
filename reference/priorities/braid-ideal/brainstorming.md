@@ -2788,6 +2788,10 @@ Held at capture level:
 
 7. **Analytic-then-perturb pipeline (operator question).** The constant-lag reduction makes rotating-wave rows finite transcendental algebra, so the ideal-environment geometries are solvable semi-analytically; survival-to-perturbation is then the transverse Floquet analysis around each solved row, tractable precisely because the unperturbed row is analytic. The eigen-braid spectrum packet plus a Floquet layer is the pipeline.
 
+### 2026-07-06 - Drum Lacing Extension (Operator)
+
+The operator's rope-tensioned-drum reading of the two-ring geometry is exact in three ways and one clause was promoted to the shell-braid drum section: the cord lacing between the two hides is the cross-ring attraction topology (each ring member tied to all three members of the other, fanned in the staggered zigzag); a twisted lacing is what the attraction channels become under rotation (helices about the axis — the drum picture and the word braid are the same object in space versus spacetime, with winding handedness as the chirality datum); and a drum's quantized Bessel ringing modes are the right mental model for the two-frequency breathing generalizations whose closed figures are the integer phase-closure states. The third point stays capture-level pending the rotating-wave spectrum work.
+
 ### Promotion Ledger For This Log
 
 Promoted so far: axis-neutral invariant channel, drum geometry with Thomson-ring reading, axial dipole identity with moment definition, momentum screw and helicity, polarity-conjugation degeneracy, fore-aft asymmetry, isolated-release/return-response reframing, exact speed budget with pinned-speed unification (all shell-braid.md); accessory dressing quietness ladder, circulant neutrino reading, symmetric-channel relation with formation question and precession meter, dipole-quiet horizon, action clicks at the field-speed hinge with the statistical layer and adiabatic/diabatic boundary (nested-shell-braid.md); crux framing and role-grouped chapter table (noether-braid.md). Remaining capture-level items above are queued for promotion after operator review or supporting derivation.
