@@ -123,6 +123,22 @@ The retained-history path needs a central-solver contract extension, named here 
 
 Until that contract exists, every output here stays fail-closed at the seed-path certificate and the central retained-history row.
 
+## Central-Solver Path Measurement (2026-07-07)
+
+The follow-up producer boundary above was then driven directly against the production causal-root runtime rather than left as a named contract. Owner script [self-hit-brake-central-measurement.mjs](../../../scripts/braid-ideal/self-hit-brake-central-measurement.mjs) with tests [braid-ideal-self-hit-brake-central-measurement.test.js](../../../tests/braid-ideal-self-hit-brake-central-measurement.test.js) (6 passing) imports `solveMovingCircularSameSourceCausalRoots` from [AbsoluteHistoryRootRuntime.mjs](../../../src/solver/app/AbsoluteHistoryRootRuntime.mjs) and reads what the production path can and cannot decide. No native runtime, ABI, bridge schema, or contract fixture was modified; the runtime is consumed read-only.
+
+Production reproduction (exact). Driving the runtime on the recorded `vt095` crossing ($\rho=\sqrt{2/3}$, $\beta_c=1.00196$) returns the same-source root with chord radius $r_c=0.17662$, $D_s=D_T=0.0039177$, and the emitted signed branch orientation `receiverNormalFactor` $=+1.0000$ — reproducing the packet's rigid-rotation reconstruction to the digit and confirming the runtime already emits the signed $m=D_T/D_s$.
+
+Three named producer gaps localized on the production path:
+
+- **Sign discarded by the exposed weight.** `buildMovingCircularSameSourceRoot` sets the same-source `branchWeight` to `unsignedReceiverNormalFactor` $=\lvert m\rvert$; the signed `receiverNormalFactor` is emitted alongside but is not the branch weight. This is exactly the naive-kernel sign error, localized to one field on one root object.
+- **Rigid-circle history reflection-locks the sign.** The production same-source history is a fixed-$\omega$ rigid circle, so $D_T=D_s$ and $m=+1$ identically; it cannot carry the pump-driven tangential acceleration that sets the absorptive sign. Reconstructing an accelerating crossing with the production receiver-normal definition returns $D_T<0<D_s$ and $m<0$ at every reception time past the hinge (`allAbsorptive`), reproducing this packet's sign refinement through the production formula.
+- **Coincidence stratum is a numerical floor.** `safeDistance = max(EPSILON, distance)` with `EPSILON = 1e-9` is a numerical floor, not a physical length. The signed tangential click impulse integrates $\kappa\,m/(r^2+\rho_c^2)$ across the crossing and grows without bound as the declared stratum $\rho_c$ shrinks: absorbed fraction of the certified per-rotation pump ($22.17$) runs $0.031\to0.115\to0.371\to2.69\to9.67$ as $\rho_c$ runs $0.2\to0.1\to0.05\to0.01\to0.001$. The beat-the-clock verdict therefore flips with $\rho_c$: it is undecidable without a declared coincidence-stratum length scale. The T3 engine already models this exact input as `jacobianFloorOrDeclaredStratum` (blocker `missing_same_record_jacobian_floor_or_declared_stratum`).
+
+Disposition `central_solver_self_hit_brake_sign_decided_absorptive_magnitude_reduces_to_declared_coincidence_stratum`. The production path decides the sign (absorptive) and localizes the remaining undecidability to a single declared physical input — the coincidence-stratum length scale — plus two mechanical runtime extensions (signed same-source branch weight; accelerating same-source history). All outputs fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no central retained-history acceptance; the first missing object is the declared coincidence stratum for the same-source hinge magnitude.
+
+**Runtime extensions landed (2026-07-07).** The two mechanical extensions named above are now in the production runtime (`AbsoluteHistoryRootRuntime.mjs`), additively and backward-compatibly: (i) `receiverNormalFields` emits an explicit `signedBranchOrientation` $=D_T/D_s$ on every root (partner and same-source), leaving the contractual unsigned `branchWeight` unchanged; and (ii) the moving-circular source history accepts an optional `angularAcceleration` (default $0$ reproduces the fixed-$\omega$ circle exactly), so the same-source root realizes the pump-driven crossing directly and returns $m<0$ from the production path — the measurement above now reads the absorptive sign off the runtime rather than reconstructing it. Runtime coverage in `tests/absolute-history-root-runtime.test.js` (signed field emitted; rigid $m=+1$ preserved; accelerating $m<0$; zero-acceleration exact backward-compatibility); `check-solver-contract-fixtures` passes. The only remaining producer gap is the ontology decision — the declared coincidence-stratum length scale — which sets a finite magnitude and is not the agent's to invent.
+
 ## Model Output Classification
 
 | Output | Current classification |
@@ -133,6 +149,6 @@ Until that contract exists, every output here stays fail-closed at the seed-path
 | Naive-vs-chart sweep table | Diagnostic; reproduces the recorded ejection drift |
 | Diagnostic $h_{\mathrm{act}}$ ledger rows | Diagnostic bookkeeping; direction only, no action closure |
 | Absorptive-sign decision | Diagnostic decision; routed to operator against the chart spec disposition |
-| Central-solver signed-orientation contract extension | Named follow-up producer boundary; not implemented here |
+| Central-solver signed-orientation contract extension | Named follow-up producer boundary; production runtime measured read-only, three gaps localized, magnitude reduces to a declared coincidence stratum |
 | Accepted retained evidence / force-action closure / stability | Not authorized |
 | Score movement / corpus promotion | Not authorized; defer with blocker |

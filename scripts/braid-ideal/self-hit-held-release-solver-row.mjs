@@ -381,6 +381,33 @@ export function buildSelfHitHeldReleaseSolverRow(options = {}) {
     },
     candidate_same_record_target_binding: candidateSameRecordTargetBinding,
     sea_screened_self_hit_diagnostic_witness: seaScreenedSelfHitDiagnosticWitness,
+    central_solver_self_hit_brake_finding: {
+      // Consumed finding from self-hit-brake-central-measurement.mjs, which drives
+      // the production same-source causal-root runtime
+      // (AbsoluteHistoryRootRuntime.solveMovingCircularSameSourceCausalRoots).
+      // The production runtime emits the signed branch orientation
+      // receiverNormalFactor = D_T/D_s (absorptive, m < 0, under the pump-driven
+      // tangential acceleration), superseding the naive |m| ejective reading.
+      // The remaining undecidability is the magnitude, which reduces to a
+      // declared coincidence-stratum length scale (currently a numerical floor).
+      authority: "priority_only_central_solver_measurement_not_accepted_evidence",
+      disposition:
+        "central_solver_self_hit_brake_sign_decided_absorptive_magnitude_reduces_to_declared_coincidence_stratum",
+      signed_orientation_emitted_by_production: true,
+      sign_decided_absorptive: true,
+      magnitude_reduces_to_declared_stratum: true,
+      // Two of the three producer gaps are now landed in the production runtime
+      // (AbsoluteHistoryRootRuntime): the signed branch orientation is emitted
+      // as `signedBranchOrientation`, and the moving-circular source history
+      // accepts an optional `angularAcceleration` so the same-source root
+      // realizes the pump-driven crossing (m<0) directly.
+      resolved_producer_gaps: [
+        "same_source_branch_weight_discards_sign",
+        "rigid_circle_same_source_history_reflection_locks_sign",
+      ],
+      open_producer_gaps: ["coincidence_stratum_is_a_numerical_floor"],
+      first_missing_object: "declared_coincidence_stratum_for_same_source_hinge_magnitude",
+    },
     provider_provenance_requirement: {
       required: true,
       provider_object: null,

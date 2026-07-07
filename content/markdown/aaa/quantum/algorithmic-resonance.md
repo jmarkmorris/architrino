@@ -18,8 +18,8 @@ The Quantum Fourier Transform is the natural comparison point because it convert
 
 That statement keeps the mathematics and the hardware tied together. The comparison is not merely that both stories use phase. The comparison is that a physical register must create the same constructive and destructive record channels that the abstract transform describes.
 
-- **Wake superposition:** The physical sum of delayed causal-wake contributions $\sum V(t_0)$ within the macroscopic assembly.
-- **Destructive interference:** Cancellation of opposing electrino/positrino fluxes for non-periodic path histories, suppressing the corresponding dynamical trajectories.
+- **Wake superposition:** The physical sum of delayed causal-wake contributions within the macroscopic assembly — the reconstructed potential $\Phi_\eta$ assembled by summing over the active causal roots $T_{\mathrm{em}}\in\mathcal{C}_{ij}(T)$ that reach the receiver at absolute time $T$.
+- **Destructive interference:** Cancellation of opposing electrino/positrino causal-wake contributions for non-periodic path histories, suppressing the corresponding dynamical trajectories.
 - **Constructive interference:** Phase alignment for periodic path histories, producing deep macroscopic basins of attraction.
 - **Amplification:** A possible role for $v > c_f$ inner-binary self-hit mechanics, which remains a closure target until the register-scale stability calculation is done.
 
@@ -47,12 +47,13 @@ The full period-extraction pipeline can be stated as a sequence of closure targe
 
 ## Falsifiability and Scaling Limits
 
-This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite propagation at $c_f$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence. It is architecture-dependent deviation from ideal unitary behavior in large quantum processors.
+This page is falsifiable at the scaling interface. A viable $\mathbb{A}\mathbb{A}\mathbb{A}$ account must state strict bounds on coherent circuit depth before Noether sea background coupling, finite signal propagation at the observer channel speed $c_0$, and self-hit interaction kernels produce deterministic decoherence. The useful prediction class is therefore not a vague loss of coherence. It is architecture-dependent deviation from ideal unitary behavior in large quantum processors.
 
-For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor is
+For any newly established two-register coupling, abstract gate identity does not remove finite propagation and settling time. If $d_{\mathrm{ctrl}}$ is the controlled-coupling separation and $\tau_{\mathrm{settle}}$ is the apparatus/assembly settling time needed to enter the calibrated gate channel, the gate-time floor set by the observer signal-channel speed $c_0$ is
 $$
-\tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_f}+\tau_{\mathrm{settle}}
+\tau_{\mathrm{gate}}\ge \frac{d_{\mathrm{ctrl}}}{c_0}+\tau_{\mathrm{settle}}
 $$
+Here $c_0$ is the observer-sector light/channel speed, not the primitive wake speed $c_f$: control signals traverse the dressed assembly network in the Noether sea, so the tighter apparatus bound uses the effective channel speed rather than the substrate carrier speed.
 Inherited pair provenance is a separate case. It may be read out later by local apparatus interactions, but it should not be described as a newly transmitted gate influence during a spacelike-separated measurement window.
 
 Quantum error correction is the sharpest benchmark for that scaling claim. The comparison is not whether error correction is conceptually possible in the standard circuit model. The comparison is whether a physical register can keep the encoded logical basin stable while each correction cycle remains below the record-forming and dissociation thresholds of the underlying assemblies. A candidate implementation should therefore track at least three timescales:
@@ -61,9 +62,9 @@ $$
 \qquad
 \tau_{\mathrm{corr}},
 \qquad
-\tau_{\mathrm{decoh}}(\rho_{\text{NS}},\chi_{\text{sea}},\mathcal{H})
+\tau_{\mathrm{decoh}}(\rho_{\text{NS}},\chi_{\text{sea}},\mathcal{H}_A)
 $$
-where $\tau_{\mathrm{gate}}$ is the controlled operation time, $\tau_{\mathrm{corr}}$ is the full syndrome-extraction and recovery cycle, and $\tau_{\mathrm{decoh}}$ is the medium- and path-history-dependent coherence time of the encoded assembly network. The necessary validation inequality is
+where $\tau_{\mathrm{gate}}$ is the controlled operation time, $\tau_{\mathrm{corr}}$ is the full syndrome-extraction and recovery cycle, and $\tau_{\mathrm{decoh}}$ is the medium- and path-history-dependent coherence time of the encoded assembly network with path-history ledger $\mathcal{H}_A$. All three are apparatus-clock readouts in the effective chart, not substrate absolute-time intervals. The necessary validation inequality is
 $$
 \tau_{\mathrm{gate}}+\tau_{\mathrm{corr}}
 <
