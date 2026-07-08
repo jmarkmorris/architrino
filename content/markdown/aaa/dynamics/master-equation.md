@@ -1339,7 +1339,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 #### Regularization (Mollified Causal Wake Surfaces, Finite $\eta$)
 
-The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous receiver-time branch contribution; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous receiver-time branch contribution weighted by the receiver-normal branch strength; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - c_f\Delta) \longrightarrow \delta_\eta(r - c_f\Delta) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - c_f\Delta)^2}{2\eta^2}\Big)
@@ -1349,7 +1349,7 @@ while preserving total emission $q$.
 
 **Effect:** Under the finite-branch, distance-floor, and transversality assumptions stated below, this supports **continuous-in-time force diagnostics** and classical $C^1$ solutions for $\mathbf X_i(T)$ given $C^1$ initial data.
 
-**In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, and Jacobian floor remain controlled.
+**In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, Jacobian floor, and receiver-normal branch strength remain controlled.
 
 **Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
@@ -1475,7 +1475,7 @@ $$
 
 The total acceleration on a particle at any instant is the **vector sum** of the contributions from every causal entry in its path history.
 
-**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-source root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
+**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-source root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting modulated by the receiver-normal branch strength $W^{\mathrm{rec}}$, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
 
 Inverse-square dilution alone is not a global convergence theorem. For an infinite source family, a branch chart must declare a summation or continuum prescription under which
 $$
@@ -1836,7 +1836,7 @@ $$
 1. **Event-local at the receiver**: Only intersecting delayed causal wake surfaces contribute (no action-at-a-distance).
 2. **Non-Markovian**: Depends on full path history (self-hit memory).
 3. **Superposition**: Linear sum over all sources and causal roots.
-4. **Self-hit**: Repulsive same-source interaction when $\mathcal{C}_{ii}(T)$ is nonempty with a valid transversality floor; super-field-speed interval history is a necessary warning condition for simple nontrivial roots and can persist as memory after slowing down.
+4. **Self-hit**: Repulsive same-source interaction when $\mathcal{C}_{ii}(T)$ is nonempty with a valid transversality floor and a retained receiver-normal branch strength; super-field-speed interval history is a necessary warning condition for simple nontrivial roots and can persist as memory after slowing down.
 5. **Radial line of action with receiver-normal branch weighting**: No magnetic or velocity-cross-product terms; all per-hit accelerations point along $\hat{\mathbf{r}}_{ij}$, with magnitude modulated by $W_{ij}^{\mathrm{rec}}$.
 
 #### Implications for Emergent Phenomena
@@ -2856,7 +2856,7 @@ leading affine radial jet at sampled level and still keep a positive retained
 past profile with the expected $3+1$ active-root ledger after tangential
 transport. This does not certify A1 closure. It moves the theorem-grade burden
 to finite-collar control after endpoint-slope cancellation: positivity,
-inactive gaps, Jacobian floors, finite memory, tangential transport, and the
+inactive gaps, Jacobian floors, receiver-normal branch strengths, finite memory, tangential transport, and the
 full radial residual must all be bounded on the same branch chart.
 
 ---
