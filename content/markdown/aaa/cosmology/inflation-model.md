@@ -209,7 +209,7 @@ w_X(a),\;
 \Omega_{\mathrm{GW}}^X(f)
 \right)
 $$
-where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the decay or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
+where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the dissociation or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
 $$
 \mathcal{R}_{\mathrm{preBBN}}(\theta_X,\theta_{\mathrm{sea}})
 =

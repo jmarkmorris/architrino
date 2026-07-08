@@ -322,7 +322,7 @@ The quantity peaks when a sharply organized coherent core coexists with substant
 
 Legacy entropy formulas survive as effective projections with different prerequisites.
 
-Clausius entropy, $dS=\delta Q_{\mathrm{rev}}/T$, is licensed only in a regime where the reversible comparison class, heat channel, and temperature channel are defined by the same physical record. Without that record, the formula is a comparison mnemonic rather than a substrate claim.
+Clausius entropy, $dS=\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$, is licensed only in a regime where the reversible comparison class, heat channel, and temperature channel are defined by the same physical record. Without that record, the formula is a comparison mnemonic rather than a substrate claim.
 
 The Clausius definition also has a direction of dependence that must not be reversed. A cycle statement can be made without entropy:
 
@@ -354,9 +354,9 @@ T_{\text{cycle}}
 }
 $$
 
-where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $T_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T$ is not a well-defined state function for that record.
+where $T_{\text{retune}}$ is the relaxation time for the Noether sea response variables retained by the packet and $T_{\text{cycle}}$ is the duration of the reversible-comparison cycle. Clausius entropy is expected to be path-independent only in the regime $\Lambda_{\text{sea}}\ll1$. When $\Lambda_{\text{sea}}\gtrsim1$, the sea carries cycle-scale hysteresis, the heat channel is history-dependent, and $\oint\delta Q_{\mathrm{rev}}/T_{\mathrm{temp}}$ is not a well-defined state function for that record.
 
-In differential-form language, $\delta Q/T$ is an exact 1-form only in the fast-retuning regime where the Noether sea response closes before the comparison cycle completes. When $\Lambda_{\text{sea}}\gtrsim1$, the same form acquires a nonzero period around the cycle: the hysteresis-loop area is the observable obstruction to treating thermodynamic entropy as a state function on that packet. The predicted simulation signature is a loop area that grows with the sea-retuning lag rather than with an independently assigned entropy defect.
+In differential-form language, $\delta Q/T_{\mathrm{temp}}$ is an exact 1-form only in the fast-retuning regime where the Noether sea response closes before the comparison cycle completes. When $\Lambda_{\text{sea}}\gtrsim1$, the same form acquires a nonzero period around the cycle: the hysteresis-loop area is the observable obstruction to treating thermodynamic entropy as a state function on that packet. The predicted simulation signature is a loop area that grows with the sea-retuning lag rather than with an independently assigned entropy defect.
 
 Boltzmann entropy, $S=k_B\log \Omega$, maps to the count or measure of complete architrino and assembly histories compatible with the retained macrostate. The textbook counting form is the uniform-weight special case of Gibbs/Shannon entropy:
 

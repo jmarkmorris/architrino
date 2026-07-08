@@ -210,7 +210,7 @@ Observer-level baselines in this chapter use SI units (explicit $\epsilon_0$); t
 A compact emissivity form for thermal free-free emission is
 
 $$
-\epsilon_{\nu}^{\mathrm{ff}} \propto Z^2 n_e n_i T^{-1/2} e^{-h\nu/(k_B T)} g_{\mathrm{ff}}(\nu,T)
+\epsilon_{\nu}^{\mathrm{ff}} \propto Z^2 n_e n_i T_{\mathrm{temp}}^{-1/2} e^{-h\nu/(k_B T_{\mathrm{temp}})} g_{\mathrm{ff}}(\nu,T_{\mathrm{temp}})
 $$
 
 where $Z$ is ion charge, $n_e$ and $n_i$ are number densities, and $g_{\mathrm{ff}}$ is the Gaunt factor (quantum correction). In dense plasma or condensed regimes, screening-length limits (Debye/collective shielding) modify both the effective interaction range and the integration limits folded into $g_{\mathrm{ff}}$. Frequency-integrated thermal emissivity scales approximately as

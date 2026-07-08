@@ -13,7 +13,7 @@ This chapter states how big-bang nucleosynthesis constraints are to be read insi
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
-- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
+- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $T$ within the eternal Euclidean void.
 - **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../spacetime/black-holes.md).
 - **Why:** Noether braids near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
 - **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
@@ -54,7 +54,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 Noether braids compress toward maximum-curvature states.
 Proton/neutron assemblies (nucleon nested shell braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
-Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
+Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T_{\mathrm{temp}} \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
@@ -121,21 +121,21 @@ $$
 t
 \approx
 \frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
-\left(\frac{1\ \mathrm{MeV}}{k_BT}\right)^2
+\left(\frac{1\ \mathrm{MeV}}{k_BT_{\mathrm{temp}}}\right)^2
 $$
 where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
 $$
 \frac{n_n}{n_p}
 \approx
-\exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT}\right)
+\exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT_{\mathrm{temp}}}\right)
 $$
 until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
 $$
 \frac{n_D}{n_p}
 \sim
 \eta
-\left(\frac{k_BT}{m_p c_0^2}\right)^{3/2}
-\exp\!\left(\frac{E_D}{k_BT}\right)
+\left(\frac{k_BT_{\mathrm{temp}}}{m_p c_0^2}\right)^{3/2}
+\exp\!\left(\frac{E_D}{k_BT_{\mathrm{temp}}}\right)
 $$
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
 
@@ -159,11 +159,11 @@ p+e^-+\bar{\nu}_e\to n.
 $$
 The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
 $$
-\lambda_{n\to p}^{\theta}(T)
+\lambda_{n\to p}^{\theta}(T_{\mathrm{temp}})
 \sim
-\lambda_{p\to n}^{\theta}(T)
+\lambda_{p\to n}^{\theta}(T_{\mathrm{temp}})
 \sim
-H_{\mathrm{eff,BBN}}^\theta(T)
+H_{\mathrm{eff,BBN}}^\theta(T_{\mathrm{temp}})
 $$
 where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
 $$
@@ -189,7 +189,7 @@ $$
 \frac{n_n^\theta}{n_p^\theta}
 \approx
 \exp\!\left(
--\frac{\Delta m_{np}c_0^2}{k_BT}
+-\frac{\Delta m_{np}c_0^2}{k_BT_{\mathrm{temp}}}
 -\xi_{\nu_e}^\theta
 \right)
 $$
@@ -269,10 +269,10 @@ $$
 =
 \int_{\tau_{\mathrm{on},s}}^{\tau_{\mathrm{off},s}}
 n_n^X(\tau,s)\,
-\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T(\tau,s),\rho(\tau,s))\,
+\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T_{\mathrm{temp}}(\tau,s),\rho(\tau,s))\,
 d\tau
 $$
-and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T,\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
+and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T_{\mathrm{temp}},\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
 $$
 \mathcal{R}_{\mathrm{exp},X}
 =
@@ -312,7 +312,7 @@ These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measure
 
 Standard BBN effectively behaves like a calibrated standard reactor: one parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across the sky. SMBH-local models should recover similar universality.
 
-- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
+- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T_{\mathrm{temp}}(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
 - **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether braid saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
 - **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether sea state convergence and remains weakly dependent on SMBH mass class.
@@ -327,7 +327,7 @@ In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. I
 
 ### 3. Deuterium Survival Goal: Monotonic Quench Window
 
-Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
+Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T_{\mathrm{temp}}\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
 
 - **Goal:** Require laminar, monotonic cooling through the D-formation window, followed by rapid quench.
 - **Mapping task:** Relate release-channel transport properties, including turbulence or shear diagnostics where relevant, and cooling curves to the D-survival window.

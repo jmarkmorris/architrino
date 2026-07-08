@@ -106,15 +106,15 @@ The coarse-state map is
 $$
 C_{\eta,h}:
 \left(
-\mathbb{U}_{\mathrm{now}}(T),
+\mathbb{U}_{\text{now}}(T),
 \mathcal{H}_{\eta,h}(T)
 \right)
 \longrightarrow
 \Gamma_{\eta,h}
 $$
-where $\mathbb{U}_{\mathrm{now}}(T)\equiv S(T)$ is the instantaneous ontic substrate state on the simultaneity slice at absolute time $T$ retained by the model and $U$ records declared apparatus controls or settings.
+where $\mathbb{U}_{\text{now}}(T)\equiv S(T)$ is the instantaneous ontic substrate state on the simultaneity slice at absolute time $T$ retained by the model and $U$ records declared apparatus controls or settings.
 
-Two time labels appear in this chapter and must not be conflated. The ontic substrate flow — $\mathbb{U}_{\mathrm{now}}$, its retained history $\mathcal{H}_{\eta,h}$, and the causal-wake background — is always indexed by absolute time $T$. The reduced record-channel coordinates $(\Gamma_{\mathrm{tot}},X,A,Z)$ and every bare record-channel time $t$ below live in the reduced effective chart that this coarse-state map produces; $t$ coincides with $T$ in the laboratory limit and is the effective-chart time inherited by [Wavefunction Ontology](wavefunction-ontology.md). Where an open-system or effective-metric reconstruction carries its own rescaled clock, that time is written $t_{\mathrm{eff}}$.
+Two time labels appear in this chapter and must not be conflated. The ontic substrate flow — $\mathbb{U}_{\text{now}}$, its retained history $\mathcal{H}_{\eta,h}$, and the causal-wake background — is always indexed by absolute time $T$. The reduced record-channel coordinates $(\Gamma_{\mathrm{tot}},X,A,Z)$ and every bare record-channel time $t$ below live in the reduced effective chart that this coarse-state map produces; $t$ coincides with $T$ in the laboratory limit and is the effective-chart time inherited by [Wavefunction Ontology](wavefunction-ontology.md). Where an open-system or effective-metric reconstruction carries its own rescaled clock, that time is written $t_{\mathrm{eff}}$.
 
 The measurement transfer operator is first a deterministic pushforward of the retained flow,
 $$
@@ -255,7 +255,7 @@ $$
 \inf\{t>t_0:\Sigma(X(t),A(t))=0\}
 $$
 
-This is the ontology-level replacement for instantaneous collapse. The underlying substrate flow $\mathbb{U}_{\mathrm{now}}(T)$ evolves continuously in absolute time $T$, so the reduced record-channel description it projects to crosses the separatrix continuously as well, even though the crossing may appear effectively abrupt to a coarse observer.
+This is the ontology-level replacement for instantaneous collapse. The underlying substrate flow $\mathbb{U}_{\text{now}}(T)$ evolves continuously in absolute time $T$, so the reduced record-channel description it projects to crosses the separatrix continuously as well, even though the crossing may appear effectively abrupt to a coarse observer.
 
 A Physical Observer may still be unable to resolve the crossing from the retained record. Let $\pi_O$ be the observer's access projection from the coupled measurement state to retained records, let $d_O$ be the induced record distance, and let $\epsilon_O$ be the declared record tolerance. For a branch basin $B_k$, the boundary is operationally unresolved for $O$ when
 
@@ -723,118 +723,31 @@ The spin operator is therefore a compact generator of the recovered record stati
 
 The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full nested shell braid spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is explicit: the angular impulse is the braid-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
 
-For an apparatus axis $\hat{\mathbf m}$, let $Z_0\in\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the incoming target-plus-apparatus state, let $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ be the finite interaction map, let $G_{\mathrm{rec}}$ be the successful-record gate, and let $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the signed separatrix functional. The lifted plus basin is
+For an apparatus axis $\hat{\mathbf m}$, the two recorded channels are the record-forming basins $B_{\pm}(\hat{\mathbf m})$ whose deterministic first-order kernels $K_{\pm}^{\mathrm{SG}}(\hat{\mathbf m};Z_{\mathrm{in}})=G_{\mathrm{rec}}(Z_{\mathrm{in}})\,H\!\left(\pm\mathcal Q_{\hat{\mathbf m}}(Z_{\mathrm{in}})\right)$ and observer-level probabilities $P_{\pm}(\hat{\mathbf m})=\int K_{\pm}^{\mathrm{SG}}\,d\mu_*$ are derived in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response); there $G_{\mathrm{rec}}$ is the successful-record gate, $\mathcal Q_{\hat{\mathbf m}}$ is the signed response functional at the end of the interaction window, and $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ is the finite interaction map. The measurement ontology imports those kernels and adds the two acceptance gates the pair must pass before it is read as a spin measurement; it does not re-derive them.
 
+The first gate is record normalization. A missing reject basin hides detector loss or failed record formation inside the plus-channel probability, so the two channels must account for every successful record:
 $$
-B_{+}^{\mathrm{lift}}(\hat{\mathbf m})
-=
-\left\{
-Z_0:
-G_{\mathrm{rec}}
-\left(
-\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
-\right)=1,
-\quad
-\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}
-\left(
-\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
-\right)>0
-\right\}
-$$
-
-The lifted plus probability is the pullback measure
-
-$$
-P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
-=
-\int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
-\mathbf 1_{B_{+}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
-\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0)
-$$
-
-The complementary recorded basin is
-
-$$
-B_{-}^{\mathrm{lift}}(\hat{\mathbf m})
-=
-\left\{
-Z_0:
-G_{\mathrm{rec}}
-\left(
-\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
-\right)=1,
-\quad
-\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}
-\left(
-\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}(Z_0)
-\right)<0
-\right\}
-$$
-
-with
-
-$$
-P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
-=
-\int_{\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}}
-\mathbf 1_{B_{-}^{\mathrm{lift}}(\hat{\mathbf m})}(Z_0)
-\,d\mu_{\hat{\mathbf m}}^{\mathrm{in}}(Z_0)
-$$
-
-The record-normalization residual is
-
-$$
-\Delta_{\mathrm{rec}}^{\mathrm{lift}}
+\Delta_{\mathrm{norm}}^{\mathrm{SG}}
 =
 \left|
-P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
-+
-P_{-}^{\mathrm{lift}}(\hat{\mathbf m})
+P_{+}(\hat{\mathbf m})+P_{-}(\hat{\mathbf m})
 -
-\mu_{\hat{\mathbf m}}^{\mathrm{in}}
-\left(
-G_{\mathrm{rec}}\circ\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}=1
-\right)
+\mu_*\!\left(G_{\mathrm{rec}}\circ\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}=1\right)
 \right|
+\le\varepsilon_{\mathrm{norm}}
 $$
+This must hold before conditioning on successful records, consistent with the derived identity $K_{+}^{\mathrm{SG}}+K_{-}^{\mathrm{SG}}=1$ on the $G_{\mathrm{rec}}=1$ set.
 
-The ideal two-outcome Stern-Gerlach comparison requires $\Delta_{\mathrm{rec}}^{\mathrm{lift}}$ below tolerance before conditioning on successful records. A missing reject basin is not a harmless omission; it hides detector loss or failed record formation inside the plus-channel probability.
-
-The half-angle law is then a consistency residual, not an inserted record rule:
-
+The second gate is the half-angle law, read as a consistency residual rather than an inserted record rule. For a spin-$\tfrac{1}{2}$ preparation at effective angle $\alpha$ relative to $\hat{\mathbf m}$,
 $$
-\Delta_{\mathrm{half}}^{\mathrm{lift}}
+\Delta_{\mathrm{half}}^{\mathrm{SG}}
 =
 \left|
-P_{+}^{\mathrm{lift}}(\hat{\mathbf m})
--
-\cos^2\left(
-\frac{\alpha(Z_0,\hat{\mathbf m})}{2}
-\right)_{\mu}
+P_{+}(\hat{\mathbf m})-\cos^2\!\left(\frac{\alpha}{2}\right)
 \right|
+\le\varepsilon_{\mathrm{half}}
 $$
-
-Here $(\cdot)_{\mu}$ means the comparison is averaged using the derived effective spinor coordinate and incoming measure. The full substrate normal is
-
-$$
-\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG}}(Z,t)
-=
-D_Z
-\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}(Z(t))
-$$
-
-The reduced normal
-
-$$
-\mathcal N_{\hat{\mathbf m}}^{\mathrm{SG,red}}
-=
-dp_{+}
--
-\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(\theta_{\mathrm{rec}})
-d\theta_{\mathrm{rec}}
-$$
-
-is only a comparison target after $\psi(Z)$ and $p_+(Z;\hat{\mathbf m})$ are derived from the apparatus model. Equivalently, the reduced Stern-Gerlach record coordinate is the invariant-measure coordinate $u_{\hat{\mathbf m}}(\theta_{\mathrm{rec}})=\int_0^{\theta_{\mathrm{rec}}}\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds$, not necessarily the raw phase $\theta_{\mathrm{rec}}/(2\pi)$. The raw phase appears only in the calibrated constant-phase-speed limit.
+where $P_{+}(\hat{\mathbf m})$ is averaged over the incoming measure in the invariant-measure record coordinate $u_{\hat{\mathbf m}}(\theta_{\mathrm{rec}})=\int_0^{\theta_{\mathrm{rec}}}\rho_{\hat{\mathbf m}}^{\mathrm{rec}}(s)\,ds$ of the locked apparatus record cycle, not the raw phase $\theta_{\mathrm{rec}}/(2\pi)$ (which is only the calibrated constant-phase-speed limit). The effective spinor coordinate and the record-cycle density $\rho_{\hat{\mathbf m}}^{\mathrm{rec}}$ are supplied by the same ordered-frame derivation, so this residual imports them rather than re-deriving them.
 
 This is a single-assembly measurement statement. Bell-pair response and photon-polarization correlations additionally require the pair-provenance ledger and photon Gate B; they should not be treated as closed by the measurement ontology alone.
 
