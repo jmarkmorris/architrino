@@ -831,7 +831,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - **Ch 8.4.1** [Purpose and Scope](../../../markdown/aaa/quantum/measurement-ontology.md?section=Purpose+and+Scope)
     - **Ch 8.4.2** [Core Claim](../../../markdown/aaa/quantum/measurement-ontology.md?section=Core+Claim)
     - **Ch 8.4.3** [No Heisenberg Cut](../../../markdown/aaa/quantum/measurement-ontology.md?section=No+Heisenberg+Cut)
-    - **Ch 8.4.4** [Schrodinger's Cat As A Record-Channel Problem](../../../markdown/aaa/quantum/measurement-ontology.md?section=Schrodinger%27s+Cat+As+A+Record-Channel+Problem)
+    - **Ch 8.4.4** [Schrödinger's Cat as a Record-Channel Problem](../../../markdown/aaa/quantum/measurement-ontology.md?section=Schr%C3%B6dinger%27s+Cat+as+a+Record-Channel+Problem)
     - **Ch 8.4.5** [Physical-Record Import Consistency](../../../markdown/aaa/quantum/measurement-ontology.md?section=Physical-Record+Import+Consistency)
     - **Ch 8.4.6** [Minimal Dynamical Model](../../../markdown/aaa/quantum/measurement-ontology.md?section=Minimal+Dynamical+Model)
     - **Ch 8.4.7** [What Makes an Interaction a Record](../../../markdown/aaa/quantum/measurement-ontology.md?section=What+Makes+an+Interaction+a+Record)

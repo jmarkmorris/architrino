@@ -1,6 +1,6 @@
 # Intrinsic Curve Dynamics Equation
 
-Promotion status: `priority-only`. This packet rewrites same-level tri-binary dynamics as an intrinsic curve equation. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md): fixed speed is handled by arclength, and the remaining physical equation is that the delayed causal-wake force equals the curvature acceleration of each carrier curve. The bounded speed factor extension is stated separately in [variable-speed-factor-extension.md](variable-speed-factor-extension.md); it recovers this packet when $\nu_i\equiv1$.
+Promotion status: `priority-only`. This packet rewrites same-level braid dynamics as an intrinsic curve equation. It builds on [arc-length-dynamics-reduction.md](arc-length-dynamics-reduction.md): fixed speed is handled by arclength, and the remaining physical equation is that the delayed causal-wake force equals the curvature acceleration of each carrier curve. The bounded speed factor extension is stated separately in [variable-speed-factor-extension.md](variable-speed-factor-extension.md); it recovers this packet when $\nu_i\equiv1$.
 
 This is a theorem-target formulation. It does not prove that a retained shell braid branch exists.
 

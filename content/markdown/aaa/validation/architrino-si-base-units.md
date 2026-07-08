@@ -246,13 +246,13 @@ Boltzmann's constant $k_B$ is the conversion factor between **energy** and **tem
 **Thermalized-ensemble limit:**
 In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
 $$
-\langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
+\langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
 $$
 
 For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be accessible thermalized modes of the retained ensemble. In that special limit,
 
 $$
-\langle E_{\mathrm{acc}} \rangle = 3 k_B T
+\langle E_{\mathrm{acc}} \rangle = 3 k_B T_{\mathrm{temp}}
 $$
 
 This is a recovery target, not the general definition of temperature. If the energy is shielded, stored as configuration energy, or confined to a non-equilibrium branch, it does not enter the scalar temperature until the declared ensemble measure exposes it.
@@ -266,13 +266,13 @@ $$
 1. Derive the effective assembly mass or accessible mode-energy scale from nested shell braid dynamics.
 2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
 3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
-4. Relate the distribution width to $k_B T$ while keeping shielded stored energy outside the accessible temperature channel.
+4. Relate the distribution width to $k_B T_{\mathrm{temp}}$ while keeping shielded stored energy outside the accessible temperature channel.
 
 **Derivation target:**
 $$
 \langle \|\mathbf v\|^2\rangle
 =
-\frac{3k_B T}{m_{\mathrm{eff}}}
+\frac{3k_B T_{\mathrm{temp}}}{m_{\mathrm{eff}}}
 $$
 
 where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode inertia supplied by the same retained record, not a primitive architrino mass.

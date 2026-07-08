@@ -1,6 +1,6 @@
 # Plane-Normal Precession Ansatz
 
-Promotion status: `priority-only`. This packet develops the plane-normal precession ansatz for same-level tri-binary intrinsic curve dynamics. It extends the short precession row in [deformed-carrier-dynamics-ansatz.md](deformed-carrier-dynamics-ansatz.md) using the arclength dynamics equation in [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) and the theorem target in [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md).
+Promotion status: `priority-only`. This packet develops the plane-normal precession ansatz for same-level braid intrinsic curve dynamics. It extends the short precession row in [deformed-carrier-dynamics-ansatz.md](deformed-carrier-dynamics-ansatz.md) using the arclength dynamics equation in [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md) and the theorem target in [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md).
 
 Claim level: deformation theorem-target and simulation-target material. This packet does not claim a retained branch. It supplies the curve family, arclength constraints, curvature terms, root-ledger variations, and residual entries that a retained shell braid dynamics packet would have to close.
 

@@ -67,6 +67,12 @@ function receiverNormalFields({ direction, sourceVelocity, receiverVelocity, sig
   const receiverNormalCrossingFactor = receiverNormalNumerator / signalSpeed;
   const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
   const unsignedReceiverNormalFactor = Math.abs(receiverNormalFactor);
+  // Signed branch orientation m = D_T / D_s carried by the canonical master
+  // equation. Exposed explicitly alongside the unsigned branchWeight the force
+  // strength uses, so a same-source hinge consumer can apply the sign: past the
+  // field-speed crossing an accelerating receiver outruns its own emitting past,
+  // giving D_T < 0 < D_s and an absorptive (m < 0) contribution.
+  const signedBranchOrientation = receiverNormalFactor;
   let receiverNormalStatusCode = STATUS_OK;
   if (
     !Number.isFinite(receiverNormalFactor) ||
@@ -87,6 +93,7 @@ function receiverNormalFields({ direction, sourceVelocity, receiverVelocity, sig
     receiverNormalCrossingFactor,
     receiverNormalFactor,
     unsignedReceiverNormalFactor,
+    signedBranchOrientation,
     receiverNormalStatusCode,
   };
 }
@@ -105,7 +112,15 @@ export function evaluateMovingCircularSourcePhase(source = {}, timeSeconds = 0) 
   const epochTime = finiteNumber(source.epochTime);
   const phaseAtEpoch = finiteNumber(source.phaseAtEpoch);
   const angularVelocity = finiteNumber(source.angularVelocity);
-  return phaseRecord(phaseAtEpoch + angularVelocity * (finiteNumber(timeSeconds) - epochTime));
+  // Optional constant angular acceleration alpha (default 0 preserves the
+  // fixed-omega rigid circle exactly). With alpha != 0 the tangential speed
+  // omega(t)*|r| sweeps through the field-speed edge, so a same-source root can
+  // realize the pump-driven crossing rather than the reflection-locked m = +1.
+  const angularAcceleration = finiteNumber(source.angularAcceleration);
+  const dt = finiteNumber(timeSeconds) - epochTime;
+  return phaseRecord(
+    phaseAtEpoch + angularVelocity * dt + 0.5 * angularAcceleration * dt * dt
+  );
 }
 
 export function evaluateMovingCircularSourceHistory(source = {}, timeSeconds = 0) {
@@ -117,14 +132,18 @@ export function evaluateMovingCircularSourceHistory(source = {}, timeSeconds = 0
   const radiusU = vector(source.radiusU);
   const radiusV = vector(source.radiusV);
   const angularVelocity = finiteNumber(source.angularVelocity);
+  const angularAcceleration = finiteNumber(source.angularAcceleration);
   const phase = evaluateMovingCircularSourcePhase(source, time);
   const cos = Math.cos(phase.rawRadians);
   const sin = Math.sin(phase.rawRadians);
   const center = add(centerAtEpoch, scale(centerVelocity, dt));
   const radiusOffset = add(scale(radiusU, cos), scale(radiusV, sin));
+  // Instantaneous angular rate omega(t) = omega_0 + alpha * dt; at alpha = 0
+  // this is exactly the prior fixed-omega tangential velocity.
+  const instantaneousAngularVelocity = angularVelocity + angularAcceleration * dt;
   const tangentialVelocity = add(
-    scale(radiusU, -angularVelocity * sin),
-    scale(radiusV, angularVelocity * cos)
+    scale(radiusU, -instantaneousAngularVelocity * sin),
+    scale(radiusV, instantaneousAngularVelocity * cos)
   );
   return {
     time,
@@ -463,6 +482,7 @@ export function createMovingCircularSourceRootRequest({
       radiusU: vector(source?.radiusU),
       radiusV: vector(source?.radiusV),
       angularVelocity: finiteNumber(source?.angularVelocity),
+      angularAcceleration: finiteNumber(source?.angularAcceleration),
       phaseAtEpoch: finiteNumber(source?.phaseAtEpoch),
       epochTime: finiteNumber(source?.epochTime),
       errorBound: finiteNumber(source?.errorBound),
@@ -622,6 +642,7 @@ export function createMovingCircularSameSourceRootRequest({
       radiusU: vector(source?.radiusU),
       radiusV: vector(source?.radiusV),
       angularVelocity: finiteNumber(source?.angularVelocity),
+      angularAcceleration: finiteNumber(source?.angularAcceleration),
       phaseAtEpoch: finiteNumber(source?.phaseAtEpoch),
       epochTime: finiteNumber(source?.epochTime),
       errorBound: finiteNumber(source?.errorBound),

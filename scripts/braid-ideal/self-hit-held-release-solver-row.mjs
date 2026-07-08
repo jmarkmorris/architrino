@@ -1,10 +1,13 @@
 import crypto from "node:crypto";
+import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "self_hit_held_release_solver_row.v0";
 export const DEFAULT_SEED_ID = "braid-ideal:held-release:face-opposite:six-point:v0";
 export const DEFAULT_ROUTE_ID = "braid-ideal:self-hit-held-release:face-opposite:v0";
 export const DEFAULT_GROUP_VELOCITY = [1 / 60, 1 / 60, 1 / 60];
+export const CANDIDATE_SAME_RECORD_REQUEST_SCHEMA = "sh_0_sea_candidate_same_record_request.v0";
+export const SEA_SELF_HIT_COMPARISON_SCHEMA = "sea_screened_self_hit_comparison_row.diagnostic.v0";
 
 const DEFAULT_FIELD_SPEED = 1;
 const DEFAULT_COUPLING = 1 / 36;
@@ -126,6 +129,152 @@ function makeLedgerHook(name, rowPrefix) {
   };
 }
 
+// Candidate same-record target binding: consumes the named SH-0-sea spacing
+// candidate request (`sh_0_sea_candidate_same_record_request.v0`) as this
+// row's declared sea-environment target binding. The binding authorizes
+// nothing; it records which candidate the eventual retained-history row must
+// bind to, and it inherits the request's own fail-closed blocker chain.
+function buildCandidateSameRecordTargetBinding(request) {
+  if (request == null) {
+    return {
+      required_schema: CANDIDATE_SAME_RECORD_REQUEST_SCHEMA,
+      supplied: false,
+      binding_status: "candidate_request_missing",
+      candidate_id: null,
+      a_fcc: null,
+      consumer_listed: null,
+      request_first_missing_object: null,
+      authorizes_nothing: true,
+      first_missing_field: "candidate_same_record_request",
+    };
+  }
+  const consumers = Array.isArray(request.downstream_consumers) ? request.downstream_consumers : [];
+  const schemaMatches = request.schema === CANDIDATE_SAME_RECORD_REQUEST_SCHEMA;
+  const candidateId = request.candidate?.candidate_id ?? null;
+  const consumerListed = consumers.includes("self_hit_held_release_solver_row");
+  const bound = schemaMatches && candidateId != null && consumerListed;
+  return {
+    required_schema: CANDIDATE_SAME_RECORD_REQUEST_SCHEMA,
+    supplied: true,
+    binding_status: bound
+      ? "candidate_request_bound_not_accepted"
+      : "candidate_request_invalid_or_consumer_not_listed",
+    candidate_id: candidateId,
+    a_fcc: request.candidate?.a_fcc ?? null,
+    candidate_inward_projection: request.candidate?.Pi_R_A_sea ?? null,
+    consumer_listed: consumerListed,
+    request_authority_class: request.authority_class ?? null,
+    request_first_missing_object: request.first_missing_object ?? null,
+    authorizes_nothing: true,
+    first_missing_field: bound ? null : "candidate_same_record_request",
+  };
+}
+
+// Diagnostic witness comparison of one sea-screened held-release toy row with
+// same-source self-hits enabled against its self-hit-disabled baseline.
+// Priority-only toy probe; never accepted evidence.
+export function summarizeSeaScreenedSelfHitComparison({ runHandle, withSelfHits, withoutSelfHits }) {
+  const frameCrossTime = (result) => {
+    const frame = result.frames.find((entry) => entry.metrics.fieldSpeedRatioMax >= 1);
+    return frame ? frame.time : null;
+  };
+  const returnTurnTimes = (result) =>
+    result.trajectoryDiagnostics.radialTurnRows
+      .filter((turn) => turn.turnKind === "expansion_to_compression")
+      .map((turn) => turn.time);
+  const finalMetrics = (result) => result.frames[result.frames.length - 1].metrics;
+
+  if (withSelfHits.configuration.includeSelfHits !== true) {
+    throw new TypeError("withSelfHits result must have includeSelfHits=true");
+  }
+  if (withoutSelfHits.configuration.includeSelfHits === true) {
+    throw new TypeError("withoutSelfHits result must have includeSelfHits=false");
+  }
+
+  let firstDivergenceTime = null;
+  const frameCount = Math.min(withSelfHits.frames.length, withoutSelfHits.frames.length);
+  for (let index = 0; index < frameCount; index += 1) {
+    const a = withSelfHits.frames[index].metrics;
+    const b = withoutSelfHits.frames[index].metrics;
+    if (Math.abs(a.radiusMean - b.radiusMean) > 1e-12 || Math.abs(a.speedMax - b.speedMax) > 1e-12) {
+      firstDivergenceTime = withSelfHits.frames[index].time;
+      break;
+    }
+  }
+  const crossingWith = frameCrossTime(withSelfHits);
+  const crossingWithout = frameCrossTime(withoutSelfHits);
+  const selfHitActivationAtHinge =
+    firstDivergenceTime == null || (crossingWith != null && firstDivergenceTime >= crossingWith);
+  const withFinal = finalMetrics(withSelfHits);
+  const withoutFinal = finalMetrics(withoutSelfHits);
+  const amplifiesRunaway =
+    selfHitActivationAtHinge &&
+    withSelfHits.rootStats.selfHitRoots > 0 &&
+    withFinal.fieldSpeedRatioMax > withoutFinal.fieldSpeedRatioMax;
+  return {
+    schema: SEA_SELF_HIT_COMPARISON_SCHEMA,
+    authority: "priority_only_toy_probe_not_accepted_evidence",
+    accepted: false,
+    run_handle: runHandle,
+    fcc_sea_spacing: withSelfHits.configuration.fccSeaShell?.spacing ?? null,
+    prehistory_mode: withSelfHits.configuration.prehistoryMode ?? null,
+    surface_speed_fraction:
+      withSelfHits.configuration.angularMomentumRelease?.surfaceSpeedFraction ?? 0,
+    self_hit_min_delay: withSelfHits.configuration.selfHitMinDelay ?? null,
+    return_turn_times_with_self_hits: returnTurnTimes(withSelfHits),
+    return_turn_times_without_self_hits: returnTurnTimes(withoutSelfHits),
+    field_speed_crossing_frame_time_with: crossingWith,
+    field_speed_crossing_frame_time_without: crossingWithout,
+    first_divergence_frame_time: firstDivergenceTime,
+    self_hit_activation_at_field_speed_hinge: selfHitActivationAtHinge,
+    self_hit_roots: withSelfHits.rootStats.selfHitRoots,
+    max_self_hit_roots_per_directed_pair: withSelfHits.rootStats.maxSelfHitRootsPerDirectedPair,
+    max_branch_weight_with: withSelfHits.rootStats.maxBranchWeight,
+    max_branch_weight_without: withoutSelfHits.rootStats.maxBranchWeight,
+    final_radius_mean_with: withFinal.radiusMean,
+    final_radius_mean_without: withoutFinal.radiusMean,
+    final_field_speed_ratio_with: withFinal.fieldSpeedRatioMax,
+    final_field_speed_ratio_without: withoutFinal.fieldSpeedRatioMax,
+    hinge_absorber_finding: amplifiesRunaway
+      ? "self_hit_channel_amplifies_post_hinge_runaway_not_absorber"
+      : selfHitActivationAtHinge
+        ? "no_post_hinge_amplification_witnessed"
+        : "sub_field_divergence_witnessed_self_hit_policy_defect",
+  };
+}
+
+function buildSeaScreenedSelfHitDiagnosticWitness(comparisonRows) {
+  if (!Array.isArray(comparisonRows) || comparisonRows.length === 0) {
+    return {
+      authority: "priority_only_toy_probe_not_accepted_evidence",
+      rows: [],
+      hinge_absorber_decision: "no_comparison_rows_supplied",
+      first_missing_field: "sea_screened_self_hit_comparison_rows",
+    };
+  }
+  const allActivationsAtHinge = comparisonRows.every(
+    (row) => row.self_hit_activation_at_field_speed_hinge === true
+  );
+  const allAmplify = comparisonRows.every(
+    (row) => row.hinge_absorber_finding === "self_hit_channel_amplifies_post_hinge_runaway_not_absorber"
+  );
+  return {
+    authority: "priority_only_toy_probe_not_accepted_evidence",
+    rows: comparisonRows,
+    // Claim discipline: the ejection magnitude is regularization-dependent
+    // (softening / Jacobian floor / self-hit minimum delay), so the toy
+    // witnesses the uncontrolled fold crossing, not the controlled click; it
+    // cannot decide the click-absorber question. See the packet section
+    // "Self-Hit Probe Inside the Sea Shell - 2026-07-07".
+    hinge_absorber_decision: allAmplify
+      ? "naive_self_hit_kernel_uniformly_ejective_toy_cannot_decide_controlled_click"
+      : allActivationsAtHinge
+        ? "mixed_findings_absorber_question_open"
+        : "comparison_defect_sub_field_divergence",
+    first_missing_field: null,
+  };
+}
+
 export function buildSelfHitHeldReleaseSolverRow(options = {}) {
   const seedId = options.seedId ?? DEFAULT_SEED_ID;
   const routeId = options.routeId ?? DEFAULT_ROUTE_ID;
@@ -147,6 +296,12 @@ export function buildSelfHitHeldReleaseSolverRow(options = {}) {
   const pathHistoryStreamRequests = makeRequestedPathHistoryStreams(rowPrefix, seedRows);
   const sameSourceSelfHitRequirements = makeSameSourceSelfHitRequirements(rowPrefix, seedRows);
   const partnerCausalRootReplayRequirements = makePartnerCausalRootRequirements(rowPrefix, seedRows);
+  const candidateSameRecordTargetBinding = buildCandidateSameRecordTargetBinding(
+    options.candidateSameRecordRequest ?? null
+  );
+  const seaScreenedSelfHitDiagnosticWitness = buildSeaScreenedSelfHitDiagnosticWitness(
+    options.seaScreenedSelfHitComparisonRows ?? null
+  );
 
   return {
     schema: SCHEMA,
@@ -224,6 +379,35 @@ export function buildSelfHitHeldReleaseSolverRow(options = {}) {
       retained_source_binding: null,
       first_missing_field: "central_solver_retained_history_row",
     },
+    candidate_same_record_target_binding: candidateSameRecordTargetBinding,
+    sea_screened_self_hit_diagnostic_witness: seaScreenedSelfHitDiagnosticWitness,
+    central_solver_self_hit_brake_finding: {
+      // Consumed finding from self-hit-brake-central-measurement.mjs, which drives
+      // the production same-source causal-root runtime
+      // (AbsoluteHistoryRootRuntime.solveMovingCircularSameSourceCausalRoots).
+      // The production runtime emits the signed branch orientation
+      // receiverNormalFactor = D_T/D_s (absorptive, m < 0, under the pump-driven
+      // tangential acceleration), superseding the naive |m| ejective reading.
+      // The remaining undecidability is the magnitude, which reduces to a
+      // declared coincidence-stratum length scale (currently a numerical floor).
+      authority: "priority_only_central_solver_measurement_not_accepted_evidence",
+      disposition:
+        "central_solver_self_hit_brake_sign_decided_absorptive_magnitude_reduces_to_declared_coincidence_stratum",
+      signed_orientation_emitted_by_production: true,
+      sign_decided_absorptive: true,
+      magnitude_reduces_to_declared_stratum: true,
+      // Two of the three producer gaps are now landed in the production runtime
+      // (AbsoluteHistoryRootRuntime): the signed branch orientation is emitted
+      // as `signedBranchOrientation`, and the moving-circular source history
+      // accepts an optional `angularAcceleration` so the same-source root
+      // realizes the pump-driven crossing (m<0) directly.
+      resolved_producer_gaps: [
+        "same_source_branch_weight_discards_sign",
+        "rigid_circle_same_source_history_reflection_locks_sign",
+      ],
+      open_producer_gaps: ["coincidence_stratum_is_a_numerical_floor"],
+      first_missing_object: "declared_coincidence_stratum_for_same_source_hinge_magnitude",
+    },
     provider_provenance_requirement: {
       required: true,
       provider_object: null,
@@ -285,11 +469,58 @@ export function validateSelfHitHeldReleaseSolverRow(row) {
   if (row?.authorization?.score_movement !== "no_score_increase") {
     errors.push("score movement must remain no_score_increase");
   }
+  const binding = row?.candidate_same_record_target_binding;
+  if (binding == null || binding.authorizes_nothing !== true) {
+    errors.push("candidate same-record target binding must be present and authorize nothing");
+  }
+  if (binding?.required_schema !== CANDIDATE_SAME_RECORD_REQUEST_SCHEMA) {
+    errors.push(`candidate binding must require ${CANDIDATE_SAME_RECORD_REQUEST_SCHEMA}`);
+  }
+  const witness = row?.sea_screened_self_hit_diagnostic_witness;
+  if (witness == null || witness.authority !== "priority_only_toy_probe_not_accepted_evidence") {
+    errors.push("sea-screened self-hit diagnostic witness must carry priority-only toy-probe authority");
+  }
+  if (Array.isArray(witness?.rows)) {
+    for (const comparisonRow of witness.rows) {
+      if (comparisonRow.accepted !== false || comparisonRow.schema !== SEA_SELF_HIT_COMPARISON_SCHEMA) {
+        errors.push("every self-hit comparison row must be unaccepted and carry the comparison schema");
+        break;
+      }
+    }
+  }
   return errors;
 }
 
+function readJsonOption(rawArgs, flag) {
+  const index = rawArgs.indexOf(flag);
+  if (index === -1) {
+    return null;
+  }
+  const value = rawArgs[index + 1];
+  if (value == null || value.startsWith("--")) {
+    throw new TypeError(`${flag} requires a path value`);
+  }
+  return JSON.parse(fs.readFileSync(value, "utf8"));
+}
+
 function runCli() {
-  const row = buildSelfHitHeldReleaseSolverRow();
+  const rawArgs = process.argv.slice(2);
+  const candidateSameRecordRequest = readJsonOption(rawArgs, "--candidate-same-record-request-json");
+  // Comparisons file: array of { run_handle, with_result_path, without_result_path }.
+  const comparisonsManifest = readJsonOption(rawArgs, "--sea-self-hit-comparisons-json");
+  const seaScreenedSelfHitComparisonRows = Array.isArray(comparisonsManifest)
+    ? comparisonsManifest.map((entry) =>
+        summarizeSeaScreenedSelfHitComparison({
+          runHandle: entry.run_handle,
+          withSelfHits: JSON.parse(fs.readFileSync(entry.with_result_path, "utf8")),
+          withoutSelfHits: JSON.parse(fs.readFileSync(entry.without_result_path, "utf8")),
+        })
+      )
+    : null;
+  const row = buildSelfHitHeldReleaseSolverRow({
+    candidateSameRecordRequest,
+    seaScreenedSelfHitComparisonRows,
+  });
   const errors = validateSelfHitHeldReleaseSolverRow(row);
   if (errors.length > 0) {
     console.error(errors.join("\n"));

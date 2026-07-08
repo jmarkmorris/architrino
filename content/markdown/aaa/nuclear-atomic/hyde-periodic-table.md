@@ -46,13 +46,8 @@ These capacities are invariant; the chart geometry can change, but these occupan
 
 To first order, filling follows the Madelung ($n+\ell$) ordering with known exceptions in transition and heavy elements. This produces canonical period lengths:
 
-1. 2
-2. 8
-3. 8
-4. 18
-5. 18
-6. 32
-7. 32
+| 2 | 8 | 8 | 18 | 18 | 32 | 32 |
+| --- | --- | --- | --- | --- | --- | --- |
 
 Thus, any alternative representation must still encode $s/p/d/f$ block capacities and resulting periodic recurrences.
 

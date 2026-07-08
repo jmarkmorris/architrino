@@ -1,6 +1,6 @@
 # Same-Source Self-Root Exclusion Lemma
 
-Promotion status: `priority-only`. This packet sharpens the same-source row used by the same-level tri-binary root ledger. It shows that an ordinary same-curve, fixed-speed arclength-parametrized self root cannot be retained as a positive-delay Jacobian-regular delayed root. Therefore any same-source contribution in a retained fixed-speed branch must be either absent by branch policy, represented by a genuinely split source, or supplied by an explicit regularized fold-layer rule with its own action and event ledger. The bounded speed factor exception is stated in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
+Promotion status: `priority-only`. This packet sharpens the same-source row used by the same-level braid root ledger. It shows that an ordinary same-curve, fixed-speed arclength-parametrized self root cannot be retained as a positive-delay Jacobian-regular delayed root. Therefore any same-source contribution in a retained fixed-speed branch must be either absent by branch policy, represented by a genuinely split source, or supplied by an explicit regularized fold-layer rule with its own action and event ledger. The bounded speed factor exception is stated in [variable-speed-factor-extension.md](variable-speed-factor-extension.md).
 
 This does not retain a branch.
 

@@ -31,7 +31,8 @@ export function createAppSceneChromeRuntime({
       typeof currentLevel?.markdownSection === "string"
         ? currentLevel.markdownSection.trim().length > 0
         : !!currentLevel?.markdownSection;
-    const showDocButton = hasDoc && hasSection;
+    const hasSuppressedAutoOpenDoc = hasDoc && currentLevel?.markdownAutoOpen === false;
+    const showDocButton = hasDoc && (hasSection || hasSuppressedAutoOpenDoc);
     markdownDocButton.classList.toggle("is-hidden", !showDocButton);
     markdownDocButton.disabled = !showDocButton;
   }

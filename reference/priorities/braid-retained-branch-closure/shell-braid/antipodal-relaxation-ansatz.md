@@ -1,6 +1,6 @@
 # Antipodal Relaxation Ansatz
 
-Promotion status: `priority-only`. This packet develops the antipodal-relaxation ansatz for same-level tri-binary intrinsic curve dynamics. It is a theorem-target and search-chart packet only. It does not claim a retained branch, a spinor proof, a mass map, observer export, or migration readiness.
+Promotion status: `priority-only`. This packet develops the antipodal-relaxation ansatz for same-level braid intrinsic curve dynamics. It is a theorem-target and search-chart packet only. It does not claim a retained branch, a spinor proof, a mass map, observer export, or migration readiness.
 
 This packet uses the intrinsic curve equation from [intrinsic-curve-dynamics-equation.md](intrinsic-curve-dynamics-equation.md), the retention hypotheses from [minimal-dynamics-closure-theorem.md](minimal-dynamics-closure-theorem.md), the current negative dynamics synthesis in [current-dynamics-synthesis.md](current-dynamics-synthesis.md), and the carrier/spin obligations in [topological-carrier-and-spin-targets.md](topological-carrier-and-spin-targets.md).
 

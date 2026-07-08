@@ -127,9 +127,9 @@ Massive-interference experiments and precision gravity readouts jointly test whe
 
 * **Constraint** – for two branch-level mass-density histories $\rho_1$ and $\rho_2$, the gravitational distinguishability diagnostic
   $$
-  \mathcal{D}_{\mathrm{grav}}(T;\theta)
+  \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
   =
-  \int_0^{T_{\mathrm{run}}}\!\!\int_0^{T_{\mathrm{run}}}
+  \int_0^{T_W}\!\!\int_0^{T_W}
   \Delta h_A(t_{\mathrm{eff}})\,
   N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})\,
   \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}

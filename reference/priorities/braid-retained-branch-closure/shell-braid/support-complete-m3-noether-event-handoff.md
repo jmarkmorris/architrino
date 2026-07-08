@@ -1,6 +1,6 @@
 # Support-Complete $M=3$ Noether Event Handoff
 
-Promotion status: `priority-only`. This packet states the conservation and event-ledger handoff required after an exact-antipodal $M=3$ support-complete dynamics/action candidate. It specializes [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md), [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md), and [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md) to the current same-level tri-binary dynamics stack.
+Promotion status: `priority-only`. This packet states the conservation and event-ledger handoff required after an exact-antipodal $M=3$ support-complete dynamics/action candidate. It specializes [noether-action-conservation-closure-theorem.md](noether-action-conservation-closure-theorem.md), [central-inventory-and-event-ledgers.md](central-inventory-and-event-ledgers.md), and [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md) to the current same-level braid dynamics stack.
 
 It does not retain a branch. It says what the next packet must compute if the exact-antipodal $M=3$ solve reaches `support-complete-exact-antipodal-dynamics-action-candidate`.
 

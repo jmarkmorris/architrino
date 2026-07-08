@@ -28,6 +28,30 @@ const CYCLIC_SITE_MAP = Object.freeze({
 
 const HOLD_ROTATION_MAX_ANGLE_STEP = 0.005;
 
+// Sea-screened mode: 12 like Noether braid assemblies on the FCC nearest-neighbor
+// shell (attempt `aa` of the SH-0-sea diagnostic candidate model), each a held
+// static face-opposite six-site decoration with aligned orientation and a declared
+// held history window. One-way environment: the held neighbors act on the released
+// seed; the seed does not back-react on the neighbors (declared held histories).
+// See reference/priorities/braid-ideal/sh-0-sea-diagnostic-candidate-model.md,
+// Computed Dipole Wake-Sum Result.
+const FCC_SEA_DIRECTIONS = Object.freeze([
+  [1, 1, 0], [1, -1, 0], [-1, 1, 0], [-1, -1, 0],
+  [1, 0, 1], [1, 0, -1], [-1, 0, 1], [-1, 0, -1],
+  [0, 1, 1], [0, 1, -1], [0, -1, 1], [0, -1, -1],
+].map((direction) => Object.freeze(direction)));
+
+const FCC_SEA_BRAID_UNIT_SITES = Object.freeze([
+  Object.freeze({ q: 1, offset: Object.freeze([1, 0, 0]) }),
+  Object.freeze({ q: 1, offset: Object.freeze([0, 1, 0]) }),
+  Object.freeze({ q: 1, offset: Object.freeze([0, 0, 1]) }),
+  Object.freeze({ q: -1, offset: Object.freeze([-1, 0, 0]) }),
+  Object.freeze({ q: -1, offset: Object.freeze([0, -1, 0]) }),
+  Object.freeze({ q: -1, offset: Object.freeze([0, 0, -1]) }),
+]);
+
+const FCC_SEA_MIN_NON_OVERLAP_SPACING = 2 * Math.SQRT2;
+
 const TOY_CLOSURE_THRESHOLDS = Object.freeze({
   centerNorm: 1e-9,
   radiusStd: 1e-9,
@@ -105,10 +129,13 @@ function parseArgs(argv) {
     causalWeight: true,
     includeSelfHits: false,
     selfHitMinDelay: null,
+    selfHitKernel: "naive",
     maxAcceleration: Infinity,
     surfaceSpeedFraction: 0,
     spinAxis: [1, 1, 1],
     prehistoryMode: "stationary-held-release",
+    fccSeaSpacing: null,
+    fccSeaHeldWindow: 24,
   };
 
   for (let index = 0; index < rawArgs.length; index += 1) {
@@ -162,6 +189,12 @@ function parseArgs(argv) {
     } else if (arg === "--self-hit-min-delay") {
       parsed.selfHitMinDelay = nonnegativeFiniteNumber(requireNext(rawArgs, index, arg), "self-hit-min-delay");
       index += 1;
+    } else if (arg === "--self-hit-kernel") {
+      parsed.selfHitKernel = requireNext(rawArgs, index, arg);
+      if (!SELF_HIT_KERNELS.includes(parsed.selfHitKernel)) {
+        throw new TypeError(`--self-hit-kernel must be one of: ${SELF_HIT_KERNELS.join("|")}`);
+      }
+      index += 1;
     } else if (arg === "--no-causal-weight") {
       parsed.causalWeight = false;
     } else if (arg === "--surface-speed-fraction") {
@@ -179,6 +212,15 @@ function parseArgs(argv) {
         throw new TypeError(`--prehistory-mode must be one of: ${PREHISTORY_MODES.join("|")}`);
       }
       index += 1;
+    } else if (arg === "--fcc-sea-spacing") {
+      parsed.fccSeaSpacing = positiveFiniteNumber(requireNext(rawArgs, index, arg), "fcc-sea-spacing");
+      index += 1;
+    } else if (arg === "--fcc-sea-held-window") {
+      parsed.fccSeaHeldWindow = positiveFiniteNumber(
+        requireNext(rawArgs, index, arg),
+        "fcc-sea-held-window"
+      );
+      index += 1;
     } else {
       throw new TypeError(`Unknown argument: ${arg}`);
     }
@@ -191,6 +233,14 @@ function parseArgs(argv) {
     throw new TypeError(
       "--surface-speed-fraction > 0 requires --prehistory-mode kick-at-release or moving-prehistory"
     );
+  }
+  if (parsed.fccSeaSpacing != null && parsed.fccSeaSpacing < FCC_SEA_MIN_NON_OVERLAP_SPACING) {
+    throw new TypeError(
+      `--fcc-sea-spacing must be >= ${FCC_SEA_MIN_NON_OVERLAP_SPACING} (FCC shell overlap floor 2*sqrt(2))`
+    );
+  }
+  if (parsed.selfHitKernel !== "naive" && !parsed.includeSelfHits) {
+    throw new TypeError("--self-hit-kernel chart-click requires --include-self-hits");
   }
   parsed.outputDir = parsed.outputDir ?? INITIAL_PARTICLE_PRESETS[parsed.preset].outputDir;
   parsed.selfHitMinDelay = parsed.selfHitMinDelay ?? parsed.dt;
@@ -228,6 +278,7 @@ function runHeldRelease(options) {
     firstFieldSpeedCrossing: null,
     firstMissingRoot: null,
     firstSmallJacobian: null,
+    firstSelfHitRoot: null,
   };
   const rootStats = {
     totalRoots: 0,
@@ -243,11 +294,50 @@ function runHeldRelease(options) {
   const trajectoryAccumulator = createTrajectoryAccumulator();
   recordTrajectorySample(trajectoryAccumulator, frames[0].metrics, state);
 
+  const seaShell = createFccSeaShell(options);
+  const seaStats = seaShell
+    ? {
+        contributions: 0,
+        missingHeldWindowRoots: 0,
+        minSourceDistance: Infinity,
+        maxBranchWeight: 0,
+        maxDelay: 0,
+      }
+    : null;
+  const seaRadialProjectionRows = seaShell ? [] : null;
+  let releaseSeaRadialProjection = null;
+
   const totalSteps = Math.ceil(options.duration / options.dt);
   for (let step = 0; step < totalSteps; step += 1) {
     const accelerationResult = evaluateAccelerations(state, history, options);
     mergeRootStats(rootStats, accelerationResult.rootStats);
     detectRootEvents(events, accelerationResult, state);
+    if (seaShell) {
+      const seaResult = evaluateSeaAccelerations(state, options, seaShell);
+      for (let i = 0; i < state.particles.length; i += 1) {
+        accelerationResult.accelerations[i] = add(
+          accelerationResult.accelerations[i],
+          seaResult.accelerations[i]
+        );
+      }
+      seaStats.contributions += seaResult.stats.contributions;
+      seaStats.missingHeldWindowRoots += seaResult.stats.missingHeldWindowRoots;
+      seaStats.minSourceDistance = Math.min(
+        seaStats.minSourceDistance,
+        seaResult.stats.minSourceDistance
+      );
+      seaStats.maxBranchWeight = Math.max(seaStats.maxBranchWeight, seaResult.stats.maxBranchWeight);
+      seaStats.maxDelay = Math.max(seaStats.maxDelay, seaResult.stats.maxDelay);
+      if (step === 0) {
+        releaseSeaRadialProjection = seaResult.radialProjection;
+      }
+      if (step === totalSteps - 1 || state.stepIndex % options.sampleEvery === 0) {
+        seaRadialProjectionRows.push({
+          time: cleanNumber(state.time),
+          seaRadialProjection: seaResult.radialProjection,
+        });
+      }
+    }
     applyAccelerationCap(accelerationResult.accelerations, options.maxAcceleration);
     for (let i = 0; i < state.particles.length; i += 1) {
       const particle = state.particles[i];
@@ -340,6 +430,24 @@ function runHeldRelease(options) {
         },
         releaseContinuity,
       },
+      ...(seaShell
+        ? {
+            fccSeaShell: {
+              spacing: cleanNumber(seaShell.spacing),
+              heldWindow: cleanNumber(seaShell.heldWindow),
+              neighborCount: FCC_SEA_DIRECTIONS.length,
+              sitesPerNeighbor: FCC_SEA_BRAID_UNIT_SITES.length,
+              sourceCount: seaShell.sources.length,
+              decoration:
+                "face-opposite unit sites, aligned orientation, held static over the declared window",
+              environmentCoupling:
+                "one-way: held neighbors act on the released seed; no back-reaction on the sea (declared held histories)",
+              minNonOverlapSpacing: cleanNumber(FCC_SEA_MIN_NON_OVERLAP_SPACING),
+              geometryCarrierRef: "sh_0_sea_model:fcc_nearest_neighbor_shell_row",
+              wakeSumSourceRowRef: "sh_0_sea_dipole_wake_sum_source:2f3aad5e6cced01f",
+            },
+          }
+        : {}),
     },
     modelNotes: [
       "Each directed pair contributes through all detected causal roots in the retained history window.",
@@ -355,11 +463,34 @@ function runHeldRelease(options) {
         ? "Same-source causal roots are included as a priority-only toy probe and filtered to delayed roots only."
         : "Same-source self-hits are disabled in the default toy run.",
       "Architrinos are treated as primitives without physical mass; acceleration is a numerical response variable.",
+      ...(seaShell
+        ? [
+            "Sea-screened mode: 12 held static face-opposite neighbor braids on the FCC nearest-neighbor shell contribute delayed inverse-square forces with exact static causal roots (sourceJacobian=1) and receiver-normal branch weights; the environment is one-way by declared held histories.",
+          ]
+        : []),
     ],
     classification,
     closureDiagnostics,
     trajectoryDiagnostics,
     reducedRadiusDiagnostics,
+    ...(seaShell
+      ? {
+          seaShellDiagnostics: {
+            claim: "diagnostic sea-screened row only; not a retained branch, stability, or accepted-evidence claim",
+            releaseSeaRadialProjection: cleanNumber(releaseSeaRadialProjection),
+            seaStats: {
+              contributions: seaStats.contributions,
+              missingHeldWindowRoots: seaStats.missingHeldWindowRoots,
+              minSourceDistance: cleanNumber(seaStats.minSourceDistance),
+              maxBranchWeight: cleanNumber(seaStats.maxBranchWeight),
+              maxDelay: cleanNumber(seaStats.maxDelay),
+            },
+            seaRadialProjectionRows,
+            escapeCertificateEnvelopeCaveat:
+              "the delayed escape certificate envelope constant bounds partner sources only; sea-screened rows add held-environment inward force outside that envelope, so certificate margins on this row are diagnostic, not lemma-backed",
+          },
+        }
+      : {}),
     events,
     rootStats,
     finalMetrics,
@@ -506,6 +637,79 @@ function rotateAboutAxis(vector, axisUnit, angle) {
     add(scale(vector, cosAngle), scale(cross(axisUnit, vector), sinAngle)),
     scale(axisUnit, axialComponent * (1 - cosAngle))
   );
+}
+
+function createFccSeaShell(options) {
+  if (options.fccSeaSpacing == null) {
+    return null;
+  }
+  const sources = [];
+  FCC_SEA_DIRECTIONS.forEach((direction, neighborIndex) => {
+    const center = scale(direction, options.fccSeaSpacing / 2);
+    for (const site of FCC_SEA_BRAID_UNIT_SITES) {
+      sources.push({
+        neighborIndex,
+        q: site.q,
+        position: add(center, site.offset),
+      });
+    }
+  });
+  return {
+    spacing: options.fccSeaSpacing,
+    heldWindow: options.fccSeaHeldWindow,
+    sources,
+  };
+}
+
+function evaluateSeaAccelerations(state, options, seaShell) {
+  const accelerations = state.particles.map(() => [0, 0, 0]);
+  const stats = {
+    contributions: 0,
+    missingHeldWindowRoots: 0,
+    minSourceDistance: Infinity,
+    maxBranchWeight: 0,
+    maxDelay: 0,
+  };
+  for (let i = 0; i < state.particles.length; i += 1) {
+    const receiver = state.particles[i];
+    for (const source of seaShell.sources) {
+      // Held static source: the causal root is exact and unique
+      // (emissionTime = hitTime - distance / fieldSpeed), sourceJacobian = 1.
+      const displacement = subtract(receiver.position, source.position);
+      const distance = norm(displacement);
+      const delay = distance / options.fieldSpeed;
+      if (state.time - delay < -seaShell.heldWindow) {
+        stats.missingHeldWindowRoots += 1;
+        continue;
+      }
+      stats.contributions += 1;
+      stats.minSourceDistance = Math.min(stats.minSourceDistance, distance);
+      stats.maxDelay = Math.max(stats.maxDelay, delay);
+      const direction = distance > 0 ? scale(displacement, 1 / distance) : [0, 0, 0];
+      const receiverNormalFactor =
+        (options.fieldSpeed - dot(receiver.velocity, direction)) / options.fieldSpeed;
+      const branchWeight = options.causalWeight ? Math.abs(receiverNormalFactor) : 1;
+      stats.maxBranchWeight = Math.max(stats.maxBranchWeight, branchWeight);
+      const denominator = Math.pow(
+        distance * distance + options.softening * options.softening,
+        1.5
+      );
+      const coefficient = (options.coupling * receiver.q * source.q * branchWeight) / denominator;
+      accelerations[i] = add(accelerations[i], scale(displacement, coefficient));
+    }
+  }
+  const center = meanVector(state.particles.map((particle) => particle.position));
+  let radialProjectionSum = 0;
+  for (let i = 0; i < state.particles.length; i += 1) {
+    const offset = subtract(state.particles[i].position, center);
+    const radius = norm(offset);
+    radialProjectionSum += radius > 0 ? dot(offset, accelerations[i]) / radius : 0;
+  }
+  return {
+    accelerations,
+    stats,
+    radialProjection: cleanNumber(radialProjectionSum / state.particles.length),
+  };
 }
 
 function evaluateAccelerations(state, history, options) {
@@ -1416,6 +1620,13 @@ function detectRootEvents(events, accelerationResult, state) {
       smallJacobianRoots: accelerationResult.rootStats.smallJacobianRoots,
     };
   }
+  if (!events.firstSelfHitRoot && accelerationResult.rootStats.selfHitRoots > 0) {
+    events.firstSelfHitRoot = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      selfHitRoots: accelerationResult.rootStats.selfHitRoots,
+    };
+  }
 }
 
 function mergeRootStats(total, next) {
@@ -1489,6 +1700,7 @@ function createConsoleSummary(result) {
     closureDiagnostics: result.closureDiagnostics,
     trajectoryDiagnostics: result.trajectoryDiagnostics,
     reducedRadiusDiagnostics: result.reducedRadiusDiagnostics,
+    ...(result.seaShellDiagnostics ? { seaShellDiagnostics: result.seaShellDiagnostics } : {}),
     outputDir: options.outputDir,
     configuration: result.configuration,
     events: result.events,
@@ -1677,6 +1889,10 @@ Options:
   --spin-axis <x,y,z>          spin axis, normalized internally, default 1,1,1 (axis-neutral)
   --prehistory-mode <mode>     one of ${PREHISTORY_MODES.join("|")},
                                default stationary-held-release
+  --fcc-sea-spacing <a>        activate the sea-screened mode: 12 held static face-opposite
+                               neighbor braids on the FCC nearest-neighbor shell at lattice
+                               spacing a (must be >= 2*sqrt(2)); default off
+  --fcc-sea-held-window <W>    declared held-history window for the sea sources, default 24
   --out <path>                 output directory, default ${DEFAULT_OUTPUT_DIR}
 `);
   process.exit(exitCode);

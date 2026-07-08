@@ -1,6 +1,6 @@
 # Attraction/Repulsion Force-Moment Decomposition
 
-Promotion status: `priority-only`. This packet advances the dynamics implications of the neutral same-level tri-binary inventory without converting the inventory count into a branch-retention claim. It refines [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md), [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md), [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md), and [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md).
+Promotion status: `priority-only`. This packet advances the dynamics implications of the neutral same-level braid inventory without converting the inventory count into a branch-retention claim. It refines [attraction-repulsion-inventory-theorem.md](attraction-repulsion-inventory-theorem.md), [free-support-bounded-speed-dynamics.md](free-support-bounded-speed-dynamics.md), [bounded-speed-factor-speed-ode-solvability.md](bounded-speed-factor-speed-ode-solvability.md), and [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md).
 
 The packet's purpose is narrow: decompose the bounded-speed force ledger into opposite-polarity attractive and same-polarity repulsive source-site sums, then expose the tangent-power, normal-curvature, and support-radial moment rows that the $3$-$2$ source inventory can bias. It does not retain a branch, derive the action scale, solve the speed ODE, reconstruct the normal curve, or certify support viability.
 
@@ -22,7 +22,7 @@ not branch retention and not force closure.
 
 ## 1. Source-Site And Root-Ledger Split
 
-Let the neutral same-level tri-binary site set be
+Let the neutral same-level braid site set be
 
 $$
 I=\{1,2,3\}\times\{+,-\},
@@ -780,7 +780,7 @@ $$
 
 ## 6. Theorem Target
 
-**Theorem target: attraction/repulsion force-moment decomposition.** Fix one same-level neutral tri-binary site inventory, one bounded speed factor root ledger, one support descriptor, one source-pair policy, one same-source policy, and one row-weight convention. For each receiver $i$, excluding any separately emitted same-source and medium-response rows:
+**Theorem target: attraction/repulsion force-moment decomposition.** Fix one same-level neutral braid site inventory, one bounded speed factor root ledger, one support descriptor, one source-pair policy, one same-source policy, and one row-weight convention. For each receiver $i$, excluding any separately emitted same-source and medium-response rows:
 
 1. the architrino force decomposes exactly into opposite-polarity attractive and same-polarity repulsive source-site sums with weights $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$;
 2. the tangent-power, normal-curvature-drive, and support-radial-moment diagnostics are the corresponding projections of the same weighted force split;

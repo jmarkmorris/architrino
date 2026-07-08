@@ -23,9 +23,21 @@ export const TARGET_ARTIFACT_HASH =
 export const ACCEPTED_EVIDENCE_BLOCKER_OBJECT = "held_release_seed_path_rows_acceptance_certificate.v0";
 export const ACCEPTED_EVIDENCE_BLOCKER_FIELD = "held_release_seed_path_rows.acceptance_certificate_ref";
 export const REQUIRED_INWARD_RESPONSE_FLOOR = -0.0934863484737535;
-export const RESPONSE_RUN_SCHEMA = "sh_0_sea_diagnostic_response_run.v0";
-export const CANDIDATE_RESPONSE_ROW_SCHEMA = "sh_0_sea_candidate_response_row.diagnostic.v0";
-export const PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA = "sh_0_sea_produced_response_source_row.diagnostic.v0";
+export const DIPOLE_WAKE_SUM_RUN_SCHEMA = "sh_0_sea_dipole_wake_sum_run.v0";
+export const DIPOLE_WAKE_SUM_SOURCE_ROW_SCHEMA = "sh_0_sea_dipole_wake_sum_source_row.diagnostic.v0";
+export const DIPOLE_WAKE_SUM_SPACING_ROW_SCHEMA = "sh_0_sea_dipole_wake_sum_spacing_row.diagnostic.v0";
+export const DIPOLE_WAKE_SUM_RETENTION_WINDOW_SCHEMA =
+  "sh_0_sea_dipole_wake_sum_retention_window.diagnostic.v0";
+export const DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA = "sh_0_sea_dipole_wake_sum_motion_run.v0";
+export const CANDIDATE_SAME_RECORD_REQUEST_SCHEMA = "sh_0_sea_candidate_same_record_request.v0";
+export const WAKE_SUM_RESPONSE_KIND = "dipole_wake_sum";
+export const NEIGHBOR_MOTION_KINDS = Object.freeze(["breathing", "orbiting"]);
+export const DEFAULT_MOTION_DELTA = 0.2;
+export const DEFAULT_BREATHING_OMEGA_GRID = Object.freeze([1, 2, 4]);
+export const DEFAULT_ORBITING_OMEGA_GRID = Object.freeze([0.25, 0.5, 0.75]);
+export const DEFAULT_PHASE_SAMPLE_COUNT = 16;
+export const DEFAULT_MOTION_SPIN_AXIS = Object.freeze([0, 0, 1]);
+export const MOTION_JACOBIAN_FLOOR = 0.05;
 export const ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA =
   "sh_0_sea_same_target_accepted_provenance_replacement_requirement.v0";
 export const ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA =
@@ -35,7 +47,67 @@ export const ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA =
 export const REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX =
   "repo-authorization:accepted-held-release-seed-path-rows:";
 export const DEFAULT_RESPONSE_DEADBAND = 1e-9;
-export const DEFAULT_PRODUCED_SOURCE_MARGIN_STEP = 0.001;
+export const DEFAULT_A_FCC_MIN = 3;
+export const DEFAULT_A_FCC_MAX = 12;
+export const DEFAULT_A_FCC_STEP = 0.25;
+export const DEFAULT_HELD_HISTORY_WINDOW = 24;
+export const MIN_NON_OVERLAP_A_FCC = 2 * Math.SQRT2;
+export const MASTER_EQUATION_KERNEL = Object.freeze({
+  kernel_source:
+    "held-release-causal-wake-toy master-equation kernel defaults; same normalization as the escape-floor row",
+  kernel_form:
+    "a_recv=coupling*q_recv*q_src*(x_recv-x_src(t-delay))/((|x_recv-x_src(t-delay)|^2+softening^2)^(3/2))*branchWeight",
+  coupling: 1,
+  softening: 0.05,
+  fieldSpeed: 1,
+  branch_weight_held_static_sources: 1,
+  branch_weight_note:
+    "held static sources give sourceJacobian=1; release-time static receivers give receiverNormalFactor=1",
+});
+export const FCC_BRAID_UNIT_SITES = Object.freeze([
+  Object.freeze({
+    site: "+x",
+    polarity: "P",
+    signed_polarity_unit: "\\epsilon_{+,\\bullet}",
+    q: 1,
+    position: Object.freeze([1, 0, 0]),
+  }),
+  Object.freeze({
+    site: "+y",
+    polarity: "P",
+    signed_polarity_unit: "\\epsilon_{+,\\bullet}",
+    q: 1,
+    position: Object.freeze([0, 1, 0]),
+  }),
+  Object.freeze({
+    site: "+z",
+    polarity: "P",
+    signed_polarity_unit: "\\epsilon_{+,\\bullet}",
+    q: 1,
+    position: Object.freeze([0, 0, 1]),
+  }),
+  Object.freeze({
+    site: "-x",
+    polarity: "E",
+    signed_polarity_unit: "\\epsilon_{-,\\bullet}",
+    q: -1,
+    position: Object.freeze([-1, 0, 0]),
+  }),
+  Object.freeze({
+    site: "-y",
+    polarity: "E",
+    signed_polarity_unit: "\\epsilon_{-,\\bullet}",
+    q: -1,
+    position: Object.freeze([0, -1, 0]),
+  }),
+  Object.freeze({
+    site: "-z",
+    polarity: "E",
+    signed_polarity_unit: "\\epsilon_{-,\\bullet}",
+    q: -1,
+    position: Object.freeze([0, 0, -1]),
+  }),
+]);
 export const FCC_SEA_DIAGNOSTIC_ATTEMPT_ID = "aa";
 export const FCC_SEA_POPULATION_SIZE = 12;
 export const FCC_NEAREST_NEIGHBOR_DIRECTIONS = Object.freeze([
@@ -159,24 +231,24 @@ function makeAuthorization({ acceptedSameRecordEvidence = false } = {}) {
   ]);
 }
 
+export function buildFailClosedAuthorization() {
+  return makeAuthorization();
+}
+
 function rowBySuffix(model, suffix) {
   return model.rows.find((row) => row.row_id === `sh_0_sea_model:${suffix}`) ?? null;
 }
 
-function ceilToStep(value, step) {
-  const positiveStep = Math.max(Number.EPSILON, normalizeNumber(step, DEFAULT_PRODUCED_SOURCE_MARGIN_STEP));
-  return cleanNumber(Math.ceil((value - Number.EPSILON) / positiveStep) * positiveStep);
+function subtract3(left, right) {
+  return [left[0] - right[0], left[1] - right[1], left[2] - right[2]];
 }
 
-function requiredPhiAtCurrentCoefficients({ probe, deadband }) {
-  const weakestToyAcceleration = -REQUIRED_INWARD_RESPONSE_FLOOR;
-  const denominator = probe.K_NS_diag;
-  const numerator =
-    weakestToyAcceleration +
-    deadband -
-    probe.Gamma_NS_diag * probe.dot_Phi_probe +
-    probe.W_boundary_projection;
-  return denominator > 0 ? cleanNumber(Math.max(0, numerator / denominator)) : null;
+function dot3(left, right) {
+  return left[0] * right[0] + left[1] * right[1] + left[2] * right[2];
+}
+
+function norm3(vector) {
+  return Math.sqrt(dot3(vector, vector));
 }
 
 function buildTargetBinding(model) {
@@ -499,75 +571,269 @@ function evaluateAcceptedProvenanceReplacementPackage({
   };
 }
 
-function buildDiagnosticResponseProbe({ model, options, producedSourceRow = null }) {
-  const seaStateRow = rowBySuffix(model, "theta_sea_state_row");
-  const thetaSea = seaStateRow?.theta_sea_rho_NS ?? {};
-  const responseInputs = seaStateRow?.response_inputs ?? {};
-  const rhoNs = normalizeNumber(thetaSea.rho_NS, 1);
-  const normalizedDensity = normalizeNumber(thetaSea.n, 1);
-  const eSea = normalizeNumber(thetaSea.e_sea, 0);
-  const c1111 = normalizeNumber(responseInputs.C1111_X, 0);
-  const providerStiffness = c1111 * rhoNs * normalizedDensity;
-  const producedPhi = producedSourceRow?.produced_response_components?.Phi_probe;
+function computeBraidSignedPolarityDipole() {
+  const components = FCC_BRAID_UNIT_SITES.reduce(
+    (sum, site) => [
+      sum[0] + site.q * site.position[0],
+      sum[1] + site.q * site.position[1],
+      sum[2] + site.q * site.position[2],
+    ],
+    [0, 0, 0]
+  );
   return {
-    schema: "sh_0_sea_diagnostic_response_probe.v0",
-    probe_id:
-      normalizeStringRef(options.responseRunHandle) ??
-      `${model.run_matrix_metadata?.run_handle ?? "sh0sea-default"}:theta-sea-provider-e-sea-probe`,
-    coefficient_source: "theta_sea_rho_NS provider row",
-    stiffness_source: "C1111_X * rho_NS * n",
-    radial_displacement_source:
-      producedSourceRow?.row_id ??
-      (options.responseAmplitude == null ? "theta_sea_rho_NS.e_sea" : "cli:response-amplitude"),
-    radial_rate_source: options.responseRate == null ? "default_zero_radial_rate_probe" : "cli:response-rate",
-    boundary_wake_source:
-      options.boundaryWakeProjection == null
-        ? "aa_fcc_shell_default_zero_boundary_wake_projection"
-        : "cli:boundary-wake-projection",
-    geometry_carrier: buildGeometryCarrier(model),
-    rho_NS: cleanNumber(rhoNs),
-    n: cleanNumber(normalizedDensity),
-    e_sea: cleanNumber(eSea),
-    C1111_X: cleanNumber(c1111),
-    K_NS_diag: cleanNumber(normalizeNumber(options.responseStiffness, providerStiffness)),
-    Gamma_NS_diag: cleanNumber(normalizeNumber(options.responseDamping, 0)),
-    Phi_probe: cleanNumber(producedPhi ?? normalizeNumber(options.responseAmplitude, eSea)),
-    dot_Phi_probe: cleanNumber(normalizeNumber(options.responseRate, 0)),
-    W_boundary_projection: cleanNumber(normalizeNumber(options.boundaryWakeProjection, 0)),
-    produced_response_source_row_ref: producedSourceRow?.row_id ?? null,
+    definition: "p=sum_b q_b u_b per held neighbor braid, in signed polarity units",
+    components: components.map(cleanNumber),
+    norm: cleanNumber(norm3(components)),
+    orientation: "aligned_with_central_braid_declared",
   };
 }
 
-function buildProducedResponseSourceRow({ model, seedProbe, options }) {
-  const responseKind = normalizeStringRef(options.responseRowKind) ?? "pressure_tension";
-  const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
-  const requiredPhi = requiredPhiAtCurrentCoefficients({ probe: seedProbe, deadband });
-  const step = normalizeNumber(options.producedSourceMarginStep, DEFAULT_PRODUCED_SOURCE_MARGIN_STEP);
-  const producedPhi =
-    options.producedSourcePhi == null
-      ? ceilToStep(requiredPhi ?? seedProbe.Phi_probe, step)
-      : cleanNumber(normalizeNumber(options.producedSourcePhi, seedProbe.Phi_probe));
+function buildNeighborBraidHeldSources(aFcc) {
+  const sources = [];
+  FCC_NEAREST_NEIGHBOR_DIRECTIONS.forEach((direction, neighborIndex) => {
+    const center = [
+      (direction[0] * aFcc) / 2,
+      (direction[1] * aFcc) / 2,
+      (direction[2] * aFcc) / 2,
+    ];
+    for (const site of FCC_BRAID_UNIT_SITES) {
+      sources.push({
+        neighborIndex,
+        q: site.q,
+        position: [
+          center[0] + site.position[0],
+          center[1] + site.position[1],
+          center[2] + site.position[2],
+        ],
+      });
+    }
+  });
+  return sources;
+}
+
+function computeDipoleWakeSumAtSpacing({ aFcc, heldHistoryWindow }) {
+  const { coupling, softening, fieldSpeed } = MASTER_EQUATION_KERNEL;
+  const sources = buildNeighborBraidHeldSources(aFcc);
+  let radialProjectionSum = 0;
+  let minDelay = Infinity;
+  let maxDelay = 0;
+  let minSourceDistance = Infinity;
+  let coveredRootCount = 0;
+  let missingRootCount = 0;
+  for (const receiver of FCC_BRAID_UNIT_SITES) {
+    const acceleration = [0, 0, 0];
+    for (const source of sources) {
+      const displacement = subtract3(receiver.position, source.position);
+      const distance = norm3(displacement);
+      const delay = distance / fieldSpeed;
+      minDelay = Math.min(minDelay, delay);
+      maxDelay = Math.max(maxDelay, delay);
+      minSourceDistance = Math.min(minSourceDistance, distance);
+      if (delay > heldHistoryWindow) {
+        missingRootCount += 1;
+        continue;
+      }
+      coveredRootCount += 1;
+      const branchWeight = MASTER_EQUATION_KERNEL.branch_weight_held_static_sources;
+      const coefficient =
+        (coupling * receiver.q * source.q * branchWeight) /
+        Math.pow(distance * distance + softening * softening, 1.5);
+      acceleration[0] += coefficient * displacement[0];
+      acceleration[1] += coefficient * displacement[1];
+      acceleration[2] += coefficient * displacement[2];
+    }
+    radialProjectionSum += dot3(receiver.position, acceleration);
+  }
+  return {
+    piRASea: cleanNumber(radialProjectionSum / FCC_BRAID_UNIT_SITES.length),
+    minDelay: cleanNumber(minDelay),
+    maxDelay: cleanNumber(maxDelay),
+    minSourceDistance: cleanNumber(minSourceDistance),
+    coveredRootCount,
+    missingRootCount,
+    expectedDirectedRootCount:
+      FCC_BRAID_UNIT_SITES.length * FCC_SEA_POPULATION_SIZE * FCC_BRAID_UNIT_SITES.length,
+  };
+}
+
+function buildDipoleWakeSumSpacingRow({ aFcc, heldHistoryWindow, deadband }) {
+  const sum = computeDipoleWakeSumAtSpacing({ aFcc, heldHistoryWindow });
+  const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
+  const weakestToyAcceleration = cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR);
+  const totalPostTurnAcceleration = cleanNumber(weakestToyAcceleration + sum.piRASea);
+  const rootCoveragePass = sum.missingRootCount === 0;
+  const shellOverlap = aFcc < MIN_NON_OVERLAP_A_FCC;
+  return {
+    schema: DIPOLE_WAKE_SUM_SPACING_ROW_SCHEMA,
+    a_fcc: cleanNumber(aFcc),
+    nearest_neighbor_center_distance: cleanNumber(aFcc / Math.SQRT2),
+    min_source_distance: sum.minSourceDistance,
+    min_delay: sum.minDelay,
+    max_delay: sum.maxDelay,
+    root_coverage: {
+      declared_held_history_window: cleanNumber(heldHistoryWindow),
+      expected_directed_root_count: sum.expectedDirectedRootCount,
+      covered_root_count: sum.coveredRootCount,
+      missing_root_count: sum.missingRootCount,
+      pass: rootCoveragePass,
+    },
+    field_speed: {
+      field_speed: MASTER_EQUATION_KERNEL.fieldSpeed,
+      max_held_source_speed: 0,
+      max_release_receiver_speed: 0,
+      pass: true,
+    },
+    geometry_validity: {
+      min_non_overlap_a_fcc: cleanNumber(MIN_NON_OVERLAP_A_FCC),
+      shell_overlap: shellOverlap,
+      pass: !shellOverlap,
+    },
+    Pi_R_A_sea: sum.piRASea,
+    floor_evaluation: {
+      weakest_outward_post_turn_ddot_R_toy: weakestToyAcceleration,
+      inward_deadband: deadband,
+      required_projected_response_floor: requiredProjection,
+      total_post_turn_radial_acceleration: totalPostTurnAcceleration,
+      crosses_inward_response_floor: sum.piRASea < requiredProjection,
+      post_turn_return_condition_passed: totalPostTurnAcceleration < -deadband,
+    },
+    free_amplitude_parameter_count: 0,
+    evidence_status: "diagnostic_wake_sum_row_not_retained_evidence",
+  };
+}
+
+function refineFloorCrossingSpacing({ lowSpacing, highSpacing, requiredProjection, piRAtSpacing }) {
+  let low = lowSpacing;
+  let high = highSpacing;
+  for (let iteration = 0; iteration < 40; iteration += 1) {
+    const mid = 0.5 * (low + high);
+    if (piRAtSpacing(mid) < requiredProjection) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  return cleanNumber(0.5 * (low + high));
+}
+
+function buildRetentionWindow({
+  spacingRows,
+  deadband,
+  spacingRange,
+  piRAtSpacing,
+  crossingFlag = (row) => row.floor_evaluation.crosses_inward_response_floor,
+  namedCandidateEnabled = true,
+}) {
+  const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
+  const eligible = (row) =>
+    row.root_coverage.pass && row.field_speed.pass && row.geometry_validity.pass;
+  const eligibleCrossingRows = spacingRows.filter((row) => eligible(row) && crossingFlag(row));
+  const exists = eligibleCrossingRows.length > 0;
+  let windowMin = null;
+  let windowMinBoundary = null;
+  let windowMax = null;
+  let windowMaxBoundary = null;
+  if (exists) {
+    const firstCrossing = eligibleCrossingRows[0];
+    windowMin = firstCrossing.a_fcc;
+    windowMinBoundary =
+      firstCrossing.a_fcc <= spacingRange.a_fcc_min
+        ? firstCrossing.a_fcc <= cleanNumber(MIN_NON_OVERLAP_A_FCC)
+          ? "bounded_by_shell_overlap_constraint"
+          : "bounded_by_declared_range_min"
+        : "first_eligible_crossing_row";
+    const lastCrossing = eligibleCrossingRows[eligibleCrossingRows.length - 1];
+    const lastCrossingIndex = spacingRows.findIndex((row) => row.a_fcc === lastCrossing.a_fcc);
+    const nextRow = spacingRows[lastCrossingIndex + 1] ?? null;
+    if (nextRow == null) {
+      windowMax = lastCrossing.a_fcc;
+      windowMaxBoundary = "truncated_by_declared_range_max";
+    } else if (!nextRow.root_coverage.pass) {
+      windowMax = lastCrossing.a_fcc;
+      windowMaxBoundary = "truncated_by_root_coverage";
+    } else if (!nextRow.geometry_validity.pass || !nextRow.field_speed.pass) {
+      windowMax = lastCrossing.a_fcc;
+      windowMaxBoundary = "truncated_by_row_eligibility";
+    } else {
+      windowMax = refineFloorCrossingSpacing({
+        lowSpacing: lastCrossing.a_fcc,
+        highSpacing: nextRow.a_fcc,
+        requiredProjection,
+        piRAtSpacing,
+      });
+      windowMaxBoundary = "computed_floor_crossing";
+    }
+  }
+  let namedCandidate = null;
+  if (exists && namedCandidateEnabled) {
+    const midpoint = 0.5 * (windowMin + windowMax);
+    const candidateRow = eligibleCrossingRows.reduce((best, row) =>
+      Math.abs(row.a_fcc - midpoint) < Math.abs(best.a_fcc - midpoint) ? row : best
+    );
+    namedCandidate = {
+      candidate_id: `sh0sea-aa-fcc-dipole-wake-sum:a-fcc-${candidateRow.a_fcc}`,
+      a_fcc: candidateRow.a_fcc,
+      Pi_R_A_sea: candidateRow.Pi_R_A_sea,
+      inward_margin_below_required_floor: cleanNumber(
+        requiredProjection - candidateRow.Pi_R_A_sea
+      ),
+      selection_rule: "eligible crossing row nearest the retention-window midpoint",
+      claim_level: "named diagnostic sea-spacing candidate only, not retained evidence",
+    };
+  }
+  return {
+    schema: DIPOLE_WAKE_SUM_RETENTION_WINDOW_SCHEMA,
+    retention_window_exists: exists,
+    required_projected_response_floor: requiredProjection,
+    inward_deadband: deadband,
+    a_fcc_window_min: windowMin,
+    a_fcc_window_min_boundary: windowMinBoundary,
+    a_fcc_window_max: windowMax,
+    a_fcc_window_max_boundary: windowMaxBoundary,
+    eligible_crossing_row_count: eligibleCrossingRows.length,
+    named_sea_spacing_candidate: namedCandidate,
+    evidence_status: "diagnostic_retention_window_not_retained_evidence",
+  };
+}
+
+function buildDipoleWakeSumSourceRow({ model, heldHistoryWindow, deadband, motionDeclaration = null }) {
+  const responseKind = WAKE_SUM_RESPONSE_KIND;
   const targetBinding = buildTargetBinding(model);
   const localRowRefs = buildLocalRowRefs(model);
   const geometryCarrier = buildGeometryCarrier(model);
   const rowKey = {
-    schema: PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
+    schema: DIPOLE_WAKE_SUM_SOURCE_ROW_SCHEMA,
     responseKind,
     targetBinding,
     localRowRefs,
     geometryCarrier,
-    requiredPhi,
-    producedPhi,
-    step,
+    heldHistoryWindow,
+    kernel: MASTER_EQUATION_KERNEL,
+    motionDeclaration,
   };
   const rowHash = stableHash(rowKey);
-  const rowId = `sh_0_sea_produced_response_source:${responseKind}:${rowHash.slice(0, 16)}`;
+  const rowId = `sh_0_sea_dipole_wake_sum_source:${rowHash.slice(0, 16)}`;
   return {
-    schema: PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
+    schema: DIPOLE_WAKE_SUM_SOURCE_ROW_SCHEMA,
     row_id: rowId,
     authority_class: AUTHORITY_CLASS,
     response_kind: responseKind,
-    claim_level: "diagnostic produced same-target response source only",
+    claim_level: "computed diagnostic same-target wake-sum source only",
+    master_equation_kernel: MASTER_EQUATION_KERNEL,
+    held_history_declaration: {
+      neighbor_population: FCC_SEA_POPULATION_SIZE,
+      braid_sites_per_neighbor: FCC_BRAID_UNIT_SITES.length,
+      orientation: "aligned_with_central_braid_declared",
+      held_static_over:
+        motionDeclaration == null ? `[-${cleanNumber(heldHistoryWindow)},0]` : null,
+      held_motion_over:
+        motionDeclaration == null ? null : `[-${cleanNumber(heldHistoryWindow)},0]`,
+      undeclared_environment_degrees_of_freedom: 0,
+    },
+    neighbor_motion_declaration: motionDeclaration,
+    braid_signed_polarity_dipole: computeBraidSignedPolarityDipole(),
+    free_amplitude_parameter_count: 0,
+    fitted_response_amplitude_present: false,
     target_binding: targetBinding,
     event_provenance: {
       boundary_event_row_ref: `${rowId}:boundary-event`,
@@ -603,8 +869,8 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
       weakest_outward_post_turn_ddot_R_toy: cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR),
       inward_deadband: deadband,
       required_projected_response_floor: cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband),
-      required_Phi_probe_at_current_coefficients: requiredPhi,
-      producer_rule: `ceil(required_Phi_probe_at_current_coefficients, ${step})`,
+      producer_rule:
+        "computed master-equation-kernel delayed sum over declared held histories; zero free amplitude",
     },
     action_provenance: {
       action_exchange_row_ref: localRowRefs.action_exchange_row_ref,
@@ -612,15 +878,6 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
       response_work_rate_ref: rowBySuffix(model, "action_exchange_row")?.response_work_rate ?? null,
       diagnostic_action_residual_ref: rowBySuffix(model, "action_exchange_row")?.diagnostic_action_residual ?? null,
       accepted_same_record_action_closure: false,
-    },
-    produced_response_components: {
-      K_NS_diag: seedProbe.K_NS_diag,
-      Gamma_NS_diag: seedProbe.Gamma_NS_diag,
-      Phi_probe: producedPhi,
-      dot_Phi_probe: seedProbe.dot_Phi_probe,
-      W_boundary_projection: seedProbe.W_boundary_projection,
-      source_margin_over_required_Phi:
-        requiredPhi == null ? null : cleanNumber(Math.max(0, producedPhi - requiredPhi)),
     },
     accepted: false,
     first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
@@ -631,15 +888,15 @@ function buildProducedResponseSourceRow({ model, seedProbe, options }) {
 
 function buildAcceptedProvenanceReplacementRequirement({
   model,
-  producedSourceRow,
-  candidateResponseRow,
+  sourceRow,
   options = {},
 }) {
-  if (producedSourceRow == null) {
+  if (sourceRow == null) {
     return null;
   }
+  const producedSourceRow = sourceRow;
   const seedPathRequirement = buildSeedPathAcceptanceCertificateRequirement(model, options);
-  const responseKind = producedSourceRow.response_kind ?? candidateResponseRow?.response_kind ?? "pressure_tension";
+  const responseKind = producedSourceRow.response_kind ?? WAKE_SUM_RESPONSE_KIND;
   const targetBinding = producedSourceRow.target_binding ?? buildTargetBinding(model);
   const geometryCarrier = producedSourceRow.geometry_carrier ?? buildGeometryCarrier(model);
   const expectedRefPrefixes = {
@@ -657,7 +914,6 @@ function buildAcceptedProvenanceReplacementRequirement({
   const acceptedProvenancePackageVerification = evaluateAcceptedProvenanceReplacementPackage({
     acceptedProvenancePackage: options.acceptedProvenancePackage ?? {},
     producedSourceRow,
-    candidateResponseRow,
     seedPathRequirement,
     expectedRefPrefixes,
     targetBinding,
@@ -676,7 +932,6 @@ function buildAcceptedProvenanceReplacementRequirement({
       : seedPathRequirement.status,
     response_kind: responseKind,
     diagnostic_source_row_id: producedSourceRow.row_id,
-    candidate_response_row_id: candidateResponseRow?.row_id ?? null,
     target_binding: targetBinding,
     geometry_carrier: geometryCarrier,
     seed_path_acceptance: {
@@ -736,90 +991,6 @@ function buildAcceptedProvenanceReplacementRequirement({
       ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA,
     ],
     authorization: makeAuthorization({ acceptedSameRecordEvidence: requirementPassed }),
-  };
-}
-
-function buildCandidateResponseRow({ model, probe, options }) {
-  const responseKind = normalizeStringRef(options.responseRowKind) ?? "pressure_tension";
-  const targetBinding = buildTargetBinding(model);
-  const rowKey = {
-    schema: CANDIDATE_RESPONSE_ROW_SCHEMA,
-    responseKind,
-    targetBinding,
-    probe,
-  };
-  const rowHash = stableHash(rowKey);
-  return {
-    schema: CANDIDATE_RESPONSE_ROW_SCHEMA,
-    row_id: `sh_0_sea_candidate_response_row:${responseKind}:${rowHash.slice(0, 16)}`,
-    authority_class: AUTHORITY_CLASS,
-    response_kind: responseKind,
-    claim_level: "candidate same-target response row only",
-    target_binding: targetBinding,
-    local_row_refs: buildLocalRowRefs(model),
-    response_components: {
-      K_NS_diag: probe.K_NS_diag,
-      Gamma_NS_diag: probe.Gamma_NS_diag,
-      Phi_probe: probe.Phi_probe,
-      dot_Phi_probe: probe.dot_Phi_probe,
-      W_boundary_projection: probe.W_boundary_projection,
-      coefficient_source: probe.coefficient_source,
-      radial_displacement_source: probe.radial_displacement_source,
-      boundary_wake_source: probe.boundary_wake_source,
-      geometry_carrier_row_ref: probe.geometry_carrier?.geometry_carrier_row_ref ?? null,
-      geometry_carrier_attempt_id: probe.geometry_carrier?.diagnostic_attempt_id ?? null,
-      produced_response_source_row_ref: probe.produced_response_source_row_ref,
-    },
-    response_equation:
-      "Pi_R A_sea=-K_NS_diag*Phi_probe-Gamma_NS_diag*dot_Phi_probe+W_boundary_projection",
-    accepted: false,
-    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
-    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
-    retained_evidence_authorized: false,
-  };
-}
-
-function projectDiagnosticSeaResponse(candidateResponseRow) {
-  const components = candidateResponseRow.response_components;
-  return cleanNumber(
-    -components.K_NS_diag * components.Phi_probe -
-      components.Gamma_NS_diag * components.dot_Phi_probe +
-      components.W_boundary_projection
-  );
-}
-
-function buildResponseFloorEvaluation({ candidateResponseRow, piRASea, options }) {
-  const components = candidateResponseRow.response_components;
-  const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
-  const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
-  const weakestToyAcceleration = cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR);
-  const totalPostTurnAcceleration = cleanNumber(weakestToyAcceleration + piRASea);
-  const crosses = piRASea < requiredProjection;
-  const additionalInwardProjectionNeeded = cleanNumber(Math.max(0, piRASea - requiredProjection));
-  const denominator = components.K_NS_diag;
-  const numerator =
-    weakestToyAcceleration +
-    deadband -
-    components.Gamma_NS_diag * components.dot_Phi_probe +
-    components.W_boundary_projection;
-  const requiredPhi =
-    denominator > 0 ? cleanNumber(Math.max(0, numerator / denominator)) : null;
-  const multiplier =
-    requiredPhi != null && components.Phi_probe > 0 ? cleanNumber(requiredPhi / components.Phi_probe) : null;
-  return {
-    schema: "sh_0_sea_response_floor_evaluation.diagnostic.v0",
-    candidate_response_row_id: candidateResponseRow.row_id,
-    weakest_outward_post_turn_ddot_R_toy: weakestToyAcceleration,
-    inward_deadband: deadband,
-    required_projected_response_floor: requiredProjection,
-    Pi_R_A_sea: piRASea,
-    total_post_turn_radial_acceleration: totalPostTurnAcceleration,
-    crosses_inward_response_floor: crosses,
-    post_turn_return_condition_passed: totalPostTurnAcceleration < -deadband,
-    additional_inward_projection_needed: additionalInwardProjectionNeeded,
-    required_Phi_probe_at_current_coefficients: requiredPhi,
-    required_Phi_multiplier_vs_current_probe: multiplier,
-    evidence_status: "diagnostic_floor_test_not_retained_evidence",
   };
 }
 
@@ -1017,9 +1188,11 @@ function buildSeaResponseRow() {
       "a_sea_a(t)=A_sea_a(B_T(t),Theta_sea(t),Theta_asm(t),H_boundary(t))",
     equation_diagnostic_split:
       "A_sea_a=-K_NS[Theta,H] Phi_a yhat_a-Gamma_NS[Theta,H] dot_Phi_a yhat_a+W_boundary_a",
+    equation_computed_wake_sum:
+      "A_sea_a=sum_{k=1..12} sum_b kernel(y_a, X_k+u_b; declared held history), master-equation kernel, zero free amplitude",
     radial_projection: "Pi_R A_sea=(1/6) sum_a yhat_a dot A_sea_a",
     coefficient_status:
-      "K_NS and Gamma_NS are placeholders until derived from Noether sea state, like-braid population, boundary rows, and action/exchange provenance",
+      "the dipole wake-sum run computes A_sea from the master-equation kernel over the 12 held FCC neighbor braids with zero free amplitude; K_NS and Gamma_NS remain placeholder notation for the general split until derived from Noether sea state, like-braid population, boundary rows, and action/exchange provenance",
     accepted: false,
     first_missing_object: "retained_noether_sea_pressure_response_row",
     first_missing_field: "theta_sea_rho_NS",
@@ -1206,47 +1379,398 @@ export function evaluateSh0SeaDiagnosticCandidateModelEvidence(candidate) {
   };
 }
 
-export function buildSh0SeaDiagnosticResponseRun(options = {}) {
+function rotateAboutAxisUnit(vector, axisUnit, angle) {
+  const cosAngle = Math.cos(angle);
+  const sinAngle = Math.sin(angle);
+  const axialComponent = dot3(axisUnit, vector);
+  const crossTerm = [
+    axisUnit[1] * vector[2] - axisUnit[2] * vector[1],
+    axisUnit[2] * vector[0] - axisUnit[0] * vector[2],
+    axisUnit[0] * vector[1] - axisUnit[1] * vector[0],
+  ];
+  return [
+    vector[0] * cosAngle + crossTerm[0] * sinAngle + axisUnit[0] * axialComponent * (1 - cosAngle),
+    vector[1] * cosAngle + crossTerm[1] * sinAngle + axisUnit[1] * axialComponent * (1 - cosAngle),
+    vector[2] * cosAngle + crossTerm[2] * sinAngle + axisUnit[2] * axialComponent * (1 - cosAngle),
+  ];
+}
+
+function neighborMotionSourceKinematics({ kind, center, sitePosition, time, delta, omega, phase, axisUnit }) {
+  if (kind === "breathing") {
+    const angle = omega * time + phase;
+    const factor = 1 + delta * Math.cos(angle);
+    const rate = -delta * omega * Math.sin(angle);
+    return {
+      position: [
+        center[0] + factor * sitePosition[0],
+        center[1] + factor * sitePosition[1],
+        center[2] + factor * sitePosition[2],
+      ],
+      velocity: [rate * sitePosition[0], rate * sitePosition[1], rate * sitePosition[2]],
+    };
+  }
+  const rotated = rotateAboutAxisUnit(sitePosition, axisUnit, omega * time + phase);
+  return {
+    position: [center[0] + rotated[0], center[1] + rotated[1], center[2] + rotated[2]],
+    velocity: [
+      omega * (axisUnit[1] * rotated[2] - axisUnit[2] * rotated[1]),
+      omega * (axisUnit[2] * rotated[0] - axisUnit[0] * rotated[2]),
+      omega * (axisUnit[0] * rotated[1] - axisUnit[1] * rotated[0]),
+    ],
+  };
+}
+
+function maxNeighborMotionSourceSpeedBound({ kind, delta, omega, axisUnit }) {
+  if (kind === "breathing") {
+    return cleanNumber(Math.abs(delta * omega));
+  }
+  const maxPerpendicularRadius = Math.max(
+    ...FCC_BRAID_UNIT_SITES.map((site) =>
+      norm3([
+        axisUnit[1] * site.position[2] - axisUnit[2] * site.position[1],
+        axisUnit[2] * site.position[0] - axisUnit[0] * site.position[2],
+        axisUnit[0] * site.position[1] - axisUnit[1] * site.position[0],
+      ])
+    )
+  );
+  return cleanNumber(Math.abs(omega) * maxPerpendicularRadius);
+}
+
+function signPreservingMax(value, floor) {
+  return Math.abs(value) < floor ? (value < 0 ? -floor : floor) : value;
+}
+
+function computeMovingWakeSumAtSpacing({ aFcc, heldHistoryWindow, motion }) {
+  const { coupling, softening, fieldSpeed } = MASTER_EQUATION_KERNEL;
+  let radialProjectionSum = 0;
+  let minDelay = Infinity;
+  let maxDelay = 0;
+  let minSourceDistance = Infinity;
+  let maxSourceSpeedAtRoots = 0;
+  let maxBranchWeight = 0;
+  let coveredRootCount = 0;
+  let missingRootCount = 0;
+  for (const receiver of FCC_BRAID_UNIT_SITES) {
+    const acceleration = [0, 0, 0];
+    for (const direction of FCC_NEAREST_NEIGHBOR_DIRECTIONS) {
+      const center = [
+        (direction[0] * aFcc) / 2,
+        (direction[1] * aFcc) / 2,
+        (direction[2] * aFcc) / 2,
+      ];
+      for (const site of FCC_BRAID_UNIT_SITES) {
+        const residual = (time) =>
+          norm3(
+            subtract3(
+              receiver.position,
+              neighborMotionSourceKinematics({
+                ...motion,
+                center,
+                sitePosition: site.position,
+                time,
+              }).position
+            )
+          ) +
+          fieldSpeed * time;
+        let low = -heldHistoryWindow;
+        let high = 0;
+        if (residual(low) > 0) {
+          missingRootCount += 1;
+          continue;
+        }
+        for (let iteration = 0; iteration < 60; iteration += 1) {
+          const mid = 0.5 * (low + high);
+          if (residual(mid) < 0) {
+            low = mid;
+          } else {
+            high = mid;
+          }
+        }
+        const emissionTime = 0.5 * (low + high);
+        const kinematics = neighborMotionSourceKinematics({
+          ...motion,
+          center,
+          sitePosition: site.position,
+          time: emissionTime,
+        });
+        const displacement = subtract3(receiver.position, kinematics.position);
+        const distance = norm3(displacement);
+        const delay = -emissionTime;
+        minDelay = Math.min(minDelay, delay);
+        maxDelay = Math.max(maxDelay, delay);
+        minSourceDistance = Math.min(minSourceDistance, distance);
+        const directionUnit = [
+          displacement[0] / distance,
+          displacement[1] / distance,
+          displacement[2] / distance,
+        ];
+        const sourceSpeed = norm3(kinematics.velocity);
+        maxSourceSpeedAtRoots = Math.max(maxSourceSpeedAtRoots, sourceSpeed);
+        const sourceJacobian = (fieldSpeed - dot3(kinematics.velocity, directionUnit)) / fieldSpeed;
+        const receiverNormalFactor = 1;
+        const branchWeight = Math.abs(
+          receiverNormalFactor / signPreservingMax(sourceJacobian, MOTION_JACOBIAN_FLOOR)
+        );
+        maxBranchWeight = Math.max(maxBranchWeight, branchWeight);
+        coveredRootCount += 1;
+        const coefficient =
+          (coupling * receiver.q * site.q * branchWeight) /
+          Math.pow(distance * distance + softening * softening, 1.5);
+        acceleration[0] += coefficient * displacement[0];
+        acceleration[1] += coefficient * displacement[1];
+        acceleration[2] += coefficient * displacement[2];
+      }
+    }
+    radialProjectionSum += dot3(receiver.position, acceleration);
+  }
+  return {
+    piRASea: cleanNumber(radialProjectionSum / FCC_BRAID_UNIT_SITES.length),
+    minDelay: cleanNumber(minDelay),
+    maxDelay: cleanNumber(maxDelay),
+    minSourceDistance: cleanNumber(minSourceDistance),
+    maxSourceSpeedAtRoots: cleanNumber(maxSourceSpeedAtRoots),
+    maxBranchWeight: cleanNumber(maxBranchWeight),
+    coveredRootCount,
+    missingRootCount,
+    expectedDirectedRootCount:
+      FCC_BRAID_UNIT_SITES.length * FCC_SEA_POPULATION_SIZE * FCC_BRAID_UNIT_SITES.length,
+  };
+}
+
+function computeMotionPhaseEnvelopeAtSpacing({ aFcc, heldHistoryWindow, motionBase, phaseSampleCount }) {
+  let piRMin = Infinity;
+  let piRMax = -Infinity;
+  let piRSum = 0;
+  let phaseOfMin = 0;
+  let phaseOfMax = 0;
+  let missingRootCount = 0;
+  let maxDelay = 0;
+  let minDelay = Infinity;
+  let minSourceDistance = Infinity;
+  let maxSourceSpeedAtRoots = 0;
+  let maxBranchWeight = 0;
+  let coveredRootCount = 0;
+  let expectedDirectedRootCount = 0;
+  for (let index = 0; index < phaseSampleCount; index += 1) {
+    const phase = (2 * Math.PI * index) / phaseSampleCount;
+    const sum = computeMovingWakeSumAtSpacing({
+      aFcc,
+      heldHistoryWindow,
+      motion: { ...motionBase, phase },
+    });
+    if (sum.piRASea < piRMin) {
+      piRMin = sum.piRASea;
+      phaseOfMin = phase;
+    }
+    if (sum.piRASea > piRMax) {
+      piRMax = sum.piRASea;
+      phaseOfMax = phase;
+    }
+    piRSum += sum.piRASea;
+    missingRootCount += sum.missingRootCount;
+    coveredRootCount += sum.coveredRootCount;
+    expectedDirectedRootCount += sum.expectedDirectedRootCount;
+    maxDelay = Math.max(maxDelay, sum.maxDelay);
+    minDelay = Math.min(minDelay, sum.minDelay);
+    minSourceDistance = Math.min(minSourceDistance, sum.minSourceDistance);
+    maxSourceSpeedAtRoots = Math.max(maxSourceSpeedAtRoots, sum.maxSourceSpeedAtRoots);
+    maxBranchWeight = Math.max(maxBranchWeight, sum.maxBranchWeight);
+  }
+  return {
+    piRMin: cleanNumber(piRMin),
+    piRMax: cleanNumber(piRMax),
+    piRMean: cleanNumber(piRSum / phaseSampleCount),
+    spread: cleanNumber(piRMax - piRMin),
+    phaseOfMin: cleanNumber(phaseOfMin),
+    phaseOfMax: cleanNumber(phaseOfMax),
+    missingRootCount,
+    coveredRootCount,
+    expectedDirectedRootCount,
+    minDelay: cleanNumber(minDelay),
+    maxDelay: cleanNumber(maxDelay),
+    minSourceDistance: cleanNumber(minSourceDistance),
+    maxSourceSpeedAtRoots: cleanNumber(maxSourceSpeedAtRoots),
+    maxBranchWeight: cleanNumber(maxBranchWeight),
+  };
+}
+
+function buildMotionSpacingRow({ aFcc, heldHistoryWindow, deadband, motionBase, phaseSampleCount, sourceSpeedBound }) {
+  const envelope = computeMotionPhaseEnvelopeAtSpacing({
+    aFcc,
+    heldHistoryWindow,
+    motionBase,
+    phaseSampleCount,
+  });
+  const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
+  const weakestToyAcceleration = cleanNumber(-REQUIRED_INWARD_RESPONSE_FLOOR);
+  const rootCoveragePass = envelope.missingRootCount === 0;
+  const shellOverlap = aFcc < MIN_NON_OVERLAP_A_FCC;
+  const fieldSpeedPass = sourceSpeedBound < MASTER_EQUATION_KERNEL.fieldSpeed;
+  return {
+    schema: DIPOLE_WAKE_SUM_SPACING_ROW_SCHEMA,
+    a_fcc: cleanNumber(aFcc),
+    nearest_neighbor_center_distance: cleanNumber(aFcc / Math.SQRT2),
+    min_source_distance: envelope.minSourceDistance,
+    min_delay: envelope.minDelay,
+    max_delay: envelope.maxDelay,
+    root_coverage: {
+      declared_held_history_window: cleanNumber(heldHistoryWindow),
+      expected_directed_root_count: envelope.expectedDirectedRootCount,
+      covered_root_count: envelope.coveredRootCount,
+      missing_root_count: envelope.missingRootCount,
+      pass: rootCoveragePass,
+    },
+    field_speed: {
+      field_speed: MASTER_EQUATION_KERNEL.fieldSpeed,
+      max_held_source_speed: sourceSpeedBound,
+      max_source_speed_at_roots: envelope.maxSourceSpeedAtRoots,
+      max_branch_weight_at_roots: envelope.maxBranchWeight,
+      max_release_receiver_speed: 0,
+      pass: fieldSpeedPass,
+    },
+    geometry_validity: {
+      min_non_overlap_a_fcc: cleanNumber(MIN_NON_OVERLAP_A_FCC),
+      shell_overlap: shellOverlap,
+      pass: !shellOverlap,
+    },
+    Pi_R_A_sea: envelope.piRMean,
+    phase_envelope: {
+      phase_sample_count: phaseSampleCount,
+      Pi_R_min: envelope.piRMin,
+      Pi_R_max: envelope.piRMax,
+      Pi_R_mean: envelope.piRMean,
+      spread: envelope.spread,
+      phase_of_min: envelope.phaseOfMin,
+      phase_of_max: envelope.phaseOfMax,
+    },
+    floor_evaluation: {
+      weakest_outward_post_turn_ddot_R_toy: weakestToyAcceleration,
+      inward_deadband: deadband,
+      required_projected_response_floor: requiredProjection,
+      crosses_inward_response_floor_all_phases: envelope.piRMax < requiredProjection,
+      crosses_inward_response_floor_some_phase: envelope.piRMin < requiredProjection,
+      crosses_inward_response_floor: envelope.piRMax < requiredProjection,
+      post_turn_return_condition_passed_all_phases:
+        cleanNumber(weakestToyAcceleration + envelope.piRMax) < -deadband,
+    },
+    free_amplitude_parameter_count: 0,
+    evidence_status: "diagnostic_wake_sum_row_not_retained_evidence",
+  };
+}
+
+function buildCandidateSameRecordRequest({ model, namedCandidate, historyDeclaration, motionDeclaration }) {
+  if (namedCandidate == null) {
+    return null;
+  }
+  const targetBinding = buildTargetBinding(model);
+  const geometryCarrier = buildGeometryCarrier(model);
+  return {
+    schema: CANDIDATE_SAME_RECORD_REQUEST_SCHEMA,
+    authority_class: AUTHORITY_CLASS,
+    claim_level: "diagnostic same-record consumption request only, not accepted evidence",
+    candidate: {
+      candidate_id: namedCandidate.candidate_id,
+      a_fcc: namedCandidate.a_fcc,
+      nearest_neighbor_center_distance: cleanNumber(namedCandidate.a_fcc / Math.SQRT2),
+      Pi_R_A_sea: namedCandidate.Pi_R_A_sea,
+      inward_margin_below_required_floor: namedCandidate.inward_margin_below_required_floor,
+    },
+    master_equation_kernel: MASTER_EQUATION_KERNEL,
+    held_history_declaration: historyDeclaration,
+    neighbor_motion_declaration: motionDeclaration,
+    target_binding: targetBinding,
+    geometry_carrier_row_ref: geometryCarrier.geometry_carrier_row_ref,
+    required_same_record_objects: [
+      "held_release_seed_path_rows_acceptance_certificate.v0",
+      "held_release_seed_path_rows_external_accepted_authority_package.v0",
+      "repo_authorization_for_accepted_held_release_seed_path_rows",
+      "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0",
+      "same-record receiver-normal root-detail rows (branchWeight, sourceNormalDenominator, receiverNormalFactor)",
+      "same-record action closure",
+      "accepted SH-0-sea sea-response row at the candidate spacing",
+    ],
+    downstream_consumers: [
+      "self_hit_held_release_solver_row",
+      "native_retained_history_promotion",
+      "SH-0-sea same-record rows in the shell-braid run matrix",
+    ],
+    accepted: false,
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+    retained_evidence_authorized: false,
+    authorization: makeAuthorization(),
+  };
+}
+
+export function buildSh0SeaDipoleWakeSumRun(options = {}) {
   const model = buildSh0SeaDiagnosticCandidateModel(options);
-  const seedProbe = buildDiagnosticResponseProbe({ model, options });
-  const producedSourceRow =
-    options.producedResponseSource === true
-      ? buildProducedResponseSourceRow({ model, seedProbe, options })
-      : null;
-  const probe = buildDiagnosticResponseProbe({ model, options, producedSourceRow });
-  const candidateResponseRow = buildCandidateResponseRow({ model, probe, options });
-  const piRASea = projectDiagnosticSeaResponse(candidateResponseRow);
-  const floorEvaluation = buildResponseFloorEvaluation({
-    candidateResponseRow,
-    piRASea,
-    options,
+  const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
+  const heldHistoryWindow = Math.max(
+    0,
+    normalizeNumber(options.heldHistoryWindow, DEFAULT_HELD_HISTORY_WINDOW)
+  );
+  const aFccMin = normalizeNumber(options.aFccMin, DEFAULT_A_FCC_MIN);
+  const aFccMax = Math.max(aFccMin, normalizeNumber(options.aFccMax, DEFAULT_A_FCC_MAX));
+  const aFccStep = Math.max(
+    Number.EPSILON,
+    normalizeNumber(options.aFccStep, DEFAULT_A_FCC_STEP)
+  );
+  const spacingCount = Math.max(1, Math.round((aFccMax - aFccMin) / aFccStep) + 1);
+  const spacingRange = {
+    a_fcc_min: cleanNumber(aFccMin),
+    a_fcc_max: cleanNumber(aFccMax),
+    a_fcc_step: cleanNumber(aFccStep),
+    spacing_row_count: spacingCount,
+    min_non_overlap_a_fcc: cleanNumber(MIN_NON_OVERLAP_A_FCC),
+  };
+  const spacingRows = [];
+  for (let index = 0; index < spacingCount; index += 1) {
+    const aFcc = cleanNumber(Math.min(aFccMax, aFccMin + index * aFccStep));
+    spacingRows.push(buildDipoleWakeSumSpacingRow({ aFcc, heldHistoryWindow, deadband }));
+  }
+  const retentionWindow = buildRetentionWindow({
+    spacingRows,
+    deadband,
+    spacingRange,
+    piRAtSpacing: (aFcc) => computeDipoleWakeSumAtSpacing({ aFcc, heldHistoryWindow }).piRASea,
+  });
+  const wakeSumSourceRow = buildDipoleWakeSumSourceRow({ model, heldHistoryWindow, deadband });
+  const candidateSameRecordRequest = buildCandidateSameRecordRequest({
+    model,
+    namedCandidate: retentionWindow.named_sea_spacing_candidate,
+    historyDeclaration: wakeSumSourceRow.held_history_declaration,
+    motionDeclaration: null,
   });
   const acceptedProvenanceReplacementRequirement = buildAcceptedProvenanceReplacementRequirement({
     model,
-    producedSourceRow,
-    candidateResponseRow,
+    sourceRow: wakeSumSourceRow,
     options,
   });
   const core = {
-    schema: RESPONSE_RUN_SCHEMA,
+    schema: DIPOLE_WAKE_SUM_RUN_SCHEMA,
     proof_id: "SH-0-sea",
     authority_class: AUTHORITY_CLASS,
-    claim_level: "diagnostic response-run floor test only",
+    claim_level: "diagnostic computed wake-sum floor comparison only",
     target_artifact_id: model.target_artifact_id,
     target_artifact_hash: model.target_artifact_hash,
     target_source_row_id: model.target_source_row_id,
     run_matrix_metadata: model.run_matrix_metadata ?? null,
     model_artifact_hash: model.artifact_hash,
-    response_probe: probe,
-    produced_response_source_row: producedSourceRow,
-    candidate_response_row: candidateResponseRow,
-    accepted_provenance_replacement_requirement: acceptedProvenanceReplacementRequirement,
+    master_equation_kernel: MASTER_EQUATION_KERNEL,
+    declared_spacing_range: spacingRange,
+    declared_held_history_window: cleanNumber(heldHistoryWindow),
     response_equation:
-      "Pi_R A_sea=-K_NS_diag*Phi_probe-Gamma_NS_diag*dot_Phi_probe+W_boundary_projection",
-    floor_evaluation: floorEvaluation,
+      "Pi_R A_sea=(1/6) sum_a yhat_a dot sum_{k=1..12} sum_b kernel(y_a, X_k+u_b; declared held history)",
+    free_amplitude_parameter_count: 0,
+    fitted_response_amplitude_present: false,
+    wake_sum_source_row: wakeSumSourceRow,
+    spacing_rows: spacingRows,
+    retention_window: retentionWindow,
+    candidate_same_record_request: candidateSameRecordRequest,
+    accepted_provenance_replacement_requirement: acceptedProvenanceReplacementRequirement,
     evidence_status: {
       accepted: false,
-      accepted_evidence_status: "diagnostic_response_run_not_accepted_evidence",
+      accepted_evidence_status: "diagnostic_wake_sum_run_not_accepted_evidence",
       first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
       first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
     },
@@ -1259,17 +1783,267 @@ export function buildSh0SeaDiagnosticResponseRun(options = {}) {
   };
 }
 
-export function evaluateSh0SeaDiagnosticResponseRunEvidence(candidate) {
-  if (candidate?.schema !== RESPONSE_RUN_SCHEMA) {
+export function evaluateSh0SeaDipoleWakeSumRunEvidence(candidate) {
+  if (candidate?.schema !== DIPOLE_WAKE_SUM_RUN_SCHEMA) {
     return {
       accepted: false,
-      reason: "schema_not_sh_0_sea_diagnostic_response_run_v0",
-      first_missing_field: "sh_0_sea_diagnostic_response_run.schema",
+      reason: "schema_not_sh_0_sea_dipole_wake_sum_run_v0",
+      first_missing_field: "sh_0_sea_dipole_wake_sum_run.schema",
     };
   }
   return {
     accepted: false,
-    reason: "diagnostic_response_run_not_accepted_retained_evidence",
+    reason: "diagnostic_wake_sum_run_not_accepted_retained_evidence",
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+  };
+}
+
+export function buildSh0SeaDipoleWakeSumMotionRun(options = {}) {
+  const model = buildSh0SeaDiagnosticCandidateModel(options);
+  const deadband = Math.max(0, normalizeNumber(options.inwardDeadband, DEFAULT_RESPONSE_DEADBAND));
+  const heldHistoryWindow = Math.max(
+    0,
+    normalizeNumber(options.heldHistoryWindow, DEFAULT_HELD_HISTORY_WINDOW)
+  );
+  const aFccMin = normalizeNumber(options.aFccMin, DEFAULT_A_FCC_MIN);
+  const aFccMax = Math.max(aFccMin, normalizeNumber(options.aFccMax, DEFAULT_A_FCC_MAX));
+  const aFccStep = Math.max(Number.EPSILON, normalizeNumber(options.aFccStep, DEFAULT_A_FCC_STEP));
+  const spacingCount = Math.max(1, Math.round((aFccMax - aFccMin) / aFccStep) + 1);
+  const spacingRange = {
+    a_fcc_min: cleanNumber(aFccMin),
+    a_fcc_max: cleanNumber(aFccMax),
+    a_fcc_step: cleanNumber(aFccStep),
+    spacing_row_count: spacingCount,
+    min_non_overlap_a_fcc: cleanNumber(MIN_NON_OVERLAP_A_FCC),
+  };
+  const kind = NEIGHBOR_MOTION_KINDS.includes(options.neighborMotion)
+    ? options.neighborMotion
+    : "breathing";
+  const delta =
+    kind === "breathing" ? normalizeNumber(options.motionDelta, DEFAULT_MOTION_DELTA) : 0;
+  const axisInput = normalizeVector(options.motionSpinAxis, [...DEFAULT_MOTION_SPIN_AXIS]);
+  const axisNorm = norm3(axisInput);
+  const axisUnit =
+    axisNorm > 0 ? axisInput.map((entry) => entry / axisNorm) : [...DEFAULT_MOTION_SPIN_AXIS];
+  const omegaGrid =
+    Array.isArray(options.motionOmegaGrid) && options.motionOmegaGrid.length > 0
+      ? options.motionOmegaGrid.map((entry) => Math.abs(normalizeNumber(entry, 1)))
+      : [...(kind === "breathing" ? DEFAULT_BREATHING_OMEGA_GRID : DEFAULT_ORBITING_OMEGA_GRID)];
+  const phaseSampleCount = Math.max(
+    2,
+    Math.round(normalizeNumber(options.motionPhaseSamples, DEFAULT_PHASE_SAMPLE_COUNT))
+  );
+  const candidateAFcc = 4.25;
+  const requiredProjection = cleanNumber(REQUIRED_INWARD_RESPONSE_FLOOR - deadband);
+  const spacings = [];
+  for (let index = 0; index < spacingCount; index += 1) {
+    spacings.push(cleanNumber(Math.min(aFccMax, aFccMin + index * aFccStep)));
+  }
+  const staticReferenceRows = spacings.map((aFcc) => ({
+    a_fcc: aFcc,
+    Pi_R_A_sea: computeDipoleWakeSumAtSpacing({ aFcc, heldHistoryWindow }).piRASea,
+  }));
+  const neighborMotionDeclaration = {
+    kind,
+    phase_mode: "common_phase_all_neighbors",
+    phase_sample_count: phaseSampleCount,
+    breathing_delta: kind === "breathing" ? cleanNumber(delta) : null,
+    spin_axis_unit: kind === "orbiting" ? axisUnit.map(cleanNumber) : null,
+    omega_grid: omegaGrid.map(cleanNumber),
+    declared_held_history_window: cleanNumber(heldHistoryWindow),
+    parameter_status:
+      "declared held-history motion parameters, not response amplitudes; the response remains fully computed from the master-equation kernel",
+    branch_weight_convention: {
+      receiver_normal_factor: 1,
+      jacobian_floor: MOTION_JACOBIAN_FLOOR,
+      convention:
+        "branchWeight=|receiverNormalFactor/signPreservingMax(sourceJacobian,jacobianFloor)| per the held-release toy kernel",
+    },
+    undeclared_environment_degrees_of_freedom: 0,
+  };
+  const omegaResults = omegaGrid.map((omega) => {
+    const motionBase = { kind, delta, omega, axisUnit };
+    const sourceSpeedBound = maxNeighborMotionSourceSpeedBound({ kind, delta, omega, axisUnit });
+    const spacingRows = spacings.map((aFcc) =>
+      buildMotionSpacingRow({
+        aFcc,
+        heldHistoryWindow,
+        deadband,
+        motionBase,
+        phaseSampleCount,
+        sourceSpeedBound,
+      })
+    );
+    const envelopeAt = (aFcc) =>
+      computeMotionPhaseEnvelopeAtSpacing({ aFcc, heldHistoryWindow, motionBase, phaseSampleCount });
+    const guaranteedWindow = buildRetentionWindow({
+      spacingRows,
+      deadband,
+      spacingRange,
+      piRAtSpacing: (aFcc) => envelopeAt(aFcc).piRMax,
+      crossingFlag: (row) => row.floor_evaluation.crosses_inward_response_floor_all_phases,
+      namedCandidateEnabled: false,
+    });
+    const phaseConditionalWindow = buildRetentionWindow({
+      spacingRows,
+      deadband,
+      spacingRange,
+      piRAtSpacing: (aFcc) => envelopeAt(aFcc).piRMin,
+      crossingFlag: (row) => row.floor_evaluation.crosses_inward_response_floor_some_phase,
+      namedCandidateEnabled: false,
+    });
+    const candidateRow =
+      spacingRows.find((row) => Math.abs(row.a_fcc - candidateAFcc) <= 1e-9) ?? null;
+    const candidateEnvelope = candidateRow?.phase_envelope ?? (() => {
+      const envelope = envelopeAt(candidateAFcc);
+      return {
+        phase_sample_count: phaseSampleCount,
+        Pi_R_min: envelope.piRMin,
+        Pi_R_max: envelope.piRMax,
+        Pi_R_mean: envelope.piRMean,
+        spread: envelope.spread,
+        phase_of_min: envelope.phaseOfMin,
+        phase_of_max: envelope.phaseOfMax,
+      };
+    })();
+    const maxSpreadRow = spacingRows.reduce((best, row) =>
+      row.phase_envelope.spread > best.phase_envelope.spread ? row : best
+    );
+    return {
+      omega: cleanNumber(omega),
+      max_source_speed_bound: sourceSpeedBound,
+      field_speed_pass: sourceSpeedBound < MASTER_EQUATION_KERNEL.fieldSpeed,
+      spacing_rows: spacingRows,
+      retention_windows: {
+        guaranteed_all_phases: guaranteedWindow,
+        phase_conditional: phaseConditionalWindow,
+      },
+      candidate_spacing_status: {
+        a_fcc: candidateAFcc,
+        phase_envelope: candidateEnvelope,
+        crosses_inward_response_floor_all_phases:
+          candidateEnvelope.Pi_R_max < requiredProjection,
+        crosses_inward_response_floor_some_phase:
+          candidateEnvelope.Pi_R_min < requiredProjection,
+      },
+      phase_dependence: {
+        max_spread: maxSpreadRow.phase_envelope.spread,
+        max_spread_a_fcc: maxSpreadRow.a_fcc,
+        spread_at_candidate_spacing: candidateEnvelope.spread,
+        observed: maxSpreadRow.phase_envelope.spread > 1e-9,
+      },
+    };
+  });
+  const staticBoundaryReference = buildRetentionWindow({
+    spacingRows: spacings.map((aFcc) =>
+      buildDipoleWakeSumSpacingRow({ aFcc, heldHistoryWindow, deadband })
+    ),
+    deadband,
+    spacingRange,
+    piRAtSpacing: (aFcc) => computeDipoleWakeSumAtSpacing({ aFcc, heldHistoryWindow }).piRASea,
+  });
+  const boundarySplitObserved = omegaResults.some((result) => {
+    const guaranteed = result.retention_windows.guaranteed_all_phases;
+    const conditional = result.retention_windows.phase_conditional;
+    return (
+      guaranteed.a_fcc_window_max != null &&
+      conditional.a_fcc_window_max != null &&
+      Math.abs(conditional.a_fcc_window_max - guaranteed.a_fcc_window_max) > 1e-6
+    );
+  });
+  const delayedEchoVerdict = {
+    hypothesis: "H5_delayed_echo",
+    phase_dependence_observed: omegaResults.some((result) => result.phase_dependence.observed),
+    retention_window_boundary_split_observed: boundarySplitObserved,
+    static_reference_boundary: staticBoundaryReference.a_fcc_window_max,
+    per_omega_boundaries: omegaResults.map((result) => ({
+      omega: result.omega,
+      guaranteed_all_phases_boundary:
+        result.retention_windows.guaranteed_all_phases.a_fcc_window_max,
+      guaranteed_boundary_status:
+        result.retention_windows.guaranteed_all_phases.a_fcc_window_max_boundary,
+      phase_conditional_boundary: result.retention_windows.phase_conditional.a_fcc_window_max,
+      phase_conditional_boundary_status:
+        result.retention_windows.phase_conditional.a_fcc_window_max_boundary,
+    })),
+    reading:
+      "diagnostic-only: a phase- and frequency-dependent retention window at the declared held-history level; not retained evidence and not an accepted Noether sea response closure",
+  };
+  const namedCandidate = staticBoundaryReference.named_sea_spacing_candidate;
+  const wakeSumSourceRow = buildDipoleWakeSumSourceRow({
+    model,
+    heldHistoryWindow,
+    deadband,
+    motionDeclaration: neighborMotionDeclaration,
+  });
+  const candidateSameRecordRequest = buildCandidateSameRecordRequest({
+    model,
+    namedCandidate,
+    historyDeclaration: wakeSumSourceRow.held_history_declaration,
+    motionDeclaration: {
+      ...neighborMotionDeclaration,
+      candidate_spacing_status_per_omega: omegaResults.map((result) => ({
+        omega: result.omega,
+        ...result.candidate_spacing_status,
+      })),
+    },
+  });
+  const acceptedProvenanceReplacementRequirement = buildAcceptedProvenanceReplacementRequirement({
+    model,
+    sourceRow: wakeSumSourceRow,
+    options,
+  });
+  const core = {
+    schema: DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA,
+    proof_id: "SH-0-sea",
+    authority_class: AUTHORITY_CLASS,
+    claim_level: "diagnostic delayed-echo wake-sum floor comparison only",
+    target_artifact_id: model.target_artifact_id,
+    target_artifact_hash: model.target_artifact_hash,
+    target_source_row_id: model.target_source_row_id,
+    run_matrix_metadata: model.run_matrix_metadata ?? null,
+    model_artifact_hash: model.artifact_hash,
+    master_equation_kernel: MASTER_EQUATION_KERNEL,
+    neighbor_motion_declaration: neighborMotionDeclaration,
+    declared_spacing_range: spacingRange,
+    declared_held_history_window: cleanNumber(heldHistoryWindow),
+    response_equation:
+      "Pi_R A_sea=(1/6) sum_a yhat_a dot sum_{k=1..12} sum_b kernel(y_a, x_{k,b}(t_e); declared moving held history, causal root t_e)",
+    free_amplitude_parameter_count: 0,
+    fitted_response_amplitude_present: false,
+    static_reference_rows: staticReferenceRows,
+    omega_results: omegaResults,
+    delayed_echo_verdict: delayedEchoVerdict,
+    wake_sum_source_row: wakeSumSourceRow,
+    candidate_same_record_request: candidateSameRecordRequest,
+    accepted_provenance_replacement_requirement: acceptedProvenanceReplacementRequirement,
+    evidence_status: {
+      accepted: false,
+      accepted_evidence_status: "diagnostic_wake_sum_motion_run_not_accepted_evidence",
+      first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+      first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+    },
+    accepted_evidence_blocker: model.accepted_evidence_blocker,
+    authorization: makeAuthorization(),
+  };
+  return {
+    ...core,
+    artifact_hash: stableHash(core),
+  };
+}
+
+export function evaluateSh0SeaDipoleWakeSumMotionRunEvidence(candidate) {
+  if (candidate?.schema !== DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA) {
+    return {
+      accepted: false,
+      reason: "schema_not_sh_0_sea_dipole_wake_sum_motion_run_v0",
+      first_missing_field: "sh_0_sea_dipole_wake_sum_motion_run.schema",
+    };
+  }
+  return {
+    accepted: false,
+    reason: "diagnostic_wake_sum_motion_run_not_accepted_retained_evidence",
     first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
     first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   };
@@ -1299,26 +2073,40 @@ function parseArgs(args) {
     }
     return JSON.parse(fs.readFileSync(path, "utf8"));
   };
+  const numberListOption = (name) => {
+    const value = stringOption(name);
+    if (value == null) {
+      return undefined;
+    }
+    const numbers = value.split(",").map((entry) => Number(entry.trim()));
+    if (numbers.length === 0 || numbers.some((entry) => !Number.isFinite(entry))) {
+      throw new TypeError(`--${name} must be a comma-separated list of finite numbers`);
+    }
+    return numbers;
+  };
+  const neighborMotion = stringOption("neighbor-motion");
+  if (neighborMotion != null && !NEIGHBOR_MOTION_KINDS.includes(neighborMotion)) {
+    throw new TypeError(`--neighbor-motion must be one of: ${NEIGHBOR_MOTION_KINDS.join("|")}`);
+  }
   return {
     pretty: args.includes("--pretty"),
-    responseRun: args.includes("--response-run"),
-    producedResponseSource: args.includes("--produced-response-source"),
+    wakeSumRun: args.includes("--wake-sum-run"),
+    neighborMotion,
+    motionDelta: numberOption("motion-delta"),
+    motionOmegaGrid: numberListOption("motion-omega"),
+    motionPhaseSamples: numberOption("motion-phases"),
+    motionSpinAxis: vectorOption("motion-spin-axis"),
     runHandle: stringOption("run-handle"),
-    responseRunHandle: stringOption("response-run-handle"),
-    responseRowKind: stringOption("response-row-kind"),
     embeddedCentralRunHandle: stringOption("embedded-central-run-handle"),
     targetSourceRowId: stringOption("source-row-id"),
     targetCenterGroupVelocity: vectorOption("target-center-group-velocity") ?? vectorOption("group-velocity"),
     surfaceSpeedFraction: numberOption("surface-speed-fraction") ?? numberOption("surface-speed"),
     prehistoryMode: stringOption("prehistory-mode"),
-    responseAmplitude: numberOption("response-amplitude"),
-    responseRate: numberOption("response-rate"),
-    responseStiffness: numberOption("response-stiffness"),
-    responseDamping: numberOption("response-damping"),
-    boundaryWakeProjection: numberOption("boundary-wake-projection"),
     inwardDeadband: numberOption("inward-deadband"),
-    producedSourcePhi: numberOption("produced-source-phi"),
-    producedSourceMarginStep: numberOption("produced-source-margin-step"),
+    aFccMin: numberOption("a-fcc-min"),
+    aFccMax: numberOption("a-fcc-max"),
+    aFccStep: numberOption("a-fcc-step"),
+    heldHistoryWindow: numberOption("held-history-window"),
     seedPathAcceptanceCertificate: jsonOption("acceptance-certificate-json"),
     seedPathExternalAuthorityPackage: jsonOption("external-authority-package-json"),
     seedPathRepoAuthorization: jsonOption("repo-authorization-json"),
@@ -1328,7 +2116,7 @@ function parseArgs(args) {
 
 function printUsage() {
   console.log(
-    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--response-run] [--produced-response-source] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--response-row-kind=pressure_tension|boundary_wake] [--response-amplitude=<number>] [--response-rate=<number>] [--response-stiffness=<number>] [--response-damping=<number>] [--boundary-wake-projection=<number>] [--inward-deadband=<number>] [--produced-source-phi=<number>] [--produced-source-margin-step=<number>] [--acceptance-certificate-json=<path>] [--external-authority-package-json=<path>] [--repo-authorization-json=<path>] [--accepted-provenance-package-json=<path>]`
+    `Usage: node ${fileURLToPath(import.meta.url)} [--pretty] [--wake-sum-run] [--neighbor-motion=breathing|orbiting] [--motion-delta=<number>] [--motion-omega=<w1,w2,...>] [--motion-phases=<count>] [--motion-spin-axis=x,y,z] [--run-handle=<handle>] [--embedded-central-run-handle=<handle>] [--target-center-group-velocity=x,y,z] [--surface-speed-fraction=<number>] [--prehistory-mode=stationary-held-release|kick-at-release|moving-prehistory] [--inward-deadband=<number>] [--a-fcc-min=<number>] [--a-fcc-max=<number>] [--a-fcc-step=<number>] [--held-history-window=<number>] [--acceptance-certificate-json=<path>] [--external-authority-package-json=<path>] [--repo-authorization-json=<path>] [--accepted-provenance-package-json=<path>]`
   );
 }
 
@@ -1338,8 +2126,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     process.exit(0);
   }
   const options = parseArgs(process.argv.slice(2));
-  const artifact = options.responseRun
-    ? buildSh0SeaDiagnosticResponseRun(options)
+  const artifact = options.wakeSumRun
+    ? options.neighborMotion != null
+      ? buildSh0SeaDipoleWakeSumMotionRun(options)
+      : buildSh0SeaDipoleWakeSumRun(options)
     : buildSh0SeaDiagnosticCandidateModel(options);
   console.log(JSON.stringify(artifact, null, options.pretty ? 2 : 0));
 }

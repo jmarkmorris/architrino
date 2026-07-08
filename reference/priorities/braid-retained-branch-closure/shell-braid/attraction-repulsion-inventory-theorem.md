@@ -1,6 +1,6 @@
 # Attraction/Repulsion Inventory Theorem
 
-Promotion status: `priority-only`. This packet isolates the inventory observation behind the neutral same-level tri-binary carrier: with three architrinos of each polarity, every architrino has three opposite-polarity attractive source sites and two same-polarity repulsive source sites, excluding itself. The row is a structural inventory bias. It is not a force-closure proof, a retained dynamics branch, or permission to bypass root, action, event, and stability rows.
+Promotion status: `priority-only`. This packet isolates the inventory observation behind the neutral same-level braid carrier: with three architrinos of each polarity, every architrino has three opposite-polarity attractive source sites and two same-polarity repulsive source sites, excluding itself. The row is a structural inventory bias. It is not a force-closure proof, a retained dynamics branch, or permission to bypass root, action, event, and stability rows.
 
 This packet refines the inventory row sketched in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), uses the force convention in [force-balance-reduction.md](force-balance-reduction.md), and is compatible with the exact-antipodal parity convention in [exact-antipodal-parity-lemma.md](exact-antipodal-parity-lemma.md) and [antipodal-relaxation-column-certificate.md](antipodal-relaxation-column-certificate.md). Its weighted force and moment consequences are developed in [attraction-repulsion-force-moment-decomposition.md](attraction-repulsion-force-moment-decomposition.md).
 
@@ -8,7 +8,7 @@ This packet refines the inventory row sketched in [variable-speed-factor-extensi
 
 ## 1. Polarity Signs And Site Inventory
 
-Let the neutral same-level tri-binary site set be
+Let the neutral same-level braid site set be
 
 $$
 I=\{1,2,3\}\times\{+,-\},
@@ -483,7 +483,7 @@ $$
 
 ## 8. Theorem Target
 
-**Theorem target: attraction/repulsion inventory theorem.** Fix a neutral same-level tri-binary site inventory with three positive and three negative polarity signs, one of each polarity in each binary. For every receiver $i$, excluding the ordinary same-source row:
+**Theorem target: attraction/repulsion inventory theorem.** Fix a neutral same-level braid site inventory with three positive and three negative polarity signs, one of each polarity in each binary. For every receiver $i$, excluding the ordinary same-source row:
 
 1. $i$ has exactly three opposite-polarity source sites and two same-polarity source sites;
 2. the unweighted signed source count is $C_i=-1$, equivalently there is one extra attractive source site;

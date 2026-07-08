@@ -7,7 +7,7 @@ The opening sections define the absolute-frame picture and the document set that
 ## Cosmology in the Absolute Frame
 
 1. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving Noether sea; the container itself does not expand.
-2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $\tau_c$ chronology, not a required literal one-time ontic origin event.
+2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $t_{\mathrm{eff}}$ chronology, not a required literal one-time ontic origin event.
 3. **Bang Language**: a "bang" is admissible only as an effective exposure or release event in which high-energy retained structures become visible to a lower-energy observer environment. It is not, by itself, a claim that the Euclidean void, absolute time, or the full architrino inventory began at that event.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
@@ -15,7 +15,7 @@ The opening sections define the absolute-frame picture and the document set that
 Cosmology is expressed in two linked descriptions:
 
 1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**
-- Fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$
+- Fixed Euclidean coordinates $(X,Y,Z)$ and absolute time $T$
 - Full microstate accounting of assemblies and Noether sea state
 - No metric expansion of the void
 
@@ -80,14 +80,14 @@ The standard homogeneous and isotropic comparison layer is retained as a data-pr
 $$
 ds_{\mathrm{FRW,eff}}^2
 =
--c_0^2d\tau_c^2
-+a_{\mathrm{eff}}^2(\tau_c)
+-c_0^2dt_{\mathrm{eff}}^2
++a_{\mathrm{eff}}^2(t_{\mathrm{eff}})
 \left[
 \frac{d\chi^2}{1-k\chi^2}
 +\chi^2d\Omega^2
 \right]
 $$
-but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/d\tau_c$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
+but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/dt_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
 
 The useful comparison equations are therefore recovery targets:
 $$
@@ -108,17 +108,17 @@ Passing these equations does not by itself promote metric expansion. It means th
 
 Cosmic inventory language is useful only as an effective comparison ledger. For a component whose observer-level mass-equivalent density is $\bar\rho_i$, write
 $$
-\Omega_i^\theta(\tau_c)
+\Omega_i^\theta(t_{\mathrm{eff}})
 =
-\frac{8\pi G_{\mathrm{eff}}^\theta(\tau_c)\bar\rho_i^\theta(\tau_c)}
-{3\left(H_{\mathrm{eff}}^\theta(\tau_c)\right)^2}
+\frac{8\pi G_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\bar\rho_i^\theta(t_{\mathrm{eff}})}
+{3\left(H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\right)^2}
 $$
 For a component recorded first as an energy density $u_i^\theta$, use
 $$
-\Omega_i^\theta(\tau_c)
+\Omega_i^\theta(t_{\mathrm{eff}})
 =
-\frac{8\pi G_{\mathrm{eff}}^\theta(\tau_c)u_i^\theta(\tau_c)}
-{3c_0^2\left(H_{\mathrm{eff}}^\theta(\tau_c)\right)^2}
+\frac{8\pi G_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})u_i^\theta(t_{\mathrm{eff}})}
+{3c_0^2\left(H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\right)^2}
 $$
 These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether sea state and assembly record has been projected into the standard component language at the observer epoch.
 
@@ -129,7 +129,7 @@ $$
 \Omega_{K,\mathrm{fit}}
 +
 \sum_{i\in\mathcal{I}_{\mathrm{cos}}}
-\Omega_i^\theta(\tau_{c,\mathrm{obs}})
+\Omega_i^\theta(t_{\mathrm{eff,obs}})
 -1
 $$
 where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
@@ -169,13 +169,13 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm
 
 For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
 $$
-\Delta M_{\mathrm{eff}}[\tau_{c,1},\tau_{c,2}]
+\Delta M_{\mathrm{eff}}[t_{\mathrm{eff},1},t_{\mathrm{eff},2}]
 =
-\int_{\tau_{c,1}}^{\tau_{c,2}}
-\mathcal{S}_{m,\mathrm{eff}}(\tau_c)a_{\mathrm{eff}}^3(\tau_c)\,d\tau_c
+\int_{t_{\mathrm{eff},1}}^{t_{\mathrm{eff},2}}
+\mathcal{S}_{m,\mathrm{eff}}(t_{\mathrm{eff}})a_{\mathrm{eff}}^3(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 -
-\int_{\tau_{c,1}}^{\tau_{c,2}}
-3H_{\mathrm{eff}}(\tau_c)\rho_{m,\mathrm{eff}}(\tau_c)a_{\mathrm{eff}}^3(\tau_c)\,d\tau_c
+\int_{t_{\mathrm{eff},1}}^{t_{\mathrm{eff},2}}
+3H_{\mathrm{eff}}(t_{\mathrm{eff}})\rho_{m,\mathrm{eff}}(t_{\mathrm{eff}})a_{\mathrm{eff}}^3(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
@@ -225,7 +225,7 @@ The familiar $13$-$14\ \mathrm{Gyr}$ age scale is treated here as a convergence 
 
 The standard cosmological fit package obtains much of its strength by combining observables inside a common Friedmann-Lemaître-Robertson-Walker limit. That limit is useful as an effective comparison layer, but it is not an ontological premise of this framework. Each observational module must therefore state which parts of its inference require large-scale homogeneity, isotropy, standard-candle or standard-ruler calibration, CMB-frame correction, and the Friedmann energy-density sum rule.
 
-The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a_{\mathrm{eff}}(\tau_c)$, $H_{\mathrm{eff}}(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w_{\mathrm{eff}}(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
+The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w_{\mathrm{eff}}(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
 
 The same split applies to the cosmological principle. Large-scale homogeneity and isotropy are statements about a reconstructed comparison slice, while the observer receives sources on a past light-cone with redshift transfer, source evolution, lensing, dust/plasma effects, survey selection, and calibration already mixed into the catalogue. A fixed-void $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may use homogeneity and isotropy only after the light-cone inference pipeline has declared which rows belong to absolute-slice ontology and which rows belong to observer transport and population reconstruction.
 
@@ -426,7 +426,7 @@ Flatness constraints require the same layer discipline. CMB, BAO, lensing, and l
 
 Each observational component exposes explicit interface variables for cross-theory mapping:
 
-- Expansion interface: effective $a_{\mathrm{eff}}(\tau_c)$/$H_{\mathrm{eff}}(z)$ history and redshift mapping variables.
+- Expansion interface: effective $a_{\mathrm{eff}}(t_{\mathrm{eff}})$/$H_{\mathrm{eff}}(z)$ history and redshift mapping variables.
 - CMB interface: mode-seeding inputs, transfer behavior, and TT/TE/EE outputs.
 - BBN interface: thermal/reaction history inputs and light-element yield outputs.
 - Growth interface: matter-loading and coupling inputs with late-time amplitude/shape outputs.
@@ -464,6 +464,6 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclica
 
 ## Time Notions (Operational)
 
-- **Absolute Time ($t$):** global linear index for full-state evolution.
-- **Cosmic Time ($\tau_c$):** reconstructed observer-level clocking used for effective observational chronology.
-- **Dynamics:** expansion is encoded as medium-network evolution in $t$, then read out as observer-level history in $\tau_c$.
+- **Absolute Time ($T$):** global linear index for full-state evolution.
+- **Effective Observer Time ($t_{\mathrm{eff}}$):** reconstructed observer-level clocking used for effective observational chronology (the cosmic-time comparison coordinate).
+- **Dynamics:** expansion is encoded as medium-network evolution in $T$, then read out as observer-level history in $t_{\mathrm{eff}}$.

@@ -1,6 +1,6 @@
 # Support-Complete $M=3$ Executable Solve Theorem
 
-Promotion status: `priority-only`. This packet turns the exact-antipodal $M=3$ certificate stack into one executable solve theorem. It is not a retained branch claim. It states the ordered proof sequence and the mutually exclusive statuses for the current same-level tri-binary dynamics target.
+Promotion status: `priority-only`. This packet turns the exact-antipodal $M=3$ certificate stack into one executable solve theorem. It is not a retained branch claim. It states the ordered proof sequence and the mutually exclusive statuses for the current same-level braid dynamics target.
 
 The theorem is local to one exact-antipodal arclength-inverse $M=3$ branch class, one source-pair policy, one endpoint convention, one equal-period/gauge convention, one residual norm, and one support-complete memory convention.
 

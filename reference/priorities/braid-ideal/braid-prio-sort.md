@@ -1,0 +1,144 @@
+# Braid Priority Sort And Cleanup Plan
+
+Claim level. Priority-only control packet, 2026-07-08. This plan schedules a cleanup and reorganization pass across the Noether braid priority lanes. It does not retain any branch, move any claim level, promote any corpus material by itself, or change any Proof ID disposition. Every move it authorizes is a reorganization move whose text travels with its existing labels.
+
+## Closure Goal
+
+Bring the eight Noether braid priority lanes, the six open agent threads (`o4`, `o5`, `o6`, `o7`, `o8`, `p10`), and the six saved braid prompts into one coherent, taxonomy-aligned priority surface — with each open task routed to its correct lane, each `brainstorming.md` organized and de-duplicated, and every corpus-ready result promoted at its declared claim level — without disturbing any live proof program or weakening any claim.
+
+## How To Read This Plan
+
+This is the control surface for the sort. Work the phases in order. Each phase names its inputs, the concrete action, the guardrail it must respect, and its definition of done. Operator-decision checkpoints are marked **[OP]** and carry a recommended default so an agent can proceed if the operator does not override. Dated status for each phase goes in this lane's `work-log.md`; provisional taxonomy ideas surfaced during the sort go in this lane's `brainstorming.md`.
+
+---
+
+## 1. Situation Snapshot
+
+The braid effort currently spans three kinds of location under `reference/priorities/`:
+
+- **Eight braid lanes**: `braid-ideal`, `braid-angular-momentum-spin`, `braid-doubling-frequency-lock`, `braid-geometry-export-bridge`, `braid-mass-response-map`, `braid-nested-shell-causal-closure`, `braid-retained-branch-closure`, and `braid-taxonomy`.
+- **The cross-cutting master queue** in `aaa-work-threads/` (`priorities.md` ~160 KB, `inventory.md`, `closure-join-matrix.md`), which tracks the top-six workstreams and the minimum-evidence-object table.
+- **The shared proof lane** in `proof-programs/` (`breather-proof/`, `planar-bridge-closure/`).
+
+Four structural problems motivate the sort:
+
+1. **Lane overlap and taxonomy drift.** The lanes predate the 2026-07-07 braid-scene reorganization, which fixed the reader-facing reading order: concept → neutral braid → braid recovery requirements → braid mathematics → **symmetric shell braid (featured realization, `SH-0` class)** → alternatives (nested shell braid, doubling-frequency resonance lock, configuration space) → bookkeeping (taxonomy, proof map). Several lanes now map cleanly onto that order; some are dormant or duplicate.
+2. **File-role hygiene.** The maintenance pattern is: `priorities.md` = concise ranked queue, `brainstorming.md` = provisional insight and draft promotable prose, `work-log.md` = dated status and failed-path notes. In practice some brainstorm-grade ideas were entered into `work-log.md` files, and the `braid-ideal` `brainstorming.md` (~214 KB) and `work-log.md` (~253 KB) have grown past the point of easy triage.
+3. **Proof-cert sprawl.** `braid-geometry-export-bridge` holds ~100 `octahedral-fold-aware-cross-binary-*` jet-coefficient and tail-bound certificate files driving a `priorities.md` to ~402 KB. This is a real live proof program, not cruft, but most of its files are closed certificates behind an advancing tail-bound frontier.
+4. **Uncaptured intake.** Six open agent threads each carry a proposed next step, and six saved prompts target braid work. None of this is yet reconciled against the lane queues, so the same object risks being worked twice or lost.
+
+---
+
+## 2. Operator-Decision Checkpoints
+
+All three checkpoints are resolved by the operator (2026-07-08); the decisions are recorded here and are binding for the sort.
+
+- **[OP-1 — approved] Lane structure: hub-and-mapped-lanes.** Make `braid-ideal` the top-level braid index/hub, keep the active proof-program lanes intact, and fold only dormant/duplicate lanes and misfiled content into their taxonomy home. This preserves disjoint write-ownership so the `o4`–`o8`/`p10` threads keep non-colliding lanes, and it avoids rewriting the relative links inside the proof-cert chains.
+- **[OP-2 — decided] Proof-cert archiving: defer to a later per-lane checkpoint.** This sort does **not** archive the `braid-geometry-export-bridge` octahedral certificate set. In Phase 4 it re-indexes that lane only — no certificate files move and no archive subfolder is created. The archive-vs-keep call is booked as a separate, later per-lane checkpoint that the operator will open when the octahedral tail-bound frontier reaches a natural stopping point; §3 and Phase 4 record the criteria to raise at that time.
+- **[OP-3 — decided] Brainstorm consolidation: physical merge into one file.** Merge every lane's `brainstorming.md` into a single `braid-ideal/brainstorming.md`, so there is one place to read all provisional braid insight. A merged item may reference its originating lane when that context matters (for example, a `SH-0`-specific idea can note the `braid-ideal` featured-realization lane, or a nested-shell idea its alternatives lane). Each source lane's `brainstorming.md` is then reduced to a one-line stub pointing at the merged file so the maintenance pattern's "every lane carries the three role files" expectation still resolves.
+
+---
+
+## 3. Target Architecture (Under OP-1)
+
+`braid-ideal` becomes the braid **hub**: it carries the top-level braid index, this sort plan, the active `SH-0`/`SH-0-sea`/held-release working queue, and the cross-lane pointer table. The other lanes keep their proof-program identity and map to the taxonomy reading order as follows.
+
+| Lane | Taxonomy role | Disposition under the sort |
+| --- | --- | --- |
+| `braid-ideal` | Featured-realization working lane + braid hub | Becomes the index/hub; keeps `SH-0`, `SH-0-sea`, held-release sweep, six-point lemma, fold-crossing charts. |
+| `braid-retained-branch-closure` | Base + featured + alternative proof home (`neutral-braid/`, `shell-braid/`, `nested-shell-braid/` subdirs) | Keep intact; it owns the neutral-braid and shell-braid certificate chains, the promotion policy, and the source triage. Confirm it stays the certificate home rather than `braid-ideal`. |
+| `braid-mass-response-map` | Braid recovery requirements → mass map / Noether sea response | Keep intact; owns `a0-reduced-branch-certificate`, mass-trace chain, pressure-response closure. |
+| `braid-angular-momentum-spin` | Braid mathematics → spin / angular momentum export | Keep intact; owns spinor-holonomy and six-point spin material. Reconcile its six-point content with `braid-ideal`'s six-point lemma to avoid a split owner. |
+| `braid-geometry-export-bridge` | Braid mathematics → geometry export / octahedral fold analysis | Keep intact as a proof lane; **re-index only** this sort (OP-2 archiving deferred). Raise a later per-lane archive checkpoint when the tail-bound frontier stalls: criteria are which `octahedral-fold-aware-*` certificates are closed and superseded, whether the `priorities.md` frontier can be stated in under one screen, and whether any downstream consumer still reads the closed certs. |
+| `braid-nested-shell-causal-closure` | Alternatives → nested shell braid | Keep as the nested-shell alternative lane; reconcile against the `nested-shell-braid/` subdir in retained-branch-closure so nested material has one owner. |
+| `braid-doubling-frequency-lock` | Alternatives → doubling-frequency resonance lock | Small lane; keep or fold into the nested/alternatives grouping per OP-1. |
+| `braid-taxonomy` | Bookkeeping → taxonomy, proof-ID crosswalk | Keep as the migration-control and proof-ID routing lane; it already governs braid-document cleanup via `proof-id-crosswalk.md`. |
+| `aaa-work-threads` | Cross-cutting master queue | Not a braid lane; keep, but ensure braid rows there point to the owning braid lane rather than duplicating tasks. |
+
+The single most important reconciliation is **nested shell braid** and **six-point** material, each of which currently has two candidate owners. The sort must pick one owner per object and leave a pointer, not a copy, at the other site.
+
+---
+
+## 4. Guardrails (Non-Negotiable)
+
+- **Do not break live proof programs.** Treat these chains as read-mostly; reorganize only their indexing and never their internal cross-links without immediate repair: the `braid-geometry-export-bridge` octahedral jet/tail-bound chain (including the `h39-shared-domain-*` series engine and the `root-tangent-cauchy-majorant-tail-lemma`); the `braid-retained-branch-closure/shell-braid` `bounded-speed-factor-*` and `support-complete-m3-*` certificate chains; the `neutral-braid` master-retention / all-pairs-root-ledger chain; `braid-mass-response-map/a0-reduced-branch-certificate` and the mass-trace chain; the `braid-ideal` `delayed-escape-certificate-lemma-proof-packet`, `six-point-symmetry-invariant-lemma`, and `sh-run-matrix`; and `proof-programs/breather-proof` and `planar-bridge-closure`.
+- **Never weaken a claim level in a move.** Text moves with its `theorem-result` / `theorem-target` / `effective-summary` / `speculation-comparison` label and its first-failure status intact. No move implies retention. No Proof ID disposition changes.
+- **Corpus self-containment.** Any promotion into `content/markdown/aaa` must restate needed substance and must not link back to `reference/priorities`. Follow `braid-retained-branch-closure/promotion-policy-into-corpus.md`.
+- **Preserve relative links.** When a file moves, repair every inbound and outbound relative link within the same edit set. The agent verifies links by inspection; the operator runs `node scripts/validate-content.mjs --check --strict` and `node scripts/build-scene-graph.mjs --check --strict` from codex to confirm. Never run generator `--write`; regeneration happens on the operator's side in the final branch/PR flow (`reference/op/codex-pr-branch.md`).
+- **Working-tree edits only; operator owns git.** This session has no git access. The agent only reads and writes files in the local working tree; all staging, committing, branching, PRs, and validation/regeneration runs are done by the operator from codex. Scope the write set to the files this sort owns and list them for the operator at close-out. `device_bash` can `mv` and edit but cannot `rm`; do not delete files — reduce an emptied file to a stub (see Phase 3) or move it into a `_to_delete/` folder for the operator to remove from codex.
+- **No new gates.** Per the theory-focus policy, prefer consolidating validators, ledgers, and caveats over adding them. This sort removes and merges structure; it does not mint new gate files.
+
+---
+
+## 5. Step-By-Step Phases
+
+### Phase 0 — Freeze and snapshot
+Inputs: current working tree. Action: capture a one-line inventory of every braid lane's `priorities.md` / `brainstorming.md` / `work-log.md` sizes and last-modified dates into this lane's `work-log.md` as the pre-sort baseline, so the operator can diff against it from codex after the sort. Guardrail: no file moves yet; no git operations (the operator owns git). Done when the baseline snapshot is logged.
+
+### Phase 1 — Intake capture and dedupe
+Inputs: the six open threads (`o4`, `o5`, `o6`, `o7`, `o8`, `p10`) and their proposed next steps; the six saved braid prompts (operator to paste). Action: create one temporary intake ledger, `braid-ideal/braid-intake-ledger.md`, with one row per proposed step or prompt: source, one-line objective, target lane, claim level, whether it duplicates an existing queued task, and a keep/merge/drop decision. Ask each thread for its `Closure goal:` line and next concrete object; do not start any thread's work here. Guardrail: intake is classification only. Done when every thread and every prompt has exactly one row and a routing decision.
+
+### Phase 2 — Lane hygiene (file-role separation)
+Inputs: each lane's three role files. Action: for every lane, move brainstorm-grade ideas that were entered into `work-log.md` into that lane's `brainstorming.md`; keep dated status, checker narratives, and failed-path notes in `work-log.md`; keep only the concise ranked queue in `priorities.md`. Ensure every immediate lane has a `work-log.md` even if it only holds the standard purpose note. Guardrail: this is content relocation within a lane, not a claim change; certificate/packet files are untouched. Done when each lane's three files hold only their designated content type.
+
+### Phase 3 — Brainstorm merge (OP-3)
+Inputs: every lane's `brainstorming.md`, plus any brainstorm-grade content pulled out of `work-log.md` files in Phase 2. Action: physically merge all of them into one `braid-ideal/brainstorming.md`. Give the merged file a dated table-of-contents header and group entries under clear headings; where a lane of origin matters, keep a short inline `(from: <lane>)` reference on the entry rather than a separate index. De-duplicate near-identical ideas, keeping the strongest statement. Mark any idea that has matured into an executable object for promotion to a packet or the queue. Reduce each emptied source `brainstorming.md` to a one-line stub — `Merged into ../braid-ideal/brainstorming.md (2026-07-08).` — so every lane still carries its three role files. Guardrail: do not delete ideas in the merge (only de-duplicate); downgrade exuberant wording to its strongest defensible level only when promoting, not in place; because `device_bash` cannot `rm`, the stub-overwrite approach (not file deletion) is what keeps the source files present-and-pointing. Done when `braid-ideal/brainstorming.md` holds all provisional braid insight, is navigable, and every source brainstorm is a resolving stub.
+
+### Phase 4 — Lane sort and routing (OP-1)
+Inputs: the Phase 1 intake ledger; the per-lane disposition table in §3. Action: route each open `priorities.md` task to its taxonomy-home lane; resolve the two dual-owner objects (nested shell braid; six-point) to a single owner each with a pointer left behind; fold dormant/duplicate lanes per OP-1. For `braid-geometry-export-bridge`, re-index only — confirm `priorities.md` points at the live tail-bound frontier and leave the octahedral certificate files untouched (OP-2 archiving deferred; do not create an archive subfolder or move certs). Renumber each queue after removals. Guardrail: repair all relative links in the same commit; run the two `--check` commands; keep proof chains intact. Done when every lane's `priorities.md` is a ranked, current queue with no orphaned or duplicated task and all checks pass.
+
+### Phase 5 — Corpus promotion pass
+Inputs: material flagged corpus-ready in Phases 2–4; `promotion-policy-into-corpus.md`; `braid-taxonomy/proof-id-crosswalk.md`. Action: for each candidate, evaluate the promotion predicate (declared claim level ∧ prerequisites satisfied ∧ self-contained language ∧ no overclaim); promote only reader-safe `theorem-target`, `effective-summary`, or closed `theorem-result` material into the correct `content/markdown/aaa/noether-braid/` chapter, honoring the open-factory framing (readers may see the proof program, its targets, first-failure statuses, and scoped negatives). After each promotion, update the source packet's promotion status line, corpus destination, promoted claim level, remaining first-failure status, and remove the completed queue item. Guardrail: no retained-branch language until a certificate closes on one live ledger; no corpus→priority links. Done when each promoted item carries its status trail and no overclaim survives review.
+
+### Phase 6 — Validation handoff (operator runs from codex)
+Inputs: the full edited set. Action: the agent verifies relative links and file-role separation by inspection and lists the exact checks for the operator to run in codex: `git diff --check`; `node scripts/validate-content.mjs --check --strict`; `node scripts/build-scene-graph.mjs --check --strict`; and the receiver-normal, frequency-triplet, and polarity drift checks named in the commit-audit hooks. The agent does not run git or generator `--write` commands. If a move is likely to produce scene-graph or textbook drift, the agent names the affected artifact and the exact `--write` command the operator will run in the final branch/PR flow. Done when the operator has the ordered check-and-regenerate command list for the edited set.
+
+### Phase 7 — Close-out and handoff
+Inputs: the completed sort. Action: update the `braid-ideal` hub index and the `braid-taxonomy` routing ledger to reflect the new lane map; retire the temporary intake ledger into `work-log.md` once its rows are all routed; write a project-memory note recording the new braid lane map and any dual-owner resolutions so future sessions do not re-litigate them; hand the operator a written close-out listing the full scoped write set (files added, edited, stubbed, or moved to `_to_delete/`) and the Phase 6 check-and-regenerate commands, so the operator can review, commit, and validate from codex. Done when the hub index is current and the written handoff is delivered.
+
+---
+
+## 6. Execution Model (Multi-Agent, Disjoint Ownership)
+
+Assign one agent per non-overlapping lane group so writes never collide, matching the existing thread set:
+
+- **Hub + intake + brainstorm index** (`braid-ideal` role files, intake ledger): one thread; run Phases 1–3 first because later phases depend on the routing decisions.
+- **Retained-branch + nested reconciliation** (`braid-retained-branch-closure`, `braid-nested-shell-causal-closure`, `braid-doubling-frequency-lock`): one thread; owns the base/featured/alternative certificate homes and the nested dual-owner resolution.
+- **Geometry-export re-index** (`braid-geometry-export-bridge`): one thread; re-indexes the live tail-bound frontier only and prepares the criteria for the deferred OP-2 archive checkpoint. No cert moves.
+- **Mass-response + angular-momentum** (`braid-mass-response-map`, `braid-angular-momentum-spin`): one thread; owns the six-point dual-owner resolution.
+- **Taxonomy + promotion** (`braid-taxonomy`, corpus promotion): one thread; runs Phase 5 after the lane sorts land.
+
+Give each thread a file-ownership boundary, a minimum artifact threshold, and a read-only fallback so it continues past the first blocker. Reserve this hub thread for integration, conflict resolution, and the final written close-out; the operator commits and validates from codex. Map the six open threads (`o4`–`o8`, `p10`) onto these groups during Phase 1 based on what each is already touching.
+
+---
+
+## 7. Risks And Rollback
+
+- **Link breakage from moves.** Mitigated by same-edit-set link repair plus the operator's two `--check` gates in codex; every move remains reversible from the operator's git history.
+- **Dual-owner drift.** If nested-shell or six-point material is copied rather than pointer-linked, the two owners diverge; the sort must leave a pointer, never a duplicate.
+- **Accidental claim inflation on promotion.** Mitigated by running each promotion through the promotion predicate and keeping the first-failure status attached.
+- **Sandbox deletion limits.** `device_bash` cannot `rm`; emptied files go to `_to_delete/` for the operator, so a fully "clean" tree may need one operator deletion pass at the end. The brainstorm merge (Phase 3) sidesteps this by overwriting each source `brainstorming.md` with a resolving stub rather than deleting it.
+
+---
+
+## 8. Follow-Up Prompt
+
+```text
+Closure goal:
+Execute Phase 1 of the braid priority sort: capture the six open thread next-steps and the six saved braid prompts into braid-ideal/braid-intake-ledger.md, one row each, with target lane, claim level, duplicate check, and keep/merge/drop decision.
+
+Task:
+- Ask threads o4, o5, o6, o7, o8, p10 for their current Closure goal line and next concrete object.
+- Read the six saved braid prompts (operator will paste).
+- Build the intake ledger with one row per item and a routing decision against the §3 lane map.
+- Do not start any thread's proof or corpus work; classification only.
+
+Scope:
+- Primary file: reference/priorities/braid-ideal/braid-intake-ledger.md.
+- Do not move certificate/packet files or change any claim level in this phase.
+
+Expected output:
+- The intake ledger with every thread and prompt routed, plus a short list of detected duplicates against existing lane queues.
+```
+
+Closure goal: approve or amend the three operator checkpoints (§2), then run Phase 0–1 to freeze the tree and capture intake before any lane moves.

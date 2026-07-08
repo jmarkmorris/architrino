@@ -4,7 +4,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 
 ## Objectives
 
-- Distinguish absolute vs emergent descriptions of the architrino "weather" and causality.
+- Distinguish absolute vs emergent descriptions of the architrino "weather" — the fluctuating superposed wake background — and causality.
 - Explain how deterministic microdynamics yield effective randomness at the operational level.
 - Define minimal dynamical requirements for agency/decision in assemblies.
 - Connect the **Decider** and **Switch** case studies to those requirements.
@@ -17,7 +17,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 The chapter keeps a clean separation between:
 
 - **Absolute level**: Euclidean void + absolute time; architrinos with definite trajectories and wakes at speed $c_f$.
-- **Emergent/operational level**: What assemblies (atoms, detectors, instruments) “see” in terms of quantum statistics, effective light cones, etc.
+- **Emergent/operational level**: What assemblies (atoms, detectors, instruments) "see" in terms of quantum statistics, effective light cones, etc.
 
 ### Absolute Picture
 
@@ -28,32 +28,32 @@ At the absolute level, any local neighborhood is crowded:
   - Translating through the void,
   - Continuously emitting spherically expanding **causal wakes** at speed $c_f$.
 
-- At a given absolute time $t$, the **net potential** at a point is the **vector sum** of:
+- At a given absolute time $T$, the **net potential** at a point is the **vector sum** of:
   - Wakes from local Noether braid assemblies in the Noether sea,
   - Wakes from bound matter in the vicinity,
   - Wakes from distant assemblies whose emission fronts are just arriving,
   - Self-hit structures from $v>c_f$ inner-binary motion.
 
-- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a strict 50/50 mix of electrinos ($q=-$) and positrinos ($q=+$). Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far‑field cancels, while potential fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale‑dependent, not an exact cancellation theorem. The observer-level summary is a local unresolved fluctuation floor, not an infinite static wake background.
+- **Global Neutrality (The Screening Effect):** While the void is filled with infinite sources, the population is a globally neutral mix of electrinos ($q=-$) and positrinos ($q=+$); exact 50/50 balance is a cosmological neutrality postulate carried by [Noether Sea](../spacetime/noether-sea.md), not a derived result, and local inventories are routinely unbalanced. Consequently, the potential contributions from distant regions statistically cancel out (effective screening). More precisely: in a statistically homogeneous 50/50 mixture the mean far-field cancels, while potential fluctuations and local charge imbalances remain and dominate the dynamics on finite scales. Screening is therefore statistical and scale-dependent, not an exact cancellation theorem. The observer-level summary is a local unresolved fluctuation floor, not an infinite static wake background.
 
-“Stable” particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
+"Stable" particles and assemblies are **dynamical equilibria**: they maintain their structure by continuously adjusting to this time-dependent potential landscape. They are not static beads; they are attractors in a driven, high-dimensional dynamical system.
 
 ### Operational Picture
 
 At the emergent level:
 
 - Observer language talks about "an electron," "a nucleus," and similar objects as if they were isolated. In this framework each such object is a **Noether braid assembly** plus its coupling to the surrounding Noether sea wake background.
-- Most of the time, the assembly’s internal state is robust against small variations in the net potential.
-- Occasionally, when the assembly’s configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
-  - Electron “jumps” orbital
+- Most of the time, the assembly's internal state is robust against small variations in the net potential.
+- Occasionally, when the assembly's configuration is **metastable** (near a threshold boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)), a particular combination of incoming wakes pushes it across a threshold:
+  - Electron "jumps" orbital
   - Nucleus dissociates
-  - Detector “clicks”
+  - Detector "clicks"
 
 Those events are **rare threshold crossings** in a continuous, deterministic flow, not spontaneous coin-flips. The micro-trajectory remains continuous, but the **coarse-grained pattern** can change quickly once the state crosses the relevant boundary (see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)).
 
 Two clarifications matter here:
 
-- **$h$-scale transitions:** Even a minute transfer on the scale of $h$ can be decisive when the system sits at a cusp between neighboring resonance patterns (e.g., $f \to f \pm 1$). Radius, frequency, and speed adjust continuously, but the operational “wavefunction pattern” can switch sharply because the system crosses a basin boundary.
+- **$h$-scale transitions:** Even a minute transfer on the scale of $h$ can be decisive when the system sits at a cusp between neighboring resonance patterns (e.g., $f \to f \pm 1$). Radius, frequency, and speed adjust continuously, but the operational "wavefunction pattern" can switch sharply because the system crosses a basin boundary.
 - **Multiple bifurcation sites:** This is not confined to the self-hit symmetry point $v = c_f$. Any metastable threshold (orbital resonances, coupling changes, edge-condition energy transfers) can act as a bifurcation surface. The $v = c_f$ hinge is one prominent example, not the only one.
 
 ---
@@ -67,20 +67,20 @@ At the fundamental level:
 - Every wake segment satisfies:
 
   $$
-  t_{\text{arrival}} = t_{\text{emission}} + \frac{r}{c_f}
+  T_{\text{arrival}} = T_{\text{emission}} + \frac{r}{c_f}
   $$
-- Forces at time $t$ on a given architrino/assembly depend only on:
+- Forces at time $T$ on a given architrino/assembly depend only on:
   - Its own past trajectory (self-hit),
-  - Other architrinos’ past trajectories, via wakes that have reached the point by $t$.
+  - Other architrinos' past trajectories, via wakes that have reached the point by $T$.
 
-There is **no backward-in-$t$ influence**. The absolute-time ordering is strictly causal.
+There is **no backward-in-$T$ influence**. The absolute-time ordering is strictly causal.
 
 ### Emergent Acausality and Stealth Effects
 
 From the viewpoint of an embedded assembly:
 
-- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by some effective $c$ associated with Noether sea assemblies and photon-like modes.
-- Two key absolute-level configurations look “stealthy” or acausal at this emergent level:
+- The effective causal structure is inferred from **how quickly disturbances propagate between assemblies**, typically limited by the effective speed $c_{\text{eff}}$ associated with Noether sea assemblies and photon-like modes.
+- Two key absolute-level configurations look "stealthy" or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
    - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-source root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-source root set is nonempty and passes the transversality/Jacobian floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
@@ -91,12 +91,12 @@ From the viewpoint of an embedded assembly:
    - Inner binaries routinely have $v>c_f$ relative to the wake speed.
    - Their self-hit geometry (intersections with their own wakes) creates nontrivial potential patterns that:
      - Are fully causal in absolute time,
-     - Can look like “out-of-nowhere” structure from the emergent perspective, because the effective light-cone built from $c$ does not capture the full wake history.
+     - Can look like "out-of-nowhere" structure from the emergent perspective, because the effective light-cone built from $c_{\text{eff}}$ does not capture the full wake history.
 
 **Net effect at operational level:**
 
 - Assemblies often experience **sharp, poorly predictable changes** in the local potential.
-- These changes may be driven by sources that are not in the observer’s inferred causal cone (based on $c$), even though they are perfectly causal in the $c_f$ + absolute-time sense.
+- These changes may be driven by sources that are not in the observer's inferred causal cone (based on $c_{\text{eff}}$), even though they are perfectly causal in the $c_f$ + absolute-time sense.
 
 So causality is **unbroken** at the substrate, but **opaque** and sometimes misleading when inferred from the emergent, coarse-grained picture.
 
@@ -114,7 +114,7 @@ At the assembly level (Noether braids, atoms, etc.):
 
 - The **outer binary** can be modeled as such a metastable subsystem:
   - It supports discrete resonance bands labeled by an integer index $f$ (linked to a characteristic frequency).
-  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary; see [Metastability and Threshold Crossings](#metastability-and-threshold-crossings)). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
+  - A transition occurs when the net potential supplies an action increment on the scale of $h$ per cycle, corresponding to $\Delta E \approx h \nu$, and pushes the system across the boundary between resonance bands (the $f \to f \pm 1$ boundary). Radius and velocity adjust continuously, but the coarse-grained pattern changes quickly once the basin boundary is crossed.
 
 - The **middle binary**, near $v = c_f$, likely sits near a **self-hit threshold** (see [Self-Hit Threshold Analogy](#self-hit-threshold-analogy)):
   - Slightly below $c_f$: one regime (e.g., a response on the order of an $h$-scale action increment per cycle, phenomenological).
@@ -129,7 +129,7 @@ We use "threshold" and "separatrix" in several regimes. A separatrix is a bounda
 | --- | --- | --- | --- |
 | Outer $f$-step | Boundary between resonant island families | Separatrix between island chains (heteroclinic in maps) | Island-chain boundary |
 | Middle $v = c_f$ | Self-hit onset boundary | Homoclinic-like threshold in reduced phase space | Entry into wake-coupled regime |
-| He-Rb-He mode | Mode-crossing boundary | Conical-intersection-like crossing in configuration space | Vibronic coupling analogue |
+| He-Rb-He mode (see [Agency and Internal Causation](../philosophy-history/agency-and-internal-causation.md)) | Mode-crossing boundary | Conical-intersection-like crossing in configuration space | Vibronic coupling analogue |
 | Neural firing | Firing threshold manifold | Saddle-node threshold in network models | Spike threshold |
 
 Where the exact topology is not proven, we use "-like" and treat the label as a structural analogy.
@@ -143,7 +143,7 @@ $$
 B_k
 =
 \left\{
-S(t_0):\Phi_{t_0\to t_1}(S(t_0))\in\mathcal{A}_k
+S(T_0):\Phi_{T_0\to T_1}(S(T_0))\in\mathcal{A}_k
 \right\}.
 $$
 Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
@@ -160,10 +160,10 @@ we get classic deterministic chaos:
 - **Structural determinism**:
   - Given the full microstate and full wake history, the evolution is fixed.
 - **Effective unpredictability**:
-  - Tiny differences in distant architrino paths, or in the timing of a stealth assembly’s approach, can flip “transition” vs “no transition.”
+  - Tiny differences in distant architrino paths, or in the timing of a stealth assembly's approach, can flip "transition" vs "no transition."
   - Any finite-resolution description (like a wavefunction, density matrix, or effective field) is insufficient to predict the exact outcome.
 
-What we call “randomness” in quantum events (dissociation times, detector clicks, path choices in interference) is, in this view:
+What we call "randomness" in quantum events (dissociation times, detector clicks, path choices in interference) is, in this view:
 
 - The macroscopic imprint of **threshold dynamics in a chaotic, driven system**,
 - Not fundamental stochasticity injected by nature.
@@ -192,15 +192,15 @@ This section states the **minimal structural and dynamical conditions** under wh
 
 ### Definition of Decision
 
-**Canonical Working Definition (Agency/Decision):** An assembly “decides” between outcomes when (i) multiple attractors are dynamically accessible, and (ii) its internal slow variables deterministically modulate the basins of attraction so that, for a given class of inputs, different internal states lead to different realized attractors.
+**Canonical Working Definition (Agency/Decision):** An assembly "decides" between outcomes when (i) multiple attractors are dynamically accessible, and (ii) its internal slow variables deterministically modulate the basins of attraction so that, for a given class of inputs, different internal states lead to different realized attractors.
 
 We keep everything strictly dynamical:
 
 - There is no extra agency substance or separate agency medium.
-- “Decision” = **the assembly’s internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
+- "Decision" = **the assembly's internal state and architecture bias which attractor/transition is realized** for a given class of incoming potential patterns.
 - Agency does not choose among pre-existing Everett-style branches. It changes basin geometry, threshold placement, or response kernels before a later perturbation is resolved.
 
-So the question becomes: what is the minimal set of features an assembly must have to *non‑trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
+So the question becomes: what is the minimal set of features an assembly must have to *non-trivially* modulate its own threshold behavior, instead of being a passive, fixed-threshold detector?
 
 ### Justification for the Canonical Definition
 
@@ -252,7 +252,7 @@ This is deterministic navigation, not libertarian free will.
 
 ### Requirements (Expanded)
 
-I see at least **five** necessary ingredients.
+There are at least **five** necessary ingredients.
 
 ---
 
@@ -260,10 +260,10 @@ I see at least **five** necessary ingredients.
 
 The assembly must have:
 
-- At least **two distinct, dynamically stable or metastable attractors** in its coarse‑grained state space (e.g. “fire” vs “don’t fire,” “transition A” vs “transition B”).
+- At least **two distinct, dynamically stable or metastable attractors** in its coarse-grained state space (e.g. "fire" vs "don't fire," "transition A" vs "transition B").
 - These attractors correspond to **different macroscopic outcomes** in response to similar classes of input.
 
-Without at least two attractors, there is nothing to **decide between**; the system’s response is trivial.
+Without at least two attractors, there is nothing to **decide between**; the system's response is trivial.
 
 ---
 
@@ -277,14 +277,14 @@ There must exist **internal parameters** that the assembly can modify (via its o
 Concretely:
 
 - Parameters could include:
-  - Effective coupling strengths between sub‑assemblies (tri‑binary networks),
+  - Effective coupling strengths between sub-assemblies (tri-binary networks),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
-  - Local Noether sea-coupling “stiffness” (how strongly sub-assemblies respond to given wake amplitudes).
+  - Local Noether sea-coupling "stiffness" (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
-  - The assembly can hold a “configuration of sensitivity” over many incoming wake peaks,
+  - The assembly can hold a "configuration of sensitivity" over many incoming wake peaks,
   - But can still adjust that configuration over longer time (learning, context).
 
-**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must dissipate entropy into the surrounding Noether sea to maintain a tuned state.
+**Note on Energetic Cost:** Tuning these parameters is not "free." Shifting phase or coupling requires work against the local potential gradient. Agency is a thermodynamic process; the assembly must do work and export entropy into the surrounding Noether sea to maintain a tuned state.
 
 ---
 
@@ -297,7 +297,7 @@ The assembly must have **internal feedback loops** that:
 
 Minimal form:
 
-- A scalar or low‑dimensional internal variable $u$ that:
+- A scalar or low-dimensional internal variable $u$ that:
   - Increases when certain attractors are visited (e.g., repeated firings),
   - Decreases or drifts when they are not,
   - In turn modifies threshold parameters (e.g., lowers threshold for one attractor, raises for another).
@@ -305,19 +305,19 @@ Minimal form:
 This is the simplest dynamical analogue of **learning or adaptation**. It allows the assembly to:
 
 - Become more/less receptive to certain patterns of input over time,
-- Encode preferences or “policies” in its internal geometry.
+- Encode preferences or "policies" in its internal geometry.
 
-Without feedback/memory, thresholds may be tunable in principle, but not under the assembly’s own historical control.
+Without feedback/memory, thresholds may be tunable in principle, but not under the assembly's own historical control.
 
 ---
 
 #### (4) Partial decoupling from instantaneous input (some autonomy)
 
-To have any meaningful “self-control” over its response, the assembly must not be a pure slave to the instantaneous potential sum.
+To have any meaningful "self-control" over its response, the assembly must not be a pure slave to the instantaneous potential sum.
 
 In dynamical terms:
 
-- The slow internal variables (thresholds, couplings) must not be **overridden** by any single large‑deviation wake peak.
+- The slow internal variables (thresholds, couplings) must not be **overridden** by any single large-deviation wake peak.
 - Instead, they should:
   - Shape *how* a broad class of inputs is interpreted,
   - Allow the same input class to produce different outcomes depending on the current internal configuration.
@@ -340,14 +340,16 @@ Finally, the way wake peaks update the internal variables must itself be **struc
 - This allows the assembly to:
   - Become more sensitive to some environmental contingencies,
   - Less sensitive to others,
-  - Based on its own previous history of “successes” or “failures” (as encoded in which attractors were previously visited).
+  - Based on its own previous history of "successes" or "failures" (as encoded in which attractors were previously visited).
 
 In minimal form:
 
 - Let $u$ evolve according to something like
-  \[
-  \dot u = F(u,\; \text{recent attractor visits},\; \text{coarse features of inputs}),
-  \]
+
+$$
+\dot u = F(u,\; \text{recent attractor visits},\; \text{coarse features of inputs}),
+$$
+
   where $F$ is not merely random but reflects the internal architecture.
 
 This is what makes the assembly a **selector of its own future sensitivity**, not just a passive recorder.
@@ -364,12 +366,12 @@ With these five pieces:
 4. **Partial decoupling** ensures the assembly can hold a chosen stance over many input cycles.
 5. **Structured updating** maps environment + past behavior into a changing stance.
 
-Then, for a fixed external architrino “weather”:
+Then, for a fixed external architrino "weather":
 
 - In one internal configuration, the assembly sits far from thresholds and **ignores** almost all peaks of a given type.
 - In another configuration, it moves those thresholds closer so that the **same class** of peaks is now sufficient to trigger transitions—**leveraging** them to produce amplified, macroscopic changes.
 
-From the outside, that difference looks like a **change of policy**: “now respond to this kind of stimulus, now don’t.” From the inside (in foundational terms), it is nothing but a lawful reconfiguration of basin geometry and threshold conditions—implemented by the assembly’s own dynamics.
+From the outside, that difference looks like a **change of policy**: "now respond to this kind of stimulus, now don't." From the inside (in foundational terms), it is nothing but a lawful reconfiguration of basin geometry and threshold conditions—implemented by the assembly's own dynamics.
 
 That is the minimal sense in which an assembly **decides its response** in deterministic $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics.
 
@@ -387,9 +389,9 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 > Crucially, the transition itself is not an observable steady state. Attempting to probe the in-between injects action and **forces a resolution to one side**, which is why continuous photon sampling cannot leave the bifurcation unresolved.
 
 > ### **Uncertainty Brackets the Integer Step (Phenomenological + Toy Dynamics)**
-> The outer binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$‑scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
+> The outer binary occupies discrete **resonance bands** labeled by an integer index $f$ (or $n$). A transition occurs when the **action per cycle** crosses the $h$-scale threshold. In absolute dynamics the step is clean: $f \to f \pm 1$.
 >
-> Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
+> Operationally, the uncertainty principle and measurement back-action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
 > The toy oscillator and action-bracket models are provisional diagnostic scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
 
@@ -397,7 +399,7 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 > Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
 
 > ### **Observability Requires a Record**
-> A decision is **detectable** only if it produces a macroscopic record—a bifurcation in the coarse‑grained history. If the internal configuration shifts but stays in the same basin, there is no external divergence and no observable “decision.” This is why **photons (or any probe)** are central to observability: they create the record and, through back‑action, finalize which basin is realized. Decisions that do not produce a record are empirically invisible.
+> A decision is **detectable** only if it produces a macroscopic record—a bifurcation in the coarse-grained history. If the internal configuration shifts but stays in the same basin, there is no external divergence and no observable "decision." This is why **photons (or any probe)** are central to observability: they create the record and, through back-action, finalize which basin is realized. Decisions that do not produce a record are empirically invisible.
 
 ---
 
@@ -407,26 +409,26 @@ The following **operational dictionary** links the QM formal step to architrino 
 
 **1) Collapse**
 - **QM formalism:** $\rho \rightarrow |n\rangle\langle n|$ (projection onto an eigenstate).
-- **Architrino micro‑dynamics:** The full microstate $\Gamma(T)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action‑like variable $J$ crosses a basin boundary.
-- **Coarse‑graining map:** Define $C[\Gamma] = f$ and $\rho_{\mathrm{eff}}(f)$ as an average over fast phases (inner/middle binaries). “Collapse” corresponds to conditioning on a realized basin label.
-- **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history‑dependent hysteresis is expected.
+- **Architrino micro-dynamics:** The full microstate $\Gamma(T)$ evolves continuously. A discrete label (e.g., band index $f$) changes only when an action-like variable $J$ crosses a basin boundary.
+- **Coarse-graining map:** Define $C[\Gamma] = f$ and $\rho_{\mathrm{eff}}(f)$ as an average over fast phases (inner/middle binaries). "Collapse" corresponds to conditioning on a realized basin label.
+- **Difference (in principle):** Transition time is finite and tied to threshold crossing / Lyapunov time, not instantaneous; near threshold, history-dependent hysteresis is expected.
 
 **2) Uncertainty**
 - **QM formalism:** $\Delta x\,\Delta p \ge \hbar/2$.
-- **Architrino micro‑dynamics:** The basin boundary is sharp in $\Gamma$, but measurement back‑action plus finite predictability time create a **band** of operational indeterminacy $\delta$ around it.
-- **Coarse‑graining map:** Operational observables cannot resolve $\Gamma$ inside the $\delta$‑band; this is the bracket around the integer step.
+- **Architrino micro-dynamics:** The basin boundary is sharp in $\Gamma$, but measurement back-action plus finite predictability time create a **band** of operational indeterminacy $\delta$ around it.
+- **Coarse-graining map:** Operational observables cannot resolve $\Gamma$ inside the $\delta$-band; this is the bracket around the integer step.
 - **Difference (in principle):** The width of the bracket depends on probe strength and forcing scale (not solely on $\hbar$), and can vary across architectures.
 
-**3) Branching / Many‑Worlds**
+**3) Branching / Many-Worlds**
 - **QM formalism:** $\sum_n c_n |n\rangle$ treated as coexisting branches.
-- **Architrino micro‑dynamics:** One realized trajectory $\Gamma(T)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
-- **Coarse‑graining map:** A single micro‑trajectory maps to multiple coarse‑grained histories near a threshold boundary.
-- **Difference (in principle):** No ontic branching; the “tree” is a bookkeeping device for incomplete knowledge.
+- **Architrino micro-dynamics:** One realized trajectory $\Gamma(T)$; multiple branches are **epistemic** alternatives for observers lacking phase/history information.
+- **Coarse-graining map:** A single micro-trajectory maps to multiple coarse-grained histories near a threshold boundary.
+- **Difference (in principle):** No ontic branching; the "tree" is a bookkeeping device for incomplete knowledge.
 
 **4) Observability / Record**
 - **QM formalism:** Measurement yields an eigenvalue and a record.
-- **Architrino micro‑dynamics:** Only basin changes that generate macroscopic divergence create a record; micro‑reconfigurations within a basin are not externally visible.
-- **Coarse‑graining map:** “Record” = a persistent coarse‑grained divergence in histories.
+- **Architrino micro-dynamics:** Only basin changes that generate macroscopic divergence create a record; micro-reconfigurations within a basin are not externally visible.
+- **Coarse-graining map:** "Record" = a persistent coarse-grained divergence in histories.
 - **Difference (in principle):** Decisions without basin changes are empirically invisible; repeated weak probes should show record creation only when a boundary is crossed.
 
 ---
@@ -436,7 +438,7 @@ The following **operational dictionary** links the QM formal step to architrino 
 If $\mathbb{A}\mathbb{A}\mathbb{A}$ is correct, the last 150 years should be read as follows:
 
 - The **empirical facts and predictive formalisms were right** (spectra, scattering, quantized transitions), but the **ontological story drifted** because the underlying mechanism was missing.
-- “Collapse,” “intrinsic randomness,” and “measurement problems” served as **interpretive scaffolds** to make the operational math legible, not as final claims about what reality is doing.
+- "Collapse," "intrinsic randomness," and "measurement problems" served as **interpretive scaffolds** to make the operational math legible, not as final claims about what reality is doing.
 - Effective descriptions (wavefunctions, operators, probabilistic rules) became **reified into ontic narratives**, and those narratives recursively shaped how new results were framed, sometimes **obscuring the mechanistic question**.
 - $\mathbb{A}\mathbb{A}\mathbb{A}$ **keeps the empirical success intact** but **grounds** it in deterministic threshold dynamics, measurement back-action, and record-making bifurcations.
 - The historical arc remains a triumph of measurement and mathematics; what changes is the **ontology**, not the data.
@@ -453,21 +455,21 @@ The controlled distinction is:
 - a Switch must show a measurable basin-weight shift under fixed boundary context;
 - a Decider must also show feedback, hold time, and a nonzero work or dissipation ledger.
 
-The minimal proof object is a family of biased basin partitions $\mathcal{P}_u=\{B_i(u)\}$ with outcome weights
+The minimal proof object is a family of biased basin partitions $\mathcal{P}_u=\{B_i(u)\}$ with outcome weights over a record window of duration $T_W$
 $$
-P_{c_\Omega,u,T}(i)
+P_{c_\Omega,u,T_W}(i)
 =
-\mu_{c_\Omega,u,T}\!\left(B_i(u)\right)
+\mu_{c_\Omega,u,T_W}\!\left(B_i(u)\right)
 $$
 A Switch claim requires two preparations $u_a,u_b$ such that
 $$
 D\!\left(
-P_{c_\Omega,u_a,T},
-P_{c_\Omega,u_b,T}
+P_{c_\Omega,u_a,T_W},
+P_{c_\Omega,u_b,T_W}
 \right)
 \ge
 \epsilon_{\mathrm{sw}}
 $$
-while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. A Decider claim additionally requires a record-sensitive update map $u_{n+1}=G(u_n,r_n,\chi_n)$ whose later basin weights differ above tolerance.
+where $D$ is a declared statistical distance — total variation in the first pass — so that $\epsilon_{\mathrm{sw}}$ has definite meaning, while the boundary context $c_\Omega$ is held fixed and the work ledger remains finite. A Decider claim additionally requires a record-sensitive update map $u_{n+1}=G(u_n,r_n,\chi_n)$ whose later basin weights differ above tolerance.
 
-Concrete hardware sketches, including a Rydberg-like He-Rb-He Switch, are illustrations of what such a future capability might look like. They are not canonized minimal architectures and may be replaced or falsified by later branch-chart, basin-measure, and energy-ledger calculations.
+Concrete hardware sketches, including the Rydberg-like He-Rb-He Switch worked in [Agency and Internal Causation](../philosophy-history/agency-and-internal-causation.md), are illustrations of what such a future capability might look like. They are not canonized minimal architectures and may be replaced or falsified by later branch-chart, basin-measure, and energy-ledger calculations.

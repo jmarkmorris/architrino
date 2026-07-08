@@ -56,7 +56,7 @@ The operator reconstruction also inherits the restartability test from [Wavefunc
 
 The effective operator map must also recover the scattering-amplitude contract of QFT where that contract has been experimentally validated. This is not a substrate claim that Feynman diagrams or continuum fields are fundamental. It is a benchmark on the observer-level $S$-matrix extracted from finite event windows.
 
-For a declared scattering chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $S_\theta=1+iT_\theta$ be the effective operator that maps calibrated incoming records to outgoing records after external-state extraction. Write the corresponding $n$-record amplitude as $\mathcal{A}_{n,\theta}$. If a physical channel $I$ carries intermediate invariant $P_I^2$ and accepted transient channel $h$, the standard pole-factorization comparison is
+For a declared scattering chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $S_\theta=1+iT_\theta$ be the effective operator that maps calibrated incoming records to outgoing records after external-state extraction. Write the corresponding $n$-record amplitude as $\mathcal{A}_{n,\theta}$. If a physical channel $I$ carries intermediate invariant $P_I^2$ and accepted transient channel $h$, the standard pole-factorization comparison is
 $$
 \mathcal{A}_{n,\theta}
 \xrightarrow{P_I^2\to m_h^2}
@@ -129,7 +129,7 @@ unless the apparatus kernel, preparation record, or retained boundary data have 
 
 This guardrail is especially important for superposition claims. A state vector may be expanded in many bases, so a statement that a superposition has formed becomes physically meaningful only after the record channel has fixed the effective coordinates being tested. The ontology-side claim must be expressed in terms of assembly state, causal-wake history, apparatus kernel, and record-autonomy criteria, not in terms of an unqualified Hilbert-basis expansion.
 
-For two effective Hilbert descriptions $D$ and $D'$ of the same declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T)$, representation agreement is a record-probability statement:
+For two effective Hilbert descriptions $D$ and $D'$ of the same declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, representation agreement is a record-probability statement:
 $$
 \Delta_{\mathrm{repr}}(D,D';\theta)
 =
@@ -141,7 +141,7 @@ P_{D'}(R\mid\theta)
 $$
 where $\mathcal{R}_\theta$ is the calibrated record family for the apparatus channel. If $\Delta_{\mathrm{repr}}(D,D';\theta)\le\varepsilon_{\mathrm{repr}}$, then a zero amplitude or missing component in one representation is not a substrate-existence claim. It becomes an admissible branch removal only when the shared basin measure and record filter also give
 $$
-\mu_{*,T}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
+\mu_{*,T_W}(B_i)\mathbf{1}_{\mathrm{rec}}(i;\theta)
 \le
 \varepsilon_{\mathrm{Born}}
 $$
@@ -151,11 +151,11 @@ Otherwise the effective chart has hidden a record-bearing basin behind a coordin
 
 Heisenberg-style matrix mechanics is retained here as a record-channel lesson, not as substrate ontology. A matrix entry should be read as a transition record between calibrated effective states under a declared apparatus channel. The underlying object remains the deterministic assembly, causal-wake, apparatus, and Noether sea flow; the matrix is the observer-level compression that survives after the basins, access region, and record window have been fixed.
 
-For a declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $\{B_m\}_{m\in\mathcal I_\theta}$ be the recordable basin family in the retained coarse state space, and let $R_{mn}$ be the calibrated transition record that reports a move from basin $B_m$ at $t_0$ to basin $B_n$ at $t_1\in T$. The transition-record matrix is
+For a declared setup $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $\{B_m\}_{m\in\mathcal I_\theta}$ be the recordable basin family in the retained coarse state space, and let $R_{mn}$ be the calibrated transition record that reports a move from basin $B_m$ at $t_0$ to basin $B_n$ at $t_1\in T_W$. The transition-record matrix is
 $$
 M^\theta_{mn}
 =
-\mu_{*,T}\!\left(
+\mu_{*,T_W}\!\left(
 \left\{\gamma\mid
 \gamma(t_0)\in B_m,\ \gamma(t_1)\in B_n,\ R_{mn}(\gamma)=1
 \right\}
@@ -171,7 +171,7 @@ $$
 M^\theta_{B\circ A}
 -
 M^\theta_{A\circ B}
-\right\|_{\mathcal{K},W,T}
+\right\|_{\mathcal{K},W,T_W}
 $$
 where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the apparatus kernel for $A$ is applied and recorded before $B$, and $M^\theta_{A\circ B}$ reverses that sequence. A nonzero residual can recover the effective meaning of noncommuting observables: the two sequences couple to different basin boundaries, path-history records, or apparatus recoil channels. If this residual vanishes in a benchmark where standard quantum mechanics requires order dependence, the operator reconstruction has compressed away physically relevant record-channel structure.
 
@@ -187,7 +187,7 @@ $$
 -i\hbar I_\theta
 $$
 
-for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$.
+for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is narrow and important. The commutator is not promoted to a substrate object. It is the effective algebra that must be recovered when the same finite-window branch record supplies calibrated transition frequencies, transition amplitudes, action-cycle closure, and apparatus access. In sequence form, the recovery target is
 
@@ -244,7 +244,7 @@ i\hbar\,\widehat O_{\{f,g\}_{\mathcal Q}}
 [\widehat Q_\theta,\widehat P_\theta]\approx i\hbar
 $$
 
-for a declared chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$ whose effective observables $f,g$ are actually recordable in that chart. The last arrow is a consequence inside the admitted canonical subdomain, not the historical starting axiom and not a global quantization license.
+for a declared chart $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$ whose effective observables $f,g$ are actually recordable in that chart. The last arrow is a consequence inside the admitted canonical subdomain, not the historical starting axiom and not a global quantization license.
 
 The same route gives the Heisenberg equation only after an effective Hamiltonian record has been admitted:
 
@@ -271,23 +271,23 @@ E_{AB}^{(O,W)}(\theta)
 =
 \mathcal{E}_{K_A,K_B}
 \left(
-(\mathcal{P}_{AB}^{(O,W)})_*\mu_{*,T}
+(\mathcal{P}_{AB}^{(O,W)})_*\mu_{*,T_W}
 \right)
 $$
-where $\mu_{*,T}$ is the finite-window basin or metastable measure used by the same measurement packet, and $\mathcal{E}_{K_A,K_B}$ denotes the selected observer-level entanglement functional after the apparatus kernels are fixed.
+where $\mu_{*,T_W}$ is the finite-window basin or metastable measure used by the same measurement packet, and $\mathcal{E}_{K_A,K_B}$ denotes the selected observer-level entanglement functional after the apparatus kernels are fixed.
 
 If a second observer or mode split uses $\mathcal{P}_{A'B'}^{(O',W')}$ and gives a different value, the first question is whether the projections, access regions, and kernels are different. Such a disagreement may be a real observer-level reconstruction effect while the underlying $\mathbb{U}_{\text{now}}$ state remains one definite substrate history. It becomes an ontology claim only if the proposed projection is replayable through the same preparation, apparatus, no-signaling, Bell, and record-autonomy constraints.
 
 ## Probability-Representation Guardrail
 
-Probability-list and generalized-probabilistic descriptions are useful comparison mathematics, but a list of outcome probabilities is not automatically an adequate observer-level state. The effective operator map also needs the record-channel topology: which calibrated states are close, which can be distinguished by declared apparatus records, and which remain connected by live branch or path-history structure. For a declared setup $(\mathcal{Q},\mathcal{K},W,T)$, let $s$ and $s'$ be two reduced effective state classes, let $P_{\mathcal{K}}(s)$ be the list of probabilities assigned to the calibrated record outcomes in that setup, and let $d_{\mathrm{rec}}(s,s';\mathcal{Q},\mathcal{K},W,T)$ be the corresponding record-distinguishability distance.
+Probability-list and generalized-probabilistic descriptions are useful comparison mathematics, but a list of outcome probabilities is not automatically an adequate observer-level state. The effective operator map also needs the record-channel topology: which calibrated states are close, which can be distinguished by declared apparatus records, and which remain connected by live branch or path-history structure. For a declared setup $(\mathcal{Q},\mathcal{K},W,T_W)$, let $s$ and $s'$ be two reduced effective state classes, let $P_{\mathcal{K}}(s)$ be the list of probabilities assigned to the calibrated record outcomes in that setup, and let $d_{\mathrm{rec}}(s,s';\mathcal{Q},\mathcal{K},W,T_W)$ be the corresponding record-distinguishability distance.
 
 A probability representation is admissible for closure only on a benchmark domain where it does not collapse record-distinguishable structure:
 $$
 d_{\mathrm{prob}}\!\left(P_{\mathcal{K}}(s),P_{\mathcal{K}}(s')\right)
 \ge
 \alpha_{\mathcal{K}}\,
-d_{\mathrm{rec}}(s,s';\mathcal{Q},\mathcal{K},W,T)
+d_{\mathrm{rec}}(s,s';\mathcal{Q},\mathcal{K},W,T_W)
 -
 \varepsilon_{\mathrm{top}},
 \qquad
@@ -297,14 +297,14 @@ This is a topology-preservation guardrail, not a claim that probability language
 
 ## Admissible Quantization-Domain Guardrail
 
-The operator map is not a global quantization of every classical function. Groenewold-van Hove-type obstructions are useful here because they prevent a hidden overclaim: no bridge should assert that all smooth observer-level functions can be assigned operators while preserving every Poisson bracket as a commutator. The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is narrower. For a declared coarse-graining $\mathcal{Q}$, apparatus kernel $\mathcal{K}$, retained access region $W$, and record window $T$, let
+The operator map is not a global quantization of every classical function. Groenewold-van Hove-type obstructions are useful here because they prevent a hidden overclaim: no bridge should assert that all smooth observer-level functions can be assigned operators while preserving every Poisson bracket as a commutator. The $\mathbb{A}\mathbb{A}\mathbb{A}$ target is narrower. For a declared coarse-graining $\mathcal{Q}$, apparatus kernel $\mathcal{K}$, retained access region $W$, and record window $T_W$ — subscripted to keep it distinct from absolute time $T$ — let
 $$
-\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}
+\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}
 \subset C^\infty(M_{\mathcal{Q}})
 $$
-be the admissible effective observables whose records are physically calibrated by that setup. For $f,g\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$, define
+be the admissible effective observables whose records are physically calibrated by that setup. For $f,g\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$, define
 $$
-\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)
+\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T_W)
 =
 \sup_{f,g}
 \frac{
@@ -312,18 +312,18 @@ $$
 [\widehat O_f,\widehat O_g]
 -
 i\hbar\,\widehat O_{\{f,g\}_{\mathcal{Q}}}
-\right\|_{\mathcal{K},W,T}
+\right\|_{\mathcal{K},W,T_W}
 }{
-\|\widehat O_f\|_{\mathcal{K},W,T}\,
-\|\widehat O_g\|_{\mathcal{K},W,T}
+\|\widehat O_f\|_{\mathcal{K},W,T_W}\,
+\|\widehat O_g\|_{\mathcal{K},W,T_W}
 +\varepsilon_{\mathrm{op}}
 }
 $$
 The quantization-domain closure condition is
 $$
-\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T)\le\varepsilon_{\mathrm{qmap}}
+\Delta_{\mathrm{qmap}}(\mathcal{Q},\mathcal{K},W,T_W)\le\varepsilon_{\mathrm{qmap}}
 $$
-on the same record window used for Born weights, contextuality checks, and locality checks. The restriction to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ is physical only when it is fixed before fitting the benchmark and justified by the apparatus channel, retained path-history data, and recordability criteria. If the admissible set is changed after seeing a failed observable, the operator map has hidden a quantization choice inside the closure.
+on the same record window used for Born weights, contextuality checks, and locality checks. The restriction to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$ is physical only when it is fixed before fitting the benchmark and justified by the apparatus channel, retained path-history data, and recordability criteria. If the admissible set is changed after seeing a failed observable, the operator map has hidden a quantization choice inside the closure.
 
 Time-like observables obey the same guardrail. Absolute time $t$ remains the substrate parameter, not an operator that every apparatus must quantize. Arrival, dwell, delay, or traversal-time quantities become admissible only when the setup supplies a clock-pointer variable, an access region, and a record rule that turn them into calibrated observer-level records. For example, a weak clock for a declared region $\Omega$ may define
 $$
@@ -334,11 +334,11 @@ T_\Omega
 Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
 \right)
 $$
-but $T_\Omega$ belongs to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ only for the declared apparatus kernel and record window that calibrate $Y_\Omega$. A negative or otherwise anomalous time-like value is therefore a signed conditional response in that domain, not a new substrate time variable and not evidence for backward-in-$t$ causation. If two time observables coincide in a standard benchmark, the coincidence is a recovery target for the declared record channel; if they differ, the operator map must preserve the distinction instead of forcing one global time operator.
+but $T_\Omega$ belongs to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$ only for the declared apparatus kernel and record window that calibrate $Y_\Omega$. A negative or otherwise anomalous time-like value is therefore a signed conditional response in that domain, not a new substrate time variable and not evidence for backward-in-$t$ causation. If two time observables coincide in a standard benchmark, the coincidence is a recovery target for the declared record channel; if they differ, the operator map must preserve the distinction instead of forcing one global time operator.
 
 ## Harmonic-Oscillator Ladder Benchmark
 
-The one-dimensional quantum harmonic oscillator is the minimal operator chart in which bracket-to-commutator recovery, operator ordering, a lower-bounded spectrum, and state generation can be checked without importing field ontology. On a declared oscillator coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $X_\theta$ and $P_\theta$ be the dimensionless position and momentum records obtained from the same apparatus kernel and record window. The comparison ladder operators are
+The one-dimensional quantum harmonic oscillator is the minimal operator chart in which bracket-to-commutator recovery, operator ordering, a lower-bounded spectrum, and state generation can be checked without importing field ontology. On a declared oscillator coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $X_\theta$ and $P_\theta$ be the dimensionless position and momentum records obtained from the same apparatus kernel and record window. The comparison ladder operators are
 $$
 a_\theta=\frac{1}{\sqrt{2}}(X_\theta+iP_\theta),
 \qquad
@@ -369,7 +369,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective-mode benchmark, not a 
 
 Orbital angular momentum supplies a second operator benchmark with a different ladder structure. The harmonic oscillator ladder is semi-infinite and lower-bounded. The orbital angular-momentum ladder is finite at fixed $\ell$: the same effective chart must recover the $L^2$ value, one chosen projection such as $L_z$, the raising and lowering of that projection, and the top and bottom termination conditions.
 
-For a declared orbital coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $L_x^\theta$, $L_y^\theta$, and $L_z^\theta$ be the effective angular-momentum record operators extracted from one apparatus and envelope chart. The standard comparison algebra is
+For a declared orbital coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T_W)$, let $L_x^\theta$, $L_y^\theta$, and $L_z^\theta$ be the effective angular-momentum record operators extracted from one apparatus and envelope chart. The standard comparison algebra is
 $$
 [L_i^\theta,L_j^\theta]\approx i\hbar\,\epsilon_{ijk}L_k^\theta,
 \qquad
@@ -414,14 +414,14 @@ The domain is also restricted. In central-envelope problems, this benchmark shou
 
 Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.
 
-For two effective descriptions $D_1$ and $D_2$ over the same declared setup $(\mathcal{Q},\mathcal{K},W,T)$, compare only the admissible observables already fixed by $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$. A compact residual is
+For two effective descriptions $D_1$ and $D_2$ over the same declared setup $(\mathcal{Q},\mathcal{K},W,T_W)$, compare only the admissible observables already fixed by $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$. A compact residual is
 $$
-\Delta_{\mathrm{obs}}(D_1,D_2;\mathcal{Q},\mathcal{K},W,T)
+\Delta_{\mathrm{obs}}(D_1,D_2;\mathcal{Q},\mathcal{K},W,T_W)
 =
-\sup_{O\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}}
+\sup_{O\in\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}}
 D_{\mathrm{TV}}\!\left(
-P_{D_1}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T),
-P_{D_2}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T)
+P_{D_1}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T_W),
+P_{D_2}(R_O\,|\,\mathcal{Q},\mathcal{K},W,T_W)
 \right)
 $$
 Here $D_{\mathrm{TV}}$ is total-variation distance between the two induced record distributions. If this residual is small, the two descriptions are equivalent only for that record channel and window. A claim about hidden dimensions, auxiliary spaces, or a different continuum field description still requires an $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping from assembly state, causal-wake history, apparatus kernel, and retained boundary data. If the equivalence disappears when the observable set is enlarged, the extra structure was a comparison chart, not a substrate discovery.
@@ -507,7 +507,7 @@ $$
 \mathcal{R}_{\Theta}(\theta)
 =
 \max\left(
-\frac{\|[\Theta,H_\theta]\|_{\mathcal{K},W,T}}{\varepsilon_{\Theta H}},
+\frac{\|[\Theta,H_\theta]\|_{\mathcal{K},W,T_W}}{\varepsilon_{\Theta H}},
 \frac{\left\|\Theta_\theta^2+I\right\|_{\mathrm{spin}}}{\varepsilon_{\Theta^2}},
 \frac{\max_a|\Delta E_a^{\mathrm{pair}}|}{\varepsilon_K}
 \right)
@@ -596,38 +596,38 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Gate Latency Scaling:** Because any newly established causal-wake coupling is limited by $c_f$, a two-qubit gate such as CNOT should acquire a distance-dependent setup or fidelity timescale with a lower bound of order $\Delta t \ge d/c_f$. Existing correlations inherited from a shared preparation event are a separate case and should not be described as newly transmitted during the gate.
 * **QFT Locality Residual:** In any regime claimed to recover local QFT, the normalized commutator residual $\Delta_{\mathrm{loc}}(A,B;I)$ must remain below $\epsilon_{\mathrm{loc}}$ for calibrated record regions outside the recovered effective causal cone. Passing this test is an effective-algebra result, not a promotion of continuum-field ontology.
 * **Transition-Record Matrix Recovery:** A Heisenberg-style matrix $\widehat M_\theta$ is admissible only when its entries are recovered as finite-window basin measures for calibrated transition records. The sequence residual $\Delta_{\mathrm{seq}}(A,B;\theta)$ should reproduce order dependence for benchmark noncommuting observables without importing matrix ontology as a primitive layer.
-* **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
+* **Quantization-Domain Residual:** In any regime claimed to recover quantum operators from a classical or coarse-grained chart, the admissible observable set $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T_W}$ and residual $\Delta_{\mathrm{qmap}}$ must be reported. A global bracket-to-commutator claim over all smooth functions is rejected by the no-go ledger rather than treated as an open $\mathbb{A}\mathbb{A}\mathbb{A}$ obligation.
 * **Observable-Domain Residual:** When two effective descriptions are claimed to be equivalent, the declared observable set and residual $\Delta_{\mathrm{obs}}$ must be reported. A small value licenses only record-channel equivalence on that apparatus window, not a substrate claim about auxiliary dimensions or continuum field objects.
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf X,T)$ or normalized density $n(\mathbf X,T)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
 While the trajectory of a single nested shell braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
 
-* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T$, the closure target is a local measure $\mu_{*,T}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T)}$, not a global measure over every physically possible state. If $\Phi_T$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
+* **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T_W$, the closure target is a local measure $\mu_{*,T_W}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T_W)}$, not a global measure over every physically possible state. If $\Phi_{T_W}$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
 $$
-d_{\mathrm{TV}}\!\left((\Phi_T)_*\mu_{*,T},\,\mu_{*,T}\right)\le\varepsilon_\mu,
+d_{\mathrm{TV}}\!\left((\Phi_{T_W})_*\mu_{*,T_W},\,\mu_{*,T_W}\right)\le\varepsilon_\mu,
 \qquad
 \varepsilon_\mu\ll 1
 $$
-* **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding record-window attractor basin $\mathcal{B}_k^{(T)}$, weighted by the inferred local measure:
+* **Basin Volume Mapping Target:** The probability $P_k$ of relaxing into a specific eigenstate $|k\rangle$ should be derived from the phase-space volume of its corresponding record-window attractor basin $\mathcal{B}_k^{(T_W)}$, weighted by the inferred local measure:
 $$
-P_k(T)=\int_{\mathcal{B}_k^{(T)}} d\mu_{*,T}(\Gamma)
+P_k(T_W)=\int_{\mathcal{B}_k^{(T_W)}} d\mu_{*,T_W}(\Gamma)
 $$
-* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the nested shell braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T}$ and push it through the record basins with $P_k(T)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
-* **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T)}\to\mathcal{Y}_{\mathrm{th}}$, define
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the nested shell braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T_W}$ and push it through the record basins with $P_k(T_W)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
+* **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T_W}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T_W$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T_W)}\to\mathcal{Y}_{\mathrm{th}}$, define
 $$
-\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T_W)
 =
 d_{\mathrm{TV}}\!\left(
-(\pi_{\mathrm{th}})_*\mu_{*,T},
-\mu_{\mathrm{th}}^{\mathcal{Q},W,T}
+(\pi_{\mathrm{th}})_*\mu_{*,T_W},
+\mu_{\mathrm{th}}^{\mathcal{Q},W,T_W}
 \right)
 $$
-Here $\mu_{\mathrm{th}}^{\mathcal{Q},W,T}$ is the observer-level thermodynamic ensemble fixed by the same retained energy, boundary data, apparatus calibration, and record channel. It is not a second ontological probability law. Let $\Delta_{\mathrm{Born}}(T)$ denote the distance between the derived basin weights and the calibrated $|\psi_k|^2$ target on the same window. A credible Born-rule closure should report
+Here $\mu_{\mathrm{th}}^{\mathcal{Q},W,T_W}$ is the observer-level thermodynamic ensemble fixed by the same retained energy, boundary data, apparatus calibration, and record channel. It is not a second ontological probability law. Let $\Delta_{\mathrm{Born}}(T_W)$ denote the distance between the derived basin weights and the calibrated $|\psi_k|^2$ target on the same window. A credible Born-rule closure should report
 $$
-\Delta_{\mathrm{Born}}(T)\le\varepsilon_{\mathrm{Born}},
+\Delta_{\mathrm{Born}}(T_W)\le\varepsilon_{\mathrm{Born}},
 \qquad
-\Delta_{\mathrm{ens}}(\mathcal{Q},W,T)\le\varepsilon_{\mathrm{ens}}
+\Delta_{\mathrm{ens}}(\mathcal{Q},W,T_W)\le\varepsilon_{\mathrm{ens}}
 $$
 on the same retained window. If the Born weights and the thermodynamic summaries require incompatible measures, the model has hidden an ensemble retuning inside the measurement account.
 
@@ -637,24 +637,24 @@ S_{\mathrm{vN}}\!\left(\rho_{ij}^{(1/2)}\right)
 =
 H_2\!\left(\frac{1+\sqrt{p_{ij}}}{2}\right)
 $$
-with $H_2(x)=-x\log x-(1-x)\log(1-x)$ in the chosen log base. The orthogonal case $p_{ij}=0$ is the record-level mutual-exclusivity limit: the equal mixture carries one full binary alternative when base-$2$ logs are used. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a new probability postulate. It is a consistency target on $\mu_{*,T}$: the same finite-window measure that supplies the basin weights must also push forward to mixture entropies with this two-state behavior. Otherwise $\Delta_{\mathrm{Born}}$ and $\Delta_{\mathrm{ens}}$ are being tuned independently rather than recovered from one preparation class, apparatus calibration, and record window.
+with $H_2(x)=-x\log x-(1-x)\log(1-x)$ in the chosen log base. The orthogonal case $p_{ij}=0$ is the record-level mutual-exclusivity limit: the equal mixture carries one full binary alternative when base-$2$ logs are used. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a new probability postulate. It is a consistency target on $\mu_{*,T_W}$: the same finite-window measure that supplies the basin weights must also push forward to mixture entropies with this two-state behavior. Otherwise $\Delta_{\mathrm{Born}}$ and $\Delta_{\mathrm{ens}}$ are being tuned independently rather than recovered from one preparation class, apparatus calibration, and record window.
 
 The same derived weights must also support ordinary empirical use. For a repeated preparation class and a fixed apparatus record channel, let $D_N=\{N_k\}$ be $N$ recorded outcomes and $\widehat f_k=N_k/N$ the observed frequencies. The inference-facing residual is
 $$
-\Delta_{\mathrm{freq}}(N,T)
+\Delta_{\mathrm{freq}}(N,T_W)
 =
-\sum_k\left|\widehat f_k-P_k(T)\right|
+\sum_k\left|\widehat f_k-P_k(T_W)\right|
 $$
 The closure target is not a decision-theory axiom and not a new probability postulate. It is the requirement that the same basin weights used above make repeated-record statistics converge in the calibrated regime:
 $$
-\Pr_{\mu_{*,T}}\!\left[
-\Delta_{\mathrm{freq}}(N,T)>\varepsilon_{\mathrm{freq}}(N)
+\Pr_{\mu_{*,T_W}}\!\left[
+\Delta_{\mathrm{freq}}(N,T_W)>\varepsilon_{\mathrm{freq}}(N)
 \right]\le\alpha_N,
 \qquad
 \varepsilon_{\mathrm{freq}}(N)\to0,\quad
 \alpha_N\to0
 $$
-This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
+This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-inference burden: once a record channel is declared, the derived $P_k(T_W)$ must be usable for confirmation and falsification in the same way the Born weights are used in laboratory quantum mechanics, without importing agent-centered rationality assumptions as substrate physics.
 
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether sea, or in bridge prose the spacetime medium.

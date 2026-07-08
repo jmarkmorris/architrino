@@ -1401,6 +1401,27 @@ body.has-textbook-page-nav #markdown-panel.is-open {
   padding: 0;
 }
 
+#markdown-content table {
+  width: max-content;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  overflow-x: auto;
+}
+
+#markdown-content th,
+#markdown-content td {
+  border: 1px solid rgba(213, 220, 255, 0.34);
+  padding: 6px 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#markdown-content th {
+  background: rgba(160, 170, 220, 0.14);
+  font-weight: 700;
+}
+
 #markdown-content a {
   color: #a7c4ff;
   text-decoration: none;

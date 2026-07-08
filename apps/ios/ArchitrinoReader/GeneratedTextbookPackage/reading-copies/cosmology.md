@@ -9,7 +9,7 @@ The opening sections define the absolute-frame picture and the document set that
 ### Cosmology in the Absolute Frame
 
 1. **Expansion Ontology**: the universe is a fixed Euclidean container with an evolving Noether sea; the container itself does not expand.
-2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $\tau_c$ chronology, not a required literal one-time ontic origin event.
+2. **Primordial Language**: "primordial" denotes an early effective observer-era regime in $t_{\mathrm{eff}}$ chronology, not a required literal one-time ontic origin event.
 3. **Bang Language**: a "bang" is admissible only as an effective exposure or release event in which high-energy retained structures become visible to a lower-energy observer environment. It is not, by itself, a claim that the Euclidean void, absolute time, or the full architrino inventory began at that event.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology: Overview
@@ -17,7 +17,7 @@ The opening sections define the absolute-frame picture and the document set that
 Cosmology is expressed in two linked descriptions:
 
 1. **Absolute description ($\mathbb{U}_{\text{now}}$ universe-state perspective)**
-- Fixed Euclidean coordinates $(x,y,z)$ and absolute time $t$
+- Fixed Euclidean coordinates $(X,Y,Z)$ and absolute time $T$
 - Full microstate accounting of assemblies and Noether sea state
 - No metric expansion of the void
 
@@ -82,14 +82,14 @@ The standard homogeneous and isotropic comparison layer is retained as a data-pr
 $$
 ds_{\mathrm{FRW,eff}}^2
 =
--c_0^2d\tau_c^2
-+a_{\mathrm{eff}}^2(\tau_c)
+-c_0^2dt_{\mathrm{eff}}^2
++a_{\mathrm{eff}}^2(t_{\mathrm{eff}})
 \left[
 \frac{d\chi^2}{1-k\chi^2}
 +\chi^2d\Omega^2
 \right]
 $$
-but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/d\tau_c$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
+but this is a reconstruction used by Physical Observers. The Euclidean void does not expand, and $a_{\mathrm{eff}}$, $H_{\mathrm{eff}}\equiv (1/a_{\mathrm{eff}})\,d a_{\mathrm{eff}}/dt_{\mathrm{eff}}$, $k$, $\Omega_i$, $w_i$, and horizon distances are effective variables extracted from Noether sea evolution, clock comparison, and transport records.
 
 The useful comparison equations are therefore recovery targets:
 $$
@@ -110,17 +110,17 @@ Passing these equations does not by itself promote metric expansion. It means th
 
 Cosmic inventory language is useful only as an effective comparison ledger. For a component whose observer-level mass-equivalent density is $\bar\rho_i$, write
 $$
-\Omega_i^\theta(\tau_c)
+\Omega_i^\theta(t_{\mathrm{eff}})
 =
-\frac{8\pi G_{\mathrm{eff}}^\theta(\tau_c)\bar\rho_i^\theta(\tau_c)}
-{3\left(H_{\mathrm{eff}}^\theta(\tau_c)\right)^2}
+\frac{8\pi G_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\bar\rho_i^\theta(t_{\mathrm{eff}})}
+{3\left(H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\right)^2}
 $$
 For a component recorded first as an energy density $u_i^\theta$, use
 $$
-\Omega_i^\theta(\tau_c)
+\Omega_i^\theta(t_{\mathrm{eff}})
 =
-\frac{8\pi G_{\mathrm{eff}}^\theta(\tau_c)u_i^\theta(\tau_c)}
-{3c_0^2\left(H_{\mathrm{eff}}^\theta(\tau_c)\right)^2}
+\frac{8\pi G_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})u_i^\theta(t_{\mathrm{eff}})}
+{3c_0^2\left(H_{\mathrm{eff}}^\theta(t_{\mathrm{eff}})\right)^2}
 $$
 These $\Omega_i$ variables are data-product coordinates. They do not say that the Euclidean void contains independent density fluids. They say that the same Noether sea state and assembly record has been projected into the standard component language at the observer epoch.
 
@@ -131,7 +131,7 @@ $$
 \Omega_{K,\mathrm{fit}}
 +
 \sum_{i\in\mathcal{I}_{\mathrm{cos}}}
-\Omega_i^\theta(\tau_{c,\mathrm{obs}})
+\Omega_i^\theta(t_{\mathrm{eff,obs}})
 -1
 $$
 where $\mathcal{I}_{\mathrm{cos}}$ includes only declared comparison rows, such as dark energy, neutral assemblies, baryons, radiation, neutrinos, binding-energy entries, kinetic or plasma entries, and wake-history or medium-response entries when the local branch has supplied them. Passing this residual means the effective inventory closes; it does not identify the substrate carrier of each row.
@@ -171,13 +171,13 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, $\mathcal{S}_{m,\mathrm
 
 For a recycling or cyclical comparison branch, this source term must also close over the declared cycle window:
 $$
-\Delta M_{\mathrm{eff}}[\tau_{c,1},\tau_{c,2}]
+\Delta M_{\mathrm{eff}}[t_{\mathrm{eff},1},t_{\mathrm{eff},2}]
 =
-\int_{\tau_{c,1}}^{\tau_{c,2}}
-\mathcal{S}_{m,\mathrm{eff}}(\tau_c)a_{\mathrm{eff}}^3(\tau_c)\,d\tau_c
+\int_{t_{\mathrm{eff},1}}^{t_{\mathrm{eff},2}}
+\mathcal{S}_{m,\mathrm{eff}}(t_{\mathrm{eff}})a_{\mathrm{eff}}^3(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 -
-\int_{\tau_{c,1}}^{\tau_{c,2}}
-3H_{\mathrm{eff}}(\tau_c)\rho_{m,\mathrm{eff}}(\tau_c)a_{\mathrm{eff}}^3(\tau_c)\,d\tau_c
+\int_{t_{\mathrm{eff},1}}^{t_{\mathrm{eff},2}}
+3H_{\mathrm{eff}}(t_{\mathrm{eff}})\rho_{m,\mathrm{eff}}(t_{\mathrm{eff}})a_{\mathrm{eff}}^3(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
 $$
 The pass condition is not a preferred external cosmology. It is that $\Delta M_{\mathrm{eff}}$ be supplied by assembly association, dissociation, transport, recycling, or Noether sea exchange in the same absolute record. Otherwise the branch has kept an effective density constant by inserting a source without provenance.
 
@@ -227,7 +227,7 @@ The familiar $13$-$14\ \mathrm{Gyr}$ age scale is treated here as a convergence 
 
 The standard cosmological fit package obtains much of its strength by combining observables inside a common Friedmann-Lemaître-Robertson-Walker limit. That limit is useful as an effective comparison layer, but it is not an ontological premise of this framework. Each observational module must therefore state which parts of its inference require large-scale homogeneity, isotropy, standard-candle or standard-ruler calibration, CMB-frame correction, and the Friedmann energy-density sum rule.
 
-The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a_{\mathrm{eff}}(\tau_c)$, $H_{\mathrm{eff}}(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w_{\mathrm{eff}}(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
+The practical rule is to separate measurement from interpretation. Supernova magnitudes, BAO angles, redshift catalogues, CMB spectra, and weak-lensing maps are retained as observational data products. The inferred variables $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(z)$, $\Omega_m$, $\Omega_\Lambda$, and $w_{\mathrm{eff}}(z)$ are effective reconstruction variables whose meaning depends on the model used to convert those data products into a background history. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must reproduce the data products or explain controlled residuals, not merely refit the inherited parameters after changing their ontology.
 
 The same split applies to the cosmological principle. Large-scale homogeneity and isotropy are statements about a reconstructed comparison slice, while the observer receives sources on a past light-cone with redshift transfer, source evolution, lensing, dust/plasma effects, survey selection, and calibration already mixed into the catalogue. A fixed-void $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may use homogeneity and isotropy only after the light-cone inference pipeline has declared which rows belong to absolute-slice ontology and which rows belong to observer transport and population reconstruction.
 
@@ -428,7 +428,7 @@ Flatness constraints require the same layer discipline. CMB, BAO, lensing, and l
 
 Each observational component exposes explicit interface variables for cross-theory mapping:
 
-- Expansion interface: effective $a_{\mathrm{eff}}(\tau_c)$/$H_{\mathrm{eff}}(z)$ history and redshift mapping variables.
+- Expansion interface: effective $a_{\mathrm{eff}}(t_{\mathrm{eff}})$/$H_{\mathrm{eff}}(z)$ history and redshift mapping variables.
 - CMB interface: mode-seeding inputs, transfer behavior, and TT/TE/EE outputs.
 - BBN interface: thermal/reaction history inputs and light-element yield outputs.
 - Growth interface: matter-loading and coupling inputs with late-time amplitude/shape outputs.
@@ -466,9 +466,9 @@ $\mathbb{A}\mathbb{A}\mathbb{A}$ may borrow explanatory motifs from QSSC/cyclica
 
 ### Time Notions (Operational)
 
-- **Absolute Time ($t$):** global linear index for full-state evolution.
-- **Cosmic Time ($\tau_c$):** reconstructed observer-level clocking used for effective observational chronology.
-- **Dynamics:** expansion is encoded as medium-network evolution in $t$, then read out as observer-level history in $\tau_c$.
+- **Absolute Time ($T$):** global linear index for full-state evolution.
+- **Effective Observer Time ($t_{\mathrm{eff}}$):** reconstructed observer-level clocking used for effective observational chronology (the cosmic-time comparison coordinate).
+- **Dynamics:** expansion is encoded as medium-network evolution in $T$, then read out as observer-level history in $t_{\mathrm{eff}}$.
 
 ## Expansion Mechanism
 
@@ -494,7 +494,7 @@ $$
 
 where $L_{\text{core}}$ is a representative assembly-separation scale.
 
-This $a_{\mathrm{eff}}(T)$ is a summary of medium evolution inside fixed $\mathbf X$, not geometric stretching of the container. When projected into a homogeneous observer comparison, the same row may be reported as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ or $a_{\mathrm{eff}}(\tau_c)$ after the clock map has been declared.
+This $a_{\mathrm{eff}}(T)$ is a summary of medium evolution inside fixed $\mathbf X$, not geometric stretching of the container. When projected into a homogeneous observer comparison, the same row may be reported as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ after the clock map has been declared.
 
 Equivalent bookkeeping choices can be used in the same ontology:
 
@@ -2201,7 +2201,7 @@ w_X(a),\;
 \Omega_{\mathrm{GW}}^X(f)
 \right)
 $$
-where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the decay or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
+where $\Omega_X(a)$ and $w_X(a)$ summarize effective energy density and equation of state, $\tau_X$ is the dissociation or handoff timescale if the branch is transient, $\Delta N_{\text{eff}}^X$ is the relativistic-species contribution, $\lambda_{\mathrm{fs}}^X$ is the structure-growth free-streaming scale, and $\Omega_{\mathrm{GW}}^X(f)$ is the stochastic gravitational-wave energy-density spectrum when present. The branch is admissible only if the same $\theta_{\mathrm{sea}}$ used for the scalar/tensor, BBN, CMB, and growth records satisfies
 $$
 \mathcal{R}_{\mathrm{preBBN}}(\theta_X,\theta_{\mathrm{sea}})
 =
@@ -2280,7 +2280,7 @@ This chapter states how big-bang nucleosynthesis constraints are to be read insi
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
-- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $t$ within the eternal Euclidean void.
+- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $T$ within the eternal Euclidean void.
 - **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
 - **Why:** Noether braids near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
 - **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
@@ -2321,7 +2321,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 
 Noether braids compress toward maximum-curvature states.
 Proton/neutron assemblies (nucleon nested shell braids; see [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
-Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
+Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T_{\mathrm{temp}} \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
 2. **Outward Release and Cooling:**
@@ -2388,21 +2388,21 @@ $$
 t
 \approx
 \frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
-\left(\frac{1\ \mathrm{MeV}}{k_BT}\right)^2
+\left(\frac{1\ \mathrm{MeV}}{k_BT_{\mathrm{temp}}}\right)^2
 $$
 where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
 $$
 \frac{n_n}{n_p}
 \approx
-\exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT}\right)
+\exp\!\left(-\frac{\Delta m\,c_0^2}{k_BT_{\mathrm{temp}}}\right)
 $$
 until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
 $$
 \frac{n_D}{n_p}
 \sim
 \eta
-\left(\frac{k_BT}{m_p c_0^2}\right)^{3/2}
-\exp\!\left(\frac{E_D}{k_BT}\right)
+\left(\frac{k_BT_{\mathrm{temp}}}{m_p c_0^2}\right)^{3/2}
+\exp\!\left(\frac{E_D}{k_BT_{\mathrm{temp}}}\right)
 $$
 with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
 
@@ -2426,11 +2426,11 @@ p+e^-+\bar{\nu}_e\to n.
 $$
 The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
 $$
-\lambda_{n\to p}^{\theta}(T)
+\lambda_{n\to p}^{\theta}(T_{\mathrm{temp}})
 \sim
-\lambda_{p\to n}^{\theta}(T)
+\lambda_{p\to n}^{\theta}(T_{\mathrm{temp}})
 \sim
-H_{\mathrm{eff,BBN}}^\theta(T)
+H_{\mathrm{eff,BBN}}^\theta(T_{\mathrm{temp}})
 $$
 where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
 $$
@@ -2456,7 +2456,7 @@ $$
 \frac{n_n^\theta}{n_p^\theta}
 \approx
 \exp\!\left(
--\frac{\Delta m_{np}c_0^2}{k_BT}
+-\frac{\Delta m_{np}c_0^2}{k_BT_{\mathrm{temp}}}
 -\xi_{\nu_e}^\theta
 \right)
 $$
@@ -2536,10 +2536,10 @@ $$
 =
 \int_{\tau_{\mathrm{on},s}}^{\tau_{\mathrm{off},s}}
 n_n^X(\tau,s)\,
-\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T(\tau,s),\rho(\tau,s))\,
+\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}^X(T_{\mathrm{temp}}(\tau,s),\rho(\tau,s))\,
 d\tau
 $$
-and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T,\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
+and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T_{\mathrm{temp}},\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
 $$
 \mathcal{R}_{\mathrm{exp},X}
 =
@@ -2579,7 +2579,7 @@ These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measure
 
 Standard BBN effectively behaves like a calibrated standard reactor: one parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across the sky. SMBH-local models should recover similar universality.
 
-- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
+- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T_{\mathrm{temp}}(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
 - **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
 - **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether braid saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
 - **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether sea state convergence and remains weakly dependent on SMBH mass class.
@@ -2594,7 +2594,7 @@ In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. I
 
 #### 3. Deuterium Survival Goal: Monotonic Quench Window
 
-Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
+Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T_{\mathrm{temp}}\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
 
 - **Goal:** Require laminar, monotonic cooling through the D-formation window, followed by rapid quench.
 - **Mapping task:** Relate release-channel transport properties, including turbulence or shear diagnostics where relevant, and cooling curves to the D-survival window.
@@ -5823,7 +5823,7 @@ For $S_8$:
 
 ### DESI-Era Data-Product Gate
 
-The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 catalogue, and as of April 2026 DESI has completed the observations for its originally planned five-year survey. The first dark-energy results from the full five-year dataset are expected in 2027. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 spectral catalogue, and has since completed the observations for its originally planned five-year survey. First dark-energy results from the full five-year dataset are a stated DESI analysis target rather than a released product. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
 
 Within that packet, Hubble-tension proposals split into two comparison routes. Late-time routes alter the inferred distance to last scattering, but BAO rows anchored by galaxy correlations tend to follow the CMB-inferred expansion record rather than the local ladder. Early-time routes shrink the physical sound horizon through early-dark-energy-like injection, but CMB and galaxy-survey scrutiny has narrowed the allowed model space. A DESI/DES $w(a)$ improvement that leaves $\Lambda\mathrm{CDM}$ acceptable, or that has no clear connection to the Hubble tension, should therefore remain a model-dependent fit comparison rather than a solved expansion mechanism. The neutrino-mass side belongs to the same discipline: DESI-era bounds on $\sum_i m_i$ constrain the joint matter inventory and growth fit, so they must be read with the same BAO, CMB, growth, and source-history record rather than as an isolated neutral-lepton ontology change.
 
@@ -5850,7 +5850,7 @@ The current benchmark family can be summarized as a residual-contract table:
 | Local distance ladder | SH0ES/Pantheon+-style Cepheid/SN ladders give a local coefficient near $73\ \mathrm{km\,s^{-1}\,Mpc^{-1}}$ with about percent-level uncertainty. | The local coefficient is $H_{\mathrm{eff,ladder}}$, the slope of the corrected redshift-transfer map after source, endpoint, launch, calibration, and path-history terms are separated. |
 | BAO standard ruler | DESI BAO rows report $D_M/r_d$, $D_H/r_d$, or $D_V/r_d$ by tracer and effective redshift, with CMB, SN, and weak-lensing combinations testing $w_0w_a$-style extensions. | BAO constrains the joint pair $(D^\theta(z),r_d^\theta)$; changing the sound-ruler calibration for CMB while changing the propagation map for BAO is a shared-state failure. |
 | Late growth | DES Year-3 3$\times$2pt weak-lensing and clustering analyses give an $S_8$ value below the Planck-inferred value, while RSD and lensing rows probe $f\sigma_8$ and growth response. | $S_8$ is a growth projection of $\theta_{\mathrm{sea}}$. It must remain compatible with CMB lensing and BAO distances, not merely lower the late-time amplitude. |
-| Euclid readiness | Euclid Q1 is public but not a cosmology release; major public cosmology products depend on later releases. | Current Euclid use is packet-readiness: masks, catalogues, spectroscopy, photo-$z$, and future covariance shape. It is not yet a public $S_8$ or BAO residual row. |
+| Euclid readiness | Euclid quick releases (Q1, Q2) are public but are not cosmology releases; major public cosmology products depend on the later staged data releases. | Current Euclid use is packet-readiness: masks, catalogues, spectroscopy, photo-$z$, and future covariance shape. It is not yet a public $S_8$ or BAO residual row. |
 
 This table fixes the claim level. The benchmark values are observer-level comparison coordinates in LambdaCDM-era pipelines. They are useful because they force the medium-relaxation proposal to match early spectra, low-redshift slopes, standard rulers, and late growth with one shared state; they are not direct measurements of substrate expansion.
 

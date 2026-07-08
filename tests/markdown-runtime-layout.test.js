@@ -81,6 +81,9 @@ function createFakeElement() {
       },
     },
     addEventListener() {},
+    contains(target) {
+      return target === this;
+    },
     querySelector() {
       return null;
     },
@@ -104,7 +107,7 @@ function createFakeElement() {
 
 function createFakeButton() {
   let clickHandler = null;
-  return {
+  const button = {
     classList: createClassList(),
     disabled: false,
     addEventListener(type, handler) {
@@ -112,8 +115,24 @@ function createFakeButton() {
         clickHandler = handler;
       }
     },
+    contains(target) {
+      return target === button;
+    },
     click() {
       return clickHandler?.();
+    },
+  };
+  return button;
+}
+
+function createFakeEventTarget() {
+  const handlers = new Map();
+  return {
+    addEventListener(type, handler) {
+      handlers.set(type, handler);
+    },
+    dispatch(type, event) {
+      return handlers.get(type)?.(event);
     },
   };
 }
@@ -756,6 +775,76 @@ test("whole document toolbar button clears runtime section identity", async () =
   assert.equal(shownLevels[0].id, "");
   assert.equal(shownLevels[0].markdownPath, "content/markdown/aaa/example.md");
   assert.equal(shownLevels[0].markdownSection, null);
+});
+
+test("whole document toolbar button toggles an open current document", async () => {
+  let active = false;
+  let hideCalls = 0;
+  const shownLevels = [];
+  const markdownDocButton = createFakeButton();
+  const currentLevel = {
+    name: "Hyde Periodic Table",
+    markdownPath: "content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md",
+    markdownAutoOpen: false,
+  };
+
+  const runtime = createScenePanelUiRuntime({
+    markdownDocButton,
+    markdownRuntime: {
+      isActiveLevelMarkdown(level) {
+        return active && level.markdownPath === currentLevel.markdownPath;
+      },
+      hideMarkdownPanel() {
+        active = false;
+        hideCalls += 1;
+      },
+      showMarkdownPanel(level) {
+        active = true;
+        shownLevels.push(level);
+      },
+    },
+    getCurrentLevel: () => currentLevel,
+    isTransitionActive: () => false,
+  });
+
+  runtime.wireListeners();
+  await markdownDocButton.click();
+  await markdownDocButton.click();
+
+  assert.deepEqual(shownLevels, [currentLevel]);
+  assert.equal(hideCalls, 1);
+});
+
+test("outside pointer closes an open markdown panel", () => {
+  const documentLike = createFakeEventTarget();
+  const markdownPanel = createFakeElement();
+  const markdownDocButton = createFakeButton();
+  let hideCalls = 0;
+  let panelOpen = true;
+  const runtime = createScenePanelUiRuntime({
+    documentLike,
+    markdownPanel,
+    markdownDocButton,
+    markdownRuntime: {
+      isMarkdownPanelOpen() {
+        return panelOpen;
+      },
+      hideMarkdownPanel() {
+        panelOpen = false;
+        hideCalls += 1;
+      },
+    },
+    getCurrentLevel: () => ({}),
+    isTransitionActive: () => false,
+  });
+
+  runtime.wireListeners();
+  documentLike.dispatch("pointerdown", { target: markdownPanel });
+  documentLike.dispatch("pointerdown", { target: markdownDocButton });
+  documentLike.dispatch("pointerdown", { target: { id: "outside" } });
+
+  assert.equal(hideCalls, 1);
+  assert.equal(panelOpen, false);
 });
 
 test("PDF toolbar button downloads download-only markdown without opening print", async () => {

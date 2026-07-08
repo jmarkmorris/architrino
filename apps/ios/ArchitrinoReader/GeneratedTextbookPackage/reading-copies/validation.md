@@ -272,13 +272,13 @@ Boltzmann's constant $k_B$ is the conversion factor between **energy** and **tem
 **Thermalized-ensemble limit:**
 In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
 $$
-\langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
+\langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T_{\mathrm{temp}}
 $$
 
 For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be accessible thermalized modes of the retained ensemble. In that special limit,
 
 $$
-\langle E_{\mathrm{acc}} \rangle = 3 k_B T
+\langle E_{\mathrm{acc}} \rangle = 3 k_B T_{\mathrm{temp}}
 $$
 
 This is a recovery target, not the general definition of temperature. If the energy is shielded, stored as configuration energy, or confined to a non-equilibrium branch, it does not enter the scalar temperature until the declared ensemble measure exposes it.
@@ -292,13 +292,13 @@ $$
 1. Derive the effective assembly mass or accessible mode-energy scale from nested shell braid dynamics.
 2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
 3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
-4. Relate the distribution width to $k_B T$ while keeping shielded stored energy outside the accessible temperature channel.
+4. Relate the distribution width to $k_B T_{\mathrm{temp}}$ while keeping shielded stored energy outside the accessible temperature channel.
 
 **Derivation target:**
 $$
 \langle \|\mathbf v\|^2\rangle
 =
-\frac{3k_B T}{m_{\mathrm{eff}}}
+\frac{3k_B T_{\mathrm{temp}}}{m_{\mathrm{eff}}}
 $$
 
 where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode inertia supplied by the same retained record, not a primitive architrino mass.
@@ -1930,9 +1930,9 @@ Massive-interference experiments and precision gravity readouts jointly test whe
 
 * **Constraint** – for two branch-level mass-density histories $\rho_1$ and $\rho_2$, the gravitational distinguishability diagnostic
   $$
-  \mathcal{D}_{\mathrm{grav}}(T;\theta)
+  \mathcal{D}_{\mathrm{grav}}(T_W;\theta)
   =
-  \int_0^{T_{\mathrm{run}}}\!\!\int_0^{T_{\mathrm{run}}}
+  \int_0^{T_W}\!\!\int_0^{T_W}
   \Delta h_A(t_{\mathrm{eff}})\,
   N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})\,
   \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
@@ -2585,7 +2585,7 @@ Radiation Gate C closure is validated only if the same event record passes the f
 | --- | --- | --- | --- |
 | Radiative event record | ontology | Record routed closure residuals, planar-mode photon output when present, non-photon shedding channels, recoil, local Noether sea state, and conservation ledgers. | Radiation is treated as primitive field emission or as untracked energy loss. |
 | Larmor/Lienard recovery | derivation target | Recover $P\propto\|\mathbf{a}\|^2$ in the weak nonrelativistic limit and the Larmor/Lienard observer-level power/angular behavior after clock conversion. | Low-speed power is not quadratic in acceleration, or relativistic recovery needs a separate fit. |
-| Bremsstrahlung emissivity | derivation target | Recover $d\sigma/dk$, screening/form-factor corrections, $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T^{-1/2}e^{-h\nu/(k_B T)}g_{\mathrm{ff}}$, and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T^{1/2}$ in LTE. | Cross-section and emissivity require incompatible Noether sea variables or plasma-specific hidden fits. |
+| Bremsstrahlung emissivity | derivation target | Recover $d\sigma/dk$, screening/form-factor corrections, $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T_{\mathrm{temp}}^{-1/2}e^{-h\nu/(k_B T_{\mathrm{temp}})}g_{\mathrm{ff}}$, and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T_{\mathrm{temp}}^{1/2}$ in LTE. | Cross-section and emissivity require incompatible Noether sea variables or plasma-specific hidden fits. |
 | Synchrotron $\gamma^2B$ scaling | derivation target | Recover $\nu_c\propto\gamma^2B$, $P_{\mathrm{syn}}\propto U_B\gamma^2$, and cooling breaks from one effective magnetic-state map. | The $\gamma^2$ frequency scaling is absent, or the $B$ map changes between curvature and emission. |
 | Pair thresholds | derivation target | Recover $s\ge4m_e^2c^4$ and the angle-dependent photon-photon threshold while preserving architrino inventory and pair provenance. | Pair channels imply creation from nothing, wrong thresholds, or unbalanced Noether braid recruitment. |
 | Compton-like scattering | derivation target | Recover the Compton shift, Thomson limit, Klein-Nishina correction, recoil, and outgoing photon provenance in one Gate C vertex. | The channel becomes phenomenological frequency loss without a closed recoil and photon ledger. |
@@ -2664,7 +2664,7 @@ The packet should classify a run by the strongest observable it actually carries
 
 ### Observable Target
 
-The target experiment compares two branch-level mass-density histories over an effective-observer coherence window $T_{\mathrm{run}}$:
+The target experiment compares two branch-level mass-density histories over an effective-observer coherence window $T_W$:
 $$
 \rho_1(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
 \qquad
@@ -2680,9 +2680,9 @@ where $A$ labels the resolved detector response channel and $\theta$ is the shar
 
 The which-path diagnostic is
 $$
-\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
+\mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 =
-\int_0^{T_{\mathrm{run}}}\!\!\int_0^{T_{\mathrm{run}}}
+\int_0^{T_W}\!\!\int_0^{T_W}
 \Delta h_A(t_{\mathrm{eff}})\,
 N^{-1}_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}};\theta)\,
 \Delta h_B(t'_{\mathrm{eff}})\,dt_{\mathrm{eff}}\,dt'_{\mathrm{eff}}
@@ -2769,22 +2769,22 @@ U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)
 $$
 The branch phase is then
 $$
-\Phi_{ab}(T_{\mathrm{run}};\theta)
+\Phi_{ab}(T_W;\theta)
 =
 \frac{1}{\hbar}
-\int_0^{T_{\mathrm{run}}}
+\int_0^{T_W}
 U_{ab}^{\mathrm{eff}}(t_{\mathrm{eff}};\theta)\,dt_{\mathrm{eff}}
 $$
 Local branch phases can be absorbed into the one-probe descriptions. The entangling invariant is the cross-branch phase combination
 $$
-\Delta\Phi_{\mathrm{ent}}(T_{\mathrm{run}};\theta)
+\Delta\Phi_{\mathrm{ent}}(T_W;\theta)
 =
 \Phi_{++}(T;\theta)+\Phi_{--}(T;\theta)
 -\Phi_{+-}(T;\theta)-\Phi_{-+}(T;\theta)
 $$
 For the ideal equal-amplitude two-branch packet, a first witness target is
 $$
-C_{\mathrm{GIE}}(T_{\mathrm{run}};\theta)
+C_{\mathrm{GIE}}(T_W;\theta)
 =
 \left|
 \sin\frac{\Delta\Phi_{\mathrm{ent}}(T;\theta)}{2}
@@ -2806,14 +2806,14 @@ The packet is evaluated on an explicit run record:
 
 | Field | Symbol | Required content |
 | --- | --- | --- |
-| branch mass histories | $\rho_1,\rho_2$ | normalized mass-density histories on $\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$ over $0\le t_{\mathrm{eff}}\le T_{\mathrm{run}}$ |
+| branch mass histories | $\rho_1,\rho_2$ | normalized mass-density histories on $\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}$ over $0\le t_{\mathrm{eff}}\le T_W$ |
 | branch separation | $d_{\mathrm{eff}}^i(t_{\mathrm{eff}})$ | center or multipole separation history with declared packet width $\sigma$ |
 | apparatus/environment record | $\mathcal{A}_{\mathrm{rec}}$ | record variable, persistence window, environmental coupling channels, and ordinary decoherence estimate |
 | gravity response kernel | $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ | detector response derived from the same effective-metric constitutive record used in weak-field gravity |
 | mediated-entanglement phase | $\Delta\Phi_{\mathrm{ent}}$ | cross-branch phase predicted from $\rho_A^a,\rho_B^b$ and the shared constitutive record $\theta$ |
 | non-gravitational residual | $\mathcal{R}_{\mathrm{nongrav}}$ | calibrated bound on non-gravity channels that could create the observed correlation |
 | covariance decomposition | $N_{AB}$ | detector noise, unresolved boundary-wake terms, environmental residuals, and calibration residuals |
-| visibility data | $\mathcal{V}(T_{\mathrm{run}})$ | observed or predicted interference visibility over the run |
+| visibility data | $\mathcal{V}(T_W)$ | observed or predicted interference visibility over the run |
 | entanglement data | $C_{\mathrm{obs}}$ | measured or predicted two-probe entanglement witness in the retained readout basis |
 | record criteria | $R,\Sigma,T_{\text{rec}}$ | Physical Observer record variable, separatrix, and persistence threshold |
 
@@ -2824,7 +2824,7 @@ No row may be filled by changing the weak-field metric record after the positive
 1. **Normalize the branch histories.** Verify $\int_{\Sigma_{t_{\mathrm{eff}}}^{\mathrm{eff}}}\rho_k(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})\,d^3x_{\mathrm{eff}}=m$ for each branch and each resolved time slice, or record the known mass exchange with the apparatus ledger.
 2. **Compute the response difference.** Use one kernel $G_A(t_{\mathrm{eff}},t'_{\mathrm{eff}};x_{\mathrm{eff}}^i;\theta)$ to compute $h_A(t_{\mathrm{eff}};\rho_1,\theta)$, $h_A(t_{\mathrm{eff}};\rho_2,\theta)$, and $\Delta h_A(t_{\mathrm{eff}})$.
 3. **Assemble the covariance.** Build $N_{AB}=N^{\mathrm{det}}_{AB}+N^{\mathrm{env}}_{AB}+N^{\mathrm{wake}}_{AB}+N^{\mathrm{cal}}_{AB}$, with each term either derived from the apparatus model or bounded by calibration data.
-4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
+4. **Evaluate distinguishability.** Compute $\mathcal{D}_{\mathrm{grav}}(T_W;\theta)$ and compare it with $\varepsilon_{\mathrm{wp}}$.
 5. **Evaluate record formation.** Compute $\tau_{\text{meas}}$, $\Delta_{\mathrm{rec}}$, and the persistence window from the measurement chapter's record criteria.
 6. **Evaluate mediated entanglement when present.** If the run is a two-probe mediated-entanglement experiment, compute $\Delta\Phi_{\mathrm{ent}}$, $C_{\mathrm{GIE}}$, and $\mathcal{R}_{\mathrm{nongrav}}$ from the same run record.
 7. **Classify the run.** Use the same output record to assign one of four statuses:
@@ -2833,14 +2833,14 @@ No row may be filled by changing the weak-field metric record after the positive
 | --- | --- | --- |
 | weak-probe | $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$ and no durable record forms | gravitational response is too weak to act as a which-path record |
 | mediated-entangling | $C_{\mathrm{GIE}}\ge C_{\mathrm{obs}}-\varepsilon_C$, $\mathcal{R}_{\mathrm{nongrav}}\le\varepsilon_{\mathrm{iso}}$, $\mathcal{D}_{\mathrm{grav}}\le\varepsilon_{\mathrm{wp}}$, and no durable which-path record forms | the branch phase is strong enough to account for the entanglement witness while the gravity-side readout remains below record threshold |
-| record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T_{\mathrm{run}}$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
+| record-forming | $\mathcal{D}_{\mathrm{grav}} > \varepsilon_{\mathrm{wp}}$, $\tau_{\text{meas}} < T_W$, and $\Delta_{\mathrm{rec}}$ stays below threshold through $T_{\text{rec}}$ | the apparatus/environment has formed an autonomous record |
 | falsifying | $\mathcal{D}_{\mathrm{grav}}\gg1$ while visibility remains high and no record-autonomy criterion is met | the effective-metric response overproduces observable which-path information |
 
 For a white-noise readout approximation, $N_{AB}(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_{AB}\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability reduces to
 $$
-\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
+\mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 =
-\int_0^{T_{\mathrm{run}}}
+\int_0^{T_W}
 \Delta h_A(t_{\mathrm{eff}})\,
 S_{AB}^{-1}\,
 \Delta h_B(t_{\mathrm{eff}})\,dt_{\mathrm{eff}}
@@ -2857,16 +2857,16 @@ $$
 $$
 For a white acceleration readout covariance $N(t_{\mathrm{eff}},t'_{\mathrm{eff}})=S_a\delta(t_{\mathrm{eff}}-t'_{\mathrm{eff}})$, the distinguishability obeys
 $$
-\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
+\mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \le
-\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T_{\mathrm{run}}}{R^6S_a}
+\frac{4G_{\mathrm{eff}}^2(\theta)M^2d_0^2T_W}{R^6S_a}
 $$
 With benchmark values
 $$
 M=10^{-14}\,\mathrm{kg},\qquad
 d_0=10^{-6}\,\mathrm{m},\qquad
 R=10^{-3}\,\mathrm{m},\qquad
-T_{\mathrm{run}}=1\,\mathrm{s}
+T_W=1\,\mathrm{s}
 $$
 and an aggressive acceleration-noise amplitude
 $$
@@ -2880,7 +2880,7 @@ $$
 \left(\frac{M}{10^{-14}\,\mathrm{kg}}\right)^2
 \left(\frac{d_0}{10^{-6}\,\mathrm{m}}\right)^2
 \left(\frac{10^{-3}\,\mathrm{m}}{R}\right)^6
-\left(\frac{T_{\mathrm{run}}}{1\,\mathrm{s}}\right)
+\left(\frac{T_W}{1\,\mathrm{s}}\right)
 \left(
 \frac{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}{S_a^{1/2}}
 \right)^2
@@ -2890,7 +2890,7 @@ $$
 M_{\mathrm{crit}}
 \approx
 \frac{R^3}{2G_{\mathrm{eff}}(\theta)d_0}
-\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T_{\mathrm{run}}}}
+\sqrt{\frac{\varepsilon_{\mathrm{wp}}S_a}{T_W}}
 $$
 or, in the same benchmark geometry,
 $$
@@ -2903,7 +2903,7 @@ M_{\mathrm{crit}}
 \left(
 \frac{S_a^{1/2}}{10^{-15}\,\mathrm{m\,s^{-2}}/\sqrt{\mathrm{Hz}}}
 \right)
-\left(\frac{1\,\mathrm{s}}{T_{\mathrm{run}}}\right)^{1/2}
+\left(\frac{1\,\mathrm{s}}{T_W}\right)^{1/2}
 $$
 This is not a new ontology or an experimental forecast. It is a scale check: for ordinary mesoscopic masses, gravity-side which-path leakage is negligible unless the branch mass, separation, proximity, coherence time, or readout sensitivity moves by many orders of magnitude. A full detector calculation should replace the scalar factor $2/R^3$ with the tensor response in the Minimal Response Model above.
 
@@ -2911,13 +2911,13 @@ This is not a new ontology or an experimental forecast. It is a scale check: for
 
 For an interference-preserving run, the metric or gravity-side readout must satisfy
 $$
-\mathcal{D}_{\mathrm{grav}}(T_{\mathrm{run}};\theta)
+\mathcal{D}_{\mathrm{grav}}(T_W;\theta)
 \le
 \varepsilon_{\mathrm{wp}}
 $$
 For a mediated-entanglement run, the same record must also satisfy
 $$
-C_{\mathrm{GIE}}(T_{\mathrm{run}};\theta)
+C_{\mathrm{GIE}}(T_W;\theta)
 \ge
 C_{\mathrm{obs}}-\varepsilon_C,
 \qquad
@@ -2929,7 +2929,7 @@ This combined gate preserves the observable without overclaiming the interpretat
 
 If a which-path record is claimed instead, the measurement chapter's record criteria must also hold:
 $$
-\tau_{\text{meas}} < T_{\mathrm{run}},
+\tau_{\text{meas}} < T_W,
 \qquad
 \sup_{t_{\mathrm{eff}}\in[\tau_{\text{meas}},\,\tau_{\text{meas}}+T_{\text{rec}}]}
 \Delta_{\mathrm{rec}}(t_{\mathrm{eff}};k)
@@ -2946,12 +2946,12 @@ The minimal simulation target is the map
 $$
 \mathcal{S}_{\mathrm{grav}}:
 \left(
-m,\sigma,d_{\mathrm{eff}}^i(t_{\mathrm{eff}}),T_{\mathrm{run}},G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
+m,\sigma,d_{\mathrm{eff}}^i(t_{\mathrm{eff}}),T_W,G_A,N_{AB},R,\Sigma,\rho_A^a,\rho_B^b
 \right)
 \longmapsto
 \left(
 \mathcal{D}_{\mathrm{grav}},
-\mathcal{V}(T_{\mathrm{run}}),
+\mathcal{V}(T_W),
 \Delta\Phi_{\mathrm{ent}},
 C_{\mathrm{GIE}},
 \tau_{\text{meas}},
@@ -4729,7 +4729,7 @@ is still a Bell-local product form when $d\rho_{\mathrm{prov}}(\Pi)$ is independ
 $$
 P_\theta(\mathbf{r}|\mathbf{s})
 =
-\mu_{*,T}^{(n)}
+\mu_{*,T_W}^{(n)}
 \left(
 B_{\mathbf{r}}^{\mathbf{s}}
 \right)
@@ -4741,7 +4741,7 @@ The native proof packet must supply:
 
 1. a pair-provenance ledger $\Pi_{AB}$ or multiplet ledger $\Pi_{ABC}$;
 2. local apparatus kernels derived from the Stern-Gerlach-like or photon-analyzer channel;
-3. one finite-window measure $\mu_{*,T}^{(n)}$ on the retained joint record manifold;
+3. one finite-window measure $\mu_{*,T_W}^{(n)}$ on the retained joint record manifold;
 4. a compression audit showing why the completed record law does not reduce to Bell-local product screening;
 5. no-signaling and measurement-independence residuals evaluated on the same packet.
 
@@ -4756,7 +4756,7 @@ A future closure packet becomes promotable only if:
 1. the probability tables are generated from declared substrate variables rather than written by hand;
 2. $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ remain within tolerance;
 3. CHSH, GHZ, and Hardy benchmarks are evaluated together;
-4. the same $\mu_{*,T}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
+4. the same $\mu_{*,T_W}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
 5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
 6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.
 

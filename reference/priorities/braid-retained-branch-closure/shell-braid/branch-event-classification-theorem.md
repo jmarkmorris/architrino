@@ -60,7 +60,7 @@ If all event margins cross simply, the first event is one of the classes below. 
 
 ## 3. Proof Route
 
-The classification follows from the theorem targets already isolated in the tri-binary packet stack.
+The classification follows from the theorem targets already isolated in the same-level braid packet stack.
 
 First, root labels continue smoothly while
 

@@ -244,6 +244,98 @@ test("default stationary-held-release run is unchanged by the angular-momentum o
   assert.deepEqual(defaultResult.modelNotes, explicitResult.modelNotes);
 });
 
+test("default run carries no sea-shell fields when the sea flag is absent", () => {
+  const result = runToy(["--duration", "1"]);
+  assert.equal(result.configuration.fccSeaShell, undefined);
+  assert.equal(result.seaShellDiagnostics, undefined);
+  assert.ok(!result.modelNotes.some((note) => note.includes("Sea-screened")));
+});
+
+test("fcc sea shell reproduces the computed wake-sum release projection and turns the outward release sub-field", () => {
+  const result = runToy([
+    "--fcc-sea-spacing",
+    "4.25",
+    "--prehistory-mode",
+    "moving-prehistory",
+    "--surface-speed-fraction",
+    "0.95",
+  ]);
+  const sea = result.seaShellDiagnostics;
+  assert.ok(sea, "sea-shell diagnostics must be present when the sea flag is active");
+  // Release-instant cross-check against the computed dipole wake-sum row
+  // sh_0_sea_dipole_wake_sum_source:2f3aad5e6cced01f at a_fcc = 4.25.
+  assert.ok(
+    Math.abs(sea.releaseSeaRadialProjection - -0.28334178890311773) < 1e-9,
+    `release sea radial projection must match the computed wake-sum row, got ${sea.releaseSeaRadialProjection}`
+  );
+  assert.equal(sea.seaStats.missingHeldWindowRoots, 0, "declared held window must cover every sea root");
+  assert.ok(sea.escapeCertificateEnvelopeCaveat.includes("partner sources only"));
+  assert.equal(result.configuration.fccSeaShell.sourceCount, 72);
+  assert.equal(
+    result.configuration.fccSeaShell.wakeSumSourceRowRef,
+    "sh_0_sea_dipole_wake_sum_source:2f3aad5e6cced01f"
+  );
+  // The isolated vt095 moving-prehistory row is outward-only; with the sea shell
+  // active the outward release must show a return turn before the first recorded
+  // field-speed crossing.
+  const crossingTime = result.events.firstFieldSpeedCrossing?.time ?? Infinity;
+  const returnTurn = result.trajectoryDiagnostics.radialTurnRows.find(
+    (turn) => turn.turnKind === "expansion_to_compression"
+  );
+  assert.ok(returnTurn, "sea-screened vt095 must show an expansion_to_compression return turn");
+  assert.ok(
+    returnTurn.time < crossingTime,
+    `return turn (${returnTurn.time}) must precede the field-speed crossing (${crossingTime})`
+  );
+  // Fail-closed discipline unchanged.
+  assert.equal(result.trajectoryDiagnostics.retainedBranchClaim, false);
+  assert.equal(result.trajectoryDiagnostics.scoreMovement, "no_score_increase");
+});
+
+test("sea-screened self-hit probe opens same-source roots exactly at the field-speed hinge", () => {
+  const result = runToy([
+    "--fcc-sea-spacing",
+    "4.25",
+    "--include-self-hits",
+    "--prehistory-mode",
+    "moving-prehistory",
+    "--surface-speed-fraction",
+    "0.95",
+  ]);
+  // Sub-field trajectories admit no same-source roots, so the sea-screened
+  // return turn is self-hit-robust by construction and the first self root
+  // must coincide with the first recorded field-speed crossing (the hinge).
+  const firstSelfHit = result.events.firstSelfHitRoot;
+  const crossing = result.events.firstFieldSpeedCrossing;
+  assert.ok(firstSelfHit, "self-hit roots must open once the run crosses field speed");
+  assert.equal(firstSelfHit.time, crossing.time, "first self root must sit at the hinge");
+  const returnTurn = result.trajectoryDiagnostics.radialTurnRows.find(
+    (turn) => turn.turnKind === "expansion_to_compression"
+  );
+  assert.ok(returnTurn && returnTurn.time < crossing.time, "sub-field return turn survives self-hit enablement");
+  // The naive self-hit kernel ejects rather than absorbs: fail-closed discipline
+  // and the self-hit probe authority label must be preserved.
+  assert.ok(result.rootStats.selfHitRoots > 0);
+  assert.equal(result.trajectoryDiagnostics.retainedBranchClaim, false);
+  assert.equal(result.trajectoryDiagnostics.scoreMovement, "no_score_increase");
+  assert.equal(
+    result.closureDiagnostics.selfHitProbe.authority,
+    "priority_only_toy_probe_not_accepted_evidence"
+  );
+});
+
+test("fcc sea spacing below the shell overlap floor is rejected fail-closed", () => {
+  const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "braid-ideal-held-release-sea-reject-"));
+  assert.throws(
+    () =>
+      execFileSync(process.execPath, [SCRIPT_PATH, "--fcc-sea-spacing", "2", "--out", outputDir], {
+        encoding: "utf8",
+        stdio: "pipe",
+      }),
+    /fcc-sea-spacing must be >=/
+  );
+});
+
 test("stationary-held-release rejects a nonzero surface-speed fraction", () => {
   const outputDir = fs.mkdtempSync(path.join(os.tmpdir(), "braid-ideal-held-release-reject-"));
   assert.throws(

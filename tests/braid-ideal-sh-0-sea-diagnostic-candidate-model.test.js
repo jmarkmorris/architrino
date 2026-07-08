@@ -13,6 +13,7 @@ import {
   REPO_AUTHORIZATION_SCHEMA,
   buildHeldReleaseSeedPathRows,
 } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
+import * as sh0SeaModule from "../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs";
 import {
   ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
@@ -20,12 +21,21 @@ import {
   ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA,
   ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA,
   AUTHORITY_CLASS,
-  CANDIDATE_RESPONSE_ROW_SCHEMA,
+  CANDIDATE_SAME_RECORD_REQUEST_SCHEMA,
+  DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA,
+  DEFAULT_A_FCC_MAX,
+  DEFAULT_A_FCC_MIN,
+  DEFAULT_A_FCC_STEP,
+  DEFAULT_HELD_HISTORY_WINDOW,
   DEFAULT_RESPONSE_DEADBAND,
+  DIPOLE_WAKE_SUM_RETENTION_WINDOW_SCHEMA,
+  DIPOLE_WAKE_SUM_RUN_SCHEMA,
+  DIPOLE_WAKE_SUM_SOURCE_ROW_SCHEMA,
+  DIPOLE_WAKE_SUM_SPACING_ROW_SCHEMA,
   FCC_SEA_DIAGNOSTIC_ATTEMPT_ID,
   FCC_SEA_POPULATION_SIZE,
-  PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA,
-  RESPONSE_RUN_SCHEMA,
+  MASTER_EQUATION_KERNEL,
+  MIN_NON_OVERLAP_A_FCC,
   REQUIRED_INWARD_RESPONSE_FLOOR,
   SCHEMA,
   TARGET_ARTIFACT_ID,
@@ -34,10 +44,13 @@ import {
   TARGET_RETAINED_RECORD_ID,
   TARGET_SOURCE_ROW_ID,
   REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX,
+  WAKE_SUM_RESPONSE_KIND,
   buildSh0SeaDiagnosticCandidateModel,
-  buildSh0SeaDiagnosticResponseRun,
+  buildSh0SeaDipoleWakeSumMotionRun,
+  buildSh0SeaDipoleWakeSumRun,
   evaluateSh0SeaDiagnosticCandidateModelEvidence,
-  evaluateSh0SeaDiagnosticResponseRunEvidence,
+  evaluateSh0SeaDipoleWakeSumMotionRunEvidence,
+  evaluateSh0SeaDipoleWakeSumRunEvidence,
 } from "../scripts/braid-ideal/sh-0-sea-diagnostic-candidate-model.mjs";
 
 const SCRIPT_PATH = fileURLToPath(
@@ -46,6 +59,10 @@ const SCRIPT_PATH = fileURLToPath(
 
 function rowById(model, suffix) {
   return model.rows.find((row) => row.row_id === `sh_0_sea_model:${suffix}`);
+}
+
+function spacingRowAt(run, aFcc) {
+  return run.spacing_rows.find((row) => Math.abs(row.a_fcc - aFcc) <= 1e-9) ?? null;
 }
 
 function assertAlmostEqual(actual, expected, epsilon = 1e-12) {
@@ -257,7 +274,9 @@ test("SH-0-sea diagnostic candidate model defines sea, frame, response, support,
   assert.equal(rowById(model, "local_target_sea_frame_row").accepted, false);
   assert.equal(rowById(model, "theta_sea_state_row").accepted_for_sh_0_sea, false);
   assert.equal(rowById(model, "boundary_condition_row").hard_wall_allowed, false);
-  assert.equal(rowById(model, "sea_response_equation_row").accepted, false);
+  const seaResponseRow = rowById(model, "sea_response_equation_row");
+  assert.equal(seaResponseRow.accepted, false);
+  assert.match(seaResponseRow.equation_computed_wake_sum, /zero free amplitude/);
   assert.equal(
     rowById(model, "support_envelope_row").diagnostic_inward_response_floor,
     REQUIRED_INWARD_RESPONSE_FLOOR
@@ -351,249 +370,151 @@ test("SH-0-sea diagnostic candidate model CLI emits embedded run-matrix metadata
   );
 });
 
-test("SH-0-sea diagnostic response run uses provider-seeded probe and does not cross the floor by default", () => {
-  const run = buildSh0SeaDiagnosticResponseRun();
+test("SH-0-sea dipole wake sum computes the delayed kernel sum over held FCC neighbor braids with zero free amplitude", () => {
+  const run = buildSh0SeaDipoleWakeSumRun();
 
-  assert.equal(run.schema, RESPONSE_RUN_SCHEMA);
+  assert.equal(run.schema, DIPOLE_WAKE_SUM_RUN_SCHEMA);
   assert.equal(run.target_artifact_id, TARGET_ARTIFACT_ID);
-  assert.equal(run.response_probe.K_NS_diag, 2.49);
-  assert.equal(run.response_probe.Phi_probe, 0.008);
-  assert.equal(run.response_probe.Gamma_NS_diag, 0);
-  assert.equal(run.response_probe.W_boundary_projection, 0);
+  assert.equal(run.master_equation_kernel.coupling, MASTER_EQUATION_KERNEL.coupling);
+  assert.equal(run.master_equation_kernel.softening, MASTER_EQUATION_KERNEL.softening);
+  assert.equal(run.master_equation_kernel.fieldSpeed, MASTER_EQUATION_KERNEL.fieldSpeed);
+  assert.equal(run.declared_spacing_range.a_fcc_min, DEFAULT_A_FCC_MIN);
+  assert.equal(run.declared_spacing_range.a_fcc_max, DEFAULT_A_FCC_MAX);
+  assert.equal(run.declared_spacing_range.a_fcc_step, DEFAULT_A_FCC_STEP);
+  assert.equal(run.declared_held_history_window, DEFAULT_HELD_HISTORY_WINDOW);
+  assert.equal(run.spacing_rows.length, run.declared_spacing_range.spacing_row_count);
+  assert.equal(run.spacing_rows.length, 37);
+  assert.equal(run.free_amplitude_parameter_count, 0);
+  assert.equal(run.fitted_response_amplitude_present, false);
+
+  const sourceRow = run.wake_sum_source_row;
+  assert.equal(sourceRow.schema, DIPOLE_WAKE_SUM_SOURCE_ROW_SCHEMA);
+  assert.equal(sourceRow.response_kind, WAKE_SUM_RESPONSE_KIND);
+  assert.equal(sourceRow.free_amplitude_parameter_count, 0);
+  assert.equal(sourceRow.fitted_response_amplitude_present, false);
+  assert.equal(sourceRow.held_history_declaration.neighbor_population, 12);
+  assert.equal(sourceRow.held_history_declaration.undeclared_environment_degrees_of_freedom, 0);
+  assert.deepEqual(sourceRow.braid_signed_polarity_dipole.components, [2, 2, 2]);
+  assertAlmostEqual(sourceRow.braid_signed_polarity_dipole.norm, 2 * Math.sqrt(3));
+  assert.equal(sourceRow.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(sourceRow.target_binding.target_path_row_ids.length, 6);
+  assert.equal(sourceRow.accepted, false);
+  assert.equal(sourceRow.retained_evidence_authorized, false);
+
+  const rowAtFour = spacingRowAt(run, 4);
+  assert.equal(rowAtFour.schema, DIPOLE_WAKE_SUM_SPACING_ROW_SCHEMA);
+  assertAlmostEqual(rowAtFour.Pi_R_A_sea, -0.3712418671549982, 1e-9);
+  assert.equal(rowAtFour.floor_evaluation.crosses_inward_response_floor, true);
+  assert.equal(rowAtFour.floor_evaluation.post_turn_return_condition_passed, true);
+  assert.equal(rowAtFour.root_coverage.pass, true);
+  assert.equal(rowAtFour.root_coverage.expected_directed_root_count, 432);
+  assert.equal(rowAtFour.root_coverage.missing_root_count, 0);
+  assert.equal(rowAtFour.field_speed.pass, true);
+  assert.equal(rowAtFour.geometry_validity.pass, true);
+  assert.equal(rowAtFour.free_amplitude_parameter_count, 0);
+  assertAlmostEqual(rowAtFour.nearest_neighbor_center_distance, 4 / Math.SQRT2, 1e-12);
+
+  const rowAtSix = spacingRowAt(run, 6);
+  assertAlmostEqual(rowAtSix.Pi_R_A_sea, -0.0519410281723061, 1e-9);
+  assert.equal(rowAtSix.floor_evaluation.crosses_inward_response_floor, false);
+  assert.equal(rowAtSix.floor_evaluation.post_turn_return_condition_passed, false);
+
   assert.equal(
-    run.response_probe.geometry_carrier.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+    run.spacing_rows.every((row) => row.field_speed.max_held_source_speed === 0),
+    true
   );
-  assert.equal(run.response_probe.geometry_carrier.diagnostic_attempt_id, "aa");
-  assert.equal(run.response_probe.geometry_carrier.population_size, 12);
-  assert.equal(run.candidate_response_row.schema, CANDIDATE_RESPONSE_ROW_SCHEMA);
-  assert.equal(run.candidate_response_row.response_kind, "pressure_tension");
-  assert.equal(run.candidate_response_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
-  assert.equal(run.candidate_response_row.target_binding.target_artifact_hash, run.target_artifact_hash);
-  assert.equal(run.candidate_response_row.target_binding.target_source_row_id, run.target_source_row_id);
-  assert.equal(run.candidate_response_row.target_binding.target_path_row_ids.length, 6);
   assert.equal(
-    run.candidate_response_row.local_row_refs.fcc_nearest_neighbor_shell_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+    run.spacing_rows.every((row) => row.free_amplitude_parameter_count === 0),
+    true
   );
+});
+
+test("SH-0-sea dipole wake sum reports a computed retention window against the escape floor", () => {
+  const run = buildSh0SeaDipoleWakeSumRun();
+  const window = run.retention_window;
+
+  assert.equal(window.schema, DIPOLE_WAKE_SUM_RETENTION_WINDOW_SCHEMA);
+  assert.equal(window.retention_window_exists, true);
   assert.equal(
-    run.candidate_response_row.response_components.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(run.candidate_response_row.response_components.geometry_carrier_attempt_id, "aa");
-  assert.equal(run.candidate_response_row.accepted, false);
-  assert.equal(run.candidate_response_row.retained_evidence_authorized, false);
-  assert.equal(run.accepted_provenance_replacement_requirement, null);
-  assert.equal(
-    run.floor_evaluation.candidate_response_row_id,
-    run.candidate_response_row.row_id
-  );
-  assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.01992);
-  assert.equal(
-    run.floor_evaluation.required_projected_response_floor,
+    window.required_projected_response_floor,
     REQUIRED_INWARD_RESPONSE_FLOOR - DEFAULT_RESPONSE_DEADBAND
   );
-  assert.equal(run.floor_evaluation.crosses_inward_response_floor, false);
-  assert.equal(run.floor_evaluation.post_turn_return_condition_passed, false);
-  assert.ok(run.floor_evaluation.additional_inward_projection_needed > 0);
-  assert.ok(run.floor_evaluation.required_Phi_multiplier_vs_current_probe > 4);
+  assert.equal(window.a_fcc_window_min, DEFAULT_A_FCC_MIN);
+  assert.equal(window.a_fcc_window_min_boundary, "bounded_by_declared_range_min");
+  assert.equal(window.a_fcc_window_max_boundary, "computed_floor_crossing");
+  assert.ok(window.a_fcc_window_max > 5.34 && window.a_fcc_window_max < 5.36);
+  assertAlmostEqual(window.a_fcc_window_max, 5.3469014, 1e-6);
+  assert.equal(window.eligible_crossing_row_count, 10);
+  assert.ok(window.a_fcc_window_min > MIN_NON_OVERLAP_A_FCC);
+
+  const candidate = window.named_sea_spacing_candidate;
+  assert.equal(candidate.a_fcc, 4.25);
+  assert.equal(candidate.candidate_id, "sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25");
+  assert.ok(candidate.inward_margin_below_required_floor > 0);
+  assert.match(candidate.claim_level, /not retained evidence/);
+
   assert.equal(run.evidence_status.accepted, false);
   assert.equal(run.authorization.accepted_retained_evidence, false);
-  assert.deepEqual(evaluateSh0SeaDiagnosticResponseRunEvidence(run), {
+  assert.equal(run.authorization.retained_branch_claim, false);
+  assert.equal(run.authorization.accepted_noether_sea_response_closure, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(evaluateSh0SeaDipoleWakeSumRunEvidence(run), {
     accepted: false,
-    reason: "diagnostic_response_run_not_accepted_retained_evidence",
+    reason: "diagnostic_wake_sum_run_not_accepted_retained_evidence",
     first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
     first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
   });
 });
 
-test("SH-0-sea diagnostic response run can cross the floor through a produced same-target source row", () => {
-  const run = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
-    responseRunHandle: "sh0sea-produced-pressure-tension-source",
-  });
+test("SH-0-sea dipole wake sum truncates the retention window fail-closed when root coverage is lost", () => {
+  const run = buildSh0SeaDipoleWakeSumRun({ heldHistoryWindow: 5 });
+  const window = run.retention_window;
 
-  assert.equal(run.response_probe.probe_id, "sh0sea-produced-pressure-tension-source");
-  assert.equal(run.produced_response_source_row.schema, PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA);
-  assert.equal(run.produced_response_source_row.response_kind, "pressure_tension");
-  assert.equal(run.produced_response_source_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
-  assert.equal(run.produced_response_source_row.target_binding.target_artifact_hash, run.target_artifact_hash);
-  assert.equal(
-    run.produced_response_source_row.target_binding.target_source_row_id,
-    run.target_source_row_id
-  );
-  assert.equal(run.produced_response_source_row.target_binding.target_path_row_ids.length, 6);
-  assert.equal(
-    run.produced_response_source_row.event_provenance.boundary_condition_row_ref,
-    "sh_0_sea_model:boundary_condition_row"
-  );
-  assert.equal(
-    run.produced_response_source_row.event_provenance.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(
-    run.produced_response_source_row.event_provenance.event_source,
-    "candidate_same_target_aa_fcc_shell_pressure_tension_event"
-  );
-  assert.equal(
-    run.produced_response_source_row.geometry_carrier.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(run.produced_response_source_row.geometry_carrier.diagnostic_attempt_id, "aa");
-  assert.equal(run.produced_response_source_row.geometry_carrier.population_size, 12);
-  assert.equal(run.produced_response_source_row.geometry_carrier.neighbor_directions.length, 12);
-  assert.equal(
-    run.produced_response_source_row.geometry_carrier.source_production_role,
-    "pressure_tension_diagnostic_geometry_carrier"
-  );
-  assert.equal(
-    run.produced_response_source_row.support_provenance.support_envelope_row_ref,
-    "sh_0_sea_model:support_envelope_row"
-  );
-  assert.equal(
-    run.produced_response_source_row.support_provenance.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(
-    run.produced_response_source_row.action_provenance.action_exchange_row_ref,
-    "sh_0_sea_model:action_exchange_row"
-  );
-  assert.equal(
-    run.produced_response_source_row.action_provenance.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(run.produced_response_source_row.accepted, false);
-  assert.equal(run.produced_response_source_row.retained_evidence_authorized, false);
-  assert.equal(
-    run.response_probe.produced_response_source_row_ref,
-    run.produced_response_source_row.row_id
-  );
-  assert.equal(run.candidate_response_row.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
-  assert.equal(
-    run.candidate_response_row.response_components.Phi_probe,
-    run.produced_response_source_row.produced_response_components.Phi_probe
-  );
-  assert.equal(
-    run.candidate_response_row.response_components.produced_response_source_row_ref,
-    run.produced_response_source_row.row_id
-  );
-  assertAlmostEqual(run.floor_evaluation.Pi_R_A_sea, -0.09462);
-  assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
-  assert.equal(run.floor_evaluation.post_turn_return_condition_passed, true);
-  assert.equal(run.floor_evaluation.additional_inward_projection_needed, 0);
-  assert.equal(run.evidence_status.accepted, false);
-  assert.equal(run.authorization.accepted_noether_sea_response_closure, false);
+  const uncoveredRows = run.spacing_rows.filter((row) => !row.root_coverage.pass);
+  assert.ok(uncoveredRows.length > 0);
+  assert.ok(uncoveredRows.every((row) => row.root_coverage.missing_root_count > 0));
+  assert.equal(window.retention_window_exists, true);
+  assert.equal(window.a_fcc_window_max_boundary, "truncated_by_root_coverage");
+  assert.ok(window.a_fcc_window_max < 5.25);
   assert.equal(run.authorization.scoreMovement, "no_score_increase");
-
-  const replacement = run.accepted_provenance_replacement_requirement;
-  assert.equal(replacement.schema, ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA);
-  assert.equal(replacement.accepted, false);
-  assert.equal(replacement.requirement_passed, false);
-  assert.equal(replacement.status, "seed_path_acceptance_certificate_missing");
-  assert.equal(replacement.response_kind, "pressure_tension");
-  assert.equal(replacement.diagnostic_source_row_id, run.produced_response_source_row.row_id);
-  assert.equal(replacement.candidate_response_row_id, run.candidate_response_row.row_id);
-  assert.equal(replacement.required_package_schema, ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_SCHEMA);
-  assert.equal(
-    replacement.accepted_provenance_package_verification.schema,
-    ACCEPTED_PROVENANCE_REPLACEMENT_PACKAGE_VERIFICATION_SCHEMA
-  );
-  assert.equal(
-    replacement.accepted_provenance_package_verification.status,
-    "same_target_accepted_provenance_package_missing"
-  );
-  assert.equal(
-    replacement.accepted_provenance_package_verification.package_conditionally_verified,
-    false
-  );
-  assert.equal(
-    replacement.accepted_provenance_package_verification.first_missing_object,
-    "sh_0_sea_same_target_accepted_provenance_package"
-  );
-  assert.equal(
-    replacement.accepted_provenance_package_verification.first_missing_field,
-    "accepted_provenance_package"
-  );
-  assert.equal(replacement.seed_path_acceptance.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
-  assert.equal(replacement.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
-  assert.equal(replacement.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
-  assert.equal(
-    replacement.current_diagnostic_refs.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(
-    replacement.expected_ref_prefixes.accepted_geometry_provenance_ref,
-    "accepted:sh-0-sea:geometry:aa-fcc-nearest-neighbor-shell:"
-  );
-  assert.equal(
-    replacement.expected_ref_prefixes.accepted_event_provenance_ref,
-    "accepted:sh-0-sea:event:pressure_tension:aa-fcc-shell:"
-  );
-  assert.deepEqual(replacement.accepted_provenance_status, {
-    accepted_geometry_provenance: false,
-    accepted_event_provenance: false,
-    accepted_support_provenance: false,
-    accepted_action_provenance: false,
-    accepted_replacement_source_row_id: null,
-  });
 });
 
-test("SH-0-sea diagnostic response run can use the FCC shell carrier for boundary-wake source rows", () => {
-  const run = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
-    responseRowKind: "boundary_wake",
-    responseRunHandle: "sh0sea-aa-fcc-boundary-wake-source",
-  });
+test("SH-0-sea fitted-amplitude path is gone from the module and the output path", () => {
+  assert.equal("buildSh0SeaDiagnosticResponseRun" in sh0SeaModule, false);
+  assert.equal("evaluateSh0SeaDiagnosticResponseRunEvidence" in sh0SeaModule, false);
+  assert.equal("PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA" in sh0SeaModule, false);
+  assert.equal("CANDIDATE_RESPONSE_ROW_SCHEMA" in sh0SeaModule, false);
+  assert.equal("RESPONSE_RUN_SCHEMA" in sh0SeaModule, false);
+  assert.equal("DEFAULT_PRODUCED_SOURCE_MARGIN_STEP" in sh0SeaModule, false);
 
-  assert.equal(run.produced_response_source_row.response_kind, "boundary_wake");
-  assert.equal(
-    run.produced_response_source_row.geometry_carrier.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
+  const plainOutput = execFileSync(process.execPath, [SCRIPT_PATH, "--wake-sum-run"], {
+    encoding: "utf8",
+  });
+  const legacyFlagOutput = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      "--wake-sum-run",
+      "--produced-response-source",
+      "--response-amplitude=99",
+      "--produced-source-phi=9",
+      "--response-stiffness=1000",
+    ],
+    { encoding: "utf8" }
   );
-  assert.equal(
-    run.produced_response_source_row.geometry_carrier.source_production_role,
-    "boundary_wake_diagnostic_geometry_carrier"
-  );
-  assert.equal(
-    run.produced_response_source_row.event_provenance.event_source,
-    "candidate_same_target_aa_fcc_shell_boundary_wake_event"
-  );
-  assert.equal(
-    run.candidate_response_row.response_components.geometry_carrier_row_ref,
-    "sh_0_sea_model:fcc_nearest_neighbor_shell_row"
-  );
-  assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
-  assert.equal(run.produced_response_source_row.accepted, false);
-  assert.equal(run.produced_response_source_row.retained_evidence_authorized, false);
-  assert.equal(run.authorization.scoreMovement, "no_score_increase");
-  assert.equal(
-    run.accepted_provenance_replacement_requirement.expected_ref_prefixes
-      .accepted_replacement_source_row_ref,
-    "accepted:sh-0-sea:boundary_wake:same-target-aa-fcc-source:"
-  );
-  assert.equal(
-    run.accepted_provenance_replacement_requirement.expected_ref_prefixes
-      .accepted_event_provenance_ref,
-    "accepted:sh-0-sea:event:boundary_wake:aa-fcc-shell:"
-  );
-  assert.equal(
-    run.accepted_provenance_replacement_requirement.required_package_fields.includes(
-      "accepted_geometry_provenance_ref"
-    ),
-    true
-  );
-  assert.equal(
-    run.accepted_provenance_replacement_requirement.required_package_fields.includes(
-      "accepted_action_provenance_ref"
-    ),
-    true
-  );
+  assert.equal(legacyFlagOutput, plainOutput);
+  assert.equal(plainOutput.includes("Phi_probe"), false);
+  assert.equal(plainOutput.includes("produced_response_source"), false);
+  assert.equal(plainOutput.includes('"response_amplitude"'), false);
+
+  const run = JSON.parse(plainOutput);
+  assert.equal(run.free_amplitude_parameter_count, 0);
+  assert.equal(run.fitted_response_amplitude_present, false);
 });
 
 test("SH-0-sea accepted-provenance replacement requirement propagates staged seed-path blockers", () => {
   const { acceptanceCertificate, externalAuthorityPackage } = buildMatchingSeedPathAuthorityInputs();
-  const certificateOnlyRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const certificateOnlyRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
   });
   const certificateOnly = certificateOnlyRun.accepted_provenance_replacement_requirement;
@@ -601,6 +522,7 @@ test("SH-0-sea accepted-provenance replacement requirement propagates staged see
   assert.equal(certificateOnly.accepted, false);
   assert.equal(certificateOnly.requirement_passed, false);
   assert.equal(certificateOnly.status, "seed_path_external_authority_package_missing");
+  assert.equal(certificateOnly.response_kind, WAKE_SUM_RESPONSE_KIND);
   assert.equal(
     certificateOnly.first_missing_object,
     "held_release_seed_path_rows_external_accepted_authority_package"
@@ -616,8 +538,7 @@ test("SH-0-sea accepted-provenance replacement requirement propagates staged see
   );
   assert.equal(certificateOnly.authorization.scoreMovement, "no_score_increase");
 
-  const conditionallyVerifiedRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const conditionallyVerifiedRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
   });
@@ -650,8 +571,7 @@ test("SH-0-sea accepted-provenance replacement requirement propagates staged see
     acceptanceCertificate,
     externalAuthorityPackage,
   });
-  const repoAuthorizedRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const repoAuthorizedRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
     seedPathRepoAuthorization: repoAuthorization,
@@ -675,8 +595,7 @@ test("SH-0-sea accepted-provenance replacement requirement propagates staged see
 
 test("SH-0-sea accepted-provenance package verifier can match the FCC carrier without authorizing evidence", () => {
   const { acceptanceCertificate, externalAuthorityPackage } = buildMatchingSeedPathAuthorityInputs();
-  const stagedRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const stagedRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
   });
@@ -684,8 +603,7 @@ test("SH-0-sea accepted-provenance package verifier can match the FCC carrier wi
     acceptanceCertificate,
     externalAuthorityPackage,
   });
-  const run = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const run = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
     acceptedProvenancePackage,
@@ -725,8 +643,7 @@ test("SH-0-sea accepted-provenance package verifier can match the FCC carrier wi
     ...acceptedProvenancePackage,
     geometry_carrier_row_ref: "sh_0_sea_model:not_the_fcc_shell_row",
   };
-  const badGeometryRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const badGeometryRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
     acceptedProvenancePackage: badGeometryPackage,
@@ -755,8 +672,7 @@ test("SH-0-sea replacement requirement accepts same-target provenance only after
     acceptanceCertificate,
     externalAuthorityPackage,
   });
-  const stagedRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const stagedRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
     seedPathRepoAuthorization: repoAuthorization,
@@ -765,8 +681,7 @@ test("SH-0-sea replacement requirement accepts same-target provenance only after
     acceptanceCertificate,
     externalAuthorityPackage,
   });
-  const run = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const run = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
     seedPathRepoAuthorization: repoAuthorization,
@@ -774,6 +689,7 @@ test("SH-0-sea replacement requirement accepts same-target provenance only after
   });
   const replacement = run.accepted_provenance_replacement_requirement;
 
+  assert.equal(replacement.schema, ACCEPTED_PROVENANCE_REPLACEMENT_REQUIREMENT_SCHEMA);
   assert.equal(replacement.accepted, true);
   assert.equal(replacement.requirement_passed, true);
   assert.equal(replacement.status, "same_target_accepted_provenance_package_conditionally_verified");
@@ -799,14 +715,15 @@ test("SH-0-sea replacement requirement accepts same-target provenance only after
   assert.equal(replacement.authorization.accepted_noether_sea_response_closure, false);
   assert.equal(replacement.authorization.receiver_normal_branch_strength, false);
   assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
+  assert.equal(run.evidence_status.accepted, false);
+  assert.equal(run.authorization.accepted_retained_evidence, false);
 
   const staleRepoAuthorizationPackage = {
     ...acceptedProvenancePackage,
     repo_authorization_for_accepted_held_release_seed_path_rows_ref:
       `${REPO_AUTHORIZATION_FOR_ACCEPTED_HELD_RELEASE_SEED_PATH_ROWS_REF_PREFIX}stale-record:stale-source`,
   };
-  const staleRepoAuthorizationRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const staleRepoAuthorizationRun = buildSh0SeaDipoleWakeSumRun({
     seedPathAcceptanceCertificate: acceptanceCertificate,
     seedPathExternalAuthorityPackage: externalAuthorityPackage,
     seedPathRepoAuthorization: repoAuthorization,
@@ -830,15 +747,12 @@ test("SH-0-sea replacement requirement accepts same-target provenance only after
 });
 
 test("SH-0-sea accepted-provenance package shape cannot bypass missing seed-path acceptance", () => {
-  const provisionalRun = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
-  });
+  const provisionalRun = buildSh0SeaDipoleWakeSumRun();
   const provisionalPackage = {
     ...provisionalRun.accepted_provenance_replacement_requirement
       .accepted_provenance_package_verification.expected_package_payload,
   };
-  const run = buildSh0SeaDiagnosticResponseRun({
-    producedResponseSource: true,
+  const run = buildSh0SeaDipoleWakeSumRun({
     acceptedProvenancePackage: provisionalPackage,
   });
   const replacement = run.accepted_provenance_replacement_requirement;
@@ -856,26 +770,18 @@ test("SH-0-sea accepted-provenance package shape cannot bypass missing seed-path
   assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
 });
 
-test("SH-0-sea diagnostic response run CLI emits JSON without authorizing evidence", () => {
+test("SH-0-sea dipole wake-sum CLI emits JSON without authorizing evidence", () => {
   const output = execFileSync(
     process.execPath,
-    [SCRIPT_PATH, "--response-run", "--produced-response-source", "--pretty"],
+    [SCRIPT_PATH, "--wake-sum-run", "--pretty"],
     { encoding: "utf8" }
   );
   const run = JSON.parse(output);
 
-  assert.equal(run.schema, RESPONSE_RUN_SCHEMA);
-  assert.equal(run.produced_response_source_row.schema, PRODUCED_RESPONSE_SOURCE_ROW_SCHEMA);
-  assert.equal(run.candidate_response_row.schema, CANDIDATE_RESPONSE_ROW_SCHEMA);
-  assert.equal(
-    run.candidate_response_row.response_components.produced_response_source_row_ref,
-    run.produced_response_source_row.row_id
-  );
-  assert.equal(
-    run.floor_evaluation.candidate_response_row_id,
-    run.candidate_response_row.row_id
-  );
-  assert.equal(run.floor_evaluation.crosses_inward_response_floor, true);
+  assert.equal(run.schema, DIPOLE_WAKE_SUM_RUN_SCHEMA);
+  assert.equal(run.wake_sum_source_row.schema, DIPOLE_WAKE_SUM_SOURCE_ROW_SCHEMA);
+  assert.equal(run.retention_window.retention_window_exists, true);
+  assert.equal(run.retention_window.a_fcc_window_max_boundary, "computed_floor_crossing");
   assert.equal(run.evidence_status.accepted, false);
   assert.equal(run.accepted_evidence_blocker.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
   assert.equal(run.accepted_evidence_blocker.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
@@ -889,7 +795,7 @@ test("SH-0-sea diagnostic response run CLI emits JSON without authorizing eviden
   );
 });
 
-test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authority diagnostics", () => {
+test("SH-0-sea dipole wake-sum CLI propagates supplied seed-path authority diagnostics", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sh0sea-seed-path-authority-"));
   const certificatePath = path.join(tempDir, "acceptance-certificate.json");
   const externalAuthorityPackagePath = path.join(tempDir, "external-authority-package.json");
@@ -902,8 +808,7 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
       acceptanceCertificate,
       externalAuthorityPackage,
     });
-    const stagedRun = buildSh0SeaDiagnosticResponseRun({
-      producedResponseSource: true,
+    const stagedRun = buildSh0SeaDipoleWakeSumRun({
       seedPathAcceptanceCertificate: acceptanceCertificate,
       seedPathExternalAuthorityPackage: externalAuthorityPackage,
       seedPathRepoAuthorization: repoAuthorization,
@@ -921,8 +826,7 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
       process.execPath,
       [
         SCRIPT_PATH,
-        "--response-run",
-        "--produced-response-source",
+        "--wake-sum-run",
         `--acceptance-certificate-json=${certificatePath}`,
         `--external-authority-package-json=${externalAuthorityPackagePath}`,
         `--repo-authorization-json=${repoAuthorizationPath}`,
@@ -949,7 +853,169 @@ test("SH-0-sea diagnostic response run CLI propagates supplied seed-path authori
     );
     assert.equal(replacement.accepted_provenance_status.accepted_action_provenance, true);
     assert.equal(replacement.authorization.scoreMovement, "no_score_increase");
+    assert.equal(run.evidence_status.accepted, false);
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
+});
+
+test("SH-0-sea delayed-echo motion run reproduces the static sum in the zero-amplitude motion limit", () => {
+  const run = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "breathing",
+    motionDelta: 0,
+    motionOmegaGrid: [2],
+    motionPhaseSamples: 4,
+    aFccMin: 4,
+    aFccMax: 5,
+    aFccStep: 0.5,
+  });
+
+  assert.equal(run.schema, DIPOLE_WAKE_SUM_MOTION_RUN_SCHEMA);
+  assert.equal(run.neighbor_motion_declaration.kind, "breathing");
+  assert.equal(run.neighbor_motion_declaration.breathing_delta, 0);
+  assert.equal(run.neighbor_motion_declaration.undeclared_environment_degrees_of_freedom, 0);
+  assert.equal(run.free_amplitude_parameter_count, 0);
+  assert.equal(run.fitted_response_amplitude_present, false);
+  assert.equal(run.omega_results.length, 1);
+
+  const rowAtFour = run.omega_results[0].spacing_rows.find(
+    (row) => Math.abs(row.a_fcc - 4) <= 1e-9
+  );
+  assert.ok(rowAtFour.phase_envelope.spread <= 1e-12);
+  assertAlmostEqual(rowAtFour.phase_envelope.Pi_R_mean, -0.3712418671549982, 1e-9);
+  assert.equal(rowAtFour.floor_evaluation.crosses_inward_response_floor_all_phases, true);
+  assert.equal(rowAtFour.floor_evaluation.crosses_inward_response_floor_some_phase, true);
+  assert.equal(rowAtFour.root_coverage.pass, true);
+  assert.equal(rowAtFour.field_speed.pass, true);
+  assert.equal(rowAtFour.free_amplitude_parameter_count, 0);
+
+  const staticReference = run.static_reference_rows.find(
+    (row) => Math.abs(row.a_fcc - 4) <= 1e-9
+  );
+  assertAlmostEqual(rowAtFour.phase_envelope.Pi_R_mean, staticReference.Pi_R_A_sea, 1e-9);
+
+  assert.equal(run.evidence_status.accepted, false);
+  assert.equal(run.authorization.retained_branch_claim, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(evaluateSh0SeaDipoleWakeSumMotionRunEvidence(run), {
+    accepted: false,
+    reason: "diagnostic_wake_sum_motion_run_not_accepted_retained_evidence",
+    first_missing_object: ACCEPTED_EVIDENCE_BLOCKER_OBJECT,
+    first_missing_field: ACCEPTED_EVIDENCE_BLOCKER_FIELD,
+  });
+});
+
+test("SH-0-sea delayed-echo breathing run splits the retention window boundary by phase", () => {
+  const run = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "breathing",
+    motionDelta: 0.2,
+    motionOmegaGrid: [2],
+    motionPhaseSamples: 16,
+    aFccMin: 4,
+    aFccMax: 7,
+    aFccStep: 0.5,
+  });
+  const result = run.omega_results[0];
+  const guaranteed = result.retention_windows.guaranteed_all_phases;
+  const conditional = result.retention_windows.phase_conditional;
+
+  assert.equal(result.field_speed_pass, true);
+  assert.equal(guaranteed.retention_window_exists, true);
+  assert.equal(conditional.retention_window_exists, true);
+  assert.ok(guaranteed.a_fcc_window_max < conditional.a_fcc_window_max);
+  assert.ok(guaranteed.a_fcc_window_max < run.delayed_echo_verdict.static_reference_boundary);
+  assert.ok(conditional.a_fcc_window_max > run.delayed_echo_verdict.static_reference_boundary);
+  assert.equal(result.phase_dependence.observed, true);
+  assert.ok(result.candidate_spacing_status.phase_envelope.spread > 0.01);
+  assert.equal(result.candidate_spacing_status.a_fcc, 4.25);
+  assert.equal(run.delayed_echo_verdict.phase_dependence_observed, true);
+  assert.equal(run.delayed_echo_verdict.retention_window_boundary_split_observed, true);
+  assert.equal(run.delayed_echo_verdict.per_omega_boundaries.length, 1);
+  assert.equal(run.wake_sum_source_row.neighbor_motion_declaration.kind, "breathing");
+  assert.equal(run.authorization.accepted_noether_sea_response_closure, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+});
+
+test("SH-0-sea delayed-echo orbiting run reports phase-conditional retention and excludes super-field-speed rows fail-closed", () => {
+  const run = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "orbiting",
+    motionOmegaGrid: [0.5, 1.5],
+    motionPhaseSamples: 8,
+    motionSpinAxis: [0, 0, 1],
+    aFccMin: 4,
+    aFccMax: 5.5,
+    aFccStep: 0.5,
+  });
+  const subField = run.omega_results.find((result) => result.omega === 0.5);
+  const superField = run.omega_results.find((result) => result.omega === 1.5);
+
+  assert.deepEqual(run.neighbor_motion_declaration.spin_axis_unit, [0, 0, 1]);
+  assert.equal(subField.field_speed_pass, true);
+  assert.equal(subField.retention_windows.guaranteed_all_phases.retention_window_exists, false);
+  assert.equal(subField.retention_windows.phase_conditional.retention_window_exists, true);
+  assert.equal(subField.phase_dependence.observed, true);
+
+  assert.equal(superField.max_source_speed_bound, 1.5);
+  assert.equal(superField.field_speed_pass, false);
+  assert.equal(
+    superField.spacing_rows.every((row) => row.field_speed.pass === false),
+    true
+  );
+  assert.equal(superField.retention_windows.guaranteed_all_phases.retention_window_exists, false);
+  assert.equal(superField.retention_windows.phase_conditional.retention_window_exists, false);
+  assert.equal(run.authorization.scoreMovement, "no_score_increase");
+});
+
+test("SH-0-sea candidate same-record request feeds the a_FCC=4.25 candidate into the chain fail-closed", () => {
+  const run = buildSh0SeaDipoleWakeSumRun();
+  const request = run.candidate_same_record_request;
+
+  assert.equal(request.schema, CANDIDATE_SAME_RECORD_REQUEST_SCHEMA);
+  assert.equal(request.authority_class, AUTHORITY_CLASS);
+  assert.equal(request.candidate.a_fcc, 4.25);
+  assert.equal(request.candidate.candidate_id, "sh0sea-aa-fcc-dipole-wake-sum:a-fcc-4.25");
+  assertAlmostEqual(request.candidate.Pi_R_A_sea, -0.2833417889031177, 1e-9);
+  assert.ok(request.candidate.inward_margin_below_required_floor > 0);
+  assert.equal(request.target_binding.target_artifact_id, TARGET_ARTIFACT_ID);
+  assert.equal(request.target_binding.retained_record_id, TARGET_RETAINED_RECORD_ID);
+  assert.equal(
+    request.required_same_record_objects.includes(
+      "held_release_seed_path_rows_acceptance_certificate.v0"
+    ),
+    true
+  );
+  assert.equal(
+    request.required_same_record_objects.includes(
+      "central_solver_retained_source_adapter_same_record_accepted_evidence_package.v0"
+    ),
+    true
+  );
+  assert.equal(request.downstream_consumers.includes("self_hit_held_release_solver_row"), true);
+  assert.equal(request.accepted, false);
+  assert.equal(request.retained_evidence_authorized, false);
+  assert.equal(request.first_missing_object, ACCEPTED_EVIDENCE_BLOCKER_OBJECT);
+  assert.equal(request.first_missing_field, ACCEPTED_EVIDENCE_BLOCKER_FIELD);
+  assert.equal(request.authorization.accepted_same_record_evidence, false);
+  assert.equal(request.authorization.scoreMovement, "no_score_increase");
+
+  const motionRun = buildSh0SeaDipoleWakeSumMotionRun({
+    neighborMotion: "breathing",
+    motionDelta: 0.2,
+    motionOmegaGrid: [2],
+    motionPhaseSamples: 4,
+    aFccMin: 4,
+    aFccMax: 5,
+    aFccStep: 0.5,
+  });
+  const motionRequest = motionRun.candidate_same_record_request;
+  assert.equal(motionRequest.schema, CANDIDATE_SAME_RECORD_REQUEST_SCHEMA);
+  // The reduced test grid names its own midpoint candidate; the default declared
+  // range names a_FCC=4.25 (asserted on the static run above).
+  assert.equal(motionRequest.candidate.a_fcc, 4.5);
+  assert.equal(motionRequest.neighbor_motion_declaration.kind, "breathing");
+  assert.equal(
+    motionRequest.neighbor_motion_declaration.candidate_spacing_status_per_omega.length,
+    1
+  );
+  assert.equal(motionRequest.accepted, false);
 });

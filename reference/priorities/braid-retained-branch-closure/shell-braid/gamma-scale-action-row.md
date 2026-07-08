@@ -87,7 +87,7 @@ $$
 \ddot{\mathbf{x}}_i=\frac{c_f^2}{R_*}\mathbf{K}_i.
 $$
 
-For neutral same-level tri-binary dynamics,
+For neutral same-level braid dynamics,
 
 $$
 q_{a,+}=+\epsilon,

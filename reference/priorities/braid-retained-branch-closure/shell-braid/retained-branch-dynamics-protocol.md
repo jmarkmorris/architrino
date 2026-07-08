@@ -1,6 +1,6 @@
 # Retained Branch Dynamics Protocol
 
-Promotion status: `priority-only`. This document specifies the retained-branch search protocol for same-level tri-binary dynamics. It is not a corpus migration document and does not promote any same-level branch into `content/markdown/aaa`. Its role is to turn the rigid octahedral failure in [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) into a disciplined search for deformed support-band candidates that can later populate the decision gate in [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md).
+Promotion status: `priority-only`. This document specifies the retained-branch search protocol for same-level braid dynamics. It is not a corpus migration document and does not promote any same-level branch into `content/markdown/aaa`. Its role is to turn the rigid octahedral failure in [octahedral-carrier-worked-example.md](octahedral-carrier-worked-example.md) into a disciplined search for deformed support-band candidates that can later populate the decision gate in [proof-program-and-decision-gate.md](proof-program-and-decision-gate.md).
 
 The protocol is strict about one point: every accepted row must use the same state history, active causal-root ledger, regulator convention, endpoint convention, and branch label. A carrier that passes geometry on one root convention and energy on another is not a retained branch.
 

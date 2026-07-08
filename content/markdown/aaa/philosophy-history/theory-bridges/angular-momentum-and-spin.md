@@ -1976,16 +1976,16 @@ This is not yet a derivation of quantum discreteness. It is the theorem target t
 
 To make the chart test explicit, the reduced action-angle variables should report a local canonical-chart residual before any action-cell count is accepted:
 $$
-\epsilon_{\mathrm{can}}(\mathcal{Q},W,T)
+\epsilon_{\mathrm{can}}(\mathcal{Q},W,T_W)
 =
 \sup_{a,b}
 \max\left(
-\left|\{I_a,I_b\}_{\mathcal{Q},W,T}\right|,
-\left|\{\theta_a,\theta_b\}_{\mathcal{Q},W,T}\right|,
-\left|\{I_a,\theta_b\}_{\mathcal{Q},W,T}-\delta_{ab}\right|
+\left|\{I_a,I_b\}_{\mathcal{Q},W,T_W}\right|,
+\left|\{\theta_a,\theta_b\}_{\mathcal{Q},W,T_W}\right|,
+\left|\{I_a,\theta_b\}_{\mathcal{Q},W,T_W}-\delta_{ab}\right|
 \right)
 $$
-Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T}$ is the effective bracket induced by the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
+Here $\{\cdot,\cdot\}_{\mathcal{Q},W,T_W}$ is the effective bracket induced by the retained coarse-graining on the same record window used for the basin-measure claim. The chart is admissible for action-cell comparison only when $\epsilon_{\mathrm{can}}\le\varepsilon_{\mathrm{can}}$ and the variables are fixed by Master-Equation closure, root-ledger admissibility, and apparatus recordability rather than by a representation chosen to produce a desired count.
 
 The corresponding state-count residual should compare physical basin records with action cells in a declared record domain $D$:
 $$
