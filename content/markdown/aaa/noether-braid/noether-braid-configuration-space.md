@@ -325,7 +325,7 @@ If one retained lever arm is large enough at the common frequency, then that lay
 
 This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, force Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full Noether braid configuration space rather than preselecting a single speed hierarchy.
 
-In a certified row, the important event is not speed alone but the appearance of same-source causal roots with the required transversality floors. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
+In a certified row, the important event is not speed alone but the appearance of same-source causal roots with the required transversality floors; a certified row that contributes force or action additionally carries the same-record receiver-normal branch strength, while the signed-root topology below is fixed by root existence and the causal-root Jacobian sign. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
