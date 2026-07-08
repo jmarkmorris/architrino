@@ -149,6 +149,39 @@ export function residuals(cfg = {}, { soft = 0.02 } = {}) {
   return { kappaStar, relResidual: per, axialFrac: axial, globalRelResidual: Math.sqrt(rA / fA), minAbsDs, betas: braid.betas };
 }
 
+// Honest polar-limit scoring: at alpha_O = 90 deg the outer pair is STATIC on the
+// axis at heights +/- R_O; its closure condition is ABSOLUTE net force -> 0 (no
+// centripetal need to normalize by). Score: |kappa* a_wake| on the polar + site,
+// normalized by the middle layer's kinematic need (omega^2 R_M), alongside the
+// orbiting core's need-relative residuals. Also expose the net AXIAL force on the
+// polar site as a function of R_O -- an equilibrium height exists where it
+// crosses zero (partner pull inward vs core push outward).
+export function polarScore({ qI = 0.5, qO = 2.0, alphaI = 0, alphaM = 0, phases } = {}) {
+  const cfg = { qI, qO, alphaI, alphaM, alphaO: Math.PI / 2, ...(phases ? { phases } : {}) };
+  const braid = buildBraid(cfg);
+  const need = braid.omega * braid.omega * 1; // middle need, R_M = 1
+  // core residuals (I, M) with kappa* fitted on core samples only
+  const samples = [];
+  for (const i of [0, 2]) {
+    const st = braid.sites[i];
+    samples.push({ layer: st.name, kin: kinAccel(st, 0, braid.omega), wake: wakeAccel(braid, i, 0).a });
+  }
+  let num = 0, den = 0;
+  for (const s of samples) for (let c = 0; c < 3; c++) { num += s.kin[c] * s.wake[c]; den += s.wake[c] ** 2; }
+  const kappaStar = num / den;
+  const per = {};
+  for (const s of samples) {
+    let res = 0, ref = 0;
+    for (let c = 0; c < 3; c++) { res += (s.kin[c] - kappaStar * s.wake[c]) ** 2; ref += s.kin[c] ** 2; }
+    per[s.layer] = Math.sqrt(res / ref);
+  }
+  // polar pair absolute score with the SAME kappa*
+  const wO = wakeAccel(braid, 4, 0).a;
+  const absPolar = kappaStar * Math.hypot(wO[0], wO[1], wO[2]) / need;
+  const axialForce = kappaStar * wO[2] / need; // signed: + pushes the +z cap outward
+  return { kappaStar, coreRelResidual: per, polarAbsScore: absPolar, polarAxialForce: axialForce, betas: braid.betas };
+}
+
 export function diagnosticReport() {
   return {
     schema: SCHEMA, specPacketRef: SPEC_PACKET_REF,

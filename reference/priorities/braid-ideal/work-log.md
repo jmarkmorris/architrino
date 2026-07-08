@@ -1245,3 +1245,16 @@ Executed the Section 19 closure goal. New owner script [rigid-tilted-nested-brai
 Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
 
 Verification: `node --test tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Polar scoring, counter-tilt champion, flywheel family (item 11)
+
+Executed the Section 20 closure goal widened by operator input (their original gyroscopic-flywheel pictures: binaries orbiting mutually-inclined "Lorentzian" rings; noted their velocity-flattening panel). [Spec Section 21](fold-crossing-chart-spec.md#21-polar-scoring-counter-tilt-and-the-flywheel-family-2026-07-08); `polarScore` added to the tilted evaluator; new [inclined-rings-flywheel-evaluator.mjs](../../../scripts/braid-ideal/inclined-rings-flywheel-evaluator.mjs); 11 tests passing.
+
+- No axial-dipole levitation: static polar caps always pulled inward ($F_z<0$, inverse-square decay); the $90°$ limit is not a static structure. Bare inner+middle core scores 0.53/0.46 - better than any six-site configuration: the outer binary is a net closure burden in every tested arrangement.
+- Counter-tilt champion: $(-15°,0,84°)$ at $(0.5,2.0)$ → 0.5088. Middle tilt degrades sharply (rail resists).
+- Flywheel family: exact planar regression (after fixing a node-convention chirality trap - staggered nodes must phase-compensate or the $\iota\to0$ limit mirrors phase order against rotation sense); uniform inclination = global rotation (invariant, consistency check passed); relative inclination degrades EXCEPT small inner-ring tilts (~free): layer tilt tolerance $\propto1/\beta$, matching the operator's Lorentzian-flattening intuition layer-by-layer.
+
+Standings: rigid counter-tilted dumbbells 0.5088 > planar 0.646 > all non-rigid families. The unsolved element is the outer binary. Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-inclined-rings-flywheel-evaluator.test.js tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 11 pass, 0 fail.
