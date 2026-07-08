@@ -1136,3 +1136,31 @@ Honest correction to the closure goal: inverting the balance does NOT uniquely d
 Next closure goal: (a) native retained-history confirmation of the pin (gated two-shell row released near $\beta=1$); (b) measure $\varrho(\beta)$ above field speed - if it stays $>1$ the pin is unconditional in the super-field range, else there is an upper escape; (c) reconcile $\rho_c^*\approx0.022$ against $R_{\mathrm{MCB}}\sim\kappa\epsilon^2/c_f^2$ (particle-masses.md).
 
 Verification: `node --test tests/braid-ideal-field-speed-pin-attractor-diagnostic.test.js` -> 6 pass, 0 fail.
+
+
+## 2026-07-08 - Signed re-check of the cross-hit coexistence absorption (item 11)
+
+Executing the audit-flagged proof re-check. Section 9 summed cross-hit click MAGNITUDES ("~3x surplus" absorption) without evaluating the per-click receiver-normal sign $m=D_T/D_s$. Redone with the signed convention (validated in Section 11). New owner script [cross-hit-signed-absorption-recheck.mjs](../../../scripts/braid-ideal/cross-hit-signed-absorption-recheck.mjs) (tests [braid-ideal-cross-hit-signed-absorption-recheck.test.js](../../../tests/braid-ideal-cross-hit-signed-absorption-recheck.test.js), 3 passing) and [spec Section 13](fold-crossing-chart-spec.md#13-signed-re-check-of-the-cross-hit-coexistence-absorption-2026-07-08).
+
+- Result 1 (sign = polarity, robust): for a fixed source->receiver polarity product the tangential transfer has a definite sign (net = +/- |sum|, no per-pair cancellation). Like-polarity source -> net absorptive; opposite-polarity -> net ejective. Regulator-robust sign.
+- Result 2 (neutral binary self-cancels): the physical inner binary is neutral (one +, one -), so its members deliver opposite-sign transfers to each outer receiver that substantially cancel (cancellation grows with fold-pole resolution, ~25% coarse to >=90% fine). The net is far below the magnitude sum.
+- Caveat: the instantaneous-proxy magnitudes (both net and |sum|) are not converged - they grow as the $D_s\to0$ fold pole is resolved. A converged number needs the causal root-sum / density-of-states, not the instantaneous reception-time integral.
+
+Verdict: the Section 9 "~3x surplus" overstated the case (magnitude sum + regulator dependence). The coexistence NECESSARY conditions (Section 8/9: enough clicks + straddling) are sign-independent and stand; the SUFFICIENCY (neutral inner binary net-absorbs the pump via cross-hits) is NOT established. This does NOT affect the field-speed pin (Sections 11-12), which rests on the self-hit/partner-pump balance, and it reinforces Section 10 (the self-hit pin is the load-bearing terminal absorber; the cross-hit is not an independent clean absorber). A dated correction pointer was added to Section 9. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-cross-hit-signed-absorption-recheck.test.js` -> 3 pass, 0 fail.
+
+
+## 2026-07-08 - Cross-hit absorption on the causal root-sum (fidelity raise, item 11)
+
+Operator chose (b): raise fidelity of the cross-hit signed transfer from the instantaneous proxy to the actual causal root-sum. Also clarified geometry: besides the nested shell there is the shell braid, whose planar equal-radius state is closest to the certified hexagon pump; being single-frequency it yields zero cross-hit clicks (Section 8), so the cross-hit absorber requires the nested two-frequency structure.
+
+New owner script [cross-hit-causal-absorption.mjs](../../../scripts/braid-ideal/cross-hit-causal-absorption.mjs) (tests [braid-ideal-cross-hit-causal-absorption.test.js](../../../tests/braid-ideal-cross-hit-causal-absorption.test.js), 4 passing) and [spec Section 14](fold-crossing-chart-spec.md#14-cross-hit-absorption-on-the-causal-root-sum-fidelity-raise-2026-07-08). For each reception time $T$ it solves $|\mathbf X_i(T)-\mathbf x_j(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}})$ for every emission root and sums the signed $m=D_T/D_s$ contribution (source vel at emission, receiver vel at reception), projected tangential.
+
+- Converges: neutral-binary net $0.214\to0.220\to0.224$ across $N_T=2000/4000/8000$ (proxy diverged); caustic is measure-zero in $T$, no regulator needed.
+- Neutral inner binary does NOT absorb: $\approx97\%$ polarity cancellation; net avg tangential force $\approx+0.035$ vs pump $\approx2.84$ ($\sim1\%$, slightly ejective).
+- Polarity sets sign; even a fully imbalanced (charged) inner shell reaches only $\sim20\%$ of the pump (insufficient league with breathing $\le27\%$, sea $\le10\%$).
+
+Verdict `cross_hit_absorber_closed_for_neutral_braid_causal_root_sum_net_about_one_percent_of_pump_and_ejective`: the Section 9 "~3x surplus" collapses on the causal root-sum; the cross-hit is not an independent absorber for the neutral braid. Necessary coexistence conditions (Section 8/9) still hold; the field-speed self-hit pin (Sections 11-12) is unaffected and is now the sole remaining absorber path. Section 13's proxy magnitude non-convergence is superseded by this converged causal result. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-cross-hit-causal-absorption.test.js` -> 4 pass, 0 fail.
