@@ -41,7 +41,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   $$
   \mathcal{C}_{aa}(T)=\{\,T_{\mathrm{em}}<T:\|\mathbf X_a(T)-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
   $$
-  is nonempty and the active root passes the transversality/Jacobian floor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
+  is nonempty and the active root passes the transversality/Jacobian floor and carries a retained receiver-normal branch strength. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
