@@ -36,6 +36,26 @@ test("polar limit: no levitation equilibrium (axial force stays inward) and coun
   assert.ok(counter < plain, `counter ${counter} vs plain ${plain}`);
 });
 
+test("outer azimuth is a live knob and the tuned placement flips the hierarchy verdict", () => {
+  const Z3 = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
+  const tuned = [0, (2 * Math.PI) / 3, (330 * Math.PI) / 180];
+  const base = { qI: 0.5, qO: 2.0, alphaI: -15 * d, alphaO: 84 * d };
+  const atZ3 = residuals({ ...base, phases: Z3 }).globalRelResidual;
+  const atTuned = residuals({ ...base, phases: tuned }).globalRelResidual;
+  assert.ok(atTuned < atZ3 - 0.02, `tuned ${atTuned} vs Z3 ${atZ3}`);
+  // hierarchy reversal: core closes BETTER with the caps present than decoupled
+  const coreWith = residuals({ ...base, phases: tuned }, { recvs: [0, 2] }).globalRelResidual;
+  const coreBare = residuals({ ...base, qO: 40 }, { recvs: [0, 2] }).globalRelResidual;
+  assert.ok(coreWith < coreBare, `with-caps ${coreWith} vs bare ${coreBare}`);
+});
+
+test("cap-polarity swap degrades (the champion cap orientation is preferred)", () => {
+  const tuned = [0, (2 * Math.PI) / 3, (330 * Math.PI) / 180];
+  const plus = residuals({ qI: 0.5, qO: 2.0, alphaI: -15 * d, alphaO: 84 * d, phases: tuned }).globalRelResidual;
+  const swap = residuals({ qI: 0.5, qO: 2.0, alphaI: -15 * d, alphaO: -84 * d, phases: tuned }).globalRelResidual;
+  assert.ok(swap > plus, `swap ${swap} vs ${plus}`);
+});
+
 test("report is fail-closed", () => {
   const r = diagnosticReport();
   assert.equal(r.retainedBranchClaim, false);

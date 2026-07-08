@@ -123,9 +123,8 @@ export function rigidityCheck(cfg = {}) {
   return { maxVar, timeIndependent: maxVar < 1e-6 };
 }
 
-export function residuals(cfg = {}, { soft = 0.02 } = {}) {
+export function residuals(cfg = {}, { soft = 0.02, recvs = [0, 2, 4] } = {}) {
   const braid = buildBraid(cfg);
-  const recvs = [0, 2, 4];
   const samples = []; let minAbsDs = Infinity;
   for (const i of recvs) {
     const s = braid.sites[i];

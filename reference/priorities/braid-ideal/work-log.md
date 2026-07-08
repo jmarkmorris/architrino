@@ -1258,3 +1258,42 @@ Executed the Section 20 closure goal widened by operator input (their original g
 Standings: rigid counter-tilted dumbbells 0.5088 > planar 0.646 > all non-rigid families. The unsolved element is the outer binary. Fail-closed throughout.
 
 Verification: `node --test tests/braid-ideal-inclined-rings-flywheel-evaluator.test.js tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 11 pass, 0 fail.
+
+
+## 2026-07-08 - Group E item 19 captured: translating-braid screw-motion closure
+
+Operator asked how group velocity along the axis couples to the tilts. Answer: not yet modeled (all evaluators are rest-frame); captured as Group E item 19. Key enabling observation: rotation + axial drift = screw motion = still rigid, so the single-time closure evaluation survives under translation; only the causal wake geometry becomes fore-aft anisotropic. The item is the executable form of the operator's Lorentzian-flattening intuition and the tri-binary version of the Theorem A1 translating-binary benchmark: track optimal $(\omega,R_a,\alpha_a)$ vs drift $u$; test cadence $\to\omega/\gamma$ (time dilation from closure) and tilt-flattening toward the photon-limit 2D state.
+
+
+## 2026-07-08 - Outer-layer tuning: azimuth optimum, new champion 0.4721, hierarchy reversed (item 11)
+
+Executed the Section 21 closure goal ([spec Section 22](fold-crossing-chart-spec.md#22-outer-layer-tuning-the-caps-join-the-braid-2026-07-08); evaluator gains receiver-subset scoring; tests 8 passing).
+
+- Outer azimuth: strong live knob; optimum $\theta_O\approx330$-$345°$ ($\sim30°$ behind the inner axis vs the Z3 slot at 240°). Cap-polarity swap degrades (0.48$\to$0.59): with the counter-tilted inner, cap orientation is physically selected.
+- New champion $\mathbf{0.4721}$: $(q_I,q_O)=(0.5,1.65)$, $(\alpha_I,\alpha_M,\alpha_O)=(-12°,0°,84°)$, $\theta_O=330°$; flat basin 0.472-0.476. Ladder: 0.646 planar $\to$ 0.524 tilt $\to$ 0.509 counter-tilt $\to$ 0.472 tuned. Outer residual collapses 0.97 $\to$ 0.33-0.50.
+- Hierarchy REVERSED: core with tuned caps 0.4685 < bare core 0.5039 - the Section 21 "outer as burden" was an untuned-azimuth artifact; correctly placed, the caps improve the core (incl. the rail row). Six-site braid is functional, not core+parasite.
+- Champion geometry: equatorial rail pair at root birth, counter-dished inner ($\beta_I\approx0.48$), slow polar caps ($\beta_O\approx0.17$) offset behind the inner axis; rigid, one frequency, fully sub-field except the hinge.
+
+Fail-closed throughout. Verification: `node --test tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 8 pass, 0 fail.
+
+
+## 2026-07-08 - Brainstorm capture: angles vs weak mixing, chirality, strain, L*(u) ladder
+
+Operator brainstorm on the Section 22 champion, captured in [brainstorming.md](brainstorming.md#brainstorm-capture-2026-07-08-champion-geometry-springboards-operator-session): (1) misalignment angles (cap azimuth lag ~30° vs Weinberg 28.7°; inner dish ~12° vs Cabibbo 13.0°) - corpus-consistent mapping direction via the axial-frame doctrine, flagged coincidence-class pending sharper optima; the running-with-u test folded into item 19. (2) "Who leads" = braid chirality: C exact (full polarity swap), P broken by selected geometry (measured via the node-convention trap), cap orientation selected - the weak-sector parity texture; ties to queue item 12. (3) Accelerative strain on angles/radii queued as item 20 (champion stiffness spectrum). (4) Preferred inventory per group velocity: L*(u) ladder (h-click quantized), off-ladder relief channels (re-geometrize / transact / self-accelerate), inertia as closure-cost curvature along u - folded into item 19 notes.
+
+
+## 2026-07-08 - Who-leads clarified: front cap under travel; symmetry ledger corrected
+
+Operator clarified "who leads" = the front cap along the travel direction. Measured the cap-swap mechanism on the champion: the selected locking anti-aligns cap dipole with inner-dish dipole (opposite polarities vertically adjacent; north cap bound, Fz=-0.094 toward equator); the swap flips nearest vertical neighbors to repulsive (measured anti-binding) and degrades every layer. Symmetry ledger corrected in [brainstorming.md](brainstorming.md): the law is C-even and P-even; true enantiomers are degenerate; earlier "mirror scores differently" runs were partial flips, not parity images; the braid is a chiral object with handedness $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\omega}$. Under drift the front cap is sign$(\hat{\mathbf d}\cdot\hat{\mathbf u})$; parallel vs anti-parallel drift are not symmetry-related, so item 19 will select a preferred leader (helicity-polarity locking; anti-braid leads oppositely by C-degeneracy) - a sharp in-model prediction.
+
+
+## 2026-07-08 - Brainstorm entry 5 (decay vs speed/acceleration) + session insight index
+
+Operator centrifuge idea assessed and captured: speed dependence of decay is established physics (muon rings, Mossbauer rotors) and a recovery obligation whose mechanism is item 19's cadence question (clicks paced by omega/gamma); the new testable axis is ACCELERATION, where clock-hypothesis bounds (~1e18 g, pure 1/gamma upheld) become a quantitative constraint on the champion's closure-stiffness Hessian (item 20) - a falsification-budget-style contact with tested physics. Added a session insight index to [brainstorming.md](brainstorming.md) covering all in-play threads with capture homes (pin, d0 bound, cross-hit closure, harmonic matching, league table/unified metric, Kepler-lock rejection, tilt tolerance ~ 1/beta, champion + hierarchy reversal, axial dipole, weak-mixing angles, chirality/front cap, stiffness, L*(u) ladder, lock dynamics, screw rigidity).
+
+
+## 2026-07-08 - Item 20 executed: stiffness spectrum (saddle, backbone, pump-in-gradient); decay-dilation requirement promoted
+
+[Spec Section 23](fold-crossing-chart-spec.md#23-champion-stiffness-spectrum-saddle-backbone-and-the-pump-in-the-gradient-2026-07-08). Gradient + full 7x7 Hessian + eigenmodes around the Section 22 champion. Spectrum (soft->stiff): -0.34 (relative-tilt combo), -0.04, +0.05 (theta_O - flat basin quantified), +0.23 (rail knob beta_M), +3.7 (alpha_O), +5.3 (alpha_M), +18.9 (q_I = rigidity backbone). Champion is a SADDLE; descent + q_I->0.47 refines to 0.4531 (systematic minimizer next). beta_M gradient negative (-0.27; 0.4468 at beta_M=1.1): the anti-damping pump appearing in the closure landscape, with the excluded self-hit brake as the pin that stops the slide at the rail - a consistency closure across Sections 11-12/23, not an instability. Clock-hypothesis bridge: operator directed promotion of the decay-dilation recovery obligation into the corpus - new row "Decay-rate dilation and the clock hypothesis" in braid-recovery-requirements.md (Relativistic and Gravitational Targets; owners proper-time + lorentz-kinematics); validator clean on that file (the single reported error is an ambient broken link in app-causal-delay-feedback/v1-product-requirements.md, another lane, NOT in this write set - it will block pre-commit until that lane fixes it).
+
+Verification: `node --test tests/braid-ideal-champion-stiffness-spectrum.test.js` -> 3 pass, 0 fail.
