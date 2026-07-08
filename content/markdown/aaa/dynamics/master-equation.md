@@ -737,6 +737,22 @@ Thus starvation is a root-complex obstruction before it is a speed slogan: if th
 
 This is not the same event as the interior fold law of Proposition 3. A generic interior fold creates or removes one positive and one negative generator and therefore preserves the signed degree $D_{ij}$. Forward-row starvation is a memory-boundary event: a generator leaves the retained interval $[T-h,T)$ because its required delay has crossed the available history depth. The finite-window signed degree $D_{ij}^{(h)}$ may therefore change unless a replacement generator enters through the boundary or the branch chart is reorganized by the Noether sea. Search artifacts should log this as boundary-exit degree bookkeeping, not as a $\Delta N=\pm2,\Delta D=0$ fold.
 
+#### Separator Taxonomy
+
+Three distinct events terminate a simple-root branch chart. They have different degeneracy conditions, different velocity arguments, and different ledger consequences, and a proof program that keys its arc partition to a single "field-speed separator" will conflate them.
+
+| Event | Condition | Velocity that appears | Root ledger | Branch strength | Certificate route |
+| --- | --- | --- | --- | --- | --- |
+| **Source-normal caustic** | $D_{s,ij}=0$, i.e. $\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf r}_{ij}=c_f$ | source, at emission time | fold: $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$ (Proposition 3) | $W_{ij}^{\mathrm{rec}}\to\infty$ | finite-order caustic normal form and the finite-impulse lemma; cusps and higher strata route to a singular-stratum chart |
+| **Receiver-normal null** | $D_{T,ij}=0$, i.e. $\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}=c_f$ | receiver, at reception time | unchanged: $\Delta N_{ij}=0$, $\Delta D_{ij}=0$ | $W_{ij}^{\mathrm{rec}}\to0$ | none needed for existence; the branch goes silent and the receiver-velocity affine chart ends at a modulus kink |
+| **Memory-boundary exit** | $T-T_{\mathrm{em},\ell}\to h$ | either, through the delay | $\Delta N_{ij}=\pm1$ possible; $D_{ij}^{(h)}$ may change | finite | boundary-exit degree bookkeeping (Proposition 4); *not* a fold |
+
+Two consequences follow immediately.
+
+First, $\|\mathbf V_i(T)\|=c_f$ is by itself none of these. It is a receiver-normal null only for branches whose line of action is aligned with the receiver's motion, and it is a source-normal caustic only for the source, at emission time, on the branches it emitted. A reduction that identifies the two — for instance by freezing the source velocity equal to the receiver's on a locally affine window — manufactures a caustic at $\|\mathbf V_i\|=c_f$ that the exact law does not have. Locally affine branch tables are candidate generators; they may not be used to locate separators.
+
+Second, a closed-cycle parity ledger cannot be written over folds alone. On a cycle, $\sum_\Sigma\Delta N_{ij}=0$ and $\sum_\Sigma\Delta D_{ij}=0$ hold only after boundary-exit events are counted in the same sum, and those events carry odd unsigned jumps. Requiring every local jump to be even is a sufficient test only on charts certified free of memory-boundary exit.
+
 #### Single-Hit Regime (Unique $T_{\mathrm{em}}$)
 
 In the **sub-field-speed regime** ($\|\mathbf V_j(T_{\mathrm{em}})\| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
@@ -1193,6 +1209,85 @@ $$
 The even scalar part feeds the coarse scalar wake potential, while the odd velocity-directed part is the single-hit seed of the recoil and vector-transport channel described in [Effective Lagrangian](effective-lagrangian.md#regularized-nonlocal-action-and-variation). Under coarse-graining this is the same source of $\mathbf{A}_{\mathrm{wake}}$ and antisymmetric wake-stress diagnostics; it is not an independent magnetic law added on top of the Master Equation.
 
 **Receiver-normal branch modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-transceiver geometry** of emission and reception, the **geometry of causal intersections**, and the **source-normal/receiver-normal cadence ratio** in the Euclidean void. This is the origin of the receiver-normal denominator-numerator law and the seed of relativistic and magnetic behavior in the emergent theory.
+
+#### Receiver-Velocity Affine Form and the Branch Resistance Tensor
+
+The receiver-normal numerator enters the canonical law only through $D_{T,ij}=c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}$, and it is the one place where the receiver's *instantaneous* velocity appears. Everything else in a branch row — the root $T_{\mathrm{em},\ell}$, the separation $r_{ij}$, the line of action $\hat{\mathbf r}_{ij}$, the source-normal denominator $D_{s,ij}$ — is determined by the receiver's position and the retained source history. That asymmetry has an exact consequence.
+
+On the **sub-field-speed receiver chart** $\|\mathbf V_i(T)\| < c_f$ every active branch satisfies $D_{T,ij} > 0$, so the modulus in $W_{ij}^{\mathrm{rec}}$ resolves. Define the branch coefficient
+
+$$
+w_\ell
+\equiv
+\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{r_{ij}^2\,|D_{s,ij}|},
+$$
+
+which carries the polarity sign and is independent of $\mathbf V_i(T)$. Then each per-hit term is $w_\ell(c_f-\mathbf V_i\cdot\hat{\mathbf r}_\ell)\hat{\mathbf r}_\ell$, and summing over the active causal-root set gives the **receiver-velocity affine form of the Master Equation**:
+
+$$
+\boxed{
+\frac{d^2\mathbf X_i}{dT^2}
+=
+c_f\,\boldsymbol{\Xi}_i
+-
+\mathsf{M}_i\,\mathbf V_i(T)
+}
+$$
+
+$$
+\boldsymbol{\Xi}_i
+\equiv
+\sum_{\ell} w_\ell\,\hat{\mathbf r}_\ell,
+\qquad
+\mathsf{M}_i
+\equiv
+\sum_{\ell} w_\ell\,\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell
+$$
+
+Both the **branch drive** $\boldsymbol{\Xi}_i$ and the **branch resistance tensor** $\mathsf{M}_i$ are functionals of the retained history and of $\mathbf X_i(T)$ alone. The Master Equation is therefore *exactly affine* in the receiver's instantaneous velocity on this chart, with no approximation and no expansion in $\|\mathbf V_i\|/c_f$.
+
+**Polarity fixes the sign of the resistance.** $\mathsf{M}_i$ is a sum of rank-one projectors weighted by $w_\ell$, hence symmetric, with signature set entirely by $\sigma_{ij}$: every repulsive branch contributes a positive-semidefinite term, every attractive branch a negative-semidefinite term. Since $\sigma_{ii}=+1$, **every self-hit contributes positively.** Contracting the affine form with $\mathbf V_i$ gives the branch power
+
+$$
+\frac{d}{dT}\left(\tfrac{1}{2}\|\mathbf V_i\|^2\right)
+=
+c_f\,\boldsymbol{\Xi}_i\cdot\mathbf V_i
+-
+\sum_\ell w_\ell\, s_\ell^2,
+\qquad
+s_\ell\equiv \mathbf V_i\cdot\hat{\mathbf r}_\ell
+$$
+
+The first term is odd in the radial rate $s_\ell$: it reverses sign when the radial motion reverses, and it is the only term a source-normal-only weight $c_f/|D_{s,ij}|$ retains. The second term is **even** in $s_\ell$ and does not reverse. Attraction ($w_\ell<0$) therefore injects at rate $|w_\ell|s_\ell^2$ on every branch, in both directions of radial motion; repulsion drains at the same rate, vanishing only at $s_\ell=0$. This is the exact sense in which the receiver-normal factor is not a small kinematic correction: it is the entire velocity-dependent force, and it is a polarity-signed damping law.
+
+Dropping the receiver-normal numerator and weighting a branch by $c_f/|D_{s,ij}|$ instead — the source-normal-only Doppler weight — removes precisely the $w_\ell s_\ell^2$ term and leaves a work-symmetric law. A calculation built on that weight studies a different dynamical system, not a conservative approximation to this one.
+
+**Emergent velocity-dependent force.** $\mathsf{M}_i\mathbf V_i$ is the velocity-dependent force promised in [Implication for emergent forces](#total-acceleration-sum-over-all-causal-hits). Because $\mathsf{M}_i$ is symmetric, the instantaneous branch law carries **no antisymmetric part**: there is no $\mathbf V_i\times\mathbf B$ contribution hidden inside a single evaluation of the causal-root set. Any magnetic-like antisymmetric response must therefore be generated by the history dependence of $\boldsymbol{\Xi}_i$ and $\mathsf{M}_i$ under assembly and Noether sea closure, not by the pointwise kernel.
+
+**Field-speed barrier.** As $\mathbf V_i\cdot\hat{\mathbf r}_\ell \to c_f^-$ on a branch, that branch's entire contribution vanishes. Since $\hat{\mathbf r}_\ell$ points from the past source position toward the present receiver position, $\mathbf V_i\cdot\hat{\mathbf r}_\ell = c_f$ says the receiver recedes from that emission point at exactly field speed. Hence:
+
+> A branch whose source lies behind the receiver, in the sense $\mathbf V_i\cdot\hat{\mathbf r}_\ell>0$, cannot accelerate the receiver through field speed along its own line of action. Only a branch with $\mathbf V_i\cdot\hat{\mathbf r}_\ell<c_f$ can. In one dimension this means a receiver can be carried through $|dX/dT|=c_f$ only by attraction from a source image lying ahead of it, never by self-repulsion from its own path history.
+
+**Common-sightline arcs.** If every active branch on an arc shares one line-of-action sign, $\hat{\mathbf r}_\ell=\rho\,\hat{\mathbf e}$ with $\rho$ fixed, then $D_{T,\ell}=c_f-\rho\,\mathbf V_i\cdot\hat{\mathbf e}$ is a *common positive prefactor* of every term in the branch sum. On such an arc the receiver-normal factor cannot change which branch family dominates; it rescales all magnitudes together by $|D_T|/c_f$. Dominance arguments survive the factor unchanged; acceleration floors and transit times do not, and must be rescaled by $|D_T|/c_f\in[1-U_{\max}/c_f,\,1+U_{\max}/c_f]$ on a tame envelope $\|\mathbf V_i\|\le U_{\max}<c_f$.
+
+**Chart boundary.** The affine form holds up to the **receiver-normal null surface** $D_{T,ij}=0$, that is $\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}=c_f$. There the branch goes silent and the modulus in $W_{ij}^{\mathrm{rec}}$ acquires a kink; the acceleration is continuous but the affine chart ends. This surface changes no root count and is not a fold. Its relation to the other branch events is fixed in [Separator Taxonomy](#separator-taxonomy).
+
+In the collinear reduction $\hat{\mathbf r}_\ell=\pm1$ and $\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell=1$, so the affine form collapses to a scalar delayed equation with polarity-signed damping,
+
+$$
+\frac{d^2X}{dT^2}
++
+\Gamma(T)\,\frac{dX}{dT}
+=
+c_f\,\Xi(T),
+\qquad
+\Gamma=\sum_\ell w_\ell,
+\qquad
+\Xi=\sum_\ell w_\ell\,\hat r_\ell
+$$
+
+with $\Gamma$ and $\Xi$ independent of $dX/dT$ at time $T$.
 
 ---
 

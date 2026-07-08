@@ -446,23 +446,43 @@ D_s=c_f,
 \qquad
 D_T=c_f-\frac{dX}{dT}(T),
 \qquad
-W^{\mathrm{rec}}=1-\frac{dX/dT(T)}{c_f}.
+W^{\mathrm{rec}}=\left|1-\frac{dX/dT(T)}{c_f}\right|.
 $$
 The receiver-normal restart equation is therefore
 $$
 \frac{d^2X}{dT^2}(T)
 =
 -\frac{\kappa\epsilon^2}{(X(T)+X_0)^2}
-\left(1-\frac{dX/dT(T)}{c_f}\right),
+\left|1-\frac{dX/dT(T)}{c_f}\right|,
 \qquad
 X(0)=X_0,\qquad
 \frac{dX}{dT}(0)=0.
 $$
 
-The energy identity, field-speed criterion, handoff angle, numerical fixture,
-and source-normal continuity claim must be recomputed from this receiver-normal
-ODE and then matched to the moving-partner delayed chart with the same-record
-$D_T/D_s$ factor before they can act as evidence.
+Two structural facts follow immediately and should be recorded before any
+numerics. First, $D_s=c_f$ exactly on this segment, because the retained partner
+emission lies in the held history where the source is at rest. There is no
+source-normal caustic anywhere on the held chart, and the delay
+$(X(T)+X_0)/c_f$ stays finite. Second, on the inbound leg $dX/dT<0$, so
+$W^{\mathrm{rec}}>1$ and grows without bound as the receiver accelerates: the
+branch strength *amplifies* the attraction it is already responding to. Nothing
+in the equation is singular or marginal at $dX/dT=-c_f$. The held chart
+therefore carries the receiver through field speed at a finite radius $X>0$
+once $\kappa\epsilon^2/(c_f^2X_0)$ clears a threshold, with the core scale
+$\epsilon_c$ setting the amplitude cap.
+
+This is the concrete reason the exterior affine partner chart in
+[Closed-Form Collinear Breather Ansatz](./closed-form-collinear-breather-ansatz.md)
+sees a barrier where none exists. That chart freezes the source velocity equal
+to the receiver's, forcing $D_s\to0$ as $dX/dT\to-c_f$; the held chart holds the
+source velocity at its true delayed value and finds $D_s=c_f$. Field speed for
+the *receiver* is not a branch event. See
+[Separator Taxonomy](../dynamics/master-equation.md#separator-taxonomy).
+
+The energy identity, handoff angle, numerical fixture, and source-normal
+continuity claim must be recomputed from this receiver-normal ODE and then
+matched to the moving-partner delayed chart with the same-record $D_T/D_s$
+factor before they can act as evidence.
 
 ## Partner-Hit and Self-Hit Root Equations
 
@@ -592,7 +612,7 @@ Schauder rows.
 
 ### Reduced branch-resolved equation
 
-On the exact rooT-T_{\mathrm{em}}elected model, the right-particle acceleration is
+On the exact root-selected model, the right-particle acceleration is
 $$
 \frac{d^2X}{dT^2}(T)
 =
@@ -610,6 +630,80 @@ $$
 The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
 
 Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with each active branch row carrying both the source-normal transversality denominator and the receiver-normal branch strength on the same retained record.
+
+### Receiver-normal weight conversion
+
+Every force bound in this note is stated against the canonical branch weight
+$W^{\mathrm{rec}}_r=|D_{T,r}/D_{S,r}|$. Because $D_{S,r}=c_fJ_r$, the weight
+factors as
+$$
+W^{\mathrm{rec}}_r
+=
+\frac{|D_{T,r}|}{c_f}\cdot\frac{1}{|J_r|},
+\qquad
+D_{T,r}=c_f-\frac{dX}{dT}(T)\,\hat r_r
+$$
+The source-normal factor $1/|J_r|$ is what a transversality floor controls. The
+receiver-normal factor $|D_{T,r}|/c_f$ is a separate quantity, and it is not
+bounded by $1$. On a tame envelope with $\left|\frac{dX}{dT}\right|\le U_{\max}<c_f$
+it obeys the two-sided bound
+$$
+\Theta_-\le\frac{|D_{T,r}|}{c_f}\le\Theta_+,
+\qquad
+\Theta_\mp\equiv 1\mp\frac{U_{\max}}{c_f},
+\qquad
+0<\Theta_-\le1\le\Theta_+<2
+$$
+Two consequences fix how every lemma below must be read.
+
+**Sightline sign decides the direction of the correction.** Because $\hat r_r$
+points from the emission point to the receiver, $\frac{dX}{dT}(T)\hat r_r$ is the
+receiver's recession rate from that emission point. A branch whose source lies
+*ahead* of the receiver, meaning $\frac{dX}{dT}(T)\hat r_r<0$, has
+$|D_{T,r}|>c_f$ and is amplified. A branch whose source lies *behind* has
+$|D_{T,r}|<c_f$ and is suppressed, vanishing at the receiver-normal null
+$\frac{dX}{dT}(T)\hat r_r=c_f$. Therefore a bound written with the source-normal
+weight $1/|J_r|$ alone is a valid *lower* bound on the true magnitude exactly
+when the source lies ahead, and a valid *upper* bound exactly when the source
+lies behind. It is not otherwise valid, in either direction.
+
+**Common-sightline arcs.** On an arc where every active branch shares one
+line-of-action sign $\hat r_r=\rho$, the factor $|D_{T,r}|/c_f=|1-\rho\,\frac{dX}{dT}(T)/c_f|$
+is the *same* for every branch and factors out of the whole branch sum:
+$$
+\frac{d^2X}{dT^2}(T)
+=
+\left|1-\rho\,\frac{dX/dT(T)}{c_f}\right|
+\cdot
+\left[
+-\kappa\epsilon^2\!\!\sum_{T_0\in\mathcal{C}_p(T)}\!\!\frac{\rho}{r_p^2\,|J_p|c_f}
++
+\kappa\epsilon^2\!\!\sum_{T_0\in\mathcal{C}_s(T)}\!\!\frac{\rho}{r_s^2\,|J_s|c_f}
+\right]
+$$
+The receiver-normal factor is a positive common prefactor there. It therefore
+cannot change the *sign* of the net acceleration, and every dominance argument
+comparing partner attraction against self-repulsion on such an arc survives the
+conversion unchanged. What it does change is every acceleration *floor*, every
+transit *time*, and every impulse *budget*, each of which must be rescaled by
+$\Theta_-$ or $\Theta_+$ as the direction of the inequality requires.
+
+This is the sense in which the conversion is not cosmetic. Dropping
+$|D_{T,r}|/c_f$ from the branch weight removes the entire velocity-dependent
+force. By the
+[receiver-velocity affine form](../dynamics/master-equation.md#receiver-velocity-affine-form-and-the-branch-resistance-tensor),
+the collinear law is exactly
+$$
+\frac{d^2X}{dT^2}+\Gamma(T)\,\frac{dX}{dT}=c_f\,\Xi(T)
+$$
+with $\Gamma$ and $\Xi$ independent of $\frac{dX}{dT}(T)$, and the damping
+coefficient $\Gamma$ carries the polarity sign of each branch. Partner
+attraction contributes $\Gamma<0$, so it anti-damps and injects at rate
+$|w_p|s_p^2$ on both the inbound and the outbound leg. Self-repulsion
+contributes $\Gamma>0$ and drains at rate $w_ss_s^2$. **The self rows are the
+only damping channel in this reduction.** A closed cycle requires the self drain
+to balance the partner injection over the period, and that balance, not the
+field-speed threshold, is what the outer-turn program below has to establish.
 
 ## Regularized 1D Equation
 
@@ -1311,7 +1405,7 @@ w(T_s)=w(T)
 $$
 must satisfy
 $$
-T_T_{\mathrm{em}}<T_{\mathrm{zero}}
+T_s<T_{\mathrm{zero}}
 $$
 The active self roots are therefore forced back into the earlier sub-field-speed inbound source region, where the self Jacobian is automatically noncaustic. This is the mechanism behind the bounded self-drive estimate used in the local theorem below.
 
@@ -1353,7 +1447,7 @@ The active self roots are therefore forced back into the earlier sub-field-speed
 > $$
 > every active self root satisfies
 > $$
-> T_s\le T_{\mathrm{zero}}-\frac{\eta}{\nu},
+> T_s\le T_{\mathrm{zero}}-\frac{\eta}{2c_f},
 > $$
 > so the caustic is separated from the active self branches there.
 > If the resulting impulse margin obeys
@@ -1416,7 +1510,7 @@ For any fixed interior margin
 $$
 0<\gamma_w<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},-T_{\mathrm{hinge}}\}
 $$
-continuity then gives the compacT-T_{\mathrm{em}}ubinterval gap
+continuity then gives the compact-subinterval gap
 $$
 \delta_w
 \equiv
@@ -1433,7 +1527,7 @@ $$
 $$
 
 **(H4) Shell-mollifier separation from the interior sorting gap.**
-For the compacT-T_{\mathrm{em}}ubinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(T)$ into the positive interior sorting hump:
+For the compact-subinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(T)$ into the positive interior sorting hump:
 $$
 \eta<\frac{\delta_w}{2}
 $$
@@ -1701,7 +1795,7 @@ on $(0,\tau_1]$. This proves the lemma. On a fixed admissible crossing subclass 
 Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $T_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
 
 Working form:
-fix $T\in(0,\tau_1]$ and suppose a self-emission time $T_T_{\mathrm{em}}<T$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
+fix $T\in(0,\tau_1]$ and suppose a self-emission time $T_s<T$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
 $$
 \left|X(T)-X(T_s)+c_f(T-T_s)\right|\le \eta
 $$
@@ -1746,7 +1840,7 @@ w(T_s)\le -\eta
 $$
 Hence every active self root on that delayed subwindow satisfies
 $$
-T_T_{\mathrm{em}}<T_{\mathrm{zero}}
+T_s<T_{\mathrm{zero}}
 $$
 Since on the sub-field-speed source region one has
 $$
@@ -1754,11 +1848,11 @@ $$
 \qquad
 \theta\in[-h,T_{\mathrm{zero}}]
 $$
-monotonicity gives
+monotonicity together with the upper sorting-slope bound $dw/dT<2c_f$ on the sub-field-speed source region gives
 $$
 T_s\le T_{\mathrm{zero}}-\gamma(\eta),
 \qquad
-\gamma(\eta)\equiv \frac{\eta}{\nu}
+\gamma(\eta)\equiv \frac{\eta}{2c_f}
 $$
 
 Thus the caustic is uniformly separated from the active self roots on the delayed subwindow.
@@ -1850,7 +1944,7 @@ one has
 $$
 w(T)\le -2\eta
 $$
-If a self root $T_T_{\mathrm{em}}<T$ lies in the shell support, then
+If a self root $T_s<T$ lies in the shell support, then
 $$
 |w(T_s)-w(T)|\le \eta
 $$
@@ -1866,19 +1960,25 @@ w(\theta)>0
 $$
 therefore no such $T_s$ can lie in $(T_{\mathrm{zero}},0)$ and hence
 $$
-T_T_{\mathrm{em}}<T_{\mathrm{zero}}
+T_s<T_{\mathrm{zero}}
 $$
 On the source region
 $$
 [-h,T_{\mathrm{zero}}]
 $$
-hypothesis (H3) gives
+hypothesis (H3) gives the two-sided sorting-slope bound
 $$
-\frac{dw}{dT}(\theta)=\frac{dX}{dT}(\theta)+c_f\ge \nu
+\nu
+\le
+\frac{dw}{dT}(\theta)=\frac{dX}{dT}(\theta)+c_f
+\le
+M,
+\qquad
+M\equiv c_f+\sup_{\theta\in[-h,T_{\mathrm{zero}}]}\frac{dX}{dT}(\theta)
 $$
-Applying the mean-value theorem between $T_s$ and $T_{\mathrm{zero}}$ yields
+A separation in time is a *lower* bound on $T_{\mathrm{zero}}-T_s$, so it must be extracted from the *upper* slope bound. Applying the mean-value theorem between $T_s$ and $T_{\mathrm{zero}}$ yields
 $$
-w(T_{\mathrm{zero}})-w(T_s)\ge \nu\,(T_{\mathrm{zero}}-T_s)
+w(T_{\mathrm{zero}})-w(T_s)\le M\,(T_{\mathrm{zero}}-T_s)
 $$
 Since
 $$
@@ -1888,12 +1988,14 @@ w(T_{\mathrm{zero}})=0
 \qquad
 w(T_s)\le -\eta
 $$
-it follows that
+the left side is at least $\eta$, and it follows that
 $$
-T_s\le T_{\mathrm{zero}}-\frac{\eta}{\nu}
+T_s\le T_{\mathrm{zero}}-\frac{\eta}{M}
 =
 T_{\mathrm{zero}}-\gamma(\eta)
 $$
+On the sub-field-speed source region $\frac{dX}{dT}<c_f$, so $M<2c_f$ and the admissible constant $\gamma(\eta)=\eta/(2c_f)$ may be used without further hypotheses. The lower slope bound $\nu$ is still needed, but for the source-normal Jacobian floor, not for this separation.
+
 This proves the delayed caustic-separation claim.
 
 For the geometric refinement, use that the selected source branch is inbound before the crossing, so $X(\theta)$ decreases toward the origin on the stored pre-crossing leg. Thus
@@ -3471,15 +3573,21 @@ The continuity theorem must distinguish uncontrolled branch changes from certifi
 >    $$
 > 3. parity data
 >    $$
->    \Delta N_k\in2\mathbb{Z},
+>    \Delta N_k=\pm2,
 >    \qquad
 >    \Delta D_k=0;
 >    $$
-> 4. a finite fold-impulse ceiling and an outgoing chart on which the post-fold roots again have a positive Jacobian floor.
+> 4. a finite fold-impulse ceiling and an outgoing chart on which the post-fold roots again have a positive Jacobian floor;
+> 5. a **nondegeneracy certificate** $a_k\ne0$ excluding a cusp or a coalescence of several folds at $s_k$;
+> 6. a **strict-interior memory certificate** $\max_\ell\,(T-T_{\mathrm{em},\ell})\le h-\gamma_h$ with $\gamma_h>0$, on both the incoming and the outgoing chart.
 >
 > Outside the union of the fold layers, the active roots must remain simple with the certified Jacobian floors and inactive-root gaps.
 
-This reconciles the continuity row with the causal-fold geometry. A field-speed separator may be a genuine root-pair birth or death, but it is not an uncontrolled discontinuity if the atlas records the parity-preserving transition and hands the trajectory to a certified outgoing chart.
+Rows 5 and 6 are the two loopholes the earlier atlas left open. Writing the parity data as $\Delta N_k\in2\mathbb{Z}$ rather than $\Delta N_k=\pm2$ is weaker than Proposition 3 of [Master Equation](../dynamics/master-equation.md), and would admit a cusp, or two coalescing folds, as a single "even" event. Cusps and higher strata $\Sigma^{1,1}$ are not certified by the generic fold law and must route to a separate singular-stratum chart, which this atlas does not supply; the nondegeneracy certificate excludes them instead.
+
+Row 6 closes the second gap. By Proposition 4 of the same chapter, an active generator can also leave the retained window $[T-h,T)$ when its required delay crosses the memory depth. That is a boundary-exit event, not a fold: it carries an odd unsigned jump and can change the finite-window signed degree $D^{(h)}$. No parity-preserving fold chart covers it. The atlas is therefore complete only on charts where every active delay is strictly interior with a declared margin $\gamma_h$; without that certificate the fold layers do not exhaust the branch transitions and the continuity claim below is not available.
+
+This reconciles the continuity row with the causal-fold geometry. A source-normal caustic may be a genuine root-pair birth or death, but it is not an uncontrolled discontinuity if the atlas records the parity-preserving transition and hands the trajectory to a certified outgoing chart. A receiver-normal null, by contrast, needs no fold layer at all: the branch strength passes through zero, the root set is unchanged, and the acceleration is continuous. See [Separator Taxonomy](../dynamics/master-equation.md#separator-taxonomy).
 
 ### Continuity on the tame envelope
 
@@ -3532,7 +3640,7 @@ uniformly on compact intervals in
 $$
 [0,T_{\max}]
 $$
-The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted separator transitions by integral-law fold layers with fixed incoming and outgoing charts, so the forward solution map is continuous on the entire tame envelope. For the section function
+The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted caustic transitions by integral-law fold layers with fixed incoming and outgoing charts. Given the nondegeneracy and strict-interior memory certificates carried by that atlas, those layers exhaust the branch transitions, and the forward solution map is continuous on the tame envelope. Without them the envelope may contain a cusp or a memory-boundary exit, and continuity is not established there. For the section function
 $$
 G(T,\psi)\equiv X(T;\psi)-X_\ast
 $$
@@ -4021,7 +4129,7 @@ persists on a small neighborhood of
 $$
 p_0
 $$
-The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the stricT-T_{\mathrm{em}}lack case open.
+The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the strict-slack case open.
 
 This proposition reduces the coupled-regime problem to a finite arithmetic certificate: exhibit one tuple
 $$
@@ -4142,11 +4250,11 @@ The following sufficient corridor is the scalar form of that arithmetic certific
 > $$
 > Suppose the force bounds on a chosen envelope factor as
 > $$
-> \overline A_s^\rho=g_s{\mathrm{in}}^\rho,
+> \overline A_s^\rho=g\,S_{\mathrm{in}}^\rho,
 > \qquad
 > \underline A_p^{\mathrm{out}}=gP_{\mathrm{out}},
 > \qquad
-> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=g_s{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=g\,S_{\mathrm{ent}}^{\mathrm{out}},
 > $$
 > where the coefficients are independent of
 > $$
@@ -4578,7 +4686,7 @@ This criterion is only a sufficient route. If the raw local sensitivity is too l
 > \equiv
 > \frac{r_{\mathrm{cert}}}{4}
 > -
-> \maX_{0\le j\le N}
+> \max_{0\le j\le N}
 > \max\{E_{j,+}^{X},E_{j,-}^{X},E_{j,+}^{v},E_{j,-}^{v}\}.
 > $$
 > If
@@ -4668,7 +4776,7 @@ The positive seed-cycle ledger and the radius criterion give the strict branch-c
 $$
 \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
-a nonempty closed convex tame envelope. The factorized corridor supplies the coupled stricT-T_{\mathrm{em}}lack point needed by invariant-envelope closure, so returned histories lie in
+a nonempty closed convex tame envelope. The factorized corridor supplies the coupled strict-slack point needed by invariant-envelope closure, so returned histories lie in
 $$
 \mathcal{C}_{X_\ast,\eta}
 $$
@@ -6037,7 +6145,7 @@ $$
 $$
 on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
 
-This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled stricT-T_{\mathrm{em}}lack arithmetic, and returned-sample preservation on the same domain.
+This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled strict-slack arithmetic, and returned-sample preservation on the same domain.
 
 > **Theorem (Nonempty tame class from seed propagation).**
 > Assume:
@@ -6072,7 +6180,7 @@ This proposition closes the seed-propagation ladder at the nonvacuity level. The
 >    $$
 > 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
 >
-> In particular, once the sampled certificate, coupled stricT-T_{\mathrm{em}}lack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
+> In particular, once the sampled certificate, coupled strict-slack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
 
 Proof sketch.
 The seed proposition and its neighborhood corollary provide a nonempty section-side class
@@ -6120,15 +6228,17 @@ P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\big)
 $$
 is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
 
-This theorem closes the seed-side nonvacuity gap in the global existence program. The note contains:
+This theorem reduces the seed-side nonvacuity gap to a bracket verification. The note contains:
 
-- an explicit nonempty section-side seed,
-- a propagation ladder from that seed to a nonempty tame class,
+- an explicit nonempty section-side seed, proved outright,
+- a propagation ladder from that seed to a nonempty tame class, conditional on the uniform inward bracket $0<a_-^{\mathrm{seed}}\le a_+^{\mathrm{seed}}$,
 - explicit inner and outer recapture regimes,
-- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled stricT-T_{\mathrm{em}}lack arithmetic,
-- and the previously stated precompactness, continuity, and Schauder route.
+- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
+- and the stated precompactness, continuity, and Schauder route.
 
-The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
+The bracket is where the receiver-normal conversion bites. On the inbound seed leg the retained partner image lies ahead of the receiver, so the lower bracket $a_-^{\mathrm{seed}}$ holds with the source-normal-only estimate as a conservative floor, while the upper bracket $a_+^{\mathrm{seed}}$ must carry the amplification ceiling $\Theta_+=1+U_{\max}/c_f$ from the weight conversion. Neither bracket may be inherited from a source-normal-only row.
+
+The remaining work is therefore to discharge that bracket with the receiver-normal weight on the same retained record, verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
 
 ### Collapse-to-crossing target
 
@@ -6314,10 +6424,30 @@ $$
 |J_p(T;T_p)|\le 1+\frac{U_{\max}}{c_f}
 $$
 
+The receiver-normal numerator on this row is, by the weight conversion,
+$$
+\frac{|D_{T,p}(T;T_p)|}{c_f}
+=
+\left|1-\frac{dX/dT(T)}{c_f}\right|
+=
+1+\frac{\left|dX/dT(T)\right|}{c_f}
+\ge
+1
+$$
+because $\hat r_p=+1$ while $\frac{dX}{dT}(T)\le0$: the retained partner image
+lies **ahead** of the inbound receiver, so its branch strength is amplified. The
+inbound partner lower bound therefore needs no receiver-normal penalty, and the
+source-normal-only estimate is a valid, merely conservative, floor.
+
 Therefore each retained active partner branch contributes at least
 $$
 \kappa\epsilon^2
-\frac{1}{
+\frac{W_p^{\mathrm{rec}}(T;T_p)}{
+r_p(T;T_p)^2+\epsilon_c^2
+}
+=
+\kappa\epsilon^2
+\frac{|D_{T,p}|/c_f}{
 \left(r_p(T;T_p)^2+\epsilon_c^2\right)|J_p(T;T_p)|
 }
 \ge
@@ -6707,7 +6837,7 @@ They therefore supply the required times
 $$
 T_{\mathrm{zero}}<T_{\mathrm{hinge}}<0
 $$
-the interior compacT-T_{\mathrm{em}}ubinterval gap
+the interior compact-subinterval gap
 $$
 \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min}
 $$
@@ -6840,7 +6970,7 @@ The intended proof order for this delayed-geometry step is:
    $$
    |J_s|\ge \nu_s
    $$
-   and the translated crossing history inherits the compacT-T_{\mathrm{em}}ubinterval sorting gap needed by the local post-crossing theorem.
+   and the translated crossing history inherits the compact-subinterval sorting gap needed by the local post-crossing theorem.
 
 The first item is a partner-branch regularity statement. The second and third items explicitly embrace the self-root caustic instead of assuming it away. The fifth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
 
@@ -7083,7 +7213,7 @@ w(T_s)=w(T)
 $$
 with
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 For
 $$
@@ -7282,10 +7412,10 @@ Then:
    $$
    \phi_{\mathrm{cross}}(\theta)=X(T_{\mathrm{cross}}+\theta)
    $$
-   inherits a compacT-T_{\mathrm{em}}ubinterval sorting gap:
+   inherits a compact-subinterval sorting gap:
    for every
    $$
-   0<\gamma<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},-T_{\mathrm{hinge}}\}
+   0<\gamma<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},\,T_{\mathrm{cross}}-T_{\mathrm{hinge}}\}
    $$
    the translated sorting function
    $$
@@ -7386,7 +7516,7 @@ for every
 $$
 \theta\in(T_{\mathrm{zero}}-T_{\mathrm{cross}},0)
 $$
-Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compacT-T_{\mathrm{em}}ubinterval sorting gap
+Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compact-subinterval sorting gap
 $$
 \delta_w(\phi_{\mathrm{cross}};\gamma)>0
 $$
@@ -7675,7 +7805,7 @@ Assume the hypotheses of Lemma 15 and let
 $$
 T_{\mathrm{cross}}^{(2)}
 $$
-denote the second origin crossing. Assume, in addition, that there exists a posT-T_{\mathrm{em}}econd-crossing window
+denote the second origin crossing. Assume, in addition, that there exists a post-second-crossing window
 $$
 [T_{\mathrm{cross}}^{(2)},\,T_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
 $$
@@ -8219,7 +8349,7 @@ The intended proof order for the outer branch is:
 The third and fourth items are the main analytic bottlenecks. Once a robust outer-force margin is available, the remaining return-to-section estimates are already in place.
 
 **Lemma 20: Outer-branch partner lower bound.**
-Assume the posT-T_{\mathrm{em}}econd-crossing outer branch satisfies:
+Assume the post-second-crossing outer branch satisfies:
 
 - right exterior outbound geometry,
   $$
@@ -8255,14 +8385,26 @@ Then the partner contribution to the inward acceleration obeys the class-uniform
 $$
 A_p(T)\ge \underline A_p^{\mathrm{out}}
 \equiv
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
-\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
+\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}},
+\qquad
+\Theta_-=1-\frac{U_{\max}}{c_f}>0
 $$
 Equivalently, the partner acceleration satisfies
 $$
 a_p(T)=-A_p(T)\le -\underline A_p^{\mathrm{out}}<0
 $$
 on the outer branch.
+
+The factor $\Theta_-$ is the receiver-normal penalty, and on this branch it cannot be dropped. Here $\hat r_p=+1$ while $\frac{dX}{dT}(T)\ge0$, so the retained partner image lies **behind** the outbound receiver and its branch strength is suppressed:
+$$
+\frac{|D_{T,p}(T;T_p)|}{c_f}
+=
+1-\frac{dX/dT(T)}{c_f}
+\in[\Theta_-,1]
+$$
+The source-normal-only estimate $\kappa\epsilon^2/((r_p^2+\epsilon_c^2)|J_p|)$ therefore over-states this floor by up to $1/\Theta_-$ and is not a valid lower bound. The strict positivity of the floor survives because the tame envelope enforces $U_{\max}<c_f$; it would fail exactly at the receiver-normal null $\frac{dX}{dT}=c_f$, where the inward pull of a source lying behind the receiver vanishes identically.
 
 Proof.
 Along the retained inward exterior partner channel, the delayed source remains on the opposite side of the current right-hand particle, so each retained contribution points inward and therefore contributes with signed acceleration
@@ -8294,15 +8436,20 @@ r_p(T;T_p)^2+\epsilon_c^2
 4X_{\mathrm{out},\max}^2+\epsilon_c^2
 $$
 
-Each retained active partner contribution therefore has magnitude at least
+Each retained active partner contribution therefore has magnitude
 $$
+\frac{\kappa\epsilon^2\,W_p^{\mathrm{rec}}(T;T_p)}{r_p(T;T_p)^2+\epsilon_c^2}
+=
 \frac{\kappa\epsilon^2}{
 \left(r_p(T;T_p)^2+\epsilon_c^2\right)|J_p(T;T_p)|}
+\cdot
+\frac{|D_{T,p}(T;T_p)|}{c_f}
 \ge
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 $$
-Summing over the retained active partner branches and retaining only one branch yields
+using $|D_{T,p}|/c_f\ge\Theta_-$ from the weight conversion. Summing over the retained active partner branches and retaining only one branch yields
 $$
 A_p(T)\ge \underline A_p^{\mathrm{out}}
 $$
@@ -8339,13 +8486,44 @@ N_{s,\max}^{\mathrm{out}}\,
 \big((r_{s,\min}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_s^{\mathrm{out}}}
 $$
 
+On this branch the active self roots are outbound-level roots, so $\hat r_s=+1$
+while $\frac{dX}{dT}(T)\ge0$: the receiver recedes from its own retained
+emission points, $|D_{T,s}|/c_f=1-\frac{dX/dT(T)}{c_f}\le1$, and the outward
+self-drive is *suppressed* by exactly the same receiver-normal factor that
+suppresses the inward partner pull of Lemma 20. The source-normal-only estimate
+is therefore a valid ceiling here, and no receiver-normal penalty is needed.
+
+The coincidence is structural rather than accidental. Lemma 20 and Lemma 21 read
+the same **common-sightline arc**: $\hat r_p=\hat r_s=+1$, so
+$|D_T|/c_f=1-\frac{dX/dT(T)}{c_f}$ is one common positive prefactor of the whole
+branch sum. Consequently the net inward acceleration on the outer branch obeys
+$$
+a_{\mathrm{in}}^{\mathrm{out}}(T)
+=
+\left(1-\frac{dX/dT(T)}{c_f}\right)
+\Big[
+A_p^{\mathrm{src}}(T)-A_s^{\mathrm{src}}(T)
+\Big]
+$$
+where the bracket carries only source-normal weights. The receiver-normal factor
+cannot change which term dominates. Partner dominance on the outer branch is
+therefore decided exactly as before, and the redriven inward floor is the old
+floor multiplied by $\Theta_-$.
+
 Proof.
 For each active self root
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
-the contribution to the outward self-drive has magnitude bounded by
+the contribution to the outward self-drive has magnitude
 $$
+\frac{\kappa\epsilon^2\,W_s^{\mathrm{rec}}(T;T_s)}{r_s(T;T_s)^2+\epsilon_c^2}
+=
+\frac{\kappa\epsilon^2}{
+\big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
+\cdot
+\frac{|D_{T,s}(T;T_s)|}{c_f}
+\le
 \frac{\kappa\epsilon^2}{
 \big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 $$
@@ -8417,6 +8595,7 @@ $$
 
 In particular, Lemmas 20 and 21 reduce the outer-turn force margin to the parameter inequality
 $$
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 -
@@ -8750,7 +8929,7 @@ X(T)\ge 0,
 $$
 and consider same-side self roots
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 for which the delayed self-hit condition is
 $$
@@ -8810,7 +8989,7 @@ z(T)=X(T)-c_f T
 $$
 is strictly decreasing on that window. Consequently, there are no exact same-side self roots
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 with both
 $$
@@ -8836,7 +9015,7 @@ $$
 $$
 If there existed an exact same-side self root pair
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 with both times in that window, Lemma 25 would give
 $$
@@ -8852,7 +9031,7 @@ z(T_s)>z(T)
 $$
 whenever
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 which is impossible. Therefore no such exact same-side self root exists on the strictly sub-field-speed outer window.
 
@@ -9282,6 +9461,7 @@ before any known outer turn, and on that window:
 
 If, in addition, the parameter inequality
 $$
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 -
@@ -9362,7 +9542,7 @@ z(T)=X(T)-c_f T
 $$
 so the local outward self-drive is only the shell tail bounded in Lemma 27. The remaining possible outward self contributions are therefore the roots that come from much earlier times
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 outside the local sub-field-speed window but still satisfy
 $$
@@ -9380,7 +9560,7 @@ $$
 > $$
 > Assume that every outward-driving same-side self root
 > $$
-> T_T_{\mathrm{em}}<T_a
+> T_s<T_a
 > $$
 > satisfying
 > $$
@@ -9432,7 +9612,7 @@ The intended proof order is:
 1. **Deep-past separation lemma.**
    Show that any same-side outer root with
    $$
-   T_T_{\mathrm{em}}<T_a
+   T_s<T_a
    $$
    must satisfy a macroscopic delay gap and hence a macroscopic spatial separation
    $$
@@ -9471,7 +9651,7 @@ T\in I_{\mathrm{deep}}
 $$
 and
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 is a same-side outward-driving self root satisfying
 $$
@@ -9504,7 +9684,7 @@ T\in[T_a+\tau_{\mathrm{deep}},\,T_b]
 $$
 and
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 one immediately has
 $$
@@ -9651,7 +9831,7 @@ T\in I_{\mathrm{deep}}
 $$
 and let
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 be any outward-driving same-side deep-past root with
 $$
@@ -9665,14 +9845,23 @@ Lemma 31 gives the transversality bound
 $$
 |J_s(T;T_s)|\ge \frac{\nu_{\mathrm{deep}}}{c_f}
 $$
-Therefore each deep-past branch contributes at most
+A deep-past root retained on the outbound leg is an outward-driving root, so
+$\hat r_s=+1$ while $\frac{dX}{dT}(T)\ge0$. Hence
+$|D_{T,s}|/c_f=1-\frac{dX/dT(T)}{c_f}\le1$: the receiver recedes from these
+emission points and the deep-past drive is receiver-normal suppressed. The
+source-normal-only estimate is therefore a valid ceiling, and dropping the
+suppression only weakens the bound. Each deep-past branch contributes at most
 $$
+\frac{\kappa\epsilon^2\,W_s^{\mathrm{rec}}(T;T_s)}{r_s(T;T_s)^2+\epsilon_c^2}
+\le
 \frac{\kappa\epsilon^2}{
 \big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
 \frac{\kappa\epsilon^2}{
 \big(c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2\big)\,(\nu_{\mathrm{deep}}/c_f)}
 $$
+This step is a branch-resolved reduction and is licensed only because the deep-past window is separated from the caustic hinge by Lemma 30 and from the origin layer by the trimming hypothesis. It may not be applied across either.
+
 Summing over at most
 $$
 N_{s,\mathrm{deep},\max}^{\mathrm{out}}
@@ -9797,7 +9986,7 @@ T\in I_{\mathrm{deep}}
 $$
 and
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 satisfies
 $$
@@ -9988,8 +10177,10 @@ Lemma 30 gives the separation bound
 $$
 r_s(T;T_s)\ge c_f\tau_{\mathrm{deep}}
 $$
-Therefore the single deep-past branch contributes at most
+This root drives the receiver outward, so $\hat r_s=+1$ while $\frac{dX}{dT}(T)\ge0$ on the apocenter window. By the weight conversion its receiver-normal numerator obeys $|D_{T,s}|/c_f=1-\frac{dX/dT(T)}{c_f}\le1$, so the branch is receiver-normal suppressed and the source-normal-only quotient is a valid ceiling. Therefore the single deep-past branch contributes at most
 $$
+\frac{\kappa\epsilon^2\,W_s^{\mathrm{rec}}(T;T_s)}{r_s(T;T_s)^2+\epsilon_c^2}
+\le
 \frac{\kappa\epsilon^2}{
 \big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
@@ -10588,12 +10779,13 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $X\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|X|$. Any language suggesting a rebound on the same $X>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
+- **Polarity-signed damping is the real obstruction.** The receiver-normal weight conversion shows why the outer-turn target is hard, and it is not the field-speed threshold. The collinear law is exactly $\frac{d^2X}{dT^2}+\Gamma\frac{dX}{dT}=c_f\Xi$ with $\Gamma=\sum_\ell w_\ell$ carrying the polarity sign of each branch. Partner attraction anti-damps and injects at rate $|w_p|s_p^2$ on *both* legs; self-repulsion damps and drains at rate $w_ss_s^2$. The self rows are therefore the only damping channel available, and a closed cycle requires the self drain to balance the partner injection over the period. A partner-only reduction cannot bind at any coupling: it is a strictly anti-damped delayed oscillator. Whether the retained self rows are strong enough to close the balance is exactly the open content of the outer-turn theorem target, and no source-normal-only estimate can see the question, because the source-normal-only weight is work-symmetric and has $\Gamma\equiv0$.
 - **Apocenter-entry window.** Lemma 29 supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
-- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\frac{dX}{dT}=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. Those lower bounds are still only source-normal diagnostics until the same retained record also supplies the receiver-normal numerator and branch strength.
+- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\frac{dX}{dT}=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. These remain source-normal quantities; the receiver-normal numerator on the same retained record is supplied by the weight conversion, which converts each $1/|J|$ estimate into the canonical $W^{\mathrm{rec}}$ weight through the factor $|D_T|/c_f\in[\Theta_-,\Theta_+]$.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(T)$ and therefore a lower bound on $A_p^{\rho}(T)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
-- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoinT-T_{\mathrm{em}}cale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
+- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoint-scale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
 - **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $T=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
 

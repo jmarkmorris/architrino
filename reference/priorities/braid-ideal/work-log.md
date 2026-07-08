@@ -1100,3 +1100,39 @@ Verdict `super_field_inner_binary_self_consistency_reduces_to_d0_self_hit_balanc
 Next closure goal: compute the super-field tangential force balance on a single rigid shell for $\beta\gtrsim1$ - the uncertified partner-wake pump plus the $d_0$-regularized self-hit brake - and determine whether it has a zero at an admissible $\beta^*$ (self-balancing terminal shell, retention closes affirmatively) or stays net anti-damping (no terminal shell, forcing Noether-sea/field dissipation as the only remaining sink).
 
 Verification: `node --test tests/braid-ideal-super-field-inner-binary-consistency-diagnostic.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Super-field tangential balance: the field-speed pin (item 11) + normal-convention audit
+
+Operator asked to FIRST verify all cross-hit math handles source-normal and receiver-normal correctly, then compute the super-field balance.
+
+Audit (against production `receiverNormalFields` in [AbsoluteHistoryRootRuntime.mjs](../../../src/solver/app/AbsoluteHistoryRootRuntime.mjs)): canonical convention is $\hat{\mathbf r}=(\mathbf x_{\mathrm{rec}}-\mathbf x_{\mathrm{src}})/|\cdots|$ (source$\to$receiver), $D_s=c_f-\mathbf v_{\mathrm{src}}\cdot\hat{\mathbf r}$ (jacobian/denominator), $D_T=c_f-\mathbf v_{\mathrm{rec}}\cdot\hat{\mathbf r}$ (numerator, same $\hat{\mathbf r}$), $m=D_T/D_s$ (signed), branchWeight $=|m|$. The click-rate/coexistence/consistency diagnostics use the source-normal correctly (their alignment scalar $=c_f-D_s$ to $2\times10^{-16}$), but they summed impulse MAGNITUDE only, so the absorptive/ejective sign $\operatorname{sign}(D_T)$ was not evaluated there - fine for counts/availability, but the balance needs signed $m$ and must not assume $D_s>0$ (super-field). Existing fold/self-hit scripts and the interval certificate use the same convention (certificate uses unsigned $|D_T|/D_s$ and requires $D_s>0$, valid only sub-field).
+
+New owner script [super-field-tangential-balance-diagnostic.mjs](../../../scripts/braid-ideal/super-field-tangential-balance-diagnostic.mjs) (tests [braid-ideal-super-field-tangential-balance-diagnostic.test.js](../../../tests/braid-ideal-super-field-tangential-balance-diagnostic.test.js), 5 passing) and [spec Section 11](fold-crossing-chart-spec.md#11-super-field-tangential-balance-the-field-speed-pin-2026-07-08):
+
+- Validation: the signed-normal point evaluator reproduces the certified band $2.881\beta\le\Phi_{\mathrm{tan}}\le2.925\beta$ for $\beta\in[0.1,0.985]$ (measured $\Phi/\beta\in[2.888,2.919]$, all in-band); signed=unsigned sub-field ($D_T>0$).
+- Result 1: extended across $\beta=1$, the partner pump stays anti-damping and grows ($\Phi_{\mathrm{tan}}=2.87,2.92,2.98,3.08,3.24,3.58,4.28$ at $\beta=0.985..1.4$), single-root, non-caustic ($D_s>0$). The pump does NOT switch off super-field - the Section 10 "uncertified pump might vanish" escape is closed.
+- Result 2 (inputs, provenance recorded): self-hit brake absorptive ($m<0$), onsets at $\beta=1$, $\sim50\times$ pump at declared $d_0$ (exact size $d_0$-gated).
+- Result 3: no static super-field $\beta^*$ (pump only grows); switching structure gives a dynamic field-speed pin - above $\beta=1$ net braking pushes down, below $\beta=1$ the pump pushes up, so $\beta\approx1$ is a self-limiting attractor.
+
+Verdict `partner_pump_persists_super_field_no_static_beta_star_switching_self_hit_yields_field_speed_pin_gated_on_d0_sea_field_dissipation_not_required`: the retention hunt closes affirmatively-conditionally - a terminal shell exists (the field-speed-pinned inner binary) and does NOT require Noether-sea/field dissipation; gated on $d_0$ for exact pin stability (declared $\sim50\times$ suffices). Claim: derivation+measurement for the validated super-field pump; hypothesis for the pin as a proven attractor (trajectory needs the retained-history solver). Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: confirm the field-speed pin as an actual attractor on the native retained-history solver (a two-shell row with the inner binary released near $\beta=1$), and invert the pin balance $\Phi_{\mathrm{partner}}(1)+\Phi_{\mathrm{self}}(1;d_0)=0$ to DERIVE $d_0$ as the coincidence stratum that makes the field-speed edge marginally stable - turning the open $d_0$ value (particle-masses.md) into a fixed point of the retention balance rather than a free operator input.
+
+Verification: `node --test tests/braid-ideal-super-field-tangential-balance-diagnostic.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Field-speed pin: attractor confirmed (reduced), d0 inversion is a bound (item 11)
+
+Executing the prior closure goal: confirm the field-speed pin as an attractor and invert the balance for d0. New owner script [field-speed-pin-attractor-diagnostic.mjs](../../../scripts/braid-ideal/field-speed-pin-attractor-diagnostic.mjs) (tests [braid-ideal-field-speed-pin-attractor-diagnostic.test.js](../../../tests/braid-ideal-field-speed-pin-attractor-diagnostic.test.js), 6 passing) and [spec Section 12](fold-crossing-chart-spec.md#12-field-speed-pin-attractor-confirmation-and-d0-inversion-2026-07-08). Reduced reference integrator (validated signed-normal partner pump + switching self-hit brake); explicitly NOT the native solver - native retained-history confirmation stays gated.
+
+Modeling correction found during the run: the self-hit brake is a MULTIPLE of the LOCAL pump, not a fixed magnitude. So $\Phi_{\mathrm{net}}(\beta)=\Phi_{\mathrm{partner}}(\beta)[1-\varrho\,\Theta(\beta-1)]$ and, since the partner pump grows super-field, the pin threshold is the ratio $\varrho>1$ (not brake=pump at a single beta).
+
+- Result 1 (attractor): for $\varrho>1$ the field-speed edge $\beta=1$ is a two-sided attractor - releases $\{0.9,0.95,1.05,1.1\}$ all converge to $\beta\approx1$ (to $1.00$ at $\varrho=1.5$, to $\approx0.98$ at the declared $\varrho\approx50$). $\varrho=1$ marginal (attracts from below, neutral above); $\varrho=0.5$ super-field runaway (no pin).
+- Result 2 (d0 inversion): the marginal condition $\varrho=1$ against the measured self-hit-brake-vs-stratum curve (absorbed fraction $0.031/0.115/0.371/2.69/9.67$ at $\rho_c=0.2/0.1/0.05/0.01/0.001$) lands at $\rho_c^*\approx2.2\times10^{-2}$. The pin holds for $d_0\le\rho_c^*$ - an INEQUALITY, not a unique fixed point, because over-braking is also stable. The declared $d_0=R_{\mathrm{MCB}}\sim\kappa\epsilon^2/c_f^2$ ($\varrho\approx50$) sits well inside the stable range and gives a firm, over-damped pin.
+
+Honest correction to the closure goal: inverting the balance does NOT uniquely derive $d_0$; it BOUNDS it ($d_0\le\rho_c^*\approx0.022$, equivalently the self-hit brake must exceed the partner pump above field speed). The unique $d_0$ still comes from $R_{\mathrm{MCB}}$ physics, now bounded above by the retention balance. Verdict `field_speed_edge_two_sided_attractor_for_ratio_above_one_balance_bounds_d0_by_marginal_stratum_declared_d0_over_damped_inside_range`. Claim: derivation+measurement (reference) for the attractor and marginal stratum; hypothesis for the native-solver pin (gated) and for $\varrho(\beta)$ staying $>1$ as $\beta$ grows (its $\beta$-dependence unmeasured). Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: (a) native retained-history confirmation of the pin (gated two-shell row released near $\beta=1$); (b) measure $\varrho(\beta)$ above field speed - if it stays $>1$ the pin is unconditional in the super-field range, else there is an upper escape; (c) reconcile $\rho_c^*\approx0.022$ against $R_{\mathrm{MCB}}\sim\kappa\epsilon^2/c_f^2$ (particle-masses.md).
+
+Verification: `node --test tests/braid-ideal-field-speed-pin-attractor-diagnostic.test.js` -> 6 pass, 0 fail.
