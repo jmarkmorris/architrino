@@ -1208,3 +1208,40 @@ Executed the Section 16 closure goal on a new owner script [planar-tri-binary-br
 Combined Sections 15-17 verdict: iso-frequency deep-nesting tangential closure and radial self-support are mutually exclusive; the lowest shape mode cannot bridge. Missing ingredient is structural: (i) speed modulation / Kepler-like rate variation - for the middle layer this is the escapement ticking (rail crossed twice per cycle, self-hit clicks transacted; needs the $d_0$ self-hit channel in the balance); (ii) frequency hierarchy (4:2:1 / 3:2:1, inner-super-field per the original intuition); (iii) out-of-plane structure; (iv) sea confinement (the outer binding deficit is where an external medium term would sit; the outer's own self-hit is repulsive-outward and cannot rescue it). Fail-closed throughout.
 
 Verification: `node --test tests/braid-ideal-planar-tri-binary-breathing-extension.test.js` -> 4 pass, 0 fail.
+
+
+## 2026-07-08 - Autonomous window: frequency locks, Kepler mode, counter-rotation; the harmonic-matching principle (item 11)
+
+Operator-approved ~40-minute autonomous exploration following the Section 17 shape rejection. Two new owner scripts, both on the unified global-closure metric (one global $\kappa^*$, both components, full common period):
+
+- [planar-tri-binary-frequency-lock-evaluator.mjs](../../../scripts/braid-ideal/planar-tri-binary-frequency-lock-evaluator.mjs) (tests 4 passing): per-layer integer frequency multiples $n_a\omega$, middle on rail, declared caustic regulator soft=0.02 (beats revive fold passages; min|D_s| reported). 4:2:1 restores inner-super-field ($\beta_I=1.4$ at $q_I=0.7$) per the original intuition — but circular locked states score 0.96–1.0 (wake essentially uncorrelated with the single-harmonic circular requirement), INCLUDING at the Kepler-third-law radii $n_a^2R_a^3=$const (operator's "nature echoes Kepler" prompted the test; retardation kills the static-binding scaling — during one antipodal wake transit at $\beta\sim1$ the pair rotates $\sim115°$). Counter-rotation variants ($\pm1$ circulation per layer): 0.85–0.99.
+- [planar-tri-binary-kepler-extension.mjs](../../../scripts/braid-ideal/planar-tri-binary-kepler-extension.mjs) (tests 4 passing): equal-area speed modulation, $r^2\dot\varphi=$const per layer with common period (Kepler second law within iso-frequency; exact $e{=}0$ regression to 0.646). $\psi$ is a live knob here (gauge argument fails under speed modulation — verified) but every scanned direction degrades (0.65–0.94).
+
+Structural finding (the harmonic-matching principle): a circular orbit needs a single-harmonic rotating force; only the co-rotating-frame DC part of the wake supplies that. Rigid co-rotation concentrates ALL wake power in the DC part — hence the iso-frequency family is the planar champion (0.646) and carries the Section 15 internal-transfer structure — while beats, counter-rotation, and speed modulation shift wake power into unmatchable harmonics. Fair continuation for locks (untried, expensive): harmonically-forced response orbits deformed at the beat harmonics.
+
+Verdict: in-plane prescribed-orbit freedoms exhausted; the remaining 0.646 must come from out-of-plane structure (sphere-state shell braid / 3D nesting), the $d_0$ self-hit channel at the rail, sea confinement, or $m{=}1$ modes. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-frequency-lock-evaluator.test.js tests/braid-ideal-planar-tri-binary-kepler-extension.test.js` -> 8 pass, 0 fail.
+
+
+## 2026-07-08 - Sphere state evaluated; planar-era league table complete (item 11)
+
+Continuation of the autonomous window. New owner script [sphere-state-shell-braid-evaluator.mjs](../../../scripts/braid-ideal/sphere-state-shell-braid-evaluator.mjs) (tests 3 passing; [spec Section 19](fold-crossing-chart-spec.md#19-sphere-state-and-the-completed-planar-era-league-table-2026-07-08)): the shell braid sphere state (three orthogonal-plane neutral binaries, equal radius/frequency, full 3D causal solve). Result: 0.986-0.997 - the three-fold orthogonal symmetry does NOT cancel the beating wake content; the harmonic-matching principle extends to 3D. Also measured the pure planar hexagon in the unified metric: 0.960 (binding coherent; pump dominates).
+
+Completed league table: nested co-rotating iso-frequency 0.646 (champion; nesting internally cancels the pump, 0.96->0.646 - the largest single closure gain found); every rigidity-breaking family (locks, counter-rotation, sphere state) ~0.85-1.0; every lowest shape mode degrades the champion. Sharpened conclusion: coherence requires co-rotation rigidity; the right 3D lift is a RIGID tilted nested configuration (rigid-body rotation preserves the DC-only wake structure), not the non-rigid sphere state. Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-sphere-state-shell-braid-evaluator.test.js` -> 3 pass, 0 fail.
+
+
+## 2026-07-08 - Rigid tilted-nested braid: outer tilt beats the planar floor; axial-dipole limit emerges (item 11)
+
+Executed the Section 19 closure goal. New owner script [rigid-tilted-nested-braid-evaluator.mjs](../../../scripts/braid-ideal/rigid-tilted-nested-braid-evaluator.mjs) (tests 5 passing; [spec Section 20](fold-crossing-chart-spec.md#20-rigid-tilted-nested-braid-first-improvement-below-the-planar-floor-2026-07-08)): three nested neutral binaries as tilted dumbbells rigidly co-rotating about one axis (rigidity with tilts verified to $1.3\times10^{-15}$; $\alpha=0$ regression = 0.6460 exact). Tilt rescales each layer's kinematic need ($\omega^2R_a\cos\alpha_a$) and adds a vertical balance row.
+
+- Inner tilt degrades (0.65->0.74 by 60°) - the over-binding diagnosis confirmed from a new direction.
+- Outer tilt: degrades to ~0.83 mid-range, then turns and crosses BELOW the planar floor at ~75° (0.616), monotone down to 0.527 at 89°; with radius rescan, (0.5, 2.0, 84°) reaches 0.5237 - the first freedom all day to beat 0.646, a 19% gain with the outer still orbiting ($\beta_O\approx0.21$).
+- Emerging geometry: as $\alpha_O\to90°$ the outer pair approaches a STATIC AXIAL DIPOLE on the rotation axis above/below the co-rotating planar core - an existing corpus structure (derived-structure inventory) discovered unprompted.
+- Metric-honesty caveat: the global metric weights by $|a_{kin}|^2$ and the outer need $\to0$ near polar, so part of the gain is the outer leaving the ledger (its need-relative residual grows 1.05->3.4). Polar-family scoring needs ABSOLUTE residuals for the axial pair + need-relative for the orbiting core. Untried: middle tilt, azimuthal stagger, counter-tilt.
+
+Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 5 pass, 0 fail.

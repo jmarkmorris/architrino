@@ -418,3 +418,62 @@ Executing the Section 16 closure goal. New owner script [planar-tri-binary-breat
 **Verdict:** `iso_frequency_deep_nesting_tangential_closure_and_radial_self_support_mutually_exclusive_m2_shape_rejected`. Combining Sections 15–17: the iso-frequency circular braid closes its tangential ledger only when deeply nested, deep nesting cannot radially self-support under one coupling, and the lowest shape mode cannot bridge the two. The missing ingredient is structural, not a polish; the untried freedoms, in order of physical promise: (i) **speed modulation** (Kepler-like $\dot\varphi$ variation — the mode $m{=}2$-at-constant-rate cannot reach; it exchanges tangential and radial around the cycle, and for the middle layer it is exactly the escapement *ticking*: crossing the rail twice per cycle and transacting self-hit clicks, which requires the $d_0$ self-hit channel in the balance); (ii) **frequency hierarchy** (the 4:2:1 / 3:2:1 nested states, restoring the inner-super-field ordering of the original intuition); (iii) **out-of-plane structure** (the planar restriction); (iv) **sea confinement** (the braid may not be isolated — the outer binding deficit is exactly where an external medium term would sit). Note the outer's own self-hit cannot rescue the isolated planar state: same-source pushes are like-polarity repulsive with outward radial component, worsening the outer deficit. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
 
 Next closure goal: run the frequency-locked nested candidates (4:2:1 and 3:2:1, inner-super-field per the original intuition) through the same unified global-closure metric — different per-layer frequencies make the configuration periodic at the common period, which the cycle-sampling machinery already supports — and compare their closure floors against the iso-frequency family's $0.646$, to determine whether a frequency hierarchy relieves the tangential/radial exclusivity that closes the iso-frequency circular family.
+
+---
+
+## 18. Frequency Locks, Kepler Mode, and Counter-Rotation: The Harmonic-Matching Principle (2026-07-08)
+
+Autonomous exploration window (operator-approved). Two new owner scripts: [planar-tri-binary-frequency-lock-evaluator.mjs](../../../scripts/braid-ideal/planar-tri-binary-frequency-lock-evaluator.mjs) (per-layer integer frequency multiples, cycle-sampled over the common period, declared caustic regulator soft $=0.02$ since beats revive fold passages; tests 4 passing) and [planar-tri-binary-kepler-extension.mjs](../../../scripts/braid-ideal/planar-tri-binary-kepler-extension.mjs) (equal-area speed modulation, Kepler's second law $r^2\dot\varphi=$ const per layer with common period; exact $e{=}0$ regression to the circular floor; tests 4 passing). All on the unified global-closure metric.
+
+**League table (planar prescribed-worldline families, global relative residual; lower is better):**
+
+| Family | Floor found | Status |
+| --- | --- | --- |
+| Co-rotating iso-frequency circular (rigid) | **0.646** at $(q_I,q_O)=(0.5,1.6)$ | planar champion |
+| + $m{=}2$ shape, constant rate (Section 17) | degrades ($0.66$–$0.95$) | rejected |
+| + $m{=}2$ shape, equal-area **Kepler** | degrades ($0.65$–$0.94$; $\psi$ live but unhelpful) | rejected |
+| Counter-rotating variants ($\pm1$ circulations) | $0.85$–$0.99$ | rejected |
+| Frequency-locked 4:2:1 / 3:2:1 circles (inner-super-field restored, middle rail) | $0.96$–$1.0$, incl. at Kepler-third-law radii $n_a^2R_a^3=$ const | rejected at circular level |
+
+**The harmonic-matching principle (the structural finding).** A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the *time-constant part of the wake field in the co-rotating frame* can match it. Rigid co-rotation puts **all** wake power into that DC part — which is exactly why the iso-frequency family closes best and why its Section 15 internal-transfer structure exists. Any relative layer motion — frequency locks (beats), counter-rotation, or speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics. Retardation kills the naive Kepler-third-law scaling for locks (during one antipodal wake transit at $\beta\sim1$ the pair rotates $\sim115°$, so static-binding intuition does not transfer). The fair continuation for locks is a *harmonically-forced response orbit* (each layer deformed at the beat harmonics its wake forcing actually contains) — expensive, untried.
+
+**What survives for the remaining $0.646$:** the missing ingredient is not an in-plane prescribed-orbit freedom. Untried: (i) **out-of-plane structure** — the operator's sphere-state shell braid and its 3D nesting (the largest structural gap; the planar restriction was a convenience, not physics); (ii) **the $d_0$ self-hit channel at the rail** (the escapement's force-balance contribution, excluded so far); (iii) **sea confinement** (the outer binding deficit is shaped exactly like an external medium term); (iv) $m{=}1$ (focus-offset) shape modes, which break antipodal central symmetry and need both-site evaluation. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: lift the evaluator out of plane — evaluate the sphere-state shell braid (three neutral axes on one sphere, the operator's equal-$r$ 3D state) and its 3D nested variants on the same unified global-closure metric, to test whether the polar degree of freedom supplies the closure the planar family cannot.
+
+---
+
+## 19. Sphere State and the Completed Planar-Era League Table (2026-07-08)
+
+First out-of-plane lift, executing the Section 18 closure goal at v0 scope. Owner script [sphere-state-shell-braid-evaluator.mjs](../../../scripts/braid-ideal/sphere-state-shell-braid-evaluator.mjs) (tests [braid-ideal-sphere-state-shell-braid-evaluator.test.js](../../../tests/braid-ideal-sphere-state-shell-braid-evaluator.test.js), 3 passing): the shell braid's sphere state — three neutral antipodal binaries at one radius and one frequency in three mutually orthogonal planes (xy/yz/zx), six architrinos, full 3D causal-root solve, unified metric. The configuration is non-rigid (inter-binary distances beat at $2\omega$), so the harmonic-cancellation question — does the three-fold orthogonal symmetry cancel the oscillating wake content? — is exactly what the metric measures.
+
+**Result: it does not cancel.** The sphere state scores $0.986$–$0.997$ across $\beta\in[0.7,0.98]$ and phase choices (perfectly binary-symmetric, as required by the geometry, but the wake is nearly uncorrelated with the circular kinematic need). The harmonic-matching principle extends unbroken to this 3D state. For completeness the pure planar hexagon (equal radii, the certified shell state) was also measured in the unified metric: $0.960$ — its binding is coherent but the $2.9\beta$ pump dominates the residual.
+
+**Completed league table (unified global-closure residual; prescribed circular worldlines unless noted):**
+
+| Configuration | Global residual |
+| --- | --- |
+| **Co-rotating nested iso-frequency, $(q_I,q_O)=(0.5,1.6)$, middle rail** | **0.646** |
+| + best $m{=}2$ shape (constant-rate or Kepler equal-area) | $\ge0.65$ (both rejected) |
+| Counter-rotating variants | $0.85$–$0.99$ |
+| Planar hexagon (equal radii, certified shell state) | $0.960$ |
+| Frequency-locked 4:2:1 / 3:2:1 (incl. Kepler-third-law radii) | $0.96$–$1.0$ |
+| Orthogonal-plane sphere state | $0.99$ |
+
+The story the table tells: coherence with circular kinematics requires rigidity (co-rotation), the hexagon's residual is the pump, **nesting cancels the pump internally** ($0.96\to0.646$ — the Section 15 mechanism, the single largest closure gain found), and everything that breaks rigidity scores $\sim1$. The remaining $0.646$ is the radial-support-ratio mismatch, and no prescribed-circle freedom — in-plane or this 3D state — touches it. The surviving routes are unchanged from Section 18 but sharpened: tilted/precessing 3D *nested* states that preserve co-rotation rigidity in a rotating frame (rigid 3D rotations exist — the planar restriction of the nested family, not the sphere state, is the right thing to lift), the $d_0$ self-hit channel at the rail, sea confinement, and harmonically-forced response orbits. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: evaluate a **rigid 3D nested** configuration — the three nested neutral binaries co-rotating about one common axis but with the three binary planes tilted (a rigid body rotation, preserving the DC-only wake structure that makes closure possible), tilt angles as new knobs — on the unified metric, testing whether tilt can absorb the radial-support mismatch that the planar nested family cannot.
+
+---
+
+## 20. Rigid Tilted-Nested Braid: First Improvement Below the Planar Floor (2026-07-08)
+
+Executing the Section 19 closure goal. Owner script [rigid-tilted-nested-braid-evaluator.mjs](../../../scripts/braid-ideal/rigid-tilted-nested-braid-evaluator.mjs) (tests [braid-ideal-rigid-tilted-nested-braid-evaluator.test.js](../../../tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js), 5 passing). Construction: to preserve co-rotation rigidity (the harmonic-matching requirement), the three nested neutral binaries are **tilted dumbbells** rigidly co-rotating about one axis — axis $a$'s pair at $\pm R_a\hat{\mathbf n}_a(t)$ with tilt $\alpha_a$ (elevation from the equator) and azimuth $\theta_a$. Every site traces a horizontal circle at cylindrical radius $R_a\cos\alpha_a$ and fixed height; rigidity verified with tilts to $1.3\times10^{-15}$; the $\alpha=0$ regression reproduces the planar floor exactly ($0.6460$). Tilt rescales each layer's kinematic **need** ($\omega^2R_a\cos\alpha_a$) while reshaping its 3D wake supply, and adds a vertical force-balance row that the 3-component unified metric counts automatically. Middle stays equatorial ($\alpha_M=0$): the rail is exact.
+
+**Result 1 — outer tilt is the first freedom to beat the planar floor.** Inner tilt degrades (as the over-binding diagnosis predicts: lowering the inner's need worsens its surplus). Outer tilt initially degrades (aberrated geometry) but past $\alpha_O\approx60°$ turns and crosses below the floor at $\alpha_O\approx75°$ ($0.616$), continuing down monotonically: $0.589/0.564/0.545/0.531/0.527$ at $78°/81°/84°/87°/89°$. With a radius rescan, $(q_I,q_O,\alpha_O)=(0.5,2.0,84°)$ reaches $\mathbf{0.5237}$ — a $19\%$ improvement over the planar champion, with the outer still orbiting ($\beta_O\approx0.21$).
+
+**Result 2 — the geometry is morphing toward an axial dipole.** As $\alpha_O\to90°$ the outer binary's sites approach the rotation axis at $\pm R_O$: a **static axial pair** — an axial dipole above and below the co-rotating planar core. That is an existing corpus structure (the derived-structure inventory's axial-dipole channel), and the metric is discovering it unprompted.
+
+**Caveat (metric honesty).** The unified metric weights layers by $|a_{\mathrm{kin}}|^2$, and the outer's need $\to0$ as $\alpha_O\to90°$, so part of the near-polar gain is the outer *leaving the ledger* rather than closing it (its own need-relative residual grows: $1.05\to3.4$ across the same sweep). The honest closure question in the polar limit changes form: a static axial pair needs near-zero **absolute** force, so the polar family must be scored on absolute residuals for the axial pair alongside need-relative residuals for the orbiting core. Untried knobs: middle tilt (moves the rail definition), azimuthal stagger $\theta_a$, and counter-tilted ($\pm\alpha$) arrangements. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: score the axial-dipole limit honestly — absolute-force residuals for the near-polar outer pair together with need-relative residuals for the orbiting inner+middle core, sweeping $\alpha_O\to90°$, the axial height $R_O$, azimuths, and counter-tilt — to determine whether "co-rotating nested planar core + static axial dipole" is a genuine closure candidate or a metric artifact.
