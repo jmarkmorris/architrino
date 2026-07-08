@@ -2978,7 +2978,7 @@ One-line index of this session's live insights with their capture homes, so noth
 - **League table + unified closure metric** (one $\kappa^*$, all layers/components/cycle): the general search instrument — Sections 17–19.
 - **Kepler-third-law radii tested and rejected for locks** (retardation kills static-binding intuition at $\beta\sim1$) — Section 18.
 - **Layer tilt tolerance $\propto1/\beta$** = the operator's Lorentzian flattening recovered layer-by-layer — Section 21.
-- **Rest-state champion** ($0.4721$): rail pair + counter-dished inner + slow polar caps $30°$ behind, rigid, one frequency, sub-field except the hinge; hierarchy REVERSED (the braid wants its caps) — Sections 20–22.
+- **Rest-state champion = the SPINDLE BRAID** (operator-ratified name 2026-07-08; corpus glossary + configuration-space entries) ($0.4721$, refined $0.4531$): rail pair + counter-dished inner + slow polar caps $30°$ behind, rigid, one frequency, sub-field except the hinge; hierarchy REVERSED (the braid wants its caps) — Sections 20–23.
 - **Axial-dipole emergence** (metric walked to an existing corpus structure) and its no-levitation caveat — Sections 20–21.
 - **Misalignment angles vs weak mixing** (cap lag ~30° / Weinberg 28.7°; inner dish ~12° / Cabibbo 13.0°): coincidence-class; promotion route = sharpen + closed form + RUNNING with $u$ — entry 1 above; item 19.
 - **Chirality**: law C-even/P-even; braid is a chiral object ($h=\hat{\mathbf d}\cdot\hat{\boldsymbol\omega}$); cap-dish anti-alignment selected (measured binding flip); front cap under drift = helicity-polarity lock, item 19 will select the leader — entry 2 above; item 12.

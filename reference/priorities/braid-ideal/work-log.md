@@ -1297,3 +1297,19 @@ Operator centrifuge idea assessed and captured: speed dependence of decay is est
 [Spec Section 23](fold-crossing-chart-spec.md#23-champion-stiffness-spectrum-saddle-backbone-and-the-pump-in-the-gradient-2026-07-08). Gradient + full 7x7 Hessian + eigenmodes around the Section 22 champion. Spectrum (soft->stiff): -0.34 (relative-tilt combo), -0.04, +0.05 (theta_O - flat basin quantified), +0.23 (rail knob beta_M), +3.7 (alpha_O), +5.3 (alpha_M), +18.9 (q_I = rigidity backbone). Champion is a SADDLE; descent + q_I->0.47 refines to 0.4531 (systematic minimizer next). beta_M gradient negative (-0.27; 0.4468 at beta_M=1.1): the anti-damping pump appearing in the closure landscape, with the excluded self-hit brake as the pin that stops the slide at the rail - a consistency closure across Sections 11-12/23, not an instability. Clock-hypothesis bridge: operator directed promotion of the decay-dilation recovery obligation into the corpus - new row "Decay-rate dilation and the clock hypothesis" in braid-recovery-requirements.md (Relativistic and Gravitational Targets; owners proper-time + lorentz-kinematics); validator clean on that file (the single reported error is an ambient broken link in app-causal-delay-feedback/v1-product-requirements.md, another lane, NOT in this write set - it will block pre-commit until that lane fixes it).
 
 Verification: `node --test tests/braid-ideal-champion-stiffness-spectrum.test.js` -> 3 pass, 0 fail.
+
+
+## 2026-07-08 - Spindle braid: family name ratified and threaded
+
+Operator ratified "spindle braid" for the rigid uniaxial tilted-dumbbell family (Sections 20-23; champion = its rest-state candidate). Corpus: new Comparative Glossary row + named-family paragraph in the Configuration Space chapter (both textbook-facing, candidate-not-retained claim level; validator 0 errors). Priorities: naming notes in the spec Section 20 header block, item 20, and the brainstorm insight index. Operator direction noted for later: once the champion survives native confirmation, archive the superseded configuration families (deferral gate = native retained-history confirmation).
+
+
+## 2026-07-08 - Item 19 pass 1: spindle braid under drift - time dilation from pump-plus-pin; the electrino cap leads
+
+[Spec Section 24](fold-crossing-chart-spec.md#24-spindle-braid-under-drift-time-dilation-from-pump-plus-pin-and-the-electrino-leads-2026-07-08); new owner script + 5 tests passing. Screw motion preserves rigidity exactly (3e-16); rest anchor reproduces the champion (0.4721).
+
+- No interior cadence optimum in the partner channel at any drift - the anti-damping pump signature (Section 23's rail gradient) persists at every u; the landscape is ~self-similar in gamma-normalized cadence (slopes parallel to ~5%).
+- Time dilation from pump-plus-pin: the coincidence-birth theorem applies to helical worldlines - self-hit opens at TOTAL speed c_f, i.e. at c = sqrt(1-u^2) - so the measured pump meets the brake at pinned cadence omega_0/gamma. Clock and decay-rate dilation (cadence-paced transactions) derived from closure + pin; mechanism half of the corpus decay-dilation recovery row. Caveats: fixed geometry (pass 1), d0-dependent brake magnitude (pin needs only sign + onset), partner-channel metric.
+- Who leads: the ELECTRINO cap leads (closure prefers drift anti-parallel to the polarity dipole; gaps 0.044/0.104/0.174 at u=0.2/0.4/0.6 - grows with speed, per the operator intuition); anti-braid leads positrino-first by exact C-degeneracy. Helicity-polarity locking selected by closure. Curiosity: preferred-direction drift at u=0.2 scores 0.4721 = rest value to 4 digits (slow preferred travel nearly free).
+
+Fail-closed throughout. Verification: `node --test tests/braid-ideal-spindle-braid-screw-drift-evaluator.test.js` -> 5 pass, 0 fail.
