@@ -79,12 +79,19 @@ function causalRoots(Xi, src, T, dmax, N = 6000, minDelay = 1e-9) {
   return out;
 }
 
-// Signed tangential residual on one receiver site from all five partners at time T.
-export function receiverTangential(braid, recvIdx, T = 0) {
+// Signed tangential AND radial residuals on one receiver site from all five
+// partners at time T. Radial unit is outward at the receiver; the circular-orbit
+// support condition is aRad = -omega^2 R_recv (kinematic centripetal requirement,
+// kappa absorbed), reported as supportRatio = -aRad/(omega^2 R_recv): a candidate
+// row needs supportRatio equal and positive across layers (one common constant,
+// which then sets the braid scale through kappa).
+export function receiverResiduals(braid, recvIdx, T = 0) {
   const recv = braid.sites[recvIdx];
   const Xi = P(recv, T), vi = Vv(recv, T), vim = Math.hypot(vi[0], vi[1]);
   const that = [vi[0] / vim, vi[1] / vim];
-  let phi = 0, minAbsDs = Infinity, rootsUsed = 0, caustSkips = 0;
+  const Xim = Math.hypot(Xi[0], Xi[1]);
+  const rhatRecv = [Xi[0] / Xim, Xi[1] / Xim];
+  let phi = 0, aRad = 0, minAbsDs = Infinity, rootsUsed = 0, caustSkips = 0;
   for (let j = 0; j < braid.sites.length; j++) {
     if (j === recvIdx) continue;
     const src = braid.sites[j];
@@ -97,11 +104,19 @@ export function receiverTangential(braid, recvIdx, T = 0) {
       const Dt = cf - (vi[0] * rh[0] + vi[1] * rh[1]);
       minAbsDs = Math.min(minAbsDs, Math.abs(Ds));
       if (Math.abs(Ds) < 1e-9) { caustSkips++; continue; }
-      phi += (recv.pol * src.pol) * (Dt / Ds) * (rh[0] * that[0] + rh[1] * that[1]) / (rr * rr);
+      const w = (recv.pol * src.pol) * (Dt / Ds) / (rr * rr);
+      phi += w * (rh[0] * that[0] + rh[1] * that[1]);
+      aRad += w * (rh[0] * rhatRecv[0] + rh[1] * rhatRecv[1]);
       rootsUsed++;
     }
   }
-  return { phiTan: phi, minAbsDs, rootsUsed, caustSkips };
+  const supportRatio = -aRad / (braid.omega * braid.omega * recv.R);
+  return { phiTan: phi, aRad, supportRatio, minAbsDs, rootsUsed, caustSkips };
+}
+
+// Back-compat wrapper (tangential-only view).
+export function receiverTangential(braid, recvIdx, T = 0) {
+  return receiverResiduals(braid, recvIdx, T);
 }
 
 // Self-hit root count for one site (same-source roots; birth at beta = 1).
@@ -149,7 +164,7 @@ export function railScan({ qIs = [0.3, 0.5, 0.7, 0.85], qOs = [1.15, 1.3, 1.5, 2
   for (const qI of qIs) for (const qO of qOs) {
     const cfg = { RI: qI, RM: 1, RO: qO, betaM: 1.0, ...(phases ? { phases } : {}) };
     const braid = buildBraid(cfg);
-    const [pI, pM, pO] = [0, 2, 4].map((i) => receiverTangential(braid, i, 0));
+    const [pI, pM, pO] = [0, 2, 4].map((i) => receiverResiduals(braid, i, 0));
     // Whole-braid partner-wake ledgers (per antipodal symmetry, both sites of a
     // layer carry the same tangential residual): net torque N = 2*sum R_a*Phi_a,
     // net power P = omega*N. Self-hit contributions are NOT included (outer's
@@ -158,11 +173,34 @@ export function railScan({ qIs = [0.3, 0.5, 0.7, 0.85], qOs = [1.15, 1.3, 1.5, 2
     rows.push({
       qI, qO, betas: braid.betas,
       phiTan: { I: pI.phiTan, M: pM.phiTan, O: pO.phiTan },
+      aRad: { I: pI.aRad, M: pM.aRad, O: pO.aRad },
+      supportRatio: { I: pI.supportRatio, M: pM.supportRatio, O: pO.supportRatio },
       netTorque, netPower: braid.omega * netTorque,
       selfRoots: { I: selfRootCount(braid, 0), M: selfRootCount(braid, 2), O: selfRootCount(braid, 4) },
       minAbsDs: Math.min(pI.minAbsDs, pM.minAbsDs, pO.minAbsDs),
       caustSkips: pI.caustSkips + pM.caustSkips + pO.caustSkips,
     });
+  }
+  return rows;
+}
+
+// Bisect the net-torque zero in qO at fixed qI (rail, Z3 phases unless given).
+export function netZeroInQO({ qI = 0.3, lo = 1.8, hi = 2.4, phases } = {}) {
+  const N = (qO) => railScan({ qIs: [qI], qOs: [qO], ...(phases ? { phases } : {}) })[0];
+  let a = lo, b = hi, ra = N(a), rb = N(b);
+  if ((ra.netTorque < 0) === (rb.netTorque < 0)) return { bracketed: false, ra, rb };
+  for (let k = 0; k < 24; k++) { const m = (a + b) / 2; const rm = N(m); if ((ra.netTorque < 0) === (rm.netTorque < 0)) { a = m; ra = rm; } else { b = m; rb = rm; } }
+  return { bracketed: true, qI, qOstar: (a + b) / 2, row: N((a + b) / 2) };
+}
+
+// Scan the two relative axis phases (middle fixed) at one radius point on the rail.
+export function phaseScan({ qI = 0.3, qO = 2.1, dIs = [-40, -20, 0, 20, 40], dOs = [-40, -20, 0, 20, 40] } = {}) {
+  const d2r = Math.PI / 180;
+  const rows = [];
+  for (const dI of dIs) for (const dO of dOs) {
+    const phases = [0 + dI * d2r, (2 * Math.PI) / 3, (4 * Math.PI) / 3 + dO * d2r];
+    const r = railScan({ qIs: [qI], qOs: [qO], phases })[0];
+    rows.push({ dI, dO, phiTan: r.phiTan, netTorque: r.netTorque, supportRatio: r.supportRatio });
   }
   return rows;
 }

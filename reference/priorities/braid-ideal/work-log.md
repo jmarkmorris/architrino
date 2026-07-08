@@ -1177,3 +1177,21 @@ Operator corrected the model inventory (my cross-hit toys used a non-neutral 5-s
 Caveats: prescribed rigid worldlines (necessary-condition residuals, not dynamics); partner channel only; radial balance and axis-phase scan pending; no sustained cross-pair hinge tuned. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
 
 Verification: `node --test tests/braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js` -> 6 pass, 0 fail.
+
+
+## 2026-07-08 - Forward-looking lock-dynamics tasks captured (Group E)
+
+Operator request following the Section 15 iso-frequency result (with the note that the outer-binary-super-field ordering was not the prior intuition — serendipitous if it holds). Two contingent tasks articulated and queued as Group E items 17-18: `iso_frequency_lock_perturbation_basin` (disturbance tolerance of the f:f:f lock; escapement sub-question: is recovery quantized in h_act clicks?) and `iso_frequency_lock_formation_autotune` (do three independent binaries at different frequencies entrain through delayed wakes into an f:f:f braid — the formation-history burden in its sharpest testable form; sub-question: does the middle binary lock to the c_f rail first and act as the master clock?). Both depend on the Section 15 candidate row and responsive worldlines (native retained-history solver); a staged kinematic half of item 17 (perturbed ansatz, rigidity-degradation measurement) is possible earlier.
+
+
+## 2026-07-08 - Rail closure refinement: radial support rejects the circular ansatz (item 11)
+
+Executed the Section 15 closure goal on the extended evaluator (radial projection + supportRatio + netZeroInQO + phaseScan; tests extended to 8 passing; second certified anchor: equal-radii $a_{\mathrm{rad}}=-0.7605\le-0.672$).
+
+- Net-torque zeros precise: dip with two roots, $q_O^*=2.0916$ / $2.3724$ at $q_I=0.3$ ($2.1590$ at $q_I=0.35$); ledger at the lower zero $\Phi=(-1.142,+0.160,+0.087)$, $N=6\times10^{-9}$.
+- Support ratios at the zero: $10.9/1.97/0.32$ (I/M/O) - all layers bound (net inward), but inner over-bound and outer under-bound by $\sim5$-$6\times$ vs middle; structural (needed centripetal $\propto R$, wake binding concentrates at small radius; deep nesting required by tangential closure drives ratios apart).
+- Phase scan $\pm60°\times\pm60°$: cannot repair (best I/O $\approx12.5$; outer phase past $+30°$ unbinds the outer). Outer self-hit is like-polarity repulsive (outward) - worsens, not helps.
+
+Verdict `iso_frequency_rail_circular_ansatz_fails_simultaneous_tangential_and_radial_closure_candidate_row_must_be_non_circular_or_environmentally_confined`. Surviving readings: eccentric/breathing layers (the lane mandate already says do not assume circular orbits) or sea confinement. Forward lock-dynamics tasks captured as Group E items 17-18. Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js` -> 8 pass, 0 fail.

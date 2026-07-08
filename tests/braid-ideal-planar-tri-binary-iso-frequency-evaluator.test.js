@@ -5,6 +5,7 @@ import {
   rigidityCheck,
   equalRadiiValidation,
   receiverTangential,
+  receiverResiduals,
   selfRootCount,
   railScan,
   diagnosticReport,
@@ -38,6 +39,22 @@ test("a whole-braid net-torque zero exists on the rail (bracketed in qO at qI=0.
   const rows = railScan({ qIs: [0.3], qOs: [2.0, 2.2] });
   const a = rows[0].netTorque, b = rows[1].netTorque;
   assert.ok(a > 0 && b < 0, `net ${a} -> ${b} should bracket zero`);
+});
+
+test("equal-radii radial anchor: inward and within the certified radial bound", () => {
+  const braid = buildBraid({ RI: 1, RM: 1, RO: 1, betaM: 0.9 });
+  const r = receiverResiduals(braid, 0, 0);
+  assert.ok(r.aRad <= -0.672, `aRad ${r.aRad} (certified Phi_rad <= -0.672)`);
+  assert.ok(r.supportRatio > 0, "shell layer is bound (net inward)");
+});
+
+test("at the net-torque zero the layers are bound but radially mismatched (circular ansatz obstruction)", () => {
+  const row = railScan({ qIs: [0.3], qOs: [2.09] })[0];
+  const s = row.supportRatio;
+  assert.ok(s.I > 0 && s.M > 0 && s.O > 0, "every layer net inward (bound)");
+  // structural mismatch: inner over-bound, outer under-bound by large factors
+  assert.ok(s.I / s.M > 3, `I/M ${s.I / s.M}`);
+  assert.ok(s.M / s.O > 3, `M/O ${s.M / s.O}`);
 });
 
 test("report is fail-closed and prescribed-worldline (not the native solver)", () => {
