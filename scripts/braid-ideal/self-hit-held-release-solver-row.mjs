@@ -388,11 +388,12 @@ export function buildSelfHitHeldReleaseSolverRow(options = {}) {
       // The production runtime emits the signed branch orientation
       // receiverNormalFactor = D_T/D_s (absorptive, m < 0, under the pump-driven
       // tangential acceleration), superseding the naive |m| ejective reading.
-      // The remaining undecidability is the magnitude, which reduces to a
-      // declared coincidence-stratum length scale (currently a numerical floor).
+      // The magnitude reduces to the operator-declared coincidence-stratum scale d0
+      // (operator decision 2026-07-08); the symmetric single-site self-hit is therefore
+      // NOT the load-bearing absorber (its d0-set magnitude is ~50x the tangential pump).
       authority: "priority_only_central_solver_measurement_not_accepted_evidence",
       disposition:
-        "central_solver_self_hit_brake_sign_decided_absorptive_magnitude_reduces_to_declared_coincidence_stratum",
+        "central_solver_self_hit_brake_sign_absorptive_magnitude_set_by_operator_declared_d0_not_load_bearing",
       signed_orientation_emitted_by_production: true,
       sign_decided_absorptive: true,
       magnitude_reduces_to_declared_stratum: true,
@@ -401,12 +402,29 @@ export function buildSelfHitHeldReleaseSolverRow(options = {}) {
       // as `signedBranchOrientation`, and the moving-circular source history
       // accepts an optional `angularAcceleration` so the same-source root
       // realizes the pump-driven crossing (m<0) directly.
+      // Operator decision 2026-07-08: the declared coincidence-stratum length scale is d0,
+      // of order the near-field two-body scale kappa*epsilon^2/c_f^2 (R_*); in the
+      // minimum-circular-binary reading d0 = R_MCB, the collapse-arresting radius set by the
+      // self-hit. This declares the same-source hinge magnitude scale but does NOT make the
+      // symmetric single-site self-hit the load-bearing absorber (d0-set magnitude ~50x the
+      // pump). d0's exact value derivation from (kappa, epsilon, c_f) remains open
+      // (content/markdown/aaa/assemblies/particle-masses.md).
+      declared_coincidence_stratum: {
+        symbol: "d0",
+        of_order: "kappa*epsilon^2/c_f^2",
+        reading: "minimum_circular_binary_radius_R_MCB_collapse_arresting",
+        operator_decision_date: "2026-07-08",
+        exact_value_derivation_status: "open_from_kappa_epsilon_cf",
+        symmetric_self_hit_load_bearing: false,
+        symmetric_self_hit_magnitude_vs_pump: "about_50x_too_large",
+      },
       resolved_producer_gaps: [
         "same_source_branch_weight_discards_sign",
         "rigid_circle_same_source_history_reflection_locks_sign",
+        "coincidence_stratum_declared_as_d0_by_operator_2026_07_08",
       ],
-      open_producer_gaps: ["coincidence_stratum_is_a_numerical_floor"],
-      first_missing_object: "declared_coincidence_stratum_for_same_source_hinge_magnitude",
+      open_producer_gaps: ["non_coincident_cross_hit_sustained_velocity_alignment_formation_history"],
+      first_missing_object: "non_coincident_cross_hit_hinge_sustained_alignment_over_a_click_window",
     },
     provider_provenance_requirement: {
       required: true,

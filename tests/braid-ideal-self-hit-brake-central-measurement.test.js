@@ -74,10 +74,18 @@ test("report is fail-closed and names the three producer gaps", () => {
   assert.equal(report.named_producer_gaps.length, 3);
   assert.equal(
     report.disposition,
-    "central_solver_self_hit_brake_sign_decided_absorptive_magnitude_reduces_to_declared_coincidence_stratum"
+    "central_solver_self_hit_brake_sign_absorptive_magnitude_set_by_operator_declared_d0_not_load_bearing"
   );
   assert.equal(
     report.first_missing_object,
-    "declared_coincidence_stratum_for_same_source_hinge_magnitude"
+    "non_coincident_cross_hit_hinge_sustained_alignment_over_a_click_window"
   );
+  // Operator 2026-07-08 supplied the coincidence-stratum ontology input (d0 = R_MCB).
+  assert.equal(report.declared_stratum_supplied_by_operator, true);
+  assert.equal(report.operator_ontology_input.symbol, "d0");
+  assert.equal(report.operator_ontology_input.symmetric_self_hit_load_bearing, false);
+  const stratumGap = report.named_producer_gaps.find(
+    (g) => g.gap === "coincidence_stratum_is_a_numerical_floor"
+  );
+  assert.equal(stratumGap.status, "resolved_by_operator_declared_d0_2026_07_08");
 });
