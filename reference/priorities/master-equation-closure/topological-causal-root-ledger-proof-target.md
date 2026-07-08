@@ -277,7 +277,7 @@ $$
 A strict sub-field-speed interval therefore has no nearby simple self-hit root.
 A super-field-speed arc supplies the local sign needed for a candidate
 self-hit onset, but a retained branch still must provide the same-source root,
-positive Jacobian floor or caustic route, finite memory, and action/energy
+positive Jacobian floor or caustic route, receiver-normal branch strength, finite memory, and action/energy
 ledger closure.
 
 This keeps the existing distinction intact:

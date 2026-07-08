@@ -210,7 +210,7 @@ D_{s,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k},
 \qquad
-D_{t,i,k}
+D_{T,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}.
 $$
@@ -222,7 +222,7 @@ $$
 =
 g\sum_i\sum_k
 q_i
-\left|\frac{D_{t,i,k}}{D_{s,i,k}}\right|
+\left|\frac{D_{T,i,k}}{D_{s,i,k}}\right|
 \frac{\mathbf n_{i,k}}
 {R_{i,k}^2},
 \qquad

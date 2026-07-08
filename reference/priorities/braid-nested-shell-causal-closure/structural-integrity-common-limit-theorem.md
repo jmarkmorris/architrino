@@ -97,7 +97,7 @@ so the same generator $K_q$ controls the envelope ratio and clock-phase row at t
 
 ## Assumptions
 
-1. Branch admissibility: $q$ has a finite closure graph, active causal-root ledger $\mathcal{A}_q$, positive Jacobian floor, inactive-root gap, finite memory depth, and positive stability gap on $W$.
+1. Branch admissibility: $q$ has a finite closure graph, active causal-root ledger $\mathcal{A}_q$, positive Jacobian floor, positive receiver-normal branch-strength floor, inactive-root gap, finite memory depth, and positive stability gap on $W$.
 2. Single provenance record: clock, ruler, matter-limit, photon, signal, medium-response, and event-ledger rows use the same branch label, separator chart, root ledger, regulator convention, and extraction window.
 3. Drift band: the moving continuation covers $0\le\beta_0=v/c_0\le\beta_{\max}<1$ until the material limiting-speed row reaches its certified boundary.
 4. Noether sea dressing: one weak homogeneous response record fixes $c_{\text{eff},q}^{\mathrm{hom}}$ and the calibration $c_0$ through the same $\chi_{\text{sea}}$ / clock-ruler map.

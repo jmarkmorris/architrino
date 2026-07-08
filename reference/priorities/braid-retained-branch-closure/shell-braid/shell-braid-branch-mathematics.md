@@ -2,7 +2,7 @@
 
 This priority packet states theorem targets for same-level braid branch mathematics. It is not a completed existence, stability, or observer-export proof. Its role is to make the DDE well-posedness and causal-root ledger obligations precise enough that a retained branch certificate can later be checked against [Braid Architecture](braid-architecture.md).
 
-Promotion status: `priority-only`. Do not promote this document into `content/markdown/aaa` until a concrete same-level branch supplies the active causal roots, Jacobian floors, finite memory depth, tangential residual closure, polarity ledger, and weak-limit data required below.
+Promotion status: `priority-only`. Do not promote this document into `content/markdown/aaa` until a concrete same-level branch supplies the active causal roots, Jacobian floors, receiver-normal branch strengths, finite memory depth, tangential residual closure, polarity ledger, and weak-limit data required below.
 
 ---
 

@@ -100,7 +100,7 @@ Requirements:
 - Display source path, receiver point or receiver path, and all candidate causal-root branches in one view.
 - Provide filters for branch age, contribution strength, root kind, and Jacobian floor.
 - Show branch-local contribution vectors and a summed vector at the receiver.
-- Include a branch table with emission time, distance, $J$, contribution, and accept/reject reason.
+- Include a branch table with emission time, distance, source-normal $D_s$, receiver-normal $D_T$, branch strength $W^{\mathrm{rec}}$, contribution, and accept/reject reason.
 - Keep branch labels stable while the animation runs so users can track one branch through time.
 
 ### 7. Threshold Crossing Map

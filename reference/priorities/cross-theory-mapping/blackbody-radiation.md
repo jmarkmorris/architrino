@@ -184,7 +184,7 @@ E_{\mathrm{sea},\Omega}^{(\eta)}(s),
 \right),
 $$
 
-sampled across $s<c_f$, $s\approx c_f$, and $s>c_f$ when those regimes are admissible on the same path-history family. Here $U_{\mathfrak{B}}^{(\eta)}$ is a comparison potential reconstructed from branch work, not a primitive gravitational or electromagnetic bucket, and $\mathcal{S}_{\gamma}$ is the planar-mode drive used by the radiation Gate C scaffold. The record must also carry active causal-root counts, Jacobian floors, finite-window boundary exchange, and any retained Noether sea contribution. A blackbody or photon-production argument fails at this precursor stage if it treats the field-speed hinge as a photon source by itself, imports a Planck-law peak from a single binary, or changes branch chart when moving between kinetic, potential, wake, and planar-mode rows.
+sampled across $s<c_f$, $s\approx c_f$, and $s>c_f$ when those regimes are admissible on the same path-history family. Here $U_{\mathfrak{B}}^{(\eta)}$ is a comparison potential reconstructed from branch work, not a primitive gravitational or electromagnetic bucket, and $\mathcal{S}_{\gamma}$ is the planar-mode drive used by the radiation Gate C scaffold. The record must also carry active causal-root counts, Jacobian floors, receiver-normal branch strengths, finite-window boundary exchange, and any retained Noether sea contribution. A blackbody or photon-production argument fails at this precursor stage if it treats the field-speed hinge as a photon source by itself, imports a Planck-law peak from a single binary, or changes branch chart when moving between kinetic, potential, wake, and planar-mode rows.
 
 ## Task Queue
 

@@ -711,7 +711,7 @@ It does not certify bounded-speed normal reconstruction unless the speed, clock,
 **Theorem target: bounded speed factor normal reconstruction.** Fix one bounded-speed branch chart, one source-pair policy, one same-source policy, one support descriptor, one period/winding convention, one action/event convention, and one row-weight convention. Suppose:
 
 1. the scalar speed ODE row closes with positive speed band, zero-mean tangent forcing, clock/length return, and equal physical-period or winding compatibility;
-2. the bounded-speed causal-root ledger has finite active roots, positive delay and Jacobian floors, inactive-root gap floors, finite memory, and a declared same-source policy;
+2. the bounded-speed causal-root ledger has finite active roots, positive delay and Jacobian floors, receiver-normal branch-strength floors, inactive-root gap floors, finite memory, and a declared same-source policy;
 3. the force ledger, support descriptor, and action scale $\Gamma_B^{\nu}$ use that same bounded-speed root ledger;
 4. a finite-mode normal reconstruction packet satisfies the normal equation, zero net tangent holonomy, closed-position integral, tangent-frame monodromy, support-radial compatibility, support margins, noncollision floors, and root-ledger persistence rows;
 5. the Krawczyk range/cokernel budget encloses a unique reconstruction in a chart ball contained in the support, root, speed, action, and discretization radii.
