@@ -6,6 +6,27 @@ Claim level. Speculation and derivation-closure target. The central candidate is
 
 Working label. `ideal_braid` is a working label only. It is deliberately speculative: the point is to test whether the six-body Noether braid has a simple common-level attractor that would look obvious in retrospect if it exists.
 
+## Contents (as of 2026-07-08)
+
+Top-level sections of this unified braid brainstorming file. Other braid lanes' `brainstorming.md` files were merged in here during the braid priority sort (Phase 3, OP-3); each source lane now carries a stub pointing to this file.
+
+- Strategy Memo Hypothesis Capture - 2026-07-06
+- Seed Scenario
+- Octahedral Decoration Classes
+- Initial Qualitative Response
+- Held-Release Toy Run - 2026-07-01
+- Oblate Spheroid Reduced Equations
+- Ideal Braid Hypothesis
+- Non-Circular Paths
+- Translating Ellipsoid Generalization
+- $h$-Scale Basin Pattern
+- What Would Count As Progress
+- Prior Discussion Status
+- Immediate Drill-Down Questions
+- Dynamo Team Insights Cross-Feed
+- Axis-Neutral Transport Channel Discussion Log
+- Merged Lane Brainstorms (2026-07-08)
+
 ## Strategy Memo Hypothesis Capture - 2026-07-06
 
 Claim level. Priority-only hypothesis capture from the attached read-only strategy memo. No retained branch, accepted evidence, score movement, or corpus promotion is claimed here. The durable packet is [Noether Braid Retained-Branch Strategy Memo Capture](noether-braid-retained-branch-strategy-memo-2026-07-06.md).
@@ -2859,3 +2880,71 @@ Disposition `differential_cross_hit_beats_pump_only_by_approaching_coincidence_c
 ### Promotion Ledger For This Log
 
 Promoted so far: axis-neutral invariant channel, drum geometry with Thomson-ring reading, axial dipole identity with moment definition, momentum screw and helicity, polarity-conjugation degeneracy, fore-aft asymmetry, isolated-release/return-response reframing, exact speed budget with pinned-speed unification (all shell-braid.md); accessory dressing quietness ladder, circulant neutrino reading, symmetric-channel relation with formation question and precession meter, dipole-quiet horizon, action clicks at the field-speed hinge with the statistical layer and adiabatic/diabatic boundary (nested-shell-braid.md); crux framing and role-grouped chapter table (noether-braid.md). Remaining capture-level items above are queued for promotion after operator review or supporting derivation.
+
+## Merged Lane Brainstorms (2026-07-08)
+
+Merged here from the other braid lanes' `brainstorming.md` files during the braid priority sort (Phase 3, OP-3). Each source file is now a stub pointing to this file. Claim levels and routing notes are preserved from the source; nothing is promoted or strengthened by the move. Where a source bullet linked its own lane `priorities.md`, the link is reworded to name the lane so it still resolves from here.
+
+### From braid-angular-momentum-spin — Dynamo Team Insights Mining
+
+- (from: braid-angular-momentum-spin) Spin / chirality side target: orbit chirality, pro/anti handedness, and six-site axial-charge assignments may become classification labels for retained assemblies. Promote into the `braid-angular-momentum-spin` priorities queue only when the labels are tied to ordered-frame transport, angular-momentum ledger closure, or a spinor / Stern-Gerlach record target.
+- (from: braid-angular-momentum-spin) Photon and Bell caution: do not let the causal-linking or handedness language bypass photon Gate B, detector response, or no-signaling constraints. Any angular-momentum consequence must bind to the same retained event and record channel used by the measurement packet.
+
+### From braid-geometry-export-bridge — Dynamo Team Insights Mining
+
+- (from: braid-geometry-export-bridge) Geometry-export target: organize assembly phase space as a dynamical atlas with local charts by density, self-hit strength, speed regime, and retained-root class, plus gluing maps between branch domains. Promote only after one chart transition is expressed as a concrete retained-row handoff.
+- (from: braid-geometry-export-bridge) Effective-frame target: the frame field should be a function of declared assembly and Noether sea variables, including $\rho_{\text{NS}}(\mathbf{x},t)$, local flow, orientation fields, and internal three-binary state. Promote into the bridge packet only when the variable list becomes a shared source record for clock, ruler, signal, and weak-field projections.
+- (from: braid-geometry-export-bridge) Ontology guardrail: curvature is an observer-level frame-bundle or effective-metric readout, not curvature of the Euclidean void. Any refractive or Fermat-path language should remain bridge language until the ADM / Cartan rows and PPN rows consume the same constitutive record.
+
+### From braid-mass-response-map — Dynamo Team Insights Mining
+
+- (from: braid-mass-response-map) Mass-map mechanism target: mass should be treated as externally exposed response from trapped internal causal history, shielding, and Noether sea coupling. Do not recast the idea as ordinary dissipative drag or as an independent wake-field substance.
+- (from: braid-mass-response-map) Reactive-wake target: a phase-locked maximal-curvature binary may carry a predominantly reactive near-field wake with zero net energy flux over a cycle, while perturbations open radiative or branch-transition channels. Promotion requires the same retained branch to close kinetic, wake-history, action, and boundary-flux rows.
+- (from: braid-mass-response-map) Trapped-history conjecture: stable assembly mass may correspond to energy trapped in self-intersecting history loops. Keep as a derivation target until $E_{\text{internal}}$, exposure, shielding, and Noether sea response are extracted from retained branch evidence.
+
+### From braid-nested-shell-causal-closure — Dynamo Team Insights Mining
+
+- (from: braid-nested-shell-causal-closure) Candidate assembly-classification program: preserve the periodic-table idea as a derivation target built from knot or link type of representative orbits, winding numbers around self-hit regions, pro/anti handedness, orbit chirality, and axial-charge site assignments. Promote only after each label is computable from a retained nested-shell braid branch.
+- (from: braid-nested-shell-causal-closure) Tri-binary rigidity hypothesis: the three nested counter-rotating binaries may yield a finite classification space through energy-separated radii, frequency ordering, near-orthogonal planes, and causal self-linking barriers. Keep this as a classification target, not an accepted finite table.
+- (from: braid-nested-shell-causal-closure) Promotion target: if the classification becomes concrete, route the reader-facing definition through `content/markdown/aaa/noether-braid/noether-braid-topological-charge.md` and the nested-shell closure packet, with Standard Model charge consequences routed separately.
+
+### From braid-retained-branch-closure — Dynamo Team Insights Mining
+
+- (from: braid-retained-branch-closure) Speculative structure: assemblies can be organized as objects with internal dynamics and invariants, with morphisms for transformation, association, dissociation, coarse-graining, and adiabatic deformation. Promote only if this becomes a computable branch-category grammar with retained invariants and allowed morphism rows.
+- (from: braid-retained-branch-closure) Derivation-closure target: causal self-linking may protect stable assemblies because a worldline cannot be continuously deformed across its self-hit barrier or regularized high-potential shell. First mathematical object: a retained curve $\gamma(t)$, a causal offset curve $\gamma_\epsilon(t)=\gamma(t)+\epsilon\hat{\mathbf r}(t)$, and a domain where $Lk_{\text{causal}}=\text{Link}(\gamma,\gamma_\epsilon)$ is invariant.
+- (from: braid-retained-branch-closure) Branch-certificate implication: any causal-linking label must be subordinate to retained branch evidence. It should not count as topology unless root identity, regulator margin, disjointness of $\gamma$ and $\gamma_\epsilon$, and branch-continuation limits are explicit.
+
+Empty at merge time (no loose ideas): braid-doubling-frequency-lock, braid-taxonomy, and the neutral-braid / shell-braid / nested-shell-braid subdirs of braid-retained-branch-closure. Their brainstorms are stubbed as a formality.
+
+## Mass Translation Doctrine (from: braid-mass-response-map)
+
+Moved here from `braid-mass-response-map/priorities.md` during the braid priority sort (Phase 3, OP-3, route-by-content-type, 2026-07-08). Doctrine / mechanism-level content; claim levels unchanged.
+
+Preserve `mass` as the standard observer-facing scalar. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is not to replace the word with a new term, but to derive the mechanism behind it from Noether braid geometry, shielding, and Noether sea response.
+
+- Individual architrinos do not carry primitive particle-specific mass.
+- Stable assemblies may carry effective mass because their trapped Noether braid energy ledger has an externally exposed response.
+- The internal ledger itself should be called $E_{\text{internal}}(A)$, not mass. Mass is the observer-level scalar extracted from how the shielded ledger responds to acceleration, momentum transfer, and Noether sea gradients.
+- The rest-energy and energy-momentum relations are retained as effective closure laws to be recovered:
+
+$$
+E_{\text{rest}}(A)=m(A)c_{\text{eff}}^2,
+$$
+
+$$
+E^2=p^2c_{\text{eff}}^2+m(A)^2c_{\text{eff}}^4.
+$$
+
+- The working derivation target is therefore
+
+$$
+m(A)c_{\text{eff}}^2\sim E_{\text{probe}}(A)
+=\zeta_{\text{probe}}(A)E_{\text{internal}}(A),
+$$
+
+Here raw $\zeta(A)E_{\text{internal}}(A)$ is the total exposed ledger before the probe, sea-coupled, and unresolved split; $E_{\text{probe}}(A)$ is the distant-probe channel used by the mass map, and $c_{\text{eff}}$ is the local observer-facing light-speed scale set by the Noether sea state.
+
+- Stronger mass claims must declare which role is meant: rest mass, inertial response, gravitational response, external mass footprint, effective boson mass scale, neutral-assembly mass, or internal energy ledger.
+- Effective boson mass scale must split photon-like and weak-corridor cases. Photon-like planar channels lose stable volumetric rest-clock closure and therefore occupy the massless null branch; $W/Z$ corridors retain a localized recoupling burden whose longitudinal or mixed-axis structure appears as a short-lived massive vector channel.
+- Higgs-sector mass language is downstream of the mass map. The ATLAS scalar benchmark may be used only after the branch, shielding, and medium-response records are fixed without particle-mass input. The closure target is not merely $M_H^{\mathrm{breath}}\approx126.0\,\mathrm{GeV}$; the same scalar response must also recover $\hat{\mu}=1.4\pm0.3$, the channel-rate ledger for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and the absence of additional accepted scalar windows. If those terms require separate tuning, the mass map has not recovered the Higgs sector.
+- Avoid treating Noether sea response as ordinary dissipative drag unless dissipation is actually being modeled. The preferred derivation language is medium-dressed inertial response.

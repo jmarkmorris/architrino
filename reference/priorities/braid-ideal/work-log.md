@@ -947,3 +947,65 @@ Executed the cross-hit closure goal as a new fail-closed toy probe. New owner sc
 Outcome (idea-level; derivation and sweep captured in [brainstorming.md](brainstorming.md) "Differential Cross-Hit Is the Strongest Clean Absorber Yet"): the differential cross-hit is absorptive for like polarity and the strongest clean channel found — a single source reaches a chart-clean, softening-independent $0.742$ of the pump, set primarily by radial band proximity (frequency ratio saturates near $0.15$; alignment is many narrow clicks, not a held window). Crossing the pump in one source needs the fold to approach coincidence (not clean). Disposition `differential_cross_hit_beats_pump_only_by_approaching_coincidence_clean_ceiling_below_pump`.
 
 Next closure goal: sum the clean finite-chord cross-hit tangential drain over the actual multi-charge inter-band source set of a nested shell braid (or an inner/middle binary pair) and test whether the clean total clears the certified pump with all chords finite (no coincidence approach); the surviving alternative lever is a genuine locked sustained alignment, the shared dynamic-alignment / formation-history burden.
+
+## 2026-07-08 — Braid priority sort: Phase 0 pre-sort baseline snapshot
+
+Pre-sort baseline for the braid priority cleanup (`braid-prio-sort.md`), captured on branch `calcite`. Records the size and last-modified time (America/New_York) of every braid lane's three role files so the operator can diff lane state from codex after the sort. No files were moved or edited to produce this entry; append-only. Several files show a 2026-07-07 21:49 mtime from the `calcite` checkout rewriting working-tree files, not from content edits.
+
+| Lane | priorities.md | brainstorming.md | work-log.md |
+| --- | --- | --- | --- |
+| `braid-ideal (hub)` | 49.7 KB · 2026-07-07 21:49 | 209.2 KB · 2026-07-07 21:49 | 247.7 KB · 2026-07-07 21:49 |
+| `braid-angular-momentum-spin` | 121.5 KB · 2026-07-03 21:09 | 1.2 KB · 2026-07-03 14:08 | 26.2 KB · 2026-07-03 14:08 |
+| `braid-doubling-frequency-lock` | 15.8 KB · 2026-07-06 12:01 | 0.6 KB · 2026-07-04 20:30 | 1.1 KB · 2026-07-06 12:01 |
+| `braid-geometry-export-bridge` | 392.8 KB · 2026-07-05 15:26 | 1.5 KB · 2026-07-03 14:08 | 103.6 KB · 2026-07-03 14:08 |
+| `braid-mass-response-map` | 79.1 KB · 2026-07-06 12:01 | 1.4 KB · 2026-07-04 20:30 | 3.9 KB · 2026-07-06 12:01 |
+| `braid-nested-shell-causal-closure` | 33.3 KB · 2026-07-03 21:09 | 1.5 KB · 2026-07-03 14:08 | 3.1 KB · 2026-07-03 21:09 |
+| `braid-retained-branch-closure` | 25.5 KB · 2026-07-07 21:49 | 1.5 KB · 2026-07-04 20:30 | 4.5 KB · 2026-07-07 14:02 |
+| `  neutral-braid (subdir)` | 2.8 KB · 2026-07-04 20:30 | 0.7 KB · 2026-07-04 20:30 | 0.6 KB · 2026-07-03 14:08 |
+| `  shell-braid (subdir)` | 1.7 KB · 2026-07-07 14:28 | 0.8 KB · 2026-07-07 14:28 | 0.6 KB · 2026-07-07 14:28 |
+| `  nested-shell-braid (subdir)` | 1.5 KB · 2026-07-04 20:30 | 0.7 KB · 2026-07-04 20:30 | 0.6 KB · 2026-07-03 14:08 |
+| `braid-taxonomy` | 2.9 KB · 2026-07-07 21:49 | 0.7 KB · 2026-07-07 21:49 | 22.0 KB · 2026-07-07 21:49 |
+
+Adjacent locations (not braid lanes; listed for diff context):
+
+| Location | priorities.md | brainstorming.md | work-log.md |
+| --- | --- | --- | --- |
+| `aaa-work-threads` | 157.0 KB · 2026-07-05 15:26 | 7.6 KB · 2026-07-06 12:01 | 2.6 KB · 2026-07-03 14:08 |
+| `proof-programs` | 21.7 KB · 2026-07-03 21:09 | 1.5 KB · 2026-07-03 14:08 | 234.1 KB · 2026-07-03 14:08 |
+
+Total-file counts per lane at baseline (context for the sort): `braid-ideal` 20 (incl. `braid-prio-sort.md`); `braid-angular-momentum-spin` 33; `braid-doubling-frequency-lock` 6; `braid-geometry-export-bridge` ~139 (≈115 `octahedral-fold-aware-*`, incl. the `h39-shared-domain-coefficient-series-engine` at 349.4 KB and the `root-tangent-cauchy-majorant-tail-lemma`); `braid-mass-response-map` 30; `braid-nested-shell-causal-closure` 7; `braid-retained-branch-closure` 8 files + 3 subdirs (`neutral-braid` 19, `shell-braid` 141, `nested-shell-braid` 7); `braid-taxonomy` 6.
+
+Note the two file-role hygiene outliers to fix in Phase 2/3: `braid-ideal/brainstorming.md` (209.2 KB) and `braid-ideal/work-log.md` (247.7 KB) are far larger than any other lane's, and `braid-geometry-export-bridge/priorities.md` (392.8 KB) carries the octahedral certificate frontier (OP-2 re-index only; archiving deferred).
+
+### 2026-07-08 - Braid Priority Sort: Phase 2 Lane-Hygiene Verification
+
+Phase 2 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Verified file-role separation across all braid lanes. No claim changes; no certificate/packet files touched; no content moved.
+
+Findings:
+
+- Every immediate lane already carries a `work-log.md` (eleven checked: the eight braid lanes plus the `neutral-braid`, `shell-braid`, and `nested-shell-braid` subdirs of `braid-retained-branch-closure`; `aaa-work-threads` and `proof-programs` also have one). The "ensure a work-log.md exists" sub-goal is already satisfied; no stubs were created.
+- The work-log → brainstorming migration (Phase 2's main action) has effectively no targets. All work-logs are disciplined dated-status logs (`### YYYY-MM-DD - result + status`), not misfiled brainstorm essays. Spot-verified the two largest (`braid-ideal` 978 lines; `braid-angular-momentum-spin` 448 lines) and the header structure of the other nine. Entries are proof-attempt status, promotions performed, captures made, and dated decisions with claim levels; `braid-ideal` already routes ideas to `brainstorming.md` by pointer (e.g., the Axis-Neutral Transport Channel Discussion Log). The earlier concern that ideas were misfiled into work-logs is not borne out by the current state.
+- Residual Phase-2 item folded forward: the "keep only the concise ranked queue in `priorities.md`" action is real (several `priorities.md` are large: `braid-angular-momentum-spin` 124 KB, `braid-geometry-export-bridge` 393 KB, `braid-mass-response-map` 81 KB), but trimming embedded explanation out of `priorities.md` sends it to the unified `brainstorming.md`, which is the Phase 3 (OP-3) merge target, and the `braid-geometry-export-bridge` giant is OP-2-deferred. Folding the priorities trim into Phase 3/4 avoids double-editing the same large files and respects OP-2. Proposed as a `braid-prio-sort.md` revision pending operator ratification.
+
+Phase 2 status: file-role separation verified; work-log/brainstorming axis already clean; priorities-trim folded forward pending ratification.
+
+### 2026-07-08 - Braid Priority Sort: Phase 3 Progress (Brainstorm Merge + Priorities Trim)
+
+Phase 3 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Content relocation only; no claim changes; certificate/packet files untouched.
+
+- Brainstorm merge (OP-3) complete: all ten lanes' `brainstorming.md` files merged into this unified `braid-ideal/brainstorming.md` (added a dated Contents TOC and a "Merged Lane Brainstorms (2026-07-08)" section with `(from: lane)` tags for the five non-empty lanes). Every source brainstorm is now a resolving stub pointing here.
+- Priorities trim routed by content type (operator decision 2026-07-08): doctrine → this brainstorming file; reference surfaces + proof-spec → focused sibling files; per-item dated status → `work-log.md`. `braid-geometry-export-bridge` excluded (OP-2 deferred).
+- `braid-mass-response-map/priorities.md` de-bloated 81 KB → 35 KB: extracted "Mass Translation Doctrine" → brainstorming; "PDG 2025 Mass Benchmark Surface" → `pdg-2025-mass-benchmark-surface.md`; "First Quantitative Deliverable A_0" → `a0-reference-attractor-family-deliverable-spec.md`; "Assembly-Level Reduction Status" → `assembly-level-reduction-status.md`. Pointers left in the queue.
+- `braid-angular-momentum-spin/priorities.md`: extracted "CERN Reconstruction Signals" → `cern-reconstruction-signals.md`.
+- Remaining Phase 3 (delicate): per-item embedded status/blocker narrative inside queue items (mass-response Task Queue items 1 and 4; angular-momentum Task Queue giant lines, up to ~9.9 KB/line) → move to `work-log.md`, leaving concise queue items. Plus the smaller lanes (`braid-ideal` 50 KB, `braid-nested-shell-causal-closure`, `braid-doubling-frequency-lock`, `braid-retained-branch-closure`) priorities to check.
+
+### 2026-07-08 - Braid Priority Sort: Phase 3 Priorities-Trim Results
+
+Route-by-content-type trim (operator decision 2026-07-08). Verbatim moves; no claim-level changes; certificate/packet files untouched; all moved status preserved in work-logs / sibling files.
+
+- `braid-mass-response-map`: 81 KB -> 30.6 KB. Doctrine -> unified brainstorming; PDG benchmark, `$A_0$` deliverable spec, and Assembly-Level Reduction Status -> sibling files; queue items 1 and 4 condensed (full status in that lane's work-log).
+- `braid-angular-momentum-spin`: 124 KB -> 34.7 KB. CERN reconstruction signals -> sibling; ~30 dated dispositions / audit-continuation entries -> that lane's work-log; queue items 2 and 3 condensed (originals in work-log).
+- `braid-retained-branch-closure`: 26 KB -> 13.8 KB. Queue items 3, 4, 14, 20 condensed (full status in that lane's work-log).
+- `braid-ideal` (hub): left intact. Its two large Group A items (`delayed_escape_certificate_lemma`, `self_hit_held_release_solver_row`) are the live absorber-hunt working state the relaunching threads consume; a clean condense needs hand-treatment, deferred to avoid disrupting active work.
+- `braid-nested-shell-causal-closure` (34 KB): not trimmed; its bulk is embedded reference/contract sections (Lorentz-Test Residual Interface, MIT 8.962 GR Recovery Interface, Shared Branch Certificate Contract) that are sibling-file candidates. Deferred pending a check that "Shared Branch Certificate Contract" is not cross-referenced by other lanes.
+- `braid-doubling-frequency-lock` (16 KB), `braid-taxonomy` (2.9 KB): left as-is; no giant lines, already concise enough.
