@@ -1195,3 +1195,16 @@ Executed the Section 15 closure goal on the extended evaluator (radial projectio
 Verdict `iso_frequency_rail_circular_ansatz_fails_simultaneous_tangential_and_radial_closure_candidate_row_must_be_non_circular_or_environmentally_confined`. Surviving readings: eccentric/breathing layers (the lane mandate already says do not assume circular orbits) or sea confinement. Forward lock-dynamics tasks captured as Group E items 17-18. Fail-closed throughout.
 
 Verification: `node --test tests/braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js` -> 8 pass, 0 fail.
+
+
+## 2026-07-08 - Non-circular relaxation: m=2 shape mode rejected; unified closure metric (item 11)
+
+Executed the Section 16 closure goal on a new owner script [planar-tri-binary-breathing-extension.mjs](../../../scripts/braid-ideal/planar-tri-binary-breathing-extension.mjs) (tests 4 passing; [spec Section 17](fold-crossing-chart-spec.md#17-non-circular-relaxation-the-m2-shape-mode-is-rejected-2026-07-08)): inner/outer layers get the m=2 antipodal-symmetric radius modulation at constant angular rate (middle circular, rail exact); cycle-sampled residuals; unified closure metric with one global least-squares $\kappa^*$ over all layers, both components, full cycle.
+
+- Circular family bottoms at global $0.646$ at ($q_I=0.5$, $q_O=1.6$) - milder nesting than the net-torque curve ($0.888$ there); even at optimum the wake coherently supplies only ~1/3 of the required pattern.
+- $\psi$ is exactly a gauge at constant angular rate (inter-axis angles never change; verified to $10^{-6}$): one knob per layer, not two.
+- Circular is a shape-space local minimum: every breathing direction degrades ($0.646\to0.66$-$0.95$ across $e\in\{0.1,0.2,0.4\}$ singly and jointly). The m=2 mode is REJECTED.
+
+Combined Sections 15-17 verdict: iso-frequency deep-nesting tangential closure and radial self-support are mutually exclusive; the lowest shape mode cannot bridge. Missing ingredient is structural: (i) speed modulation / Kepler-like rate variation - for the middle layer this is the escapement ticking (rail crossed twice per cycle, self-hit clicks transacted; needs the $d_0$ self-hit channel in the balance); (ii) frequency hierarchy (4:2:1 / 3:2:1, inner-super-field per the original intuition); (iii) out-of-plane structure; (iv) sea confinement (the outer binding deficit is where an external medium term would sit; the outer's own self-hit is repulsive-outward and cannot rescue it). Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-breathing-extension.test.js` -> 4 pass, 0 fail.
