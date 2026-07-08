@@ -244,7 +244,7 @@ A delay-energy construction is promotable only when the branch chart names:
 
 1. the retained history window $h$ and memory truncation residual;
 2. the causal-surface regularization $\eta$ and any core cutoff $\epsilon_c$;
-3. active causal roots, inactive-root gaps, and the active Jacobian floor;
+3. active causal roots, inactive-root gaps, the active source-normal Jacobian floor, and the retained receiver-normal branch-strength floor or certified interval $\nu_{\mathrm{rec}}$ for $W^{\mathrm{rec}}$;
 4. the exact route used for $E_{\text{wake}}$;
 5. boundary flux, endpoint leakage, period-cut terms, and excluded self-coincidence rows;
 6. the crosswalk residual whenever more than one energy construction is invoked;
