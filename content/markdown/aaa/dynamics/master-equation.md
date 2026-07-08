@@ -805,7 +805,7 @@ $$
 \|\mathbf X_i(T) - \mathbf X_i(T_{\mathrm{em}})\| = c_f(T - T_{\mathrm{em}}), \quad T_{\mathrm{em}} < T
 $$
 
-This equation nominates a same-source causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $T_{\mathrm{em}}=T$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger rows required by the claimed assembly branch close.
+This equation nominates a same-source causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $T_{\mathrm{em}}=T$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the same-record receiver-normal branch strength $W_{ii}^{\mathrm{rec}}$ is retained on its floor or certified bounded interval $\nu_{\mathrm{rec}}$, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger rows required by the claimed assembly branch close.
 
 **Interval-speed lemma.** Let $\Delta=T-T_{\mathrm{em}}>0$ and suppose $\mathbf X_i$ is absolutely continuous on $[T_{\mathrm{em}},T]$. If
 $$
@@ -821,7 +821,7 @@ This follows immediately from the triangle inequality. Therefore strict sub-fiel
 
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past causal isochrons).
 2. **Super-field-speed interval history**: along the interval from emission to reception, the architrino must have exceeded $c_f$ somewhere, unless the branch is the degenerate straight field-speed case excluded by the simple-root assumptions.
-3. **Regular branch admissibility**: the same-source root must be retained on a branch chart with a positive transversality/Jacobian floor, controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger rows required by the claimed assembly branch.
+3. **Regular branch admissibility**: the same-source root must be retained on a branch chart with a positive transversality/Jacobian floor, a retained same-record receiver-normal branch-strength row ($W_{ii}^{\mathrm{rec}}$ on its floor or certified bounded interval $\nu_{\mathrm{rec}}$), controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger rows required by the claimed assembly branch.
 
 **Key clarification:**
 
@@ -1049,7 +1049,7 @@ $$
 
 Because $r = c_f(T - T_{\mathrm{em}})$, $r = 0$ implies $\Delta = T - T_{\mathrm{em}} = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
-This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, the same-record receiver-normal branch strength $W_{ij}^{\mathrm{rec}}$, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
 
 #### Superposition Principle
 
@@ -3728,9 +3728,9 @@ K_{\mathrm{eff}}^{(\eta)}
 $$
 while the source-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $T_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver force.
 
-This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
+This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive source-normal Jacobian floors, retained same-record receiver-normal branch-strength rows, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
-**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive Jacobian floor, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
+**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive source-normal Jacobian floor, a retained receiver-normal branch-strength floor $\nu_{\mathrm{rec}}$, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
 $$
 X_{ij}^{\mathfrak{B}}(T_\ast)
 \equiv
