@@ -13,6 +13,8 @@
 
 This directory stores nested shell braid support packets under the parent [braid-retained-branch-closure](../priorities.md) lane. It is not a separate scored workstream.
 
+Lane relationship (2026-07-08 sort). These are nested shell braid model source packets only. The nested-shell synthesis toward rest mass, proper time, relativistic limits, and photon closure is the separate scored lane [braid-nested-shell-causal-closure](../../braid-nested-shell-causal-closure/priorities.md).
+
 Keep provisional nested shell braid ideas in [brainstorming.md](brainstorming.md). Keep dated packet status and handoffs in [work-log.md](work-log.md).
 
 ## Objective

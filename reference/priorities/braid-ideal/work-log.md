@@ -1009,3 +1009,16 @@ Route-by-content-type trim (operator decision 2026-07-08). Verbatim moves; no cl
 - `braid-ideal` (hub): left intact. Its two large Group A items (`delayed_escape_certificate_lemma`, `self_hit_held_release_solver_row`) are the live absorber-hunt working state the relaunching threads consume; a clean condense needs hand-treatment, deferred to avoid disrupting active work.
 - `braid-nested-shell-causal-closure` (34 KB): not trimmed; its bulk is embedded reference/contract sections (Lorentz-Test Residual Interface, MIT 8.962 GR Recovery Interface, Shared Branch Certificate Contract) that are sibling-file candidates. Deferred pending a check that "Shared Branch Certificate Contract" is not cross-referenced by other lanes.
 - `braid-doubling-frequency-lock` (16 KB), `braid-taxonomy` (2.9 KB): left as-is; no giant lines, already concise enough.
+
+### 2026-07-08 - Braid Priority Sort: Phase 4 Lane Sort and Routing (OP-1)
+
+Phase 4 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Reconciliation outcome: the eight braid lanes are already well-separated under OP-1; the phase resolved to documentation, not merges.
+
+- Dual-owner "six-point": not a conflict. `braid-ideal` owns the **six-point symmetry invariant lemma** (`six_point_symmetry_invariant_lemma`, two packet files); `braid-retained-branch-closure` owns the **six-site neutral braid base certificate** (`neutral_braid_base_certificate`, all-pairs root ledger). Distinct objects (symmetry reduction vs base inventory); the lemma reduces the base seed. No move or pointer needed.
+- Dual-owner "nested shell braid": not a duplicate. `braid-retained-branch-closure/nested-shell-braid/` is a `support-packet-index` (model source packets, subordinate to the parent retained-branch tracker); `braid-nested-shell-causal-closure` is the scored workstream for rest-mass / proper-time / relativistic-limits / photon closure. Differentiated scopes. Added clarifying cross-pointers in both `priorities.md` files so future workers do not treat them as duplicates.
+- Fold dormant/duplicate lanes: none. All eight braid lanes are active and differentiated; `braid-doubling-frequency-lock` (alternative realization) and `braid-taxonomy` (bookkeeping) are small but purposeful, not dormant or duplicate.
+- Route open tasks to taxonomy-home lane: no cross-lane task moves needed. Each lane's queue is already taxonomy-appropriate; the active intake concentrates in `braid-ideal` (Group A absorber + Group D corpus survey + native promotion), as recorded in the intake ledger.
+- `braid-geometry-export-bridge`: re-index verified only (OP-2 deferred). `priorities.md` is active (Rank 9) and points at the live H39 tail-bound frontier via the source-covariance pause note; no octahedral certificate files moved, no archive subfolder created.
+- Renumbering: no queue items were removed in this phase, so no renumbering was required.
+
+Guardrail: link paths for the two inserted cross-pointers verified by relative depth; no claim-level changes; certificate/packet files untouched. Operator to run the standard `--check` set from codex (validate-content, build-scene-graph) as the Phase 6 validation handoff.
