@@ -1446,7 +1446,7 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 ### Theorem A1 (translating binary Lorentz residual)
 
-The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, and positive Jacobian floors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded receiver-normal branch strengths. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
 \mathbf X_{\sigma}(T)
 =
