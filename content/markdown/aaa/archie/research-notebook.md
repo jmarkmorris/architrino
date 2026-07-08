@@ -409,17 +409,17 @@ $$
 W_{ij}^{\mathrm{rec}}(t;t_0)\,
 \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-W_{ij}^{\mathrm{rec}}=\left|\frac{D_{t,ij}}{D_{s,ij}}\right|
+W_{ij}^{\mathrm{rec}}=\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
 $$
 with
 $$
 D_{s,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-D_{t,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
+D_{T,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
 $$
 Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the source-normal denominator records how the emitted wake surfaces bunch or dilate, while the receiver-normal numerator records how the receiver cuts those surfaces.
 
-Receiver velocity appears in the received branch magnitude through $D_{t,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+Receiver velocity appears in the received branch magnitude through $D_{T,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
 
 The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
