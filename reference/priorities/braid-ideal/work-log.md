@@ -1022,3 +1022,19 @@ Phase 4 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), b
 - Renumbering: no queue items were removed in this phase, so no renumbering was required.
 
 Guardrail: link paths for the two inserted cross-pointers verified by relative depth; no claim-level changes; certificate/packet files untouched. Operator to run the standard `--check` set from codex (validate-content, build-scene-graph) as the Phase 6 validation handoff.
+
+### 2026-07-08 - Braid Priority Sort: Phase 5 Corpus Promotion-Readiness Audit
+
+Phase 5 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Audit against [promotion-policy-into-corpus.md](../braid-retained-branch-closure/promotion-policy-into-corpus.md) and [proof-id-crosswalk.md](../braid-taxonomy/proof-id-crosswalk.md). No corpus files were edited in this audit.
+
+Proof-state bound (crosswalk): no braid branch is retained at any Proof ID (`NB-0`, `SH-0`, `NSH-0`, families). Every current object is a branch target, row evidence, diagnostic/rejection, fixture, chart, downstream consumer, or uninspected corpus — all `not_retained`. So no retained-branch results exist to promote; the promotable surface is limited to reader-safe theorem-target discipline, effective-summary, and scoped-negative / first-failure language.
+
+Already-promoted surface (confirmed by corpus grep 2026-07-08): the braid corpus has 13 noether-braid chapters and already carries the safe promotable mechanism/theorem-target material — anti-damping (7 files), axis-neutral channel (5), exact speed budget (2), pump language (5), and `Corollary S` (1). The 2026-05-22 policy application already promoted the theorem-target retained-branch certificate language plus scoped fixed-speed octahedral negatives into [noether-braid.md](../../../content/markdown/aaa/noether-braid/noether-braid.md); the 2026-07-06/07 passes promoted the axis-neutral invariant channel, drum geometry, speed budget, dressing ladder, and consilience principle.
+
+Not-yet-promoted (priority-only): the very recent 2026-07-07 absorber-cluster negatives — `certified non-absorber` phrasing, the self-hit coincidence theorem, and the cross-hit hinge results (0 corpus files each). These are legitimate reader-safe scoped-negatives / theorem-targets under the open-factory framing, but they belong to the ACTIVE Group A absorber cluster (five threads converging on one gating object; consolidation pending; about to relaunch), so the results may still shift.
+
+Policy guidance: the promotion policy states that while retained-branch, validation, and observer-export rows remain open, the remaining promotion surface should be "a dedicated validation-method destination rather than a broad braid corpus migration." The theory-focus policy likewise prefers advancing derivations over promotion proliferation.
+
+Decision (pending operator ratification): no new unilateral corpus promotions in this cleanup sort. The safe surface is already promoted; the only not-yet-promoted candidates are in-flight absorber-cluster negatives whose systematic, reviewed promotion is the job of the pending Group D corpus-insight survey (P11-P16 in [braid-intake-prompts.md](braid-intake-prompts.md)), under operator review. Option retained for the operator: draft the absorber-cluster scoped-negatives (Corollary S completion, self-hit coincidence theorem) as reader-safe theorem-target / scoped-negative language once the cluster stabilizes.
+
+Operator ratification 2026-07-08: accepted the audit — promote nothing in this sort; route systematic new-candidate promotion to the pending Group D survey (P11-P16) under operator review. Phase 5 complete with zero corpus edits.
