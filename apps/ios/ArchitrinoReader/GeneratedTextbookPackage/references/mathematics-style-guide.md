@@ -297,3 +297,4 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
   - Use $\|\mathbf V\|$ for speed magnitude of a vector velocity.
   - Emission cadence and per-wavefront amplitude are constant.
   - Do not write mixed forms like $|V|$ to mean speed; bold the vector and take its norm.
+  - Reserve $T$ for absolute time. Write thermodynamic temperature as $T_{\mathrm{temp}}$, never as bare $T$, and disambiguate embedded uses accordingly, for example $k_B T_{\mathrm{temp}}$. Temperatures that already carry a distinguishing subscript, such as $T_{\mathrm{CMB}}$, are acceptable.
