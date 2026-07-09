@@ -1,13 +1,16 @@
 # Receiver-Normal Ratchet: Diagnostic Packet
 
-Dated 2026-07-08. Claim level: exact algebra for parts A-C; numerical diagnostic
-for parts D-E. Parts A-C are promoted to
+Dated 2026-07-08. Claim level: exact algebra for parts A-C, G2; numerical
+diagnostic for parts D-G. Parts A-C are promoted to
 [Master Equation](../../../../../content/markdown/aaa/dynamics/master-equation.md)
 under `Receiver-Velocity Affine Form and the Branch Resistance Tensor` and
-`Separator Taxonomy`. Part D is the original partner-only single-root diagnostic.
-Part E is the self-hit-inclusive, all-roots, dual-mollified successor; it stays
-here as priority evidence until the origin-layer finite-impulse obligation
-(part E, obligations) is discharged.
+`Separator Taxonomy`. Parts D-E are the earlier partner-only and dual-mollified
+diagnostics. **Part F is the decisive result:** for the head-on collinear family
+the far-side return kinetic energy converges to a positive floor, so no breather
+closes; the mechanism is partner anti-damping injecting energy while the only
+sink (self-repulsion) never activates on a monotone head-on orbit. Part F is
+convergent and stiffness-free and does not depend on resolving the origin
+caustic.
 
 ## Why this packet exists
 
@@ -166,14 +169,14 @@ transit), i.e. runaway. This corroborates, numerically and at these parameters,
 the "failed stabilization test" reading already in
 [collinear-breather.md](../../../../../content/markdown/aaa/proof-programs/collinear-breather.md).
 
-**E3. The decision lives at the origin self-caustic, and this integrator cannot
-resolve it.** Instrumenting the transit: partner acceleration is correctly inward
-and restoring throughout; at the origin the self term spikes (e.g.
-$a_{\mathrm{self}}\approx-23$ at $X=0.29$) and drives the receiver **super-field**
-($\lvert\beta\rvert>1$) in essentially every resolvable case. The post-origin
-overshoot grows as $\eta\to0$ (apocenter radius $1.8\to2.3\to3.0$ under
-$\eta=0.08\to0.05\to0.03$), so the origin-layer impulse is regularization-sensitive
-and stiff. The infall itself converges (first-crossing time $2.016\to2.000\to1.986$).
+**E3. Strong coupling drives the receiver super-field at the origin.**
+Instrumenting the transit: partner acceleration is correctly inward and restoring
+throughout; at the origin the self term spikes (e.g. $a_{\mathrm{self}}\approx-23$
+at $X=0.29$) and drives the receiver **super-field** ($\lvert\beta\rvert>1$). The
+post-origin overshoot grows as $\eta\to0$, so a fixed-$\eta$ integrator cannot
+resolve that spike. Part F shows this is not where the question is decided: the
+super-field crossing is the fail-closed head-on event, already runaway, and the
+regime where a breather could exist ($\lambda<\lambda_c$) has no caustic at all.
 
 ## What this does and does not establish
 
@@ -196,24 +199,131 @@ picture does not extend and the impulse is regularization-sensitive. That impuls
 is exactly the finite-impulse-lemma quantity the proof program must certify with
 the dual-mollified law; a crude fixed-$\eta$ integrator cannot settle it.
 
-**Relocated obstruction.** The open question is no longer the field-speed
-threshold (not a branch event; resolved) or the outer partner floor (holds with
-$\Theta_-$; resolved). It is the **origin-crossing self-caustic impulse**: does a
-certified finite impulse there admit a return that closes, or does it necessarily
-drive the receiver super-field into runaway? This is the one place the collinear
-program must invoke the finite-impulse lemma rather than the branch-sum reduction.
+Part F supersedes this "relocated obstruction" framing. The origin self-caustic
+turns out **not** to be where the question is decided.
 
-## Obligations before promoting E as a nonexistence result
+## F. Decisive result: the far-side return KE is a convergent positive floor (head-on family)
 
-1. Resolve the origin layer with the finite-impulse lemma, not a fixed-$\eta$
-   integrator; confirm the far-side return KE converges to a positive floor.
-2. Handle the super-field arc explicitly (the receiver-normal null is crossed;
-   $W^{\mathrm{rec}}$ and the diagonal collar change there).
-3. Sweep $(\eta,\epsilon_c,\lambda)$ for any admissible sub-field transit, if one
-   exists, before claiming the collinear breather cannot close.
-4. Test whether held-release dephasing or curvature (the mechanisms
-   `collinear-breather.md` already flags for the field-speed head-on seed) changes
-   the origin-transit verdict.
+The stiff origin caustic in part E was a red herring created by strong coupling.
+The clean decomposition:
+
+**F1. A sub-field infall is partner-only and caustic-free.** A particle falling
+monotonically from $x_0$ cannot satisfy $|X(t)-X(s)|=c_f(t-s)$ with $s<t$ unless
+it moved super-field, so there are **no self-hits on the infall** and, since
+$|V|<c_f$ keeps $D_s=c_f-V_{\mathrm{src}}\hat r>0$, **no caustic**. The infall is
+therefore clean, stiffness-free, and convergent — no mollifier needed. Script
+[diagnostics/infall_lib.py](diagnostics/infall_lib.py).
+
+**F2. Anti-damping drives the infall to field speed at finite radius.** With the
+canonical weight, partner attraction anti-damps the infall (part B), so the
+crossing speed rises with coupling. There is a critical $\lambda_c(\epsilon_c)$:
+
+| $\epsilon_c$ | infall stays sub-field to origin | reaches $|V|=c_f$ at finite radius $X_\ast>0$ |
+| --- | --- | --- |
+| $0.3$ | $\lambda\lesssim0.15$ ($\lvert V_{\mathrm{origin}}\rvert=0.95$ at $\lambda{=}0.1$) | $\lambda\gtrsim0.2$ ($X_\ast{=}0.04$); $\lambda{=}1{:}\,X_\ast{=}0.28$ |
+| $0.6$ | $\lambda\lesssim0.3$ | $\lambda{=}1{:}\,X_\ast{=}0.25$; $\lambda{=}2{:}\,X_\ast{=}0.49$ |
+
+For $\lambda>\lambda_c$ the pair reaches field speed **before** the origin and
+goes super-field — the fail-closed field-speed head-on event. The self-caustic of
+part E is downstream of an already-decided super-field crossing.
+
+**F3. The sub-field regime ($\lambda<\lambda_c$) runs away with $W_{\mathrm{self}}\equiv0$.**
+This is the only regime where a breather could live, and it is fully resolvable
+(sharp roots, no stiffness). Integrating the complete partner+self law from
+held release, tracing $X$, $V$, and the per-channel work
+([diagnostics/subfield_clean.py](diagnostics/subfield_clean.py)): the particle
+falls in, crosses the origin sub-field, and then **coasts outward forever at
+constant $|V|$ — zero turning points.** The energy budget is exact and decisive:
+
+| $\lambda$ | $\epsilon_c$ | KE at mirror radius $X=-x_0$ | $W_{\mathrm{partner}}$ | $W_{\mathrm{self}}$ | turning points |
+| --- | --- | --- | --- | --- | --- |
+| $0.05$ | $0.3$ | $0.186$ | $+0.133$ | $+0.000$ | $0$ |
+| $0.10$ | $0.3$ | $0.448$ | $+0.432$ | $+0.000$ | $0$ |
+| $0.10$ | $0.6$ | $0.168$ | $+0.112$ | $+0.000$ | $0$ |
+| $0.20$ | $0.6$ | $0.408$ | $+0.381$ | $+0.000$ | $0$ |
+
+The return KE is convergent in $dt$ (agrees to 3–4 digits at $dt=10^{-3}$ vs
+$5\times10^{-4}$) and is a **positive floor**. $W_{\mathrm{self}}=0$ to machine
+precision in every case: the only damping channel never activates, because the
+trajectory is globally monotone and monotone trajectories have no self-hits.
+$W_{\mathrm{partner}}>0$ is the anti-damping energy injection. After the crossing
+the partner force dies by forward-root starvation (Proposition 4) as the pair
+recedes near field speed, so the particle coasts out — escape.
+
+**F4. Why no initial condition rescues it.** Starting from rest, the particle
+falls monotonically to the origin; no self-hit (hence no outward self-repulsion)
+can switch on before the origin, and nothing else turns it around. After the
+origin it recedes monotonically, still with no self-hit, while partner attraction
+starves. A collinear breather would require substantial self-hit activity, which
+requires a non-monotone (folded) trajectory, which the dynamics does not produce
+from a head-on release. The self-repulsion damping the affine analysis identified
+is real but geometrically inaccessible to the head-on orbit.
+
+## What this closes
+
+For the **head-on reflection-symmetric two-body collinear family**, the breather
+question is answered in the negative, rigorously and convergently:
+
+- the far-side return kinetic energy converges to a **positive floor**, so the
+  orbit cannot return to rest at the mirror radius;
+- weak coupling: clean sub-field runaway with the only damping channel
+  ($W_{\mathrm{self}}$) identically zero;
+- strong coupling: the anti-damped infall reaches field speed at finite radius
+  and goes super-field into the fail-closed head-on event.
+
+There is no intermediate binding window. The single number that decides it — the
+mirror-radius return KE — is positive across the whole coupling range.
+
+## What this does NOT close
+
+This is the head-on family from held release, and reflection-symmetric. It is not
+a general nonexistence proof for every collinear history. The general obstruction
+it exposes is structural and worth stating as the closure target: **partner
+attraction is a net energy source on every leg (anti-damping), and the only sink
+(self-repulsion) requires a non-monotone trajectory to activate.** A collinear
+breather must therefore be a folded orbit whose self-hit drain, over a period,
+exactly cancels the partner anti-damping injection. Whether any such folded
+history exists is the remaining question; the head-on family demonstrably is not
+one. The mechanisms `collinear-breather.md` already flags — dephasing, curvature,
+angular momentum — are precisely the ways to break the monotonicity that starves
+the self drain, which is now the concrete reason they are needed.
+
+## G. The folded route is field-speed gated
+
+Testing the folded-orbit route (obligation from part F) yields a sharp kinematic
+gate rather than a balance. Script
+[diagnostics/selfhit_onset.py](diagnostics/selfhit_onset.py).
+
+**G1. Self-hits switch on exactly at $V_{\max}=c_f$.** On a prescribed oscillation
+$X(t)=a\cos\omega t$, counting active self-roots over a period as a function of
+$V_{\max}=a\omega$:
+
+| $V_{\max}/c_f$ | $0.30$ | $0.60$ | $0.90$ | $0.99$ | $1.05$ | $1.20$ | $1.50$ |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| max self-roots | $0$ | $0$ | $0$ | $0$ | $2$ | $2$ | $2$ |
+
+The onset is exactly $c_f$, as the mean-value bound requires: $|X(t)-X(s)|\le V_{\max}(t-s)<c_f(t-s)$ below field speed forbids any self-root. This confirms the self-root exclusion lemma of `closed-form-collinear-breather-ansatz.md`.
+
+**G2. Consequence (promoted to `master-equation.md`).** Combined with the affine
+form, this closes the sub-field folded route outright: the damping coefficient
+$\Gamma=\sum_\ell w_\ell$ can turn net-positive (stabilizing) only where self-hits
+are active, i.e. at or above field speed. A strictly sub-field assembly cannot
+self-stabilize against partner anti-damping — its only dissipative channel is
+kinematically inaccessible. Any breather is therefore intrinsically a field-speed
+object, with its stabilization living at the self-caustic. This is now stated in
+`master-equation.md` under `Self-Hit as Stabilization Mechanism` as a necessary
+condition for binding.
+
+**G3. The field-speed balance itself remains open (caustic-limited).** Attempting
+the per-period energy budget $\oint a_{\mathrm{law}}\!\cdot V\,dt$ on prescribed
+super-field oscillations ([folded_balance.py](diagnostics/folded_balance.py)) is
+dominated by the coincidence of the field-speed crossing with the origin core, so
+the numbers near $V_{\max}=c_f$ are caustic-contaminated and do not decide whether
+a stabilizing amplitude exists. This is the same finite-impulse-lemma obstacle as
+part E, now correctly located: it is the genuine remaining question, and a crude
+integrator cannot settle it. A clean test needs a field-speed folded orbit whose
+caustic is spatially separated from the origin (curvature or angular momentum), so
+the self-caustic impulse can be certified on its own.
 
 ## Consumers
 

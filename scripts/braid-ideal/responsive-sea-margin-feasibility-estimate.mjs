@@ -50,7 +50,13 @@ function sitePos(s, t, w) {
   return [s.sgn * s.R * ca * Math.cos(a), s.sgn * s.R * ca * Math.sin(a), s.sgn * s.R * Math.sin(s.alpha)];
 }
 
-// Braid Coulomb-flavored field at point X, braid evaluated at (individually) retarded times.
+// Braid field at point X (static receiver), branch-weighted with the canonical
+// receiver-normal kernel: static receiver gives D_T = c_f, so the signed branch
+// orientation is m = c_f / D_s with D_s = c_f - v_src . rhat at the retarded time.
+function siteVel(s, t, w) {
+  const a = w * t + s.th, v = s.sgn * s.R * Math.cos(s.alpha) * w;
+  return [-v * Math.sin(a), v * Math.cos(a), 0];
+}
 function braidFieldAt(X, braid, t) {
   let E = [0, 0, 0];
   for (const s of braid.sites) {
@@ -64,7 +70,11 @@ function braidFieldAt(X, braid, t) {
     const p = sitePos(s, te, braid.omega);
     const dx = [X[0]-p[0], X[1]-p[1], X[2]-p[2]];
     const r = Math.hypot(dx[0], dx[1], dx[2]);
-    for (let c = 0; c < 3; c++) E[c] += (s.pol * dx[c]) / (r * r * r);
+    const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+    const v = siteVel(s, te, braid.omega);
+    const Ds = cf - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+    const m = cf / Ds; // D_T = c_f (static receiver)
+    for (let c = 0; c < 3; c++) E[c] += (s.pol * m * dx[c]) / (r * r * r);
   }
   return E;
 }
@@ -96,10 +106,16 @@ export function seaMarginPerAlpha({ geo = SUPPORT_V1, Rsea = 4.25, nDirs = 6, Nt
       const xj = sitePos(s, t, w);
       const rhoCyl = s.R * Math.cos(s.alpha);
       const rx = Math.cos(w * t + s.th), ry = Math.sin(w * t + s.th);
+      // receiver-normal factor for the moving braid receiver: m = D_T / c_f
+      const vj = siteVel(s, t, w);
       let inward = 0;
       for (let q2 = 0; q2 < dirs.length; q2++) {
-        const E = dipoleField(pDip[q2], [xj[0]-dirs[q2][0], xj[1]-dirs[q2][1], xj[2]-dirs[q2][2]]);
-        inward += -(s.pol) * (E[0]*rx + E[1]*ry); // force on site = pol * E; inward-positive
+        const dxj = [xj[0]-dirs[q2][0], xj[1]-dirs[q2][1], xj[2]-dirs[q2][2]];
+        const rj = Math.hypot(dxj[0], dxj[1], dxj[2]);
+        const rhj = [dxj[0]/rj, dxj[1]/rj, dxj[2]/rj];
+        const Dt = cf - (vj[0]*rhj[0] + vj[1]*rhj[1] + vj[2]*rhj[2]);
+        const E = dipoleField(pDip[q2], dxj);
+        inward += -(s.pol) * (Dt / cf) * (E[0]*rx + E[1]*ry);
       }
       const need = w * w * rhoCyl;
       acc[s.name] += (kap * inward) / need / Nt;
@@ -111,6 +127,24 @@ export function seaMarginPerAlpha({ geo = SUPPORT_V1, Rsea = 4.25, nDirs = 6, Nt
 
 export function spacingSweep({ Rseas = [2.5, 3.0, 3.5, 4.0, 4.25, 4.5, 5.0, 5.5, 6.0], nDirs = 6, Nt = 8 } = {}) {
   return Rseas.map((Rsea) => { const r = seaMarginPerAlpha({ Rsea, nDirs, Nt }); return { Rsea, mean: r.meanPerAlpha, I: r.marginPerAlpha.I, M: r.marginPerAlpha.M, O: r.marginPerAlpha.O }; });
+}
+
+// Multi-shell sum: shells R in [Rmin, Rmax] step dR, per-site margins scaled by the
+// shell population count(R) = round(rho_num * 4*pi*R^2 * dR). Two seas: "uniform"
+// (every shell, signs as computed — an unorganized sea) and "organized" (only shells
+// whose mean margin is confining — a sea self-organized onto commensurate spacings).
+export function multiShellSum({ Rmin = 2.5, Rmax = 8, dR = 0.25, rhoNum = 1 / (4.25 ** 3), Nt = 8, nDirs = 6 } = {}) {
+  const shells = [];
+  for (let R = Rmin; R <= Rmax + 1e-9; R += dR) {
+    const m = seaMarginPerAlpha({ Rsea: R, nDirs, Nt });
+    const perSite = m.meanPerAlpha / nDirs;
+    const count = Math.max(0, Math.round(rhoNum * 4 * Math.PI * R * R * dR));
+    shells.push({ R: +R.toFixed(2), perSite, count, shellMargin: perSite * count });
+  }
+  const uniform = shells.reduce((s2, r) => s2 + r.shellMargin, 0);
+  const organized = shells.filter((r) => r.shellMargin > 0).reduce((s2, r) => s2 + r.shellMargin, 0);
+  return { rhoNum, shells, uniformMeanPerAlpha: uniform, organizedMeanPerAlpha: organized,
+    alphaReqUniform: uniform > 0 ? 0.06 / uniform : null, alphaReqOrganized: organized > 0 ? 0.06 / organized : null };
 }
 
 export function diagnosticReport() {

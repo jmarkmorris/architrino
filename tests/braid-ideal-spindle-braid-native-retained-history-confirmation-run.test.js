@@ -5,6 +5,8 @@ import {
   SCHEMA,
   FAIL_CLOSED,
   DECLARED,
+  TABLED_ROWS,
+  selectTabledRow,
   buildSites,
   rigidPosition,
   rigidVelocity,
@@ -152,6 +154,61 @@ test("seed record reports both hunt conventions (fitted/circular, frozen/held-ci
   } finally {
     DECLARED.epicycle.M = saved.M;
   }
+});
+
+test("Candidate Row 2 seed record validates against the support-search anchors", () => {
+  try {
+    selectTabledRow(2);
+    assert.equal(DECLARED.candidateRow, 2);
+    // pinned transverse cadence: beta_M = omega R_M cos(alpha_M) = 1 exactly
+    const sites = buildSites();
+    const betas = {};
+    for (const s of sites) betas[s.layer] = Math.hypot(...rigidVelocity(s, 0));
+    assert.ok(Math.abs(betas.M - 1.0) < 1e-12);
+    assert.ok(Math.abs(betas.I - 0.4548) < 5e-4);
+    assert.ok(Math.abs(betas.O - 0.1293) < 5e-4);
+    // native seed record vs the tabling instrument (spindle-support-ratio-
+    // targeted-search.mjs on v1): kappa* 0.30041, closure 0.32397,
+    // support ratios (0.9595, 0.8803, 0.9796)
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const seed = seedRecordEvaluation(sites, heldOnly);
+    assert.ok(Math.abs(seed.kappaStar - 0.30041) < 2e-3);
+    assert.ok(Math.abs(seed.globalRelResidual - 0.32397) < 2e-3);
+    const sup = seed.supportRatios.atFittedKappa;
+    assert.ok(Math.abs(sup.I - 0.9595) < 0.02);
+    assert.ok(Math.abs(sup.M - 0.8803) < 0.02);
+    assert.ok(Math.abs(sup.O - 0.9796) < 0.02);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 1 seed support ratios reproduce the native run rows", () => {
+  // spec Section 30: support ratios 0.90/0.76/0.53 at the unified kappa*
+  const sites = buildSites();
+  const heldOnly = sites.map((s) => ({
+    site: s,
+    ts: [],
+    xs: [],
+    vs: [],
+    maxRadiusSeen: Math.hypot(s.rho, s.z0),
+    positionAt: (tE) => rigidPosition(s, tE),
+    segment: () => null,
+  }));
+  const seed = seedRecordEvaluation(sites, heldOnly);
+  const sup = seed.supportRatios.atFittedKappa;
+  assert.ok(Math.abs(sup.I - 0.9) < 0.02);
+  assert.ok(Math.abs(sup.M - 0.76) < 0.02);
+  assert.ok(Math.abs(sup.O - 0.53) < 0.02);
+  assert.equal(TABLED_ROWS[1], DECLARED.layers);
 });
 
 test("release is fail-closed and books the poised-clicker same-source opening", () => {

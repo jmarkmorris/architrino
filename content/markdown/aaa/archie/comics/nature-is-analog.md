@@ -1,5 +1,5 @@
 # Nature Is Analog
 
-Records can be sampled without making the underlying dynamics discrete.
+Discrete quantum records can be implemented by analog underlying dynamics.
 
 [![Nature Is Analog](../../../../assets/images/comics/nature-is-analog.png)](../../../../assets/images/comics/nature-is-analog.png)

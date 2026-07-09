@@ -1453,3 +1453,30 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - NEW seed direction: phi_M ≈ +30° → fitted/circular 0.3077 (below v1's 0.3241, on the OLD champion), frozen/held 0.3680; narrow asymmetric optimum. Diagnostic only; handed to the item-25 basin.
 - Released dynamics: whole family expands; clean floor dradM ≈ 0.75 (em=0.25, phi=30°: steady through rotation 3, halt on radius bound at t=17.87); lower scores are I–M scattering artifacts (inner kicked to constant-speed coast), first-blocker-flagged.
 - VERDICT: family closed, no candidate named — the packet's authorized null outcome, consistent with the Section 37 sum rule. Gate stays fail-closed; knobs remain as reusable machinery for Candidate Row 2 release diagnostics.
+
+## 2026-07-09 — Sea estimate: kernel upgrade + multi-shell sum (spec Section 39)
+- Receiver-normal kernel: resonance bands survive; peak shifts to R=4.0; NAMED SPACING 4.25 now inside the confining band (edge) — co-tuning anomaly softens.
+- Multi-shell natural-density sum: unorganized sea nets weakly confining (bands outweigh); organization helps ~1.6x.
+- Magnitude: alpha_req ~ 27-42 vs O(1) — linear dipole falls 25-40x short. Routes: near-critical enhancement (sea assemblies are marginal braids), saturated ORIENTATION response (the live channel), near-field corrections. Target handed to SH-0-sea: beat alpha_eff ~ 27.
+- 4 tests green (41 total). Evaluator track now holds for the Row 2 native verdict.
+
+## 2026-07-09 — Candidate Row 2 native run: REJECTED (spec Section 40); phi_M affinity null
+- Owner script gained the tabled `--row=2` selection (v1 geometry, pinned transverse cadence omega=1/cos alpha_M) and seed support rows in the certificate; 8 tests green. Native seed validates the tabling instrument to 4 digits (kappa*, closure, all three support ratios).
+- Release (both bookings, 3-rot windows, frozen seed-fitted kappa*=0.3005): tube loss t≈0.80 — dispersal clock UNCHANGED vs Row 1 (0.83) despite deficit 24%→6%: linear support-deficit scaling refuted; the clock is tangential. Cap fall-in cured. Middle: no inward slip; speed-attractor pin third native confirmation; chart escapement holds middle radius ~1.00 for ~0.2 rot.
+- Allocation dynamics: free allocation confirmed dynamically as RUNAWAY (I over-bound >1, M →0.03) — the failure mode, not equilibration.
+- First blocker `shape_loss_inner_tangential_brake_spiral` (inner braked −0.22 at seed, unchanged Row 1→Row 2; spiral in → rail crossing → coincidence push). Operator REJECTED in-thread; gate stays fail-closed.
+- phi_M breathing-phase affinity check: NULL at v1 (phi=0 optimal, breathing-averse in e_M) — v1's azimuths already absorbed the old champion's +30° direction; basin-is-physical corroboration.
+- Named next: tangential-closure-targeted row (item-25 objective + per-layer tangential residuals, or dynamically sustained I→M transfer).
+
+## 2026-07-09 — Orientation saturation closes the gap (spec Section 40)
+- Saturated orientation (live channel), braid's OWN axial dipole p0=2.20, single 6-site shell at the NAMED spacing 4.25, fast alignment: 4-6% inward margin — the Section 37 requirement MET (linear-dipole had missed by 25-40x). alpha_eff = p0/|E| ≈ 38 > 27, the weak-field enhancement verified.
+- Band structure persists (3.0 loosening −19%, 4.0 peak +12%, 4.25 edge 4-6%): the named spacing sits where SUPPLY ≈ DEFICIT — capture-grade speculation: 4.25 derivable as the sea-braid balance fixed point.
+- Alignment speed decisive (slow limit 10x weaker); reorientation-time estimate lands at ~the rotation period — the fast limit needs (and suggests) a reorientation RESONANCE. Third commensurability of the day.
+- 4 tests green (45 total, ten new instruments this session).
+
+## 2026-07-09 — Row 2 verdict received; tangential-sibling first pass (spec Section 41; numbering notice added)
+- Numbering notice added at spec top (two threads duplicated numbers 32–40); renumbering pass queued as item 26 (quiet window, both threads holding).
+- Row 2 verdict (native thread): cap fall-in CURED (support statistic validated); dispersal clock UNMOVED (0.80 vs 0.83 despite 24%→6%) — linear support-deficit scaling refuted; real clock = inner tangential brake −0.22 (family-invariant across rows); allocation runs away dynamically; phi_M+30° null corroborates v1 basin.
+- Cross-stack confirmation on my instrument: tau = (−0.218, +0.096, ~0) at v1; net torque ≈ 0 — conservative inner→middle TRANSFER (tidal-flavored), not a loss.
+- Extended search J = Σ[(s−1)² + λτ²] (first pass, λ=2): M's row halves, O zeroes, support+closure hold — INNER ROW IMMOVABLE (−0.2176→−0.2168). Candidate tangential sibling of the sum rule.
+- Routes named: (a) escapement-return M→I (+0.22 target), (b) counter-sense inner (scoped, expect rejection), (c) sea tangential rows on the orientation instrument.

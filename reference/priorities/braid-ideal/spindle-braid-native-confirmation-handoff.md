@@ -38,7 +38,9 @@ Shape loss (layers disperse); rail loss (middle slides off $c_f$ without pin beh
 
 Run from a fresh thread with the codex goal-seeking wrapper; keep this packet as the scope contract; the acceptance decision (or rejection with first blocker) happens in that thread. On acceptance, queue item 4 flips to accepted and the archive call on superseded configuration families (operator's standing wish) ripens.
 
-## Candidate Row 2: Support-Candidate v1 (tabled 2026-07-09)
+## Candidate Row 2: Support-Candidate v1 (tabled 2026-07-09; executed and REJECTED 2026-07-09)
+
+Row status: `executed-candidate-rejected-2026-07-09` — run on the native machinery at both declared bookings and REJECTED by the operator in the run thread, first blocker `shape_loss_inner_tangential_brake_spiral`; run record [spec Section 40](fold-crossing-chart-spec.md#40-candidate-row-2-native-run-certificate-rejected--the-support-fix-cures-the-cap-fall-in-but-the-inner-tangential-brake-sets-the-dispersal-clock-allocation-runs-away-dynamically-2026-07-09). All four named release diagnostics were delivered: the dispersal clock refutes linear support-deficit scaling (tube loss t≈0.80 vs Row 1's 0.83 despite 24%→6%); the cap fall-in is cured; allocation moves and the movement is the failure mode; no inward middle slip (speed-attractor pin, third native confirmation). The gate stays fail-closed. The row below is retained as the executed scope record.
 
 Named after the Section 36 support-first search (owner script [spindle-support-ratio-targeted-search.mjs](../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 4 passing). Same release protocol, machinery, regulators, and acceptance discipline as the executed Candidate Row 1 (Section 30 run record), with the SUPPORT ROWS added to the certificate (per-layer radial support ratios at the frozen seed-fitted kappa*, reported at seed and along the release).
 

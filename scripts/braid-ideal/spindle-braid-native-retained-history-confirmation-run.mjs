@@ -50,17 +50,44 @@ const TWO_PI = 2 * Math.PI;
 const deg = (d) => (d * Math.PI) / 180;
 
 // ---------------------------------------------------------------------------
-// Declared run parameters (all regulators named; packet Section 3 discipline).
+// Tabled candidate rows (handoff packet; geometry is TABLED, not a knob).
+//  Row 1: the Section 22 unified-closure champion (packet Section 1).
+//  Row 2: support-candidate v1 (packet "Candidate Row 2", tabled 2026-07-09;
+//         spec Sections 36-37 support-first search + sum rule). Cadence is
+//         pinned to the transverse rail: omega = c_f / (R_M cos alpha_M).
 // ---------------------------------------------------------------------------
-export const DECLARED = {
-  fieldSpeed: 1, // c_f
-  omega: 1, // common rest cadence (beta_M = 1 on the rail)
-  // Tabled candidate row (packet Section 1; canonical, NOT the refined variant).
-  layers: Object.freeze([
+export const TABLED_ROWS = Object.freeze({
+  1: Object.freeze([
     Object.freeze({ name: "I", R: 0.5, alpha: deg(-12), theta: 0 }),
     Object.freeze({ name: "M", R: 1.0, alpha: 0, theta: deg(120) }),
     Object.freeze({ name: "O", R: 1.65, alpha: deg(84), theta: deg(330) }),
   ]),
+  2: Object.freeze([
+    Object.freeze({ name: "I", R: 0.462, alpha: deg(-10.44), theta: deg(-23.7) }),
+    Object.freeze({ name: "M", R: 1.0, alpha: deg(-2.67), theta: deg(120) }),
+    Object.freeze({ name: "O", R: 1.236, alpha: deg(84.0), theta: deg(337.04) }),
+  ]),
+});
+
+export function selectTabledRow(row) {
+  const layers = TABLED_ROWS[row];
+  if (!layers) throw new Error(`unknown tabled candidate row: ${row}`);
+  DECLARED.candidateRow = row;
+  DECLARED.layers = layers;
+  const aM = layers.find((L) => L.name === "M").alpha;
+  DECLARED.omega = 1 / Math.cos(aM); // beta_M = omega R_M cos(alpha_M) = 1 (rail)
+}
+
+// ---------------------------------------------------------------------------
+// Declared run parameters (all regulators named; packet Section 3 discipline).
+// ---------------------------------------------------------------------------
+export const DECLARED = {
+  fieldSpeed: 1, // c_f
+  omega: 1, // pinned transverse cadence (beta_M = 1 on the rail); set by selectTabledRow
+  candidateRow: 1,
+  // Tabled candidate row (canonical, NOT a knob; selected via --row, default
+  // Row 1 = the packet Section 1 champion). See TABLED_ROWS below.
+  layers: null, // assigned by selectTabledRow at module load (bottom of DECLARED)
   // Regulators (declared, lane canon):
   soft: 0.02, // Jacobian softening in m_reg = D_T D_s / (D_s^2 + soft^2)
   coincidenceStratum: 0.01, // rho_c: declared d0-stratum run regulator.
@@ -152,6 +179,7 @@ export const DECLARED = {
     maxClickRows: 60, // detailed click rows retained (aggregates always kept)
   },
 };
+selectTabledRow(1);
 
 // ---------------------------------------------------------------------------
 // Site construction (identical geometry to the Section 22 champion evaluator).
@@ -711,7 +739,21 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
     const kinHeld = [-wH * wH * xi[0], -wH * wH * xi[1], 0];
     const ledger = [];
     const { a } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites });
-    samples.push({ site: sites[i].id, layer: sites[i].layer, kin, kinHeld, wake: a, ledger });
+    // radial support bookkeeping (survivability statistic, spec Sections 36-37):
+    // inward radial wake per unit kappa, against the centripetal need omega^2*rho
+    const rhoCyl = Math.hypot(xi[0], xi[1]);
+    const wakeInwardRadial =
+      rhoCyl > 1e-12 ? -((a[0] * xi[0] + a[1] * xi[1]) / rhoCyl) : 0;
+    samples.push({
+      site: sites[i].id,
+      layer: sites[i].layer,
+      kin,
+      kinHeld,
+      wake: a,
+      rhoCyl,
+      wakeInwardRadial,
+      ledger,
+    });
   }
   const fitKappa = (key) => {
     let num = 0;
@@ -760,11 +802,32 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
           }
         : null,
   };
+  // Per-layer radial support ratios at a given coupling (antipodal pair mean):
+  // s_a = kappa * inward-radial-wake / (omega^2 * rho) — the survivability
+  // statistic, same convention as spindle-support-ratio-targeted-search.mjs.
+  const supportAt = (kappa) => {
+    const acc = {};
+    for (const s of samples) {
+      const need = DECLARED.omega * DECLARED.omega * s.rhoCyl;
+      const v = (kappa * s.wakeInwardRadial) / need;
+      if (!acc[s.layer]) acc[s.layer] = { sum: 0, n: 0 };
+      acc[s.layer].sum += v;
+      acc[s.layer].n += 1;
+    }
+    return Object.fromEntries(
+      Object.entries(acc).map(([k, v]) => [k, v.sum / v.n])
+    );
+  };
+  const supportRatios = {
+    atFittedKappa: supportAt(kappaStar),
+    atFrozenKappa: frozenKappa != null ? supportAt(frozenKappa) : null,
+  };
   return {
     kappaStar,
     perSiteRelResidual: circFitted.perSiteRelResidual,
     globalRelResidual: circFitted.globalRelResidual,
     conventionPair,
+    supportRatios,
     samples,
   };
 }
@@ -1179,6 +1242,7 @@ if (isMain()) {
   DECLARED.chart.enabled = process.argv.includes("--chart");
   DECLARED.sea.enabled = process.argv.includes("--sea");
   DECLARED.sea.spacing = readCliNumber("sea-spacing", DECLARED.sea.spacing);
+  selectTabledRow(readCliNumber("row", 1));
   DECLARED.epicycle.I = readCliNumber("ei", 0);
   DECLARED.epicycle.M = readCliNumber("em", 0);
   DECLARED.epicycle.O = readCliNumber("eo", 0);
@@ -1225,6 +1289,11 @@ if (isMain()) {
         ? ` frozen/held-circle=${seed.conventionPair.frozenHeldCircleNeed.globalRelResidual.toFixed(6)}`
         : "") +
       "\n"
+  );
+  const sf = seed.supportRatios.atFittedKappa;
+  process.stderr.write(
+    `[seed] row=${DECLARED.candidateRow} supportRatios(I/M/O)=` +
+      `${sf.I.toFixed(4)}/${sf.M.toFixed(4)}/${sf.O.toFixed(4)} at fitted kappa*\n`
   );
 
   const progress = (step, steps, d) => {
@@ -1338,7 +1407,9 @@ if (isMain()) {
       globalRelResidualNative: seed.globalRelResidual,
       perSiteRelResidual: seed.perSiteRelResidual,
       conventionPair: seed.conventionPair,
-      prescribedEvaluatorAnchor: 0.4721,
+      supportRatios: seed.supportRatios,
+      candidateRow: DECLARED.candidateRow,
+      prescribedEvaluatorAnchor: DECLARED.candidateRow === 2 ? 0.3240 : 0.4721,
       seedRootLedger: seed.samples.map((s) => ({ site: s.site, ledger: s.ledger })),
     },
     release: {
