@@ -69,6 +69,91 @@ test("native seed record reproduces the prescribed-evaluator champion anchor", (
   assert.ok(Math.abs(seed.kappaStar - prescribed.kappaStar) < 1e-3);
 });
 
+test("epicyclic-hunt knobs: a.m.-matched apses, exact prehistory, exact regression", () => {
+  const saved = {
+    epicycle: { ...DECLARED.epicycle },
+    apsidalPhase: { ...DECLARED.apsidalPhase },
+    apsisStart: { ...DECLARED.apsisStart },
+  };
+  try {
+    // periapsis start + apsidal phase offset on the middle layer
+    DECLARED.epicycle.M = 0.1;
+    DECLARED.apsisStart.M = "peri";
+    DECLARED.apsidalPhase.M = deg(37);
+    const circular = (() => {
+      DECLARED.epicycle.M = 0;
+      DECLARED.apsidalPhase.M = 0;
+      DECLARED.apsisStart.M = "apo";
+      const s = buildSites();
+      DECLARED.epicycle.M = 0.1;
+      DECLARED.apsisStart.M = "peri";
+      DECLARED.apsidalPhase.M = deg(37);
+      return s;
+    })();
+    const sites = buildSites();
+    const mPlus = sites.find((s) => s.id === "M+");
+    const mCirc = circular.find((s) => s.id === "M+");
+    // periapsis radius rho*(1-e), faster matched circle omega/(1-e)^2
+    assert.ok(Math.abs(mPlus.rho - mCirc.rho * 0.9) < 1e-12);
+    assert.ok(Math.abs(mPlus.omegaHeld - 1 / (0.9 * 0.9)) < 1e-12);
+    // angular momentum matched to the tabled circular seed: rho*beta invariant
+    const beta = Math.hypot(...rigidVelocity(mPlus, 0));
+    assert.ok(Math.abs(mPlus.rho * beta - mCirc.rho * Math.hypot(...rigidVelocity(mCirc, 0))) < 1e-12);
+    // apsidal phase offset places the release azimuth at theta + phi
+    assert.ok(Math.abs(mPlus.phase - (deg(120) + deg(37))) < 1e-12);
+    // release is at an apsis: zero radial velocity against the held circle
+    const x = rigidPosition(mPlus, 0);
+    const v = rigidVelocity(mPlus, 0);
+    assert.ok(Math.abs(x[0] * v[0] + x[1] * v[1]) < 1e-12);
+    // exact prehistory: the held source model reproduces the worldline
+    for (const t of [-2.2, 0]) {
+      const sample = evaluateMovingCircularSourceHistory(heldSourceModel(mPlus), t);
+      const p = rigidPosition(mPlus, t);
+      assert.ok(Math.abs(sample.position.x - p[0]) < 1e-12);
+      assert.ok(Math.abs(sample.position.y - p[1]) < 1e-12);
+    }
+    // e=0, phi=0, apo regression is exact
+    DECLARED.epicycle.M = 0;
+    DECLARED.apsidalPhase.M = 0;
+    DECLARED.apsisStart.M = "apo";
+    const regressed = buildSites();
+    for (let i = 0; i < regressed.length; i += 1) {
+      assert.ok(Math.abs(regressed[i].rho - circular[i].rho) < 1e-15);
+      assert.ok(Math.abs(regressed[i].phase - circular[i].phase) < 1e-15);
+      assert.ok(Math.abs(regressed[i].omegaHeld - circular[i].omegaHeld) < 1e-15);
+    }
+  } finally {
+    Object.assign(DECLARED.epicycle, saved.epicycle);
+    Object.assign(DECLARED.apsidalPhase, saved.apsidalPhase);
+    Object.assign(DECLARED.apsisStart, saved.apsisStart);
+  }
+});
+
+test("seed record reports both hunt conventions (fitted/circular, frozen/held-circle)", () => {
+  const saved = { M: DECLARED.epicycle.M };
+  try {
+    DECLARED.epicycle.M = 0.05;
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const seed = seedRecordEvaluation(sites, heldOnly, null, 0.315105);
+    // spec Section 36 rows at e_M = 0.05: fitted/circular 0.4531,
+    // frozen/held-circle 0.4417
+    assert.ok(Math.abs(seed.conventionPair.fittedCircularNeed.globalRelResidual - 0.4531) < 2e-3);
+    assert.ok(Math.abs(seed.conventionPair.frozenHeldCircleNeed.globalRelResidual - 0.4417) < 2e-3);
+    assert.equal(seed.conventionPair.frozenHeldCircleNeed.kappa, 0.315105);
+  } finally {
+    DECLARED.epicycle.M = saved.M;
+  }
+});
+
 test("release is fail-closed and books the poised-clicker same-source opening", () => {
   assert.equal(FAIL_CLOSED.retainedBranchClaim, false);
   assert.equal(FAIL_CLOSED.scoreMovement, "no_score_increase");

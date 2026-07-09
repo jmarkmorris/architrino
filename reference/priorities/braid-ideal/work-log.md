@@ -1417,7 +1417,7 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 
 ## 2026-07-09 - Non-circular same-level release: epicyclic apoapsis seed improves native closure (0.4464) and survives coherently; isolated-braid verdict route-complete
 
-[Spec Section 36](fold-crossing-chart-spec.md#36-non-circular-same-level-release-the-epicyclic-apoapsis-seed-improves-native-closure-and-survives-coherently--but-the-isolated-braid-still-expands-2026-07-09). `--em/--ei/--eo` per-layer epicyclic seed added to the native run owner script (a.m.-matched apoapsis start, held prehistory = matched slower circle, production-native, no release discontinuity; kappa frozen at 0.315105, declared). Findings: seed residual IMPROVES 0.4721 -> 0.4531 (e_M=0.05, reproducing the Section 23 refined score from an orthogonal direction) -> 0.4464 (e_M=0.1) - a new hunt axis; released epicyclic braid is the best-behaved release measured (no halt through 2 rotations, ~500-580 two-sided escapement transactions, no ejection, no cap fall-in) but still expands self-similarly - the radial-support deficit is structural across ALL declared bookings and canon-named variants (circular/chart/sea/epicyclic), so the isolated-braid verdict on queue item 4 is route-complete. Tests 4 passing; fail-closed. Next: the epicyclic hunt (minimize native seed residual over (e_I,e_M,e_O, apsidal phases) at frozen kappa*) and the dynamically-responsive-sea question.
+[Spec Section 36](fold-crossing-chart-spec.md#36-non-circular-same-level-release-the-epicyclic-apoapsis-seed-improves-native-closure-and-survives-coherently--but-the-isolated-braid-still-expands-2026-07-09). `--em/--ei/--eo` per-layer epicyclic seed added to the native run owner script (a.m.-matched apoapsis start, held prehistory = matched slower circle, production-native, no release discontinuity; kappa frozen at 0.315105, declared). Findings: seed closure improves under both self-consistent conventions (fitted-kappa circular-need 0.4721 -> 0.4531 -> 0.4464; frozen-kappa held-circle-need 0.4721 -> 0.4417 -> 0.4188; the mixed frozen-kappa/circular-need pairing is flat-to-worse and reported for completeness) - a new hunt axis, with the convention ambiguity arguing the family be scored by released dynamics; released epicyclic braid is the best-behaved release measured (no halt through 2 rotations, ~500-580 two-sided escapement transactions, no ejection, no cap fall-in) but still expands self-similarly - the radial-support deficit is structural across ALL declared bookings and canon-named variants (circular/chart/sea/epicyclic), so the isolated-braid verdict on queue item 4 is route-complete. Tests 4 passing; fail-closed. Next: the epicyclic hunt (minimize native seed residual over (e_I,e_M,e_O, apsidal phases) at frozen kappa*) and the dynamically-responsive-sea question.
 
 ## 2026-07-09 — Discrete-event orbit integrator (spec Section 35; item 24 step 2b)
 - Rectification real (clicks cluster outward-phase; strengthens with quantum) but percent-scale: s_min ≈ 0.99 (q→0) → 0.97 (q=0.15). Knife edge: escape below, collapse at s=1.0.
@@ -1425,3 +1425,31 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - Division of labor quantified: clicker = speed pin + last-percent radial trim; geometry/sea must close radial support to ≳97% BEFORE release. Caps (0.53) now the binding constraint.
 - New survivability statistic for the search: radial support ratios ≈ 1 on all layers at unified kappa*, closure residual second.
 - 4 tests green (29 total, seven instruments this session).
+
+## 2026-07-09 — Support-first configuration search (spec Section 36; item 25)
+- Instrument validates against native seed support rows (0.90/0.75/0.53 two-digit match).
+- Caps fixed by qO pull-in (0.53→~1.0). Middle structural at 0.72 until the INNER AZIMUTH thetaI opened (frozen at the 120° convention in every prior search): thetaI ≈ −24° lifts M to 0.88.
+- SUPPORT-CANDIDATE V1: qI 0.462, qO 1.236, alphaI −10.4°, alphaM −2.7°, alphaO 84°, thetaO 337°, thetaI −23.7°; ratios (0.96, 0.88, 0.98); closure 0.3241 — new best by 31%, found by chasing SUPPORT. Objectives co-improve → basin looks physical.
+- Static toy sea ruled out as support fix (negligible at named spacing, harmful closer).
+- Gap: 0.88 + 0.03 clicker < 0.97. Routes: polish basin (alphaO trap check), epicyclic release at v1, responsive sea.
+- buildBraid extended backward-compatibly with thetaI/thetaM knobs (7/7 drift tests still green). 4 new tests green (33 total, eight instruments).
+
+## 2026-07-09 — v1 basin polish, sum rule, Row 2 tabled (spec Section 37; item 25 complete for this pass)
+- Basin floor real (descent flat; alphaO=84° sharply optimal, not a trap).
+- Frame-scaling lambda-probe: SUPPORT SUM RULE — allocation across layers free, total supply capped at mean ~0.94 at unified kappa*. v1 is the Pareto allocation. True deficit = ~6% GLOBAL, not 12% middle.
+- Reading: no rigid bare-void spindle self-supports; the missing ~6% is the responsive sea's job (static sea ruled out) — the corpus "Noether sea stability" obligation now has a number.
+- Support-candidate v1 tabled as Candidate Row 2 in the handoff packet (same machinery/discipline as Row 1 + support rows in the certificate; four named release diagnostics incl. the dispersal clock and inward-slip test).
+- Next evaluator track: responsive-sea ~6% feasibility estimate.
+
+## 2026-07-09 — Responsive-sea feasibility estimate (spec Section 38)
+- Linear-response instrument with full causal double delay: sea confinement margin OSCILLATES IN SIGN with shell spacing — spacing-selective confinement, a retardation resonance (instantaneous response would be Onsager-destabilizing; delay makes confinement possible). Harmonic matching at the medium scale.
+- Magnitude: best single shell R≈3.5 needs alpha≈11 vs rough O(1) per assembly — marginal-plausible for a dense phase-selected multi-shell sea. Sum rule makes allocation free; sea owes only the mean 6%.
+- Named spacing 4.25 NOT at a confining peak for this braid — co-tuning question handed to SH-0-sea.
+- 3 tests green (40 total, nine new instruments this session).
+
+## 2026-07-09 — Epicyclic candidate-row hunt (spec Section 39; epicyclic-hunt-handoff executed)
+- Owner script gained the two declared knobs: per-layer apsidal phase offsets (`--phi-i/m/o`) and apoapsis/periapsis start (`--start-i/m/o`); exact-prehistory preserved (release is necessarily at an apsis); both seed-record conventions (`conventionPair`) built into the report. 6 tests green.
+- 21 variants at frozen kappa*=0.315105, chart rc=0.05, 2-rotation window (best row extended to 3). Periapsis starts destructive (supra-rail birth → over-absorption scattering). e_M lever real but shallow (0.877→0.776 over e_M 0.05→0.25); e≥0.3 ejects the inner pair; e_I/e_O/all-layer null-to-worse.
+- NEW seed direction: phi_M ≈ +30° → fitted/circular 0.3077 (below v1's 0.3241, on the OLD champion), frozen/held 0.3680; narrow asymmetric optimum. Diagnostic only; handed to the item-25 basin.
+- Released dynamics: whole family expands; clean floor dradM ≈ 0.75 (em=0.25, phi=30°: steady through rotation 3, halt on radius bound at t=17.87); lower scores are I–M scattering artifacts (inner kicked to constant-speed coast), first-blocker-flagged.
+- VERDICT: family closed, no candidate named — the packet's authorized null outcome, consistent with the Section 37 sum rule. Gate stays fail-closed; knobs remain as reusable machinery for Candidate Row 2 release diagnostics.

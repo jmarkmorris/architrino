@@ -94,14 +94,31 @@ export const DECLARED = {
   // density-of-states integral via substeps), with the declared d0 stratum in
   // the force denominator; cross-pair channels keep the canonical m_reg.
   // Non-circular same-level seed (opt-in via --em/--ei/--eo): per-layer
-  // epicyclic release. The layer is seeded at its apoapsis radius
-  // rho*(1+e) with angular-momentum-matched tangential speed beta/(1+e), and
-  // its HELD prehistory is the matched slower circle (omega/(1+e)^2) — exactly
-  // representable as a production moving-circular source, so release carries
-  // no position/velocity discontinuity. e=0 reproduces the tabled circular
-  // seed exactly. Declared hunt probe: the escapement's natural cycle is
-  // sub-rail at apoapsis, rail-crossing clicks near periapsis.
+  // epicyclic release. The layer is seeded at its apsis radius rho*f with
+  // angular-momentum-matched tangential speed beta/f, and its HELD prehistory
+  // is the matched circle (omega/f^2) — exactly representable as a production
+  // moving-circular source, so release carries no position/velocity
+  // discontinuity. e=0 reproduces the tabled circular seed exactly. Declared
+  // hunt probe: the escapement's natural cycle is sub-rail at apoapsis,
+  // rail-crossing clicks near periapsis.
+  //
+  // Epicyclic-hunt knobs (epicyclic-hunt-handoff.md; both declared):
+  //  - apsisStart (--start-i/--start-m/--start-o = apo|peri): which apsis the
+  //    layer is released from. f = 1+e (apoapsis, slower matched circle) or
+  //    f = 1-e (periapsis, faster matched circle). Both are a.m.-matched
+  //    (rho*f * beta/f = rho*beta) and both keep the exact-prehistory
+  //    property: with an origin-centered matched-circle prehistory the
+  //    release point necessarily has zero radial velocity, i.e. release is
+  //    always AT an apsis — the start choice selects which one.
+  //  - apsidalPhase (--phi-i/--phi-m/--phi-o, degrees): per-layer azimuthal
+  //    offset of the apsis line (argument of apsis). The layer is released at
+  //    azimuth theta + phi instead of theta, i.e. the release point / apsis
+  //    is placed elsewhere along the closed epicycle relative to the braid
+  //    pattern. The tabled azimuth theta itself is untouched; phi is the
+  //    declared epicyclic knob. phi=0 regresses exactly.
   epicycle: { I: 0, M: 0, O: 0 },
+  apsidalPhase: { I: 0, M: 0, O: 0 }, // radians
+  apsisStart: { I: "apo", M: "apo", O: "apo" }, // "apo" | "peri"
   // Sea-confined mode (opt-in via --sea): the SH-0-sea FCC-12 static shell
   // (held-release-causal-wake-toy.mjs sea-screened decoration; spec Section 27
   // precedent) as a ONE-WAY held environment — 12 aligned face-opposite
@@ -143,8 +160,13 @@ export function buildSites() {
   const sites = [];
   for (const L of DECLARED.layers) {
     const e = DECLARED.epicycle[L.name] ?? 0;
+    const phi = DECLARED.apsidalPhase[L.name] ?? 0;
+    const start = DECLARED.apsisStart[L.name] ?? "apo";
+    // apsis factor: apoapsis f=1+e (slower matched circle), periapsis f=1-e
+    // (faster matched circle); both a.m.-matched, both exact-prehistory.
+    const f = start === "peri" ? 1 - e : 1 + e;
     for (const sgn of [+1, -1]) {
-      const rho = L.R * Math.cos(L.alpha) * (1 + e);
+      const rho = L.R * Math.cos(L.alpha) * f;
       sites.push({
         id: `${L.name}${sgn > 0 ? "+" : "-"}`,
         layer: L.name,
@@ -152,11 +174,14 @@ export function buildSites() {
         alpha: L.alpha,
         rho,
         z0: sgn * L.R * Math.sin(L.alpha),
-        phase: L.theta + (sgn > 0 ? 0 : Math.PI),
+        phase: L.theta + phi + (sgn > 0 ? 0 : Math.PI),
         pol: sgn, // polarity product sigma_i sigma_j is all the force law uses
-        // held cadence: angular-momentum-matched slower circle at apoapsis
-        omegaHeld: DECLARED.omega / ((1 + e) * (1 + e)),
+        // held cadence: angular-momentum-matched circle at the chosen apsis
+        omegaHeld: DECLARED.omega / (f * f),
         epicycle: e,
+        apsisFactor: f,
+        apsisStart: start,
+        apsidalPhase: phi,
       });
     }
   }
@@ -673,43 +698,75 @@ export function chartWindowIntegrate({
 // ---------------------------------------------------------------------------
 // Seed-record native evaluation (t = 0-, all held): anchor + native kappa* fit.
 // ---------------------------------------------------------------------------
-export function seedRecordEvaluation(sites, histories, seaSites = null) {
+export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKappa = null) {
   const samples = [];
   for (let i = 0; i < sites.length; i += 1) {
     const xi = rigidPosition(sites[i], 0);
     const vi = rigidVelocity(sites[i], 0);
     const w2 = DECLARED.omega * DECLARED.omega;
-    const kin = [-w2 * xi[0], -w2 * xi[1], 0]; // centripetal need, cylindrical
+    const kin = [-w2 * xi[0], -w2 * xi[1], 0]; // circular need at tabled cadence
+    // held-circle need: the seed's OWN prehistory circle (omegaHeld^2 * rho) —
+    // the self-consistent convention for a non-circular seed (spec Section 36).
+    const wH = sites[i].omegaHeld ?? DECLARED.omega;
+    const kinHeld = [-wH * wH * xi[0], -wH * wH * xi[1], 0];
     const ledger = [];
     const { a } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites });
-    samples.push({ site: sites[i].id, layer: sites[i].layer, kin, wake: a, ledger });
+    samples.push({ site: sites[i].id, layer: sites[i].layer, kin, kinHeld, wake: a, ledger });
   }
-  let num = 0;
-  let den = 0;
-  for (const s of samples) {
-    for (let c = 0; c < 3; c += 1) {
-      num += s.kin[c] * s.wake[c];
-      den += s.wake[c] * s.wake[c];
+  const fitKappa = (key) => {
+    let num = 0;
+    let den = 0;
+    for (const s of samples) {
+      for (let c = 0; c < 3; c += 1) {
+        num += s[key][c] * s.wake[c];
+        den += s.wake[c] * s.wake[c];
+      }
     }
-  }
-  const kappaStar = num / den;
-  const perLayer = {};
-  let rA = 0;
-  let fA = 0;
-  for (const s of samples) {
-    let res = 0;
-    let ref = 0;
-    for (let c = 0; c < 3; c += 1) {
-      const d = s.kin[c] - kappaStar * s.wake[c];
-      res += d * d;
-      ref += s.kin[c] * s.kin[c];
-      rA += d * d;
-      fA += s.kin[c] * s.kin[c];
+    return num / den;
+  };
+  const residuals = (key, kappa) => {
+    const perLayer = {};
+    let rA = 0;
+    let fA = 0;
+    for (const s of samples) {
+      let res = 0;
+      let ref = 0;
+      for (let c = 0; c < 3; c += 1) {
+        const d = s[key][c] - kappa * s.wake[c];
+        res += d * d;
+        ref += s[key][c] * s[key][c];
+        rA += d * d;
+        fA += s[key][c] * s[key][c];
+      }
+      // antipodal pair shares the value; keep per-site, summarize per layer
+      perLayer[s.site] = Math.sqrt(res / ref);
     }
-    // antipodal pair shares the value; keep per-site, summarize per layer
-    perLayer[s.site] = Math.sqrt(res / ref);
-  }
-  return { kappaStar, perSiteRelResidual: perLayer, globalRelResidual: Math.sqrt(rA / fA), samples };
+    return { perSiteRelResidual: perLayer, globalRelResidual: Math.sqrt(rA / fA) };
+  };
+  const kappaStar = fitKappa("kin");
+  const circFitted = residuals("kin", kappaStar);
+  // Both seed-record conventions per variant (epicyclic-hunt-handoff.md,
+  // diagnostics only; the hunt's primary objective is the released dynamics):
+  //  A. fitted-kappa*/circular-need (per-variant refit, tabled-cadence need)
+  //  B. frozen-kappa*/held-circle-need (declared frozen coupling, the seed's
+  //     own prehistory-circle need)
+  const conventionPair = {
+    fittedCircularNeed: { kappaStar, globalRelResidual: circFitted.globalRelResidual },
+    frozenHeldCircleNeed:
+      frozenKappa != null
+        ? {
+            kappa: frozenKappa,
+            globalRelResidual: residuals("kinHeld", frozenKappa).globalRelResidual,
+          }
+        : null,
+  };
+  return {
+    kappaStar,
+    perSiteRelResidual: circFitted.perSiteRelResidual,
+    globalRelResidual: circFitted.globalRelResidual,
+    conventionPair,
+    samples,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -1125,6 +1182,22 @@ if (isMain()) {
   DECLARED.epicycle.I = readCliNumber("ei", 0);
   DECLARED.epicycle.M = readCliNumber("em", 0);
   DECLARED.epicycle.O = readCliNumber("eo", 0);
+  // Epicyclic-hunt knobs: apsidal phase offsets (degrees) and apsis start.
+  DECLARED.apsidalPhase.I = deg(readCliNumber("phi-i", 0));
+  DECLARED.apsidalPhase.M = deg(readCliNumber("phi-m", 0));
+  DECLARED.apsidalPhase.O = deg(readCliNumber("phi-o", 0));
+  const readStart = (name) => {
+    const arg = process.argv.find((a) => a.startsWith(`--start-${name}=`));
+    const v = arg ? arg.slice(`--start-${name}=`.length) : "apo";
+    if (v !== "apo" && v !== "peri") {
+      process.stderr.write(`[abort] --start-${name} must be apo|peri, got "${v}"\n`);
+      process.exit(1);
+    }
+    return v;
+  };
+  DECLARED.apsisStart.I = readStart("i");
+  DECLARED.apsisStart.M = readStart("m");
+  DECLARED.apsisStart.O = readStart("o");
   const kappaOverride = readCliNumber("kappa", NaN);
   const outName = process.argv.find((a) => a.startsWith("--out="))?.slice(6) ?? "report.json";
   const t0 = Date.now();
@@ -1132,7 +1205,12 @@ if (isMain()) {
   // Seed record: native production-runtime evaluation at t = 0 (all held).
   const sites = buildSites();
   const seedHistories = sites.map((s) => new RetainedHistory(s));
-  const seed = seedRecordEvaluation(sites, seedHistories, buildSeaSites());
+  const seed = seedRecordEvaluation(
+    sites,
+    seedHistories,
+    buildSeaSites(),
+    Number.isFinite(kappaOverride) ? kappaOverride : null
+  );
   if (Number.isFinite(kappaOverride)) {
     // frozen coupling for cross-variant comparability (declared, no refit)
     seed.kappaStarFitted = seed.kappaStar;
@@ -1140,6 +1218,13 @@ if (isMain()) {
   }
   process.stderr.write(
     `[seed] native kappa*=${seed.kappaStar.toFixed(6)} globalRelResidual=${seed.globalRelResidual.toFixed(6)}\n`
+  );
+  process.stderr.write(
+    `[seed] conventionPair fitted/circular=${seed.conventionPair.fittedCircularNeed.globalRelResidual.toFixed(6)}` +
+      (seed.conventionPair.frozenHeldCircleNeed
+        ? ` frozen/held-circle=${seed.conventionPair.frozenHeldCircleNeed.globalRelResidual.toFixed(6)}`
+        : "") +
+      "\n"
   );
 
   const progress = (step, steps, d) => {
@@ -1249,8 +1334,10 @@ if (isMain()) {
     declared: DECLARED,
     seedRecord: {
       kappaStarNative: seed.kappaStar,
+      kappaStarFitted: seed.kappaStarFitted ?? seed.kappaStar,
       globalRelResidualNative: seed.globalRelResidual,
       perSiteRelResidual: seed.perSiteRelResidual,
+      conventionPair: seed.conventionPair,
       prescribedEvaluatorAnchor: 0.4721,
       seedRootLedger: seed.samples.map((s) => ({ site: s.site, ledger: s.ledger })),
     },

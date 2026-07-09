@@ -37,3 +37,30 @@ Shape loss (layers disperse); rail loss (middle slides off $c_f$ without pin beh
 ## 5. Operator Steps
 
 Run from a fresh thread with the codex goal-seeking wrapper; keep this packet as the scope contract; the acceptance decision (or rejection with first blocker) happens in that thread. On acceptance, queue item 4 flips to accepted and the archive call on superseded configuration families (operator's standing wish) ripens.
+
+## Candidate Row 2: Support-Candidate v1 (tabled 2026-07-09)
+
+Named after the Section 36 support-first search (owner script [spindle-support-ratio-targeted-search.mjs](../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 4 passing). Same release protocol, machinery, regulators, and acceptance discipline as the executed Candidate Row 1 (Section 30 run record), with the SUPPORT ROWS added to the certificate (per-layer radial support ratios at the frozen seed-fitted kappa*, reported at seed and along the release).
+
+Exact parameters (spindle family, R_M = 1, pinned cadence c_trans = 1, all six sites antipodal pairs):
+
+| knob | value |
+| --- | --- |
+| q_I | 0.462 |
+| q_O | 1.236 |
+| alpha_I | -10.44 deg |
+| alpha_M | -2.67 deg |
+| alpha_O | 84.00 deg |
+| theta_I | -23.70 deg |
+| theta_M | 120 deg (convention) |
+| theta_O | 337.04 deg |
+
+Seed expectations (evaluator, to validate against the native seed record before release): unified kappa* ~ 0.297-0.32 band; closure residual 0.3241; support ratios (I, M, O) = (0.96, 0.88, 0.98).
+
+Release diagnostics this row is FOR (report regardless of retention outcome):
+1. Dispersal clock: at a ~6% global support deficit (vs 24% for Row 1) linear scaling predicts several-fold slower shape loss. Measure time-to-tube-loss against Row 1's t ~ 0.83.
+2. Middle rail behavior: Sections 32-35 predict the released middle should NOT ride outward; candidate behaviors are inward slip toward its wake-equilibrium radius, or rail-straddling chatter (clicks at up-crossings). Report the middle's r(t), beta(t), and same-source click ledger.
+3. Allocation dynamics: the Section 37 lambda-probe found a capped total supply with free allocation; watch whether the released braid re-allocates (I/O frame scale drifting against middle radius) rather than dispersing isotropically.
+4. Support rows along the release: per-layer support ratios vs time — does the 0.94 mean hold while allocation shifts?
+
+Acceptance rule unchanged (same-thread operator decision, fail-closed): retention requires the full Section 30 certificate; anything less is a diagnostics-only run. The gate stays `retainedBranchClaim=false`, `scoreMovement=no_score_increase` unless the operator accepts a complete certificate in the run thread.
