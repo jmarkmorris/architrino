@@ -861,7 +861,7 @@ $$
 $$
 Failure of this transversality floor marks a caustic-like or degenerate wake-root regime. It must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
-For self-hits, the shared root function does not erase the additional geometry carried by source identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-source root existence together with the transversality floor.
+For self-hits, the shared root function does not erase the additional geometry carried by source identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-source root existence together with the transversality floor and the retained receiver-normal branch strength.
 
 The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and not the regularization width $\eta$. It denotes a declared positive lower bound for one retained branch chart, certificate, or regularized model after the units, root labels, endpoint convention, and memory window have been fixed. Concrete branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. The existence of a positive floor is part of simple-root admissibility; its numerical value belongs to the branch-chart or validation record, not to the universal parameter ledger. It is not a coordinate parameter and cannot be removed by relabeling the same history.
 
@@ -3143,7 +3143,7 @@ $$
 <
 c_f(T-T_{\mathrm{em}})
 $$
-Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone.
+Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit force contribution additionally carries the same-record receiver-normal branch strength.
 
 This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-source roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
 
@@ -3898,6 +3898,22 @@ Thus starvation is a root-complex obstruction before it is a speed slogan: if th
 
 This is not the same event as the interior fold law of Proposition 3. A generic interior fold creates or removes one positive and one negative generator and therefore preserves the signed degree $D_{ij}$. Forward-row starvation is a memory-boundary event: a generator leaves the retained interval $[T-h,T)$ because its required delay has crossed the available history depth. The finite-window signed degree $D_{ij}^{(h)}$ may therefore change unless a replacement generator enters through the boundary or the branch chart is reorganized by the Noether sea. Search artifacts should log this as boundary-exit degree bookkeeping, not as a $\Delta N=\pm2,\Delta D=0$ fold.
 
+###### Separator Taxonomy
+
+Three distinct events terminate a simple-root branch chart. They have different degeneracy conditions, different velocity arguments, and different ledger consequences, and a proof program that keys its arc partition to a single "field-speed separator" will conflate them.
+
+| Event | Condition | Velocity that appears | Root ledger | Branch strength | Certificate route |
+| --- | --- | --- | --- | --- | --- |
+| **Source-normal caustic** | $D_{s,ij}=0$, i.e. $\mathbf V_j(T_{\mathrm{em}})\cdot\hat{\mathbf r}_{ij}=c_f$ | source, at emission time | fold: $\Delta N_{ij}=\pm2$, $\Delta D_{ij}=0$ (Proposition 3) | $W_{ij}^{\mathrm{rec}}\to\infty$ | finite-order caustic normal form and the finite-impulse lemma; cusps and higher strata route to a singular-stratum chart |
+| **Receiver-normal null** | $D_{T,ij}=0$, i.e. $\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}=c_f$ | receiver, at reception time | unchanged: $\Delta N_{ij}=0$, $\Delta D_{ij}=0$ | $W_{ij}^{\mathrm{rec}}\to0$ | none needed for existence; the branch goes silent and the receiver-velocity affine chart ends at a modulus kink |
+| **Memory-boundary exit** | $T-T_{\mathrm{em},\ell}\to h$ | either, through the delay | $\Delta N_{ij}=\pm1$ possible; $D_{ij}^{(h)}$ may change | finite | boundary-exit degree bookkeeping (Proposition 4); *not* a fold |
+
+Two consequences follow immediately.
+
+First, $\|\mathbf V_i(T)\|=c_f$ is by itself none of these. It is a receiver-normal null only for branches whose line of action is aligned with the receiver's motion, and it is a source-normal caustic only for the source, at emission time, on the branches it emitted. A reduction that identifies the two — for instance by freezing the source velocity equal to the receiver's on a locally affine window — manufactures a caustic at $\|\mathbf V_i\|=c_f$ that the exact law does not have. Locally affine branch tables are candidate generators; they may not be used to locate separators.
+
+Second, a closed-cycle parity ledger cannot be written over folds alone. On a cycle, $\sum_\Sigma\Delta N_{ij}=0$ and $\sum_\Sigma\Delta D_{ij}=0$ hold only after boundary-exit events are counted in the same sum, and those events carry odd unsigned jumps. Requiring every local jump to be even is a sufficient test only on charts certified free of memory-boundary exit.
+
 ###### Single-Hit Regime (Unique $T_{\mathrm{em}}$)
 
 In the **sub-field-speed regime** ($\|\mathbf V_j(T_{\mathrm{em}})\| < c_f$ locally), Proposition 2 applies, and the map is strictly monotone:
@@ -3950,7 +3966,7 @@ $$
 \|\mathbf X_i(T) - \mathbf X_i(T_{\mathrm{em}})\| = c_f(T - T_{\mathrm{em}}), \quad T_{\mathrm{em}} < T
 $$
 
-This equation nominates a same-source causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $T_{\mathrm{em}}=T$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger rows required by the claimed assembly branch close.
+This equation nominates a same-source causal root. It becomes an admitted self-hit contribution only on a retained branch chart: the coincident $T_{\mathrm{em}}=T$ branch is excluded by the $H(0)=0$ convention, the root has positive separation or explicit regularization data, the transversality/Jacobian floor is positive, the same-record receiver-normal branch strength $W_{ii}^{\mathrm{rec}}$ is retained on its floor or certified bounded interval $\nu_{\mathrm{rec}}$, the active-root count is controlled, inactive-root gaps and finite memory are certified, and the stability/action ledger rows required by the claimed assembly branch close.
 
 **Interval-speed lemma.** Let $\Delta=T-T_{\mathrm{em}}>0$ and suppose $\mathbf X_i$ is absolutely continuous on $[T_{\mathrm{em}},T]$. If
 $$
@@ -3966,7 +3982,7 @@ This follows immediately from the triangle inequality. Therefore strict sub-fiel
 
 1. **Curvature**: Straight-line motion admits no self-hits (the worldline never intersects its own past causal isochrons).
 2. **Super-field-speed interval history**: along the interval from emission to reception, the architrino must have exceeded $c_f$ somewhere, unless the branch is the degenerate straight field-speed case excluded by the simple-root assumptions.
-3. **Regular branch admissibility**: the same-source root must be retained on a branch chart with a positive transversality/Jacobian floor, controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger rows required by the claimed assembly branch.
+3. **Regular branch admissibility**: the same-source root must be retained on a branch chart with a positive transversality/Jacobian floor, a retained same-record receiver-normal branch-strength row ($W_{ii}^{\mathrm{rec}}$ on its floor or certified bounded interval $\nu_{\mathrm{rec}}$), controlled distance or regularization data, inactive-root gaps, finite memory, and the stability/action ledger rows required by the claimed assembly branch.
 
 **Key clarification:**
 
@@ -4194,7 +4210,7 @@ $$
 
 Because $r = c_f(T - T_{\mathrm{em}})$, $r = 0$ implies $\Delta = T - T_{\mathrm{em}} = 0$. This case is excluded by $H(0) = 0$. There are no "collision singularities" in the causal set (architrinos can pass through each other; forces are mediated by expanding wake surfaces, not by contact).
 
-This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
+This also fixes the status of later short-distance regularizations. A finite core cutoff or core mollifier is not a hard exclusion sphere, an elastic contact collision, or a primitive rule saying that causal wakes are blocked by or transmitted through an opaque core. It is a declared mathematical control on the near-origin amplitude inside a regularized branch chart. In the canonical branch law, a source contribution is admitted by the causal-root constraint, polarity sign $\sigma_{ij}$, separation or regularization data, transversality/Jacobian control, the same-record receiver-normal branch strength $W_{ij}^{\mathrm{rec}}$, active-root count, and the required stability/action/event ledgers. A polarity-dependent short-distance kernel would therefore be an additional model term that must be derived and validated; it cannot be inserted as an unproved like-versus-opposite collision or opacity rule.
 
 ###### Superposition Principle
 
@@ -4355,6 +4371,85 @@ The even scalar part feeds the coarse scalar wake potential, while the odd veloc
 
 **Receiver-normal branch modulation:** Unlike models that make source strength itself a function of speed, the velocity dependence here enters through the **moving-transceiver geometry** of emission and reception, the **geometry of causal intersections**, and the **source-normal/receiver-normal cadence ratio** in the Euclidean void. This is the origin of the receiver-normal denominator-numerator law and the seed of relativistic and magnetic behavior in the emergent theory.
 
+###### Receiver-Velocity Affine Form and the Branch Resistance Tensor
+
+The receiver-normal numerator enters the canonical law only through $D_{T,ij}=c_f-\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}$, and it is the one place where the receiver's *instantaneous* velocity appears. Everything else in a branch row — the root $T_{\mathrm{em},\ell}$, the separation $r_{ij}$, the line of action $\hat{\mathbf r}_{ij}$, the source-normal denominator $D_{s,ij}$ — is determined by the receiver's position and the retained source history. That asymmetry has an exact consequence.
+
+On the **sub-field-speed receiver chart** $\|\mathbf V_i(T)\| < c_f$ every active branch satisfies $D_{T,ij} > 0$, so the modulus in $W_{ij}^{\mathrm{rec}}$ resolves. Define the branch coefficient
+
+$$
+w_\ell
+\equiv
+\kappa\,\sigma_{ij}\,
+\frac{|q_iq_j|}{r_{ij}^2\,|D_{s,ij}|},
+$$
+
+which carries the polarity sign and is independent of $\mathbf V_i(T)$. Then each per-hit term is $w_\ell(c_f-\mathbf V_i\cdot\hat{\mathbf r}_\ell)\hat{\mathbf r}_\ell$, and summing over the active causal-root set gives the **receiver-velocity affine form of the Master Equation**:
+
+$$
+\boxed{
+\frac{d^2\mathbf X_i}{dT^2}
+=
+c_f\,\boldsymbol{\Xi}_i
+-
+\mathsf{M}_i\,\mathbf V_i(T)
+}
+$$
+
+$$
+\boldsymbol{\Xi}_i
+\equiv
+\sum_{\ell} w_\ell\,\hat{\mathbf r}_\ell,
+\qquad
+\mathsf{M}_i
+\equiv
+\sum_{\ell} w_\ell\,\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell
+$$
+
+Both the **branch drive** $\boldsymbol{\Xi}_i$ and the **branch resistance tensor** $\mathsf{M}_i$ are functionals of the retained history and of $\mathbf X_i(T)$ alone. The Master Equation is therefore *exactly affine* in the receiver's instantaneous velocity on this chart, with no approximation and no expansion in $\|\mathbf V_i\|/c_f$.
+
+**Polarity fixes the sign of the resistance.** $\mathsf{M}_i$ is a sum of rank-one projectors weighted by $w_\ell$, hence symmetric, with signature set entirely by $\sigma_{ij}$: every repulsive branch contributes a positive-semidefinite term, every attractive branch a negative-semidefinite term. Since $\sigma_{ii}=+1$, **every self-hit contributes positively.** Contracting the affine form with $\mathbf V_i$ gives the branch power
+
+$$
+\frac{d}{dT}\left(\tfrac{1}{2}\|\mathbf V_i\|^2\right)
+=
+c_f\,\boldsymbol{\Xi}_i\cdot\mathbf V_i
+-
+\sum_\ell w_\ell\, s_\ell^2,
+\qquad
+s_\ell\equiv \mathbf V_i\cdot\hat{\mathbf r}_\ell
+$$
+
+The first term is odd in the radial rate $s_\ell$: it reverses sign when the radial motion reverses, and it is the only term a source-normal-only weight $c_f/|D_{s,ij}|$ retains. The second term is **even** in $s_\ell$ and does not reverse. Attraction ($w_\ell<0$) therefore injects at rate $|w_\ell|s_\ell^2$ on every branch, in both directions of radial motion; repulsion drains at the same rate, vanishing only at $s_\ell=0$. This is the exact sense in which the receiver-normal factor is not a small kinematic correction: it is the entire velocity-dependent force, and it is a polarity-signed damping law.
+
+Dropping the receiver-normal numerator and weighting a branch by $c_f/|D_{s,ij}|$ instead — the source-normal-only Doppler weight — removes precisely the $w_\ell s_\ell^2$ term and leaves a work-symmetric law. A calculation built on that weight studies a different dynamical system, not a conservative approximation to this one.
+
+**Emergent velocity-dependent force.** $\mathsf{M}_i\mathbf V_i$ is the velocity-dependent force promised in [Implication for emergent forces](#total-acceleration-sum-over-all-causal-hits). Because $\mathsf{M}_i$ is symmetric, the instantaneous branch law carries **no antisymmetric part**: there is no $\mathbf V_i\times\mathbf B$ contribution hidden inside a single evaluation of the causal-root set. Any magnetic-like antisymmetric response must therefore be generated by the history dependence of $\boldsymbol{\Xi}_i$ and $\mathsf{M}_i$ under assembly and Noether sea closure, not by the pointwise kernel.
+
+**Field-speed barrier.** As $\mathbf V_i\cdot\hat{\mathbf r}_\ell \to c_f^-$ on a branch, that branch's entire contribution vanishes. Since $\hat{\mathbf r}_\ell$ points from the past source position toward the present receiver position, $\mathbf V_i\cdot\hat{\mathbf r}_\ell = c_f$ says the receiver recedes from that emission point at exactly field speed. Hence:
+
+> A branch whose source lies behind the receiver, in the sense $\mathbf V_i\cdot\hat{\mathbf r}_\ell>0$, cannot accelerate the receiver through field speed along its own line of action. Only a branch with $\mathbf V_i\cdot\hat{\mathbf r}_\ell<c_f$ can. In one dimension this means a receiver can be carried through $|dX/dT|=c_f$ only by attraction from a source image lying ahead of it, never by self-repulsion from its own path history.
+
+**Common-sightline arcs.** If every active branch on an arc shares one line-of-action sign, $\hat{\mathbf r}_\ell=\rho\,\hat{\mathbf e}$ with $\rho$ fixed, then $D_{T,\ell}=c_f-\rho\,\mathbf V_i\cdot\hat{\mathbf e}$ is a *common positive prefactor* of every term in the branch sum. On such an arc the receiver-normal factor cannot change which branch family dominates; it rescales all magnitudes together by $|D_T|/c_f$. Dominance arguments survive the factor unchanged; acceleration floors and transit times do not, and must be rescaled by $|D_T|/c_f\in[1-U_{\max}/c_f,\,1+U_{\max}/c_f]$ on a tame envelope $\|\mathbf V_i\|\le U_{\max}<c_f$.
+
+**Chart boundary.** The affine form holds up to the **receiver-normal null surface** $D_{T,ij}=0$, that is $\mathbf V_i(T)\cdot\hat{\mathbf r}_{ij}=c_f$. There the branch goes silent and the modulus in $W_{ij}^{\mathrm{rec}}$ acquires a kink; the acceleration is continuous but the affine chart ends. This surface changes no root count and is not a fold. Its relation to the other branch events is fixed in [Separator Taxonomy](#separator-taxonomy).
+
+In the collinear reduction $\hat{\mathbf r}_\ell=\pm1$ and $\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell=1$, so the affine form collapses to a scalar delayed equation with polarity-signed damping,
+
+$$
+\frac{d^2X}{dT^2}
++
+\Gamma(T)\,\frac{dX}{dT}
+=
+c_f\,\Xi(T),
+\qquad
+\Gamma=\sum_\ell w_\ell,
+\qquad
+\Xi=\sum_\ell w_\ell\,\hat r_\ell
+$$
+
+with $\Gamma$ and $\Xi$ independent of $dX/dT$ at time $T$.
+
 ---
 
 ##### Delay Differential Equation (DDE) Formulation
@@ -4405,7 +4500,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 ###### Regularization (Mollified Causal Wake Surfaces, Finite $\eta$)
 
-The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous receiver-time branch contribution; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous receiver-time branch contribution weighted by the receiver-normal branch strength; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - c_f\Delta) \longrightarrow \delta_\eta(r - c_f\Delta) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - c_f\Delta)^2}{2\eta^2}\Big)
@@ -4415,7 +4510,7 @@ while preserving total emission $q$.
 
 **Effect:** Under the finite-branch, distance-floor, and transversality assumptions stated below, this supports **continuous-in-time force diagnostics** and classical $C^1$ solutions for $\mathbf X_i(T)$ given $C^1$ initial data.
 
-**In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, and Jacobian floor remain controlled.
+**In the super-field-speed regime** ($\|\mathbf V_a\| > c_f$), multiple self-roots can occur; summing over all causal times with an integrable regularization gives a finite contribution only while the active-root count, separation floor, Jacobian floor, and receiver-normal branch strength remain controlled.
 
 **Convergence requirement:** As $\eta \to 0$, numerical solutions must converge to a well-defined limit. If a theorem or simulation also introduces a short-distance core mollifier $\epsilon_c$, it must declare whether the amplitude remains polarity-blind apart from $\sigma_{ij}|q_i q_j|$ or whether a derived polarity-dependent kernel has been added. The default law uses the former convention; the latter is a new closure claim and must preserve the same causal-root, symmetry, and event-ledger checks before it can be used in an assembly or blackbody argument.
 
@@ -4541,7 +4636,7 @@ $$
 
 The total acceleration on a particle at any instant is the **vector sum** of the contributions from every causal entry in its path history.
 
-**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-source root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
+**Operational implication:** Every architrino is continuously immersed in the superposed wakes of all others (and, when the same-source root condition permits, its own). Tractability comes from treating each causal emission independently with $1/r^2$ distance weighting modulated by the receiver-normal branch strength $W^{\mathrm{rec}}$, branch gaps, and screening or cancellation assumptions that make the retained sum finite.
 
 Inverse-square dilution alone is not a global convergence theorem. For an infinite source family, a branch chart must declare a summation or continuum prescription under which
 $$
@@ -4899,7 +4994,7 @@ $$
 1. **Event-local at the receiver**: Only intersecting delayed causal wake surfaces contribute (no action-at-a-distance).
 2. **Non-Markovian**: Depends on full path history (self-hit memory).
 3. **Superposition**: Linear sum over all sources and causal roots.
-4. **Self-hit**: Repulsive same-source interaction when $\mathcal{C}_{ii}(T)$ is nonempty with a valid transversality floor; super-field-speed interval history is a necessary warning condition for simple nontrivial roots and can persist as memory after slowing down.
+4. **Self-hit**: Repulsive same-source interaction when $\mathcal{C}_{ii}(T)$ is nonempty with a valid transversality floor and a retained receiver-normal branch strength; super-field-speed interval history is a necessary warning condition for simple nontrivial roots and can persist as memory after slowing down.
 5. **Radial line of action with receiver-normal branch weighting**: No magnetic or velocity-cross-product terms; all per-hit accelerations point along $\hat{\mathbf{r}}_{ij}$, with magnitude modulated by $W_{ij}^{\mathrm{rec}}$.
 
 ###### Implications for Emergent Phenomena
@@ -5919,7 +6014,7 @@ leading affine radial jet at sampled level and still keep a positive retained
 past profile with the expected $3+1$ active-root ledger after tangential
 transport. This does not certify A1 closure. It moves the theorem-grade burden
 to finite-collar control after endpoint-slope cancellation: positivity,
-inactive gaps, Jacobian floors, finite memory, tangential transport, and the
+inactive gaps, Jacobian floors, receiver-normal branch strengths, finite memory, tangential transport, and the
 full radial residual must all be bounded on the same branch chart.
 
 ---
@@ -6791,9 +6886,9 @@ K_{\mathrm{eff}}^{(\eta)}
 $$
 while the source-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $T_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver force.
 
-This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive Jacobian floors, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
+This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive source-normal Jacobian floors, retained same-record receiver-normal branch-strength rows, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
-**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive Jacobian floor, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
+**Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive source-normal Jacobian floor, a retained receiver-normal branch-strength floor $\nu_{\mathrm{rec}}$, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
 $$
 X_{ij}^{\mathfrak{B}}(T_\ast)
 \equiv
@@ -9062,7 +9157,7 @@ Methodological priority:
   \sum_{T_{\mathrm{em}}\in\mathcal C_{ij,b}^{(\eta)}(T)}
   V_{i\leftarrow j,T_{\mathrm{em}}}^{(\eta)}(T)
   $$
-  on the same active causal-root ledger used by the force residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, and receiver radial power have survived the row aggregation.
+  on the same active causal-root ledger used by the force residual and energy crosswalk. Thus a small branch-virial residual is meaningful only after source identity, polarity, emission time, Jacobian, receiver-normal branch strength, and receiver radial power have survived the row aggregation.
   When the branch is differentiable after mollification and the same signed causal-root ledger is retained, direct differentiation gives the finite-window identity
   $$
   \left\langle
@@ -9113,7 +9208,7 @@ Methodological priority:
 - Velocity-regime scope for the branch-virial target:
   - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, source-normal denominators, and receiver-normal branch factors still remain in the acceleration term.
   - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
-  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf A_{i,b}^{(\eta)}(T)$. A speed label alone never certifies the branch; root existence, transversality, and bounded endpoint virial drift do the work.
+  - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf A_{i,b}^{(\eta)}(T)$. A speed label alone never certifies the branch; root existence, transversality, receiver-normal branch strength, and bounded endpoint virial drift do the work.
 - Failure modes:
   - $\mathcal{G}_b^{(\eta)}$ has unbounded secular drift on $W$.
   - The causal-root ledger changes, an inactive-root gap closes, or the Jacobian floor fails.
@@ -9600,7 +9695,7 @@ A delay-energy construction is promotable only when the branch chart names:
 
 1. the retained history window $h$ and memory truncation residual;
 2. the causal-surface regularization $\eta$ and any core cutoff $\epsilon_c$;
-3. active causal roots, inactive-root gaps, and the active Jacobian floor;
+3. active causal roots, inactive-root gaps, the active source-normal Jacobian floor, and the retained receiver-normal branch-strength floor or certified interval $\nu_{\mathrm{rec}}$ for $W^{\mathrm{rec}}$;
 4. the exact route used for $E_{\text{wake}}$;
 5. boundary flux, endpoint leakage, period-cut terms, and excluded self-coincidence rows;
 6. the crosswalk residual whenever more than one energy construction is invoked;
@@ -9714,6 +9809,7 @@ Event-aware integration (practical algorithm):
      \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
      \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
      \nu_J^{2\mathrm{B}},
+     \nu_{\mathrm{rec}}^{2\mathrm{B}},
      \Delta_{\mathrm{gap}}^{2\mathrm{B}},
      \lambda_{\mathrm{sec}}^{2\mathrm{B}},
      \epsilon_E^{(\eta)},
@@ -9721,7 +9817,7 @@ Event-aware integration (practical algorithm):
      \mathcal{R}_{\omega}^{2\mathrm{B}}
      \right).
      $$
-   - Fail closed if the signed ledger changes during the reported period, an active Jacobian floor or inactive-root gap vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
+   - Fail closed if the signed ledger changes during the reported period, an active source-normal Jacobian floor or inactive-root gap vanishes, the receiver-normal branch strength leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
 Plain language: At each time, find which past emissions can reach the receiver now, compute how the source laid down the wake and how the receiver crosses it, sum the radial pushes with $W^{\mathrm{rec}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.
@@ -9856,7 +9952,7 @@ This project does not posit a static near field. Instead:
     and remains finite. As $\eta\to0$, integrals converge in the weak sense to the impulsive model without introducing infinities. See [Well-posedness and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md).
 
 - Event-driven geometry (self-hits occur at $r>0$):
-  - Self-interaction requires outrunning recent wake surfaces $(\|\mathbf{v}\|>c_f)$. Self-hits are intersections with one's own earlier wakes at strictly positive radius $r>0$, yielding finite $1/r^2$ impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at $r\to0$.
+  - Self-interaction requires outrunning recent wake surfaces $(\|\mathbf{v}\|>c_f)$. Self-hits are intersections with one's own earlier wakes at strictly positive radius $r>0$, yielding finite $W^{\mathrm{rec}}/r^2$ impulses (repulsive, like-on-like). There is no accumulation of divergent near-field energy at $r\to0$.
 
 Net effect: within a declared admissible branch chart, the canonical ontology (moving surface measures, H(0)=0, mollification for analysis) removes the zero-radius event that creates the classical point-charge self-energy divergence. Any remaining divergence claim must enter through a failed branch floor, failed window limit, or failed $\eta\to0$ convergence test rather than through an assumed static near field.
 
@@ -9880,7 +9976,7 @@ Plain language: We don’t keep a permanent 1/r field glued to the point. Instea
 
 #### Self-Interaction Switch
 
-An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(T)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
+An architrino can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-source causal-root set is nonempty, $\mathcal{C}_{aa}(T)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake, and an admitted self-hit contribution additionally carries a retained receiver-normal branch strength $W^{\mathrm{rec}}$. The like-polarity self-hit contribution is repulsive and plays a key role in the stability of emergent structures.
 
 ##### Conditions and Effects
 
@@ -9889,8 +9985,8 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
     $$
     \mathcal{C}_{aa}(T)=\{\,T_{\mathrm{em}}<T:\|\mathbf X_a(T)-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
     $$
-    A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence and a nonzero Jacobian/transversality margin.
-  - Coincident $r=0$ contact is not an active same-source hit. At $\Delta=0$ the convention $H(0)=0$ blocks instantaneous self-kicks, and for a coincident delayed candidate the unit line of action $\hat{\mathbf{r}}$ is undefined. The active channel begins with a nonzero-delay same-source root that supplies both direction and transversality.
+    A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence, a nonzero Jacobian/transversality margin, and a retained receiver-normal branch strength.
+  - Coincident $r=0$ contact is not an active same-source hit. At $\Delta=0$ the convention $H(0)=0$ blocks instantaneous self-kicks, and for a coincident delayed candidate the unit line of action $\hat{\mathbf{r}}$ is undefined. The active channel begins with a nonzero-delay same-source root that supplies direction, transversality, and the receiver-normal branch strength.
 
 - Repulsive character:
   - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.
@@ -9898,7 +9994,7 @@ An architrino can intersect an expanding causal isochron that it emitted earlier
 - Stabilization and scale selection:
   - In binaries and nested assemblies, delayed attraction competes with self-repulsion. On a closed branch chart, that balance is the candidate mechanism that can set a minimal sustainable radius $d_0$ and a fastest natural frequency $2\pi/t_0$.
 
-Plain language: A fast interval can make self-hit possible, but the code must still solve the same-source root equation; only actual same-source hits push outward and help set the smallest sizes and fastest rhythms of stable structures.
+Plain language: A fast interval can make self-hit possible, but the code must still solve the same-source root equation and weight each accepted hit by its receiver-normal branch strength; only actual same-source hits push outward and help set the smallest sizes and fastest rhythms of stable structures.
 
 #### Superposition and Locality
 
@@ -10079,7 +10175,7 @@ $$
 - Finite-limit discipline:
   - Treat finite source count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
   - Promote large-system, continuum, or $\eta\to0$ statements only after the retained observables converge under the declared refinement path.
-  - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, Jacobian floors, work-energy residuals, and thermodynamic summaries being claimed.
+  - Do not replace arbitrarily large finite systems with an actual infinite medium unless the limit preserves the causal-root count, source-normal Jacobian floors, receiver-normal branch strengths, work-energy residuals, and thermodynamic summaries being claimed.
 
 - State-dependent branch-transition discipline:
   - State-dependent delay systems can lose classical branch continuation at transition points where a delayed argument crosses a branch boundary, a causal-root count changes, or a derivative-sensitive row enters a fold-layer. A finite-$\eta$ run must therefore record how the regularized trajectory crosses each such window rather than treating the crossing as ordinary time-step noise.
@@ -10197,7 +10293,7 @@ Crossing any component of $\partial\mathcal{A}_\eta$ changes the promotion statu
 For the finite-$\eta$ pathology theorem target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target), a promoted run family must report the same boundary components as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
 
 - root residual and root-transport residual for every retained row,
-- active Jacobian floor and inactive-root gap,
+- active source-normal Jacobian floor, receiver-normal branch-strength floor or certified interval, and inactive-root gap,
 - finite-memory coverage and endpoint or period-cut leakage,
 - energy, momentum, and angular-momentum residuals computed with the same $\eta$, window, and endpoint convention,
 - transition-observable refinement residuals $E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)$ for every fold-layer or caustic transit promoted through the window,
@@ -12163,7 +12259,7 @@ M_p
 $$
 would provide a deterministic mechanism for quantized bound-state geometry: allowed radii and frequencies would be selected by integer causal-root ledgers rather than by a continuum of arbitrary circular orbits.
 
-This statement is deliberately conditional. This chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or nested shell braid setting rather than in the bare circular two-body kernel.
+This statement is deliberately conditional. This chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, receiver-normal branch-strength floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or nested shell braid setting rather than in the bare circular two-body kernel.
 
 ###### Branch Stability Target (Hessian Bridge)
 
@@ -12171,7 +12267,7 @@ The standard equilibrium test in central-force mechanics uses the Hessian of an 
 $$
 H_{ab}(q_\star)=\partial_a\partial_b V_{\mathrm{eff}}(q_\star)
 $$
-tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, and the branch Jacobian floors.
+tests local stiffness in the non-symmetry directions. This is useful as comparison language, but it is not yet a stability proof for an architrino binary because the force law depends on path-history, the active signed causal-root ledger, the receiver-normal branch strength, and the branch Jacobian floors.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-stability target is therefore a cycle-averaged stiffness matrix on a fixed branch chart. Let $b$ denote a fixed signed causal-root ledger and let $\mathbf{X}_b(T)$ be a candidate periodic history with period $P_b$. For reduced branch coordinates $y^a$ transverse to time shift, period reparameterization, Euclidean motions, and any phase-locked flat-connection moduli retained by an enclosing assembly chart, define the diagnostic stiffness target
 $$
@@ -14731,7 +14827,7 @@ $$
 \qquad
 \overline{\zeta}^+_{\hat{\mathbf{u}}}(t)
 \equiv
-\sup_{\theta\le T}\zeta^+_{\hat{\mathbf{u}}}(\theta)
+\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta)
 $$
 The running infimum
 $$
@@ -14975,7 +15071,7 @@ $$
 >    $$
 >    W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\};
 >    $$
-> 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary or when the relevant monotonicity margin
+> 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary, when the relevant monotonicity margin
 >    $$
 >    \sigma_{\mathrm{in}}
 >    \quad
@@ -14983,7 +15079,9 @@ $$
 >    \quad
 >    \sigma_{\mathrm{ap}}
 >    $$
->    degenerates, which defines the planar caustic tube that later propositions must control.
+>    degenerates, which defines the planar caustic tube that later propositions must control, or when an active generator's required delay reaches the retained memory depth $h$.
+
+The third mechanism is distinct from the first two and is easy to omit. By Proposition 4 of [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), a generator can leave the retained interval $[T-h,T)$ through the memory boundary rather than through a fold. That event carries an odd unsigned jump and can change the finite-window signed degree $D^{(h)}_{ij}$ without any sector crossing or margin degeneration. It is not covered by the planar caustic tube, and a branch-count ceiling that enumerates only sector crossings and fold degeneracies is incomplete until the strict-interior memory margin $\max_\ell(t-s_\ell)\le h-\gamma_h$ is separately certified.
 
 This corollary is the exact branch-labeling consequence needed for the rest of the bridge program. It converts the delayed-root picture from an a priori moving continuum of planar chord directions into a finite labeled branch family that can be propagated, bounded, and inserted into the tame-envelope construction.
 
@@ -15178,11 +15276,11 @@ This is the correct replacement for the collinear relocation lemma. The source i
 > $$
 > |J_s(t;s)|\ge \nu_{J,\mathrm{dp}}>0
 > $$
-> on the relocated deep-past branches. Then the total self contribution from all deep-past late-apocenter roots satisfies
+> on the relocated deep-past branches. Then, writing $\Theta_+\equiv1+U_{\max}/c_f$ for the receiver-normal amplification ceiling supplied by the tame-envelope speed bound $\|\dot\Phi\|\le U_{\max}<c_f$, the total self contribution from all deep-past late-apocenter roots satisfies
 > $$
 > \|\mathbf{a}^{\mathrm{deep}}_{s}(t)\|
 > \le
-> \frac{M_{\mathrm{ap}}\kappa\epsilon^2}{
+> \frac{\Theta_+\,M_{\mathrm{ap}}\kappa\epsilon^2}{
 > \bigl(c_f^2\tau_{\mathrm{dp}}^2+\epsilon_c^2\bigr)\nu_{J,\mathrm{dp}}}
 > \qquad
 > \text{for every }
@@ -18706,7 +18804,7 @@ denote the ordered planar three-body configuration away from collisions, where
 $$
 \Delta_{\mathrm{coll}}
 $$
-is the collision locus. Remove translations by imposing the center-of-mass condition
+is the collision locus. Remove translations by imposing the centroid condition
 $$
 \mathbf X_1+\mathbf X_2+\mathbf X_3=0
 $$
@@ -20298,7 +20396,13 @@ For the first planar-three-body bridge, the admissible hyperedges should be rest
   $$
   (i,j)
   $$
-  where exactly one simple branch is created or annihilated.
+  where exactly one simple branch **pair** is created or annihilated, so that
+  $$
+  \Delta N_{ij}=\pm2,
+  \qquad
+  \Delta D_{ij}=0
+  $$
+  as required by Proposition 3 of [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). A generic fold never creates or destroys a single branch: the two roots carry opposite source-normal Jacobian signs and are born or annihilated together. Fold-count ceilings downstream must be read against the pair, not the branch.
 - **Type III: shared-body coupled fold hyperedge.**
   A hyperedge joining two or three vertices when several branch families involving one common body meet one common degeneracy and their births or deaths must be recorded together.
 - **Type IV: sector relabeling hyperedge.**
@@ -20807,11 +20911,14 @@ This is now the exact topological/kinematic input consumed by the ancestry packa
 >    $$
 >    so one branch contribution is bounded by
 >    $$
->    \frac{\kappa\epsilon^2}{
+>    \frac{\Theta_+\,\kappa\epsilon^2}{
 >    \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
 >    \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
->    }.
+>    },
+>    \qquad
+>    \Theta_+\equiv 1+\frac{U_{\max}}{c_f}
 >    $$
+>    where the factor $\Theta_+$ is the receiver-normal numerator ceiling. The per-hit magnitude carries $W^{\mathrm{rec}}=|D_T|/|D_s|=(|D_T|/c_f)\cdot 1/|J|$, and on the tame envelope $|D_T|=|c_f-\mathbf V_i(t)\cdot\hat{\mathbf r}|\le c_f+U_{\max}$. Weighting only by $1/|J|$ silently sets $|D_T|=c_f$ and does not bound the outward self-drive from above.
 >    Because branch simplicity and the admissible source-cluster alphabet allow at most one uniformly transversal deep-past branch per source-cluster channel on the chosen delay scale, each ancestry component contributes at most a fixed finite multiple of that ceiling. Summing over at most
 >    $$
 >    N_{\mathrm{anc}}
@@ -20824,11 +20931,13 @@ This is now the exact topological/kinematic input consumed by the ancestry packa
 > A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 > \le
 > \frac{
-> N_{\mathrm{anc}}\,\kappa\epsilon^2
+> \Theta_+\,N_{\mathrm{anc}}\,\kappa\epsilon^2
 > }{
 > \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
 > \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
 > },
+> \qquad
+> \Theta_+=1+\frac{U_{\max}}{c_f},
 > $$
 > for every
 > $$
@@ -21154,7 +21263,7 @@ D_{s,ij}(t;s)
 =
 c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s),
 \qquad
-D_{t,ij}(t;s)
+D_{T,ij}(t;s)
 =
 c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t),
 $$
@@ -21162,7 +21271,7 @@ and
 $$
 W_{ij}^{\mathrm{rec}}(t;s)
 =
-\left|D_{t,ij}(t;s)/D_{s,ij}(t;s)\right|.
+\left|D_{T,ij}(t;s)/D_{s,ij}(t;s)\right|.
 $$
 The receiver-normal branch law is
 $$
@@ -23505,7 +23614,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    $$
 >    C^0/C^1
 >    $$
->    boundary would require one principal observable or one kinematic ceiling to use up all reserved slack, contradicting the previously established inward comparison laws and post-transit bounds.
+>    boundary would require one principal observable or one kinematic ceiling to use up all reserved slack, contradicting the inward comparison laws established above and post-transit bounds.
 >
 > Hence every defining boundary face is inward-pointing.
 
@@ -24148,23 +24257,43 @@ D_s=c_f,
 \qquad
 D_T=c_f-\frac{dX}{dT}(T),
 \qquad
-W^{\mathrm{rec}}=1-\frac{dX/dT(T)}{c_f}.
+W^{\mathrm{rec}}=\left|1-\frac{dX/dT(T)}{c_f}\right|.
 $$
 The receiver-normal restart equation is therefore
 $$
 \frac{d^2X}{dT^2}(T)
 =
 -\frac{\kappa\epsilon^2}{(X(T)+X_0)^2}
-\left(1-\frac{dX/dT(T)}{c_f}\right),
+\left|1-\frac{dX/dT(T)}{c_f}\right|,
 \qquad
 X(0)=X_0,\qquad
 \frac{dX}{dT}(0)=0.
 $$
 
-The energy identity, field-speed criterion, handoff angle, numerical fixture,
-and source-normal continuity claim must be recomputed from this receiver-normal
-ODE and then matched to the moving-partner delayed chart with the same-record
-$D_T/D_s$ factor before they can act as evidence.
+Two structural facts follow immediately and should be recorded before any
+numerics. First, $D_s=c_f$ exactly on this segment, because the retained partner
+emission lies in the held history where the source is at rest. There is no
+source-normal caustic anywhere on the held chart, and the delay
+$(X(T)+X_0)/c_f$ stays finite. Second, on the inbound leg $dX/dT<0$, so
+$W^{\mathrm{rec}}>1$ and grows without bound as the receiver accelerates: the
+branch strength *amplifies* the attraction it is already responding to. Nothing
+in the equation is singular or marginal at $dX/dT=-c_f$. The held chart
+therefore carries the receiver through field speed at a finite radius $X>0$
+once $\kappa\epsilon^2/(c_f^2X_0)$ clears a threshold, with the core scale
+$\epsilon_c$ setting the amplitude cap.
+
+This is the concrete reason the exterior affine partner chart in
+[Closed-Form Collinear Breather Ansatz](../../../../markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md)
+sees a barrier where none exists. That chart freezes the source velocity equal
+to the receiver's, forcing $D_s\to0$ as $dX/dT\to-c_f$; the held chart holds the
+source velocity at its true delayed value and finds $D_s=c_f$. Field speed for
+the *receiver* is not a branch event. See
+[Separator Taxonomy](../../../../markdown/aaa/dynamics/master-equation.md#separator-taxonomy).
+
+The energy identity, handoff angle, numerical fixture, and source-normal
+continuity claim must be recomputed from this receiver-normal ODE and then
+matched to the moving-partner delayed chart with the same-record $D_T/D_s$
+factor before they can act as evidence.
 
 ##### Partner-Hit and Self-Hit Root Equations
 
@@ -24294,7 +24423,7 @@ Schauder rows.
 
 ###### Reduced branch-resolved equation
 
-On the exact rooT-T_{\mathrm{em}}elected model, the right-particle acceleration is
+On the exact root-selected model, the right-particle acceleration is
 $$
 \frac{d^2X}{dT^2}(T)
 =
@@ -24312,6 +24441,80 @@ $$
 The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
 
 Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with each active branch row carrying both the source-normal transversality denominator and the receiver-normal branch strength on the same retained record.
+
+###### Receiver-normal weight conversion
+
+Every force bound in this note is stated against the canonical branch weight
+$W^{\mathrm{rec}}_r=|D_{T,r}/D_{S,r}|$. Because $D_{S,r}=c_fJ_r$, the weight
+factors as
+$$
+W^{\mathrm{rec}}_r
+=
+\frac{|D_{T,r}|}{c_f}\cdot\frac{1}{|J_r|},
+\qquad
+D_{T,r}=c_f-\frac{dX}{dT}(T)\,\hat r_r
+$$
+The source-normal factor $1/|J_r|$ is what a transversality floor controls. The
+receiver-normal factor $|D_{T,r}|/c_f$ is a separate quantity, and it is not
+bounded by $1$. On a tame envelope with $\left|\frac{dX}{dT}\right|\le U_{\max}<c_f$
+it obeys the two-sided bound
+$$
+\Theta_-\le\frac{|D_{T,r}|}{c_f}\le\Theta_+,
+\qquad
+\Theta_\mp\equiv 1\mp\frac{U_{\max}}{c_f},
+\qquad
+0<\Theta_-\le1\le\Theta_+<2
+$$
+Two consequences fix how every lemma below must be read.
+
+**Sightline sign decides the direction of the correction.** Because $\hat r_r$
+points from the emission point to the receiver, $\frac{dX}{dT}(T)\hat r_r$ is the
+receiver's recession rate from that emission point. A branch whose source lies
+*ahead* of the receiver, meaning $\frac{dX}{dT}(T)\hat r_r<0$, has
+$|D_{T,r}|>c_f$ and is amplified. A branch whose source lies *behind* has
+$|D_{T,r}|<c_f$ and is suppressed, vanishing at the receiver-normal null
+$\frac{dX}{dT}(T)\hat r_r=c_f$. Therefore a bound written with the source-normal
+weight $1/|J_r|$ alone is a valid *lower* bound on the true magnitude exactly
+when the source lies ahead, and a valid *upper* bound exactly when the source
+lies behind. It is not otherwise valid, in either direction.
+
+**Common-sightline arcs.** On an arc where every active branch shares one
+line-of-action sign $\hat r_r=\rho$, the factor $|D_{T,r}|/c_f=|1-\rho\,\frac{dX}{dT}(T)/c_f|$
+is the *same* for every branch and factors out of the whole branch sum:
+$$
+\frac{d^2X}{dT^2}(T)
+=
+\left|1-\rho\,\frac{dX/dT(T)}{c_f}\right|
+\cdot
+\left[
+-\kappa\epsilon^2\!\!\sum_{T_0\in\mathcal{C}_p(T)}\!\!\frac{\rho}{r_p^2\,|J_p|c_f}
++
+\kappa\epsilon^2\!\!\sum_{T_0\in\mathcal{C}_s(T)}\!\!\frac{\rho}{r_s^2\,|J_s|c_f}
+\right]
+$$
+The receiver-normal factor is a positive common prefactor there. It therefore
+cannot change the *sign* of the net acceleration, and every dominance argument
+comparing partner attraction against self-repulsion on such an arc survives the
+conversion unchanged. What it does change is every acceleration *floor*, every
+transit *time*, and every impulse *budget*, each of which must be rescaled by
+$\Theta_-$ or $\Theta_+$ as the direction of the inequality requires.
+
+This is the sense in which the conversion is not cosmetic. Dropping
+$|D_{T,r}|/c_f$ from the branch weight removes the entire velocity-dependent
+force. By the
+[receiver-velocity affine form](../../../../markdown/aaa/dynamics/master-equation.md#receiver-velocity-affine-form-and-the-branch-resistance-tensor),
+the collinear law is exactly
+$$
+\frac{d^2X}{dT^2}+\Gamma(T)\,\frac{dX}{dT}=c_f\,\Xi(T)
+$$
+with $\Gamma$ and $\Xi$ independent of $\frac{dX}{dT}(T)$, and the damping
+coefficient $\Gamma$ carries the polarity sign of each branch. Partner
+attraction contributes $\Gamma<0$, so it anti-damps and injects at rate
+$|w_p|s_p^2$ on both the inbound and the outbound leg. Self-repulsion
+contributes $\Gamma>0$ and drains at rate $w_ss_s^2$. **The self rows are the
+only damping channel in this reduction.** A closed cycle requires the self drain
+to balance the partner injection over the period, and that balance, not the
+field-speed threshold, is what the outer-turn program below has to establish.
 
 ##### Regularized 1D Equation
 
@@ -25013,7 +25216,7 @@ w(T_s)=w(T)
 $$
 must satisfy
 $$
-T_T_{\mathrm{em}}<T_{\mathrm{zero}}
+T_s<T_{\mathrm{zero}}
 $$
 The active self roots are therefore forced back into the earlier sub-field-speed inbound source region, where the self Jacobian is automatically noncaustic. This is the mechanism behind the bounded self-drive estimate used in the local theorem below.
 
@@ -25055,7 +25258,7 @@ The active self roots are therefore forced back into the earlier sub-field-speed
 > $$
 > every active self root satisfies
 > $$
-> T_s\le T_{\mathrm{zero}}-\frac{\eta}{\nu},
+> T_s\le T_{\mathrm{zero}}-\frac{\eta}{2c_f},
 > $$
 > so the caustic is separated from the active self branches there.
 > If the resulting impulse margin obeys
@@ -25118,7 +25321,7 @@ For any fixed interior margin
 $$
 0<\gamma_w<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},-T_{\mathrm{hinge}}\}
 $$
-continuity then gives the compacT-T_{\mathrm{em}}ubinterval gap
+continuity then gives the compact-subinterval gap
 $$
 \delta_w
 \equiv
@@ -25135,7 +25338,7 @@ $$
 $$
 
 **(H4) Shell-mollifier separation from the interior sorting gap.**
-For the compacT-T_{\mathrm{em}}ubinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(T)$ into the positive interior sorting hump:
+For the compact-subinterval gap chosen in (H2), the shell mollifier width is small enough that its support cannot bridge from the negative post-crossing values of $w(T)$ into the positive interior sorting hump:
 $$
 \eta<\frac{\delta_w}{2}
 $$
@@ -25403,7 +25606,7 @@ on $(0,\tau_1]$. This proves the lemma. On a fixed admissible crossing subclass 
 Use the local tube bounds to obtain a crude self-drive estimate on the full post-crossing window, and then use (H2)-(H4) together with Lemma 1 to show that on a delayed subwindow every active self root lies strictly before $T_{\mathrm{zero}}$ and hence stays away from the caustic hinge.
 
 Working form:
-fix $T\in(0,\tau_1]$ and suppose a self-emission time $T_T_{\mathrm{em}}<T$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
+fix $T\in(0,\tau_1]$ and suppose a self-emission time $T_s<T$ lies in the support of the shell mollifier on the left-moving post-crossing branch. If the shell mollifier has support band $\eta$, then
 $$
 \left|X(T)-X(T_s)+c_f(T-T_s)\right|\le \eta
 $$
@@ -25448,7 +25651,7 @@ w(T_s)\le -\eta
 $$
 Hence every active self root on that delayed subwindow satisfies
 $$
-T_T_{\mathrm{em}}<T_{\mathrm{zero}}
+T_s<T_{\mathrm{zero}}
 $$
 Since on the sub-field-speed source region one has
 $$
@@ -25456,11 +25659,11 @@ $$
 \qquad
 \theta\in[-h,T_{\mathrm{zero}}]
 $$
-monotonicity gives
+monotonicity together with the upper sorting-slope bound $dw/dT<2c_f$ on the sub-field-speed source region gives
 $$
 T_s\le T_{\mathrm{zero}}-\gamma(\eta),
 \qquad
-\gamma(\eta)\equiv \frac{\eta}{\nu}
+\gamma(\eta)\equiv \frac{\eta}{2c_f}
 $$
 
 Thus the caustic is uniformly separated from the active self roots on the delayed subwindow.
@@ -25552,7 +25755,7 @@ one has
 $$
 w(T)\le -2\eta
 $$
-If a self root $T_T_{\mathrm{em}}<T$ lies in the shell support, then
+If a self root $T_s<T$ lies in the shell support, then
 $$
 |w(T_s)-w(T)|\le \eta
 $$
@@ -25568,19 +25771,25 @@ w(\theta)>0
 $$
 therefore no such $T_s$ can lie in $(T_{\mathrm{zero}},0)$ and hence
 $$
-T_T_{\mathrm{em}}<T_{\mathrm{zero}}
+T_s<T_{\mathrm{zero}}
 $$
 On the source region
 $$
 [-h,T_{\mathrm{zero}}]
 $$
-hypothesis (H3) gives
+hypothesis (H3) gives the two-sided sorting-slope bound
 $$
-\frac{dw}{dT}(\theta)=\frac{dX}{dT}(\theta)+c_f\ge \nu
+\nu
+\le
+\frac{dw}{dT}(\theta)=\frac{dX}{dT}(\theta)+c_f
+\le
+M,
+\qquad
+M\equiv c_f+\sup_{\theta\in[-h,T_{\mathrm{zero}}]}\frac{dX}{dT}(\theta)
 $$
-Applying the mean-value theorem between $T_s$ and $T_{\mathrm{zero}}$ yields
+A separation in time is a *lower* bound on $T_{\mathrm{zero}}-T_s$, so it must be extracted from the *upper* slope bound. Applying the mean-value theorem between $T_s$ and $T_{\mathrm{zero}}$ yields
 $$
-w(T_{\mathrm{zero}})-w(T_s)\ge \nu\,(T_{\mathrm{zero}}-T_s)
+w(T_{\mathrm{zero}})-w(T_s)\le M\,(T_{\mathrm{zero}}-T_s)
 $$
 Since
 $$
@@ -25590,12 +25799,14 @@ w(T_{\mathrm{zero}})=0
 \qquad
 w(T_s)\le -\eta
 $$
-it follows that
+the left side is at least $\eta$, and it follows that
 $$
-T_s\le T_{\mathrm{zero}}-\frac{\eta}{\nu}
+T_s\le T_{\mathrm{zero}}-\frac{\eta}{M}
 =
 T_{\mathrm{zero}}-\gamma(\eta)
 $$
+On the sub-field-speed source region $\frac{dX}{dT}<c_f$, so $M<2c_f$ and the admissible constant $\gamma(\eta)=\eta/(2c_f)$ may be used without further hypotheses. The lower slope bound $\nu$ is still needed, but for the source-normal Jacobian floor, not for this separation.
+
 This proves the delayed caustic-separation claim.
 
 For the geometric refinement, use that the selected source branch is inbound before the crossing, so $X(\theta)$ decreases toward the origin on the stored pre-crossing leg. Thus
@@ -27173,15 +27384,21 @@ The continuity theorem must distinguish uncontrolled branch changes from certifi
 >    $$
 > 3. parity data
 >    $$
->    \Delta N_k\in2\mathbb{Z},
+>    \Delta N_k=\pm2,
 >    \qquad
 >    \Delta D_k=0;
 >    $$
-> 4. a finite fold-impulse ceiling and an outgoing chart on which the post-fold roots again have a positive Jacobian floor.
+> 4. a finite fold-impulse ceiling and an outgoing chart on which the post-fold roots again have a positive Jacobian floor;
+> 5. a **nondegeneracy certificate** $a_k\ne0$ excluding a cusp or a coalescence of several folds at $s_k$;
+> 6. a **strict-interior memory certificate** $\max_\ell\,(T-T_{\mathrm{em},\ell})\le h-\gamma_h$ with $\gamma_h>0$, on both the incoming and the outgoing chart.
 >
 > Outside the union of the fold layers, the active roots must remain simple with the certified Jacobian floors and inactive-root gaps.
 
-This reconciles the continuity row with the causal-fold geometry. A field-speed separator may be a genuine root-pair birth or death, but it is not an uncontrolled discontinuity if the atlas records the parity-preserving transition and hands the trajectory to a certified outgoing chart.
+Rows 5 and 6 are the two loopholes the earlier atlas left open. Writing the parity data as $\Delta N_k\in2\mathbb{Z}$ rather than $\Delta N_k=\pm2$ is weaker than Proposition 3 of [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), and would admit a cusp, or two coalescing folds, as a single "even" event. Cusps and higher strata $\Sigma^{1,1}$ are not certified by the generic fold law and must route to a separate singular-stratum chart, which this atlas does not supply; the nondegeneracy certificate excludes them instead.
+
+Row 6 closes the second gap. By Proposition 4 of the same chapter, an active generator can also leave the retained window $[T-h,T)$ when its required delay crosses the memory depth. That is a boundary-exit event, not a fold: it carries an odd unsigned jump and can change the finite-window signed degree $D^{(h)}$. No parity-preserving fold chart covers it. The atlas is therefore complete only on charts where every active delay is strictly interior with a declared margin $\gamma_h$; without that certificate the fold layers do not exhaust the branch transitions and the continuity claim below is not available.
+
+This reconciles the continuity row with the causal-fold geometry. A source-normal caustic may be a genuine root-pair birth or death, but it is not an uncontrolled discontinuity if the atlas records the parity-preserving transition and hands the trajectory to a certified outgoing chart. A receiver-normal null, by contrast, needs no fold layer at all: the branch strength passes through zero, the root set is unchanged, and the acceleration is continuous. See [Separator Taxonomy](../../../../markdown/aaa/dynamics/master-equation.md#separator-taxonomy).
 
 ###### Continuity on the tame envelope
 
@@ -27234,7 +27451,7 @@ uniformly on compact intervals in
 $$
 [0,T_{\max}]
 $$
-The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted separator transitions by integral-law fold layers with fixed incoming and outgoing charts, so the forward solution map is continuous on the entire tame envelope. For the section function
+The tame root-persistence hypothesis prevents uncontrolled branch changes and Jacobian loss. The certified fold-event atlas covers the finitely many permitted caustic transitions by integral-law fold layers with fixed incoming and outgoing charts. Given the nondegeneracy and strict-interior memory certificates carried by that atlas, those layers exhaust the branch transitions, and the forward solution map is continuous on the tame envelope. Without them the envelope may contain a cusp or a memory-boundary exit, and continuity is not established there. For the section function
 $$
 G(T,\psi)\equiv X(T;\psi)-X_\ast
 $$
@@ -27723,7 +27940,7 @@ persists on a small neighborhood of
 $$
 p_0
 $$
-The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the stricT-T_{\mathrm{em}}lack case open.
+The same argument applies to every envelope inequality with strict slack. If one envelope inequality is saturated but the corresponding envelope constant can be increased without weakening the other inequalities, enlarge that constant slightly first; this turns the saturated domination inequality into a strict one while preserving the already strict margin inequalities. After this finite adjustment, all inequalities hold with strict slack on one neighborhood. Hence the coupled admissible set is nonempty, and in the strict-slack case open.
 
 This proposition reduces the coupled-regime problem to a finite arithmetic certificate: exhibit one tuple
 $$
@@ -27844,11 +28061,11 @@ The following sufficient corridor is the scalar form of that arithmetic certific
 > $$
 > Suppose the force bounds on a chosen envelope factor as
 > $$
-> \overline A_s^\rho=g_s{\mathrm{in}}^\rho,
+> \overline A_s^\rho=g\,S_{\mathrm{in}}^\rho,
 > \qquad
 > \underline A_p^{\mathrm{out}}=gP_{\mathrm{out}},
 > \qquad
-> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=g_s{\mathrm{ent}}^{\mathrm{out}},
+> \overline A_{s,\mathrm{ent}}^{\mathrm{out}}=g\,S_{\mathrm{ent}}^{\mathrm{out}},
 > $$
 > where the coefficients are independent of
 > $$
@@ -28280,7 +28497,7 @@ This criterion is only a sufficient route. If the raw local sensitivity is too l
 > \equiv
 > \frac{r_{\mathrm{cert}}}{4}
 > -
-> \maX_{0\le j\le N}
+> \max_{0\le j\le N}
 > \max\{E_{j,+}^{X},E_{j,-}^{X},E_{j,+}^{v},E_{j,-}^{v}\}.
 > $$
 > If
@@ -28370,7 +28587,7 @@ The positive seed-cycle ledger and the radius criterion give the strict branch-c
 $$
 \mathcal{K}_{X_\ast,\eta}^{\mathrm{cert}}
 $$
-a nonempty closed convex tame envelope. The factorized corridor supplies the coupled stricT-T_{\mathrm{em}}lack point needed by invariant-envelope closure, so returned histories lie in
+a nonempty closed convex tame envelope. The factorized corridor supplies the coupled strict-slack point needed by invariant-envelope closure, so returned histories lie in
 $$
 \mathcal{C}_{X_\ast,\eta}
 $$
@@ -29739,7 +29956,7 @@ $$
 $$
 on which those properties hold both before and after one full return. This gives exactly the forward-propagation tame class required by the invariant-envelope theorem.
 
-This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled stricT-T_{\mathrm{em}}lack arithmetic, and returned-sample preservation on the same domain.
+This proposition closes the seed-propagation ladder at the nonvacuity level. The remaining logical step inside that ladder is to package the four seed-neighborhood propositions into a single nonempty tame-class theorem. The later Schauder route still requires the sampled tame-envelope certificate, coupled strict-slack arithmetic, and returned-sample preservation on the same domain.
 
 > **Theorem (Nonempty tame class from seed propagation).**
 > Assume:
@@ -29774,7 +29991,7 @@ This proposition closes the seed-propagation ladder at the nonvacuity level. The
 >    $$
 > 4. and the invariant-envelope theorem is therefore nonvacuous on a genuine delayed history class.
 >
-> In particular, once the sampled certificate, coupled stricT-T_{\mathrm{em}}lack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
+> In particular, once the sampled certificate, coupled strict-slack inequalities, returned-sample preservation, continuity, and precompactness are verified on this same class, the Schauder route applies on a nonempty self-map domain.
 
 Proof sketch.
 The seed proposition and its neighborhood corollary provide a nonempty section-side class
@@ -29822,15 +30039,17 @@ P_\eta\!\big(\mathcal{C}^{\mathrm{tame}}_{X_\ast,\eta}\big)
 $$
 is exactly the conclusion of the returned-history reentry step. Hence the invariant-envelope theorem is nonvacuous on a genuine delayed history class.
 
-This theorem closes the seed-side nonvacuity gap in the global existence program. The note contains:
+This theorem reduces the seed-side nonvacuity gap to a bracket verification. The note contains:
 
-- an explicit nonempty section-side seed,
-- a propagation ladder from that seed to a nonempty tame class,
+- an explicit nonempty section-side seed, proved outright,
+- a propagation ladder from that seed to a nonempty tame class, conditional on the uniform inward bracket $0<a_-^{\mathrm{seed}}\le a_+^{\mathrm{seed}}$,
 - explicit inner and outer recapture regimes,
-- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled stricT-T_{\mathrm{em}}lack arithmetic,
-- and the previously stated precompactness, continuity, and Schauder route.
+- invariant-envelope closure on a certified closed convex history set, conditional on the sampled certificate and coupled strict-slack arithmetic,
+- and the stated precompactness, continuity, and Schauder route.
 
-The remaining work is therefore no longer to construct a nonempty delayed class. It is to verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
+The bracket is where the receiver-normal conversion bites. On the inbound seed leg the retained partner image lies ahead of the receiver, so the lower bracket $a_-^{\mathrm{seed}}$ holds with the source-normal-only estimate as a conservative floor, while the upper bracket $a_+^{\mathrm{seed}}$ must carry the amplification ceiling $\Theta_+=1+U_{\max}/c_f$ from the weight conversion. Neither bracket may be inherited from a source-normal-only row.
+
+The remaining work is therefore to discharge that bracket with the receiver-normal weight on the same retained record, verify the sampled tame-envelope certificate, verify the factorized coupled-corridor inequalities, and derive returned-sample budgets with strict sample slack, either through residual-plus-sensitivity control or direct boundary trapping, on that same class.
 
 ###### Collapse-to-crossing target
 
@@ -30016,10 +30235,30 @@ $$
 |J_p(T;T_p)|\le 1+\frac{U_{\max}}{c_f}
 $$
 
+The receiver-normal numerator on this row is, by the weight conversion,
+$$
+\frac{|D_{T,p}(T;T_p)|}{c_f}
+=
+\left|1-\frac{dX/dT(T)}{c_f}\right|
+=
+1+\frac{\left|dX/dT(T)\right|}{c_f}
+\ge
+1
+$$
+because $\hat r_p=+1$ while $\frac{dX}{dT}(T)\le0$: the retained partner image
+lies **ahead** of the inbound receiver, so its branch strength is amplified. The
+inbound partner lower bound therefore needs no receiver-normal penalty, and the
+source-normal-only estimate is a valid, merely conservative, floor.
+
 Therefore each retained active partner branch contributes at least
 $$
 \kappa\epsilon^2
-\frac{1}{
+\frac{W_p^{\mathrm{rec}}(T;T_p)}{
+r_p(T;T_p)^2+\epsilon_c^2
+}
+=
+\kappa\epsilon^2
+\frac{|D_{T,p}|/c_f}{
 \left(r_p(T;T_p)^2+\epsilon_c^2\right)|J_p(T;T_p)|
 }
 \ge
@@ -30409,7 +30648,7 @@ They therefore supply the required times
 $$
 T_{\mathrm{zero}}<T_{\mathrm{hinge}}<0
 $$
-the interior compacT-T_{\mathrm{em}}ubinterval gap
+the interior compact-subinterval gap
 $$
 \delta_w(\phi_{\mathrm{cross}};\gamma_w)\ge \delta_{w,\min}
 $$
@@ -30542,7 +30781,7 @@ The intended proof order for this delayed-geometry step is:
    $$
    |J_s|\ge \nu_s
    $$
-   and the translated crossing history inherits the compacT-T_{\mathrm{em}}ubinterval sorting gap needed by the local post-crossing theorem.
+   and the translated crossing history inherits the compact-subinterval sorting gap needed by the local post-crossing theorem.
 
 The first item is a partner-branch regularity statement. The second and third items explicitly embrace the self-root caustic instead of assuming it away. The fifth is the exact handoff needed to pass from the inbound collapse theorem to the local origin-crossing recapture theorem.
 
@@ -30785,7 +31024,7 @@ w(T_s)=w(T)
 $$
 with
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 For
 $$
@@ -30984,10 +31223,10 @@ Then:
    $$
    \phi_{\mathrm{cross}}(\theta)=X(T_{\mathrm{cross}}+\theta)
    $$
-   inherits a compacT-T_{\mathrm{em}}ubinterval sorting gap:
+   inherits a compact-subinterval sorting gap:
    for every
    $$
-   0<\gamma<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},-T_{\mathrm{hinge}}\}
+   0<\gamma<\min\{T_{\mathrm{hinge}}-T_{\mathrm{zero}},\,T_{\mathrm{cross}}-T_{\mathrm{hinge}}\}
    $$
    the translated sorting function
    $$
@@ -31088,7 +31327,7 @@ for every
 $$
 \theta\in(T_{\mathrm{zero}}-T_{\mathrm{cross}},0)
 $$
-Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compacT-T_{\mathrm{em}}ubinterval sorting gap
+Restricting to any compact subinterval away from the two zeros, continuity yields a positive minimum, which is precisely the required compact-subinterval sorting gap
 $$
 \delta_w(\phi_{\mathrm{cross}};\gamma)>0
 $$
@@ -31377,7 +31616,7 @@ Assume the hypotheses of Lemma 15 and let
 $$
 T_{\mathrm{cross}}^{(2)}
 $$
-denote the second origin crossing. Assume, in addition, that there exists a posT-T_{\mathrm{em}}econd-crossing window
+denote the second origin crossing. Assume, in addition, that there exists a post-second-crossing window
 $$
 [T_{\mathrm{cross}}^{(2)},\,T_{\mathrm{cross}}^{(2)}+\tau_{\ast}]
 $$
@@ -31921,7 +32160,7 @@ The intended proof order for the outer branch is:
 The third and fourth items are the main analytic bottlenecks. Once a robust outer-force margin is available, the remaining return-to-section estimates are already in place.
 
 **Lemma 20: Outer-branch partner lower bound.**
-Assume the posT-T_{\mathrm{em}}econd-crossing outer branch satisfies:
+Assume the post-second-crossing outer branch satisfies:
 
 - right exterior outbound geometry,
   $$
@@ -31957,14 +32196,26 @@ Then the partner contribution to the inward acceleration obeys the class-uniform
 $$
 A_p(T)\ge \underline A_p^{\mathrm{out}}
 \equiv
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
-\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
+\left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}},
+\qquad
+\Theta_-=1-\frac{U_{\max}}{c_f}>0
 $$
 Equivalently, the partner acceleration satisfies
 $$
 a_p(T)=-A_p(T)\le -\underline A_p^{\mathrm{out}}<0
 $$
 on the outer branch.
+
+The factor $\Theta_-$ is the receiver-normal penalty, and on this branch it cannot be dropped. Here $\hat r_p=+1$ while $\frac{dX}{dT}(T)\ge0$, so the retained partner image lies **behind** the outbound receiver and its branch strength is suppressed:
+$$
+\frac{|D_{T,p}(T;T_p)|}{c_f}
+=
+1-\frac{dX/dT(T)}{c_f}
+\in[\Theta_-,1]
+$$
+The source-normal-only estimate $\kappa\epsilon^2/((r_p^2+\epsilon_c^2)|J_p|)$ therefore over-states this floor by up to $1/\Theta_-$ and is not a valid lower bound. The strict positivity of the floor survives because the tame envelope enforces $U_{\max}<c_f$; it would fail exactly at the receiver-normal null $\frac{dX}{dT}=c_f$, where the inward pull of a source lying behind the receiver vanishes identically.
 
 Proof.
 Along the retained inward exterior partner channel, the delayed source remains on the opposite side of the current right-hand particle, so each retained contribution points inward and therefore contributes with signed acceleration
@@ -31996,15 +32247,20 @@ r_p(T;T_p)^2+\epsilon_c^2
 4X_{\mathrm{out},\max}^2+\epsilon_c^2
 $$
 
-Each retained active partner contribution therefore has magnitude at least
+Each retained active partner contribution therefore has magnitude
 $$
+\frac{\kappa\epsilon^2\,W_p^{\mathrm{rec}}(T;T_p)}{r_p(T;T_p)^2+\epsilon_c^2}
+=
 \frac{\kappa\epsilon^2}{
 \left(r_p(T;T_p)^2+\epsilon_c^2\right)|J_p(T;T_p)|}
+\cdot
+\frac{|D_{T,p}(T;T_p)|}{c_f}
 \ge
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 $$
-Summing over the retained active partner branches and retaining only one branch yields
+using $|D_{T,p}|/c_f\ge\Theta_-$ from the weight conversion. Summing over the retained active partner branches and retaining only one branch yields
 $$
 A_p(T)\ge \underline A_p^{\mathrm{out}}
 $$
@@ -32041,13 +32297,44 @@ N_{s,\max}^{\mathrm{out}}\,
 \big((r_{s,\min}^{\mathrm{out}})^2+\epsilon_c^2\big)\,\nu_s^{\mathrm{out}}}
 $$
 
+On this branch the active self roots are outbound-level roots, so $\hat r_s=+1$
+while $\frac{dX}{dT}(T)\ge0$: the receiver recedes from its own retained
+emission points, $|D_{T,s}|/c_f=1-\frac{dX/dT(T)}{c_f}\le1$, and the outward
+self-drive is *suppressed* by exactly the same receiver-normal factor that
+suppresses the inward partner pull of Lemma 20. The source-normal-only estimate
+is therefore a valid ceiling here, and no receiver-normal penalty is needed.
+
+The coincidence is structural rather than accidental. Lemma 20 and Lemma 21 read
+the same **common-sightline arc**: $\hat r_p=\hat r_s=+1$, so
+$|D_T|/c_f=1-\frac{dX/dT(T)}{c_f}$ is one common positive prefactor of the whole
+branch sum. Consequently the net inward acceleration on the outer branch obeys
+$$
+a_{\mathrm{in}}^{\mathrm{out}}(T)
+=
+\left(1-\frac{dX/dT(T)}{c_f}\right)
+\Big[
+A_p^{\mathrm{src}}(T)-A_s^{\mathrm{src}}(T)
+\Big]
+$$
+where the bracket carries only source-normal weights. The receiver-normal factor
+cannot change which term dominates. Partner dominance on the outer branch is
+therefore decided exactly as before, and the redriven inward floor is the old
+floor multiplied by $\Theta_-$.
+
 Proof.
 For each active self root
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
-the contribution to the outward self-drive has magnitude bounded by
+the contribution to the outward self-drive has magnitude
 $$
+\frac{\kappa\epsilon^2\,W_s^{\mathrm{rec}}(T;T_s)}{r_s(T;T_s)^2+\epsilon_c^2}
+=
+\frac{\kappa\epsilon^2}{
+\big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
+\cdot
+\frac{|D_{T,s}(T;T_s)|}{c_f}
+\le
 \frac{\kappa\epsilon^2}{
 \big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 $$
@@ -32119,6 +32406,7 @@ $$
 
 In particular, Lemmas 20 and 21 reduce the outer-turn force margin to the parameter inequality
 $$
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 -
@@ -32452,7 +32740,7 @@ X(T)\ge 0,
 $$
 and consider same-side self roots
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 for which the delayed self-hit condition is
 $$
@@ -32512,7 +32800,7 @@ z(T)=X(T)-c_f T
 $$
 is strictly decreasing on that window. Consequently, there are no exact same-side self roots
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 with both
 $$
@@ -32538,7 +32826,7 @@ $$
 $$
 If there existed an exact same-side self root pair
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 with both times in that window, Lemma 25 would give
 $$
@@ -32554,7 +32842,7 @@ z(T_s)>z(T)
 $$
 whenever
 $$
-T_T_{\mathrm{em}}<T
+T_s<T
 $$
 which is impossible. Therefore no such exact same-side self root exists on the strictly sub-field-speed outer window.
 
@@ -32984,6 +33272,7 @@ before any known outer turn, and on that window:
 
 If, in addition, the parameter inequality
 $$
+\Theta_-\cdot
 \frac{\kappa\epsilon^2}{
 \left(4X_{\mathrm{out},\max}^2+\epsilon_c^2\right)J_{p,\max}^{\mathrm{out}}}
 -
@@ -33064,7 +33353,7 @@ z(T)=X(T)-c_f T
 $$
 so the local outward self-drive is only the shell tail bounded in Lemma 27. The remaining possible outward self contributions are therefore the roots that come from much earlier times
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 outside the local sub-field-speed window but still satisfy
 $$
@@ -33082,7 +33371,7 @@ $$
 > $$
 > Assume that every outward-driving same-side self root
 > $$
-> T_T_{\mathrm{em}}<T_a
+> T_s<T_a
 > $$
 > satisfying
 > $$
@@ -33134,7 +33423,7 @@ The intended proof order is:
 1. **Deep-past separation lemma.**
    Show that any same-side outer root with
    $$
-   T_T_{\mathrm{em}}<T_a
+   T_s<T_a
    $$
    must satisfy a macroscopic delay gap and hence a macroscopic spatial separation
    $$
@@ -33173,7 +33462,7 @@ T\in I_{\mathrm{deep}}
 $$
 and
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 is a same-side outward-driving self root satisfying
 $$
@@ -33206,7 +33495,7 @@ T\in[T_a+\tau_{\mathrm{deep}},\,T_b]
 $$
 and
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 one immediately has
 $$
@@ -33353,7 +33642,7 @@ T\in I_{\mathrm{deep}}
 $$
 and let
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 be any outward-driving same-side deep-past root with
 $$
@@ -33367,14 +33656,23 @@ Lemma 31 gives the transversality bound
 $$
 |J_s(T;T_s)|\ge \frac{\nu_{\mathrm{deep}}}{c_f}
 $$
-Therefore each deep-past branch contributes at most
+A deep-past root retained on the outbound leg is an outward-driving root, so
+$\hat r_s=+1$ while $\frac{dX}{dT}(T)\ge0$. Hence
+$|D_{T,s}|/c_f=1-\frac{dX/dT(T)}{c_f}\le1$: the receiver recedes from these
+emission points and the deep-past drive is receiver-normal suppressed. The
+source-normal-only estimate is therefore a valid ceiling, and dropping the
+suppression only weakens the bound. Each deep-past branch contributes at most
 $$
+\frac{\kappa\epsilon^2\,W_s^{\mathrm{rec}}(T;T_s)}{r_s(T;T_s)^2+\epsilon_c^2}
+\le
 \frac{\kappa\epsilon^2}{
 \big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
 \frac{\kappa\epsilon^2}{
 \big(c_f^2\tau_{\mathrm{deep}}^2+\epsilon_c^2\big)\,(\nu_{\mathrm{deep}}/c_f)}
 $$
+This step is a branch-resolved reduction and is licensed only because the deep-past window is separated from the caustic hinge by Lemma 30 and from the origin layer by the trimming hypothesis. It may not be applied across either.
+
 Summing over at most
 $$
 N_{s,\mathrm{deep},\max}^{\mathrm{out}}
@@ -33499,7 +33797,7 @@ T\in I_{\mathrm{deep}}
 $$
 and
 $$
-T_T_{\mathrm{em}}<T_a
+T_s<T_a
 $$
 satisfies
 $$
@@ -33690,8 +33988,10 @@ Lemma 30 gives the separation bound
 $$
 r_s(T;T_s)\ge c_f\tau_{\mathrm{deep}}
 $$
-Therefore the single deep-past branch contributes at most
+This root drives the receiver outward, so $\hat r_s=+1$ while $\frac{dX}{dT}(T)\ge0$ on the apocenter window. By the weight conversion its receiver-normal numerator obeys $|D_{T,s}|/c_f=1-\frac{dX/dT(T)}{c_f}\le1$, so the branch is receiver-normal suppressed and the source-normal-only quotient is a valid ceiling. Therefore the single deep-past branch contributes at most
 $$
+\frac{\kappa\epsilon^2\,W_s^{\mathrm{rec}}(T;T_s)}{r_s(T;T_s)^2+\epsilon_c^2}
+\le
 \frac{\kappa\epsilon^2}{
 \big(r_s(T;T_s)^2+\epsilon_c^2\big)\,|J_s(T;T_s)|}
 \le
@@ -34290,14 +34590,16 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Origin singularity.** The shell regularization $\delta_\eta$ does not by itself remove the divergence of the amplitude factor $1/r^2$ at the origin crossing. For the current braking-dominance theorem target, an explicit core mollifier of the denominator should be treated as required rather than optional, for example by replacing $r^{-2}$ with $(r^2+\epsilon_c^2)^{-1}$ or an equivalent short-distance regularization.
 - **State-space labeling.** The theorem program is safest in true signed coordinates $X\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|X|$. Any language suggesting a rebound on the same $X>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
+- **Polarity-signed damping is the real obstruction.** The receiver-normal weight conversion shows why the outer-turn target is hard, and it is not the field-speed threshold. The collinear law is exactly $\frac{d^2X}{dT^2}+\Gamma\frac{dX}{dT}=c_f\Xi$ with $\Gamma=\sum_\ell w_\ell$ carrying the polarity sign of each branch. Partner attraction anti-damps and injects at rate $|w_p|s_p^2$ on *both* legs; self-repulsion damps and drains at rate $w_ss_s^2$. The self rows are therefore the only damping channel available, and a closed cycle requires the self drain to balance the partner injection over the period. A partner-only reduction cannot bind at any coupling: it is a strictly anti-damped delayed oscillator. Whether the retained self rows are strong enough to close the balance is exactly the open content of the outer-turn theorem target, and no source-normal-only estimate can see the question, because the source-normal-only weight is work-symmetric and has $\Gamma\equiv0$.
 - **Apocenter-entry window.** Lemma 29 supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
-- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\frac{dX}{dT}=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. Those lower bounds are still only source-normal diagnostics until the same retained record also supplies the receiver-normal numerator and branch strength.
+- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\frac{dX}{dT}=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. These remain source-normal quantities; the receiver-normal numerator on the same retained record is supplied by the weight conversion, which converts each $1/|J|$ estimate into the canonical $W^{\mathrm{rec}}$ weight through the factor $|D_T|/c_f\in[\Theta_-,\Theta_+]$.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(T)$ and therefore a lower bound on $A_p^{\rho}(T)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
-- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoinT-T_{\mathrm{em}}cale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
+- **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoint-scale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
 - **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $T=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
+- **The origin self-caustic is the decisive event.** Two facts now sharpen where the outer-turn program actually stands or falls. First, by the receiver-velocity affine form the collinear law is a polarity-signed damped oscillator: partner attraction anti-damps and self-repulsion damps, so a bound cycle requires the self drain to offset the partner injection over a period. Second, the damping coefficient $\Gamma=\sum_\ell w_\ell$ changes sign in radius — partner-dominated (anti-damping) on the outer leg, self-dominated (damping) near the origin — so the ingredients for a limit cycle are present, but the balance is decided entirely inside the origin layer. Direct sub-field integration of the reduced two-body model does not close a cycle: the head-on collapse is driven through field speed by the origin self-caustic, exactly the fail-closed field-speed head-on event. The outer-turn theorem target therefore reduces to a single certified quantity, the finite impulse of the origin self-caustic under the dual-mollified law, and whether the return it produces is sub-field. If that impulse necessarily drives the receiver super-field, the collinear breather is a failed stabilization test; if a dephasing, curvature, or held-release preparation keeps the transit sub-field, the return may close. This is a closure target, not a settled result.
 
 ##### Capstone Statement
 
@@ -34583,13 +34885,15 @@ $$
 $$
 is the finite active branch list with inactive complements, and the sampled residuals feed the finite audit in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md).
 
-The guiding suspicion is:
+The guiding structure is fixed by the [Separator Taxonomy](../../../../markdown/aaa/dynamics/master-equation.md#separator-taxonomy). Three distinct events end a simple-root chart, and the arc partition must key them separately:
 
-- below field speed, the active causal roots are tame and the force may reduce to a small number of effective $1/r$ phase-space curves, with conservative potential curves only as a certified special case;
-- at field speed, the sorting maps become marginal and the orbit passes through a metastable separator;
-- above field speed, the active branch structure changes and must be matched by explicit crossing laws rather than by one smooth formula.
+- a **source-normal caustic** where $D_s=0$, meaning the *source* recedes from the receiver at field speed at its own emission time. This is the fold: $\Delta N=\pm2$, $\Delta D=0$, branch strength $W^{\mathrm{rec}}\to\infty$, finite impulse under the dual-mollified law;
+- a **receiver-normal null** where $D_T=0$, meaning the *receiver* recedes from that emission point at field speed at reception time. No root is created or destroyed; the branch simply goes silent, $W^{\mathrm{rec}}\to0$;
+- a **memory-boundary exit** where the required delay reaches the retained depth $h$. Odd unsigned jumps are admissible here, and the finite-window signed degree can change.
 
-If a closed-form collinear breather exists, it is likely not one elementary expression on the whole line. The more plausible object is a piecewise analytic orbit whose pieces are joined by causal matching conditions at the field-speed separators and at origin crossings.
+The receiver's own speed $|dX/dT|=c_f$ is none of these by itself. It is a receiver-normal null only on branches whose line of action is aligned with the receiver's motion, and it is a source-normal caustic only for branches the source emitted while receding at field speed. Conflating the two is the standing error this note exists to avoid.
+
+If a closed-form collinear breather exists, it is likely not one elementary expression on the whole line. The more plausible object is a piecewise analytic orbit whose pieces are joined by causal matching conditions at the causal-root events above and at origin crossings. On any arc where every active branch shares one line-of-action sign, the receiver-normal numerator is a common positive prefactor of the entire branch sum. It therefore cannot decide which branch family dominates; it rescales that arc's acceleration magnitudes and transit times together.
 
 ##### Status
 
@@ -34636,7 +34940,7 @@ The three speed classes are:
    $$
 u(T)<v_f
    $$
-2. **field-speed separator**
+2. **field-speed threshold**
    $$
 u(T)=v_f
    $$
@@ -34715,7 +35019,11 @@ W_p^{\mathrm{rec}}
 =
 \frac{c_f-v}{c_f+v}
 $$
-on this inbound exterior chart. Ignoring the short-distance core for a moment,
+on this inbound exterior chart, where $|v| < c_f$ makes both signs positive.
+
+The frozen velocity carries a hidden cost that must be stated before the chart is used. Exactly, the source-normal denominator is $D_s=c_f+\frac{dX}{dT}(T_0)$, evaluated at the *emission* time; the affine window replaces $\frac{dX}{dT}(T_0)$ by the receiver's *present* velocity $v$. The two agree only when the source velocity is nearly constant over the delay $\tau_p$. Freezing them together forces $D_s\to0$ exactly when $v\to-c_f$, manufacturing a source-normal caustic at the receiver's field speed. The exact law has no such coincidence: in a collapsing collinear orbit the delayed velocity $\frac{dX}{dT}(T_0)$ is far smaller in magnitude than $\frac{dX}{dT}(T)$, and $D_s$ stays bounded away from zero while the receiver passes through $|v|=c_f$. Every conclusion below that locates a separator from this chart is therefore a statement about the affine reduction, not about the delayed law.
+
+Ignoring the short-distance core for a moment,
 the partner force scale becomes
 $$
 A_p
@@ -34772,15 +35080,15 @@ requires
 $$
 X\to0
 $$
-Thus the inbound field-speed separator and the origin-crossing layer are tightly coupled in the bare model. The dual core scale
+The coupling this appears to show between the inbound field-speed threshold and the origin-crossing layer is a property of the frozen-source chart, not of the delayed law. It is the same artifact: the freeze ties $D_s$ to the receiver's present velocity, so $v\to-c_f$ and $X\to0$ arrive together. Under the exact law $D_s=c_f+\frac{dX}{dT}(T_0)$ stays bounded away from zero, and the receiver reaches $v=-c_f$ at a finite radius strictly outside the core layer, whose location is set by the coupling $\kappa\epsilon^2/(c_f^2X_0)$ and the core scale
 $$
 \epsilon_c
 $$
-and shell width
+together with the shell width
 $$
 \eta
 $$
-soften this coincidence, but the certificate should still treat the separator and origin layer as coupled events unless interval data prove a strict separation.
+The certificate may therefore separate the field-speed threshold from the origin layer, and should do so, rather than inheriting the affine coincidence as a constraint.
 
 The exact core-mollified version replaces
 $$
@@ -34845,9 +35153,11 @@ $$
 \exp\!\left[-2\alpha\left(\frac{1}{X}-\frac{1}{X_0}\right)\right]
 }
 $$
-and $-1<\beta_{\mathrm{in}}(X)<0$ for every $X>0$ on the exterior chart. The
-opposite sign supplies the outbound square-root branch when the same invariant
-is continued away from the core layer. The branch time is recovered by
+and $-1<\beta_{\mathrm{in}}(X)<0$ for every $0<X\le X_0$, which is the whole
+inbound exterior chart. For $X>X_0$ the radicand turns negative and the branch
+does not continue; the opposite sign supplies the outbound square-root branch
+when the same invariant is continued away from the core layer. The branch time
+is recovered by
 $$
 T-T_0
 =
@@ -34855,44 +35165,68 @@ T-T_0
 $$
 
 This gives only a receiver-normal restart scaffold for a sub-field-speed
-breather search. The exterior partner branch does not reach
-$$
-\left|\frac{dX}{dT}\right|=c_f
-$$
-at any finite $X>0$. Therefore a finite-radius field-speed separator is not
-produced by this receiver-normal affine partner chart. It must come from a
-core-layer effect, finite shell width, nonaffine path history, a self-image
-contribution, or a different certified branch chart.
+breather search, and its apparent field-speed barrier is an artifact of the
+frozen source velocity. On the affine chart $|dX/dT|=c_f$ is reached only as
+$X\to0$, because the same freeze that sets $D_s=c_f+v$ drives $D_s\to0$ there:
+the partner delay $\tau_p=2X/(c_f+v)$ diverges and the root escapes the retained
+memory window. That is a memory-boundary exit of the affine reduction, not a
+property of the delayed law.
+
+Under the exact law the source-normal denominator is $D_s=c_f+\frac{dX}{dT}(T_0)$
+with $T_0$ a genuine delayed time. For a held-release preparation the retained
+partner emission lies in the held history, so $\frac{dX}{dT}(T_0)=0$ and
+$D_s=c_f$ exactly. The receiver-normal restart equation of
+[Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md#held-release-restart-target) then
+carries $W^{\mathrm{rec}}=\left|1-\frac{dX/dT(T)}{c_f}\right|>1$ on the whole
+inbound leg: the branch strength *amplifies* as the receiver falls in, there is
+no caustic, and nothing in the equation is singular at $dX/dT=-c_f$. Inbound
+field speed is therefore reached at finite radius $X>0$ whenever the coupling
+clears a threshold set by $\kappa\epsilon^2/(c_f^2X_0)$ and the core scale
+$\epsilon_c$, and the receiver passes straight through it.
+
+The correct reading is the asymmetry, not a barrier. Because
+$\hat r$ points from the emission point to the receiver, $D_T=c_f-\frac{dX}{dT}(T)\hat r$
+is larger than $c_f$ when the receiver approaches the emission point and smaller
+than $c_f$ when it recedes. Approach is amplified and recession is suppressed on
+every branch. The genuine barrier is therefore one-sided: a receiver receding
+from all of its active emission points cannot be driven through field speed by
+any of them, because each such branch's strength vanishes at $D_T=0$. A receiver
+*approaching* an emission point has no such obstruction. In the reflection-symmetric
+collinear pair this says that the inbound super-field arc is generic, while the
+outbound super-field arc requires a retained partner image lying beyond the
+receiver, and cannot be produced by self-repulsion at all.
 
 The same branch also supplies an exact self-root exclusion test in the sharp-shell limit. If a candidate history satisfies
 $$
-\left|\frac{dX}{dT}(T)\right|\le c_f-\sigma
+\left|\frac{dX}{dT}(T)\right|\le c_f-\mu
 \qquad
 \text{on a stored interval}
 $$
-for some $\sigma>0$, then for all $T_{\mathrm{em}}<T$ in that interval,
+for some sub-field margin $\mu>0$, then for all $T_{\mathrm{em}}<T$ in that interval,
 $$
 |X(T)-X(T_{\mathrm{em}})|
 \le
-(c_f-\sigma)(T-T_{\mathrm{em}})
+(c_f-\mu)(T-T_{\mathrm{em}})
 <
 c_f(T-T_{\mathrm{em}})
 $$
 Thus the exact same-side self-hit equation has no nontrivial solution there. For finite shell width $\eta$, the possible self contribution is confined to the near-diagonal collar
 $$
-0<T-T_{\mathrm{em}}\le \frac{\eta}{\sigma}
+0<T-T_{\mathrm{em}}\le \frac{\eta}{\mu}
 $$
-and must be bounded from the dual-mollified integral law rather than inserted as an exact simple-root branch. This separates the analytic sub-field test from the field-speed fold program: the test asks whether partner attraction plus the finite-width self-collar can close a return without ever producing a true field-speed separator.
+and must be bounded from the dual-mollified integral law rather than inserted as an exact simple-root branch. This separates the analytic sub-field test from the caustic-fold program: the test asks whether partner attraction plus the finite-width self-collar can close a return without ever producing a source-normal caustic.
+
+The symbol $\sigma$ is reserved throughout for the polarity sign $\sigma_{ij}=\operatorname{sign}(q_iq_j)$ of the canonical law. The sub-field margin is $\mu$, and the exterior chart sign below is $\varsigma$.
 
 ###### Signed partner branch table
 
 The local affine partner calculation should now be kept as a table of certified branch data. Work on an exterior chart
 $$
-X(T)=\sigma q(T),
+X(T)=\varsigma\, q(T),
 \qquad
 q(T)>0,
 \qquad
-\sigma\in\{-1,+1\}
+\varsigma\in\{-1,+1\}
 $$
 with radial velocity
 $$
@@ -34904,39 +35238,47 @@ q(T_{\mathrm{em}})\approx q(T)-u_r(T)(T-T_{\mathrm{em}})
 $$
 the partner root has
 $$
-\tau_p=t-s=\frac{2q}{c_f+u_r},
+\tau_p=\frac{2q}{c_f+u_r},
 \qquad
 r_p=c_f\tau_p,
 \qquad
-\hat r_p=\sigma,
+\hat r_p=\varsigma,
 \qquad
 D_s=c_f+u_r,
 \qquad
 D_T=c_f-u_r,
 \qquad
-W_p^{\mathrm{rec}}=\frac{c_f-u_r}{c_f+u_r}
+W_p^{\mathrm{rec}}=\left|\frac{c_f-u_r}{c_f+u_r}\right|
 $$
-The signed partner acceleration in the
-$$
-x
-$$
+Here $D_s$ carries the affine freeze: exactly it is $c_f+u_r(T_{\mathrm{em}})$.
+The branch strength is unsigned, and the absolute value is not decoration. The
+raw quotient turns negative on the super-field rows $|u_r|>c_f$ that the doubled
+four-arc itinerary requires. The signed partner acceleration in the $x$
 coordinate points as
 $$
-\operatorname{sgn}(a_p)=-\sigma
+\operatorname{sgn}(a_p)=-\varsigma
 $$
-that is, inward toward the origin.
+that is, inward toward the origin, on every row where $\hat r_p=\varsigma$.
 
 | Arc chart | Radial assumptions | $\tau_p$ | $\hat r_p$ | $D_s/c_f$ | $W_p^{\mathrm{rec}}$ | Partner sign in $x$ | Validity conditions |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| inbound exterior | $q>0$, $u_r<0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}$ | $\dfrac{c_f-u_r}{c_f+u_r}$ | $-\sigma$ | $c_f+u_r\ge \nu c_f$, no origin crossing inside the affine window |
-| field-speed hinge | $u_r=-c_f$ | singular | $\sigma$ before the fold | $0$ | singular | fold-controlled | branch-sum form invalid; use the dual-mollified fold integral |
-| origin-crossing layer | $q\lesssim \epsilon_c$ or $\sigma$ changes | not a single affine root | changes by layer | chart-dependent | chart-dependent | core-controlled | use the absolute-time integral law, not one exterior branch table |
-| outbound exterior | $q>0$, $u_r>0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}>1$ | $\dfrac{c_f-u_r}{c_f+u_r}$ | $-\sigma$ | same exterior chart and certified active root |
-| apocenter sub-field | $q>0$, $|u_r|<c_f$, $u_r\to 0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | near $1$ | near $1$ | $-\sigma$ | strict sub-field margin and active-root separation on the apocenter window |
+| inbound exterior, sub-field | $q>0$, $-c_f<u_r<0$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | $1+\dfrac{u_r}{c_f}$ | $\dfrac{c_f-u_r}{c_f+u_r}>1$ | $-\varsigma$ | $c_f+u_r\ge \nu c_f$, no origin crossing inside the affine window |
+| inbound exterior, super-field | $q>0$, $u_r<-c_f$ | affine root escapes to $\tau_p\to\infty$ | not defined by this chart | $<0$ | not defined by this chart | not defined by this chart | affine artifact only; the exact $D_s=c_f+u_r(T_{\mathrm{em}})$ stays bounded away from $0$, so use the exact delayed root |
+| affine root escape | $u_r\to -c_f^{+}$ | $\tau_p\to\infty$, exits $[T-h,T)$ | $\varsigma$ | $\to0$ | $\to\infty$ with $r_p^{-2}\to0$ faster, so $A_p\to0$ | $-\varsigma$ | **memory-boundary exit of the affine chart, not a fold.** Odd degree jump admissible. Not present in the exact chart |
+| source-normal caustic | $u_r(T_{\mathrm{em}})=-c_f$ on the source row | fold | $\varsigma$ before the fold | $0$ | $\to\infty$ | fold-controlled | branch-sum form invalid; use the dual-mollified fold integral, $\Delta N=\pm2$, $\Delta D=0$ |
+| receiver-normal null | $u_r(T)=+c_f$ with the source behind | finite | $\varsigma$ | finite | $0$ | vanishes | no root change; the branch goes silent and the affine-in-velocity chart ends |
+| origin-crossing layer | $q\lesssim \epsilon_c$ or $\varsigma$ changes | not a single affine root | changes by layer | chart-dependent | chart-dependent | core-controlled | use the absolute-time integral law, not one exterior branch table |
+| outbound exterior, sub-field | $q>0$, $0<u_r<c_f$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | $1+\dfrac{u_r}{c_f}>1$ | $\dfrac{c_f-u_r}{c_f+u_r}<1$ | $-\varsigma$ | same exterior chart and certified active root |
+| outbound exterior, super-field | $q>0$, $u_r>c_f$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | $>2$ | $\dfrac{u_r-c_f}{c_f+u_r}$ | $-\varsigma$ | branch strength positive again past the receiver-normal null; certify the null crossing separately |
+| apocenter sub-field | $q>0$, $|u_r|<c_f$, $u_r\to 0$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | near $1$ | near $1$ | $-\varsigma$ | strict sub-field margin and active-root separation on the apocenter window |
 
-This table is only the partner column of the certificate packet. The self-image columns must be produced separately because their source and receiver are the same labeled path and their active roots can change at field-speed separators.
+Two rows deserve emphasis because the previous table merged them. The **affine root escape** is what the frozen-velocity chart actually produces at $u_r\to-c_f$: a single root whose delay diverges and leaves the memory window, an odd unsigned jump that no fold law licenses. The **source-normal caustic** is the genuine fold, and it is keyed to the source velocity at emission time, not to the receiver's present speed. The **receiver-normal null** is keyed to the receiver's present speed but changes no root count at all.
 
-##### Why the Field-Speed Separator Matters
+On the sub-field rows the branch strength exceeds one inbound and falls below one outbound. That asymmetry is the whole velocity-dependent content of the law: the delayed partner attraction is amplified while the receiver falls in and suppressed while it climbs out.
+
+This table is only the partner column of the certificate packet. The self-image columns must be produced separately because their source and receiver are the same labeled path, and because self rows carry $\sigma_{ii}=+1$ and therefore the opposite sign of velocity-dependent response.
+
+##### Why the Causal-Root Events Matter
 
 For same-side self hits on an affine segment,
 $$
@@ -34954,24 +35296,28 @@ this is possible only when
 $$
 \|\mathbf V\|=c_f
 $$
-Therefore a perfectly affine segment has no same-side exact self root away from the field-speed separator. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
+Therefore a perfectly affine segment has no same-side exact self root at all unless it moves at exactly field speed. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
 
 This suggests a closed-form strategy:
 
 1. solve sub-field and super-field segments as certified phase-space arcs, using receiver-normal phase quadrature where the branch strength remains velocity dependent;
-2. treat the field-speed separator as the event where causal images are born, die, or switch branch labels;
-3. impose matching laws at those separator events.
+2. locate the source-normal caustics, where causal images are born, die, or switch branch labels;
+3. locate the receiver-normal nulls and memory-boundary exits separately, since neither is a fold;
+4. impose matching laws at the caustics and continuity-with-kink at the nulls.
 
-The separator is metastable in the sense that small perturbations decide whether the sorting map keeps descending, stalls, or reverses. In the dual-mollified model the separator should become a thin transition layer rather than an infinite impulse.
+Only the caustic is metastable in the sense that small perturbations decide whether the sorting map keeps descending, stalls, or reverses. In the dual-mollified model it becomes a thin transition layer rather than an infinite impulse. A receiver-normal null needs no impulse budget: the branch strength passes through zero and the acceleration is continuous.
 
-###### Separator normal form and fold scaling
+###### Caustic normal form and fold scaling
 
-For certificate purposes, the field-speed separator is a codimension-one event surface in the reduced phase data together with an active branch label:
+For certificate purposes, the source-normal caustic is a codimension-one event surface in the reduced branch data. It is keyed to the *source* velocity on the emitting row, evaluated at the emission time:
 $$
 \Sigma_{\mathcal{B}}
 =
-\{(X,\mathbf V,\mathcal{B}): \|\mathbf V\|=c_f\}
+\{(X,\mathcal{B}):\ D_{s,\ell}=0 \ \text{for some}\ \ell\in\mathcal{B}\},
+\qquad
+D_{s,\ell}=c_f-\mathbf V_{j}(T_{\mathrm{em},\ell})\cdot\hat{\mathbf r}_\ell
 $$
+It is not the receiver's speed surface $\|\mathbf V_i(T)\|=c_f$. On the affine chart the two are forced to coincide, which is exactly the artifact identified above.
 Here
 $$
 \mathcal{B}
@@ -35250,7 +35596,7 @@ $$
 I_1(\mathcal{K}),\ldots,I_m(\mathcal{K})
 $$
 
-For the first certificate attempt, use the doubled four-arc itinerary. It is the generic transverse choice: every field-speed separator is treated as a simple fold event, while the glancing itinerary is reserved as a fallback if the generic branch enumeration fails or the corridor arithmetic forces a degenerate outer turn.
+For the first certificate attempt, use the doubled four-arc itinerary, with one correction to its reading. A field-speed threshold crossing is not automatically a fold. The itinerary must declare, at each $\mathsf{S}_{\mathrm{sep}}$ entry, which of the three causal-root events is in play: a source-normal caustic on some emitting row, a receiver-normal null on some receiving row, or neither. The barrier asymmetry constrains the itinerary before any arithmetic. Inbound threshold crossings are unobstructed, because the retained partner image lies ahead of the falling receiver and its branch strength is amplified. Outbound threshold crossings are obstructed: with every active image behind the receiver, each branch strength carries the common factor $c_f-|dX/dT|$ and vanishes at the threshold. An outbound $\mathsf{S}_{\mathrm{sub}}\to\mathsf{S}_{\mathrm{sup}}$ transition therefore requires an active partner image lying beyond the receiver, and the itinerary must exhibit that root. If it cannot, the glancing itinerary, in which the path touches the threshold without entering another super-field arc, is not a fallback but the correct template.
 
 The periodicity condition is not merely
 $$
@@ -35648,19 +35994,29 @@ The enumeration deliverable is the following table, filled with exact formulas o
 | $I_4$ | $I_3$ | target | target | target | target | target | target | target | open |
 | $I_4$ | $I_4$ | target | target | target | target | target | target | target | open |
 
-The parity check is imported from Proposition 3 in [master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md): generic folds create or annihilate one root pair, so
+The parity check is imported from Proposition 3 in [master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md): at a generic fold one root pair is created or annihilated, so
 $$
-\Delta N\in 2\mathbb{Z},
+\Delta N=\pm2,
 \qquad
 \Delta D=0
 $$
-On a closed cycle the branch ledger must return to itself, hence
+Writing $\Delta N\in2\mathbb{Z}$ instead is weaker than the proposition and admits a cusp or a coalescence of several folds as a single "even" event. Cusps and higher strata $\Sigma^{1,1}$ are not certified by the generic law and route to a singular-stratum chart.
+
+The closed-cycle sum is not a sum over folds. By Proposition 4 in the same chapter, a generator can also leave the retained interval $[T-h,T)$ when its required delay crosses the memory depth. That is a boundary-exit event, it carries an odd unsigned jump, and it changes the finite-window signed degree $D^{(h)}$. The affine partner chart of this note produces exactly such an event at $u_r\to-c_f$, where $\tau_p=2q/(c_f+u_r)$ diverges. The correct ledger is therefore
 $$
-\sum_{\Sigma}\Delta N=0,
+\sum_{\Sigma_{\mathrm{caustic}}}\Delta N
++
+\sum_{\Sigma_{\mathrm{exit}}}\Delta N
+=
+0,
 \qquad
-\sum_{\Sigma}\Delta D=0
+\sum_{\Sigma_{\mathrm{caustic}}}\Delta D
++
+\sum_{\Sigma_{\mathrm{exit}}}\Delta D
+=
+0
 $$
-with every local unsigned jump even. This is a discrete consistency test on the ansatz. A candidate branch list that fails it should be rejected before any quadrature or collocation residual is computed.
+with every *fold* jump even and boundary-exit jumps unrestricted in parity. Requiring every local unsigned jump to be even is a valid rejection test only on a chart separately certified free of memory-boundary exit, that is, with every active delay strictly interior, $\max_\ell (T-T_{\mathrm{em},\ell})<h$ with a declared margin. A candidate branch list that fails the ledger with that certificate in hand should be rejected before any quadrature or collocation residual is computed. A candidate that fails only the naive even-jump test may simply have a root leaving through the memory boundary, and must not be rejected on that basis.
 
 ###### Causal-Root Ledger and Action Bookkeeping
 
@@ -35710,15 +36066,19 @@ $$
 $$
 with interval validation of the finite active branches and the returned-history residuals. The accepted output is strict residual slack, not a compact symbolic formula.
 
-##### Separator Matching Laws
+##### Caustic Matching Laws
 
-At every separator time
+Matching laws are required at source-normal caustics only. At a receiver-normal null the branch strength passes through zero, the acceleration is continuous, and no impulse budget is needed; the certificate records the modulus kink and the end of the receiver-velocity affine chart. At a memory-boundary exit the branch simply leaves the retained window, and the certificate records the odd degree jump.
+
+At every caustic time
 $$
 T_\Sigma
 $$
 where
 $$
-\left|\frac{dX}{dT}(T_\Sigma)\right|=c_f
+D_{s,\ell}(T_\Sigma)=0
+\qquad
+\text{on some emitting row }\ell
 $$
 the matching law must come from the dual-mollified fold calculation rather than from an assumed conservative energy jump. Choose a fold layer
 $$
@@ -35782,14 +36142,11 @@ C_\Sigma\eta^{1/2}A_{\Sigma,\eta,\epsilon_c}
 $$
 or a sharper interval quadrature bound over the certified fold layer. The matching law is usable only after this finite impulse estimate has strict slack against the adjacent arc budgets.
 
-This formulation keeps the separator tied to the same estimates used in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md). Energy constants on the adjacent arcs may still be useful bookkeeping devices, but they are not the primitive matching data at
-$$
-\left|\frac{dX}{dT}\right|=c_f
-$$
+This formulation keeps the caustic tied to the same estimates used in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md). Energy constants on the adjacent arcs may still be useful bookkeeping devices, but they are not the primitive matching data at $D_{s,\ell}=0$.
 
 ##### Fold-Adapted Fractional Basis
 
-Pure polynomial splines are not the preferred certificate basis near a field-speed separator. The fold normal form produces square-root source-time scaling in the simple-root reduction. In the bare fold model this gives a local hierarchy of the form
+Pure polynomial splines are not the preferred certificate basis near a source-normal caustic. The fold normal form produces square-root source-time scaling in the simple-root reduction. In the bare fold model this gives a local hierarchy of the form
 $$
 \Delta v(\tau)\sim |\tau|^{1/2},
 \qquad
@@ -36102,14 +36459,12 @@ $$
 
 1. Rebuild the sub-field analytic baseline from the receiver-normal held-release
    restart equation, the receiver-normal exterior partner branch, and the
-   finite-width self-collar before accepting any field-speed separator as
-   dynamically produced.
+   finite-width self-collar. Locate the inbound field-speed threshold from the
+   exact delayed root rather than from the affine chart, and record the exact
+   $D_s=c_f+\frac{dX}{dT}(T_0)$ at that radius to confirm it is bounded away
+   from zero.
 2. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
-3. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
-   $$
-   \left|\frac{dX}{dT}\right|=c_f
-   $$
-   event.
+3. Classify every threshold crossing in the chosen itinerary as a source-normal caustic, a receiver-normal null, or neither, and compute fold normal-form constants and impulse bounds only for the caustics.
 4. Use the doubled four-arc itinerary as the first admissible velocity-class itinerary
    $$
    \mathcal{K}
@@ -36135,7 +36490,7 @@ $$
    \mathcal{L}_{\mathcal{K}}
    $$
    with certified empty blocks, simple-root blocks, and separator/fold blocks.
-6. Use
+7. Use
    $$
    \mathcal{L}_{\mathcal{K}}
    $$
@@ -36147,26 +36502,26 @@ $$
    $$
    (I_\alpha,I_\beta)
    $$
-7. Add the parity ledger
+8. Add the parity ledger
    $$
-   \Delta N\in 2\mathbb{Z},
+   \Delta N=\pm2,
    \qquad
    \Delta D=0
    $$
-   at every generic fold and verify that the closed-cycle sums vanish.
-8. Record the grouped causal-root ledger
+   at every generic fold, add boundary-exit rows for every generator whose delay reaches the memory depth, certify that no cusp or higher stratum is present, and verify that the combined closed-cycle sums vanish.
+9. Record the grouped causal-root ledger
    $$
    (N,M)
    $$
    used for action bookkeeping, distinguishing it from the raw simple-root counts whenever fold pairs are grouped into one active channel.
-9. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals. A fixed candidate whose parent-complement ranges retain positive-width overlap is not rescued by mesh refinement alone.
-10. If the current candidate fails at that gate, instantiate a fresh fold-adapted piecewise collocation candidate, with the same-packet null-coordinate pre-ledger as its first acceptance row.
-11. If the self-image table closes, convert it into
+10. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals. A fixed candidate whose parent-complement ranges retain positive-width overlap is not rescued by mesh refinement alone.
+11. If the current candidate fails at that gate, instantiate a fresh fold-adapted piecewise collocation candidate, with the same-packet null-coordinate pre-ledger as its first acceptance row.
+12. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}}
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-12. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
+13. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -36175,17 +36530,17 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-13. Sweep
+14. Sweep
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
-14. Build the first certificate packet
+15. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-15. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md).
+16. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md).
 
 ##### Provisional Assessment
 
@@ -36195,13 +36550,27 @@ $$
 $$
 phase-space curve; a conservative potential curve is only a special certified reduction.
 
-The hard part is the same-side self-image term. If the self images collapse to a finite branch list across the field-speed separator, a closed-form or closed-by-quadrature certificate packet is credible. If they do not close algebraically, the next route is still productive: use a spline or collocation
+The receiver-normal factor sharpens what "conservative" can mean here. By the [receiver-velocity affine form](../../../../markdown/aaa/dynamics/master-equation.md#receiver-velocity-affine-form-and-the-branch-resistance-tensor), the collinear law is exactly
+$$
+\frac{d^2X}{dT^2}
++
+\Gamma\,\frac{dX}{dT}
+=
+c_f\,\Xi,
+\qquad
+\Gamma=\sum_\ell w_\ell,
+\qquad
+w_\ell=\frac{\kappa\,\sigma_\ell\,\epsilon^2}{r_\ell^2\,|D_{s,\ell}|}
+$$
+with $\Gamma$ and $\Xi$ independent of the receiver's present velocity. The damping coefficient $\Gamma$ inherits the polarity sign of each branch. Partner attraction contributes $\Gamma<0$ and therefore anti-damps; self-repulsion contributes $\Gamma>0$ and damps. A conservative potential reduction requires $\Gamma\equiv0$ on the chart, meaning exact cancellation of the attractive and repulsive branch coefficients. That is not a mild extra hypothesis. It is a codimension-one condition on the active branch list, and the ansatz should not expect to meet it.
+
+This also relocates the hard part. It is not the field-speed threshold, which is a speed value and not a branch event. It is the same-side self-image term, for a sharper reason than before: **the self rows are the only damping channel available to the collinear breather.** Writing $s_\ell$ for the radial rate on branch $\ell$, partner attraction injects at rate $|w_p|\,s_p^2$ on both the inbound and outbound legs, while self-repulsion drains at rate $w_s\,s_s^2$. A closed cycle requires the self drain to balance the partner injection over the period. If the self images collapse to a finite branch list, a closed-form or closed-by-quadrature certificate packet is credible. If they do not close algebraically, the next route is still productive: use a spline or collocation
 $$
 \phi_{\mathrm{cyc}}
 $$
 and certify the finite active branches numerically.
 
-The first doubled-itinerary affine check has a sharper conclusion: the apparent odd simple-root births at the first and third separators are separator fold rows with one opposite-degree branch carried by the excluded diagonal, not completed branch-chart rows. The first fixed candidate also shows that parent-complement equality cores can remain after useful subrow and fold diagnostics are extracted. The next concrete calculation is therefore not another branch chart on that fixed candidate, but a fresh fold-adapted collocation packet whose null-coordinate pre-ledger consumes every ordered row before any branch-chart, residual, or corridor work begins. The accepted output is the finite audit packet, not an elegant formula.
+Three conclusions carry forward. The apparent odd simple-root births at the inbound threshold crossings of the doubled itinerary are neither parity violations nor fold rows: they are memory-boundary exits of the affine chart, and they disappear once the exact delayed root is used. The apparent field-speed barrier on the exterior partner chart is likewise an artifact of the frozen source velocity. And the first fixed candidate still shows that parent-complement equality cores can remain after useful subrow and fold diagnostics are extracted. The next concrete calculation is therefore a fresh fold-adapted collocation packet, built on exact delayed roots rather than the affine table, whose null-coordinate pre-ledger consumes every ordered row before any branch-chart, residual, or corridor work begins. The accepted output is the finite audit packet, not an elegant formula.
 
 #### Planar Bridge Closure
 
@@ -36552,6 +36921,8 @@ For the broader cross-axis classifier, see [Noether Braid Taxonomy](../../../../
 
 These definitions name case structure, not retained-branch existence. A neutral braid requires six-body polarity balance and causal-return bookkeeping; a shell braid adds radial support and recovery residuals; a nested shell braid adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
 
+Among candidate realizations of this case structure, the current leading candidate is the **spindle braid**, the rigid uniaxial iso-frequency family defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) and situated among the alternatives in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md#leading-candidate-the-spindle-braid). It leads on measured prescribed-worldline closure and on inherited discrete-symmetry structure, while remaining a named candidate rather than a retained branch — its first tabled rest-state realization did not self-support under native release, and the open work is the confinement mechanism, not the family's definition.
+
 The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program.
 
 Canonical reader-facing prose uses **Noether braid**, **neutral braid**, **shell braid**, and **nested shell braid** for this material. Durable symbols and internal runtime identifiers may still contain `NS`, `noether_braid`, or `nested-shell-braid`; those strings are stable implementation identifiers, not a second taxonomy. The braid's dynamic envelope geometry is developed separately in [the nested shell braid geometry chapter](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), while metric-level translation belongs to [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
@@ -36611,6 +36982,8 @@ $$
 $$
 
 Equivalently, the compact polarity inventory is $3\epsilon_+ + 3\epsilon_-$. This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repulsive channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repulsive channels to negatives. That $3+2$ channel count is part of the neutral braid bookkeeping even when no binary partition has been certified.
+
+Every more specific braid family adds structure to this base case, and the current leading candidate realization — the **spindle braid**, the rigid uniaxial iso-frequency family of [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) — is a neutral braid in exactly this sense: three tilted antipodal binaries sharing one axis and one frequency, with the retained-branch certificate target of this chapter still the open burden.
 
 We work in units with field speed $c_f=1$ unless stated otherwise.
 
@@ -36699,7 +37072,7 @@ $$
 |\Pi_{\mathrm{all}}|=30
 $$
 
-Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
+Same-source rows $(i,i)$ are governed by the declared same-source policy and are deliberately excluded from $\Pi_{\mathrm{all}}$; the ordered distinct-pair count is therefore $6\times5=30$. The $3$ attractive and $2$ repulsive source-site counts for each receiver are inventory facts, not a compressed force law. The force row must still be assembled from the actual retained causal roots, delays, Jacobian floors, receiver-normal branch strengths, and line-of-action vectors for these ordered pairs. A shell braid or nested shell braid can reduce this ledger only after its reduction row proves how the compressed rows are inherited from the all-pairs ledger.
 
 The certificate should report the first blocking row as
 
@@ -36766,7 +37139,7 @@ $$
 \right)
 $$
 
-The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, and lines of action assembled from the true path histories rather than from a compressed force law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
+The inventory row fixes which six architrinos are present and their polarity balance. The curve and support rows fix the closed support geometry and its declared band structure — this is the only place where the family member enters, as the declared support descriptor. The root row demands the actual retained causal roots for all ordered distinct source pairs, thirty in the six-body case, with delays, Jacobian floors, receiver-normal branch strengths, and lines of action assembled from the true path histories rather than from a compressed force law. The tail, dynamics, action, and Noether rows demand that the delayed forces, the action bookkeeping, and the conserved-quantity ledger all balance on the same record. The event and stability rows demand that discrete branch events are logged and that the branch returns after perturbation, and the convergence row demands that the far-population wake sums the record depends on actually converge.
 
 Retention is the conjunction, never a partial credit:
 
@@ -36840,6 +37213,7 @@ A retained, transportable braid branch is the theory's proposed common cause for
 | Lorentz clock/ruler export | A moving retained branch must retune its internal record so that clock rate and envelope contraction collapse to the observer-calibrated $\gamma_0(v_{\mathrm{eff}})=(1-v_{\mathrm{eff}}^2/c_0^2)^{-1/2}$ in the homogeneous weak-field limit, with preferred-frame leakage bounded below current test sensitivity. | [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) |
 | Effective metric and weak-field gravity | The braid-bearing Noether sea must export an effective metric whose weak clock row reproduces $d\tau_{\mathcal A}/dt\approx1-U_N/c_0^2-\|\mathbf w\|^2/(2c_0^2)$, with the Newtonian potential match, effective coupling, and PPN coefficients derived from one same-record constitutive response rather than fit separately. | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md), [PPN Parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | Strong-field and horizon behavior | The terminal-alignment condition of the braid family must recover horizon phenomenology — darkness, entropy counting over alignment-restricted closure labels, and singularity resolution — as branch-boundary behavior rather than as imported geometry. | [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) |
+| Decay-rate dilation and the clock hypothesis | A moving unstable retained branch must dilate its decay and transaction rates by the same $1/\gamma_0(v_{\mathrm{eff}})$ as its clock export — the storage-ring muon-lifetime record and rotor time-dilation measurements are the tested benchmarks — with the candidate mechanism that internal cadence, and therefore the pacing of action-transaction events, slows with the clock. The residual acceleration dependence of decay rates must remain below the clock-hypothesis bounds (pure $1/\gamma$ behavior verified at accelerations of order $10^{18}\,g$ in storage rings), which bounds how much braid-geometry strain per unit acceleration may leak into transaction rates. | [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) |
 
 ##### Quantum and Standard-Model Targets
 
@@ -37061,7 +37435,7 @@ $$
 
 is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The same argument covers same-source rows. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
-The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed drift and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
+The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, receiver-normal branch-strength floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed drift and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
 
 A second interface target rides on the spectrum. Each row carries a definite screw pitch and helicity sign, and the interface hypothesis is that admissible rows at fixed root topology form a discrete pitch ladder whose transitions are root-topology transitions — the click picture below — so that action quantization is inherited from integer root counts rather than imposed.
 
@@ -37073,13 +37447,21 @@ The material in this section is a candidate mechanism at hypothesis level: it pr
 
 Start with an everyday machine. A mechanical watch does not spend energy continuously; an escapement lets the stored energy advance the mechanism one discrete click at a time, and the click count is an integer because a gear tooth is either engaged or it is not. The proposal here is that the field-speed hinge is the braid's escapement.
 
-Three properties make the field speed special for the hinge row, and none of them is arbitrary. First, $c_f$ is the boundary of self-interaction: delayed same-source causal roots exist only for a strand that has exceeded field speed somewhere on its recent path, so crossing the edge is not a matter of degree — it opens a class of causal roots that simply do not exist below it. Second, the source-normal factor in the branch weight approaches its caustic as a source's normal speed approaches $c_f$, so the edge is where wake delivery is most sharply concentrated. Third, for a given support radius, the stored kinematic angular momentum of a row grows with its tangential speed and saturates at the sub-field edge, so the hinge is the configuration that stores the most angular momentum per unit radius without opening the self-interaction ledger. The hinge row sits at the marginal point of all three properties at once.
+Three properties make the field speed special for the hinge row, and none of them is arbitrary. First, $c_f$ is the boundary of self-interaction: delayed same-source causal roots exist only for a strand that has exceeded field speed somewhere on its recent path, so crossing the edge is not a matter of degree — it opens a class of causal roots that simply do not exist below it. Second, the source-normal denominator of the receiver-normal branch strength $W^{\mathrm{rec}}$ approaches its caustic as a source's normal speed approaches $c_f$, so the edge is where wake delivery is most sharply concentrated. Third, for a given support radius, the stored kinematic angular momentum of a row grows with its tangential speed and saturates at the sub-field edge, so the hinge is the configuration that stores the most angular momentum per unit radius without opening the self-interaction ledger. The hinge row sits at the marginal point of all three properties at once.
 
 The click itself is then a root-topology event, and it already has a canonical mathematical home: the causal-root fold set $\Sigma_{ij}$ defined in [Architrino](../../../../markdown/aaa/foundations/architrino.md#core-definition), where the root residual and its emission-time derivative vanish together. An accepted transaction momentarily carries the hinge row across the edge, one same-source causal root opens or closes — a controlled crossing of the fold set rather than a pathology — and the branch re-locks below the edge with its integer ledger changed by one. Quantization on this reading is not imposed on the dynamics; it is inherited from the fact that a causal root either exists or does not, so the count of active roots is an integer and every admissible transaction changes it by a whole step. The closed-cycle action unit $h_{\mathrm{act}}$ is the action transacted in one such click, and the statement that closure-label changes are tied to causal-root bifurcation becomes the click's formal description. The hinge acts as the assembly's double-entry accountant: each click posts one entry to the internal integer ledger and a matching entry to the outgoing wake, so the books balance event by event rather than continuously. A wake entry remains on the books whether or not it is ever received; in a populated Noether sea essentially every entry is eventually redeemed by some receiver, and the unredeemed remainder is regulated by the medium's convergence requirement rather than lost.
 
 The click is also an instance of the codimension-one transition pattern stated in [Emergence of Structure](../../../../markdown/aaa/foundations/emergence-of-structure.md#the-dynamics-of-structure-and-asymmetry): an integer branch label changes only when the retained chart crosses a singular stratum, and self-hit onset is named there as exactly such a fold. The hinge click is that fold crossed deliberately and repeatedly, under control, as the branch's transaction mechanism.
 
 The statistical layer is where familiar physics should emerge. A single braid is a discrete clicking system: its energy record changes in whole steps at particular instants, and the timing of a given click depends sensitively on the phase of the internal cycle when the transaction arrives, which makes individual click outcomes practically unpredictable even though the substrate dynamics is deterministic. Click-outcome weights therefore belong to the declared-measure basin formalism of [Emergence of Structure](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection): a click probability is a basin volume under a declared preparation measure, and any Born-rule contact inherits that chapter's measure discipline rather than adding a probability postulate. A population of braids clicks asynchronously, and the coarse-grained result is a smooth cadence-space current — the same relationship as between molecular collisions and smooth gas pressure. On this reading, the smoothness of observed energy exchange is a law-of-large-numbers statement about click ensembles, and the discreteness that quantum measurements keep finding at the bottom is the escapement showing through. The same picture supplies a destabilization boundary: a transaction rate slow compared with the internal cadence lets the braid re-lock between clicks (an adiabatic exchange), while forcing faster than the cadence — a sharp transverse re-pointing of the branch axis, or an abrupt longitudinal deceleration — outruns the re-locking and breaks the phase lock instead of advancing it, releasing structure rather than storing action. Whether this adiabatic-to-diabatic boundary reproduces observed radiative and decay thresholds is an open, falsifiable target: in solver records, clicks should appear as integer transitions in the active root count of the hinge row, and the declared hinge tolerance is the click window.
+
+##### Fold Geometry of the Click: Coincidence Versus Finite Chord
+
+Whether a hinge click can supply a clean, chart-defined transacted amount depends on where on the fold set the crossing is born, and the two singular loci of the point-transceiver ontology separate the cases. [Architrino](../../../../markdown/aaa/foundations/architrino.md#point-transceiver-status) distinguishes the coincidence stratum $\{r_{ij}=0\}$ — a spatial point-kernel problem that requires a declared spatial regularization — from the caustic stratum $\{\partial_{T_{\mathrm{em}}}F_{ij}=0\}$ — a causal-root fold that requires a fold-resolution chart. A click carries a chart-defined magnitude only when its crossing sits on the second locus while staying clear of the first.
+
+A same-source (self-hit) crossing on a smooth strand is born on the coincidence stratum. As the causal lag $\Delta\to 0$ the separation is $\lVert\mathbf X(T)-\mathbf X(T-\Delta)\rVert=\lvert\mathbf v\rvert\,\Delta+O(\Delta^2)$, so the same-source root nucleates exactly at the field-speed crossing with a vanishing chord, $r_{ij}\to 0$ as the root opens. On the symmetric one-band channel this onset is a cusp rather than a generic fold, and the transacted amount is not fixed by the fold chart; it is set instead by the point-transceiver short-distance self-regularization scale $d_0$ — of order the near-field two-body scale $\kappa\epsilon^2/c_f^2$ of [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) (with $\epsilon$ the architrino polarity-charge magnitude), and in the minimum-circular-binary reading the collapse-arresting radius itself, whose derivation from $\kappa$, $\epsilon$, and $c_f$ remains an open question noted in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). This is a scoped negative for the escapement picture: the symmetric single-site self-hit cannot be the load-bearing channel that absorbs the [anti-damping tangential pump](#scoped-anti-damping-results), because its transacted magnitude is a property of $d_0$ rather than of the branch geometry. Same-source rows remain in the ontology and are what set $d_0$; they simply do not fix a clean click on their own.
+
+A cross-hit crossing between two distinct strands can instead be born at finite chord. When the source-normal alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the return-response question of [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
 
 #### Thomson Dressing Mechanism
 
@@ -37161,11 +37543,17 @@ Held-release diagnostics of the face-opposite seed on the zero-angular-momentum 
 
 This pairing is informative rather than damaging. A shell braid was never expected to close as a bare partner-wake problem in the Euclidean void: the candidate stabilizing ingredients — same-source self-hit rows, retained wake-energy response, shielding, angular-momentum-bearing initial data, and local Noether sea response — are exactly the ingredients the isolated diagnostic omits. The void result therefore sharpens the retention question into a return-response question: which internal or environmental term changes the reduced-radius equation from escape to a second turning point, a stable support radius, or a bounded limit cycle. The axis-neutral rotating channel of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#invariant-channels-and-equivariant-reductions) supplies the first untested internal candidate, since the zero-angular-momentum release is a radial free-fall chart with no centrifugal support; the scoped anti-damping results collected there bound what any such candidate must overcome. The environmental candidate is the `SH-0-sea` route stated next.
 
+The void diagnostic can now be stated sharply rather than qualitatively, because the recorded escape obeys a conditional no-return certificate on the invariant channel. Two monitored conditions carry it: sub-field speed, meaning every worldline stays below the field speed $c_f$; and an opposite-polarity separation floor, meaning the closest opposite-polarity non-antipodal pair stays at least one reduced radius $R$ apart. The floor holds automatically from the channel's own geometry, and the retained causal-root count reduces to exactly one root per directed pair, so sub-field speed is the only condition that must be watched forward in time. Under the two conditions the reduced-radius acceleration satisfies a signed inverse-square lower bound $\ddot R\ge -K/R^2$, with $K$ built only from the row's coupling, its declared speed and weight caps, and the polarity structure — same-polarity partner terms cancel by an exact radial-sign argument, and the opposite-polarity terms are bounded by the floor. A short energy-integral argument then closes it: if the outward speed at a chosen certificate time clears the margin $\dot R^2>2K/R$, the reduced radius cannot turn back while the two conditions hold. This conditional statement is an established derivation on the channel, not a retained-branch claim; on every isolated row recorded so far the margin is unmet, consistent with the escape the diagnostic reports.
+
+The consequence sharpens the return-response question to a single named target. A return turn cannot be the first event — any return must be preceded by a violation of sub-field speed or the opposite-polarity floor — so on the isolated channel the reduced radius escapes for as long as the row stays sub-field, and retention is possible only through a term that ends sub-field speed first, driving the internal speed to the field-speed hinge where the outward drive stops before the radius can turn. This is exactly why the [anti-damping pump](../../../../markdown/aaa/noether-braid/braid-mathematics.md#scoped-anti-damping-results) enters with the sign it does: it is transverse, so it feeds escape rather than return, and its only bearing on the certificate is that it pushes the speed toward $c_f$ — the very condition whose failure ends the window. The open target is therefore precise: exhibit an internal or environmental absorber that ends sub-field speed before the margin is crossed. The surviving candidate absorbers, and why the symmetric single-site self-hit is not among the load-bearing ones, are set out in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord); the environmental candidate is the `SH-0-sea` route below.
+
 #### The SH-0-Sea Environment Route
 
 The declared environment round is `SH-0-sea`: the same one-band configuration at rest, embedded in a surrounding [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) of like assemblies. The `-sea` qualifier is defined in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md): it does not name a new shell family; it is the `SH-0` rest test with like assemblies allowed to supply the environmental response needed for retention. In this reading, isolation is a limiting seed chart, and physical retention is local persistence inside an already populated medium.
 
-The route inherits the return-response question directly: it asks whether the delayed response of a like-assembly population changes the reduced-radius equation from escape to a second turning point, a stable support radius, or a bounded limit cycle. Closing the round requires an explicit like-assembly population record, a declared boundary condition, and a sea-response row tied to the same target branch, under the same-record evidence discipline of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). The round is declared and not started; this chapter records the route, not a result.
+The route inherits the return-response question directly: it asks whether the delayed response of a like-assembly population changes the reduced-radius equation from escape to a second turning point, a stable support radius, or a bounded limit cycle. Closing the round requires an explicit like-assembly population record, a declared boundary condition, and a sea-response row tied to the same target branch, under the same-record evidence discipline of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). The retention round — a retained branch on one record — is not yet started, but the environmental response now carries a scoped result that narrows what the round can be.
+
+On the static side the answer is negative and certified. For the aligned nearest-neighbor sea shell, the sea's along-velocity wake force decomposes exactly into an orientation-locking part with zero cyclic average and a single velocity-linear coefficient, and that coefficient is certified to lie well below the tangential pump. The static aligned Noether sea is therefore a non-absorber: it can delay the outward turn but cannot remove the pumped tangential action, so the sub-field-speed clock of the [return-response certificate](#isolated-release-and-the-return-response-question) still runs, and a static like-assembly environment cannot by itself supply retention. Two companion static readings agree: a static induced orientational polarization of the neighbors relaxes anti-retentively rather than toward the aligned order retention would require, and a phase-lagged (dynamic) induced polarization is absorptive in sign but, at the orientational stiffness the surrounding cluster supplies, too weak to overcome the pump by a factor of several. The open question is thus no longer whether any sea helps, but whether a dynamic, formation-history-driven sea response — one that self-selects the aligned order the static readings cannot — can end sub-field speed before the certificate margin is crossed.
 
 #### Accessory Dressing and Apparent Energy
 
@@ -37228,6 +37616,8 @@ The one-band [shell braid](../../../../markdown/aaa/noether-braid/symmetric-shel
 Three consequences keep this statement in its proper place. First, absence of a symmetry is not a stability proof against the nested shell braid: less symmetric branches are harder to analyze, not thereby excluded, and no falsification of nested retention exists. The correct reading is that the symmetric one-band configuration is the maximal-symmetry member of the family, and the nested shell braid is its symmetry-broken relative, in the same way that the generation ladder below reads heavier fermions as less shielded relatives of the electron tier. Second, the axis-neutral direction survives the symmetry breaking in a weaker but still useful form: when the three binary planes are mutually orthogonal, the $120^\circ$ rotation about the body diagonal permutes the three planes, so the diagonal remains the distinguished axis of the support architecture and the natural candidate precession axis, even though the decorated configuration with unequal radii is no longer invariant. Third, the relationship poses a formation question rather than answering one: whether braids persist in the symmetric one-band configuration throughout their recycling history, or form by binary capture at separated energy levels and then ring down toward the symmetric configuration, is open. The simplest hypothesis is symmetric persistence; the capture-and-ring-down route would make nested hierarchies transient intermediates. Deciding between them belongs to the same configuration-space program that compares the frequency families.
 
 The symmetry relationship supplies the natural observable for that question: **precession**. On the symmetric shell channel the kinematic angular momentum is pinned exactly along the axis-neutral direction by the three-fold symmetry, so the axis cannot wander — a braid on the symmetric channel does not precess, and any precession is a direct signature of broken pair-permutation symmetry. A nested or freshly captured configuration, with its unequal binaries, precesses; a configuration relaxing toward the symmetric channel should show decaying precession as it rings down; and the terminal-alignment statement that precession ceases at the horizon condition is the strong-field endpoint of the same diagnostic. Precession amplitude is therefore a candidate symmetry-distance meter across the whole braid family, from formation transients to horizon alignment.
+
+Comparative standing: in the configuration-space program that runs these comparisons, the current leading candidate is not a frequency-separated nested arrangement but the **spindle braid** — the rigid uniaxial iso-frequency family in which tilt angles, not frequency ratios, decouple layer speeds from nesting radii ([Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md), [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md#leading-candidate-the-spindle-braid)). The nested shell families in this chapter remain the named comparison population, and the generation and dressing hypotheses developed below are stated so that they can be re-hosted on whichever family is eventually retained.
 
 #### Properties of the Nested Shell Braid
 
@@ -37674,6 +38064,7 @@ $$
 \left(
 \mathcal{A}_q,
 \nu_J^{(q)},
+\nu_{\mathrm{rec}}^{(q)},
 g_{\mathrm{inactive}}^{(q)},
 h_{\mathrm{mem}}^{(q)},
 \Delta_{\mathbf{k}}^{(q)},
@@ -37687,7 +38078,7 @@ T_q(\mathbf V_{\text{trans}}),
 \right)
 $$
 
-Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active Jacobian floor, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, absolute branch period, medium-dressed mass-response tensor, moving-branch residual, observer-export packet, active sector residuals, and row-indexed event ledger. The observer-export packet is not an effective metric or clock law; it is the branch-certified data that later observer-inference chapters must consume.
+Here $\mathcal{A}_q$ is the active causal-root ledger, $\nu_J^{(q)}$ the active source-normal Jacobian floor, $\nu_{\mathrm{rec}}^{(q)}$ the retained receiver-normal branch-strength floor or certified interval for $W_{ij}^{\mathrm{rec}}$, $g_{\mathrm{inactive}}^{(q)}$ the inactive-root gap, $h_{\mathrm{mem}}^{(q)}$ the finite memory depth, and $\Delta_{\mathbf{k}}^{(q)}$ the Floquet or branch-stability gap. The remaining rows record the moving deformation map, absolute branch period, medium-dressed mass-response tensor, moving-branch residual, observer-export packet, active sector residuals, and row-indexed event ledger. The observer-export packet is not an effective metric or clock law; it is the branch-certified data that later observer-inference chapters must consume.
 
 The branch identity check is
 
@@ -37713,7 +38104,7 @@ d_{\mathcal{A}}
 \right)
 $$
 
-The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive Jacobian floor, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
+The candidate chart may be promoted to a retained branch class $q$ only if the same ledger supplies a positive source-normal Jacobian floor, positive receiver-normal branch-strength floor or certified interval, inactive-root gap, finite memory depth, positive stability gap, closed event ledger, and the normalized closure residual
 
 $$
 \mathcal{U}_{\mathrm{NSH}}^{(q)}(W)
@@ -41684,12 +42075,24 @@ If one retained lever arm is large enough at the common frequency, then that lay
 
 This is not a signal-speed claim. The primitive causal wake still propagates at $c_f$. A row with $s_a>c_f$ is a carrier-trajectory row in the retained branch chart. Its importance is dynamical: it changes the causal-root inventory. Super-field-speed carrier motion can create additional self-hit and partner-hit roots, force Jacobian sign changes, and move the branch into the fold and caustic regimes that feed the causal-root ledger. The possibility of one or more super-field-speed layers is therefore a reason to scan the full Noether braid configuration space rather than preselecting a single speed hierarchy.
 
-In a certified row, the important event is not speed alone but the appearance of same-source causal roots with the required transversality floors. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
+In a certified row, the important event is not speed alone but the appearance of same-source causal roots with the required transversality floors; a certified row that contributes force or action additionally carries the same-record receiver-normal branch strength, while the signed-root topology below is fixed by root existence and the causal-root Jacobian sign. Still, $s_a>c_f$ is the natural warning gate for the layer's self-hit signed-root complex:
 $$
 C_+^{(a)}\oplus C_-^{(a)}.
 $$
 This is the layerwise specialization of the [signed causal-root complex](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex): simple same-source roots are split by the sign of their causal-root Jacobian before the layer contributes to assembly topological charge.
 A branch with one super-field-speed layer can carry a different assembly topological charge structure from a branch with two or three such layers, because the self-hit ledgers and signed degrees are layer-dependent. This is another reason the search must preserve the full unordered speed tuple $s_1:s_2:s_3$ rather than collapsing immediately to a preferred hierarchy.
+
+One named family realizes this decoupling directly. The **spindle braid** is the rigid uniaxial configuration: all six architrinos co-rotate at one common frequency about a single axis, with each binary a tilted antipodal pair, so every site traces its own horizontal circle about the shared axis and each layer's speed is $s_a=\omega R_a\cos\alpha_a$ — the tilt angles decouple the speed tuple from the spherical nesting order, so the farthest layer can be the slowest. The swept envelope is fusiform: slow near-polar caps, the widest working ring at the equator. The family contains the planar tri-binary state as its flat limit ($\alpha_a=0$) and a static axial pair as its full-cap-tilt limit, and its rigid single-axis rotation keeps every pairwise alignment scalar time-constant, so any hinge alignment built into the geometry is sustained by the rotation itself. The spindle braid is the search's current leading candidate: on the unified prescribed-worldline closure metric it outperforms every alternative family measured to date, and the planar and axial alternatives are its own boundary members. It remains a named candidate family, not a retained branch — the first tabled rest-state realization dispersed under native release (radial under-support at the fitted coupling), so the open burden is a realization whose confinement rows close; nothing in this naming asserts a retained branch.
+
+##### Spindle Braid Discrete-Symmetry Structure
+
+Claim level: derivation sketch on prescribed-worldline closure results; not a retained-branch theorem. The spindle braid carries a definite discrete-symmetry structure that any retained realization would inherit, and it is worth stating because it reproduces the observed hierarchy of symmetry-violation sizes.
+
+The pairwise causal-wake law is even under polarity conjugation (C: every electrino$\leftrightarrow$positrino, since only polarity products enter) and even under parity (P: the law is radial with no primitive handedness). An isolated anti-braid — the C-conjugate polarity arrangement on the same geometry — is therefore exactly degenerate with its braid, and a true mirror image (geometry and rotation sense both reflected) is an exactly degenerate enantiomer. The braid itself, however, is a chiral object: its ground-state geometry locks the relative orientation of three oriented structures — the spin axis, the cap polarity dipole, and the cap azimuthal offset — so each realized braid is one glove of a degenerate pair, with handedness summarized by the pseudoscalar pairing of dipole and spin.
+
+Prescribed-worldline closure measurements on the drifting spindle braid find this locking maximal: closure strongly prefers motion anti-parallel to the cap polarity dipole (one polarity cap leads), with the preference growing with drift speed, and the C-conjugate braid forced to lead with the opposite polarity. Three consequences follow at the stated claim level. Channels that do not read the internal glove — bulk wake exchange and the electromagnetic-flavored interactions built from it — inherit the law's parity evenness, so parity conservation there is structural. Channels that reorganize the braid's internal locking — the weak-flavored transaction channels — read the glove directly, and because the lock is maximal, parity violation in exactly those channels is maximal rather than partial. And because the lock correlates handedness *with* polarity, the combined CP operation (left-braid$\leftrightarrow$right-anti-braid) restores degeneracy: CP is exact at this order, with any observed small CP violation necessarily arising from next-order structure — candidate sources are Noether-sea polarity/chirality texture (absolute time supplies the arrow) and interference between transaction paths at different values of the drift-dependent internal angles.
+
+This is the observed pattern of nature's discrete symmetries — parity maximally violated in a specific sector, CP nearly but not exactly conserved — produced with the observed hierarchy of sizes by one structural mechanism: a parity-even law populated by chiral objects whose handedness is maximally locked to their polarity.
 
 #### Stability In A Sea Of Like Assemblies
 
@@ -42225,6 +42628,12 @@ The first proof target is therefore a rest retained branch. The shell sequence b
 
 These obligations close in layers. A rest branch can be retained before moving export is tested. A Euclidean-void fixture can be diagnostic before a Noether sea row is added. A retained branch can feed topological-charge, photon, mass-response, spin-statistics/exchange, strong-sector/color, generation, and accessory-architrino packets only after those packets consume the same retained record rather than substituting their own reduced diagnostics. The proof map therefore tracks both Proof ID and current disposition; the taxonomy only defines what a candidate is claiming.
 
+#### Leading Candidate: The Spindle Braid
+
+The search currently has a leading candidate family, and a reader who wants one configuration to hold in mind while reading the axes below should hold this one. The **spindle braid** ([Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md)) is the rigid uniaxial iso-frequency family: all six architrinos co-rotate at one common frequency about a single axis, each binary a tilted antipodal pair, with the tilt angles decoupling each layer's speed from its nesting radius. On the prescribed-worldline unified-closure comparisons run to date it closes markedly better than every alternative family measured against the same metric — planar tri-binary states, counter-rotating and frequency-locked nested arrangements, and common-sphere shell states — and it contains the planar tri-binary and the axial-dipole configurations as its flat and full-tilt limits, so those are best read as boundary members of the spindle family rather than rivals.
+
+The status discipline still binds. The spindle braid is a named candidate family, not a retained branch: the first tabled rest-state realization, released on the native retained-history solver at declared regulators, did not self-support — the wake forces at the fitted coupling under-supplied the required centripetal support and the configuration dispersed — so the family currently frames the search for a realization whose confinement rows close (same-source booking, sea embedding, and non-rigid same-level variants are the open routes). The alternative families below remain the search's bookkeeping: they are the comparison population that gives the leading candidate its meaning, and any of them re-enters if the spindle route is decisively rejected.
+
 #### Taxonomy Axes
 
 | Axis | Reader-facing purpose | Example values |
@@ -42353,7 +42762,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 
 | Frequency-ratio value | Meaning |
 | --- | --- |
-| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. |
+| iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid**, the current leading candidate (see above). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
 | doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md). |
 
@@ -47015,7 +47424,7 @@ for that class of material branches. The remaining Lorentz program is the constr
 
 ##### Theorem A1 (translating binary Lorentz residual)
 
-The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, and positive Jacobian floors. For each $0<u<c_f$, solve the absolute-time delayed root equations for
+The first constructive test of Theorem G is the translating maximum-curvature binary benchmark defined in [Translating Binary Benchmark](#translating-binary-benchmark). Start from the certified rest binary with radius $R_0$, period $T_0$, active root ledger $b_0$, positive Jacobian floors, and bounded receiver-normal branch strengths. For each $0<u<c_f$, solve the absolute-time delayed root equations for
 $$
 \mathbf X_{\sigma}(T)
 =
@@ -47287,7 +47696,7 @@ $$
 \left(\sum_s q_s A_s(\mathbf X,T)\right)^2
 \right\rangle_{\Delta T}^{1/2}.
 $$
-Here $\theta$ labels the shared candidate record being tested, $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
+Here $\theta$ labels the shared candidate record being tested, $A_s$ denotes the branch-resolved wake amplitude from source segment $s$ — defined on the same retained causal root as the branch law and carrying the same-record receiver-normal branch strength and inverse-square factor $W^{\mathrm{rec}}_s/r_s^2$, not a bare $1/r$ or root-independent amplitude — and $\mathcal{K}_{\mathrm{sea}}$ is a constitutive response coefficient to be derived, not fitted independently. The route is useful only if the same averaged excitation also supplies the lapse, spatial-compliance, lensing, Shapiro, and PPN rows.
 
 #### ADM/Cartan Reconstruction Surface
 
@@ -50795,7 +51204,7 @@ In strong-field conditions (e.g., near an event horizon), the **outer binary fre
 
 One preserved intuition, to be read only as a heuristic, is that this alignment limit may correspond to a temporary **planar horizon state** rather than to the final interior shape. In that picture, the horizon is the point of strongest flattening, while deeper interior self-hit pressure can reopen the suppressed polar degree of freedom so the nested shell braid returns to a finite 3D configuration instead of terminating in a zero-volume endpoint. This is compatible with the maximum-curvature replacement logic, but it is not yet a derived mechanism; compare [Horizon Chirality and Planar Spin](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
-**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-source root existence, transversality/Jacobian control, and retained ledger closure.
+**Mapping rule:** "Planck-scale" references in this framework map to the **event-horizon alignment condition** (nested shell braid coplanarity/co-linearity at $v=c_f$), unless an explicit derivation links them to another scale. The field-speed rows in this mapping are necessary alignment indicators, not a self-hit proof by themselves; the admitted branch still needs same-source root existence, transversality/Jacobian control, receiver-normal branch strength, and retained ledger closure.
 
 ### Horizon Chirality
 
@@ -51275,7 +51684,7 @@ We map the abstract gauge groups of the Standard Model to physical deformations 
 
 1.  **U(1) (Electromagnetism):**
     *   *SM View:* Phase rotation of the complex field.
-    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and Jacobian flux bunching.
+    *   *$\mathbb{A}\mathbb{A}\mathbb{A}$ View:* A variation in the **potential density** or polarization alignment of the Noether sea. A particle moving through this gradient experiences a delayed line-of-action force whose transverse and velocity-dependent observer-level pieces arise from branch geometry, causal delay, and receiver-normal branch-strength modulation (the source-normal Jacobian entering only as transversality and root-density data).
 
 2.  **SU(2) (Weak Interaction):**
     *   *SM View:* Non-Abelian rotation in isospin space.
@@ -59767,7 +60176,7 @@ Path history is part of identity bookkeeping in absolute time.
 4. **Characterize local Noether sea state**
 Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear:
 $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$.
-Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
+Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record receiver-normal branch strength — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
 
 Magnetic-like observer language belongs at this mapping layer. It is not a substrate force law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly drift and after Noether sea anisotropy/vorticity dressing.
 
@@ -59790,7 +60199,7 @@ F_{\perp,A}^{i}(T)
 \hat r_{Ak,j}(T;T_{\mathrm{em}})
 $$
 
-The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the receiver-normal branch-strength factor of the $W^{\mathrm{rec}}$ family, the polarity sign, the causal Jacobian, and the local Noether sea anisotropy/vorticity response; it is named $\mathcal{K}$ rather than $W$ because it is a composite, not the canonical receiver-normal factor alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the receiver-normal branch-strength factor of the $W^{\mathrm{rec}}$ family, the polarity sign, and the local Noether sea anisotropy/vorticity response; the source-normal (causal) Jacobian $D_{s}$ enters only as the transversality and root-density data that make each causal root legal, not as a separate multiplicative factor stacked on $W^{\mathrm{rec}}$ (which already carries the $1/D_{s}$ branch density). It is named $\mathcal{K}$ rather than $W$ because it is a composite, not the canonical receiver-normal factor alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse force is recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
 
 In this expression, $\mathcal{C}_{Ak}(T)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}(T;T_{\mathrm{em}})$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
 
@@ -60263,7 +60672,7 @@ $$
 E_{\text{exc}}\ge E_{\gamma,\min}
 $$
 
-Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, $J_{\text{loc}}$ is the local causal-root/Jacobian data as declared in [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
+Here $\mathcal{S}_{\gamma}$ is the local photon-channel drive, $\mathcal{S}_{\gamma,*}$ is the planar-mode stability boundary, $J_{\text{loc}}$ is the local causal-root/Jacobian data — including the same-record receiver-normal branch strength — as declared in [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), and $E_{\gamma,\min}$ is the minimum stable planar-mode cost if such a floor survives the derivation. This form is only a scaffold. The burden is to derive $\mathcal{S}_{\gamma}$ from wake-strain geometry, causal-root branch data, and Noether sea coupling, then recover the validated limits used by bremsstrahlung, synchrotron emission, atomic transitions, Compton-like scattering, pair channels, and thermal radiation.
 
 Once the planar mode nucleates, the event record must carry the photon Gate A and Gate B data without treating those gates as locally proven. Gate A supplies kinematics and optics: $E_\gamma$, $\mathbf{p}_{\gamma}$, direction, phase frequency, and local photon-channel speed $c_\gamma$. Gate B supplies transverse angular-momentum, polarization, helicity, and capture/rejection ledgers. This radiation overview uses those records as requirements; their proofs remain in the photon and angular-momentum workstreams.
 
@@ -61261,7 +61670,7 @@ $$
 \Delta E_{a\to b}^{\mathrm{env}}\ge E_{\gamma,\min}
 $$
 
-The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the atomic-transition specialization of the photon-channel drive. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea density and delay state, and the local causal-root/Jacobian data. This is a derivation target: the completed Gate C account must compute this drive from the assembly return map and delayed causal-wake ledger, not fit it separately for each line.
+The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the atomic-transition specialization of the photon-channel drive. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea density and delay state, and the local causal-root/Jacobian data including the same-record receiver-normal branch strength. This is a derivation target: the completed Gate C account must compute this drive from the assembly return map and delayed causal-wake ledger, not fit it separately for each line.
 
 If the gate is not crossed, the same basin transition may still route energy into recoil, medium excitation, internal remnant energy, or a non-radiative material update. The channel distinction is therefore:
 
@@ -61333,7 +61742,7 @@ The minimum event record is:
 | Field | Required content |
 | --- | --- |
 | Atomic state | Pre/post atomic envelope basins $a,b$, nuclear causal-wake envelope $\mathcal W_{\mathrm{nuc}}$, and closure status of the orbital labels used |
-| Local Noether sea state | $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, anisotropy if relevant, and local causal-root/Jacobian data |
+| Local Noether sea state | $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, $\chi_{\text{sea}}(\mathbf X,T)$, anisotropy if relevant, and local causal-root/Jacobian data including the same-record receiver-normal branch strength |
 | Transition gap | $\Delta E_{a\to b}^{\mathrm{env}}$ and the clock/rate conversion used for observer comparison |
 | Channel decision | Planar-mode gate status, non-radiative alternatives, and whether $E_{\gamma,\min}$ is active in the chosen model |
 | Photon output or capture | $E_\gamma$, $\mathbf p_\gamma$, direction, phase frequency, local photon-channel speed $c_\gamma$, and Gate A null-branch status |
@@ -62418,7 +62827,7 @@ Propagation and timing conventions must remain explicit in cosmology-facing use.
 #### Anticipated Mapping Targets
 
 - Recover observed cascade-like spectral slopes and break structures in limits where synchrotron cooling dominates.
-- Derive the synchrotron wake-strain threshold and $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ from Noether braid velocity deformation, $G_{\text{grad}}$, causal-branch Jacobians, and $\mathcal{V}_{\mathrm{NS}}$.
+- Derive the synchrotron wake-strain threshold and $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ from Noether braid velocity deformation, $G_{\text{grad}}$, causal-branch Jacobians, receiver-normal causal-branch strength, and $\mathcal{V}_{\mathrm{NS}}$.
 - Map pair-loading predictions to assembly-density and outflow-structure variables without changing QED/QED-like reaction channels.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
 - Bound acceptable parameter freedom in provisional mapping variables so parsimony does not degrade relative to standard transport models.
@@ -62572,8 +62981,8 @@ From the viewpoint of an embedded assembly:
 - Two key absolute-level configurations look "stealthy" or acausal at this emergent level:
 
 1. **Near-field-speed assemblies ("Stealth" vs. "Reactive" Modes)**
-   - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-source root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-source root set is nonempty and passes the transversality/Jacobian floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
-   - **The Curvature Target (Stable Stealth):** Candidate stable assemblies near $v \approx c_f$ (such as the middle-binary regime) may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
+   - **Near-$c_f$ Linear Fragility (Self-Hit Resonance):** Approaching $c_f$ from below does **not** produce self-hit on a strictly sub-field-speed interval; the triangle inequality forbids the same-source root. At exactly $v = c_f$, straight-line motion gives a degenerate tangent family rather than a clean simple branch. Self-hit resonance is admitted only when the same-source root set is nonempty and passes the transversality/Jacobian floor and the same-record receiver-normal branch-strength floor. A super-field-speed curved interval is therefore a candidate source of self-hit, not a speed-only acceptance test. In that regime small perturbations are strongly amplified or damped depending on phase. The wake amplitude does **not** diverge; "pileup" here means coherent reinforcement of a finite wake, not a singularity. Linear near-$c_f$ states are therefore **fragile** and short-lived unless the system actively de-phases the feedback.
+   - **The Curvature Target (Stable Stealth):** Candidate stable assemblies near $v \approx c_f$ (such as the middle-binary regime) may use curvature, phase rotation, or internal modulation to de-phase their self-hit geometry. The closure target is to show that this mechanism can keep a hard potential front externally while preserving a Jacobian floor, a retained receiver-normal branch strength, bounded energy, and deterministic multistability rather than permitting runaway self-reinforcement.
    - **Operational Effect:** A receiver sees little change until the corkscrewing assembly is very close, then feels a rapid, modulated potential surge—a "digital" shockwave delivered without warning.
 
 2. **$v>c_f$ inner-binary motion**
@@ -62625,7 +63034,7 @@ Where the exact topology is not proven, we use "-like" and treat the label as a 
 
 ###### Self-Hit Threshold Analogy
 
-The delay-oscillator picture is useful only as an illustration: a control parameter near $v/c_f$ can change stability, and delayed self-hit feedback can create a bifurcation surface in reduced phase space. The canonical claim is limited to that structural point. A proof must replace the toy gain and delay parameters with active causal-root ledgers, Jacobian floors, and a branch-chart closure object from the Master Equation.
+The delay-oscillator picture is useful only as an illustration: a control parameter near $v/c_f$ can change stability, and delayed self-hit feedback can create a bifurcation surface in reduced phase space. The canonical claim is limited to that structural point. A proof must replace the toy gain and delay parameters with active causal-root ledgers, Jacobian floors, receiver-normal branch strengths, and a branch-chart closure object from the Master Equation.
 
 This is also the safe translation of symmetry-breaking language in decision-like systems. A near-threshold assembly does not need metaphysical indeterminism to produce sharp alternatives. It needs a deterministic basin boundary whose selected side depends on high-dimensional path history, local Noether sea state, and small perturbations near the field-speed or self-hit hinge. The mathematical target is therefore a basin-bifurcation map, not a new source of acausal choice:
 $$
@@ -70887,7 +71296,7 @@ In this framework, the candidate substrate-level quantities are:
 
 ##### Category B: Fundamental Entity
 - **Architrino polarity-unit magnitude** $\epsilon=|e|/6$
-- **Causal wake interaction kernel** (inverse-square line-of-action weighting over causal wake surfaces, with regularized coincidence handling)
+- **Causal wake interaction kernel** (inverse-square line-of-action weighting modulated by the receiver-normal branch strength $W^{\mathrm{rec}}$ over causal wake surfaces, with regularized coincidence handling)
 
 ##### Category C: Assembly Geometry (Emergent but Calculable)
 - **Nested shell braid radius ratios** (inner/middle/outer scales)
@@ -73981,7 +74390,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   $$
   \mathcal{C}_{aa}(T)=\{\,T_{\mathrm{em}}<T:\|\mathbf X_a(T)-\mathbf X_a(T_{\mathrm{em}})\|=c_f(T-T_{\mathrm{em}})\,\}
   $$
-  is nonempty and the active root passes the transversality/Jacobian floor. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
+  is nonempty and the active root passes the transversality/Jacobian floor and carries a retained receiver-normal branch strength. A speed excursion above $c_f$ is a necessary warning condition for simple nontrivial roots, not a sufficient criterion.
   - Self-hits are always repulsive (like-on-like).
 
 - Why it matters:
@@ -74660,6 +75069,8 @@ J_{\min}
 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)}{c_f}
 \right|
 $$
+
+On the same active rows the certificate must also report the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ (receiver-normal numerator $D_T=1-\mathbf v_{o'}(t)\cdot\hat{\mathbf r}_{o'j}(t;t_0)/c_f$) on its certified floor or bounded interval; a healthy transversality floor $J_{\min}$ alone does not certify the branch's force or action contribution.
 
 Third, it reports a running retained-history energy-like functional and its variation across self-hit or separator crossings under $\Delta t$, $\eta$, and history-window refinement. A bounded-energy claim fails if the apparent bound disappears under refinement.
 
@@ -75569,7 +75980,7 @@ $$
 \mathcal{T}_{\mathrm{acc}}=\varnothing
 $$
 
-unless both endpoint packets first satisfy branch-certificate eligibility: matching ledger identity, matching active-root convention, positive Jacobian floors, declared inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback on the same rows, and refinement records sufficient to keep the endpoint status stable. Before that eligibility is supplied, a run may report diagnostics or rejected endpoint packets, but it may not promote `candidate_action_increment` or `candidate_h_recovery`.
+unless both endpoint packets first satisfy branch-certificate eligibility: matching ledger identity, matching active-root convention, positive Jacobian floors, positive receiver-normal branch-strength floors or certified intervals, declared inactive-root or tail status, $\Delta_{\mathbf{k}}>0$, conservation pullback on the same rows, and refinement records sufficient to keep the endpoint status stable. Before that eligibility is supplied, a run may report diagnostics or rejected endpoint packets, but it may not promote `candidate_action_increment` or `candidate_h_recovery`.
 
 When endpoint eligibility has been established, the accepted transition class is
 
@@ -75677,7 +76088,7 @@ The campaign must include an approach-to-$c_f$ diagnostic on the same branch row
 
 This scan is the minimal numerical artifact for the paired action-spacing and self-hit well-posedness walls: it measures whether causal-root multiplicity, Jacobian floors, and stable-cycle action increments remain controlled as branch speed approaches $c_f$.
 
-For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
+For each declared scan family, report rows approaching the field speed from below, at the boundary when the continuation reaches it, and from above when the branch chart admits a super-field-speed interval. Each row must record the layer speed ratios, active partner-root count, active self-root count, active inter-layer-root count, minimum accepted Jacobian floor, minimum accepted receiver-normal branch strength, separator status, root-ledger identity, accepted/rejected status, and stable-cycle $\Delta I_{\mathrm{ME}}$ cluster assignment.
 
 The scan has a simple discipline. A packet may not promote `candidate_h_recovery` if the accepted near-boundary rows lose their Jacobian floor, change active-root identity under refinement, or split into non-uniform stable action increments without a derived branch-class reason. In that case the packet may still report a useful diagnostic, but it has not recovered the Planck benchmark from a well-posed nested shell braid action scale.
 
@@ -75729,6 +76140,7 @@ Only a packet that also has small $\delta_h$ may promote `candidate_h_recovery`.
 | `phase-closure-open` | layer or inter-layer closure residuals exceed tolerance |
 | `root-ledger-instability` | active roots change under refinement or the self-hit parity condition fails |
 | `jacobian-floor-loss` | accepted near-boundary rows lose the declared minimum Jacobian floor |
+| `receiver-normal-branch-strength-loss` | accepted rows lose the declared receiver-normal branch-strength floor or leave its certified interval (receiver-normal null $W^{\mathrm{rec}}\to0$ or uncontrolled caustic $W^{\mathrm{rec}}\to\infty$) under refinement |
 | `field-speed-root-instability` | the approach-to-$c_f$ scan changes active-root identity, separator status, or branch status under refinement |
 | `nonuniform-action-spacing` | stable-cycle action increments split across the field-speed approach scan with no derived branch-class reason |
 | `energy-ledger-open` | $\mathcal{R}_E$ exceeds tolerance or the wake/root energy channel is unaccounted |
@@ -77944,7 +78356,7 @@ The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 202
 
 The 2026-06-26 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `68` after assessing the current `167` markdown files under `content/markdown/aaa` through the validated-closure lens. The gain over the prior retained assessment is real but intentionally bounded. The corpus now has a sharper proof and validation spine: shared closure is expressed as an intersection of sector acceptance sets, null-result residuals now include same-record split penalties, simulation campaigns require artifact-bearing proof handoffs, and equation-mapping checkers more aggressively reject priority prose, generated shells, probes, mocks, and source-evidence fixtures as accepted retained evidence.
 
-The strongest score movement is in action, conservation, regularization, and interface discipline. The Master Equation chapter now distinguishes the accepted delayed branch law from the pure scalar $1/r$ action scaffold, records a local no-go for finite same-support scalar and delta-jet counterterms, and gives a delayed-interior characteristic-tail repair target with normalized wake-history energy, momentum, and angular-momentum increments. This raises Potential+Action Closure and Conservation+Invariant Closure, but not to theorem closure: a retained branch chart still has to show vanishing Euler residual, positive Jacobian floors, finite memory depth, and closed particle-plus-wake history charges on the same row set.
+The strongest score movement is in action, conservation, regularization, and interface discipline. The Master Equation chapter now distinguishes the accepted delayed branch law from the pure scalar $1/r$ action scaffold, records a local no-go for finite same-support scalar and delta-jet counterterms, and gives a delayed-interior characteristic-tail repair target with normalized wake-history energy, momentum, and angular-momentum increments. This raises Potential+Action Closure and Conservation+Invariant Closure, but not to theorem closure: a retained branch chart still has to show vanishing Euler residual, positive source-normal Jacobian floors, retained receiver-normal branch-strength rows, finite memory depth, and closed particle-plus-wake history charges on the same row set.
 
 Formula and cross-regime scores rise because the equation-mapping work now covers a wider physics inventory with explicit first blockers: compact-star support, gravitational-wave source recovery, recombination/acoustic transfer, inverse-Compton/SZ path-frequency exchange, finite-window scattering/resonance carriers, weak-visible ledgers, ordered-frame magnetic rows, radiation source ledgers, and shared observation records. Those packets improve the formula interface and make hidden-retune failures easier to locate. They do not yet supply retained branch-derived coefficients, accepted Noether sea response tensors, or benchmark passes, so Formula+Coefficient Recovery remains only low-`50s`, and Empirical Precision+Benchmark Validation remains in the low `40s`.
 
@@ -77954,7 +78366,7 @@ The score is still held below modern operational closure by the same central blo
 
 #### 2026-06-20 Assessment Notes
 
-The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
+The 2026-06-20 assessment records a weighted $\mathbb{A}\mathbb{A}\mathbb{A}$ score of `65` after a full read of the `163` markdown files under `content/markdown/aaa`. The score is concentrated in mathematical scaffolding, validation discipline, and interface coverage rather than in final recovery of observed coefficients. The corpus now has a much stronger causal-action and energy/conservation spine: the scalar causal-hit functional has a regularized theorem spine and finite-memory bounds, the energy chapter separates finite-window wake-history balances from particle-only conservation, and nested shell braid dynamics states a shared causal-closure certificate target that ties causal-root ledgers, Jacobian floors, receiver-normal branch strengths, mass response, observer exports, event ledgers, and stability rows to the same retained branch.
 
 The score increase is deliberately limited by the validated-closure lens. Many of the strongest new artifacts are still explicitly theorem targets, mock packets, replay fixtures, or rejection diagnostics. The hydrogen $\Gamma_N$ spectral scan now keeps density, Noether sea delay, scale, envelope, and braid-scale rows separate and uses a shared coefficient row, but it does not yet derive hydrogen envelope gaps, real observer frequencies, or the static response vector from the master dynamics. The cosmology shared-residual fit, Bell-family record-measure harness, radiation ledgers, massive-superposition gravity packet, and thermodynamic residual protocol improve falsification-readiness and benchmark shape, but they do not yet supply empirical joint fits or accepted branch-derived coefficients.
 
@@ -77980,7 +78392,7 @@ D_{a,X}(\mathbf X,T)
 }
 $$
 
-with locked and ambient contributions built from the same causal-root kernel, Jacobian floors, branch records, channel projections, and ledger-derived tolerance scales. This justifies raising Axiom+Notation, Cross-Regime Bridge, Internal Constituent Dynamics, and Coverage+Interface Readiness, while keeping the claim below full closure because the interface diagnostic is still a recovery target rather than a validated medium-response theorem.
+with locked and ambient contributions built from the same causal-root kernel, Jacobian floors, receiver-normal branch strengths, branch records, channel projections, and ledger-derived tolerance scales. This justifies raising Axiom+Notation, Cross-Regime Bridge, Internal Constituent Dynamics, and Coverage+Interface Readiness, while keeping the claim below full closure because the interface diagnostic is still a recovery target rather than a validated medium-response theorem.
 
 The Noether sea branch embedding also improves the master-equation bridge. Local assembly branches are now stated as retained branches inside a surrounding Noether sea state and nearby-assembly record:
 
@@ -89438,7 +89850,7 @@ $$
 \hat{\mathbf r}_{ia}(t;s)
 $$
 
-where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{t,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
+where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{T,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 
@@ -90142,7 +90554,7 @@ This is the single-ontology guidance picture behind the pilot-wave comparison: t
 
 The structural correspondence between the dBB pilot wave and the $\mathbb{A}\mathbb{A}\mathbb{A}$ causal wake is systematic:
 
-**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the causal Jacobians of the active branches. For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
+**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the receiver-normal branch strength $W^{\mathrm{rec}}$ of the active branches (the source Jacobians enter only as the transversality and root-density data that make each causal root legal). For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
 
 **Amplitude → density and basin structure.** In dBB, $R^2 = |\psi|^2$ gives the probability density (in equilibrium). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the local intensity of the superposed wake determines the density of stable attractor basins and the fractional phase-space volume leading to each basin. Regions of high wake amplitude correspond to regions where assemblies are more likely to be found, not because they are "spread out" but because the deterministic dynamics funnel trajectories toward those regions.
 
@@ -92152,7 +92564,7 @@ This is also the precise meaning of quantizing the Lorentz response. The smooth 
 
 The same component split also states the material speed-limit side of the bridge. As $\|\mathbf{w}\|\to c_{\text{eff}}$, the transverse budget $c_{\perp}$ tends to zero. A limiting branch may still carry axial wake transfer in the bookkeeping sense, but it can no longer function as a volumetric clock or ruler because the internal binary and inter-layer loops have no transverse causal capacity left. The speed bound is therefore not merely a rule about fast coordinate motion; it is the branch-failure point at which a bound assembly can no longer preserve the clock/ruler ledger required for ordinary matter.
 
-The primitive wake geometry has to be read in three regimes before it becomes a Lorentz story. In a sub-field-speed retained interval, the source-to-receiver delay map is monotone, so same-source self-hit is absent unless older super-field-speed history remains in the memory window. At the field-speed separator, the same-source branch is tangent and the Jacobian floor fails; this is a branch-chart boundary or finite-regulator transition, not an ordinary stable force row. Super-field-speed curved history can expose an architrino to its own retained causal history, but only after the Master Equation supplies same-source roots, finite memory, transversality, and action-ledger closure. The Lorentz bridge therefore begins from branch-regime diagnostics, not from a speed slogan: stable matter must reorganize those causal-root ledgers into a clock/ruler/signal branch whose observer export hides the preferred frame.
+The primitive wake geometry has to be read in three regimes before it becomes a Lorentz story. In a sub-field-speed retained interval, the source-to-receiver delay map is monotone, so same-source self-hit is absent unless older super-field-speed history remains in the memory window. At the field-speed separator, the same-source branch is tangent and the Jacobian floor fails; this is a branch-chart boundary or finite-regulator transition, not an ordinary stable force row. Super-field-speed curved history can expose an architrino to its own retained causal history, but only after the Master Equation supplies same-source roots, finite memory, transversality, receiver-normal branch strength, and action-ledger closure. The Lorentz bridge therefore begins from branch-regime diagnostics, not from a speed slogan: stable matter must reorganize those causal-root ledgers into a clock/ruler/signal branch whose observer export hides the preferred frame.
 
 ###### Branch-Quantized Lorentz Response
 
@@ -99400,7 +99812,7 @@ The retrospective convention is not a shield against testing, but testing is not
 
 The rule for the whole essay is simple: the primitive vocabulary is the Architrino architecture's proposed ontology, the historical reconstruction is abductive evidence, and the decisive work lies in the bridge from primitive ontology to tested record. The walls below name where that bridge must be earned. Later sections return to the issue only when a clue touches one of those walls directly.
 
-- The self-hit well-posedness wall is that same-source causal-root selection must preserve deterministic multistability while maintaining transversality, a Jacobian floor, regularization, and an a priori energy bound. If every branch rule either destroys multistability or permits runaway energy growth near Jacobian zeros, the generative mechanism is ill-posed.
+- The self-hit well-posedness wall is that same-source causal-root selection must preserve deterministic multistability while maintaining transversality, a Jacobian floor, a retained receiver-normal branch strength, regularization, and an a priori energy bound. If every branch rule either destroys multistability or permits runaway energy growth near Jacobian zeros, the generative mechanism is ill-posed.
 - The action-spacing wall is that stable delayed braid branches must export one uniform closed-cycle action increment across the accessible band. This wall is downstream of the self-hit wall: a candidate cycle whose energy-like branch functional becomes unbounded across same-source crossings cannot supply a well-defined closed-cycle action integral. If the stable-cycle action spectrum is generically non-uniform rather than clustered by a derived branch-class rule, the claimed recovery of $h$ fails.
 - The Born-measure wall is that an apparatus-partition quotient of an invariant basin measure must recover quadratic Born weights for a nontrivial preparation family. If it merely renames hidden preparation ignorance, it has not recovered quantum probability.
 - The no-signaling/CHSH wall is that the same whole-state record and basin-measure machinery must recover the CHSH value $2\sqrt{2}$ and exact operational no-signaling while keeping preferred-frame leakage below Lorentz-test bounds. The no-signaling part must be a basin-measure invariance condition under local-setting relabelings at each wing, so marginalizing one wing is independent of the far setting while the joint invariant carries the correlation. It must also be ordering-invariant: for observer-level spacelike-separated measurement records, the joint law cannot depend on which wing is first in absolute time. If $c_f>c_\gamma$, that condition must survive the photon-spacelike but wake-timelike wedge, either by $c_f$-causal record separation or by wake-reach suppression below coincidence-timing and correlation-residual tolerances. If one mechanism gives the correlation, another blocks signaling, and a third hides absolute-frame access, Bell has been reframed rather than recovered.
@@ -99603,7 +100015,7 @@ Primitive wakes propagate at $c_f$; the photon-channel speed is $c_\gamma$ after
 
 Point-transceiver speed remains a branch variable that may enter super-field-speed regimes without making the wake itself faster than $c_f$. With those levels separated, the moving-charge formulas become a source-history chart to refactor: keep causal roots and source-normal transversality, add receiver-normal branch strength, and rebuild the many-body assembly law before importing observer-level light or field language.
 
-That same novelty is also the well-posedness threat. A self-hit branch is not accepted merely because an architrino or internal assembly component enters a super-field-speed regime. Same-source root existence, transversality, a non-vanishing Jacobian floor, and regularization must keep the update finite. The architecture therefore requires a branch-selection rule that preserves deterministic multistability while excluding runaway self-acceleration and unbounded energy growth.
+That same novelty is also the well-posedness threat. A self-hit branch is not accepted merely because an architrino or internal assembly component enters a super-field-speed regime. Same-source root existence, transversality, a non-vanishing Jacobian floor, a retained receiver-normal branch strength, and regularization must keep the update finite. The architecture therefore requires a branch-selection rule that preserves deterministic multistability while excluding runaway self-acceleration and unbounded energy growth.
 
 The invariant at stake is an energy-like branch functional, not a merely numerical tolerance: accepted self-hit dynamics must keep the particle, causal-wake, and retained-history terms finite or monotone under same-source causal-root updates.
 

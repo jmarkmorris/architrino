@@ -1,11 +1,13 @@
 # Receiver-Normal Ratchet: Diagnostic Packet
 
 Dated 2026-07-08. Claim level: exact algebra for parts A-C; numerical diagnostic
-only for part D. Intended corpus destination: parts A-C are promoted to
+for parts D-E. Parts A-C are promoted to
 [Master Equation](../../../../../content/markdown/aaa/dynamics/master-equation.md)
 under `Receiver-Velocity Affine Form and the Branch Resistance Tensor` and
-`Separator Taxonomy`. Part D stays here until an independent multi-root,
-self-hit-inclusive integration reproduces it.
+`Separator Taxonomy`. Part D is the original partner-only single-root diagnostic.
+Part E is the self-hit-inclusive, all-roots, dual-mollified successor; it stays
+here as priority evidence until the origin-layer finite-impulse obligation
+(part E, obligations) is discharged.
 
 ## Why this packet exists
 
@@ -114,25 +116,104 @@ released from rest, integrated to $T=40$:
 The instantaneous-Coulomb row is the integrator control and is periodic to
 $10^{-3}$, so the escape is not a discretization artifact.
 
+## E. Self-hit-inclusive diagnostic (dual-mollified, all retained roots)
+
+This is the promoted successor to part D. Method: same reflection-symmetric
+pair, but the sharp branch sum is replaced by the dual-mollified integral. The
+key identity is $dg/ds = D_s$ with $g(s)=|X(t)-X_{\mathrm{src}}(s)|-c_f(t-s)$,
+so the sharp sum $\sum_{\mathrm{roots}} f/|D_s|$ is exactly $\int f\,\delta(g)\,ds$.
+Mollifying $\delta$ with shell width $\eta$ regularizes the $D_s\to0$ caustic
+automatically (the finite-impulse mechanism), and
+
+$$
+\Gamma_{\mathrm{moll}}
+=
+\sum_{\mathrm{kind}}\sigma_{\mathrm{kind}}\,\kappa\epsilon^2
+\int \frac{\delta_\eta(g)}{r^2+\epsilon_c^2}\,ds,
+\qquad
+a = c_f\,\Xi_{\mathrm{moll}} - V\,\Gamma_{\mathrm{moll}}
+$$
+
+with $\delta_\eta$ a normalized cosine bump. Both kinds' roots are summed; the
+self kind excludes the diagonal collar $t-s\le\eta$. Scripts:
+[diagnostics/breather_moll.py](diagnostics/breather_moll.py),
+[breather_char.py](diagnostics/breather_char.py),
+[transit.py](diagnostics/transit.py).
+
+**E1. $\Gamma$ changes sign, monotonically in radius (robust).** Binning
+$\Gamma$ by $|X|$ over the infall ($\lambda=0.5$–$1.0$, $\epsilon_c=0.3$,
+$\eta=0.05$):
+
+| $\lvert X\rvert$ band | $\Gamma_{\mathrm{net}}$ | $\Gamma_{\mathrm{partner}}$ | $\Gamma_{\mathrm{self}}$ |
+| --- | --- | --- | --- |
+| $[0.9,1.0]$ | $-0.23$ | $-0.27$ | $+0.04$ |
+| $[0.7,0.9]$ | $+0.95$ | $-0.39$ | $+1.34$ |
+| $[0.5,0.7]$ | $+15.1$ | $-0.67$ | $+15.8$ |
+| $[0.0,0.1]$ | $+38.9$ | $-12.2$ | $+51.1$ |
+
+Partner is anti-damping ($\Gamma_p<0$) everywhere, as the polarity sign demands;
+self is damping ($\Gamma_s>0$) everywhere. The **net** sign flips at
+$\lvert X\rvert\approx0.85$: partner-dominated anti-damping on the outer leg,
+self-dominated damping inside. This crossover is stable across couplings and
+regularization. So the necessary ingredient for a limit cycle — a drain region
+to offset the injection region — is present.
+
+**E2. No bound cycle at any tested parameter.** Sweeping
+$\lambda\in\{0.3,0.6,1.0,1.5\}$, $\epsilon_c\in\{0.5,1.0\}$: every run collapses
+to the origin and escapes on the first far-side leg; no second apocenter appears.
+The far-side return kinetic energy is positive (net energy gained across the
+transit), i.e. runaway. This corroborates, numerically and at these parameters,
+the "failed stabilization test" reading already in
+[collinear-breather.md](../../../../../content/markdown/aaa/proof-programs/collinear-breather.md).
+
+**E3. The decision lives at the origin self-caustic, and this integrator cannot
+resolve it.** Instrumenting the transit: partner acceleration is correctly inward
+and restoring throughout; at the origin the self term spikes (e.g.
+$a_{\mathrm{self}}\approx-23$ at $X=0.29$) and drives the receiver **super-field**
+($\lvert\beta\rvert>1$) in essentially every resolvable case. The post-origin
+overshoot grows as $\eta\to0$ (apocenter radius $1.8\to2.3\to3.0$ under
+$\eta=0.08\to0.05\to0.03$), so the origin-layer impulse is regularization-sensitive
+and stiff. The infall itself converges (first-crossing time $2.016\to2.000\to1.986$).
+
 ## What this does and does not establish
 
-Establishes: the redrive is not cosmetic. The receiver-normal factor is the
-entire velocity-dependent force, and it is anti-damping for attraction.
+Establishes, robustly and in its domain of validity ($\lvert\beta\rvert<1$, away
+from the origin layer):
 
-Does **not** establish that the collinear breather fails. The diagnostic is
-partner-only with a single retained root. Self-hits are the only damping channel
-(part B), and they are omitted. The correct reading is that the outer-turn
-theorem target in `collinear-breather.md` now has a sharp statement of what it
-must prove: that the retained self drain $\sum w_s s_s^2$ balances the partner
-injection $\sum|w_p|s_p^2$ over a period.
+1. The redrive is not cosmetic. The receiver-normal factor is the entire
+   velocity-dependent force, and it is a polarity-signed damping law.
+2. $\Gamma$ changes sign in radius: partner anti-damping outside
+   $\lvert X\rvert\approx0.85$, self damping inside. The limit-cycle ingredient
+   exists.
+3. Away from the origin, partner attraction is anti-damping and a partner-only
+   collinear reduction is a strict runaway (confirmed by the single-root control
+   in part D: $W=1$ binds, $W=|D_T/D_s|$ escapes).
 
-## Obligations before promotion of part D
+Does **not** establish existence or nonexistence of the breather. At every tested
+parameter the reduced two-body collinear model runs away, but the decision is
+made at the origin-crossing self-caustic, where the sub-field affine/damping
+picture does not extend and the impulse is regularization-sensitive. That impulse
+is exactly the finite-impulse-lemma quantity the proof program must certify with
+the dual-mollified law; a crude fixed-$\eta$ integrator cannot settle it.
 
-1. Re-run with all retained roots, not the smallest-delay root only.
-2. Include self-hit rows with the excluded diagonal and shell mollifier.
-3. Confirm $\Gamma$ changes sign somewhere on the cycle, or exhibit the escape
-   with self-hits present.
-4. Sweep $(\eta,\epsilon_c,\lambda)$ for an admissible region, if one exists.
+**Relocated obstruction.** The open question is no longer the field-speed
+threshold (not a branch event; resolved) or the outer partner floor (holds with
+$\Theta_-$; resolved). It is the **origin-crossing self-caustic impulse**: does a
+certified finite impulse there admit a return that closes, or does it necessarily
+drive the receiver super-field into runaway? This is the one place the collinear
+program must invoke the finite-impulse lemma rather than the branch-sum reduction.
+
+## Obligations before promoting E as a nonexistence result
+
+1. Resolve the origin layer with the finite-impulse lemma, not a fixed-$\eta$
+   integrator; confirm the far-side return KE converges to a positive floor.
+2. Handle the super-field arc explicitly (the receiver-normal null is crossed;
+   $W^{\mathrm{rec}}$ and the diagonal collar change there).
+3. Sweep $(\eta,\epsilon_c,\lambda)$ for any admissible sub-field transit, if one
+   exists, before claiming the collinear breather cannot close.
+4. Test whether held-release dephasing or curvature (the mechanisms
+   `collinear-breather.md` already flags for the field-speed head-on seed) changes
+   the origin-transit verdict.
 
 ## Consumers
 

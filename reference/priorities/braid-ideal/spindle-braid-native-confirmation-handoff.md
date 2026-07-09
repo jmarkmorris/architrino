@@ -1,6 +1,6 @@
 # Spindle Braid Native Confirmation Handoff
 
-Promotion status: `priority-only`. This packet is the candidate-row handoff for `native_retained_history_promotion` (queue item 4): the spindle braid rest-state candidate is the named row that gate has been waiting for. It specifies the candidate exactly, states what the native retained-history run must do, and lists the acceptance-chain rows. Nothing here is accepted evidence; the packet authorizes no score movement.
+Promotion status: `executed-candidate-rejected-2026-07-09`. This packet was the candidate-row handoff for `native_retained_history_promotion` (queue item 4). The run was executed on the tabled candidate and the operator REJECTED the retained-branch certificate in the run thread, first blocker `shape_loss_radial_under_support`; the run record is [fold-crossing-chart-spec.md Section 30](fold-crossing-chart-spec.md#30-spindle-braid-native-retained-history-confirmation-run-certificate-rejected-the-rest-state-disperses-the-pin-is-a-speed-attractor-2026-07-09) (owner script [spindle-braid-native-retained-history-confirmation-run.mjs](../../../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs)). The gate stays fail-closed (`retainedBranchClaim=false`, `scoreMovement=no_score_increase`) awaiting the next named candidate row. Durable findings: the field-speed pin natively confirmed as a speed attractor; native cap fall-in. The packet below is retained as the executed scope contract.
 
 ## 1. The Named Candidate Row
 

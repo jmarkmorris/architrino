@@ -85,6 +85,23 @@ export const DECLARED = {
   haltMaxRadius: 12,
   haltMaxSpeed: 6,
   tubeRadiusForShapeQuestion: 0.1, // |x - x_rigid| threshold (R_M units), declared
+  // Chart-clean same-source click booking (spec Sections 2/3.1/3.3; opt-in via
+  // --chart). The pointwise soft-regularized m_reg suppresses the same-source
+  // brake by ~soft/D_s near the rail (D_s << soft there), which is exactly the
+  // fold-flagged regime where the contract says the integrated weight must
+  // replace the pointwise weight. In chart mode the same-source channel books
+  // m = D_T/D_s unsoftened (production signedBranchOrientation, treated as a
+  // density-of-states integral via substeps), with the declared d0 stratum in
+  // the force denominator; cross-pair channels keep the canonical m_reg.
+  chart: {
+    enabled: false,
+    foldJacobianThreshold: 0.02, // |D_s| below this = fold-flagged, substep-integrate
+    windowMinDelay: 0.002, // same-source window emission-delay floor (the accepted
+    // brake-measurement convention, self-hit-brake-central-measurement.mjs)
+    subSteps: 32,
+    witnessSubSteps: 64, // regularization-independence witness resolution
+    maxClickRows: 60, // detailed click rows retained (aggregates always kept)
+  },
 };
 
 // ---------------------------------------------------------------------------
@@ -190,16 +207,20 @@ function collectRoots(result, out, boundary) {
   }
 }
 
-export function solveDirectedRelation({ histories, i, j, tH, xi, vi, sameSource }) {
+export function solveDirectedRelation({ histories, i, j, tH, xi, vi, sameSource, minimumDelayOverride = null, delayCapOverride = null }) {
   const c = DECLARED.fieldSpeed;
   const hj = histories[j];
   const receiverR = Math.hypot(xi[0], xi[1], xi[2]);
-  const delayMax = Math.min(
+  let delayMax = Math.min(
     (receiverR + hj.maxRadiusSeen + DECLARED.causalSlack) / c,
     DECLARED.memoryWindowRotations * TWO_PI
   );
+  if (delayCapOverride != null) {
+    delayMax = Math.min(delayMax, delayCapOverride);
+  }
   const tLo = tH - delayMax;
-  const tEnd = sameSource ? tH - DECLARED.sameSourceMinimumDelay : tH;
+  const dMin = minimumDelayOverride ?? DECLARED.sameSourceMinimumDelay;
+  const tEnd = sameSource ? tH - dMin : tH;
   const roots = [];
   let heldScan = null;
 
@@ -320,10 +341,12 @@ export function solveDirectedRelation({ histories, i, j, tH, xi, vi, sameSource 
 // a_i = kappa * sum sigma_i sigma_j * m_reg / (r^2 + rho_c^2) * r_hat,
 // m_reg = D_T D_s / (D_s^2 + soft^2), all row fields read from the runtime).
 // ---------------------------------------------------------------------------
-export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null }) {
+export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false }) {
   const soft = DECLARED.soft;
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
   const a = [0, 0, 0];
+  const aSelf = [0, 0, 0];
+  const selfRows = [];
   let selfRootCount = 0;
   for (let j = 0; j < sites.length; j += 1) {
     const sameSource = j === i;
@@ -353,7 +376,15 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
       a[0] += w * dir[0];
       a[1] += w * dir[1];
       a[2] += w * dir[2];
-      if (sameSource) selfRootCount += 1;
+      if (sameSource) {
+        selfRootCount += 1;
+        aSelf[0] += w * dir[0];
+        aSelf[1] += w * dir[1];
+        aSelf[2] += w * dir[2];
+        if (splitSelf) {
+          selfRows.push({ Ds, Dt, distance: r, dir, emissionTime: root.emissionTime });
+        }
+      }
       if (ledger) {
         rows.push({
           emissionTime: root.emissionTime,
@@ -385,7 +416,119 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
       });
     }
   }
-  return { a, selfRootCount };
+  return { a, aSelf, selfRows, selfRootCount };
+}
+
+// ---------------------------------------------------------------------------
+// Chart-clean same-source booking (spec Sections 2/3.1/3.3): substep-integrate
+// the same-source channel over one base step, reading the production row's
+// signed branch orientation unsoftened (density-of-states integral) with the
+// declared d0 stratum in the force denominator. Returns the booked velocity
+// increment plus the chart quantities for the click row.
+// ---------------------------------------------------------------------------
+export function chartWindowIntegrate({
+  histories,
+  sites,
+  i,
+  t0,
+  dt,
+  x0,
+  v0,
+  aFrozen, // non-chart acceleration (partner channels), frozen over the step
+  kappa,
+  subSteps = DECLARED.chart.subSteps,
+}) {
+  const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
+  const dv = [0, 0, 0];
+  let prevIntegrand = null;
+  let minChord = Infinity;
+  let mu = 0; // unfolding parameter, mu-dot = D_T
+  let prevDt = null;
+  let rootCountAtEnd = 0;
+  const dsSamples = [];
+  const h = dt / subSteps;
+  for (let k = 0; k <= subSteps; k += 1) {
+    const tau = k * h;
+    const tK = t0 + tau;
+    // receiver provisionally advanced under frozen non-chart acceleration
+    // plus the chart increment booked so far
+    const xK = [
+      x0[0] + (v0[0] + dv[0]) * tau + 0.5 * aFrozen[0] * tau * tau,
+      x0[1] + (v0[1] + dv[1]) * tau + 0.5 * aFrozen[1] * tau * tau,
+      x0[2] + (v0[2] + dv[2]) * tau + 0.5 * aFrozen[2] * tau * tau,
+    ];
+    const vK = [
+      v0[0] + dv[0] + aFrozen[0] * tau,
+      v0[1] + dv[1] + aFrozen[1] * tau,
+      v0[2] + dv[2] + aFrozen[2] * tau,
+    ];
+    const { roots } = solveDirectedRelation({
+      histories,
+      i,
+      j: i,
+      tH: tK,
+      xi: xK,
+      vi: vK,
+      sameSource: true,
+      minimumDelayOverride: DECLARED.chart.windowMinDelay,
+      delayCapOverride: 2.0, // same-source chart scan cap (declared)
+    });
+    rootCountAtEnd = roots.length;
+    const integrand = [0, 0, 0];
+    let foldBranch = null; // min-|D_s| root this substep (the fold-near branch)
+    for (const root of roots) {
+      const r = root.distance;
+      if (!(r > 0) || !Number.isFinite(r)) continue;
+      const dir = [
+        (root.receiverPoint.x - root.sourcePoint.x) / r,
+        (root.receiverPoint.y - root.sourcePoint.y) / r,
+        (root.receiverPoint.z - root.sourcePoint.z) / r,
+      ];
+      const Ds = root.sourceNormalDenominator;
+      const Dt = root.receiverNormalNumerator;
+      if (!Number.isFinite(Ds) || Math.abs(Ds) < 1e-12) continue;
+      const m = Dt / Ds; // production signedBranchOrientation, unsoftened
+      const w = (kappa * m) / (r * r + rc2); // sigma_self = +1
+      integrand[0] += w * dir[0];
+      integrand[1] += w * dir[1];
+      integrand[2] += w * dir[2];
+      minChord = Math.min(minChord, r);
+      if (!foldBranch || Math.abs(Ds) < Math.abs(foldBranch.Ds)) foldBranch = { Ds, Dt };
+    }
+    if (foldBranch) {
+      if (prevDt !== null) mu += 0.5 * (foldBranch.Dt + prevDt) * h;
+      dsSamples.push({ mu, Ds: foldBranch.Ds, Dt: foldBranch.Dt });
+      prevDt = foldBranch.Dt;
+    } else {
+      prevDt = null;
+    }
+    if (prevIntegrand) {
+      dv[0] += 0.5 * (integrand[0] + prevIntegrand[0]) * h;
+      dv[1] += 0.5 * (integrand[1] + prevIntegrand[1]) * h;
+      dv[2] += 0.5 * (integrand[2] + prevIntegrand[2]) * h;
+    }
+    prevIntegrand = integrand;
+  }
+  // fold-curvature fit D_s^2 = 2 a mu over the sampled window (least squares
+  // through the origin; only meaningful when mu grew)
+  let foldCurvature = null;
+  let num = 0;
+  let den = 0;
+  for (const s of dsSamples) {
+    if (s.mu > 0) {
+      num += s.Ds * s.Ds * s.mu;
+      den += 2 * s.mu * s.mu;
+    }
+  }
+  if (den > 0) foldCurvature = num / den;
+  return {
+    dv,
+    minChord: Number.isFinite(minChord) ? minChord : null,
+    unfoldingWindowMu: mu,
+    foldCurvature,
+    rootCountAtEnd,
+    sampleCount: dsSamples.length,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -485,6 +628,7 @@ export function runRelease({
   let diag;
   let records;
   let clickLedger;
+  let chartLedger;
   let railCrossings;
   let prevSelfCounts;
   let prevBetaM;
@@ -505,6 +649,12 @@ export function runRelease({
     diag = resumeState.diag;
     records = resumeState.records;
     clickLedger = resumeState.clickLedger;
+    chartLedger = resumeState.chartLedger ?? {
+      bookedSteps: 0,
+      crossingEvents: 0,
+      totalBookedTangentialImpulse: 0,
+      rows: [],
+    };
     railCrossings = resumeState.railCrossings;
     prevSelfCounts = resumeState.prevSelfCounts;
     prevBetaM = resumeState.prevBetaM;
@@ -527,6 +677,12 @@ export function runRelease({
     diag = [];
     records = [];
     clickLedger = { totalTransitions: 0, entries: [] };
+    chartLedger = {
+      bookedSteps: 0,
+      crossingEvents: 0,
+      totalBookedTangentialImpulse: 0,
+      rows: [],
+    };
     railCrossings = [];
     prevSelfCounts = sites.map(() => 0);
     prevBetaM = 1;
@@ -553,9 +709,10 @@ export function runRelease({
 
     const wakes = [];
     const selfCounts = [];
+    const chartBookings = [];
     for (let i = 0; i < sites.length; i += 1) {
       const ledger = ledgers ? [] : null;
-      const { a, selfRootCount } = wakeAcceleration({
+      const { a, aSelf, selfRows, selfRootCount } = wakeAcceleration({
         histories,
         sites,
         i,
@@ -563,10 +720,107 @@ export function runRelease({
         xi: states[i].x,
         vi: states[i].v,
         ledger,
+        splitSelf: DECLARED.chart.enabled,
       });
-      wakes.push(a);
-      selfCounts.push(selfRootCount);
+      let booking = null;
+      if (DECLARED.chart.enabled) {
+        // chart-active: fold-flagged same-source row, or the total speed
+        // crosses the rail within the provisional step
+        const foldFlagged = selfRows.some(
+          (row) => Math.abs(row.Ds) < DECLARED.chart.foldJacobianThreshold
+        );
+        const beta0 = Math.hypot(...states[i].v);
+        const vProv = states[i].v.map((vc, c) => vc + kappa * a[c] * dt);
+        const beta1 = Math.hypot(...vProv);
+        const crossing = (beta0 - 1) * (beta1 - 1) < 0;
+        if (foldFlagged || crossing || selfRootCount > 0) {
+          const aFrozen = a.map((c, idx) => kappa * (c - aSelf[idx]));
+          booking = chartWindowIntegrate({
+            histories,
+            sites,
+            i,
+            t0: t,
+            dt,
+            x0: states[i].x,
+            v0: states[i].v,
+            aFrozen,
+            kappa,
+          });
+          booking.aFrozen = aFrozen;
+          booking.beta0 = beta0;
+          booking.crossing = crossing;
+          booking.foldFlagged = foldFlagged;
+        }
+      }
+      chartBookings.push(booking);
+      // diagnostics see the effective wake (partner + booked self channel)
+      if (booking) {
+        wakes.push(
+          booking.aFrozen.map((c, idx) => c / kappa + booking.dv[idx] / (kappa * dt))
+        );
+      } else {
+        wakes.push(a);
+      }
+      selfCounts.push(booking ? booking.rootCountAtEnd : selfRootCount);
       if (ledger) ledgers.push(...ledger);
+    }
+
+    // chart ledger: booked crossing-window rows (spec Section 3.1 shape)
+    for (let i = 0; i < sites.length; i += 1) {
+      const booking = chartBookings[i];
+      if (!booking) continue;
+      chartLedger.bookedSteps += 1;
+      const beta = Math.hypot(...states[i].v) || 1;
+      const tHat = states[i].v.map((c) => c / beta);
+      const tanImpulse =
+        booking.dv[0] * tHat[0] + booking.dv[1] * tHat[1] + booking.dv[2] * tHat[2];
+      chartLedger.totalBookedTangentialImpulse += tanImpulse;
+      if (booking.crossing) {
+        chartLedger.crossingEvents += 1;
+        if (chartLedger.rows.length < DECLARED.chart.maxClickRows) {
+          let witness = null;
+          if (chartLedger.rows.length < 8) {
+            const rerun = chartWindowIntegrate({
+              histories,
+              sites,
+              i,
+              t0: t,
+              dt,
+              x0: states[i].x,
+              v0: states[i].v,
+              aFrozen: booking.aFrozen,
+              kappa,
+              subSteps: DECLARED.chart.witnessSubSteps,
+            });
+            const base = Math.hypot(...booking.dv);
+            witness = {
+              subStepsBase: DECLARED.chart.subSteps,
+              subStepsWitness: DECLARED.chart.witnessSubSteps,
+              relativeSpread:
+                base > 0 ? Math.hypot(
+                  rerun.dv[0] - booking.dv[0],
+                  rerun.dv[1] - booking.dv[1],
+                  rerun.dv[2] - booking.dv[2]
+                ) / base : 0,
+              softeningInKernel: "none_density_of_states_integral",
+            };
+          }
+          chartLedger.rows.push({
+            clickId: `chart:${sites[i].id}:${chartLedger.crossingEvents}`,
+            site: sites[i].id,
+            crossingTime: t,
+            betaAtWindowStart: booking.beta0,
+            chartImpulse: booking.dv,
+            tangentialImpulse: tanImpulse,
+            foldChordMin: booking.minChord,
+            unfoldingWindowMu: booking.unfoldingWindowMu,
+            foldCurvature: booking.foldCurvature,
+            orientationProjectionConvention: "single_resolved_branch_chi_1",
+            integerRootCountAfter: booking.rootCountAtEnd,
+            regularizationIndependenceWitness: witness,
+          });
+        }
+      }
     }
 
     // click ledger: same-source root-count transitions (integer steps)
@@ -670,6 +924,7 @@ export function runRelease({
     diag,
     records,
     clickLedger,
+    chartLedger,
     railCrossings,
     halted,
     completed,
@@ -686,6 +941,7 @@ export function runRelease({
       diag,
       records,
       clickLedger,
+      chartLedger,
       railCrossings,
       prevSelfCounts,
       prevBetaM,
@@ -722,6 +978,7 @@ if (isMain()) {
   DECLARED.coincidenceStratum = readCliNumber("rc", DECLARED.coincidenceStratum);
   DECLARED.sameSourceMinimumDelay = readCliNumber("dmin", DECLARED.sameSourceMinimumDelay);
   DECLARED.soft = readCliNumber("soft", DECLARED.soft);
+  DECLARED.chart.enabled = process.argv.includes("--chart");
   const outName = process.argv.find((a) => a.startsWith("--out="))?.slice(6) ?? "report.json";
   const t0 = Date.now();
 
@@ -775,6 +1032,7 @@ if (isMain()) {
       diag: s.diag,
       records: s.records,
       clickLedger: s.clickLedger,
+      chartLedger: s.chartLedger,
       railCrossings: s.railCrossings,
       halted: s.halted,
       completed: true,
@@ -849,6 +1107,8 @@ if (isMain()) {
       halted: main.halted,
       records: main.records,
       clickLedger: main.clickLedger,
+      chartLedger: main.chartLedger ?? null,
+      chartMode: DECLARED.chart.enabled,
       railCrossings: main.railCrossings.slice(0, 400),
       railCrossingTotal: main.railCrossings.length,
       diagThinned: thin(main.diag, 10).map((d) => ({
