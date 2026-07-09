@@ -3112,7 +3112,7 @@ $$
 \hat{\mathbf r}_{ia}(t;s)
 $$
 
-where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{t,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
+where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{T,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 

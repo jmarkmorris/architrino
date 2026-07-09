@@ -1,5 +1,18 @@
 # Project Notes For Agents
 
+## Guiding Objective
+
+The primary objective of the Architrino knowledge system is **Theory Closure** and **Corpus Convergence**.
+
+- **Theory Closure** is the progressive reduction of unresolved questions, inconsistencies, missing derivations, and unexplained phenomena until the theory forms a coherent and comprehensive explanatory framework.
+- **Corpus Convergence** is the continual movement of the knowledge corpus toward that current canonical theory. Every contribution, revision, and discovery should reduce divergence, propagate insights, strengthen explanations, eliminate redundancy, and increase internal coherence.
+
+Convergence is an active process performed by convergence agents. A convergence agent does more than review or edit: it reconciles inconsistencies, propagates new insights throughout the corpus, improves clarity and precision, strengthens mathematical and conceptual rigor, identifies missing connections, updates obsolete explanations, reinforces canonical terminology, and reduces the distance between the current corpus and the best current understanding. Every convergence campaign should leave the corpus measurably closer to its canonical state than before it began.
+
+The corpus is never static. As understanding advances, the canonical state advances, and the corpus continuously converges toward it. The asymptotic goal is theory closure.
+
+Convergence vocabulary (agent, campaign, target, metric, debt, operator, frontier) is defined in [reference/architectural-decisions/theory-closure-and-corpus-convergence.md](reference/architectural-decisions/theory-closure-and-corpus-convergence.md). This vocabulary is operator/agent-facing only; do not use it in `content/markdown/aaa` reader-facing prose, where `convergence` retains its mathematical meaning.
+
 This document distinguishes three audience scopes:
 
 - `operator/developer`: communication with the workspace operator/developer during collaboration.
@@ -68,7 +81,7 @@ This document distinguishes three audience scopes:
 
 ### Current Core Theory Focus
 
-- Default high-value work is now core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response.
+- The current convergence frontier is core geometrical theory closure: master-equation closure, potential/action proof programs, certified branch geometry, executable simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response. Default high-value work targets this frontier.
 - Bias substantial theory sessions toward one hard mathematical artifact: a definition, equation, lemma, invariant, proof route, branch certificate, simulation target with variables, or falsifiable closure condition.
 - Treat broad prose coverage, cross-linking, app/UI work, presentation work, and new infrastructure as secondary unless the operator/developer explicitly selects them or they directly unblock the current core geometry target.
 - When multiple possible improvements compete, choose the one that most reduces mathematical uncertainty in the current proof stack rather than the one that merely improves organization or presentation.

@@ -37,7 +37,7 @@ The rows mean:
 | --- | --- |
 | $\mathsf{Geom}$ | exact-antipodal arclength-inverse equal-period geometry, center gauge, support band, noncollision floor |
 | $\mathsf{Tail}$ | support-tail exclusion or root-sheet assimilation from the $M=3$ tail packets, with executable margins and $E_{\mathrm{tail}}$ from [support-complete-m3-tail-execution-ledger.md](support-complete-m3-tail-execution-ledger.md) |
-| $\mathsf{Root}$ | support-complete root ledger, brackets, excluded gaps, Jacobian floors, source-pair policy |
+| $\mathsf{Root}$ | support-complete root ledger, brackets, excluded gaps, Jacobian floors, receiver-normal branch strengths, source-pair policy |
 | $\mathsf{Sheet}$ | root-sheet derivatives and derivative-Lipschitz envelopes if tail roots are assimilated |
 | $\mathsf{Dyn}$ | support-complete tangential and curvature residual closure |
 | $\mathsf{Action}$ | $\Gamma_B$, virtual-work curl, scalar/tensor inertia, and fit/action compatibility |

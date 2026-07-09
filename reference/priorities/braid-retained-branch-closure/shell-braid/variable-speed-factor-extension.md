@@ -419,7 +419,7 @@ The count is therefore a structural bias, not a closure proof. It should be expo
 
 1. the speed band holds: $0<\nu_-\le\nu_i\le\nu_+$;
 2. the physical return periods are equal or satisfy a declared winding relation;
-3. the bounded-speed causal-root ledger is finite, has positive delay floor, and uses $J_{ij}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ with a positive Jacobian floor;
+3. the bounded-speed causal-root ledger is finite, has positive delay floor, and uses $J_{ij}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$ with a positive Jacobian floor and carries the receiver-normal branch strength $W_{ij}^{\mathrm{rec}}$;
 4. any self-hit interval satisfies the short-duration, overspeed-budget, action, and event rows;
 5. the bounded-speed dynamics equation
 

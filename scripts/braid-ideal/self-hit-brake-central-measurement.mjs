@@ -299,22 +299,34 @@ export function buildSelfHitBrakeCentralMeasurement(options = {}) {
       },
       {
         gap: "coincidence_stratum_is_a_numerical_floor",
-        status: "open_operator_ontology_decision",
+        status: "resolved_by_operator_declared_d0_2026_07_08",
         detail:
-          "safeDistance = max(EPSILON, distance) with EPSILON = 1e-9 is a numerical floor, not a physical length; the signed click impulse is log-divergent as the stratum shrinks, so the magnitude is undefined without a declared coincidence stratum. The T3 engine already models this as jacobianFloorOrDeclaredStratum (missing_same_record_jacobian_floor_or_declared_stratum).",
-        fix_boundary: "a declared coincidence-stratum length scale (operator ontology input)",
+          "safeDistance = max(EPSILON, distance) with EPSILON = 1e-9 is a numerical floor, not a physical length; the signed click impulse is log-divergent as the stratum shrinks, so the magnitude is undefined without a declared coincidence stratum. The operator declared that stratum on 2026-07-08 as d0, of order kappa*epsilon^2/c_f^2 (the near-field two-body scale R_*; in the minimum-circular-binary reading d0 = R_MCB, the collapse-arresting radius). Evaluated at d0 the symmetric single-site self-hit magnitude is about 50x the certified tangential pump, so the symmetric self-hit is NOT load-bearing as a retention absorber. The T3 engine modeled the pre-declaration floor as jacobianFloorOrDeclaredStratum (missing_same_record_jacobian_floor_or_declared_stratum); the ontology input is now supplied. d0 exact-value derivation from (kappa, epsilon, c_f) remains open (content/markdown/aaa/assemblies/particle-masses.md).",
+        fix_boundary: "supplied 2026-07-08: operator-declared coincidence-stratum d0 (R_MCB); surviving open route is the non-coincident cross-hit hinge",
       },
     ],
 
     disposition:
-      "central_solver_self_hit_brake_sign_decided_absorptive_magnitude_reduces_to_declared_coincidence_stratum",
+      "central_solver_self_hit_brake_sign_absorptive_magnitude_set_by_operator_declared_d0_not_load_bearing",
+
+    operator_ontology_input: {
+      declared: "coincidence_stratum_length_scale",
+      symbol: "d0",
+      of_order: "kappa*epsilon^2/c_f^2",
+      reading: "minimum_circular_binary_radius_R_MCB_collapse_arresting",
+      operator_decision_date: "2026-07-08",
+      exact_value_derivation_status: "open_from_kappa_epsilon_cf",
+      symmetric_self_hit_load_bearing: false,
+      symmetric_self_hit_magnitude_vs_pump: "about_50x_too_large",
+    },
+    declared_stratum_supplied_by_operator: true,
 
     // Standing fail-closed constraints.
     retainedBranchClaim: false,
     scoreMovement: "no_score_increase",
     accepted_seed_path_certificate: false,
     central_solver_retained_history_acceptance: false,
-    first_missing_object: "declared_coincidence_stratum_for_same_source_hinge_magnitude",
+    first_missing_object: "non_coincident_cross_hit_hinge_sustained_alignment_over_a_click_window",
     orientational_order_caveat:
       "sea-screened context assumes aligned neighbor order; aligned order is assumed, not self-selected.",
   };

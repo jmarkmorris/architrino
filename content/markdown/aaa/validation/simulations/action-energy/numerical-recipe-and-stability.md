@@ -38,6 +38,7 @@ Event-aware integration (practical algorithm):
      \mathcal{R}_{\mathrm{per}}^{2\mathrm{B}},
      \mathcal{R}_{\mathrm{bal}}^{2\mathrm{B}},
      \nu_J^{2\mathrm{B}},
+     \nu_{\mathrm{rec}}^{2\mathrm{B}},
      \Delta_{\mathrm{gap}}^{2\mathrm{B}},
      \lambda_{\mathrm{sec}}^{2\mathrm{B}},
      \epsilon_E^{(\eta)},
@@ -45,7 +46,7 @@ Event-aware integration (practical algorithm):
      \mathcal{R}_{\omega}^{2\mathrm{B}}
      \right).
      $$
-   - Fail closed if the signed ledger changes during the reported period, an active Jacobian floor or inactive-root gap vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
+   - Fail closed if the signed ledger changes during the reported period, an active source-normal Jacobian floor or inactive-root gap vanishes, the receiver-normal branch strength leaves its certified interval or its floor $\nu_{\mathrm{rec}}^{2\mathrm{B}}$ vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
 Plain language: At each time, find which past emissions can reach the receiver now, compute how the source laid down the wake and how the receiver crosses it, sum the radial pushes with $W^{\mathrm{rec}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.

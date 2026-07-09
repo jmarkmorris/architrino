@@ -36,6 +36,8 @@ This workstream owns the synthesis bridge from Noether braid closure to rest mas
 
 The deployed dynamics baseline is [nested shell braid dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md). That chapter owns the Noether braid roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
 
+Lane relationship (2026-07-08 sort). This lane owns the nested-shell braid synthesis toward rest mass, proper time, relativistic limits, photon propagation, and measurement. The nested shell braid **model source packets** (model card, radial support functional, reduction row, dynamics visualization) live in [braid-retained-branch-closure/nested-shell-braid/](../braid-retained-branch-closure/nested-shell-braid/priorities.md), a support-packet index under the retained-branch lane — not a competing owner of this workstream.
+
 ## Detailed Priority Files
 
 | File | Role | Primary promotion targets |
@@ -219,6 +221,7 @@ c_0,
 \mathcal{G}_{A,q},
 \mathcal{A}_q,
 \nu_J^{(q)},
+\nu_{\mathrm{rec}}^{(q)},
 g_{\mathrm{inactive}}^{(q)},
 h_{\mathrm{mem}}^{(q)},
 \Delta_{\mathbf{k}}^{(q)},

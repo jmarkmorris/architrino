@@ -69,6 +69,8 @@ J_{\min}
 \right|
 $$
 
+On the same active rows the certificate must also report the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_T/D_s\rvert$ (receiver-normal numerator $D_T=1-\mathbf v_{o'}(t)\cdot\hat{\mathbf r}_{o'j}(t;t_0)/c_f$) on its certified floor or bounded interval; a healthy transversality floor $J_{\min}$ alone does not certify the branch's force or action contribution.
+
 Third, it reports a running retained-history energy-like functional and its variation across self-hit or separator crossings under $\Delta t$, $\eta$, and history-window refinement. A bounded-energy claim fails if the apparent bound disappears under refinement.
 
 The same row must state whether the energy object is action-derived, quasi-Noether, or diagnostic-only. A diagnostic-only energy row may reject a branch by showing runaway, regulator dependence, or nonconvergent drift, but it cannot promote closed-cycle action spacing or no-runaway conservation as theorem-level output.

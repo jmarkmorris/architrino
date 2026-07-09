@@ -947,3 +947,481 @@ Executed the cross-hit closure goal as a new fail-closed toy probe. New owner sc
 Outcome (idea-level; derivation and sweep captured in [brainstorming.md](brainstorming.md) "Differential Cross-Hit Is the Strongest Clean Absorber Yet"): the differential cross-hit is absorptive for like polarity and the strongest clean channel found — a single source reaches a chart-clean, softening-independent $0.742$ of the pump, set primarily by radial band proximity (frequency ratio saturates near $0.15$; alignment is many narrow clicks, not a held window). Crossing the pump in one source needs the fold to approach coincidence (not clean). Disposition `differential_cross_hit_beats_pump_only_by_approaching_coincidence_clean_ceiling_below_pump`.
 
 Next closure goal: sum the clean finite-chord cross-hit tangential drain over the actual multi-charge inter-band source set of a nested shell braid (or an inner/middle binary pair) and test whether the clean total clears the certified pump with all chords finite (no coincidence approach); the surviving alternative lever is a genuine locked sustained alignment, the shared dynamic-alignment / formation-history burden.
+
+## 2026-07-08 — Braid priority sort: Phase 0 pre-sort baseline snapshot
+
+Pre-sort baseline for the braid priority cleanup (`braid-prio-sort.md`), captured on branch `calcite`. Records the size and last-modified time (America/New_York) of every braid lane's three role files so the operator can diff lane state from codex after the sort. No files were moved or edited to produce this entry; append-only. Several files show a 2026-07-07 21:49 mtime from the `calcite` checkout rewriting working-tree files, not from content edits.
+
+| Lane | priorities.md | brainstorming.md | work-log.md |
+| --- | --- | --- | --- |
+| `braid-ideal (hub)` | 49.7 KB · 2026-07-07 21:49 | 209.2 KB · 2026-07-07 21:49 | 247.7 KB · 2026-07-07 21:49 |
+| `braid-angular-momentum-spin` | 121.5 KB · 2026-07-03 21:09 | 1.2 KB · 2026-07-03 14:08 | 26.2 KB · 2026-07-03 14:08 |
+| `braid-doubling-frequency-lock` | 15.8 KB · 2026-07-06 12:01 | 0.6 KB · 2026-07-04 20:30 | 1.1 KB · 2026-07-06 12:01 |
+| `braid-geometry-export-bridge` | 392.8 KB · 2026-07-05 15:26 | 1.5 KB · 2026-07-03 14:08 | 103.6 KB · 2026-07-03 14:08 |
+| `braid-mass-response-map` | 79.1 KB · 2026-07-06 12:01 | 1.4 KB · 2026-07-04 20:30 | 3.9 KB · 2026-07-06 12:01 |
+| `braid-nested-shell-causal-closure` | 33.3 KB · 2026-07-03 21:09 | 1.5 KB · 2026-07-03 14:08 | 3.1 KB · 2026-07-03 21:09 |
+| `braid-retained-branch-closure` | 25.5 KB · 2026-07-07 21:49 | 1.5 KB · 2026-07-04 20:30 | 4.5 KB · 2026-07-07 14:02 |
+| `  neutral-braid (subdir)` | 2.8 KB · 2026-07-04 20:30 | 0.7 KB · 2026-07-04 20:30 | 0.6 KB · 2026-07-03 14:08 |
+| `  shell-braid (subdir)` | 1.7 KB · 2026-07-07 14:28 | 0.8 KB · 2026-07-07 14:28 | 0.6 KB · 2026-07-07 14:28 |
+| `  nested-shell-braid (subdir)` | 1.5 KB · 2026-07-04 20:30 | 0.7 KB · 2026-07-04 20:30 | 0.6 KB · 2026-07-03 14:08 |
+| `braid-taxonomy` | 2.9 KB · 2026-07-07 21:49 | 0.7 KB · 2026-07-07 21:49 | 22.0 KB · 2026-07-07 21:49 |
+
+Adjacent locations (not braid lanes; listed for diff context):
+
+| Location | priorities.md | brainstorming.md | work-log.md |
+| --- | --- | --- | --- |
+| `aaa-work-threads` | 157.0 KB · 2026-07-05 15:26 | 7.6 KB · 2026-07-06 12:01 | 2.6 KB · 2026-07-03 14:08 |
+| `proof-programs` | 21.7 KB · 2026-07-03 21:09 | 1.5 KB · 2026-07-03 14:08 | 234.1 KB · 2026-07-03 14:08 |
+
+Total-file counts per lane at baseline (context for the sort): `braid-ideal` 20 (incl. `braid-prio-sort.md`); `braid-angular-momentum-spin` 33; `braid-doubling-frequency-lock` 6; `braid-geometry-export-bridge` ~139 (≈115 `octahedral-fold-aware-*`, incl. the `h39-shared-domain-coefficient-series-engine` at 349.4 KB and the `root-tangent-cauchy-majorant-tail-lemma`); `braid-mass-response-map` 30; `braid-nested-shell-causal-closure` 7; `braid-retained-branch-closure` 8 files + 3 subdirs (`neutral-braid` 19, `shell-braid` 141, `nested-shell-braid` 7); `braid-taxonomy` 6.
+
+Note the two file-role hygiene outliers to fix in Phase 2/3: `braid-ideal/brainstorming.md` (209.2 KB) and `braid-ideal/work-log.md` (247.7 KB) are far larger than any other lane's, and `braid-geometry-export-bridge/priorities.md` (392.8 KB) carries the octahedral certificate frontier (OP-2 re-index only; archiving deferred).
+
+### 2026-07-08 - Braid Priority Sort: Phase 2 Lane-Hygiene Verification
+
+Phase 2 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Verified file-role separation across all braid lanes. No claim changes; no certificate/packet files touched; no content moved.
+
+Findings:
+
+- Every immediate lane already carries a `work-log.md` (eleven checked: the eight braid lanes plus the `neutral-braid`, `shell-braid`, and `nested-shell-braid` subdirs of `braid-retained-branch-closure`; `aaa-work-threads` and `proof-programs` also have one). The "ensure a work-log.md exists" sub-goal is already satisfied; no stubs were created.
+- The work-log → brainstorming migration (Phase 2's main action) has effectively no targets. All work-logs are disciplined dated-status logs (`### YYYY-MM-DD - result + status`), not misfiled brainstorm essays. Spot-verified the two largest (`braid-ideal` 978 lines; `braid-angular-momentum-spin` 448 lines) and the header structure of the other nine. Entries are proof-attempt status, promotions performed, captures made, and dated decisions with claim levels; `braid-ideal` already routes ideas to `brainstorming.md` by pointer (e.g., the Axis-Neutral Transport Channel Discussion Log). The earlier concern that ideas were misfiled into work-logs is not borne out by the current state.
+- Residual Phase-2 item folded forward: the "keep only the concise ranked queue in `priorities.md`" action is real (several `priorities.md` are large: `braid-angular-momentum-spin` 124 KB, `braid-geometry-export-bridge` 393 KB, `braid-mass-response-map` 81 KB), but trimming embedded explanation out of `priorities.md` sends it to the unified `brainstorming.md`, which is the Phase 3 (OP-3) merge target, and the `braid-geometry-export-bridge` giant is OP-2-deferred. Folding the priorities trim into Phase 3/4 avoids double-editing the same large files and respects OP-2. Proposed as a `braid-prio-sort.md` revision pending operator ratification.
+
+Phase 2 status: file-role separation verified; work-log/brainstorming axis already clean; priorities-trim folded forward pending ratification.
+
+### 2026-07-08 - Braid Priority Sort: Phase 3 Progress (Brainstorm Merge + Priorities Trim)
+
+Phase 3 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Content relocation only; no claim changes; certificate/packet files untouched.
+
+- Brainstorm merge (OP-3) complete: all ten lanes' `brainstorming.md` files merged into this unified `braid-ideal/brainstorming.md` (added a dated Contents TOC and a "Merged Lane Brainstorms (2026-07-08)" section with `(from: lane)` tags for the five non-empty lanes). Every source brainstorm is now a resolving stub pointing here.
+- Priorities trim routed by content type (operator decision 2026-07-08): doctrine → this brainstorming file; reference surfaces + proof-spec → focused sibling files; per-item dated status → `work-log.md`. `braid-geometry-export-bridge` excluded (OP-2 deferred).
+- `braid-mass-response-map/priorities.md` de-bloated 81 KB → 35 KB: extracted "Mass Translation Doctrine" → brainstorming; "PDG 2025 Mass Benchmark Surface" → `pdg-2025-mass-benchmark-surface.md`; "First Quantitative Deliverable A_0" → `a0-reference-attractor-family-deliverable-spec.md`; "Assembly-Level Reduction Status" → `assembly-level-reduction-status.md`. Pointers left in the queue.
+- `braid-angular-momentum-spin/priorities.md`: extracted "CERN Reconstruction Signals" → `cern-reconstruction-signals.md`.
+- Remaining Phase 3 (delicate): per-item embedded status/blocker narrative inside queue items (mass-response Task Queue items 1 and 4; angular-momentum Task Queue giant lines, up to ~9.9 KB/line) → move to `work-log.md`, leaving concise queue items. Plus the smaller lanes (`braid-ideal` 50 KB, `braid-nested-shell-causal-closure`, `braid-doubling-frequency-lock`, `braid-retained-branch-closure`) priorities to check.
+
+### 2026-07-08 - Braid Priority Sort: Phase 3 Priorities-Trim Results
+
+Route-by-content-type trim (operator decision 2026-07-08). Verbatim moves; no claim-level changes; certificate/packet files untouched; all moved status preserved in work-logs / sibling files.
+
+- `braid-mass-response-map`: 81 KB -> 30.6 KB. Doctrine -> unified brainstorming; PDG benchmark, `$A_0$` deliverable spec, and Assembly-Level Reduction Status -> sibling files; queue items 1 and 4 condensed (full status in that lane's work-log).
+- `braid-angular-momentum-spin`: 124 KB -> 34.7 KB. CERN reconstruction signals -> sibling; ~30 dated dispositions / audit-continuation entries -> that lane's work-log; queue items 2 and 3 condensed (originals in work-log).
+- `braid-retained-branch-closure`: 26 KB -> 13.8 KB. Queue items 3, 4, 14, 20 condensed (full status in that lane's work-log).
+- `braid-ideal` (hub): left intact. Its two large Group A items (`delayed_escape_certificate_lemma`, `self_hit_held_release_solver_row`) are the live absorber-hunt working state the relaunching threads consume; a clean condense needs hand-treatment, deferred to avoid disrupting active work.
+- `braid-nested-shell-causal-closure` (34 KB): not trimmed; its bulk is embedded reference/contract sections (Lorentz-Test Residual Interface, MIT 8.962 GR Recovery Interface, Shared Branch Certificate Contract) that are sibling-file candidates. Deferred pending a check that "Shared Branch Certificate Contract" is not cross-referenced by other lanes.
+- `braid-doubling-frequency-lock` (16 KB), `braid-taxonomy` (2.9 KB): left as-is; no giant lines, already concise enough.
+
+### 2026-07-08 - Braid Priority Sort: Phase 4 Lane Sort and Routing (OP-1)
+
+Phase 4 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Reconciliation outcome: the eight braid lanes are already well-separated under OP-1; the phase resolved to documentation, not merges.
+
+- Dual-owner "six-point": not a conflict. `braid-ideal` owns the **six-point symmetry invariant lemma** (`six_point_symmetry_invariant_lemma`, two packet files); `braid-retained-branch-closure` owns the **six-site neutral braid base certificate** (`neutral_braid_base_certificate`, all-pairs root ledger). Distinct objects (symmetry reduction vs base inventory); the lemma reduces the base seed. No move or pointer needed.
+- Dual-owner "nested shell braid": not a duplicate. `braid-retained-branch-closure/nested-shell-braid/` is a `support-packet-index` (model source packets, subordinate to the parent retained-branch tracker); `braid-nested-shell-causal-closure` is the scored workstream for rest-mass / proper-time / relativistic-limits / photon closure. Differentiated scopes. Added clarifying cross-pointers in both `priorities.md` files so future workers do not treat them as duplicates.
+- Fold dormant/duplicate lanes: none. All eight braid lanes are active and differentiated; `braid-doubling-frequency-lock` (alternative realization) and `braid-taxonomy` (bookkeeping) are small but purposeful, not dormant or duplicate.
+- Route open tasks to taxonomy-home lane: no cross-lane task moves needed. Each lane's queue is already taxonomy-appropriate; the active intake concentrates in `braid-ideal` (Group A absorber + Group D corpus survey + native promotion), as recorded in the intake ledger.
+- `braid-geometry-export-bridge`: re-index verified only (OP-2 deferred). `priorities.md` is active (Rank 9) and points at the live H39 tail-bound frontier via the source-covariance pause note; no octahedral certificate files moved, no archive subfolder created.
+- Renumbering: no queue items were removed in this phase, so no renumbering was required.
+
+Guardrail: link paths for the two inserted cross-pointers verified by relative depth; no claim-level changes; certificate/packet files untouched. Operator to run the standard `--check` set from codex (validate-content, build-scene-graph) as the Phase 6 validation handoff.
+
+### 2026-07-08 - Braid Priority Sort: Phase 5 Corpus Promotion-Readiness Audit
+
+Phase 5 of the braid priority sort ([braid-prio-sort.md](braid-prio-sort.md)), branch `codex/calcite`. Audit against [promotion-policy-into-corpus.md](../braid-retained-branch-closure/promotion-policy-into-corpus.md) and [proof-id-crosswalk.md](../braid-taxonomy/proof-id-crosswalk.md). No corpus files were edited in this audit.
+
+Proof-state bound (crosswalk): no braid branch is retained at any Proof ID (`NB-0`, `SH-0`, `NSH-0`, families). Every current object is a branch target, row evidence, diagnostic/rejection, fixture, chart, downstream consumer, or uninspected corpus — all `not_retained`. So no retained-branch results exist to promote; the promotable surface is limited to reader-safe theorem-target discipline, effective-summary, and scoped-negative / first-failure language.
+
+Already-promoted surface (confirmed by corpus grep 2026-07-08): the braid corpus has 13 noether-braid chapters and already carries the safe promotable mechanism/theorem-target material — anti-damping (7 files), axis-neutral channel (5), exact speed budget (2), pump language (5), and `Corollary S` (1). The 2026-05-22 policy application already promoted the theorem-target retained-branch certificate language plus scoped fixed-speed octahedral negatives into [noether-braid.md](../../../content/markdown/aaa/noether-braid/noether-braid.md); the 2026-07-06/07 passes promoted the axis-neutral invariant channel, drum geometry, speed budget, dressing ladder, and consilience principle.
+
+Not-yet-promoted (priority-only): the very recent 2026-07-07 absorber-cluster negatives — `certified non-absorber` phrasing, the self-hit coincidence theorem, and the cross-hit hinge results (0 corpus files each). These are legitimate reader-safe scoped-negatives / theorem-targets under the open-factory framing, but they belong to the ACTIVE Group A absorber cluster (five threads converging on one gating object; consolidation pending; about to relaunch), so the results may still shift.
+
+Policy guidance: the promotion policy states that while retained-branch, validation, and observer-export rows remain open, the remaining promotion surface should be "a dedicated validation-method destination rather than a broad braid corpus migration." The theory-focus policy likewise prefers advancing derivations over promotion proliferation.
+
+Decision (pending operator ratification): no new unilateral corpus promotions in this cleanup sort. The safe surface is already promoted; the only not-yet-promoted candidates are in-flight absorber-cluster negatives whose systematic, reviewed promotion is the job of the pending Group D corpus-insight survey (P11-P16 in [braid-intake-prompts.md](braid-intake-prompts.md)), under operator review. Option retained for the operator: draft the absorber-cluster scoped-negatives (Corollary S completion, self-hit coincidence theorem) as reader-safe theorem-target / scoped-negative language once the cluster stabilizes.
+
+Operator ratification 2026-07-08: accepted the audit — promote nothing in this sort; route systematic new-candidate promotion to the pending Group D survey (P11-P16) under operator review. Phase 5 complete with zero corpus edits.
+
+
+## 2026-07-08 - Operator d0 decision applied to the symmetric self-hit brake (item 3)
+
+Highest-priority Group A item `self_hit_held_release_solver_row` (item 3): the 2026-07-07 central-solver measurement had localized the symmetric self-hit brake to a single open producer gap - the declared coincidence-stratum length scale (`jacobianFloorOrDeclaredStratum`), an operator ontology decision the agent does not invent. The operator supplied it: the stratum is `d0`, of order the near-field two-body scale $\kappa\epsilon^2/c_f^2$ ($R_*$; in the minimum-circular-binary reading $d_0=R_{\mathrm{MCB}}$, the collapse-arresting radius; exact derivation from $(\kappa,\epsilon,c_f)$ open, [particle-masses](../../../content/markdown/aaa/assemblies/particle-masses.md)).
+
+Evaluated at $d_0$ the symmetric single-site self-hit magnitude is $\approx50\times$ the certified per-rotation tangential pump, so the symmetric self-hit is dispositioned NOT load-bearing as a retention absorber. The decision was landed in both scripts so they tell one story:
+
+- Owner row [self-hit-held-release-solver-row.mjs](../../../scripts/braid-ideal/self-hit-held-release-solver-row.mjs): `central_solver_self_hit_brake_finding` now carries `declared_coincidence_stratum` (symbol `d0`, operator_decision_date 2026-07-08, `symmetric_self_hit_load_bearing:false`, `symmetric_self_hit_magnitude_vs_pump:"about_50x_too_large"`); the coincidence gap moved to `resolved_producer_gaps`; `open_producer_gaps`/`first_missing_object` re-point to the non-coincident cross-hit hinge.
+- Source measurement [self-hit-brake-central-measurement.mjs](../../../scripts/braid-ideal/self-hit-brake-central-measurement.mjs): the `coincidence_stratum_is_a_numerical_floor` gap status flips to `resolved_by_operator_declared_d0_2026_07_08`; a new `operator_ontology_input` block records $d_0$; `declared_stratum_supplied_by_operator:true`.
+
+Both scripts now emit the single disposition `central_solver_self_hit_brake_sign_absorptive_magnitude_set_by_operator_declared_d0_not_load_bearing`, and both `first_missing_object`s are `non_coincident_cross_hit_hinge_sustained_alignment_over_a_click_window`. Tests updated to match: `node --test tests/braid-ideal-self-hit-brake-central-measurement.test.js tests/braid-ideal-self-hit-held-release-solver-row.test.js` -> 12 pass, 0 fail.
+
+Surviving retention-mechanism frontier: the non-coincident cross-hit hinge that sustains $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ at finite separation - a formation-history / dynamic-alignment burden (the same burden gating induced sea orientational polarization), not a self-hit magnitude question. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no central retained-history acceptance; the promotion half stays at `central_solver_retained_history_row`. The dated 2026-07-07 disposition strings in the historical packet/run-matrix/work-log narrative are left as-recorded; a forward-pointer note to this decision was added to [fold-crossing-click-impulse-packet.md](fold-crossing-click-impulse-packet.md) and [sh-run-matrix.md](sh-run-matrix.md).
+
+
+## 2026-07-08 - Cross-hit hinge click-rate: the internal-frequency requirement (item 11)
+
+Operator selected the non-coincident cross-hit hinge (over the soft neighbor-orientation mode) as the surviving tangential-pump absorber channel to derive-or-falsify. The spec Section 2.5 had reduced sufficiency to the per-rotation click count $N_{\mathrm{click}}$ and left it as "a hypothesis only the retained-history row can supply." That was too pessimistic: the click rate is a property of the frequency content of the configuration, not of the force ledger, so it admits a kinematic bound with no retained-history dynamics.
+
+New owner script [cross-hit-hinge-click-rate-diagnostic.mjs](../../../scripts/braid-ideal/cross-hit-hinge-click-rate-diagnostic.mjs) (tests [braid-ideal-cross-hit-hinge-click-rate-diagnostic.test.js](../../../tests/braid-ideal-cross-hit-hinge-click-rate-diagnostic.test.js), 5 passing) and [spec Section 8](fold-crossing-chart-spec.md#8-cross-hit-hinge-click-rate-the-internal-frequency-requirement-2026-07-08):
+
+- Result 1 (single-frequency braid -> $N_{\mathrm{click}}=0$): a cross-hit click is born where $A_{ij}=\mathbf v_j\cdot\hat{\mathbf r}_{ij}$ crosses $c_f$. If every site shares one $\omega$ the configuration is a global rigid rotation $\mathrm{Rot}(\omega t)$, which preserves inner products, so $A_{ij}(t)=\mathbf v_j(0)\cdot\hat{\mathbf r}_{ij}(0)=$ const. No sign change, no clicks; the exception $A_{ij}\equiv c_f$ is a static sustained hinge, not a recurring click. Delay-independent (rigid rotation carries causal roots to causal roots). Confirmed numerically: $A_{ij}$ constant to $1.6\times10^{-15}$ (single shell) / $2.7\times10^{-15}$ (multi-shell one frequency), zero crossings.
+- Result 2 (needs $\ge2$ frequencies): a cross pair with frequencies $\omega_{\mathrm{out}},\omega_{\mathrm{in}}$ has $A_{ij}$ periodic in the beat $(\omega_{\mathrm{out}}-\omega_{\mathrm{in}})t$; over one outer rotation $N_{\mathrm{click}}\lesssim2P\lvert1-\omega_{\mathrm{in}}/\omega_{\mathrm{out}}\rvert$ across $P$ straddling directed pairs. Verified: ratio 1.5 -> 0 clicks (amplitude did not straddle $c_f$), ratio 6 -> 90 clicks tracking 5 beats/rotation.
+- Verdict vs certified pump ($N_{\mathrm{click}}^{\mathrm{req}}=2\pi c_1\beta\approx18\beta$; pump-per-rotation reproduced at 22.17, per-click 1.25): single-frequency `closed_negative`; multi-frequency open only with a fast inner shell $\lvert1-\omega_{\mathrm{in}}/\omega_{\mathrm{out}}\rvert\gtrsim\pi c_1\beta/P$ (ratio $\gtrsim2.5$ for $P=6$, $\beta\to1$) AND amplitude straddling. Disposition `cross_hit_click_train_requires_fast_inner_shell_single_frequency_braid_gives_zero`.
+
+This sharpens the Section 7 sustained-alignment/formation-history burden into two separable checkable conditions on the nested-shell architecture (fast inner frequency + amplitude straddling) and closes the single-shell reading of the cross-hit route negatively without the gated retained-history certificate chain. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema. Next closure goal: test whether the fast-inner-shell ratio clearing $N_{\mathrm{click}}\gtrsim18\beta$ is simultaneously compatible with amplitude straddling at an admissible inner rim fraction, or whether the two necessary conditions are mutually exclusive and close the cross-hit route as well.
+
+Verification: `node --test tests/braid-ideal-cross-hit-hinge-click-rate-diagnostic.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Two-frequency coexistence test: the cross-hit conditions coexist (item 11)
+
+Executing the prior closure goal. Section 8 left the cross-hit route open under two separable necessary conditions: (A) $N_{\mathrm{click}}\ge2\pi c_1\beta_{\mathrm{out}}$ (fast inner shell) and (B) amplitude straddling ($A_{ij}$ reaching $c_f$). Question: coexist at admissible $\beta_{\mathrm{in}}$, or mutually exclusive?
+
+New owner script [cross-hit-hinge-coexistence-diagnostic.mjs](../../../scripts/braid-ideal/cross-hit-hinge-coexistence-diagnostic.mjs) (tests [braid-ideal-cross-hit-hinge-coexistence-diagnostic.test.js](../../../tests/braid-ideal-cross-hit-hinge-coexistence-diagnostic.test.js), 5 passing) and [spec Section 9](fold-crossing-chart-spec.md#9-two-frequency-coexistence-test-the-conditions-are-not-mutually-exclusive-2026-07-08). Two-shell config: 3 outer ($R_{\mathrm{out}}$, $\omega_{\mathrm{out}}$) + 3 inner ($R_{\mathrm{in}}=qR_{\mathrm{out}}$, $\omega_{\mathrm{in}}=r\omega_{\mathrm{out}}$), $\beta_{\mathrm{in}}=r\beta_{\mathrm{out}}q$; clicks counted on outer-receiver/inner-source directed pairs over one outer rotation.
+
+Verdict: NOT mutually exclusive — they coexist. Reference point $r=2.5$, $q=0.44$, $\beta_{\mathrm{out}}=0.98$: $\beta_{\mathrm{in}}=1.08$, straddles ($\max A=1.08$), $N_{\mathrm{click}}=27\ge17.7$; coexistence region broad (20/36 grid points at $\beta_{\mathrm{out}}=0.98$; all $q\in[0.2,0.8]$ clear), minimum admissible $\beta_{\mathrm{in}}\approx1.18$. Structural facts:
+
+- $\beta_{\mathrm{in}}\ge1$ is the single binding gate: sub-field inner shell (e.g. $r=2,q=0.44\Rightarrow\beta_{\mathrm{in}}=0.86$) gives exactly zero clicks; the train switches on as $\beta_{\mathrm{in}}$ crosses 1.
+- Condition (A) delivers condition (B): $\beta_{\mathrm{in}}=r\beta_{\mathrm{out}}q$, so the frequency increase raising the click count also carries the inner binary super-field. Cooperative, not antagonistic.
+- Frequency-ratio saturation: once $\beta_{\mathrm{in}}\ge1$, total absorption is $r$-independent (flat within 20% over $r\in[3,8]$) because click count $\propto r$ while per-click impulse falls as source centripetal accel grows. Control variables are $\beta_{\mathrm{in}}, q$, not raw $\omega_{\mathrm{in}}$.
+
+Coefficient caveat: the indicative impulse total ($\approx3\times$ pump at reference) uses schematic Section 2.2 $\chi,\mu_0$, so its absolute size is order-of-magnitude only; robust results are coexistence, the $\beta_{\mathrm{in}}\ge1$ gate, and saturation. Disposition `cross_hit_absorber_conditions_coexist_binding_gate_is_super_field_inner_binary`. The cross-hit click absorber survives; the retention question reduces to one sharper burden: is a super-field inner binary ($\beta_{\mathrm{in}}\gtrsim1$) with coplanar hinge alignment itself a self-consistent retained-history configuration (own root-budget, causal-margin, pump balance)? Same formation-history burden, now a concrete nested-shell target. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-cross-hit-hinge-coexistence-diagnostic.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Super-field inner-binary self-consistency: the two routes are one crux (item 11)
+
+Executing the prior closure goal: is the inner binary at $\beta_{\mathrm{in}}\gtrsim1$ (required by the cross-hit absorber) itself a self-consistent retained-history configuration, or unsustainable? New owner script [super-field-inner-binary-consistency-diagnostic.mjs](../../../scripts/braid-ideal/super-field-inner-binary-consistency-diagnostic.mjs) (tests [braid-ideal-super-field-inner-binary-consistency-diagnostic.test.js](../../../tests/braid-ideal-super-field-inner-binary-consistency-diagnostic.test.js), 5 passing) and [spec Section 10](fold-crossing-chart-spec.md#10-self-consistency-of-the-super-field-inner-binary-the-two-routes-are-one-crux-2026-07-08).
+
+- Result A (no inner absorber): a click needs a super-field source ($|A_{ij}|\le|\mathbf v_j|=\beta_j c_f$). The outer shell is sub-field ($\max A_{\mathrm{out}\to\mathrm{in}}=0.43<c_f$, cannot straddle); same-shell partners share the inner frequency ($A_{ij}$ constant to $2.4\times10^{-15}$). So the inner binary's only possible cross-hit absorber is a strictly faster distinct third shell.
+- Result B (regress diverges): shell $k$ needs a faster super-field shell $k{+}1$; the tower is strictly increasing and bounded below by 1, so it never terminates on a cross-hit. The click relocates the pump inward rather than dissipating it.
+- Result C (terminal reduction): the innermost shell has only breathing ($\le27\%$), sea ($\le10\%$), and the self-hit; only the self-hit can reach the pump, but its magnitude is the $d_0$ coincidence-stratum question ($\approx50\times$ pump, not chart-clean), and above $\beta=1$ the partner pump is itself uncertified (the interval certificate bails for $\beta\ge1$). Terminal balance couples the uncertified super-field pump and the $d_0$-dependent self-hit.
+- Result D (self-hit is super-field): $F(\Delta)=2\rho\sin(\beta\Delta/2\rho)-c_f\Delta$, $F'(0)=\beta-1$: no self-hit root below field speed, born at $\beta=1$, finite count (order 1 through $\beta\sim3$). Self-hit brake and cross-hit inner binary share the super-field regime.
+
+Verdict `super_field_inner_binary_self_consistency_reduces_to_d0_self_hit_balance_cross_hit_and_self_hit_routes_are_one_crux`: the cross-hit route does not close negatively but unifies with the self-hit route - both terminal closures reduce to the $d_0$-set self-hit tangential balance on a super-field shell. This removes the illusion that cross-hit and self-hit were independent hedges; the retention hunt's two surviving candidates are one crux. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: compute the super-field tangential force balance on a single rigid shell for $\beta\gtrsim1$ - the uncertified partner-wake pump plus the $d_0$-regularized self-hit brake - and determine whether it has a zero at an admissible $\beta^*$ (self-balancing terminal shell, retention closes affirmatively) or stays net anti-damping (no terminal shell, forcing Noether-sea/field dissipation as the only remaining sink).
+
+Verification: `node --test tests/braid-ideal-super-field-inner-binary-consistency-diagnostic.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Super-field tangential balance: the field-speed pin (item 11) + normal-convention audit
+
+Operator asked to FIRST verify all cross-hit math handles source-normal and receiver-normal correctly, then compute the super-field balance.
+
+Audit (against production `receiverNormalFields` in [AbsoluteHistoryRootRuntime.mjs](../../../src/solver/app/AbsoluteHistoryRootRuntime.mjs)): canonical convention is $\hat{\mathbf r}=(\mathbf x_{\mathrm{rec}}-\mathbf x_{\mathrm{src}})/|\cdots|$ (source$\to$receiver), $D_s=c_f-\mathbf v_{\mathrm{src}}\cdot\hat{\mathbf r}$ (jacobian/denominator), $D_T=c_f-\mathbf v_{\mathrm{rec}}\cdot\hat{\mathbf r}$ (numerator, same $\hat{\mathbf r}$), $m=D_T/D_s$ (signed), branchWeight $=|m|$. The click-rate/coexistence/consistency diagnostics use the source-normal correctly (their alignment scalar $=c_f-D_s$ to $2\times10^{-16}$), but they summed impulse MAGNITUDE only, so the absorptive/ejective sign $\operatorname{sign}(D_T)$ was not evaluated there - fine for counts/availability, but the balance needs signed $m$ and must not assume $D_s>0$ (super-field). Existing fold/self-hit scripts and the interval certificate use the same convention (certificate uses unsigned $|D_T|/D_s$ and requires $D_s>0$, valid only sub-field).
+
+New owner script [super-field-tangential-balance-diagnostic.mjs](../../../scripts/braid-ideal/super-field-tangential-balance-diagnostic.mjs) (tests [braid-ideal-super-field-tangential-balance-diagnostic.test.js](../../../tests/braid-ideal-super-field-tangential-balance-diagnostic.test.js), 5 passing) and [spec Section 11](fold-crossing-chart-spec.md#11-super-field-tangential-balance-the-field-speed-pin-2026-07-08):
+
+- Validation: the signed-normal point evaluator reproduces the certified band $2.881\beta\le\Phi_{\mathrm{tan}}\le2.925\beta$ for $\beta\in[0.1,0.985]$ (measured $\Phi/\beta\in[2.888,2.919]$, all in-band); signed=unsigned sub-field ($D_T>0$).
+- Result 1: extended across $\beta=1$, the partner pump stays anti-damping and grows ($\Phi_{\mathrm{tan}}=2.87,2.92,2.98,3.08,3.24,3.58,4.28$ at $\beta=0.985..1.4$), single-root, non-caustic ($D_s>0$). The pump does NOT switch off super-field - the Section 10 "uncertified pump might vanish" escape is closed.
+- Result 2 (inputs, provenance recorded): self-hit brake absorptive ($m<0$), onsets at $\beta=1$, $\sim50\times$ pump at declared $d_0$ (exact size $d_0$-gated).
+- Result 3: no static super-field $\beta^*$ (pump only grows); switching structure gives a dynamic field-speed pin - above $\beta=1$ net braking pushes down, below $\beta=1$ the pump pushes up, so $\beta\approx1$ is a self-limiting attractor.
+
+Verdict `partner_pump_persists_super_field_no_static_beta_star_switching_self_hit_yields_field_speed_pin_gated_on_d0_sea_field_dissipation_not_required`: the retention hunt closes affirmatively-conditionally - a terminal shell exists (the field-speed-pinned inner binary) and does NOT require Noether-sea/field dissipation; gated on $d_0$ for exact pin stability (declared $\sim50\times$ suffices). Claim: derivation+measurement for the validated super-field pump; hypothesis for the pin as a proven attractor (trajectory needs the retained-history solver). Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: confirm the field-speed pin as an actual attractor on the native retained-history solver (a two-shell row with the inner binary released near $\beta=1$), and invert the pin balance $\Phi_{\mathrm{partner}}(1)+\Phi_{\mathrm{self}}(1;d_0)=0$ to DERIVE $d_0$ as the coincidence stratum that makes the field-speed edge marginally stable - turning the open $d_0$ value (particle-masses.md) into a fixed point of the retention balance rather than a free operator input.
+
+Verification: `node --test tests/braid-ideal-super-field-tangential-balance-diagnostic.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Field-speed pin: attractor confirmed (reduced), d0 inversion is a bound (item 11)
+
+Executing the prior closure goal: confirm the field-speed pin as an attractor and invert the balance for d0. New owner script [field-speed-pin-attractor-diagnostic.mjs](../../../scripts/braid-ideal/field-speed-pin-attractor-diagnostic.mjs) (tests [braid-ideal-field-speed-pin-attractor-diagnostic.test.js](../../../tests/braid-ideal-field-speed-pin-attractor-diagnostic.test.js), 6 passing) and [spec Section 12](fold-crossing-chart-spec.md#12-field-speed-pin-attractor-confirmation-and-d0-inversion-2026-07-08). Reduced reference integrator (validated signed-normal partner pump + switching self-hit brake); explicitly NOT the native solver - native retained-history confirmation stays gated.
+
+Modeling correction found during the run: the self-hit brake is a MULTIPLE of the LOCAL pump, not a fixed magnitude. So $\Phi_{\mathrm{net}}(\beta)=\Phi_{\mathrm{partner}}(\beta)[1-\varrho\,\Theta(\beta-1)]$ and, since the partner pump grows super-field, the pin threshold is the ratio $\varrho>1$ (not brake=pump at a single beta).
+
+- Result 1 (attractor): for $\varrho>1$ the field-speed edge $\beta=1$ is a two-sided attractor - releases $\{0.9,0.95,1.05,1.1\}$ all converge to $\beta\approx1$ (to $1.00$ at $\varrho=1.5$, to $\approx0.98$ at the declared $\varrho\approx50$). $\varrho=1$ marginal (attracts from below, neutral above); $\varrho=0.5$ super-field runaway (no pin).
+- Result 2 (d0 inversion): the marginal condition $\varrho=1$ against the measured self-hit-brake-vs-stratum curve (absorbed fraction $0.031/0.115/0.371/2.69/9.67$ at $\rho_c=0.2/0.1/0.05/0.01/0.001$) lands at $\rho_c^*\approx2.2\times10^{-2}$. The pin holds for $d_0\le\rho_c^*$ - an INEQUALITY, not a unique fixed point, because over-braking is also stable. The declared $d_0=R_{\mathrm{MCB}}\sim\kappa\epsilon^2/c_f^2$ ($\varrho\approx50$) sits well inside the stable range and gives a firm, over-damped pin.
+
+Honest correction to the closure goal: inverting the balance does NOT uniquely derive $d_0$; it BOUNDS it ($d_0\le\rho_c^*\approx0.022$, equivalently the self-hit brake must exceed the partner pump above field speed). The unique $d_0$ still comes from $R_{\mathrm{MCB}}$ physics, now bounded above by the retention balance. Verdict `field_speed_edge_two_sided_attractor_for_ratio_above_one_balance_bounds_d0_by_marginal_stratum_declared_d0_over_damped_inside_range`. Claim: derivation+measurement (reference) for the attractor and marginal stratum; hypothesis for the native-solver pin (gated) and for $\varrho(\beta)$ staying $>1$ as $\beta$ grows (its $\beta$-dependence unmeasured). Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: (a) native retained-history confirmation of the pin (gated two-shell row released near $\beta=1$); (b) measure $\varrho(\beta)$ above field speed - if it stays $>1$ the pin is unconditional in the super-field range, else there is an upper escape; (c) reconcile $\rho_c^*\approx0.022$ against $R_{\mathrm{MCB}}\sim\kappa\epsilon^2/c_f^2$ (particle-masses.md).
+
+Verification: `node --test tests/braid-ideal-field-speed-pin-attractor-diagnostic.test.js` -> 6 pass, 0 fail.
+
+
+## 2026-07-08 - Signed re-check of the cross-hit coexistence absorption (item 11)
+
+Executing the audit-flagged proof re-check. Section 9 summed cross-hit click MAGNITUDES ("~3x surplus" absorption) without evaluating the per-click receiver-normal sign $m=D_T/D_s$. Redone with the signed convention (validated in Section 11). New owner script [cross-hit-signed-absorption-recheck.mjs](../../../scripts/braid-ideal/cross-hit-signed-absorption-recheck.mjs) (tests [braid-ideal-cross-hit-signed-absorption-recheck.test.js](../../../tests/braid-ideal-cross-hit-signed-absorption-recheck.test.js), 3 passing) and [spec Section 13](fold-crossing-chart-spec.md#13-signed-re-check-of-the-cross-hit-coexistence-absorption-2026-07-08).
+
+- Result 1 (sign = polarity, robust): for a fixed source->receiver polarity product the tangential transfer has a definite sign (net = +/- |sum|, no per-pair cancellation). Like-polarity source -> net absorptive; opposite-polarity -> net ejective. Regulator-robust sign.
+- Result 2 (neutral binary self-cancels): the physical inner binary is neutral (one +, one -), so its members deliver opposite-sign transfers to each outer receiver that substantially cancel (cancellation grows with fold-pole resolution, ~25% coarse to >=90% fine). The net is far below the magnitude sum.
+- Caveat: the instantaneous-proxy magnitudes (both net and |sum|) are not converged - they grow as the $D_s\to0$ fold pole is resolved. A converged number needs the causal root-sum / density-of-states, not the instantaneous reception-time integral.
+
+Verdict: the Section 9 "~3x surplus" overstated the case (magnitude sum + regulator dependence). The coexistence NECESSARY conditions (Section 8/9: enough clicks + straddling) are sign-independent and stand; the SUFFICIENCY (neutral inner binary net-absorbs the pump via cross-hits) is NOT established. This does NOT affect the field-speed pin (Sections 11-12), which rests on the self-hit/partner-pump balance, and it reinforces Section 10 (the self-hit pin is the load-bearing terminal absorber; the cross-hit is not an independent clean absorber). A dated correction pointer was added to Section 9. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-cross-hit-signed-absorption-recheck.test.js` -> 3 pass, 0 fail.
+
+
+## 2026-07-08 - Cross-hit absorption on the causal root-sum (fidelity raise, item 11)
+
+Operator chose (b): raise fidelity of the cross-hit signed transfer from the instantaneous proxy to the actual causal root-sum. Also clarified geometry: besides the nested shell there is the shell braid, whose planar equal-radius state is closest to the certified hexagon pump; being single-frequency it yields zero cross-hit clicks (Section 8), so the cross-hit absorber requires the nested two-frequency structure.
+
+New owner script [cross-hit-causal-absorption.mjs](../../../scripts/braid-ideal/cross-hit-causal-absorption.mjs) (tests [braid-ideal-cross-hit-causal-absorption.test.js](../../../tests/braid-ideal-cross-hit-causal-absorption.test.js), 4 passing) and [spec Section 14](fold-crossing-chart-spec.md#14-cross-hit-absorption-on-the-causal-root-sum-fidelity-raise-2026-07-08). For each reception time $T$ it solves $|\mathbf X_i(T)-\mathbf x_j(T_{\mathrm{em}})|=c_f(T-T_{\mathrm{em}})$ for every emission root and sums the signed $m=D_T/D_s$ contribution (source vel at emission, receiver vel at reception), projected tangential.
+
+- Converges: neutral-binary net $0.214\to0.220\to0.224$ across $N_T=2000/4000/8000$ (proxy diverged); caustic is measure-zero in $T$, no regulator needed.
+- Neutral inner binary does NOT absorb: $\approx97\%$ polarity cancellation; net avg tangential force $\approx+0.035$ vs pump $\approx2.84$ ($\sim1\%$, slightly ejective).
+- Polarity sets sign; even a fully imbalanced (charged) inner shell reaches only $\sim20\%$ of the pump (insufficient league with breathing $\le27\%$, sea $\le10\%$).
+
+Verdict `cross_hit_absorber_closed_for_neutral_braid_causal_root_sum_net_about_one_percent_of_pump_and_ejective`: the Section 9 "~3x surplus" collapses on the causal root-sum; the cross-hit is not an independent absorber for the neutral braid. Necessary coexistence conditions (Section 8/9) still hold; the field-speed self-hit pin (Sections 11-12) is unaffected and is now the sole remaining absorber path. Section 13's proxy magnitude non-convergence is superseded by this converged causal result. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-cross-hit-causal-absorption.test.js` -> 4 pass, 0 fail.
+
+
+## 2026-07-08 - Iso-frequency planar tri-binary restart: internal torque closure on the rail (item 11)
+
+Operator corrected the model inventory (my cross-hit toys used a non-neutral 5-site schematic) and restarted the planar case on the true geometry: six architrinos as three neutral antipodal axes (3 electrinos : 3 positrinos), radii $R_I<R_M<R_O$, one common frequency (iso-frequency planar state), middle binary riding the $c_f$ rail as the hinge/clicker. New owner script [planar-tri-binary-iso-frequency-evaluator.mjs](../../../scripts/braid-ideal/planar-tri-binary-iso-frequency-evaluator.mjs) (tests [braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js](../../../tests/braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js), 6 passing) and [spec Section 15](fold-crossing-chart-spec.md#15-iso-frequency-planar-tri-binary-restart-internal-torque-closure-on-the-rail-2026-07-08). Full causal-root solve per partner, signed $m=D_T/D_s$; anchors: rigidity to $2\times10^{-15}$; equal-radii limit reproduces the certified hexagon band (2.9028 at $\beta=0.9$, layer-symmetric).
+
+- Regime map at the rail: common frequency orders speed with radius, so outer is the super-field self-hit holder (self roots 0/0/1 for I/M/O; middle exactly at root birth). Inverts the 4:2:1 picture (inner super-field) - flagged to operator and accepted as the working reading for the 1:1:1 state.
+- Sign reversal: nesting turns the inner layer's partner-wake tangential residual NEGATIVE (braking, $\Phi_I\approx-1.1$) - the pump is not sign-definite across nested layers; cross-layer delayed-wake geometry alone can brake a sub-field layer.
+- Net-torque closure: $N=2\sum_a R_a\Phi_a$ crosses zero along a curve near $q_O\approx2.2$, $q_I\approx0.25$-$0.35$ (bracketed $+0.175\to-0.104$ across $q_O=2.0\to2.2$ at $q_I=0.3$). At closure: inner braked, middle mildly pumped (the escapement/clicker throughput at the rail), outer nearly free with one open self-hit root as its $d_0$ brake. First configuration family in the hunt where the tangential ledger closes internally with no external absorber.
+
+Caveats: prescribed rigid worldlines (necessary-condition residuals, not dynamics); partner channel only; radial balance and axis-phase scan pending; no sustained cross-pair hinge tuned. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js` -> 6 pass, 0 fail.
+
+
+## 2026-07-08 - Forward-looking lock-dynamics tasks captured (Group E)
+
+Operator request following the Section 15 iso-frequency result (with the note that the outer-binary-super-field ordering was not the prior intuition — serendipitous if it holds). Two contingent tasks articulated and queued as Group E items 17-18: `iso_frequency_lock_perturbation_basin` (disturbance tolerance of the f:f:f lock; escapement sub-question: is recovery quantized in h_act clicks?) and `iso_frequency_lock_formation_autotune` (do three independent binaries at different frequencies entrain through delayed wakes into an f:f:f braid — the formation-history burden in its sharpest testable form; sub-question: does the middle binary lock to the c_f rail first and act as the master clock?). Both depend on the Section 15 candidate row and responsive worldlines (native retained-history solver); a staged kinematic half of item 17 (perturbed ansatz, rigidity-degradation measurement) is possible earlier.
+
+
+## 2026-07-08 - Rail closure refinement: radial support rejects the circular ansatz (item 11)
+
+Executed the Section 15 closure goal on the extended evaluator (radial projection + supportRatio + netZeroInQO + phaseScan; tests extended to 8 passing; second certified anchor: equal-radii $a_{\mathrm{rad}}=-0.7605\le-0.672$).
+
+- Net-torque zeros precise: dip with two roots, $q_O^*=2.0916$ / $2.3724$ at $q_I=0.3$ ($2.1590$ at $q_I=0.35$); ledger at the lower zero $\Phi=(-1.142,+0.160,+0.087)$, $N=6\times10^{-9}$.
+- Support ratios at the zero: $10.9/1.97/0.32$ (I/M/O) - all layers bound (net inward), but inner over-bound and outer under-bound by $\sim5$-$6\times$ vs middle; structural (needed centripetal $\propto R$, wake binding concentrates at small radius; deep nesting required by tangential closure drives ratios apart).
+- Phase scan $\pm60°\times\pm60°$: cannot repair (best I/O $\approx12.5$; outer phase past $+30°$ unbinds the outer). Outer self-hit is like-polarity repulsive (outward) - worsens, not helps.
+
+Verdict `iso_frequency_rail_circular_ansatz_fails_simultaneous_tangential_and_radial_closure_candidate_row_must_be_non_circular_or_environmentally_confined`. Surviving readings: eccentric/breathing layers (the lane mandate already says do not assume circular orbits) or sea confinement. Forward lock-dynamics tasks captured as Group E items 17-18. Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-iso-frequency-evaluator.test.js` -> 8 pass, 0 fail.
+
+
+## 2026-07-08 - Non-circular relaxation: m=2 shape mode rejected; unified closure metric (item 11)
+
+Executed the Section 16 closure goal on a new owner script [planar-tri-binary-breathing-extension.mjs](../../../scripts/braid-ideal/planar-tri-binary-breathing-extension.mjs) (tests 4 passing; [spec Section 17](fold-crossing-chart-spec.md#17-non-circular-relaxation-the-m2-shape-mode-is-rejected-2026-07-08)): inner/outer layers get the m=2 antipodal-symmetric radius modulation at constant angular rate (middle circular, rail exact); cycle-sampled residuals; unified closure metric with one global least-squares $\kappa^*$ over all layers, both components, full cycle.
+
+- Circular family bottoms at global $0.646$ at ($q_I=0.5$, $q_O=1.6$) - milder nesting than the net-torque curve ($0.888$ there); even at optimum the wake coherently supplies only ~1/3 of the required pattern.
+- $\psi$ is exactly a gauge at constant angular rate (inter-axis angles never change; verified to $10^{-6}$): one knob per layer, not two.
+- Circular is a shape-space local minimum: every breathing direction degrades ($0.646\to0.66$-$0.95$ across $e\in\{0.1,0.2,0.4\}$ singly and jointly). The m=2 mode is REJECTED.
+
+Combined Sections 15-17 verdict: iso-frequency deep-nesting tangential closure and radial self-support are mutually exclusive; the lowest shape mode cannot bridge. Missing ingredient is structural: (i) speed modulation / Kepler-like rate variation - for the middle layer this is the escapement ticking (rail crossed twice per cycle, self-hit clicks transacted; needs the $d_0$ self-hit channel in the balance); (ii) frequency hierarchy (4:2:1 / 3:2:1, inner-super-field per the original intuition); (iii) out-of-plane structure; (iv) sea confinement (the outer binding deficit is where an external medium term would sit; the outer's own self-hit is repulsive-outward and cannot rescue it). Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-breathing-extension.test.js` -> 4 pass, 0 fail.
+
+
+## 2026-07-08 - Autonomous window: frequency locks, Kepler mode, counter-rotation; the harmonic-matching principle (item 11)
+
+Operator-approved ~40-minute autonomous exploration following the Section 17 shape rejection. Two new owner scripts, both on the unified global-closure metric (one global $\kappa^*$, both components, full common period):
+
+- [planar-tri-binary-frequency-lock-evaluator.mjs](../../../scripts/braid-ideal/planar-tri-binary-frequency-lock-evaluator.mjs) (tests 4 passing): per-layer integer frequency multiples $n_a\omega$, middle on rail, declared caustic regulator soft=0.02 (beats revive fold passages; min|D_s| reported). 4:2:1 restores inner-super-field ($\beta_I=1.4$ at $q_I=0.7$) per the original intuition — but circular locked states score 0.96–1.0 (wake essentially uncorrelated with the single-harmonic circular requirement), INCLUDING at the Kepler-third-law radii $n_a^2R_a^3=$const (operator's "nature echoes Kepler" prompted the test; retardation kills the static-binding scaling — during one antipodal wake transit at $\beta\sim1$ the pair rotates $\sim115°$). Counter-rotation variants ($\pm1$ circulation per layer): 0.85–0.99.
+- [planar-tri-binary-kepler-extension.mjs](../../../scripts/braid-ideal/planar-tri-binary-kepler-extension.mjs) (tests 4 passing): equal-area speed modulation, $r^2\dot\varphi=$const per layer with common period (Kepler second law within iso-frequency; exact $e{=}0$ regression to 0.646). $\psi$ is a live knob here (gauge argument fails under speed modulation — verified) but every scanned direction degrades (0.65–0.94).
+
+Structural finding (the harmonic-matching principle): a circular orbit needs a single-harmonic rotating force; only the co-rotating-frame DC part of the wake supplies that. Rigid co-rotation concentrates ALL wake power in the DC part — hence the iso-frequency family is the planar champion (0.646) and carries the Section 15 internal-transfer structure — while beats, counter-rotation, and speed modulation shift wake power into unmatchable harmonics. Fair continuation for locks (untried, expensive): harmonically-forced response orbits deformed at the beat harmonics.
+
+Verdict: in-plane prescribed-orbit freedoms exhausted; the remaining 0.646 must come from out-of-plane structure (sphere-state shell braid / 3D nesting), the $d_0$ self-hit channel at the rail, sea confinement, or $m{=}1$ modes. Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-planar-tri-binary-frequency-lock-evaluator.test.js tests/braid-ideal-planar-tri-binary-kepler-extension.test.js` -> 8 pass, 0 fail.
+
+
+## 2026-07-08 - Sphere state evaluated; planar-era league table complete (item 11)
+
+Continuation of the autonomous window. New owner script [sphere-state-shell-braid-evaluator.mjs](../../../scripts/braid-ideal/sphere-state-shell-braid-evaluator.mjs) (tests 3 passing; [spec Section 19](fold-crossing-chart-spec.md#19-sphere-state-and-the-completed-planar-era-league-table-2026-07-08)): the shell braid sphere state (three orthogonal-plane neutral binaries, equal radius/frequency, full 3D causal solve). Result: 0.986-0.997 - the three-fold orthogonal symmetry does NOT cancel the beating wake content; the harmonic-matching principle extends to 3D. Also measured the pure planar hexagon in the unified metric: 0.960 (binding coherent; pump dominates).
+
+Completed league table: nested co-rotating iso-frequency 0.646 (champion; nesting internally cancels the pump, 0.96->0.646 - the largest single closure gain found); every rigidity-breaking family (locks, counter-rotation, sphere state) ~0.85-1.0; every lowest shape mode degrades the champion. Sharpened conclusion: coherence requires co-rotation rigidity; the right 3D lift is a RIGID tilted nested configuration (rigid-body rotation preserves the DC-only wake structure), not the non-rigid sphere state. Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-sphere-state-shell-braid-evaluator.test.js` -> 3 pass, 0 fail.
+
+
+## 2026-07-08 - Rigid tilted-nested braid: outer tilt beats the planar floor; axial-dipole limit emerges (item 11)
+
+Executed the Section 19 closure goal. New owner script [rigid-tilted-nested-braid-evaluator.mjs](../../../scripts/braid-ideal/rigid-tilted-nested-braid-evaluator.mjs) (tests 5 passing; [spec Section 20](fold-crossing-chart-spec.md#20-rigid-tilted-nested-braid-first-improvement-below-the-planar-floor-2026-07-08)): three nested neutral binaries as tilted dumbbells rigidly co-rotating about one axis (rigidity with tilts verified to $1.3\times10^{-15}$; $\alpha=0$ regression = 0.6460 exact). Tilt rescales each layer's kinematic need ($\omega^2R_a\cos\alpha_a$) and adds a vertical balance row.
+
+- Inner tilt degrades (0.65->0.74 by 60°) - the over-binding diagnosis confirmed from a new direction.
+- Outer tilt: degrades to ~0.83 mid-range, then turns and crosses BELOW the planar floor at ~75° (0.616), monotone down to 0.527 at 89°; with radius rescan, (0.5, 2.0, 84°) reaches 0.5237 - the first freedom all day to beat 0.646, a 19% gain with the outer still orbiting ($\beta_O\approx0.21$).
+- Emerging geometry: as $\alpha_O\to90°$ the outer pair approaches a STATIC AXIAL DIPOLE on the rotation axis above/below the co-rotating planar core - an existing corpus structure (derived-structure inventory) discovered unprompted.
+- Metric-honesty caveat: the global metric weights by $|a_{kin}|^2$ and the outer need $\to0$ near polar, so part of the gain is the outer leaving the ledger (its need-relative residual grows 1.05->3.4). Polar-family scoring needs ABSOLUTE residuals for the axial pair + need-relative for the orbiting core. Untried: middle tilt, azimuthal stagger, counter-tilt.
+
+Fail-closed throughout: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Verification: `node --test tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Polar scoring, counter-tilt champion, flywheel family (item 11)
+
+Executed the Section 20 closure goal widened by operator input (their original gyroscopic-flywheel pictures: binaries orbiting mutually-inclined "Lorentzian" rings; noted their velocity-flattening panel). [Spec Section 21](fold-crossing-chart-spec.md#21-polar-scoring-counter-tilt-and-the-flywheel-family-2026-07-08); `polarScore` added to the tilted evaluator; new [inclined-rings-flywheel-evaluator.mjs](../../../scripts/braid-ideal/inclined-rings-flywheel-evaluator.mjs); 11 tests passing.
+
+- No axial-dipole levitation: static polar caps always pulled inward ($F_z<0$, inverse-square decay); the $90°$ limit is not a static structure. Bare inner+middle core scores 0.53/0.46 - better than any six-site configuration: the outer binary is a net closure burden in every tested arrangement.
+- Counter-tilt champion: $(-15°,0,84°)$ at $(0.5,2.0)$ → 0.5088. Middle tilt degrades sharply (rail resists).
+- Flywheel family: exact planar regression (after fixing a node-convention chirality trap - staggered nodes must phase-compensate or the $\iota\to0$ limit mirrors phase order against rotation sense); uniform inclination = global rotation (invariant, consistency check passed); relative inclination degrades EXCEPT small inner-ring tilts (~free): layer tilt tolerance $\propto1/\beta$, matching the operator's Lorentzian-flattening intuition layer-by-layer.
+
+Standings: rigid counter-tilted dumbbells 0.5088 > planar 0.646 > all non-rigid families. The unsolved element is the outer binary. Fail-closed throughout.
+
+Verification: `node --test tests/braid-ideal-inclined-rings-flywheel-evaluator.test.js tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 11 pass, 0 fail.
+
+
+## 2026-07-08 - Group E item 19 captured: translating-braid screw-motion closure
+
+Operator asked how group velocity along the axis couples to the tilts. Answer: not yet modeled (all evaluators are rest-frame); captured as Group E item 19. Key enabling observation: rotation + axial drift = screw motion = still rigid, so the single-time closure evaluation survives under translation; only the causal wake geometry becomes fore-aft anisotropic. The item is the executable form of the operator's Lorentzian-flattening intuition and the tri-binary version of the Theorem A1 translating-binary benchmark: track optimal $(\omega,R_a,\alpha_a)$ vs drift $u$; test cadence $\to\omega/\gamma$ (time dilation from closure) and tilt-flattening toward the photon-limit 2D state.
+
+
+## 2026-07-08 - Outer-layer tuning: azimuth optimum, new champion 0.4721, hierarchy reversed (item 11)
+
+Executed the Section 21 closure goal ([spec Section 22](fold-crossing-chart-spec.md#22-outer-layer-tuning-the-caps-join-the-braid-2026-07-08); evaluator gains receiver-subset scoring; tests 8 passing).
+
+- Outer azimuth: strong live knob; optimum $\theta_O\approx330$-$345°$ ($\sim30°$ behind the inner axis vs the Z3 slot at 240°). Cap-polarity swap degrades (0.48$\to$0.59): with the counter-tilted inner, cap orientation is physically selected.
+- New champion $\mathbf{0.4721}$: $(q_I,q_O)=(0.5,1.65)$, $(\alpha_I,\alpha_M,\alpha_O)=(-12°,0°,84°)$, $\theta_O=330°$; flat basin 0.472-0.476. Ladder: 0.646 planar $\to$ 0.524 tilt $\to$ 0.509 counter-tilt $\to$ 0.472 tuned. Outer residual collapses 0.97 $\to$ 0.33-0.50.
+- Hierarchy REVERSED: core with tuned caps 0.4685 < bare core 0.5039 - the Section 21 "outer as burden" was an untuned-azimuth artifact; correctly placed, the caps improve the core (incl. the rail row). Six-site braid is functional, not core+parasite.
+- Champion geometry: equatorial rail pair at root birth, counter-dished inner ($\beta_I\approx0.48$), slow polar caps ($\beta_O\approx0.17$) offset behind the inner axis; rigid, one frequency, fully sub-field except the hinge.
+
+Fail-closed throughout. Verification: `node --test tests/braid-ideal-rigid-tilted-nested-braid-evaluator.test.js` -> 8 pass, 0 fail.
+
+
+## 2026-07-08 - Brainstorm capture: angles vs weak mixing, chirality, strain, L*(u) ladder
+
+Operator brainstorm on the Section 22 champion, captured in [brainstorming.md](brainstorming.md#brainstorm-capture-2026-07-08-champion-geometry-springboards-operator-session): (1) misalignment angles (cap azimuth lag ~30° vs Weinberg 28.7°; inner dish ~12° vs Cabibbo 13.0°) - corpus-consistent mapping direction via the axial-frame doctrine, flagged coincidence-class pending sharper optima; the running-with-u test folded into item 19. (2) "Who leads" = braid chirality: C exact (full polarity swap), P broken by selected geometry (measured via the node-convention trap), cap orientation selected - the weak-sector parity texture; ties to queue item 12. (3) Accelerative strain on angles/radii queued as item 20 (champion stiffness spectrum). (4) Preferred inventory per group velocity: L*(u) ladder (h-click quantized), off-ladder relief channels (re-geometrize / transact / self-accelerate), inertia as closure-cost curvature along u - folded into item 19 notes.
+
+
+## 2026-07-08 - Who-leads clarified: front cap under travel; symmetry ledger corrected
+
+Operator clarified "who leads" = the front cap along the travel direction. Measured the cap-swap mechanism on the champion: the selected locking anti-aligns cap dipole with inner-dish dipole (opposite polarities vertically adjacent; north cap bound, Fz=-0.094 toward equator); the swap flips nearest vertical neighbors to repulsive (measured anti-binding) and degrades every layer. Symmetry ledger corrected in [brainstorming.md](brainstorming.md): the law is C-even and P-even; true enantiomers are degenerate; earlier "mirror scores differently" runs were partial flips, not parity images; the braid is a chiral object with handedness $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\omega}$. Under drift the front cap is sign$(\hat{\mathbf d}\cdot\hat{\mathbf u})$; parallel vs anti-parallel drift are not symmetry-related, so item 19 will select a preferred leader (helicity-polarity locking; anti-braid leads oppositely by C-degeneracy) - a sharp in-model prediction.
+
+
+## 2026-07-08 - Brainstorm entry 5 (decay vs speed/acceleration) + session insight index
+
+Operator centrifuge idea assessed and captured: speed dependence of decay is established physics (muon rings, Mossbauer rotors) and a recovery obligation whose mechanism is item 19's cadence question (clicks paced by omega/gamma); the new testable axis is ACCELERATION, where clock-hypothesis bounds (~1e18 g, pure 1/gamma upheld) become a quantitative constraint on the champion's closure-stiffness Hessian (item 20) - a falsification-budget-style contact with tested physics. Added a session insight index to [brainstorming.md](brainstorming.md) covering all in-play threads with capture homes (pin, d0 bound, cross-hit closure, harmonic matching, league table/unified metric, Kepler-lock rejection, tilt tolerance ~ 1/beta, champion + hierarchy reversal, axial dipole, weak-mixing angles, chirality/front cap, stiffness, L*(u) ladder, lock dynamics, screw rigidity).
+
+
+## 2026-07-08 - Item 20 executed: stiffness spectrum (saddle, backbone, pump-in-gradient); decay-dilation requirement promoted
+
+[Spec Section 23](fold-crossing-chart-spec.md#23-champion-stiffness-spectrum-saddle-backbone-and-the-pump-in-the-gradient-2026-07-08). Gradient + full 7x7 Hessian + eigenmodes around the Section 22 champion. Spectrum (soft->stiff): -0.34 (relative-tilt combo), -0.04, +0.05 (theta_O - flat basin quantified), +0.23 (rail knob beta_M), +3.7 (alpha_O), +5.3 (alpha_M), +18.9 (q_I = rigidity backbone). Champion is a SADDLE; descent + q_I->0.47 refines to 0.4531 (systematic minimizer next). beta_M gradient negative (-0.27; 0.4468 at beta_M=1.1): the anti-damping pump appearing in the closure landscape, with the excluded self-hit brake as the pin that stops the slide at the rail - a consistency closure across Sections 11-12/23, not an instability. Clock-hypothesis bridge: operator directed promotion of the decay-dilation recovery obligation into the corpus - new row "Decay-rate dilation and the clock hypothesis" in braid-recovery-requirements.md (Relativistic and Gravitational Targets; owners proper-time + lorentz-kinematics); validator clean on that file (the single reported error is an ambient broken link in app-causal-delay-feedback/v1-product-requirements.md, another lane, NOT in this write set - it will block pre-commit until that lane fixes it).
+
+Verification: `node --test tests/braid-ideal-champion-stiffness-spectrum.test.js` -> 3 pass, 0 fail.
+
+
+## 2026-07-08 - Spindle braid: family name ratified and threaded
+
+Operator ratified "spindle braid" for the rigid uniaxial tilted-dumbbell family (Sections 20-23; champion = its rest-state candidate). Corpus: new Comparative Glossary row + named-family paragraph in the Configuration Space chapter (both textbook-facing, candidate-not-retained claim level; validator 0 errors). Priorities: naming notes in the spec Section 20 header block, item 20, and the brainstorm insight index. Operator direction noted for later: once the champion survives native confirmation, archive the superseded configuration families (deferral gate = native retained-history confirmation).
+
+
+## 2026-07-08 - Item 19 pass 1: spindle braid under drift - time dilation from pump-plus-pin; the electrino cap leads
+
+[Spec Section 24](fold-crossing-chart-spec.md#24-spindle-braid-under-drift-time-dilation-from-pump-plus-pin-and-the-electrino-leads-2026-07-08); new owner script + 5 tests passing. Screw motion preserves rigidity exactly (3e-16); rest anchor reproduces the champion (0.4721).
+
+- No interior cadence optimum in the partner channel at any drift - the anti-damping pump signature (Section 23's rail gradient) persists at every u; the landscape is ~self-similar in gamma-normalized cadence (slopes parallel to ~5%).
+- Time dilation from pump-plus-pin: the coincidence-birth theorem applies to helical worldlines - self-hit opens at TOTAL speed c_f, i.e. at c = sqrt(1-u^2) - so the measured pump meets the brake at pinned cadence omega_0/gamma. Clock and decay-rate dilation (cadence-paced transactions) derived from closure + pin; mechanism half of the corpus decay-dilation recovery row. Caveats: fixed geometry (pass 1), d0-dependent brake magnitude (pin needs only sign + onset), partner-channel metric.
+- Who leads: the ELECTRINO cap leads (closure prefers drift anti-parallel to the polarity dipole; gaps 0.044/0.104/0.174 at u=0.2/0.4/0.6 - grows with speed, per the operator intuition); anti-braid leads positrino-first by exact C-degeneracy. Helicity-polarity locking selected by closure. Curiosity: preferred-direction drift at u=0.2 scores 0.4721 = rest value to 4 digits (slow preferred travel nearly free).
+
+Fail-closed throughout. Verification: `node --test tests/braid-ideal-spindle-braid-screw-drift-evaluator.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Item 19 pass 2: the angles run; motion is preferred. Pro/anti Q&A captured
+
+Operator Q&A (pro/anti, helicity, circulation) captured as brainstorm entry 6: anti-braid = exact C-conjugate (degenerate in isolation - asymmetry burden on formation kinetics + sea texture, with the helicity-polarity lock as the C-odd environmental handle); the measured lock IS a helicity lock (champion left-handed, electrino-first; P-enantiomer right-handed, degenerate); all six sites circulate the travel line in one selected common sense; cw/ccw = handedness label, pro/anti = polarity label, independent but three-way correlated by closure.
+
+Pass 2 ([spec Section 25](fold-crossing-chart-spec.md#25-drift-pass-2-the-angles-run-and-motion-is-preferred-2026-07-08); `pass2Optimize` added; 6 tests passing): per-u geometry re-opt at pinned cadence, preferred direction. (1) THE ANGLES RUN: inner dish -12/-4/+8/+16 deg at u=0/0.2/0.4/0.6 (through flat near u~0.25); cap lag 30->6 deg; alpha_O ~ constant (caps stay near-polar - no equatorward flattening). The weak-mixing-flavored misalignments are running quantities; any angle-observable mapping needs a declared kinematic point. (2) MOTION PREFERRED: f_opt 0.4721/0.4351/0.4110/0.4037 - the rest state is not the family optimum; still descending at u=0.6. Preferred-frame-sensitive; partner-channel caveats (no brake, no radiation cost, q_I frozen). Open: finite optimal u vs descent to the photon limit. L*(u) falls slightly slower than 1/gamma (geometry compensates).
+
+Verification: `node --test tests/braid-ideal-spindle-braid-screw-drift-evaluator.test.js` -> 6 pass, 0 fail.
+
+
+## 2026-07-08 - Item 19 pass 3: finite optimal speed; P/CP structural answer captured
+
+Operator Q&A: total site speed = Euclidean vector sum (transverse rotation + axial drift) in the void frame - the Pythagorean origin of gamma; near-free slow travel = the flat Lorentz bottom at fixed geometry, while the pass-2 tilt (re-opt geometry) is toll-gated by the L*(u) ladder (inertia as quantized toll); P/CP hierarchy answered structurally (P-even law + chiral object + maximal helicity-polarity lock => sector-selective maximal P violation with leading-order CP exactness; small CP violation next-order via sea texture or running-angle path interference) - captured as brainstorm entry 7.
+
+Pass 3 ([spec Section 26](fold-crossing-chart-spec.md#26-drift-pass-3-a-finite-optimal-speed--the-moving-family-is-inertia-anchored-2026-07-08)): extended preferred-direction sweep. FINITE OPTIMUM: broad flat basin u* ~ 0.5-0.65 (f ~ 0.404-0.409), steep climb beyond (0.4131 at 0.7, 0.4444 at 0.8) - the moving family is inertia-anchored, not photon-limit-runaway. Cap azimuth swings through exact alignment near the basin (30 deg lag at rest -> 18 deg lead at 0.8); dish angle keeps running. Robust: the structure (tilt -> basin -> climb); artifact-prone: basin location (partner channel, no brake/radiation, descent noise ~0.003). Preferred-frame accounting: reconciliation burdens = L*(u) toll gating + sea dressing (evaluator is sea-less; observed matter kinematics demand the dressed basin sit at rest-relative-to-sea). Fail-closed throughout.
+
+
+## 2026-07-08 - Terminology (site, drift), discrete-symmetry corpus promotion, native handoff packet
+
+Operator session continuation: (1) `site` and `drift` added to the terminology canon (terminology-usage.md, new "Site and Drift Usage" section; site = instantaneous architrino position = emission AND reception point; drift = uniform unaccelerated translation). (2) P/CP structural discussion promoted to the corpus as "Spindle Braid Discrete-Symmetry Structure" in the Configuration Space chapter (derivation-sketch claim level; parity-even law + chiral objects + maximal helicity-polarity lock => sector-selective maximal P violation, leading-order CP exactness, small CP next-order; validator 0 errors). (3) Brainstorm entries 8-12 captured (budget square + ultimate-energy stop = d0/max-curvature link; proper time = click count; MM orientation flag; super-field drift flag; h-transaction flag with the rail-poised middle as the measured h/2 borderline). (4) NATIVE HANDOFF: [spindle-braid-native-confirmation-handoff.md](spindle-braid-native-confirmation-handoff.md) written - the named candidate row for `native_retained_history_promotion` (item 4 status -> candidate-row-named); packet specifies the exact six-worldline seed, the release protocol, the same-record acceptance rows (incl. co-equal nu_J and nu_rec per the receiver-normal audit, d0 coincidence handling, h_act click logging), failure modes, and the same-thread acceptance rule.
+
+
+## 2026-07-08 - Sea-dressed drift first pass: sparse static sea negligible
+
+[Spec Section 27](fold-crossing-chart-spec.md#27-sea-dressed-drift-first-pass-sparse-static-sea-is-negligible-2026-07-08). Toy static sea (6 aligned dipole pairs at the SH-0-sea spacing 4.25, void-static) added to the screw-drift evaluator as environment sources: closure curve shifts uniformly by <~7e-4 at every u - negligible; landscape shape untouched. Sharpened reconciliation: denser/closer sea, dynamically responsive sea (orientational polarization = the sea's live channel per 2026-07-07), or the L*(u) transaction toll as primary anchor. All drift-evaluator tests remain green.
+
+
+## 2026-07-09 - Exuberance-batch capture: MCB-via-spindle, score calibration, time pedagogy, h-constancy, horizon sign flip, analog tipping; items 21-22
+
+Operator late-night batch captured as brainstorm entries 13-19 with intent-notes (why written down, power, relationships): MCB attack via the ultimate spindle (unifies d0 / r_max-curv / ultimate-energy stop; FCC-vs-HCP 2018 fork refiled); score calibrated (0.47 rest / 0.40 moving; zero belongs to the native+certificate rungs, not the rigid chart - the three-rung epistemology ladder); time pedagogy (absolute observer integer-ledger method; analog EE gate dual; "analog substrate, integer bookkeeping"); the h-constancy question split topological/dynamical with h_act(u) as the named computable; beyond-horizon sign flip = family change not time reversal (GR r/t role-swap mapping; white-hole echo = SMBH recycling; photon does not splat - different assembly native to the edge); analog h/2 tipping (separatrix decides for donor AND receiver). Queue items added: 21 `relativistic_time_mapping_document` (operator-directed corpus doc), 22 `corpus_architecture_review_pure_aaa_plus_mapping_textbooks` (pure-AAA corpus + GR/quantum/LCDM+ mapping textbooks; cross-lane hosted). Project-meta Lorentzian-curve note filed for the history/comic material.
+
+
+## 2026-07-09 - MM-analog first pass; interior coalescence derived; exuberance batch 2 captured
+
+Brainstorm entries 20-24 captured (zero-entropy crystalline core with FCC/HCP domains + defects; mass-is-a-defect; 50/50 emergence universality; the frame irony for item 21; horizon-state coalescence DERIVED - all-rail forces equal cylindrical radii: the spindle horizon state is a one-cylinder "barrel" with stacked heights/phases, confirming the operator's one-ring-with-phase-offsets intuition; provenance = each architrino's retained ledger).
+
+MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-first-pass-orientation-anisotropy-alignment-torque-and-the-u15-puzzle-2026-07-09); `residualsPerp` added; 7 tests passing): kinematic budget anisotropy (linear c<=1-u perpendicular vs Pythagorean parallel; perpendicular at parallel cadence = clicking regime, middle crosses c_f twice/cycle); measured closure anisotropy 16-25% at relativistic drift, closure prefers axis-parallel flight (orientation torque, rifle-bullet flavor - candidate isotropy-recovery mechanism AND constraint); scaling ~u^1.5 in [0.05,0.2] - not cleanly quadratic; residual first-order component = the leakage risk; finer small-u study + regulator checks + gain/loss decomposition required before observable claims. Fail-closed.
+
+## 2026-07-09 — Anisotropy scaling law resolved (spec Section 29)
+- New instrument `scripts/braid-ideal/spindle-drift-anisotropy-scaling-scan.mjs` (+4 tests, green): finer u grid (0.0125–0.2), rest-baseline decomposition, soft/Nt artifact sweeps.
+- The Section 28 "u^1.5" was a linear–quadratic CROSSOVER (u_x ≈ 0.063, mid-grid): gap = 0.102|u| + 1.61u².
+- Perpendicular loss = 2.01u² (clean quadratic); helicity-AVERAGED parallel cost = 0.422u² (constant coefficient across the whole grid); the ONLY first-order term is the leader-selected helicity-polarity lock (−0.102|u|), odd in u.
+- MM-analog verdict: orientation anisotropy is second order (no MM-class first-order leakage). Residual exposure is Hughes-Drever-class (spin-coupled), gated on the open closure-to-energy map.
+- Regulator/sampling artifact checks pass (≤2e-5 / ≤1e-8).
+- Next: h_act(u) invariance computation (brainstorm entry 16).
+
+## 2026-07-09 - Native retained-history confirmation run EXECUTED; candidate REJECTED (queue item 4); rest state disperses; the pin is a speed attractor
+
+[Spec Section 30](fold-crossing-chart-spec.md#30-spindle-braid-native-retained-history-confirmation-run-certificate-rejected-the-rest-state-disperses-the-pin-is-a-speed-attractor-2026-07-09). The spindle braid rest-state candidate (tabled parameters, untouched) was seeded as exact moving-circular histories, held, and released onto the production `AbsoluteHistoryRootRuntime` path (read-only; released history consumed through the runtime's own linearized-segments policy). Seed anchor: native evaluation reproduces the prescribed champion to 4 digits (0.47212 vs 0.47209; kappa* 0.31511 vs 0.31504). All packet Section 3 certificate rows produced same-record (root ledger with per-root D_s/D_T/W^rec, nu_J=+0.22 positive floor, gaps, finite memory, d0-stratum same-source policy with d_min < rho_c, per-layer force rows, h_act click ledger, stability row). Decisive answers: shape NO (tube lost at ~0.13 rotation, dispersal, first blocker `shape_loss_radial_under_support`); rail QUALIFIED YES (first native evidence of the field-speed pin as a speed attractor: beta_M turns at 1.083 and decays to 1.019 from above while radius runs away); tangential closure YES at the seed record, NOT sustained dynamically. Findings: native cap fall-in (Section 21 no-levitation reproduced), inner-radius sweep through the refined q_I~0.47 without settling, integrator-converged (dt-halving <= 6e-4), soft-hardening reproduces the caustic ejection artifact (chart-clean click booking remains the brake-magnitude path). Operator decision in the same thread: REJECTED per the run recommendation (first blocker `shape_loss_radial_under_support`; scoreMovement=no_score_increase). Queue item 4 status `run-executed-candidate-rejected-2026-07-09`; the gate stays fail-closed awaiting the next named candidate row; the archive call does NOT ripen. Owner script + 4 tests landed and are reusable for the next candidate row.
+
+## 2026-07-09 — h_act(u) first pass (spec Section 31; renumbered — the native confirmation run in the operator's parallel thread owns Section 30)
+- New instrument `scripts/braid-ideal/spindle-braid-click-action-invariance-evaluator.mjs` (+4 tests, green).
+- Stored action per click = 1/gamma EXACTLY at frozen geometry (invariance would require gamma-growing inertia — relativistic mass as condition, not assumption).
+- Transacted angular impulse per click: Jz/Jz0 = 1 ± 0.236|u| − 1.28u² (helicity-odd linear, helicity-even quadratic; regulator-clean). NOT invariant at frozen geometry.
+- Pump-work action reverses sign by u≈0.5–0.6: frozen geometry off-family at mid-drift; claims are small-u only.
+- Re-optimized readout instrument-limited (saddle-landscape wander changes intrinsic J scale).
+- REFRAME: a Jz-conserving trajectory geo(u) exists (bracketed above/below at u=0.2). If it coincides with the closure-optimal trajectory, h-constancy is DERIVED. Queued as priorities item 23.
+
+## 2026-07-09 - Chart-clean click booking on the native run: coincidence push rules the poised clicker; native two-sided escapement at moderate stratum; shape loss stratum-robust
+
+[Spec Section 32](fold-crossing-chart-spec.md#32-chart-clean-click-booking-on-the-native-run-the-coincidence-push-rules-the-poised-clicker-a-two-sided-escapement-appears-at-moderate-stratum-shape-loss-is-stratum-robust-2026-07-09). `--chart` mode added to the native confirmation-run owner script: fold-flagged same-source rows are substep-integrated with the production runtime's unsoftened signed branch orientation (density-of-states integral per the Section 3.3 contract), declared d0 stratum in the denominator, Section 3.1 click rows with witness; cross pairs keep the canonical regularized kernel; anchor 2.6884 absorbed fraction at rho_c=0.01 reproduced on the accepted brake-measurement machinery. Findings: at rho_c=0.01 the quasi-static REPULSIVE coincidence push (reflection-locked m=+1 at slow crossings) ejects the poised clicker at release (+0.18 beta in one step) and the geometry scrambles - the "50x pump, not load-bearing" object is natively destructive at the poised seed; at rho_c=0.05 a genuine native two-sided escapement appears (beta_M hunting just below the rail through ~10^3 crossing transactions - the Section 12 marginally-below-edge pin, first native realization); dispersal occurs at every regulator setting (pointwise, chart d0-scale, chart moderate-stratum), so the queue item 4 rejection (`shape_loss_radial_under_support`) is now regulator-complete. Sign structure measured: absorptive only on fast crossings, repulsive on slow ones (beta-dot gated). Tests 4 passing; fail-closed throughout. Next: sea-confined native release on the same machinery.
+
+## 2026-07-09 — Brake attack checkpoint (in flight; owner script written, capture pending)
+- New instrument `scripts/braid-ideal/spindle-rail-click-booking-vector-evaluator.mjs`: full-VECTOR chart-clean click booking (radial + tangential, all live branches, no min-delay gate) + sustained supra-rail channel map over (beta, betaDot).
+- First numbers (cut=0.005, kappa=1, rho=1): click impulse across the crossing is tangentially ABSORPTIVE (−98.8, ≫ pump-per-rotation 18.1 → over-damped pin, consistent with Section 12's rho~50) and radially INWARD (−0.83).
+- Sustained channel: at betaDot=0 EXACTLY m=+1 (reflection symmetry confirmed on the evaluator — matches the production-runtime finding; force outward+forward, a pump). The brake and the INWARD radial appear only with betaDot>0: at beta=1.02, betaDot=0.1 → m=−0.30, radial −0.48 (inward), tangential −2.98 (brake). CONFINEMENT IS DYNAMIC: the self channel confines radius only while the pump is actively driving — a self-regulating orbit-pin candidate.
+- Witnesses (convergence/cut-sweep) and the (beta,betaDot) full map still to run; spec Section 32 capture pending. Operator redirected to the corpus spindle-first reweighting pass (b) — resume here after.
+
+## 2026-07-09 — Corpus spindle-first editorial reweighting pass (operator-directed, option b)
+- Scope: presentation reweighting only — no claim changes, no archive of alternatives (the archive call does not ripen on a rejected candidate, per spec Section 30).
+- noether-braid-taxonomy.md: new "Leading Candidate: The Spindle Braid" section (definition, league standing, native-release honesty, alternatives-as-comparison-population); iso-frequency table row now points at the spindle.
+- noether-braid.md: leading-candidate paragraph in the overview (spindle-first with fail-closed status).
+- noether-braid-configuration-space.md: spindle named-family paragraph upgraded to leading-candidate standing + native-release honesty (dispersed under release, radial under-support; confinement is the open burden).
+- nested-shell-braid.md: comparative-standing note (nested families = comparison population; hypotheses stated so they re-host on whichever family is retained).
+- neutral-braid.md: leading-candidate cross-pointer (spindle is a neutral braid; certificate target still open).
+- Generated artifacts regenerated per AGENTS (scene graph --write --strict, agent startup orientation, textbook reading copies); full check-content-integrity re-run in flight (iOS package step is slow); no corpus->priorities links introduced (checked 0).
+
+## 2026-07-09 — Brake attack, evaluator track complete (spec Section 32)
+- Vector click booking: click impulse absorptive AND inward, converged, sign-stable across cuts (magnitude stratum-set as derived).
+- Sustained supra-rail channel = phase-sensitive valve: m=+1 exactly at betaDot=0 (outward pump), m>1 decaying (boosted outward — THE native dispersal mechanism, explained), m<0 driven (brake+inward).
+- Confinement is dynamic: only the rail-straddling clicker regime confines; steady riders disperse. Middle must CLICK, not ride.
+- Amortized budgets: circular-geometry clicks are tangential-heavy (ratio ~70); consistency needs ≲12 → NON-CIRCULAR (epicyclic breathing) middle named as the candidate-row design target, quantified.
+- 4 tests green (19 total across the session's four new instruments).
+
+## 2026-07-09 — Reduced chatter integrator, first pass (spec Section 33)
+- The clicker EXISTS at reduced level: deterministic, pump-driven, self-timed relaxation oscillation (sawtooth through the rail, several clicks/rotation). No external tipping needed; external wakes phase-shift clicks (analog h/2 tipping rides on an intrinsic clock). Null test clean.
+- Circular-chatter radial supply ~3% of centripetal (bracket s*≈0.97) — confirms Section 32 budget verdict independently; epicyclic re-angling is the lever.
+- dt-halving witness FAILS: pointwise 1/r² click spike = the Section 2.3 artifact biting its own instrument. Numbers provisional; structure robust.
+- Named second pass: event-based integrator with chart-integrated click impulses + Section 32 valve force between events.
+- 3 tests green (22 total across five new instruments this session).
+
+## 2026-07-09 - Sea-confined native release: static aligned shell ANTI-confines; sea route closed at minimal declared scope
+
+[Spec Section 35](fold-crossing-chart-spec.md#35-sea-confined-native-release-the-static-aligned-shell-anti-confines-the-sea-route-closes-at-its-minimal-declared-scope-2026-07-09). `--sea` mode added to the native confirmation-run owner script: SH-0-sea FCC-12 static aligned shell as a one-way held environment (72 zero-radius static production sources), canon-named spacings only (4.25 and 2*sqrt(2)). Seed record: sea radial supply is percent-level and OUTWARD on the under-supported layers (caps +7% of need at 4.25; +93% at min non-overlap spacing); unified seed closure worsens 0.4721 -> 0.4985. Release at 4.25 disperses FASTER than isolated (halt t=3.1 vs 4.8, middle ejected). Verdict: the static aligned shell neither dresses (Section 27) nor confines - sea route closed at its minimal declared scope; surviving sea reading requires a dynamically responsive (orientational-polarization) or self-consistent sea; surviving isolated route: non-circular same-level release. Also housekeeping: duplicate concurrently-landed Section 32s resolved (brake-attack/chatter sections renumbered 33/34, internal refs fixed). Tests 4 passing; fail-closed; queue item 4 rejection stands, now with the sea route measured.
+
+## 2026-07-09 — Event-local fine study (spec Section 34; item 24 step 2a)
+- Click event is SELF-LIMITING: continuum limit = perfect ceiling → the pin is a SLIDING MODE on beta=1 ("ride BY clicking"); Section 33 sawtooth amplitude was dt-artifact.
+- Epicyclic lever measured, dt-converged: ratio(vr) = 0.013 + 1.02·vr — click-synchronized radial damper; clicks cluster past perigee in eccentric orbits (self-organizing).
+- Pure sliding limit ESCAPES (constant outward drift ~0.24 at support 0.76): rectification needs DISCRETE clicks. Hypothesis of the session: h-quantized transaction may be the confinement enabler, not decoration.
+- 3 tests green (25 total, six instruments). Next: 2b discrete-event orbit integrator.
+
+## 2026-07-09 - Non-circular same-level release: epicyclic apoapsis seed improves native closure (0.4464) and survives coherently; isolated-braid verdict route-complete
+
+[Spec Section 36](fold-crossing-chart-spec.md#36-non-circular-same-level-release-the-epicyclic-apoapsis-seed-improves-native-closure-and-survives-coherently--but-the-isolated-braid-still-expands-2026-07-09). `--em/--ei/--eo` per-layer epicyclic seed added to the native run owner script (a.m.-matched apoapsis start, held prehistory = matched slower circle, production-native, no release discontinuity; kappa frozen at 0.315105, declared). Findings: seed residual IMPROVES 0.4721 -> 0.4531 (e_M=0.05, reproducing the Section 23 refined score from an orthogonal direction) -> 0.4464 (e_M=0.1) - a new hunt axis; released epicyclic braid is the best-behaved release measured (no halt through 2 rotations, ~500-580 two-sided escapement transactions, no ejection, no cap fall-in) but still expands self-similarly - the radial-support deficit is structural across ALL declared bookings and canon-named variants (circular/chart/sea/epicyclic), so the isolated-braid verdict on queue item 4 is route-complete. Tests 4 passing; fail-closed. Next: the epicyclic hunt (minimize native seed residual over (e_I,e_M,e_O, apsidal phases) at frozen kappa*) and the dynamically-responsive-sea question.
+
+## 2026-07-09 — Discrete-event orbit integrator (spec Section 35; item 24 step 2b)
+- Rectification real (clicks cluster outward-phase; strengthens with quantum) but percent-scale: s_min ≈ 0.99 (q→0) → 0.97 (q=0.15). Knife edge: escape below, collapse at s=1.0.
+- Strong discreteness-as-enabler hypothesis REJECTED at reduced level; weak form survives, measured.
+- Division of labor quantified: clicker = speed pin + last-percent radial trim; geometry/sea must close radial support to ≳97% BEFORE release. Caps (0.53) now the binding constraint.
+- New survivability statistic for the search: radial support ratios ≈ 1 on all layers at unified kappa*, closure residual second.
+- 4 tests green (29 total, seven instruments this session).

@@ -150,7 +150,7 @@ $$
 \mathcal{R}_{\mathrm{same}}(X,Y;\mathfrak{B})=0.
 $$
 
-Here $d_{\mathrm{root}}=0$ only when the two rows share the same ordered source-pair policy, active root labels, inactive-root gaps, finite memory convention, Jacobian floor, endpoint convention, tail treatment, branch label, and Noether sea state. If the force row, action row, wake-history charge, event ledger, or observer export uses a different signature, the downstream row must return `ledger-rerun-required`.
+Here $d_{\mathrm{root}}=0$ only when the two rows share the same ordered source-pair policy, active root labels, inactive-root gaps, finite memory convention, Jacobian floor, receiver-normal branch strength, endpoint convention, tail treatment, branch label, and Noether sea state. If the force row, action row, wake-history charge, event ledger, or observer export uses a different signature, the downstream row must return `ledger-rerun-required`.
 
 Same-source self-hit rows are not compressed into the cross-site all-pairs ledger. When a retained branch needs self-hit roots, it must attach an explicit same-source policy
 
@@ -162,6 +162,7 @@ $$
 \mathcal{I}_{ii}^{\mathrm{self}},
 h_{ii}^{\mathrm{self}},
 J_{0,ii}^{\mathrm{self}},
+W_{ii}^{\mathrm{rec,self}},
 \mathrm{trivial\ diagonal\ exclusion},
 \mathrm{core\ cutoff}
 \right)
@@ -453,7 +454,7 @@ $$
 \right)
 $$
 
-for a two-body or reduced neutral-braid branch chart with declared $h$, $\eta$, $\epsilon_c$, active roots, inactive gaps, Jacobian floor, and endpoint convention. The calculation should output:
+for a two-body or reduced neutral-braid branch chart with declared $h$, $\eta$, $\epsilon_c$, active roots, inactive gaps, Jacobian floor, receiver-normal branch strength, and endpoint convention. The calculation should output:
 
 - the force row from the native per-hit causal wake law;
 - the wake-history charge route used for $E_{\mathrm{wake}}$, $\mathbf P_{\mathrm{wake}}$, and $\mathbf J_{\mathrm{wake}}$;

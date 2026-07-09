@@ -1,13 +1,3 @@
 # Braid Doubling-Frequency Lock Brainstorming
 
-This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
-
-## Routing Rules
-
-- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
-- Promote material into the control file only when it becomes a queue item, proof route, app task, or document/app destination.
-- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
-
-## Ideas And Insights
-
-- No loose ideas have been moved here yet.
+Merged into [../braid-ideal/brainstorming.md](../braid-ideal/brainstorming.md) (2026-07-08) during the braid priority sort (Phase 3, OP-3). Add new provisional ideas for this lane to that unified file; this stub remains so the lane keeps its three role files.

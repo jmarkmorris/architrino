@@ -1919,6 +1919,11 @@
       "id": "noether_braid__braid_recovery_requirements",
       "name": "Braid Recovery Requirements",
       "path": "content/scenes/noether-braid/braid_recovery_requirements.json"
+    },
+    {
+      "id": "archie__comics__nature_is_analog",
+      "name": "Nature Is Analog",
+      "path": "content/scenes/archie/comics/nature_is_analog.json"
     }
   ]
 }

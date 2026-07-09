@@ -607,7 +607,7 @@ Each candidate must carry the same retained rows already demanded by this workst
 
 1. outer speed row $s_O<c_f$;
 2. middle hinge row $\left|s_M-c_f\right|\le\varepsilon_M$;
-3. inner self-hit row with accepted same-source roots, positive Jacobian floor, and declared self-root parity;
+3. inner self-hit row with accepted same-source roots, positive Jacobian floor, receiver-normal branch strength, and declared self-root parity;
 4. phase-lock rows for every active intra-layer and inter-layer root;
 5. scalar and vector action partition rows;
 6. energy-frequency row, including declared root-energy, wake-energy, recoil, or transport routing if the clean energy row does not close;

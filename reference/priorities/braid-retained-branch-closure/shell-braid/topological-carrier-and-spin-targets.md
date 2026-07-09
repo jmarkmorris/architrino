@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This document sharpens candidate carrier geometry, phase-locking, framed-wake, angular-momentum, and color-scaffold targets for the same-level braid architecture. It is not migration authority for `content/markdown/aaa`, simulations, scene assets, or app copy.
 
-Claim level: theorem-target packet. A branch may use the carrier families below only after a retained branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, support-band residuals, phase-lock residuals, noncollision data, history-dressed energy/action closure, angular-momentum ledger closure, exposure rows, and observer-export statuses.
+Claim level: theorem-target packet. A branch may use the carrier families below only after a retained branch certificate supplies active causal roots, positive Jacobian floors, receiver-normal branch strengths, finite memory depth, support-band residuals, phase-lock residuals, noncollision data, history-dressed energy/action closure, angular-momentum ledger closure, exposure rows, and observer-export statuses.
 
 ---
 

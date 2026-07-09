@@ -463,7 +463,7 @@ with source provenance, work, energy, momentum, angular momentum, charge, and ev
 
 ## 7. Lemma Target
 
-**Lemma target: bounded speed factor self-hit return.** Fix one bounded-speed same-level branch ledger, one same-source pair chart, one self-hit scalar $Z_i$, one speed band $0<\nu_-\le\nu_i\le\nu_+$, one positive same-source Jacobian floor, and one declared self-hit collar $0\le z\le z_{\mathrm{col}}$. Suppose:
+**Lemma target: bounded speed factor self-hit return.** Fix one bounded-speed same-level branch ledger (carrying its receiver-normal branch-strength row), one same-source pair chart, one self-hit scalar $Z_i$, one speed band $0<\nu_-\le\nu_i\le\nu_+$, one positive same-source Jacobian floor, and one declared self-hit collar $0\le z\le z_{\mathrm{col}}$. Suppose:
 
 1. the self-hit entry is transverse, $Z_i(u_-)=0$ and $\dot Z_i(u_-)>0$;
 2. the speed-band derivative envelope gives $|\dot Z_i|\le V_{\mathrm{hit},+}$;

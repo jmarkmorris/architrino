@@ -111,13 +111,15 @@ $$
 $$
 is the finite active branch list with inactive complements, and the sampled residuals feed the finite audit in [collinear-breather.md](./collinear-breather.md).
 
-The guiding suspicion is:
+The guiding structure is fixed by the [Separator Taxonomy](../dynamics/master-equation.md#separator-taxonomy). Three distinct events end a simple-root chart, and the arc partition must key them separately:
 
-- below field speed, the active causal roots are tame and the force may reduce to a small number of effective $1/r$ phase-space curves, with conservative potential curves only as a certified special case;
-- at field speed, the sorting maps become marginal and the orbit passes through a metastable separator;
-- above field speed, the active branch structure changes and must be matched by explicit crossing laws rather than by one smooth formula.
+- a **source-normal caustic** where $D_s=0$, meaning the *source* recedes from the receiver at field speed at its own emission time. This is the fold: $\Delta N=\pm2$, $\Delta D=0$, branch strength $W^{\mathrm{rec}}\to\infty$, finite impulse under the dual-mollified law;
+- a **receiver-normal null** where $D_T=0$, meaning the *receiver* recedes from that emission point at field speed at reception time. No root is created or destroyed; the branch simply goes silent, $W^{\mathrm{rec}}\to0$;
+- a **memory-boundary exit** where the required delay reaches the retained depth $h$. Odd unsigned jumps are admissible here, and the finite-window signed degree can change.
 
-If a closed-form collinear breather exists, it is likely not one elementary expression on the whole line. The more plausible object is a piecewise analytic orbit whose pieces are joined by causal matching conditions at the field-speed separators and at origin crossings.
+The receiver's own speed $|dX/dT|=c_f$ is none of these by itself. It is a receiver-normal null only on branches whose line of action is aligned with the receiver's motion, and it is a source-normal caustic only for branches the source emitted while receding at field speed. Conflating the two is the standing error this note exists to avoid.
+
+If a closed-form collinear breather exists, it is likely not one elementary expression on the whole line. The more plausible object is a piecewise analytic orbit whose pieces are joined by causal matching conditions at the causal-root events above and at origin crossings. On any arc where every active branch shares one line-of-action sign, the receiver-normal numerator is a common positive prefactor of the entire branch sum. It therefore cannot decide which branch family dominates; it rescales that arc's acceleration magnitudes and transit times together.
 
 ## Status
 
@@ -164,7 +166,7 @@ The three speed classes are:
    $$
 u(T)<v_f
    $$
-2. **field-speed separator**
+2. **field-speed threshold**
    $$
 u(T)=v_f
    $$
@@ -243,7 +245,11 @@ W_p^{\mathrm{rec}}
 =
 \frac{c_f-v}{c_f+v}
 $$
-on this inbound exterior chart. Ignoring the short-distance core for a moment,
+on this inbound exterior chart, where $|v| < c_f$ makes both signs positive.
+
+The frozen velocity carries a hidden cost that must be stated before the chart is used. Exactly, the source-normal denominator is $D_s=c_f+\frac{dX}{dT}(T_0)$, evaluated at the *emission* time; the affine window replaces $\frac{dX}{dT}(T_0)$ by the receiver's *present* velocity $v$. The two agree only when the source velocity is nearly constant over the delay $\tau_p$. Freezing them together forces $D_s\to0$ exactly when $v\to-c_f$, manufacturing a source-normal caustic at the receiver's field speed. The exact law has no such coincidence: in a collapsing collinear orbit the delayed velocity $\frac{dX}{dT}(T_0)$ is far smaller in magnitude than $\frac{dX}{dT}(T)$, and $D_s$ stays bounded away from zero while the receiver passes through $|v|=c_f$. Every conclusion below that locates a separator from this chart is therefore a statement about the affine reduction, not about the delayed law.
+
+Ignoring the short-distance core for a moment,
 the partner force scale becomes
 $$
 A_p
@@ -300,15 +306,15 @@ requires
 $$
 X\to0
 $$
-Thus the inbound field-speed separator and the origin-crossing layer are tightly coupled in the bare model. The dual core scale
+The coupling this appears to show between the inbound field-speed threshold and the origin-crossing layer is a property of the frozen-source chart, not of the delayed law. It is the same artifact: the freeze ties $D_s$ to the receiver's present velocity, so $v\to-c_f$ and $X\to0$ arrive together. Under the exact law $D_s=c_f+\frac{dX}{dT}(T_0)$ stays bounded away from zero, and the receiver reaches $v=-c_f$ at a finite radius strictly outside the core layer, whose location is set by the coupling $\kappa\epsilon^2/(c_f^2X_0)$ and the core scale
 $$
 \epsilon_c
 $$
-and shell width
+together with the shell width
 $$
 \eta
 $$
-soften this coincidence, but the certificate should still treat the separator and origin layer as coupled events unless interval data prove a strict separation.
+The certificate may therefore separate the field-speed threshold from the origin layer, and should do so, rather than inheriting the affine coincidence as a constraint.
 
 The exact core-mollified version replaces
 $$
@@ -373,9 +379,11 @@ $$
 \exp\!\left[-2\alpha\left(\frac{1}{X}-\frac{1}{X_0}\right)\right]
 }
 $$
-and $-1<\beta_{\mathrm{in}}(X)<0$ for every $X>0$ on the exterior chart. The
-opposite sign supplies the outbound square-root branch when the same invariant
-is continued away from the core layer. The branch time is recovered by
+and $-1<\beta_{\mathrm{in}}(X)<0$ for every $0<X\le X_0$, which is the whole
+inbound exterior chart. For $X>X_0$ the radicand turns negative and the branch
+does not continue; the opposite sign supplies the outbound square-root branch
+when the same invariant is continued away from the core layer. The branch time
+is recovered by
 $$
 T-T_0
 =
@@ -383,44 +391,68 @@ T-T_0
 $$
 
 This gives only a receiver-normal restart scaffold for a sub-field-speed
-breather search. The exterior partner branch does not reach
-$$
-\left|\frac{dX}{dT}\right|=c_f
-$$
-at any finite $X>0$. Therefore a finite-radius field-speed separator is not
-produced by this receiver-normal affine partner chart. It must come from a
-core-layer effect, finite shell width, nonaffine path history, a self-image
-contribution, or a different certified branch chart.
+breather search, and its apparent field-speed barrier is an artifact of the
+frozen source velocity. On the affine chart $|dX/dT|=c_f$ is reached only as
+$X\to0$, because the same freeze that sets $D_s=c_f+v$ drives $D_s\to0$ there:
+the partner delay $\tau_p=2X/(c_f+v)$ diverges and the root escapes the retained
+memory window. That is a memory-boundary exit of the affine reduction, not a
+property of the delayed law.
+
+Under the exact law the source-normal denominator is $D_s=c_f+\frac{dX}{dT}(T_0)$
+with $T_0$ a genuine delayed time. For a held-release preparation the retained
+partner emission lies in the held history, so $\frac{dX}{dT}(T_0)=0$ and
+$D_s=c_f$ exactly. The receiver-normal restart equation of
+[Collinear Breather](./collinear-breather.md#held-release-restart-target) then
+carries $W^{\mathrm{rec}}=\left|1-\frac{dX/dT(T)}{c_f}\right|>1$ on the whole
+inbound leg: the branch strength *amplifies* as the receiver falls in, there is
+no caustic, and nothing in the equation is singular at $dX/dT=-c_f$. Inbound
+field speed is therefore reached at finite radius $X>0$ whenever the coupling
+clears a threshold set by $\kappa\epsilon^2/(c_f^2X_0)$ and the core scale
+$\epsilon_c$, and the receiver passes straight through it.
+
+The correct reading is the asymmetry, not a barrier. Because
+$\hat r$ points from the emission point to the receiver, $D_T=c_f-\frac{dX}{dT}(T)\hat r$
+is larger than $c_f$ when the receiver approaches the emission point and smaller
+than $c_f$ when it recedes. Approach is amplified and recession is suppressed on
+every branch. The genuine barrier is therefore one-sided: a receiver receding
+from all of its active emission points cannot be driven through field speed by
+any of them, because each such branch's strength vanishes at $D_T=0$. A receiver
+*approaching* an emission point has no such obstruction. In the reflection-symmetric
+collinear pair this says that the inbound super-field arc is generic, while the
+outbound super-field arc requires a retained partner image lying beyond the
+receiver, and cannot be produced by self-repulsion at all.
 
 The same branch also supplies an exact self-root exclusion test in the sharp-shell limit. If a candidate history satisfies
 $$
-\left|\frac{dX}{dT}(T)\right|\le c_f-\sigma
+\left|\frac{dX}{dT}(T)\right|\le c_f-\mu
 \qquad
 \text{on a stored interval}
 $$
-for some $\sigma>0$, then for all $T_{\mathrm{em}}<T$ in that interval,
+for some sub-field margin $\mu>0$, then for all $T_{\mathrm{em}}<T$ in that interval,
 $$
 |X(T)-X(T_{\mathrm{em}})|
 \le
-(c_f-\sigma)(T-T_{\mathrm{em}})
+(c_f-\mu)(T-T_{\mathrm{em}})
 <
 c_f(T-T_{\mathrm{em}})
 $$
 Thus the exact same-side self-hit equation has no nontrivial solution there. For finite shell width $\eta$, the possible self contribution is confined to the near-diagonal collar
 $$
-0<T-T_{\mathrm{em}}\le \frac{\eta}{\sigma}
+0<T-T_{\mathrm{em}}\le \frac{\eta}{\mu}
 $$
-and must be bounded from the dual-mollified integral law rather than inserted as an exact simple-root branch. This separates the analytic sub-field test from the field-speed fold program: the test asks whether partner attraction plus the finite-width self-collar can close a return without ever producing a true field-speed separator.
+and must be bounded from the dual-mollified integral law rather than inserted as an exact simple-root branch. This separates the analytic sub-field test from the caustic-fold program: the test asks whether partner attraction plus the finite-width self-collar can close a return without ever producing a source-normal caustic.
+
+The symbol $\sigma$ is reserved throughout for the polarity sign $\sigma_{ij}=\operatorname{sign}(q_iq_j)$ of the canonical law. The sub-field margin is $\mu$, and the exterior chart sign below is $\varsigma$.
 
 ### Signed partner branch table
 
 The local affine partner calculation should now be kept as a table of certified branch data. Work on an exterior chart
 $$
-X(T)=\sigma q(T),
+X(T)=\varsigma\, q(T),
 \qquad
 q(T)>0,
 \qquad
-\sigma\in\{-1,+1\}
+\varsigma\in\{-1,+1\}
 $$
 with radial velocity
 $$
@@ -432,39 +464,47 @@ q(T_{\mathrm{em}})\approx q(T)-u_r(T)(T-T_{\mathrm{em}})
 $$
 the partner root has
 $$
-\tau_p=t-s=\frac{2q}{c_f+u_r},
+\tau_p=\frac{2q}{c_f+u_r},
 \qquad
 r_p=c_f\tau_p,
 \qquad
-\hat r_p=\sigma,
+\hat r_p=\varsigma,
 \qquad
 D_s=c_f+u_r,
 \qquad
 D_T=c_f-u_r,
 \qquad
-W_p^{\mathrm{rec}}=\frac{c_f-u_r}{c_f+u_r}
+W_p^{\mathrm{rec}}=\left|\frac{c_f-u_r}{c_f+u_r}\right|
 $$
-The signed partner acceleration in the
-$$
-x
-$$
+Here $D_s$ carries the affine freeze: exactly it is $c_f+u_r(T_{\mathrm{em}})$.
+The branch strength is unsigned, and the absolute value is not decoration. The
+raw quotient turns negative on the super-field rows $|u_r|>c_f$ that the doubled
+four-arc itinerary requires. The signed partner acceleration in the $x$
 coordinate points as
 $$
-\operatorname{sgn}(a_p)=-\sigma
+\operatorname{sgn}(a_p)=-\varsigma
 $$
-that is, inward toward the origin.
+that is, inward toward the origin, on every row where $\hat r_p=\varsigma$.
 
 | Arc chart | Radial assumptions | $\tau_p$ | $\hat r_p$ | $D_s/c_f$ | $W_p^{\mathrm{rec}}$ | Partner sign in $x$ | Validity conditions |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| inbound exterior | $q>0$, $u_r<0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}$ | $\dfrac{c_f-u_r}{c_f+u_r}$ | $-\sigma$ | $c_f+u_r\ge \nu c_f$, no origin crossing inside the affine window |
-| field-speed hinge | $u_r=-c_f$ | singular | $\sigma$ before the fold | $0$ | singular | fold-controlled | branch-sum form invalid; use the dual-mollified fold integral |
-| origin-crossing layer | $q\lesssim \epsilon_c$ or $\sigma$ changes | not a single affine root | changes by layer | chart-dependent | chart-dependent | core-controlled | use the absolute-time integral law, not one exterior branch table |
-| outbound exterior | $q>0$, $u_r>0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}>1$ | $\dfrac{c_f-u_r}{c_f+u_r}$ | $-\sigma$ | same exterior chart and certified active root |
-| apocenter sub-field | $q>0$, $|u_r|<c_f$, $u_r\to 0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | near $1$ | near $1$ | $-\sigma$ | strict sub-field margin and active-root separation on the apocenter window |
+| inbound exterior, sub-field | $q>0$, $-c_f<u_r<0$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | $1+\dfrac{u_r}{c_f}$ | $\dfrac{c_f-u_r}{c_f+u_r}>1$ | $-\varsigma$ | $c_f+u_r\ge \nu c_f$, no origin crossing inside the affine window |
+| inbound exterior, super-field | $q>0$, $u_r<-c_f$ | affine root escapes to $\tau_p\to\infty$ | not defined by this chart | $<0$ | not defined by this chart | not defined by this chart | affine artifact only; the exact $D_s=c_f+u_r(T_{\mathrm{em}})$ stays bounded away from $0$, so use the exact delayed root |
+| affine root escape | $u_r\to -c_f^{+}$ | $\tau_p\to\infty$, exits $[T-h,T)$ | $\varsigma$ | $\to0$ | $\to\infty$ with $r_p^{-2}\to0$ faster, so $A_p\to0$ | $-\varsigma$ | **memory-boundary exit of the affine chart, not a fold.** Odd degree jump admissible. Not present in the exact chart |
+| source-normal caustic | $u_r(T_{\mathrm{em}})=-c_f$ on the source row | fold | $\varsigma$ before the fold | $0$ | $\to\infty$ | fold-controlled | branch-sum form invalid; use the dual-mollified fold integral, $\Delta N=\pm2$, $\Delta D=0$ |
+| receiver-normal null | $u_r(T)=+c_f$ with the source behind | finite | $\varsigma$ | finite | $0$ | vanishes | no root change; the branch goes silent and the affine-in-velocity chart ends |
+| origin-crossing layer | $q\lesssim \epsilon_c$ or $\varsigma$ changes | not a single affine root | changes by layer | chart-dependent | chart-dependent | core-controlled | use the absolute-time integral law, not one exterior branch table |
+| outbound exterior, sub-field | $q>0$, $0<u_r<c_f$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | $1+\dfrac{u_r}{c_f}>1$ | $\dfrac{c_f-u_r}{c_f+u_r}<1$ | $-\varsigma$ | same exterior chart and certified active root |
+| outbound exterior, super-field | $q>0$, $u_r>c_f$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | $>2$ | $\dfrac{u_r-c_f}{c_f+u_r}$ | $-\varsigma$ | branch strength positive again past the receiver-normal null; certify the null crossing separately |
+| apocenter sub-field | $q>0$, $|u_r|<c_f$, $u_r\to 0$ | $\dfrac{2q}{c_f+u_r}$ | $\varsigma$ | near $1$ | near $1$ | $-\varsigma$ | strict sub-field margin and active-root separation on the apocenter window |
 
-This table is only the partner column of the certificate packet. The self-image columns must be produced separately because their source and receiver are the same labeled path and their active roots can change at field-speed separators.
+Two rows deserve emphasis because the previous table merged them. The **affine root escape** is what the frozen-velocity chart actually produces at $u_r\to-c_f$: a single root whose delay diverges and leaves the memory window, an odd unsigned jump that no fold law licenses. The **source-normal caustic** is the genuine fold, and it is keyed to the source velocity at emission time, not to the receiver's present speed. The **receiver-normal null** is keyed to the receiver's present speed but changes no root count at all.
 
-## Why the Field-Speed Separator Matters
+On the sub-field rows the branch strength exceeds one inbound and falls below one outbound. That asymmetry is the whole velocity-dependent content of the law: the delayed partner attraction is amplified while the receiver falls in and suppressed while it climbs out.
+
+This table is only the partner column of the certificate packet. The self-image columns must be produced separately because their source and receiver are the same labeled path, and because self rows carry $\sigma_{ii}=+1$ and therefore the opposite sign of velocity-dependent response.
+
+## Why the Causal-Root Events Matter
 
 For same-side self hits on an affine segment,
 $$
@@ -482,24 +522,28 @@ this is possible only when
 $$
 \|\mathbf V\|=c_f
 $$
-Therefore a perfectly affine segment has no same-side exact self root away from the field-speed separator. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
+Therefore a perfectly affine segment has no same-side exact self root at all unless it moves at exactly field speed. Self branches appear because the real trajectory is not globally affine: acceleration, origin crossing, and later return geometry let a present point meet older path-history images.
 
 This suggests a closed-form strategy:
 
 1. solve sub-field and super-field segments as certified phase-space arcs, using receiver-normal phase quadrature where the branch strength remains velocity dependent;
-2. treat the field-speed separator as the event where causal images are born, die, or switch branch labels;
-3. impose matching laws at those separator events.
+2. locate the source-normal caustics, where causal images are born, die, or switch branch labels;
+3. locate the receiver-normal nulls and memory-boundary exits separately, since neither is a fold;
+4. impose matching laws at the caustics and continuity-with-kink at the nulls.
 
-The separator is metastable in the sense that small perturbations decide whether the sorting map keeps descending, stalls, or reverses. In the dual-mollified model the separator should become a thin transition layer rather than an infinite impulse.
+Only the caustic is metastable in the sense that small perturbations decide whether the sorting map keeps descending, stalls, or reverses. In the dual-mollified model it becomes a thin transition layer rather than an infinite impulse. A receiver-normal null needs no impulse budget: the branch strength passes through zero and the acceleration is continuous.
 
-### Separator normal form and fold scaling
+### Caustic normal form and fold scaling
 
-For certificate purposes, the field-speed separator is a codimension-one event surface in the reduced phase data together with an active branch label:
+For certificate purposes, the source-normal caustic is a codimension-one event surface in the reduced branch data. It is keyed to the *source* velocity on the emitting row, evaluated at the emission time:
 $$
 \Sigma_{\mathcal{B}}
 =
-\{(X,\mathbf V,\mathcal{B}): \|\mathbf V\|=c_f\}
+\{(X,\mathcal{B}):\ D_{s,\ell}=0 \ \text{for some}\ \ell\in\mathcal{B}\},
+\qquad
+D_{s,\ell}=c_f-\mathbf V_{j}(T_{\mathrm{em},\ell})\cdot\hat{\mathbf r}_\ell
 $$
+It is not the receiver's speed surface $\|\mathbf V_i(T)\|=c_f$. On the affine chart the two are forced to coincide, which is exactly the artifact identified above.
 Here
 $$
 \mathcal{B}
@@ -778,7 +822,7 @@ $$
 I_1(\mathcal{K}),\ldots,I_m(\mathcal{K})
 $$
 
-For the first certificate attempt, use the doubled four-arc itinerary. It is the generic transverse choice: every field-speed separator is treated as a simple fold event, while the glancing itinerary is reserved as a fallback if the generic branch enumeration fails or the corridor arithmetic forces a degenerate outer turn.
+For the first certificate attempt, use the doubled four-arc itinerary, with one correction to its reading. A field-speed threshold crossing is not automatically a fold. The itinerary must declare, at each $\mathsf{S}_{\mathrm{sep}}$ entry, which of the three causal-root events is in play: a source-normal caustic on some emitting row, a receiver-normal null on some receiving row, or neither. The barrier asymmetry constrains the itinerary before any arithmetic. Inbound threshold crossings are unobstructed, because the retained partner image lies ahead of the falling receiver and its branch strength is amplified. Outbound threshold crossings are obstructed: with every active image behind the receiver, each branch strength carries the common factor $c_f-|dX/dT|$ and vanishes at the threshold. An outbound $\mathsf{S}_{\mathrm{sub}}\to\mathsf{S}_{\mathrm{sup}}$ transition therefore requires an active partner image lying beyond the receiver, and the itinerary must exhibit that root. If it cannot, the glancing itinerary, in which the path touches the threshold without entering another super-field arc, is not a fallback but the correct template.
 
 The periodicity condition is not merely
 $$
@@ -1176,19 +1220,29 @@ The enumeration deliverable is the following table, filled with exact formulas o
 | $I_4$ | $I_3$ | target | target | target | target | target | target | target | open |
 | $I_4$ | $I_4$ | target | target | target | target | target | target | target | open |
 
-The parity check is imported from Proposition 3 in [master-equation.md](../dynamics/master-equation.md): generic folds create or annihilate one root pair, so
+The parity check is imported from Proposition 3 in [master-equation.md](../dynamics/master-equation.md): at a generic fold one root pair is created or annihilated, so
 $$
-\Delta N\in 2\mathbb{Z},
+\Delta N=\pm2,
 \qquad
 \Delta D=0
 $$
-On a closed cycle the branch ledger must return to itself, hence
+Writing $\Delta N\in2\mathbb{Z}$ instead is weaker than the proposition and admits a cusp or a coalescence of several folds as a single "even" event. Cusps and higher strata $\Sigma^{1,1}$ are not certified by the generic law and route to a singular-stratum chart.
+
+The closed-cycle sum is not a sum over folds. By Proposition 4 in the same chapter, a generator can also leave the retained interval $[T-h,T)$ when its required delay crosses the memory depth. That is a boundary-exit event, it carries an odd unsigned jump, and it changes the finite-window signed degree $D^{(h)}$. The affine partner chart of this note produces exactly such an event at $u_r\to-c_f$, where $\tau_p=2q/(c_f+u_r)$ diverges. The correct ledger is therefore
 $$
-\sum_{\Sigma}\Delta N=0,
+\sum_{\Sigma_{\mathrm{caustic}}}\Delta N
++
+\sum_{\Sigma_{\mathrm{exit}}}\Delta N
+=
+0,
 \qquad
-\sum_{\Sigma}\Delta D=0
+\sum_{\Sigma_{\mathrm{caustic}}}\Delta D
++
+\sum_{\Sigma_{\mathrm{exit}}}\Delta D
+=
+0
 $$
-with every local unsigned jump even. This is a discrete consistency test on the ansatz. A candidate branch list that fails it should be rejected before any quadrature or collocation residual is computed.
+with every *fold* jump even and boundary-exit jumps unrestricted in parity. Requiring every local unsigned jump to be even is a valid rejection test only on a chart separately certified free of memory-boundary exit, that is, with every active delay strictly interior, $\max_\ell (T-T_{\mathrm{em},\ell})<h$ with a declared margin. A candidate branch list that fails the ledger with that certificate in hand should be rejected before any quadrature or collocation residual is computed. A candidate that fails only the naive even-jump test may simply have a root leaving through the memory boundary, and must not be rejected on that basis.
 
 ### Causal-Root Ledger and Action Bookkeeping
 
@@ -1238,15 +1292,19 @@ $$
 $$
 with interval validation of the finite active branches and the returned-history residuals. The accepted output is strict residual slack, not a compact symbolic formula.
 
-## Separator Matching Laws
+## Caustic Matching Laws
 
-At every separator time
+Matching laws are required at source-normal caustics only. At a receiver-normal null the branch strength passes through zero, the acceleration is continuous, and no impulse budget is needed; the certificate records the modulus kink and the end of the receiver-velocity affine chart. At a memory-boundary exit the branch simply leaves the retained window, and the certificate records the odd degree jump.
+
+At every caustic time
 $$
 T_\Sigma
 $$
 where
 $$
-\left|\frac{dX}{dT}(T_\Sigma)\right|=c_f
+D_{s,\ell}(T_\Sigma)=0
+\qquad
+\text{on some emitting row }\ell
 $$
 the matching law must come from the dual-mollified fold calculation rather than from an assumed conservative energy jump. Choose a fold layer
 $$
@@ -1310,14 +1368,11 @@ C_\Sigma\eta^{1/2}A_{\Sigma,\eta,\epsilon_c}
 $$
 or a sharper interval quadrature bound over the certified fold layer. The matching law is usable only after this finite impulse estimate has strict slack against the adjacent arc budgets.
 
-This formulation keeps the separator tied to the same estimates used in [collinear-breather.md](./collinear-breather.md). Energy constants on the adjacent arcs may still be useful bookkeeping devices, but they are not the primitive matching data at
-$$
-\left|\frac{dX}{dT}\right|=c_f
-$$
+This formulation keeps the caustic tied to the same estimates used in [collinear-breather.md](./collinear-breather.md). Energy constants on the adjacent arcs may still be useful bookkeeping devices, but they are not the primitive matching data at $D_{s,\ell}=0$.
 
 ## Fold-Adapted Fractional Basis
 
-Pure polynomial splines are not the preferred certificate basis near a field-speed separator. The fold normal form produces square-root source-time scaling in the simple-root reduction. In the bare fold model this gives a local hierarchy of the form
+Pure polynomial splines are not the preferred certificate basis near a source-normal caustic. The fold normal form produces square-root source-time scaling in the simple-root reduction. In the bare fold model this gives a local hierarchy of the form
 $$
 \Delta v(\tau)\sim |\tau|^{1/2},
 \qquad
@@ -1630,14 +1685,12 @@ $$
 
 1. Rebuild the sub-field analytic baseline from the receiver-normal held-release
    restart equation, the receiver-normal exterior partner branch, and the
-   finite-width self-collar before accepting any field-speed separator as
-   dynamically produced.
+   finite-width self-collar. Locate the inbound field-speed threshold from the
+   exact delayed root rather than from the affine chart, and record the exact
+   $D_s=c_f+\frac{dX}{dT}(T_0)$ at that radius to confirm it is bounded away
+   from zero.
 2. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
-3. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
-   $$
-   \left|\frac{dX}{dT}\right|=c_f
-   $$
-   event.
+3. Classify every threshold crossing in the chosen itinerary as a source-normal caustic, a receiver-normal null, or neither, and compute fold normal-form constants and impulse bounds only for the caustics.
 4. Use the doubled four-arc itinerary as the first admissible velocity-class itinerary
    $$
    \mathcal{K}
@@ -1663,7 +1716,7 @@ $$
    \mathcal{L}_{\mathcal{K}}
    $$
    with certified empty blocks, simple-root blocks, and separator/fold blocks.
-6. Use
+7. Use
    $$
    \mathcal{L}_{\mathcal{K}}
    $$
@@ -1675,26 +1728,26 @@ $$
    $$
    (I_\alpha,I_\beta)
    $$
-7. Add the parity ledger
+8. Add the parity ledger
    $$
-   \Delta N\in 2\mathbb{Z},
+   \Delta N=\pm2,
    \qquad
    \Delta D=0
    $$
-   at every generic fold and verify that the closed-cycle sums vanish.
-8. Record the grouped causal-root ledger
+   at every generic fold, add boundary-exit rows for every generator whose delay reaches the memory depth, certify that no cusp or higher stratum is present, and verify that the combined closed-cycle sums vanish.
+9. Record the grouped causal-root ledger
    $$
    (N,M)
    $$
    used for action bookkeeping, distinguishing it from the raw simple-root counts whenever fold pairs are grouped into one active channel.
-9. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals. A fixed candidate whose parent-complement ranges retain positive-width overlap is not rescued by mesh refinement alone.
-10. If the current candidate fails at that gate, instantiate a fresh fold-adapted piecewise collocation candidate, with the same-packet null-coordinate pre-ledger as its first acceptance row.
-11. If the self-image table closes, convert it into
+10. If the pre-ledger or self-image table fails to close with strict finite margins, reject the current itinerary/candidate packet before attempting quadrature or collocation residuals. A fixed candidate whose parent-complement ranges retain positive-width overlap is not rescued by mesh refinement alone.
+11. If the current candidate fails at that gate, instantiate a fresh fold-adapted piecewise collocation candidate, with the same-packet null-coordinate pre-ledger as its first acceptance row.
+12. If the self-image table closes, convert it into
    $$
    \mathcal{B}_{\mathrm{act}}
    $$
    inactive branch complements, Jacobian floors, separation margins, and memory-depth bounds.
-12. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
+13. If the self-image table closes topologically but does not close algebraically, build a piecewise fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -1703,17 +1756,17 @@ $$
    \phi_{\mathrm{cyc}}
    $$
    and certify the finite active branches numerically by interval validation.
-13. Sweep
+14. Sweep
    $$
    (\eta,\epsilon_c,V_{\max})
    $$
    or a justified lower-dimensional slice to locate the itinerary-admissible parameter region before attempting the full corridor certificate.
-14. Build the first certificate packet
+15. Build the first certificate packet
    $$
    \mathfrak{C}_{\mathrm{ans}}
    $$
    and compute its returned section residuals.
-15. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
+16. If the residuals have strict slack, compute the finite certificate data and test the five audit rows in [collinear-breather.md](./collinear-breather.md).
 
 ## Provisional Assessment
 
@@ -1723,10 +1776,24 @@ $$
 $$
 phase-space curve; a conservative potential curve is only a special certified reduction.
 
-The hard part is the same-side self-image term. If the self images collapse to a finite branch list across the field-speed separator, a closed-form or closed-by-quadrature certificate packet is credible. If they do not close algebraically, the next route is still productive: use a spline or collocation
+The receiver-normal factor sharpens what "conservative" can mean here. By the [receiver-velocity affine form](../dynamics/master-equation.md#receiver-velocity-affine-form-and-the-branch-resistance-tensor), the collinear law is exactly
+$$
+\frac{d^2X}{dT^2}
++
+\Gamma\,\frac{dX}{dT}
+=
+c_f\,\Xi,
+\qquad
+\Gamma=\sum_\ell w_\ell,
+\qquad
+w_\ell=\frac{\kappa\,\sigma_\ell\,\epsilon^2}{r_\ell^2\,|D_{s,\ell}|}
+$$
+with $\Gamma$ and $\Xi$ independent of the receiver's present velocity. The damping coefficient $\Gamma$ inherits the polarity sign of each branch. Partner attraction contributes $\Gamma<0$ and therefore anti-damps; self-repulsion contributes $\Gamma>0$ and damps. A conservative potential reduction requires $\Gamma\equiv0$ on the chart, meaning exact cancellation of the attractive and repulsive branch coefficients. That is not a mild extra hypothesis. It is a codimension-one condition on the active branch list, and the ansatz should not expect to meet it.
+
+This also relocates the hard part. It is not the field-speed threshold, which is a speed value and not a branch event. It is the same-side self-image term, for a sharper reason than before: **the self rows are the only damping channel available to the collinear breather.** Writing $s_\ell$ for the radial rate on branch $\ell$, partner attraction injects at rate $|w_p|\,s_p^2$ on both the inbound and outbound legs, while self-repulsion drains at rate $w_s\,s_s^2$. A closed cycle requires the self drain to balance the partner injection over the period. If the self images collapse to a finite branch list, a closed-form or closed-by-quadrature certificate packet is credible. If they do not close algebraically, the next route is still productive: use a spline or collocation
 $$
 \phi_{\mathrm{cyc}}
 $$
 and certify the finite active branches numerically.
 
-The first doubled-itinerary affine check has a sharper conclusion: the apparent odd simple-root births at the first and third separators are separator fold rows with one opposite-degree branch carried by the excluded diagonal, not completed branch-chart rows. The first fixed candidate also shows that parent-complement equality cores can remain after useful subrow and fold diagnostics are extracted. The next concrete calculation is therefore not another branch chart on that fixed candidate, but a fresh fold-adapted collocation packet whose null-coordinate pre-ledger consumes every ordered row before any branch-chart, residual, or corridor work begins. The accepted output is the finite audit packet, not an elegant formula.
+Three conclusions carry forward. The apparent odd simple-root births at the inbound threshold crossings of the doubled itinerary are neither parity violations nor fold rows: they are memory-boundary exits of the affine chart, and they disappear once the exact delayed root is used. The apparent field-speed barrier on the exterior partner chart is likewise an artifact of the frozen source velocity. And the first fixed candidate still shows that parent-complement equality cores can remain after useful subrow and fold diagnostics are extracted. The next concrete calculation is therefore a fresh fold-adapted collocation packet, built on exact delayed roots rather than the affine table, whose null-coordinate pre-ledger consumes every ordered row before any branch-chart, residual, or corridor work begins. The accepted output is the finite audit packet, not an elegant formula.

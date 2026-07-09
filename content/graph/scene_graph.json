@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 600,
-      "edges": 1367,
-      "scenes": 384,
+      "nodes": 602,
+      "edges": 1369,
+      "scenes": 385,
       "markdownIndexes": 0,
-      "markdownDocs": 199,
+      "markdownDocs": 200,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2453,6 +2453,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__comics__nature_is_analog",
+      "name": "Nature Is Analog",
+      "path": "content/scenes/archie/comics/nature_is_analog.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2528,6 +2534,12 @@
       "id": "content/markdown/aaa/archie/comics/group-project-assumption.md",
       "name": "Group Project Assumption",
       "path": "content/markdown/aaa/archie/comics/group-project-assumption.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "name": "Nature Is Analog",
+      "path": "content/markdown/aaa/archie/comics/nature-is-analog.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3817,6 +3829,15 @@
       "name": "Group Project Assumption",
       "path": "content/scenes/archie/comics/group_project_assumption.json",
       "searchTarget": "content/scenes/archie/comics/group_project_assumption.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/comics/nature_is_analog.json",
+      "nodeType": "scene",
+      "id": "archie__comics__nature_is_analog",
+      "name": "Nature Is Analog",
+      "path": "content/scenes/archie/comics/nature_is_analog.json",
+      "searchTarget": "content/scenes/archie/comics/nature_is_analog.json",
       "implicit": false
     },
     {
@@ -7222,6 +7243,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "name": "Nature Is Analog",
+      "path": "content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "searchTarget": "content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/comics/new-theory-same-budget.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/comics/new-theory-same-budget.md",
@@ -9209,112 +9239,119 @@
       "to": "scene:content/scenes/archie/comics/acknowledgements_in_architrinos_room.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/birthday_cake_for_observer_era.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[13]"
+      "field": "scene.children[14]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/candidate_not_a_throne.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/citation_needed.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/first_footage_not_birth_certificate.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/first_page_is_not_the_beginning.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/four_theories_one_oval.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[14]"
+      "field": "scene.children[15]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/group_project_assumption.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
-      "to": "scene:content/scenes/archie/comics/new_theory_same_budget.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/archie/comics.json",
-      "to": "scene:content/scenes/archie/comics/observable_edge_receipt.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[11]"
-    },
-    {
-      "from": "scene:content/scenes/archie/comics.json",
-      "to": "scene:content/scenes/archie/comics/office_hours_for_a_claim.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/archie/comics.json",
-      "to": "scene:content/scenes/archie/comics/old_alchemy_new_apparatus.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/archie/comics.json",
-      "to": "scene:content/scenes/archie/comics/present_has_an_inbox.json",
+      "to": "scene:content/scenes/archie/comics/nature_is_analog.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
-      "to": "scene:content/scenes/archie/comics/show_the_residuals.json",
+      "to": "scene:content/scenes/archie/comics/new_theory_same_budget.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
       "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
+      "to": "scene:content/scenes/archie/comics/observable_edge_receipt.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/comics.json",
+      "field": "scene.children[12]"
+    },
+    {
+      "from": "scene:content/scenes/archie/comics.json",
+      "to": "scene:content/scenes/archie/comics/office_hours_for_a_claim.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/comics.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/archie/comics.json",
+      "to": "scene:content/scenes/archie/comics/old_alchemy_new_apparatus.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/comics.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/archie/comics.json",
+      "to": "scene:content/scenes/archie/comics/present_has_an_inbox.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/comics.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/comics.json",
+      "to": "scene:content/scenes/archie/comics/show_the_residuals.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/comics.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/we_need_to_talk.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[15]"
+      "field": "scene.children[16]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
       "to": "scene:content/scenes/archie/comics/what_counts_as_evidence.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/comics.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
@@ -13850,6 +13887,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/comics/group-project-assumption.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/comics/group_project_assumption.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/comics/nature_is_analog.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/comics/nature-is-analog.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/comics/nature_is_analog.json",
       "field": "scene.source.path"
     },
     {

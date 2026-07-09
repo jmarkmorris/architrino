@@ -63,11 +63,11 @@ The search should flag a configuration as interesting when it has one or more of
 - Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
 - Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
 - Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a stability clue, or changes it strongly, which is a useful stress clue.
-- Causal-root structure: low missed-source count, healthy Jacobian values, repeatable phase-at-hit families, or organized same-source and partner-hit roots.
+- Causal-root structure: low missed-source count, healthy Jacobian values together with a bounded receiver-normal branch strength $W^{\mathrm{rec}}=|D_T/D_s|$ (a healthy Jacobian alone is not sufficient), repeatable phase-at-hit families, or organized same-source and partner-hit roots.
 - Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
 - Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
 
-The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
+The search should mark numerically suspect cases as suspect rather than good. Missed roots, very small Jacobian values, a receiver-normal branch strength collapsing toward its null or diverging near a caustic, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be confused with clean polarization evidence.
 
 ## Geometry Controls
 
@@ -175,7 +175,7 @@ D_{s,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k},
 \qquad
-D_{t,i,k}
+D_{T,i,k}
 =
 c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}
 $$
@@ -187,7 +187,7 @@ $$
 =
 g\sum_i\sum_k
 q_i
-\left|\frac{D_{t,i,k}}{D_{s,i,k}}\right|
+\left|\frac{D_{T,i,k}}{D_{s,i,k}}\right|
 \frac{\mathbf n_{i,k}}
 {R_{i,k}^2}
 $$

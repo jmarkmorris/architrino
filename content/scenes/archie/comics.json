@@ -11,6 +11,10 @@
     },
     "children": [
       {
+        "nodeId": "nature_is_analog",
+        "scenePath": "content/scenes/archie/comics/nature_is_analog.json"
+      },
+      {
         "nodeId": "present_has_an_inbox",
         "scenePath": "content/scenes/archie/comics/present_has_an_inbox.json"
       },
@@ -83,6 +87,24 @@
     }
   },
   "objects": [
+    {
+      "id": "nature_is_analog",
+      "title": "Nature Is Analog",
+      "radius": 2.35,
+      "color": "#2f6f66",
+      "labelTitle": "Nature Is Analog",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/nature-is-analog-thumb.png",
+      "labelBadgeAlt": "Nature Is Analog thumbnail",
+      "position": [
+        0,
+        17.5,
+        0
+      ],
+      "galleryImage": "content/assets/images/comics/nature-is-analog.png",
+      "galleryThumbnail": "content/assets/images/comics/thumbnails/nature-is-analog-thumb.png",
+      "galleryAlt": "Nature Is Analog comic",
+      "galleryTitle": "Nature Is Analog"
+    },
     {
       "id": "present_has_an_inbox",
       "title": "Signals From Earlier",

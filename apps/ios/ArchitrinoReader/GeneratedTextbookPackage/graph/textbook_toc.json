@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1511
+      "sections": 1512
     }
   },
   "tocRoot": {
@@ -2075,10 +2075,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Why the Field-Speed Separator Matters",
+                    "title": "Why the Causal-Root Events Matter",
                     "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Why the Field-Speed Separator Matters",
-                    "sectionKey": "why the field speed separator matters",
+                    "markdownSection": "Why the Causal-Root Events Matter",
+                    "sectionKey": "why the causal root events matter",
                     "headingLevel": 2
                   },
                   {
@@ -2107,10 +2107,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Separator Matching Laws",
+                    "title": "Caustic Matching Laws",
                     "markdownPath": "content/markdown/aaa/proof-programs/closed-form-collinear-breather-ansatz.md",
-                    "markdownSection": "Separator Matching Laws",
-                    "sectionKey": "separator matching laws",
+                    "markdownSection": "Caustic Matching Laws",
+                    "sectionKey": "caustic matching laws",
                     "headingLevel": 2
                   },
                   {
@@ -3260,6 +3260,14 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
                 "markdownSection": "Proof Search Roadmap",
                 "sectionKey": "proof search roadmap",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Leading Candidate: The Spindle Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Leading Candidate: The Spindle Braid",
+                "sectionKey": "leading candidate the spindle braid",
                 "headingLevel": 2
               },
               {

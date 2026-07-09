@@ -745,7 +745,7 @@ $$
 \qquad
 \overline{\zeta}^+_{\hat{\mathbf{u}}}(t)
 \equiv
-\sup_{\theta\le T}\zeta^+_{\hat{\mathbf{u}}}(\theta)
+\sup_{\theta\le t}\zeta^+_{\hat{\mathbf{u}}}(\theta)
 $$
 The running infimum
 $$
@@ -989,7 +989,7 @@ $$
 >    $$
 >    W\in\{I_{\mathrm{in}},I_{\mathrm{ap}}\};
 >    $$
-> 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary or when the relevant monotonicity margin
+> 4. branch birth, branch death, or branch relabeling can occur only when an active chord direction meets a sector boundary, when the relevant monotonicity margin
 >    $$
 >    \sigma_{\mathrm{in}}
 >    \quad
@@ -997,7 +997,9 @@ $$
 >    \quad
 >    \sigma_{\mathrm{ap}}
 >    $$
->    degenerates, which defines the planar caustic tube that later propositions must control.
+>    degenerates, which defines the planar caustic tube that later propositions must control, or when an active generator's required delay reaches the retained memory depth $h$.
+
+The third mechanism is distinct from the first two and is easy to omit. By Proposition 4 of [Master Equation](../dynamics/master-equation.md), a generator can leave the retained interval $[T-h,T)$ through the memory boundary rather than through a fold. That event carries an odd unsigned jump and can change the finite-window signed degree $D^{(h)}_{ij}$ without any sector crossing or margin degeneration. It is not covered by the planar caustic tube, and a branch-count ceiling that enumerates only sector crossings and fold degeneracies is incomplete until the strict-interior memory margin $\max_\ell(t-s_\ell)\le h-\gamma_h$ is separately certified.
 
 This corollary is the exact branch-labeling consequence needed for the rest of the bridge program. It converts the delayed-root picture from an a priori moving continuum of planar chord directions into a finite labeled branch family that can be propagated, bounded, and inserted into the tame-envelope construction.
 
@@ -1192,11 +1194,11 @@ This is the correct replacement for the collinear relocation lemma. The source i
 > $$
 > |J_s(t;s)|\ge \nu_{J,\mathrm{dp}}>0
 > $$
-> on the relocated deep-past branches. Then the total self contribution from all deep-past late-apocenter roots satisfies
+> on the relocated deep-past branches. Then, writing $\Theta_+\equiv1+U_{\max}/c_f$ for the receiver-normal amplification ceiling supplied by the tame-envelope speed bound $\|\dot\Phi\|\le U_{\max}<c_f$, the total self contribution from all deep-past late-apocenter roots satisfies
 > $$
 > \|\mathbf{a}^{\mathrm{deep}}_{s}(t)\|
 > \le
-> \frac{M_{\mathrm{ap}}\kappa\epsilon^2}{
+> \frac{\Theta_+\,M_{\mathrm{ap}}\kappa\epsilon^2}{
 > \bigl(c_f^2\tau_{\mathrm{dp}}^2+\epsilon_c^2\bigr)\nu_{J,\mathrm{dp}}}
 > \qquad
 > \text{for every }
@@ -4720,7 +4722,7 @@ denote the ordered planar three-body configuration away from collisions, where
 $$
 \Delta_{\mathrm{coll}}
 $$
-is the collision locus. Remove translations by imposing the center-of-mass condition
+is the collision locus. Remove translations by imposing the centroid condition
 $$
 \mathbf X_1+\mathbf X_2+\mathbf X_3=0
 $$
@@ -6312,7 +6314,13 @@ For the first planar-three-body bridge, the admissible hyperedges should be rest
   $$
   (i,j)
   $$
-  where exactly one simple branch is created or annihilated.
+  where exactly one simple branch **pair** is created or annihilated, so that
+  $$
+  \Delta N_{ij}=\pm2,
+  \qquad
+  \Delta D_{ij}=0
+  $$
+  as required by Proposition 3 of [Master Equation](../dynamics/master-equation.md). A generic fold never creates or destroys a single branch: the two roots carry opposite source-normal Jacobian signs and are born or annihilated together. Fold-count ceilings downstream must be read against the pair, not the branch.
 - **Type III: shared-body coupled fold hyperedge.**
   A hyperedge joining two or three vertices when several branch families involving one common body meet one common degeneracy and their births or deaths must be recorded together.
 - **Type IV: sector relabeling hyperedge.**
@@ -6821,11 +6829,14 @@ This is now the exact topological/kinematic input consumed by the ancestry packa
 >    $$
 >    so one branch contribution is bounded by
 >    $$
->    \frac{\kappa\epsilon^2}{
+>    \frac{\Theta_+\,\kappa\epsilon^2}{
 >    \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
 >    \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
->    }.
+>    },
+>    \qquad
+>    \Theta_+\equiv 1+\frac{U_{\max}}{c_f}
 >    $$
+>    where the factor $\Theta_+$ is the receiver-normal numerator ceiling. The per-hit magnitude carries $W^{\mathrm{rec}}=|D_T|/|D_s|=(|D_T|/c_f)\cdot 1/|J|$, and on the tame envelope $|D_T|=|c_f-\mathbf V_i(t)\cdot\hat{\mathbf r}|\le c_f+U_{\max}$. Weighting only by $1/|J|$ silently sets $|D_T|=c_f$ and does not bound the outward self-drive from above.
 >    Because branch simplicity and the admissible source-cluster alphabet allow at most one uniformly transversal deep-past branch per source-cluster channel on the chosen delay scale, each ancestry component contributes at most a fixed finite multiple of that ceiling. Summing over at most
 >    $$
 >    N_{\mathrm{anc}}
@@ -6838,11 +6849,13 @@ This is now the exact topological/kinematic input consumed by the ancestry packa
 > A^{\mathrm{mb}}_{s,\mathrm{deep}}(t)
 > \le
 > \frac{
-> N_{\mathrm{anc}}\,\kappa\epsilon^2
+> \Theta_+\,N_{\mathrm{anc}}\,\kappa\epsilon^2
 > }{
 > \bigl(c_f^2(\tau^{\mathrm{mb}}_{\mathrm{dp}})^2+\epsilon_c^2\bigr)
 > \nu^{\mathrm{mb}}_{J,\mathrm{anc}}
 > },
+> \qquad
+> \Theta_+=1+\frac{U_{\max}}{c_f},
 > $$
 > for every
 > $$
@@ -7168,7 +7181,7 @@ D_{s,ij}(t;s)
 =
 c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s),
 \qquad
-D_{t,ij}(t;s)
+D_{T,ij}(t;s)
 =
 c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t),
 $$
@@ -7176,7 +7189,7 @@ and
 $$
 W_{ij}^{\mathrm{rec}}(t;s)
 =
-\left|D_{t,ij}(t;s)/D_{s,ij}(t;s)\right|.
+\left|D_{T,ij}(t;s)/D_{s,ij}(t;s)\right|.
 $$
 The receiver-normal branch law is
 $$
@@ -9519,7 +9532,7 @@ This is the correct tame-structure target because the first two Jacobi channels 
 >    $$
 >    C^0/C^1
 >    $$
->    boundary would require one principal observable or one kinematic ceiling to use up all reserved slack, contradicting the previously established inward comparison laws and post-transit bounds.
+>    boundary would require one principal observable or one kinematic ceiling to use up all reserved slack, contradicting the inward comparison laws established above and post-transit bounds.
 >
 > Hence every defining boundary face is inward-pointing.
 
