@@ -93,6 +93,38 @@ export const DECLARED = {
   // m = D_T/D_s unsoftened (production signedBranchOrientation, treated as a
   // density-of-states integral via substeps), with the declared d0 stratum in
   // the force denominator; cross-pair channels keep the canonical m_reg.
+  // Non-circular same-level seed (opt-in via --em/--ei/--eo): per-layer
+  // epicyclic release. The layer is seeded at its apoapsis radius
+  // rho*(1+e) with angular-momentum-matched tangential speed beta/(1+e), and
+  // its HELD prehistory is the matched slower circle (omega/(1+e)^2) — exactly
+  // representable as a production moving-circular source, so release carries
+  // no position/velocity discontinuity. e=0 reproduces the tabled circular
+  // seed exactly. Declared hunt probe: the escapement's natural cycle is
+  // sub-rail at apoapsis, rail-crossing clicks near periapsis.
+  epicycle: { I: 0, M: 0, O: 0 },
+  // Sea-confined mode (opt-in via --sea): the SH-0-sea FCC-12 static shell
+  // (held-release-causal-wake-toy.mjs sea-screened decoration; spec Section 27
+  // precedent) as a ONE-WAY held environment — 12 aligned face-opposite
+  // six-site braid units on the FCC nearest-neighbor directions, static in the
+  // void frame, acting on the released seed with no back-reaction (declared
+  // held histories). Environment sources are zero-radius static
+  // moving-circular production sources; only canon-named spacings are used:
+  // the SH-0-sea named spacing 4.25 and the minimum non-overlap spacing
+  // 2*sqrt(2). No spacing tuning.
+  sea: {
+    enabled: false,
+    spacing: 4.25, // SH-0-sea named spacing (CLI --sea-spacing; 2.8284 = min non-overlap)
+    unitOffsets: [
+      [1, 0, 0], [0, 1, 0], [0, 0, 1],
+      [-1, 0, 0], [0, -1, 0], [0, 0, -1],
+    ],
+    unitPolarities: [1, 1, 1, -1, -1, -1],
+    fccDirections: [
+      [1, 1, 0], [1, -1, 0], [-1, 1, 0], [-1, -1, 0],
+      [1, 0, 1], [1, 0, -1], [-1, 0, 1], [-1, 0, -1],
+      [0, 1, 1], [0, 1, -1], [0, -1, 1], [0, -1, -1],
+    ],
+  },
   chart: {
     enabled: false,
     foldJacobianThreshold: 0.02, // |D_s| below this = fold-flagged, substep-integrate
@@ -110,8 +142,9 @@ export const DECLARED = {
 export function buildSites() {
   const sites = [];
   for (const L of DECLARED.layers) {
+    const e = DECLARED.epicycle[L.name] ?? 0;
     for (const sgn of [+1, -1]) {
-      const rho = L.R * Math.cos(L.alpha);
+      const rho = L.R * Math.cos(L.alpha) * (1 + e);
       sites.push({
         id: `${L.name}${sgn > 0 ? "+" : "-"}`,
         layer: L.name,
@@ -121,10 +154,96 @@ export function buildSites() {
         z0: sgn * L.R * Math.sin(L.alpha),
         phase: L.theta + (sgn > 0 ? 0 : Math.PI),
         pol: sgn, // polarity product sigma_i sigma_j is all the force law uses
+        // held cadence: angular-momentum-matched slower circle at apoapsis
+        omegaHeld: DECLARED.omega / ((1 + e) * (1 + e)),
+        epicycle: e,
       });
     }
   }
   return sites;
+}
+
+export function buildSeaSites() {
+  if (!DECLARED.sea.enabled) return [];
+  const out = [];
+  const s = DECLARED.sea.spacing;
+  for (let d = 0; d < DECLARED.sea.fccDirections.length; d += 1) {
+    const dir = DECLARED.sea.fccDirections[d];
+    const n = Math.hypot(dir[0], dir[1], dir[2]);
+    const center = [(dir[0] / n) * s, (dir[1] / n) * s, (dir[2] / n) * s];
+    for (let k = 0; k < DECLARED.sea.unitOffsets.length; k += 1) {
+      const o = DECLARED.sea.unitOffsets[k];
+      out.push({
+        id: `sea:${d}:${k}`,
+        position: [center[0] + o[0], center[1] + o[1], center[2] + o[2]],
+        pol: DECLARED.sea.unitPolarities[k],
+      });
+    }
+  }
+  return out;
+}
+
+function staticSeaSourceModel(seaSite) {
+  return {
+    centerAtEpoch: { x: seaSite.position[0], y: seaSite.position[1], z: seaSite.position[2] },
+    centerVelocity: { x: 0, y: 0, z: 0 },
+    radiusU: { x: 0, y: 0, z: 0 },
+    radiusV: { x: 0, y: 0, z: 0 },
+    angularVelocity: 0,
+    phaseAtEpoch: 0,
+    epochTime: 0,
+  };
+}
+
+// Static held environment source: the causal root sits exactly at
+// t_e = t_H - |x_r - s|/c_f; a narrow production window around it suffices.
+export function seaWakeContribution({ seaSites, xi, vi, receiverPol, tH }) {
+  const soft = DECLARED.soft;
+  const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
+  const a = [0, 0, 0];
+  let netRadial = 0;
+  for (const sea of seaSites) {
+    const dist = Math.hypot(
+      xi[0] - sea.position[0],
+      xi[1] - sea.position[1],
+      xi[2] - sea.position[2]
+    );
+    const tRoot = tH - dist / DECLARED.fieldSpeed;
+    const result = solveMovingCircularSourceCausalRoots({
+      source: staticSeaSourceModel(sea),
+      receiver: {
+        startTime: tH,
+        positionAtStart: { x: xi[0], y: xi[1], z: xi[2] },
+        velocity: { x: vi[0], y: vi[1], z: vi[2] },
+      },
+      hitTime: tH,
+      signalSpeed: DECLARED.fieldSpeed,
+      sourceStartTime: tRoot - 0.05,
+      sourceEndTime: Math.min(tRoot + 0.05, tH),
+      rootTolerance: 1e-12,
+      scanSubdivisions: 8,
+      maxRoots: 2,
+    });
+    for (const root of result.roots ?? []) {
+      const r = root.distance;
+      if (!(r > 0) || !Number.isFinite(r)) continue;
+      const dir = [
+        (root.receiverPoint.x - root.sourcePoint.x) / r,
+        (root.receiverPoint.y - root.sourcePoint.y) / r,
+        (root.receiverPoint.z - root.sourcePoint.z) / r,
+      ];
+      const Ds = root.sourceNormalDenominator;
+      const Dt = root.receiverNormalNumerator;
+      const mReg = (Dt * Ds) / (Ds * Ds + soft * soft);
+      const w = (receiverPol * sea.pol * mReg) / (r * r + rc2);
+      a[0] += w * dir[0];
+      a[1] += w * dir[1];
+      a[2] += w * dir[2];
+    }
+  }
+  const rho = Math.hypot(xi[0], xi[1]);
+  if (rho > 1e-12) netRadial = (a[0] * xi[0] + a[1] * xi[1]) / rho;
+  return { a, netRadial };
 }
 
 export function heldSourceModel(site) {
@@ -133,7 +252,7 @@ export function heldSourceModel(site) {
     centerVelocity: { x: 0, y: 0, z: 0 },
     radiusU: { x: site.rho, y: 0, z: 0 },
     radiusV: { x: 0, y: site.rho, z: 0 },
-    angularVelocity: DECLARED.omega,
+    angularVelocity: site.omegaHeld ?? DECLARED.omega,
     angularAcceleration: 0,
     phaseAtEpoch: site.phase,
     epochTime: 0,
@@ -141,13 +260,15 @@ export function heldSourceModel(site) {
 }
 
 export function rigidPosition(site, t) {
-  const a = DECLARED.omega * t + site.phase;
+  const w = site.omegaHeld ?? DECLARED.omega;
+  const a = w * t + site.phase;
   return [site.rho * Math.cos(a), site.rho * Math.sin(a), site.z0];
 }
 
 export function rigidVelocity(site, t) {
-  const a = DECLARED.omega * t + site.phase;
-  const v = site.rho * DECLARED.omega;
+  const w = site.omegaHeld ?? DECLARED.omega;
+  const a = w * t + site.phase;
+  const v = site.rho * w;
   return [-v * Math.sin(a), v * Math.cos(a), 0];
 }
 
@@ -341,7 +462,7 @@ export function solveDirectedRelation({ histories, i, j, tH, xi, vi, sameSource,
 // a_i = kappa * sum sigma_i sigma_j * m_reg / (r^2 + rho_c^2) * r_hat,
 // m_reg = D_T D_s / (D_s^2 + soft^2), all row fields read from the runtime).
 // ---------------------------------------------------------------------------
-export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false }) {
+export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false, seaSites = null }) {
   const soft = DECLARED.soft;
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
   const a = [0, 0, 0];
@@ -413,6 +534,24 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
                 releasedMinAbsResidual: Number.isFinite(releasedGap) ? releasedGap : null,
               }
             : null,
+      });
+    }
+  }
+  if (seaSites && seaSites.length > 0) {
+    const sea = seaWakeContribution({ seaSites, xi, vi, receiverPol: sites[i].pol, tH });
+    a[0] += sea.a[0];
+    a[1] += sea.a[1];
+    a[2] += sea.a[2];
+    if (ledger) {
+      ledger.push({
+        receiver: sites[i].id,
+        source: "sea:FCC-12-aggregate",
+        relation: "environment-one-way",
+        activeRootCount: seaSites.length,
+        seaAcceleration: sea.a,
+        seaNetRadial: sea.netRadial,
+        roots: [],
+        inactiveGap: null,
       });
     }
   }
@@ -534,7 +673,7 @@ export function chartWindowIntegrate({
 // ---------------------------------------------------------------------------
 // Seed-record native evaluation (t = 0-, all held): anchor + native kappa* fit.
 // ---------------------------------------------------------------------------
-export function seedRecordEvaluation(sites, histories) {
+export function seedRecordEvaluation(sites, histories, seaSites = null) {
   const samples = [];
   for (let i = 0; i < sites.length; i += 1) {
     const xi = rigidPosition(sites[i], 0);
@@ -542,7 +681,7 @@ export function seedRecordEvaluation(sites, histories) {
     const w2 = DECLARED.omega * DECLARED.omega;
     const kin = [-w2 * xi[0], -w2 * xi[1], 0]; // centripetal need, cylindrical
     const ledger = [];
-    const { a } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger });
+    const { a } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites });
     samples.push({ site: sites[i].id, layer: sites[i].layer, kin, wake: a, ledger });
   }
   let num = 0;
@@ -621,6 +760,7 @@ export function runRelease({
   budgetMs = Infinity,
 } = {}) {
   const sites = buildSites();
+  const seaSites = buildSeaSites();
   const dt = DECLARED.timeStep;
   const steps = Math.round((rotations * TWO_PI) / dt);
   let histories;
@@ -721,6 +861,7 @@ export function runRelease({
         vi: states[i].v,
         ledger,
         splitSelf: DECLARED.chart.enabled,
+        seaSites,
       });
       let booking = null;
       if (DECLARED.chart.enabled) {
@@ -979,13 +1120,24 @@ if (isMain()) {
   DECLARED.sameSourceMinimumDelay = readCliNumber("dmin", DECLARED.sameSourceMinimumDelay);
   DECLARED.soft = readCliNumber("soft", DECLARED.soft);
   DECLARED.chart.enabled = process.argv.includes("--chart");
+  DECLARED.sea.enabled = process.argv.includes("--sea");
+  DECLARED.sea.spacing = readCliNumber("sea-spacing", DECLARED.sea.spacing);
+  DECLARED.epicycle.I = readCliNumber("ei", 0);
+  DECLARED.epicycle.M = readCliNumber("em", 0);
+  DECLARED.epicycle.O = readCliNumber("eo", 0);
+  const kappaOverride = readCliNumber("kappa", NaN);
   const outName = process.argv.find((a) => a.startsWith("--out="))?.slice(6) ?? "report.json";
   const t0 = Date.now();
 
   // Seed record: native production-runtime evaluation at t = 0 (all held).
   const sites = buildSites();
   const seedHistories = sites.map((s) => new RetainedHistory(s));
-  const seed = seedRecordEvaluation(sites, seedHistories);
+  const seed = seedRecordEvaluation(sites, seedHistories, buildSeaSites());
+  if (Number.isFinite(kappaOverride)) {
+    // frozen coupling for cross-variant comparability (declared, no refit)
+    seed.kappaStarFitted = seed.kappaStar;
+    seed.kappaStar = kappaOverride;
+  }
   process.stderr.write(
     `[seed] native kappa*=${seed.kappaStar.toFixed(6)} globalRelResidual=${seed.globalRelResidual.toFixed(6)}\n`
   );

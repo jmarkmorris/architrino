@@ -151,3 +151,91 @@ function isMain() { return process.argv[1] && fileURLToPath(import.meta.url) ===
 if (isMain()) {
   process.stdout.write(JSON.stringify(diagnosticReport(), null, process.argv.includes("--pretty") ? 2 : 0) + "\n");
 }
+
+// ---------------------------------------------------------------------------
+// Second pass, step 2a: EVENT-LOCAL fine study (spec Section 34).
+//
+// The first-pass dt failure localizes entirely inside the click window, and the
+// prescribed-window chart impulse over-books because the real event is
+// SELF-LIMITING: the site absorbs only enough momentum to knock itself back off
+// the rail (escapement reflection). This routine integrates ONLY the event
+// neighborhood at fine dt with the full pointwise self-force (short lookback —
+// click-root delays are below ~0.2), converging the event in dt, and measures
+// the event map: absorbed tangential momentum, inward radial kick, effective
+// restitution, and their dependence on the entry radial velocity vr0 (the
+// epicyclic lever: does a breathing entry re-angle the ray toward radial?).
+// ---------------------------------------------------------------------------
+export function clickEventStudy({
+  kappa = 0.315, c1 = 2.881, support = 0.76, d0 = 0.01,
+  betaIn = 0.97, vr0 = 0, r0 = 1, dtFine = 2e-5, lead = 0.6, tMax = 0.6,
+} = {}) {
+  const H = { t: [], x: [], y: [], vx: [], vy: [] };
+  const w0 = (betaIn * cf) / r0;
+  const nLead = Math.round(lead / dtFine);
+  for (let k = 0; k <= nLead; k++) {
+    const t = -lead + k * dtFine, a = w0 * t;
+    H.t.push(t); H.x.push(r0 * Math.cos(a)); H.y.push(r0 * Math.sin(a));
+    H.vx.push(-betaIn * cf * Math.sin(a)); H.vy.push(betaIn * cf * Math.cos(a));
+  }
+  let x = r0, y = 0, vx = vr0, vy = betaIn * cf; // radial entry velocity added at t=0
+  function selfForce(T, X, Y, VX, VY) {
+    const n = H.t.length;
+    const g = (i) => Math.hypot(X - H.x[i], Y - H.y[i]) - cf * (T - H.t[i]);
+    let Fx = 0, Fy = 0, roots = 0, minChord = Infinity;
+    const maxBack = Math.min(n - 1, Math.round(0.45 / dtFine));
+    let prev = n - 1, gP = g(prev);
+    for (let back = 5; back <= maxBack; back += 4) {
+      const i = n - back, gi = g(i);
+      if (gP * gi < 0) {
+        let j = prev - 1, gj = g(j);
+        while (gP * gj >= 0 && j > i) { prev = j; gP = gj; j--; gj = g(j); }
+        const u = gj / (gj - gP);
+        const te = H.t[j] + u * (H.t[prev] - H.t[j]);
+        const sx = H.x[j] + u * (H.x[prev] - H.x[j]), sy = H.y[j] + u * (H.y[prev] - H.y[j]);
+        const svx = H.vx[j] + u * (H.vx[prev] - H.vx[j]), svy = H.vy[j] + u * (H.vy[prev] - H.vy[j]);
+        const dx = X - sx, dy = Y - sy, rc = Math.hypot(dx, dy);
+        if (rc >= d0 && rc > 1e-12) {
+          const rhx = dx / rc, rhy = dy / rc;
+          const Ds = cf - (svx * rhx + svy * rhy), Dt = cf - (VX * rhx + VY * rhy);
+          const wgt = (kappa * (Dt / Ds)) / (rc * rc);
+          Fx += wgt * rhx; Fy += wgt * rhy; roots++;
+        }
+        if (rc < minChord) minChord = rc;
+      }
+      prev = n - back; gP = g(prev);
+    }
+    return { Fx, Fy, roots, minChord };
+  }
+  const nStep = Math.round(tMax / dtFine);
+  let clicked = false, betaPeak = 0, rootsSeen = 0;
+  let pTanAbsorbed = 0, pRadKick = 0; // self-channel impulse components only
+  for (let k = 0; k < nStep; k++) {
+    const T = k * dtFine;
+    const r = Math.hypot(x, y), beta = Math.hypot(vx, vy) / cf;
+    betaPeak = Math.max(betaPeak, beta);
+    const rhx = x / r, rhy = y / r;
+    const sp = Math.hypot(vx, vy), thx = vx / sp, thy = vy / sp;
+    const aTan = (kappa * c1 * beta) / (r * r);
+    const aRad = (-support * beta * beta * cf * cf) / r;
+    const sf = selfForce(T, x, y, vx, vy);
+    if (sf.roots > 0) { clicked = true; rootsSeen = Math.max(rootsSeen, sf.roots); }
+    pTanAbsorbed += (sf.Fx * thx + sf.Fy * thy) * dtFine;
+    pRadKick += (sf.Fx * rhx + sf.Fy * rhy) * dtFine;
+    const ax = aTan * thx + aRad * rhx + sf.Fx;
+    const ay = aTan * thy + aRad * rhy + sf.Fy;
+    vx += ax * dtFine; vy += ay * dtFine;
+    x += vx * dtFine; y += vy * dtFine;
+    H.t.push(T + dtFine); H.x.push(x); H.y.push(y); H.vx.push(vx); H.vy.push(vy);
+    // stop once the event has completed: clicked, now sub-rail, and self-channel quiet
+    if (clicked && beta < 0.985 && sf.roots === 0 && T > 0.05) break;
+  }
+  const betaOut = Math.hypot(vx, vy) / cf;
+  return {
+    params: { kappa, c1, support, d0, betaIn, vr0, dtFine },
+    clicked, rootsSeen, betaPeak, betaOut,
+    overshoot: betaPeak - 1, reboundDepth: 1 - betaOut,
+    pTanAbsorbed, pRadKick,
+    radialPerTangential: pRadKick / (pTanAbsorbed || 1e-12),
+    rOut: Math.hypot(x, y), vrOut: (x * vx + y * vy) / Math.hypot(x, y),
+  };
+}

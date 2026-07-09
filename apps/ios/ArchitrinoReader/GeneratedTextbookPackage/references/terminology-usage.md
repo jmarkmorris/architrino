@@ -98,6 +98,16 @@ Sentence guidance:
 
 The important reframing here is that `charge` is not being denied; it is being relocated. In $\mathbb{A}\mathbb{A}\mathbb{A}$, `charge` is a higher-level bookkeeping summary of a deeper polarity-bearing substrate. Keeping `polarity` for the primitive level prevents the reader from importing the point-charge ontology too early, while keeping `charge` for effective summaries preserves continuity with standard electrodynamic and particle-physics calculations.
 
+## Site and Drift Usage
+
+Two frequently used kinematic terms with canonical meanings (operator-ratified 2026-07-08).
+
+| When you mean... | Prefer | Notes | Example |
+| --- | --- | --- | --- |
+| the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site at time $t$ is simultaneously its emission point and its reception point; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The spindle braid has six sites on five horizontal circles." |
+| the point a causal wake was born | `source site at emission time` | the delayed formalism evaluates the source site at the causal root's emission time, not at reception time | "The line of action runs from the source site at emission time to the receiver's current site." |
+| uniform, unaccelerated translation of an assembly (or of the medium) relative to the void frame | `drift`, `drift speed` $u$ | drift deliberately connotes non-acceleration — a drifting rotation is a rigid screw motion; accelerated translation should be named as such, never called drift | "At drift $u$ the pinned internal cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+
 ## Field and Wake Usage
 
 Use `wake` or `causal wake` for emitted substrate-level $\mathbb{A}\mathbb{A}\mathbb{A}$ structure. Reserve `field` for effective, continuum, or explicitly comparative discussion.

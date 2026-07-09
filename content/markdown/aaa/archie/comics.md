@@ -2,6 +2,8 @@
 
 These comics are small public explanations of the project standard. They turn recurring lessons about claims, evidence, history, observation, and public critique into visual jokes that still preserve the serious point.
 
+[![Nature Is Analog](../../../assets/images/comics/thumbnails/nature-is-analog-thumb.png)](../../../assets/images/comics/nature-is-analog.png)
+
 [![Signals From Earlier](../../../assets/images/comics/thumbnails/present-has-an-inbox-thumb.png)](../../../assets/images/comics/present-has-an-inbox.png)
 
 [![Group Project Assumption](../../../assets/images/comics/thumbnails/group-project-assumption-thumb.png)](../../../assets/images/comics/group-project-assumption.png)

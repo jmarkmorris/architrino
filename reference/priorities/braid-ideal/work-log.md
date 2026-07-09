@@ -1404,3 +1404,24 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - dt-halving witness FAILS: pointwise 1/r² click spike = the Section 2.3 artifact biting its own instrument. Numbers provisional; structure robust.
 - Named second pass: event-based integrator with chart-integrated click impulses + Section 32 valve force between events.
 - 3 tests green (22 total across five new instruments this session).
+
+## 2026-07-09 - Sea-confined native release: static aligned shell ANTI-confines; sea route closed at minimal declared scope
+
+[Spec Section 35](fold-crossing-chart-spec.md#35-sea-confined-native-release-the-static-aligned-shell-anti-confines-the-sea-route-closes-at-its-minimal-declared-scope-2026-07-09). `--sea` mode added to the native confirmation-run owner script: SH-0-sea FCC-12 static aligned shell as a one-way held environment (72 zero-radius static production sources), canon-named spacings only (4.25 and 2*sqrt(2)). Seed record: sea radial supply is percent-level and OUTWARD on the under-supported layers (caps +7% of need at 4.25; +93% at min non-overlap spacing); unified seed closure worsens 0.4721 -> 0.4985. Release at 4.25 disperses FASTER than isolated (halt t=3.1 vs 4.8, middle ejected). Verdict: the static aligned shell neither dresses (Section 27) nor confines - sea route closed at its minimal declared scope; surviving sea reading requires a dynamically responsive (orientational-polarization) or self-consistent sea; surviving isolated route: non-circular same-level release. Also housekeeping: duplicate concurrently-landed Section 32s resolved (brake-attack/chatter sections renumbered 33/34, internal refs fixed). Tests 4 passing; fail-closed; queue item 4 rejection stands, now with the sea route measured.
+
+## 2026-07-09 — Event-local fine study (spec Section 34; item 24 step 2a)
+- Click event is SELF-LIMITING: continuum limit = perfect ceiling → the pin is a SLIDING MODE on beta=1 ("ride BY clicking"); Section 33 sawtooth amplitude was dt-artifact.
+- Epicyclic lever measured, dt-converged: ratio(vr) = 0.013 + 1.02·vr — click-synchronized radial damper; clicks cluster past perigee in eccentric orbits (self-organizing).
+- Pure sliding limit ESCAPES (constant outward drift ~0.24 at support 0.76): rectification needs DISCRETE clicks. Hypothesis of the session: h-quantized transaction may be the confinement enabler, not decoration.
+- 3 tests green (25 total, six instruments). Next: 2b discrete-event orbit integrator.
+
+## 2026-07-09 - Non-circular same-level release: epicyclic apoapsis seed improves native closure (0.4464) and survives coherently; isolated-braid verdict route-complete
+
+[Spec Section 36](fold-crossing-chart-spec.md#36-non-circular-same-level-release-the-epicyclic-apoapsis-seed-improves-native-closure-and-survives-coherently--but-the-isolated-braid-still-expands-2026-07-09). `--em/--ei/--eo` per-layer epicyclic seed added to the native run owner script (a.m.-matched apoapsis start, held prehistory = matched slower circle, production-native, no release discontinuity; kappa frozen at 0.315105, declared). Findings: seed residual IMPROVES 0.4721 -> 0.4531 (e_M=0.05, reproducing the Section 23 refined score from an orthogonal direction) -> 0.4464 (e_M=0.1) - a new hunt axis; released epicyclic braid is the best-behaved release measured (no halt through 2 rotations, ~500-580 two-sided escapement transactions, no ejection, no cap fall-in) but still expands self-similarly - the radial-support deficit is structural across ALL declared bookings and canon-named variants (circular/chart/sea/epicyclic), so the isolated-braid verdict on queue item 4 is route-complete. Tests 4 passing; fail-closed. Next: the epicyclic hunt (minimize native seed residual over (e_I,e_M,e_O, apsidal phases) at frozen kappa*) and the dynamically-responsive-sea question.
+
+## 2026-07-09 — Discrete-event orbit integrator (spec Section 35; item 24 step 2b)
+- Rectification real (clicks cluster outward-phase; strengthens with quantum) but percent-scale: s_min ≈ 0.99 (q→0) → 0.97 (q=0.15). Knife edge: escape below, collapse at s=1.0.
+- Strong discreteness-as-enabler hypothesis REJECTED at reduced level; weak form survives, measured.
+- Division of labor quantified: clicker = speed pin + last-percent radial trim; geometry/sea must close radial support to ≳97% BEFORE release. Caps (0.53) now the binding constraint.
+- New survivability statistic for the search: radial support ratios ≈ 1 on all layers at unified kappa*, closure residual second.
+- 4 tests green (29 total, seven instruments this session).
