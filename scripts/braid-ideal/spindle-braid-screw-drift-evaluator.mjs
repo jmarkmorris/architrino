@@ -167,6 +167,74 @@ export function residuals({ u = 0, cTrans = 1.0, geo = CHAMPION, sea = null } = 
   return { kappaStar, relResidual: per, globalRelResidual: Math.sqrt(rA / fA) };
 }
 
+// MM-ANALOG: perpendicular drift (u along x, spin about z). Rotation + transverse
+// translation is NOT a screw motion (no one-parameter worldtube symmetry), so the
+// residuals are cycle-periodic and must be cycle-sampled. Kinematic anisotropy at
+// the budget level: site speed oscillates, |v|max = omega*rho + u, so the all-cycle
+// sub-field budget is LINEAR (c <= c_f - u) versus the parallel Pythagorean budget
+// (c <= sqrt(c_f^2 - u^2)); running perpendicular at the parallel-pinned cadence
+// makes the middle binary cross c_f twice per cycle (active escapement clicking).
+export function residualsPerp({ u = 0.2, cTrans = 0.9, geo = CHAMPION } = {}, { Nt = 8, soft = 0.02 } = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo }); // axial-drift field unused; positions overridden below
+  const w = braid.omega;
+  const posP = (site, t) => { const p0 = pos(site, t, w, 0); return [p0[0] + u * t, p0[1], p0[2]]; };
+  const velP = (site, t) => { const v0 = vel(site, t, w, 0); return [v0[0] + u, v0[1], v0[2]]; };
+  const rootsP = (Xi, src, T, dmax, N) => {
+    const g = (te) => { const pp = posP(src, te); return Math.hypot(Xi[0] - pp[0], Xi[1] - pp[1], Xi[2] - pp[2]) - cf * (T - te); };
+    const out = []; let g0 = g(T - dmax);
+    for (let k = 1; k <= N; k++) {
+      const te = T - dmax + dmax * (k / N); if (te >= T - 1e-9) break;
+      const g1 = g(te);
+      if (g0 === 0 || (g0 < 0) !== (g1 < 0)) {
+        let lo = T - dmax + dmax * ((k - 1) / N), hi = te; const gl = g(lo);
+        for (let b = 0; b < 64; b++) { const m = (lo + hi) / 2; if ((gl < 0) === (g(m) < 0)) lo = m; else hi = m; }
+        out.push((lo + hi) / 2);
+      }
+      g0 = g1;
+    }
+    return out;
+  };
+  const period = (2 * Math.PI) / w;
+  const stretch = 1 / Math.max(0.15, 1 - Math.abs(u));
+  const samples = []; let minAbsDs = Infinity;
+  for (let k = 0; k < Nt; k++) {
+    const T = (k / Nt) * period;
+    for (const i of [0, 2, 4]) {
+      const recv = braid.sites[i];
+      const Xi = posP(recv, T), vi = velP(recv, T);
+      const kin = kinAccel(recv, T, w); // translation adds no acceleration
+      let av = [0, 0, 0];
+      for (let j = 0; j < braid.sites.length; j++) {
+        if (j === i) continue;
+        const src = braid.sites[j];
+        const dmax = (recv.R + src.R + 0.3) * stretch;
+        const N = Math.min(24000, Math.ceil(4000 * stretch));
+        for (const te of rootsP(Xi, src, T, dmax, N)) {
+          const pp = posP(src, te);
+          const dd = [Xi[0] - pp[0], Xi[1] - pp[1], Xi[2] - pp[2]];
+          const rr = Math.hypot(dd[0], dd[1], dd[2]);
+          if (rr < 1e-9) continue;
+          const rh = [dd[0] / rr, dd[1] / rr, dd[2] / rr];
+          const vs = velP(src, te);
+          const Ds = cf - (vs[0] * rh[0] + vs[1] * rh[1] + vs[2] * rh[2]);
+          const Dt = cf - (vi[0] * rh[0] + vi[1] * rh[1] + vi[2] * rh[2]);
+          minAbsDs = Math.min(minAbsDs, Math.abs(Ds));
+          const m = (Dt * Ds) / (Ds * Ds + soft * soft);
+          const ww = (recv.pol * src.pol) * m / (rr * rr);
+          av[0] += ww * rh[0]; av[1] += ww * rh[1]; av[2] += ww * rh[2];
+        }
+      }
+      samples.push({ kin, wake: av });
+    }
+  }
+  let num = 0, den = 0;
+  for (const sm of samples) for (let c = 0; c < 3; c++) { num += sm.kin[c] * sm.wake[c]; den += sm.wake[c] ** 2; }
+  const kappaStar = num / den;
+  let rA = 0, fA = 0;
+  for (const sm of samples) for (let c = 0; c < 3; c++) { rA += (sm.kin[c] - kappaStar * sm.wake[c]) ** 2; fA += sm.kin[c] ** 2; }
+  return { kappaStar, globalRelResidual: Math.sqrt(rA / fA), minAbsDs, cMaxBudgetLinear: cf - Math.abs(u) };
+}
+
 // Cadence optimum at one drift: parabolic refinement over a c-grid near 1/gamma.
 export function cadenceOptimum({ u = 0.4, span = 0.12, n = 5 } = {}) {
   const cRail = Math.sqrt(Math.max(0, 1 - u * u));

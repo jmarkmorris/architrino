@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { screwRigidity, residuals, pass2Optimize, FAIL_CLOSED } from "../scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs";
+import { screwRigidity, residuals, residualsPerp, pass2Optimize, FAIL_CLOSED } from "../scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs";
 
 test("screw motion preserves rigidity under drift (co-screwing wake constant)", () => {
   const r = screwRigidity({ u: 0.4, cTrans: 0.9 });
@@ -35,6 +35,13 @@ test("pass 2: preferred-direction drift with geometry response closes better tha
   const r = pass2Optimize({ u: -0.2, rounds: 1 });
   assert.ok(r.fOpt < rest, `moving ${r.fOpt} vs rest ${rest}`);
   assert.ok(r.deg.alphaI > -12, `dish angle ran from -12 toward flat: ${r.deg.alphaI}`);
+});
+
+test("MM-analog: perpendicular drift closes worse than parallel (orientation anisotropy exists)", () => {
+  const u = 0.2, c = Math.sqrt(1 - u * u);
+  const par = residuals({ u: -u, cTrans: c }).globalRelResidual;
+  const perp = residualsPerp({ u, cTrans: c }, { Nt: 6 }).globalRelResidual;
+  assert.ok(perp > par + 0.03, `perp ${perp} vs par ${par}`);
 });
 
 test("report is fail-closed", () => {
