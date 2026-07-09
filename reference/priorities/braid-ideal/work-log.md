@@ -1397,3 +1397,10 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - Confinement is dynamic: only the rail-straddling clicker regime confines; steady riders disperse. Middle must CLICK, not ride.
 - Amortized budgets: circular-geometry clicks are tangential-heavy (ratio ~70); consistency needs ≲12 → NON-CIRCULAR (epicyclic breathing) middle named as the candidate-row design target, quantified.
 - 4 tests green (19 total across the session's four new instruments).
+
+## 2026-07-09 — Reduced chatter integrator, first pass (spec Section 33)
+- The clicker EXISTS at reduced level: deterministic, pump-driven, self-timed relaxation oscillation (sawtooth through the rail, several clicks/rotation). No external tipping needed; external wakes phase-shift clicks (analog h/2 tipping rides on an intrinsic clock). Null test clean.
+- Circular-chatter radial supply ~3% of centripetal (bracket s*≈0.97) — confirms Section 32 budget verdict independently; epicyclic re-angling is the lever.
+- dt-halving witness FAILS: pointwise 1/r² click spike = the Section 2.3 artifact biting its own instrument. Numbers provisional; structure robust.
+- Named second pass: event-based integrator with chart-integrated click impulses + Section 32 valve force between events.
+- 3 tests green (22 total across five new instruments this session).
