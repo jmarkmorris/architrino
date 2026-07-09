@@ -78,11 +78,41 @@ function shellDirs() { return [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1
 const unit = (v) => { const n = Math.hypot(v[0],v[1],v[2]) || 1e-300; return [v[0]/n, v[1]/n, v[2]/n]; };
 
 // Per-layer inward support margin PER UNIT p0 (margin linear in p0 at saturation).
-export function saturationMarginPerP0({ geo = SUPPORT_V1, Rsea = 4.25, Nt = 12, soft = 0.02, mode = "fast" } = {}) {
+// exactDelays: per-(receiver, sea-site) causal delays on the return leg — the sea
+// dipole's orientation is read at its true emission time t - r_j/c_f for EACH braid
+// receiver j (and braidFieldAt retards each braid source exactly inside). The
+// uniform 2R/c_f idealization (exactDelays=false) is retained for regression: the
+// Row 3 native run showed the idealization FLIPS both ledgers at a=4.25 — the
+// braid radius (~1.2) is not small against the shell radius, so per-pair phase
+// spread is order one. Exact delays are the default and the claim-bearing mode.
+export function saturationMarginPerP0({ geo = SUPPORT_V1, Rsea = 4.25, Nt = 12, soft = 0.02, mode = "fast", exactDelays = true } = {}) {
   const braid = buildBraid({ u: 0, cTrans: 1.0, geo });
   const w = braid.omega, period = 2 * Math.PI / w;
   const kap = residuals({ u: 0, cTrans: 1.0, geo }, { soft }).kappaStar;
   const dirs = shellDirs().map((v) => [v[0]*Rsea, v[1]*Rsea, v[2]*Rsea]);
+  // RELAX mode: first-order direction relaxation dp/dt = gamma * (Ehat - p)_perp,
+  // settled over 2 cycles before measurement (the finite-alignment-rate model;
+  // gammaOverOmega ~ 1 is the resonant-lag regime). Torque transfer comes from LAG,
+  // so finite gamma can enhance tangential rows at the cost of radial ones.
+  let relaxTraj = null;
+  if (mode === "relax") {
+    const gamma = (arguments[0] && arguments[0].gammaOverOmega != null ? arguments[0].gammaOverOmega : 1) * w;
+    const settleSteps = 3 * Nt, dtR = period / Nt;
+    relaxTraj = dirs.map((X) => {
+      let ph = [0, 0, 1];
+      const seq = [];
+      for (let k = -settleSteps; k < Nt; k++) {
+        // sea-site timeline (source legs exactly retarded inside braidFieldAt); the uniform
+        // mode keeps its historical -2R/c epoch so the pinned regression rows are unchanged
+        const E = braidFieldAt(X, braid, (k / Nt) * period - (exactDelays ? 0 : 2 * Rsea / cf));
+
+        const eh = unit(E);
+        ph = unit([ph[0] + gamma * dtR * (eh[0] - ph[0]), ph[1] + gamma * dtR * (eh[1] - ph[1]), ph[2] + gamma * dtR * (eh[2] - ph[2])]);
+        if (k >= 0) seq.push(ph);
+      }
+      return seq;
+    });
+  }
   // SLOW limit: alignment direction = cycle-averaged retarded field direction
   let slowDirs = null;
   if (mode === "slow") {
@@ -99,9 +129,10 @@ export function saturationMarginPerP0({ geo = SUPPORT_V1, Rsea = 4.25, Nt = 12, 
   let meanFieldMag = 0;
   for (let k = 0; k < Nt; k++) {
     const t = (k / Nt) * period;
-    const pHat = mode === "fast"
+    const pHat = mode === "fast" && !exactDelays
       ? dirs.map((X) => { const E = braidFieldAt(X, braid, t - 2 * Rsea / cf); meanFieldMag += Math.hypot(E[0],E[1],E[2]) / (Nt * dirs.length); return unit(E); })
-      : slowDirs;
+      : mode === "relax" ? relaxTraj.map((seq) => seq[k])
+      : mode === "slow" ? slowDirs : null; // fast+exactDelays: computed per receiver below
     for (const i of [0, 2, 4]) {
       const s = braid.sites[i];
       const xj = sitePos(s, t, w), vj = siteVel(s, t, w);
@@ -114,7 +145,12 @@ export function saturationMarginPerP0({ geo = SUPPORT_V1, Rsea = 4.25, Nt = 12, 
         const rj = Math.hypot(dxj[0], dxj[1], dxj[2]);
         const rhj = [dxj[0]/rj, dxj[1]/rj, dxj[2]/rj];
         const Dt = cf - (vj[0]*rhj[0] + vj[1]*rhj[1] + vj[2]*rhj[2]);
-        const E = dipoleField(pHat[q2], dxj);
+        const ph = (mode === "fast" && exactDelays)
+          ? (() => { const E2 = braidFieldAt(dirs[q2], braid, t - rj / cf); meanFieldMag += Math.hypot(E2[0],E2[1],E2[2]) / (Nt * dirs.length * 3); return unit(E2); })()
+          : (mode === "relax" && exactDelays)
+          ? relaxTraj[q2][((Math.round(((t - rj / cf) / period) * Nt) % Nt) + Nt) % Nt]
+          : pHat[q2];
+        const E = dipoleField(ph, dxj);
         inward += -(s.pol) * (Dt / cf) * (E[0]*rx + E[1]*ry);
         tangential += (s.pol) * (Dt / cf) * (E[0]*tx + E[1]*ty);
       }
@@ -124,6 +160,24 @@ export function saturationMarginPerP0({ geo = SUPPORT_V1, Rsea = 4.25, Nt = 12, 
   }
   return { Rsea, mode, kappaStar: kap, marginPerP0: acc, tanRowPerP0: accTan,
     meanPerP0: (acc.I + acc.M + acc.O) / 3, meanFieldMagAtShell: mode === "fast" ? meanFieldMag : null };
+}
+
+// Multi-shell saturation sum (radial + tangential rows) at natural number density:
+// each shell's 6 sites scaled to count(R) = rhoNum * 4*pi*R^2 * dR. Sea dipoles
+// respond to the braid only (no sea-sea coupling at this grade), so shells add.
+export function multiShellSaturation({ Rmin = 3.5, Rmax = 8, dR = 0.5, rhoNum = 1 / (4.25 ** 3), Nt = 8, mode = "fast", exactDelays = true } = {}) {
+  const shells = [];
+  const tot = { radI: 0, radM: 0, radO: 0, tanI: 0, tanM: 0, tanO: 0 };
+  for (let R = Rmin; R <= Rmax + 1e-9; R += dR) {
+    const m = saturationMarginPerP0({ Rsea: R, Nt, mode, exactDelays });
+    const count = rhoNum * 4 * Math.PI * R * R * dR; // fractional counts kept (density-weighted)
+    const scale = count / 6;
+    tot.radI += m.marginPerP0.I * scale; tot.radM += m.marginPerP0.M * scale; tot.radO += m.marginPerP0.O * scale;
+    tot.tanI += m.tanRowPerP0.I * scale; tot.tanM += m.tanRowPerP0.M * scale; tot.tanO += m.tanRowPerP0.O * scale;
+    shells.push({ R: +R.toFixed(2), count: +count.toFixed(2), tanIperP0: m.tanRowPerP0.I, radMeanPerP0: (m.marginPerP0.I + m.marginPerP0.M + m.marginPerP0.O) / 3 });
+  }
+  return { rhoNum, mode, shells, totalsPerP0: tot,
+    meanRadialPerP0: (tot.radI + tot.radM + tot.radO) / 3 };
 }
 
 export function diagnosticReport() {

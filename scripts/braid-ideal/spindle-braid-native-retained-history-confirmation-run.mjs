@@ -169,6 +169,49 @@ export const DECLARED = {
       [0, 1, 1], [0, 1, -1], [0, -1, 1], [0, -1, -1],
     ],
   },
+  // Responsive-sea mode (opt-in via --responsive-sea): Candidate Row 3 —
+  // the sea-dressed release of support-candidate v1 (handoff packet Row 3,
+  // tabled 2026-07-09). ALL parameters are pre-existing named quantities;
+  // nothing is fit:
+  //  - Geometry: the FCC first coordination shell — 12 sites at the named
+  //    spacing a = 4.25 (the SH-0-sea named spacing; same fccDirections set
+  //    as the static --sea mode).
+  //  - Each site: a saturable orientational dipole of magnitude p0 = 2.20
+  //    (the spindle's own axial polarity dipole at v1 geometry —
+  //    sh0-sea-orientation-saturation-margin-estimate.mjs braidAxialDipole),
+  //    direction evolving by first-order relaxation toward the local
+  //    retarded braid field direction, dpHat/dt = gamma (EHat - pHat)_perp,
+  //    at the measured one-sided fast-alignment floor gamma = 2 omega_braid
+  //    (spec "The Dressed Budget" Result 3).
+  //  - Sea sites are environment sources with their own retarded emission
+  //    (the braid reads each dipole's orientation at the emission time
+  //    t_e = t - r/c_f); static in position — orientation-only dynamics at
+  //    this row's scope (declared idealization, reported).
+  //  - Kernel: the Section 43 receiver-normal saturated-dipole kernel —
+  //    braid->sea drive leg carries the signed branch weight m = c_f/D_s at
+  //    the retarded braid source; sea->braid leg carries the receiver-normal
+  //    factor D_T/c_f on the moving braid site and the point-dipole field of
+  //    p = p0 pHat(t_e). This is the accepted estimate-instrument kernel
+  //    promoted to the live release; the dipoles are NOT production
+  //    moving-circular sources (a reorienting dipole arm is not representable
+  //    without superluminal arm motion), so the environment channel is
+  //    analytic-kernel grade on top of the native braid-braid root machinery
+  //    (declared honestly in the certificate).
+  responsiveSea: {
+    enabled: false,
+    // Tabled spacings only (CLI --rsea-spacing; NOT a search knob):
+    //  4.25 = Candidate Row 3 (the SH-0-sea named spacing; executed, rejected —
+    //         anti-confining at exact per-pair causal delays, spec Section 44);
+    //  3.40 = Candidate Row 4 (the exact-delay supply=deficit fixed-point
+    //         region, deliberate mild surplus side; tabled 2026-07-09 — the
+    //         named-constant re-declaration decision is deferred pending the
+    //         Row 4 verdict).
+    spacing: 4.25,
+    p0: 2.2, // the spindle's own axial polarity dipole at v1 (not a knob)
+    gammaOverOmega: 2, // measured one-sided fast-alignment floor (not a knob)
+    settleRotations: 3, // held-prehistory settle window before release (declared)
+    orientationInit: "delayed_field_direction_at_settle_start", // declared
+  },
   chart: {
     enabled: false,
     foldJacobianThreshold: 0.02, // |D_s| below this = fold-flagged, substep-integrate
@@ -297,6 +340,205 @@ export function seaWakeContribution({ seaSites, xi, vi, receiverPol, tH }) {
   const rho = Math.hypot(xi[0], xi[1]);
   if (rho > 1e-12) netRadial = (a[0] * xi[0] + a[1] * xi[1]) / rho;
   return { a, netRadial };
+}
+
+// ---------------------------------------------------------------------------
+// Responsive sea (Candidate Row 3): 12 saturable orientational dipoles on the
+// FCC first coordination shell, orientation-only dynamics (positions static),
+// first-order relaxation toward the local retarded braid field at
+// gamma = 2 omega_braid. Full orientation history is retained so the braid
+// reads each dipole at its own emission time (the sea's retarded emission).
+// ---------------------------------------------------------------------------
+const unit3 = (v) => {
+  const n = Math.hypot(v[0], v[1], v[2]);
+  return n > 1e-300 ? [v[0] / n, v[1] / n, v[2] / n] : [0, 0, 1];
+};
+
+export function buildResponsiveSeaState() {
+  if (!DECLARED.responsiveSea.enabled) return null;
+  const s = DECLARED.responsiveSea.spacing;
+  const sites = DECLARED.sea.fccDirections.map((dir, k) => {
+    const n = Math.hypot(dir[0], dir[1], dir[2]);
+    return {
+      id: `rsea:${k}`,
+      position: [(dir[0] / n) * s, (dir[1] / n) * s, (dir[2] / n) * s],
+    };
+  });
+  return {
+    sites,
+    p0: DECLARED.responsiveSea.p0,
+    gamma: DECLARED.responsiveSea.gammaOverOmega * DECLARED.omega,
+    // retained orientation record (shared time axis, per-site direction rows)
+    ts: [],
+    ps: sites.map(() => []),
+    clampedLookups: 0,
+  };
+}
+
+// Retarded braid field at a static point X (the braid->sea drive leg;
+// Section 43 kernel: signed branch weight m = c_f / D_s at the braid source).
+// Held prehistory (t_e <= 0) is exact rigid; released history is read from the
+// retained record's linear segments (pass histories = null during settle).
+export function braidRetardedFieldAt(X, sites, histories, t) {
+  const c = DECLARED.fieldSpeed;
+  const E = [0, 0, 0];
+  for (let i = 0; i < sites.length; i += 1) {
+    const posAt = (tE) =>
+      histories && tE > 0 ? histories[i].positionAt(tE) : rigidPosition(sites[i], tE);
+    let tE = t - DECLARED.responsiveSea.spacing / c;
+    for (let it = 0; it < 60; it += 1) {
+      const p = posAt(tE);
+      const r = Math.hypot(X[0] - p[0], X[1] - p[1], X[2] - p[2]);
+      const next = t - r / c;
+      if (Math.abs(next - tE) < 1e-12) {
+        tE = next;
+        break;
+      }
+      tE = next;
+    }
+    const p = posAt(tE);
+    const dx = [X[0] - p[0], X[1] - p[1], X[2] - p[2]];
+    const r = Math.hypot(dx[0], dx[1], dx[2]);
+    if (!(r > 0)) continue;
+    const rh = [dx[0] / r, dx[1] / r, dx[2] / r];
+    let v;
+    if (histories && tE > 0) {
+      const h = histories[i];
+      let k = Math.min(h.ts.length - 1, Math.max(0, Math.floor(tE / DECLARED.timeStep)));
+      while (k > 0 && h.ts[k] > tE) k -= 1;
+      while (k < h.ts.length - 1 && h.ts[k + 1] <= tE) k += 1;
+      v = h.vs[k];
+    } else {
+      v = rigidVelocity(sites[i], tE);
+    }
+    const Ds = c - (v[0] * rh[0] + v[1] * rh[1] + v[2] * rh[2]);
+    const m = c / Ds;
+    for (let cc = 0; cc < 3; cc += 1) E[cc] += (sites[i].pol * m * dx[cc]) / (r * r * r);
+  }
+  return E;
+}
+
+// One first-order relaxation step for all sea orientations at time t, pushing
+// the post-step directions onto the retained orientation record at t + dt.
+export function stepResponsiveSea(seaState, sites, histories, t, dt) {
+  const g = seaState.gamma;
+  const n = seaState.sites.length;
+  if (seaState.ts.length === 0) {
+    // declared init: instantaneous delayed-field direction at settle start
+    seaState.ts.push(t);
+    for (let j = 0; j < n; j += 1) {
+      const E = braidRetardedFieldAt(seaState.sites[j].position, sites, histories, t);
+      seaState.ps[j].push(unit3(E));
+    }
+  }
+  const last = seaState.ts.length - 1;
+  const next = [];
+  for (let j = 0; j < n; j += 1) {
+    const ph = seaState.ps[j][last];
+    const E = braidRetardedFieldAt(seaState.sites[j].position, sites, histories, t);
+    const eh = unit3(E);
+    next.push(
+      unit3([
+        ph[0] + g * dt * (eh[0] - ph[0]),
+        ph[1] + g * dt * (eh[1] - ph[1]),
+        ph[2] + g * dt * (eh[2] - ph[2]),
+      ])
+    );
+  }
+  seaState.ts.push(t + dt);
+  for (let j = 0; j < n; j += 1) seaState.ps[j].push(next[j]);
+}
+
+// Dipole orientation at emission time (linear interpolation on the retained
+// orientation record, renormalized; clamped lookups counted, honesty row).
+export function seaOrientationAt(seaState, j, tE) {
+  const ts = seaState.ts;
+  const ps = seaState.ps[j];
+  if (ts.length === 0) return [0, 0, 1];
+  if (tE <= ts[0]) {
+    seaState.clampedLookups += 1;
+    return ps[0];
+  }
+  if (tE >= ts[ts.length - 1]) return ps[ps.length - 1];
+  let lo = 0;
+  let hi = ts.length - 1;
+  while (hi - lo > 1) {
+    const mid = (lo + hi) >> 1;
+    if (ts[mid] <= tE) lo = mid;
+    else hi = mid;
+  }
+  const f = (tE - ts[lo]) / (ts[hi] - ts[lo]);
+  return unit3([
+    ps[lo][0] + f * (ps[hi][0] - ps[lo][0]),
+    ps[lo][1] + f * (ps[hi][1] - ps[lo][1]),
+    ps[lo][2] + f * (ps[hi][2] - ps[lo][2]),
+  ]);
+}
+
+function dipoleFieldAt(pHat, rvec) {
+  const r = Math.hypot(rvec[0], rvec[1], rvec[2]);
+  const rh = [rvec[0] / r, rvec[1] / r, rvec[2] / r];
+  const pr = pHat[0] * rh[0] + pHat[1] * rh[1] + pHat[2] * rh[2];
+  const r3 = r * r * r;
+  return [
+    (3 * pr * rh[0] - pHat[0]) / r3,
+    (3 * pr * rh[1] - pHat[1]) / r3,
+    (3 * pr * rh[2] - pHat[2]) / r3,
+  ];
+}
+
+// Sea->braid environment acceleration per unit kappa (Section 43 kernel:
+// receiver-normal factor D_T/c_f on the moving braid site; point-dipole field
+// p = p0 pHat(t_e) read at the emission time t_e = t - r/c_f, exact for the
+// static sea positions).
+export function responsiveSeaAcceleration(seaState, xi, vi, receiverPol, tH) {
+  const c = DECLARED.fieldSpeed;
+  const a = [0, 0, 0];
+  for (let j = 0; j < seaState.sites.length; j += 1) {
+    const P = seaState.sites[j].position;
+    const dx = [xi[0] - P[0], xi[1] - P[1], xi[2] - P[2]];
+    const r = Math.hypot(dx[0], dx[1], dx[2]);
+    if (!(r > 0)) continue;
+    const rh = [dx[0] / r, dx[1] / r, dx[2] / r];
+    const Dt = c - (vi[0] * rh[0] + vi[1] * rh[1] + vi[2] * rh[2]);
+    const pHat = seaOrientationAt(seaState, j, tH - r / c);
+    const E = dipoleFieldAt(pHat, dx);
+    const w = (receiverPol * seaState.p0 * Dt) / c;
+    a[0] += w * E[0];
+    a[1] += w * E[1];
+    a[2] += w * E[2];
+  }
+  return a;
+}
+
+// Sea orientation order parameters (diagnostic 5: does the braid drive its
+// bath?): magnitude of the mean direction vector and mean axial projection.
+export function seaOrderParameter(seaState) {
+  const last = seaState.ts.length - 1;
+  if (last < 0) return { meanVectorMagnitude: 0, meanAxialProjection: 0 };
+  const m = [0, 0, 0];
+  let mz = 0;
+  const n = seaState.sites.length;
+  for (let j = 0; j < n; j += 1) {
+    const p = seaState.ps[j][last];
+    m[0] += p[0] / n;
+    m[1] += p[1] / n;
+    m[2] += p[2] / n;
+    mz += p[2] / n;
+  }
+  return { meanVectorMagnitude: Math.hypot(m[0], m[1], m[2]), meanAxialProjection: mz };
+}
+
+// Settle the sea on the held braid prehistory over the declared window ending
+// at tEnd (release epoch t = 0 for the main run).
+export function settleResponsiveSea(seaState, sites, tEnd = 0) {
+  const dt = DECLARED.timeStep;
+  const t0 = tEnd - DECLARED.responsiveSea.settleRotations * TWO_PI;
+  const steps = Math.round((tEnd - t0) / dt);
+  for (let k = 0; k < steps; k += 1) {
+    stepResponsiveSea(seaState, sites, null, t0 + k * dt, dt);
+  }
+  return seaState;
 }
 
 export function heldSourceModel(site) {
@@ -515,7 +757,7 @@ export function solveDirectedRelation({ histories, i, j, tH, xi, vi, sameSource,
 // a_i = kappa * sum sigma_i sigma_j * m_reg / (r^2 + rho_c^2) * r_hat,
 // m_reg = D_T D_s / (D_s^2 + soft^2), all row fields read from the runtime).
 // ---------------------------------------------------------------------------
-export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false, seaSites = null }) {
+export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false, seaSites = null, responsiveSeaState = null }) {
   const soft = DECLARED.soft;
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
   const a = [0, 0, 0];
@@ -608,7 +850,28 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
       });
     }
   }
-  return { a, aSelf, selfRows, selfRootCount };
+  const aSea = [0, 0, 0];
+  if (responsiveSeaState) {
+    const sea = responsiveSeaAcceleration(responsiveSeaState, xi, vi, sites[i].pol, tH);
+    aSea[0] = sea[0];
+    aSea[1] = sea[1];
+    aSea[2] = sea[2];
+    a[0] += sea[0];
+    a[1] += sea[1];
+    a[2] += sea[2];
+    if (ledger) {
+      ledger.push({
+        receiver: sites[i].id,
+        source: "rsea:FCC-12-orientational-dipoles",
+        relation: "environment-responsive-retarded",
+        activeRootCount: responsiveSeaState.sites.length,
+        seaAcceleration: sea,
+        roots: [],
+        inactiveGap: null,
+      });
+    }
+  }
+  return { a, aSelf, aSea, selfRows, selfRootCount };
 }
 
 // ---------------------------------------------------------------------------
@@ -726,7 +989,7 @@ export function chartWindowIntegrate({
 // ---------------------------------------------------------------------------
 // Seed-record native evaluation (t = 0-, all held): anchor + native kappa* fit.
 // ---------------------------------------------------------------------------
-export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKappa = null) {
+export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKappa = null, responsiveSeaState = null) {
   const samples = [];
   for (let i = 0; i < sites.length; i += 1) {
     const xi = rigidPosition(sites[i], 0);
@@ -738,20 +1001,31 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
     const wH = sites[i].omegaHeld ?? DECLARED.omega;
     const kinHeld = [-wH * wH * xi[0], -wH * wH * xi[1], 0];
     const ledger = [];
-    const { a } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites });
+    const { a, aSea } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites, responsiveSeaState });
+    // Kappa* fit discipline (Rows 1-3 protocol): the coupling is fitted on the
+    // BRAID channel only (identical to the bare Rows 1-2 seed record, so the
+    // frozen kappa* is comparable across rows); sea rows are reported AT that
+    // kappa, they do not enter the fit.
+    const wakeBare = [a[0] - aSea[0], a[1] - aSea[1], a[2] - aSea[2]];
     // radial support bookkeeping (survivability statistic, spec Sections 36-37):
     // inward radial wake per unit kappa, against the centripetal need omega^2*rho
     const rhoCyl = Math.hypot(xi[0], xi[1]);
-    const wakeInwardRadial =
-      rhoCyl > 1e-12 ? -((a[0] * xi[0] + a[1] * xi[1]) / rhoCyl) : 0;
+    const inwardOf = (vec) =>
+      rhoCyl > 1e-12 ? -((vec[0] * xi[0] + vec[1] * xi[1]) / rhoCyl) : 0;
+    const tHat = rhoCyl > 1e-12 ? [-xi[1] / rhoCyl, xi[0] / rhoCyl] : [0, 0];
     samples.push({
       site: sites[i].id,
       layer: sites[i].layer,
       kin,
       kinHeld,
       wake: a,
+      wakeBare,
+      seaWake: aSea,
       rhoCyl,
-      wakeInwardRadial,
+      wakeInwardRadial: inwardOf(a),
+      wakeBareInwardRadial: inwardOf(wakeBare),
+      seaInwardRadial: inwardOf(aSea),
+      seaTangential: aSea[0] * tHat[0] + aSea[1] * tHat[1],
       ledger,
     });
   }
@@ -760,13 +1034,13 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
     let den = 0;
     for (const s of samples) {
       for (let c = 0; c < 3; c += 1) {
-        num += s[key][c] * s.wake[c];
-        den += s.wake[c] * s.wake[c];
+        num += s[key][c] * s.wakeBare[c];
+        den += s.wakeBare[c] * s.wakeBare[c];
       }
     }
     return num / den;
   };
-  const residuals = (key, kappa) => {
+  const residuals = (key, kappa, wakeKey = "wakeBare") => {
     const perLayer = {};
     let rA = 0;
     let fA = 0;
@@ -774,7 +1048,7 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
       let res = 0;
       let ref = 0;
       for (let c = 0; c < 3; c += 1) {
-        const d = s[key][c] - kappa * s.wake[c];
+        const d = s[key][c] - kappa * s[wakeKey][c];
         res += d * d;
         ref += s[key][c] * s[key][c];
         rA += d * d;
@@ -787,6 +1061,10 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
   };
   const kappaStar = fitKappa("kin");
   const circFitted = residuals("kin", kappaStar);
+  // Dressed-record residual (braid + sea at the same kappa; diagnostics only).
+  const dressedGlobalRelResidual = responsiveSeaState
+    ? residuals("kin", kappaStar, "wake").globalRelResidual
+    : null;
   // Both seed-record conventions per variant (epicyclic-hunt-handoff.md,
   // diagnostics only; the hunt's primary objective is the released dynamics):
   //  A. fitted-kappa*/circular-need (per-variant refit, tabled-cadence need)
@@ -805,11 +1083,11 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
   // Per-layer radial support ratios at a given coupling (antipodal pair mean):
   // s_a = kappa * inward-radial-wake / (omega^2 * rho) — the survivability
   // statistic, same convention as spindle-support-ratio-targeted-search.mjs.
-  const supportAt = (kappa) => {
+  const supportAt = (kappa, key = "wakeBareInwardRadial") => {
     const acc = {};
     for (const s of samples) {
       const need = DECLARED.omega * DECLARED.omega * s.rhoCyl;
-      const v = (kappa * s.wakeInwardRadial) / need;
+      const v = (kappa * s[key]) / need;
       if (!acc[s.layer]) acc[s.layer] = { sum: 0, n: 0 };
       acc[s.layer].sum += v;
       acc[s.layer].n += 1;
@@ -822,12 +1100,38 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
     atFittedKappa: supportAt(kappaStar),
     atFrozenKappa: frozenKappa != null ? supportAt(frozenKappa) : null,
   };
+  // Seed sea rows (Row 3 diagnostics 3-4): per-layer radial supply fraction
+  // and tangential row from the responsive sea, at the fitted (frozen-grade)
+  // kappa — the metabolism-ledger seed anchor.
+  let seaRows = null;
+  if (responsiveSeaState) {
+    const kap = frozenKappa != null ? frozenKappa : kappaStar;
+    const tanAcc = {};
+    for (const s of samples) {
+      if (!tanAcc[s.layer]) tanAcc[s.layer] = { tan: 0, torque: 0 };
+      tanAcc[s.layer].tan += (kap * s.seaTangential) / 2;
+      tanAcc[s.layer].torque += kap * s.seaTangential * s.rhoCyl;
+    }
+    let netTorque = 0;
+    for (const L of Object.keys(tanAcc)) netTorque += tanAcc[L].torque;
+    seaRows = {
+      kappaUsed: kap,
+      radialSupplyFraction: supportAt(kap, "seaInwardRadial"),
+      supportRatiosDressed: supportAt(kap, "wakeInwardRadial"),
+      tangentialRowPerLayer: Object.fromEntries(
+        Object.entries(tanAcc).map(([k, v]) => [k, v.tan])
+      ),
+      netSeaTorqueZ: netTorque,
+    };
+  }
   return {
     kappaStar,
     perSiteRelResidual: circFitted.perSiteRelResidual,
     globalRelResidual: circFitted.globalRelResidual,
+    dressedGlobalRelResidual,
     conventionPair,
     supportRatios,
+    seaRows,
     samples,
   };
 }
@@ -835,6 +1139,34 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
 // ---------------------------------------------------------------------------
 // Per-layer force projections (tangential pump/brake rows, radial support).
 // ---------------------------------------------------------------------------
+// Per-layer projections of the responsive-sea channel alone (metabolism rows,
+// Row 3 diagnostics 2-4: tangential row, radial supply fraction, net torque).
+function seaLayerProjections(sites, states, seaAccs, kappa) {
+  const rows = {};
+  let netTorqueZ = 0;
+  for (let i = 0; i < sites.length; i += 1) {
+    const { x } = states[i];
+    const rho = Math.hypot(x[0], x[1]);
+    if (rho < 1e-12) continue;
+    const rHat = [x[0] / rho, x[1] / rho];
+    const tHat = [-x[1] / rho, x[0] / rho];
+    const f = seaAccs[i].map((c) => kappa * c);
+    const tan = f[0] * tHat[0] + f[1] * tHat[1];
+    const rad = f[0] * rHat[0] + f[1] * rHat[1];
+    netTorqueZ += tan * rho;
+    const L = sites[i].layer;
+    if (!rows[L]) rows[L] = { tangential: 0, radial: 0, cylRadius: 0 };
+    rows[L].tangential += tan / 2;
+    rows[L].radial += rad / 2;
+    rows[L].cylRadius += rho / 2;
+  }
+  const w2 = DECLARED.omega * DECLARED.omega;
+  for (const L of Object.keys(rows)) {
+    rows[L].radialSupplyFraction = -rows[L].radial / (w2 * rows[L].cylRadius);
+  }
+  return { rows, netTorqueZ };
+}
+
 function layerProjections(sites, states, wakes, kappa) {
   const rows = {};
   for (let i = 0; i < sites.length; i += 1) {
@@ -883,6 +1215,7 @@ export function runRelease({
   const seaSites = buildSeaSites();
   const dt = DECLARED.timeStep;
   const steps = Math.round((rotations * TWO_PI) / dt);
+  let responsiveSeaState = null;
   let histories;
   let states;
   let diag;
@@ -921,6 +1254,12 @@ export function runRelease({
     halted = resumeState.halted;
     startStep = resumeState.step;
     nextRecordIdx = resumeState.nextRecordIdx;
+    if (resumeState.responsiveSea) {
+      responsiveSeaState = buildResponsiveSeaState();
+      responsiveSeaState.ts = resumeState.responsiveSea.ts;
+      responsiveSeaState.ps = resumeState.responsiveSea.ps;
+      responsiveSeaState.clampedLookups = resumeState.responsiveSea.clampedLookups;
+    }
   } else {
     histories = sites.map((s) => new RetainedHistory(s));
     states = sites.map((s) => ({
@@ -949,6 +1288,9 @@ export function runRelease({
     halted = null;
     startStep = 0;
     nextRecordIdx = 0;
+    if (DECLARED.responsiveSea.enabled) {
+      responsiveSeaState = settleResponsiveSea(buildResponsiveSeaState(), sites, 0);
+    }
   }
 
   const recordTimes = recordRotations
@@ -968,11 +1310,12 @@ export function runRelease({
     const ledgers = wantRecord ? [] : null;
 
     const wakes = [];
+    const seaAccs = [];
     const selfCounts = [];
     const chartBookings = [];
     for (let i = 0; i < sites.length; i += 1) {
       const ledger = ledgers ? [] : null;
-      const { a, aSelf, selfRows, selfRootCount } = wakeAcceleration({
+      const { a, aSelf, aSea, selfRows, selfRootCount } = wakeAcceleration({
         histories,
         sites,
         i,
@@ -982,7 +1325,9 @@ export function runRelease({
         ledger,
         splitSelf: DECLARED.chart.enabled,
         seaSites,
+        responsiveSeaState,
       });
+      seaAccs.push(aSea);
       let booking = null;
       if (DECLARED.chart.enabled) {
         // chart-active: fold-flagged same-source row, or the total speed
@@ -1111,6 +1456,12 @@ export function runRelease({
 
     // per-step diagnostics
     const layerRows = layerProjections(sites, states, wakes, kappa);
+    let seaRows = null;
+    let seaOrder = null;
+    if (responsiveSeaState) {
+      seaRows = seaLayerProjections(sites, states, seaAccs, kappa);
+      seaOrder = seaOrderParameter(responsiveSeaState);
+    }
     const shapeDev = sites.map((s, i) => {
       const rp = rigidPosition(s, t);
       return Math.hypot(
@@ -1132,6 +1483,8 @@ export function runRelease({
       maxShapeDeviation: Math.max(...shapeDev),
       selfRootCounts: selfCounts.slice(),
       layerRows,
+      seaRows,
+      seaOrder,
       states: null,
     });
 
@@ -1141,6 +1494,8 @@ export function runRelease({
         rotations: t / TWO_PI,
         rootLedger: ledgers,
         layerRows,
+        seaRows,
+        seaOrder,
         betaM,
       });
       nextRecordIdx += 1;
@@ -1153,6 +1508,12 @@ export function runRelease({
         st.v[c] += kappa * wakes[i][c] * dt;
         st.x[c] += st.v[c] * dt;
       }
+    }
+
+    // advance the sea orientations t -> t+dt (orientation-only dynamics,
+    // driven by the braid's retained/held retarded field at the sea sites)
+    if (responsiveSeaState) {
+      stepResponsiveSea(responsiveSeaState, sites, histories, t, dt);
     }
 
     // halt conditions (first-blocker discipline)
@@ -1189,10 +1550,18 @@ export function runRelease({
     railCrossings,
     halted,
     completed,
+    responsiveSeaState,
     state: {
       step,
       steps,
       states,
+      responsiveSea: responsiveSeaState
+        ? {
+            ts: responsiveSeaState.ts,
+            ps: responsiveSeaState.ps,
+            clampedLookups: responsiveSeaState.clampedLookups,
+          }
+        : null,
       histories: histories.map((h) => ({
         ts: h.ts,
         xs: h.xs,
@@ -1242,6 +1611,8 @@ if (isMain()) {
   DECLARED.chart.enabled = process.argv.includes("--chart");
   DECLARED.sea.enabled = process.argv.includes("--sea");
   DECLARED.sea.spacing = readCliNumber("sea-spacing", DECLARED.sea.spacing);
+  DECLARED.responsiveSea.enabled = process.argv.includes("--responsive-sea");
+  DECLARED.responsiveSea.spacing = readCliNumber("rsea-spacing", DECLARED.responsiveSea.spacing);
   selectTabledRow(readCliNumber("row", 1));
   DECLARED.epicycle.I = readCliNumber("ei", 0);
   DECLARED.epicycle.M = readCliNumber("em", 0);
@@ -1269,11 +1640,15 @@ if (isMain()) {
   // Seed record: native production-runtime evaluation at t = 0 (all held).
   const sites = buildSites();
   const seedHistories = sites.map((s) => new RetainedHistory(s));
+  const seedSeaState = DECLARED.responsiveSea.enabled
+    ? settleResponsiveSea(buildResponsiveSeaState(), sites, 0)
+    : null;
   const seed = seedRecordEvaluation(
     sites,
     seedHistories,
     buildSeaSites(),
-    Number.isFinite(kappaOverride) ? kappaOverride : null
+    Number.isFinite(kappaOverride) ? kappaOverride : null,
+    seedSeaState
   );
   if (Number.isFinite(kappaOverride)) {
     // frozen coupling for cross-variant comparability (declared, no refit)
@@ -1293,8 +1668,18 @@ if (isMain()) {
   const sf = seed.supportRatios.atFittedKappa;
   process.stderr.write(
     `[seed] row=${DECLARED.candidateRow} supportRatios(I/M/O)=` +
-      `${sf.I.toFixed(4)}/${sf.M.toFixed(4)}/${sf.O.toFixed(4)} at fitted kappa*\n`
+      `${sf.I.toFixed(4)}/${sf.M.toFixed(4)}/${sf.O.toFixed(4)} at fitted kappa* (bare braid channel)\n`
   );
+  if (seed.seaRows) {
+    const sr = seed.seaRows;
+    process.stderr.write(
+      `[seed:rsea] radialSupply(I/M/O)=` +
+        `${sr.radialSupplyFraction.I.toFixed(4)}/${sr.radialSupplyFraction.M.toFixed(4)}/${sr.radialSupplyFraction.O.toFixed(4)} ` +
+        `dressedSupport(I/M/O)=${sr.supportRatiosDressed.I.toFixed(4)}/${sr.supportRatiosDressed.M.toFixed(4)}/${sr.supportRatiosDressed.O.toFixed(4)} ` +
+        `tanRow(I/M/O)=${sr.tangentialRowPerLayer.I.toFixed(4)}/${sr.tangentialRowPerLayer.M.toFixed(4)}/${sr.tangentialRowPerLayer.O.toFixed(4)} ` +
+        `netTorqueZ=${sr.netSeaTorqueZ.toFixed(4)}\n`
+    );
+  }
 
   const progress = (step, steps, d) => {
     process.stderr.write(
@@ -1405,9 +1790,11 @@ if (isMain()) {
       kappaStarNative: seed.kappaStar,
       kappaStarFitted: seed.kappaStarFitted ?? seed.kappaStar,
       globalRelResidualNative: seed.globalRelResidual,
+      dressedGlobalRelResidual: seed.dressedGlobalRelResidual,
       perSiteRelResidual: seed.perSiteRelResidual,
       conventionPair: seed.conventionPair,
       supportRatios: seed.supportRatios,
+      seaRows: seed.seaRows,
       candidateRow: DECLARED.candidateRow,
       prescribedEvaluatorAnchor: DECLARED.candidateRow === 2 ? 0.3240 : 0.4721,
       seedRootLedger: seed.samples.map((s) => ({ site: s.site, ledger: s.ledger })),
@@ -1430,7 +1817,11 @@ if (isMain()) {
         maxShapeDeviation: d.maxShapeDeviation,
         selfRootCounts: d.selfRootCounts,
         layerRows: d.layerRows,
+        seaRows: d.seaRows ?? null,
+        seaOrder: d.seaOrder ?? null,
       })),
+      responsiveSeaMode: DECLARED.responsiveSea.enabled,
+      responsiveSeaClampedLookups: main.state?.responsiveSea?.clampedLookups ?? null,
     },
     stabilityRow: {
       perturbation: DECLARED.twinPerturbation,

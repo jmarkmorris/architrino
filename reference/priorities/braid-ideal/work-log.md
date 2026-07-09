@@ -1480,3 +1480,59 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - Cross-stack confirmation on my instrument: tau = (−0.218, +0.096, ~0) at v1; net torque ≈ 0 — conservative inner→middle TRANSFER (tidal-flavored), not a loss.
 - Extended search J = Σ[(s−1)² + λτ²] (first pass, λ=2): M's row halves, O zeroes, support+closure hold — INNER ROW IMMOVABLE (−0.2176→−0.2168). Candidate tangential sibling of the sum rule.
 - Routes named: (a) escapement-return M→I (+0.22 target), (b) counter-sense inner (scoped, expect rejection), (c) sea tangential rows on the orientation instrument.
+
+## 2026-07-09 — Escapement-return study (spec Section 42)
+- Internal M→I return BUDGET-BOUNDED below need: conservation caps it at the transfer (~0.19) times a geometric fraction; uniform-phase clicks average the first-order return to O(q²); phase-pinned (commensurate — fourth resonance condition of the arc) reaches only O(0.1) at large quantum vs 0.218 need. Isolated braid cannot re-supply its inner.
+- Sea tangential rows (orientation instrument extended): AT THE NAMED SPACING the sign structure is exactly right — inner +0.032 forward, middle ~0 (left to its escapement), outer +0.031; off-band it flips. Single shell covers ~15% of the inner need.
+- THE METABOLISM PICTURE: sea feeds braid angular momentum → internal wake channel transfers inner→middle → escapement absorbs surplus → outgoing wake drives sea orientation order. Matter is an open system in steady state with its bath; isolated matter runs down. Row 3 must be SEA-DRESSED (responsive sea, not static).
+- 5 tests green on the instrument (session braid-ideal instruments all green).
+
+## 2026-07-09 — Dressed budget refinement + Row 3 design draft (spec Section 43)
+- Uniform sea CANCELS its own tangential bands (gas supplies radial only); structure required for torque.
+- FCC coordination shells (12/6/24 at a, a√2, a√3; a=4.25; p0=2.20): radial mean 6.6% — THE RADIAL LEDGER CLOSES at estimate grade from pre-existing named quantities, nothing fit. Inner torque +0.044 (~20% of need).
+- No lag resonance: gamma/omega >= 2 required (one-sided); gamma/omega = 0.5 turns radial NEGATIVE. Handed to SH-0-sea: what sets assembly reorientation rate, is 2*omega available?
+- Candidate Row 3 DESIGN DRAFT added to the handoff packet (responsive-sea-dressed release of v1; FCC 12-shell, p0=2.20, gamma=2omega; five decisive diagnostics incl. the metabolism ledger). Not tabled — operator decision pending.
+- 6 tests green on the instrument.
+
+## 2026-07-09 — Candidate Row 3 TABLED (operator decision)
+- Handoff packet Row 3 block flipped DESIGN → TABLED; priorities updated. Paste-ready prompt delivered to operator for the native run thread. Evaluator track holds for the Row 3 verdict; renumbering pass (item 26) remains queued for a quiet window.
+
+## 2026-07-09 — Candidate Row 3 executed and REJECTED (native run thread; spec Section 44)
+- Environment built exactly as tabled (FCC-12 at a=4.25, p0=2.20 verified = braid's own axial dipole 2.1978, gamma=2*omega, orientation-only, retained orientation history, both loop legs causally delayed per pair). Owner script `--responsive-sea`; tests 11 passing. Seed anchor reproduces Row 2 (kappa* 0.30048, closure 0.32404, support 0.96/0.88/0.98).
+- FIVE DIAGNOSTICS: clock unmoved (0.855/0.8525 vs 0.83/0.80); sea DEEPENS the inner brake (tau_I −0.243 vs −0.218 bare; estimate said +0.032 forward); metabolism ledger BACKWARD (net −0.082 vs +0.11); radial ledger OPENS (sea supply −13.7%/+7.2%/−38.0% vs +6.6% est.; dressed support 0.822/0.952/0.600); order parameter ~0.32, no secular growth — no metabolism loop closes.
+- ROOT CAUSE ISOLATED (5-variant cross-check): kernel reproduces published Section 42 rows under the estimate's uniform-2R/c convention; true FCC-12 doubles them; EXACT per-pair causal delays flip both ledgers. Anti-confining phase slip (the packet's named failure mode) at the seed record. Exact-delay confining band moved inward: R≈3.25–3.5 (tau_I forward +0.114 = 52% of need), named 4.25 near the trough.
+- First blocker `sea_anti_confines_at_exact_causal_delays`; operator REJECTED in-thread; gate fail-closed. Bonus: first native inward middle slip (dressed chart booking, r_M 1.0→0.63); cap fall-in stays cured; honesty rows clean (orientation dt-witness 0.075°, zero clamped lookups).
+- Standing rule captured: no candidate row tabled from a uniform-loop-delay estimate again; exact-delay promotion is a gate on estimate-grade sea results.
+
+## 2026-07-09 — Row 3 verdict folded in; exact-delay correction (spec Section 45)
+- Row 3 REJECTED: `sea_anti_confines_at_exact_causal_delays`. My uniform 2R/c idealization was the error (braid radius order-one vs shell radius; per-pair phase spread ~2.5 rad). Blocker reproduced exactly on this stack (+4.2% → −9.7% at 4.25).
+- Instrument upgraded: exact per-pair delays now the claim-bearing default; uniform mode pinned as regression (published rows preserved in tests, 7/7 green).
+- Band relocated: confining R ≲ 3.5; supply=deficit fixed point R* ≈ 3.4 (6-shell) / 3.5 (FCC-12); inner torque ~half need in-band — cross-validates the native run. Sections 40/42/43 named-spacing claims and entry 31's 4.25-fixed-point REFUTED at exact-delay grade (forward-only downgrade).
+- THE QUESTION INVERTS: homogeneous v1 sea equilibrates at ~3.4, not 4.25. Either the named constant revises (a prediction!) or sea assemblies differ in cadence/geometry (band tracks THEIR phases — commensurability inversion: ~0.8ω sea puts its band at 4.25). Provenance audit of 4.25 + cadence solve = Row 4 prerequisite (concurring with native thread).
+
+## 2026-07-09 — Row 4 prerequisite executed (spec Section 46)
+- PROVENANCE: 4.25 = "eligible crossing row nearest the window midpoint" of the SH-0-sea amplitude-only retention window [3, 5.35], computed for the OLD two-speed row (u0.8/v0.2) — a selection convention, never a derived point.
+- CADENCE/DYNAMICS SOLVE: exact-delay relaxation sweep at 4.25 — anti-confining at EVERY gamma (−2.6% to −9.9%; test-pinned). The band is geometric (braid cadence + loop phases); sea dynamics cannot move it. The 0.8ω reconciliation is dead at this grade.
+- RESOLUTION: no conflict — R*≈3.4 sits inside the legacy window; the midpoint convention is what falls. RECOMMENDATION to operator: revise the named spacing to R*≈3.4 (canon-adjacent constant — operator decision), then table Row 4 at a=3.4.
+- Relax mode upgraded to exact delays (uniform mode preserved as pinned regression); 8/8 tests green.
+
+## 2026-07-09 — Candidate Row 4 TABLED (operator middle-path decision)
+- Row 4: responsive-sea release of v1 at a=3.40 (exact-delay fixed-point region, mild-surplus side), FCC-12, p0=2.20, gamma=2omega — ONE change from Row 3 plus a binding no-uniform-delay validation obligation.
+- Named spacing constant NOT re-declared; decision deferred pending Row 4 verdict (middle path).
+- Seed expectations computed exact-delay (mean radial ~+10% FCC-12; inner torque ~+0.12 ≈ 55% of need; clock finally has a computed reason to move).
+- Paste-ready prompt delivered to operator.
+
+## 2026-07-09 — Candidate Row 4 executed and REJECTED (native run thread; spec Section 45)
+- Environment as tabled (a=3.40, FCC-12, p0=2.20, gamma=2*omega, exact per-pair delays everywhere; `--rsea-spacing` tabled selection; tests 12 passing). Bare anchor = Rows 2/3. Pre-release cross-check re-anchor at 3.40: fast-limit rows reproduce the packet (+13.6% radial, tanI +0.117, Nt-stable).
+- DIAGNOSTICS: clock MOVED for the first time — EARLIER (0.725/0.7725 vs 0.83/0.80/0.855); tau_I lifted to the expected −0.10 and HELD (sea feed steady +0.117→+0.13; beta_I decay halved) — THE INNER-BRAKE INVARIANT IS ENVIRONMENTAL, NOT STRUCTURAL (first native break); net sea torque POSITIVE as predicted (+0.0285 seed, growing); radial surplus NEVER ARRIVED (native mean +1.2% vs ~+10% tabled; gamma=2*omega relaxation collapses the radial channel at the in-band spacing while the tangential channel is lag-robust — channel-dependent fast-alignment requirement, new named finding); order parameter no secular growth (late rise = shell-crossing artifact).
+- Allocation mismatch confirmed as proximate killer: sea supply lands O-heavy/M-negative; M starves to 0.783 dressed (below bare 0.880), rides out; braid never enters surplus (escapement surplus-regulation question mooted).
+- First blocker `radial_surplus_lag_collapse_middle_starvation`; operator REJECTED in-thread; gate fail-closed; named-constant re-declaration stays open (3.40 delivered the tangential physics, not the radial).
+- Row 5 gate: joint lag-robustness map over (gamma/omega, a) at settled-relaxation grade, both channels at once — or a scoped negative closing the FCC-12 orientational family at p0=2.20.
+
+## 2026-07-09 — Row 4 verdict folded in; joint lag-robustness map: SCOPED NEGATIVE (spec Section 47)
+- Row 4 (run thread): REJECTED but the arc's biggest positive — inner-brake invariant BROKEN environmentally (tau_I −0.218 → −0.10, held; sea feed steady; first native break), net sea torque positive as predicted; killer = radial lag-collapse + M-starvation (clock moved EARLIER, 0.725).
+- Instrument correction: relax Euler step unstable at Nt=8/gamma=2 (gamma·dt≈1.6); map re-run settled at Nt≥16 — directionally consistent with the native lag-collapse.
+- THE MAP: radM NEGATIVE in every (a, gamma) cell (−6 to −14%) while radO +12-25% and tanI forward/lag-robust everywhere; alphaM sweep (−30°..+30°) never crosses zero. SCOPED NEGATIVE: the FCC-12 orientational-dipole sea at p0=2.20 cannot feed the middle, family closed at declared scope (test-pinned).
+- Routes ranked: complementary allocation (braid feeds M via lambda<1, sea feeds caps+inner-tangential — the sum rule makes allocation free), positional/breathing (phonon) sea, quadrupole/near-field.
+- Named-constant re-declaration stays open (3.40 delivered tangential physics only).
+- 9/9 tests on the instrument.

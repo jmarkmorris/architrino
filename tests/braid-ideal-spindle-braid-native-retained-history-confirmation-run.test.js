@@ -235,3 +235,162 @@ test("release is fail-closed and books the poised-clicker same-source opening", 
   // declared memory window and stratum discipline are wired
   assert.ok(DECLARED.sameSourceMinimumDelay < DECLARED.coincidenceStratum);
 });
+
+test("Row 3 responsive sea: FCC-12 geometry and named quantities are wired, not knobs", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  selectTabledRow(2);
+  DECLARED.responsiveSea.enabled = true;
+  try {
+    const sea = m.buildResponsiveSeaState();
+    assert.equal(sea.sites.length, 12);
+    for (const s of sea.sites) {
+      assert.ok(Math.abs(Math.hypot(...s.position) - 4.25) < 1e-12);
+    }
+    // FCC first-shell angular structure: direction cosines in {+-0.5, 0, -1}
+    const dirs = sea.sites.map((s) => s.position.map((c) => c / 4.25));
+    for (let a = 0; a < 12; a += 1) {
+      for (let b = a + 1; b < 12; b += 1) {
+        const dot = dirs[a][0] * dirs[b][0] + dirs[a][1] * dirs[b][1] + dirs[a][2] * dirs[b][2];
+        assert.ok(
+          [0.5, 0, -0.5, -1].some((v) => Math.abs(dot - v) < 1e-9),
+          `non-FCC pair angle: ${dot}`
+        );
+      }
+    }
+    // p0 is the spindle's own axial polarity dipole at v1 (named, not fit)
+    let pz = 0;
+    for (const s of buildSites()) pz += s.pol * s.z0;
+    assert.ok(Math.abs(Math.abs(pz) - sea.p0) < 0.01);
+    // gamma is the measured one-sided fast-alignment floor 2*omega_braid
+    assert.ok(Math.abs(sea.gamma - 2 * DECLARED.omega) < 1e-12);
+  } finally {
+    DECLARED.responsiveSea.enabled = false;
+    selectTabledRow(1);
+  }
+});
+
+test("Row 3 responsive sea: settled seed record keeps the bare Row 2 anchor and adds sea rows", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  selectTabledRow(2);
+  DECLARED.responsiveSea.enabled = true;
+  try {
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const sea = m.settleResponsiveSea(m.buildResponsiveSeaState(), sites, 0);
+    // settle record spans the declared window at run dt
+    assert.ok(sea.ts.length >= 3 * Math.round((2 * Math.PI) / DECLARED.timeStep));
+    assert.ok(Math.abs(sea.ts[sea.ts.length - 1] - 0) <= DECLARED.timeStep + 1e-9);
+    const order = m.seaOrderParameter(sea);
+    assert.ok(order.meanVectorMagnitude > 0 && order.meanVectorMagnitude <= 1);
+    const seed = seedRecordEvaluation(sites, heldOnly, null, null, sea);
+    // kappa* fit discipline: bare braid channel only -> Row 2 anchor unchanged
+    assert.ok(Math.abs(seed.kappaStar - 0.30048) < 2e-3);
+    assert.ok(Math.abs(seed.globalRelResidual - 0.32404) < 2e-3);
+    // sea rows present, finite, and separately booked (metabolism ledger seed anchor)
+    assert.ok(seed.seaRows);
+    for (const L of ["I", "M", "O"]) {
+      assert.ok(Number.isFinite(seed.seaRows.radialSupplyFraction[L]));
+      assert.ok(Number.isFinite(seed.seaRows.tangentialRowPerLayer[L]));
+      assert.ok(Number.isFinite(seed.seaRows.supportRatiosDressed[L]));
+    }
+    assert.ok(Number.isFinite(seed.seaRows.netSeaTorqueZ));
+    // dressed = bare + sea supply, same-record consistency
+    for (const L of ["I", "M", "O"]) {
+      const bare = seed.supportRatios.atFittedKappa[L];
+      const dressed = seed.seaRows.supportRatiosDressed[L];
+      const supply = seed.seaRows.radialSupplyFraction[L];
+      assert.ok(Math.abs(dressed - (bare + supply)) < 1e-9);
+    }
+  } finally {
+    DECLARED.responsiveSea.enabled = false;
+    selectTabledRow(1);
+  }
+});
+
+test("Row 3 responsive sea: short dressed release runs, retains sea history, no clamped lookups", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  selectTabledRow(2);
+  DECLARED.responsiveSea.enabled = true;
+  try {
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const sea = m.settleResponsiveSea(m.buildResponsiveSeaState(), sites, 0);
+    const seed = seedRecordEvaluation(sites, heldOnly, null, null, sea);
+    const short = runRelease({ rotations: 0.02, kappa: seed.kappaStar, recordRotations: [] });
+    assert.ok(short.completed);
+    assert.ok(short.responsiveSeaState);
+    // orientation record advanced through the released window
+    const lastT = short.responsiveSeaState.ts[short.responsiveSeaState.ts.length - 1];
+    assert.ok(lastT > 0);
+    // settle depth covers every emission-time lookup (honesty row stays zero)
+    assert.equal(short.responsiveSeaState.clampedLookups, 0);
+    // per-step sea diagnostics are booked
+    const d = short.diag[short.diag.length - 1];
+    assert.ok(d.seaRows && Number.isFinite(d.seaRows.netTorqueZ));
+    assert.ok(d.seaOrder && d.seaOrder.meanVectorMagnitude > 0);
+    // the environment channel is additive: sea acceleration rows are nonzero
+    assert.ok(
+      Math.abs(d.seaRows.rows.I.radial) + Math.abs(d.seaRows.rows.O.radial) > 1e-6
+    );
+  } finally {
+    DECLARED.responsiveSea.enabled = false;
+    selectTabledRow(1);
+  }
+});
+
+test("Row 4 responsive sea at a=3.40: exact-delay seed rows land on the confining side", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  selectTabledRow(2);
+  DECLARED.responsiveSea.enabled = true;
+  const priorSpacing = DECLARED.responsiveSea.spacing;
+  DECLARED.responsiveSea.spacing = 3.4;
+  try {
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const sea = m.settleResponsiveSea(m.buildResponsiveSeaState(), sites, 0);
+    for (const s of sea.sites) {
+      assert.ok(Math.abs(Math.hypot(...s.position) - 3.4) < 1e-12);
+    }
+    const seed = seedRecordEvaluation(sites, heldOnly, null, null, sea);
+    // bare braid anchor unchanged by the environment (kappa* fit discipline)
+    assert.ok(Math.abs(seed.kappaStar - 0.30048) < 2e-3);
+    assert.ok(Math.abs(seed.globalRelResidual - 0.32404) < 2e-3);
+    // exact-delay fixed-point side: mean radial sea supply POSITIVE (surplus),
+    // inner tangential sea torque FORWARD (the Row 4 tabling expectations)
+    const r = seed.seaRows.radialSupplyFraction;
+    const meanRad = (r.I + r.M + r.O) / 3;
+    assert.ok(meanRad > 0, `mean radial sea supply not surplus-side: ${meanRad}`);
+    assert.ok(
+      seed.seaRows.tangentialRowPerLayer.I > 0,
+      `inner sea torque not forward: ${seed.seaRows.tangentialRowPerLayer.I}`
+    );
+  } finally {
+    DECLARED.responsiveSea.spacing = priorSpacing;
+    DECLARED.responsiveSea.enabled = false;
+    selectTabledRow(1);
+  }
+});
