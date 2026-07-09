@@ -1313,3 +1313,29 @@ Operator ratified "spindle braid" for the rigid uniaxial tilted-dumbbell family 
 - Who leads: the ELECTRINO cap leads (closure prefers drift anti-parallel to the polarity dipole; gaps 0.044/0.104/0.174 at u=0.2/0.4/0.6 - grows with speed, per the operator intuition); anti-braid leads positrino-first by exact C-degeneracy. Helicity-polarity locking selected by closure. Curiosity: preferred-direction drift at u=0.2 scores 0.4721 = rest value to 4 digits (slow preferred travel nearly free).
 
 Fail-closed throughout. Verification: `node --test tests/braid-ideal-spindle-braid-screw-drift-evaluator.test.js` -> 5 pass, 0 fail.
+
+
+## 2026-07-08 - Item 19 pass 2: the angles run; motion is preferred. Pro/anti Q&A captured
+
+Operator Q&A (pro/anti, helicity, circulation) captured as brainstorm entry 6: anti-braid = exact C-conjugate (degenerate in isolation - asymmetry burden on formation kinetics + sea texture, with the helicity-polarity lock as the C-odd environmental handle); the measured lock IS a helicity lock (champion left-handed, electrino-first; P-enantiomer right-handed, degenerate); all six sites circulate the travel line in one selected common sense; cw/ccw = handedness label, pro/anti = polarity label, independent but three-way correlated by closure.
+
+Pass 2 ([spec Section 25](fold-crossing-chart-spec.md#25-drift-pass-2-the-angles-run-and-motion-is-preferred-2026-07-08); `pass2Optimize` added; 6 tests passing): per-u geometry re-opt at pinned cadence, preferred direction. (1) THE ANGLES RUN: inner dish -12/-4/+8/+16 deg at u=0/0.2/0.4/0.6 (through flat near u~0.25); cap lag 30->6 deg; alpha_O ~ constant (caps stay near-polar - no equatorward flattening). The weak-mixing-flavored misalignments are running quantities; any angle-observable mapping needs a declared kinematic point. (2) MOTION PREFERRED: f_opt 0.4721/0.4351/0.4110/0.4037 - the rest state is not the family optimum; still descending at u=0.6. Preferred-frame-sensitive; partner-channel caveats (no brake, no radiation cost, q_I frozen). Open: finite optimal u vs descent to the photon limit. L*(u) falls slightly slower than 1/gamma (geometry compensates).
+
+Verification: `node --test tests/braid-ideal-spindle-braid-screw-drift-evaluator.test.js` -> 6 pass, 0 fail.
+
+
+## 2026-07-08 - Item 19 pass 3: finite optimal speed; P/CP structural answer captured
+
+Operator Q&A: total site speed = Euclidean vector sum (transverse rotation + axial drift) in the void frame - the Pythagorean origin of gamma; near-free slow travel = the flat Lorentz bottom at fixed geometry, while the pass-2 tilt (re-opt geometry) is toll-gated by the L*(u) ladder (inertia as quantized toll); P/CP hierarchy answered structurally (P-even law + chiral object + maximal helicity-polarity lock => sector-selective maximal P violation with leading-order CP exactness; small CP violation next-order via sea texture or running-angle path interference) - captured as brainstorm entry 7.
+
+Pass 3 ([spec Section 26](fold-crossing-chart-spec.md#26-drift-pass-3-a-finite-optimal-speed--the-moving-family-is-inertia-anchored-2026-07-08)): extended preferred-direction sweep. FINITE OPTIMUM: broad flat basin u* ~ 0.5-0.65 (f ~ 0.404-0.409), steep climb beyond (0.4131 at 0.7, 0.4444 at 0.8) - the moving family is inertia-anchored, not photon-limit-runaway. Cap azimuth swings through exact alignment near the basin (30 deg lag at rest -> 18 deg lead at 0.8); dish angle keeps running. Robust: the structure (tilt -> basin -> climb); artifact-prone: basin location (partner channel, no brake/radiation, descent noise ~0.003). Preferred-frame accounting: reconciliation burdens = L*(u) toll gating + sea dressing (evaluator is sea-less; observed matter kinematics demand the dressed basin sit at rest-relative-to-sea). Fail-closed throughout.
+
+
+## 2026-07-08 - Terminology (site, drift), discrete-symmetry corpus promotion, native handoff packet
+
+Operator session continuation: (1) `site` and `drift` added to the terminology canon (terminology-usage.md, new "Site and Drift Usage" section; site = instantaneous architrino position = emission AND reception point; drift = uniform unaccelerated translation). (2) P/CP structural discussion promoted to the corpus as "Spindle Braid Discrete-Symmetry Structure" in the Configuration Space chapter (derivation-sketch claim level; parity-even law + chiral objects + maximal helicity-polarity lock => sector-selective maximal P violation, leading-order CP exactness, small CP next-order; validator 0 errors). (3) Brainstorm entries 8-12 captured (budget square + ultimate-energy stop = d0/max-curvature link; proper time = click count; MM orientation flag; super-field drift flag; h-transaction flag with the rail-poised middle as the measured h/2 borderline). (4) NATIVE HANDOFF: [spindle-braid-native-confirmation-handoff.md](spindle-braid-native-confirmation-handoff.md) written - the named candidate row for `native_retained_history_promotion` (item 4 status -> candidate-row-named); packet specifies the exact six-worldline seed, the release protocol, the same-record acceptance rows (incl. co-equal nu_J and nu_rec per the receiver-normal audit, d0 coincidence handling, h_act click logging), failure modes, and the same-thread acceptance rule.
+
+
+## 2026-07-08 - Sea-dressed drift first pass: sparse static sea negligible
+
+[Spec Section 27](fold-crossing-chart-spec.md#27-sea-dressed-drift-first-pass-sparse-static-sea-is-negligible-2026-07-08). Toy static sea (6 aligned dipole pairs at the SH-0-sea spacing 4.25, void-static) added to the screw-drift evaluator as environment sources: closure curve shifts uniformly by <~7e-4 at every u - negligible; landscape shape untouched. Sharpened reconciliation: denser/closer sea, dynamically responsive sea (orientational polarization = the sea's live channel per 2026-07-07), or the L*(u) transaction toll as primary anchor. All drift-evaluator tests remain green.

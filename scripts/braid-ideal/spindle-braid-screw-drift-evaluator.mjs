@@ -36,7 +36,24 @@ const cf = 1;
 const d = Math.PI / 180;
 export const CHAMPION = Object.freeze({ qI: 0.5, qO: 1.65, alphaI: -12 * d, alphaM: 0, alphaO: 84 * d, thetaO: 330 * d });
 
-export function buildBraid({ u = 0, cTrans = 1.0, geo = CHAMPION } = {}) {
+// Minimal static sea (sea-dressed drift question, spec Section 26): six aligned
+// dipole pairs on +/-x, +/-y, +/-z at the SH-0-sea named spacing R_sea = 4.25,
+// each an aligned +/- pair separated by sepSea along z, STATIC in the void frame
+// (so the sea frame IS the void frame: rest-relative-to-sea = u = 0). Sea sites
+// act as additional wake sources on the braid receivers; they are environment,
+// not receivers. A 6-dipole shell is a TOY sea (not FCC-12, not self-consistent).
+export function seaSites({ Rsea = 4.25, sepSea = 0.5 } = {}) {
+  const out = [];
+  const dirs = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  for (const dvec of dirs) {
+    const base = [dvec[0] * Rsea, dvec[1] * Rsea, dvec[2] * Rsea];
+    out.push({ static: true, p: [base[0], base[1], base[2] + sepSea / 2], pol: +1 });
+    out.push({ static: true, p: [base[0], base[1], base[2] - sepSea / 2], pol: -1 });
+  }
+  return out;
+}
+
+export function buildBraid({ u = 0, cTrans = 1.0, geo = CHAMPION, sea = null } = {}) {
   const RM = 1, omega = cTrans / (RM * Math.cos(geo.alphaM)); // transverse middle speed = cTrans
   const layers = [
     { name: "I", R: geo.qI, alpha: geo.alphaI, th: 0 },
@@ -45,7 +62,7 @@ export function buildBraid({ u = 0, cTrans = 1.0, geo = CHAMPION } = {}) {
   ];
   const sites = [];
   for (const L of layers) { sites.push({ ...L, sgn: +1, pol: +1 }, { ...L, sgn: -1, pol: -1 }); }
-  return { omega, u, sites };
+  return { omega, u, sites, sea: sea ? seaSites(sea) : [] };
 }
 
 function pos(s, t, w, u) {
@@ -102,6 +119,18 @@ export function wakeAccel(braid, recvIdx, T = 0, { soft = 0.02 } = {}) {
       av[0] += w * rh[0]; av[1] += w * rh[1]; av[2] += w * rh[2];
     }
   }
+  // static sea sources: single causal root at te = T - dist (source static)
+  for (const sSea of braid.sea) {
+    const dd0 = [Xi[0] - sSea.p[0], Xi[1] - sSea.p[1], Xi[2] - sSea.p[2]];
+    const rr = Math.hypot(dd0[0], dd0[1], dd0[2]);
+    if (rr < 1e-9) continue;
+    const rh = [dd0[0] / rr, dd0[1] / rr, dd0[2] / rr];
+    const Ds = cf; // static source: v_src = 0
+    const Dt = cf - (vi[0] * rh[0] + vi[1] * rh[1] + vi[2] * rh[2]);
+    const m = (Dt * Ds) / (Ds * Ds + soft * soft);
+    const w = (recv.pol * sSea.pol) * m / (rr * rr);
+    av[0] += w * rh[0]; av[1] += w * rh[1]; av[2] += w * rh[2];
+  }
   return { a: av, minAbsDs };
 }
 
@@ -119,8 +148,8 @@ export function screwRigidity({ u = 0.4, cTrans = 0.9 } = {}) {
   return { maxVar, screwRigid: maxVar < 1e-5 };
 }
 
-export function residuals({ u = 0, cTrans = 1.0, geo = CHAMPION } = {}, { soft = 0.02 } = {}) {
-  const braid = buildBraid({ u, cTrans, geo });
+export function residuals({ u = 0, cTrans = 1.0, geo = CHAMPION, sea = null } = {}, { soft = 0.02 } = {}) {
+  const braid = buildBraid({ u, cTrans, geo, sea });
   const samples = [];
   for (const i of [0, 2, 4]) {
     const s = braid.sites[i];
@@ -153,6 +182,30 @@ export function cadenceOptimum({ u = 0.4, span = 0.12, n = 5 } = {}) {
     if (Math.abs(denom) > 1e-12) cStar = b.c - 0.5 * ((b.c - a.c) * (b.f - cc.f) - (b.c - cc.c) * (b.f - a.f)) / denom * 0; // keep grid best; parabola optional
   }
   return { u, cRail, rows, cStar: best.c, fStar: best.f, ratioToRail: best.c / cRail };
+}
+
+// Pass 2: per-u geometry re-optimization at the pinned cadence c = sqrt(1-u^2).
+// Coordinate descent over (alphaI, alphaO, thetaO, qO); qI held (stiffness backbone),
+// alphaM held 0 (rail clean). Drift sign: preferred direction (electrino cap leads).
+export function pass2Optimize({ u = -0.4, rounds = 2 } = {}) {
+  const c = Math.sqrt(1 - u * u);
+  let g = { ...CHAMPION };
+  const steps = { alphaI: 4 * d, alphaO: 3 * d, thetaO: 8 * d, qO: 0.08 };
+  let f0 = residuals({ u, cTrans: c, geo: g }).globalRelResidual;
+  for (let r = 0; r < rounds; r++) {
+    for (const k of ["alphaI", "alphaO", "thetaO", "qO"]) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const trial = { ...g, [k]: g[k] + sgn * steps[k] };
+          const f = residuals({ u, cTrans: c, geo: trial }).globalRelResidual;
+          if (f < f0 - 1e-5) { g = trial; f0 = f; } else improved = false;
+        }
+      }
+    }
+  }
+  return { u, cPinned: c, fOpt: f0, geo: g,
+    deg: { alphaI: g.alphaI / d, alphaO: g.alphaO / d, thetaO: g.thetaO / d } };
 }
 
 export function diagnosticReport() {

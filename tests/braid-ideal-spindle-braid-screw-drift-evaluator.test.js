@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { screwRigidity, residuals, FAIL_CLOSED } from "../scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs";
+import { screwRigidity, residuals, pass2Optimize, FAIL_CLOSED } from "../scripts/braid-ideal/spindle-braid-screw-drift-evaluator.mjs";
 
 test("screw motion preserves rigidity under drift (co-screwing wake constant)", () => {
   const r = screwRigidity({ u: 0.4, cTrans: 0.9 });
@@ -28,6 +28,13 @@ test("the electrino cap leads: closure prefers drift anti-parallel to the polari
   assert.ok(minus4 < plus4, "electrino cap preferred at u=0.4");
   assert.ok(minus6 < plus6, "electrino cap preferred at u=0.6");
   assert.ok((plus6 - minus6) > (plus4 - minus4), "preference grows with speed");
+});
+
+test("pass 2: preferred-direction drift with geometry response closes better than rest, and the dish angle runs", () => {
+  const rest = residuals({ u: 0, cTrans: 1.0 }).globalRelResidual;
+  const r = pass2Optimize({ u: -0.2, rounds: 1 });
+  assert.ok(r.fOpt < rest, `moving ${r.fOpt} vs rest ${rest}`);
+  assert.ok(r.deg.alphaI > -12, `dish angle ran from -12 toward flat: ${r.deg.alphaI}`);
 });
 
 test("report is fail-closed", () => {

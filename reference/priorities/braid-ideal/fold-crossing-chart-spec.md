@@ -541,3 +541,50 @@ Queue item 19, pass 1 (fixed rest-state geometry; per-$u$ re-optimization deferr
 Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
 
 Next closure goal: item 19 pass 2 — re-optimize the spindle geometry per $u$ (tilts, radii, cap azimuth) at the pinned cadence $\omega_0/\gamma$, reading the Lorentzian flattening, the running of the misalignment angles, and $L^*(u)$ with geometry response included; then the native retained-history confirmation of the spindle rest state.
+
+---
+
+## 25. Drift Pass 2: The Angles Run, and Motion Is Preferred (2026-07-08)
+
+Item 19 pass 2: per-$u$ geometry re-optimization at the pinned cadence $c=\sqrt{1-u^2}$, drifting in the preferred direction (electrino cap leading), coordinate descent over $(\alpha_I,\alpha_O,\theta_O,q_O)$ with $q_I$ held (stiffness backbone) and $\alpha_M=0$ (rail clean). Owner script extended with `pass2Optimize`; tests 6 passing.
+
+| $u$ | pinned $c$ | $f^{\mathrm{opt}}$ | $\alpha_I$ | $\alpha_O$ | $\theta_O$ | $q_O$ |
+| --- | --- | --- | --- | --- | --- | --- |
+| $0$ (rest) | $1.000$ | $0.4721$ | $-12°$ | $84°$ | $330°$ | $1.65$ |
+| $0.2$ | $0.980$ | $0.4351$ | $-4°$ | $78°$ | $346°$ | $1.33$ |
+| $0.4$ | $0.917$ | $0.4110$ | $+8°$ | $78°$ | $346°$ | $1.41$ |
+| $0.6$ | $0.800$ | $0.4037$ | $+16°$ | $81°$ | $354°$ | $1.73$ |
+
+**Result 1 — the misalignment angles RUN with group velocity.** The inner dish angle runs strongly and monotonically ($-12°\to-4°\to+8°\to+16°$), sweeping through exactly flat near $u\approx0.25$; the cap azimuth lag closes toward alignment ($30°\to14°\to14°\to6°$ behind the inner axis). The 2026-07-08 brainstorm's beyond-numerology test is answered in-model: the closure-optimal internal angles are $u$-dependent — the weak-mixing-flavored misalignments behave like running quantities, and any angle-to-observable mapping must be stated at a declared kinematic point. The cap tilt $\alpha_O$ barely moves ($84°\to78$–$81°$): the caps stay near-polar; the geometry response lives in the dish, the lag, and the cap radius (non-monotone $1.65\to1.33\to1.73$).
+
+**Result 2 — motion is preferred: the rest state is not the family optimum.** $f^{\mathrm{opt}}$ falls monotonically with preferred-direction drift ($0.472\to0.435\to0.411\to0.404$, still descending at $u=0.6$). Within the partner-channel metric, the spindle braid closes better *moving* than at rest — the operator's "a braid wants a speed matched to its inventory" intuition (brainstorm item 4) appearing as a global tilt of the closure landscape toward motion. Read with care: this is a preferred-frame-sensitive statement from a prescribed-worldline partner-channel metric (no self-hit brake, no radiation cost, $q_I$ frozen, radial rebalance partial); whether the descent continues toward the photon limit ($u\to c_f$, the operator's $v\ge c$ panel) or turns at a finite optimal $u$ is the sharpest open question this pass creates. $L^*(u)$ at the re-optimized geometry falls slightly slower than the pinned $1/\gamma$ alone (geometry partially compensates the cadence factor).
+
+Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: extend the preferred-direction sweep toward $u\to c_f$ (with stretched root windows) to locate the closure optimum of the moving family — finite optimal $u$ (an inertia-anchored rest-mass-flavored state) versus monotone descent to the photon limit — and compute the inertia curve $f^{\mathrm{opt}}(u)$ curvature; in parallel, the native retained-history confirmation of the spindle rest state remains the gated acceptance step.
+
+---
+
+## 26. Drift Pass 3: A Finite Optimal Speed — The Moving Family Is Inertia-Anchored (2026-07-08)
+
+Extending the preferred-direction sweep toward $u\to c_f$ (root windows stretched $1/(1-u)$, coordinate-descent re-optimization per $u$; noise $\sim\pm0.003$ from descent resolution):
+
+| $u$ | $0$ | $0.2$ | $0.4$ | $0.5$ | $0.55$ | $0.6$ | $0.65$ | $0.7$ | $0.8$ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| $f^{\mathrm{opt}}$ | $0.4721$ | $0.4351$ | $0.4110$ | $0.4073$ | $0.4085$ | $0.4037$ | $0.4074$ | $0.4131$ | $0.4444$ |
+| $\alpha_I$ | $-12°$ | $-4°$ | $+8°$ | $+16°$ | $+20°$ | $+16°$ | $+20°$ | $+20°$ | $+24°$ |
+| $\theta_O$ | $330°$ | $346°$ | $346°$ | $354°$ | $354°$ | $354°$ | $362°$ | $362°$ | $378°$ |
+
+**Result — finite optimum, not monotone descent.** The closure landscape of the moving spindle family has a **broad flat basin at $u^\*\approx0.5$–$0.65$** and climbs steeply beyond ($+10\%$ by $u=0.8$): approaching the photon limit costs closure. The moving family is inertia-anchored at a finite speed rather than running away to $u\to c_f$. Robust claim: the *structure* (tilt from rest $\to$ finite basin $\to$ climb toward the photon limit); artifact-prone number: the basin's *location* (partner-channel metric, no brake/radiation costs, coordinate-descent noise). The cap azimuth swings through exact alignment ($\theta_O=360°$) near the basin and becomes a *lead* at high $u$; the dish angle keeps running ($+24°$ at $u=0.8$).
+
+**Interpretation discipline (preferred-frame accounting).** A finite preferred $u$ in the void frame is a preferred-frame statement: taken alone it would predict matter self-accelerating to $u^\*$, which observed matter kinematics forbids. Two in-model reconciliations are already on the table: (i) the $L^*(u)$ toll — reaching the basin requires transacting inventory (clicks/emission), so the tilt is gated, not free; and (ii) the missing **sea**: this evaluator is an empty-void calculation, and in a populated Noether sea the relevant drift is relative to the local sea state, whose drag/dressing reshapes the landscape (the observed near-rest of matter in the local sea frame would then be the dressed optimum). Both are open burdens, stated, not resolved. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`, no accepted seed-path certificate, no new validator or schema.
+
+Next closure goal: native retained-history confirmation of the spindle rest state (the gated acceptance step) — and, on the evaluator track, the sea-dressed drift question: whether adding a minimal sea environment moves the basin to $u=0$ relative to the sea (the dressed-inertia reconciliation).
+
+---
+
+## 27. Sea-Dressed Drift, First Pass: Sparse Static Sea Is Negligible (2026-07-08)
+
+The Section 26 reconciliation question, minimal form: does a sea environment move the drift basin to rest-relative-to-sea? Evaluator extended with a toy static sea (six aligned dipole pairs at the SH-0-sea named spacing $R_{\mathrm{sea}}=4.25$, static in the void frame so sea-rest $=u{=}0$; environment sources only). **Result: negligible** — the closure curve shifts uniformly by $\lesssim7\times10^{-4}$ at every drift; the landscape shape is untouched. A sparse static neutral-dipole shell at this spacing cannot dress the braid's kinematics (near-cancelling dipoles at $1/r^2$ over $r\approx4$–$6$). The reconciliation burden therefore sharpens: either a denser/closer sea, a *dynamically responsive* sea (orientational polarization, which the 2026-07-07 work showed is the sea's live channel), or — the leading candidate — the $L^*(u)$ transaction toll as the primary anchor, with sea drag secondary. Fail-closed; toy-sea caveat explicit (6 dipoles, not FCC-12, not self-consistent).
+
+Next closure goal: the native retained-history confirmation run (handoff packet [spindle-braid-native-confirmation-handoff.md](spindle-braid-native-confirmation-handoff.md), operator thread); evaluator track continues with the MM-analog perpendicular-drift computation (brainstorm entry 10) and the two-party $h$-transaction study (entry 12) as the queued follow-ons.
