@@ -34,6 +34,7 @@ import { fileURLToPath } from "node:url";
 import { solveMovingCircularSourceCausalRoots } from "../../src/solver/app/AbsoluteHistoryRootRuntime.mjs";
 import {
   railPinnedEquilibrium,
+  driftRailPinnedEquilibrium,
   radialStabilityMatrix,
   tiltStiffness,
   supportRatios as instrumentSupportRatios,
@@ -144,7 +145,17 @@ export function selectTabledRow(row) {
   DECLARED.candidateRow = row;
   DECLARED.layers = layers;
   const aM = layers.find((L) => L.name === "M").alpha;
-  DECLARED.omega = 1 / Math.cos(aM); // beta_M = omega R_M cos(alpha_M) = 1 (rail)
+  // Drift cadence pin (instrument touch point 4). At rest the rail pin is
+  // omega = 1 / cos(alpha_M) so beta_M = omega R_M cos(alpha_M) = 1 (the c_f
+  // rail). Under uniform axial drift u the middle transverse speed is pinned at
+  // c_f/gamma = sqrt(1 - u^2) so the TOTAL middle-site speed sqrt((c_f/gamma)^2
+  // + u^2) = c_f stays on the rail; hence omega = sqrt(1 - u^2) / cos(alpha_M),
+  // matching the driftSupportRatios convention. alpha_M is left FREE (tabled),
+  // not re-pinned — letting the tilt relax is the whole point over the
+  // screw-rigid reference. axialDrift = 0 gives sqrt(1) = 1 (exact regression).
+  const u = DECLARED.axialDrift ?? 0;
+  const driftCadence = Math.sqrt(Math.max(0, 1 - u * u));
+  DECLARED.omega = driftCadence / Math.cos(aM);
   // Rows 5/6: the frozen static-pair environment is part of the tabled row
   // (packet Candidate Rows 5 and 6) — geometry and environment are one row.
   DECLARED.staticPairSea.enabled = row === 5 || row === 6;
@@ -175,6 +186,24 @@ export function selectTabledRow(row) {
 export const DECLARED = {
   fieldSpeed: 1, // c_f
   omega: 1, // pinned transverse cadence (beta_M = 1 on the rail); set by selectTabledRow
+  // Native axial-drift envelope instrument (build spec
+  // reference/priorities/braid-ideal/native-axial-drift-envelope-instrument-spec.md;
+  // theorem target ../master-equation-closure/boosted-delay-attractor-theorem-target.md):
+  // boost velocity u along +z (the aligned spin axis), in units of c_f. This is
+  // expressed ENTIRELY through the existing centerVelocity/receiver-velocity
+  // surfaces (heldSourceModel.centerVelocity.z, rigidPosition/rigidVelocity z)
+  // — no native-ABI field is added, the central solver contract is unchanged.
+  // At axialDrift = 0 every rest-only path regresses exactly. Touch point 1.
+  axialDrift: 0,
+  // Oblique drift (Corollary 1 sigma test). driftAngle theta is the angle
+  // between the drift direction and the spin axis (+z), in radians; the drift
+  // 3-vector is u * (sin theta, 0, cos theta) with u = axialDrift the magnitude.
+  // theta = 0 is pure axial screw drift (exact regression of the axial knob);
+  // theta > 0 is oblique — NOT screw-rigid, so the spin axis tumbles/reorients
+  // freely during the release (the point of the two-axis test). The drift is
+  // still carried entirely by the existing centerVelocity 3-vector surface; the
+  // central solver is unchanged.
+  driftAngle: 0,
   candidateRow: 1,
   // Tabled candidate row (canonical, NOT a knob; selected via --row, default
   // Row 1 = the packet Section 1 champion). See TABLED_ROWS below.
@@ -1014,10 +1043,15 @@ export function braidAxisRow(states) {
     inv[2][0] * L[0] + inv[2][1] * L[1] + inv[2][2] * L[2],
   ];
   const n = Math.hypot(w[0], w[1], w[2]) || 1e-300;
+  // Orient the spin-axis unit vector into the +z hemisphere (sign of the
+  // rotation vector is a convention; the physical axis is the line).
+  const s = w[2] >= 0 ? 1 : -1;
+  const axisUnit = [(s * w[0]) / n, (s * w[1]) / n, (s * w[2]) / n];
   return {
     axisTiltDeg: (Math.acos(Math.max(-1, Math.min(1, w[2] / n))) * 180) / Math.PI,
     axisAzimuthDeg: (Math.atan2(w[1], w[0]) * 180) / Math.PI,
     omegaFit: n,
+    axisUnit,
   };
 }
 
@@ -1344,10 +1378,25 @@ export function settleResponsiveSea(seaState, sites, tEnd = 0) {
   return seaState;
 }
 
+// The uniform drift 3-vector: magnitude u = axialDrift, direction at angle
+// driftAngle theta from the spin axis (+z), in the x-z plane. At theta = 0 this
+// is [0, 0, u] (pure axial), so every axial-drift path regresses exactly.
+export function driftVector() {
+  const u = DECLARED.axialDrift ?? 0;
+  const th = DECLARED.driftAngle ?? 0;
+  return [u * Math.sin(th), 0, u * Math.cos(th)];
+}
+
 export function heldSourceModel(site) {
+  // Touch point 3: the held source drifts uniformly at the drift 3-vector
+  // through the existing centerVelocity surface. centerAtEpoch stays the rest
+  // center and epochTime = 0, so the source center is x0 + driftVec * t,
+  // consistent with rigidPosition/rigidVelocity (touch point 2). At u = 0 (and
+  // for any theta at u = 0) this is the rest source model exactly.
+  const d = driftVector();
   return {
     centerAtEpoch: { x: 0, y: 0, z: site.z0 },
-    centerVelocity: { x: 0, y: 0, z: 0 },
+    centerVelocity: { x: d[0], y: d[1], z: d[2] },
     radiusU: { x: site.rho, y: 0, z: 0 },
     radiusV: { x: 0, y: site.rho, z: 0 },
     angularVelocity: site.omegaHeld ?? DECLARED.omega,
@@ -1358,16 +1407,26 @@ export function heldSourceModel(site) {
 }
 
 export function rigidPosition(site, t) {
+  // Touch point 2: the held/seed worldline drifts uniformly at the drift
+  // 3-vector (axial screw at theta = 0, oblique at theta > 0).
   const w = site.omegaHeld ?? DECLARED.omega;
   const a = w * t + site.phase;
-  return [site.rho * Math.cos(a), site.rho * Math.sin(a), site.z0];
+  const d = driftVector();
+  return [
+    site.rho * Math.cos(a) + d[0] * t,
+    site.rho * Math.sin(a) + d[1] * t,
+    site.z0 + d[2] * t,
+  ];
 }
 
 export function rigidVelocity(site, t) {
+  // Touch point 2: uniform drift rides the receiver-velocity and seed-velocity
+  // surfaces (circular transverse motion + the uniform drift 3-vector).
   const w = site.omegaHeld ?? DECLARED.omega;
   const a = w * t + site.phase;
   const v = site.rho * w;
-  return [-v * Math.sin(a), v * Math.cos(a), 0];
+  const d = driftVector();
+  return [-v * Math.sin(a) + d[0], v * Math.cos(a) + d[1], d[2]];
 }
 
 // ---------------------------------------------------------------------------
@@ -2200,6 +2259,207 @@ function layerProjections(sites, states, wakes, kappa) {
 // ---------------------------------------------------------------------------
 // The release integration.
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Envelope readback (instrument touch point 5). Measures the spindle braid's
+// envelope semiaxes under axial drift from the RELAXED states (native free
+// tilt), all definitions matching canon
+// (content/markdown/aaa/archie/mathematics-terminology.md: xi == R_parallel /
+// R_perp, lambda == R_perp / R_perp,0).
+//
+// The whole braid translates along +z at u, so tilt and axial extent are
+// measured about the co-moving braid center zCenter = mean_site z (which is
+// u t at the seed and tracks the drift after release). Per layer a: R_a =
+// mean pair radius about the center, alpha_a = mean |tilt| = mean |atan2(z -
+// zCenter, rho)| of its two sites; then R_parallel = max_a |R_a sin alpha_a|,
+// R_perp = max_a R_a cos alpha_a, xi = R_parallel / R_perp, alongside
+// 1/gamma = sqrt(1 - u^2). lambda = R_perp / R_perp(u=0) is filled by the
+// sweep (needs the u=0 reference); an optional RperpRef supplies it in-record.
+// ---------------------------------------------------------------------------
+export function envelopeReadback(states, u = DECLARED.axialDrift ?? 0, RperpRef = null) {
+  const n = states.length;
+  let zCenter = 0;
+  for (const st of states) zCenter += st.x[2];
+  zCenter /= n;
+  const perLayer = {};
+  const layers = DECLARED.layers;
+  for (let k = 0; k < layers.length; k += 1) {
+    const name = layers[k].name;
+    const pair = [states[2 * k], states[2 * k + 1]];
+    let R = 0;
+    let alpha = 0;
+    for (const st of pair) {
+      const rho = Math.hypot(st.x[0], st.x[1]);
+      const zRel = st.x[2] - zCenter;
+      R += Math.hypot(rho, zRel) / 2;
+      alpha += Math.abs(Math.atan2(zRel, rho)) / 2;
+    }
+    perLayer[name] = {
+      R,
+      alphaDeg: (alpha * 180) / Math.PI,
+      Rpar: Math.abs(R * Math.sin(alpha)),
+      Rperp: R * Math.cos(alpha),
+    };
+  }
+  const rows = Object.values(perLayer);
+  const Rpar = Math.max(...rows.map((l) => l.Rpar));
+  const Rperp = Math.max(...rows.map((l) => l.Rperp));
+  const RparLayer = Object.keys(perLayer).find((k) => perLayer[k].Rpar === Rpar);
+  const RperpLayer = Object.keys(perLayer).find((k) => perLayer[k].Rperp === Rperp);
+  const xi = Rperp > 1e-12 ? Rpar / Rperp : null;
+  const oneOverGamma = Math.sqrt(Math.max(0, 1 - u * u));
+  return {
+    u,
+    zCenter,
+    perLayer,
+    Rpar,
+    Rperp,
+    RparLayer,
+    RperpLayer,
+    xi,
+    oneOverGamma,
+    lambda: RperpRef && RperpRef > 1e-12 ? Rperp / RperpRef : null,
+  };
+}
+
+// 2x2 symmetric-eigen helper for the transverse shape block.
+function eig2(qxx, qyy, qxy) {
+  const tr = qxx + qyy;
+  const det = qxx * qyy - qxy * qxy;
+  const disc = Math.sqrt(Math.max(0, (tr / 2) * (tr / 2) - det));
+  const l1 = tr / 2 + disc;
+  const l2 = tr / 2 - disc;
+  const anisotropy = l1 + l2 > 1e-12 ? (l1 - l2) / (l1 + l2) : 0;
+  return { major: l1, minor: l2, anisotropy };
+}
+
+// Orthonormal basis {e1, e2} spanning the plane perpendicular to a unit normal.
+// For normalHat = z-hat this returns {x-hat, y-hat} exactly (so the axial-drift
+// lab-frame block is unchanged). Used to read the transverse shape block in the
+// DRIFT frame for oblique drift.
+function perpBasis(normalHat) {
+  const n = normalHat;
+  const a = Math.abs(n[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0];
+  const adotn = a[0] * n[0] + a[1] * n[1] + a[2] * n[2];
+  let e1 = [a[0] - adotn * n[0], a[1] - adotn * n[1], a[2] - adotn * n[2]];
+  const m = Math.hypot(e1[0], e1[1], e1[2]) || 1;
+  e1 = [e1[0] / m, e1[1] / m, e1[2] / m];
+  const e2 = [
+    n[1] * e1[2] - n[2] * e1[1],
+    n[2] * e1[0] - n[0] * e1[2],
+    n[0] * e1[1] - n[1] * e1[0],
+  ];
+  return { e1, e2 };
+}
+
+// Cycle-averaged transverse shape tensor block (instrument touch point 5, the
+// sigma = 0 corollary channel). q_ab = < x_a x_b > about the COM, projected
+// onto the plane perpendicular to normalHat (default +z = the axial-drift lab
+// frame), averaged over the 6 constituents AND over one cadence period ending
+// at tCenter (retained-history samples). The full 2x2 block [[q11, q12],[q12,
+// q22]] is recorded (not only its max); its two eigenvalues are q_perp1 >=
+// q_perp2 and sigma = (q_perp1 - q_perp2)/(q_perp1 + q_perp2) is the transverse
+// shape anisotropy (the S3 shear residual). For a single-axis drift measured in
+// the DRIFT frame the block is isotropic by residual axisymmetry (sigma -> 0);
+// Corollary 1 is the claim that a two-axis (oblique) composed state relaxes to
+// that isotropy as the spin axis realigns with the drift.
+export function transverseShapeTensorBlock(histories, tCenter, period, normalHat = [0, 0, 1]) {
+  const dt = DECLARED.timeStep;
+  const kEnd = Math.max(0, Math.round(tCenter / dt));
+  const kLo = Math.max(0, kEnd - Math.round(period / dt));
+  const { e1, e2 } = perpBasis(normalHat);
+  let q11 = 0;
+  let q22 = 0;
+  let q12 = 0;
+  let samples = 0;
+  const kTop = Math.min(kEnd, histories[0].xs.length - 1);
+  for (let k = kLo; k <= kTop; k += 1) {
+    // full 3D COM (drifts in x and z under oblique drift), subtracted per sample
+    const c = [0, 0, 0];
+    for (let i = 0; i < histories.length; i += 1) {
+      c[0] += histories[i].xs[k][0];
+      c[1] += histories[i].xs[k][1];
+      c[2] += histories[i].xs[k][2];
+    }
+    c[0] /= histories.length;
+    c[1] /= histories.length;
+    c[2] /= histories.length;
+    let s11 = 0;
+    let s22 = 0;
+    let s12 = 0;
+    for (let i = 0; i < histories.length; i += 1) {
+      const rx = histories[i].xs[k][0] - c[0];
+      const ry = histories[i].xs[k][1] - c[1];
+      const rz = histories[i].xs[k][2] - c[2];
+      const p1 = rx * e1[0] + ry * e1[1] + rz * e1[2];
+      const p2 = rx * e2[0] + ry * e2[1] + rz * e2[2];
+      s11 += p1 * p1;
+      s22 += p2 * p2;
+      s12 += p1 * p2;
+    }
+    q11 += s11 / histories.length;
+    q22 += s22 / histories.length;
+    q12 += s12 / histories.length;
+    samples += 1;
+  }
+  if (samples === 0) return null;
+  q11 /= samples;
+  q22 /= samples;
+  q12 /= samples;
+  const e = eig2(q11, q22, q12);
+  return {
+    block: [[q11, q12], [q12, q22]],
+    trace: q11 + q22,
+    qPerp1: e.major,
+    qPerp2: e.minor,
+    sigma: e.anisotropy, // (q_perp1 - q_perp2)/(q_perp1 + q_perp2)
+    ...e,
+    frameNormal: normalHat,
+    samples,
+    windowRotations: (kTop - kLo) * dt / TWO_PI,
+  };
+}
+
+// Constituent bidirectional-wake phase offsets (instrument touch point 5, the
+// S_asm synchrony-selection corollary). For each layer's antipodal pair the
+// one-way causal leg from + -> - and - -> + differ under drift (fore-aft
+// anisotropy of the simultaneity tilt t' = t - (v/c_f^2) x_parallel). The half
+// difference of the primary (most recent) causal-leg delays is the constituent
+// phase offset read directly from the native root machinery. At u = 0 the two
+// legs are symmetric so the offset is ~0.
+export function constituentPhaseOffsets(histories, sites, states, t) {
+  const primaryDelay = (i, j) => {
+    const res = solveDirectedRelation({
+      histories,
+      i,
+      j,
+      tH: t,
+      xi: states[i].x,
+      vi: states[i].v,
+      sameSource: false,
+    });
+    if (!res.roots || res.roots.length === 0) return null;
+    const root = res.roots[res.roots.length - 1]; // largest emissionTime = most recent
+    return t - root.emissionTime;
+  };
+  const out = {};
+  const layers = DECLARED.layers;
+  for (let k = 0; k < layers.length; k += 1) {
+    const iPlus = 2 * k;
+    const iMinus = 2 * k + 1;
+    const dForward = primaryDelay(iPlus, iMinus); // + reads -
+    const dBack = primaryDelay(iMinus, iPlus); // - reads +
+    out[layers[k].name] =
+      dForward != null && dBack != null
+        ? {
+            legForward: dForward,
+            legBackward: dBack,
+            halfDifference: 0.5 * (dForward - dBack),
+          }
+        : null;
+  }
+  return out;
+}
+
 export function runRelease({
   rotations = DECLARED.runRotations,
   kappa,
@@ -2550,6 +2810,45 @@ export function runRelease({
         axisRow,
         cageClearance,
         betaM,
+        // Native axial-drift envelope readback (instrument touch point 5). The
+        // semiaxes (R_parallel, R_perp, xi), 1/gamma, the cycle-averaged
+        // transverse shape block (sigma channel), and the constituent phase
+        // offsets (S_asm channel). lambda is filled by the sweep against the
+        // u=0 reference. Present at every drift; at u=0 these read the rest
+        // envelope (xi(0) ~ 0.707, the caveat-1 reference).
+        envelope: envelopeReadback(states, DECLARED.axialDrift ?? 0),
+        transverseShape: transverseShapeTensorBlock(histories, t, TWO_PI / DECLARED.omega),
+        phaseOffsets: constituentPhaseOffsets(histories, sites, states, t),
+        // Oblique-drift readback (Corollary 1 sigma test). The spin-axis unit
+        // vector n_hat(t) (from the least-squares rotation axis), the transverse
+        // shape anisotropy sigma in the DRIFT frame, and the angle between the
+        // spin axis and the drift direction (initially theta; -> 0 if the axis
+        // realigns). Null when there is no drift (u = 0) or the drift is purely
+        // axial in the readout below (still recorded as the z-frame case).
+        driftFrameShape: (() => {
+          const d = driftVector();
+          const dm = Math.hypot(d[0], d[1], d[2]);
+          if (dm < 1e-12) return null;
+          const dHat = [d[0] / dm, d[1] / dm, d[2] / dm];
+          const blk = transverseShapeTensorBlock(histories, t, TWO_PI / DECLARED.omega, dHat);
+          const nUnit = axisRow.axisUnit ?? null;
+          const axisDotDrift = nUnit
+            ? Math.abs(nUnit[0] * dHat[0] + nUnit[1] * dHat[1] + nUnit[2] * dHat[2])
+            : null;
+          return {
+            sigma: blk ? blk.sigma : null,
+            qPerp1: blk ? blk.qPerp1 : null,
+            qPerp2: blk ? blk.qPerp2 : null,
+            block: blk ? blk.block : null,
+            driftHat: dHat,
+            axisUnit: nUnit,
+            axisVsDriftDeg:
+              axisDotDrift != null
+                ? (Math.acos(Math.max(-1, Math.min(1, axisDotDrift))) * 180) / Math.PI
+                : null,
+            axisTiltVsZDeg: axisRow.axisTiltDeg,
+          };
+        })(),
       });
       nextRecordIdx += 1;
     }
@@ -2961,6 +3260,12 @@ if (isMain()) {
   DECLARED.sea.spacing = readCliNumber("sea-spacing", DECLARED.sea.spacing);
   DECLARED.responsiveSea.enabled = process.argv.includes("--responsive-sea");
   DECLARED.responsiveSea.spacing = readCliNumber("rsea-spacing", DECLARED.responsiveSea.spacing);
+  // Axial drift (instrument touch point 1) must be set BEFORE selectTabledRow so
+  // the drift cadence pin omega = sqrt(1-u^2)/cos(alpha_M) is applied. The drift
+  // ANGLE (degrees between drift and the spin axis) enables the oblique two-axis
+  // Corollary-1 sigma test; 0 = pure axial screw drift (exact regression).
+  DECLARED.axialDrift = readCliNumber("axial-drift", 0);
+  DECLARED.driftAngle = deg(readCliNumber("drift-angle", 0));
   selectTabledRow(readCliNumber("row", 1));
   if (DECLARED.staticPairSea.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
     process.stderr.write(
@@ -3017,6 +3322,272 @@ if (isMain()) {
   let kappaOverride = readCliNumber("kappa", NaN);
   const outName = process.argv.find((a) => a.startsWith("--out="))?.slice(6) ?? "report.json";
   const t0 = Date.now();
+
+  // -------------------------------------------------------------------------
+  // Native axial-drift envelope sweep (the instrument's top-level mode). For
+  // each u in the grid it runs the native free-tilt release at the drift
+  // cadence pin and reads back the envelope semiaxes, testing the Lorentz ruler
+  // law as RELATIVE flattening xi(u)/xi(0) vs 1/gamma (caveat 1: the raw
+  // layer-max gives xi(0) ~ 0.707, not 1). kappa is fitted once at u = 0 (bare
+  // braid channel) and FROZEN across the sweep (frozen-kappa discipline). The
+  // sweep is resumable per u-cell via a state file (repo chunking discipline);
+  // the screw-rigid driftFixedPoint reference is NOT used (caveat 2: unphysical
+  // for u >= 0.4). Row 7 (self-equilibrated V5) is the intended geometry.
+  // -------------------------------------------------------------------------
+  if (process.argv.includes("--drift-envelope")) {
+    const baseRow = readCliNumber("row", 1);
+    const driftRotations = readCliNumber("drift-rotations", Math.min(rotations, 1));
+    const driftDt = readCliNumber("drift-dt", NaN);
+    if (Number.isFinite(driftDt)) DECLARED.timeStep = driftDt;
+    const gridArg = process.argv.find((a) => a.startsWith("--u-grid="))?.slice(9);
+    let uGrid = gridArg
+      ? gridArg.split(",").map(Number).filter((v) => Number.isFinite(v) && v >= 0 && v < 1)
+      : [0, 0.2];
+    // u = 0 must lead the grid: it fits/freezes kappa and anchors xi(0), R_perp(0).
+    uGrid = Array.from(new Set(uGrid)).sort((a, b) => a - b);
+    if (uGrid[0] !== 0) uGrid = [0, ...uGrid];
+    // Sample the envelope trajectory finely (~12 records across the window) so
+    // the xi(t) relaxation is visible even in a short pre-dispersal release.
+    const recStep = Math.max(0.05, driftRotations / 12);
+    const recRot = [];
+    for (let r = recStep; r < driftRotations - 1e-9; r += recStep) recRot.push(Number(r.toFixed(4)));
+    recRot.push(Number(Math.max(0.01, driftRotations - Math.min(0.02, driftRotations * 0.03)).toFixed(4)));
+    // Frozen-kappa discipline (Row 7 protocol): the release runs at the
+    // gauge-invariant equilibrium coupling kappa_eq = 1/R_M(eq), computed ONCE
+    // at u = 0 and frozen across the sweep. The bare-channel fitted kappa*
+    // under-supports the braid (the sum-rule dilation deficit) and would make
+    // the envelope collapse rather than relax; kappa_eq pins the size. The u=0
+    // equilibrium shape (qI0, qO0) is the frozen seed geometry for every cell —
+    // NOT the per-u screw-rigid driftRailPinnedEquilibrium, which is unphysical
+    // for u >= 0.4 (caveat 2). The native free-tilt release does the relaxing.
+    const statePath = path.join(outDir, `drift-envelope-${tag}.json`);
+    let prior = fs.existsSync(statePath)
+      ? JSON.parse(fs.readFileSync(statePath, "utf8"))
+      : { schema: SCHEMA, mode: "native_axial_drift_envelope_sweep", cells: [], kappaFrozen: null, seedShape: null };
+    if (prior.kappaFrozen == null) {
+      const eq0 = driftRailPinnedEquilibrium({ u: 0 });
+      prior.kappaFrozen = 1 / eq0.ReqOverKappa; // kappa_eq at u=0 (gauge-invariant)
+      prior.seedShape = { qI: eq0.shapeEq.qI, qO: eq0.shapeEq.qO };
+      prior.seedEquilibrium = {
+        lambda: eq0.lambda,
+        ReqOverKappa: eq0.ReqOverKappa,
+        railPinnedSpectrum: eq0.railPinnedSpectrum,
+        basin: eq0.basin,
+      };
+    }
+    const kappaFrozen = prior.kappaFrozen;
+    const seedShape = prior.seedShape;
+    const doneU = new Set(prior.cells.map((c) => c.u));
+    for (const u of uGrid) {
+      if (doneU.has(u)) continue;
+      if (Date.now() - t0 > budgetMs) {
+        process.stderr.write(
+          `[drift] budget reached; ${prior.cells.length}/${uGrid.length} cells done; rerun to resume\n`
+        );
+        fs.writeFileSync(statePath, JSON.stringify(prior));
+        process.exit(0);
+      }
+      DECLARED.axialDrift = u;
+      selectTabledRow(baseRow); // refresh the drift cadence pin for this u
+      // re-anchor to the frozen u=0 equilibrium shape (M stays R_M = 1);
+      // angles stay tabled so the tilt relaxes freely during the release.
+      DECLARED.layers = DECLARED.layers.map((L) =>
+        L.name === "I" ? { ...L, R: seedShape.qI } : L.name === "O" ? { ...L, R: seedShape.qO } : { ...L }
+      );
+      const sites = buildSites();
+      const seedHistories = sites.map((s) => new RetainedHistory(s));
+      const seed = seedRecordEvaluation(sites, seedHistories, null, kappaFrozen);
+      const seedStates = sites.map((s) => ({ x: rigidPosition(s, 0), v: rigidVelocity(s, 0) }));
+      const seedEnvelope = envelopeReadback(seedStates, u);
+      process.stderr.write(
+        `[drift] u=${u} omega=${DECLARED.omega.toFixed(5)} kappaFrozen=${kappaFrozen.toFixed(6)} ` +
+          `kappaSeed=${seed.kappaStar.toFixed(6)} running ${driftRotations} rot dt=${DECLARED.timeStep}\n`
+      );
+      const run = runRelease({
+        rotations: driftRotations,
+        kappa: kappaFrozen,
+        recordRotations: recRot,
+        budgetMs: Math.max(2000, budgetMs - (Date.now() - t0)),
+      });
+      const finalEnvelope = envelopeReadback(run.states, u);
+      prior.cells.push({
+        u,
+        cadence: DECLARED.omega,
+        kappaFrozen,
+        kappaSeedFit: seed.kappaStar,
+        seedEnvelope,
+        finalEnvelope,
+        records: run.records.map((r) => ({
+          rotations: r.rotations,
+          envelope: r.envelope,
+          transverseShape: r.transverseShape,
+          driftFrameShape: r.driftFrameShape,
+          phaseOffsets: r.phaseOffsets,
+        })),
+        halted: run.halted,
+        completed: run.completed,
+      });
+      fs.writeFileSync(statePath, JSON.stringify(prior));
+      process.stderr.write(
+        `[drift] u=${u} DONE xi=${finalEnvelope.xi?.toFixed(4)} ` +
+          `R_par/R_perp=${finalEnvelope.Rpar.toFixed(4)}/${finalEnvelope.Rperp.toFixed(4)} ` +
+          `1/gamma=${finalEnvelope.oneOverGamma.toFixed(4)} halted=${JSON.stringify(run.halted)}\n`
+      );
+    }
+    // Summary. The bare braid coherently expands during release (the un-absorbed
+    // rail pump, the Row 7 finding), so the final-state envelope is confounded.
+    // The ruler law is therefore tested as RELATIVE flattening at MATCHED
+    // rotation: xi(u, t)/xi(0, t) vs 1/gamma (caveat 1). The u=0 cell supplies
+    // the xi(0, t) and R_perp(0, t) references at each record rotation.
+    const cell0 = prior.cells.find((c) => c.u === 0);
+    const xiOfRot = (cell, rot) => {
+      if (!cell) return null;
+      const rec = cell.records.find((r) => Math.abs(r.rotations - rot) < 1e-6);
+      return rec ? rec.envelope.xi : null;
+    };
+    const RperpOfRot = (cell, rot) => {
+      if (!cell) return null;
+      const rec = cell.records.find((r) => Math.abs(r.rotations - rot) < 1e-6);
+      return rec ? rec.envelope.Rperp : null;
+    };
+    // Per-u matched-rotation relative-flattening track vs 1/gamma.
+    const relativeFlatteningByCell = prior.cells
+      .slice()
+      .sort((a, b) => a.u - b.u)
+      .filter((c) => c.u !== 0)
+      .map((c) => {
+        const oneOverGamma = Math.sqrt(Math.max(0, 1 - c.u * c.u));
+        const track = c.records
+          .map((rec) => {
+            const xi0 = xiOfRot(cell0, rec.rotations);
+            const Rp0 = RperpOfRot(cell0, rec.rotations);
+            return xi0 && rec.envelope.xi != null
+              ? {
+                  rotations: rec.rotations,
+                  xiRelative: rec.envelope.xi / xi0,
+                  lambda: Rp0 ? rec.envelope.Rperp / Rp0 : null,
+                  residualVsOneOverGamma: rec.envelope.xi / xi0 - oneOverGamma,
+                }
+              : null;
+          })
+          .filter(Boolean);
+        // closest approach of xi(u)/xi(0) to 1/gamma over the tracked window
+        const best = track.reduce(
+          (b, r) =>
+            b == null || Math.abs(r.residualVsOneOverGamma) < Math.abs(b.residualVsOneOverGamma) ? r : b,
+          null
+        );
+        return { u: c.u, oneOverGamma, closestApproach: best, track };
+      });
+    // Corollary 1 (sigma -> 0): the drift-frame transverse anisotropy sigma(t)
+    // and the spin-axis realignment n_hat(t) toward the drift, per drift cell.
+    const sigmaAxisByCell = prior.cells
+      .slice()
+      .sort((a, b) => a.u - b.u)
+      .filter((c) => c.u !== 0)
+      .map((c) => {
+        const track = c.records
+          .filter((r) => r.driftFrameShape)
+          .map((r) => ({
+            rotations: r.rotations,
+            sigma: r.driftFrameShape.sigma,
+            axisVsDriftDeg: r.driftFrameShape.axisVsDriftDeg,
+            axisTiltVsZDeg: r.driftFrameShape.axisTiltVsZDeg,
+            axisUnit: r.driftFrameShape.axisUnit,
+            qPerp1: r.driftFrameShape.qPerp1,
+            qPerp2: r.driftFrameShape.qPerp2,
+          }));
+        const first = track[0] ?? null;
+        const last = track[track.length - 1] ?? null;
+        return {
+          u: c.u,
+          driftAngleDeg: (DECLARED.driftAngle * 180) / Math.PI,
+          sigmaFirst: first ? first.sigma : null,
+          sigmaLast: last ? last.sigma : null,
+          axisVsDriftFirstDeg: first ? first.axisVsDriftDeg : null,
+          axisVsDriftLastDeg: last ? last.axisVsDriftDeg : null,
+          sigmaDecays: first && last ? last.sigma < first.sigma : null,
+          axisRealigns: first && last ? last.axisVsDriftDeg < first.axisVsDriftDeg : null,
+          track,
+        };
+      });
+    const xi0f = cell0 ? cell0.finalEnvelope.xi : null;
+    const Rperp0f = cell0 ? cell0.finalEnvelope.Rperp : null;
+    const ruler = prior.cells
+      .slice()
+      .sort((a, b) => a.u - b.u)
+      .map((c) => ({
+        u: c.u,
+        xiFinal: c.finalEnvelope.xi,
+        xiRelativeFinal: xi0f && c.finalEnvelope.xi != null ? c.finalEnvelope.xi / xi0f : null,
+        oneOverGamma: c.finalEnvelope.oneOverGamma,
+        lambdaFinal: Rperp0f ? c.finalEnvelope.Rperp / Rperp0f : null,
+        Rpar: c.finalEnvelope.Rpar,
+        Rperp: c.finalEnvelope.Rperp,
+        transverseAnisotropyFinal: c.records.length
+          ? c.records[c.records.length - 1].transverseShape?.anisotropy ?? null
+          : null,
+        halted: c.halted,
+      }));
+    const report = {
+      schema: SCHEMA,
+      handoffPacketRef: HANDOFF_PACKET_REF,
+      mode: "native_axial_drift_envelope_sweep",
+      theoremTargetRef:
+        "reference/priorities/master-equation-closure/boosted-delay-attractor-theorem-target.md",
+      instrumentSpecRef:
+        "reference/priorities/braid-ideal/native-axial-drift-envelope-instrument-spec.md",
+      declared: {
+        candidateRow: DECLARED.candidateRow,
+        driftRotations,
+        timeStep: DECLARED.timeStep,
+        uGrid,
+        driftAngleDeg: (DECLARED.driftAngle * 180) / Math.PI,
+        kappaFrozen: prior.kappaFrozen,
+        rulerLawTest: "relative_flattening_xi(u)/xi(0)_vs_1/gamma (caveat 1)",
+        screwRigidReferenceUsed: false,
+        note:
+          "the bare braid coherently expands during release (un-absorbed rail pump, Row 7); read the ruler law from relativeFlatteningByRotation (matched-rotation xi(u)/xi(0)), NOT the confounded final-state ruler block",
+      },
+      rulerLaw: ruler,
+      relativeFlatteningByRotation: relativeFlatteningByCell,
+      sigmaCorollary1: sigmaAxisByCell,
+      cells: prior.cells,
+      failClosed: FAIL_CLOSED,
+      elapsedSeconds: (Date.now() - t0) / 1000,
+    };
+    fs.writeFileSync(path.join(outDir, outName), JSON.stringify(report, null, 1));
+    process.stdout.write(
+      JSON.stringify(
+        {
+          schema: SCHEMA,
+          mode: "native_axial_drift_envelope_sweep",
+          rulerLawRelativeFlattening: relativeFlatteningByCell.map((c) => ({
+            u: c.u,
+            oneOverGamma: Number(c.oneOverGamma.toFixed(4)),
+            closestXiRelative: c.closestApproach ? Number(c.closestApproach.xiRelative.toFixed(4)) : null,
+            atRotations: c.closestApproach ? c.closestApproach.rotations : null,
+            residual: c.closestApproach ? Number(c.closestApproach.residualVsOneOverGamma.toFixed(4)) : null,
+          })),
+          sigmaCorollary1: sigmaAxisByCell.map((c) => ({
+            u: c.u,
+            driftAngleDeg: c.driftAngleDeg,
+            sigmaFirst: c.sigmaFirst != null ? Number(c.sigmaFirst.toFixed(4)) : null,
+            sigmaLast: c.sigmaLast != null ? Number(c.sigmaLast.toFixed(4)) : null,
+            axisVsDriftFirstDeg: c.axisVsDriftFirstDeg != null ? Number(c.axisVsDriftFirstDeg.toFixed(2)) : null,
+            axisVsDriftLastDeg: c.axisVsDriftLastDeg != null ? Number(c.axisVsDriftLastDeg.toFixed(2)) : null,
+            sigmaDecays: c.sigmaDecays,
+            axisRealigns: c.axisRealigns,
+          })),
+          reportPath: path.join(outDir, outName),
+          ...FAIL_CLOSED,
+        },
+        null,
+        1
+      ) + "\n"
+    );
+    process.exit(0);
+  }
 
   // Row 7 binding obligation 1: the FULL stability gate re-derived IN-BUILD
   // before anything else; release only from the re-derived equilibrium, at

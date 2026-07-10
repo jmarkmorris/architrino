@@ -1,0 +1,119 @@
+# Boosted-Delay Shape-Attractor Theorem (Proof Target)
+
+Claim level: derivation-closure target. This packet states the single theorem to which the finite-$c_f$ Lorentz-recovery residual reduces after the 2026-07-10 closure drive, its two corollaries, its scope, and a proof strategy. It does not claim the theorem is proved. It is the stage-1 upstream that supplies the translated attractor family $\boldsymbol{\rho}^{\star}_{q}(s;\beta_f)$ consumed by [lorentz-gr-bridge-handoff.md](lorentz-gr-bridge-handoff.md).
+
+## Why this is the whole finite-$c_f$ residual
+
+The effective-boost-sector reconstruction (P1; see [open-problems/brainstorming.md](../open-problems/brainstorming.md#closure-drive--lorentz-recovery-critical-path-2026-07-10)) discharges the substrate "seven not ten" obligation ([information-and-the-wake.md](../../../content/markdown/aaa/philosophy-history/information-and-the-wake.md)) **exactly in the zero-leakage ($c_{\text{eff}}$) limit**. At finite $c_f$ two obligations remain, and the closure drive showed they are the *same* statement:
+
+- **Transverse isotropy of the two-axis composed envelope** ($\sigma=0$). Frozen composition of two orthogonal boosts gives an exact shear split $\sigma(v_1,v_2)=\beta_1^2\beta_2^2/(\beta_1^2+\beta_2^2-\beta_1^2\beta_2^2)$ — an $O(\beta^2)$ residual outside the Poincaré algebra. It vanishes only if the composed state relaxes to the single-drift oblate spheroid about $\hat v_{\text{comb}}$.
+- **Substrate synchrony** ($\mathcal S_{\text{asm}}$). The simultaneity tilt $t'=t-(v/c_f^2)x_\parallel$ is the difference half of the one-way causal-leg ledger whose sum fixes $\xi=1/\gamma_\star$ and $T=\gamma_\star T_0$. Its one unproved step is that a drifting braid's bidirectional wake phase-lock settles at the symmetric (Einstein) split.
+
+Both are instances of one dynamical question: **is the boosted branch a unique attracting fixed point of the boosted delay dynamics, depending only on $\vec v_{\text{comb}}$?** The corpus already names this obligation open at [lorentz-kinematics.md:455](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) ("still not a stability theorem: the delayed force law must also show that the contracted branch is an attracting solution of the boosted delay dynamics") and [return-cycle-lorentz-quantization.md:352](../../../content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md) ("a derivation and simulation target, not a completed theorem").
+
+## Theorem (target)
+
+Let the boosted delay dynamics be the master-equation force law evaluated on a spindle braid under uniform axial screw drift $u=\beta c_f$, restricted to the **shape sector**: the layer radii $R_a$ and envelope semiaxes at fixed axis orientation. **Claim:** this sector has a unique attracting fixed point $\boldsymbol{\rho}^{\star}(s;\beta)$ — the oblate spheroid with $R_\parallel=R_\perp/\gamma_\star(\beta)$ — that depends only on the drift magnitude and direction, not on the path in configuration space by which the drift was assembled.
+
+### Corollary 1 ($\sigma=0$, transverse isotropy)
+
+Path-independence implies a two-boost composed state relaxes to $\boldsymbol{\rho}^{\star}(v_{\text{comb}})$, whose transverse block is isotropic by construction. Hence the composed shape tensor carries no shear mode, the leftover of $\Lambda_{v_1}\Lambda_{v_2}$ is a pure Thomas–Wigner rotation, and $[K_a,K_b]=-\varepsilon_{abc}J_c/c_{\text{eff}}^2$ closes onto the substrate-exact $J_c$.
+
+### Corollary 2 ($\mathcal S_{\text{asm}}$, synchrony selection)
+
+If the drifting braid's constituents phase-lock through the bidirectional (return-cycle) wake to the same fixed point, their equilibrium phase offset is the symmetric split $\tfrac12(t_\to-t_\leftarrow)$, which converts (via $d\tau=dT/\gamma_\star$, $L_\parallel=x'/\gamma_\star$) to $\delta\tau=(v/c_f^2)x'$ — installing $\mathcal S_{\text{asm}}$ from substrate dynamics rather than convention.
+
+### Discharge
+
+Corollaries 1 and 2 supply the two finite-$c_f$ obligations of the P1 boost-sector reconstruction. With them, the effective ten-row Poincaré structure closes to $O(\varepsilon_{\text{LV}})$ at finite $c_f$ and exactly in the $c_{\text{eff}}$ limit, discharging the seven-not-ten obligation at the observer level.
+
+## Scope (what this theorem is NOT)
+
+This is a **shape-sector** statement (radial + envelope). It is deliberately decoupled from the **axis-sector** gyroscopic-circulatory flutter that closes the bare braid's native release fatal in both rest and drift frames and blocks the mass-map $A_0$ (see [particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md) $A_0$ gate and the spindle spin scaffold). The Lorentz ruler ($\xi=1/\gamma$) and the $\sigma$ / $\mathcal S_{\text{asm}}$ questions live entirely in the shape sector.
+
+**Decoupling hypothesis (to be confirmed by the instrument):** Lorentz recovery needs only the shape attractor, so it does *not* wait on the structured-sea axis absorber that the $A_0$ native release needs. Supporting evidence: the bare braid's shape block is a basin at the rest self-equilibrated fixed point (all three shape eigenvalues restoring; 2026-07-10 round 1). Caveat: the shape basin *under drift* has not been natively measured — the screw-rigid evaluator freezes it — so the decoupling is a scoping hypothesis until the native-under-drift instrument confirms it.
+
+## Proof strategy
+
+1. **Existence (S1).** The screw solution exists at every drift; the envelope-relaxation map sends it to an oblate spheroid. Show the fixed-point equation $\mathcal F_\beta(\boldsymbol{\rho}^\star)=0$ has a solution with $R_\parallel=R_\perp/\gamma_\star$ on the certified drift band $\mathcal D_\beta$.
+2. **Shape-sector local stability under drift (S2).** Linearize the boosted force law on the radial + envelope modes at $\boldsymbol{\rho}^\star(\beta)$; show the symmetric part of the shape Jacobian is negative-definite across $\mathcal D_\beta$ (non-conservative system, so this is the operative restoring condition, not an energy curvature). Rest evidence exists (round 1 basin); the drift extension is the instrument's primary measurement.
+3. **Uniqueness / path-independence (S3).** Show the shear mode $\sigma$ is a decaying transient of the shape dynamics, i.e. a composed two-boost state relaxes to $\boldsymbol{\rho}^\star(v_{\text{comb}})$ with $\sigma\to0$. Measured as $q_\perp$-anisotropy decay under the instrument.
+4. **Phase-lock split (S4).** Show the constituent bidirectional wake phase-lock equilibrium equals the symmetric split of the one-way legs. Measured as the constituent phase offset read from the leg difference under the instrument.
+
+## Assumptions and claim ladder
+
+- Prescribed rigid family $\to$ native retained-history (the standing grade lift for this lane).
+- Single retained branch; homogeneous void (no Noether-sea dressing); certified drift band $0\le\beta\le\beta_{\max}<1$.
+- Claim level: the theorem is a derivation-closure target; the two corollaries are exact-algebra **conditional on** the theorem (the $\sigma$ formula and the $\mathcal S_{\text{asm}}$ difference-of-legs identity are already exact). The rest shape basin is native-measured; the drift shape basin, the $\sigma$ decay, and the phase-lock split are simulation targets.
+
+## Next artifacts
+
+- **Instrument:** the native axial-drift envelope diagnostic — see the build spec at [../braid-ideal/native-axial-drift-envelope-instrument-spec.md](../braid-ideal/native-axial-drift-envelope-instrument-spec.md). It measures $\xi(u)$ (S2 ruler), $q_\perp(v_1,v_2)$ decay (S3 / $\sigma$), and the constituent phase offsets (S4 / $\mathcal S_{\text{asm}}$) in one build.
+- **Analysis:** the shape-sector linearization of the boosted force law (S2), producing the shape Jacobian and its symmetric part across $\mathcal D_\beta$.
+
+## S2 Analysis — Shape-Sector Linearization (2026-07-10)
+
+First analytic pass on step S2 (shape-sector local stability under drift). Claim level: structured derivation from the corpus force law; it establishes the decomposition, one exact structural result, and reduces the remaining burden to a single measurable band-edge number. Not a completed proof.
+
+### Setup
+
+The per-hit law is $\mathbf a_{ij}=\kappa\,q_i q_j\,\dfrac{W^{\mathrm{rec}}_{ij}}{r_{ij}^2}\,\hat{\mathbf r}_{ij}$ with the receiver-normal branch factor $W^{\mathrm{rec}}_{ij}=\left|\dfrac{c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_i(T)}{c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_{\mathrm{em}})}\right|$ ([master-equation.md:1097-1104](../../../content/markdown/aaa/dynamics/master-equation.md)). Under axial screw drift, each site velocity is $\mathbf V_i=\mathbf v_i^{\mathrm{int}}+u\hat{\mathbf z}$, so the radial rate on a branch is $s_\ell=\mathbf V_i\cdot\hat{\mathbf r}_\ell=s_\ell^{\mathrm{int}}+u\cos\theta_\ell$, with $\cos\theta_\ell=\hat{\mathbf z}\cdot\hat{\mathbf r}_\ell$ the sightline polar angle. Let $F_a(\boldsymbol\rho;u)$ be the cycle-averaged net radial force on layer $a$ (slow radial coordinates $\boldsymbol\rho=(R_a)$, frozen axis, frozen rotation). Fixed point $F_a(\boldsymbol\rho^\star(u);u)=0$; shape Jacobian $J_{ab}(u)=\partial F_a/\partial\rho_b$; sufficient basin condition $J^{\mathrm{sym}}(u)\prec0$ (the round-1 pre-tabling gate, [spindle-braid.md:232](../../../content/markdown/aaa/noether-braid/spindle-braid.md)).
+
+### Result 1 (exact): drift injects no circulatory mode into the shape sector
+
+The pointwise velocity-dependent force is the **symmetric** tensor $\mathsf M_i\mathbf V_i$ — "the instantaneous branch law carries no antisymmetric part … Any magnetic-like antisymmetric response must be generated by the history dependence of $\boldsymbol\Xi_i$ and $\mathsf M_i$ under closure, not by the pointwise kernel" ([master-equation.md:1266-1268](../../../content/markdown/aaa/dynamics/master-equation.md)). The axial drift enters only through the pointwise $\mathbf V_i=\mathbf v_i^{\mathrm{int}}+u\hat{\mathbf z}$, so at seed grade it adds **only to $J^{\mathrm{sym}}$**, not to $J^{\mathrm{asym}}$. This is the analytic basis of the shape/axis decoupling: the **axis** sector's flutter is circulation-dominated (leading antisymmetric term from wake angular momentum, [spindle-braid.md:238](../../../content/markdown/aaa/noether-braid/spindle-braid.md)); the **shape** sector is symmetric-dominated, and drift does not change that class. So shape-sector stability is decoupled from the axis flutter at pointwise/seed grade — confirming the packet's scoping hypothesis at this order.
+
+### Result 2 (bounded): the drift rescaling cannot flip the sign while $u<c_f$
+
+On a common-sightline arc, $D_{T,\ell}=c_f-\rho\,\mathbf V_i\cdot\hat{\mathbf e}$ is a common positive prefactor that rescales all branch magnitudes together by $|D_T|/c_f\in[1-U_{\max}/c_f,\,1+U_{\max}/c_f]$ ([master-equation.md, common-sightline arcs](../../../content/markdown/aaa/dynamics/master-equation.md)). The field-speed barrier makes each branch contribution vanish as $s_\ell\to c_f^-$. So drift deforms $J^{\mathrm{sym}}$ by a **bounded, strictly positive** rescaling on the certified band $U_{\max}<c_f$; it cannot invert an eigenvalue by rescaling alone. Sign change can come only from (i) the even-in-$s_\ell$ term or (ii) the rail crossing.
+
+### Result 3 (competition): the even term is polarity-signed anti-damping, bounded by measured closure improvement
+
+The velocity-even term $-\sum_\ell w_\ell s_\ell^2$ is polarity-signed: attractive (confining) branches $w_\ell<0$ **inject** at rate $|w_\ell|s_\ell^2$ in both radial directions (anti-damping), repulsive branches drain ([master-equation.md:1258-1262](../../../content/markdown/aaa/dynamics/master-equation.md)). This is the destabilizing channel; under drift it carries the $u$-shift $s_\ell^2=(s_\ell^{\mathrm{int}}+u\cos\theta_\ell)^2$. Against it stands the static restoring force (the $1/r^2$ position dependence plus the rail-pin dilation feedback: supply $\propto1/\lambda^2$ vs need $\propto1/\lambda$, [spindle-braid.md:234](../../../content/markdown/aaa/noether-braid/spindle-braid.md)). The measured verdict "motion is preferred, up to a finite optimum" — closure improves monotonically to a basin at $u^\ast\approx0.5$–$0.65\,c_f$ before climbing toward the photon limit ([spindle-braid.md, Motion/Inertia/Isotropy](../../../content/markdown/aaa/noether-braid/spindle-braid.md)) — is the macroscopic signature that static restoring wins over the anti-damping term up to $u^\ast$. Hence $J^{\mathrm{sym}}(u)\prec0$ has a certified band with lower bound $\beta_{\max}\gtrsim u^\ast$.
+
+### Assembly and residual
+
+Writing $J^{\mathrm{sym}}(u)=J^{\mathrm{sym}}(0)+u\,\partial_u J^{\mathrm{sym}}|_0+O(u^2)$: at $u=0$, $J^{\mathrm{sym}}(0)\prec0$ (native-measured basin, round 1); by Result 1 all drift corrections are symmetric; by Result 2 they are bounded on $u<c_f$; by Result 3 the destabilizing even term is out-competed by static restoring up to $u^\ast$. The linear-in-$u$ term is **helicity-odd** (the drift breaks $z\to-z$ because the cap-polarity dipole picks the leading cap), matching the measured $f_\parallel-f_{\mathrm{rest}}=-0.102|u|+0.39u^2$; the helicity-**averaged** shape response is purely quadratic ($1.59u^2$), so a Michelson-Morley-class (unpolarized) probe sees no linear stability drift. **Residual burden reduces to one measurable number:** the exact band edge $\beta_{\max}$ where the least eigenvalue of $J^{\mathrm{sym}}(u)$ first reaches zero (expected past $u^\ast$, on the photon-limit climb), plus confirmation that the helicity-odd linear term shifts the closure optimum without flipping an eigenvalue. Both are direct outputs of the native axial-drift instrument (it already records the shape eigenvalues vs $u$).
+
+### Closed-form $\partial_u J^{\mathrm{sym}}|_0$ (2026-07-10)
+
+The exact affine form $\ddot{\mathbf X}_i=c_f\boldsymbol\Xi_i-\mathsf M_i\mathbf V_i$, $\boldsymbol\Xi_i=\sum_\ell w_\ell\hat{\mathbf r}_\ell$, $\mathsf M_i=\sum_\ell w_\ell\,\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell$ ([master-equation.md:1230-1245](../../../content/markdown/aaa/dynamics/master-equation.md), symmetric $\mathsf M_i$, all orders) exposes two channels of $u$-dependence at $\boldsymbol\rho^\star(0)$:
+
+- **(A) Explicit affine.** $\mathbf V_i=\mathbf v_i^{\mathrm{int}}+u\hat{\mathbf z}$ adds $-u\,\mathsf M_i\hat{\mathbf z}$ to the force; its shape-gradient contributes $-u\,\partial_{\rho_b}(\mathsf M_i\hat{\mathbf z})_a$ to $J$. Because $\mathsf M_i$ is symmetric, this is a symmetric contribution.
+- **(B) Implicit weight.** $\partial_u w_\ell|_0=w_\ell^0\big(\cos\theta'_\ell/D_{s,\ell}^0-\cos\theta_\ell/D_{T,\ell}^0\big)$ modulates both $\boldsymbol\Xi_i$ and $\mathsf M_i$, where $\cos\theta_\ell=\hat{\mathbf z}\cdot\hat{\mathbf r}_\ell$.
+
+**Symmetry theorem (exact).** Both channels are **helicity-odd** at linear order in $u$: the weighting carries one factor of $\cos\theta_\ell$ (channel B) or one factor of $\hat{\mathbf z}$ (channel A), each odd under the combined drift-reversal $u\to-u$ with the cap-polarity flip (the C-conjugate braid leads with the opposite cap, [spindle-braid.md:176-180](../../../content/markdown/aaa/noether-braid/spindle-braid.md)). Averaging over the two helicity branches therefore annihilates the linear term:
+$$
+\big\langle\partial_u J^{\mathrm{sym}}\big|_0\big\rangle_{\mathrm{helicity}}=0,
+$$
+so the leading helicity-averaged stability correction is $O(u^2)$. Consequences: (i) a Michelson-Morley-class (unpolarized) probe sees **no first-order** stability drift — matching the measured helicity-averaged shape anisotropy $1.59\,u^2$ (purely quadratic); (ii) the small-drift ruler is robust, explaining the native $\xi=1/\gamma$ at $u=0.2$ with residual $+0.0015$.
+
+**Surviving linear term (single braid).** The helicity-selected piece has coefficient equal to the measured parallel anisotropy $-0.102$ ([spindle-braid.md isotropy laws](../../../content/markdown/aaa/noether-braid/spindle-braid.md)). It shifts the fixed-point location $\boldsymbol\rho^\star(u)$ (an odd displacement of the equilibrium), not the curvature sign; a shift of the minimum does not flip an eigenvalue of $J^{\mathrm{sym}}$, consistent with the ruler holding at $u=0.2$.
+
+**Band edge.** $\beta_{\max}$ is therefore set by the helicity-averaged $O(u^2)$ term, whose sign follows the re-optimized closure landscape (minimum at $u^\ast\approx0.5$–$0.65$), giving the lower bound $\beta_{\max}\gtrsim u^\ast$. The exact value is the instrument's eigenvalue-vs-$u$ output (in the bare braid, masked above $u\approx0.3$ by axis contamination; clean value needs the structured-sea run).
+
+**Claim level.** The helicity-odd/averaged symmetry result is exact (from the affine form's parity structure). The magnitudes are tied to already-measured anisotropy coefficients; the exact $\beta_{\max}$ is a cross-checkable instrument output, not yet a closed number.
+
+### What S2 has and has not delivered
+
+Delivered: (a) the exact structural result that drift injects no circulatory shape mode (decoupling from the axis flutter, at seed grade); (b) a boundedness result forbidding sign flips by rescaling on $u<c_f$; (c) reduction of the persistence claim to the single band-edge eigenvalue crossing, with a corpus-measured lower bound $\beta_{\max}\gtrsim u^\ast\approx0.5$–$0.65$. Not delivered: the closed-form $\partial_u J^{\mathrm{sym}}$ and the exact $\beta_{\max}$ (the instrument's job), and the promotion of this seed-grade decoupling to a native retained-history statement.
+
+## Native Results (2026-07-10, via the instrument)
+
+The native axial-drift envelope instrument ([../braid-ideal/native-axial-drift-envelope-instrument-spec.md](../braid-ideal/native-axial-drift-envelope-instrument-spec.md)) has run. First native test of all four steps; release at frozen $\kappa_{\mathrm{eq}}=0.28623$, seeded from the $u=0$ rail-pinned equilibrium.
+
+- **S2 ruler arm — CONFIRMED at small drift, contamination-limited in the bare braid at large drift.** At $u=0.2$ the relative flattening $\xi(u)/\xi(0)$ descends through $1/\gamma=0.9798$, closest approach $0.9813$ (**residual $+0.0015$**) at $\approx0.45$ rotation — the first native evidence of Lorentz length contraction ($\xi\to1/\gamma$) in the shape sector. At $u=0.4,0.6$ the ruler is **not** confirmed in the bare release: $\xi(u)/\xi(0)$ dips toward $1/\gamma$ once ($0.988$ at $u=0.4$, residual $0.071$) then diverges to $\gtrsim1.9$ as $R_\parallel$ overtakes $R_\perp$, because the axis-sector tilt runaway (scoped *out* of this theorem) contaminates the shape envelope before it relaxes.
+- **S4 synchrony — difference-of-legs CONFIRMED.** The constituent one-way-leg half-difference (the $\mathcal S_{\text{asm}}$ offset) is **exactly $0$ at $u=0$** and grows monotonically: $0.103,\,0.223,\,0.413$ at $u=0.2,0.4,0.6$ — consistent with the predicted $\delta\tau=\tfrac12(t_\to-t_\leftarrow)\sim v\gamma^2 L_\parallel/c_f^2$ (ratios rise super-linearly with the $\gamma^2$ trend). Corollary 2's difference-of-legs identity is now empirically supported; the residual S4 burden is narrowed to the phase-**lock selection** (that the confined lock *settles at* this symmetric split), which needs a confined realization.
+- **S3 transverse isotropy ($\sigma$) — direction confirmed, does not settle in the bare braid.** The oblique-drift run ($u=0.2$, drift at angle $\theta$ to the spin axis, drift-frame $\sigma$) shows: (i) the spin axis does **not** anchor to the drift — it **tumbles** ($\theta=30°$: axis-vs-drift $67°\to89°$; $\theta=90°$: swings past the equator), refuting the hypothesis that the measured global orientation torque would realign it; the transverse drift component directly excites the axis-sector flutter even at small $u$. (ii) Consequently $\sigma$ shows only a transient approach to zero: at $\theta=30°$ it falls $0.797\to\mathbf{0.015}$ (a $50\times$ drop — Corollary 1's *direction* is real) then rebounds to $0.336$; at $\theta=90°$ it dips to $0.269$ then grows to $0.603$. So the shape sector genuinely relaxes toward transverse isotropy, but cannot **settle** there while the axis tumbles. Corollary 1 is directionally supported, not closed; a settled $\sigma=0$ requires the axis anchored first.
+
+### Correction to the decoupling scope (supersedes the earlier "not the same blocker" note)
+
+The pointwise Result 1 (drift injects no circulatory *shape* mode, seed grade) stands. But the native bare release shows the decoupling is **drift-magnitude- and drift-direction-limited**: the shape attractor is cleanly readable — and $\xi=1/\gamma$ holds — only for near-axial drift up to $u\approx0.2$–$0.3$. At $u\ge0.4$ (axial) the axis flutter runs away and contaminates the shape envelope; under *oblique* drift the transverse component excites the flutter even at $u=0.2$, tumbling the axis and preventing $\sigma$ from settling. So the honest statement: **Lorentz recovery is decoupled from the structured-sea axis absorber only for small near-axial drift (confirmed there); full-band and off-axis confirmation share that same axis absorber** — the one the $A_0$ release also needs.
+
+**Grand convergence.** After the two native runs, three frontier obligations funnel through one object: (a) the large-drift axial ruler ($\xi=1/\gamma$ for $u\ge0.4$), (b) the settled $\sigma=0$ (Corollary 1, off-axis), and (c) the mass-map $A_0$ native release — all are blocked solely by the **structured-sea axis absorber** that anchors $\hat n\to\hat d$. The bare-braid drift-orientation torque anchors the axis only in a basin around axis-parallel drift too narrow to hold $\theta=30$–$90°$; the structured sea must widen that basin. This makes the axis absorber the single highest-value target on the convergence frontier: closing it discharges the remainder of Lorentz recovery *and* unblocks the mass map at once. The predicted $\beta_{\max}\gtrsim u^\ast$ (S2 Result 3) is masked until then.
+
+## Handoff
+
+When S1–S4 pass, this packet emits the translated attractor family $\boldsymbol{\rho}^{\star}_{q}(s;\beta_f)$ and the shared clock/ruler ledger required by [lorentz-gr-bridge-handoff.md](lorentz-gr-bridge-handoff.md) stage 1, unblocking the weak-field medium-response stage.
+
+Next artifacts, updated: (1) the **two-drift-direction run** for the $\sigma$ shear (S3); (2) a **structured-sea (axis-absorber) run** to read the ruler at $u\ge0.4$ and expose $\beta_{\max}$ — the same absorber the $A_0$ native release needs, so S3/S2-large-drift and the mass-map $A_0$ now share one compute dependency; (3) analytic closed-form $\partial_u J^{\mathrm{sym}}|_0$ to sharpen $\beta_{\max}\gtrsim u^\ast$.
