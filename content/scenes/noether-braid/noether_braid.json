@@ -30,20 +30,16 @@
         "scenePath": "content/scenes/noether-braid/braid_mathematics.json"
       },
       {
-        "nodeId": "shell_braid",
-        "scenePath": "content/scenes/noether-braid/shell_braid.json"
+        "nodeId": "spindle_braid",
+        "scenePath": "content/scenes/noether-braid/spindle_braid.json"
       },
       {
-        "nodeId": "nested_shell_braid",
-        "scenePath": "content/scenes/noether-braid/nested_shell_braid.json"
+        "nodeId": "explored_braid_geometries",
+        "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json"
       },
       {
-        "nodeId": "nested_shell_braid_dynamics",
-        "scenePath": "content/scenes/noether-braid/nested_shell_braid_dynamics.json"
-      },
-      {
-        "nodeId": "nested_shell_braid_geometry",
-        "scenePath": "content/scenes/noether-braid/nested_shell_braid_geometry.json"
+        "nodeId": "braid_envelope_geometry",
+        "scenePath": "content/scenes/noether-braid/braid_envelope_geometry.json"
       },
       {
         "nodeId": "noether_braid_doubling_frequency_resonance_lock",
@@ -101,35 +97,27 @@
       "labelBadge": "doc"
     },
     {
-      "id": "shell_braid",
-      "title": "Symmetric Shell Braid",
-      "radius": 2.05,
-      "color": "#4f7466",
-      "labelTitle": "Symmetric Shell Braid",
-      "labelBadge": "family"
-    },
-    {
-      "id": "nested_shell_braid",
-      "title": "Nested Shell Braid",
+      "id": "spindle_braid",
+      "title": "Spindle Braid",
       "radius": 2.05,
       "color": "#655c7d",
-      "labelTitle": "Nested Shell Braid",
-      "labelBadge": "family"
-    },
-    {
-      "id": "nested_shell_braid_dynamics",
-      "title": "Nested Shell Braid Dynamics",
-      "radius": 2.05,
-      "color": "#3f6a5a",
-      "labelTitle": "Nested Shell Braid Dynamics",
+      "labelTitle": "Spindle Braid",
       "labelBadge": "doc"
     },
     {
-      "id": "nested_shell_braid_geometry",
-      "title": "Nested Shell Braid Geometry",
+      "id": "explored_braid_geometries",
+      "title": "Explored Braid Geometries",
+      "radius": 2.05,
+      "color": "#4f7466",
+      "labelTitle": "Explored Braid Geometries",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "braid_envelope_geometry",
+      "title": "Braid Envelope Geometry",
       "radius": 2.05,
       "color": "#2f4f7a",
-      "labelTitle": "Nested Shell Braid Geometry",
+      "labelTitle": "Braid Envelope Geometry",
       "labelBadge": "doc"
     },
     {

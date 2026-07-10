@@ -28,6 +28,10 @@
       {
         "nodeId": "planar_bridge_closure",
         "scenePath": "content/scenes/proof-programs/planar_bridge_closure.json"
+      },
+      {
+        "nodeId": "terminal_alignment",
+        "scenePath": "content/scenes/proof-programs/terminal_alignment.json"
       }
     ]
   },
@@ -59,6 +63,14 @@
       "color": "#5a1f2e",
       "labelTitle": "Planar Bridge Closure",
       "labelBadge": "doc"
+    },
+    {
+      "id": "terminal_alignment",
+      "label": "Planar Bridge Closure",
+      "color": "#5a1f2e",
+      "labelTitle": "Terminal Alignment",
+      "labelBadge": "doc",
+      "title": "Terminal Alignment"
     }
   ]
 }

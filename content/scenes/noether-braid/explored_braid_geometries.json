@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "noether_braid__nested_shell_braid_dynamics",
-    "title": "Nested Shell Braid Dynamics",
+    "id": "noether_braid__explored_braid_geometries",
+    "title": "Explored Braid Geometries",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "path": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     "view": {
       "columns": 1,

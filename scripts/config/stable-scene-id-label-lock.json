@@ -60,9 +60,8 @@
       "sceneId": "noether_braid",
       "sceneName": "Noether Braid",
       "objects": {
-        "nested_shell_braid": "Nested Shell Braid",
-        "nested_shell_braid_dynamics": "Nested Shell Braid Dynamics",
-        "nested_shell_braid_geometry": "Nested Shell Braid Geometry",
+        "braid_envelope_geometry": "Braid Envelope Geometry",
+        "explored_braid_geometries": "Explored Braid Geometries",
         "neutral_braid": "Neutral Braid",
         "noether_braid_configuration_space": "Noether Braid Configuration Space",
         "noether_braid_doubling_frequency_resonance_lock": "Noether Braid Doubling-Frequency Resonance Lock",
@@ -70,7 +69,7 @@
         "noether_braid_proof_map": "Noether Braid Proof Map",
         "noether_braid_taxonomy": "Noether Braid Taxonomy",
         "noether_braid_topological_charge": "Noether Braid Topological Charge",
-        "shell_braid": "Symmetric Shell Braid"
+        "spindle_braid": "Spindle Braid"
       }
     },
     "content/scenes/foundations/foundations.json": {

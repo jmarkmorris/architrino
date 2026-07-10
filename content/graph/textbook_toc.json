@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1512
+      "sections": 1491
     }
   },
   "tocRoot": {
@@ -2268,6 +2268,48 @@
                     "headingLevel": 2
                   }
                 ]
+              },
+              {
+                "id": "proof_programs__terminal_alignment",
+                "title": "Terminal Alignment",
+                "kind": "markdown-view",
+                "sceneType": "Scene-Markdown-View",
+                "scenePath": "content/scenes/proof-programs/terminal_alignment.json",
+                "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Braid Symmetry-Breaking Point",
+                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+                    "markdownSection": "Braid Symmetry-Breaking Point",
+                    "sectionKey": "braid symmetry breaking point",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Local Black-Hole Duality Target",
+                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+                    "markdownSection": "Local Black-Hole Duality Target",
+                    "sectionKey": "local black hole duality target",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Terminal Alignment Label-Count Target",
+                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+                    "markdownSection": "Terminal Alignment Label-Count Target",
+                    "sectionKey": "terminal alignment label count target",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
+                    "markdownPath": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+                    "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
+                    "sectionKey": "regime map for speed statements cft horizon ads",
+                    "headingLevel": 2
+                  }
+                ]
               }
             ]
           }
@@ -2456,6 +2498,54 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Substrate and Effective Levels",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Substrate and Effective Levels",
+                "sectionKey": "substrate and effective levels",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed Hierarchy",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Speed Hierarchy",
+                "sectionKey": "speed hierarchy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Spiral-Helical Motion Picture",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Spiral-Helical Motion Picture",
+                "sectionKey": "spiral helical motion picture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Mass Thesis as a Dynamics Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Mass Thesis as a Dynamics Target",
+                "sectionKey": "mass thesis as a dynamics target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Hinge Equation Sketch",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Hinge Equation Sketch",
+                "sectionKey": "hinge equation sketch",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Acceleration-Gradient Branch Comparison",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
+                "markdownSection": "Acceleration-Gradient Branch Comparison",
+                "sectionKey": "acceleration gradient branch comparison",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Scoped Anti-Damping Results",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
                 "markdownSection": "Scoped Anti-Damping Results",
@@ -2489,383 +2579,125 @@
             ]
           },
           {
-            "id": "noether_braid__shell_braid",
-            "title": "Symmetric Shell Braid",
+            "id": "noether_braid__spindle_braid",
+            "title": "Spindle Braid",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/shell_braid.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+            "scenePath": "content/scenes/noether-braid/spindle_braid.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "title": "Definition and Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "Definition and Geometry",
+                "sectionKey": "definition and geometry",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The One-Band Family",
-                "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-                "markdownSection": "The One-Band Family",
-                "sectionKey": "the one band family",
+                "title": "Boundary Members",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "Boundary Members",
+                "sectionKey": "boundary members",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Symmetric Member and the SH-0 Fixture",
-                "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-                "markdownSection": "The Symmetric Member and the SH-0 Fixture",
-                "sectionKey": "the symmetric member and the sh 0 fixture",
+                "title": "Why Rigidity: The Harmonic-Matching Principle",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "Why Rigidity: The Harmonic-Matching Principle",
+                "sectionKey": "why rigidity the harmonic matching principle",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Isolated Release and the Return-Response Question",
-                "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-                "markdownSection": "Isolated Release and the Return-Response Question",
-                "sectionKey": "isolated release and the return response question",
+                "title": "How the Family Was Found",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "How the Family Was Found",
+                "sectionKey": "how the family was found",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The SH-0-Sea Environment Route",
-                "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-                "markdownSection": "The SH-0-Sea Environment Route",
-                "sectionKey": "the sh 0 sea environment route",
+                "title": "The Field-Speed Pin and the Escapement",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "The Field-Speed Pin and the Escapement",
+                "sectionKey": "the field speed pin and the escapement",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Accessory Dressing and Apparent Energy",
-                "markdownPath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-                "markdownSection": "Accessory Dressing and Apparent Energy",
-                "sectionKey": "accessory dressing and apparent energy",
+                "title": "Motion, Inertia, and Isotropy",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "Motion, Inertia, and Isotropy",
+                "sectionKey": "motion inertia and isotropy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Discrete-Symmetry Structure",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "Discrete-Symmetry Structure",
+                "sectionKey": "discrete symmetry structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Confinement Problem",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "The Confinement Problem",
+                "sectionKey": "the confinement problem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Status and Open Burden",
+                "markdownPath": "content/markdown/aaa/noether-braid/spindle-braid.md",
+                "markdownSection": "Candidate Status and Open Burden",
+                "sectionKey": "candidate status and open burden",
                 "headingLevel": 2
               }
             ]
           },
           {
-            "id": "noether_braid__nested_shell_braid",
-            "title": "Nested Shell Braid",
+            "id": "noether_braid__explored_braid_geometries",
+            "title": "Explored Braid Geometries",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/nested_shell_braid.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
+            "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Relation to the Symmetric Shell Channel",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Relation to the Symmetric Shell Channel",
-                "sectionKey": "relation to the symmetric shell channel",
+                "title": "Symmetric Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+                "markdownSection": "Symmetric Shell Braid",
+                "sectionKey": "symmetric shell braid",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Properties of the Nested Shell Braid",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Properties of the Nested Shell Braid",
-                "sectionKey": "properties of the nested shell braid",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Integer Phase-Closure States",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Integer Phase-Closure States",
-                "sectionKey": "integer phase closure states",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cadence-Scale Retuning Hypothesis",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Cadence-Scale Retuning Hypothesis",
-                "sectionKey": "cadence scale retuning hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Rest-Level Scaling Curve",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Rest-Level Scaling Curve",
-                "sectionKey": "rest level scaling curve",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Reduced Nested Shell Braid Closure Label",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Reduced Nested Shell Braid Closure Label",
-                "sectionKey": "reduced nested shell braid closure label",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry and Exclusion Envelope",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Geometry and Exclusion Envelope",
-                "sectionKey": "geometry and exclusion envelope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Nested Shell Braid Hierarchy and Fermion Generations",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "The Nested Shell Braid Hierarchy and Fermion Generations",
-                "sectionKey": "the nested shell braid hierarchy and fermion generations",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Nested Shell Braid Alignment and Planck-Scale Framing",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "Nested Shell Braid Alignment and Planck-Scale Framing",
-                "sectionKey": "nested shell braid alignment and planck scale framing",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Foundation for Fermions",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-                "markdownSection": "The Foundation for Fermions",
-                "sectionKey": "the foundation for fermions",
+                "title": "Nested Shell Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+                "markdownSection": "Nested Shell Braid",
+                "sectionKey": "nested shell braid",
                 "headingLevel": 2
               }
             ]
           },
           {
-            "id": "noether_braid__nested_shell_braid_dynamics",
-            "title": "Nested Shell Braid Dynamics",
+            "id": "noether_braid__braid_envelope_geometry",
+            "title": "Braid Envelope Geometry",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+            "scenePath": "content/scenes/noether-braid/braid_envelope_geometry.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Relation to Causal Closure",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Relation to Causal Closure",
-                "sectionKey": "relation to causal closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Claim Scope",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Claim Scope",
-                "sectionKey": "claim scope",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Causal-Closure Certificate Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Causal-Closure Certificate Target",
-                "sectionKey": "causal closure certificate target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Substrate and Effective Levels",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Substrate and Effective Levels",
-                "sectionKey": "substrate and effective levels",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Speed Hierarchy",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Speed Hierarchy",
-                "sectionKey": "speed hierarchy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Multi-Scale Layer Locking",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Multi-Scale Layer Locking",
-                "sectionKey": "multi scale layer locking",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Braid Symmetry-Breaking Point",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Braid Symmetry-Breaking Point",
-                "sectionKey": "braid symmetry breaking point",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Planar Reduced Noether Braid Chart",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Planar Reduced Noether Braid Chart",
-                "sectionKey": "planar reduced noether braid chart",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Local Black-Hole Duality Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Local Black-Hole Duality Target",
-                "sectionKey": "local black hole duality target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Mass Thesis as a Dynamics Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Mass Thesis as a Dynamics Target",
-                "sectionKey": "mass thesis as a dynamics target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Spiral-Helical Motion Picture",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Spiral-Helical Motion Picture",
-                "sectionKey": "spiral helical motion picture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "All-Layer Translating Branch Response",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "All-Layer Translating Branch Response",
-                "sectionKey": "all layer translating branch response",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cadence-Scale Retuning Closure",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Cadence-Scale Retuning Closure",
-                "sectionKey": "cadence scale retuning closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer-Inference Export Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Observer-Inference Export Boundary",
-                "sectionKey": "observer inference export boundary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Terminal Alignment Label-Count Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Terminal Alignment Label-Count Target",
-                "sectionKey": "terminal alignment label count target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dynamics-Side Roadmap",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Dynamics-Side Roadmap",
-                "sectionKey": "dynamics side roadmap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Working Hypotheses",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Working Hypotheses",
-                "sectionKey": "working hypotheses",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Regime Map for Speed Statements (CFT / Horizon / AdS)",
-                "sectionKey": "regime map for speed statements cft horizon ads",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry Focus",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Geometry Focus",
-                "sectionKey": "geometry focus",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Minimal Models",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Minimal Models",
-                "sectionKey": "minimal models",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer-Export Diagnostics",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Observer-Export Diagnostics",
-                "sectionKey": "observer export diagnostics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observables and Diagnostics (Summary)",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Observables and Diagnostics (Summary)",
-                "sectionKey": "observables and diagnostics summary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Revision Triggers (Failure Modes)",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Revision Triggers (Failure Modes)",
-                "sectionKey": "revision triggers failure modes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Acceleration-Gradient Branch Comparison",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Acceleration-Gradient Branch Comparison",
-                "sectionKey": "acceleration gradient branch comparison",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Routed Extensions",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Routed Extensions",
-                "sectionKey": "routed extensions",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__nested_shell_braid_geometry",
-            "title": "Nested Shell Braid Geometry",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Document Role",
                 "sectionKey": "document role",
                 "headingLevel": 2
@@ -2873,7 +2705,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Dynamic Exclusion Envelope",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Dynamic Exclusion Envelope",
                 "sectionKey": "dynamic exclusion envelope",
                 "headingLevel": 2
@@ -2881,23 +2713,23 @@
               {
                 "kind": "markdown-section",
                 "title": "Assembly-Noether Sea Interface Diagnostic",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Assembly-Noether Sea Interface Diagnostic",
                 "sectionKey": "assembly noether sea interface diagnostic",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Oblate Spheroidal Form",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-                "markdownSection": "Oblate Spheroidal Form",
-                "sectionKey": "oblate spheroidal form",
+                "title": "Envelope Forms",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+                "markdownSection": "Envelope Forms",
+                "sectionKey": "envelope forms",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
                 "title": "Canonical Geometry Variables",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Canonical Geometry Variables",
                 "sectionKey": "canonical geometry variables",
                 "headingLevel": 2
@@ -2905,7 +2737,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Lorentz Projection Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Lorentz Projection Role",
                 "sectionKey": "lorentz projection role",
                 "headingLevel": 2
@@ -2913,7 +2745,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Retuning Projection to Envelope Variables",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Retuning Projection to Envelope Variables",
                 "sectionKey": "retuning projection to envelope variables",
                 "headingLevel": 2
@@ -2921,7 +2753,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Deformability of the Envelope",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Deformability of the Envelope",
                 "sectionKey": "deformability of the envelope",
                 "headingLevel": 2
@@ -2929,7 +2761,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Geometry Interfaces",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Geometry Interfaces",
                 "sectionKey": "geometry interfaces",
                 "headingLevel": 2
@@ -2937,7 +2769,7 @@
               {
                 "kind": "markdown-section",
                 "title": "Summary Commitment",
-                "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
                 "headingLevel": 2
@@ -6999,10 +6831,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Nested Shell Braid Geometry Basis",
+                "title": "Noether Braid Geometry Basis",
                 "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
-                "markdownSection": "Nested Shell Braid Geometry Basis",
-                "sectionKey": "nested shell braid geometry basis",
+                "markdownSection": "Noether Braid Geometry Basis",
+                "sectionKey": "noether braid geometry basis",
                 "headingLevel": 2
               },
               {
@@ -10059,10 +9891,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Assembly Layer (Nested Shell Braid)",
+                    "title": "Assembly Layer (Noether Braid)",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Assembly Layer (Nested Shell Braid)",
-                    "sectionKey": "assembly layer nested shell braid",
+                    "markdownSection": "Assembly Layer (Noether Braid)",
+                    "sectionKey": "assembly layer noether braid",
                     "headingLevel": 2,
                     "children": [
                       {
