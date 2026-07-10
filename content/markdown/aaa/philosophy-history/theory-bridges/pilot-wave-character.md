@@ -133,7 +133,7 @@ From the perspective of any single architrino, the dynamics reduce to a causal r
 4. Its accumulated motion (velocity, trajectory) is the integrated record of past interactions with the wake.
 5. Its own emissions contribute to the wake that will later guide other architrinos—and, if it has ever exceeded $c_f$ and curved, itself.
 
-Stability and structure emerge when this response loop becomes periodic: the architrino locks into a repeating pattern within the wake it co-creates. Assemblies (binaries, nested shell braids, atoms) are precisely such self-consistent locked modes.
+Stability and structure emerge when this response loop becomes periodic: the architrino locks into a repeating pattern within the wake it co-creates. Assemblies (binaries, Noether braids, atoms) are precisely such self-consistent locked modes.
 
 This is the single-ontology guidance picture behind the pilot-wave comparison: the guiding structure is the causal wake, and the guided entities are the architrinos that generate it. There is no separate $\psi$ on configuration space.
 
@@ -200,7 +200,7 @@ Weak-measurement trajectory reconstructions sharpen this comparison without sett
 
 In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron nested shell braid bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](./superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron Noether braid bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](./superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
 
 This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
 
@@ -421,7 +421,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 
 **Effective $\psi$ recovery.** The claim that the coarse-grained wake reproduces $\psi$ in the continuum limit requires explicit construction: define the coarse-graining scale, derive the effective wave equation, and show that it reduces to the Schrödinger equation in the non-relativistic, weak-field limit. This derivation is incomplete.
 
-**Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations for $\sim 10^{80}$ architrinos. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → nested shell braid → assembly → continuum field) must be established with quantitative error bounds at each level.
+**Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations for $\sim 10^{80}$ architrinos. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → Noether braid → assembly → continuum field) must be established with quantitative error bounds at each level.
 
 **Relativistic extension.** dBB has well-known difficulties with relativistic generalization (preferred foliation, particle creation/annihilation). $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time substrate handles the preferred foliation naturally but must demonstrate that emergent Lorentz invariance holds to the required precision ($< 10^{-17}$) and that particle creation/annihilation (assembly formation/dissolution) is correctly described.
 

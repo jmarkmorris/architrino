@@ -625,12 +625,12 @@ Energy in this picture is distributed across:
 
 For composite systems such as Standard Model particles, nuclei, and composite bound states formed from architrinos and embedded in the Noether sea, we distinguish:
 
-- **Total internal energy**: energy retained by the assembly and by its immediate nested shell braid environment,
+- **Total internal energy**: energy retained by the assembly and by its immediate Noether braid environment,
 - **Apparent energy**: what leaks out as a long-range wake signature and governs how the assembly interacts with the outside world.
 
 ### Internal Energy of an Assembly
 
-For an assembly $A$ (e.g., nested shell braid or higher structure), let $i\in A$ run over its constituent architrinos. Then:
+For an assembly $A$ (e.g., Noether braid or higher structure), let $i\in A$ run over its constituent architrinos. Then:
 
 $$E_{\text{internal}}(A) = \sum_{i\in A} E_{k,i} + \frac{1}{2} \sum_{\substack{i,j\in A \\ i\neq j}} U_{ij} + E_{\text{coupling to sea}}(A),$$
 
@@ -986,8 +986,8 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell braids and more complex assemblies, contributing to their stability.
-- Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell braid configuration.
+- Self-hit repulsion acts as an internal **stiffening mechanism** for Noether braids and more complex assemblies, contributing to their stability.
+- Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local Noether braid configuration.
 
 At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
 

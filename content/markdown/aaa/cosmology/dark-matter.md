@@ -20,7 +20,7 @@ The historical route through spiral-galaxy rotation curves should not make those
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is a dense coupled population of neutral Noether braid assemblies occupying the fixed Euclidean void. In the nested shell case, each Noether braid consists of three nested electrino-positrino binaries (inner, middle, outer), with net charge zero and internal dynamics spanning the three field-speed regimes ($v > c_f$, $v = c_f$, $v < c_f$). Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$ and normalized density $n(\mathbf X,T)$ alter the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
 
-Massive composite assemblies (protons, atoms, stars) are nested shell braid configurations with axial layers; they locally compress the Noether sea, increasing $\rho_{\text{NS}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to Noether sea compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
+Massive composite assemblies (protons, atoms, stars) are Noether braid configurations with axial layers (the current leading candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)); they locally compress the Noether sea, increasing $\rho_{\text{NS}}$ and changing $\chi_{\text{sea}}$ for effective signal propagation. This compression is the substrate-level origin of the Newtonian potential $\Phi_N$ in the weak-field limit. The effective gravitational constant $G$ is related to Noether sea compliance—how readily the Sea density responds to stress from embedded matter (see [spacetime/emergent-metric.md](../spacetime/emergent-metric.md)).
 
 ### What Counts as "Dark" in this Ontology
 
@@ -263,7 +263,7 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 - **Neutrino-class assemblies:** pro-orientation Noether braids with balanced axial layers ($3\epsilon_+ + 3\epsilon_-$). These are the SM neutrinos themselves; their masses ($\sum m_\nu < 0.12$ eV from cosmological bounds) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
 
-- **Heavier neutral assemblies (hypothetical):** nested shell braids carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier Noether braid. The mass scale is set by internal binding energy, shielding, and medium-dressed response to the Noether sea.
+- **Heavier neutral assemblies (hypothetical):** Noether braids carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier Noether braid. The mass scale is set by internal binding energy, shielding, and medium-dressed response to the Noether sea.
 
 - **Primordial Noether braid defects:** dense, self-gravitating clusters of maximally contracted Noether braids produced in the high-energy epoch, analogous to primordial black holes in standard cosmology but with internal maximum-curvature structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
 
@@ -682,7 +682,7 @@ The neutral-assembly mass is not a free parameter to be fitted post hoc; it must
 - $m \sim$ GeV–TeV: WIMP-like comparison window, not a neutralino identification.
 - $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not predict a unique mass; deriving the mass spectrum from first-principles nested shell braid binding energies and formation rates is a high-priority simulation target.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not predict a unique mass; deriving the mass spectrum from first-principles Noether braid binding energies and formation rates is a high-priority simulation target.
 
 A superheavy neutral-lepton comparison branch is useful only as a benchmark, not as imported ontology. In that comparison, a sterile or right-handed singlet near $m_{\nu_R}\sim4.8\times10^8\;\mathrm{GeV}$ behaves as cold, collisionless dark matter if it is stable, decoupled from visible channels, and produced with the observed abundance. The corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ acceptance record would have to close
 $$
@@ -794,7 +794,7 @@ All interfaces use the same absolute-time / Euclidean-space substrate and the sa
 
 Dark-matter phenomenology in $\mathbb{A}\mathbb{A}\mathbb{A}$ is attributed to a hybrid of two mechanisms arising from the same Noether braid substrate:
 
-- **Neutral assemblies** (Candidate A): electromagnetically transparent nested shell braid configurations that cluster gravitationally, reproducing CDM-like behavior at cluster and cosmological scales.
+- **Neutral assemblies** (Candidate A): electromagnetically transparent Noether braid configurations that cluster gravitationally, reproducing CDM-like behavior at cluster and cosmological scales.
 - **Noether sea response** (Candidate B): non-linear elastic corrections to effective gravity at low accelerations, providing scale-dependent modifications relevant to galaxy-scale phenomenology.
 
 The working baseline is the hybrid (Candidate C), with neutral assemblies carrying the dominant mass fraction and medium response supplying corrections. Deriving the neutral-assembly mass spectrum, interaction cross-sections, and medium constitutive relations from the master equation is the critical open program.

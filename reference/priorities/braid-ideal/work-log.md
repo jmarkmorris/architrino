@@ -1620,3 +1620,8 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - DERIVED SIZE: R_M(eq) ~ 3.49 kappa*eps^2/c_f^2 — the braid's absolute size is a derived constant, kappa-scale, well above the d0=R_MCB floor (arrest = self-support, not discreteness rescue). Mass-map anchor noted.
 - Gaps: tilt/nutation coordinates NOT in the matrix (Row 6's killer — expect decisive at any Row 7); delay-memory modes; closure metric (0.425) now openly disagrees with the ledgers (the arc says ledgers govern).
 - Operator fork: table Row 7 (bare V5 release, axis-wobble watch decisive) vs extend the matrix with tilt/nutation first.
+
+## 2026-07-09 — Tilt block: global null exact, relative tilts RESTORING at V5; gate now covers the Row 6 killer (spec Section 59)
+- tiltStiffness (owner script; tests 17 passing): per-layer plane inclinations, cycle-averaged transverse torque on exact causal roots. Global-tilt null exact (isotropy witness); column sums nonzero = causal-delay physics (field carries angular momentum), so K asymmetric and the claim readout is the exact quotient spectrum.
+- V5 verdict: relative-tilt eigenvalues -0.1247 / -0.7485, real, negative, dt-exact. Strongest coupling inner-tilt -> middle-torque (+0.90), matching Row 6 phenomenology; net restoring at V5. Gyroscopic/flutter caveat declared (native question).
+- GATE COMPLETE at seed grade: radial basin + tangential ledger + tilt block — every mode class that killed a native run. V5 passes all three; no prior candidate would have. Row 7 tabling = operator decision.

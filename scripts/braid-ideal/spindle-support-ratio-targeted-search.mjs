@@ -756,6 +756,115 @@ export const SELF_EQUILIBRATED_V5 = Object.freeze({
   ReqOverKappa: 3.494,
 });
 
+// TILT-STIFFNESS BLOCK (Section 58 named gap; the Row 6 native killer). The
+// coordinates are per-layer plane inclinations eta_L about a transverse axis
+// (x): each layer keeps its circular motion, rigidly rotated by R_x(eta_L).
+// The generalized force is the cycle-averaged x-torque on the layer at kappa*
+// (zero at eta=0 by reflection symmetry — tilt equilibrium is automatic; a
+// layer in exact circular motion about its tilted normal needs zero net
+// torque, so the wake torque IS the generalized force). K_tilt[i][j] =
+// d<T_x on layer i>/d eta_j. VALIDATION ROW built in: the global mode
+// (1,1,1) is a symmetry of the bare braid (isotropy) and must be null.
+// DECLARED CAVEAT: layers carry spin angular momentum, so the true linear
+// dynamics is gyroscopic (lambda^2 M + lambda G + K); a restoring K is the
+// seed-grade gate (necessary), the full verdict is the native run's.
+export function tiltStiffness({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02, eta = 0.03 } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const mk = (etas) => seed.sites.map((s) => {
+    const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const c = Math.cos(etas[L]), sn = Math.sin(etas[L]);
+    return {
+      pol: s.pol, L,
+      pos: (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return rotX([s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)], c, sn); },
+      vel: (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return rotX([-v*Math.sin(a), v*Math.cos(a), 0], c, sn); },
+    };
+  });
+  const torques = (etas) => {
+    const sites = mk(etas);
+    const T = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i];
+        const Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          // causal root scan (bounded lookback, bisection refine)
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          const dmax = 4, N = 2400;
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= N; kk++) {
+            const te = t - dmax + dmax * (kk / N);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2;
+              const p = src.pos(te0);
+              const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+              const r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+                const vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+                const wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        // x-torque about the origin on this member, kappa-scaled, cycle-averaged
+        T[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+      }
+    }
+    return T;
+  };
+  const K = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const ep = [0, 0, 0], em = [0, 0, 0];
+    ep[j] = eta; em[j] = -eta;
+    const Tp = torques(ep), Tm = torques(em);
+    for (let i = 0; i < 3; i++) K[i][j] = (Tp[i] - Tm[i]) / (2 * eta);
+  }
+  const sym = K.map((row, i) => row.map((v, j) => (v + K[j][i]) / 2));
+  const eig = jacobiEigSym(sym);
+  // global-mode null witness: K acting on (1,1,1)
+  const g1 = [0, 1, 2].map((i) => K[i][0] + K[i][1] + K[i][2]);
+  const globalResidual = Math.hypot(...g1);
+  const scale = Math.max(...K.flat().map(Math.abs));
+  // exact quotient by the global null (right eigenvector (1,1,1), eigenvalue 0):
+  // express K's action on u1=(1,-1,0), u2=(0,1,-1) modulo (1,1,1) and take the
+  // 2x2 spectrum — the true relative-tilt eigenvalues (possibly complex: whirl).
+  const applyK = (u) => [0, 1, 2].map((i) => K[i][0]*u[0] + K[i][1]*u[1] + K[i][2]*u[2]);
+  const inBasis = (v) => {
+    const c = (v[0] + v[1] + v[2]) / 3;
+    const a = v[0] - c;          // coefficient of u1 = (1,-1,0): v0 = a + c
+    const b = c - v[2];          // coefficient of u2 = (0,1,-1): v2 = -b + c
+    return [a, b];
+  };
+  const q1 = inBasis(applyK([1, -1, 0])), q2 = inBasis(applyK([0, 1, -1]));
+  const Q = [[q1[0], q2[0]], [q1[1], q2[1]]];
+  const tr = Q[0][0] + Q[1][1], det = Q[0][0]*Q[1][1] - Q[0][1]*Q[1][0];
+  const disc = tr * tr - 4 * det;
+  const relativeEigen = disc >= 0
+    ? [{ re: (tr + Math.sqrt(disc)) / 2, im: 0 }, { re: (tr - Math.sqrt(disc)) / 2, im: 0 }]
+    : [{ re: tr / 2, im: Math.sqrt(-disc) / 2 }, { re: tr / 2, im: -Math.sqrt(-disc) / 2 }];
+  return { K, symEigen: eig, globalModeResidual: globalResidual, relScale: scale,
+    globalNullOk: globalResidual < 0.05 * Math.max(scale, 1e-9),
+    quotient: Q, relativeEigen,
+    restoringRelative: relativeEigen.every((e) => e.re < 0) };
+}
+
 export function diagnosticReport() {
   return { schema: SCHEMA, specPacketRef: SPEC_PACKET_REF,
     championBaseline: supportRatios({}),

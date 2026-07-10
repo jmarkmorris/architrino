@@ -13,7 +13,7 @@ The teaching sequence is deliberately layered. First comes the ontological claim
    \Sigma_{T_\ast} = \pi_T^{-1}(\{T_\ast\}) = \{T_\ast\}\times \mathbb{R}^3
    $$
 4. **Substrate clock form**: The substrate clock form $dT$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $T$, it fixes the tangent planes to the slices $\Sigma_T$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
-5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell braid internal phase dynamics.
+5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of Noether braid internal phase dynamics.
 
 The list separates what exists at the substrate level from what embedded observers can read. Absolute time, the Euclidean void, and the slices $\Sigma_T$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
 

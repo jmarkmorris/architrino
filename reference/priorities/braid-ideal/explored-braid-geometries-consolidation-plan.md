@@ -19,6 +19,17 @@ Status: `phase-2-executed-2026-07-09` (operator direction: move the corpus towar
 
 Tables and reading order in `noether-braid.md` and the taxonomy updated (Braid Envelope Geometry and Terminal Alignment rows). Fragment audit across all five destinations: clean. `validate-content --check`: zero source-level errors; remaining errors are generated reading copies + index drift only.
 
+## Executed — Phase 3, Terminology Generalization (2026-07-10)
+
+- Corpus-wide survey: ~673 "nested shell braid" mentions, ~470 outside the braid scene across ~80 files; downstream prose was nested-first throughout.
+- Stage 1 executed across ~45 assembly-level files (spacetime, dynamics, quantum, foundations, reactions, nuclear-atomic, cosmology, philosophy-history bridges, validation): 106 mentions generalized to `Noether braid`/`braid assembly` where the claim is assembly-level; ~90 mentions deliberately kept where the claim depends on nested structure; stale link titles aligned to the renamed chapters (`Braid Envelope Geometry`, `Terminal Alignment`). Outside-scene count now 358, dominated by the excluded mechanism files and justified keeps.
+- Stage 2 (canon): `noether-braid.md` canonical-prose rule now names `spindle braid` as leading-candidate vocabulary and re-marks `shell braid`/`nested shell braid` as comparison-family vocabulary; `terminology-usage.md` Noether Braid Usage table gains a spindle row and re-scopes the nested row (the "main current fermion scaffold" example removed). Comparative glossary and mathematics terminology were already correctly guarded and untouched.
+- Spec Section 58 promoted into `spindle-braid.md`: the rail-pinned cadence makes the speed pin the size pin; the coupling refit was the gauge hiding the dilation balance; the self-equilibrated bare configuration (radial equilibrium + restoring basin + closed tangential ledger, no environment) with derived size $R_M^{\mathrm{eq}}\approx3.5\,\kappa\epsilon^2/c_f^2$; closure-vs-ledger metric divergence; axis/nutation modes flagged as the decisive open sector.
+
+## Not Generalizable — Gated on Spindle-Native Re-Derivation
+
+These files keep nested-first prose because their mechanisms depend on frequency separation, ordered bands, or the nested closure label; each needs a spindle-native counterpart before generalization: the generation ladder (`quantum-number-mapping`, `particle-masses`, `electron`, `muon-tau`, `quarks`, `mesons`, `color-charge-su3`); the terminal-alignment/horizon program (`proof-programs/terminal-alignment.md`, `black-holes`, `horizon-chirality`, `singularity-resolution`, `cosmic-censorship-and-holography`, the Planck-scale bridge); the cadence-scale retuning map and its consumers (`return-cycle-lorentz-quantization`, retuning toy model — the spindle's iso-frequency retuning variables are a different map); the oblate Lorentz projection (fusiform projection open in `braid-envelope-geometry.md`); the spin/angular-momentum bridge (`angular-momentum-and-spin` — candidate for a spindle-native rewrite using the uniaxial structure and the native nutation numbers); the doubling-frequency lock chapter (definitionally frequency-separated); validation charts stated on nested labels (`parameter-ledger`, `architrino-si-base-units`, a0 protocols, the nested action-increment protocol).
+
 ## Remaining Obligations
 
 - Regeneration (branch/PR process): `node scripts/validate-content.mjs --write` → `node scripts/build-scene-graph.mjs --write --strict` → `node scripts/build-textbook-md-pdf.mjs --write` → re-run `--check` mirrors.

@@ -607,7 +607,7 @@ Small $\epsilon_E^{(\eta)}$, $\epsilon_P^{(\eta)}$, and $\epsilon_J^{(\eta)}$ ar
 
 ### Coarse-Graining: The Effective Continuum Lagrangian
 
-The continuum Lagrangian belongs to a coarse-grained level. To describe emergent behavior of the Noether sea and complex assemblies, the description passes from discrete trajectories to continuum densities on native slices. Define a coarse-grained architrino polarity density $\rho_q(\mathbf X,T)$ and current density $\mathbf{j}_q(\mathbf X,T)$, smoothed over a scale much larger than the nested shell braid scale but smaller than macroscopic gradients. This notation is deliberately distinct from Noether braid density variables such as $\rho_{\text{NS}}$ and $n$.
+The continuum Lagrangian belongs to a coarse-grained level. To describe emergent behavior of the Noether sea and complex assemblies, the description passes from discrete trajectories to continuum densities on native slices. Define a coarse-grained architrino polarity density $\rho_q(\mathbf X,T)$ and current density $\mathbf{j}_q(\mathbf X,T)$, smoothed over a scale much larger than the Noether braid scale but smaller than macroscopic gradients. This notation is deliberately distinct from Noether braid density variables such as $\rho_{\text{NS}}$ and $n$.
 
 At the level of a branch-collapsed delayed causal action, the exact multi-time interaction double sum suggests the continuum delayed functional
 

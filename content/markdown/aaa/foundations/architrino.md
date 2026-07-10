@@ -221,7 +221,7 @@ It does not define the force kernel, causal emission-time set, source-normal den
 
 ## Dynamics and Regime Boundary
 
-This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter names those topics only to keep the reader from importing them back into the definition of a single architrino.
+This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or Noether braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter names those topics only to keep the reader from importing them back into the definition of a single architrino.
 
 The canonical homes are:
 

@@ -92,7 +92,7 @@ The crucial point is that the architrino trajectories, wake phases, and internal
 
 After separation, the two assemblies propagate through the Noether sea, each following its own lawful trajectory. No causal wake from $A$ can influence $B$ (or vice versa) faster than $c_f$. Once the assemblies are separated by a distance $d > c_f \Delta T$, they evolve **causally independently** in the sense that no new information passes between them.
 
-The correlations established at $T_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its nested shell braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
+The correlations established at $T_0$ are carried forward in the **internal configuration** of each assembly: the relative phases of its constituent binaries, the orientation of its Noether braid, and the detailed structure of its wake history. These internal degrees of freedom are the **hidden variables** of the system. They are:
 
 - **Definite** at all times (no ontological indeterminacy),
 - **Inaccessible** to any Physical Observer who lacks the full microstate $\Gamma(T)$ (epistemic indeterminacy),

@@ -170,6 +170,14 @@ test("RAIL-PINNED EQUILIBRIUM: the speed pin is also the size pin — the bare b
     `derived size constant R_eq ~ ${ReqOverKappa} kappa*eps^2/c_f^2 (kappa-scale, above the d0 floor)`);
 });
 
+test("TILT BLOCK at V5: global tilt is an exact null (isotropy witness); relative tilts are restoring", async () => {
+  const { tiltStiffness } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const r = tiltStiffness({ Nt: 8 });
+  assert.ok(r.globalNullOk, `global-mode residual ${r.globalModeResidual} (isotropy null)`);
+  assert.ok(r.restoringRelative, `relative-tilt eigenvalues ${JSON.stringify(r.relativeEigen)}`);
+  assert.ok(r.relativeEigen.every((e) => e.re < -0.05), "both relative modes clearly restoring");
+});
+
 test("fail-closed", () => {
   assert.equal(FAIL_CLOSED.retainedBranchClaim, false);
   assert.equal(FAIL_CLOSED.scoreMovement, "no_score_increase");

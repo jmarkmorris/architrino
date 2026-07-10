@@ -1243,3 +1243,19 @@ Executing the Section 57 operator ruling (route (a)). Two corrections built the 
 Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`. The instrument names and verifies the fixed point; tabling Candidate Row 7 is an operator decision.
 
 Next closure goal: operator decision — table Candidate Row 7 (native retained-history release of the bare self-equilibrated V5, no environment, with the stability-matrix gate re-run in-build, the axis-wobble watch expected decisive, and the escapement carrying the rail pump at omega ~ 1.041), or first extend the stability matrix with the tilt/nutation coordinates (the named gap that killed Row 6) before tabling.
+
+---
+
+## 59. The Tilt Block: Global Tilt Is an Exact Null, Relative Tilts Are Restoring at V5 — the Stability Gate Now Covers the Row 6 Killer; Row 7 Decision to the Operator (2026-07-09)
+
+Executing the Section 58 operator ruling (route (a)): the stability gate extended with the tilt coordinates — per-layer plane inclinations $\eta_L$ about a transverse axis, generalized force = cycle-averaged transverse torque per layer at kappa* on exact causal roots (`tiltStiffness` on the owner script; tests 17 passing).
+
+**Validation row built into the physics.** For a bare braid, a GLOBAL tilt is a symmetry (isotropy), so $K_{\mathrm{tilt}}\cdot(1,1,1)$ must vanish — and it does, to numerical zero. Two instrument notes with physical content: (i) the row sums vanish but the COLUMN sums do not — in a causal-delay theory internal torques need not cancel instantaneously (the field in flight carries angular momentum), so the asymmetry of $K$ is physics, not error; (ii) that same asymmetry pollutes the symmetric-part bound with the global mode, so the claim-bearing readout is the exact quotient spectrum (deflate the null, take the $2\times2$ eigenvalues — complex values would be whirl).
+
+**Verdict at V5: restoring.** Relative-tilt eigenvalues $-0.1247$ and $-0.7485$ — both real, both negative, dt-exact ($N_t=8/16$ identical). The strongest single coupling is inner-tilt$\to$middle-torque ($+0.90$), consistent with the Row 6 native phenomenology (the nutation grew through the middle once the inner tipped), and at V5 the net response is restoring anyway. DECLARED CAVEAT, standing: the layers carry spin angular momentum, so the true linear dynamics is gyroscopic-circulatory ($\lambda^2M+\lambda G+K$ with asymmetric $K$); restoring $K$ is the seed-grade gate, and flutter-class instabilities remain the native run's question.
+
+**Gate status.** The pre-tabling stability gate now comprises: rail-pinned radial block (basin, Section 58), tangential ledger ($\tau_I,\tau_O\approx0$), and the tilt block (global null + restoring relative modes) — every mode class that has killed a native run is covered at seed grade. V5 passes all three. No prior candidate would have.
+
+Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Next closure goal: operator decision — table Candidate Row 7 (native retained-history release of the bare SELF-EQUILIBRATED V5, no environment, full gate certificate attached, axis dynamics now expected stable but reported as the decisive diagnostic alongside the dispersal clock and the escapement at $\omega\approx1.041$), or hold for the gyroscopic-circulatory analysis first.

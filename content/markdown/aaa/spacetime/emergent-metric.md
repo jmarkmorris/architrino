@@ -372,7 +372,7 @@ In the shared pullback notation, the stress-side consumer is $\Pi_{\mathrm{matte
 
 ## Noether Braid Deformation and Metric Language
 
-At the assembly level, an individual Noether braid has an oblate, deformable exclusion envelope; see [Nested Shell Braid Geometry](../noether-braid/braid-envelope-geometry.md). This chapter does not identify that individual Noether braid envelope with the metric. The metric bridge uses many deforming Noether braids in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
+At the assembly level, an individual Noether braid has an oblate, deformable exclusion envelope; see [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). This chapter does not identify that individual Noether braid envelope with the metric. The metric bridge uses many deforming Noether braids in the Noether sea, whose coarse variables determine clock, ruler, and signal behavior.
 
 When translating toward General Relativity, Einstein's field equations first appear as the standard comparison form
 $$
@@ -398,7 +398,7 @@ The useful GR analogy is therefore limited but important:
 - perturbative methods can capture small departures from spherical symmetry,
 - and standard predictions such as redshift, Shapiro delay, lensing, orbital precession, frame-dragging, and gravitational-wave emission from deformed sources must be recovered from one reusable constitutive map.
 
-The assembly fact that a Noether braid is oblate belongs in [Nested Shell Braid Geometry](../noether-braid/braid-envelope-geometry.md). The spacetime claim that a population of deformed Noether braids yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
+The assembly fact that a Noether braid is oblate belongs in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). The spacetime claim that a population of deformed Noether braids yields an effective metric belongs here and in [PPN Parameters](ppn-parameters.md).
 
 ## Jacobson-Type Support: Metric as Equation of State
 
@@ -439,7 +439,7 @@ This does not license dismissing low-energy quantized-metric calculations. In th
 
 This support is useful but limited. A Jacobson-style argument would explain why GR-like behavior is a natural equilibrium limit of many possible media, not why $\mathbb{A}\mathbb{A}\mathbb{A}$ is uniquely correct. The distinguishing burden therefore shifts to the departures from equilibrium, where the detailed Noether braid architecture should matter.
 
-It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and nested shell braid dynamics programs.
+It also does not derive inertia by itself. A successful equation-of-state route can recover an effective Einstein equation while leaving open how a particular assembly acquires its inertial response, why accelerated and gradient-driven local records agree to equivalence-principle accuracy, and how the same Noether sea record fixes the mass-side response tensor. Those burdens remain with the mass, energy, Lorentz-closure, and Noether braid dynamics programs.
 
 ### Local-Horizon Recovery Target
 

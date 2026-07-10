@@ -154,7 +154,7 @@ $$
 $$
 from its internal phase dynamics, rather than assign the factor independently.
 
-For an admitted moving nested shell braid branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+For an admitted moving Noether braid branch $q$ on a drift band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
 $$
 T_q(\mathbf{w})
 =
@@ -772,7 +772,7 @@ The first executable scaffold keeps the clock proof burden visible. Its accepted
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a nested shell braid clock:
+Two coupled mechanisms change the internal frequency of a Noether braid clock (the current leading candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)):
 
 ### Kinematic Effect (Velocity Dependence)
 
@@ -790,7 +790,7 @@ When the clock has center-of-mass velocity $\mathbf{V}_{\text{cm}}$ relative to 
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
  - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
 
-Geometry terminology follows [Nested Shell Braid Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The derived clock-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt_{\mathrm{eff}}$ after an effective observer chart is declared. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
+Geometry terminology follows [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The derived clock-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt_{\mathrm{eff}}$ after an effective observer chart is declared. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma$.
 
 **Kinematic hypothesis:**
 $$
@@ -838,8 +838,8 @@ Massive assemblies polarize and densify the surrounding Noether sea. A clock dee
  - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether braids).
  - From the clock's perspective, each internal wake contribution is delayed in the declared clock map.
 
-3. **Tidal distortion of nested shell braid geometry:**
- Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the nested shell braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
+3. **Tidal distortion of Noether braid geometry:**
+ Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
 
 **Gravitational hypothesis:**
 To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
@@ -967,7 +967,7 @@ $$
 \frac{d\tau}{dT}\equiv\frac{\omega_{\text{clk}}}{\omega_0}
 $$
 
-This native observable is the benchmark preserved by the clock projector in [Nested Shell Braid Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf X j}^{(T_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
+This native observable is the benchmark preserved by the clock projector in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf X j}^{(T_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
 
 $$
 \Pi_{\mathrm{clock}}
@@ -1107,7 +1107,7 @@ This program fails, and the emergent-metric project is likely untenable, if any 
 ---
 
 **Chapter target:**
-A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a nested shell braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
+A concrete definition of **how** to compute $\omega(\mathbf{w},\Phi_{\text{eff}},n)$ for a Noether braid clock, and a clear native expression for $d\tau/dT$ plus its observer-chart projection $d\tau/dt_{\mathrm{eff}}$ in terms of those quantities.
 
 ### Closure Program Interface (clock-to-PPN bridge)
 
