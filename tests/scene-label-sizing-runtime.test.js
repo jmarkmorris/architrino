@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   estimateLabelLineCount,
+  resolveNodeLabelText,
   resolveSharedLabelTypography,
   resolveWrappedLabelFit,
 } from "../src/runtime/SceneLabelSizingRuntime.js";
@@ -124,6 +125,13 @@ test("ordinary wrapped scene labels can still use the larger visual cap", () => 
   });
 
   assert.ok(fit.titleSize > 15.5);
+});
+
+test("explicit inline-TeX labels use their rendered text for sizing", () => {
+  assert.deepEqual(
+    resolveNodeLabelText({ labelTitle: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey" }),
+    { labelName: "𝔸𝔸𝔸 Journey", labelSubtitle: "", labelDates: "" }
+  );
 });
 
 test("center context chapter label collapses child chapter markers to the parent", () => {

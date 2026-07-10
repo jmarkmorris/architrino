@@ -332,17 +332,17 @@ export function createNodeFactory(deps) {
     const hasExplicitLabelDates =
       typeof node.labelDates === "string" && node.labelDates.trim().length > 0;
     const labelTitle = hasExplicitLabelTitle
-      ? node.labelTitle.trim()
+      ? normalizeLabelText(node.labelTitle)
       : prefersCompactLabel
         ? parsedFallback.title
         : parsedFull.title || parsedFallback.title;
     let labelSubtitle = hasExplicitLabelSubtitle
-      ? node.labelSubtitle.trim()
+      ? normalizeLabelText(node.labelSubtitle)
       : prefersCompactLabel
         ? parsedFallback.subtitle
         : parsedFull.subtitle || parsedFallback.subtitle;
     const labelDates = hasExplicitLabelDates
-      ? node.labelDates.trim()
+      ? normalizeLabelText(node.labelDates)
       : hasExplicitLabelTitle || hasExplicitLabelSubtitle
         ? ""
         : parsedFull.dates || parsedFallback.dates;

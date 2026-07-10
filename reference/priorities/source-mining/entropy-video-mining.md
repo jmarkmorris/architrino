@@ -108,7 +108,7 @@ This priority-only note tracks the current operator-supplied video batch for ent
 
 - `0:46-1:19` - The compression question is rooted in Shannon information theory; cross-entropy loss in modern language-model training inherits that information-theoretic origin.
 - `1:19-1:38` - Prediction and compression are mathematically equivalent at the modeling level, making a predictor interpretable as a compressor.
-- `1:55-2:09` - The phrase "compression is intelligence" is explicitly weakened to a safer claim: compression theory is highly relevant to artificial intelligence, but intelligence is not cleanly defined by the slogan.
+- `1:55-2:09` - The phrase "compression is intelligence" is explicitly weakened to a safer claim: compression theory is highly relevant to assembled intelligence, but intelligence is not cleanly defined by the slogan.
 - `10:58-11:54` - Perfect compression should look like random noise; this motivates Shannon entropy through incompressibility of uniformly distributed bitstrings.
 - `14:56-15:18` - The information of an event appears as $-\log_2 p$, interpreted as the ideal code length for a message with probability $p$.
 - `17:29-20:43` - Fractional information values become meaningful for whole-message coding and context-dependent language probabilities; the full-message probability factors through conditional probabilities.

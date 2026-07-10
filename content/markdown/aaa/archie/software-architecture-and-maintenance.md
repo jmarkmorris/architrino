@@ -219,7 +219,7 @@ If the answer reveals residual debt, either clean it up in the same change or ca
 
 AI-assisted implementation is expected to be part of the project workflow. That makes this maintenance discipline more important, not less.
 
-AI tools are often strong at local completion but weaker by default at collapsing redundant paths after a design changes. Without explicit guidance, an assistant may preserve uncertainty by adding another branch rather than consolidating the architecture.
+AI (Assembled Intelligence) tools are often strong at local completion but weaker by default at collapsing redundant paths after a design changes. Without explicit guidance, an assistant may preserve uncertainty by adding another branch rather than consolidating the architecture.
 
 For that reason, AI-assisted contributions should be held to the same rule:
 

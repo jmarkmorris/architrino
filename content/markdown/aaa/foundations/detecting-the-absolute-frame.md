@@ -186,6 +186,10 @@ This complete-state diagnostic serves as a **consistency test** for [Euclidean V
 
 This prevents the preferred-frame claim from being empty inside the formal ontology. Direct empirical access remains a separate issue: it depends on the moving-assembly and photon-channel closures that determine whether Physical Observers can detect any preferred-frame leakage.
 
+### Conservation-Law Counting as a Frame Diagnostic
+
+The absolute frame also leaves a fingerprint in pure bookkeeping: the number of continuous conservation rows the substrate supports. The substrate symmetry group is time translation plus the Euclidean motions of the void, one time translation, three space translations, and three rotations, yielding exactly seven continuous rows: energy, three of momentum, and three of angular momentum. Newtonian mechanics with Galilean invariance supports ten rows, the boosts supplying the center-of-mass theorem, and relativistic mechanics supports the ten rows of the Poincare group. The substrate count is seven, not ten, because boosts are not substrate symmetries: $c_f$ anchors a preferred frame, and the three missing boost rows are that frame's signature expressed as absent theorems rather than as any measured velocity. Counting conservation laws is therefore a frame-detection diagnostic in its own right, complementary to the concentricity test. The Lorentz-recovery program carries the corresponding obligation: an effective ten-row structure, including effective boost symmetry, must re-emerge at the observer level, as developed in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md), with the conservation-accounting side of the seven substrate rows surveyed in [Information and the Wake](../philosophy-history/information-and-the-wake.md).
+
 ## Ontological Clarifications
 
 ### What Is Physically Real vs. What Is Convention

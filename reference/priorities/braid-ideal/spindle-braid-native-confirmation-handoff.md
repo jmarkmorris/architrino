@@ -179,3 +179,26 @@ Decisive diagnostics (report regardless of outcome; deltas vs Rows 1-5):
 6. Axis-wobble watch: the prescribed family is precession-free by construction; any nutation/precession of the released braid axis is a FINDING (spin-mapping relevance), not a defect.
 
 Failure modes to report honestly: near-field dt sensitivity at close approach; dynamic stability of the -30° middle tilt; the in-build credit correction; basin narrowness of a descent-grade point seed (twin row); and the held-cage idealization itself (the claim boundary above).
+
+## Candidate Row 7: Bare Release of Self-Equilibrated Candidate V5 (tabled 2026-07-09)
+
+Status when tabled: TABLED (operator decision (a), 2026-07-09, braid-ideal evaluator thread). Same-thread acceptance rule applies in the run thread. Motivated by Sections 57-59 (cite by title): the stability gate was built after Rows 5-6 died on basin-less force balances, and V5 is the FIRST candidate to pass it whole — no known seed defect. NO ENVIRONMENT: bare braid.
+
+Braid seed — SELF-EQUILIBRATED CANDIDATE V5 (exported `SELF_EQUILIBRATED_V5`, [spindle-support-ratio-targeted-search.mjs](../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 17 passing):
+- (qI, qO, alphaI, alphaM, alphaO, thetaI, thetaO) = (0.55, 0.75, -27.15°, +16.24°, 64.5°, -16.2°, 339.5°), middle on the rail; cadence omega = 1/cos(16.24°) ≈ 1.0415 (speeds ≈ 0.51 / 1.00 / 0.34, all sub-field).
+- GATE CERTIFICATE (seed block, all at frozen bare-channel kappa* ≈ 0.4615): radial equilibrium residual ~1e-6 with rail-pinned restoring spectrum (-0.63/-2.00/-6.27) — support = 1 all layers BY SELF-ADJUSTMENT, no imposed corridor; tangential tau_I = 0.0006, tau_O = 0.0004 (middle's +0.227 rail pump = the escapement's); tilt block: global null exact, relative-tilt quotient eigenvalues -0.1247/-0.7485 (restoring); derived size R_M(eq) ≈ 3.49 kappa*eps^2/c_f^2.
+
+Binding validation obligations:
+1. Re-derive the FULL gate in-build before release (radial residual + basin spectrum, tau rows, tilt quotient spectrum), dt/Nt-witnessed; release only from the re-derived equilibrium.
+2. Frozen-kappa discipline: kappa* fitted ONCE on the bare channel and frozen — the per-configuration refit is a gauge that hides the size mode (Section 58 lesson).
+
+Decisive diagnostics (report regardless of outcome; deltas vs Rows 1-6):
+1. Dispersal clock vs 0.83/0.80/0.855/0.725/0.093 — first defect-free seed; any survival beyond ~1 rotation is the program's first, and the BASIN prediction is that twin-row perturbations RETURN (bounded separation) rather than diverge: probe several kick sizes — the twin row is now a basin-width instrument.
+2. Axis dynamics: the tilt block predicts bounded/decaying nutation; growth = flutter (gyroscopic-circulatory coupling, the declared open question).
+3. SIZE MODE (new diagnostic class): R_M(t) should oscillate about the equilibrium — the first native test of the size pin (the rail feedback on dilation).
+4. Escapement/h_act statistics at omega ≈ 1.0415 carrying the +0.227 rail pump.
+5. Support rows along the release: the corridor should HOLD by self-adjustment (shape basin), not by initial placement.
+
+Failure modes to report honestly: flutter; delay-memory modes (the quasi-static gate is blind to them); escapement throughput at the raised pump; dt sensitivity; basin width (report the largest returning kick).
+
+Consequences of a survival (named): items 21 and 23 unblock (the relativistic-time document's pinned-cadence claims and the h-constancy J_z-conserving-vs-closure-optimal comparison were both gated on a release-surviving candidate); the basin-width/funneling-mechanism map becomes the next instrument; the acceptance chain (six-point lemma same-record binding) opens.

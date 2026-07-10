@@ -35,15 +35,24 @@ Use `ledger` for the $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting structure that 
 
 Use `ledger row` only when the sentence needs a specific channel inside that shared accounting structure. Avoid bare `row` in reader-facing prose unless the word literally means a table row, formula row, or layout row. In explanatory app language, prefer `ledger` over `row` unless the channel distinction has already been established for the reader.
 
-Reserve `record` for ordinary records: source records, measurement records, historical records, stored files, log entries, or explicit record-forming events. Do not use `record` as the default replacement for `ledger` when explaining $\mathbb{A}\mathbb{A}\mathbb{A}$ accounting. When the prose means a conserved or retained theory structure, use `ledger`.
+`Record` and `ledger` are a ratified level distinction, not synonyms. Use `record` (specifically `path-history record`, `the record`) for the ontic history itself at the substrate level: the worldlines, polarities, and identities that constitute the complete state, including the causal-wake structure those worldlines fix. Use `ledger` for the accounting kept against that record: the bookkeeping structure of rows (energy, momentum, angular momentum, polarity count, response terms) whose balances are computed from the record. The record is ontology; the ledger is bookkeeping about it. A wake carries no cargo precisely because the ledger rows are functionals of the record, not contents of it; the substrate-level development of this distinction is [Information and the Wake](../philosophy-history/information-and-the-wake.md).
+
+`Record` also remains correct for ordinary records: measurement records, historical records, stored files, log entries, or explicit record-forming events. Do not use `record` for the accounting structure itself; when the prose means a conserved or retained accounting structure, use `ledger`.
 
 Sentence guidance:
 
-- Prefer: "The clock, ruler, and envelope readouts belong to one ledger."
+- Prefer: "The balance lives in the wake record between emission and reception" (substrate ontic history).
+- Prefer: "The clock, ruler, and envelope readouts belong to one ledger" (accounting).
 - Prefer: "The density term belongs to the Noether sea continuity ledger."
 - Prefer: "The proof packet records the failed route in the work log."
 - Avoid by default: "The clock row closes the map" when the reader has not been taught ledger rows.
 - Avoid by default: "The retained record evolves" when the meaning is a retained ledger.
+
+Related ratified terms from the conservation and information program:
+
+- `geometric reach`: the set of receivers whose positions the isochrons of a given source history have had time to arrive at; contact in this sense is universal within the reach set and diluted with distance, never cut off.
+- `active roots`: the causal roots currently contributing legal hits with nonvanishing branch strength at a receiver event. A pair can be inside geometric reach yet have no active roots. Mechanism ownership stays with the Master Equation chapter.
+- The four-tier taxonomy of conserved quantities, `counting invariants`, `record invariant`, `symmetry rows`, and `conditional topological invariants`, is the canonical classification; see [Information and the Wake](../philosophy-history/information-and-the-wake.md) for the survey and the dynamics chapters for mechanisms.
 
 ## Architrino Architecture, AAA, and Disallowed Variants
 
@@ -407,6 +416,18 @@ If a sentence needs to describe coupling posture, keep `weak-coupling triad` as 
 - "the complementary three polar sites carry the remaining bookkeeping"
 
 The reason to keep one stable base noun here is that weak-sector prose can otherwise become too improvisational. Once multiple near-synonyms begin circulating, the reader can no longer tell whether a new phrase signals a new mechanism or merely a stylistic variation. `Weak-coupling triad` fixes the geometry as the noun, while posture, exposure, and orientation are added explicitly in the sentence around it.
+
+## Assembled Intelligence Usage
+
+Use `Assembled Intelligence` as the corpus expansion of the initialism `AI`. Do not expand `AI` as `artificial intelligence` in corpus prose. The term `artificial` misclassifies the referent, and the assembly framing is the accurate one: in $\mathbb{A}\mathbb{A}\mathbb{A}$, every intelligence, human or machine, is an assembly-level phenomenon. `Assembled Intelligence` therefore unifies the two cases rather than segregating them; the difference between them is architecture, not essence.
+
+Usage rules:
+
+- The initialism `AI` remains valid everywhere and needs no change.
+- On the first standalone spelled-out use in a document, write `AI (Assembled Intelligence)` or `Assembled Intelligence (AI)`.
+- Capitalize `Assembled Intelligence` when introducing the expansion; generic lowercase `assembled intelligence` is acceptable in running prose.
+- Titles of external works, direct quotations, and proper names of external fields, programs, or organizations keep their original wording.
+- `artificial intelligence`, `machine intelligence`, and `synthetic intelligence` are not corpus terms; outside the quotation and title exception, normalize them to `Assembled Intelligence` or `AI`.
 
 ## Editorial Rule of Thumb
 
