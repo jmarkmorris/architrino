@@ -50,9 +50,8 @@ def infall(lam,ec,dt,h=6.0,Tmax=12.0,x0=1.0):
         k4=acc(t+dt,x+dt*(v+0.5*dt*k2),v+dt*k3,s,Xs,Vs)
         V[i+1]=v+dt/6*(k1+2*k2+2*k3+k4)
         X[i+1]=x+dt*(v+0.5*dt*k1)  # 2nd order position
-        if np.isnan(Xatcf) and abs(V[i+1])>=CF: 
+        if np.isnan(Xatcf) and abs(V[i+1])>=CF:
             Xatcf=X[i+1]
         if X[i]>0 and X[i+1]<=0:
             f=X[i]/(X[i]-X[i+1]); Vorigin=V[i]+f*(V[i+1]-V[i]); break
     return Vorigin, Xatcf
-

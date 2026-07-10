@@ -48,4 +48,3 @@ def run(lam,ec,dt=5e-4,h=6.0,Tmax=24.0,x0=1.0,trace=False):
             tr.append((T[i],X[i],V[i],0.5*V[i]**2,Wp,Ws))
         if abs(X[i+1])>12 or abs(V[i+1])>3:break
     return dict(turns=turns,Wp=Wp,Ws=Ws,trace=tr,endX=X[i+1],vmax=np.nanmax(np.abs(V[:i+2])))
-

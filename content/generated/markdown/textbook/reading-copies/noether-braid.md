@@ -49,7 +49,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Family ladder | [Explored Braid Geometries](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md) | The comparison population: the one-band symmetric shell family with its held-release and return-response results, and the three-band nested shell family with its closure labels and the dressing and generation hypotheses. |
 | Export | [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Terminal Alignment](../../../../markdown/aaa/proof-programs/terminal-alignment.md) | The strong-field endpoint proof program: braid symmetry-breaking point, local black-hole duality target, and horizon-interface label counting. |
-| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) | The `NSH-421` candidate frequency family. |
+| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) | The `NSH-421` candidate frequency family. |
 | Mechanism | [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) | Cases where three retained angular-momentum rows may form a full internal 3D frame. |
 | Export | [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) | Classification of retained branch charts. |
 | Bookkeeping | [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md) | Configuration axes and the compact Proof ID grammar. |
@@ -723,7 +723,7 @@ The planar and axial alternatives studied elsewhere in the braid stack are there
 
 ### Why Rigidity: The Harmonic-Matching Principle
 
-The family was not guessed; it was selected by a structural principle that the configuration-space comparisons uncovered. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the wake field in the co-rotating frame can supply it. Rigid co-rotation puts all wake power into exactly that part. Any relative layer motion — frequency locks between layers, counter-rotation, speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
+The family was not guessed; it was selected by a structural principle that the configuration-space comparisons uncovered. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the received causal wake in the co-rotating frame can supply it. Rigid co-rotation puts all wake power into exactly that part. Any relative layer motion — frequency locks between layers, counter-rotation, speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
 
 Causal delay is what makes this principle decisive rather than a soft preference. During one antipodal wake transit at near-field speed the pair rotates through roughly a third of a turn, so static-binding intuition — including the naive Kepler-third-law scaling for frequency-locked nested layers — does not transfer to the delayed dynamics. On the unified closure metric (below), every family that breaks rigid co-rotation scores near total failure, while nesting *within* rigid co-rotation produces the single largest closure gain measured: cross-layer delayed-wake geometry cancels most of the tangential pump internally. Claim level: measured comparison on prescribed worldlines plus the structural derivation just stated.
 
@@ -739,7 +739,7 @@ $$
 \frac{\|\mathbf a_{\mathrm{kin},a}-\kappa^*\,\mathbf a_{\mathrm{wake},a}\|}{\|\mathbf a_{\mathrm{kin},a}\|}
 $$
 
-— the fraction of each layer's kinematic requirement that the delayed wake field fails to supply. A perfect self-consistent configuration drives all residuals to zero.
+— the fraction of each layer's kinematic requirement that the delayed causal wake fails to supply. A perfect self-consistent configuration drives all residuals to zero.
 
 Measured against that metric, the search descended a ladder. Every family that breaks rigid co-rotation scores near total failure; nesting inside rigid co-rotation produces the single largest gain; and each subsequent gain is traceable to a named geometric mechanism rather than to fitting freedom:
 
@@ -767,7 +767,7 @@ The emerging rest-state picture is specific:
 
 The caps are functional, not parasitic: with the caps at tuned placement the core's own closure improves, and it degrades when they are removed — the six-architrino braid is three interlocking parts, not a four-site core plus a passenger.
 
-The family's stiffness structure was also measured: the Hessian of the closure residual in the seven geometry knobs. Its eigenvalues, soft to stiff (in the declared knob scaling), run $-0.34$ (a coupled relative-tilt mode), $-0.04$ ($q_O/\theta_O$), $+0.05$ (cap azimuth — nearly free), $+0.23$ (the rail coordinate $\beta_M$), $+3.7$ ($\alpha_O$), $+5.3$ ($\alpha_M$), $+18.9$ ($q_I$). The inner radius is the rigidity backbone — five times stiffer than anything else — and the softest directions are coupled relative-tilt modes, the natural strain sinks under external hits. The rest state is a saddle rather than a minimum, and its downhill direction along the rail coordinate is not an instability of the model but the anti-damping pump itself appearing in the closure landscape: the very slide that the field-speed escapement exists to catch. Claim level for this section: measured comparison and measured spectrum on prescribed worldlines; not retention evidence.
+The family's stiffness structure was also measured: the Hessian of the closure residual in the seven geometry knobs. Its eigenvalues, soft to stiff (in the declared knob scaling), run $-0.34$ (a coupled relative-tilt mode), $-0.04$ ($q_O/\theta_O$), $+0.05$ (cap azimuth — nearly free), $+0.23$ (the rail coordinate $\beta_M$), $+3.7$ ($\alpha_O$), $+5.3$ ($\alpha_M$), $+18.9$ ($q_I$). The inner radius is the rigidity backbone — five times stiffer than anything else — and the softest directions are coupled relative-tilt modes, the natural strain sinks under external hits. The rest state is a saddle rather than a minimum, its downhill directions the two coupled relative-tilt modes. The rail coordinate itself is restoring ($+0.23$); the anti-damping pump appears in the landscape not as a negative curvature there but as a negative partner-only *gradient* in $\beta_M$ — an energy-flux booking, not an instability of the shape: the very slide that the field-speed escapement exists to catch. Claim level for this section: measured comparison and measured spectrum on prescribed worldlines; not retention evidence.
 
 ### The Field-Speed Pin and the Escapement
 
@@ -797,7 +797,7 @@ $$
 
 with $\varrho$ the brake-to-pump ratio and $\Theta$ the field-speed switch: below the rail the channel does not exist and the pump drives the speed up; above the rail the brake drives it back down. The field-speed edge is therefore a **two-sided dynamic attractor** — a pin — precisely when $\varrho>1$, a condition the declared coincidence stratum satisfies with wide margin ($\varrho\approx50$); the balance bounds the stratum scale from above rather than leaving it free (compare the near-field scale discussion in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md)). The pin was subsequently confirmed on the native retained-history solver: a released middle binary overshoots the rail to $\beta_M\approx1.08$, turns, and decays back toward it from above — a speed attractor, natively measured, on three independent releases. Claim level: derivation plus measurement for the sign structure and the reduced-dynamics attractor; native measurement for the speed-attractor behavior; the pin does not by itself confine radius.
 
-The fine structure of the hinge is an escapement, and its behavior depends on how the site crosses. The sustained supra-rail self-channel is a phase-sensitive valve: a steady rail-rider's own wake pushes it outward and forward (anti-confining), while an actively driven rider is braked and pulled inward — derivative feedback opposing $\dot\beta$ in both directions, superposed on a static outward bias. The confining regime therefore is not riding the rail but **riding by clicking**: in the continuum limit the escapement is a sliding mode on the $\beta=1$ surface, absorbing exactly the supra-rail excess at each crossing, and each finite click books an impulse that is both absorptive and inward. The clicks are self-organizing — the radial-to-tangential ratio of the click impulse is measured, step-converged, and linear in the entry radial velocity,
+The fine structure of the hinge is an escapement, and its behavior depends on how the site crosses. The sustained supra-rail self-channel is a phase-sensitive valve: a steady rail-rider's own wake pushes it outward and forward (anti-confining), while an actively driven rider is braked and pulled inward — derivative feedback opposing $\dot\beta$ in both directions, superposed on a static outward bias. On the reduced driven-crossing instruments the transaction books as discrete clicks whose radial-to-tangential impulse ratio is measured, step-converged, and linear in the entry radial velocity,
 
 $$
 \frac{\Delta p_{\mathrm{rad}}}{\Delta p_{\mathrm{tan}}}\bigg|_{\mathrm{click}}
@@ -805,7 +805,7 @@ $$
 0.013+1.02\,v_r,
 $$
 
-so in an eccentric orbit the crossings cluster just past periapsis where $v_r>0$ and the inward kicks are harvested — a click-synchronized radial damper. Its measured capacity, however, is percent-scale ($\sim3\%$ of centripetal need for circular chatter, improving only to $\sim5\%$ at large click quantum): the clicker is the speed pin plus a last-percent radial trim, not a radial confinement engine. The escapement's action bookkeeping — one $h_{\mathrm{act}}$ click per controlled fold crossing — is the core-agnostic machinery of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#action-clicks-at-the-fold-set).
+so in an eccentric orbit the crossings cluster just past periapsis where $v_r>0$ and the inward kicks are harvested — a click-synchronized radial damper. Its measured capacity is percent-scale ($\sim3\%$ of centripetal need for circular chatter, improving only to $\sim5\%$ at large click quantum): the clicker is the speed pin plus a last-percent radial trim, not a radial confinement engine. And the channel's absorptive ceiling is now measured natively, as a scoped negative that binds the search: at the regulator-converged impulse-resolved booking on the self-equilibrated seed, the same-source channel is a **continuous partial brake, not a discrete escapement** — no click train, no rail hunting at any declared coincidence stratum — and its supply caps near two-thirds of the rail pump, so no brake-equals-pump regime exists and the channel cannot hold its own rail. This is the native confirmation of the fold-geometry result of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord): the symmetric same-source click magnitude is a property of the short-distance scale $d_0$ rather than of the branch geometry, so this channel was never available as the load-bearing absorber of the pump. The escapement's action bookkeeping — one $h_{\mathrm{act}}$ click per controlled fold crossing — is the core-agnostic machinery of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#action-clicks-at-the-fold-set).
 
 The pin has one consequence important enough to state on its own. For a spindle braid drifting along its axis at speed $u$, the same coincidence-birth theorem places the self-hit opening at total site speed $c_f$, which for helical motion means transverse cadence $c=\sqrt{c_f^2-u^2}$. The pump pushes the cadence up at every drift; the brake opens exactly at the $\gamma$-scaled rail; so the pinned internal cadence dilates as
 
@@ -837,6 +837,8 @@ The inner dish angle runs strongly and monotonically through exactly flat near $
 
 **The braid wants to fly axis-first, and its handedness picks the leading cap.** Closure prefers drift anti-parallel to the cap polarity dipole — the electrino cap leads — with the preference growing with speed, and the C-conjugate braid forced to lead with the opposite polarity. Perpendicular drift is measurably worse than axial drift, so a drifting braid feels an orientation torque toward axis-parallel motion.
 
+**The orientation torque is a measured restoring stiffness: the moving family is globally axis-anchored.** Linearizing the axis dynamics on the drifting family — tilting the spin axis away from the line of motion, with the drift held fixed — the orientation torque appears as a genuine restoring stiffness $k(u)$ on the global axis-orientation mode. It grows from zero at rest (quadratically at small drift, matching the second-order anisotropy above), reaches an order-one fraction of the layer spin near the preferred-speed basin, and is near-isotropic in the transverse plane and helicity-odd (larger in the electrino-leading direction). At rest, empty-space isotropy makes the global tilt a free direction — an exact zero mode; under drift that zero is lifted, and the lift is exactly the rifle-bullet effect made quantitative. Inertia-anchoring at a finite speed (above) and global axis-anchoring to the line of motion are therefore two readings of the same closure landscape: the moving braid resists both a change of speed and a tip of its axis. What this restoring stiffness reaches is the *overall* orientation; whether it also quiets the braid's *internal* axis dynamics is the confinement question below, and the answer is that it does not. Claim level: seed-grade linear stability on the prescribed screw-drifting family.
+
 **Isotropy comes out second-order, in the right pattern.** The small-$u$ anisotropy decomposes into clean laws with different symmetries:
 
 $$
@@ -847,7 +849,7 @@ f_\perp-f_{\mathrm{rest}}=+2.01\,u^2,
 f_\parallel-f_{\mathrm{rest}}=-0.102\,|u|+0.39\,u^2.
 $$
 
-A helicity-averaged (unpolarized) orientation comparison — which is what a Michelson-Morley-flavored experiment performs — is therefore purely second order, $\Delta f_{\mathrm{avg}}=1.59\,u^2$, with no first-order component at all: structurally parallel to the real second-order null. The only first-order piece lives in the helicity-selected channel, $-0.102\,|u|$ — a chiral braid whose handedness locks to its drift carries a linear closure difference, a spin-anisotropy (Hughes-Drever-class) exposure rather than an orientation one. Both coefficients are regulator- and sampling-robust; mapping the residual to laboratory bounds requires the closure-to-energy map, which remains open.
+The two parallel quadratics are not the same number because they are not the same channel: the helicity-*averaged* coefficient ($+0.42$) averages the two helicity branches, whose quadratic coefficients differ, while the leader-*selected* law ($+0.39$) follows the branch the linear term prefers — both are sourced from the same scaling record. A helicity-averaged (unpolarized) orientation comparison — which is what a Michelson-Morley-flavored experiment performs — uses the averaged value and is therefore purely second order, $\Delta f_{\mathrm{avg}}=(2.01-0.42)\,u^2=1.59\,u^2$, with no first-order component at all: structurally parallel to the real second-order null. The only first-order piece lives in the helicity-selected channel, $-0.102\,|u|$ — a chiral braid whose handedness locks to its drift carries a linear closure difference, a spin-anisotropy (Hughes-Drever-class) exposure rather than an orientation one. Both coefficients are regulator- and sampling-robust; mapping the residual to laboratory bounds requires the closure-to-energy map, which remains open.
 
 **Action bookkeeping under drift splits into two ledgers.** The stored internal action per click dilates exactly as $1/\gamma$ at frozen geometry — the pinned-cadence restatement of time dilation. The transacted wake angular impulse per click is not invariant at frozen geometry:
 
@@ -921,15 +923,17 @@ Released, the strongest such configuration — corridor-complete, torque-equilib
 
 The basin question is now an instrument, not a slogan. The seed-grade radial stability matrix — the Jacobian of net radial force with respect to the slow radial coordinates at frozen rotation, with a negative-definite symmetric part as the sufficient restoring condition (the system is non-conservative, so this is not the curvature of any energy) — reproduces the held-cage capture in seconds: the dressed cage's spectrum carries a positive escape mode along exactly the cap-out/cage direction the native release followed, and the cage member's own coordinate is anti-restoring. It is the standing pre-tabling gate: no candidate is released natively without passing it. And it produced the arc's most consequential positive result: **the bare braid's shape block is a basin** — all three shape eigenvalues restoring, the first basin in the program's history. The bare braid is not balanced in the fitted-coupling frame (the sum rule caps its mean support below one), and its residual instability is a pure **dilation mode**: a uniform inward shortfall on all layers, contraction rather than dispersal.
 
-The dilation mode then resolved, and the resolution rewrote the confinement question. Two corrections built the honest frame. First, quasi-static size changes must run at the **rail-pinned cadence**: during contraction the middle stays on the field-speed rail — the natively confirmed attractor — so the cadence responds to the radius through $\omega=c_f/(R_M\cos\alpha_M)$, and under that pin the wake supply scales as $1/\lambda^2$ against a need scaling as $1/\lambda$: the size mode acquires a restoring feedback. **The speed pin is also the size pin.** Second, the per-configuration coupling refit was a gauge that exactly absorbed the dilation gain — the mechanical content of the fitted-coupling sum rule, and the reason the size mode looked unbalanced in every earlier frame. With the coupling frozen once and the rail pin active, the bare braid has a **true radial equilibrium with a fully restoring basin**, at which every layer sits at full support by definition rather than by corridor hunt — the corridor search of the entire arc was the search for this fixed point through a gauge that hid it. The joint fixed point with the tangential ledger exists as a named self-equilibrated configuration: radial residuals at solver precision, restoring spectrum, inner and outer tangential rows at zero, the middle's rail pump left to the escapement — and **no environment at all**: the sea remains the braid's angular-momentum bath and cap support, but this object does not need it for its radial ledger.
+#### The Self-Equilibrated Fixed Point and the Derived Size
 
-Two consequences carry beyond the search. The braid's absolute size becomes a derived constant — the equilibrium rail radius lands at $R_M^{\mathrm{eq}}\approx3.5$ in units of $\kappa\epsilon^2/c_f^2$, the same scale family as the declared near-field floor of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), sitting well above that floor, so the arrest is coupling-scale self-support rather than discreteness rescue — an anchor for the mass-map program. And the closure metric and the force-ledger metrics now disagree openly (the self-equilibrated cell scores worse on closure than earlier corridor cells that dispersed), with the release arc's uniform verdict that the ledgers, not the closure residual, govern survival. Claim level: seed-grade instrument, quasi-static, single-time rigid booking.
+The dilation mode then resolved, and the resolution rewrote the confinement question. Two corrections built the honest frame. First, quasi-static size changes must run at the **rail-pinned cadence**: during contraction the middle stays on the field-speed rail — the natively confirmed attractor — so the cadence responds to the radius through $\omega=c_f/(R_M\cos\alpha_M)$, and under that pin the wake supply scales as $1/\lambda^2$ against a need scaling as $1/\lambda$: the size mode acquires a restoring feedback. **The speed pin is also the size pin — conditional on rail residence.** The restoring feedback exists exactly while the middle rides its rail; above the rail the same cadence-radius coupling inverts into an outward spiral, and both halves are natively demonstrated — the released size mode executes the predicted restoring dip ($R_M$ to $0.9855$, one equilibrium crossing) before the un-absorbed pump detaches the rail and the runaway begins. Second, the per-configuration coupling refit was a gauge that exactly absorbed the dilation gain — the mechanical content of the fitted-coupling sum rule, and the reason the size mode looked unbalanced in every earlier frame. With the coupling frozen once and the rail pin active, the bare braid has a **true radial equilibrium with a fully restoring basin**, at which every layer sits at full support by definition rather than by corridor hunt — the corridor search of the entire arc was the search for this fixed point through a gauge that hid it. The joint fixed point with the tangential ledger exists as a named self-equilibrated configuration: radial residuals at solver precision, restoring spectrum, inner and outer tangential rows at zero, the middle's $+0.227$ rail pump the one booking left open (the same-source brake, measured natively at converged regulators, supplies at most about two-thirds of it) — and **no environment at all** for the radial ledger: the sea remains the braid's angular-momentum bath and cap support, but this object does not need it for its radial ledger.
 
-The stability gate was then extended to the axis sector — the mode class that killed the held-cage release. For a bare braid a global tilt is a symmetry of the isotropic law, and the tilt stiffness block carries that as a built-in validation: the global mode is an exact numerical null. The block is asymmetric, and the asymmetry is physics rather than error — in a causal-delay theory internal torques need not cancel instantaneously, because the field in flight carries angular momentum — so the claim-bearing readout is the quotient spectrum with the null deflated. At the self-equilibrated fixed point the relative-tilt modes are **restoring** (both eigenvalues real and negative), with the strongest single coupling — inner tilt to middle torque — exactly the pathway the held-cage nutation followed, here carrying a net restoring response. The pre-tabling gate therefore now covers every mode class that has killed a native release: the rail-pinned radial basin, the closed tangential ledger, and the tilt block; the self-equilibrated configuration passes all three, and no prior candidate would have. The declared remaining caveat is dynamical: the layers carry spin angular momentum, so the true linearized problem is gyroscopic-circulatory, and flutter-class instability remains a question only a native release can answer.
+Two consequences carry beyond the search. The braid's absolute size becomes a derived constant — the equilibrium rail radius lands at $R_M^{\mathrm{eq}}=3.4937$ in units of $\kappa\epsilon^2/c_f^2$, doubly witnessed through the gauge-invariant equilibrium coupling $\kappa_{\mathrm{eq}}=1/R_M^{\mathrm{eq}}=0.28623$ (the fitted-gauge values lie on one gauge orbit) — the same scale family as the declared near-field floor of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), sitting well above that floor, so the arrest is coupling-scale self-support rather than discreteness rescue — an anchor for the mass-map program. And the closure metric and the force-ledger metrics now disagree openly (the self-equilibrated cell scores worse on closure than earlier corridor cells that dispersed), with the release arc's uniform verdict that the ledgers, not the closure residual, govern survival. Claim level: seed-grade instrument for the fixed point and basin, quasi-static, single-time rigid booking; native witness for the equilibrium, the coupling row, and the conditional size pin.
+
+The stability gate was then extended to the axis sector — the mode class that killed the held-cage release. For a bare braid a global tilt is a symmetry of the isotropic law, and the tilt stiffness block carries that as a built-in validation: the global mode is an exact numerical null. The block is asymmetric, and the asymmetry is physics rather than error — in a causal-delay theory internal torques need not cancel instantaneously, because the field in flight carries angular momentum — so the claim-bearing readout is the quotient spectrum with the null deflated. At the self-equilibrated fixed point the relative-tilt modes are **restoring** (both eigenvalues real and negative), with the strongest single coupling — inner tilt to middle torque — exactly the pathway the held-cage nutation followed, here carrying a net restoring response. The pre-tabling gate therefore now covers every mode class that has killed a native release: the rail-pinned radial basin, the closed tangential ledger, and the tilt block; the self-equilibrated configuration passes all three, and no prior candidate would have. The declared remaining caveat is dynamical, and it is now resolved against the family: the layers carry spin angular momentum, so the true linearized problem is gyroscopic-circulatory, and its verdict is **flutter** — the restoring static tilt block does not survive the spin and circulatory terms, a growing internal whirl appears, and it is independent of the rail pump. The whirl/flutter treatment and the spindle-native spin scaffold it belongs to live with the angular-momentum bridge in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spindle-braid-spin-scaffold). Every axis-sector absorber the bare resting braid owns has been measured or bounded and fails, so the flutter is a real obstruction, not an instrument artifact.
 
 #### Where the Search Stands
 
-The isolated braid's *fitted-gauge* release routes are measured and closed: circular, chart-booked, epicyclic, and statically dressed releases all expand or capture. The held-static environment scope is closed from both sides — the sea cannot statically scaffold the braid, and the braid-selected cage is not self-supporting. The frontier now leads with the **self-equilibrated bare braid**: the rail-pinned fixed point above, radially restoring with its tangential ledger closed, its tilt block restoring, and no environment — the first candidate in the program's history to pass the full seed-grade stability gate, awaiting a native release whose declared remaining question is gyroscopic flutter. Behind it, still live: the **co-orbital cage** (members trading the credit's inward pull against their own centripetal need), **bulk-boundary equilibrium** in a genuinely populated medium, and sea self-structure beyond driven response — a standing-phonon reading whose burden is formation history rather than response calculation. The durable positives that any route inherits: the field-speed pin as a native speed attractor — now understood to pin size along with speed — the escapement's coherence, the geometric elimination of the tangential brake, the sea's demonstrated inner feed, the stability-matrix pre-tabling gate, and the basin principle. And one theme recurs at every scale — escapement click phasing, sea spacing bands, reorientation rates, drift cadence — the delayed dynamics rewards commensurability: harmonic matching is the selection principle of this family from its geometry up through its medium.
+The isolated braid's *fitted-gauge* release routes are measured and closed: circular, chart-booked, epicyclic, and statically dressed releases all expand or capture. The held-static environment scope is closed from both sides — the sea cannot statically scaffold the braid, and the braid-selected cage is not self-supporting. The frontier now leads with the **self-equilibrated bare braid**: the rail-pinned fixed point above, radially restoring with its tangential ledger closed, its static tilt block restoring, and no environment — the first candidate in the program's history to pass the full quasi-static seed-grade stability gate. Its one open mode is the gyroscopic-circulatory flutter, and that mode is now the binding obstruction: the axis sector is unstable at seed grade, every absorber the bare braid owns fails to close it, and the natural reframing — that stability might belong to the *moving* family, since the orientation torque exists only under drift — was tested and rejected. The drift-orientation torque anchors the braid's *global* axis orientation to its line of motion but does not reach the *internal* whirl: the flutter persists at every drift speed in the preferred basin, in both drift senses, with the same growth class as at rest. The axis sector is therefore closed at seed grade in both the resting and the moving frame. What a surviving realization needs is a channel no rigid-layer analysis can supply: either **non-rigid axis dynamics** — an internal deformation coordinate coupling to the whirl — or a structured environment that grips the deep layers. Behind that, still live: the **co-orbital cage** (members trading the credit's inward pull against their own centripetal need), a **saturated-orientation sea absorber** at the confining band, **bulk-boundary equilibrium** in a genuinely populated medium, and sea self-structure beyond driven response — a standing-phonon reading whose burden is formation history rather than response calculation. The durable positives that any route inherits: the field-speed pin as a native speed attractor — now understood to pin size along with speed — the escapement's coherence, the geometric elimination of the tangential brake, the sea's demonstrated inner feed, the stability-matrix pre-tabling gate, and the basin principle. And one theme recurs at every scale — escapement click phasing, sea spacing bands, reorientation rates, drift cadence — the delayed dynamics rewards commensurability: harmonic matching is the selection principle of this family from its geometry up through its medium.
 
 ### Candidate Status and Open Burden
 
@@ -943,7 +947,7 @@ This chapter collects the braid families that the configuration-space program ex
 
 Demotion to this collection is a standing decision, not a rejection theorem. Each family below retains its definition, its scoped results, and its re-entry condition: if the spindle route is decisively rejected, these families re-enter the search as live candidates. The status discipline of the braid stack binds throughout — no family on this page is a retained branch, and the retained-branch certificate target of [Neutral Braid](../../../../markdown/aaa/noether-braid/neutral-braid.md) remains open for every realization named here.
 
-Two neighboring chapters remain the active homes of machinery first developed on these families. [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) carries the coupled-band mechanism targets and the terminal-alignment program; [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) carries the exclusion-envelope and observer-export interface consumed by the spacetime and nuclear-atomic chapters. Those interfaces are stated family-generally where possible and are expected to be re-hosted onto whichever family is eventually retained.
+Two neighboring chapters remain the active homes of machinery first developed on these families. [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) carries the coupled-band mechanism targets and the terminal-alignment program; [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) carries the exclusion-envelope and observer-export interface consumed by the spacetime and nuclear-atomic chapters. Those interfaces are stated family-generally where possible and are expected to be re-hosted onto whichever family is eventually retained.
 
 ### Symmetric Shell Braid
 
@@ -1488,7 +1492,7 @@ The collective motion, or **group velocity**, of a Noether braid assembly determ
 
 This section carries the nested family's mechanism and certificate-target material: how a nested shell braid could stay together as a moving delayed system, extending the two-body causal-wake problem into a three-band assembly whose inner, middle, and outer support bands must keep compatible branch records instead of behaving like three independent orbits. Stability is treated as same-record closure: the branch must carry the period, active-root ledger, deformation map, medium response, observer-export packet, and event ledger together, and a visually plausible frequency pattern or useful envelope shape is not enough unless it belongs to the same retained delayed record.
 
-The realization-independent machinery first stated here now lives with the shared mathematics — the substrate levels, speed hierarchy, transverse causal budget lemma, spiral-helical motion picture, mass thesis, hinge equation sketch, and acceleration-gradient comparison are in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels) — and the strong-field endpoint (the braid symmetry-breaking point, the local black-hole duality target, and the terminal-alignment label-count program) lives in the [Terminal Alignment](../../../../markdown/aaa/proof-programs/terminal-alignment.md) proof program. What remains below is the nested-specific mechanism scaffold, read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) and [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md).
+The realization-independent machinery first stated here now lives with the shared mathematics — the substrate levels, speed hierarchy, transverse causal budget lemma, spiral-helical motion picture, mass thesis, hinge equation sketch, and acceleration-gradient comparison are in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels) — and the strong-field endpoint (the braid symmetry-breaking point, the local black-hole duality target, and the terminal-alignment label-count program) lives in the [Terminal Alignment](../../../../markdown/aaa/proof-programs/terminal-alignment.md) proof program. What remains below is the nested-specific mechanism scaffold, read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) and [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock).
 
 ##### Relation to Causal Closure
 
@@ -2224,6 +2228,665 @@ This chapter therefore keeps only the nested shell braid regime map and leaves t
 In the nested shell braid picture, each nested shell braid is a nested stack of three coupled binaries whose internal frequencies and radii are locked by self-hit geometry. This chapter uses that mechanism to define the local dynamics and diagnostics. The coarse-grained metric, observer-clock, and strong-field ontology belong to the spacetime chapters and the causal-closure proof synthesis.
 
 For the strong-field continuation of that story, see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
+
+### Noether Braid Doubling-Frequency Resonance Lock
+
+This section hosts the doubling-frequency `4:2:1` lock study, consolidated here from its former standalone chapter. It is comparison-family material: the `NSH-421` candidate is definitionally frequency-separated, so the study is retained under the spindle-native re-derivation gate rather than generalized — the spindle's iso-frequency structure has no doubling ladder to lock. The internal assumption package, propositions, and diagnostics carry unchanged at their stated claim levels.
+This chapter studies resonance lock for the nested inner, middle, and outer binaries as a restricted family inside the broader [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md). Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
+
+It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Nested Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), which provide the assembly scaffold, geometry, and scale-setting context for the lock relations derived here.
+
+The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
+
+This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
+
+#### Document Role
+
+This chapter is the specialized `NSH-421` candidate-family chapter. It owns the `4:2:1` frequency-lock analysis when a nested shell braid chart declares `I:M:O` roles and tests a doubling-frequency branch under explicit support, hinge, phase-return, and stability assumptions.
+
+It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
+
+#### General Rank-Three Branch State
+
+Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, the rank-three search branch is represented by three retained rows. The general search program is defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
+$$
+\mathcal{T}_{3B}
+=
+\left\{
+\left(
+f_a,\,
+r_a,\,
+E_a,\,
+s_a,\,
+\phi_a,\,
+\hat{\mathbf n}_a,\,
+\mathcal{L}_a
+\right)
+\right\}_{a=1}^{3}.
+$$
+Here $f_a$ is the layer frequency, $r_a$ the characteristic radius or retained lever arm, $E_a$ the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ the scalar tangential speed, $\phi_a$ the phase origin or offset, $\hat{\mathbf n}_a$ the orbital-plane normal, and $\mathcal{L}_a$ the active causal-root ledger data for that layer. On a circular layer chart the kinematic identity is
+$$
+s_a=2\pi f_a r_a.
+$$
+This identity is only a constraint among three variables. It does not by itself select the frequency ratios, energy placement, radii, speeds, or phase offsets.
+
+The branch-search objective is therefore
+$$
+\text{find retained, stable } \mathcal{T}_{3B}
+\text{ over }
+(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal{L}_a),
+$$
+then compare the energy differentials
+$$
+\Delta E_{ab}=E_a-E_b
+$$
+and their ledger decomposition on the same retained row set. A doubling-frequency candidate, a field-speed hinge-occupancy candidate, and an iso-frequency candidate are special conditions on this same state space. In particular, the iso-frequency condition
+$$
+f_1=f_2=f_3
+$$
+still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
+
+For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader rank-three branch state; it is not the default assumption for all stable branch configurations.
+
+#### Status and Assumptions
+
+The logic of the chapter is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
+
+##### Exact Kinematic Identity
+
+For each ring,
+$$
+v_k = 2\pi f_k r_k = \beta_k c_f,
+\qquad
+0<\beta_k,
+\qquad
+c_f>0
+$$
+
+Equivalently,
+$$
+f_k=\frac{v_k}{2\pi r_k},
+\qquad
+r_k=\frac{v_k}{2\pi f_k},
+\qquad
+v_k=2\pi f_k r_k
+$$
+
+Plain language: for any one ring, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
+
+This identity is exact. It is not an assumption, and it does not select a lock by itself.
+The logical spine is therefore:
+
+1. **Kinematics:** $v_k=2\pi f_k r_k$ relates speed, frequency, and radius without introducing topology.
+2. **Integer closure:** Assumption 2 is the only place where the integer pair $(m,n)$ enters; it turns frequency commensurability into return-map degree/holonomy data.
+3. **Selection:** Assumption 4 and the finite-$\eta$ return map decide whether one already-integer-labeled sector is dynamically preferred.
+
+Everything before Assumption 2 is topology-free kinematics. Everything after Assumption 2 is selection among sectors that already carry integer phase-return data.
+
+##### Assumption 1 (Middle Caustic-Grazing Closure)
+
+In the reduced exterior and horizon-transition branch studied here, the middle binary is not pinned exactly on an infinite-force surface. It is modeled as a caustic-grazing carrier whose cycle-averaged hinge value is the field speed:
+$$
+v_M^{\mathrm{car}}=c_f,
+\qquad
+\beta_M^{\mathrm{car}}=1
+$$
+For compact notation, the algebra below writes $v_M=c_f$ and $\beta_M=1$ for this carrier value.
+
+The branch-level motion may have microscopic crossings
+$$
+v_M(T)=c_f+\delta v_M(T),
+\qquad
+\langle \delta v_M\rangle_W=0
+$$
+over the declared window $W$. Each regularized crossing of the $J_M^{\mathrm{src}}(\theta_M)=0$ boundary is a caustic transit with finite impulse
+$$
+\Delta\mathbf{V}_{M,j}
+=
+\int_{T_j^-}^{T_j^+}
+\mathbf{A}_M^{(\eta)}(T)\,dT,
+\qquad
+\left\|\Delta\mathbf{V}_{M,j}\right\|<\infty
+$$
+rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
+
+This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
+It is not a claim that every Noether braid regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
+
+##### Assumption 2 (Exact Integer Phase Closure)
+
+Let the outer period be $P_O=\frac{1}{f_O}$. Assume that when the outer ring completes one full cycle, the middle and inner rings also land exactly at the beginning of their own cycles. Equivalently, there exist integers
+$$
+m,n\in\mathbb{N},
+\qquad
+1<m<n
+$$
+such that
+$$
+\theta_O(T+P_O)=\theta_O(T)+2\pi
+$$
+$$
+\theta_M(T+P_O)=\theta_M(T)+2\pi m
+$$
+$$
+\theta_I(T+P_O)=\theta_I(T)+2\pi n
+$$
+
+Therefore the canonical `I:M:O` frequency triplet is $f_I:f_M:f_O=n:m:1$. Equivalently, in outer-normalized order, $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
+
+Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
+
+This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_k(T)=q_k\omega_O T+\phi_k$, with $\omega_O=2\pi f_O$, are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
+
+##### Assumption 3 (Fixed Relative Phase Lock)
+
+The lock is not just commensurate in frequency. It also carries fixed relative phase offsets over time. One convenient formulation is
+$$
+\phi_{MO}(T)\equiv \theta_M(T)-m\theta_O(T)=\phi_{MO}^\ast
+$$
+$$
+\phi_{IO}(T)\equiv \theta_I(T)-n\theta_O(T)=\phi_{IO}^\ast
+$$
+with constants $\phi_{MO}^\ast,\phi_{IO}^\ast$.
+
+Plain language: the rings keep the same timing relationship cycle after cycle rather than drifting through one another.
+
+##### Bundle Holonomy Reading
+
+Assumptions 2 and 3 can be restated as a phase-bundle condition. Let the outer phase be the base cycle and define the relative connection one-forms
+
+$$
+\vartheta_{MO}
+=
+d\theta_M-m\,d\theta_O,
+\qquad
+\vartheta_{IO}
+=
+d\theta_I-n\,d\theta_O
+$$
+
+Exact integer phase closure says the covering degrees over one outer cycle are
+
+$$
+\frac{1}{2\pi}\oint_{S^1_O}d\theta_M=m,
+\qquad
+\frac{1}{2\pi}\oint_{S^1_O}d\theta_I=n
+$$
+
+or equivalently
+
+$$
+\oint_{S^1_O}\vartheta_{MO}=0,
+\qquad
+\oint_{S^1_O}\vartheta_{IO}=0
+\quad
+(\mathrm{mod}\ 2\pi)
+$$
+
+on the locked branch. Fixed relative phase then says these one-forms are flat on the retained return chart: their integrated values do not drift, and the constants $\phi_{MO}^\ast,\phi_{IO}^\ast$ are the residual flat-connection data. The discrete and continuous pieces should be kept separate:
+
+$$
+(m,n)=\text{covering degrees over }S^1_O,
+\qquad
+(\phi_{MO}^\ast,\phi_{IO}^\ast)=\text{flat-connection moduli}
+$$
+
+Thus the lock is a flat relative-phase connection with integer holonomy, not a literal first Chern class over the outer phase circle. In the language of [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-return degree data that make the reduced action-angle chart globally replayable rather than merely local.
+
+The phase-bundle picture also requires genuine three-dimensional layer independence. Let $\hat{\mathbf{n}}_O,\hat{\mathbf{n}}_M,\hat{\mathbf{n}}_I$ be the orbital-plane normals of the three layer binaries and define
+
+$$
+D_{\mathrm{plane}}
+=
+\det
+\left[
+\hat{\mathbf{n}}_O,\hat{\mathbf{n}}_M,\hat{\mathbf{n}}_I
+\right]
+$$
+
+The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment.
+For a promoted finite-$\eta$ chart this is a conditioning floor,
+$$
+|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
+$$
+It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal Noether braid phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
+
+##### Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)
+
+Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one whose phase bundle admits the flattest replayable connection while minimizing exposed causal-wake leakage. The cycle-averaged cancellation of a low-order causal-wake multipole or effective potential signal is the effective diagnostic for that deeper bundle condition.
+
+This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, middle-caustic impulse record, and finite-$\eta$ return map.
+The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
+
+In this branch, the middle binary is the curvature carrier. Between caustic events the locked triple is modeled as flat phase transport. At the regularized middle caustics, the connection acquires concentrated curvature,
+
+$$
+\Omega_{\mathrm{phase}}
+=
+\sum_j
+\mathcal{F}_j\,
+\delta_\eta(\theta_M-\theta_{M,j}^{\ast})\,
+d\theta_M\wedge d\theta_O
++
+\Omega_{\mathrm{reg}}
+$$
+
+where $\theta_{M,j}^{\ast}$ are the middle caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{M,j}$ and its wake-history increment on the retained branch. The fulcrum statement is therefore geometric: outer/inner energy routing changes only at the middle-caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
+
+A minimal test functional can be written before committing to a particular lock. Let $q_I=n$, $q_M=m$, and $q_O=1$, with phase variables $\theta_k(T)=q_k\omega_O T+\phi_k$ and $\omega_O=2\pi f_O$. For a low-order truncation depth $L$, define
+$$
+S_L(T)
+=
+\sum_{k\in\{I,M,O\}}\sum_{a=1}^{L}
+A_{k,a}(\beta_k,r_k,\eta,D_s,D_T,W^{\mathrm{rec}},J_k^{\mathrm{src}})\,
+e^{ia(q_k\omega_O T+\phi_k)}
+$$
+The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
+They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
+For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the caustic transversality weight of the window while keeping receiver-normal force/action strength on the same retained record, schematically
+
+$$
+A_{M,a}
+=
+\int_0^{2\pi}
+\frac{
+w_{M,a}^{\mathrm{rec}}(\theta_M)
+}{
+|J_M^{\mathrm{src}}(\theta_M)|+\eta_J
+}
+e^{-ia\theta_M}\,d\theta_M
+$$
+
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_T$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M^{\mathrm{src}}$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
+The cycle-averaged cancellation score over one outer-period window starting at $T_\ast$ is
+$$
+C_L(m,n;\phi)
+=
+\frac{1}{P_O}\int_{T_\ast}^{T_\ast+P_O} |S_L(T')|^2\,dT'
+=
+\sum_{\nu}
+\left|
+\sum_{(k,a):\,a q_k=\nu}
+A_{k,a}e^{ia\phi_k}
+\right|^2
+$$
+The doubling-frequency claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
+
+**Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two layers only when their finite harmonic supports overlap:
+$$
+\nu\in q_k\{1,\ldots,L\}\cap q_h\{1,\ldots,L\}
+$$
+If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the doubling-frequency candidate $(m,n)=(2,4)$, the first Outer/Middle overlap is $\nu=2$ via $(O,a=2)$ and $(M,a=1)$; the first all-layer overlap is
+$$
+\nu=4
+$$
+via $(O,a=4)$, $(M,a=2)$, and $(I,a=1)$. Thus this functional can select $1:2:4$ only if $L\ge4$ and the $\nu=4$ block has nontrivial branch-derived amplitudes. A complete cancellation of that all-layer block additionally requires the amplitude magnitudes to satisfy the polygon condition
+$$
+\max(|A_{O,4}|,|A_{M,2}|,|A_{I,1}|)
+\le
+\text{sum of the other two}
+$$
+The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock.
+The selection therefore has two independent requirements. The topological requirement is that the all-layer resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted middle contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
+
+Topologically, the same $\nu=4$ statement says the doubling-frequency lock is the first common cover of the three phase circles. The covering maps can be written
+
+$$
+S^1_O
+\xleftarrow{\ \times m\ }
+S^1_M
+\xleftarrow{\ \times n/m\ }
+S^1_I
+$$
+
+when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each layer double-covers the one above it. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins.
+Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
+$$
+S^1\xleftarrow{\times 2}S^1\xleftarrow{\times 2}S^1
+$$
+among non-identity integer towers. This is why the doubling-frequency family is also the natural candidate for a renormalization-style fixed point in the truncation analysis: repeated double covering is the simplest scale-similar phase organization.
+
+##### Non-Assumptions
+
+This chapter does **not** assume:
+
+- common-speed closure $v_O=v_M=v_I$,
+- self-similar radii $r_M=r_O/s$, $r_I=r_O/s^2$,
+- or the specific frequency lock $1:2:4$ at the outset.
+
+Those are possible special cases or later outcomes, not starting axioms here.
+This chapter studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
+
+#### Immediate Consequences
+
+This section is pure algebra from the exact identity and the first two assumptions. It does not use the cancellation principle.
+
+From Assumptions 1-2 and the exact identity, the middle carrier radius is fixed by the outer frequency:
+$$
+r_M=\frac{c_f}{2\pi f_M}
+=
+\frac{c_f}{2\pi m f_O}
+$$
+
+For the outer ring,
+$$
+r_O=\frac{v_O}{2\pi f_O}
+=
+\frac{\beta_O c_f}{2\pi f_O}
+$$
+Hence
+$$
+\frac{r_M}{r_O}
+=
+\frac{1}{m\beta_O},
+\qquad
+r_M=\frac{r_O}{m\beta_O}
+$$
+
+For the inner ring,
+$$
+r_I=\frac{v_I}{2\pi f_I}
+=
+\frac{\beta_I c_f}{2\pi n f_O}
+$$
+so
+$$
+\frac{r_I}{r_O}
+=
+\frac{\beta_I}{n\beta_O},
+\qquad
+r_I=\frac{\beta_I}{n\beta_O}\,r_O
+$$
+
+These are the core radius relations of the chapter:
+$$
+r_M=\frac{r_O}{m\beta_O},
+\qquad
+r_I=\frac{\beta_I}{n\beta_O}\,r_O
+$$
+
+They show that once the canonical integer lock $(n:m:1)$, equivalently outer-normalized $(1:m:n)$, is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$. Thus a frequency hierarchy is not yet a radius hierarchy.
+
+#### Proposition 1 (Exterior Integer Lock Formulas)
+
+Under Assumptions 1-2,
+$$
+f_I:f_M:f_O = n:m:1
+$$
+equivalently, $f_O:f_M:f_I = 1:m:n$ in outer-normalized order, and
+$$
+r_O:r_M:r_I
+=
+1:\frac{1}{m\beta_O}:\frac{\beta_I}{n\beta_O}
+$$
+
+**Proof.** The frequency ratio is exactly Assumption 2. The radius ratios follow from
+$$
+r_k=\frac{\beta_k c_f}{2\pi f_k}
+$$
+together with the carrier value $\beta_M=1$, $f_M=m f_O$, and $f_I=n f_O$. $\square$
+
+The geometry is controlled by integer phase closure plus the middle caustic-grazing carrier condition. The proposition makes no claim about which integer pair is dynamically preferred.
+
+#### Could $1{:}2{:}4$ Be a Solution?
+
+If one later chooses the doubling-frequency integers
+$$
+m=2,
+\qquad
+n=4
+$$
+then
+$$
+f_I:f_M:f_O = 4:2:1
+$$
+equivalently, $f_O:f_M:f_I = 1:2:4$ in outer-normalized order,
+but the radius ratios become
+$$
+r_O:r_M:r_I
+=
+1:\frac{1}{2\beta_O}:\frac{\beta_I}{4\beta_O}
+$$
+
+So the doubling-frequency lock is a viable candidate pattern, but it does **not** by itself imply equal-speed geometry, and it does **not** by itself imply a self-similar radius law unless further assumptions are added.
+
+#### What Exact Periodicity Gives, and What It Does Not
+
+Exact periodicity naturally supports rational or integer commensurability, but it does not by itself choose the integers $m,n$.
+
+What exact lock gives:
+
+- inner, middle, and outer frequencies lie on a commensurate lattice,
+- the three-ring configuration repeats after one outer period,
+- fixed relative phases become meaningful dynamical observables,
+- the covering data $(m,n)$ become phase-bundle winding data for the retained branch chart.
+
+What exact lock does not give by itself:
+
+- that the preferred lock is doubling-frequency,
+- that the branch speeds are equal,
+- that the radii are self-similar,
+- or that cancellation is actually maximal for one specific integer pair $(m,n)$.
+
+The bundle-flatness and cancellation principle is the extra ingredient intended to select among the many admissible integer locks.
+
+#### Interpreting the Cancellation Principle
+
+The motivation for Assumption 4 is that a cycle-closing integer lock can support persistent superposition over repeated outer periods only when the relative phase connection stays flat enough to replay. If the phase organization is favorable, the low-order causal-wake multipole or effective potential contribution can cancel more effectively over one full return cycle.
+
+At the substrate level, the relevant quantity is exposed causal-wake leakage. At the effective level, the same organization may be reported as reduced low-order potential signal. At the inference level, the reduced model is allowed to select a lock only if the cancellation gap survives the declared truncation and stability tests.
+
+In that sense, the selection principle is closer to a flat-bundle replay test than to a bare numerology of integer ratios. The intuition is that a physically preferred lock should minimize exposed wake leakage, phase-slip variance, and residual phase curvature subject to the delayed dynamics. If the bundle-flatness diagnostic and the cancellation score disagree, the cancellation score is only an effective summary and cannot by itself overrule a holonomy or return-map failure.
+
+This does not yet prove which pair $(m,n)$ wins. It states the criterion that the reduced model should test.
+
+#### RG-Style Truncation Test
+
+The cancellation functional uses a finite harmonic depth
+$$
+L
+$$
+That truncation must be certified rather than assumed. The useful analogy from renormalization-group reasoning is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits a field-theory RG flow, but that discarded modes must be shown irrelevant for the decision being made.
+
+The branch geometry predicts which modes are most dangerous. Smooth flat-connection layers should have rapidly decaying coefficients,
+
+$$
+|A_{O,a}|,\ |A_{I,a}|
+\le
+C e^{-c a}
+$$
+
+on an analytic replayable chart. The middle caustic layer instead has an algebraic pre-cutoff tail because its impulse is phase-localized:
+
+$$
+|A_{M,a}|
+\lesssim
+C_{\eta}\,a^{-p_{\mathrm{fold}}}
+$$
+
+with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized middle-caustic impulse through the retained branch record; it is not the unintegrated force or potential row. In a local fold coordinate $x=\theta_M-\theta_{M,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $a^{-3/2}$. The corresponding unintegrated force-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
+$$
+p_{\mathrm{fold}}=\frac{3}{2}.
+$$
+A cusp or higher catastrophe would change this exponent and therefore change the truncation budget. The finite-depth proof must therefore report the middle-caustic spectral exponent or cutoff, not only assert that high harmonics are small. In the RG analogy, the flat outer and inner harmonics are irrelevant tails, while the middle caustic block is the marginal channel that can still affect selection beyond the first all-layer block.
+
+For a candidate lock $(m,n)$, define the tail score
+$$
+T_L(m,n)
+\equiv
+\sum_{\nu>L_{\mathrm{eff}}}
+\left|
+\sum_{(k,a):\,a q_k=\nu}
+A_{k,a}e^{ia\phi_k}
+\right|^2
+$$
+where
+$$
+L_{\mathrm{eff}}
+$$
+is the largest resonance block retained in the selection audit. The finite-depth proof must supply a bound
+$$
+T_L(m,n)\le \varepsilon_L
+$$
+uniformly over the admissible branch chart and then compare the winner gap
+$$
+\Delta C_L
+\equiv
+\min_{(m,n)\ne(m_\ast,n_\ast)}
+\big(C_L(m,n)-C_L(m_\ast,n_\ast)\big)
+$$
+against the truncation error. A lock is selected by the finite calculation only if
+$$
+\Delta C_L>2\varepsilon_L
+$$
+For the generic $A_2$ fold exponent, the middle tail dominates the smooth outer and inner tails:
+$$
+|A_{M,a}|^2=O(a^{-3}),
+\qquad
+\varepsilon_L=O(L_{\mathrm{eff}}^{-2}).
+$$
+Thus a practical finite-depth certificate must choose $L_{\mathrm{eff}}$ large enough that the bound implied by $L_{\mathrm{eff}}^{-2}$ is less than $\frac12\Delta C_L$ on the same branch chart. This is a stopping rule for the selection calculation, not a new assumption about which lock wins.
+
+This turns "higher harmonics are small" into a checkable theorem target tied to the same branch-derived amplitudes used in
+$$
+C_L
+$$
+
+#### Reduced-Theorem Target
+
+The right theorem target is not "prove $1:2:4$ from kinematics alone." The stronger target is a proof route that keeps kinematics, branch dynamics, phase-bundle topology, effective cancellation, and inference separate:
+
+1. classify the admissible canonical integer locks $(n:m:1)$, equivalently outer-normalized $(1:m:n)$, under exact delayed phase closure,
+2. compute the corresponding radius relations under $\beta_M=1$,
+3. require nondegenerate orbital-plane data $D_{\mathrm{plane}}\neq0$ so the retained phase bundle is genuinely three-dimensional,
+4. define the phase-bundle curvature and caustic-weighted cancellation functional for the low-order causal-wake multipole or effective potential,
+5. determine which integer lock minimizes residual curvature and exposed leakage in the exterior/horizon regime,
+6. and verify the selected lock by a finite-$\eta$ return map with a positive Floquet gap on the complement of the flat moduli.
+
+Equivalently, for each candidate $(m,n)$ one should construct a return map
+$$
+P_{\eta,m,n}:\mathcal{S}_{m,n}\to\mathcal{S}_{m,n}
+$$
+on the retained branch chart and require
+$$
+\Delta_{m,n}
+=
+1-\max_{i\notin G}|\mu_i(P_{\eta,m,n})|
+>0
+$$
+off the neutral symmetry directions $G$.
+
+Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-transversality floors, caustic-impulse rows, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
+
+$$
+G
+=
+T_{\mathrm{global}}
+\oplus
+\mathfrak{so}(3)_{\mathrm{rot}}
+\oplus
+T_{\mathrm{flat}}
+\oplus
+G_{\mathrm{rel}}
+$$
+
+where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the rigid spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{MO},\delta\phi_{IO})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift.
+The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
+$$
+\Theta(T)
+=
+\left(
+\phi_{MO}(T)-\phi_{MO}^\ast,\,
+\phi_{IO}(T)-\phi_{IO}^\ast
+\right)
+$$
+has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
+
+If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the doubling-frequency hierarchy would be a derived selection result rather than a starting assumption.
+
+In the invariant language of [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md), the reduced theorem target is to find an admissible topological sector
+
+$$
+[\mathfrak B]_{\mathrm{freq}}
+=
+\left(
+N_s,\,
+M_p,\,
+c_1
+\right)
+=
+\left(
+N_s,\,
+M_p,\,
+(m,n)
+\right)
+$$
+
+with flat phase connection, positive Floquet gap off $G$, and $|D_{\mathrm{plane}}|$ bounded away from zero outside the horizon-alignment locus. The doubling-frequency conjecture is the sharper claim that $(N_s,M_p,(2,4))$ is the minimal-curvature such class in the exterior/horizon-transition regime.
+
+##### Recurrence Diagnostic
+
+The finite-$\eta$ return-map test should also reject transient near-locks. For a sampled returned-branch trajectory, let $\boldsymbol{\psi}_i=(\theta_{O,i},\phi_{MO,i},\phi_{IO,i})$ be the returned phase row, $\mathbf{r}^{\mathrm{lay}}_i=(r_{O,i},r_{M,i},r_{I,i})$ the layer-radius row, $\boldsymbol{\beta}_i=(\beta_{O,i},\beta_{M,i},\beta_{I,i})$ the speed-factor row, and $\mathcal{R}^{\mathrm{rec}}_i$ the returned branch record containing active-root ledger data, middle-caustic impulse rows, and retained causal-wake history variables. The sampled state is
+$$
+z_i=(\boldsymbol{\psi}_i,\mathbf{r}^{\mathrm{lay}}_i,\boldsymbol{\beta}_i,\mathcal{R}^{\mathrm{rec}}_i,\hat{\mathbf{n}}_{O,i},\hat{\mathbf{n}}_{M,i},\hat{\mathbf{n}}_{I,i})\in\mathcal{S}_{m,n}.
+$$
+Define a recurrence matrix
+$$
+Q^{(\epsilon)}_{ij}
+=
+\mathbf{1}
+\left[
+d_{\mathcal{S}}(z_i,z_j)<\epsilon
+\ \wedge\
+\|\Theta_i-\Theta_j\|<\epsilon_{\Theta}
+\ \wedge\
+|D_{\mathrm{plane},i}-D_{\mathrm{plane},j}|<\epsilon_D
+\right]
+$$
+where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$, while the holonomy-defect coordinate is not quotiented:
+
+$$
+\Theta(T)
+=
+\left(
+\phi_{MO}(T)-\phi_{MO}^\ast,\,
+\phi_{IO}(T)-\phi_{IO}^\ast
+\right)
+$$
+
+A candidate $1{:}2$ row, or a chained $1{:}2{:}4$ row, is recurrence-positive only if returned-section hits recur at the declared outer-period multiples, the recurrence period agrees with the winding and active-branch ledger, the relative-phase defect $\Theta$ recurs to zero, the plane determinant stays in the nondegenerate domain, the recurrence structure persists under timestep, history-resolution, and $\eta$ refinement, and nearby trials that fail the non-symmetry Floquet gap do not pass this recurrence check. This separates point recurrence from true phase-lock recurrence.
+
+#### Ancillary Symmetry Check
+
+The older $\mathbb{Z}_3$ dipole-cancellation identity belongs to a different assembly sector. It can still be kept as a planar symmetry test:
+$$
+1+e^{i2\pi/3}+e^{i4\pi/3}=0
+$$
+
+This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal rank-three bundle studied in this chapter. In compact form:
+
+$$
+\mathbb{Z}_3\ \text{stealth}
+\longleftrightarrow
+\text{coplanar cyclic sector}
+$$
+
+whereas
+
+$$
+1{:}2{:}4\ \text{doubling-frequency cover}
+\longleftrightarrow
+\text{near-orthogonal }T^3\text{ sector}
+$$
+
+The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
+The separating wall is the plane-degeneracy condition
+$$
+D_{\mathrm{plane}}=0.
+$$
+On one side, the near-orthogonal sector carries three independent phase circles and covering data. On the wall, the phase chart collapses into a coplanar cyclic configuration where cancellation is representation-theoretic inside one plane. Crossing this wall is therefore a change in cancellation topology, not a smooth deformation inside one sector. The reachable theorem target is that the doubling-frequency sector and the coplanar $\mathbb{Z}_3$ sector cannot be connected by a path that preserves both $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ and a positive non-symmetry Floquet gap.
+
+For neighboring closure problems, see [Planar Bridge Closure](../../../../markdown/aaa/proof-programs/planar-bridge-closure.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
 
 ## Braid Envelope Geometry
 
@@ -3083,664 +3746,6 @@ For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/n
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.
 
-## Noether Braid Doubling-Frequency Resonance Lock
-
-This chapter studies resonance lock for the nested inner, middle, and outer binaries as a restricted family inside the broader [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md). Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
-
-It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Nested Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), which provide the assembly scaffold, geometry, and scale-setting context for the lock relations derived here.
-
-The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
-
-This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
-
-### Document Role
-
-This chapter is the specialized `NSH-421` candidate-family chapter. It owns the `4:2:1` frequency-lock analysis when a nested shell braid chart declares `I:M:O` roles and tests a doubling-frequency branch under explicit support, hinge, phase-return, and stability assumptions.
-
-It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
-
-### General Rank-Three Branch State
-
-Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, the rank-three search branch is represented by three retained rows. The general search program is defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
-$$
-\mathcal{T}_{3B}
-=
-\left\{
-\left(
-f_a,\,
-r_a,\,
-E_a,\,
-s_a,\,
-\phi_a,\,
-\hat{\mathbf n}_a,\,
-\mathcal{L}_a
-\right)
-\right\}_{a=1}^{3}.
-$$
-Here $f_a$ is the layer frequency, $r_a$ the characteristic radius or retained lever arm, $E_a$ the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ the scalar tangential speed, $\phi_a$ the phase origin or offset, $\hat{\mathbf n}_a$ the orbital-plane normal, and $\mathcal{L}_a$ the active causal-root ledger data for that layer. On a circular layer chart the kinematic identity is
-$$
-s_a=2\pi f_a r_a.
-$$
-This identity is only a constraint among three variables. It does not by itself select the frequency ratios, energy placement, radii, speeds, or phase offsets.
-
-The branch-search objective is therefore
-$$
-\text{find retained, stable } \mathcal{T}_{3B}
-\text{ over }
-(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal{L}_a),
-$$
-then compare the energy differentials
-$$
-\Delta E_{ab}=E_a-E_b
-$$
-and their ledger decomposition on the same retained row set. A doubling-frequency candidate, a field-speed hinge-occupancy candidate, and an iso-frequency candidate are special conditions on this same state space. In particular, the iso-frequency condition
-$$
-f_1=f_2=f_3
-$$
-still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
-
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader rank-three branch state; it is not the default assumption for all stable branch configurations.
-
-### Status and Assumptions
-
-The logic of the chapter is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
-
-#### Exact Kinematic Identity
-
-For each ring,
-$$
-v_k = 2\pi f_k r_k = \beta_k c_f,
-\qquad
-0<\beta_k,
-\qquad
-c_f>0
-$$
-
-Equivalently,
-$$
-f_k=\frac{v_k}{2\pi r_k},
-\qquad
-r_k=\frac{v_k}{2\pi f_k},
-\qquad
-v_k=2\pi f_k r_k
-$$
-
-Plain language: for any one ring, if we know any two of frequency, tangential speed, and radius, then the third is fixed.
-
-This identity is exact. It is not an assumption, and it does not select a lock by itself.
-The logical spine is therefore:
-
-1. **Kinematics:** $v_k=2\pi f_k r_k$ relates speed, frequency, and radius without introducing topology.
-2. **Integer closure:** Assumption 2 is the only place where the integer pair $(m,n)$ enters; it turns frequency commensurability into return-map degree/holonomy data.
-3. **Selection:** Assumption 4 and the finite-$\eta$ return map decide whether one already-integer-labeled sector is dynamically preferred.
-
-Everything before Assumption 2 is topology-free kinematics. Everything after Assumption 2 is selection among sectors that already carry integer phase-return data.
-
-#### Assumption 1 (Middle Caustic-Grazing Closure)
-
-In the reduced exterior and horizon-transition branch studied here, the middle binary is not pinned exactly on an infinite-force surface. It is modeled as a caustic-grazing carrier whose cycle-averaged hinge value is the field speed:
-$$
-v_M^{\mathrm{car}}=c_f,
-\qquad
-\beta_M^{\mathrm{car}}=1
-$$
-For compact notation, the algebra below writes $v_M=c_f$ and $\beta_M=1$ for this carrier value.
-
-The branch-level motion may have microscopic crossings
-$$
-v_M(T)=c_f+\delta v_M(T),
-\qquad
-\langle \delta v_M\rangle_W=0
-$$
-over the declared window $W$. Each regularized crossing of the $J_M^{\mathrm{src}}(\theta_M)=0$ boundary is a caustic transit with finite impulse
-$$
-\Delta\mathbf{V}_{M,j}
-=
-\int_{T_j^-}^{T_j^+}
-\mathbf{A}_M^{(\eta)}(T)\,dT,
-\qquad
-\left\|\Delta\mathbf{V}_{M,j}\right\|<\infty
-$$
-rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
-
-This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
-It is not a claim that every Noether braid regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
-
-#### Assumption 2 (Exact Integer Phase Closure)
-
-Let the outer period be $P_O=\frac{1}{f_O}$. Assume that when the outer ring completes one full cycle, the middle and inner rings also land exactly at the beginning of their own cycles. Equivalently, there exist integers
-$$
-m,n\in\mathbb{N},
-\qquad
-1<m<n
-$$
-such that
-$$
-\theta_O(T+P_O)=\theta_O(T)+2\pi
-$$
-$$
-\theta_M(T+P_O)=\theta_M(T)+2\pi m
-$$
-$$
-\theta_I(T+P_O)=\theta_I(T)+2\pi n
-$$
-
-Therefore the canonical `I:M:O` frequency triplet is $f_I:f_M:f_O=n:m:1$. Equivalently, in outer-normalized order, $f_O:f_M:f_I = 1:m:n$, with $f_M=m f_O$ and $f_I=n f_O$.
-
-Plain language: after one outer revolution, the middle and inner rings have completed whole numbers of revolutions as well, so the three-ring pattern closes exactly.
-
-This is the reduced constant-frequency carrier model. It is a branch-level closure assumption, not a statement that the assembly has only three degrees of freedom. In the full Noether braid closure problem, the simple phases $\theta_k(T)=q_k\omega_O T+\phi_k$, with $\omega_O=2\pi f_O$, are replaced by integrated winding, causal-root, and frame-phase ledgers over the accepted branch chart.
-
-#### Assumption 3 (Fixed Relative Phase Lock)
-
-The lock is not just commensurate in frequency. It also carries fixed relative phase offsets over time. One convenient formulation is
-$$
-\phi_{MO}(T)\equiv \theta_M(T)-m\theta_O(T)=\phi_{MO}^\ast
-$$
-$$
-\phi_{IO}(T)\equiv \theta_I(T)-n\theta_O(T)=\phi_{IO}^\ast
-$$
-with constants $\phi_{MO}^\ast,\phi_{IO}^\ast$.
-
-Plain language: the rings keep the same timing relationship cycle after cycle rather than drifting through one another.
-
-#### Bundle Holonomy Reading
-
-Assumptions 2 and 3 can be restated as a phase-bundle condition. Let the outer phase be the base cycle and define the relative connection one-forms
-
-$$
-\vartheta_{MO}
-=
-d\theta_M-m\,d\theta_O,
-\qquad
-\vartheta_{IO}
-=
-d\theta_I-n\,d\theta_O
-$$
-
-Exact integer phase closure says the covering degrees over one outer cycle are
-
-$$
-\frac{1}{2\pi}\oint_{S^1_O}d\theta_M=m,
-\qquad
-\frac{1}{2\pi}\oint_{S^1_O}d\theta_I=n
-$$
-
-or equivalently
-
-$$
-\oint_{S^1_O}\vartheta_{MO}=0,
-\qquad
-\oint_{S^1_O}\vartheta_{IO}=0
-\quad
-(\mathrm{mod}\ 2\pi)
-$$
-
-on the locked branch. Fixed relative phase then says these one-forms are flat on the retained return chart: their integrated values do not drift, and the constants $\phi_{MO}^\ast,\phi_{IO}^\ast$ are the residual flat-connection data. The discrete and continuous pieces should be kept separate:
-
-$$
-(m,n)=\text{covering degrees over }S^1_O,
-\qquad
-(\phi_{MO}^\ast,\phi_{IO}^\ast)=\text{flat-connection moduli}
-$$
-
-Thus the lock is a flat relative-phase connection with integer holonomy, not a literal first Chern class over the outer phase circle. In the language of [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation), the integers $(m,n)$ are the phase-return degree data that make the reduced action-angle chart globally replayable rather than merely local.
-
-The phase-bundle picture also requires genuine three-dimensional layer independence. Let $\hat{\mathbf{n}}_O,\hat{\mathbf{n}}_M,\hat{\mathbf{n}}_I$ be the orbital-plane normals of the three layer binaries and define
-
-$$
-D_{\mathrm{plane}}
-=
-\det
-\left[
-\hat{\mathbf{n}}_O,\hat{\mathbf{n}}_M,\hat{\mathbf{n}}_I
-\right]
-$$
-
-The reduced $T^3$ lock is nondegenerate only while $D_{\mathrm{plane}}\neq0$. Mutual orthogonality gives $|D_{\mathrm{plane}}|=1$, while horizon-alignment or coplanar degeneration drives $D_{\mathrm{plane}}\to0$ and collapses the three-circle bundle to a lower-dimensional projection. The determinant is therefore the natural order parameter for the loss of doubling-frequency precession at alignment.
-For a promoted finite-$\eta$ chart this is a conditioning floor,
-$$
-|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
-$$
-It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal Noether braid phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
-
-#### Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)
-
-Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one whose phase bundle admits the flattest replayable connection while minimizing exposed causal-wake leakage. The cycle-averaged cancellation of a low-order causal-wake multipole or effective potential signal is the effective diagnostic for that deeper bundle condition.
-
-This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, middle-caustic impulse record, and finite-$\eta$ return map.
-The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
-
-In this branch, the middle binary is the curvature carrier. Between caustic events the locked triple is modeled as flat phase transport. At the regularized middle caustics, the connection acquires concentrated curvature,
-
-$$
-\Omega_{\mathrm{phase}}
-=
-\sum_j
-\mathcal{F}_j\,
-\delta_\eta(\theta_M-\theta_{M,j}^{\ast})\,
-d\theta_M\wedge d\theta_O
-+
-\Omega_{\mathrm{reg}}
-$$
-
-where $\theta_{M,j}^{\ast}$ are the middle caustic phases and $\mathcal{F}_j$ is proportional to the finite caustic impulse $\Delta\mathbf{V}_{M,j}$ and its wake-history increment on the retained branch. The fulcrum statement is therefore geometric: outer/inner energy routing changes only at the middle-caustic phases where the phase-bundle connection is not flat. This is the same ledger event class used by the [self-hit echo bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
-
-A minimal test functional can be written before committing to a particular lock. Let $q_I=n$, $q_M=m$, and $q_O=1$, with phase variables $\theta_k(T)=q_k\omega_O T+\phi_k$ and $\omega_O=2\pi f_O$. For a low-order truncation depth $L$, define
-$$
-S_L(T)
-=
-\sum_{k\in\{I,M,O\}}\sum_{a=1}^{L}
-A_{k,a}(\beta_k,r_k,\eta,D_s,D_T,W^{\mathrm{rec}},J_k^{\mathrm{src}})\,
-e^{ia(q_k\omega_O T+\phi_k)}
-$$
-The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
-They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
-For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the caustic transversality weight of the window while keeping receiver-normal force/action strength on the same retained record, schematically
-
-$$
-A_{M,a}
-=
-\int_0^{2\pi}
-\frac{
-w_{M,a}^{\mathrm{rec}}(\theta_M)
-}{
-|J_M^{\mathrm{src}}(\theta_M)|+\eta_J
-}
-e^{-ia\theta_M}\,d\theta_M
-$$
-
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_T$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M^{\mathrm{src}}$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,j}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
-The cycle-averaged cancellation score over one outer-period window starting at $T_\ast$ is
-$$
-C_L(m,n;\phi)
-=
-\frac{1}{P_O}\int_{T_\ast}^{T_\ast+P_O} |S_L(T')|^2\,dT'
-=
-\sum_{\nu}
-\left|
-\sum_{(k,a):\,a q_k=\nu}
-A_{k,a}e^{ia\phi_k}
-\right|^2
-$$
-The doubling-frequency claim becomes a theorem target only if $(m,n)=(2,4)$ minimizes this score under the admissible branch equations and retains a positive stability gap.
-
-**Harmonic-overlap lemma.** The score decomposes into resonance blocks labeled by $\nu$. A phase choice can affect cancellation between two layers only when their finite harmonic supports overlap:
-$$
-\nu\in q_k\{1,\ldots,L\}\cap q_h\{1,\ldots,L\}
-$$
-If a block has no overlap, its contribution to $C_L$ is phase-independent and cannot select an integer lock. For the doubling-frequency candidate $(m,n)=(2,4)$, the first Outer/Middle overlap is $\nu=2$ via $(O,a=2)$ and $(M,a=1)$; the first all-layer overlap is
-$$
-\nu=4
-$$
-via $(O,a=4)$, $(M,a=2)$, and $(I,a=1)$. Thus this functional can select $1:2:4$ only if $L\ge4$ and the $\nu=4$ block has nontrivial branch-derived amplitudes. A complete cancellation of that all-layer block additionally requires the amplitude magnitudes to satisfy the polygon condition
-$$
-\max(|A_{O,4}|,|A_{M,2}|,|A_{I,1}|)
-\le
-\text{sum of the other two}
-$$
-The lemma is only a harmonic support statement. It shows where cancellation is possible; it does not show that the branch-derived amplitudes or the return-map stability actually select the doubling-frequency lock.
-The selection therefore has two independent requirements. The topological requirement is that the all-layer resonance block is nonempty; for the doubling-frequency candidate this is the $\nu=4$ block. The dynamical requirement is that the branch-derived complex amplitudes in that block can close a polygon after the caustic-weighted middle contribution is included. The first requirement belongs to the covering structure; the second belongs to the finite-$\eta$ delayed dynamics and cannot be inferred from topology alone.
-
-Topologically, the same $\nu=4$ statement says the doubling-frequency lock is the first common cover of the three phase circles. The covering maps can be written
-
-$$
-S^1_O
-\xleftarrow{\ \times m\ }
-S^1_M
-\xleftarrow{\ \times n/m\ }
-S^1_I
-$$
-
-when $m$ divides $n$. The doubling-frequency case $m=2,\ n=4$ is the minimal nontrivial self-similar cover because each layer double-covers the one above it. More generally, self-similar covers obey $n=m^2$; after $1{:}2{:}4$, the next such comparison family is $1{:}3{:}9$, not $1{:}2{:}3$ or $1{:}3{:}6$. This does not prove the doubling-frequency branch wins dynamically, but it explains why $1{:}2{:}4$ is the first topologically clean candidate before the amplitude calculation begins.
-Equivalently, the resonance blocks are the isotypic components of the integer action generated by the lock, and $\nu=\operatorname{lcm}(1,2,4)=4$ is the first common period of all three circles. The doubling-frequency tower is the unique minimal repeated cover
-$$
-S^1\xleftarrow{\times 2}S^1\xleftarrow{\times 2}S^1
-$$
-among non-identity integer towers. This is why the doubling-frequency family is also the natural candidate for a renormalization-style fixed point in the truncation analysis: repeated double covering is the simplest scale-similar phase organization.
-
-#### Non-Assumptions
-
-This chapter does **not** assume:
-
-- common-speed closure $v_O=v_M=v_I$,
-- self-similar radii $r_M=r_O/s$, $r_I=r_O/s^2$,
-- or the specific frequency lock $1:2:4$ at the outset.
-
-Those are possible special cases or later outcomes, not starting axioms here.
-This chapter studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
-
-### Immediate Consequences
-
-This section is pure algebra from the exact identity and the first two assumptions. It does not use the cancellation principle.
-
-From Assumptions 1-2 and the exact identity, the middle carrier radius is fixed by the outer frequency:
-$$
-r_M=\frac{c_f}{2\pi f_M}
-=
-\frac{c_f}{2\pi m f_O}
-$$
-
-For the outer ring,
-$$
-r_O=\frac{v_O}{2\pi f_O}
-=
-\frac{\beta_O c_f}{2\pi f_O}
-$$
-Hence
-$$
-\frac{r_M}{r_O}
-=
-\frac{1}{m\beta_O},
-\qquad
-r_M=\frac{r_O}{m\beta_O}
-$$
-
-For the inner ring,
-$$
-r_I=\frac{v_I}{2\pi f_I}
-=
-\frac{\beta_I c_f}{2\pi n f_O}
-$$
-so
-$$
-\frac{r_I}{r_O}
-=
-\frac{\beta_I}{n\beta_O},
-\qquad
-r_I=\frac{\beta_I}{n\beta_O}\,r_O
-$$
-
-These are the core radius relations of the chapter:
-$$
-r_M=\frac{r_O}{m\beta_O},
-\qquad
-r_I=\frac{\beta_I}{n\beta_O}\,r_O
-$$
-
-They show that once the canonical integer lock $(n:m:1)$, equivalently outer-normalized $(1:m:n)$, is fixed, the remaining geometry depends on the outer and inner speed factors $\beta_O$ and $\beta_I$. Thus a frequency hierarchy is not yet a radius hierarchy.
-
-### Proposition 1 (Exterior Integer Lock Formulas)
-
-Under Assumptions 1-2,
-$$
-f_I:f_M:f_O = n:m:1
-$$
-equivalently, $f_O:f_M:f_I = 1:m:n$ in outer-normalized order, and
-$$
-r_O:r_M:r_I
-=
-1:\frac{1}{m\beta_O}:\frac{\beta_I}{n\beta_O}
-$$
-
-**Proof.** The frequency ratio is exactly Assumption 2. The radius ratios follow from
-$$
-r_k=\frac{\beta_k c_f}{2\pi f_k}
-$$
-together with the carrier value $\beta_M=1$, $f_M=m f_O$, and $f_I=n f_O$. $\square$
-
-The geometry is controlled by integer phase closure plus the middle caustic-grazing carrier condition. The proposition makes no claim about which integer pair is dynamically preferred.
-
-### Could $1{:}2{:}4$ Be a Solution?
-
-If one later chooses the doubling-frequency integers
-$$
-m=2,
-\qquad
-n=4
-$$
-then
-$$
-f_I:f_M:f_O = 4:2:1
-$$
-equivalently, $f_O:f_M:f_I = 1:2:4$ in outer-normalized order,
-but the radius ratios become
-$$
-r_O:r_M:r_I
-=
-1:\frac{1}{2\beta_O}:\frac{\beta_I}{4\beta_O}
-$$
-
-So the doubling-frequency lock is a viable candidate pattern, but it does **not** by itself imply equal-speed geometry, and it does **not** by itself imply a self-similar radius law unless further assumptions are added.
-
-### What Exact Periodicity Gives, and What It Does Not
-
-Exact periodicity naturally supports rational or integer commensurability, but it does not by itself choose the integers $m,n$.
-
-What exact lock gives:
-
-- inner, middle, and outer frequencies lie on a commensurate lattice,
-- the three-ring configuration repeats after one outer period,
-- fixed relative phases become meaningful dynamical observables,
-- the covering data $(m,n)$ become phase-bundle winding data for the retained branch chart.
-
-What exact lock does not give by itself:
-
-- that the preferred lock is doubling-frequency,
-- that the branch speeds are equal,
-- that the radii are self-similar,
-- or that cancellation is actually maximal for one specific integer pair $(m,n)$.
-
-The bundle-flatness and cancellation principle is the extra ingredient intended to select among the many admissible integer locks.
-
-### Interpreting the Cancellation Principle
-
-The motivation for Assumption 4 is that a cycle-closing integer lock can support persistent superposition over repeated outer periods only when the relative phase connection stays flat enough to replay. If the phase organization is favorable, the low-order causal-wake multipole or effective potential contribution can cancel more effectively over one full return cycle.
-
-At the substrate level, the relevant quantity is exposed causal-wake leakage. At the effective level, the same organization may be reported as reduced low-order potential signal. At the inference level, the reduced model is allowed to select a lock only if the cancellation gap survives the declared truncation and stability tests.
-
-In that sense, the selection principle is closer to a flat-bundle replay test than to a bare numerology of integer ratios. The intuition is that a physically preferred lock should minimize exposed wake leakage, phase-slip variance, and residual phase curvature subject to the delayed dynamics. If the bundle-flatness diagnostic and the cancellation score disagree, the cancellation score is only an effective summary and cannot by itself overrule a holonomy or return-map failure.
-
-This does not yet prove which pair $(m,n)$ wins. It states the criterion that the reduced model should test.
-
-### RG-Style Truncation Test
-
-The cancellation functional uses a finite harmonic depth
-$$
-L
-$$
-That truncation must be certified rather than assumed. The useful analogy from renormalization-group reasoning is not that $\mathbb{A}\mathbb{A}\mathbb{A}$ inherits a field-theory RG flow, but that discarded modes must be shown irrelevant for the decision being made.
-
-The branch geometry predicts which modes are most dangerous. Smooth flat-connection layers should have rapidly decaying coefficients,
-
-$$
-|A_{O,a}|,\ |A_{I,a}|
-\le
-C e^{-c a}
-$$
-
-on an analytic replayable chart. The middle caustic layer instead has an algebraic pre-cutoff tail because its impulse is phase-localized:
-
-$$
-|A_{M,a}|
-\lesssim
-C_{\eta}\,a^{-p_{\mathrm{fold}}}
-$$
-
-with $p_{\mathrm{fold}}$ fixed by the caustic normal form and the regulator. Here $S_L$ is the impulse-accumulated velocity-row signal obtained after integrating the regularized middle-caustic impulse through the retained branch record; it is not the unintegrated force or potential row. In a local fold coordinate $x=\theta_M-\theta_{M,j}^{\ast}$, a generic Whitney $A_2$ fold gives a velocity-row cusp $B_0+B_1|x|^{1/2}+O(x)$, whose Fourier coefficients scale as $a^{-3/2}$. The corresponding unintegrated force-row singularity would scale as $|x|^{-1/2}$ and would not supply the $L_{\mathrm{eff}}^{-2}$ tail budget used below. Thus the velocity-row normal form gives the pre-cutoff exponent
-$$
-p_{\mathrm{fold}}=\frac{3}{2}.
-$$
-A cusp or higher catastrophe would change this exponent and therefore change the truncation budget. The finite-depth proof must therefore report the middle-caustic spectral exponent or cutoff, not only assert that high harmonics are small. In the RG analogy, the flat outer and inner harmonics are irrelevant tails, while the middle caustic block is the marginal channel that can still affect selection beyond the first all-layer block.
-
-For a candidate lock $(m,n)$, define the tail score
-$$
-T_L(m,n)
-\equiv
-\sum_{\nu>L_{\mathrm{eff}}}
-\left|
-\sum_{(k,a):\,a q_k=\nu}
-A_{k,a}e^{ia\phi_k}
-\right|^2
-$$
-where
-$$
-L_{\mathrm{eff}}
-$$
-is the largest resonance block retained in the selection audit. The finite-depth proof must supply a bound
-$$
-T_L(m,n)\le \varepsilon_L
-$$
-uniformly over the admissible branch chart and then compare the winner gap
-$$
-\Delta C_L
-\equiv
-\min_{(m,n)\ne(m_\ast,n_\ast)}
-\big(C_L(m,n)-C_L(m_\ast,n_\ast)\big)
-$$
-against the truncation error. A lock is selected by the finite calculation only if
-$$
-\Delta C_L>2\varepsilon_L
-$$
-For the generic $A_2$ fold exponent, the middle tail dominates the smooth outer and inner tails:
-$$
-|A_{M,a}|^2=O(a^{-3}),
-\qquad
-\varepsilon_L=O(L_{\mathrm{eff}}^{-2}).
-$$
-Thus a practical finite-depth certificate must choose $L_{\mathrm{eff}}$ large enough that the bound implied by $L_{\mathrm{eff}}^{-2}$ is less than $\frac12\Delta C_L$ on the same branch chart. This is a stopping rule for the selection calculation, not a new assumption about which lock wins.
-
-This turns "higher harmonics are small" into a checkable theorem target tied to the same branch-derived amplitudes used in
-$$
-C_L
-$$
-
-### Reduced-Theorem Target
-
-The right theorem target is not "prove $1:2:4$ from kinematics alone." The stronger target is a proof route that keeps kinematics, branch dynamics, phase-bundle topology, effective cancellation, and inference separate:
-
-1. classify the admissible canonical integer locks $(n:m:1)$, equivalently outer-normalized $(1:m:n)$, under exact delayed phase closure,
-2. compute the corresponding radius relations under $\beta_M=1$,
-3. require nondegenerate orbital-plane data $D_{\mathrm{plane}}\neq0$ so the retained phase bundle is genuinely three-dimensional,
-4. define the phase-bundle curvature and caustic-weighted cancellation functional for the low-order causal-wake multipole or effective potential,
-5. determine which integer lock minimizes residual curvature and exposed leakage in the exterior/horizon regime,
-6. and verify the selected lock by a finite-$\eta$ return map with a positive Floquet gap on the complement of the flat moduli.
-
-Equivalently, for each candidate $(m,n)$ one should construct a return map
-$$
-P_{\eta,m,n}:\mathcal{S}_{m,n}\to\mathcal{S}_{m,n}
-$$
-on the retained branch chart and require
-$$
-\Delta_{m,n}
-=
-1-\max_{i\notin G}|\mu_i(P_{\eta,m,n})|
->0
-$$
-off the neutral symmetry directions $G$.
-
-Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-transversality floors, caustic-impulse rows, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
-
-$$
-G
-=
-T_{\mathrm{global}}
-\oplus
-\mathfrak{so}(3)_{\mathrm{rot}}
-\oplus
-T_{\mathrm{flat}}
-\oplus
-G_{\mathrm{rel}}
-$$
-
-where $T_{\mathrm{global}}$ is the global time or phase shift, $\mathfrak{so}(3)_{\mathrm{rot}}$ is the rigid spatial-rotation tangent space, $T_{\mathrm{flat}}=\operatorname{span}\{(\delta\phi_{MO},\delta\phi_{IO})\}$ is the flat-connection moduli space, and $G_{\mathrm{rel}}$ contains any declared relabeling symmetry of the retained branch chart. A lock is dynamically stable only if the return map contracts on the complement of $G$ and the flat-modulus directions remain genuinely neutral. If a flat-modulus direction becomes unstable, the frequency commensurability may remain while Assumption 3 fails through relative-phase drift.
-The quotient rule is strict. A direction in $T_{\mathrm{flat}}$ is treated as a symmetry only when the holonomy-defect coordinate
-$$
-\Theta(T)
-=
-\left(
-\phi_{MO}(T)-\phi_{MO}^\ast,\,
-\phi_{IO}(T)-\phi_{IO}^\ast
-\right)
-$$
-has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the retained-branch version of the embedded-binary warning in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
-
-If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the doubling-frequency hierarchy would be a derived selection result rather than a starting assumption.
-
-In the invariant language of [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md), the reduced theorem target is to find an admissible topological sector
-
-$$
-[\mathfrak B]_{\mathrm{freq}}
-=
-\left(
-N_s,\,
-M_p,\,
-c_1
-\right)
-=
-\left(
-N_s,\,
-M_p,\,
-(m,n)
-\right)
-$$
-
-with flat phase connection, positive Floquet gap off $G$, and $|D_{\mathrm{plane}}|$ bounded away from zero outside the horizon-alignment locus. The doubling-frequency conjecture is the sharper claim that $(N_s,M_p,(2,4))$ is the minimal-curvature such class in the exterior/horizon-transition regime.
-
-#### Recurrence Diagnostic
-
-The finite-$\eta$ return-map test should also reject transient near-locks. For a sampled returned-branch trajectory, let $\boldsymbol{\psi}_i=(\theta_{O,i},\phi_{MO,i},\phi_{IO,i})$ be the returned phase row, $\mathbf{r}^{\mathrm{lay}}_i=(r_{O,i},r_{M,i},r_{I,i})$ the layer-radius row, $\boldsymbol{\beta}_i=(\beta_{O,i},\beta_{M,i},\beta_{I,i})$ the speed-factor row, and $\mathcal{R}^{\mathrm{rec}}_i$ the returned branch record containing active-root ledger data, middle-caustic impulse rows, and retained causal-wake history variables. The sampled state is
-$$
-z_i=(\boldsymbol{\psi}_i,\mathbf{r}^{\mathrm{lay}}_i,\boldsymbol{\beta}_i,\mathcal{R}^{\mathrm{rec}}_i,\hat{\mathbf{n}}_{O,i},\hat{\mathbf{n}}_{M,i},\hat{\mathbf{n}}_{I,i})\in\mathcal{S}_{m,n}.
-$$
-Define a recurrence matrix
-$$
-Q^{(\epsilon)}_{ij}
-=
-\mathbf{1}
-\left[
-d_{\mathcal{S}}(z_i,z_j)<\epsilon
-\ \wedge\
-\|\Theta_i-\Theta_j\|<\epsilon_{\Theta}
-\ \wedge\
-|D_{\mathrm{plane},i}-D_{\mathrm{plane},j}|<\epsilon_D
-\right]
-$$
-where $d_{\mathcal{S}}$ is the declared branch-chart distance after quotienting the neutral symmetries in $G$, while the holonomy-defect coordinate is not quotiented:
-
-$$
-\Theta(T)
-=
-\left(
-\phi_{MO}(T)-\phi_{MO}^\ast,\,
-\phi_{IO}(T)-\phi_{IO}^\ast
-\right)
-$$
-
-A candidate $1{:}2$ row, or a chained $1{:}2{:}4$ row, is recurrence-positive only if returned-section hits recur at the declared outer-period multiples, the recurrence period agrees with the winding and active-branch ledger, the relative-phase defect $\Theta$ recurs to zero, the plane determinant stays in the nondegenerate domain, the recurrence structure persists under timestep, history-resolution, and $\eta$ refinement, and nearby trials that fail the non-symmetry Floquet gap do not pass this recurrence check. This separates point recurrence from true phase-lock recurrence.
-
-### Ancillary Symmetry Check
-
-The older $\mathbb{Z}_3$ dipole-cancellation identity belongs to a different assembly sector. It can still be kept as a planar symmetry test:
-$$
-1+e^{i2\pi/3}+e^{i4\pi/3}=0
-$$
-
-This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal rank-three bundle studied in this chapter. In compact form:
-
-$$
-\mathbb{Z}_3\ \text{stealth}
-\longleftrightarrow
-\text{coplanar cyclic sector}
-$$
-
-whereas
-
-$$
-1{:}2{:}4\ \text{doubling-frequency cover}
-\longleftrightarrow
-\text{near-orthogonal }T^3\text{ sector}
-$$
-
-The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the doubling-frequency Noether braid lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
-The separating wall is the plane-degeneracy condition
-$$
-D_{\mathrm{plane}}=0.
-$$
-On one side, the near-orthogonal sector carries three independent phase circles and covering data. On the wall, the phase chart collapses into a coplanar cyclic configuration where cancellation is representation-theoretic inside one plane. Crossing this wall is therefore a change in cancellation topology, not a smooth deformation inside one sector. The reachable theorem target is that the doubling-frequency sector and the coplanar $\mathbb{Z}_3$ sector cannot be connected by a path that preserves both $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$ and a positive non-symmetry Floquet gap.
-
-For neighboring closure problems, see [Planar Bridge Closure](../../../../markdown/aaa/proof-programs/planar-bridge-closure.md) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md).
-
 ## Noether Braid Configuration Space
 
 This chapter gives the Noether braid search space for cases where three retained angular-momentum rows may form a full internal 3D frame. It comes after the family map in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) and the base branch definitions in [Neutral Braid](../../../../markdown/aaa/noether-braid/neutral-braid.md), [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#symmetric-shell-braid), and [Nested Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid), and before any named configuration such as the doubling-frequency `4:2:1` lock, an iso-frequency candidate, or a field-speed hinge-occupancy candidate. Within the rank-three sublocus, a branch candidate is a three-row retained state whose energies, phase offsets, angular-momentum rows, plane orientations, causal-root ledgers, frequencies, radii, speeds, and whole-branch group velocity must be solved together.
@@ -4207,7 +4212,7 @@ while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing aniso
 
 ### Relation To The Doubling-frequency Chapter
 
-[Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) studies one restricted family inside this broader configuration space. It asks whether a nested `I:M:O` frequency triplet, especially the doubling-frequency `4:2:1` candidate, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
+[Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) studies one restricted family inside this broader configuration space. It asks whether a nested `I:M:O` frequency triplet, especially the doubling-frequency `4:2:1` candidate, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$
@@ -4514,7 +4519,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md#exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
+- [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
 - [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:
@@ -4581,7 +4586,7 @@ It does not prove branch retention by itself. A Proof ID names a branch-configur
 | [Noether Braid Proof Map](../../../../markdown/aaa/noether-braid/noether-braid-proof-map.md) | Tracks current Proof IDs, work status, detailed proof records, and environment-qualified rounds. | Records proof work without redefining the configuration taxonomy. |
 | [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md) | Searches the cases where three retained angular-momentum rows may form a full internal 3D frame. | Supplies search variables and frame rows without saying every Noether braid must have exact binaries. |
 | [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) | Tests whether nested shell braid motion can actually stay closed and stable. | Tests coupled shell dynamics without turning downstream exports into base branch IDs. |
-| [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md) | Studies the `NSH-421` candidate where the nested rows have a `4:2:1` frequency pattern. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
+| [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) | Studies the `NSH-421` candidate where the nested rows have a `4:2:1` frequency pattern. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
 | [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) | Adds topological labels after a retained branch chart exists. | Computes a topological label only after a same-record branch chart supplies the required rows. |
 | [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md) | Describes the envelope, exclusion boundary, and deformation outputs a retained branch can emit, for any braid family. | Describes exclusion, deformation, and envelope rows without certifying dynamics or metric recovery alone. |
 
@@ -4747,7 +4752,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 | --- | --- |
 | iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid**, the current leading candidate (see above). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md). |
+| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock). |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 
@@ -4892,7 +4897,7 @@ In this index, work status is a proof-map status, not a certification claim. `St
 | `NB-0` | neutral braid, rest | Started | No-declared-shell neutral rest category; only packets without a declared shell support geometry map here. | Can the broad neutral branch retain without adding a shell-support assumption? |
 | `NB-L` | neutral braid, moving export | Downstream started | Observer-export rows are mapped; they wait on a retained `NB-0` branch. | Can a retained neutral branch move and export clock/ruler rows? |
 | `SH-0` | shell braid, rest | Started | One-band shell support packets are active, including the group-zero axis-neutral common-sphere held-release fixture; retained branch remains open. | Can shell support rows retain on the same branch record? |
-| `SH-0-sea` | shell braid, rest, Noether sea embedded | Not started | Defined as the next embedded round after isolated `SH-0` did not supply a retained row. | Does like-assembly Noether sea response retain the one-band shell branch? |
+| `SH-0-sea` | shell braid, rest, Noether sea embedded | Not started; static side certified negative | The retention round is defined as the next embedded round after isolated `SH-0` did not retain; the static aligned like-assembly response is certified non-absorbing in [Explored Braid Geometries](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#the-sh-0-sea-environment-route). | Can a dynamic, formation-history-driven like-assembly Noether sea response retain the one-band shell branch? |
 | `SH-L` | shell braid, moving export | Downstream started | Observer-export rows are mapped; they wait on a retained `SH-0` or `SH-0-sea` branch. | Can a retained shell survive transport and export Lorentz rows? |
 | `NSH-0` | nested shell braid, rest | Started | Nested-shell reduction and shared-certificate targets exist; retained branch remains open. | Can nested support, role, causal-root, energy, frame, and stability rows retain? |
 | `NSH-L` | nested shell braid, moving export | Downstream started | Lorentz and common-limit export rows are active; they wait on a retained `NSH-0` branch. | Can a retained nested shell branch recover Lorentz rows? |

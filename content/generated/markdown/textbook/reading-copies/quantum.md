@@ -317,7 +317,7 @@ There must exist **internal parameters** that the assembly can modify (via its o
 Concretely:
 
 - Parameters could include:
-  - Effective coupling strengths between sub-assemblies (tri-binary networks),
+  - Effective coupling strengths between sub-assemblies (networks of coupled binaries),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
   - Local Noether sea-coupling "stiffness" (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:
@@ -2176,7 +2176,7 @@ That statement has a controlled burden. The exclusion envelope can supply the ge
 
 ### Fermi-Dirac Regime: 3D Exclusion
 
-Fermi-Dirac behavior corresponds to nested shell braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+Fermi-Dirac behavior corresponds to Noether braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
 
 In plain terms, the exclusion is not a command written onto a point particle. It is the cost of trying to make two retained assembly ledgers occupy one record-facing state while their wake histories, branch closures, and exclusion envelopes still need separate room.
 

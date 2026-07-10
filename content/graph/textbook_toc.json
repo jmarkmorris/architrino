@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 184,
-      "sections": 1491
+      "entries": 183,
+      "sections": 1482
     }
   },
   "tocRoot": {
@@ -2683,6 +2683,14 @@
                 "markdownSection": "Nested Shell Braid",
                 "sectionKey": "nested shell braid",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Noether Braid Doubling-Frequency Resonance Lock",
+                "markdownPath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+                "markdownSection": "Noether Braid Doubling-Frequency Resonance Lock",
+                "sectionKey": "noether braid doubling frequency resonance lock",
+                "headingLevel": 2
               }
             ]
           },
@@ -2772,104 +2780,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
                 "markdownSection": "Summary Commitment",
                 "sectionKey": "summary commitment",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__doubling_frequency_resonance_lock",
-            "title": "Noether Braid Doubling-Frequency Resonance Lock",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Document Role",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "General Rank-Three Branch State",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "General Rank-Three Branch State",
-                "sectionKey": "general rank three branch state",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Status and Assumptions",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Status and Assumptions",
-                "sectionKey": "status and assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Immediate Consequences",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Immediate Consequences",
-                "sectionKey": "immediate consequences",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "sectionKey": "proposition 1 exterior integer lock formulas",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Could $1{:}2{:}4$ Be a Solution?",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
-                "sectionKey": "could 1 2 4 be a solution",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Exact Periodicity Gives, and What It Does Not",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
-                "sectionKey": "what exact periodicity gives and what it does not",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interpreting the Cancellation Principle",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Interpreting the Cancellation Principle",
-                "sectionKey": "interpreting the cancellation principle",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "RG-Style Truncation Test",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "RG-Style Truncation Test",
-                "sectionKey": "rg style truncation test",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Reduced-Theorem Target",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Reduced-Theorem Target",
-                "sectionKey": "reduced theorem target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Ancillary Symmetry Check",
-                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-                "markdownSection": "Ancillary Symmetry Check",
-                "sectionKey": "ancillary symmetry check",
                 "headingLevel": 2
               }
             ]
@@ -11578,6 +11488,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
                         "markdownSection": "Maximum-Curvature Binary",
                         "sectionKey": "maximum curvature binary",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Spindle Braid Spin Scaffold",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+                        "markdownSection": "Spindle Braid Spin Scaffold",
+                        "sectionKey": "spindle braid spin scaffold",
                         "headingLevel": 2
                       },
                       {

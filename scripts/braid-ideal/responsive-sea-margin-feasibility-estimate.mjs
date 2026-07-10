@@ -96,7 +96,7 @@ export function seaMarginPerAlpha({ geo = SUPPORT_V1, Rsea = 4.25, nDirs = 6, Nt
   const acc = { I: 0, M: 0, O: 0 };
   for (let k = 0; k < Nt; k++) {
     const t = (k / Nt) * period;
-    // each sea dipole: responds to the braid field that ARRIVES at it at time t - Rj/cf... 
+    // each sea dipole: responds to the braid field that ARRIVES at it at time t - Rj/cf...
     // we need its state at the emission time relevant for arrival at the braid at time t:
     // back-field arriving at braid at t was emitted by the dipole at t - r_bs/cf, whose state
     // read the braid field of t - r_bs/cf - R/cf. Approximate r_bs by Rsea (braid radius << Rsea).

@@ -71,7 +71,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 214 | `51b924766d01f016` |
+| [AGENTS.md](../../AGENTS.md) | 215 | `3fccf22464843ccf` |
 | [README.md](../../README.md) | 229 | `9edea65d550f36ce` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `15ba33ec6351c320` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
@@ -79,7 +79,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/README.md](README.md) | 27 | `d31ad2e0cbac42a5` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 197 | `00a79efd8882c06f` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
-| [reference/op/theory-orientation.md](theory-orientation.md) | 42 | `f6e5883f89f1be60` |
+| [reference/op/theory-orientation.md](theory-orientation.md) | 42 | `012f825a77cb3b5a` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
 | [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `7cfad788ce838e51` |
 | [reference/priorities/README.md](../priorities/README.md) | 32 | `e2638d1896df95c1` |
@@ -94,5 +94,5 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 383 | `afc7b450bf43bee2` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 301 | `4e66491ed7ce5f88` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 136 | `543376d5bdc3012a` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 421 | `a6c54cff70fa5a93` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 157 | `8bea0f4f5a3a8a9d` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 443 | `f4bf2d94da47e53e` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 161 | `01364612183b0f7a` |

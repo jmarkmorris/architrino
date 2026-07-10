@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-09T04:21:13.121Z",
-  "total_links": 1857,
+  "generated_at": "2026-07-10T13:53:14.825Z",
+  "total_links": 1896,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -26,6 +26,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/ppn-parameters.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "../philosophy-history/information-and-the-wake.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "../philosophy-history/information-and-the-wake.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md"
     },
     {
       "sourceChapterId": "archie-terminology-usage",
@@ -734,10 +750,18 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-causal-budget-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#accessory-dressing-and-apparent-energy",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -810,14 +834,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
-    },
-    {
-      "sourceChapterId": "assemblies",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
     },
     {
       "sourceChapterId": "assemblies",
@@ -1838,6 +1854,22 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2110,6 +2142,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2366,10 +2406,26 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/entropy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/entropy.md#second-law-and-same-record-monotonicity",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2582,6 +2638,30 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2718,74 +2798,74 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#lemma-common-center-inter-layer-stationarity-obstruction",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2826,6 +2906,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3086,10 +3174,34 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/proof-programs/terminal-alignment.md#lemma-common-center-inter-layer-stationarity-obstruction",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/terminal-alignment.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/proof-programs/terminal-alignment.md#terminal-alignment-label-count-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/terminal-alignment.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/spacetime/black-holes.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/black-holes.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3150,6 +3262,14 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md#translating-binary-benchmark",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3178,6 +3298,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/proper-time-and-time-dilation.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/spacetime/singularity-resolution.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/singularity-resolution.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3367,6 +3495,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "#outer-turn-recapture-target",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "#receiver-velocity-affine-form-and-the-branch-resistance-tensor",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -4174,26 +4310,42 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-causal-budget-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
     },
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#accessory-dressing-and-apparent-energy",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#isolated-release-and-the-return-response-question",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -4254,18 +4406,10 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy",
+      "target": "../../../../markdown/aaa/philosophy-history/information-and-the-wake.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
-    },
-    {
-      "sourceChapterId": "foundations",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#isolated-release-and-the-return-response-question",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -4450,6 +4594,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/general-relativity.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/spacetime/lorentz-kinematics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/lorentz-kinematics.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -4902,6 +5054,22 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/cosmology/BBN-constraints.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5006,14 +5174,6 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#self-hit-definition-and-diagnostics",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5079,30 +5239,6 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -5206,10 +5342,50 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -5247,6 +5423,22 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#action-clicks-at-the-fold-set",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#action-clicks-at-the-fold-set",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
@@ -5302,7 +5494,7 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#thomson-dressing-mechanism",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#substrate-and-effective-levels",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
@@ -5318,10 +5510,10 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#thomson-dressing-mechanism",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -5366,282 +5558,370 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#accessory-dressing-and-apparent-energy",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#local-black-hole-duality-target",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#assumption-2-exact-integer-phase-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#cadence-scale-retuning-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#isolated-release-and-the-return-response-question",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#isolated-release-and-the-return-response-question",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#cadence-scale-retuning-hypothesis",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#reduced-nested-shell-braid-closure-label",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#the-nested-shell-braid-hierarchy-and-fermion-generations",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#the-nested-shell-braid-hierarchy-and-fermion-generations",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#observer-export-diagnostics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#reduced-nested-shell-braid-closure-label",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#symmetric-shell-braid",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#symmetric-shell-braid",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#symmetric-shell-braid",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#symmetric-shell-braid",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#symmetric-shell-braid",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#the-nested-shell-braid-hierarchy-and-fermion-generations",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#the-sh-0-sea-environment-route",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/neutral-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/neutral-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/neutral-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/neutral-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/neutral-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/neutral-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -5782,98 +6062,10 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md#exact-integer-phase-closure",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-proof-map.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-proof-map.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6022,7 +6214,7 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md#leading-candidate-the-spindle-braid",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
@@ -6038,10 +6230,10 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md#leading-candidate-the-spindle-braid",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6086,10 +6278,10 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6142,106 +6334,98 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#isolated-release-and-the-return-response-question",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md#boundary-members",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/noether-braid/symmetric-shell-braid.md#isolated-release-and-the-return-response-question",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6278,10 +6462,10 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spindle-braid-spin-scaffold",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6330,6 +6514,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/proof-programs/terminal-alignment.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/terminal-alignment.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/proof-programs/terminal-alignment.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/terminal-alignment.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/proof-programs/terminal-alignment.md#local-black-hole-duality-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/terminal-alignment.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -6486,6 +6694,14 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/spacetime/noether-sea.md#composition",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -6574,7 +6790,23 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "#accessory-dressing-and-apparent-energy",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "#isolated-release-and-the-return-response-question",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "#nested-shell-braid",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -6599,6 +6831,22 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "#scoped-anti-damping-results",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "#symmetric-shell-braid",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "#the-nested-shell-braid-hierarchy-and-fermion-generations",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -6814,58 +7062,58 @@
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#dynamic-exclusion-envelope",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/atomic-and-nuclear-assemblies.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#dynamic-exclusion-envelope",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "nuclear_atomic",
@@ -7854,66 +8102,90 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#moments-and-the-axial-polarity-dipole",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#momentum-screw-and-helicity",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -7942,10 +8214,26 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md#motion-inertia-and-isotropy",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -8114,6 +8402,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -9582,42 +9878,42 @@
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "quantum",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -10446,6 +10742,14 @@
     {
       "sourceChapterId": "reactions",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
+    },
+    {
+      "sourceChapterId": "reactions",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/reactions.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11126,6 +11430,78 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#canonical-geometry-variables",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#moments-and-the-axial-polarity-dipole",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11134,138 +11510,66 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-causal-budget-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-mathematics.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#cadence-scale-retuning-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#cadence-scale-retuning-hypothesis",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#cadence-scale-retuning-closure",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#transverse-causal-budget-lemma",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
-    },
-    {
-      "sourceChapterId": "spacetime",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid.md#cadence-scale-retuning-hypothesis",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -11298,6 +11602,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     {
       "sourceChapterId": "spacetime",
@@ -13142,74 +13454,74 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#cadence-scale-retuning-closure",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#cadence-scale-retuning-closure",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
+      "target": "../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/explored-braid-geometries.md"
     },
     {
       "sourceChapterId": "validation",
