@@ -571,10 +571,10 @@ function jacobiEigSym(Ain) {
     .sort((x, y) => y.value - x.value);
 }
 
-export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OCTAHEDRAL_CAGE_V4.aLattice * Math.SQRT2, withCage = true, eps = 0.01, Nt = 16, soft = 0.02, cTrans = 1.0 } = {}) {
+export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OCTAHEDRAL_CAGE_V4.aLattice * Math.SQRT2, withCage = true, eps = 0.01, Nt = 16, soft = 0.02, cTrans = 1.0, railPinned = false, kapFixed = null, displace = [0, 0, 0, 0] } = {}) {
   const seed = buildBraid({ u: 0, cTrans, geo });
   const w = seed.omega, period = 2 * Math.PI / w;
-  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const kap = kapFixed ?? residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
   const p0 = braidDipole(geo);
   // cage sites (octahedral) with orientations frozen at seed slow-limit values
   const cage = [];
@@ -602,9 +602,14 @@ export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OC
       cage.push({ dir: dv, ph: [acc[0]/n, acc[1]/n, acc[2]/n] });
     }
   }
-  // net generalized radial forces at displaced configuration (frozen w, kappa*)
-  const netForces = (dI, dM, dO, dA) => {
-    const b = { omega: w, u: 0, sea: [], sites: seed.sites.map((s) => ({ ...s })) };
+  // net generalized radial forces at displaced configuration. Frozen kappa*;
+  // omega frozen by default, or RAIL-PINNED (railPinned: the field-speed pin
+  // holds the middle's transverse speed at c_f, so omega = c_f/(R_M cos aM)
+  // responds to the middle's radius — the natively confirmed speed attractor
+  // acting as the SIZE feedback during contraction).
+  const netForces = (dI, dM, dO, dA, railPinned = false) => {
+    const wEff = railPinned ? cTrans / ((1 + dM) * Math.cos(geo.alphaM)) : w;
+    const b = { omega: wEff, u: 0, sea: [], sites: seed.sites.map((s) => ({ ...s })) };
     for (const s of b.sites) { if (s.name === "I") s.R = geo.qI + dI; if (s.name === "M") s.R = 1 + dM; if (s.name === "O") s.R = geo.qO + dO; }
     const A = aCage + dA;
     const cageSites = cage.map((c) => ({ ...c, X: [c.dir[0]*A, c.dir[1]*A, c.dir[2]*A] }));
@@ -618,10 +623,10 @@ export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OC
       let inward = -(wk[0] * rx + wk[1] * ry) * kap;
       // cage-on-layer: cycle-averaged static pair sum
       for (let k = 0; k < Nt && cageSites.length; k++) {
-        const t = (k / Nt) * period;
-        const ang = w * t + s.th, ca = Math.cos(s.alpha);
+        const t = (k / Nt) * (2 * Math.PI / wEff);
+        const ang = wEff * t + s.th, ca = Math.cos(s.alpha);
         const xj = [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)];
-        const vmag = s.sgn * s.R * ca * w;
+        const vmag = s.sgn * s.R * ca * wEff;
         const vj = [-vmag*Math.sin(ang), vmag*Math.cos(ang), 0];
         const rxk = Math.cos(ang), ryk = Math.sin(ang);
         for (const c of cageSites) for (const pm of [+1, -1]) {
@@ -633,18 +638,18 @@ export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OC
           inward += -(s.pol) * pm * Dt * (rh[0]*rxk + rh[1]*ryk) / (r * r) / Nt * kap;
         }
       }
-      F[L] = inward - w * w * rhoCyl; // net radial force per unit mass (0 = balance)
+      F[L] = inward - wEff * wEff * rhoCyl; // net radial force per unit mass (0 = balance)
     }
     // net radial force on a polar cage member (braid legs cycle-averaged, softened)
     let Fcage = 0;
     if (cageSites.length) {
       const c = cageSites.find((x) => Math.abs(x.dir[2]) > 0.9);
-      const pos0 = (s, t) => { const ang = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
-      const vel0 = (s, t) => { const ang = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+      const pos0 = (s, t) => { const ang = wEff * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+      const vel0 = (s, t) => { const ang = wEff * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
       for (const pm of [+1, -1]) {
         const Xe = [c.X[0] + pm*(p0/2)*c.ph[0], c.X[1] + pm*(p0/2)*c.ph[1], c.X[2] + pm*(p0/2)*c.ph[2]];
         for (let k = 0; k < Nt; k++) {
-          const t = (k / Nt) * period;
+          const t = (k / Nt) * (2 * Math.PI / wEff);
           for (const s of b.sites) {
             let te = t - Math.hypot(...Xe) - 1;
             for (let it = 0; it < 30; it++) { const p = pos0(s, te); te = t - Math.hypot(Xe[0]-p[0], Xe[1]-p[1], Xe[2]-p[2]); }
@@ -674,20 +679,82 @@ export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OC
   const coords = withCage ? 4 : 3;
   const K = [];
   for (let i = 0; i < coords; i++) K.push(Array(coords).fill(0));
+  const D0 = displace;
   for (let j = 0; j < coords; j++) {
-    const dp = [0, 0, 0, 0], dm = [0, 0, 0, 0];
-    dp[j] = eps; dm[j] = -eps;
-    const Fp = netForces(...dp), Fm = netForces(...dm);
+    const dp = D0.slice(), dm = D0.slice();
+    dp[j] = D0[j] + eps; dm[j] = D0[j] - eps;
+    const Fp = netForces(dp[0], dp[1], dp[2], dp[3] ?? 0, railPinned);
+    const Fm = netForces(dm[0], dm[1], dm[2], dm[3] ?? 0, railPinned);
     for (let i = 0; i < coords; i++) K[i][j] = (Fp[i] - Fm[i]) / (2 * eps);
   }
   const sym = K.map((row, i) => row.map((v, j) => (v + K[j][i]) / 2));
   const eig = jacobiEigSym(sym);
-  const F0 = netForces(0, 0, 0, 0);
+  const F0 = netForces(D0[0], D0[1], D0[2], D0[3] ?? 0, railPinned);
   return { coords: withCage ? ["rI", "rM", "rO", "aCage"] : ["rI", "rM", "rO"],
     seedNetForces: F0, K, symEigen: eig,
     basin: eig.every((e) => e.value < 0),
     maxEig: eig[0].value, escapeDirection: eig[0].vector };
 }
+
+// ABSOLUTE-SCALE (RAIL-PINNED) EQUILIBRIUM (Section 57 operator route (a)).
+// The frozen-omega frame left the size mode unbalanced; physically, during
+// contraction the middle stays ON the rail (the natively confirmed speed
+// attractor), so omega = c_f/(R_M cos aM) responds to R_M. Under that pin,
+// wake forces scale 1/lambda^2 while needs scale 1/lambda: support ~ 1/lambda,
+// contraction RAISES support, and the size mode is self-restoring at a finite
+// equilibrium — the speed pin is also the size pin. This solver finds the
+// bare braid's rail-pinned radial equilibrium (3-D Newton on (r_I, r_M, r_O)
+// at frozen kappa*, omega live), reports the contraction factor lambda, the
+// rail-pinned stability spectrum at the fixed point, the tangential rows
+// there, and the scale ordering against the declared d0 = R_MCB floor
+// (both scales are proportional to kappa; the ratio is a pure number modulo
+// the open MCB constant).
+export function railPinnedEquilibrium({ geo = OCTAHEDRAL_CAGE_V4.geo, eps = 0.01, Nt = 16, soft = 0.02, iters = 16 } = {}) {
+  // kappa FROZEN once at the seed fit: the kappa refit is a gauge that exactly
+  // absorbs the dilation gain (the fitted-kappa sum rule); the physical solve
+  // holds kappa and lets the rail pin do the size work.
+  const kap0 = residuals({ u: 0, cTrans: 1.0, geo }, { soft }).kappaStar;
+  let x = [0, 0, 0];
+  let last = null;
+  for (let it = 0; it < iters; it++) {
+    const r = radialStabilityMatrix({ geo, withCage: false, eps, Nt, soft, railPinned: true, kapFixed: kap0, displace: [...x, 0] });
+    const F = r.seedNetForces.slice(0, 3), K = r.K;
+    last = r;
+    if (Math.max(...F.map(Math.abs)) < 5e-5) break;
+    const det3 = (A) => A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1]) - A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0]) + A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+    const D = det3(K);
+    const col = (j, b) => K.map((row, i) => row.map((v, jj) => (jj === j ? b[i] : v)));
+    const dlt = [0, 1, 2].map((j) => det3(col(j, F.map((v) => -v))) / D);
+    const damp = Math.min(1, 0.1 / Math.max(...dlt.map(Math.abs)));
+    for (let j = 0; j < 3; j++) x[j] += dlt[j] * damp;
+  }
+  const lambda = 1 + x[1]; // R_M contraction factor (absolute size, seed units)
+  const shape = { qI: (geo.qI + x[0]) / lambda, qO: (geo.qO + x[2]) / lambda };
+  const rows = supportRatios({ geo: { ...geo, ...shape } });
+  return {
+    displacement: x, lambda, shapeEq: shape,
+    residualF: last.seedNetForces.slice(0, 3),
+    railPinnedSpectrum: last.symEigen.map((e) => e.value),
+    basin: last.basin, kappaFrozen: kap0,
+    refitRows: { support: rows.ratios, tan: rows.tanRows, closure: rows.closure, kappaStar: rows.kappaStar },
+    scaleNote: "R_eq and d0=R_MCB are both proportional to kappa (epsilon=1, c_f=1); R_eq/d0 is a pure number modulo the open MCB constant",
+  };
+}
+
+// SELF-EQUILIBRATED BARE BRAID V5 (spec Section 58 by title): the joint fixed
+// point of the rail-pinned radial equilibrium and the tangential ledger,
+// found by alternating angle-descent (tau_I, tau_O -> 0) with radial Newton
+// re-equilibration (frozen kappa, omega live on the rail). NO environment.
+// At the fixed point: radial residual ~1e-6 with a fully restoring basin
+// (-0.63/-2.00/-6.27); tau_I = 0.0006, tau_O = 0.0004 (the middle's +0.227
+// rail pump is the escapement's, as always); size self-selected at
+// R_M(eq) = lambda/kappa_frozen ~ 3.49 in units kappa*epsilon^2/c_f^2 — the
+// braid's absolute size is a DERIVED constant of the family, sitting well
+// above the d0 = R_MCB floor. Geometry (shape at equilibrium):
+export const SELF_EQUILIBRATED_V5 = Object.freeze({
+  geo: Object.freeze({ qI: 0.55, qO: 0.75, alphaI: -27.15 * d, alphaM: 16.24 * d, alphaO: 64.5 * d, thetaI: -16.2 * d, thetaO: 339.5 * d }),
+  ReqOverKappa: 3.494,
+});
 
 export function diagnosticReport() {
   return { schema: SCHEMA, specPacketRef: SPEC_PACKET_REF,

@@ -156,6 +156,20 @@ test("STABILITY MATRIX: dressed V4 is an equilibrium WITHOUT a basin (the native
   assert.ok(bare.seedNetForces[2] < -0.1, `bare cap carries net inward force ${bare.seedNetForces[2]} (contraction, not dispersal)`);
 });
 
+test("RAIL-PINNED EQUILIBRIUM: the speed pin is also the size pin — the bare braid self-equilibrates with a basin", async () => {
+  const { railPinnedEquilibrium, SELF_EQUILIBRATED_V5, supportRatios: sr } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const eq = railPinnedEquilibrium({ geo: SELF_EQUILIBRATED_V5.geo });
+  assert.ok(Math.max(...eq.residualF.map(Math.abs)) < 1e-3, `radial residual ${eq.residualF}`);
+  assert.equal(eq.basin, true, "fully restoring rail-pinned spectrum");
+  assert.ok(eq.railPinnedSpectrum.every((v) => v < 0), `spectrum ${eq.railPinnedSpectrum}`);
+  const rows = sr({ geo: { ...SELF_EQUILIBRATED_V5.geo, qI: eq.shapeEq.qI, qO: eq.shapeEq.qO } });
+  assert.ok(Math.abs(rows.tanRows.I) < 0.02 && Math.abs(rows.tanRows.O) < 0.02,
+    `tangential ledger closed at the fixed point: ${rows.tanRows.I}, ${rows.tanRows.O}`);
+  const ReqOverKappa = eq.lambda / eq.kappaFrozen;
+  assert.ok(ReqOverKappa > 2 && ReqOverKappa < 5,
+    `derived size constant R_eq ~ ${ReqOverKappa} kappa*eps^2/c_f^2 (kappa-scale, above the d0 floor)`);
+});
+
 test("fail-closed", () => {
   assert.equal(FAIL_CLOSED.retainedBranchClaim, false);
   assert.equal(FAIL_CLOSED.scoreMovement, "no_score_increase");
