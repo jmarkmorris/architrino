@@ -5,7 +5,7 @@ Turn Noether sea state variables, retained nested shell braid exports, and obser
 
 **Current theory alignment**:
 - Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
-- Micro-to-metric mappings must consume branch-certified records from `dynamics/master-equation.md`, `noether-braid/nested-shell-braid-dynamics.md`, and `validation/parameter-ledger.md`.
+- Micro-to-metric mappings must consume branch-certified records from `dynamics/master-equation.md`, `noether-braid/explored-braid-geometries.md`, and `validation/parameter-ledger.md`.
 - Effective metric closure must stay synchronized with `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`, especially the effective metric and Cartan connection row.
 - GR-limit and deviation statements should be benchmarked against `validation/validation-protocols.md` and `validation/constraint-ledger.md`.
 

@@ -6,7 +6,7 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
 **Current theory alignment**:
 - Statistical models should be built on `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the path-history/self-hit structure used there.
 - Ensemble and coarse-graining assumptions must remain consistent with `foundations/ontology.md` and `cosmology/cosmology-ontology.md` (absolute-state vs observer-level projection).
-- Branch statistics must respect retained-record fields from `noether-braid/nested-shell-braid-dynamics.md`: active causal-root ledger, finite memory depth, branch-Jacobian floor, inactive-root gap, Floquet gap, and event ledger.
+- Branch statistics must respect retained-record fields from `noether-braid/explored-braid-geometries.md`: active causal-root ledger, finite memory depth, branch-Jacobian floor, inactive-root gap, Floquet gap, and event ledger.
 - Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`.
 
 **Core responsibilities**:

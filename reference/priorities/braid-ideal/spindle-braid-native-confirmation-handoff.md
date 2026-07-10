@@ -77,8 +77,8 @@ Braid seed: support-candidate v1 exactly as Row 2 (parameters in the Row 2 block
 
 Sea environment (ALL parameters pre-existing named quantities; nothing fit):
 - Geometry: FCC first coordination shell — 12 sites at the named spacing a = 4.25 (extension option: add the 6-site a*sqrt2 and 24-site a*sqrt3 shells if runtime allows).
-- Each site: a saturable orientational dipole, magnitude p0 = 2.20 (the spindle's own axial polarity dipole at v1 — the sea is made of the same braids), direction evolving by first-order relaxation toward the local retarded field direction with rate gamma = 2*omega_braid (the measured one-sided fast-alignment floor).
-- Sea sites are environment sources with their own retarded emission; static in position (orientation-only dynamics) at this row's scope — positional sea dynamics is a later row.
+- Each site: a saturable orientational dipole, magnitude p0 = 2.20 (the spindle's own axial polarity dipole at v1 — the sea is made of the same braids), direction evolving by first-order relaxation toward the local causally delayed field direction with rate gamma = 2*omega_braid (the measured one-sided fast-alignment floor).
+- Sea sites are environment sources with their own causally delayed emission; static in position (orientation-only dynamics) at this row's scope — positional sea dynamics is a later row.
 
 Release protocol: identical to Rows 1-2 (Section 30 machinery, declared regulators, frozen seed-fitted kappa*, same-thread acceptance rule, fail-closed).
 
@@ -89,7 +89,7 @@ Decisive diagnostics (report regardless of outcome):
 4. Support rows along the release (radial ledger expected ~closed: FCC estimate 6.6% vs 6% deficit).
 5. Sea back-reaction: orientation order parameter of the 12 sites vs time (does the braid drive the sea order, closing the metabolism loop?).
 
-Failure modes to report honestly: sea-orientation numerical stiffness (relaxation at 2*omega on retarded fields), anti-confining phase slips if the effective spacing drifts, and the static-position idealization masking positional sea response.
+Failure modes to report honestly: sea-orientation numerical stiffness (relaxation at 2*omega on causally delayed fields), anti-confining phase slips if the effective spacing drifts, and the static-position idealization masking positional sea response.
 
 ## Candidate Row 4: Responsive-Sea-Dressed Release of v1 at the Exact-Delay Fixed Point (executed and REJECTED 2026-07-09)
 
@@ -128,7 +128,7 @@ Braid seed — SELF-CONSISTENT STATIC-SEA CANDIDATE V3 (exported `SELF_CONSISTEN
 
 Environment — the STATIC pair-resolved sea (no dynamic knobs at all):
 - FCC first coordination shell, 12 sites, TRUE angular placement, at a = 2.453.
-- Each site realized as its declared antipodal unit-polarity pair: monopoles at +- p0(V3)/2 = +-0.436 along the site's slow-limit orientation (computed in-build as alignment with the braid's cycle-averaged retarded field at the site, then FROZEN).
+- Each site realized as its declared antipodal unit-polarity pair: monopoles at +- p0(V3)/2 = +-0.436 along the site's slow-limit orientation (computed in-build as alignment with the braid's cycle-averaged causally delayed field at the site, then FROZEN).
 - Positions and orientations static for the whole release. Exact causal delays are trivial (static sources). No gamma, no relaxation, no orientation dynamics: the Rows 3-4 environment failure modes (orientation-wave M-tax, radial lag collapse, dynamic commensurability band) are absent by construction, not by tuning.
 
 Binding validation obligations (Sections 44/52 lessons):
@@ -148,3 +148,34 @@ Decisive diagnostics (report regardless of outcome; deltas vs Rows 1-4):
 5. Sea honesty row: record the forces/torques the frozen sites WOULD feel (a static environment cannot respond; large sustained back-reaction flags the frozen-orientation idealization as the row's scope boundary).
 
 Failure modes to report honestly: near-field force steepness at the 1.2-unit clearance (static roots are trivial but gradients are steep — integrator dt sensitivity near close approach); dynamic stability of the -29° middle tilt (ledger-optimal, but the tilt-stiffness lore was measured at other geometries); the in-build credit placement correction; the frozen-orientation idealization (report, do not tune); and basin narrowness of a descent-grade point seed (the twin row carries this).
+
+## Candidate Row 6: Held-Cage Release of Octahedral-Cage Candidate V4 (tabled 2026-07-09; executed and REJECTED 2026-07-09)
+
+Row status: `executed-candidate-rejected-2026-07-09` — run on the native machinery and REJECTED by the operator in the run thread, first blocker `cap_capture_by_held_cage_near_field`; run record [spec Section 56](fold-crossing-chart-spec.md#56-candidate-row-6-native-run-certificate-rejected--the-seed-corridor-is-an-equilibrium-without-a-basin-the-cap-is-captured-by-its-own-credit-source-the-rail-is-lost-upward-and-the-released-braid-nutates-2026-07-09) (owner script `--row=6` tabled selection, tests 20 passing). The seed gate PASSED on the tabled anchors to the digit (cycle-averaged in-build sea rows +0.0008/-0.0100/+0.4178, totals 1.0007/0.9960/0.9937 in corridor, polar fraction 1.108, steric 0.8705, honesty -0.641/+0.18/torque 0) and a release occurred — the arc's earliest dispersal clock: tube loss 0.0927 rotations (dt-stable; vs 0.83/0.80/0.855/0.725), halt at 0.166 rotations by O+ speed runaway into a cage endpoint. Mechanism: the +0.418 cap credit is an attractive near-field with no restoring gradient — the corridor-complete seed is a force balance, not a basin. All six diagnostics delivered: tau_I ~ 0 confirmed natively (the geometry-eliminated brake holds; durable positive) but the cage is a net forward pump and beta_M leaves the rail UPWARD, monotone (first upward rail loss); 4 integer clicks (M pair at release, O pair at capture); cage honesty flat at the declared -0.641 strain throughout; and the released braid NUTATES immediately (axis tilt 9.5 deg by t=1.0 — first native nutation number, spin-mapping relevance). Together with Row 5 this closes the held-static environment scope; the sea lane's remaining routes are dynamic (co-orbital cage or bulk-boundary equilibrium). The gate stays fail-closed. The row below is retained as the executed scope contract.
+
+Status when tabled: TABLED (operator decision (a), 2026-07-09, braid-ideal evaluator thread). Same-thread acceptance rule applies in the run thread. Motivated by Sections 53-55 (cite by title): Row 5's polar-credit rejection closed the FCC family (a braid cannot live at a lattice site); the true-placement fixed point found the octahedral cage (Section 54); cage reciprocity (Section 55) cleared the orientation declaration (torque-free) and quantified the held-cage strain.
+
+CLAIM BOUNDARY (declared up front): a survival certifies the braid INSIDE A HELD CAGE — not a self-supporting braid+cage complex. The complex-level closure (bulk-boundary anchor or co-orbital cage) is a separate named burden with its first number (polar members carry −0.641 of the corridor force scale, inward, as the cap credit's Newton-pair; equatorial +0.09-0.15; torques ~0).
+
+Braid seed — OCTAHEDRAL-CAGE CANDIDATE V4 (exported `OCTAHEDRAL_CAGE_V4`, [spindle-support-ratio-targeted-search.mjs](../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 14 passing):
+- (qI, qO, alphaI, alphaM, alphaO, thetaI, thetaO) = (0.4935, 1.106, +2.85°, -30.16°, 67.5°, -4.2°, 333.5°), middle on the rail; cadence omega = 1/cos(30.16°) ≈ 1.156 (all layers sub-field: speeds ≈ 0.57 / 1.00 / 0.49).
+- Bare seed rows: support 0.9993/1.0061/0.5759 at frozen bare-channel kappa*; tau_I = -0.0035, tau_O = -0.0057; closure 0.2474.
+
+Environment — the HELD octahedral cage (static by declaration; the strain is declared, not hidden):
+- SIX sites at radius 2.326: two polar (±z), four equatorial (±x, ±y); each the declared antipodal unit-polarity pair at ±p0(V4)/2 along its frozen slow-limit orientation (computed in-build from the braid's cycle-averaged causally delayed field, then frozen).
+- Positions and orientations held for the whole release; exact causal delays trivial (static sources); no dynamic knobs.
+
+Binding validation obligations:
+1. In-build credit re-derivation at the declared placement before release (tabled sea rows: +0.0013/-0.0100/+0.4178 per layer, polar pair carrying 111% of the O credit; totals 1.0006/0.9961/0.9937). If materially off, re-anchor and proceed only if all totals stay in [0.97, 1.03].
+2. dt/Nt witnesses on all seed rows (the Section 52 aliasing lesson); no count scaling anywhere (the Row 5 lesson).
+3. Steric declaration: cage-pair endpoints reach within ~0.8 of the caps; declare assembly extents and report closest approaches along the release.
+
+Decisive diagnostics (report regardless of outcome; deltas vs Rows 1-5):
+1. Dispersal clock vs 0.83/0.80/0.855/0.725 — corridor-complete seed, second attempt; any survival extension is the arc's primary signal.
+2. Per-layer support rows along the release (does the corridor hold dynamically; near-field steepness at the 1.2-unit clearance).
+3. Tangential rows: does tau_I stay ~0 with no feed (the geometry-eliminated brake, first native test at V4); escapement behavior at omega ≈ 1.156.
+4. h_act click ledger and clicker statistics at the raised cadence.
+5. Cage honesty row: the held sites' would-be forces/torques along the release vs the declared seed strain (-0.641 polar / +0.1 equatorial / torque-free) — growth or sign change flags the held-cage idealization's scope boundary.
+6. Axis-wobble watch: the prescribed family is precession-free by construction; any nutation/precession of the released braid axis is a FINDING (spin-mapping relevance), not a defect.
+
+Failure modes to report honestly: near-field dt sensitivity at close approach; dynamic stability of the -30° middle tilt; the in-build credit correction; basin narrowness of a descent-grade point seed (twin row); and the held-cage idealization itself (the claim boundary above).

@@ -10,7 +10,7 @@ Read this alongside:
 
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
-- [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md)
+- [Nested Shell Braid Geometry](../noether-braid/braid-envelope-geometry.md)
 - [About the Webapp](about-the-webapp.md)
 
 ## Purpose

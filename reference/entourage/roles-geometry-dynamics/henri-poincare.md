@@ -5,7 +5,7 @@ Shape the **qualitative dynamical skeleton** of the architrino system, especiall
 
 **Current theory alignment**:
 - Phase-space and attractor work should be derived from `dynamics/master-equation.md`.
-- Bifurcation and regime-transition claims should stay synchronized with `noether-braid/nested-shell-braid-dynamics.md`, `dynamics/binary-dynamics.md`, and `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`.
+- Bifurcation and regime-transition claims should stay synchronized with `noether-braid/explored-braid-geometries.md`, `dynamics/binary-dynamics.md`, and `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`.
 - The first finite branch-search handoff is the $A_0$ certificate lane in `reference/priorities/braid-mass-response-map/`; use it as a warning against promoting fitted or unstable coordinates.
 - Numerical diagnostics should map to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
 

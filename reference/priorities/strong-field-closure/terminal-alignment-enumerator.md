@@ -8,7 +8,7 @@
 
 ## Purpose
 
-This packet records the first executable form of the terminal-alignment transfer-matrix route in [strong-field-closure](priorities.md) and [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target). It is a success marker under the existing horizon entropy proof route, not a new gate.
+This packet records the first executable form of the terminal-alignment transfer-matrix route in [strong-field-closure](priorities.md) and [Nested Shell Braid Dynamics](../../../content/markdown/aaa/proof-programs/terminal-alignment.md#terminal-alignment-label-count-target). It is a success marker under the existing horizon entropy proof route, not a new gate.
 
 The implemented script is:
 

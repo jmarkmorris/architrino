@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   supportRatios, tangentialLedger, searchTangentialClosure, capCreditProxy,
-  seaRowsTruePlacement, TANGENTIAL_CLOSURE_V2, SELF_CONSISTENT_V3, OCTAHEDRAL_CAGE_V4,
-  SEA_BOOKING_S50, FAIL_CLOSED,
+  seaRowsTruePlacement, cageReciprocity, TANGENTIAL_CLOSURE_V2, SELF_CONSISTENT_V3,
+  OCTAHEDRAL_CAGE_V4, SEA_BOOKING_S50, FAIL_CLOSED,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -129,6 +129,31 @@ test("OCTAHEDRAL-CAGE V4: no FCC combination closes, but the axis-covering cage 
   const both = seaRowsTruePlacement({ geo: SELF_CONSISTENT_V3.geo, a: 2.573, shells: ["first", "secondAxial"] });
   const bareV3 = supportRatios({ geo: SELF_CONSISTENT_V3.geo });
   assert.ok(bareV3.ratios.O + both.rows.O < 0.97, "FCC1+FCC2 cannot reach the cap corridor at V3-class geometry");
+});
+
+test("CAGE RECIPROCITY (Row 6 gate): orientation torque-equilibrated; the polar pair carries the credit's Newton-pair as declared strain", () => {
+  const r = cageReciprocity({ Nt: 24 });
+  const pol = r.rows.find((x) => x.polar);
+  assert.ok(r.maxTorque < 0.01, `slow-limit orientation is torque-equilibrated (${r.maxTorque})`);
+  assert.ok(pol.FradOverNeedO < -0.4 && pol.FradOverNeedO > -0.9,
+    `polar member inward pull ${pol.FradOverNeedO} of the corridor scale (dt-stable; the cap credit's reaction)`);
+  const r48 = cageReciprocity({ Nt: 48 });
+  const pol48 = r48.rows.find((x) => x.polar);
+  assert.ok(Math.abs(pol.FradOverNeedO - pol48.FradOverNeedO) < 0.01, "polar row dt-stable");
+});
+
+test("STABILITY MATRIX: dressed V4 is an equilibrium WITHOUT a basin (the native Row 6 mechanism); the bare radial block IS a basin", async () => {
+  const { radialStabilityMatrix } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const dressed = radialStabilityMatrix({});
+  assert.equal(dressed.basin, false);
+  assert.ok(dressed.maxEig > 0.5, `positive eigenvalue ${dressed.maxEig}`);
+  // escape direction dominated by the (rO, aCage) block — the native capture mode
+  const v = dressed.escapeDirection;
+  assert.ok(Math.abs(v[2]) + Math.abs(v[3]) > 0.8 * Math.hypot(...v),
+    `escape direction is the cap-cage mode: ${v.map((x) => x.toFixed(2))}`);
+  const bare = radialStabilityMatrix({ withCage: false });
+  assert.equal(bare.basin, true, "bare radial displacements are restoring");
+  assert.ok(bare.seedNetForces[2] < -0.1, `bare cap carries net inward force ${bare.seedNetForces[2]} (contraction, not dispersal)`);
 });
 
 test("fail-closed", () => {

@@ -9,7 +9,7 @@
 - Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
 - Parent packet: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
 - Assigned ID: `EQ-07A`
-- Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Fermi-Dirac And Bose-Einstein Statistics](../../../content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md)
+- Related corpus material: [Black Holes](../../../content/markdown/aaa/spacetime/black-holes.md), [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md), [Fermi-Dirac And Bose-Einstein Statistics](../../../content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md)
 - Claim level: observer-level compact-star support benchmark, native variable dictionary, and fail-closed residual target
 - Promotion status: priority-only
 - Current score: `2`

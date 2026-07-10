@@ -509,6 +509,175 @@ test("Row 5 in-build credit: native booking anchors to the instrument on 6-axial
   }
 });
 
+test("Row 6 held cage: tabled V4 geometry, tilted-rail cadence, octahedral environment selected by the row", () => {
+  try {
+    selectTabledRow(6);
+    assert.equal(DECLARED.candidateRow, 6);
+    // Row 6's environment is part of the tabled row (held octahedral cage)
+    assert.equal(DECLARED.staticPairSea.enabled, true);
+    assert.equal(DECLARED.staticPairSea.placement, "octahedral6");
+    assert.ok(Math.abs(DECLARED.staticPairSea.spacing - 1.645 * Math.SQRT2) < 1e-12);
+    // tilted-rail cadence: omega = 1/cos(alpha_M) ~ 1.156, beta_M = 1 exact
+    assert.ok(Math.abs(DECLARED.omega - 1 / Math.cos(deg(-30.16))) < 1e-12);
+    assert.ok(Math.abs(DECLARED.omega - 1.156) < 1e-3);
+    const sites = buildSites();
+    const betas = {};
+    for (const s of sites) betas[s.layer] = Math.hypot(...rigidVelocity(s, 0));
+    assert.ok(Math.abs(betas.M - 1.0) < 1e-12);
+    // all layers sub-field: speeds ~ 0.57 / 1.00 / 0.49 (packet Row 6)
+    assert.ok(Math.abs(betas.I - 0.57) < 5e-3);
+    assert.ok(Math.abs(betas.O - 0.49) < 5e-3);
+  } finally {
+    selectTabledRow(1);
+    assert.equal(DECLARED.staticPairSea.enabled, false);
+  }
+});
+
+test("Row 6 held cage: six sites at 2.326 (two polar, four equatorial), frozen antipodal pairs, Nt witness", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(6);
+    const sites = buildSites();
+    const sea = m.buildStaticPairSeaSites(sites);
+    assert.equal(sea.placement, "octahedral6");
+    assert.equal(sea.shell.length, 6);
+    assert.equal(sea.endpoints.length, 12);
+    const polar = sea.shell.filter((s) => s.siteClass === "polar");
+    const eq = sea.shell.filter((s) => s.siteClass === "equatorial");
+    assert.equal(polar.length, 2);
+    assert.equal(eq.length, 4);
+    for (const s of sea.shell) {
+      assert.ok(Math.abs(Math.hypot(...s.center) - 1.645 * Math.SQRT2) < 1e-9);
+    }
+    // polar sites on +-z exactly; equatorial in the plane
+    for (const s of polar) assert.ok(Math.abs(s.center[0]) < 1e-12 && Math.abs(s.center[1]) < 1e-12);
+    for (const s of eq) assert.ok(Math.abs(s.center[2]) < 1e-12);
+    // p0 is the braid's OWN axial polarity dipole at V4 (in-build, not a knob):
+    // |sum_layers 2 R sin alpha| ~ 1.088
+    assert.ok(Math.abs(sea.p0 - m.braidAxialDipole(sites)) < 1e-15);
+    assert.ok(Math.abs(sea.p0 - 1.088) < 2e-3);
+    // antipodal unit-polarity pairs at +- p0/2 along frozen orientations
+    for (let k = 0; k < 6; k += 1) {
+      const plus = sea.endpoints[2 * k];
+      const minus = sea.endpoints[2 * k + 1];
+      assert.equal(plus.pol, 1);
+      assert.equal(minus.pol, -1);
+      assert.equal(plus.siteClass, sea.shell[k].siteClass);
+      const sep = Math.hypot(
+        plus.position[0] - minus.position[0],
+        plus.position[1] - minus.position[1],
+        plus.position[2] - minus.position[2]
+      );
+      assert.ok(Math.abs(sep - sea.p0) < 1e-12);
+    }
+    // binding obligation 2: orientation sampling witness (no aliased shortcut)
+    const witness = m.buildStaticPairSeaSites(sites, DECLARED.staticPairSea.ntWitness);
+    for (let k = 0; k < 6; k += 1) {
+      const a = sea.shell[k].pHat;
+      const b = witness.shell[k].pHat;
+      const dot = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+      assert.ok((Math.acos(Math.max(-1, Math.min(1, dot))) * 180) / Math.PI < 0.5);
+    }
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 6 seed record: bare rows on the V4 instrument anchors, in-build credit near tabled, corridor holds", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(6);
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const sea = m.buildStaticPairSeaSites(sites);
+    const seed = seedRecordEvaluation(sites, heldOnly, null, null, null, sea);
+    // native seed vs the tabling instrument (OCTAHEDRAL_CAGE_V4, spec Section
+    // 54 by title): closure 0.2474, bare support 0.9993/1.0061/0.5759
+    assert.ok(Math.abs(seed.globalRelResidual - 0.2474) < 2e-3);
+    const sup = seed.supportRatios.atFittedKappa;
+    assert.ok(Math.abs(sup.I - 0.9993) < 0.02);
+    assert.ok(Math.abs(sup.M - 1.0061) < 0.02);
+    assert.ok(Math.abs(sup.O - 0.5759) < 0.02);
+    // in-build CYCLE-AVERAGED sea rows near the tabled anchors
+    // (+0.0013/-0.0100/+0.4178 — the Section 54 instrument convention);
+    // totals near 1.0006/0.9961/0.9937 and inside the corridor. The
+    // single-phase t=0 sample differs by the cage's 4-fold equatorial
+    // ripple (reported, not gated).
+    const cyc = m.cycleAveragedSeaRows(sites, sea.endpoints, seed.kappaStar, 16);
+    assert.ok(Math.abs(cyc.rows.O - 0.4178) < 0.03, `cap credit off tabled: ${cyc.rows.O}`);
+    assert.ok(Math.abs(cyc.rows.M - -0.01) < 0.02, `M sea row off tabled: ${cyc.rows.M}`);
+    assert.ok(Math.abs(cyc.rows.I - 0.0013) < 0.02, `I sea row off tabled: ${cyc.rows.I}`);
+    for (const L of ["I", "M", "O"]) {
+      const dressed = sup[L] + cyc.rows[L];
+      assert.ok(
+        dressed >= DECLARED.staticPairSea.corridor[0] &&
+          dressed <= DECLARED.staticPairSea.corridor[1],
+        `dressed ${L} out of corridor: ${dressed}`
+      );
+    }
+    // Nt witness on the cycle average (binding obligation 2)
+    const cycW = m.cycleAveragedSeaRows(sites, sea.endpoints, seed.kappaStar, 32);
+    for (const L of ["I", "M", "O"]) {
+      assert.ok(Math.abs(cyc.rows[L] - cycW.rows[L]) < 5e-3);
+    }
+    // axis-declared split: the polar pair carries ~111% of the O credit
+    const polar = m.cycleAveragedSeaRows(
+      sites, sea.endpoints.filter((e) => e.siteClass === "polar"), seed.kappaStar, 16);
+    assert.ok(Math.abs(polar.rows.O / cyc.rows.O - 1.11) < 0.06,
+      `polar fraction off tabled 1.11: ${polar.rows.O / cyc.rows.O}`);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 6 cage rows: honesty row reproduces the Section 55 strain, steric and axis rows are wired", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(6);
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const sea = m.buildStaticPairSeaSites(sites);
+    const seed = seedRecordEvaluation(sites, heldOnly, null, null, null, sea);
+    // cage honesty at the held seed vs Section 55: polar -0.641 inward,
+    // equatorial +0.09..0.15, torques ~0 (all over the corridor force scale)
+    const honesty = m.cageHonestyRow(sea, sites, heldOnly, 0, seed.kappaStar);
+    assert.ok(Math.abs(honesty.polarMeanFradOverNeedO - -0.641) < 0.05,
+      `polar strain off declared: ${honesty.polarMeanFradOverNeedO}`);
+    assert.ok(honesty.equatorialMeanFradOverNeedO > 0 && honesty.equatorialMeanFradOverNeedO < 0.2,
+      `equatorial strain off declared band: ${honesty.equatorialMeanFradOverNeedO}`);
+    assert.ok(honesty.maxTorqueOverNeedO < 0.02,
+      `torque not ~0: ${honesty.maxTorqueOverNeedO}`);
+    // steric declaration: closest approach ~0.8 (Section 54 caveat)
+    const steric = m.stericSeedDeclaration(sea, sites);
+    assert.ok(steric.closestApproachOverall > 0.5 && steric.closestApproachOverall < 1.1,
+      `steric clearance off declared ~0.8: ${steric.closestApproachOverall}`);
+    // axis row: the prescribed family is precession-free at the seed — the
+    // best-fit rigid rotation vector is exactly +z at the tabled cadence
+    const states = sites.map((s) => ({ x: rigidPosition(s, 0), v: rigidVelocity(s, 0) }));
+    const axis = m.braidAxisRow(states);
+    assert.ok(axis.axisTiltDeg < 1e-6, `seed axis tilted: ${axis.axisTiltDeg}`);
+    assert.ok(Math.abs(axis.omegaFit - DECLARED.omega) < 1e-9);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
 test("Row 4 responsive sea at a=3.40: exact-delay seed rows land on the confining side", async () => {
   const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
   selectTabledRow(2);

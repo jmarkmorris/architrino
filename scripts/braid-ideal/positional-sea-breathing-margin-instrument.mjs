@@ -16,7 +16,7 @@
 //   - Orientational channel RETAINED: each site carries the saturated permanent
 //     dipole p0 (geometry-matched to the braid's own axial polarity dipole) with
 //     first-order direction relaxation d p_hat/dt = gamma_o (E_hat - p_hat)_perp
-//     toward the exactly retarded braid field, settled before measurement — the
+//     toward the exactly causally delayed braid field, settled before measurement — the
 //     Sections 43-47 tangential-feed model, unchanged including its nearest-sample
 //     emission-time lookup convention.
 //   - Positional channel (new): each site's radial displacement s_j along its
@@ -24,7 +24,7 @@
 //     target, d s_j/dt = gamma_b (s_tgt,j(t) - s_j), with
 //     s_tgt,j(t) = eps * R_sea * W_j(t),  W_j = the BAND-LIMITED (harmonics
 //     1..H of the braid cadence, H=4 declared), cycle-mean-subtracted radial
-//     component of the exactly retarded softened braid field at the site,
+//     component of the exactly causally delayed softened braid field at the site,
 //     normalized to unit cycle max — the braid's own cadence signal at the
 //     site, the declared monopole-order drive. Band-limiting is declared
 //     physics: a breathing/phonon mode responds at the braid's cadence
@@ -52,7 +52,7 @@
 //     unit amplitude — the model-independent ceiling for this channel.
 //   - EXACT per-pair causal delays from the start (the Row 3 binding lesson; the
 //     uniform-loop-delay idealization is not implemented in this instrument at
-//     all): every braid source leg is exactly retarded inside the site field
+//     all): every braid source leg is exactly causally delayed inside the site field
 //     solve, and every return leg reads the site's orientation and DISPLACED
 //     position at the true emission time t_e solving
 //     t_e = t - |x_i(t) - X_j(t_e)|/c_f (iterated). The moving site's
@@ -109,7 +109,7 @@ function siteVel(s, t, w) {
 }
 function shellDirs() { return [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]]; }
 
-// Exactly retarded braid field at a static evaluation point X (each braid source
+// Exactly causally delayed braid field at a static evaluation point X (each braid source
 // leg solved per source). soft = 0 gives the parent instrument's bare c_f/D_s
 // branch weight (retained for the orientation settle, the anchor); soft > 0
 // gives the wake kernel's softened weight c_f*D_s/(D_s^2 + soft^2), needed for
@@ -200,7 +200,7 @@ export function prepareEnvironment({
 
   // Stage 2 — positional drive over one cycle: the BAND-LIMITED (harmonics
   // 1..H of the cadence), cycle-mean-subtracted radial component of the exactly
-  // retarded SOFTENED braid field at the site (AC-only by declaration — the DC
+  // causally delayed SOFTENED braid field at the site (AC-only by declaration — the DC
   // part is a static spacing shift, not a breathing response; the band limit is
   // the declared mode physics and removes the rail layer's caustic-spike
   // content, whose unfiltered response would be superluminal and Nt-divergent).

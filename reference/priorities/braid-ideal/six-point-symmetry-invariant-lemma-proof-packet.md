@@ -183,6 +183,6 @@ node scripts/check-receiver-normal-clean-slate.mjs
 
 ## Promotion Classification
 
-- Corpus promotion: defer with blocker; candidate destinations after operator review are [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) and [neutral-braid](../../../content/markdown/aaa/noether-braid/neutral-braid.md) as a theorem-target restatement without priority links.
+- Corpus promotion: defer with blocker; candidate destinations after operator review are [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) and [neutral-braid](../../../content/markdown/aaa/noether-braid/neutral-braid.md) as a theorem-target restatement without priority links.
 - Priority status: obligations 1-2 discharged at priority level, obligation 3 discharged conditionally, obligation 4 blocked as intended.
 - Next proofing consumers: the capped angular-momentum held-release sweep (executable witness with exact drift residual) and the delayed escape certificate lemma on the reduced three-function system.

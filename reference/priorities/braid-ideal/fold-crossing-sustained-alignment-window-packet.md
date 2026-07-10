@@ -16,7 +16,7 @@ The cross-hit fold is the locus $D_s=c_f-\mathbf V_s\cdot\hat{\mathbf r}=0$ — 
 
 ## Model
 
-A middle-binary source orbits radius $\rho_M$ at super-field rim fraction $\beta_M>1$ (velocity magnitude $\beta_M c_f$); an outer receiver orbits radius $\rho_R$ at $\beta_R$, in the [Nested Shell Braid](../../../content/markdown/aaa/noether-braid/nested-shell-braid.md) middle/outer coplanar geometry. For each reception time $T$ over one source period the diagnostic solves the causal roots of the receiver against the source path, tracks the near-fold root (minimum $|D_s|$), and records the reception interval over which a fold-born root persists at finite chord. From that window it derives the depth $\mu_0$, the recurrence $N_{\mathrm{click}}$ per period, the booked Section 2 impulse, the receiver-normal sign $D_T$, and the absorbed fraction of the certified per-rotation pump $2\pi c_1\kappa/(c_f^2\rho_M)$.
+A middle-binary source orbits radius $\rho_M$ at super-field rim fraction $\beta_M>1$ (velocity magnitude $\beta_M c_f$); an outer receiver orbits radius $\rho_R$ at $\beta_R$, in the [Nested Shell Braid](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md) middle/outer coplanar geometry. For each reception time $T$ over one source period the diagnostic solves the causal roots of the receiver against the source path, tracks the near-fold root (minimum $|D_s|$), and records the reception interval over which a fold-born root persists at finite chord. From that window it derives the depth $\mu_0$, the recurrence $N_{\mathrm{click}}$ per period, the booked Section 2 impulse, the receiver-normal sign $D_T$, and the absorbed fraction of the certified per-rotation pump $2\pi c_1\kappa/(c_f^2\rho_M)$.
 
 ## Result
 

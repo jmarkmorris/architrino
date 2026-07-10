@@ -105,7 +105,7 @@ The signed impulse is invariant across the softening / Jacobian-floor / self-hit
 
 ## Booked Action Ledger
 
-Each witnessed fold crossing emits a diagnostic-only $h_{\mathrm{act}}$ ledger row that reuses the closed-cycle action-unit convention of the [action clicks section](../../../content/markdown/aaa/noether-braid/nested-shell-braid.md#action-clicks-at-the-field-speed-hinge) without minting a new validator or schema. The row books one closed-cycle action unit $h_{\mathrm{act}}$ per crossing, with the transacted cycle increment $-1\cdot h_{\mathrm{act}}$ for the absorptive sign and the absorber decision, and fails closed at the seed-path certificate. The magnitude of the transacted unit is left to the spatial self-regularization; the rows book direction, not amount.
+Each witnessed fold crossing emits a diagnostic-only $h_{\mathrm{act}}$ ledger row that reuses the closed-cycle action-unit convention of the [action clicks section](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#action-clicks-at-the-field-speed-hinge) without minting a new validator or schema. The row books one closed-cycle action unit $h_{\mathrm{act}}$ per crossing, with the transacted cycle increment $-1\cdot h_{\mathrm{act}}$ for the absorptive sign and the absorber decision, and fails closed at the seed-path certificate. The magnitude of the transacted unit is left to the spatial self-regularization; the rows book direction, not amount.
 
 ## Decision
 

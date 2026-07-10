@@ -1,6 +1,6 @@
 # Special Relativity and Deformable Noether Braids
 
-This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../noether-braid/nested-shell-braid-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
+This bridge compares the observer-level story of special relativity with the proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation story in deformable Noether braid assemblies. It is a mapping document: the canonical Noether braid geometry remains in [Nested Shell Braid Geometry](../../noether-braid/braid-envelope-geometry.md), the canonical mass thesis remains in [Particle Masses](../../assemblies/particle-masses.md), and the formal Lorentz-closure program remains in [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../spacetime/lorentz-kinematics.md). For the dedicated milestone synthesis of the branch-quantized Lorentz insight, see [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md).
 
 The bridge keeps both sides honest. Special relativity supplies the tested observer contract: clocks, rulers, signals, energy, and momentum must transform together. The Noether braid story supplies the proposed implementation: moving assemblies must deform, retune, and export one shared effective record rather than separate fitted factors.
 
@@ -24,7 +24,7 @@ This chapter owns:
 This chapter does not own:
 
 - the definition of a Noether braid; see [Noether Braid](../../noether-braid/noether-braid.md),
-- the geometry of the dynamic exclusion envelope; see [Nested Shell Braid Geometry](../../noether-braid/nested-shell-braid-geometry.md),
+- the geometry of the dynamic exclusion envelope; see [Nested Shell Braid Geometry](../../noether-braid/braid-envelope-geometry.md),
 - the proper-time map; see [Proper Time and Time Dilation](../../spacetime/proper-time-and-time-dilation.md),
 - the energy ledger; see [Energy](../../dynamics/energy.md),
 - or the exact delayed law; see [Master Equation](../../dynamics/master-equation.md).

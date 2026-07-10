@@ -63,6 +63,20 @@ const deg = (d) => (d * Math.PI) / 180;
 //         ~ 1.144, all layers sub-field. Selecting Row 5 ALSO selects its
 //         environment (the static pair-resolved sea below): geometry and
 //         environment are one tabled row, not separate knobs.
+//  Row 6: OCTAHEDRAL-CAGE CANDIDATE V4 (packet "Candidate Row 6", tabled
+//         2026-07-09; spec Sections 54-55 by title — the true-placement
+//         axis-declared credit fixed point + cage reciprocity; exported
+//         OCTAHEDRAL_CAGE_V4 in spindle-support-ratio-targeted-search.mjs).
+//         Tilted rail: alpha_M = -30.16 deg, cadence omega = 1/cos(alpha_M)
+//         ~ 1.156, all layers sub-field. Selecting Row 6 ALSO selects its
+//         environment: the HELD octahedral cage (six sites at radius
+//         1.645*sqrt(2) = 2.326 — two polar, four equatorial), same frozen
+//         antipodal-pair build as Row 5 on the octahedral placement.
+//         CLAIM BOUNDARY (packet, declared up front): a survival certifies
+//         the braid INSIDE A HELD CAGE, not a self-supporting braid+cage
+//         complex; the declared cage strain (Section 55: polar -0.641 of the
+//         corridor force scale inward, equatorial +0.09..0.15, torques ~0)
+//         is a seed row, not a tunable.
 // ---------------------------------------------------------------------------
 export const TABLED_ROWS = Object.freeze({
   1: Object.freeze([
@@ -80,6 +94,11 @@ export const TABLED_ROWS = Object.freeze({
     Object.freeze({ name: "M", R: 1.0, alpha: deg(-29.04), theta: deg(120) }),
     Object.freeze({ name: "O", R: 1.036, alpha: deg(67.5), theta: deg(333.5) }),
   ]),
+  6: Object.freeze([
+    Object.freeze({ name: "I", R: 0.4935, alpha: deg(2.85), theta: deg(-4.2) }),
+    Object.freeze({ name: "M", R: 1.0, alpha: deg(-30.16), theta: deg(120) }),
+    Object.freeze({ name: "O", R: 1.106, alpha: deg(67.5), theta: deg(333.5) }),
+  ]),
 });
 
 export function selectTabledRow(row) {
@@ -89,8 +108,24 @@ export function selectTabledRow(row) {
   DECLARED.layers = layers;
   const aM = layers.find((L) => L.name === "M").alpha;
   DECLARED.omega = 1 / Math.cos(aM); // beta_M = omega R_M cos(alpha_M) = 1 (rail)
-  // Row 5's environment is part of the tabled row (packet Candidate Row 5).
-  DECLARED.staticPairSea.enabled = row === 5;
+  // Rows 5/6: the frozen static-pair environment is part of the tabled row
+  // (packet Candidate Rows 5 and 6) — geometry and environment are one row.
+  DECLARED.staticPairSea.enabled = row === 5 || row === 6;
+  const sp = DECLARED.staticPairSea;
+  if (row === 5) {
+    sp.placement = "fcc12";
+    sp.spacing = 2.453; // SELF_CONSISTENT_V3.aSea (tabled, not a knob)
+    sp.tabledInstrumentCredit = 0.3172; // Section 52 x2-count-scaled anchor
+    sp.tabledSeaRows = null;
+    sp.tabledTotals = null;
+  } else if (row === 6) {
+    sp.placement = "octahedral6";
+    sp.spacing = 1.645 * Math.SQRT2; // OCTAHEDRAL_CAGE_V4.siteRadius = 2.326 (tabled)
+    // Section 54 tabled anchors (true placement, axis-declared; NOT count-scaled):
+    sp.tabledInstrumentCredit = 0.4178; // per-layer O sea row (the cap credit)
+    sp.tabledSeaRows = { I: 0.0013, M: -0.01, O: 0.4178 };
+    sp.tabledTotals = { I: 1.0006, M: 0.9961, O: 0.9937 };
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -254,12 +289,39 @@ export const DECLARED = {
   //    (binding obligation 1; tabled instrument value 0.3172 at x2-scaled
   //    6-direction placement is the comparison anchor, not the seed anchor).
   staticPairSea: {
-    enabled: false, // set by selectTabledRow(5)
-    spacing: 2.453, // SELF_CONSISTENT_V3.aSea (tabled, not a knob)
+    enabled: false, // set by selectTabledRow(5|6)
+    // Placement is part of the tabled row (set by selectTabledRow, not a knob):
+    //  "fcc12"      = Row 5: FCC first coordination shell, 12 sites, true
+    //                 angular placement at a = 2.453 (SELF_CONSISTENT_V3.aSea).
+    //  "octahedral6" = Row 6: the HELD octahedral cage — six braid-selected
+    //                 neighbors at radius 1.645*sqrt(2) = 2.326 (two polar
+    //                 +-z, four equatorial +-x/+-y; OCTAHEDRAL_CAGE_V4,
+    //                 spec Section 54 by title). Same frozen antipodal
+    //                 unit-polarity pair build; positions and orientations
+    //                 HELD for the whole release (the strain is declared,
+    //                 not hidden — see cageStrainDeclared below).
+    placement: "fcc12",
+    spacing: 2.453,
+    octahedralDirections: [
+      [0, 0, 1], [0, 0, -1], // polar
+      [1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], // equatorial
+    ],
     ntOrientation: 64, // in-build slow-limit cycle average (dt-stable grade)
     ntWitness: 32, // sampling witness resolution (must agree; obligation 2)
-    tabledInstrumentCredit: 0.3172, // Section 52 x2-count-scaled anchor (report row)
+    tabledInstrumentCredit: 0.3172, // per-row comparison anchor (report row)
+    tabledSeaRows: null, // Row 6: Section 54 per-layer sea rows (report anchors)
+    tabledTotals: null, // Row 6: Section 54 dressed totals (report anchors)
     corridor: [0.97, 1.03], // dressed-support release gate (binding obligation 1)
+    // Row 6 cage honesty anchors (Section 55 by title; DECLARED seed strain,
+    // not tunables): per-member net radial force / corridor force scale
+    // (needO = omega^2 qO cos alphaO), torque-free orientations.
+    cageStrainDeclared: {
+      polarFradOverNeedO: -0.641, // inward; the cap credit's Newton-pair
+      equatorialFradOverNeedO: [0.09, 0.15], // sampling-sensitive band
+      torqueOverNeedO: 0.01, // zero to instrument precision (< 0.01)
+    },
+    cageHonestyNt: 24, // Section 55 cycle-average resolution (Nt=24/48 identical)
+    stericClearanceDeclared: 0.8, // endpoint-to-cap reach (Section 54 caveat)
   },
   chart: {
     enabled: false,
@@ -411,8 +473,13 @@ export function buildStaticPairSeaSites(sites, nt = DECLARED.staticPairSea.ntOri
   const period = TWO_PI / DECLARED.omega;
   const shell = [];
   const endpoints = [];
-  for (let k = 0; k < DECLARED.sea.fccDirections.length; k += 1) {
-    const dir = DECLARED.sea.fccDirections[k];
+  const placement = DECLARED.staticPairSea.placement;
+  const directions =
+    placement === "octahedral6"
+      ? DECLARED.staticPairSea.octahedralDirections
+      : DECLARED.sea.fccDirections;
+  for (let k = 0; k < directions.length; k += 1) {
+    const dir = directions[k];
     const n = Math.hypot(dir[0], dir[1], dir[2]);
     const center = [(dir[0] / n) * a, (dir[1] / n) * a, (dir[2] / n) * a];
     // slow-limit orientation: unit(cycle-averaged bare retarded braid field),
@@ -426,7 +493,10 @@ export function buildStaticPairSeaSites(sites, nt = DECLARED.staticPairSea.ntOri
       acc[2] += E[2];
     }
     const pHat = unit3(acc);
-    shell.push({ id: `spsea:${k}`, center, pHat });
+    // axis declaration (the Row 5 lesson: credit at true placement,
+    // axis-declared): polar = on-axis site, equatorial = in-plane site.
+    const siteClass = Math.abs(dir[2] / n) > 0.9 ? "polar" : "equatorial";
+    shell.push({ id: `spsea:${k}`, center, pHat, siteClass });
     for (const pm of [+1, -1]) {
       endpoints.push({
         id: `spsea:${k}:${pm > 0 ? "+" : "-"}`,
@@ -436,10 +506,50 @@ export function buildStaticPairSeaSites(sites, nt = DECLARED.staticPairSea.ntOri
           center[2] + pm * (p0 / 2) * pHat[2],
         ],
         pol: pm,
+        shellIndex: k,
+        siteClass,
       });
     }
   }
-  return { shell, endpoints, p0, spacing: a, ntUsed: nt };
+  return { shell, endpoints, p0, spacing: a, ntUsed: nt, placement };
+}
+
+// Cycle-averaged per-layer sea rows on the held braid, through the SAME
+// production-solver booking path (seaWakeContribution). The tabled Row 6
+// anchors (+0.0013/-0.0100/+0.4178, Section 54 by title) are cycle averages
+// (the instrument convention); a single-phase sample differs by the cage's
+// angular ripple (the 4-fold equatorial pattern beats against the 2-sample
+// antipodal pair — strongest on M). This is phase AVERAGING of the declared
+// quantity, exact per phase for static sources; it is NOT count scaling (the
+// Row 5 lesson bans count scaling, not averaging). The per-phase ripple is
+// reported alongside — the released dynamics feel the ripple, and that is a
+// release finding, not a seed correction.
+export function cycleAveragedSeaRows(sites, endpoints, kappa, nt = 16) {
+  const period = TWO_PI / DECLARED.omega;
+  const w2 = DECLARED.omega * DECLARED.omega;
+  const rows = {};
+  const rippleMin = {};
+  const rippleMax = {};
+  for (let q = 0; q < nt; q += 1) {
+    const t = (q / nt) * period;
+    const phaseRow = {};
+    for (const s of sites) {
+      const xi = rigidPosition(s, t);
+      const vi = rigidVelocity(s, t);
+      const sea = seaWakeContribution({ seaSites: endpoints, xi, vi, receiverPol: s.pol, tH: t });
+      const rho = Math.hypot(xi[0], xi[1]);
+      if (!(rho > 1e-12)) continue;
+      const inward = -((sea.a[0] * xi[0] + sea.a[1] * xi[1]) / rho);
+      const frac = (kappa * inward) / (w2 * rho);
+      rows[s.layer] = (rows[s.layer] ?? 0) + frac / (2 * nt);
+      phaseRow[s.layer] = (phaseRow[s.layer] ?? 0) + frac / 2;
+    }
+    for (const L of Object.keys(phaseRow)) {
+      rippleMin[L] = Math.min(rippleMin[L] ?? Infinity, phaseRow[L]);
+      rippleMax[L] = Math.max(rippleMax[L] ?? -Infinity, phaseRow[L]);
+    }
+  }
+  return { rows, rippleMin, rippleMax, ntUsed: nt };
 }
 
 // Frozen-sea back-reaction honesty row (Row 5 diagnostic 5): a static
@@ -487,6 +597,249 @@ export function frozenSeaBackReactionRow(staticPairSea, sites, histories, t) {
     maxMisalignmentDeg: (maxAngle * 180) / Math.PI,
     meanPairNetForcePerKappa: sumForce,
     meanPairNetOutwardRadialPerKappa: netRadial,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Row 6 cage rows (packet Candidate Row 6; spec Section 55 conventions).
+// ---------------------------------------------------------------------------
+// Retarded braid field at a static point with the Section 55 SOFTENED branch
+// weight m = D_s / (D_s^2 + soft^2) — the rail layer's caustic fan crosses
+// external points, so the unsoftened c/D_s kernel is not usable on cage
+// endpoints. Exact per-source retardation; held prehistory rigid, released
+// history from the retained record (same lookup shape as braidRetardedFieldAt).
+export function braidRetardedFieldSoftenedAt(X, sites, histories, t) {
+  const c = DECLARED.fieldSpeed;
+  const soft = DECLARED.soft;
+  const E = [0, 0, 0];
+  for (let i = 0; i < sites.length; i += 1) {
+    const posAt = (tE) =>
+      histories && tE > 0 ? histories[i].positionAt(tE) : rigidPosition(sites[i], tE);
+    let tE = t - Math.hypot(X[0], X[1], X[2]) / c;
+    for (let it = 0; it < 60; it += 1) {
+      const p = posAt(tE);
+      const r = Math.hypot(X[0] - p[0], X[1] - p[1], X[2] - p[2]);
+      const next = t - r / c;
+      if (Math.abs(next - tE) < 1e-12) {
+        tE = next;
+        break;
+      }
+      tE = next;
+    }
+    const p = posAt(tE);
+    const dx = [X[0] - p[0], X[1] - p[1], X[2] - p[2]];
+    const r = Math.hypot(dx[0], dx[1], dx[2]);
+    if (!(r > 0)) continue;
+    const rh = [dx[0] / r, dx[1] / r, dx[2] / r];
+    let v;
+    if (histories && tE > 0) {
+      const h = histories[i];
+      let k = Math.min(h.ts.length - 1, Math.max(0, Math.floor(tE / DECLARED.timeStep)));
+      while (k > 0 && h.ts[k] > tE) k -= 1;
+      while (k < h.ts.length - 1 && h.ts[k + 1] <= tE) k += 1;
+      v = h.vs[k];
+    } else {
+      v = rigidVelocity(sites[i], tE);
+    }
+    const Ds = c - (v[0] * rh[0] + v[1] * rh[1] + v[2] * rh[2]);
+    const m = Ds / (Ds * Ds + soft * soft);
+    for (let cc = 0; cc < 3; cc += 1) E[cc] += (sites[i].pol * m * rh[cc]) / (r * r);
+  }
+  return E;
+}
+
+// Cage honesty row (Row 6 diagnostic 5): the held sites cannot respond, so
+// record the would-be net force and torque each cage member carries — braid
+// legs at exact causal delays with the softened branch weight, cage-cage legs
+// as static endpoint sums — at kappa, normalized by the braid's outer-layer
+// centripetal need (the corridor force scale, Section 55 convention).
+// Cycle-averaged over the trailing braid period ending at t (Nt samples on
+// the retained record; at t = 0 this reproduces the Section 55 instrument).
+// Growth or sign change vs the DECLARED seed strain (-0.641 polar /
+// +0.09..0.15 equatorial / torque-free) flags the held-cage idealization's
+// scope boundary. This row reports, it does not tune.
+export function cageHonestyRow(staticPairSea, sites, histories, t, kappa, nt = DECLARED.staticPairSea.cageHonestyNt) {
+  const period = TWO_PI / DECLARED.omega;
+  const oLayer = DECLARED.layers.find((L) => L.name === "O");
+  const needO = DECLARED.omega * DECLARED.omega * (oLayer.R * Math.cos(oLayer.alpha));
+  const p0 = staticPairSea.p0;
+  const rows = [];
+  for (let qi = 0; qi < staticPairSea.shell.length; qi += 1) {
+    const site = staticPairSea.shell[qi];
+    const F = [0, 0, 0];
+    const T = [0, 0, 0];
+    for (const pm of [+1, -1]) {
+      const Xe = [
+        site.center[0] + pm * (p0 / 2) * site.pHat[0],
+        site.center[1] + pm * (p0 / 2) * site.pHat[1],
+        site.center[2] + pm * (p0 / 2) * site.pHat[2],
+      ];
+      const Fe = [0, 0, 0];
+      // braid legs: trailing-cycle average on the retained/held worldlines
+      for (let q = 0; q < nt; q += 1) {
+        const tq = t - (q / nt) * period;
+        const E = braidRetardedFieldSoftenedAt(Xe, sites, histories, tq);
+        for (let c = 0; c < 3; c += 1) Fe[c] += (pm * E[c]) / nt;
+      }
+      // cage-cage legs: static monopole endpoint sums (exact, delay-trivial)
+      for (const other of staticPairSea.endpoints) {
+        if (other.shellIndex === qi) continue;
+        const dx = [
+          Xe[0] - other.position[0],
+          Xe[1] - other.position[1],
+          Xe[2] - other.position[2],
+        ];
+        const r = Math.hypot(dx[0], dx[1], dx[2]);
+        for (let c = 0; c < 3; c += 1) Fe[c] += (pm * other.pol * dx[c]) / (r * r * r);
+      }
+      const arm = [
+        Xe[0] - site.center[0],
+        Xe[1] - site.center[1],
+        Xe[2] - site.center[2],
+      ];
+      T[0] += arm[1] * Fe[2] - arm[2] * Fe[1];
+      T[1] += arm[2] * Fe[0] - arm[0] * Fe[2];
+      T[2] += arm[0] * Fe[1] - arm[1] * Fe[0];
+      for (let c = 0; c < 3; c += 1) F[c] += Fe[c];
+    }
+    const rC = Math.hypot(site.center[0], site.center[1], site.center[2]);
+    const dirC = [site.center[0] / rC, site.center[1] / rC, site.center[2] / rC];
+    rows.push({
+      id: site.id,
+      siteClass: site.siteClass,
+      FradOverNeedO: (kappa * (F[0] * dirC[0] + F[1] * dirC[1] + F[2] * dirC[2])) / needO,
+      FmagOverNeedO: (kappa * Math.hypot(F[0], F[1], F[2])) / needO,
+      torqueOverNeedO: (kappa * Math.hypot(T[0], T[1], T[2])) / needO,
+    });
+  }
+  const byClass = (cls) => rows.filter((r) => r.siteClass === cls);
+  const mean = (arr, key) => arr.reduce((s, r) => s + r[key], 0) / (arr.length || 1);
+  return {
+    t,
+    needO,
+    rows,
+    polarMeanFradOverNeedO: mean(byClass("polar"), "FradOverNeedO"),
+    equatorialMeanFradOverNeedO: mean(byClass("equatorial"), "FradOverNeedO"),
+    maxTorqueOverNeedO: Math.max(...rows.map((r) => r.torqueOverNeedO)),
+    declaredSeedStrain: DECLARED.staticPairSea.cageStrainDeclared,
+  };
+}
+
+// Steric row (Row 6 binding obligation 3): cage-pair endpoints reach within
+// ~0.8 of the caps — declare assembly extents and report closest approaches.
+// At the seed this scans one held cycle; along the release it is evaluated on
+// the live states each step (minimum over braid sites x cage endpoints).
+export function stericSeedDeclaration(staticPairSea, sites, nt = 96) {
+  const period = TWO_PI / DECLARED.omega;
+  let minOverall = Infinity;
+  const perLayer = {};
+  for (let q = 0; q < nt; q += 1) {
+    const t = (q / nt) * period;
+    for (const s of sites) {
+      const x = rigidPosition(s, t);
+      for (const e of staticPairSea.endpoints) {
+        const d = Math.hypot(
+          x[0] - e.position[0],
+          x[1] - e.position[1],
+          x[2] - e.position[2]
+        );
+        if (d < minOverall) minOverall = d;
+        if (!(s.layer in perLayer) || d < perLayer[s.layer]) perLayer[s.layer] = d;
+      }
+    }
+  }
+  const braidExtent = Math.max(...sites.map((s) => Math.hypot(s.rho, s.z0)));
+  const endpointInnerReach = Math.min(
+    ...staticPairSea.endpoints.map((e) => Math.hypot(...e.position))
+  );
+  return {
+    declaredClearance: DECLARED.staticPairSea.stericClearanceDeclared,
+    braidExtent,
+    cageEndpointInnerReach: endpointInnerReach,
+    closestApproachOverall: minOverall,
+    closestApproachPerLayer: perLayer,
+  };
+}
+
+export function minCageClearance(staticPairSea, states) {
+  let minD = Infinity;
+  for (const st of states) {
+    for (const e of staticPairSea.endpoints) {
+      const d = Math.hypot(
+        st.x[0] - e.position[0],
+        st.x[1] - e.position[1],
+        st.x[2] - e.position[2]
+      );
+      if (d < minD) minD = d;
+    }
+  }
+  return minD;
+}
+
+// Axis-wobble watch (Row 6 diagnostic 6): the prescribed family is
+// precession-free by construction — the seed is a rigid co-rotation about +z,
+// so the least-squares rigid rotation vector omega solving v_i = omega x x_i
+// (normal equations A omega = L with A the unit-mass inertia tensor and L the
+// total angular momentum) is exactly +z at the seed. Any released tilt drift
+// (nutation) or azimuth drift (precession) of omega-hat is a FINDING, not a
+// defect. |omega| doubles as the released cadence row.
+export function braidAxisRow(states) {
+  const A = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  const L = [0, 0, 0];
+  for (const st of states) {
+    const [x, y, z] = st.x;
+    const r2 = x * x + y * y + z * z;
+    A[0][0] += r2 - x * x;
+    A[0][1] += -x * y;
+    A[0][2] += -x * z;
+    A[1][1] += r2 - y * y;
+    A[1][2] += -y * z;
+    A[2][2] += r2 - z * z;
+    L[0] += st.x[1] * st.v[2] - st.x[2] * st.v[1];
+    L[1] += st.x[2] * st.v[0] - st.x[0] * st.v[2];
+    L[2] += st.x[0] * st.v[1] - st.x[1] * st.v[0];
+  }
+  A[1][0] = A[0][1];
+  A[2][0] = A[0][2];
+  A[2][1] = A[1][2];
+  // 3x3 solve (adjugate; the inertia tensor of a non-degenerate configuration
+  // is invertible)
+  const det =
+    A[0][0] * (A[1][1] * A[2][2] - A[1][2] * A[2][1]) -
+    A[0][1] * (A[1][0] * A[2][2] - A[1][2] * A[2][0]) +
+    A[0][2] * (A[1][0] * A[2][1] - A[1][1] * A[2][0]);
+  if (!(Math.abs(det) > 1e-300)) return { axisTiltDeg: null, axisAzimuthDeg: null, omegaFit: null };
+  const inv = [
+    [
+      (A[1][1] * A[2][2] - A[1][2] * A[2][1]) / det,
+      (A[0][2] * A[2][1] - A[0][1] * A[2][2]) / det,
+      (A[0][1] * A[1][2] - A[0][2] * A[1][1]) / det,
+    ],
+    [
+      (A[1][2] * A[2][0] - A[1][0] * A[2][2]) / det,
+      (A[0][0] * A[2][2] - A[0][2] * A[2][0]) / det,
+      (A[0][2] * A[1][0] - A[0][0] * A[1][2]) / det,
+    ],
+    [
+      (A[1][0] * A[2][1] - A[1][1] * A[2][0]) / det,
+      (A[0][1] * A[2][0] - A[0][0] * A[2][1]) / det,
+      (A[0][0] * A[1][1] - A[0][1] * A[1][0]) / det,
+    ],
+  ];
+  const w = [
+    inv[0][0] * L[0] + inv[0][1] * L[1] + inv[0][2] * L[2],
+    inv[1][0] * L[0] + inv[1][1] * L[1] + inv[1][2] * L[2],
+    inv[2][0] * L[0] + inv[2][1] * L[1] + inv[2][2] * L[2],
+  ];
+  const n = Math.hypot(w[0], w[1], w[2]) || 1e-300;
+  return {
+    axisTiltDeg: (Math.acos(Math.max(-1, Math.min(1, w[2] / n))) * 180) / Math.PI,
+    axisAzimuthDeg: (Math.atan2(w[1], w[0]) * 180) / Math.PI,
+    omegaFit: n,
   };
 }
 
@@ -1657,6 +2010,10 @@ export function runRelease({
         states[i].x[2] - rp[2]
       );
     });
+    // Row 6 axis-wobble watch + steric clearance (cheap; both diagnostics
+    // are packet rows, reported every step for the released braid)
+    const axisRow = staticPairSea ? braidAxisRow(states) : null;
+    const cageClearance = staticPairSea ? minCageClearance(staticPairSea, states) : null;
     diag.push({
       t,
       betaM,
@@ -1672,6 +2029,8 @@ export function runRelease({
       layerRows,
       seaRows,
       seaOrder,
+      axisRow,
+      cageClearance,
       states: null,
     });
 
@@ -1688,6 +2047,14 @@ export function runRelease({
         frozenSeaBackReaction: staticPairSea
           ? frozenSeaBackReactionRow(staticPairSea, sites, histories, t)
           : null,
+        // cage honesty row (Row 6 diagnostic 5): per-member would-be
+        // force/torque vs the DECLARED seed strain (Section 55 conventions)
+        cageHonesty:
+          staticPairSea && staticPairSea.placement === "octahedral6"
+            ? cageHonestyRow(staticPairSea, sites, histories, t, kappa)
+            : null,
+        axisRow,
+        cageClearance,
         betaM,
       });
       nextRecordIdx += 1;
@@ -1809,7 +2176,7 @@ if (isMain()) {
   selectTabledRow(readCliNumber("row", 1));
   if (DECLARED.staticPairSea.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
     process.stderr.write(
-      "[abort] Row 5's environment IS the static pair-resolved sea; --sea/--responsive-sea do not compose with --row=5\n"
+      "[abort] Rows 5/6 carry their own frozen static-pair environment; --sea/--responsive-sea do not compose with --row=5 or --row=6\n"
     );
     process.exit(1);
   }
@@ -1908,12 +2275,15 @@ if (isMain()) {
     );
   }
 
-  // Row 5 binding obligations (packet Candidate Row 5; spec Section 52 rules):
-  //  1. cap credit re-derived in-build at true FCC-12 placement, corridor
+  // Rows 5/6 binding obligations (packet Candidate Rows 5-6; spec Section 52
+  // and Section 54-55 rules):
+  //  1. credit re-derived in-build at the declared placement, corridor
   //     re-anchored on the in-build rows; release ONLY if all dressed layers
   //     are inside [0.97, 1.03];
   //  2. Nt witness on every credit-bearing seed row (full witness seed record
-  //     at the witness-Nt orientations; no aliased sampling anywhere).
+  //     at the witness-Nt orientations; no aliased sampling anywhere; no
+  //     count scaling anywhere — the Row 5 lesson);
+  //  3. (Row 6) steric declaration + cage honesty row at the seed.
   let staticPairSeaSeedBlock = null;
   if (staticPairSea) {
     const seedWitness = seedRecordEvaluation(
@@ -1924,33 +2294,114 @@ if (isMain()) {
       null,
       staticPairSeaWitness
     );
-    const creditInBuild = seed.seaRows.radialSupplyFraction.O;
-    const creditWitness = seedWitness.seaRows.radialSupplyFraction.O;
-    const dressed = seed.seaRows.supportRatiosDressed;
+    // In-build seed rows for the corridor gate. Row 5 (fcc12) keeps its
+    // executed single-phase booking (the executed history's convention).
+    // Row 6 (octahedral6) gates on CYCLE-AVERAGED rows — the tabled Section 54
+    // anchors are cycle averages, and the cage's 4-fold equatorial ripple
+    // makes a single phase sample a different (reported, not gated) quantity.
+    const bareAtKappa = Number.isFinite(kappaOverride)
+      ? seed.supportRatios.atFrozenKappa
+      : seed.supportRatios.atFittedKappa;
+    let creditInBuild;
+    let creditWitness;
+    let dressed;
+    let dressedWitness;
+    let seaRowsInBuild;
+    let cycleRowsBlock = null;
+    if (staticPairSea.placement === "octahedral6") {
+      const cyc = cycleAveragedSeaRows(sites, staticPairSea.endpoints, seed.kappaStar, 16);
+      const cycW = cycleAveragedSeaRows(sites, staticPairSea.endpoints, seed.kappaStar, 32);
+      seaRowsInBuild = cyc.rows;
+      creditInBuild = cyc.rows.O;
+      creditWitness = cycW.rows.O;
+      dressed = Object.fromEntries(
+        ["I", "M", "O"].map((L) => [L, bareAtKappa[L] + cyc.rows[L]])
+      );
+      dressedWitness = Object.fromEntries(
+        ["I", "M", "O"].map((L) => [L, bareAtKappa[L] + cycW.rows[L]])
+      );
+      cycleRowsBlock = {
+        convention: "cycle_averaged_production_booking_nt16_witness_nt32",
+        rows: cyc.rows,
+        rowsWitness: cycW.rows,
+        phaseRipple: { min: cyc.rippleMin, max: cyc.rippleMax },
+        phaseSampleT0: seed.seaRows.radialSupplyFraction,
+      };
+    } else {
+      seaRowsInBuild = seed.seaRows.radialSupplyFraction;
+      creditInBuild = seed.seaRows.radialSupplyFraction.O;
+      creditWitness = seedWitness.seaRows.radialSupplyFraction.O;
+      dressed = seed.seaRows.supportRatiosDressed;
+      dressedWitness = seedWitness.seaRows.supportRatiosDressed;
+    }
     const [cLo, cHi] = DECLARED.staticPairSea.corridor;
     const corridorHolds = ["I", "M", "O"].every(
       (L) => dressed[L] >= cLo && dressed[L] <= cHi
     );
+    // Row 6 axis-declared credit split (the Row 5 rule made standing: credit
+    // at true placement, axis-declared): polar-only and equatorial-only
+    // endpoint subsets, booked through the same production path.
+    let axisDeclaredSplit = null;
+    let stericDeclaration = null;
+    let cageHonestySeed = null;
+    if (staticPairSea.placement === "octahedral6") {
+      const subset = (cls) => staticPairSea.endpoints.filter((e) => e.siteClass === cls);
+      const cycPolar = cycleAveragedSeaRows(sites, subset("polar"), seed.kappaStar, 16);
+      const cycEq = cycleAveragedSeaRows(sites, subset("equatorial"), seed.kappaStar, 16);
+      axisDeclaredSplit = {
+        polarCreditO: cycPolar.rows.O,
+        equatorialCreditO: cycEq.rows.O,
+        polarFractionO: creditInBuild !== 0 ? cycPolar.rows.O / creditInBuild : null,
+        tabledPolarFractionO: 1.11, // Section 54: polar pair carries 111%
+      };
+      stericDeclaration = stericSeedDeclaration(staticPairSea, sites);
+      cageHonestySeed = cageHonestyRow(staticPairSea, sites, seedHistories, 0, seed.kappaStar);
+    }
     staticPairSeaSeedBlock = {
+      placement: staticPairSea.placement,
       p0: staticPairSea.p0,
       spacing: staticPairSea.spacing,
-      shellOrientations: staticPairSea.shell.map((s) => ({ id: s.id, center: s.center, pHat: s.pHat })),
+      shellOrientations: staticPairSea.shell.map((s) => ({ id: s.id, center: s.center, pHat: s.pHat, siteClass: s.siteClass })),
       orientationWitness: seaBuildWitness,
       capCreditInBuildTruePlacement: creditInBuild,
       capCreditWitnessNt: creditWitness,
       capCreditTabledInstrument: DECLARED.staticPairSea.tabledInstrumentCredit,
       capCreditCorrection: creditInBuild - DECLARED.staticPairSea.tabledInstrumentCredit,
+      seaRowsInBuild,
+      seaRowsTabled: DECLARED.staticPairSea.tabledSeaRows,
+      cycleRows: cycleRowsBlock,
       dressedSupport: dressed,
-      dressedSupportWitness: seedWitness.seaRows.supportRatiosDressed,
+      dressedSupportWitness: dressedWitness,
+      dressedTotalsTabled: DECLARED.staticPairSea.tabledTotals,
       corridor: DECLARED.staticPairSea.corridor,
       corridorHolds,
+      axisDeclaredSplit,
+      stericDeclaration,
+      cageHonestySeed,
       seaTaxes: { I: seed.seaRows.radialSupplyFraction.I, M: seed.seaRows.radialSupplyFraction.M },
     };
     process.stderr.write(
-      `[spsea] in-build cap credit (true FCC-12) = ${creditInBuild.toFixed(4)} ` +
-        `(witness Nt: ${creditWitness.toFixed(4)}; tabled instrument 0.3172; ` +
-        `correction ${(creditInBuild - 0.3172 >= 0 ? "+" : "")}${(creditInBuild - 0.3172).toFixed(4)})\n`
+      `[spsea] in-build cap credit (${staticPairSea.placement}) = ${creditInBuild.toFixed(4)} ` +
+        `(witness Nt: ${creditWitness.toFixed(4)}; tabled instrument ${DECLARED.staticPairSea.tabledInstrumentCredit}; ` +
+        `correction ${(creditInBuild - DECLARED.staticPairSea.tabledInstrumentCredit >= 0 ? "+" : "")}${(creditInBuild - DECLARED.staticPairSea.tabledInstrumentCredit).toFixed(4)})\n`
     );
+    if (axisDeclaredSplit) {
+      process.stderr.write(
+        `[cage] axis-declared credit split: polar ${axisDeclaredSplit.polarCreditO.toFixed(4)} ` +
+          `equatorial ${axisDeclaredSplit.equatorialCreditO.toFixed(4)} ` +
+          `polarFraction ${axisDeclaredSplit.polarFractionO?.toFixed(3)} (tabled 1.11)\n`
+      );
+      process.stderr.write(
+        `[cage] steric: closest approach ${stericDeclaration.closestApproachOverall.toFixed(4)} ` +
+          `(declared ~${stericDeclaration.declaredClearance}); braid extent ${stericDeclaration.braidExtent.toFixed(3)}, ` +
+          `endpoint inner reach ${stericDeclaration.cageEndpointInnerReach.toFixed(3)}\n`
+      );
+      process.stderr.write(
+        `[cage] honesty seed: polar Frad/needO ${cageHonestySeed.polarMeanFradOverNeedO.toFixed(4)} ` +
+          `(declared -0.641), equatorial ${cageHonestySeed.equatorialMeanFradOverNeedO.toFixed(4)} ` +
+          `(declared +0.09..0.15), maxTorque ${cageHonestySeed.maxTorqueOverNeedO.toFixed(4)} (declared <0.01)\n`
+      );
+    }
     process.stderr.write(
       `[spsea] dressed support (I/M/O) = ${dressed.I.toFixed(4)}/${dressed.M.toFixed(4)}/${dressed.O.toFixed(4)} ` +
         `corridor [${cLo}, ${cHi}] holds=${corridorHolds}\n`
@@ -2097,7 +2548,13 @@ if (isMain()) {
       staticPairSea: staticPairSeaSeedBlock,
       candidateRow: DECLARED.candidateRow,
       prescribedEvaluatorAnchor:
-        DECLARED.candidateRow === 5 ? 0.2058 : DECLARED.candidateRow === 2 ? 0.3240 : 0.4721,
+        DECLARED.candidateRow === 6
+          ? 0.2474
+          : DECLARED.candidateRow === 5
+            ? 0.2058
+            : DECLARED.candidateRow === 2
+              ? 0.3240
+              : 0.4721,
       seedRootLedger: seed.samples.map((s) => ({ site: s.site, ledger: s.ledger })),
     },
     release: {
@@ -2128,6 +2585,8 @@ if (isMain()) {
         layerRows: d.layerRows,
         seaRows: d.seaRows ?? null,
         seaOrder: d.seaOrder ?? null,
+        axisRow: d.axisRow ?? null,
+        cageClearance: d.cageClearance ?? null,
       })),
       responsiveSeaMode: DECLARED.responsiveSea.enabled,
       responsiveSeaClampedLookups: main.state?.responsiveSea?.clampedLookups ?? null,
