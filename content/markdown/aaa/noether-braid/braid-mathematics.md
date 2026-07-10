@@ -6,7 +6,7 @@ The results divide by strength, and the division is stated with each result. Exa
 
 ## Document Role
 
-This chapter owns the shared mathematical machinery of the braid family: invariant channels, equivariant reductions, exact channel identities, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Thomson dressing mechanism. The family definitions live in [Neutral Braid](neutral-braid.md), [Symmetric Shell Braid](symmetric-shell-braid.md), and [Nested Shell Braid](nested-shell-braid.md); the realization-independent proof obligations live in [Braid Recovery Requirements](braid-recovery-requirements.md); proof dispositions live in the [Noether Braid Proof Map](noether-braid-proof-map.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
+This chapter owns the shared mathematical machinery of the braid family: invariant channels, equivariant reductions, exact channel identities, the substrate levels and speed hierarchy with the transverse causal budget lemma, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the action-click mechanism, and the Thomson dressing mechanism. The family definitions live in [Neutral Braid](neutral-braid.md), [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid), and [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid); the realization-independent proof obligations live in [Braid Recovery Requirements](braid-recovery-requirements.md); proof dispositions live in the [Noether Braid Proof Map](noether-braid-proof-map.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
 ## Invariant Channels and Equivariant Reductions
 
@@ -22,7 +22,7 @@ $$
 \epsilon_{-,i}=-\epsilon_{+,i}
 $$
 
-This seed lies on a common sphere, so it is the maximal-symmetry member of the family — the symmetric one-band configuration whose fixture evidence is carried by [Symmetric Shell Braid](symmetric-shell-braid.md). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
+This seed lies on a common sphere, so it is the maximal-symmetry member of the family — the symmetric one-band configuration whose fixture evidence is carried by [Symmetric Shell Braid](explored-braid-geometries.md#symmetric-shell-braid). Two finite symmetry groups act on the seed by simultaneous spatial transformation and site relabeling. For a coordinate-axis permutation $\rho\in S_3$, let $M_\rho$ be the coordinate-permutation matrix and let $\rho$ permute site labels within each polarity; let $\iota$ compose point inversion with polarity exchange. Both act on configurations by
 
 $$
 (g\cdot\mathbf X)_\ell(t)=M_g\,\mathbf X_{g^{-1}\ell}(t)
@@ -92,7 +92,7 @@ The scope boundary is part of the result. Invariance of the channel does not pro
 
 ### Polarity Conjugation
 
-Because the delayed-force kernel depends on polarity only through products $\sigma_i\sigma_j$, global polarity conjugation leaves every trajectory unchanged: an electrino-face-leading branch and a positrino-face-leading branch are exactly degenerate in isolation. The leading-octant sign can acquire physical meaning only through coupling to an environment that is not polarity-balanced, which is where ordered-braid chirality must obtain its content; the helicity sign of the momentum screw below is the candidate carrier of that chirality label. Translation along $\hat{\mathbf n}$, by contrast, produces a real asymmetry: with $\iota$ broken, the leading face meets fresh medium while the trailing face rides in the branch's own wake, and this fore-aft wake asymmetry is the native deformation channel developed further in [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md).
+Because the delayed-force kernel depends on polarity only through products $\sigma_i\sigma_j$, global polarity conjugation leaves every trajectory unchanged: an electrino-face-leading branch and a positrino-face-leading branch are exactly degenerate in isolation. The leading-octant sign can acquire physical meaning only through coupling to an environment that is not polarity-balanced, which is where ordered-braid chirality must obtain its content; the helicity sign of the momentum screw below is the candidate carrier of that chirality label. Translation along $\hat{\mathbf n}$, by contrast, produces a real asymmetry: with $\iota$ broken, the leading face meets fresh medium while the trailing face rides in the branch's own wake, and this fore-aft wake asymmetry is the native deformation channel developed further in [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics).
 
 ## Drum Geometry
 
@@ -144,7 +144,122 @@ $$
 
 so the internal cadence of a faster-translating branch slows by exactly the square-root factor familiar from the light-clock argument. On this channel the Lorentz-style clock relation is not imported; it is the arithmetic of a fixed speed budget split between getting somewhere and going around. The pinning of $\beta_\ast$ is a branch hypothesis that the retention program must earn; the quadrature itself is exact channel kinematics. At the $u\to\beta_\ast c_f$ endpoint the tangential budget vanishes and the internal cycle freezes, which is the channel's own statement of the terminal boundary: a branch cannot both translate at its full speed budget and keep an internal clock running.
 
-This is the same pinned-speed hypothesis that already drives the rest-level scaling chart of the [nested shell braid](nested-shell-braid.md): there, a branch that holds its layer speed fixed while accepting action transactions is forced onto the $R_\ell f_\ell\approx\text{constant}$ product law. The speed budget extends that one hypothesis to transport: a single pinned $\beta_\ast$ simultaneously fixes how the radius-frequency product retunes at rest and how the internal clock slows under translation, so the rest-level scaling branch and the moving clock export are two projections of one branch commitment rather than two independent assumptions.
+This is the same pinned-speed hypothesis that already drives the rest-level scaling chart of the [nested shell braid](explored-braid-geometries.md#nested-shell-braid): there, a branch that holds its layer speed fixed while accepting action transactions is forced onto the $R_\ell f_\ell\approx\text{constant}$ product law. The speed budget extends that one hypothesis to transport: a single pinned $\beta_\ast$ simultaneously fixes how the radius-frequency product retunes at rest and how the internal clock slows under translation, so the rest-level scaling branch and the moving clock export are two projections of one branch commitment rather than two independent assumptions.
+
+## Substrate and Effective Levels
+
+Braid dynamics uses four levels of description:
+
+| Level | Meaning |
+| --- | --- |
+| Substrate ontology | Euclidean void, absolute substrate time $T$, architrinos, causal wakes, and causal-root branch structure. |
+| Assembly dynamics | Noether braids, their coupled binary layers, self-hit multiplicity, shielding, phase closure, and root-ledger transitions. |
+| Observer-inference exports | Rest mass, photon propagation, reconstructed kinematics, geodesics, and horizon behavior as later reconstructed by assembly-built observers. |
+| Inference and closure status | Mathematical closures that remain to be derived before effective claims can be treated as proved rather than reconstructed. |
+
+The distinction matters because the Euclidean void is not being curved at the substrate level. Curvature, geodesic motion, lapse, and horizon language enter only as observer-level bookkeeping reconstructed downstream from Noether sea state variables and assembly response.
+
+## Speed Hierarchy
+
+Several speed symbols must remain separated:
+
+| Symbol or phrase | Meaning |
+| --- | --- |
+| $c_f$ | Primitive wake propagation speed in the substrate. |
+| $c_{\text{eff}}(\mathbf X,T)$ | Noether sea dressed assembly-channel propagation speed used only after a downstream observer-channel map has been declared. |
+| $c_\gamma(\mathbf X,T)$ | Local photon-channel speed; equality with $c_{\text{eff}}(\mathbf X,T)$ is a photon-channel closure target for the working observer-level photon branch, not a definition. |
+| Locally measured light speed | The operational speed reconstructed downstream from assembly periods, rulers, and photon synchronization. |
+
+The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. The effective speed $c_{\text{eff}}$ belongs to Noether sea dressed closure and observer-level comparisons. These are not interchangeable. Any diagnostic that moves from primitive wake geometry to observer-level periods, rulers, or photons must declare its dressing map outside the primitive branch calculation.
+
+### Transverse Causal Budget Lemma
+
+When a retained moving branch is exported to a clock, ruler, or photon-synchronization channel, the branch must declare the channel speed used by that export. The primitive branch chart solves causal roots with $c_f$. A dressed clock/ruler comparison uses $c_\star=c_{\text{eff}}(\mathbf X,T)$ after the Noether sea dressing map has been declared, while a photon synchronization comparison uses its declared photon-channel speed $c_\gamma(\mathbf X,T)$. The weak homogeneous measured limit may identify the declared channel speed with $c_0$ only after the clock, ruler, and photon rows collapse to one observer-accessible speed within the preferred-frame leakage budget.
+
+For a branch whose response center drifts through the local Noether sea with material drift $\mathbf w$, the transverse budget is
+$$
+c_\star^2
+=
+\|\mathbf w\|^2+c_{\perp}^2,
+\qquad
+\beta_\star=\frac{\|\mathbf w\|}{c_\star},
+\qquad
+\gamma_\star=\frac{1}{\sqrt{1-\beta_\star^2}}
+$$
+Thus an observer-export clock or ruler row must extract
+$$
+\frac{c_{\perp}}{c_\star}
+=
+\frac{1}{\gamma_\star}
+$$
+from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
+
+## Spiral-Helical Motion Picture
+
+A resting Noether braid is a phase-locked structure of coupled binary layers. When the braid moves with center-of-mass velocity $\mathbf{V}_{\text{cm}}$, the rest-state circular or near-circular binary motions are drawn into braided spiral-helical cable patterns through the Euclidean void.
+
+The spiral-helical picture is not decorative. A causal wake sent between partners, or between the layers, must now reach a receiver that has moved during the wake's travel time. The internal phase geometry must therefore retune its pitch, radius, tilt, and timing to preserve the same closure ledger. In dynamics language, bulk velocity is encoded as internal geometry.
+
+This is the common mechanical basis for three later downstream readouts:
+
+- branch-period stretch, because each completed internal cycle requires a different causal path in absolute time;
+- longitudinal ruler contraction, because inter-assembly spacing must retune for forward and backward exchange;
+- inertial response, because acceleration forces the internal causal ledger to re-close under a changing kinematic bias.
+
+## Mass Thesis as a Dynamics Target
+
+The conservative mass thesis is that rest mass is not primitive architrino substance. It is the externally measurable response of shielded, phase-locked internal causal history.
+
+In roadmap form, the target relation is
+
+$$
+m_0(A)c_{\text{eff}}^2
+\sim
+\zeta(A)E_{\text{internal}}(A)
+$$
+
+where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledger of assembly $A$, and $\zeta(A)$ is the shielding or leakage factor that controls how much of that ledger couples to external probes. This is not yet a derived mass formula. It becomes a theorem only after the shielding factor, the internal energy ledger, and the first-order momentum-skew response are derived from the closed braid dynamics.
+
+## Hinge Equation Sketch
+
+**Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
+$$
+\frac{d^2\mathbf X_i}{dT^2}(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
+$$
+with delay constraints (causal roots):
+$$
+\|\mathbf X_j(T_{p,k})-\mathbf X_i(T)\|=c_f\,(T-T_{p,k}), \quad
+\|\mathbf X_i(T_{s,m})-\mathbf X_i(T)\|=c_f\,(T-T_{s,m})
+$$
+where $\mathbf{a}_{i,i}^{\mathrm{active}}$ is a shorthand for the sum over retained self-hit roots in $\mathcal{C}_{ii}(T)$, not an instantaneous switch $H(s-1)$. Self-hit remains path-history dependent: roots emitted during an earlier super-field-speed interval can stay active after the current speed has changed.
+The second constraint is the native small-scale bridge-like causal structure in this sketch: the receiver at $\mathbf X_i(T)$ is linked to an earlier point on the same worldline by its own causal wake. The connectedness is path-history closure in the causal-root ledger, not a tunnel in the Euclidean void. Any connected-geometry translation belongs only after coarse-graining into an effective horizon-interface or metric description.
+
+and $s=\|\mathbf V\|/c_f$. For symmetric, non-translating circular geometry, the delay angles satisfy
+$$
+\delta_p=2s\cos(\delta_p/2), \qquad \delta_s=2s\sin(\delta_s/2)
+$$
+with no self-hit solution for $s\le 1$ and a small-root branch $\tilde{\delta}_s\to 0^+$ for $s>1$. The radial/tangential split then reads
+$$
+\ddot r-r\dot\theta^2=A_{\text{rad}}(\delta_p,\delta_s), \qquad r\ddot\theta+2\dot r\dot\theta=T(\delta_p,\delta_s)
+$$
+The symmetry breaking at the hinge is geometric: as $\tilde{\delta}_s\to 0^+$ the self-hit radial factor scales like $1/\sin(\tilde{\delta}_s/2)$, turning on a large outward term while the state remains continuous.
+
+The working guess that the self-hit regime may change the effective action-step scale from $\Delta L_c$ to $2\Delta L_c$ is a theorem burden for the broader causal-closure program. This chapter keeps only the local hinge geometry needed to state the dynamical branch condition.
+
+## Acceleration-Gradient Branch Comparison
+
+The local dynamics burden behind later equivalence-principle recovery is a substrate comparison, not an observer postulate. A uniformly accelerated assembly and a stationary assembly placed in a matched Noether sea gradient should output compatible delay-geometry records on the same kind of branch packet (the scan packet defined with the nested family's diagnostics in [Explored Braid Geometries](explored-braid-geometries.md#observer-export-diagnostics)):
+$$
+\mathcal{D}_{\mathrm{NSH}}^{\mathrm{accel}}(W)
+\sim
+\mathcal{D}_{\mathrm{NSH}}^{\mathrm{grad}}(W)
+$$
+with the comparison made from phase-closure residuals, anisotropy ratios, branch-period records, stability thresholds, and cycle-averaged causal-work or phase-slip variance.
+
+The ambient Noether sea must participate in this comparison. Deforming the assembly alone is not enough, because the gradient-driven case changes the Noether sea response record while the accelerated case changes how the same retained causal-root ledger is transported through absolute time. The downstream observer-inference question is whether those exported packets recover the usual local equivalence behavior. This chapter only asks whether the substrate packets match before that translation.
+
+---
+
 
 ## Scoped Anti-Damping Results
 
@@ -153,7 +268,7 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 1. **Circular partner-wake binary.** On the uniform circular benchmark, the retained circular row has an inward radial component and a forward tangential work row; the combination accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must beat this row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. The detailed statement lives in [Binary Dynamics](../dynamics/binary-dynamics.md).
 2. **Collinear self-hit reading.** Along a true collinear history, the same-source term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: self-interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The corrected theorem program in [Collinear Breather](../proof-programs/collinear-breather.md) therefore asks whether partner attraction can recapture the motion despite that self-drive.
 3. **Frozen rigid octahedral chart.** The rigid zero-offset octahedral carrier at fixed speed carries a certified nonzero dimensionless tangential residual, rejecting the narrow fixed-speed branch chart; the interval and its overread warnings are recorded in [Neutral Braid](neutral-braid.md).
-4. **Held-release escape.** The face-opposite seed released on the zero-angular-momentum channel stays exactly on the channel but shows a single compression-to-expansion turn and then expands without any later inward acceleration row; the fixture record lives in [Symmetric Shell Braid](symmetric-shell-braid.md#isolated-release-and-the-return-response-question).
+4. **Held-release escape.** The face-opposite seed released on the zero-angular-momentum channel stays exactly on the channel but shows a single compression-to-expansion turn and then expands without any later inward acceleration row; the fixture record lives in [Symmetric Shell Braid](explored-braid-geometries.md#isolated-release-and-the-return-response-question).
 5. **Rigid rotating-wave family.** The rigid single-frequency rotating drum fails twice, independently. Axially: same-ring contributions have exactly zero axial component, while every opposite-ring contribution pulls the two rings together, and a sum of strictly one-signed terms cannot vanish — so the rigid rotating wave has no axial equilibrium at any drum aspect and any sub-field rim speed, and the rigid single-frequency family, if it existed, would be forced planar. This axial no-balance statement is a derivation. Tangentially: on the planar hexagon, a sampled screen across the sub-field rim-speed range finds the tangential residual strictly positive and growing nearly linearly with rim speed while the radial residual stays inward — the delayed kernel pumps the rotation rather than braking it. The screen is a sampled diagnostic, certifiable later by interval methods; its disposition is that no admissible rigid rotating-wave row exists in the scanned sub-field range.
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
@@ -193,7 +308,7 @@ The current status keeps the target honest. The rigid single-frequency family is
 
 ## Action Clicks at the Fold Set
 
-The material in this section is a candidate mechanism at hypothesis level: it proposes how the discrete action transaction of the [cadence-scale retuning hypothesis](nested-shell-braid.md#cadence-scale-retuning-hypothesis) is physically implemented, and none of it is yet supported by a retained branch record.
+The material in this section is a candidate mechanism at hypothesis level: it proposes how the discrete action transaction of the [cadence-scale retuning hypothesis](explored-braid-geometries.md#cadence-scale-retuning-hypothesis) is physically implemented, and none of it is yet supported by a retained branch record.
 
 Start with an everyday machine. A mechanical watch does not spend energy continuously; an escapement lets the stored energy advance the mechanism one discrete click at a time, and the click count is an integer because a gear tooth is either engaged or it is not. The proposal here is that the field-speed hinge is the braid's escapement.
 
@@ -211,7 +326,7 @@ Whether a hinge click can supply a clean, chart-defined transacted amount depend
 
 A same-source (self-hit) crossing on a smooth strand is born on the coincidence stratum. As the causal lag $\Delta\to 0$ the separation is $\lVert\mathbf X(T)-\mathbf X(T-\Delta)\rVert=\lvert\mathbf v\rvert\,\Delta+O(\Delta^2)$, so the same-source root nucleates exactly at the field-speed crossing with a vanishing chord, $r_{ij}\to 0$ as the root opens. On the symmetric one-band channel this onset is a cusp rather than a generic fold, and the transacted amount is not fixed by the fold chart; it is set instead by the point-transceiver short-distance self-regularization scale $d_0$ — of order the near-field two-body scale $\kappa\epsilon^2/c_f^2$ of [Binary Dynamics](../dynamics/binary-dynamics.md) (with $\epsilon$ the architrino polarity-charge magnitude), and in the minimum-circular-binary reading the collapse-arresting radius itself, whose derivation from $\kappa$, $\epsilon$, and $c_f$ remains an open question noted in [Particle Masses](../assemblies/particle-masses.md). This is a scoped negative for the escapement picture: the symmetric single-site self-hit cannot be the load-bearing channel that absorbs the [anti-damping tangential pump](#scoped-anti-damping-results), because its transacted magnitude is a property of $d_0$ rather than of the branch geometry. Same-source rows remain in the ontology and are what set $d_0$; they simply do not fix a clean click on their own.
 
-A cross-hit crossing between two distinct strands can instead be born at finite chord. When the source-normal alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the return-response question of [Symmetric Shell Braid](symmetric-shell-braid.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
+A cross-hit crossing between two distinct strands can instead be born at finite chord. When the source-normal alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ holds at finite separation, the crossing sits on the caustic stratum with $r_{ij}\neq 0$: a generic (Whitney $A_2$) fold of nonzero curvature whose transacted impulse is finite and independent of the short-distance regularization. This is the surviving route to a chart-clean click magnitude, and it is a theorem target rather than a result. It is contingent on a hinge geometry that sustains the alignment $\mathbf v_j\cdot\hat{\mathbf r}_{ij}=c_f$ across a click window — the same dynamic-alignment and formation-history condition that gates the return-response question of [Symmetric Shell Braid](explored-braid-geometries.md#isolated-release-and-the-return-response-question). Whether a braid's own formation and recycling dynamics hold that alignment long enough to transact is the open question on which the clean click magnitude, and with it the whole hinge-absorber route, depends.
 
 
 ## Thomson Dressing Mechanism
@@ -222,4 +337,4 @@ Accessory architrinos of one polarity repel each other, so a dressed assembly mu
 
 Two masking rules complete the mechanism. First, the net polarity inventory cannot be masked by any superposition: a dressed assembly remains electromagnetically visible at exactly its net charge, because the plain polarity total is the one moment no arrangement can cancel. Second, structure above the net-charge level can be masked dynamically, through amplitude dominance and cadence separation: a high-cadence braid carrier can dominate the superposed potential so that accessory-mediated interactions become resolvable only when another assembly approaches within roughly the braid scale, where the near field exposes the accessory causal roots.
 
-This chapter carries the mechanism only. Its applications — the electron, quark, and neutrino readings, the charge-quantum orbit counting, and the confinement-flavored composites — are realization hypotheses that live with the [symmetric shell braid dressing ladder](symmetric-shell-braid.md#accessory-dressing-and-apparent-energy) at their stated claim levels.
+This chapter carries the mechanism only. Its applications — the electron, quark, and neutrino readings, the charge-quantum orbit counting, and the confinement-flavored composites — are realization hypotheses that live with the [symmetric shell braid dressing ladder](explored-braid-geometries.md#accessory-dressing-and-apparent-energy) at their stated claim levels.

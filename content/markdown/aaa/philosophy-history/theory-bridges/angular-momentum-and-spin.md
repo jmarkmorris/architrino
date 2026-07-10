@@ -16,7 +16,7 @@ The related material is best read as an ordered path rather than as a flat list 
 
 1. Start with primitive ontology in [Architrino](../../foundations/architrino.md) and [Ontology](../../foundations/ontology.md).
 2. Use [Master Equation](../../dynamics/master-equation.md) and [Causal Action Functional](../../dynamics/causal-action-functional.md) for delayed conservation and wake-history bookkeeping.
-3. Use [Nested Shell Braid Dynamics](../../noether-braid/nested-shell-braid-dynamics.md) for the nested shell braid mechanics that spin must descend from.
+3. Use [Spindle Braid](../../noether-braid/spindle-braid.md) for the uniaxial braid mechanics that spin must descend from, with [Nested Shell Braid Dynamics](../../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) as the retained nested-comparison realization.
 4. Treat [Measurement Ontology](../../quantum/measurement-ontology.md), [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md), and [Bell's Theorem](./bell-theorem.md) as downstream tests rather than source derivations.
 
 ## Primitive Status
@@ -214,9 +214,113 @@ Near the self-hit onset, $J_s\to0^+$ and the unregularized response develops a s
 
 If a stable maximum-curvature binary exists, it may define a fundamental length and cycle scale for the architecture. It still does not make spin primitive. It gives a reproducible planar circulation standard. The step from that standard to spin requires additional structure: at minimum, a stable orientation frame, a representation under rotations, and a measurement response that recovers standard spin projections.
 
+## Spindle Braid Spin Scaffold
+
+The [spindle braid](../../noether-braid/spindle-braid.md) — the rigid uniaxial iso-frequency family that currently leads the braid candidacy — supplies this bridge with its primary realization of the angular-momentum ledger, and its rigid co-rotation makes the kinematic half of that ledger exact rather than approximate. Where the nested-comparison scaffold below must carry three separate layer normals $\hat{\mathbf n}_\ell$ and combine them into an approximate rank-three construction, the spindle braid has one axis, exactly.
+
+### The Exact Kinematic Ledger of the Rigid Uniaxial Family
+
+All six architrinos co-rotate at one common frequency $\omega$ about one shared axis $\hat{\mathbf z}$. Each layer $a\in\{I,M,O\}$ is an antipodal pair on its layer sphere of radius $R_a$ with cap tilt $\alpha_a$, so its members trace horizontal circles of cylindrical radius $\rho_a=R_a\cos\alpha_a$ at heights $\pm z_a$ with $z_a=R_a\sin\alpha_a$. The kinematic angular momentum is then exact at every instant, not cycle-averaged and not approximate:
+
+$$
+\mathbf J_{\mathrm{kin}}(T)
+=
+\sum_{a\in\{I,M,O\}} J_a\,\hat{\mathbf z},
+\qquad
+J_a=2\mu_{\text{arch}}\rho_a^2\,\omega
+$$
+
+Every layer normal coincides with the spin axis, $\hat{\mathbf n}_I=\hat{\mathbf n}_M=\hat{\mathbf n}_O=\hat{\mathbf z}$: the ledger is a **rank-one spine** carrying the per-layer spin magnitudes $J_a$ as its cap structure. The kinematic linear momentum vanishes exactly at rest (each layer is an antipodal pair) and is exactly axial under axial drift, so the family realizes the momentum screw of [Braid Mathematics](../../noether-braid/braid-mathematics.md#momentum-screw-and-helicity) exactly: the transport state reduces to the two scalars $P_\parallel$ and $J_\parallel$, with the origin-independent helicity $\mathbf J\cdot\mathbf P$ as the combined label.
+
+The axis sector has an equally clean kinematic reduction. Take as slow coordinates the per-layer plane inclinations about two transverse axes, $\eta_a^{x}$ and $\eta_a^{y}$. The cycle-averaged tilt inertia of a layer about a transverse axis through the braid center is
+
+$$
+m_a=\mu_{\text{arch}}\left(\rho_a^2+2z_a^2\right)
+$$
+
+so the near-polar caps — slow and small in $\rho$ — still carry full-scale tilt inertia through their height, while their spin $J_O$ is small: the cap structure separates the spin ledger from the tilt-inertia ledger, and that separation drives the gyroscopic analysis below. Claim level: exact kinematics of the prescribed rigid family (the tilt inertia is the cycle-averaged rigid-layer reduction); $\mu_{\text{arch}}$ is the numerical site weight of the working models, not a primitive mass.
+
+### The Wake Ledger and the Causal-Delay Asymmetry
+
+The total rotational ledger is the kinematic spine plus the same branch-resolved wake term as in the boxed three-layer total of the functional scaffold below; nothing in the wake bookkeeping changes on the uniaxial family. What the spindle braid adds is a measured row structure at its self-equilibrated fixed point (claim level for this subsection: measured on prescribed worldlines at seed grade; not retention evidence):
+
+- The per-layer transverse (tilt) wake torques vanish at the untilted configuration — tilt equilibrium is automatic, by reflection symmetry of the rigid family.
+- The per-layer axial wake torques close on the inner and outer layers ($\tau_I\approx0$, $\tau_O\approx0$) while the middle carries the rail pump — the anti-damping tangential surplus that the field-speed escapement must transact into the outgoing wake. The pump is a standing wake-ledger entry, not a defect of the tilt sector, but it re-enters the tilt sector through spin transport (below).
+- The tilt stiffness block $K$ — the matrix of cycle-averaged transverse-torque responses to per-layer tilts — is **asymmetric, and the asymmetry is physics**. Its rows sum to zero (a global tilt is a symmetry of the isotropic delayed law, so the global mode is an exact null), but its columns do not: a single tilted layer receives a net internal torque imbalance from its partners. In an instantaneous-force theory internal torques cancel pairwise and no such imbalance can exist; in a causal-delay theory the field in flight carries angular momentum, and the column imbalance is exactly the tilt-sector posting to the wake ledger.
+
+Under axial drift the transacted half of the wake ledger runs: the wake angular impulse per escapement click follows the measured law $J_z(u)/J_z(0)=1\pm0.236\,|u|-1.28\,u^2$, helicity-odd at first order and running down quadratically helicity-averaged — the two-ledger split consumed by the $h$ and $\hbar$ convention section of this bridge.
+
+### The Iso-Frequency Partition Map
+
+The nested partition targets allocate an accepted increment across three per-layer frequencies. On the iso-frequency family that chart collapses, and the partition becomes a constrained allocation map through geometry at a single cadence — a different constrained map, not a rename. From the exact kinematic ledger, an accepted transaction that shifts the radii, cap tilts, common cadence, layer inclinations, and wake books its axial and transverse increments as
+
+$$
+\Delta J_z
+=
+\sum_{a}4\mu_{\text{arch}}\omega\rho_a\,\Delta\rho_a
++
+2\mu_{\text{arch}}\Bigl(\sum_a\rho_a^2\Bigr)\Delta\omega
++
+\Delta L_{\text{wake},z},
+\qquad
+\Delta\mathbf J_\perp
+=
+\sum_a J_a\,\Delta\boldsymbol\eta_a
++
+\Delta\mathbf L_{\text{wake},\perp}
+$$
+
+with $\Delta\rho_a=\cos\alpha_a\,\Delta R_a-R_a\sin\alpha_a\,\Delta\alpha_a$, and with the axial cost of a layer inclination only second order — tilting stores transverse angular momentum at zero first-order axial price. Three structural constraints then reshape the nested allocation problem:
+
+1. **One cadence.** The nested frame's three independent frequency increments collapse to a single $\Delta\omega$ shared by every layer. Layer-resolved allocation freedom lives entirely in the geometry — radii and tilts — not in per-layer retuning.
+2. **The rail pin slaves the cadence.** The middle binary rides the field-speed rail, $\omega=c_f/(R_M\cos\alpha_M)$, so the cadence increment is not a free coordinate at all: $\Delta\omega/\omega=-\Delta R_M/R_M+\tan\alpha_M\,\Delta\alpha_M$. A transaction can move the clock only through the rail layer's geometry — the same pin that fixes speed and size also disciplines the partition. Claim level: the slaving inherits the pin's standing (derivation plus measurement, with the speed-attractor behavior confirmed natively).
+3. **One energy price.** In the reduced action-angle chart the nested companion ledger reads $\Delta E=\omega_I\Delta I_I+\omega_M\Delta I_M+\omega_O\Delta I_O+\Delta E_{\text{wake}}$, so the energy cost of an accepted increment depends on which layer receives it. At one cadence that dependence vanishes: $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ at first order, however the allocation falls. For the accepted quantum $\Delta I=\hbar$ this is $\Delta E=\hbar\omega$ appearing as a ledger identity of the iso-frequency family rather than an imported relation — and it moves the partition question: the layers no longer compete on energy price, so the actual allocation must be decided by the constraint structure alone — the capped support inventory, the stiffness spectrum (the inner-radius backbone stiff, the coupled relative-tilt modes soft), and causal-root admissibility.
+
+The soft coupled relative-tilt modes are the natural strain sinks of this map — transverse storage at zero first-order axial cost — and the candidate storage channel for accepted clicks. As in the nested case, writing the map is not solving it: the partition among radii, tilts, cadence, and wake remains a dynamics problem in conservation, admissibility, phase rigidity, and branch stability. Claim level: the increment identities are exact kinematics of the prescribed rigid family; the energy-price statement is a reduced action-angle statement at the same grade as the nested companion ledger; the allocation dynamics is open.
+
+### Quotient-Spectrum Discipline
+
+The exact global-tilt null is a gift and a trap, and it fixes a method rule. Because the void is isotropic, a global tilt of the braid costs nothing: the stiffness block annihilates $(1,1,1)$ identically, and the measured residual of that null is a built-in validation row (numerically zero at the fixed point). But the same null pollutes any symmetric-part eigenvalue bound. **Every stability or spectrum claim in the axis sector must therefore deflate the exact global-tilt null first and read the quotient spectrum** — the relative-tilt modes are the claim-bearing objects. In the dynamical problem below the null survives exactly only when the linearization carries the spin transport of the baseline axial torques; there the deflation is again exact, and the paired validation row is that the cross-block row sums reproduce the measured baseline torques layer by layer.
+
+### The Ordered Frame and the Helicity-Polarity Lock
+
+The spinor program of this bridge needs an ordered frame: a locked triple of oriented structures whose transport around closed histories can be interrogated for $2\pi/4\pi$ behavior. The spindle braid supplies that frame as measured structure rather than hypothesis. Its ground-state geometry locks the relative orientation of three oriented objects — the spin axis $\hat{\mathbf z}$ (exact, from the rank-one spine), the cap polarity dipole (exactly axial at all times, by the dipole identity of [Braid Mathematics](../../noether-braid/braid-mathematics.md#moments-and-the-axial-polarity-dipole)), and the cap azimuthal offset — and the lock is measured maximal under drift: closure prefers motion anti-parallel to the cap polarity dipole, with the C-conjugate braid forced to lead with the opposite polarity. The handedness label is the pseudoscalar pairing of dipole and spin, and the C-degeneracy and CP structure of the frame are inherited from the spindle braid's discrete-symmetry results. Claim level: measured helicity-polarity lock on prescribed worldlines; derivation sketch for the discrete-symmetry consequences.
+
+### Gyroscopic-Circulatory Axis Dynamics
+
+The quasi-static tilt block is necessary but not sufficient: the layers carry spin angular momentum, so the true linearized axis dynamics at the self-equilibrated fixed point is a quadratic eigenvalue problem. With the tilt coordinates $q=(\eta_I^x,\eta_M^x,\eta_O^x,\eta_I^y,\eta_M^y,\eta_O^y)$, per-layer inertia $m_a$ and spin $J_a$ from the kinematic ledger above, baseline axial torques $\tau_a$, and the measured tilt block $K$, the layer equations
+
+$$
+m_a\ddot\eta_a^{x}+J_a\dot\eta_a^{y}+\tau_a\eta_a^{y}=T_a^{x}(q),
+\qquad
+m_a\ddot\eta_a^{y}-J_a\dot\eta_a^{x}-\tau_a\eta_a^{x}=T_a^{y}(q)
+$$
+
+assemble into the pencil
+
+$$
+\det\!\left(\lambda^2M+\lambda G+\Gamma-K\right)=0
+$$
+
+with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline torques — the rail pump entering the axis sector, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
+
+At the self-equilibrated fixed point, measured at seed grade with cycle-sampling witnesses, the verdict is **flutter**. After deflating the exact global pair, the quotient spectrum carries a growing whirl pair
+
+$$
+\lambda=+0.18\pm0.38\,i
+$$
+
+— an e-folding time of about $0.9$ rotations with a whirl period of about $2.7$ rotations — whose mode shape is middle-dominated with strong inner participation and the caps nearly spectators: the inner-tilt-to-middle-torque coupling, the strongest single entry of the measured tilt block, is the flutter pathway. A second, weakly growing fast pair sits near the free-precession band. The restoring quasi-static tilt block does not survive the gyroscopic-circulatory coupling: with both eigenvalues of the static quotient block negative, the spin and circulatory terms still produce growth. The counterfactual with the middle's pump transport removed from $\Gamma$ still flutters, slightly faster — **the axis sector is unstable independently of the rail pump**.
+
+Completing the pencil with the measured delay-memory block strengthens the verdict rather than softening it. The causal wake also responds to tilt *rates* — the field in flight arrives from where the layer was — and that response, measured on the same evaluator, is anti-damping on every layer: the delayed torque pushes along the tilt rate, the axis-sector appearance of the same anti-damping character the delayed kernel shows in the tangential sector. With the measured block included the growth rate rises and a fast whirl pair near the free-precession band becomes the fastest-growing mode; the isotropic damping that would close the axis sector is order-one against the layer spin momenta. The axis sector therefore needs a genuine absorber, not a trim — the candidate suppliers are the escapement's click channel acting under tilt, which this cycle-averaged evaluator cannot book, and the ambient medium's angular-momentum-bath coupling.
+
+The native release of the same fixed point measured exactly this mode class: nutation growing from release and preceding shape loss. The seed-grade linear rate underpredicts the native mid-window growth by a factor of a few — the released geometry was simultaneously expanding, a coupling outside the frozen-geometry pencil — but the direction, the growth character, and the layer pathway agree. Claim level: seed-grade instrument (cycle-averaged rigid-layer reduction, frozen geometry, partner-channel booking — the escapement's click channel is outside the evaluator) on prescribed worldlines, with the static and delay-memory blocks both measured on exact causal roots, corroborated in direction by native measurement; nothing here is retention evidence. The verdict binds candidate design the same way the basin principle does: a surviving realization must supply axis-sector absorption — a tilt-sector analog of the escapement — and any seed-grade stability gate must include the gyroscopic-circulatory quotient spectrum, not the quasi-static tilt block alone.
+
+The natural escape from this verdict is that stability might belong to the *moving* braid rather than the rest state. The spindle family closes better under drift and prefers to fly axis-first (see [Spindle Braid](../../noether-braid/spindle-braid.md#motion-inertia-and-isotropy)), and that preference is a genuine orientation torque — so one asks whether the same drift that anchors the braid's speed also anchors its axis. Rebuilding the full pencil on the screw-drifting family answers it. The orientation torque is real and enters as a restoring stiffness $k(u)$ that lifts the rest state's exact global-tilt null: at rest, tilting the whole assembly is free (isotropy); under drift it costs closure, isotropically in the transverse plane, so the global axis-orientation mode acquires positive stiffness that grows with speed toward the preferred basin and is larger in the electrino-leading sense. But $k(u)$ grips only the *global* orientation — the direction the spin axis points relative to the line of motion — and the flutter lives in the *internal* whirl between the layers, orthogonal to it. Across the whole physical drift basin, in both drift senses, on both the frozen and the re-optimized moving geometry, and with or without the click pump, the growing whirl persists at the same class as at rest; no drift speed turns the axis sector restoring. The moving family is thus inertia-anchored and *globally* axis-anchored by one closure mechanism, yet still internally unstable: the axis sector is closed at seed grade in both the resting and the moving frame. Confinement of this family therefore requires a channel outside every rigid-layer pencil — non-rigid axis dynamics, in which an internal deformation coordinate couples to the whirl, or a structured environment that grips the deep layers. Claim level: seed-grade linear stability on the prescribed screw-drifting family; the reconciliation of any moving-family stability statement with the local sea state remains a stated preferred-frame burden.
+
 ## Nested Shell Braid Spin Scaffold
 
-The nested shell braid is the first place where the spin question becomes native to the assembly rather than imported from standard quantum notation. A nested shell braid contains three coupled shell binaries:
+This scaffold and the functional scaffold that follows are retained as the nested-comparison realization: the three-frequency, three-normal chart whose approximate constructions the spindle scaffold above replaces with exact uniaxial counterparts. The nested shell braid is the first place where the spin question becomes native to the assembly rather than imported from standard quantum notation. A nested shell braid contains three coupled shell binaries:
 
 | Layer | Dynamics role | Angular-momentum role | Spin relevance |
 | --- | --- | --- | --- |
@@ -278,7 +382,7 @@ again as a reduced action-angle statement rather than a completed derivation. Th
 
 ## Delayed Three-Layer Functional Scaffold
 
-The nested shell braid ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
+This is the nested-comparison functional scaffold; its single-cadence counterpart — the rank-one spine plus cap structure — is stated in the spindle scaffold above, where the kinematic half is exact. The nested shell braid ledger can now be written in a form that is concrete enough for proof work and simulation checks. This is still a scaffold: the wake term must be derived from the regularized nonlocal causal action before it can be claimed as a closed theorem.
 
 For each layer $\ell\in\{I,M,O\}$, let $R_\ell(T)$ be the layer radius, $\omega_\ell(T)$ its angular frequency, $\hat{\mathbf n}_\ell(T)$ its plane normal, and
 
@@ -536,7 +640,7 @@ For a positive one-cycle accepted transaction, $\Delta I_{\text{accepted}}=+\hba
 
 ## Partition Equations from the Master Ledger
 
-The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[T_i,T_f]$:
+These are the per-frequency partition equations of the nested realization, retained as comparison material; the primary allocation statement of this bridge is the iso-frequency partition map in the spindle scaffold. The partition equation is not an extra postulate. It is the layer-resolved projection of the master-equation angular-momentum ledger. For each receiver layer $\ell$, define the branch torque collected by that layer over a transition window $[T_i,T_f]$:
 
 $$
 \mathbf T_\ell(T)
@@ -768,7 +872,7 @@ Together, these equations are the nested shell braid total-angular-momentum part
 
 ## Worked Outer-Coupled Transition
 
-This worked transition has two levels. The first level gives the general separated-scale ledger for one positive closed-cycle action transaction coupled first to the outer binary. The second level solves one minimal branch certificate: one outer substep, one middle hinge substep, two inner self-hit substeps, and no retained wake angular momentum after the transition. General branch coefficients remain closure targets, but the minimal branch shows how the scaffold can produce an explicit partition and frequency retune.
+This worked example is explicitly scoped to the separated-scale nested realization; the spindle counterpart — a worked transaction on the iso-frequency allocation map — is gated on native-release data from a surviving uniaxial realization. This worked transition has two levels. The first level gives the general separated-scale ledger for one positive closed-cycle action transaction coupled first to the outer binary. The second level solves one minimal branch certificate: one outer substep, one middle hinge substep, two inner self-hit substeps, and no retained wake angular momentum after the transition. General branch coefficients remain closure targets, but the minimal branch shows how the scaffold can produce an explicit partition and frequency retune.
 
 Use a separated-scale branch with
 
@@ -1380,6 +1484,29 @@ $$
 $$
 
 where $\phi_\ell$ are layer phases and $\mathcal{R}$ records the active causal-root and self-hit branch data. A spatial rotation acts on the normals, but it need not return the full ordered phase-and-root history to itself after the same rotation that returns an ordinary rigid body.
+
+### The Spindle Locked Frame
+
+On the spindle braid the normal-triple chart degenerates by construction: all three layer normals coincide with the spin axis, so the non-coplanarity condition $\det[\hat{\mathbf n}_I,\hat{\mathbf n}_M,\hat{\mathbf n}_O]\ne0$ used below has no uniaxial image. The ordered-frame data does not disappear — it survives in a sharper, measured form. The spindle's ordered frame is the locked triple
+
+$$
+\mathcal F_{\text{spin}}(t)
+=
+\bigl(
+\hat{\boldsymbol\jmath},\;
+\hat{\mathbf d},\;
+\theta_O;\;
+\mathcal R
+\bigr)
+$$
+
+where $\hat{\boldsymbol\jmath}$ is the spin axis (exact, from the rank-one kinematic spine), $\hat{\mathbf d}$ is the cap polarity dipole direction (exactly axial at all times, by the dipole identity), $\theta_O$ is the cap azimuthal offset supplying the transverse phase reference, and $\mathcal R$ is the same causal-root and self-hit ledger as before. The handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$ — pseudoscalar because the dipole is a polar vector and the spin axis an axial one — and the ground-state geometry locks the triple's relative orientation, with the lock measured maximal under drift. The frame the spinor target needs is therefore not assembled from three approximate normals; it is a single measured glove.
+
+The discrete-symmetry structure of the label is inherited from the spindle braid's results at their stated claim level. Polarity conjugation (C) reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: braid and anti-braid are the exactly degenerate glove pair. A true mirror reverses the rotation sense while preserving the dipole, flipping $h$ again. The combined CP operation restores $h$, which is the frame-level statement of the CP degeneracy. Consequently the gauge quotient on the spindle frame must not remove dipole reversal, rotation-sense reversal, or causal-root branch change — exactly the discipline stated for the nested chart below.
+
+The spinor question itself carries over unchanged, and gains a cleaner arena. A $2\pi$ spatial rotation about $\hat{\boldsymbol\jmath}$ returns the visible geometry of the locked triple; whether the *retained* phase-and-root history returns — or returns only after $4\pi$ — is precisely the parity test $\epsilon_r^{2\pi}$ defined below, now posed on the retained rows of a frame whose ordering is measured rather than hypothesized. The nested chart that follows is retained as the nested-comparison realization of the same target.
+
+### The Nested Ordered-Frame Chart
 
 The corresponding reduced nested shell braid state vector is
 
@@ -2001,7 +2128,7 @@ Here $N_{\mathrm{basin}}(D)$ counts independently recordable basin alternatives 
 
 The action-angle chart should therefore be treated as a comparison chart selected after the recordable basin family has been fixed, not as a free quantization rule. In ordinary Bohr-Sommerfeld language one counts integral action leaves. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ closure route, the corresponding count is accepted only when the same Master-Equation branch record, root-ledger admissibility, and apparatus channel already identify the leaves as independently recordable alternatives. A singular or representation-dependent action-angle chart that changes the count without changing those physical records is a failed effective chart, not a new state sector.
 
-For a nested shell braid transaction, the compact bookkeeping statement is
+For a Noether braid transaction, the compact bookkeeping statement is
 
 $$
 \Delta A_{\text{cycle}}=h,
@@ -2009,7 +2136,7 @@ $$
 \Delta I_{\text{tot}}=\hbar
 $$
 
-with
+with, in the nested-comparison per-frequency chart,
 
 $$
 \Delta I_I+\Delta I_M+\Delta I_O+\Delta I_{\text{wake}}
@@ -2017,11 +2144,13 @@ $$
 \hbar
 $$
 
-only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
+and, in the primary iso-frequency chart, the same total allocated through the spindle scaffold's partition map (radii, tilts, rail-pinned cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
+
+The constancy of the transacted unit itself is a measured, open question on the spindle family. At frozen geometry the stored action per click dilates exactly as $1/\gamma$ under drift, while the transacted wake angular impulse per click runs, $J_z(u)/J_z(0)=1\pm0.236\,|u|-1.28\,u^2$ — helicity-odd at first order, quadratic run-down helicity-averaged. Because nearby family members transact more and less than the rest value at the same drift, a transaction-conserving trajectory through the configuration space exists; whether it coincides with the closure-optimal trajectory is the named computation on which derived Planck-constant constancy rests. Coincidence derives $h$-constancy from the same closure principle as the rest of the family; divergence converts observed constancy into a selection constraint on which family members can be dressed into matter. Claim level: measurement for the two ledgers on the prescribed family; the coincidence question is open.
 
 ## Foundation-Up Closure Route
 
-The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while nested shell braid labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three shell binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable nested shell braid closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
+The closure route below is written in the nested-comparison chart: its integer ledger counts three per-layer windings, and its holonomy object is the normal triad. On the primary iso-frequency realization the same route degenerates deliberately — one common cadence collapses the winding triple, and the locked frame replaces the normal triad — so the spindle-native restatement of this route is an open re-derivation gate, not a rename. The orbital lesson should be used as a method, not merely as a dictionary. In ordinary atomic-orbital theory, one chooses the angular configuration space, imposes single-valuedness and finite angular behavior, and then reads the surviving labels as quantum numbers. The clean generalization is that ordinary orbital labels come from closure and regularity on an effective angular envelope, while nested shell braid labels should come from closure, root-ledger admissibility, normal-triad holonomy, and stability of the three shell binaries. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this style of reasoning begins one layer lower: first classify the stable nested shell braid closures, then ask which causal-wake envelopes and observer-level orbital labels they support.
 
 For a nested shell braid, the first closure object is the three-shell phase and root ledger over a stable return period $T$. A useful theorem-target form is
 
@@ -2224,7 +2353,7 @@ s=\frac{1}{2},
 m_s=\pm\frac{1}{2}
 $$
 
-The nested shell braid burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
+The Noether braid burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
 
 ## Orbital Angular Momentum
 
@@ -2292,7 +2421,7 @@ The repo-wide spin taxonomy is:
 | Effective spin label | Geometry target |
 | --- | --- |
 | Spin-$0$ | Scalar or radial response with no attached orientation axis. |
-| Spin-$\tfrac{1}{2}$ | Ordered non-coplanar nested shell braid frame with $4\pi$ spinor closure. |
+| Spin-$\tfrac{1}{2}$ | Ordered locked braid frame with $4\pi$ spinor closure — the spindle braid's measured locked triple as primary, the non-coplanar nested frame as comparison. |
 | Spin-$1$ | Vector channel with one distinguished axis and transverse or helical structure. |
 | Spin-$2$ | Tensor-like transverse-traceless deformation data. |
 
@@ -2904,7 +3033,7 @@ Horizon and planar-lock discussions should use narrower language unless the prop
 
 Spin measurement is not the reading of a pre-existing tiny arrow. It is a finite-time coupling between an apparatus and the full angular-momentum ledger of the target assembly. The measured value is the branch record produced by that coupling relative to the apparatus axis, not a primitive label that existed before the apparatus interaction.
 
-For a Stern-Gerlach-like measurement, the apparatus supplies an oriented interaction geometry $\hat{\mathbf{m}}$ and a spatial gradient. In effective language one writes a coupling to a spin projection along $\hat{\mathbf{m}}$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate-level description is a macroscopic apparatus assembly whose constituent architrinos and causal wakes create an axis-indexed potential environment for the target nested shell braid. A useful reduced apparatus potential is
+For a Stern-Gerlach-like measurement, the apparatus supplies an oriented interaction geometry $\hat{\mathbf{m}}$ and a spatial gradient. In effective language one writes a coupling to a spin projection along $\hat{\mathbf{m}}$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate-level description is a macroscopic apparatus assembly whose constituent architrinos and causal wakes create an axis-indexed potential environment for the target Noether braid. A useful reduced apparatus potential is
 
 $$
 U_{\text{app}}(\mathbf X,T;\hat{\mathbf{m}})
@@ -2922,7 +3051,7 @@ $$
 
 The gradient must be strong enough and persistent enough to drive the coupled target-apparatus state toward a branch boundary, but not so violent that it dissociates the target instead of measuring it. A zero-duration projection is therefore not the substrate model. The observer-level abruptness is the coarse appearance of a finite threshold crossing and record lock.
 
-The target is not represented by one internal vector $\hat{\mathbf{n}}$. The substrate-facing object is the full nested shell braid spin ledger
+The target is not represented by one internal vector $\hat{\mathbf{n}}$. The substrate-facing object is the full Noether braid spin ledger
 
 $$
 \mathcal{J}_{\text{core}}(T)
@@ -3508,7 +3637,7 @@ P_{-}(\alpha\,|\,\text{rec})
 \sin^2\!\left(\frac{\alpha}{2}\right)
 $$
 
-This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete nested shell braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
+This closes the single-assembly basin-volume arithmetic in the reduced spinor-record chart and identifies the Master-Equation origin of both ingredients external to the spinor coordinate: $d\nu_{\text{rec}}$ is the invariant measure of the locked record-cycle phase, and $d\mathbf J_{C}^{\text{app}}/dT$ is the angular impulse rate generated by the apparatus cross-root branch sum. The remaining substrate burden is to derive the effective spinor coordinate itself, derive the conditional record measure and physical separatrix from the apparatus dynamics, and evaluate the branch-sum impulse for a concrete Noether braid apparatus model. If the record gate efficiency depends on $\theta_{\text{rec}}$ or on the unresolved braid phases, that dependence belongs inside $d\nu_{\hat{\mathbf m}}^{\mathrm{rec}}$ rather than inside a separate post-measurement probability rule.
 
 Bell-pair tests require one more layer: the pair-provenance ledger and both local apparatus couplings must be included before comparing to the singlet correlation. A response that reduces to a sharp classical basin boundary over a preassigned local axis remains the known linear-correlation failure mode, not a successful spin-measurement model.
 
@@ -3562,7 +3691,7 @@ E_{\text{axis}}(\theta_{AB})
 -1+\frac{2\theta_{AB}}{\pi}
 $$
 
-which is linear in $\theta_{AB}$ and obeys the CHSH bound. Therefore angular-momentum conservation at creation is not enough. The response kernel must involve the full nested shell braid ledger and finite-time detector coupling, not merely an opposite spin arrow carried by each daughter.
+which is linear in $\theta_{AB}$ and obeys the CHSH bound. Therefore angular-momentum conservation at creation is not enough. The response kernel must involve the full Noether braid ledger and finite-time detector coupling, not merely an opposite spin arrow carried by each daughter.
 
 Bell's factorization condition is
 
@@ -3650,18 +3779,19 @@ The following usage should be preferred across the corpus:
 - Write "spin-measurement outcome" for the apparatus-indexed basin record, not for a pre-existing spin arrow hidden inside the target.
 - Write "observer-level orbital quantum number" for atomic $\ell$ and $m$ labels until their effective-envelope recovery is derived.
 - Treat "intrinsic spin" as standard quantum language meaning "not observer-level orbital motion"; do not use it to imply primitive spin on an architrino.
+- Treat the spindle braid's uniaxial scaffold as the primary realization of this bridge; write "nested-comparison" for material retained on the three-frequency nested realization, and do not source new ledger quantities from the nested chart when the spindle counterpart exists.
 
 ## Closure Targets
 
 This bridge leaves several derivations open beyond the partition scaffold above.
 
 1. Promote the delayed three-layer scaffold above into a conserved functional derived directly from the regularized nonlocal action.
-2. Validate that functional on a nested shell braid with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
+2. Validate that functional on the spindle braid's uniaxial realization — where the kinematic half is exact and the open burden is the wake row, including its measured tilt-sector asymmetry — and, as nested comparison, on a nested shell braid with inner, middle, and outer binary radii, frequencies, plane normals, phases, active root branches, and self-hit history.
 3. Populate the finite candidate set $\mathcal A_N(B^-,\Gamma_{\text{coupl}},W)$, evaluate $\mathcal R_{\mathrm{sel}}$ on each retained branch candidate, and test whether $\operatorname{Sel}_{B,N}$ is chart-invariant, stable under retained-budget refinement $N\preceq N'$, unique, or a physical tie for an accepted $\Delta A_{\text{cycle}}=h$ transaction.
 4. Generalize the solved four-substep branch by deriving or fitting $a$, $b$, $w$, $\Delta R_\ell$, $\Delta\omega_\ell$, and $\Delta E_{\ell,\text{root}}$ from the master equation for non-minimal branches.
-5. Determine whether the partition is unique or branch-dependent for inner, middle, and outer binary layers.
-6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift for ordered non-coplanar nested shell braids, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
-7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal nested shell braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
+5. Determine whether the partition is unique or branch-dependent — on the iso-frequency allocation map (radii, tilts, rail-pinned cadence, wake) as the primary form, and for the nested per-frequency layers as comparison.
+6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift on the spindle braid's locked frame — the non-coplanar chart has no uniaxial image, so the lift question must be posed on the locked triple's retained rows — retaining the ordered non-coplanar nested version as comparison, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
+7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
 9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
@@ -3670,5 +3800,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 13. Derive the native effective envelope extractor $\mathcal E_{\mathrm{orb}}$ for an assembly in an external potential, then apply the angular-envelope lemma to recover $2\pi$ azimuthal single-valuedness, $\ell\in\mathbb N_0$, and $m\in\{-\ell,\ldots,\ell\}$ without importing internal spin data.
 14. Map observer-level orbital angular momentum, such as atomic $\ell$, to assembly-level internal rotational action without conflating the two.
 15. Rebuild the Bell account from the completed angular-momentum ledger, measurement-response kernel, and basin-measure law.
+16. Derive the axis-sector absorber: the gyroscopic-circulatory quotient spectrum of the self-equilibrated spindle fixed point carries a growing whirl pair, so a surviving uniaxial realization needs a tilt-sector transaction channel — the axis analog of the field-speed escapement — and the spindle worked example remains gated on a release that survives it.
+17. Execute the $J_z$-conserving-trajectory versus closure-optimal-trajectory comparison on a surviving family, feeding the $h$ and $\hbar$ convention section: coincidence derives Planck-constant constancy; divergence converts observed constancy into a selection constraint on dressable family members.
 
 Until those targets are closed, this document should be read as a disciplined bridge. It is strong enough to say that angular momentum and spin are not primitive architrino properties, strong enough to prevent $h/\hbar$ drift, and strong enough to route Bell's theorem to the correct prerequisite. It is not yet a proof that standard spin and all Bell correlations have been derived from the master equation.

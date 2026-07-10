@@ -2,7 +2,7 @@
 
 This chapter states the $\mathbb{A}\mathbb{A}\mathbb{A}$ proof target for Fermi-Dirac and Bose-Einstein statistics. The standard counting rules are not being replaced at the observer level. The question is what physical assembly geometry makes those counting rules appear.
 
-The working hypothesis is direct. Fermi-Dirac behavior belongs to assemblies whose nested shell braid support remains a genuine three-dimensional exclusion volume. Bose-Einstein behavior belongs to channels whose support has become strongly oblated into an effectively two-dimensional coherent mode. The same family of geometry is being used in two different regimes: volumetric packing on one side, shared phase-compatible support on the other.
+The working hypothesis is direct. Fermi-Dirac behavior belongs to assemblies whose Noether braid support remains a genuine three-dimensional exclusion volume. Bose-Einstein behavior belongs to channels whose support has become strongly oblated into an effectively two-dimensional coherent mode. The same family of geometry is being used in two different regimes: volumetric packing on one side, shared phase-compatible support on the other.
 
 That is only the geometry half of the story. The fermionic exchange sign still depends on the ordered-frame spinor program in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). Volume exclusion can explain why same-state packing becomes costly, but it does not by itself derive the exchange phase or the full spin-statistics connection.
 
@@ -16,9 +16,9 @@ The substrate question is simple to state: what makes one effective excitation b
 
 The answer must not erase substrate identity. Individual architrinos remain provenance-bearing entities, as stated in [Absolute Time](../foundations/absolute-time.md#provenance-and-identity-through-time), and the exact symmetries of the master equation preserve full histories rather than arbitrary label swaps (see [Master Equation](../dynamics/master-equation.md#fundamental-symmetry-group)). The statistics problem is therefore an effective-state recovery problem: determine when finite observers may quotient inaccessible provenance into antisymmetric or symmetric bookkeeping without treating that quotient as ontic interchangeability.
 
-## Nested Shell Braid Geometry Basis
+## Noether Braid Geometry Basis
 
-The relevant object is the nested shell braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
+The relevant object is the Noether braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md).
 
 In the low-apparent-energy matter regime, the nested shell braid support rows maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
 
@@ -30,7 +30,7 @@ That statement has a controlled burden. The exclusion envelope can supply the ge
 
 ## Fermi-Dirac Regime: 3D Exclusion
 
-Fermi-Dirac behavior corresponds to nested shell braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
+Fermi-Dirac behavior corresponds to Noether braid assemblies whose nested orbital support remains volumetric. Two such assemblies cannot be placed into the same effective state without forcing overlap of their dynamic exclusion envelopes.
 
 In plain terms, the exclusion is not a command written onto a point particle. It is the cost of trying to make two retained assembly ledgers occupy one record-facing state while their wake histories, branch closures, and exclusion envelopes still need separate room.
 
@@ -41,7 +41,7 @@ The exclusion is not a hard material wall. It is a path-history and wake-geometr
 - the inner and middle binaries maintain internal stabilizing density,
 - and nearby braids cannot share the same local state without disrupting those orbit closures.
 
-At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric nested shell braid envelopes to occupy the same state without losing stable nested shell braid identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
+At the effective quantum level, that obstruction must appear as antisymmetric exchange bookkeeping and Pauli exclusion. At the assembly level, it is the candidate inability of two volumetric Noether braid envelopes to occupy the same state without losing stable Noether braid identity. The exchange sign still has to come from the ordered-frame spinor proof, not from volume exclusion alone.
 
 The blocker can be stated directly. Fermionic exchange-sign recovery cannot be credited to the 3D exclusion envelope until the same ordered-frame program supplies a retained non-gauge row $r_\star$ with
 
@@ -71,13 +71,13 @@ This is the proposed substrate basis for Bose-Einstein statistics:
 - exclusion-envelope overlap is replaced by phase-compatible shared support,
 - and many same-channel excitations can lock into a common mode without demanding separate volumetric envelopes.
 
-Photon-like channel behavior is the cleanest target for this mechanism. A bosonic mode is therefore not "less real" than a fermionic assembly. It is a different geometric regime: coherent 2D-supported channel behavior rather than 3D nested shell braid exclusion behavior.
+Photon-like channel behavior is the cleanest target for this mechanism. A bosonic mode is therefore not "less real" than a fermionic assembly. It is a different geometric regime: coherent 2D-supported channel behavior rather than 3D Noether braid exclusion behavior.
 
 As on the fermionic side, this dimensional reduction is necessary but not sufficient. Collapsing the exclusion envelope toward a 2D coherent support removes the volume obstruction to shared occupation, but genuine symmetric occupation is a statement about exchange phase, not packing: it is licensed by the symmetric exchange projection $P_+$ introduced below, not by the loss of exclusion volume alone.
 
 ## The 3D-to-2D Transition
 
-The transition can be summarized by the canonical nested shell braid shape ratio from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
+The transition can be summarized by the canonical Noether braid shape ratio from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). Let $R_{\parallel}$ denote the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ the transverse semiaxis. Then
 
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
@@ -85,7 +85,7 @@ $$
 
 The Fermi-Dirac regime has $\xi$ bounded away from zero. The envelope is oblate but still volumetric. The Bose-Einstein regime is approached as $\xi\to 0$, where the active support becomes effectively two-dimensional.
 
-This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D nested shell braid configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
+This ratio is not yet a final derivation of spin-statistics. It is a geometric control variable for the proof program. A complete closure must show how stable 3D Noether braid configurations inherit the ordered-frame spinor proof and produce the fermionic exchange sign, and how the 2D coherent channel limit produces symmetric occupation at the observer level.
 
 Neutrality is not enough to make a carrier bosonic. A neutral Noether braid may still have a volumetric exclusion envelope, branch identity, and packing pressure, so it belongs on the Fermi-Dirac side of this geometry hypothesis until a coherent planar or phase-compatible support limit is derived. Conversely, bosonic behavior is licensed by the supported-channel geometry and exchange projection, not by the absence of electric charge. This distinction keeps neutral Noether braid inventory from being mistaken for unlimited Bose occupation.
 
@@ -160,7 +160,7 @@ $$
 $$
 Here $\Delta E_{ab}^{\mathrm{antisym}}$ and $\Delta E_{ab}^{\mathrm{sym}}$ are the $\mathbb{A}\mathbb{A}\mathbb{A}$-predicted antisymmetric-spatial (spin-triplet) and symmetric-spatial (spin-singlet) energies, compared against the standard $J_{ab}-K_{ab}$ and $J_{ab}+K_{ab}$ respectively; the split is by spatial exchange symmetry. This does not replace the ordered-frame spinor proof. It prevents a purely geometric exclusion story from missing the experimentally important exchange-energy splitting that appears before full many-electron Hartree-Fock closure.
 
-The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric nested shell braid configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
+The geometry hypothesis in this chapter can now be stated as a recovery residual. Let $\mathcal{E}_{N,\theta}$ be the effective $N$-assembly state extraction map, let $\mu_{\mathrm{3D}}$ be a retained ensemble of volumetric Noether braid configurations with $\xi\ge\xi_F$, and let $\mu_{\mathrm{2D}}$ be a retained ensemble of coherent planar-channel configurations with $\xi\le\xi_B$. The exchange closure target is
 $$
 \mathcal{R}_{\mathrm{ex}}(\theta)
 =
@@ -179,9 +179,9 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 
 This chapter depends on:
 
-- [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) for the oblate spheroidal exclusion envelope,
 - [Noether Braid](../noether-braid/noether-braid.md) for the braid taxonomy and nested shell braid scaffold,
-- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) for the delayed-dynamics regime map,
+- [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,
 - and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md) for the photon-channel case where coherent planar-pair modes must recover Bose-Einstein occupation behavior.
 
@@ -191,10 +191,10 @@ It also sets targets for [Quantum Operator Mapping](../philosophy-history/theory
 
 The next proof steps are:
 
-1. Extract $\xi$ from simulated or analytic nested shell braid orbit data.
+1. Extract $\xi$ from simulated or analytic Noether braid orbit data.
 2. Identify the stability threshold separating volumetric exclusion from coherent 2D support.
-3. Derive how exchange of two 3D nested shell braid assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
+3. Derive how exchange of two 3D Noether braid assemblies produces fermionic antisymmetry at the effective level, using the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$ spinor, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#spinor-to-metric-compatibility-residual).
 4. Derive how phase-compatible 2D-supported channel excitations produce bosonic symmetric occupation.
 5. Check that mixed regimes do not create forbidden intermediate statistics for ordinary low-energy matter.
 
-Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D nested shell braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when nested shell braid orbital support is oblated into an effectively 2D coherent channel.
+Until those steps are complete, the claim should be treated as a precise geometry hypothesis: Fermi-Dirac statistics are expected to arise from 3D Noether braid exclusion plus the ordered-frame spinor exchange phase on the same retained row; Bose-Einstein statistics are expected to arise when nested shell braid orbital support is oblated into an effectively 2D coherent channel.

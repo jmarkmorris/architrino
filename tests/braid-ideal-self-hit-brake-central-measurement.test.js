@@ -89,3 +89,41 @@ test("report is fail-closed and names the three producer gaps", () => {
   );
   assert.equal(stratumGap.status, "resolved_by_operator_declared_d0_2026_07_08");
 });
+
+test("DT-CONVERGED impulse-resolved click booking: crossing-anchored adaptive integration converges; step-laid window is phase-fragile", async () => {
+  const { impulseResolvedClickImpulse, stepWindowBookingError } = await import(
+    "../scripts/braid-ideal/self-hit-brake-central-measurement.mjs"
+  );
+  const r1 = impulseResolvedClickImpulse({ rhoC: 0.01 });
+  assert.equal(r1.converged, true, "adaptive booking converges at rhoC = 0.01");
+  assert.ok(r1.convergenceWitness < 1e-3, `witness ${r1.convergenceWitness}`);
+  // anchor band: the accepted fixed-grid instrument books 2.6884 on a narrower
+  // window; the converged wide-window reference lands in the same class
+  assert.ok(
+    r1.absorbedFractionOfCertifiedPump > 2.6 && r1.absorbedFractionOfCertifiedPump < 3.0,
+    `absorbed fraction ${r1.absorbedFractionOfCertifiedPump}`
+  );
+  const e = stepWindowBookingError({ rhoC: 0.05 });
+  assert.equal(e.reference.converged, true);
+  // the fragility mechanism on the controlled crossing: the step-laid window
+  // scatters by more than its own mean with crossing phase
+  for (const row of e.rows) {
+    assert.ok(
+      row.bookedImpulseSpread > Math.abs(row.bookedImpulseMean),
+      `step-phase scatter dominates at dt=${row.outerStep}`
+    );
+  }
+});
+
+test("ESCAPEMENT-UNDER-TILT projection: brake sensitivity negative; middle click damping crosses the requirement inside the measured click-rate band", async () => {
+  const { escapementTiltProjection } = await import(
+    "../scripts/braid-ideal/self-hit-brake-central-measurement.mjs"
+  );
+  const p = escapementTiltProjection({});
+  assert.ok(p.cells.every((c) => c.converged), "all sensitivity cells converged");
+  assert.ok(p.sensitivityS < 0, "deeper crossing books more brake (S < 0)");
+  const low = p.cases.find((c) => c.clicksPerRotation === 18);
+  const high = p.cases.find((c) => c.clicksPerRotation === 200);
+  assert.ok(low.dClick < 1.02, `kinematic-bound clicking insufficient for the isotropic requirement (${low.dClick})`);
+  assert.ok(high.dClick > 1.02, `measured-band clicking exceeds the isotropic requirement on its own diagonal (${high.dClick})`);
+});

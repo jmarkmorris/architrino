@@ -3,11 +3,11 @@ import assert from "node:assert/strict";
 
 import {
   estimateLabelLineCount,
+  resolveNodeLabelText,
   resolveSharedLabelTypography,
   resolveWrappedLabelFit,
 } from "../src/runtime/SceneLabelSizingRuntime.js";
 import {
-  formatCenterContextCount,
   resolveCenterContextChapterLabel,
   shouldAllowCenterContext,
 } from "../src/runtime/SceneCenterContextRuntime.js";
@@ -126,6 +126,13 @@ test("ordinary wrapped scene labels can still use the larger visual cap", () => 
   assert.ok(fit.titleSize > 15.5);
 });
 
+test("explicit inline-TeX labels use their rendered text for sizing", () => {
+  assert.deepEqual(
+    resolveNodeLabelText({ labelTitle: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey" }),
+    { labelName: "𝔸𝔸𝔸 Journey", labelSubtitle: "", labelDates: "" }
+  );
+});
+
 test("center context chapter label collapses child chapter markers to the parent", () => {
   const nodes = philosophyHistoryLabels.map((data) => ({ data }));
 
@@ -136,11 +143,6 @@ test("center context chapter label omits mixed top-level chapter markers", () =>
   const nodes = homeSceneLabels.map((data) => ({ data }));
 
   assert.equal(resolveCenterContextChapterLabel(nodes), "");
-});
-
-test("center context count uses section wording", () => {
-  assert.equal(formatCenterContextCount(1), "1 section");
-  assert.equal(formatCenterContextCount(13), "13 sections");
 });
 
 test("center context honors explicit ring opt-out only", () => {

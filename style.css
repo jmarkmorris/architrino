@@ -1347,6 +1347,10 @@ body.has-textbook-page-nav #markdown-panel.is-open {
   column-span: all;
 }
 
+#markdown-panel.multi-columns #markdown-content table {
+  column-span: all;
+}
+
 #markdown-panel.multi-columns #markdown-content pre,
 #markdown-panel.multi-columns #markdown-content blockquote,
 #markdown-panel.multi-columns #markdown-content table,
@@ -1402,11 +1406,10 @@ body.has-textbook-page-nav #markdown-panel.is-open {
 }
 
 #markdown-content table {
-  width: max-content;
-  max-width: 100%;
+  width: 100%;
   border-collapse: collapse;
   margin: 12px 0 18px;
-  overflow-x: auto;
+  table-layout: fixed;
 }
 
 #markdown-content th,
@@ -1414,7 +1417,8 @@ body.has-textbook-page-nav #markdown-panel.is-open {
   border: 1px solid rgba(213, 220, 255, 0.34);
   padding: 6px 12px;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 #markdown-content th {

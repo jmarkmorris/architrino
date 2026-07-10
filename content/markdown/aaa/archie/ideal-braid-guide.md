@@ -10,7 +10,7 @@ Read this alongside:
 
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
-- [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md)
+- [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md)
 - [About the Webapp](about-the-webapp.md)
 
 ## Purpose
@@ -165,7 +165,7 @@ falls in lockstep with the length-contraction factor because the denominator is 
 | `Axes` | Toggles momentum-frame guides: a short bulk-motion contraction guide along $\hat{\mathbf{n}}$ plus two transverse axes perpendicular to it. |
 | `Pause` / `Resume` | Pauses or resumes the animation. |
 | Home icon | Returns from the standalone lesson to the main webapp. |
-| `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested braid from that reference. |
+| `Outer orbit` | Sets the reference transverse scale for the outer binary and rescales the displayed nested shell braid from that reference. |
 | $\beta=v/c_f$ | Sets the displayed velocity fraction, from rest to the formal field-speed limit. |
 | `Cycle` | Changes animation phase speed only. It does not change $\beta$, $\gamma$, or the physical factors. |
 | `Reset` | Restores the view orientation and default phase. |

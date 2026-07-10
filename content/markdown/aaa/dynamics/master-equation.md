@@ -4,7 +4,7 @@ This chapter answers the first dynamics question: given architrinos moving in ab
 
 For the primitive-entity ontology, see [Architrino](../foundations/architrino.md). This chapter begins where ontology becomes motion. A causal wake is not a vague field surrounding a source; it is a delayed contact condition between a past emission event and a receiver event. When that condition closes, the receiver samples a line-of-action contribution with source-normal root legality and receiver-normal branch strength.
 
-The chapter is long because it plays several roles at once: foundational law, theorem spine, analytic benchmark source, and numerical reference. The opening establishes the causal geometry and canonical equation. Later sections develop the delay differential equation form, self-hit structure, analytic regimes, and the energy-symmetry-conservation interface needed by binaries, nested shell braids, effective geometry, and quantum closure.
+The chapter is long because it plays several roles at once: foundational law, theorem spine, analytic benchmark source, and numerical reference. The opening establishes the causal geometry and canonical equation. Later sections develop the delay differential equation form, self-hit structure, analytic regimes, and the energy-symmetry-conservation interface needed by binaries, Noether braids, effective geometry, and quantum closure.
 
 ## Foundations and Causal Geometry
 
@@ -880,13 +880,13 @@ T(v)=\frac{T_0}{\sqrt{1-\beta^2}},
 T_0=\frac{2L_0}{c_f}
 $$
 
-This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE nested shell braid dynamics without reducing to a two-leg closure model.
+This gives a purely substrate-level period-stretch checkpoint. It says only that preserving the same internal phase closure while the receiver translates forces the physical period $T$ to increase in absolute time unless the longitudinal leg shortens. The full unresolved step is proving the same absolute-period scaling for the complete multi-hit NFDE Noether braid dynamics without reducing to a two-leg closure model.
 
 The forward parallel leg carries the same starvation constraint as Proposition 4 with $d_{\min}$ replaced by the leading longitudinal leg length $L_\parallel$. Therefore the two-leg checkpoint is admissible as a retained-row model only in the starvation-free regime
 $$
 v<c_f-\frac{L_\parallel}{h}.
 $$
-Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full nested shell braid proof must show a ledger reorganization, a sea-mediated replacement row, or a declared failure of the translating-loop reduction.
+Above that scale, the checkpoint no longer tracks the same causal-root ledger: the full Noether braid proof must show a ledger reorganization, a sea-mediated replacement row, or a declared failure of the translating-loop reduction.
 
 The two-leg loop is only a checkpoint. It has two phase points and one chosen orientation relative to the absolute motion. A real assembly has an effective internal phase distribution over a finite three-dimensional volume, and operational isotropy has to hold for all loop orientations at once. The closure target is therefore a full oblate-envelope-to-sphere reduction in the internal nested shell braid phase space, not just the equality
 $$
@@ -1138,7 +1138,7 @@ $$
 
 **Plain language:** A hit only changes the along-the-line velocity component right now; sideways motion continues unaffected at the instant of the hit. Over time, the changing radial motion alters the trajectory and thus the subsequent orthogonal component.
 
-**Translating-assembly deformation requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, branch-period stretch, and two-way signal-synchronization records that later observer-inference chapters consume. If nested shell braids do not squash along the direction of motion and do not preserve one retained causal-root ledger while translating through the Noether sea, the downstream recovery program fails at the dynamics layer.
+**Translating-assembly deformation requirement:** The receiver kinematics described here must mechanically produce the moving-assembly deformation, branch-period stretch, and two-way signal-synchronization records that later observer-inference chapters consume. If Noether braids do not squash along the direction of motion and do not preserve one retained causal-root ledger while translating through the Noether sea, the downstream recovery program fails at the dynamics layer.
 
 #### Work and Power
 
@@ -1575,6 +1575,8 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 - **Null-separatrix protection**: the source-normal denominator boundary $D_s=0$ acts as a geometric wall against collapse in the exact kernel when the receiver-normal numerator remains bounded.
 - **A closure test, not a closure proof**: the same receiver-normal branch factor multiplies tangential as well as radial projections, so a source-normal null branch does not by itself prove vanishing tangential power or an exact locked orbit.
 
+**Self-hit stabilization is field-speed gated (necessary condition for binding).** The [receiver-velocity affine form](#receiver-velocity-affine-form-and-the-branch-resistance-tensor) makes this precise. The velocity-dependent force is the branch resistance $\mathsf{M}_i=\sum_\ell w_\ell\,\hat{\mathbf r}_\ell\otimes\hat{\mathbf r}_\ell$, and its signature is set by polarity: an opposite-polarity partner branch has $w_\ell<0$ and therefore **anti-damps**, injecting kinetic energy at rate $|w_\ell|(\mathbf V_i\cdot\hat{\mathbf r}_\ell)^2$ on both approach and recession, while a self-branch has $w_\ell>0$ and **damps**. Self-repulsion is thus the only channel that can make the net velocity-dependent response dissipative. But a self-hit exists only where the retained history reaches field speed: on any stored interval with $\|\mathbf V_i\|\le c_f-\sigma$ for $\sigma>0$, the exact bound $\|\mathbf X_i(T)-\mathbf X_i(T_{\mathrm{em}})\|\le(c_f-\sigma)(T-T_{\mathrm{em}})<c_f(T-T_{\mathrm{em}})$ forbids a same-path causal root. Therefore a bound self-hit orbit must reach field speed somewhere in its retained history; a strictly sub-field assembly cannot self-stabilize against partner anti-damping, and its only dissipative channel is inaccessible. This is why the stabilizing configurations are the maximum-curvature and persistent-memory orbits above, whose self-hits are born exactly at the field-speed excursion, and it is the reason a bound binary is intrinsically a field-speed object rather than a slow Keplerian one.
+
 **Connection to quantum behavior:** At this chapter's claim level, non-Markovian memory and deterministic-but-complex self-hit dynamics are a candidate substrate mechanism for effective quantum-like behavior, not yet a derivation of the quantum formalism:
 
 - effective guidance by self-interference and causal-wake history,
@@ -1680,7 +1682,7 @@ This null-separatrix is therefore an **amplitude wall** for the self branch only
 **Significance:**
 - Defines a **fundamental length scale** $R_{\min}$ that sets the tightest stable orbit radius
 - In the exact geometric model, excludes classical $r \to 0$ collapse by a null-separatrix barrier
-- Supplies one geometric ingredient in candidate stable particle assemblies such as nested shell braids
+- Supplies one geometric ingredient in candidate stable particle assemblies such as Noether braids
 
 **Status split (analytic vs numeric):**
 - **Analytic:** Existence of the Jacobian-null boundary and its singular restoring scaling in the exact kernel.
@@ -1844,7 +1846,7 @@ $$
 The equation supplies the microscopic input for later emergence claims, but it does not by itself prove those claims. The status split is:
 
 - **Binary stabilization**: supported by self-hit barriers and circular/spiral benchmarks; exact stable branches still require certified branch charts and tangential-power closure.
-- **Nested shell braids and particle assemblies**: downstream assembly claims that must be derived from multi-body causal-root locking and hierarchy averaging.
+- **Noether braids and particle assemblies**: downstream assembly claims that must be derived from multi-body causal-root locking and hierarchy averaging.
 - **Quantum behavior**: an effective closure target based on non-Markovian memory, attractor basins, and receiver-level informational ambiguity.
 - **Observer-level geometry and gravity**: effective descriptions that must be recovered from Noether sea constitutive response and clock/ruler closure, not inserted into the substrate law.
 - **Cosmology**: an effective observer-side program tied to Noether sea evolution, transport, and clock-rate comparison; the Euclidean void itself is not claimed to expand.
@@ -2483,7 +2485,7 @@ However, the circular benchmark still exposes a serious obstruction in the bare 
 This sharpens the maximum-curvature program into a concrete fork:
 
 - either the certified signed branch sum fails to cancel the partner drive, so the isolated two-body MCB does **not** exist as an exact constant-speed circular orbit of the bare kernel, or
-- an algebraic cancellation exists, after which stability still requires a separate delay-operator proof and may require additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine nested shell braid multi-body locking, or a more subtle non-circular periodic balance.
+- an algebraic cancellation exists, after which stability still requires a separate delay-operator proof and may require additional structure beyond the bare circular two-body ansatz, such as medium coupling, genuine Noether braid multi-body locking, or a more subtle non-circular periodic balance.
 
 - Analytically: we can reduce the existence question to algebraic conditions and asymptotic expansions, and in the bare circular ansatz we can identify the partner-positive/self-signed tangential balance that any closure certificate must satisfy.
 - Dynamically: the stability question remains separate from the algebraic construction and requires numerical analysis of attractivity versus fine-tuned orbit families.
@@ -2718,7 +2720,7 @@ Principal roots with $0<\Delta<\pi$ still carry the same positive tangential sig
 
 1. admissible older or wrapped roots with $\sin\Delta<0$ and enough receiver-normal branch strength;
 2. off-turn variable-pitch intervals where the $p$-terms dominate the positive principal branches;
-3. additional medium, nested shell braid, or multi-body structure outside the isolated two-body spiral ansatz.
+3. additional medium, Noether braid, or multi-body structure outside the isolated two-body spiral ansatz.
 
 The radial turn condition is equally explicit. Since
 $$
@@ -2973,7 +2975,7 @@ Remarks:
 
 - This is a bookkeeping choice for analysis, numerics, and Noether-style energy accounting. The substrate law itself remains acceleration-first.
 - Because $\mu_{\text{arch}}$ is universal, it can be absorbed into units or into an overall normalization of force-like quantities if desired.
-- For assemblies (binaries, nested shell braids), one defines an effective assembly mass $M_\text{assembly}$ as
+- For assemblies (binaries, Noether braids), one defines an effective assembly mass $M_\text{assembly}$ as
   $$
   M_\text{assembly} = \frac{1}{V_\text{CM}} \frac{d}{dV_\text{CM}} \left(\text{total kinetic + interaction energy of internal motion}\right)
   $$
@@ -3482,7 +3484,7 @@ without adding another $\delta_\eta(g)/r^2$ scale term. For $N\ge1$, the highest
 
 The conclusion is narrow but decisive for local repairs: no finite same-support local scalar or delta-jet counterterm cancels the scalar-kernel residual while leaving the canonical branch strength intact. A viable action-level repair must instead be nonlocal along the $(r,g)$ characteristic, or must use a richer velocity/history-dependent invariant action. Either route changes the action ontology enough that it should be discussed explicitly before canonization.
 
-The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the source tangent to be parallel to the source-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$, where $\rho_\delta$ denotes the branch value of $\partial_\delta\rho_b$ in the [common-center inter-layer stationarity obstruction](../noether-braid/nested-shell-braid-dynamics.md#lemma-common-center-inter-layer-stationarity-obstruction): the first factor collapses a positive-delay branch when the source speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity. The remaining local target is either branch-summed residual closure for a scale-only scaffold, or a recoil-inclusive action ledger that retains the residual as wake-emission resistance.
+The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the source tangent to be parallel to the source-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$, where $\rho_\delta$ denotes the branch value of $\partial_\delta\rho_b$ in the [common-center inter-layer stationarity obstruction](../proof-programs/terminal-alignment.md#lemma-common-center-inter-layer-stationarity-obstruction): the first factor collapses a positive-delay branch when the source speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity. The remaining local target is either branch-summed residual closure for a scale-only scaffold, or a recoil-inclusive action ledger that retains the residual as wake-emission resistance.
 
 For the scale-only receiver-normal branch target, the branch-summed residual target is the vanishing of the signed receiver-side interior Euler derivative after the direct inverse-square term is removed:
 $$
@@ -3728,7 +3730,7 @@ K_{\mathrm{eff}}^{(\eta)}
 $$
 while the source-end gradient is the opposite. Therefore a global spatial translation or rotation of both endpoints changes no interior action density, and a step translation or step rotation across $T_\ast$ exposes exactly the boundary increments above. The characteristic endpoint condition $D_{ij}R_{+}=0$, together with endpoint clearance, is the local reason these increments are wake-history boundary terms rather than a hidden extra receiver force.
 
-This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or nested shell braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive source-normal Jacobian floors, retained same-record receiver-normal branch-strength rows, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
+This closes the local kernel-normalization and Noether-increment definition for the delayed-interior characteristic-tail repair. It does not by itself certify any proposed branch, terminal label, or Noether braid attractor: a branch chart must still show vanishing Euler residual, finite memory depth, positive source-normal Jacobian floors, retained same-record receiver-normal branch-strength rows, and closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ over the same retained branch set.
 
 **Branch-chart conservation pullback.** Let $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ be a retained branch chart with active causal-root rows $\mathcal{R}^{\mathrm{act}}$, positive inactive-root gaps, positive source-normal Jacobian floor, a retained receiver-normal branch-strength floor $\nu_{\mathrm{rec}}$, finite memory depth, and declared endpoint convention. For a time cut $T_\ast$, define the chart-restricted crossing domain
 $$

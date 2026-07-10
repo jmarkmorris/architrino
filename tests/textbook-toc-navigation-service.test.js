@@ -3,7 +3,6 @@ import assert from "node:assert/strict";
 
 import {
   RUNTIME_MARKDOWN_DOC_PREFIX,
-  RUNTIME_MARKDOWN_READER_PREFIX,
   buildTextbookTocPageSequence,
   createTextbookTocNavigationService,
   resolveTextbookPageNavigation,
@@ -64,18 +63,16 @@ const tocFixture = {
   },
 };
 
-test("textbook TOC page sequence flattens markdown documents and sections in book order", () => {
+test("textbook TOC page sequence flattens markdown documents in book order (sections are not pages)", () => {
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
 
   assert.deepEqual(
     sequence.pages.map((page) => page.title),
-    ["Ontology", "Purpose", "Scope Detail", "Architrino", "Validation Protocols"]
+    ["Ontology", "Architrino", "Validation Protocols"]
   );
   assert.deepEqual(
     sequence.pages.map((page) => page.markdownPath),
     [
-      "content/markdown/aaa/foundations/ontology.md",
-      "content/markdown/aaa/foundations/ontology.md",
       "content/markdown/aaa/foundations/ontology.md",
       "content/markdown/aaa/foundations/architrino.md",
       "content/markdown/aaa/validation/validation-protocols.md",
@@ -92,21 +89,21 @@ test("textbook TOC page navigation resolves previous and next by markdown path",
   });
 
   assert.equal(navigation.current.title, "Architrino");
-  assert.equal(navigation.previous.title, "Scope Detail");
+  assert.equal(navigation.previous.title, "Ontology");
   assert.equal(navigation.next.title, "Validation Protocols");
-  assert.equal(navigation.index, 3);
-  assert.equal(navigation.total, 5);
+  assert.equal(navigation.index, 1);
+  assert.equal(navigation.total, 3);
 });
 
-test("textbook TOC page navigation resolves previous and next by markdown section", () => {
+test("textbook TOC page navigation resolves a markdown section to its owning document", () => {
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
   const navigation = resolveTextbookPageNavigation(sequence, {
     id: "runtime:markdown:reader:content/markdown/aaa/foundations/ontology.md::Purpose",
   });
 
-  assert.equal(navigation.current.title, "Purpose");
-  assert.equal(navigation.previous.title, "Ontology");
-  assert.equal(navigation.next.title, "Scope Detail");
+  assert.equal(navigation.current.title, "Ontology");
+  assert.equal(navigation.previous, null);
+  assert.equal(navigation.next.title, "Architrino");
 });
 
 test("textbook TOC page navigation resolves current page by scene path", () => {
@@ -117,7 +114,7 @@ test("textbook TOC page navigation resolves current page by scene path", () => {
 
   assert.equal(navigation.current.title, "Ontology");
   assert.equal(navigation.previous, null);
-  assert.equal(navigation.next.title, "Purpose");
+  assert.equal(navigation.next.title, "Architrino");
 });
 
 test("textbook TOC page navigation resolves current page by TOC id", () => {
@@ -128,7 +125,7 @@ test("textbook TOC page navigation resolves current page by TOC id", () => {
 
   assert.equal(navigation.current.title, "Ontology");
   assert.equal(navigation.previous, null);
-  assert.equal(navigation.next.title, "Purpose");
+  assert.equal(navigation.next.title, "Architrino");
 });
 
 test("textbook TOC page entries prefer authored scenes and fall back to runtime markdown", () => {
@@ -140,18 +137,10 @@ test("textbook TOC page entries prefer authored scenes and fall back to runtime 
   );
   assert.equal(
     sequence.pages[1].targetPath,
-    `${RUNTIME_MARKDOWN_READER_PREFIX}content/markdown/aaa/foundations/ontology.md::Purpose`
-  );
-  assert.equal(
-    sequence.pages[2].targetPath,
-    `${RUNTIME_MARKDOWN_READER_PREFIX}content/markdown/aaa/foundations/ontology.md::Scope%20Detail`
-  );
-  assert.equal(
-    sequence.pages[3].targetPath,
     "content/scenes/foundations/architrino.json"
   );
   assert.equal(
-    sequence.pages[4].targetPath,
+    sequence.pages[2].targetPath,
     `${RUNTIME_MARKDOWN_DOC_PREFIX}content/markdown/aaa/validation/validation-protocols.md`
   );
 });

@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "noether_braid__nested_shell_braid_geometry",
-    "title": "Nested Shell Braid Geometry",
+    "id": "noether_braid__spindle_braid",
+    "title": "Spindle Braid",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,9 +11,10 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+      "path": "content/markdown/aaa/noether-braid/spindle-braid.md"
     },
     "view": {
+      "columns": 1,
       "autoOpen": true
     }
   },

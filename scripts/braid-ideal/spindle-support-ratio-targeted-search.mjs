@@ -1,0 +1,2132 @@
+// Support-ratio-targeted configuration search (queue item 25; spec Section 36).
+//
+// Sections 30-35 establish that per-layer RADIAL SUPPORT RATIOS at the unified
+// fitted kappa*, not closure residuals, are the survivability statistic: the
+// native release converts any support deficit into secular dispersal, and the
+// clicker can trim only the last ~3% (s_min ~ 0.97). This search re-runs the
+// spindle-family configuration hunt with the objective J = sum_a (s_a - 1)^2
+// (closure residual reported as the secondary criterion), over the family knobs
+// at pinned cadence, with the toy static sea available as a dressing option.
+//
+// s_a = kappa* x (inward radial wake force on layer a) / (centripetal need of
+// layer a), computed on the same single-time rigid evaluation as the closure
+// metric, kappa* fitted globally by the unified least-squares bridge.
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+
+import { fileURLToPath } from "node:url";
+import { buildBraid, wakeAccel, residuals, CHAMPION } from "./spindle-braid-screw-drift-evaluator.mjs";
+
+export const SCHEMA = "spindle_support_ratio_targeted_search.v0";
+export const SPEC_PACKET_REF = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
+export const FAIL_CLOSED = Object.freeze({
+  retainedBranchClaim: false, acceptedSameLevelBranchClaim: false, retainedBranch: null,
+  scoreMovement: "no_score_increase", acceptedSeedPathCertificate: false,
+  authority: "priority_only_prescribed_worldline_evaluator_not_native_solver_not_accepted_evidence",
+});
+
+const d = Math.PI / 180;
+
+export function supportRatios({ geo = CHAMPION, cTrans = 1.0, sea = null, soft = 0.02, lambdaTan = 0 } = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo, sea });
+  const w = braid.omega;
+  const res = residuals({ u: 0, cTrans, geo, sea }, { soft });
+  const kap = res.kappaStar;
+  const layers = [];
+  for (const i of [0, 2, 4]) {
+    const s = braid.sites[i];
+    const rhoCyl = s.R * Math.cos(s.alpha);
+    // site at t=0: azimuth th; cylindrical radial and tangential unit vectors
+    const rx = Math.cos(s.th), ry = Math.sin(s.th);
+    const tx = -Math.sin(s.th), ty = Math.cos(s.th);
+    const wk = wakeAccel(braid, i, 0, { soft }).a;
+    const inward = -(wk[0] * rx + wk[1] * ry); // wake radial force, inward-positive (unit kappa)
+    const need = w * w * rhoCyl;               // centripetal need (unit mass)
+    const tanRow = kap * (wk[0] * tx + wk[1] * ty); // per-layer tangential DC row at kappa* (want 0)
+    layers.push({ layer: s.name, support: (kap * inward) / need, tanRow, rhoCyl, speed: w * rhoCyl });
+  }
+  return { kappaStar: kap, closure: res.globalRelResidual,
+    ratios: Object.fromEntries(layers.map((l) => [l.layer, l.support])),
+    tanRows: Object.fromEntries(layers.map((l) => [l.layer, l.tanRow])),
+    speeds: Object.fromEntries(layers.map((l) => [l.layer, l.speed])),
+    minRatio: Math.min(...layers.map((l) => l.support)),
+    maxAbsTan: Math.max(...layers.map((l) => Math.abs(l.tanRow))),
+    objective: layers.reduce((s2, l) => s2 + (l.support - 1) ** 2 + lambdaTan * l.tanRow * l.tanRow, 0) };
+}
+
+// Coordinate-descent search on J = sum (s_a - 1)^2 over the spindle knobs.
+export function searchSupport({ start = CHAMPION, sea = null, rounds = 3, soft = 0.02, stepScale = 1, lambdaTan = 0 } = {}) {
+  const steps = { qI: 0.05 * stepScale, qO: 0.08 * stepScale, alphaI: 4 * d * stepScale, alphaM: 3 * d * stepScale, alphaO: 3 * d * stepScale, thetaO: 8 * d * stepScale, thetaI: 8 * d * stepScale };
+  let g = { thetaI: 0, ...start };
+  let best = supportRatios({ geo: g, sea, soft, lambdaTan });
+  const trace = [{ geo: { ...g }, ...best }];
+  for (let r = 0; r < rounds; r++) {
+    for (const k of Object.keys(steps)) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const trial = { ...g, [k]: g[k] + sgn * steps[k] };
+          if (trial.qI < 0.1 || trial.qO < 0.15) break; // geometric floors
+          const t = supportRatios({ geo: trial, sea, soft, lambdaTan });
+          if (t.objective < best.objective - 1e-6) { g = trial; best = t; } else improved = false;
+        }
+      }
+    }
+    trace.push({ geo: { ...g }, ...best });
+  }
+  return { start, best: { geo: g, deg: { alphaI: g.alphaI / d, alphaM: g.alphaM / d, alphaO: g.alphaO / d, thetaO: g.thetaO / d }, ...best }, trace: trace.map(({ geo, objective, minRatio, closure, ratios }) => ({ geo, objective, minRatio, closure, ratios })) };
+}
+
+// ---------------------------------------------------------------------------
+// Tangential-closure-targeted search (item 25 follow-on; Section 50 program
+// consequence). The sea response family is closed (Sections 47-50 by title):
+// the sea supplies ONLY (i) a forward tangential feed on the inner and outer
+// layers, magnitude up to ~0.12 at the in-band spacing (natively confirmed
+// +0.117 in the Row 4 run; return-model-robust at pair grade, x2 FCC-12), and
+// (ii) cap radial support (Section 50 grades: +0.18 native-confirmed
+// orientational up to ~0.42 frozen-pair x2; booked conservatively). The braid
+// geometry must therefore supply everything else itself. Declared ledger:
+//   radial:    target support I = 1, M = 1 (sea gives them nothing or less),
+//              O = 1 - seaO (cap credit, seaO = 0.20 declared primary booking);
+//   tangential: the middle's rail pump is the escapement's job (excluded, as
+//              always); the inner and outer ledgers close iff the layer row is
+//              a brake no deeper than the sea feed cap and not a forward pump
+//              (nothing absorbs a forward pump on a sub-field layer):
+//              pen_L = (max(0, -tau_L - capTan) + max(0, tau_L))^2.
+// Objective J = sum_L (supp_L - target_L)^2 + lambda * (pen_I + pen_O).
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+
+export const SUPPORT_V1_GEO = Object.freeze({ qI: 0.462, qO: 1.236, alphaI: -10.44 * d, alphaM: -2.67 * d, alphaO: 84 * d, thetaO: 337.04 * d, thetaI: -23.7 * d });
+export const SEA_BOOKING_S50 = Object.freeze({ seaO: 0.20, seaOPairGrade: 0.42, capTan: 0.12 });
+
+// TANGENTIAL-CLOSURE CANDIDATE V2 (this search's product; spec Section 51 by
+// title). Bare rows: support I/M/O = 1.003/0.994/0.502, tau_I ~ 0 (the Rows 1-4
+// inner brake ELIMINATED by geometry alone; the middle tilt is the unlocking
+// knob), tau_O ~ 0, closure 0.286 (family best). The residual is a single
+// number: bare cap support 0.50 needs a cap credit ~0.47-0.50, and the
+// claim-grade credit is GEOMETRY-HYPERSENSITIVE (0.04 at this geometry, 0.42
+// at v1, >1.5 at high-qO/84-degree caps) — candidate tabling is GATED on the
+// self-consistent cap-credit fixed point, not on a constant booking.
+export const TANGENTIAL_CLOSURE_V2 = Object.freeze({ qI: 0.481, qO: 1.036, alphaI: -2.4 * d, alphaM: -24.4 * d, alphaO: 64.5 * d, thetaI: -16.7 * d, thetaO: 330.5 * d });
+
+export function tangentialLedger(rows, { seaO = SEA_BOOKING_S50.seaO, capTan = SEA_BOOKING_S50.capTan, lambda = 1, weights = { I: 1, M: 1, O: 1 } } = {}) {
+  const target = { I: 1, M: 1, O: 1 - seaO };
+  let J = 0;
+  for (const L of ["I", "M", "O"]) J += weights[L] * (rows.ratios[L] - target[L]) ** 2;
+  const pen = {};
+  for (const L of ["I", "O"]) {
+    const tau = rows.tanRows[L];
+    pen[L] = (Math.max(0, -tau - capTan) + Math.max(0, tau)) ** 2;
+    J += lambda * pen[L];
+  }
+  const totalO = rows.ratios.O + seaO; // cap credit applied
+  const ledgerCloses =
+    rows.ratios.I >= 0.97 && rows.ratios.M >= 0.97 &&
+    totalO >= 0.97 && totalO <= 1.03 && // credited O in the corridor (over-feed drowned O in Row 4)
+    pen.I <= 1e-4 && pen.O <= 1e-4;     // declared tolerance: residual tangential <= 0.01
+  return { J, pen, target, totalO, ledgerCloses };
+}
+
+export function searchTangentialClosure({ start = SUPPORT_V1_GEO, rounds = 3, soft = 0.02, stepScale = 1, seaO = SEA_BOOKING_S50.seaO, capTan = SEA_BOOKING_S50.capTan, lambda = 1, weights = { I: 1, M: 1, O: 1 }, freeze = [] } = {}) {
+  const steps = { qI: 0.05 * stepScale, qO: 0.08 * stepScale, alphaI: 4 * d * stepScale, alphaM: 3 * d * stepScale, alphaO: 3 * d * stepScale, thetaO: 8 * d * stepScale, thetaI: 8 * d * stepScale };
+  for (const k of freeze) delete steps[k];
+  const evalGeo = (geo) => {
+    const rows = supportRatios({ geo, soft });
+    const led = tangentialLedger(rows, { seaO, capTan, lambda, weights });
+    return { rows, led, J: led.J };
+  };
+  let g = { thetaI: 0, ...start };
+  let best = evalGeo(g);
+  const trace = [{ geo: { ...g }, J: best.J, ratios: best.rows.ratios, tanRows: best.rows.tanRows }];
+  for (let r = 0; r < rounds; r++) {
+    for (const k of Object.keys(steps)) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const trial = { ...g, [k]: g[k] + sgn * steps[k] };
+          if (trial.qI < 0.1 || trial.qO < 0.15) break;
+          const t = evalGeo(trial);
+          if (t.J < best.J - 1e-6) { g = trial; best = t; } else improved = false;
+        }
+      }
+    }
+    trace.push({ geo: { ...g }, J: best.J, ratios: best.rows.ratios, tanRows: best.rows.tanRows });
+  }
+  return {
+    start, seaBooking: { seaO, capTan, lambda },
+    best: {
+      geo: g, deg: { alphaI: g.alphaI / d, alphaM: g.alphaM / d, alphaO: g.alphaO / d, thetaI: (g.thetaI ?? 0) / d, thetaO: g.thetaO / d },
+      J: best.J, ratios: best.rows.ratios, tanRows: best.rows.tanRows,
+      closure: best.rows.closure, kappaStar: best.rows.kappaStar,
+      penalties: best.led.pen, targets: best.led.target, ledgerCloses: best.led.ledgerCloses,
+    },
+    trace,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Self-consistent cap-credit fixed-point search (Section 51 named follow-on).
+// The cap credit is geometry-hypersensitive, so it enters the objective as a
+// per-trial function credit(geo, a) rather than a constant booking, and the
+// sea spacing a joins the knob set. In-loop credit proxy (declared; verified
+// post-hoc on the Section 50 instrument):
+//   - sea sites: the 6-direction shell at spacing a;
+//   - orientation: the slow-limit proxy p_hat = unit(cycle-averaged bare
+//     causally delayed braid field at the site) — the cheap stand-in for the settled
+//     relax cycle-mean the claim instrument uses;
+//   - return: the frozen finite pair — unit-polarity monopoles at
+//     +- p0(geo)/2 along p_hat (static, so exactly causally delayed trivially),
+//     booked on the OUTER receivers with the supportRatios convention and
+//     scaled x2 (FCC-12), exactly the Section 50 frozen-pair claim row. Note
+//     the pair's unit charges make the credit independent of p0 except
+//     through the endpoint separation.
+
+export function braidDipole(geo) {
+  let pz = 0;
+  const layers = [["I", geo.qI, geo.alphaI], ["M", 1, geo.alphaM], ["O", geo.qO, geo.alphaO]];
+  for (const [, R, al] of layers) pz += 2 * R * Math.sin(al); // both members: pol*sgn = +1 each
+  return Math.abs(pz);
+}
+
+export function capCreditProxy({ geo, a = 3.4, cTrans = 1.0, Nt = 12, soft = 0.02 } = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo });
+  const w = braid.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const p0 = braidDipole(geo);
+  const dirs = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  const pos = (s, t) => { const ang = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+  const vel = (s, t) => { const ang = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+  // slow-limit orientation proxy at each sea site (bare kernel, exact retard per source)
+  const phs = dirs.map((dv) => {
+    const X = [dv[0]*a, dv[1]*a, dv[2]*a];
+    const acc = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (const s of braid.sites) {
+        let te = t - a - 1;
+        for (let it = 0; it < 30; it++) { const p = pos(s, te); te = t - Math.hypot(X[0]-p[0], X[1]-p[1], X[2]-p[2]); }
+        const p = pos(s, te);
+        const dx = [X[0]-p[0], X[1]-p[1], X[2]-p[2]];
+        const r = Math.hypot(dx[0], dx[1], dx[2]);
+        const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+        const v = vel(s, te);
+        const Ds = 1 - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+        for (let c = 0; c < 3; c++) acc[c] += (s.pol / Ds) * dx[c] / (r * r * r);
+      }
+    }
+    const n = Math.hypot(acc[0], acc[1], acc[2]) || 1e-300;
+    return [acc[0]/n, acc[1]/n, acc[2]/n];
+  });
+  // frozen static pair endpoints; credit booked on the outer receiver, x2 FCC-12
+  const sO = braid.sites[4];
+  const rhoCyl = sO.R * Math.cos(sO.alpha);
+  let inward = 0;
+  for (let k = 0; k < Nt; k++) {
+    const t = (k / Nt) * period;
+    const xj = pos(sO, t), vj = vel(sO, t);
+    const rx = Math.cos(w * t + sO.th), ry = Math.sin(w * t + sO.th);
+    for (let q = 0; q < 6; q++) {
+      for (const pm of [+1, -1]) {
+        const Xe = [dirs[q][0]*a + pm*(p0/2)*phs[q][0], dirs[q][1]*a + pm*(p0/2)*phs[q][1], dirs[q][2]*a + pm*(p0/2)*phs[q][2]];
+        const dx = [xj[0]-Xe[0], xj[1]-Xe[1], xj[2]-Xe[2]];
+        const r = Math.hypot(dx[0], dx[1], dx[2]);
+        const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+        const Dt = 1 - (vj[0]*rh[0] + vj[1]*rh[1] + vj[2]*rh[2]);
+        inward += -(sO.pol) * Dt * pm * (rh[0]*rx + rh[1]*ry) / (r * r) / Nt;
+      }
+    }
+  }
+  return { credit: 2 * (kap * inward) / (w * w * rhoCyl), p0, kappaStar: kap };
+}
+
+export function searchSelfConsistent({ start = TANGENTIAL_CLOSURE_V2, aStart = 3.4, rounds = 3, soft = 0.02, stepScale = 1, capTan = SEA_BOOKING_S50.capTan, lambda = 100, weights = { I: 4, M: 8, O: 2 }, NtCredit = 12 } = {}) {
+  const steps = { qI: 0.05 * stepScale, qO: 0.08 * stepScale, alphaI: 4 * d * stepScale, alphaM: 3 * d * stepScale, alphaO: 3 * d * stepScale, thetaO: 8 * d * stepScale, thetaI: 8 * d * stepScale, a: 0.15 * stepScale };
+  const evalCell = (geo, a) => {
+    const rows = supportRatios({ geo, soft });
+    const { credit } = capCreditProxy({ geo, a, Nt: NtCredit, soft });
+    const led = tangentialLedger(rows, { seaO: credit, capTan, lambda, weights });
+    return { rows, credit, led, J: led.J };
+  };
+  let g = { ...start }, a = aStart;
+  let best = evalCell(g, a);
+  for (let r = 0; r < rounds; r++) {
+    for (const k of Object.keys(steps)) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const isA = k === "a";
+          const trialG = isA ? g : { ...g, [k]: g[k] + sgn * steps[k] };
+          const trialA = isA ? a + sgn * steps.a : a;
+          if (trialG.qI < 0.1 || trialG.qO < 0.15 || trialA < 2.2 || trialA > 7) break;
+          const t = evalCell(trialG, trialA);
+          if (t.J < best.J - 1e-6) { g = trialG; a = trialA; best = t; } else improved = false;
+        }
+      }
+    }
+  }
+  return {
+    start, aStart,
+    best: {
+      geo: g, a, deg: { alphaI: g.alphaI / d, alphaM: g.alphaM / d, alphaO: g.alphaO / d, thetaI: (g.thetaI ?? 0) / d, thetaO: g.thetaO / d },
+      J: best.J, ratios: best.rows.ratios, tanRows: best.rows.tanRows, credit: best.credit,
+      totalO: best.rows.ratios.O + best.credit,
+      closure: best.rows.closure, kappaStar: best.rows.kappaStar,
+      penalties: best.led.pen, ledgerCloses: best.led.ledgerCloses,
+    },
+  };
+}
+
+// SELF-CONSISTENT STATIC-SEA CANDIDATE V3 (spec Section 52 by title): the
+// fixed-point search's verified product. Bare rows I/M/O = 1.0035/1.0008/0.677,
+// tau_I = -0.003, tau_O = -0.009 (NO sea tangential feed required, so the sea
+// can be STATIC: frozen slow-limit orientations, no waves, no M-tax, no lag
+// requirement — the Rows 1-4 blockers are all designed out at seed grade).
+// Cap credit 0.3172 at a = 2.453, INSTRUMENT-VERIFIED (frozen-pair claim rows,
+// dt-stable Nt 32/64 on both stacks; proxy and settled-mean conventions agree
+// at this cell). Dressed: 1.0022/0.9985/0.9942 — all layers in the corridor.
+// Closure 0.2058 (family record). Per-cell verification is MANDATORY: a sibling
+// cell (a=2.631 variant) failed instrument verification (credit 0.183 vs proxy
+// 0.279) — the proxy's slow-limit orientation aliases on some cells; only
+// verified cells are citable.
+export const SELF_CONSISTENT_V3 = Object.freeze({
+  geo: Object.freeze({ qI: 0.4935, qO: 1.036, alphaI: -3.65 * d, alphaM: -29.04 * d, alphaO: 67.5 * d, thetaI: -12.2 * d, thetaO: 333.5 * d }),
+  aSea: 2.453, creditVerified: 0.3172,
+});
+
+// ---------------------------------------------------------------------------
+// TRUE-PLACEMENT, AXIS-DECLARED credit (Row 5 rejection correction; the
+// capCreditProxy successor). The Row 5 seed gate found the cap credit is
+// POLAR-CONCENTRATED (+0.190 of the 6-direction booking rode on the two
+// on-axis sites) and the true FCC first shell has NO polar sites — the x2
+// count scaling was the artifact. This function books the credit by summing
+// ACTUAL declared sites (no count scaling, ever), reports per-layer sea rows
+// (I and M taxes included, not assumed negligible), and declares the axis
+// coverage (polar fraction of the credit). Shells: FCC first (12 <110> at a)
+// and the axial FCC second (6 <100> at a*sqrt(2)); any combination.
+
+const FCC1_DIRS = (() => {
+  const out = [];
+  for (const [i, j] of [[0, 1], [0, 2], [1, 2]]) for (const si of [1, -1]) for (const sj of [1, -1]) {
+    const v = [0, 0, 0]; v[i] = si / Math.SQRT2; v[j] = sj / Math.SQRT2; out.push(v);
+  }
+  return out;
+})();
+const FCC2_DIRS = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+export const FCC_SHELLS = Object.freeze({
+  first: { dirs: FCC1_DIRS, scale: 1 },
+  secondAxial: { dirs: FCC2_DIRS, scale: Math.SQRT2 },
+});
+
+export function seaRowsTruePlacement({ geo, a = 3.4, shells = ["first"], cTrans = 1.0, Nt = 16, soft = 0.02 } = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo });
+  const w = braid.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const p0 = braidDipole(geo);
+  const pos = (s, t) => { const ang = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+  const vel = (s, t) => { const ang = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+  // assemble actual sites (position = dir * a * scale)
+  const sites = [];
+  for (const sh of shells) for (const dv of FCC_SHELLS[sh].dirs) {
+    const R = a * FCC_SHELLS[sh].scale;
+    sites.push({ X: [dv[0]*R, dv[1]*R, dv[2]*R], polar: Math.abs(dv[2]) > Math.cos(30 * Math.PI / 180) });
+  }
+  // slow-limit orientation per site (bare kernel, exact retard per source)
+  for (const site of sites) {
+    const acc = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (const s of braid.sites) {
+        let te = t - Math.hypot(...site.X) - 1;
+        for (let it = 0; it < 30; it++) { const p = pos(s, te); te = t - Math.hypot(site.X[0]-p[0], site.X[1]-p[1], site.X[2]-p[2]); }
+        const p = pos(s, te);
+        const dx = [site.X[0]-p[0], site.X[1]-p[1], site.X[2]-p[2]];
+        const r = Math.hypot(dx[0], dx[1], dx[2]);
+        const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+        const v = vel(s, te);
+        const Ds = 1 - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+        for (let c = 0; c < 3; c++) acc[c] += (s.pol / Ds) * dx[c] / (r * r * r);
+      }
+    }
+    const n = Math.hypot(acc[0], acc[1], acc[2]) || 1e-300;
+    site.ph = [acc[0]/n, acc[1]/n, acc[2]/n];
+  }
+  // frozen static pair endpoints; per-layer radial rows + polar-credit split
+  const rows = { I: 0, M: 0, O: 0 };
+  let polarO = 0;
+  for (const [idx, L] of [[0, "I"], [2, "M"], [4, "O"]]) {
+    const sR = braid.sites[idx];
+    const rhoCyl = sR.R * Math.cos(sR.alpha);
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      const xj = pos(sR, t), vj = vel(sR, t);
+      const rx = Math.cos(w * t + sR.th), ry = Math.sin(w * t + sR.th);
+      for (const site of sites) {
+        for (const pm of [+1, -1]) {
+          const Xe = [site.X[0] + pm*(p0/2)*site.ph[0], site.X[1] + pm*(p0/2)*site.ph[1], site.X[2] + pm*(p0/2)*site.ph[2]];
+          const dx = [xj[0]-Xe[0], xj[1]-Xe[1], xj[2]-Xe[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+          const Dt = 1 - (vj[0]*rh[0] + vj[1]*rh[1] + vj[2]*rh[2]);
+          const contrib = -(sR.pol) * Dt * pm * (rh[0]*rx + rh[1]*ry) / (r * r) / Nt * kap / (w * w * rhoCyl);
+          rows[L] += contrib;
+          if (L === "O" && site.polar) polarO += contrib;
+        }
+      }
+    }
+  }
+  return { rows, polarFractionO: rows.O !== 0 ? polarO / rows.O : 0, p0, kappaStar: kap, siteCount: sites.length };
+}
+
+// Fixed-point search at true placement: targets are corridor-consistent totals
+// per layer (bare + actual sea rows), tangential penalties as before.
+export function searchTruePlacement({ start = SELF_CONSISTENT_V3.geo, aStart = 2.453, shells = ["first", "secondAxial"], rounds = 3, soft = 0.02, stepScale = 1, capTan = 0.01, lambda = 300, weights = { I: 4, M: 8, O: 2 }, NtSea = 16, aFloor = 2.2 } = {}) {
+  const steps = { qI: 0.05 * stepScale, qO: 0.08 * stepScale, alphaI: 4 * d * stepScale, alphaM: 3 * d * stepScale, alphaO: 3 * d * stepScale, thetaO: 8 * d * stepScale, thetaI: 8 * d * stepScale, a: 0.12 * stepScale };
+  const evalCell = (geo, a) => {
+    const bare = supportRatios({ geo, soft });
+    const sea = seaRowsTruePlacement({ geo, a, shells, Nt: NtSea, soft });
+    let J = 0;
+    const total = {};
+    for (const L of ["I", "M", "O"]) { total[L] = bare.ratios[L] + sea.rows[L]; J += weights[L] * (total[L] - 1) ** 2; }
+    const pen = {};
+    for (const L of ["I", "O"]) {
+      const tau = bare.tanRows[L];
+      pen[L] = (Math.max(0, -tau - capTan) + Math.max(0, tau)) ** 2;
+      J += lambda * pen[L];
+    }
+    const closes = ["I", "M", "O"].every((L) => total[L] >= 0.97 && total[L] <= 1.03) && pen.I <= 1e-4 && pen.O <= 1e-4;
+    return { bare, sea, total, pen, closes, J };
+  };
+  let g = { ...start }, a = aStart;
+  let best = evalCell(g, a);
+  for (let r = 0; r < rounds; r++) {
+    for (const k of Object.keys(steps)) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const isA = k === "a";
+          const tg = isA ? g : { ...g, [k]: g[k] + sgn * steps[k] };
+          const ta = isA ? a + sgn * steps.a : a;
+          if (tg.qI < 0.1 || tg.qO < 0.15 || ta < aFloor || ta > 7) break;
+          const t = evalCell(tg, ta);
+          if (t.J < best.J - 1e-6) { g = tg; a = ta; best = t; } else improved = false;
+        }
+      }
+    }
+  }
+  return { start, aStart, shells,
+    best: { geo: g, a, deg: { alphaI: g.alphaI / d, alphaM: g.alphaM / d, alphaO: g.alphaO / d, thetaI: (g.thetaI ?? 0) / d, thetaO: g.thetaO / d },
+      J: best.J, bareRatios: best.bare.ratios, tanRows: best.bare.tanRows, seaRows: best.sea.rows,
+      polarFractionO: best.sea.polarFractionO, total: best.total, penalties: best.pen,
+      closure: best.bare.closure, ledgerCloses: best.closes } };
+}
+
+// OCTAHEDRAL-CAGE CANDIDATE V4 (spec Section 54 by title): the true-placement
+// fixed point's verified product. NO FCC occupancy combination closes (first
+// shell: negative credit + middle tax, native + instrument agreement; first
+// plus axial second: best totals 0.944/0.959/0.841). The closing cell lies
+// OUTSIDE FCC: six axis-covering octahedral neighbors at site radius
+// 1.645*sqrt(2) = 2.326 — the solvation-shell reading made literal: the braid
+// carves its FCC first shell vacant and keeps an octahedral cage with two
+// polar members. Totals 1.0006/0.9961/0.9937, tau_I -0.0035, tau_O -0.0057,
+// bare closure 0.2474; sea rows dt-exact (static geometry, Nt 16/32/48
+// identical); axis-declared (the polar pair carries 111% of the O credit,
+// the four equatorial cage members -11%).
+export const OCTAHEDRAL_CAGE_V4 = Object.freeze({
+  geo: Object.freeze({ qI: 0.4935, qO: 1.106, alphaI: 2.85 * d, alphaM: -30.16 * d, alphaO: 67.5 * d, thetaI: -4.2 * d, thetaO: 333.5 * d }),
+  aLattice: 1.645, siteRadius: 1.645 * Math.SQRT2, shells: ["secondAxial"],
+});
+
+// CAGE RECIPROCITY (Section 54 named check; Row 6 gate). The V4 cage members
+// are themselves assemblies sitting in the braid's near field; the frozen-
+// static declaration is only honest if the net force and torque they carry is
+// declared. Per cage site: net force on its two endpoint monopoles from (a)
+// the braid members (exact causal delays, softened branch weight — the rail
+// layer's caustic fan crosses external points) and (b) the other cage sites'
+// static endpoints; torque about the site center; both at kappa*, normalized
+// by the braid's outer-layer centripetal need (the corridor force scale).
+export function cageReciprocity({ geo = OCTAHEDRAL_CAGE_V4.geo, aLattice = OCTAHEDRAL_CAGE_V4.aLattice, shells = ["secondAxial"], cTrans = 1.0, Nt = 24, soft = 0.02 } = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo });
+  const w = braid.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const p0 = braidDipole(geo);
+  const pos = (s, t) => { const ang = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+  const vel = (s, t) => { const ang = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+  // sites with slow-limit orientations (same declaration as seaRowsTruePlacement)
+  const sites = [];
+  for (const sh of shells) for (const dv of FCC_SHELLS[sh].dirs) {
+    const R = aLattice * FCC_SHELLS[sh].scale;
+    sites.push({ dir: dv, X: [dv[0]*R, dv[1]*R, dv[2]*R] });
+  }
+  for (const site of sites) {
+    const acc = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (const s of braid.sites) {
+        let te = t - Math.hypot(...site.X) - 1;
+        for (let it = 0; it < 30; it++) { const p = pos(s, te); te = t - Math.hypot(site.X[0]-p[0], site.X[1]-p[1], site.X[2]-p[2]); }
+        const p = pos(s, te);
+        const dx = [site.X[0]-p[0], site.X[1]-p[1], site.X[2]-p[2]];
+        const r = Math.hypot(dx[0], dx[1], dx[2]);
+        const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+        const v = vel(s, te);
+        const Ds = 1 - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+        for (let c = 0; c < 3; c++) acc[c] += (s.pol / Ds) * dx[c] / (r * r * r);
+      }
+    }
+    const n = Math.hypot(acc[0], acc[1], acc[2]) || 1e-300;
+    site.ph = [acc[0]/n, acc[1]/n, acc[2]/n];
+  }
+  const needO = w * w * (geo.qO * Math.cos(geo.alphaO)); // corridor force scale
+  const rows = [];
+  for (let qi = 0; qi < sites.length; qi++) {
+    const site = sites[qi];
+    const F = [0, 0, 0], T = [0, 0, 0];
+    for (const pm of [+1, -1]) {
+      const Xe = [site.X[0] + pm*(p0/2)*site.ph[0], site.X[1] + pm*(p0/2)*site.ph[1], site.X[2] + pm*(p0/2)*site.ph[2]];
+      const Fe = [0, 0, 0];
+      // braid members: cycle-averaged, exact causal delays, softened branch weight
+      for (let k = 0; k < Nt; k++) {
+        const t = (k / Nt) * period;
+        for (const s of braid.sites) {
+          let te = t - Math.hypot(...Xe) - 1;
+          for (let it = 0; it < 30; it++) { const p = pos(s, te); te = t - Math.hypot(Xe[0]-p[0], Xe[1]-p[1], Xe[2]-p[2]); }
+          const p = pos(s, te);
+          const dx = [Xe[0]-p[0], Xe[1]-p[1], Xe[2]-p[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+          const v = vel(s, te);
+          const Ds = 1 - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+          const m = Ds / (Ds * Ds + soft * soft);
+          for (let c = 0; c < 3; c++) Fe[c] += (pm * s.pol) * m * rh[c] / (r * r) / Nt;
+        }
+      }
+      // other cage sites' endpoints: static monopoles
+      for (let qj = 0; qj < sites.length; qj++) {
+        if (qj === qi) continue;
+        const o = sites[qj];
+        for (const pm2 of [+1, -1]) {
+          const Xo = [o.X[0] + pm2*(p0/2)*o.ph[0], o.X[1] + pm2*(p0/2)*o.ph[1], o.X[2] + pm2*(p0/2)*o.ph[2]];
+          const dx = [Xe[0]-Xo[0], Xe[1]-Xo[1], Xe[2]-Xo[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          for (let c = 0; c < 3; c++) Fe[c] += (pm * pm2) * dx[c] / (r * r * r);
+        }
+      }
+      const arm = [Xe[0]-site.X[0], Xe[1]-site.X[1], Xe[2]-site.X[2]];
+      T[0] += arm[1]*Fe[2] - arm[2]*Fe[1]; T[1] += arm[2]*Fe[0] - arm[0]*Fe[2]; T[2] += arm[0]*Fe[1] - arm[1]*Fe[0];
+      for (let c = 0; c < 3; c++) F[c] += Fe[c];
+    }
+    const Frad = kap * (F[0]*site.dir[0] + F[1]*site.dir[1] + F[2]*site.dir[2]);
+    const Fmag = kap * Math.hypot(F[0], F[1], F[2]);
+    rows.push({ dir: site.dir, polar: Math.abs(site.dir[2]) > 0.9,
+      FradOverNeedO: Frad / needO, FmagOverNeedO: Fmag / needO,
+      torqueOverNeedO: kap * Math.hypot(T[0], T[1], T[2]) / needO });
+  }
+  return { needO, kappaStar: kap, p0, rows,
+    maxAbsFrad: Math.max(...rows.map((r) => Math.abs(r.FradOverNeedO))),
+    maxTorque: Math.max(...rows.map((r) => r.torqueOverNeedO)) };
+}
+
+// SEED-GRADE RADIAL STABILITY MATRIX (Section 56 program consequence). Rows 5
+// and 6 died on the same disease: the corridor is a force BALANCE with no
+// restoring gradient — an equilibrium without a basin. This instrument
+// converts "corridor found" into "basin or not, with directions": the
+// NON-SYMMETRIC Jacobian K_ij = d(net radial force on coordinate i)/d(x_j)
+// over the slow configurational coordinates x = (r_I, r_M, r_O, a_cage) —
+// layer orbit radii displaced at frozen rotation rate and frozen kappa*
+// (the physical perturbation: a layer pushed off its radius while the braid
+// keeps spinning), cage radius displaced with orientations FROZEN at their
+// seed slow-limit values (held-cage declaration). The system is
+// non-conservative, so K is not symmetric and eigenvalues may be complex;
+// the readout uses the field-of-values bound: if the symmetric part
+// (K+K^T)/2 is negative definite, every eigenvalue has negative real part
+// (restoring in all directions — a basin); any positive symmetric-part
+// eigenvalue names a candidate escape direction with its eigenvector.
+// Estimate grade: quasi-static (no delay-memory modes, no tilt/nutation
+// coordinate yet — both named gaps), braid-braid rows single-time (rigid),
+// cage rows cycle-averaged.
+
+function jacobiEigSym(Ain) {
+  const n = Ain.length; const A = Ain.map((r) => r.slice());
+  let V = Array.from({ length: n }, (_, i) => Array.from({ length: n }, (_, j) => (i === j ? 1 : 0)));
+  for (let sweep = 0; sweep < 60; sweep++) {
+    let off = 0;
+    for (let p = 0; p < n; p++) for (let q = p + 1; q < n; q++) off += A[p][q] * A[p][q];
+    if (off < 1e-22) break;
+    for (let p = 0; p < n; p++) for (let q = p + 1; q < n; q++) {
+      if (Math.abs(A[p][q]) < 1e-14) continue;
+      const th = 0.5 * Math.atan2(2 * A[p][q], A[q][q] - A[p][p]);
+      const c = Math.cos(th), s = Math.sin(th);
+      for (let k = 0; k < n; k++) {
+        const akp = A[k][p], akq = A[k][q];
+        A[k][p] = c * akp - s * akq; A[k][q] = s * akp + c * akq;
+      }
+      for (let k = 0; k < n; k++) {
+        const apk = A[p][k], aqk = A[q][k];
+        A[p][k] = c * apk - s * aqk; A[q][k] = s * apk + c * aqk;
+        const vkp = V[k][p], vkq = V[k][q];
+        V[k][p] = c * vkp - s * vkq; V[k][q] = s * vkp + c * vkq;
+      }
+    }
+  }
+  return Array.from({ length: n }, (_, i) => ({ value: A[i][i], vector: V.map((r) => r[i]) }))
+    .sort((x, y) => y.value - x.value);
+}
+
+export function radialStabilityMatrix({ geo = OCTAHEDRAL_CAGE_V4.geo, aCage = OCTAHEDRAL_CAGE_V4.aLattice * Math.SQRT2, withCage = true, eps = 0.01, Nt = 16, soft = 0.02, cTrans = 1.0, railPinned = false, kapFixed = null, displace = [0, 0, 0, 0] } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = kapFixed ?? residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const p0 = braidDipole(geo);
+  // cage sites (octahedral) with orientations frozen at seed slow-limit values
+  const cage = [];
+  if (withCage) {
+    const pos0 = (s, t) => { const ang = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+    const vel0 = (s, t) => { const ang = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+    for (const dv of FCC2_DIRS) {
+      const X = [dv[0]*aCage, dv[1]*aCage, dv[2]*aCage];
+      const acc = [0, 0, 0];
+      for (let k = 0; k < Nt; k++) {
+        const t = (k / Nt) * period;
+        for (const s of seed.sites) {
+          let te = t - aCage - 1;
+          for (let it = 0; it < 30; it++) { const p = pos0(s, te); te = t - Math.hypot(X[0]-p[0], X[1]-p[1], X[2]-p[2]); }
+          const p = pos0(s, te);
+          const dx = [X[0]-p[0], X[1]-p[1], X[2]-p[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+          const v = vel0(s, te);
+          const Ds = 1 - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+          for (let c = 0; c < 3; c++) acc[c] += (s.pol / Ds) * dx[c] / (r * r * r);
+        }
+      }
+      const n = Math.hypot(acc[0], acc[1], acc[2]) || 1e-300;
+      cage.push({ dir: dv, ph: [acc[0]/n, acc[1]/n, acc[2]/n] });
+    }
+  }
+  // net generalized radial forces at displaced configuration. Frozen kappa*;
+  // omega frozen by default, or RAIL-PINNED (railPinned: the field-speed pin
+  // holds the middle's transverse speed at c_f, so omega = c_f/(R_M cos aM)
+  // responds to the middle's radius — the natively confirmed speed attractor
+  // acting as the SIZE feedback during contraction).
+  const netForces = (dI, dM, dO, dA, railPinned = false) => {
+    const wEff = railPinned ? cTrans / ((1 + dM) * Math.cos(geo.alphaM)) : w;
+    const b = { omega: wEff, u: 0, sea: [], sites: seed.sites.map((s) => ({ ...s })) };
+    for (const s of b.sites) { if (s.name === "I") s.R = geo.qI + dI; if (s.name === "M") s.R = 1 + dM; if (s.name === "O") s.R = geo.qO + dO; }
+    const A = aCage + dA;
+    const cageSites = cage.map((c) => ({ ...c, X: [c.dir[0]*A, c.dir[1]*A, c.dir[2]*A] }));
+    const F = {};
+    for (const [idx, L] of [[0, "I"], [2, "M"], [4, "O"]]) {
+      const s = b.sites[idx];
+      const rhoCyl = s.R * Math.cos(s.alpha);
+      // braid-braid: single-time (rigid co-rotation), t = 0
+      const rx = Math.cos(s.th), ry = Math.sin(s.th);
+      const wk = wakeAccel(b, idx, 0, { soft }).a;
+      let inward = -(wk[0] * rx + wk[1] * ry) * kap;
+      // cage-on-layer: cycle-averaged static pair sum
+      for (let k = 0; k < Nt && cageSites.length; k++) {
+        const t = (k / Nt) * (2 * Math.PI / wEff);
+        const ang = wEff * t + s.th, ca = Math.cos(s.alpha);
+        const xj = [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)];
+        const vmag = s.sgn * s.R * ca * wEff;
+        const vj = [-vmag*Math.sin(ang), vmag*Math.cos(ang), 0];
+        const rxk = Math.cos(ang), ryk = Math.sin(ang);
+        for (const c of cageSites) for (const pm of [+1, -1]) {
+          const Xe = [c.X[0] + pm*(p0/2)*c.ph[0], c.X[1] + pm*(p0/2)*c.ph[1], c.X[2] + pm*(p0/2)*c.ph[2]];
+          const dx = [xj[0]-Xe[0], xj[1]-Xe[1], xj[2]-Xe[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+          const Dt = 1 - (vj[0]*rh[0] + vj[1]*rh[1] + vj[2]*rh[2]);
+          inward += -(s.pol) * pm * Dt * (rh[0]*rxk + rh[1]*ryk) / (r * r) / Nt * kap;
+        }
+      }
+      F[L] = inward - wEff * wEff * rhoCyl; // net radial force per unit mass (0 = balance)
+    }
+    // net radial force on a polar cage member (braid legs cycle-averaged, softened)
+    let Fcage = 0;
+    if (cageSites.length) {
+      const c = cageSites.find((x) => Math.abs(x.dir[2]) > 0.9);
+      const pos0 = (s, t) => { const ang = wEff * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+      const vel0 = (s, t) => { const ang = wEff * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+      for (const pm of [+1, -1]) {
+        const Xe = [c.X[0] + pm*(p0/2)*c.ph[0], c.X[1] + pm*(p0/2)*c.ph[1], c.X[2] + pm*(p0/2)*c.ph[2]];
+        for (let k = 0; k < Nt; k++) {
+          const t = (k / Nt) * (2 * Math.PI / wEff);
+          for (const s of b.sites) {
+            let te = t - Math.hypot(...Xe) - 1;
+            for (let it = 0; it < 30; it++) { const p = pos0(s, te); te = t - Math.hypot(Xe[0]-p[0], Xe[1]-p[1], Xe[2]-p[2]); }
+            const p = pos0(s, te);
+            const dx = [Xe[0]-p[0], Xe[1]-p[1], Xe[2]-p[2]];
+            const r = Math.hypot(dx[0], dx[1], dx[2]);
+            const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+            const v = vel0(s, te);
+            const Ds = 1 - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+            const m = Ds / (Ds * Ds + soft * soft);
+            Fcage += kap * (pm * s.pol) * m * (rh[0]*c.dir[0] + rh[1]*c.dir[1] + rh[2]*c.dir[2]) / (r * r) / Nt;
+          }
+        }
+        for (const o of cageSites) {
+          if (o === c) continue;
+          for (const pm2 of [+1, -1]) {
+            const Xo = [o.X[0] + pm2*(p0/2)*o.ph[0], o.X[1] + pm2*(p0/2)*o.ph[1], o.X[2] + pm2*(p0/2)*o.ph[2]];
+            const dx = [Xe[0]-Xo[0], Xe[1]-Xo[1], Xe[2]-Xo[2]];
+            const r = Math.hypot(dx[0], dx[1], dx[2]);
+            Fcage += kap * (pm * pm2) * (dx[0]*c.dir[0] + dx[1]*c.dir[1] + dx[2]*c.dir[2]) / (r * r * r);
+          }
+        }
+      }
+    }
+    return [F.I, F.M, F.O, Fcage];
+  };
+  const coords = withCage ? 4 : 3;
+  const K = [];
+  for (let i = 0; i < coords; i++) K.push(Array(coords).fill(0));
+  const D0 = displace;
+  for (let j = 0; j < coords; j++) {
+    const dp = D0.slice(), dm = D0.slice();
+    dp[j] = D0[j] + eps; dm[j] = D0[j] - eps;
+    const Fp = netForces(dp[0], dp[1], dp[2], dp[3] ?? 0, railPinned);
+    const Fm = netForces(dm[0], dm[1], dm[2], dm[3] ?? 0, railPinned);
+    for (let i = 0; i < coords; i++) K[i][j] = (Fp[i] - Fm[i]) / (2 * eps);
+  }
+  const sym = K.map((row, i) => row.map((v, j) => (v + K[j][i]) / 2));
+  const eig = jacobiEigSym(sym);
+  const F0 = netForces(D0[0], D0[1], D0[2], D0[3] ?? 0, railPinned);
+  return { coords: withCage ? ["rI", "rM", "rO", "aCage"] : ["rI", "rM", "rO"],
+    seedNetForces: F0, K, symEigen: eig,
+    basin: eig.every((e) => e.value < 0),
+    maxEig: eig[0].value, escapeDirection: eig[0].vector };
+}
+
+// ABSOLUTE-SCALE (RAIL-PINNED) EQUILIBRIUM (Section 57 operator route (a)).
+// The frozen-omega frame left the size mode unbalanced; physically, during
+// contraction the middle stays ON the rail (the natively confirmed speed
+// attractor), so omega = c_f/(R_M cos aM) responds to R_M. Under that pin,
+// wake forces scale 1/lambda^2 while needs scale 1/lambda: support ~ 1/lambda,
+// contraction RAISES support, and the size mode is self-restoring at a finite
+// equilibrium — the speed pin is also the size pin. This solver finds the
+// bare braid's rail-pinned radial equilibrium (3-D Newton on (r_I, r_M, r_O)
+// at frozen kappa*, omega live), reports the contraction factor lambda, the
+// rail-pinned stability spectrum at the fixed point, the tangential rows
+// there, and the scale ordering against the declared d0 = R_MCB floor
+// (both scales are proportional to kappa; the ratio is a pure number modulo
+// the open MCB constant).
+export function railPinnedEquilibrium({ geo = OCTAHEDRAL_CAGE_V4.geo, eps = 0.01, Nt = 16, soft = 0.02, iters = 16 } = {}) {
+  // kappa FROZEN once at the seed fit: the kappa refit is a gauge that exactly
+  // absorbs the dilation gain (the fitted-kappa sum rule); the physical solve
+  // holds kappa and lets the rail pin do the size work.
+  const kap0 = residuals({ u: 0, cTrans: 1.0, geo }, { soft }).kappaStar;
+  let x = [0, 0, 0];
+  let last = null;
+  for (let it = 0; it < iters; it++) {
+    const r = radialStabilityMatrix({ geo, withCage: false, eps, Nt, soft, railPinned: true, kapFixed: kap0, displace: [...x, 0] });
+    const F = r.seedNetForces.slice(0, 3), K = r.K;
+    last = r;
+    if (Math.max(...F.map(Math.abs)) < 5e-5) break;
+    const det3 = (A) => A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1]) - A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0]) + A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+    const D = det3(K);
+    const col = (j, b) => K.map((row, i) => row.map((v, jj) => (jj === j ? b[i] : v)));
+    const dlt = [0, 1, 2].map((j) => det3(col(j, F.map((v) => -v))) / D);
+    const damp = Math.min(1, 0.1 / Math.max(...dlt.map(Math.abs)));
+    for (let j = 0; j < 3; j++) x[j] += dlt[j] * damp;
+  }
+  const lambda = 1 + x[1]; // R_M contraction factor (absolute size, seed units)
+  const shape = { qI: (geo.qI + x[0]) / lambda, qO: (geo.qO + x[2]) / lambda };
+  const rows = supportRatios({ geo: { ...geo, ...shape } });
+  return {
+    displacement: x, lambda, shapeEq: shape,
+    residualF: last.seedNetForces.slice(0, 3),
+    railPinnedSpectrum: last.symEigen.map((e) => e.value),
+    basin: last.basin, kappaFrozen: kap0,
+    refitRows: { support: rows.ratios, tan: rows.tanRows, closure: rows.closure, kappaStar: rows.kappaStar },
+    scaleNote: "R_eq and d0=R_MCB are both proportional to kappa (epsilon=1, c_f=1); R_eq/d0 is a pure number modulo the open MCB constant",
+  };
+}
+
+// SELF-EQUILIBRATED BARE BRAID V5 (spec Section 58 by title): the joint fixed
+// point of the rail-pinned radial equilibrium and the tangential ledger,
+// found by alternating angle-descent (tau_I, tau_O -> 0) with radial Newton
+// re-equilibration (frozen kappa, omega live on the rail). NO environment.
+// At the fixed point: radial residual ~1e-6 with a fully restoring basin
+// (-0.63/-2.00/-6.27); tau_I = 0.0006, tau_O = 0.0004 (the middle's +0.227
+// rail pump is the escapement's, as always); size self-selected at
+// R_M(eq) = lambda/kappa_frozen ~ 3.49 in units kappa*epsilon^2/c_f^2 — the
+// braid's absolute size is a DERIVED constant of the family, sitting well
+// above the d0 = R_MCB floor. Geometry (shape at equilibrium):
+export const SELF_EQUILIBRATED_V5 = Object.freeze({
+  geo: Object.freeze({ qI: 0.55, qO: 0.75, alphaI: -27.15 * d, alphaM: 16.24 * d, alphaO: 64.5 * d, thetaI: -16.2 * d, thetaO: 339.5 * d }),
+  ReqOverKappa: 3.494,
+});
+
+// TILT-STIFFNESS BLOCK (Section 58 named gap; the Row 6 native killer). The
+// coordinates are per-layer plane inclinations eta_L about a transverse axis
+// (x): each layer keeps its circular motion, rigidly rotated by R_x(eta_L).
+// The generalized force is the cycle-averaged x-torque on the layer at kappa*
+// (zero at eta=0 by reflection symmetry — tilt equilibrium is automatic; a
+// layer in exact circular motion about its tilted normal needs zero net
+// torque, so the wake torque IS the generalized force). K_tilt[i][j] =
+// d<T_x on layer i>/d eta_j. VALIDATION ROW built in: the global mode
+// (1,1,1) is a symmetry of the bare braid (isotropy) and must be null.
+// DECLARED CAVEAT: layers carry spin angular momentum, so the true linear
+// dynamics is gyroscopic (lambda^2 M + lambda G + K); a restoring K is the
+// seed-grade gate (necessary), the full verdict is the native run's.
+export function tiltStiffness({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02, eta = 0.03 } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const mk = (etas) => seed.sites.map((s) => {
+    const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const c = Math.cos(etas[L]), sn = Math.sin(etas[L]);
+    return {
+      pol: s.pol, L,
+      pos: (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return rotX([s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)], c, sn); },
+      vel: (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return rotX([-v*Math.sin(a), v*Math.cos(a), 0], c, sn); },
+    };
+  });
+  const torques = (etas) => {
+    const sites = mk(etas);
+    const T = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i];
+        const Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          // causal root scan (bounded lookback, bisection refine)
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          const dmax = 4, N = 2400;
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= N; kk++) {
+            const te = t - dmax + dmax * (kk / N);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2;
+              const p = src.pos(te0);
+              const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+              const r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+                const vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+                const wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        // x-torque about the origin on this member, kappa-scaled, cycle-averaged
+        T[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+      }
+    }
+    return T;
+  };
+  const K = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const ep = [0, 0, 0], em = [0, 0, 0];
+    ep[j] = eta; em[j] = -eta;
+    const Tp = torques(ep), Tm = torques(em);
+    for (let i = 0; i < 3; i++) K[i][j] = (Tp[i] - Tm[i]) / (2 * eta);
+  }
+  const sym = K.map((row, i) => row.map((v, j) => (v + K[j][i]) / 2));
+  const eig = jacobiEigSym(sym);
+  // global-mode null witness: K acting on (1,1,1)
+  const g1 = [0, 1, 2].map((i) => K[i][0] + K[i][1] + K[i][2]);
+  const globalResidual = Math.hypot(...g1);
+  const scale = Math.max(...K.flat().map(Math.abs));
+  // exact quotient by the global null (right eigenvector (1,1,1), eigenvalue 0):
+  // express K's action on u1=(1,-1,0), u2=(0,1,-1) modulo (1,1,1) and take the
+  // 2x2 spectrum — the true relative-tilt eigenvalues (possibly complex: whirl).
+  const applyK = (u) => [0, 1, 2].map((i) => K[i][0]*u[0] + K[i][1]*u[1] + K[i][2]*u[2]);
+  const inBasis = (v) => {
+    const c = (v[0] + v[1] + v[2]) / 3;
+    const a = v[0] - c;          // coefficient of u1 = (1,-1,0): v0 = a + c
+    const b = c - v[2];          // coefficient of u2 = (0,1,-1): v2 = -b + c
+    return [a, b];
+  };
+  const q1 = inBasis(applyK([1, -1, 0])), q2 = inBasis(applyK([0, 1, -1]));
+  const Q = [[q1[0], q2[0]], [q1[1], q2[1]]];
+  const tr = Q[0][0] + Q[1][1], det = Q[0][0]*Q[1][1] - Q[0][1]*Q[1][0];
+  const disc = tr * tr - 4 * det;
+  const relativeEigen = disc >= 0
+    ? [{ re: (tr + Math.sqrt(disc)) / 2, im: 0 }, { re: (tr - Math.sqrt(disc)) / 2, im: 0 }]
+    : [{ re: tr / 2, im: Math.sqrt(-disc) / 2 }, { re: tr / 2, im: -Math.sqrt(-disc) / 2 }];
+  return { K, symEigen: eig, globalModeResidual: globalResidual, relScale: scale,
+    globalNullOk: globalResidual < 0.05 * Math.max(scale, 1e-9),
+    quotient: Q, relativeEigen,
+    restoringRelative: relativeEigen.every((e) => e.re < 0) };
+}
+
+// GYROSCOPIC-CIRCULATORY AXIS ANALYSIS (Section 59 declared caveat, executed;
+// braid-angular-momentum-spin queue item 12 deliverable 4). The layers carry
+// spin angular momentum, so the true linearized axis dynamics is the quadratic
+// pencil lambda^2 M + lambda G + K over BOTH transverse tilt directions per
+// layer, coords q = (eta^x_I, eta^x_M, eta^x_O, eta^y_I, eta^y_M, eta^y_O):
+//   M = diag(m_L) x I_2   with m_L = rho_L^2 + 2 z_L^2 (cycle-averaged layer
+//       tilt inertia at unit site weight — the same per-unit-mass kinematic
+//       convention as the support/need rows),
+//   G = [[0, +J_d], [-J_d, 0]] with J_L = 2 rho_L^2 omega (the layer spin
+//       angular momenta: m eta''_x + J eta'_y = T_x, m eta''_y - J eta'_x = T_y),
+//   K = the measured 6x6 tilt Jacobian (both torque components under both tilt
+//       axes, same cycle-averaged kappa*-scaled exact-causal-root torque
+//       evaluator as tiltStiffness). The x-x block reproduces the Section 59
+//       block; the cross blocks are the CIRCULATORY part (causal-delay
+//       asymmetry — the field in flight carries angular momentum), and the
+//       cycle average makes the response z-rotation covariant, witnessed by
+//       the block identities E ~ A, D ~ -B.
+// BASELINE-TORQUE TRANSPORT (the honest linearization): the layers carry
+// nonzero baseline z-torques tau_L (the middle's rail pump; tau_I, tau_O ~ 0
+// at V5), so the spin transport d/dt(J n_hat) contributes J-dot n_hat = tau_L
+// n_hat terms: the equations are
+//   m eta''_x + J eta'_y + tau eta_y = T_x(q),
+//   m eta''_y - J eta'_x - tau eta_x = T_y(q),
+// i.e. the pencil is P(lambda) = lambda^2 M + lambda G + Gamma - K with
+// Gamma = [[0, +tau_d], [-tau_d, 0]]. VALIDATION ROWS built into the physics:
+// (i) the x-x block row sums vanish (the Section 59 global null); (ii) the
+// cross-block row sums equal the measured baseline z-torques EXACTLY (the
+// global tilt reorients the pump torque — the rail pump entering the axis
+// sector), so K_eff = K - Gamma annihilates both global tilts and lambda = 0
+// is an exact double root of P.
+// Eigenvalues: det P(lambda) = 0, degree 12, solved by Durand-Kerner on the
+// determinant evaluation (leading coefficient det M).
+// QUOTIENT DISCIPLINE: the global-tilt double zero root is deflated by
+// identification before any stability readout. Verdict rows: whirl modes
+// (complex pairs), flutter = any deflated root with Re(lambda) > 0.
+// pumpAbsorbed: the escapement-absorbs-the-pump counterfactual (tau_M set to
+// zero in Gamma) — the Section 60 route-(b) question, "is the axis sector
+// independently fatal even with the pump absorbed."
+// Seed grade: cycle-averaged rigid-layer reduction; no delay-memory
+// (tilt-rate-dependent) wake damping block — G is the kinematic spin
+// transport only; single-time rigid booking on the braid legs.
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+export function gyroscopicTiltAnalysis({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02, eta = 0.03, pumpAbsorbed = false } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  // layer kinematic constants (unit site weight, cycle-averaged)
+  const layerConst = [];
+  for (const i of [0, 2, 4]) {
+    const s = seed.sites[i];
+    const rho = s.R * Math.cos(s.alpha), z = s.R * Math.sin(s.alpha);
+    layerConst.push({ name: s.name, m: rho * rho + 2 * z * z, J: 2 * rho * rho * w });
+  }
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const rotY = (v, c, s) => [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
+  const mk = (ex, ey) => seed.sites.map((s) => {
+    const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const cx = Math.cos(ex[L]), sx = Math.sin(ex[L]);
+    const cy = Math.cos(ey[L]), sy = Math.sin(ey[L]);
+    return {
+      pol: s.pol, L,
+      pos: (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return rotY(rotX([s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)], cx, sx), cy, sy); },
+      vel: (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return rotY(rotX([-v*Math.sin(a), v*Math.cos(a), 0], cx, sx), cy, sy); },
+    };
+  });
+  // cycle-averaged kappa*-scaled x- and y-torques per layer on exact causal
+  // roots (same evaluator body as tiltStiffness, both components read out)
+  const torquesXY = (ex, ey) => {
+    const sites = mk(ex, ey);
+    const Tx = [0, 0, 0], Ty = [0, 0, 0], Tz = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i];
+        const Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          const dmax = 4, N = 2400;
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= N; kk++) {
+            const te = t - dmax + dmax * (kk / N);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2;
+              const p = src.pos(te0);
+              const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+              const r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+                const vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+                const wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        Tx[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+        Ty[rec.L] += kap * (Xi[2] * F[0] - Xi[0] * F[2]) / Nt;
+        Tz[rec.L] += kap * (Xi[0] * F[1] - Xi[1] * F[0]) / Nt;
+      }
+    }
+    return { Tx, Ty, Tz };
+  };
+  // baseline layer torques at eta = 0: transverse rows vanish (tilt
+  // equilibrium); the z rows are the layer spin torques (the rail pump on M)
+  const base = torquesXY([0, 0, 0], [0, 0, 0]);
+  const tau0 = base.Tz.slice();
+  // full 6x6 tilt Jacobian by central differences (blocks A = dTx/dex,
+  // B = dTx/dey, D = dTy/dex, E = dTy/dey)
+  const A = [[0,0,0],[0,0,0],[0,0,0]], B = [[0,0,0],[0,0,0],[0,0,0]];
+  const D = [[0,0,0],[0,0,0],[0,0,0]], E = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const ep = [0,0,0], em = [0,0,0];
+    ep[j] = eta; em[j] = -eta;
+    const px = torquesXY(ep, [0,0,0]), mx = torquesXY(em, [0,0,0]);
+    const py = torquesXY([0,0,0], ep), my = torquesXY([0,0,0], em);
+    for (let i = 0; i < 3; i++) {
+      A[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * eta);
+      D[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * eta);
+      B[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * eta);
+      E[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * eta);
+    }
+  }
+  const scale = Math.max(...A.flat().map(Math.abs), ...B.flat().map(Math.abs));
+  // z-rotation covariance witnesses on the cycle-averaged response
+  const covarianceEA = Math.max(...A.map((r, i) => r.map((v, j) => Math.abs(E[i][j] - v))).flat());
+  const covarianceDB = Math.max(...B.map((r, i) => r.map((v, j) => Math.abs(D[i][j] + v))).flat());
+  // global-tilt null witnesses: the x-x block row sums vanish (isotropy); the
+  // cross-block row sums equal the baseline layer z-torques (spin transport)
+  const rowSum = (Mx) => Math.max(...[0,1,2].map((i) => Math.abs(Mx[i][0] + Mx[i][1] + Mx[i][2])));
+  const globalNullA = rowSum(A);
+  const crossRowSums = [0,1,2].map((i) => B[i][0] + B[i][1] + B[i][2]);
+  const pumpWitness = Math.max(...[0,1,2].map((i) => Math.abs(crossRowSums[i] - tau0[i])));
+  // assemble the pencil P(lambda) = lambda^2 M6 + lambda G6 + Gamma - K6
+  const m = layerConst.map((l) => l.m), J = layerConst.map((l) => l.J);
+  const tau = pumpAbsorbed ? [tau0[0], 0, tau0[2]] : tau0;
+  const K6 = [
+    [A[0][0],A[0][1],A[0][2], B[0][0],B[0][1],B[0][2]],
+    [A[1][0],A[1][1],A[1][2], B[1][0],B[1][1],B[1][2]],
+    [A[2][0],A[2][1],A[2][2], B[2][0],B[2][1],B[2][2]],
+    [D[0][0],D[0][1],D[0][2], E[0][0],E[0][1],E[0][2]],
+    [D[1][0],D[1][1],D[1][2], E[1][0],E[1][1],E[1][2]],
+    [D[2][0],D[2][1],D[2][2], E[2][0],E[2][1],E[2][2]],
+  ];
+  const M6 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? m[i % 3] : 0)));
+  const G6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { G6[l][3 + l] = +J[l]; G6[3 + l][l] = -J[l]; }
+  const Gam6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { Gam6[l][3 + l] = +tau[l]; Gam6[3 + l][l] = -tau[l]; }
+  // complex helpers
+  const cAdd = (a, b) => [a[0]+b[0], a[1]+b[1]];
+  const cSub = (a, b) => [a[0]-b[0], a[1]-b[1]];
+  const cMul = (a, b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const cDiv = (a, b) => { const d2 = b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d2, (a[1]*b[0]-a[0]*b[1])/d2]; };
+  const cAbs = (a) => Math.hypot(a[0], a[1]);
+  const detC = (Min) => { // 6x6 complex determinant, partial-pivot Gaussian elimination
+    const n = Min.length;
+    const Mx = Min.map((r) => r.map((v) => [v[0], v[1]]));
+    let det = [1, 0];
+    for (let c = 0; c < n; c++) {
+      let p = c;
+      for (let r = c + 1; r < n; r++) if (cAbs(Mx[r][c]) > cAbs(Mx[p][c])) p = r;
+      if (cAbs(Mx[p][c]) < 1e-300) return [0, 0];
+      if (p !== c) { const t = Mx[p]; Mx[p] = Mx[c]; Mx[c] = t; det = cMul(det, [-1, 0]); }
+      det = cMul(det, Mx[c][c]);
+      for (let r = c + 1; r < n; r++) {
+        const f = cDiv(Mx[r][c], Mx[c][c]);
+        for (let cc = c; cc < n; cc++) Mx[r][cc] = cSub(Mx[r][cc], cMul(f, Mx[c][cc]));
+      }
+    }
+    return det;
+  };
+  const pencil = (lam) => {
+    const l2 = cMul(lam, lam);
+    const P = [];
+    for (let i = 0; i < 6; i++) {
+      P.push([]);
+      for (let j = 0; j < 6; j++) {
+        P[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [G6[i][j], 0])), [Gam6[i][j] - K6[i][j], 0]));
+      }
+    }
+    return detC(P);
+  };
+  // Durand-Kerner on the degree-12 determinant polynomial
+  const leading = m[0]*m[0]*m[1]*m[1]*m[2]*m[2]; // det(M6)
+  const deg2 = 12;
+  let roots = Array.from({ length: deg2 }, (_, i) => {
+    const ang = (2 * Math.PI * i) / deg2 + 0.4;
+    const rad = 1.5 * Math.max(Math.sqrt(scale / Math.min(...m)), Math.max(...J) / Math.min(...m));
+    return [rad * Math.cos(ang), rad * Math.sin(ang)];
+  });
+  let dkResidual = Infinity;
+  for (let it = 0; it < 400; it++) {
+    let moved = 0;
+    for (let i = 0; i < deg2; i++) {
+      let denom = [leading, 0];
+      for (let j = 0; j < deg2; j++) if (j !== i) denom = cMul(denom, cSub(roots[i], roots[j]));
+      const delta = cDiv(pencil(roots[i]), denom);
+      roots[i] = cSub(roots[i], delta);
+      moved = Math.max(moved, cAbs(delta));
+    }
+    dkResidual = moved;
+    if (moved < 1e-13) break;
+  }
+  const rootRows = roots.map((r) => ({ re: r[0], im: r[1], pencilResidual: cAbs(pencil(r)) }))
+    .sort((x, y) => y.re - x.re);
+  // quotient discipline: deflate the global-tilt double zero root before any
+  // stability readout. In the physical cell the pair is exact (|lambda| at
+  // numerical zero); in the pumpAbsorbed counterfactual Gamma_M is removed
+  // while K keeps the measured pump content, so the pair is perturbed off
+  // zero and is identified as the two smallest-|lambda| roots (reported).
+  const byMag = [...rootRows].sort((x, y) => Math.hypot(x.re, x.im) - Math.hypot(y.re, y.im));
+  const globalPair = byMag.slice(0, 2);
+  const deflated = rootRows.filter((r) => !globalPair.includes(r));
+  const growing = deflated.filter((r) => r.re > 1e-6);
+  const maxGrowth = deflated.length ? deflated[0] : null;
+  // mode shape of the max-growth root: null vector of P(lambda) by Gaussian
+  // elimination with the free variable pinned (rank-5 at a simple root);
+  // reported as per-layer complex tilt amplitudes zeta_L = eta^x_L + i eta^y_L
+  let flutterModeShape = null;
+  if (maxGrowth && maxGrowth.re > 1e-6) {
+    const lam = [maxGrowth.re, maxGrowth.im];
+    const l2 = cMul(lam, lam);
+    const P = [];
+    for (let i = 0; i < 6; i++) {
+      P.push([]);
+      for (let j = 0; j < 6; j++) P[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [G6[i][j], 0])), [Gam6[i][j] - K6[i][j], 0]));
+    }
+    // eliminate to row echelon with partial pivoting, then back-substitute x6 = 1
+    const n = 6, piv = [0, 1, 2, 3, 4, 5];
+    for (let c = 0; c < n - 1; c++) {
+      let p = c;
+      for (let r = c + 1; r < n; r++) if (cAbs(P[r][c]) > cAbs(P[p][c])) p = r;
+      if (p !== c) { const t = P[p]; P[p] = P[c]; P[c] = t; }
+      for (let r = c + 1; r < n; r++) {
+        if (cAbs(P[c][c]) < 1e-300) continue;
+        const f = cDiv(P[r][c], P[c][c]);
+        for (let cc = c; cc < n; cc++) P[r][cc] = cSub(P[r][cc], cMul(f, P[c][cc]));
+      }
+    }
+    const x = Array.from({ length: n }, () => [0, 0]);
+    x[n - 1] = [1, 0];
+    for (let r = n - 2; r >= 0; r--) {
+      let s = [0, 0];
+      for (let c = r + 1; c < n; c++) s = cAdd(s, cMul(P[r][c], x[c]));
+      x[r] = cAbs(P[r][r]) < 1e-300 ? [0, 0] : cDiv([-s[0], -s[1]], P[r][r]);
+    }
+    // zeta_L = eta^x_L + i eta^y_L, normalized to the largest amplitude
+    const zeta = [0, 1, 2].map((l) => cAdd(x[l], cMul([0, 1], x[3 + l])));
+    const nrm = Math.max(...zeta.map(cAbs)) || 1;
+    flutterModeShape = ["I", "M", "O"].map((nm, l) => ({
+      layer: nm, amplitude: cAbs(zeta[l]) / nrm,
+      phaseDeg: (Math.atan2(zeta[l][1], zeta[l][0]) * 180) / Math.PI,
+    }));
+  }
+  return {
+    layers: layerConst, omega: w, kappaStar: kap, pumpAbsorbed,
+    blocks: { A, B, D, E }, K6, M: m, Jspin: J, tau0, tauUsed: tau,
+    baselineTransverse: Math.max(...base.Tx.map(Math.abs), ...base.Ty.map(Math.abs)),
+    covarianceWitness: { EminusA: covarianceEA, DplusB: covarianceDB, scale },
+    globalNull: { A: globalNullA, crossRowSums, pumpWitness,
+      ok: globalNullA < 0.05 * Math.max(scale, 1e-9) && pumpWitness < 0.05 * Math.max(scale, 1e-9) },
+    dkResidual,
+    eigenvalues: rootRows,
+    globalPairDeflated: globalPair.map((r) => ({ re: r.re, im: r.im })),
+    quotientEigenvalues: deflated,
+    whirl: deflated.filter((r) => Math.abs(r.im) > 1e-6).length,
+    flutter: growing.length > 0,
+    flutterModes: growing,
+    maxGrowthRate: maxGrowth ? maxGrowth.re : null,
+    maxGrowthWhirlFrequency: maxGrowth ? Math.abs(maxGrowth.im) : null,
+    flutterModeShape,
+  };
+}
+
+// DELAY-MEMORY TILT-RATE BLOCK AND THE COMPLETED AXIS PENCIL (Section 61
+// declared caveat, executed; route (b) of its next closure goal). The
+// gyroscopic analysis above carries only the KINEMATIC spin transport in
+// lambda*G; the causal wake also responds to tilt RATES — the field in
+// flight arrives from where the layer was — and that response is measurable
+// on the same evaluator. Measurement: per readout sample t_k, build the
+// worldline family whose layer tilt is zero AT t_k with a constant tilt rate
+// etaDot (angles eta(s) = etaDot*(s - t_k)), evaluate the cycle-averaged
+// kappa*-scaled torques on exact causal roots, and difference centrally in
+// etaDot: D[i][j] = dT_i/d(etaDot_j), both torque components under both tilt
+// axes (6x6; z-rotation covariance witnessed). D contains the delayed-K
+// content (roots see the past tilt) plus the intrinsic velocity response;
+// it is the honest linear damping/circulatory-velocity block of the axis
+// sector. The completed pencil is
+//   P(lambda) = lambda^2 M + lambda (G + D) + Gamma - K,
+// with the exact global-tilt double zero root unchanged (P(0) = Gamma - K).
+// extraDamping adds an isotropic diagonal damping d*I on the velocity block
+// (the requirement-mapping knob: what damping magnitude turns the spectrum
+// restoring); rateBlockScale scales the measured D block (0 reproduces the
+// Section 61 kinematic-transport-only pencil).
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02, eta = 0.03, etaDot = 0.02, extraDamping = 0, extraDampingLayers = null, velocityBlockAdd = null, rateBlockScale = 1, pumpAbsorbed = false } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  const layerConst = [];
+  for (const i of [0, 2, 4]) {
+    const s = seed.sites[i];
+    const rho = s.R * Math.cos(s.alpha), z = s.R * Math.sin(s.alpha);
+    layerConst.push({ name: s.name, m: rho * rho + 2 * z * z, J: 2 * rho * rho * w });
+  }
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const rotY = (v, c, s) => [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
+  const crossX = (v) => [0, -v[2], v[1]];   // x-hat cross v
+  const crossY = (v) => [v[2], 0, -v[0]];   // y-hat cross v
+  // worldline family: tilt angles ax(s) = ex + exDot*(s - tRef) about x, then
+  // ay(s) about y; exact velocity including the rotation-rate terms
+  const mk = (ex, ey, exDot, eyDot, tRef) => seed.sites.map((s) => {
+    const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const p0 = (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; };
+    const v0 = (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; };
+    return {
+      pol: s.pol, L,
+      pos: (t) => {
+        const ax = ex[L] + exDot[L] * (t - tRef), ay = ey[L] + eyDot[L] * (t - tRef);
+        return rotY(rotX(p0(t), Math.cos(ax), Math.sin(ax)), Math.cos(ay), Math.sin(ay));
+      },
+      vel: (t) => {
+        const ax = ex[L] + exDot[L] * (t - tRef), ay = ey[L] + eyDot[L] * (t - tRef);
+        const cx = Math.cos(ax), sx = Math.sin(ax), cy = Math.cos(ay), sy = Math.sin(ay);
+        const pX = rotX(p0(t), cx, sx);
+        // d/dt [Ry Rx p0] = eyDot yhat x (Ry Rx p0) + Ry (exDot xhat x (Rx p0)) + Ry Rx v0
+        const term1 = crossY(rotY(pX, cy, sy)).map((v) => eyDot[L] * v);
+        const term2 = rotY(crossX(pX).map((v) => exDot[L] * v), cy, sy);
+        const term3 = rotY(rotX(v0(t), cx, sx), cy, sy);
+        return [term1[0]+term2[0]+term3[0], term1[1]+term2[1]+term3[1], term1[2]+term2[2]+term3[2]];
+      },
+    };
+  });
+  // cycle-averaged torques; for rate response each readout sample uses its
+  // own worldline with tRef = t_k (zero tilt, finite rate at readout)
+  const torques = (ex, ey, exDot, eyDot, perSampleRef) => {
+    const Tx = [0, 0, 0], Ty = [0, 0, 0], Tz = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      const sites = mk(ex, ey, exDot, eyDot, perSampleRef ? t : 0);
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i];
+        const Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          const dmax = 4, N = 2400;
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= N; kk++) {
+            const te = t - dmax + dmax * (kk / N);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2;
+              const p = src.pos(te0);
+              const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+              const r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+                const vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+                const wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        Tx[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+        Ty[rec.L] += kap * (Xi[2] * F[0] - Xi[0] * F[2]) / Nt;
+        Tz[rec.L] += kap * (Xi[0] * F[1] - Xi[1] * F[0]) / Nt;
+      }
+    }
+    return { Tx, Ty, Tz };
+  };
+  const Z = [0, 0, 0];
+  const base = torques(Z, Z, Z, Z, false);
+  const tau0 = base.Tz.slice();
+  // static stiffness blocks (as in gyroscopicTiltAnalysis)
+  const A = [[0,0,0],[0,0,0],[0,0,0]], B = [[0,0,0],[0,0,0],[0,0,0]];
+  const Dx = [[0,0,0],[0,0,0],[0,0,0]], E = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const ep = [0,0,0], em = [0,0,0];
+    ep[j] = eta; em[j] = -eta;
+    const px = torques(ep, Z, Z, Z, false), mx = torques(em, Z, Z, Z, false);
+    const py = torques(Z, ep, Z, Z, false), my = torques(Z, em, Z, Z, false);
+    for (let i = 0; i < 3; i++) {
+      A[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * eta);
+      Dx[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * eta);
+      B[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * eta);
+      E[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * eta);
+    }
+  }
+  // delay-memory tilt-rate blocks: P = dTx/dexDot, Q = dTx/deyDot,
+  // Rl = dTy/dexDot, S = dTy/deyDot (per-sample tRef: zero tilt at readout)
+  const P = [[0,0,0],[0,0,0],[0,0,0]], Q = [[0,0,0],[0,0,0],[0,0,0]];
+  const Rl = [[0,0,0],[0,0,0],[0,0,0]], S = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const rp = [0,0,0], rm = [0,0,0];
+    rp[j] = etaDot; rm[j] = -etaDot;
+    const px = torques(Z, Z, rp, Z, true), mx = torques(Z, Z, rm, Z, true);
+    const py = torques(Z, Z, Z, rp, true), my = torques(Z, Z, Z, rm, true);
+    for (let i = 0; i < 3; i++) {
+      P[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * etaDot);
+      Rl[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * etaDot);
+      Q[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * etaDot);
+      S[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * etaDot);
+    }
+  }
+  const scale = Math.max(...A.flat().map(Math.abs), ...B.flat().map(Math.abs));
+  const covK = Math.max(...A.map((r, i) => r.map((v, j) => Math.abs(E[i][j] - v))).flat(),
+    ...B.map((r, i) => r.map((v, j) => Math.abs(Dx[i][j] + v))).flat());
+  const covD = Math.max(...P.map((r, i) => r.map((v, j) => Math.abs(S[i][j] - v))).flat(),
+    ...Q.map((r, i) => r.map((v, j) => Math.abs(Rl[i][j] + v))).flat());
+  const rowSum = (Mx) => Math.max(...[0,1,2].map((i) => Math.abs(Mx[i][0] + Mx[i][1] + Mx[i][2])));
+  const crossRowSums = [0,1,2].map((i) => B[i][0] + B[i][1] + B[i][2]);
+  const pumpWitness = Math.max(...[0,1,2].map((i) => Math.abs(crossRowSums[i] - tau0[i])));
+  // assemble
+  const m = layerConst.map((l) => l.m), J = layerConst.map((l) => l.J);
+  const tau = pumpAbsorbed ? [tau0[0], 0, tau0[2]] : tau0;
+  const K6 = [
+    ...[0,1,2].map((i) => [...A[i], ...B[i]]),
+    ...[0,1,2].map((i) => [...Dx[i], ...E[i]]),
+  ];
+  // torque velocity-response enters the equations of motion with a MINUS on
+  // the pencil's velocity coefficient: m*qdd + (G)*qd + Gamma*q = K*q + D6*qd
+  //  => P(lambda) = lambda^2 M + lambda (G - D6_torque) + Gamma - K, where
+  // D6_torque[i][j] = dT_i/d(qdot_j) scaled by rateBlockScale, minus any
+  // added isotropic absorber d*I (extraDamping >= 0 damps).
+  const D6t = [
+    ...[0,1,2].map((i) => [...P[i], ...Q[i]]),
+    ...[0,1,2].map((i) => [...Rl[i], ...S[i]]),
+  ];
+  const M6 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? m[i % 3] : 0)));
+  const G6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { G6[l][3 + l] = +J[l]; G6[3 + l][l] = -J[l]; }
+  const Gam6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { Gam6[l][3 + l] = +tau[l]; Gam6[3 + l][l] = -tau[l]; }
+  const dampLayers = extraDampingLayers ?? [extraDamping, extraDamping, extraDamping];
+  const Cvel = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) =>
+    G6[i][j] - rateBlockScale * D6t[i][j] + (i === j ? dampLayers[i % 3] : 0)
+    + (velocityBlockAdd ? velocityBlockAdd[i][j] : 0)));
+  // complex helpers + Durand-Kerner (as in gyroscopicTiltAnalysis)
+  const cAdd = (a, b) => [a[0]+b[0], a[1]+b[1]];
+  const cSub = (a, b) => [a[0]-b[0], a[1]-b[1]];
+  const cMul = (a, b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const cDiv = (a, b) => { const d2 = b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d2, (a[1]*b[0]-a[0]*b[1])/d2]; };
+  const cAbs = (a) => Math.hypot(a[0], a[1]);
+  const detC = (Min) => {
+    const n = Min.length;
+    const Mx = Min.map((r) => r.map((v) => [v[0], v[1]]));
+    let det = [1, 0];
+    for (let c = 0; c < n; c++) {
+      let p = c;
+      for (let r = c + 1; r < n; r++) if (cAbs(Mx[r][c]) > cAbs(Mx[p][c])) p = r;
+      if (cAbs(Mx[p][c]) < 1e-300) return [0, 0];
+      if (p !== c) { const t = Mx[p]; Mx[p] = Mx[c]; Mx[c] = t; det = cMul(det, [-1, 0]); }
+      det = cMul(det, Mx[c][c]);
+      for (let r = c + 1; r < n; r++) {
+        const f = cDiv(Mx[r][c], Mx[c][c]);
+        for (let cc = c; cc < n; cc++) Mx[r][cc] = cSub(Mx[r][cc], cMul(f, Mx[c][cc]));
+      }
+    }
+    return det;
+  };
+  const pencil = (lam) => {
+    const l2 = cMul(lam, lam);
+    const Pm = [];
+    for (let i = 0; i < 6; i++) {
+      Pm.push([]);
+      for (let j = 0; j < 6; j++) {
+        Pm[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [Cvel[i][j], 0])), [Gam6[i][j] - K6[i][j], 0]));
+      }
+    }
+    return detC(Pm);
+  };
+  const leading = m[0]*m[0]*m[1]*m[1]*m[2]*m[2];
+  const deg2 = 12;
+  let roots = Array.from({ length: deg2 }, (_, i) => {
+    const ang = (2 * Math.PI * i) / deg2 + 0.4;
+    const rad = 1.5 * Math.max(Math.sqrt(scale / Math.min(...m)), Math.max(...J) / Math.min(...m));
+    return [rad * Math.cos(ang), rad * Math.sin(ang)];
+  });
+  let dkResidual = Infinity;
+  for (let it = 0; it < 400; it++) {
+    let moved = 0;
+    for (let i = 0; i < deg2; i++) {
+      let denom = [leading, 0];
+      for (let j = 0; j < deg2; j++) if (j !== i) denom = cMul(denom, cSub(roots[i], roots[j]));
+      const delta = cDiv(pencil(roots[i]), denom);
+      roots[i] = cSub(roots[i], delta);
+      moved = Math.max(moved, cAbs(delta));
+    }
+    dkResidual = moved;
+    if (moved < 1e-13) break;
+  }
+  const rootRows = roots.map((r) => ({ re: r[0], im: r[1], pencilResidual: cAbs(pencil(r)) }))
+    .sort((x, y) => y.re - x.re);
+  const byMag = [...rootRows].sort((x, y) => Math.hypot(x.re, x.im) - Math.hypot(y.re, y.im));
+  const globalPair = byMag.slice(0, 2);
+  const deflated = rootRows.filter((r) => !globalPair.includes(r));
+  const growing = deflated.filter((r) => r.re > 1e-6);
+  const maxGrowth = deflated.length ? deflated[0] : null;
+  return {
+    layers: layerConst, omega: w, kappaStar: kap, tau0, pumpAbsorbed,
+    blocks: { A, B, P, Q },
+    rateBlock: D6t, rateBlockScale, extraDamping,
+    covarianceWitness: { staticBlocks: covK, rateBlocks: covD, scale },
+    globalNull: { A: rowSum(A), pumpWitness,
+      ok: rowSum(A) < 0.05 * Math.max(scale, 1e-9) && pumpWitness < 0.05 * Math.max(scale, 1e-9) },
+    rateRowSums: { P: [0,1,2].map((i) => P[i][0]+P[i][1]+P[i][2]), Q: [0,1,2].map((i) => Q[i][0]+Q[i][1]+Q[i][2]) },
+    dkResidual,
+    eigenvalues: rootRows,
+    globalPairDeflated: globalPair.map((r) => ({ re: r.re, im: r.im })),
+    quotientEigenvalues: deflated,
+    flutter: growing.length > 0,
+    flutterModes: growing,
+    maxGrowthRate: maxGrowth ? maxGrowth.re : null,
+    maxGrowthWhirlFrequency: maxGrowth ? Math.abs(maxGrowth.im) : null,
+  };
+}
+
+// OFF-DIAGONAL CLICK RESPONSE, PHASE-RESOLVED PUMP MODULATION (Section 64
+// route (a): the last bare-braid axis-absorber route). A click on the middle
+// exerts torque on the middle only, so click-mediated damping of ANOTHER
+// layer's tilt rate requires a phase-correlated chain: layer-L tilt rate ->
+// delayed-wake modulation of the middle's tangential (pump) force, resolved
+// in the middle's rotation phase phi -> modulated click depth -> click torque
+// -(z_M I cos phi) correlated with the modulation. The claim-bearing
+// measurement is the phase-resolved response f_L(phi) = dF_tan^M(phi)/d
+// etaDot_L on exact causal roots; its cos-phi Fourier component f_c is what
+// survives the phase average. The chain estimate (declared: accumulation
+// time x click rate ~ 1, phase-uniform clicking, Section 64 sensitivity S in
+// V5 units) sizes the off-diagonal velocity-block coupling
+//   D_offdiag(M <- L) ~ z_M * |S_V5| * |f_c| / 2,
+// which is then inserted into the completed pencil AT BOTH SIGNS and the max
+// growth re-read: the route stays open only if the estimated magnitude can
+// close (or materially reduce) the axis-sector growth.
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+export function clickOffDiagonalEstimate({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nphi = 16, soft = 0.02, etaDot = 0.02, sV5 = 2.506, clickSensitivityNote = "Section 64 |S| in V5 units", } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const crossXv = (v) => [0, -v[2], v[1]];
+  // worldlines: layer L tilts about x at rate rd, zero tilt at tRef
+  const mk = (L, rd, tRef) => seed.sites.map((s) => {
+    const SL = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const r = SL === L ? rd : 0;
+    const p0 = (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; };
+    const v0 = (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; };
+    return {
+      pol: s.pol, L: SL,
+      pos: (t) => { const ax = r * (t - tRef); return rotX(p0(t), Math.cos(ax), Math.sin(ax)); },
+      vel: (t) => {
+        const ax = r * (t - tRef);
+        const pX = rotX(p0(t), Math.cos(ax), Math.sin(ax));
+        const t1 = crossXv(pX).map((v) => r * v);
+        const t2 = rotX(v0(t), Math.cos(ax), Math.sin(ax));
+        return [t1[0]+t2[0], t1[1]+t2[1], t1[2]+t2[2]];
+      },
+    };
+  });
+  // tangential force on the middle site (index 2) at phase sample t, kappa-scaled
+  const tanForceM = (sites, t) => {
+    const rec = sites[2];
+    const Xi = rec.pos(t), vi = rec.vel(t);
+    const F = [0, 0, 0];
+    for (let j = 0; j < sites.length; j++) {
+      if (j === 2) continue;
+      const src = sites[j];
+      const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+      const dmax = 4, N = 2400;
+      let g0 = g(t - dmax);
+      for (let kk = 1; kk <= N; kk++) {
+        const te = t - dmax + dmax * (kk / N);
+        if (te >= t - 1e-9) break;
+        const g1 = g(te);
+        if ((g0 < 0) !== (g1 < 0)) {
+          let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+          for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+          const te0 = (lo + hi) / 2;
+          const p = src.pos(te0);
+          const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          if (r > 1e-9) {
+            const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+            const vs = src.vel(te0);
+            const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+            const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+            const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+            const wgt = (rec.pol * src.pol) * mfac / (r * r);
+            F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+          }
+        }
+        g0 = g1;
+      }
+    }
+    // tangential unit vector of the middle site at t
+    const sp = Math.hypot(vi[0], vi[1], vi[2]);
+    return kap * (F[0]*vi[0] + F[1]*vi[1] + F[2]*vi[2]) / sp;
+  };
+  const zM = Math.abs(seed.sites[2].R * Math.sin(seed.sites[2].alpha));
+  const perLayer = [0, 1, 2].map((L) => {
+    let c = 0, s = 0, dc = 0;
+    for (let k = 0; k < Nphi; k++) {
+      const t = (k / Nphi) * period;
+      const phi = w * t + seed.sites[2].th;
+      const fp = tanForceM(mk(L, +etaDot, t), t);
+      const fm = tanForceM(mk(L, -etaDot, t), t);
+      const df = (fp - fm) / (2 * etaDot);
+      c += (df * Math.cos(phi) * 2) / Nphi;
+      s += (df * Math.sin(phi) * 2) / Nphi;
+      dc += df / Nphi;
+    }
+    const fc = Math.hypot(c, s); // phase-locked first-harmonic magnitude
+    return { layer: ["I", "M", "O"][L], cosComponent: c, sinComponent: s, dcComponent: dc,
+      firstHarmonic: fc, dOffdiagEstimate: (zM * Math.abs(sV5) * fc) / 2 };
+  });
+  return { omega: w, kappaStar: kap, zM, sV5, clickSensitivityNote,
+    declaredChain: "accumulation_time_x_click_rate ~ 1, phase-uniform clicking, first-harmonic projection",
+    perLayer };
+}
+
+// SEA TILT-DAMPING FEASIBILITY ESTIMATE (Section 66 next closure goal; the
+// only open axis-absorber route). Model: six octahedral orientational-dipole
+// sea members at radius Rsea (two polar, four equatorial — the braid-selected
+// coverage), each a rigid dipole of moment p0 = braidDipole(geo) relaxing at
+// rate gamma toward the direction of the braid's causally delayed field at
+// its site. Loop chain per member, per (source layer L', receiver layer L),
+// assembled in the FREQUENCY domain so every pair carries its own causal
+// phase (the exact-per-pair-delay discipline; no uniform-loop-delay
+// idealization):
+//   layer-L' tilt at frequency omega (unit angle) ->
+//     per-braid-site delayed modulation of the field DIRECTION at member s
+//     (moving-source exact causal roots, per-sample phases e^{-i omega tau})
+//   -> orientational response (I - b b^T) with relaxation gamma/(gamma+i omega)
+//   -> per-site delayed reaction torque on layer L (static endpoints, exact
+//      delays, receiver-normal factor, per-sample phases).
+// The complex chain C_{L,L'}(omega) decomposes as T = Re(C) eta + (Im(C)/omega)
+// etaDot: the velocity block is dSea[L][L'] = Im(C)/omega (damping iff
+// diagonal negative), insertable into the completed pencil via
+// velocityBlockAdd = -dSea on both transverse coordinates.
+// Estimate grade, declared: cycle-averaged rigid worldlines; linear
+// (small-angle) orientational response; slow-limit baseline alignment;
+// single-frequency evaluation (no self-consistent mode iteration).
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+export function seaTiltDampingEstimate({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Rsea = 3.4, gamma = 1.0, omegaList = [0.06, 0.28, 0.46, 1.16, 2.41], Nt = 8, soft = 0.02, eta = 0.03 } = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  const p0 = braidDipole(geo);
+  const rotXv = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const members = FCC2_DIRS.map((d) => ({ dir: d, X: [d[0] * Rsea, d[1] * Rsea, d[2] * Rsea] }));
+  // braid site worldlines with layer L tilted by etaX about x
+  const posOf = (s, t, L, etaX) => {
+    const SL = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const a = w * t + s.th, ca = Math.cos(s.alpha);
+    const p = [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)];
+    return SL === L && etaX !== 0 ? rotXv(p, Math.cos(etaX), Math.sin(etaX)) : p;
+  };
+  const velOf = (s, t, L, etaX) => {
+    const SL = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w;
+    const p = [-v*Math.sin(a), v*Math.cos(a), 0];
+    return SL === L && etaX !== 0 ? rotXv(p, Math.cos(etaX), Math.sin(etaX)) : p;
+  };
+  // LINK A: per-member field rows. For each member: baseline field b (real)
+  // and, per source layer, the per-sample sensitivity entries {dvec, tau}.
+  const linkA = members.map((mem) => {
+    const X = mem.X;
+    const fieldEntries = (L, etaX) => {
+      // returns per-sample summed contribution vector and mean delay per site
+      const rows = [];
+      for (let k = 0; k < Nt; k++) {
+        const t = (k / Nt) * period;
+        for (const s of seed.sites) {
+          let te = t - Rsea - 1;
+          for (let it = 0; it < 40; it++) { const p = posOf(s, te, L, etaX); te = t - Math.hypot(X[0]-p[0], X[1]-p[1], X[2]-p[2]); }
+          const p = posOf(s, te, L, etaX);
+          const dx = [X[0]-p[0], X[1]-p[1], X[2]-p[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]);
+          const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+          const v = velOf(s, te, L, etaX);
+          const Ds = cf - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+          const c = s.pol / (Ds * (r * r));
+          rows.push({ vec: [c*rh[0], c*rh[1], c*rh[2]], tau: t - te });
+        }
+      }
+      return rows;
+    };
+    const base = fieldEntries(0, 0);
+    const b = [0, 1, 2].map((c) => base.reduce((a2, e) => a2 + e.vec[c], 0) / Nt);
+    const bn = Math.hypot(b[0], b[1], b[2]);
+    const bHat = [b[0]/bn, b[1]/bn, b[2]/bn];
+    const sens = [0, 1, 2].map((L) => {
+      const ep = fieldEntries(L, +eta), em = fieldEntries(L, -eta);
+      return ep.map((e, i) => ({
+        dvec: [0, 1, 2].map((c) => (e.vec[c] - em[i].vec[c]) / (2 * eta)),
+        tau: (e.tau + em[i].tau) / 2,
+      }));
+    });
+    return { ...mem, b, bn, bHat, sens };
+  });
+  // LINK B: per-member torque rows. Dipole endpoints along bHat; rotate about
+  // two tangent axes e1, e2 and read the per-sample x-torque on each layer,
+  // with the static-endpoint return delay per entry.
+  const linkB = linkA.map((mem) => {
+    const bHat = mem.bHat;
+    let e1 = Math.abs(bHat[2]) < 0.9 ? [-bHat[1], bHat[0], 0] : [1, 0, 0];
+    let n1 = Math.hypot(...e1); e1 = e1.map((v) => v / n1);
+    // orthogonalize e1 against bHat, then e2 = bHat x e1
+    const d1 = e1[0]*bHat[0] + e1[1]*bHat[1] + e1[2]*bHat[2];
+    e1 = e1.map((v, c) => v - d1 * bHat[c]);
+    n1 = Math.hypot(...e1); e1 = e1.map((v) => v / n1);
+    const e2 = [bHat[1]*e1[2]-bHat[2]*e1[1], bHat[2]*e1[0]-bHat[0]*e1[2], bHat[0]*e1[1]-bHat[1]*e1[0]];
+    const torqueEntries = (pHat) => {
+      const rows = []; // {L, dT, tau} per sample x site x endpoint
+      for (let k = 0; k < Nt; k++) {
+        const t = (k / Nt) * period;
+        for (const s of seed.sites) {
+          const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+          const Xj = posOf(s, t, 0, 0), vj = velOf(s, t, 0, 0);
+          for (const pm of [+1, -1]) {
+            const Xe = [mem.X[0] + pm*(p0/2)*pHat[0], mem.X[1] + pm*(p0/2)*pHat[1], mem.X[2] + pm*(p0/2)*pHat[2]];
+            const dx = [Xj[0]-Xe[0], Xj[1]-Xe[1], Xj[2]-Xe[2]];
+            const r = Math.hypot(dx[0], dx[1], dx[2]);
+            const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+            const Dt = cf - (vj[0]*rh[0] + vj[1]*rh[1] + vj[2]*rh[2]);
+            const f = kap * s.pol * pm * Dt / (r * r);
+            const F = [f*rh[0], f*rh[1], f*rh[2]];
+            rows.push({ L, dT: (Xj[1]*F[2] - Xj[2]*F[1]) / Nt, tau: r / cf });
+          }
+        }
+      }
+      return rows;
+    };
+    const rot = (pHat, ax, h) => {
+      // rotate pHat by angle h about axis ax (Rodrigues, small angles fine)
+      const c = Math.cos(h), s2 = Math.sin(h);
+      const cx = [ax[1]*pHat[2]-ax[2]*pHat[1], ax[2]*pHat[0]-ax[0]*pHat[2], ax[0]*pHat[1]-ax[1]*pHat[0]];
+      const d = ax[0]*pHat[0] + ax[1]*pHat[1] + ax[2]*pHat[2];
+      return [0,1,2].map((i) => pHat[i]*c + cx[i]*s2 + ax[i]*d*(1-c));
+    };
+    const h = 0.03;
+    const grad = [e2, e1].map((ax, gi) => {
+      // rotation about e2 tips pHat toward e1 and vice versa; label by tip direction
+      const rp = torqueEntries(rot(mem.bHat, ax, +h));
+      const rm = torqueEntries(rot(mem.bHat, ax, -h));
+      return rp.map((e, i) => ({ L: e.L, dT: (e.dT - rm[i].dT) / (2 * h), tau: (e.tau + rm[i].tau) / 2 }));
+    });
+    return { e1, e2, gradTipE1: grad[0], gradTipE2: grad[1] };
+  });
+  // assemble the complex chain per omega
+  const cMul2 = (a, b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const results = omegaList.map((om) => {
+    const relax = (() => { const d2 = gamma*gamma + om*om; return [gamma*gamma/d2, -gamma*om/d2]; })(); // gamma/(gamma+i om)
+    const dSea = [[0,0,0],[0,0,0],[0,0,0]], kSea = [[0,0,0],[0,0,0],[0,0,0]];
+    for (let mi = 0; mi < linkA.length; mi++) {
+      const A = linkA[mi], B = linkB[mi];
+      for (let Lp = 0; Lp < 3; Lp++) {
+        // complex field-direction modulation, projected on e1/e2 (tangent plane)
+        let a1 = [0, 0], a2 = [0, 0];
+        for (const e of A.sens[Lp]) {
+          const ph = [Math.cos(om * e.tau), -Math.sin(om * e.tau)];
+          const proj1 = (e.dvec[0]*B.e1[0] + e.dvec[1]*B.e1[1] + e.dvec[2]*B.e1[2]) / A.bn / Nt;
+          const proj2 = (e.dvec[0]*B.e2[0] + e.dvec[1]*B.e2[1] + e.dvec[2]*B.e2[2]) / A.bn / Nt;
+          a1 = [a1[0] + proj1*ph[0], a1[1] + proj1*ph[1]];
+          a2 = [a2[0] + proj2*ph[0], a2[1] + proj2*ph[1]];
+        }
+        const r1 = cMul2(relax, a1), r2 = cMul2(relax, a2);
+        for (let L = 0; L < 3; L++) {
+          let C = [0, 0];
+          for (const e of B.gradTipE1) if (e.L === L) {
+            const ph = [Math.cos(om * e.tau), -Math.sin(om * e.tau)];
+            C = [C[0] + e.dT * cMul2(ph, r1)[0], C[1] + e.dT * cMul2(ph, r1)[1]];
+          }
+          for (const e of B.gradTipE2) if (e.L === L) {
+            const ph = [Math.cos(om * e.tau), -Math.sin(om * e.tau)];
+            C = [C[0] + e.dT * cMul2(ph, r2)[0], C[1] + e.dT * cMul2(ph, r2)[1]];
+          }
+          dSea[L][Lp] += C[1] / om; // Im(C)/omega: velocity block
+          kSea[L][Lp] += C[0];      // Re(C): stiffness shift (report only)
+        }
+      }
+    }
+    return { omega: om, dSea, kSea,
+      diag: [dSea[0][0], dSea[1][1], dSea[2][2]],
+      dampingDiagonal: dSea[0][0] < 0 && dSea[2][2] < 0 };
+  });
+  return { Rsea, gamma, omega: w, kappaStar: kap, p0, results };
+}
+
+// ===========================================================================
+// DRIFTING FAMILY: THE MOVING FIXED POINT V5(u) AND THE DRIFT AXIS PENCIL
+// (Section 67 next closure goal; spec Section 68). Sections 24-29 established
+// that the spindle family closes BETTER moving than at rest, with a finite
+// preferred speed basin u* ~ 0.5-0.65 and a closure anisotropy that prefers
+// axis-parallel motion (the orientation torque). Sections 61-66 closed every
+// RESTING-frame axis absorber. The surviving hypothesis (Section 67): the
+// orientation torque is the moving family's axis restoring channel — it exists
+// ONLY at drift and is absent from every resting pencil. These instruments
+// rebuild the self-equilibrated fixed point and the gyroscopic-circulatory
+// axis pencil ON the screw-drifting family (helical worldlines, drift along the
+// spin/z axis at u, pinned cadence c = sqrt(1-u^2) = 1/gamma, frozen kappa).
+//
+// Screw discipline: at the ALIGNED fixed point (spin axis || drift || z) the
+// motion is a pure screw and single-time rigid evaluation is exact (the
+// evaluator's screwRigidity witness). Tilt perturbations break the screw
+// (translation axis != instantaneous rotation axis), so tilt torques are
+// cycle-sampled (the residualsPerp discipline), exactly as the resting pencil
+// already cycle-averages. NOT evidence; fail-closed; prescribed-worldline seed
+// grade until a native run says otherwise.
+// ---------------------------------------------------------------------------
+
+// Drift support ratios at the pinned cadence c = sqrt(1-u^2). Mirrors
+// supportRatios exactly (single-time T=0, screw-rigid) but threads u into the
+// braid so the wake sees the fore-aft-anisotropic drift geometry; at u=0 it
+// reproduces supportRatios to the digit.
+export function driftSupportRatios({ geo = SELF_EQUILIBRATED_V5.geo, u = 0, soft = 0.02 } = {}) {
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const braid = buildBraid({ u, cTrans: c, geo });
+  const w = braid.omega;
+  const res = residuals({ u, cTrans: c, geo }, { soft });
+  const kap = res.kappaStar;
+  const layers = [];
+  for (const i of [0, 2, 4]) {
+    const s = braid.sites[i];
+    const rhoCyl = s.R * Math.cos(s.alpha);
+    const rx = Math.cos(s.th), ry = Math.sin(s.th);
+    const tx = -Math.sin(s.th), ty = Math.cos(s.th);
+    const wk = wakeAccel(braid, i, 0, { soft }).a;
+    const inward = -(wk[0] * rx + wk[1] * ry);
+    const need = w * w * rhoCyl;
+    const tanRow = kap * (wk[0] * tx + wk[1] * ty);
+    layers.push({ layer: s.name, support: (kap * inward) / need, tanRow, rhoCyl, speed: w * rhoCyl });
+  }
+  return { u, cadence: c, omega: w, kappaStar: kap, closure: res.globalRelResidual,
+    ratios: Object.fromEntries(layers.map((l) => [l.layer, l.support])),
+    tanRows: Object.fromEntries(layers.map((l) => [l.layer, l.tanRow])),
+    minRatio: Math.min(...layers.map((l) => l.support)),
+    maxAbsTan: Math.max(...layers.map((l) => Math.abs(l.tanRow))),
+    objective: layers.reduce((s2, l) => s2 + (l.support - 1) ** 2, 0) };
+}
+
+// Net rail-pinned radial force per layer on the drifting braid at displaced
+// radii (dI, dM, dO), frozen kappa. The middle rides the gamma-scaled rail:
+// its transverse speed is pinned at c = sqrt(1-u^2) (so total speed = c_f), and
+// omega = c/(R_M cos alphaM) responds to R_M — the speed pin is the size pin,
+// now at drift. Single-time (screw-rigid at the aligned config).
+function driftNetForces(geo, disp, u, kap, soft) {
+  const [dI, dM, dO] = disp;
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const seed = buildBraid({ u, cTrans: c, geo });
+  const wEff = c / ((1 + dM) * Math.cos(geo.alphaM));
+  const b = { omega: wEff, u, sea: [], sites: seed.sites.map((s) => ({ ...s })) };
+  for (const s of b.sites) { if (s.name === "I") s.R = geo.qI + dI; if (s.name === "M") s.R = 1 + dM; if (s.name === "O") s.R = geo.qO + dO; }
+  const F = [];
+  for (const idx of [0, 2, 4]) {
+    const s = b.sites[idx];
+    const rhoCyl = s.R * Math.cos(s.alpha);
+    const rx = Math.cos(s.th), ry = Math.sin(s.th);
+    const wk = wakeAccel(b, idx, 0, { soft }).a;
+    const inward = -(wk[0] * rx + wk[1] * ry) * kap;
+    F.push(inward - wEff * wEff * rhoCyl);
+  }
+  return F;
+}
+
+// The moving rail-pinned radial equilibrium at drift u: 3-D Newton on
+// (r_I, r_M, r_O) at frozen kappa with the gamma-scaled rail pin. Returns the
+// contraction factor lambda = R_M/R_M(seed), the shape at equilibrium, the
+// rail-pinned radial spectrum (basin?), and the derived absolute size
+// R_M(eq)/kappa. At u=0 it reproduces railPinnedEquilibrium's fixed point.
+export function driftRailPinnedEquilibrium({ geo = SELF_EQUILIBRATED_V5.geo, u = 0, eps = 0.01, soft = 0.02, iters = 20 } = {}) {
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const kap0 = residuals({ u, cTrans: c, geo }, { soft }).kappaStar;
+  let x = [0, 0, 0], lastF = null, lastK = null;
+  for (let it = 0; it < iters; it++) {
+    const F = driftNetForces(geo, x, u, kap0, soft);
+    lastF = F;
+    if (Math.max(...F.map(Math.abs)) < 5e-5) break;
+    const K = [[0,0,0],[0,0,0],[0,0,0]];
+    for (let j = 0; j < 3; j++) {
+      const dp = x.slice(), dm = x.slice();
+      dp[j] += eps; dm[j] -= eps;
+      const Fp = driftNetForces(geo, dp, u, kap0, soft), Fm = driftNetForces(geo, dm, u, kap0, soft);
+      for (let i = 0; i < 3; i++) K[i][j] = (Fp[i] - Fm[i]) / (2 * eps);
+    }
+    lastK = K;
+    const det3 = (A) => A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1]) - A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0]) + A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+    const D = det3(K);
+    if (Math.abs(D) < 1e-14) break;
+    const col = (jj, b) => K.map((row, i) => row.map((v, kk) => (kk === jj ? b[i] : v)));
+    const dlt = [0,1,2].map((j) => det3(col(j, F.map((v) => -v))) / D);
+    const damp = Math.min(1, 0.1 / Math.max(...dlt.map(Math.abs), 1e-9));
+    for (let j = 0; j < 3; j++) x[j] += dlt[j] * damp;
+  }
+  // rail-pinned spectrum at the fixed point (symmetric part of the radial K)
+  const Kf = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const dp = x.slice(), dm = x.slice();
+    dp[j] += eps; dm[j] -= eps;
+    const Fp = driftNetForces(geo, dp, u, kap0, soft), Fm = driftNetForces(geo, dm, u, kap0, soft);
+    for (let i = 0; i < 3; i++) Kf[i][j] = (Fp[i] - Fm[i]) / (2 * eps);
+  }
+  const sym = Kf.map((row, i) => row.map((v, j) => (v + Kf[j][i]) / 2));
+  const eig = jacobiEigSym(sym);
+  const lambda = 1 + x[1];
+  const shape = { qI: (geo.qI + x[0]) / lambda, qO: (geo.qO + x[2]) / lambda };
+  return { u, cadence: c, displacement: x, lambda, shapeEq: shape,
+    residualF: lastF, railPinnedSpectrum: eig.map((e) => e.value),
+    basin: eig.every((e) => e.value < 0), kappaFrozen: kap0,
+    ReqOverKappa: lambda / kap0 };
+}
+
+// The moving self-equilibrated fixed point V5(u): alternate the drift
+// rail-pinned radial equilibrium with tangential angle-descent (drive tau_I,
+// tau_O -> 0 by coordinate descent on the misalignment angles alphaI, alphaO,
+// thetaO, thetaI; alphaM held 0, rail clean) until both the radial residual and
+// the tangential rows are small. Witnessed against the u=0 V5 export. The
+// per-u geometry is the drifting champion at seed grade (Sections 24-26 report
+// the closure-optimal angles run with u; here the objective is the ledger, not
+// closure, consistent with the arc's survival statistic).
+export function driftFixedPoint({ u = 0.2, geoStart = SELF_EQUILIBRATED_V5.geo, passes = 3, soft = 0.02 } = {}) {
+  let geo = { ...geoStart };
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const tanObj = (g) => { const r = driftSupportRatios({ geo: g, u, soft }); return r.tanRows.I * r.tanRows.I + r.tanRows.O * r.tanRows.O; };
+  const steps = { alphaI: 3 * d, alphaO: 3 * d, thetaO: 6 * d, thetaI: 6 * d };
+  let eq = null;
+  for (let pass = 0; pass < passes; pass++) {
+    // radial re-equilibration: apply the contraction to the radii/shape
+    eq = driftRailPinnedEquilibrium({ geo, u, soft });
+    geo = { ...geo, qI: eq.shapeEq.qI, qO: eq.shapeEq.qO };
+    // tangential angle-descent
+    let obj = tanObj(geo);
+    for (const k of Object.keys(steps)) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const trial = { ...geo, [k]: (geo[k] ?? 0) + sgn * steps[k] };
+          const t = tanObj(trial);
+          if (t < obj - 1e-7) { geo = trial; obj = t; } else improved = false;
+        }
+      }
+    }
+  }
+  const rows = driftSupportRatios({ geo, u, soft });
+  return { u, cadence: c, geo,
+    deg: { alphaI: (geo.alphaI ?? 0) / d, alphaO: (geo.alphaO ?? 0) / d, thetaO: (geo.thetaO ?? 0) / d, thetaI: (geo.thetaI ?? 0) / d },
+    lambda: eq.lambda, ReqOverKappa: eq.ReqOverKappa, kappaFrozen: eq.kappaFrozen,
+    residualF: eq.residualF, railPinnedSpectrum: eq.railPinnedSpectrum, basin: eq.basin,
+    support: rows.ratios, tanRows: rows.tanRows, closure: rows.closure,
+    minRatio: rows.minRatio, maxAbsTan: rows.maxAbsTan };
+}
+
+// THE DRIFTING GYROSCOPIC-CIRCULATORY AXIS PENCIL (spec Section 68). Rebuilds
+// the completed axis pencil P(lambda) = lambda^2 M + lambda (G - D) + Gamma - K
+// on the SCREW-DRIFTING family: helical worldlines (drift u along the lab z-axis
+// = the aligned spin axis), pinned cadence c = sqrt(1-u^2), tilt perturbations
+// applied to the internal circular motion with the drift held along fixed lab z
+// (so a tilt is a misalignment of the spin axis RELATIVE to the drift — exactly
+// the Sections 28-29 orientation-torque coordinate). The Sections 28-29 closure
+// anisotropy enters through the MEASURED K(u), not by hand.
+//
+// THE DRIFT NULL STRUCTURE (stated and validated before any spectrum claim).
+// At u=0 empty-space isotropy makes BOTH global tilts (global-x, global-y) exact
+// nulls of K_eff = K - Gamma: the pencil carries a double zero root (deflated).
+// At drift, tilting the spin axis away from the drift direction costs closure in
+// EVERY transverse direction equally (residual axisymmetry about the drift axis),
+// so the global-tilt subspace acquires an ISOTROPIC restoring stiffness k(u) > 0
+// — the orientation torque. The double null is BROKEN: the former zero pair lifts
+// into a global nutation/precession pair set by k(u) and the gyroscopic J. The
+// only exact symmetry left is rigid rotation about the drift axis, which acts
+// trivially on the (drift-fixed) tilt coordinates — so in these coordinates there
+// is NO residual exact tilt null; the quotient discipline becomes: count the
+// roots at numerical zero (2 at u=0, 0 once k(u) lifts them), deflate exactly
+// those, and read the verdict from the rest. k(u) and its isotropy are reported
+// as the claim-bearing validation rows.
+//
+// clickPump: the Section 66 native rate-sign-following click pump on the middle
+// (+0.3-class, anti-damping) added to the middle diagonal of the tilt-rate block
+// (the "with native click pump" verdict cell). NOT evidence; fail-closed;
+// prescribed-worldline seed grade.
+export function driftAxisPencil({ geo = SELF_EQUILIBRATED_V5.geo, u = 0, Nt = 8, soft = 0.02, eta = 0.03, etaDot = 0.02, clickPump = 0, extraDampingLayers = null, rateBlockScale = 1, pumpAbsorbed = false } = {}) {
+  const cf = 1;
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const seed = buildBraid({ u, cTrans: c, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u, cTrans: c, geo }, { soft }).kappaStar;
+  const stretch = 1 / Math.max(0.2, 1 - Math.abs(u));
+  const dmax = Math.min(7, 4 * stretch), Nscan = Math.min(4200, Math.ceil(2400 * stretch));
+  const layerConst = [];
+  for (const i of [0, 2, 4]) {
+    const s = seed.sites[i];
+    const rho = s.R * Math.cos(s.alpha), z = s.R * Math.sin(s.alpha);
+    layerConst.push({ name: s.name, m: rho * rho + 2 * z * z, J: 2 * rho * rho * w });
+  }
+  const rotX = (v, cc, s) => [v[0], cc * v[1] - s * v[2], s * v[1] + cc * v[2]];
+  const rotY = (v, cc, s) => [cc * v[0] + s * v[2], v[1], -s * v[0] + cc * v[2]];
+  const crossX = (v) => [0, -v[2], v[1]];
+  const crossY = (v) => [v[2], 0, -v[0]];
+  // worldline family: internal circular motion p0/v0 (cadence w), tilted about
+  // x then y (static tilt + optional constant rate about the readout time tRef),
+  // THEN drifted along fixed lab z at speed u (drift is NOT rotated by the tilt).
+  const mk = (ex, ey, exDot, eyDot, tRef) => seed.sites.map((s) => {
+    const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const p0 = (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; };
+    const v0 = (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; };
+    return {
+      pol: s.pol, L,
+      pos: (t) => {
+        const ax = ex[L] + exDot[L] * (t - tRef), ay = ey[L] + eyDot[L] * (t - tRef);
+        const tl = rotY(rotX(p0(t), Math.cos(ax), Math.sin(ax)), Math.cos(ay), Math.sin(ay));
+        return [tl[0], tl[1], tl[2] + u * t];
+      },
+      vel: (t) => {
+        const ax = ex[L] + exDot[L] * (t - tRef), ay = ey[L] + eyDot[L] * (t - tRef);
+        const cx = Math.cos(ax), sx = Math.sin(ax), cy = Math.cos(ay), sy = Math.sin(ay);
+        const pX = rotX(p0(t), cx, sx);
+        const term1 = crossY(rotY(pX, cy, sy)).map((v) => eyDot[L] * v);
+        const term2 = rotY(crossX(pX).map((v) => exDot[L] * v), cy, sy);
+        const term3 = rotY(rotX(v0(t), cx, sx), cy, sy);
+        return [term1[0]+term2[0]+term3[0], term1[1]+term2[1]+term3[1], term1[2]+term2[2]+term3[2] + u];
+      },
+    };
+  });
+  const torques = (ex, ey, exDot, eyDot, perSampleRef) => {
+    const Tx = [0, 0, 0], Ty = [0, 0, 0], Tz = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      const sites = mk(ex, ey, exDot, eyDot, perSampleRef ? t : 0);
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i];
+        const Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= Nscan; kk++) {
+            const te = t - dmax + dmax * (kk / Nscan);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / Nscan), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2;
+              const p = src.pos(te0);
+              const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+              const r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+                const vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+                const wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        Tx[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+        Ty[rec.L] += kap * (Xi[2] * F[0] - Xi[0] * F[2]) / Nt;
+        Tz[rec.L] += kap * (Xi[0] * F[1] - Xi[1] * F[0]) / Nt;
+      }
+    }
+    return { Tx, Ty, Tz };
+  };
+  const Z = [0, 0, 0];
+  const base = torques(Z, Z, Z, Z, false);
+  const tau0 = base.Tz.slice();
+  const baselineTransverse = Math.max(...base.Tx.map(Math.abs), ...base.Ty.map(Math.abs));
+  // static stiffness blocks
+  const A = [[0,0,0],[0,0,0],[0,0,0]], B = [[0,0,0],[0,0,0],[0,0,0]];
+  const Dx = [[0,0,0],[0,0,0],[0,0,0]], E = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const ep = [0,0,0], em = [0,0,0]; ep[j] = eta; em[j] = -eta;
+    const px = torques(ep, Z, Z, Z, false), mx = torques(em, Z, Z, Z, false);
+    const py = torques(Z, ep, Z, Z, false), my = torques(Z, em, Z, Z, false);
+    for (let i = 0; i < 3; i++) {
+      A[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * eta);
+      Dx[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * eta);
+      B[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * eta);
+      E[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * eta);
+    }
+  }
+  // delay-memory tilt-rate blocks (per-sample tRef: zero tilt at readout)
+  const P = [[0,0,0],[0,0,0],[0,0,0]], Q = [[0,0,0],[0,0,0],[0,0,0]];
+  const Rl = [[0,0,0],[0,0,0],[0,0,0]], S = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const rp = [0,0,0], rm = [0,0,0]; rp[j] = etaDot; rm[j] = -etaDot;
+    const px = torques(Z, Z, rp, Z, true), mx = torques(Z, Z, rm, Z, true);
+    const py = torques(Z, Z, Z, rp, true), my = torques(Z, Z, Z, rm, true);
+    for (let i = 0; i < 3; i++) {
+      P[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * etaDot);
+      Rl[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * etaDot);
+      Q[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * etaDot);
+      S[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * etaDot);
+    }
+  }
+  const scale = Math.max(...A.flat().map(Math.abs), ...B.flat().map(Math.abs), 1e-9);
+  const covK = Math.max(...A.map((r, i) => r.map((v, j) => Math.abs(E[i][j] - v))).flat(),
+    ...B.map((r, i) => r.map((v, j) => Math.abs(Dx[i][j] + v))).flat());
+  const covD = Math.max(...P.map((r, i) => r.map((v, j) => Math.abs(S[i][j] - v))).flat(),
+    ...Q.map((r, i) => r.map((v, j) => Math.abs(Rl[i][j] + v))).flat());
+  const crossRowSums = [0,1,2].map((i) => B[i][0] + B[i][1] + B[i][2]);
+  const pumpWitness = Math.max(...[0,1,2].map((i) => Math.abs(crossRowSums[i] - tau0[i])));
+  // orientation-torque (global-tilt) stiffness: the broken null. kGlobalX =
+  // mean restoring x-torque per unit global-x tilt = -(1/3) sum_ij A[i][j];
+  // isotropy witness compares it to the global-y stiffness from E.
+  const kGlobalX = -[0,1,2].reduce((sA, i) => sA + A[i][0] + A[i][1] + A[i][2], 0) / 3;
+  const kGlobalY = -[0,1,2].reduce((sA, i) => sA + E[i][0] + E[i][1] + E[i][2], 0) / 3;
+  const kGlobalCross = -[0,1,2].reduce((sA, i) => sA + B[i][0] + B[i][1] + B[i][2], 0) / 3;
+  // assemble the pencil
+  const m = layerConst.map((l) => l.m), J = layerConst.map((l) => l.J);
+  const tau = pumpAbsorbed ? [tau0[0], 0, tau0[2]] : tau0;
+  const K6 = [
+    ...[0,1,2].map((i) => [...A[i], ...B[i]]),
+    ...[0,1,2].map((i) => [...Dx[i], ...E[i]]),
+  ];
+  const D6t = [
+    ...[0,1,2].map((i) => [...P[i], ...Q[i]]),
+    ...[0,1,2].map((i) => [...Rl[i], ...S[i]]),
+  ];
+  // native click pump (Section 66): +clickPump anti-damping on the middle
+  // tilt-rate diagonal (both transverse components).
+  D6t[1][1] += clickPump; D6t[4][4] += clickPump;
+  const M6 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? m[i % 3] : 0)));
+  const G6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { G6[l][3 + l] = +J[l]; G6[3 + l][l] = -J[l]; }
+  const Gam6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { Gam6[l][3 + l] = +tau[l]; Gam6[3 + l][l] = -tau[l]; }
+  const dampLayers = extraDampingLayers ?? [0, 0, 0];
+  const Cvel = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) =>
+    G6[i][j] - rateBlockScale * D6t[i][j] + (i === j ? dampLayers[i % 3] : 0)));
+  // complex determinant + Durand-Kerner
+  const cAdd = (a, b) => [a[0]+b[0], a[1]+b[1]];
+  const cSub = (a, b) => [a[0]-b[0], a[1]-b[1]];
+  const cMul = (a, b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const cDiv = (a, b) => { const d2 = b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d2, (a[1]*b[0]-a[0]*b[1])/d2]; };
+  const cAbs = (a) => Math.hypot(a[0], a[1]);
+  const detC = (Min) => {
+    const n = Min.length; const Mx = Min.map((r) => r.map((v) => [v[0], v[1]]));
+    let det = [1, 0];
+    for (let cc = 0; cc < n; cc++) {
+      let p = cc;
+      for (let r = cc + 1; r < n; r++) if (cAbs(Mx[r][cc]) > cAbs(Mx[p][cc])) p = r;
+      if (cAbs(Mx[p][cc]) < 1e-300) return [0, 0];
+      if (p !== cc) { const t = Mx[p]; Mx[p] = Mx[cc]; Mx[cc] = t; det = cMul(det, [-1, 0]); }
+      det = cMul(det, Mx[cc][cc]);
+      for (let r = cc + 1; r < n; r++) { const f = cDiv(Mx[r][cc], Mx[cc][cc]); for (let c2 = cc; c2 < n; c2++) Mx[r][c2] = cSub(Mx[r][c2], cMul(f, Mx[cc][c2])); }
+    }
+    return det;
+  };
+  const pencil = (lam) => {
+    const l2 = cMul(lam, lam); const Pm = [];
+    for (let i = 0; i < 6; i++) { Pm.push([]); for (let j = 0; j < 6; j++) Pm[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [Cvel[i][j], 0])), [Gam6[i][j] - K6[i][j], 0])); }
+    return detC(Pm);
+  };
+  const leading = m[0]*m[0]*m[1]*m[1]*m[2]*m[2];
+  const deg = 12;
+  let roots = Array.from({ length: deg }, (_, i) => { const ang = (2 * Math.PI * i) / deg + 0.4; const rad = 1.5 * Math.max(Math.sqrt(scale / Math.min(...m)), Math.max(...J) / Math.min(...m)); return [rad * Math.cos(ang), rad * Math.sin(ang)]; });
+  let dkResidual = Infinity;
+  for (let it = 0; it < 500; it++) {
+    let moved = 0;
+    for (let i = 0; i < deg; i++) {
+      let denom = [leading, 0];
+      for (let j = 0; j < deg; j++) if (j !== i) denom = cMul(denom, cSub(roots[i], roots[j]));
+      const delta = cDiv(pencil(roots[i]), denom);
+      roots[i] = cSub(roots[i], delta); moved = Math.max(moved, cAbs(delta));
+    }
+    dkResidual = moved; if (moved < 1e-13) break;
+  }
+  const rootRows = roots.map((r) => ({ re: r[0], im: r[1], mag: Math.hypot(r[0], r[1]) })).sort((x, y) => y.re - x.re);
+  // adaptive null deflation: count roots at numerical zero (2 at u=0, fewer once
+  // the orientation torque lifts them), deflate exactly those.
+  const nullTol = 5e-3;
+  const nullRoots = rootRows.filter((r) => r.mag < nullTol);
+  const nullCount = nullRoots.length;
+  const deflated = rootRows.filter((r) => r.mag >= nullTol);
+  const growing = deflated.filter((r) => r.re > 1e-6);
+  const maxGrowth = deflated.length ? deflated[0] : null;
+  return {
+    u, cadence: c, omega: w, kappaStar: kap, clickPump, pumpAbsorbed,
+    layers: layerConst, blocks: { A, B, P, Q, E }, tau0, tauUsed: tau,
+    baselineTransverse,
+    covarianceWitness: { staticBlocks: covK, rateBlocks: covD, scale },
+    orientationTorque: { kGlobalX, kGlobalY, kGlobalCross,
+      isotropy: Math.abs(kGlobalX - kGlobalY), restoring: kGlobalX > 0 && kGlobalY > 0 },
+    globalNull: { pumpWitness, ok: pumpWitness < 0.05 * Math.max(scale, 1e-9) },
+    scanParams: { stretch, dmax, Nscan },
+    dkResidual,
+    eigenvalues: rootRows,
+    nullCount, nullRoots: nullRoots.map((r) => ({ re: r.re, im: r.im })),
+    quotientEigenvalues: deflated,
+    whirl: deflated.filter((r) => Math.abs(r.im) > 1e-6).length,
+    flutter: growing.length > 0,
+    flutterModes: growing,
+    maxGrowthRate: maxGrowth ? maxGrowth.re : null,
+    maxGrowthWhirlFrequency: maxGrowth ? Math.abs(maxGrowth.im) : null,
+  };
+}
+
+// The drift verdict ladder (spec Section 68): the completed axis pencil across a
+// u grid, with and without the native click pump, reporting the orientation
+// torque k(u), the max growth rate, the whirl frequency, and the threshold u (if
+// any) where the axis sector turns restoring.
+export function driftVerdictLadder({ geo = SELF_EQUILIBRATED_V5.geo, uGrid = [0, 0.1, 0.2, 0.35, 0.5, 0.6], Nt = 8, soft = 0.02, clickPump = 0 } = {}) {
+  const rows = uGrid.map((u) => {
+    const r = driftAxisPencil({ geo, u, Nt, soft, clickPump });
+    return { u, kGlobalX: r.orientationTorque.kGlobalX, kGlobalY: r.orientationTorque.kGlobalY,
+      isotropy: r.orientationTorque.isotropy, nullCount: r.nullCount,
+      maxGrowthRate: r.maxGrowthRate, whirlFreq: r.maxGrowthWhirlFrequency,
+      flutter: r.flutter, pumpWitness: r.globalNull.pumpWitness };
+  });
+  let threshold = null;
+  for (let i = 1; i < rows.length; i++) {
+    const a = rows[i - 1], b = rows[i];
+    if (a.maxGrowthRate > 0 && b.maxGrowthRate <= 0) {
+      threshold = a.u + (b.u - a.u) * a.maxGrowthRate / (a.maxGrowthRate - b.maxGrowthRate);
+      break;
+    }
+  }
+  return { clickPump, rows, thresholdU: threshold,
+    stabilizes: rows.some((r) => r.maxGrowthRate !== null && r.maxGrowthRate <= 0) };
+}
+
+export function diagnosticReport() {
+  return { schema: SCHEMA, specPacketRef: SPEC_PACKET_REF,
+    championBaseline: supportRatios({}),
+    v1Baseline: supportRatios({ geo: SUPPORT_V1_GEO }),
+    v2Baseline: supportRatios({ geo: TANGENTIAL_CLOSURE_V2 }),
+    v3Baseline: supportRatios({ geo: SELF_CONSISTENT_V3.geo }),
+    ...FAIL_CLOSED };
+}
+
+function isMain() { return process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]; }
+if (isMain()) {
+  process.stdout.write(JSON.stringify(diagnosticReport(), null, process.argv.includes("--pretty") ? 2 : 0) + "\n");
+}

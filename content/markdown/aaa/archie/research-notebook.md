@@ -72,7 +72,7 @@ Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
 - [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
-- [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md)
+- [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
 - [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md)
 
 The terminology shifted from `swarm` to `braid` because the older word suggested an unstructured collective. It described many objects in motion, but it did not carry the mathematical discipline now needed by the theory. The new word points directly at intertwined path histories, retained ordering, exchange, phase winding, and topological invariants. A Noether braid is not just a cloud of architrinos. It is a candidate six-body polarity-neutral retained branch, built from three electrinos and three positrinos, whose causal-root ledger, phase record, wake history, energy/action rows, and angular-momentum rows can be followed through delayed dynamics.
@@ -174,7 +174,7 @@ Relevant files:
 
 - [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md)
 - [Energy](../dynamics/energy.md)
-- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md)
+- [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
 
 The angular-momentum and spin proof route gained a sharper reduced candidate target around the rank-three middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, doubling-frequency, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
@@ -272,7 +272,7 @@ Relevant files:
 - [Return-Cycle Lorentz Quantization](../philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md)
 - [Lorentz Kinematics](../spacetime/lorentz-kinematics.md)
 
-The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: a nested braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
+The standalone [Ideal Noether Braid Lorentz Geometry App](../../../../ideal-braid.html) became the interactive inspection surface for the Noether braid Lorentz-geometry lesson built around an oblate spheroidal envelope. Its purpose is to make one candidate Noether braid deformation concrete: a nested shell braid is shown inside a velocity-dependent envelope, the user adjusts $\beta=v/c_f$, and the app ties the visible flattening to $\gamma$, $\xi=R_{\parallel}/R_{\perp}$, relative time, relative length, and the normalized center-of-mass energy ledger. The controls also keep the lesson inspectable rather than merely illustrative: paths, surface, axes, orbit scale, cycle speed, and markdown overlays let the reader compare the moving geometry with the equations on the same screen.
 
 The app deliberately does not claim to prove Lorentz kinematics from Noether braid dynamics. It records the target geometry in a form that can be checked visually and algebraically: in the zero-extra-scale lesson case, the displayed oblate spheroidal envelope satisfies $R_{\parallel}=R_{\perp}/\gamma$ and $\xi=1/\gamma$. That makes the Lorentz factor more than a formula in a side panel; it becomes the aspect ratio of the displayed envelope. The app is therefore a dictionary between the formula, the return-cycle picture, and the geometry that a later branch-ledger derivation would have to recover.
 
@@ -366,7 +366,7 @@ Key victories inside this milestone:
 
 ## 2026-03-14: Doubling-Frequency Resonance Lock
 
-Today the doubling-frequency-lock note, [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
+Today the doubling-frequency-lock note, [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), was rewritten around an explicit assumption package. The live note now begins from the exact ring identity
 $$
 v_k=2\pi f_k r_k=\beta_k c_f
 $$

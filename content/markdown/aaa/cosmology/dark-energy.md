@@ -621,7 +621,7 @@ Finite-range gravity and massive-gravity programs are useful here only as compar
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch). It is read through endpoint clock-cadence comparison, source-branch state, launch geometry, and path-history propagation through the Noether sea:
 
-- A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the nested shell braid oscillation rates of the source assembly at that epoch.
+- A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the Noether braid oscillation rates of the source assembly at that epoch.
 - At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether sea state.
 - If the Noether sea state has evolved between $t_e$ and $t_o$—specifically, if outer-binary radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
 

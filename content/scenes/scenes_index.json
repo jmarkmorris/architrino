@@ -1126,21 +1126,6 @@
       "path": "content/scenes/foundations/foundations.json"
     },
     {
-      "id": "noether_braid__nested_shell_braid_dynamics",
-      "name": "Nested Shell Braid Dynamics",
-      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid_geometry",
-      "name": "Nested Shell Braid Geometry",
-      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid",
-      "name": "Nested Shell Braid",
-      "path": "content/scenes/noether-braid/nested_shell_braid.json"
-    },
-    {
       "id": "noether_braid__neutral_braid",
       "name": "Neutral Braid",
       "path": "content/scenes/noether-braid/neutral_braid.json"
@@ -1149,11 +1134,6 @@
       "id": "noether_braid__configuration_space",
       "name": "Noether Braid Configuration Space",
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json"
-    },
-    {
-      "id": "noether_braid__doubling_frequency_resonance_lock",
-      "name": "Noether Braid Doubling-Frequency Resonance Lock",
-      "path": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json"
     },
     {
       "id": "noether_braid__overview",
@@ -1174,11 +1154,6 @@
       "id": "noether_braid",
       "name": "Noether Braid",
       "path": "content/scenes/noether-braid/noether_braid.json"
-    },
-    {
-      "id": "noether_braid__shell_braid",
-      "name": "Symmetric Shell Braid",
-      "path": "content/scenes/noether-braid/shell_braid.json"
     },
     {
       "id": "atom",
@@ -1924,6 +1899,26 @@
       "id": "archie__comics__nature_is_analog",
       "name": "Nature Is Analog",
       "path": "content/scenes/archie/comics/nature_is_analog.json"
+    },
+    {
+      "id": "noether_braid__braid_envelope_geometry",
+      "name": "Braid Envelope Geometry",
+      "path": "content/scenes/noether-braid/braid_envelope_geometry.json"
+    },
+    {
+      "id": "noether_braid__explored_braid_geometries",
+      "name": "Explored Braid Geometries",
+      "path": "content/scenes/noether-braid/explored_braid_geometries.json"
+    },
+    {
+      "id": "noether_braid__spindle_braid",
+      "name": "Spindle Braid",
+      "path": "content/scenes/noether-braid/spindle_braid.json"
+    },
+    {
+      "id": "proof_programs__terminal_alignment",
+      "name": "Terminal Alignment",
+      "path": "content/scenes/proof-programs/terminal_alignment.json"
     }
   ]
 }

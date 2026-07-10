@@ -124,9 +124,23 @@ export function resolveLabelTitleWeight(titleSize, titleLineCount) {
 }
 
 export function resolveNodeLabelText(nodeData = {}) {
+  const normalizeInlineMath = (text) =>
+    String(text ?? "")
+      .replace(/\\\$/g, "$")
+      .replace(/\$([^$]+)\$/g, (_match, expression) =>
+        String(expression)
+          .replace(/\\mathbb\{A\}/g, "\u{1D538}")
+          .replace(/\\(mathbb|mathrm|text)\{([^}]*)\}/g, "$2")
+          .replace(/[_^]\{([^}]*)\}/g, "$1")
+          .replace(/[_^]([A-Za-z0-9]+)/g, "$1")
+          .replace(/\\[A-Za-z]+\*?/g, " ")
+          .replace(/[{}]/g, "")
+      )
+      .replace(/\s+/g, " ")
+      .trim();
   const labelName =
     typeof nodeData.labelTitle === "string" && nodeData.labelTitle.trim()
-      ? nodeData.labelTitle.trim()
+      ? normalizeInlineMath(nodeData.labelTitle)
       : typeof nodeData.shortName === "string" && nodeData.shortName.trim()
         ? nodeData.shortName.trim()
         : typeof nodeData.name === "string"
@@ -134,11 +148,11 @@ export function resolveNodeLabelText(nodeData = {}) {
           : "";
   const labelSubtitle =
     typeof nodeData.labelSubtitle === "string" && nodeData.labelSubtitle.trim()
-      ? nodeData.labelSubtitle.trim()
+      ? normalizeInlineMath(nodeData.labelSubtitle)
       : "";
   const labelDates =
     typeof nodeData.labelDates === "string" && nodeData.labelDates.trim()
-      ? nodeData.labelDates.trim()
+      ? normalizeInlineMath(nodeData.labelDates)
       : "";
   return { labelName, labelSubtitle, labelDates };
 }

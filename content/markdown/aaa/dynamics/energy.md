@@ -4,7 +4,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, energy accounting begins with moving archit
 
 This chapter answers four linked questions. What kinetic bookkeeping is allowed for a single architrino? How does work occur when a receiver crosses delayed causal wakes? How do assemblies hide or expose internal energy? How can Noether sea coupling make energy, inertia, and effective geometry appear at larger scales?
 
-The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
+The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
 All such dynamics unfold on a fixed ontological background: absolute time plus the Euclidean void. Forces and motion arise from **delayed causal hits from causal isochrons**, with line-of-action direction and receiver-normal branch strength, on this fixed background. We work in units with causal-wake propagation speed $c_f=1$.
 
@@ -625,12 +625,12 @@ Energy in this picture is distributed across:
 
 For composite systems such as Standard Model particles, nuclei, and composite bound states formed from architrinos and embedded in the Noether sea, we distinguish:
 
-- **Total internal energy**: energy retained by the assembly and by its immediate nested shell braid environment,
+- **Total internal energy**: energy retained by the assembly and by its immediate Noether braid environment,
 - **Apparent energy**: what leaks out as a long-range wake signature and governs how the assembly interacts with the outside world.
 
 ### Internal Energy of an Assembly
 
-For an assembly $A$ (e.g., nested shell braid or higher structure), let $i\in A$ run over its constituent architrinos. Then:
+For an assembly $A$ (e.g., Noether braid or higher structure), let $i\in A$ run over its constituent architrinos. Then:
 
 $$E_{\text{internal}}(A) = \sum_{i\in A} E_{k,i} + \frac{1}{2} \sum_{\substack{i,j\in A \\ i\neq j}} U_{ij} + E_{\text{coupling to sea}}(A),$$
 
@@ -986,8 +986,8 @@ Cross-links:
 
 In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
 
-- Self-hit repulsion acts as an internal **stiffening mechanism** for nested shell braids and more complex assemblies, contributing to their stability.
-- Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local nested shell braid configuration.
+- Self-hit repulsion acts as an internal **stiffening mechanism** for Noether braids and more complex assemblies, contributing to their stability.
+- Energy represented in an architrino's causal wake and local Noether sea response can be partially routed back through delayed self-interaction. At the bookkeeping level, this is an exchange between internal kinetic energy and wake/medium energy associated with the local Noether braid configuration.
 
 At the exact causal-action level, global energy is conserved: self-hit just routes energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly). In dual-mollified local theorem models, the same statement should be read conditionally unless the mollified kernel is explicitly tied to an action-level regularization.
 

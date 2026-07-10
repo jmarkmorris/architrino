@@ -796,7 +796,7 @@ The immediate task is to identify which subset dominates $\partial \tau_{\text{o
 
 Working assumption:
 
-1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md).
+1. The outer precessing binary of a Noether braid defines the effective exclusion volume boundary; see [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md).
 2. Each nested shell braid layer ($H,M,L$) has its own circulation axis.
 3. Total angular and translational momentum are conserved at assembly level (up to modeled exchange channels with environment).
 
@@ -873,7 +873,7 @@ $$
 $$
 with $\xi\in(0,1]$ as shape and $\lambda$ as scale. The Lorentz-closure target is $\xi(x)\to1/\gamma(x)$ in the homogeneous drift regime.
 
-Terminology guardrail: $\xi$ is the Noether braid envelope shape ratio, inherited from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
+Terminology guardrail: $\xi$ is the Noether braid envelope shape ratio, inherited from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables). It is not defined as the clock-rate factor. In the homogeneous Lorentz-closure regime the proof target is
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
@@ -1422,7 +1422,7 @@ for small integers $(m,n)$ and nonlinear coupling width $\delta\omega_{\text{nl}
 
 ### Theorem A0 (forward partner-root speed-limit lemma)
 
-The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed nested shell braid deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
+The primitive material speed-limit row has a kinematic upper-bound lemma before any detailed Noether braid deformation is solved. In a translating branch with center drift $u\hat{\mathbf e}$, a retained partner row whose receiver lies ahead of its source by positive co-moving separation $d_{\parallel}\ge d_{\min}>0$ must satisfy
 $$
 c_f\Delta
 =
@@ -1482,7 +1482,7 @@ $$
 \qquad
 \gamma_f(u)=\left(1-\frac{u^2}{c_f^2}\right)^{-1/2}
 $$
-If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before nested shell braid averaging or Noether sea dressing is allowed to repair anything.
+If these equalities hold on the same branch ledger, the Lorentzian compensation has been derived for the two-body clock rather than asserted. If they fail, the residual is the earliest foundation-level falsification pressure: it marks exactly where the primitive kernel departs from Lorentzian matter behavior before Noether braid averaging or Noether sea dressing is allowed to repair anything.
 
 ### Theorem A (attractor existence under drift)
 
@@ -1562,7 +1562,7 @@ In particular, if $(r_M/r_L)^2\le C_{23}\epsilon_{\text{LV}}$, operational Loren
 
 ### Theorem G (structural-integrity common-limit closure)
 
-This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before nested shell braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
+This theorem is the parent Lorentz-closure target for Theorems B-D, the photon synchronization row, and the weak-field gravitational-wave speed row. Theorem A0 supplies the primitive kinematic obstruction: a material branch that needs forward partner-hit closure cannot have a sustained translating ledger with $c_{\mathrm{mat}}^{\mathrm{lim}}>c_f$. Theorem A1 supplies the first constructive clock/ruler decision surface by asking whether the translating two-body branch returns $R_T^{\mathrm{bin}}=0$ and $R_{\xi}^{\mathrm{bin}}=0$ before Noether braid averaging or Noether sea dressing is invoked. In the weak homogeneous observer branch, a retained material assembly branch closes only if the matter-assembly limiting speed, the Noether sea dressed clock/ruler speed, the photon-channel speed, and the empirical calibration speed obey
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =
@@ -1612,7 +1612,7 @@ Primary theory anchors:
 1. [dynamics/master-equation.md](../dynamics/master-equation.md)
 2. [dynamics/causal-action-functional.md](../dynamics/causal-action-functional.md)
 3. [dynamics/binary-dynamics.md](../dynamics/binary-dynamics.md)
-4. [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md)
+4. [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
 5. `spacetime/*`
 6. [validation/constraint-ledger.md](../validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../validation/no-go-theorems.md)

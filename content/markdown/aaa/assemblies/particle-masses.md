@@ -129,7 +129,7 @@ $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
 $$
 
-A candidate mechanism, at hypothesis level, says what sets the size of this exposure for dressed fermions: the geometry of the accessory dressing. Per the quietness ladder in [Symmetric Shell Braid](../noether-braid/symmetric-shell-braid.md#accessory-dressing-and-apparent-energy), the six-electrino octahedral dressing of the electron reveals no polarity-signed structure below hexadecapole order, the four-site and two-site quark dressings leak at octupole and quadrupole order respectively, and the undressed neutrino-like case exposes almost nothing at all. On this reading the exposed leakage $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$ and much of the shielding coefficient $\zeta(A)$ are controlled by the lowest nonvanishing moment of the accessory arrangement plus the strain the dressing induces in the core — a geometric ordering that tracks the observed pattern of light, resilient leptons, confinement-bound quarks, and nearly massless neutrinos. This remains a routing hypothesis for the mass map, not a computed extraction.
+A candidate mechanism, at hypothesis level, says what sets the size of this exposure for dressed fermions: the geometry of the accessory dressing. Per the quietness ladder in [Symmetric Shell Braid](../noether-braid/explored-braid-geometries.md#accessory-dressing-and-apparent-energy), the six-electrino octahedral dressing of the electron reveals no polarity-signed structure below hexadecapole order, the four-site and two-site quark dressings leak at octupole and quadrupole order respectively, and the undressed neutrino-like case exposes almost nothing at all. On this reading the exposed leakage $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$ and much of the shielding coefficient $\zeta(A)$ are controlled by the lowest nonvanishing moment of the accessory arrangement plus the strain the dressing induces in the core — a geometric ordering that tracks the observed pattern of light, resilient leptons, confinement-bound quarks, and nearly massless neutrinos. This remains a routing hypothesis for the mass map, not a computed extraction.
 
 For the scalar inertial readout, only the reversible symmetric part of the Noether sea response belongs in the mass trace. Define
 $$
@@ -455,7 +455,7 @@ The useful ledger split is:
 Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed, nested shell braid rotations. For a nested shell braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest-energy scale $m c_{\text{eff}}^2$.
+- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed Noether braid rotations. For a Noether braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest-energy scale $m c_{\text{eff}}^2$.
 - **Shielding:** The pro/anti structure of the [Noether braid](../noether-braid/noether-braid.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
 - **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
   $$

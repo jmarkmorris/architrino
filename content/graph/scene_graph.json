@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 602,
-      "edges": 1369,
-      "scenes": 385,
+      "nodes": 601,
+      "edges": 1367,
+      "scenes": 384,
       "markdownIndexes": 0,
       "markdownDocs": 200,
       "runtimeEdges": 476,
@@ -1499,24 +1499,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "noether_braid__nested_shell_braid_dynamics",
-      "name": "Nested Shell Braid Dynamics",
-      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid_geometry",
-      "name": "Nested Shell Braid Geometry",
-      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid",
-      "name": "Nested Shell Braid",
-      "path": "content/scenes/noether-braid/nested_shell_braid.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "noether_braid__neutral_braid",
       "name": "Neutral Braid",
       "path": "content/scenes/noether-braid/neutral_braid.json",
@@ -1526,12 +1508,6 @@
       "id": "noether_braid__configuration_space",
       "name": "Noether Braid Configuration Space",
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__doubling_frequency_resonance_lock",
-      "name": "Noether Braid Doubling-Frequency Resonance Lock",
-      "path": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "nodeType": "scene"
     },
     {
@@ -1556,12 +1532,6 @@
       "id": "noether_braid",
       "name": "Noether Braid",
       "path": "content/scenes/noether-braid/noether_braid.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "noether_braid__shell_braid",
-      "name": "Symmetric Shell Braid",
-      "path": "content/scenes/noether-braid/shell_braid.json",
       "nodeType": "scene"
     },
     {
@@ -2459,6 +2429,30 @@
       "nodeType": "scene"
     },
     {
+      "id": "noether_braid__braid_envelope_geometry",
+      "name": "Braid Envelope Geometry",
+      "path": "content/scenes/noether-braid/braid_envelope_geometry.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__explored_braid_geometries",
+      "name": "Explored Braid Geometries",
+      "path": "content/scenes/noether-braid/explored_braid_geometries.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "noether_braid__spindle_braid",
+      "name": "Spindle Braid",
+      "path": "content/scenes/noether-braid/spindle_braid.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "proof_programs__terminal_alignment",
+      "name": "Terminal Alignment",
+      "path": "content/scenes/proof-programs/terminal_alignment.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2933,6 +2927,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "name": "Braid Envelope Geometry",
+      "path": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/noether-braid/braid-mathematics.md",
       "name": "Braid Mathematics",
       "path": "content/markdown/aaa/noether-braid/braid-mathematics.md",
@@ -2945,21 +2945,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-      "name": "Nested Shell Braid Dynamics",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "name": "Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-      "name": "Nested Shell Braid",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
+      "id": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+      "name": "Explored Braid Geometries",
+      "path": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2972,12 +2960,6 @@
       "id": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "name": "Noether Braid Configuration Space",
       "path": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "name": "Noether Braid Doubling-Frequency Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3005,9 +2987,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-      "name": "Symmetric Shell Braid",
-      "path": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "id": "content/markdown/aaa/noether-braid/spindle-braid.md",
+      "name": "Spindle Braid",
+      "path": "content/markdown/aaa/noether-braid/spindle-braid.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3080,6 +3062,12 @@
       "id": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "name": "Information and the Wake",
+      "path": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3254,6 +3242,12 @@
       "id": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
       "name": "Planar Bridge Closure",
       "path": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+      "name": "Terminal Alignment",
+      "path": "content/markdown/aaa/proof-programs/terminal-alignment.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5713,6 +5707,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
+      "nodeType": "scene",
+      "id": "noether_braid__braid_envelope_geometry",
+      "name": "Braid Envelope Geometry",
+      "path": "content/scenes/noether-braid/braid_envelope_geometry.json",
+      "searchTarget": "content/scenes/noether-braid/braid_envelope_geometry.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/noether-braid/braid_mathematics.json",
       "nodeType": "scene",
       "id": "noether_braid__braid_mathematics",
@@ -5731,30 +5734,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
+      "nodeId": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
       "nodeType": "scene",
-      "id": "noether_braid__nested_shell_braid_dynamics",
-      "name": "Nested Shell Braid Dynamics",
-      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-      "searchTarget": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "nodeType": "scene",
-      "id": "noether_braid__nested_shell_braid_geometry",
-      "name": "Nested Shell Braid Geometry",
-      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "searchTarget": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/nested_shell_braid.json",
-      "nodeType": "scene",
-      "id": "noether_braid__nested_shell_braid",
-      "name": "Nested Shell Braid",
-      "path": "content/scenes/noether-braid/nested_shell_braid.json",
-      "searchTarget": "content/scenes/noether-braid/nested_shell_braid.json",
+      "id": "noether_braid__explored_braid_geometries",
+      "name": "Explored Braid Geometries",
+      "path": "content/scenes/noether-braid/explored_braid_geometries.json",
+      "searchTarget": "content/scenes/noether-braid/explored_braid_geometries.json",
       "implicit": false
     },
     {
@@ -5773,15 +5758,6 @@
       "name": "Noether Braid Configuration Space",
       "path": "content/scenes/noether-braid/noether_braid_configuration_space.json",
       "searchTarget": "content/scenes/noether-braid/noether_braid_configuration_space.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
-      "nodeType": "scene",
-      "id": "noether_braid__doubling_frequency_resonance_lock",
-      "name": "Noether Braid Doubling-Frequency Resonance Lock",
-      "path": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
-      "searchTarget": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "implicit": false
     },
     {
@@ -5830,12 +5806,12 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/noether-braid/shell_braid.json",
+      "nodeId": "scene:content/scenes/noether-braid/spindle_braid.json",
       "nodeType": "scene",
-      "id": "noether_braid__shell_braid",
-      "name": "Symmetric Shell Braid",
-      "path": "content/scenes/noether-braid/shell_braid.json",
-      "searchTarget": "content/scenes/noether-braid/shell_braid.json",
+      "id": "noether_braid__spindle_braid",
+      "name": "Spindle Braid",
+      "path": "content/scenes/noether-braid/spindle_braid.json",
+      "searchTarget": "content/scenes/noether-braid/spindle_braid.json",
       "implicit": false
     },
     {
@@ -6295,6 +6271,15 @@
       "name": "Proof Programs",
       "path": "content/scenes/proof-programs/proof_programs.json",
       "searchTarget": "content/scenes/proof-programs/proof_programs.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/proof-programs/terminal_alignment.json",
+      "nodeType": "scene",
+      "id": "proof_programs__terminal_alignment",
+      "name": "Terminal Alignment",
+      "path": "content/scenes/proof-programs/terminal_alignment.json",
+      "searchTarget": "content/scenes/proof-programs/terminal_alignment.json",
       "implicit": false
     },
     {
@@ -7837,6 +7822,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "name": "Braid Envelope Geometry",
+      "path": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/braid-mathematics.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/noether-braid/braid-mathematics.md",
@@ -7855,30 +7849,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/explored-braid-geometries.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-      "name": "Nested Shell Braid Dynamics",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "name": "Nested Shell Braid Geometry",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-      "name": "Nested Shell Braid",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/nested-shell-braid.md",
+      "id": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+      "name": "Explored Braid Geometries",
+      "path": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/explored-braid-geometries.md",
       "implicit": false
     },
     {
@@ -7897,15 +7873,6 @@
       "name": "Noether Braid Configuration Space",
       "path": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "name": "Noether Braid Doubling-Frequency Resonance Lock",
-      "path": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
       "implicit": false
     },
     {
@@ -7945,12 +7912,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/noether-braid/spindle-braid.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-      "name": "Symmetric Shell Braid",
-      "path": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
-      "searchTarget": "content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "id": "content/markdown/aaa/noether-braid/spindle-braid.md",
+      "name": "Spindle Braid",
+      "path": "content/markdown/aaa/noether-braid/spindle-braid.md",
+      "searchTarget": "content/markdown/aaa/noether-braid/spindle-braid.md",
       "implicit": false
     },
     {
@@ -8059,6 +8026,15 @@
       "name": "Historical Context and Missed Opportunities",
       "path": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "name": "Information and the Wake",
+      "path": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
       "implicit": false
     },
     {
@@ -8320,6 +8296,15 @@
       "name": "Planar Bridge Closure",
       "path": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
       "searchTarget": "content/markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/proof-programs/terminal-alignment.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+      "name": "Terminal Alignment",
+      "path": "content/markdown/aaa/proof-programs/terminal-alignment.md",
+      "searchTarget": "content/markdown/aaa/proof-programs/terminal-alignment.md",
       "implicit": false
     },
     {
@@ -12547,6 +12532,13 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
+      "to": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/noether-braid/noether_braid.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/braid_mathematics.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
@@ -12561,21 +12553,7 @@
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[6]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[7]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/nested_shell_braid.json",
+      "to": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[5]"
@@ -12592,14 +12570,7 @@
       "to": "scene:content/scenes/noether-braid/noether_braid_configuration_space.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[9]"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
@@ -12613,25 +12584,25 @@
       "to": "scene:content/scenes/noether-braid/noether_braid_proof_map.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/noether_braid_taxonomy.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
       "to": "scene:content/scenes/noether-braid/noether_braid_topological_charge.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/noether-braid/noether_braid.json",
-      "to": "scene:content/scenes/noether-braid/shell_braid.json",
+      "to": "scene:content/scenes/noether-braid/spindle_braid.json",
       "edgeType": "subscene",
       "source": "content/scenes/noether-braid/noether_braid.json",
       "field": "scene.children[4]"
@@ -13020,6 +12991,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/proof-programs/proof_programs.json",
       "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/proof_programs.json",
+      "to": "scene:content/scenes/proof-programs/terminal_alignment.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/proof-programs/proof_programs.json",
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/quantum/quantum.json",
@@ -14345,6 +14323,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/noether-braid/braid_envelope_geometry.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/noether-braid/braid_envelope_geometry.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/noether-braid/braid_mathematics.json",
       "to": "markdown_doc:content/markdown/aaa/noether-braid/braid-mathematics.md",
       "edgeType": "markdown_doc",
@@ -14359,24 +14344,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "from": "scene:content/scenes/noether-braid/explored_braid_geometries.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/explored-braid-geometries.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/nested_shell_braid_dynamics.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/nested_shell_braid_geometry.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/nested_shell_braid.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/nested-shell-braid.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/nested_shell_braid.json",
+      "source": "content/scenes/noether-braid/explored_braid_geometries.json",
       "field": "scene.source.path"
     },
     {
@@ -14391,13 +14362,6 @@
       "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/noether-braid/noether_braid_configuration_space.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json",
       "field": "scene.source.path"
     },
     {
@@ -14429,10 +14393,10 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/noether-braid/shell_braid.json",
-      "to": "markdown_doc:content/markdown/aaa/noether-braid/symmetric-shell-braid.md",
+      "from": "scene:content/scenes/noether-braid/spindle_braid.json",
+      "to": "markdown_doc:content/markdown/aaa/noether-braid/spindle-braid.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/noether-braid/shell_braid.json",
+      "source": "content/scenes/noether-braid/spindle_braid.json",
       "field": "scene.source.path"
     },
     {
@@ -14720,6 +14684,13 @@
       "to": "markdown_doc:content/markdown/aaa/proof-programs/planar-bridge-closure.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/proof-programs/planar_bridge_closure.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/proof-programs/terminal_alignment.json",
+      "to": "markdown_doc:content/markdown/aaa/proof-programs/terminal-alignment.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/proof-programs/terminal_alignment.json",
       "field": "scene.source.path"
     },
     {

@@ -56,8 +56,8 @@ export function seaSites({ Rsea = 4.25, sepSea = 0.5 } = {}) {
 export function buildBraid({ u = 0, cTrans = 1.0, geo = CHAMPION, sea = null } = {}) {
   const RM = 1, omega = cTrans / (RM * Math.cos(geo.alphaM)); // transverse middle speed = cTrans
   const layers = [
-    { name: "I", R: geo.qI, alpha: geo.alphaI, th: 0 },
-    { name: "M", R: RM, alpha: geo.alphaM, th: (2 * Math.PI) / 3 },
+    { name: "I", R: geo.qI, alpha: geo.alphaI, th: geo.thetaI ?? 0 },
+    { name: "M", R: RM, alpha: geo.alphaM, th: geo.thetaM ?? (2 * Math.PI) / 3 },
     { name: "O", R: geo.qO, alpha: geo.alphaO, th: geo.thetaO },
   ];
   const sites = [];

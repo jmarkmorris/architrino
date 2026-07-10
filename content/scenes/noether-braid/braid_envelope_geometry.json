@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "noether_braid__nested_shell_braid",
-    "title": "Nested Shell Braid",
+    "id": "noether_braid__braid_envelope_geometry",
+    "title": "Braid Envelope Geometry",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/noether-braid/nested-shell-braid.md"
+      "path": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md"
     },
     "view": {
       "columns": 1,

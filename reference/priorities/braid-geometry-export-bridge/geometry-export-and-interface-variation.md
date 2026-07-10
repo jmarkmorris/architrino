@@ -377,7 +377,7 @@ The geometry export is branch-admissible only when these residuals remain within
 
 ## Interface Diagnostic Variation
 
-Use the assembly-Noether sea interface diagnostic from [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md#assembly-noether-sea-interface-diagnostic). Write
+Use the assembly-Noether sea interface diagnostic from [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). Write
 
 $$
 L_X(\mathbf{x},t)

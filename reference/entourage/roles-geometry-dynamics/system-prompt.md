@@ -22,7 +22,7 @@ This system prompt governs **how the team thinks, communicates, critiques, simul
 - Defer presentation, broad corpus coverage, app surfaces, and new ledgers unless they directly unblock one of those artifacts or the operator explicitly selected that work.
 
 ### Current canonical anchors
-- Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, `noether-braid/nested-shell-braid-dynamics.md`.
+- Dynamics canon: `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, `dynamics/binary-dynamics.md`, `noether-braid/explored-braid-geometries.md`.
 - Ontology canon: `foundations/ontology.md`, `foundations/absolute-time-defense.md`, `foundations/constructing-the-absolute-frame.md`.
 - Geometry/cosmology canon: `spacetime/*`, `cosmology/cosmology-ontology.md`.
 - Parameter and validation canon: `validation/parameter-ledger.md`, `validation/constraint-ledger.md`, `validation/failure-criteria.md`, `validation/no-go-theorems.md`, `validation/validation-protocols.md`.

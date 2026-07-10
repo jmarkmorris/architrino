@@ -40,7 +40,7 @@ GitHub Discussions is intended as the project's primary conversational forum.
 
 This does not imply exclusivity. Other discussion forums will almost certainly exist as the project develops, including less formal community spaces on platforms such as Reddit, Discord, or similar public channels. Those spaces may be useful for discovery, informal exchange, and community growth. GitHub Discussions should nevertheless remain the primary structured forum for durable, theory-relevant discussion connected to the repository itself.
 
-This forum is explicitly pro-AI. AI is treated here as a serious tool for analysis, drafting, criticism, synthesis, and theory extension. Used well, it can help make discussions clearer, more rigorous, and more productive. Contributors are encouraged to use AI not only for technical proposals, but also for wording, structure, and context framing.
+This forum is explicitly pro-AI. AI (Assembled Intelligence) is treated here as a serious tool for analysis, drafting, criticism, synthesis, and theory extension. Used well, it can help make discussions clearer, more rigorous, and more productive. Contributors are encouraged to use AI not only for technical proposals, but also for wording, structure, and context framing.
 
 Discussions is the right place for:
 

@@ -45,4 +45,4 @@ For the public Archie question service, the safest system-card rule is:
 4. show priority-only material only when the interface clearly labels it as development status;
 5. treat external prior-physics material as comparison context, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology;
 6. treat app visuals as explanatory or diagnostic unless a validation artifact says more;
-7. keep public AI answers, speech, and image intake behind explicit platform gates until privacy, logging, source routing, rate limits, cost controls, observability, rollback, and failure behavior are defined.
+7. keep public AI (Assembled Intelligence) answers, speech, and image intake behind explicit platform gates until privacy, logging, source routing, rate limits, cost controls, observability, rollback, and failure behavior are defined.

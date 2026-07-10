@@ -198,7 +198,7 @@ A useful refinement is a branch-preserving chirality label
 $$
 \chi_{\mathrm{fr}}\in\mathbb{Z}_2.
 $$
-The richer ordered-braid chirality label $\chi_c$ is introduced in [Nested Shell Braid](nested-shell-braid.md#reduced-nested-shell-braid-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
+The richer ordered-braid chirality label $\chi_c$ is introduced in [Nested Shell Braid](explored-braid-geometries.md#reduced-nested-shell-braid-closure-label). In this chapter, $\chi_{\mathrm{fr}}$ is the certified $\mathbb{Z}_2$ projection of that richer chirality data when the same branch chart supplies a deformation-stable handed marker, such as a framed self-linking sign or a certified maximal-curvature-binary circulation sign. It is not an independent competitor to $\chi_c$, and it is not part of the base triple until the projection is certified. It must be invariant under the same branch-preserving deformations that keep $(N_s,M_p,c_1)$ fixed, and it may flip only at an independent framing wall $\Sigma_{\mathrm{frame}}$ where the nonsingular framing floor fails. It is the natural place to record handedness, but it must not be substituted for the root and phase-return data. The two signs of the maximal-curvature-binary circulation are introduced in [Binary Dynamics](../dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards).
 
 ## Invariance And Allowed Transitions
 
@@ -289,7 +289,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md#exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
+- [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:

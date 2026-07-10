@@ -53,7 +53,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, what standard cosmology calls "the first mi
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
 Noether braids compress toward maximum-curvature states.
-Proton/neutron assemblies (nucleon nested shell braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
+Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients.
 Local "temperature" (kinetic energy distribution) and density mimic BBN conditions ($T_{\mathrm{temp}} \sim 10^9\,\mathrm{K},\ \rho \sim 10^{-3}\,\mathrm{g/cm^3}$).
 Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
 
@@ -351,11 +351,11 @@ Lithium is treated here as a primary discriminator, not only a trace channel.
 - **Primary distinguishing prediction:** In SMBH-local reactor mappings, spatial inhomogeneity is a productive mechanism (not a nuisance), and lithium depletion emerges from transport-weighted integration across heterogeneous flow channels.
 - **Interpretive contrast:** Standard BBN uses near-homogeneous initial conditions, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ local-reactor mapping can use controlled inhomogeneity as an explanatory lever.
 
-### 6. Equation-of-State Goal: Specify Nested Shell Braid Compression EoS
+### 6. Equation-of-State Goal: Specify Noether Braid Compression EoS
 
 The model needs an explicit compression-zone equation of state (for example local $P(\rho)$ or effective $w$ behavior) to close dynamics.
 
-- **Goal:** Determine whether nested shell braid matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
+- **Goal:** Determine whether Noether braid matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
 - **Mapping task:** Connect the EoS choice directly to freeze-out timing, D quench, and final yield sensitivity.
 
 ### 7. Neutrino-Counting Goal: Recover Effective $N_{\text{eff}}$

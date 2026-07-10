@@ -6,7 +6,7 @@ That delay makes the binary the first serious test of the Master Equation. Partn
 
 Read the chapter as a branch atlas, not as a single orbit story. The partner-only row shows why ordinary circular central-force intuition fails. The self-hit rows show where the system becomes path-history dependent. The maximum-curvature and spiral sections are candidate ways to control that delayed feedback, and each must close its own root, action, wake, and stability ledger before it can become an assembly building block.
 
-This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md), [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/noether-braid-doubling-frequency-resonance-lock.md), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
+This chapter is the foundational precursor to [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), [Noether Braid Doubling-Frequency Resonance Lock](../noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock), [Master Equation](master-equation.md), and the assembly-level [Noether Braid](../noether-braid/noether-braid.md). The primitive-entity ontology in [Architrino](../foundations/architrino.md) points here once the discussion becomes a behavioral regime or assembly-stability mechanism.
 
 ## The Spiral Orbiting Binary and the Contraction Phase
 
@@ -711,7 +711,7 @@ The sign is branch-invariant on this same-sheet chart because winding changes ti
 
 **Corollary.**  
 Within the same-sheet bare isolated two-body kernel, an exact constant-speed circular orbit
-with no boundary wake flux and no recoil term is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-ledger cancellation may reduce the local tangential drive, but the remaining forward power must be assigned either to wake escapement through $\partial W$, to a local recoil term, or to genuinely multi-body nested shell braid exchange.
+with no boundary wake flux and no recoil term is impossible. Any MCB-like steady state must therefore close a finite-window balance: signed-ledger cancellation may reduce the local tangential drive, but the remaining forward power must be assigned either to wake escapement through $\partial W$, to a local recoil term, or to genuinely multi-body Noether braid exchange.
 
 **Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. The unreceived portion exits the local window as wake-history flux. The same-sheet tangential drive is therefore the mechanical pump that can replace the interaction energy exported by those escaping causal wakes. A local binary can look particle-only conservative only if the outgoing wake record, recoil channel, and retained branch ledger are all included in the same balance law.
 
@@ -1127,7 +1127,7 @@ M_p
 $$
 would provide a deterministic mechanism for quantized bound-state geometry: allowed radii and frequencies would be selected by integer causal-root ledgers rather than by a continuum of arbitrary circular orbits.
 
-This statement is deliberately conditional. This chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, receiver-normal branch-strength floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or nested shell braid setting rather than in the bare circular two-body kernel.
+This statement is deliberately conditional. This chapter derives the discrete root ledgers and the radial balance target, but the stability and quantization claims require the missing full-history certificate: finite active branches, positive Jacobian floors, receiver-normal branch-strength floors, returned-history closure, and a monodromy or boundary-trapping argument. In practice, that certificate may close first in a collinear breather or Noether braid setting rather than in the bare circular two-body kernel.
 
 #### Branch Stability Target (Hessian Bridge)
 

@@ -136,7 +136,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Quarks and gluons form a hot plasma; confinement has not yet occurred.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Quark Epoch: Emerging/Surviving Quarks Couple Vortices):** Quark-like assemblies survive as specific nested shell braid configurations with axial layers. Their coupling is mediated by vortex-like wake structures, with confinement emerging as a topological stability condition rather than a fundamental gauge field. This is the point where the strong interaction becomes externally visible through quark–quark coupling and confinement dynamics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Quark Epoch: Emerging/Surviving Quarks Couple Vortices):** Quark-like assemblies survive as specific Noether braid configurations with axial layers (the current leading candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)). Their coupling is mediated by vortex-like wake structures, with confinement emerging as a topological stability condition rather than a fundamental gauge field. This is the point where the strong interaction becomes externally visible through quark–quark coupling and confinement dynamics.
 
 ## Hadron Epoch ($\sim 10^{-6}$ s to $\sim 1$ s)
 - Time window: $\sim 10^{-6}$ s to $\sim 1$ s.

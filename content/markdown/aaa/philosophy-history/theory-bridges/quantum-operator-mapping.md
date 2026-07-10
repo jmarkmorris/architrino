@@ -587,7 +587,7 @@ Entanglement-like behavior must separate newly established causal coupling from 
 
 Wavefunction collapse is formalized as a deterministic, non-linear relaxation process rather than a probabilistic axiom.
 
-The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the nested shell braid assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
+The measurement apparatus acts as a massive, thermodynamically irreversible perturbation introduced into the local Noether sea. This external energy gradient overwhelms the meta-stable precessional states (superpositions). Unable to maintain the delicate limit cycle against the massive influx of external causal wakes, the Noether braid assembly undergoes attractor relaxation, deterministically entering a completed record basin. The effective eigenstate label is licensed only after the apparatus kernel maps that basin to a stable record channel.
 
 Decoherence is the continuous loss of path-history coherence due to unresolved fluctuations in the local Noether sea state. It is an artifact of treating the observer-level vacuum as empty or structureless rather than as the effective quiet limit of a dense medium whose assemblies are still dynamically active.
 
@@ -601,7 +601,7 @@ Decoherence is the continuous loss of path-history coherence due to unresolved f
 * **Coherence Limits:** The model predicts a medium-dependent contribution to coherence loss, scaling with the physical Noether braid density variable $\rho_{\text{NS}}(\mathbf X,T)$ or normalized density $n(\mathbf X,T)$. This is a closure target alongside standard thermal, electromagnetic, and apparatus-noise channels, not an already-derived absolute bound.
 
 ## Statistical Measure and the Born Rule Emergence
-While the trajectory of a single nested shell braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
+While the trajectory of a single Noether braid under measurement is strictly deterministic, macroscopic observables yield robust probabilistic distributions. This effective randomness is the observer-level summary of microstate-sensitive initial conditions in the local Noether sea.
 
 * **Local Finite-Time Invariant Measure Target:** For a fixed preparation class, apparatus calibration, local Noether sea band, and record window $T_W$, the closure target is a local measure $\mu_{*,T_W}$ on the relevant record-window section $\Gamma_{\text{eff}}^{(T_W)}$, not a global measure over every physically possible state. If $\Phi_{T_W}$ is the finite-time apparatus-target flow, the required recovery is approximate invariance on that retained window:
 $$
@@ -613,7 +613,7 @@ $$
 $$
 P_k(T_W)=\int_{\mathcal{B}_k^{(T_W)}} d\mu_{*,T_W}(\Gamma)
 $$
-* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the nested shell braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T_W}$ and push it through the record basins with $P_k(T_W)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
+* **Born Rule Target:** The $|\psi_k|^2$ statistic should emerge as the calibrated limit of these weighted finite-time basin volumes. When the Noether braid's meta-stable limit cycle is perturbed by the macroscopic energy gradient of the measurement apparatus, the theory must show that microstate sensitivity plus the finite-time apparatus flow recover $\mu_{*,T_W}$ and push it through the record basins with $P_k(T_W)\to |\psi_k|^2$ in the relevant operating regime. This is a local invariant-measure recovery target, not an assumption of global ergodicity.
 * **Thermodynamic Ensemble Consistency Target:** The same $\mu_{*,T_W}$ must also support the thermodynamic summaries used to describe apparatus irreversibility and decoherence. For a declared coarse-graining $\mathcal{Q}$, access region $W$, record window $T_W$, and thermodynamic projection $\pi_{\mathrm{th}}:\Gamma_{\text{eff}}^{(T_W)}\to\mathcal{Y}_{\mathrm{th}}$, define
 $$
 \Delta_{\mathrm{ens}}(\mathcal{Q},W,T_W)
@@ -659,9 +659,9 @@ This is the native $\mathbb{A}\mathbb{A}\mathbb{A}$ version of the scientific-in
 ## Kinetic Limits and Decoherence
 The continuous loss of path-history coherence must be formalized as a transport phenomenon within the Noether sea, or in bridge prose the spacetime medium.
 
-* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the nested shell braid orientation evolves according to an effective Fokker-Planck equation.
+* **Fokker-Planck Dynamics:** By coarse-graining the deterministic path-history master equation over the fast, small-amplitude interactions of the local Noether sea, the Noether braid orientation evolves according to an effective Fokker-Planck equation.
 * **Diffusion and Drift:** The unitary topological torques provide the deterministic drift vector, while the background assembly interactions generate the diffusion tensor. 
-* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf X,T)$ or $n(\mathbf X,T)$. It is not an intrinsic property of the nested shell braid, but a measure of the local Noether sea entropy production rate during the operation.
+* **Decoherence Timescales:** The decoherence time $\tau_d$ is a derivation target from the Lyapunov spectrum of the local Noether sea state and the spatial density variables $\rho_{\text{NS}}(\mathbf X,T)$ or $n(\mathbf X,T)$. It is not an intrinsic property of the Noether braid, but a measure of the local Noether sea entropy production rate during the operation.
 
 ## Statistical Falsifiability and Observables
 * **Finite-Time Born Rule Deviations:** If the Born rule in the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework requires the local invariant-measure approximation to settle over the apparatus record window, ultra-fast sequential measurements approaching the local path-history delay timescale $d/c_f$ become the natural place to search for deviations from standard $|\psi|^2$ statistics.

@@ -14,7 +14,7 @@ This taxonomy records which channel family a reaction uses; it does not derive t
 
 At assembly level, these terms refer to substrate dynamics in absolute time:
 
-- **Mode-lock event:** a discrete stability transition where a driven nested shell braid/wake configuration settles into an allowed propagating or bound mode.
+- **Mode-lock event:** a discrete stability transition where a driven Noether braid/wake configuration settles into an allowed propagating or bound mode (the current leading candidate realization is the [spindle braid](../noether-braid/spindle-braid.md)).
 - **Wake-strain threshold:** the local instability boundary in Noether sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
 - **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.

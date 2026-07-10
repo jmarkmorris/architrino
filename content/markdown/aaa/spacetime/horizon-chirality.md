@@ -146,7 +146,7 @@ The next question is whether a rapidly translating nested shell braid should dri
 
 The answer is dynamical rather than purely kinematic. Straight-line translation does **not** require that result merely from conservation laws. In the path-history dynamics, total linear momentum and total angular momentum are distinct conserved quantities, so an isolated translating assembly may in principle carry internal angular momentum whose axis is not parallel to the center-of-mass velocity.
 
-The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Nested Shell Braid Geometry](../noether-braid/nested-shell-braid-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) is
+The stronger argument comes from the high-velocity delay geometry. Use the primitive branch-chart channel here: $v_{\text{trans}}=\|\mathbf V_{\text{trans}}\|$ is the native center-drift speed, $\beta_f=v_{\text{trans}}/c_f$, and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Let $(x_{\perp,1},x_{\perp,2},x_\parallel)$ be principal-frame coordinates for the oblate spheroidal envelope, with $x_\parallel$ along the translation direction. Then the geometry inherited from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) and its dynamics treatment in [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) is
 
 $$
 \frac{x_{\perp,1}^2+x_{\perp,2}^2}{R_\perp^2}
@@ -392,7 +392,7 @@ That yields a disciplined provisional picture:
 
 - [singularity-resolution.md](./singularity-resolution.md): canonical horizon alignment condition.
 - [black-holes.md](./black-holes.md): horizon interface and strong-field ontology.
-- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md): regime map, planarity diagnostics, and alignment observables.
+- [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics): regime map, planarity diagnostics, and alignment observables.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
 - [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.

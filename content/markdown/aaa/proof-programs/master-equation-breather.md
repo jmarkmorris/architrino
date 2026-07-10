@@ -9725,5 +9725,5 @@ This is the correct point from which to resume work on the broader dynamics stac
 - [master-equation.md](../dynamics/master-equation.md)
 - [collinear-breather.md](./collinear-breather.md)
 - [binary-dynamics.md](../dynamics/binary-dynamics.md)
-- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md)
+- [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
 - [energy.md](../dynamics/energy.md)

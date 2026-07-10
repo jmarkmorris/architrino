@@ -256,6 +256,175 @@ export function measureBrakeMagnitudeVsStratum({
   return { pumpPerRotation: pump, rows };
 }
 
+// ---------------------------------------------------------------------------
+// (D) DT-CONVERGED IMPULSE-RESOLVED CLICK BOOKING (fold-crossing-chart-spec
+// Sections 62-63 shared prerequisite). The Row 8 stratum map found the chart
+// booking regulator-fragile: the crossing window is laid by the OUTER
+// integrator step, so the booked per-click impulse moves 22-114% under
+// dt-halving. This instrument books the same signed same-source impulse
+// (production runtime, read-only, same integrand form as (C)) but anchors the
+// window on the CROSSING TIME itself (known exactly on the prescribed
+// accelerating crossing) and integrates adaptively on a log-spaced grid --
+// doubling the sample density until the booked impulse moves less than the
+// declared tolerance. The booked object is dt-free by construction: no outer
+// step exists. stepWindowBookingError then EMULATES the step-laid window
+// (integrate only inside the step that flags the crossing, fixed substep
+// count) and reports its error against the converged reference at dt and
+// dt/2 -- reproducing the Row 8 fragility class on the controlled crossing.
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+export function impulseResolvedClickImpulse({
+  rho = CANONICAL.referencePerpendicularRadius,
+  fieldSpeed = CANONICAL.fieldSpeed,
+  coupling = CANONICAL.coupling,
+  angularAccel = 0.9,
+  rhoC = 0.05,
+  minimumDelay = 0.002,
+  windowEnd = 0.05,
+  tol = 1e-3,
+  maxDoublings = 7,
+} = {}) {
+  const tStar = 0.42893;
+  const integrandAt = (offset) => {
+    const root = solveAcceleratingSameSourceRoot(tStar + offset, {
+      rho, fieldSpeed, angularAccel, tStar, minimumDelay,
+    });
+    if (!root) return 0;
+    const r2 = root.chordRadius * root.chordRadius;
+    return (coupling * root.signedBranchOrientation * root.forwardRayProjection) / (r2 + rhoC * rhoC);
+  };
+  const grid = (n) => {
+    const lo = 1e-5;
+    const pts = [];
+    for (let i = 0; i <= n; i++) pts.push(lo * Math.pow(windowEnd / lo, i / n));
+    return pts;
+  };
+  let n = 64;
+  let prev = null;
+  let impulse = null;
+  let witness = null;
+  const trace = [];
+  for (let d = 0; d <= maxDoublings; d++) {
+    const pts = grid(n);
+    const vals = pts.map(integrandAt);
+    let s = 0;
+    for (let i = 1; i < pts.length; i++) s += 0.5 * (vals[i] + vals[i - 1]) * (pts[i] - pts[i - 1]);
+    trace.push({ samples: n, signedImpulse: s });
+    if (prev !== null) {
+      witness = Math.abs(s - prev) / Math.max(Math.abs(s), 1e-12);
+      if (witness < tol) { impulse = s; break; }
+    }
+    prev = s;
+    impulse = s;
+    n *= 2;
+  }
+  const pump = pumpPerRotation({ coupling, fieldSpeed, rho });
+  return {
+    declaredCoincidenceStratum: rhoC,
+    angularAccel,
+    signedTangentialClickImpulse: impulse,
+    absorbedFractionOfCertifiedPump: -impulse / pump,
+    convergenceWitness: witness,
+    converged: witness !== null && witness < tol,
+    samplesUsed: n,
+    trace,
+  };
+}
+
+export function stepWindowBookingError({
+  rho = CANONICAL.referencePerpendicularRadius,
+  fieldSpeed = CANONICAL.fieldSpeed,
+  coupling = CANONICAL.coupling,
+  angularAccel = 0.9,
+  rhoC = 0.05,
+  minimumDelay = 0.002,
+  outerSteps = [0.0025, 0.00125],
+  substeps = 32,
+  phaseSamples = 5,
+} = {}) {
+  const tStar = 0.42893;
+  const reference = impulseResolvedClickImpulse({
+    rho, fieldSpeed, coupling, angularAccel, rhoC, minimumDelay,
+  });
+  const integrandAt = (offset) => {
+    const root = solveAcceleratingSameSourceRoot(tStar + offset, {
+      rho, fieldSpeed, angularAccel, tStar, minimumDelay,
+    });
+    if (!root) return 0;
+    const r2 = root.chordRadius * root.chordRadius;
+    return (coupling * root.signedBranchOrientation * root.forwardRayProjection) / (r2 + rhoC * rhoC);
+  };
+  const rows = outerSteps.map((dt) => {
+    // the crossing lands at a step phase the trajectory does not control;
+    // sample phases uniformly and book only inside the flagged step
+    const bookings = [];
+    for (let p = 0; p < phaseSamples; p++) {
+      const stepStart = -((p + 0.5) / phaseSamples) * dt;
+      let s = 0;
+      let prevOff = null, prevVal = null;
+      for (let k = 0; k <= substeps; k++) {
+        const off = stepStart + (dt * k) / substeps;
+        if (off < 0) continue; // pre-crossing part of the step: no root
+        const val = integrandAt(off);
+        if (prevOff !== null) s += 0.5 * (val + prevVal) * (off - prevOff);
+        prevOff = off; prevVal = val;
+      }
+      bookings.push(s);
+    }
+    const mean = bookings.reduce((a, b) => a + b, 0) / bookings.length;
+    return {
+      outerStep: dt,
+      bookedImpulseMean: mean,
+      bookedImpulseSpread: Math.max(...bookings) - Math.min(...bookings),
+      relativeErrorVsConverged: Math.abs(mean - reference.signedTangentialClickImpulse) /
+        Math.abs(reference.signedTangentialClickImpulse),
+    };
+  });
+  const dtSwing = Math.abs(rows[0].bookedImpulseMean - rows[1].bookedImpulseMean) /
+    Math.abs(reference.signedTangentialClickImpulse);
+  return { reference, rows, dtHalvingSwing: dtSwing };
+}
+
+// ---------------------------------------------------------------------------
+// (E) ESCAPEMENT-UNDER-TILT PROJECTION (fold-crossing-chart-spec Section 63
+// sizing question). A middle-layer tilt rate etaDot about x modulates each
+// site's total speed by dv = -etaDot * z_M * cos(phi) (same sign on both
+// antipodal members), shifting the click depth; the click's tangential
+// impulse responds with sensitivity S = dI/dv_exc (measured here from the
+// converged booking across crossing accelerations), and a click's torque
+// about x is -z_M * I * cos(phi). Phase-averaging uniform clicking gives the
+// click channel's tilt damping
+//   d_click = nu * |S| * z_M^2 / 2
+// (nu = total click rate per unit absolute time). Compared against the
+// Section 63 absorber requirement. Estimate grade: phase-uniform clicking,
+// small tilt, sensitivity from the prescribed controlled crossing.
+export function escapementTiltProjection({
+  rhoC = 0.05,
+  accelCells = [0.45, 0.9, 1.8],
+  clicksPerRotationCases = [18, 200],
+  omega = 1.04156,                        // V5 cadence
+  zM = Math.sin((16.24 * Math.PI) / 180), // V5 middle height (R_M = 1)
+  couplingScale = 0.23494,                // V5 frozen kappa* (impulses linear in kappa; measured here at kappa = 1)
+  windowEnd = 0.05,
+} = {}) {
+  const rho = CANONICAL.referencePerpendicularRadius;
+  const cells = accelCells.map((a) => {
+    const r = impulseResolvedClickImpulse({ angularAccel: a, rhoC, windowEnd });
+    // characteristic entry excess over the booked window: the speed excess
+    // grows at rate a*rho/c_f; the impulse-weighted window scale is declared
+    // as the half-window (estimate-grade proxy)
+    const vExc = a * rho * (windowEnd / 2);
+    return { angularAccel: a, vExc, impulse: r.signedTangentialClickImpulse, converged: r.converged };
+  });
+  const S = (cells[2].impulse - cells[0].impulse) / (cells[2].vExc - cells[0].vExc);
+  const Sv5 = S * couplingScale; // declared unit bridge: controlled crossing at kappa=1, rho=0.8165 -> V5 evaluator units (kappa*=couplingScale; radius mismatch ~O(1) declared)
+  const cases = clicksPerRotationCases.map((cpr) => {
+    const nu = (cpr * omega) / (2 * Math.PI);
+    const dClick = (nu * Math.abs(Sv5) * zM * zM) / 2;
+    return { clicksPerRotation: cpr, clickRatePerTime: nu, dClick };
+  });
+  return { stratum: rhoC, cells, sensitivityS: S, sensitivityV5Units: Sv5, couplingScale, zM, cases };
+}
+
 export function buildSelfHitBrakeCentralMeasurement(options = {}) {
   const rigid = measureRigidCrossingOnProductionSolver(options.rigid ?? {});
   const acceleratingSign = measureAcceleratingCrossingSign(options.acceleratingSign ?? {});

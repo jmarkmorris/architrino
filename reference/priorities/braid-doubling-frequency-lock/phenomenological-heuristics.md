@@ -1,6 +1,6 @@
 # Doubling-Frequency Resonance Lock Archive
 
-The live mathematical backbone of this topic now lives in [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
+The live mathematical backbone of this topic now lives in [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock). This priorities note is retained only as archive scratch material and intuition capture that has not yet been promoted into the dynamics document.
 
 ## Status / Provenance Boundary
 
@@ -192,7 +192,7 @@ The remaining table is kept only as raw kinematic scratch work for the 1:2:4 clo
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 
-- [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/noether-braid-doubling-frequency-resonance-lock.md)
-- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
+- [Noether Braid Doubling-Frequency Resonance Lock](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock)
+- [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
 - [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md)
 - [cosmology-ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md)

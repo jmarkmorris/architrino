@@ -277,7 +277,7 @@ There must exist **internal parameters** that the assembly can modify (via its o
 Concretely:
 
 - Parameters could include:
-  - Effective coupling strengths between sub-assemblies (tri-binary networks),
+  - Effective coupling strengths between sub-assemblies (networks of coupled binaries),
   - Orientation/phase relationships among middle binaries (near $v\approx c_f$),
   - Local Noether sea-coupling "stiffness" (how strongly sub-assemblies respond to given wake amplitudes).
 - These parameters must be **slow variables** relative to the fast threshold dynamics, so that:

@@ -27,8 +27,8 @@ For active corpus advancement, use the shared [corpus advancement pass](../entou
    - [Binary Dynamics](../../content/markdown/aaa/dynamics/binary-dynamics.md)
 4. For Noether braid and core geometry:
    - [Noether Braid](../../content/markdown/aaa/noether-braid/noether-braid.md)
-   - [Nested Shell Braid Dynamics](../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md)
-   - [Nested Shell Braid Geometry](../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md)
+   - [Nested Shell Braid Dynamics](../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics)
+   - [Nested Shell Braid Geometry](../../content/markdown/aaa/noether-braid/braid-envelope-geometry.md)
 5. For canon and style:
    - [Academic Style Guide](../../content/markdown/aaa/archie/academic-style-guide.md)
    - [Mathematics Style Guide](../../content/markdown/aaa/archie/mathematics-style-guide.md)

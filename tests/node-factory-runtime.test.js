@@ -190,3 +190,18 @@ test("center context update removes any legacy inner rim", (t) => {
   assert.equal(legacyInnerRim.geometry.disposed, true);
   assert.equal(legacyInnerRim.material.disposed, true);
 });
+
+test("explicit node labels normalize inline TeX before rendering", (t) => {
+  installFakeDocument(t);
+  const factory = createFactory();
+
+  const node = factory.createNode({
+    id: "aaa_journey",
+    name: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
+    labelTitle: "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
+    radius: 1,
+  });
+
+  assert.match(node.labelObject.element.innerHTML, /𝔸𝔸𝔸 Journey/);
+  assert.doesNotMatch(node.labelObject.element.innerHTML, /mathbb/);
+});

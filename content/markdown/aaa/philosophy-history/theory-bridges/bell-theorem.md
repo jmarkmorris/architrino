@@ -2,7 +2,7 @@
 
 This document presents the standard derivation and physical content of Bell's theorem, then states how the Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) should approach the experimentally observed violations of Bell inequalities. It is a bridge document, not the final mechanism. The final account must be rebuilt from the architrino-level angular-momentum and spin ledger developed in [Angular Momentum and Spin](./angular-momentum-and-spin.md).
 
-The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, nested shell braid, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
+The phrase "hidden variable" is inherited from the Bell literature. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the relevant variables are not hidden from nature. They are unresolved by the observer-level quantum abstraction. The task is therefore not to defend a vague hidden-variable category, but to identify the exact architrino, Noether braid, causal-wake, and measurement-apparatus variables whose coarse description becomes quantum spin statistics.
 
 The fastest way to misunderstand Bell is to treat it as a slogan about reality being impossible. Bell is more precise than that. It rules out a class of explanations in which each detector outcome is screened off by a local package of variables that is independent of the distant setting. The experimentally observed correlations tell $\mathbb{A}\mathbb{A}\mathbb{A}$ exactly what kind of recovery target must be met: reproduce the joint records, preserve no-signaling, respect measurement-independence bounds, and explain why the observer-level compression is not Bell-factorizable.
 
@@ -193,7 +193,7 @@ The 't Hooft comparison should be read with this distinction intact. A determini
 
 ### What The Bell Abstraction Can And Cannot Decide
 
-At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion that reproduces the experiments cannot reduce to a local factorizable response model with measurement-independent variables. That is the hard constraint. It does not decide what angular momentum is, what spin is, or how a nested shell braid responds to a detector. Those questions belong one level lower, in the architrino and causal-wake dynamics.
+At the Bell-abstraction level, any $\mathbb{A}\mathbb{A}\mathbb{A}$ completion that reproduces the experiments cannot reduce to a local factorizable response model with measurement-independent variables. That is the hard constraint. It does not decide what angular momentum is, what spin is, or how a Noether braid responds to a detector. Those questions belong one level lower, in the architrino and causal-wake dynamics.
 
 The current placement is therefore:
 
@@ -442,7 +442,7 @@ Thus record reconstruction is the output surface of the Bell program, not a subs
 
 ### Why Angular Momentum Must Come First
 
-The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, nested shell braid orientations, active causal-root branches, self-action terms, and causal-wake history.
+The non-separability of $\lambda$ requires a precise physical account. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the first object is not an abstract spin label. It is the full angular-momentum ledger of a pair-creation event: architrino positions and velocities, binary frequencies, Noether braid orientations, active causal-root branches, self-action terms, and causal-wake history.
 
 **Creation event.** When a parent assembly fragments into daughters $A$ and $B$ at absolute time $T_0$, the Master Equation and conservation laws jointly constrain the daughter microstates $\Gamma_A(T_0)$ and $\Gamma_B(T_0)$. For a spin-singlet-like event, the observer-level summary is
 
@@ -634,7 +634,7 @@ $$
 
 in this residual normalization. Driving the product-screening residual to zero and driving the singlet residual to zero are mutually incompatible closure targets.
 
-The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full nested shell braid ledger rather than in a preassigned spin label. The ingredients to derive are:
+The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ route lies in the finite-time measurement interaction of a full Noether braid ledger rather than in a preassigned spin label. The ingredients to derive are:
 
 1. **Angular-momentum ledger geometry**: the internal spin ledger includes ordered binary-plane geometry, binary frequencies, causal-root branches, and causal-wake angular momentum.
 
@@ -717,7 +717,7 @@ $$
 
 follow as consequences. The local Stern-Gerlach kernels are deterministic basin indicators derived from the architrino-level angular-momentum and measurement-response dynamics, not ready-made spin-projection rules. The remaining Bell-level task is to derive the preparation and pair-provenance measures that make those local kernels reproduce the joint law while preserving no-signaling and measurement independence and while failing the product-screened local reconstruction above.
 
-**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency nested shell braid, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated braids. The single-assembly half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
+**Status:** This derivation is a **target**, not a completed result. The immediate prerequisite is the angular-momentum and spin program: derive how total angular momentum is conserved and redistributed in a changing-frequency Noether braid, use the Master-Equation apparatus impulse and record-cycle invariant measure to realize $K_{\pm}^{\text{SG}}$, and then derive the pair-provenance measure for correlated braids. The single-assembly half-angle basin arithmetic and the external apparatus-term origins are now available in the reduced Stern-Gerlach chart, but this is not yet a Bell-pair correlation proof.
 
 ---
 

@@ -291,7 +291,7 @@ Assemblies such as Noether braids possess internal slow variables that dictate t
 
 Once the accumulated path-history forces push the assembly's action across the $h$-scale separatrix, the system falls into a new, distinct basin of attraction (e.g., transitioning from an excited orbital resonance to a ground state, or locking into a specific spatial trajectory). 
 
-For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full nested shell braid spin ledger rather than to a preassigned spin label.
+For spin measurements, the corresponding basin program is the Stern-Gerlach-like response model in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), where the apparatus couples to the full Noether braid spin ledger rather than to a preassigned spin label.
 
 The stronger deterministic statement is not that the formal wavefunction disappears from calculation. It is that a complete substrate state would already contain the realized path-history branch. The effective state must carry multiple amplitudes only because the retained observer chart has lost enough source identity, emission-time, and apparatus-kernel detail that several basin outcomes remain unresolved.
 

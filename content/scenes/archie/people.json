@@ -18,9 +18,9 @@
         "headingLevel": 2,
         "maxDepth": 1,
         "overrides": {
-          "overview": {
+          "about us": {
             "id": "people_overview",
-            "labelTitle": "Overview",
+            "labelTitle": "About Us",
             "labelBadge": "doc",
             "mode": "doc"
           },
@@ -32,6 +32,11 @@
           "chief technology officer": {
             "id": "people_cto",
             "labelTitle": "CTO",
+            "labelBadge": "doc"
+          },
+          "chief science officer": {
+            "id": "people_cso",
+            "labelTitle": "CSO",
             "labelBadge": "doc"
           },
           "picture page": {

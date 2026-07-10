@@ -316,7 +316,7 @@ $$
 \right)
 $$
 
-The quantity peaks when a sharply organized coherent core coexists with substantial exported or surrounding incoherent entropy. Stable assemblies are therefore candidate local maxima or ridges of $\mathcal{C}_W$ under the second-law export constraint above. The collinear-breather and nested shell braid programs can test this directly by asking whether phase-locked trajectory bundles sit on such ridges while the surrounding Noether sea and wake-boundary ledger pay the entropy cost.
+The quantity peaks when a sharply organized coherent core coexists with substantial exported or surrounding incoherent entropy. Stable assemblies are therefore candidate local maxima or ridges of $\mathcal{C}_W$ under the second-law export constraint above. The collinear-breather and Noether braid programs can test this directly by asking whether phase-locked trajectory bundles sit on such ridges while the surrounding Noether sea and wake-boundary ledger pay the entropy cost.
 
 ## Mapping in from Standard Entropies
 
@@ -813,6 +813,6 @@ A tenth failure mode is promoting present human or laboratory macrostates into t
 
 ## Interfaces
 
-The energy-side residuals are stated in [Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation-and-causal-ordering). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target).
+The energy-side residuals are stated in [Energy](energy.md#entropy-free-energy-and-coarse-residuals). The time-side arrow distinction is stated in [Absolute Time](../foundations/absolute-time.md#time-orientation-and-causal-ordering). Measurement locking is stated in [Measurement Ontology](../quantum/measurement-ontology.md). Computation cost is treated in [Information / Computation](../philosophy-history/information-computation.md#thermodynamic-cost-of-computation). Local-horizon recovery is stated in [Emergent Metric](../spacetime/emergent-metric.md#local-horizon-recovery-target), with the simulation-facing scaffold in [Thermodynamic Residual](../validation/simulations/thermodynamic-residual.md). The strong-field horizon target is stated in [Black Holes](../spacetime/black-holes.md#horizon-interface), and the dynamics-side label-count target is stated in [Terminal Alignment](../proof-programs/terminal-alignment.md#terminal-alignment-label-count-target).
 
 The consolidated rule is simple: entropy is accepted only as a declared projection of retained deterministic histories, and every effective entropy claim must name the record that makes the projection physical.

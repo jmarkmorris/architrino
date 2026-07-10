@@ -221,13 +221,13 @@ It does not define the force kernel, causal emission-time set, source-normal den
 
 ## Dynamics and Regime Boundary
 
-This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or nested shell braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter names those topics only to keep the reader from importing them back into the definition of a single architrino.
+This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or Noether braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter names those topics only to keep the reader from importing them back into the definition of a single architrino.
 
 The canonical homes are:
 
 - [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, source-normal denominators, receiver-normal branch strengths, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) for coupled nested shell braid speed regimes, alignment behavior, and assembly-stability mechanisms.
+- [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) for coupled nested shell braid speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
 
 ## Determinism and Multistability

@@ -90,6 +90,7 @@ This document distinguishes three audience scopes:
 
 - At startup for theory-facing work, identify the likely durable capture home: direct corpus destination, owning priority workstream, or the workstream's `brainstorming.md` for provisional insight capture.
 - Do not leave substantive theory advancements only in chat. After a discussion produces a new derivation, equation, invariant, mechanism, simulation target, proof route, terminology decision, or corrected claim level, make a capture decision before closing the thread.
+- During operator brainstorming sessions, capture proactively while the discussion unfolds rather than deferring to thread close: stage promotable insights into the corpus or the owning `reference/priorities` brainstorming file as they emerge, with claim levels and promotion targets, and report each capture in the running conversation.
 - Prefer direct promotion into `content/markdown/aaa` when the advancement is solid enough for reader-facing corpus prose and can be stated with its assumptions and remaining obligations.
 - If the advancement is valuable but not yet corpus-solid, stage it in `reference/priorities` as priority material with its claim level, assumptions, proof burden, and intended corpus destination. Prefer the owning priority area's `brainstorming.md` for exploratory insights, or a focused workstream packet when the advancement is already an executable closure target.
 - If no durable capture is made, state why in the operator/developer handoff so the gap is visible rather than silently losing the advancement.

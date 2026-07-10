@@ -60,8 +60,8 @@ Each symbol carries a specific medium-level meaning:
 
 **Where the equation is valid.** This growth equation holds in the regime where:
 - perturbations are small ($|\delta| \ll 1$),
-- the wavelength of perturbations is much larger than the nested shell braid scale,
-- the Noether sea response is quasi-static (perturbation timescale $\gg$ internal nested shell braid oscillation period),
+- the wavelength of perturbations is much larger than the Noether braid scale,
+- the Noether sea response is quasi-static (perturbation timescale $\gg$ internal Noether braid oscillation period),
 - no internal velocity component of the matter assemblies approaches $c_f$ (the self-hit regime is not triggered by the perturbation dynamics themselves).
 
 **What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of Noether braid assemblies and the discreteness of the Noether sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a maximum-curvature object), the self-hit regime is entered, Jacobian anisotropies become large, and the effective $G$ itself changes qualitatively.

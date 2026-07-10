@@ -1,8 +1,8 @@
-# Nested Shell Braid Geometry
+# Braid Envelope Geometry
 
-This chapter is the canonical home for the geometric footprint of the nested shell braid: its dynamic exclusion envelope, oblate spheroidal envelope, and assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The nested shell braid scaffold itself belongs in [Nested Shell Braid](nested-shell-braid.md). The delayed dynamics that stabilize and deform the nested shell braid belong in [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md).
+This chapter is the canonical home for the geometric footprint of a Noether braid assembly: its dynamic exclusion envelope, the envelope forms of the named families, the canonical geometry variables, and the assembly-level deformation channels. It faces the Noether sea and effective-spacetime consumers because the geometry of many such envelopes is the local material out of which Noether sea density, strain, and delay variables are coarse-grained. The machinery here is stated family-generally wherever possible: the family scaffolds belong to [Spindle Braid](spindle-braid.md) and [Explored Braid Geometries](explored-braid-geometries.md), and the delayed dynamics that stabilize and deform a braid belong to the mechanism material of those chapters.
 
-The nested shell braid is not a static object. It is a dynamic system of six architrinos organized as three ordered shell binaries when the exact-binary assumptions are active. The high-frequency paths of those constituents sweep out a persistent volume of intense wake activity. That swept volume is the nested shell braid's effective exclusion envelope.
+A Noether braid is not a static object. It is a dynamic system of six architrinos whose high-frequency paths sweep out a persistent volume of intense wake activity. That swept volume is the assembly's effective exclusion envelope.
 
 In plain terms, this chapter explains what a retained braid "looks like" to neighboring assemblies and to the Noether sea. The envelope is not a hard surface. It is the region where the assembly's locked wake activity is strong enough that other histories are deflected, excluded, phase-disrupted, or forced to retune.
 
@@ -10,26 +10,26 @@ That is why this geometry matters downstream. Pressure, packing, clock/ruler res
 
 ## Document Role
 
-This chapter is the envelope and export-interface chapter for nested shell braid geometry. It owns:
+This chapter is the envelope and export-interface chapter for braid geometry. It owns:
 
-- the dynamic exclusion-envelope interpretation of a nested shell braid,
-- the oblate spheroidal form of the low-energy nested shell braid envelope,
-- the role of the outer binary in setting the leading boundary,
+- the dynamic exclusion-envelope interpretation of a braid assembly,
+- the envelope forms of the named families — the spindle family's fusiform envelope and the nested family's oblate spheroidal envelope,
+- the role of the boundary layer in setting the leading envelope surface,
 - and assembly-level deformation of the envelope under external effective fields, nearby wakes, and Noether sea conditions.
 
 This chapter does not own:
 
 - primitive architrino ontology; see [Architrino](../foundations/architrino.md),
-- the nested shell braid scaffold; see [Nested Shell Braid](nested-shell-braid.md),
-- exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md) and [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md),
+- the family scaffolds; see [Spindle Braid](spindle-braid.md) and [Explored Braid Geometries](explored-braid-geometries.md),
+- exact delay-root dynamics; see [Master Equation](../dynamics/master-equation.md),
 - observer clocks and rulers; see [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md),
 - or metric reconstruction; see [Emergent Metric](../spacetime/emergent-metric.md).
 
-The role boundary is practical: [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md) tests whether a branch is retained; this chapter describes the envelope rows and deformation variables that a retained branch can emit into Noether sea, packing, clock/ruler, and effective-metric consumers.
+The role boundary is practical: the family chapters and the retained-branch program decide whether a branch is retained; this chapter describes the envelope rows and deformation variables that a retained branch can emit into Noether sea, packing, clock/ruler, and effective-metric consumers.
 
 ## Dynamic Exclusion Envelope
 
-The six architrinos within a nested shell braid are in rapid orbital motion. The superposition of their fluctuating causal-wake contributions creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
+The six architrinos within a Noether braid are in rapid orbital motion. The superposition of their fluctuating causal-wake contributions creates a region that is difficult for other architrinos or assemblies to penetrate without being strongly accelerated, deflected, or phase-disrupted.
 
 This region acts as a dynamic **exclusion envelope**. It is not a solid object with a hard material surface. It is a coherent region of intense wake activity defined by the collective path history of the constituent architrinos.
 
@@ -659,7 +659,11 @@ $$
 
 Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor needs a stronger coherent channel but need not coincide with the full exclusion envelope. Packing asks where another stable Noether braid or assembly can remain without persistent phase disruption. Penetration asks where transit through the assembly-dominated wake becomes dynamically unstable. What must remain invariant is the level distinction: exact assembly membership is a closure-ledger fact, while $\partial\Omega_a(D_X,T)$ is a spatial interface extracted from that ledger and the surrounding Noether sea response.
 
-## Oblate Spheroidal Form
+## Envelope Forms
+
+The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](spindle-braid.md) — the leading candidate family — sweeps a **fusiform envelope** at rest: slow near-polar caps and the widest working ring at the equator, set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The canonical geometry variables and the Lorentz projection below are stated for any envelope with a declared parallel axis and apply to both forms.
+
+### Oblate Spheroidal Form (Nested Family)
 
 The nested shell braid structure is anisotropic. The three shell binaries orbit and precess, with their orbital planes tending toward mutual orthogonality in stable low-energy or weak-stress conditions. The time-averaged envelope is therefore not perfectly spherical.
 
@@ -685,7 +689,7 @@ Use
 $$
 \lambda\equiv\frac{R_{\perp}}{R_{\perp,0}}
 $$
-for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to nested shell braid geometry: $\xi$ records shape and $\lambda$ records scale.
+for the transverse scale ratio relative to a stated reference envelope. The pair $(\xi,\lambda)$ belongs first to braid envelope geometry: $\xi$ records shape and $\lambda$ records scale.
 
 Observer clock behavior is a downstream readout, not the definition of either geometry variable. In a successful homogeneous Lorentz-closure regime, the theory should derive
 $$
@@ -755,6 +759,8 @@ $$
 The envelope is therefore the visible projection of the retained causal-root ledger, not an independently assigned Lorentz surface.
 
 ## Retuning Projection to Envelope Variables
+
+This section is the nested family's instantiation of the envelope projection, stated on its cadence-scale retuning map ([Explored Braid Geometries](explored-braid-geometries.md#cadence-scale-retuning-closure)); the corresponding projection for the spindle family is an open obligation of the leading-candidate track.
 
 The cadence-scale retuning map must project into $(\lambda,\xi)$ through the envelope geometry, not by assigning those variables independently. Let
 
@@ -840,7 +846,7 @@ For local assembly modeling, use this page as the geometric source for:
 - deformation of the outer-binary envelope under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For dynamics modeling, use [Nested Shell Braid Dynamics](nested-shell-braid-dynamics.md), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
+For dynamics modeling, use [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
 
 For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 
