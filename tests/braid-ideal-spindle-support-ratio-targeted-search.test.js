@@ -178,6 +178,132 @@ test("TILT BLOCK at V5: global tilt is an exact null (isotropy witness); relativ
   assert.ok(r.relativeEigen.every((e) => e.re < -0.05), "both relative modes clearly restoring");
 });
 
+test("GYROSCOPIC-CIRCULATORY axis analysis at V5: validation rows, exact global-pair deflation, FLUTTER verdict, dt witness", async () => {
+  const { gyroscopicTiltAnalysis, tiltStiffness } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const r = gyroscopicTiltAnalysis({ Nt: 8 });
+  // validation rows built into the physics
+  assert.ok(r.baselineTransverse < 1e-10, `tilt equilibrium automatic: baseline transverse torques ${r.baselineTransverse}`);
+  assert.ok(r.covarianceWitness.EminusA < 1e-10 && r.covarianceWitness.DplusB < 1e-10,
+    "cycle-averaged response is z-rotation covariant (E ~ A, D ~ -B)");
+  assert.ok(r.globalNull.A < 1e-10, `x-x block global null (Section 59 isotropy witness) ${r.globalNull.A}`);
+  assert.ok(r.globalNull.pumpWitness < 0.005,
+    `cross-block row sums equal the baseline layer z-torques (the pump entering the axis sector): ${r.globalNull.pumpWitness}`);
+  // the x-x block reproduces the Section 59 tilt block (same evaluator)
+  const t = tiltStiffness({ Nt: 8 });
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++)
+    assert.ok(Math.abs(r.blocks.A[i][j] - t.K[i][j]) < 1e-9, "A block == tiltStiffness K");
+  // quotient discipline: exact global-tilt double zero root, deflated
+  assert.ok(r.globalPairDeflated.every((p) => Math.hypot(p.re, p.im) < 1e-3),
+    `global pair at numerical zero: ${JSON.stringify(r.globalPairDeflated)}`);
+  assert.equal(r.quotientEigenvalues.length, 10);
+  // the verdict: FLUTTER — a growing whirl pair; restoring K did not survive G + circulatory coupling
+  assert.ok(r.flutter, "flutter-class instability present at V5");
+  assert.ok(Math.abs(r.maxGrowthRate - 0.183) < 0.02, `max growth rate ${r.maxGrowthRate}`);
+  assert.ok(Math.abs(r.maxGrowthWhirlFrequency - 0.382) < 0.02, `whirl frequency ${r.maxGrowthWhirlFrequency}`);
+  // mode shape: middle-dominated with strong inner participation (the Section 59
+  // inner-tilt -> middle-torque pathway), outer nearly a spectator
+  const amp = Object.fromEntries(r.flutterModeShape.map((s) => [s.layer, s.amplitude]));
+  assert.ok(amp.M === 1 && amp.I > 0.4 && amp.O < amp.I, `mode shape ${JSON.stringify(r.flutterModeShape)}`);
+  assert.ok(r.dkResidual < 1e-10, `eigenvalue solve converged ${r.dkResidual}`);
+  // dt witness: doubling the cycle sampling does not move the verdict rows
+  const w = gyroscopicTiltAnalysis({ Nt: 16 });
+  assert.ok(Math.abs(w.maxGrowthRate - r.maxGrowthRate) < 1e-3, "Nt 8/16 growth rate identical");
+  assert.ok(Math.abs(w.maxGrowthWhirlFrequency - r.maxGrowthWhirlFrequency) < 1e-3, "Nt 8/16 whirl frequency identical");
+});
+
+test("GYROSCOPIC-CIRCULATORY pump-absorbed counterfactual: the axis sector is independently unstable", async () => {
+  const { gyroscopicTiltAnalysis } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const r = gyroscopicTiltAnalysis({ Nt: 8, pumpAbsorbed: true });
+  assert.ok(r.flutter, "flutter persists with the middle's rail-pump transport removed");
+  assert.ok(r.maxGrowthRate > 0.2, `pump-absorbed growth rate ${r.maxGrowthRate} (not weaker than the physical cell)`);
+});
+
+test("DELAY-MEMORY completed pencil: the measured tilt-rate block is anti-damping and worsens the flutter; verdict stands", async () => {
+  const { gyroscopicTiltAnalysisFull } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const full = gyroscopicTiltAnalysisFull({ Nt: 8 });
+  // validation rows
+  assert.ok(full.covarianceWitness.staticBlocks < 1e-10 && full.covarianceWitness.rateBlocks < 1e-10,
+    "static and rate blocks z-rotation covariant");
+  assert.ok(full.globalNull.ok, "global null + pump witness hold with the rate block included");
+  assert.ok(full.globalPairDeflated.every((p) => Math.hypot(p.re, p.im) < 1e-3),
+    "exact global-tilt double zero unchanged (P(0) = Gamma - K)");
+  // the wake tilt-rate response is anti-damping on every layer diagonal
+  for (let l = 0; l < 3; l++)
+    assert.ok(full.blocks.P[l][l] > 0, `dT_x/d(etaDot_x) diagonal positive (anti-damping) on layer ${l}`);
+  // verdict: flutter, worse than the kinematic-transport-only pencil
+  const kin = gyroscopicTiltAnalysisFull({ Nt: 8, rateBlockScale: 0 });
+  assert.ok(full.flutter && kin.flutter, "flutter in both cells");
+  assert.ok(Math.abs(kin.maxGrowthRate - 0.183) < 0.02, `scale-0 cell reproduces the Section 61 verdict (${kin.maxGrowthRate})`);
+  assert.ok(full.maxGrowthRate > kin.maxGrowthRate, "measured delay-memory block worsens the growth");
+  assert.ok(Math.abs(full.maxGrowthRate - 0.199) < 0.02, `full-pencil max growth ${full.maxGrowthRate}`);
+  assert.ok(full.flutterModes.length >= kin.flutterModes.length, "growing-pair count does not decrease");
+  assert.ok(full.dkResidual < 1e-10, "eigenvalue solve converged");
+});
+
+test("DELAY-MEMORY absorber requirement: order-one isotropic damping needed to close the axis sector", async () => {
+  const { gyroscopicTiltAnalysisFull } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const below = gyroscopicTiltAnalysisFull({ Nt: 8, extraDamping: 0.9 });
+  const above = gyroscopicTiltAnalysisFull({ Nt: 8, extraDamping: 1.15 });
+  assert.ok(below.maxGrowthRate > 0, `still growing at d=0.9 (${below.maxGrowthRate})`);
+  assert.ok(above.maxGrowthRate < 0, `restoring at d=1.15 (${above.maxGrowthRate})`);
+});
+
+test("PER-LAYER absorber structure: middle-only damping cannot close the axis sector; escapement + inner/cap damping composes", async () => {
+  const { gyroscopicTiltAnalysisFull } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  // middle-only damping at 8x the isotropic requirement still leaves growth:
+  // the escapement alone, at ANY strength, is not the axis absorber
+  const mid = gyroscopicTiltAnalysisFull({ Nt: 8, extraDampingLayers: [0, 8, 0] });
+  assert.ok(mid.maxGrowthRate > 0.05, `middle-only floor ${mid.maxGrowthRate}`);
+  // sea-target row: with the click channel at its measured band on the middle
+  // (d_M = 3.2), inner+cap damping of 0.5 closes the sector; 0.4 does not
+  const closed = gyroscopicTiltAnalysisFull({ Nt: 8, extraDampingLayers: [0.5, 3.2, 0.5] });
+  const open = gyroscopicTiltAnalysisFull({ Nt: 8, extraDampingLayers: [0.4, 3.2, 0.4] });
+  assert.ok(closed.maxGrowthRate < 0, `stabilized at dI=dO=0.5 (${closed.maxGrowthRate})`);
+  assert.ok(open.maxGrowthRate > 0, `still growing at dI=dO=0.4 (${open.maxGrowthRate})`);
+});
+
+test("OFF-DIAGONAL click route: measured coupling class is an order below requirement and cannot move the flutter", async () => {
+  const { clickOffDiagonalEstimate, gyroscopicTiltAnalysisFull } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const est = clickOffDiagonalEstimate({ Nphi: 16 });
+  const inner = est.perLayer.find((p) => p.layer === "I");
+  assert.ok(Math.abs(inner.firstHarmonic - 0.289) < 0.05, `inner first harmonic ${inner.firstHarmonic}`);
+  assert.ok(est.perLayer.every((p) => p.dOffdiagEstimate < 0.15),
+    "all off-diagonal click couplings an order below the ~0.5-class requirement");
+  // pencil insensitivity at the estimated class, best structure/sign, with headroom
+  const V = Array.from({ length: 6 }, () => Array(6).fill(0));
+  V[1][3] = -0.1; V[4][0] = 0.1;
+  const withCoupling = gyroscopicTiltAnalysisFull({ Nt: 8, velocityBlockAdd: V });
+  const base = gyroscopicTiltAnalysisFull({ Nt: 8 });
+  assert.ok(withCoupling.flutter, "flutter unmoved by the off-diagonal click coupling");
+  assert.ok(base.maxGrowthRate - withCoupling.maxGrowthRate < 0.02,
+    `best-case improvement ${base.maxGrowthRate - withCoupling.maxGrowthRate} is marginal`);
+});
+
+test("SEA TILT-DAMPING estimate: band-structured in whirl frequency; inner row starved; best-cell block destabilizes the pencil at any scale", async () => {
+  const { seaTiltDampingEstimate, gyroscopicTiltAnalysisFull } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const r = seaTiltDampingEstimate({ Rsea: 3.4, gamma: 1.0, omegaList: [0.28, 0.46] });
+  const low = r.results[0], band = r.results[1];
+  // spacing/frequency band structure (causal-delay physics): anti-damping at
+  // low whirl frequency, damping in the band near 0.46 at R = 3.4
+  assert.ok(low.dSea[1][1] > 0.5, `low-frequency middle row anti-damping (${low.dSea[1][1]})`);
+  assert.ok(band.dSea[1][1] < -0.2, `in-band middle row damping (${band.dSea[1][1]})`);
+  // the sea starves the inner layer's tilt sector everywhere probed
+  assert.ok(Math.abs(low.dSea[0][0]) < 0.06 && Math.abs(band.dSea[0][0]) < 0.06,
+    "inner diagonal two orders below the requirement class");
+  // pencil verdict: with the native click pump on the middle, inserting the
+  // best-cell sea block WORSENS the growth, and more coupling worsens it more
+  const insert = (scale) => {
+    const V = Array.from({ length: 6 }, () => Array(6).fill(0));
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+      V[i][j] = -scale * band.dSea[i][j]; V[3 + i][3 + j] = -scale * band.dSea[i][j];
+    }
+    return gyroscopicTiltAnalysisFull({ Nt: 8, extraDampingLayers: [0, -0.3, 0], velocityBlockAdd: V }).maxGrowthRate;
+  };
+  const g0 = insert(0), g1 = insert(1), g3 = insert(3);
+  assert.ok(g1 > g0, `sea block at physical scale worsens growth (${g0} -> ${g1})`);
+  assert.ok(g3 > g1, `more sea coupling worsens further (${g3})`);
+});
+
 test("fail-closed", () => {
   assert.equal(FAIL_CLOSED.retainedBranchClaim, false);
   assert.equal(FAIL_CLOSED.scoreMovement, "no_score_increase");

@@ -29,10 +29,6 @@ function sectionLookupKey(markdownPath, sectionText, normalizePath, normalizeKey
   return path && section ? `${path}::${section}` : null;
 }
 
-function sectionTargetPath(markdownPath, markdownSection) {
-  return `${RUNTIME_MARKDOWN_READER_PREFIX}${markdownPath}::${encodeURIComponent(markdownSection)}`;
-}
-
 function parseRuntimeMarkdownReaderTarget(target) {
   if (typeof target !== "string" || !target.startsWith(RUNTIME_MARKDOWN_READER_PREFIX)) {
     return null;
@@ -64,28 +60,6 @@ function createPageEntry(node, index) {
     markdownPath,
     scenePath,
     targetPath: scenePath ?? `${RUNTIME_MARKDOWN_DOC_PREFIX}${markdownPath}`,
-  };
-}
-
-function createSectionEntry(section, index) {
-  const markdownPath = cleanText(section?.markdownPath);
-  const markdownSection =
-    cleanText(section?.markdownSection) ??
-    cleanText(section?.title) ??
-    cleanText(section?.sectionKey);
-  if (!markdownPath || !markdownSection) {
-    return null;
-  }
-  const title = cleanText(section?.title) ?? markdownSection;
-  return {
-    index,
-    id: null,
-    title,
-    kind: cleanText(section?.kind) ?? "markdown-section",
-    markdownPath,
-    markdownSection,
-    sectionKey: cleanText(section?.sectionKey),
-    targetPath: sectionTargetPath(markdownPath, markdownSection),
   };
 }
 
@@ -136,11 +110,14 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
   function addNodePage(node) {
     const entry = createPageEntry(node, pages.length);
     if (!entry) {
-      return;
+      return null;
     }
     const markdownKey = normalizePath(entry.markdownPath);
-    if (!markdownKey || byMarkdownPath.has(markdownKey)) {
-      return;
+    if (!markdownKey) {
+      return null;
+    }
+    if (byMarkdownPath.has(markdownKey)) {
+      return byMarkdownPath.get(markdownKey);
     }
     pages.push(entry);
     byMarkdownPath.set(markdownKey, entry);
@@ -150,34 +127,28 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
     if (entry.scenePath) {
       byScenePath.set(normalizePath(entry.scenePath), entry);
     }
+    return entry;
   }
 
-  function addSectionPage(section) {
-    const entry = createSectionEntry(section, pages.length);
-    if (!entry) {
+  // Sections are not pages: page navigation moves document to document.
+  // Section lookups resolve to their owning document entry so a reader
+  // positioned inside a section still gets previous/next navigation.
+  function registerSectionLookup(section, ownerEntry) {
+    if (!section || typeof section !== "object" || !ownerEntry) {
       return;
     }
-    const sectionKey = sectionLookupKey(
-      entry.markdownPath,
-      entry.markdownSection,
-      normalizePath,
-      normalizeKey
-    );
-    if (!sectionKey || byMarkdownSection.has(sectionKey)) {
-      return;
-    }
-    pages.push(entry);
-    byMarkdownSection.set(sectionKey, entry);
-    [entry.sectionKey, entry.title]
-      .filter((value) => typeof value === "string" && value.trim().length > 0)
+    const markdownPath = cleanText(section.markdownPath) ?? ownerEntry.markdownPath;
+    [section.markdownSection, section.sectionKey, section.title]
+      .map((value) => cleanText(value))
+      .filter(Boolean)
       .forEach((sectionText) => {
-        const alias = sectionLookupKey(entry.markdownPath, sectionText, normalizePath, normalizeKey);
+        const alias = sectionLookupKey(markdownPath, sectionText, normalizePath, normalizeKey);
         if (alias && !byMarkdownSection.has(alias)) {
-          byMarkdownSection.set(alias, entry);
+          byMarkdownSection.set(alias, ownerEntry);
         }
       });
     if (Array.isArray(section.children)) {
-      section.children.forEach(addSectionPage);
+      section.children.forEach((child) => registerSectionLookup(child, ownerEntry));
     }
   }
 
@@ -185,9 +156,9 @@ function buildTextbookTocPageSequence(tocRoot, helpers = {}) {
     if (!node || typeof node !== "object") {
       return;
     }
-    addNodePage(node);
-    if (Array.isArray(node.sections)) {
-      node.sections.forEach(addSectionPage);
+    const entry = addNodePage(node);
+    if (entry && Array.isArray(node.sections)) {
+      node.sections.forEach((section) => registerSectionLookup(section, entry));
     }
     if (Array.isArray(node.children)) {
       node.children.forEach(walk);

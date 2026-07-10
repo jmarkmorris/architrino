@@ -133,7 +133,13 @@ export const TABLED_ROWS = Object.freeze({
 });
 
 export function selectTabledRow(row) {
-  const layers = TABLED_ROWS[row];
+  // Row 8 (packet "Candidate Row 8: Marginal-Stratum Release of V5") releases
+  // the IDENTICAL Row 7 seed (SELF_EQUILIBRATED_V5, re-derived in-build
+  // equilibrium, frozen gauge-invariant kappa_eq): the row differs only in
+  // BOOKING discipline — the chart-booking coincidence stratum rho_c is set
+  // by the binding pre-release stratum map (marginal brake=pump cell), not
+  // declared a priori. Geometry lookup therefore aliases to the Row 7 table.
+  const layers = TABLED_ROWS[row === 8 ? 7 : row];
   if (!layers) throw new Error(`unknown tabled candidate row: ${row}`);
   DECLARED.candidateRow = row;
   DECLARED.layers = layers;
@@ -157,9 +163,10 @@ export function selectTabledRow(row) {
     sp.tabledSeaRows = { I: 0.0013, M: -0.01, O: 0.4178 };
     sp.tabledTotals = { I: 1.0006, M: 0.9961, O: 0.9937 };
   }
-  // Row 7 is the BARE self-equilibrated candidate: no environment of any kind,
-  // and the in-build stability gate (binding obligation 1) is armed.
-  DECLARED.bareGate.enabled = row === 7;
+  // Rows 7/8 are the BARE self-equilibrated candidate: no environment of any
+  // kind, and the in-build stability gate (binding obligation 1) is armed.
+  DECLARED.bareGate.enabled = row === 7 || row === 8;
+  DECLARED.row8.enabled = row === 8;
 }
 
 // ---------------------------------------------------------------------------
@@ -391,14 +398,117 @@ export const DECLARED = {
     // maxSep < tubeRadius AND final separation < 0.9 * peak (turned around).
     twinKicks: [0.001, 0.003, 0.01, 0.03],
   },
+  // Candidate Row 8 (packet block by title: "Candidate Row 8: Marginal-Stratum
+  // Release of V5 — the d0-From-Survival Row"; design record spec Section 60
+  // by title). Seed/gate identical to Row 7; this block declares ONLY the
+  // stratum-map instrument and the claim-contract report thresholds. All
+  // values are declared regulator-honesty conventions, not physics knobs.
+  row8: {
+    enabled: false, // set by selectTabledRow(8)
+    // Binding pre-release obligation — the stratum map: log-spaced rho_c grid
+    // spanning [0.005, 0.08] (7 cells = 0.005 * 16^(k/6); brackets the Row 7
+    // regime-map cells 0.01 destructive-push and 0.05 over-absorption), plus
+    // the canonical soft booking as the zero-absorption reference.
+    stratumGrid: [0.005, 0.007937, 0.012599, 0.02, 0.031748, 0.050397, 0.08],
+    holdRotations: 0.25, // short holds/releases at the V5 seed (declared)
+    // The Row 7 rail pump (Section 60 seed row; packet constant). The in-build
+    // gate re-derives railPumpM each run — the report cross-checks both.
+    pumpDeclared: 0.2274,
+    railResidenceBand: 0.02, // |beta_M - 1| <= band counts as rail residence
+    marginalTarget: 1.0, // absorbed pump fraction at the marginal stratum
+    // Regulator-honesty witnesses (the two Row 7 flagged channels). The
+    // marginal cell is CLEAN only if both hold; otherwise the map books the
+    // scoped negative (no clean marginal stratum at this booking).
+    witnessSpreadClean: 0.02, // max quadrature witness relative spread (0.01 artifact was 7.3%)
+    dtHalvingClean: 0.10, // max relative change of absorbed fraction under dt/2
+    // Impulse-resolved follow-up instrument (spec Sections 62/63 by title; the
+    // dt-converged escapement booking). NOT a candidate row: no release, no
+    // re-release. Two blocks:
+    //  - impulseSpanExtension: the re-map span extends past the Row 8 declared
+    //    grid to the Section 62 receding-crossing probe scale (log-midpoint +
+    //    0.112 itself), so the converged booking answers "does the crossing
+    //    relocate into the physical range" on one map.
+    //  - dt-halving cleanliness applies to BOTH the absorbed fraction and the
+    //    mean per-click impulse (the Section 62 durable positive: per-click
+    //    impulse calibration is the binding constraint, not click count).
+    impulseSpanExtension: [0.094657, 0.112], // log-mid(0.08, 0.112), 0.112
+    // Escapement-under-tilt projection (Section 63 composition target): the
+    // click channel's tilt-sector torque response dT_x/d(etaDot_x) on the
+    // MIDDLE layer, prescribed-worldline family (zero tilt, constant tilt
+    // rate at readout — the gyroscopicTiltAnalysisFull family), impulse-
+    // resolved same-source booking only (aFrozen = 0 isolates the click
+    // channel; partner channels already live in the measured K and D blocks).
+    // Units match the completed pencil: kappa-scaled layer torque (both
+    // middle sites summed) per unit tilt rate; compare |diagonal| against
+    // dStarIsotropic. Readout base time is declared so the same-source chart
+    // delay cap (2.0) never reads the untilted held prehistory.
+    tiltProjection: {
+      etaDot: 0.02, // Section 63 rate step (central difference +-etaDot)
+      etaDotWitness: 0.01, // linearity witness (rate step halved)
+      readouts: 8, // cycle samples (Section 61/63 convention Nt=8/16)
+      readoutsWitness: 16,
+      tReadBase: 2.5, // > chart same-source delay cap 2.0 (declared above)
+      dStarIsotropic: 1.02, // Section 63 absorber requirement (comparison anchor)
+    },
+    // Claim-contract verdict channels (separable clocks):
+    flutterClockDeg: 10, // flutter clock = first crossing of this nutation angle
+    // h_act row: kinematic click bound N_click ~ 2 pi c1 beta ~ 18 beta per
+    // rotation near the ceiling (spec Sections 2.5/8 by title).
+    clickBoundPerRotation: 18,
+  },
   chart: {
     enabled: false,
-    foldJacobianThreshold: 0.02, // |D_s| below this = fold-flagged, substep-integrate
+    foldJacobianThreshold: 0.02, // |D_s| below this = fold-flagged, event-integrate
     windowMinDelay: 0.002, // same-source window emission-delay floor (the accepted
     // brake-measurement convention, self-hit-brake-central-measurement.mjs)
-    subSteps: 32,
-    witnessSubSteps: 64, // regularization-independence witness resolution
     maxClickRows: 60, // detailed click rows retained (aggregates always kept)
+    // Impulse-resolved click integration (spec Section 62 route (a) / Section 63
+    // composition; the dt-converged escapement booking). The per-step uniform
+    // substep trapezoid is REPLACED: click events (same-source root-count
+    // transitions = fold crossings) are located inside the window by bisection
+    // on the production root count, the window is partitioned at the event
+    // times, and each subinterval is integrated by Gauss-Legendre under a
+    // smoothstep grading map tau = a + (b-a)(3s^2 - 2s^3) whose vanishing
+    // endpoint derivative absorbs the integrable inverse-square-root fold
+    // singularity at either endpoint. All samples remain production
+    // solveDirectedRelation roots (no parallel booking path). Declared
+    // regulator-honesty conventions, not physics knobs:
+    // The window booking is a stiff ODE dv' = F(tau, dv): near the rail the
+    // fold factor 1/D_s ~ 1/(beta - 1) amplifies the booked impulse back into
+    // itself, and the integrand carries integrable |tau - tau*|^(-1/2) fold
+    // singularities plus root-count jump discontinuities (click events) and
+    // solver-tolerance tangency slivers. The impulse-resolved booking is an
+    // adaptive embedded Euler/trapezoid pair with error control on the booked
+    // impulse per step; root-count transitions are localized by step
+    // rejection down to the declared event floor and CROSSED by a floor-width
+    // Euler micro-step (the declared sub-floor truncation of the one-sided
+    // sqrt tail); slivers below the event floor book their (vanishing)
+    // resolved weight or are truncated identically. Witness reruns tighten
+    // both tolerances by the declared factor; a cell whose witness exceeds
+    // the clean threshold books DIRTY (fail-closed), the Row 8 protocol.
+    impulse: {
+      initialStepFraction: 1 / 64, // first trial step h0 = dt/64
+      maxStepFraction: 1 / 8, // step growth cap h <= dt/8
+      atol: 1e-7, // absolute impulse tolerance per accepted step
+      rtol: 3e-4, // relative tolerance vs the window impulse booked so far
+      eventFloorFraction: 1e-7, // event-time localization floor (of dt)
+      stepMinFraction: 1e-9, // hard step floor inside singular approaches
+      maxEvalsPerWindow: 40000, // guard; beyond -> window flagged unconverged
+      witnessTolFactor: 1 / 8, // witness rerun tolerance tightening
+      // Tangency guard: inside |D_s| < dsGuard the pointwise solver rows are
+      // noise-dominated (the reported D_s of a near-tangent root carries the
+      // root-position uncertainty, so 1/D_s is unbounded numerical noise, not
+      // physics — measured on the release-instant poised window, where the
+      // refined uniform ladder converges to ~0 while naive event-resolved
+      // sampling diverges). The booking therefore reads the same-source row
+      // as the unsoftened density-of-states m = D_T/D_s OUTSIDE the guard
+      // and as the guard-regularized m = D_T D_s/(D_s^2 + g^2) INSIDE it.
+      // g is a DECLARED REGULATOR with its own halving witness: witness
+      // reruns tighten the tolerances AND halve g, so guard dependence is
+      // measured per cell, never assumed away. g << the canonical soft 0.02.
+      dsGuard: 2e-3,
+      witnessGuardFactor: 0.5, // witness rerun guard halving
+    },
   },
 };
 selectTabledRow(1);
@@ -1600,15 +1710,26 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
 }
 
 // ---------------------------------------------------------------------------
-// Chart-clean same-source booking (spec Sections 2/3.1/3.3): substep-integrate
-// the same-source channel over one base step, reading the production row's
-// signed branch orientation unsoftened (density-of-states integral) with the
-// declared d0 stratum in the force denominator. Returns the booked velocity
-// increment plus the chart quantities for the click row.
+// Chart-clean same-source booking (spec Sections 2/3.1/3.3), IMPULSE-RESOLVED
+// (spec Sections 62/63 by title — the dt-converged escapement booking): the
+// same-source channel over one base step, reading the production row's signed
+// branch orientation unsoftened (density-of-states integral) with the declared
+// d0 stratum in the force denominator. The booking is treated as the window
+// ODE dv' = F(tau, dv) it actually is (the fold factor 1/D_s ~ 1/(beta - 1)
+// feeds the booked impulse back into the integrand near the rail): an
+// adaptive embedded Euler/trapezoid pair with per-step error control on the
+// booked impulse. Click events (production root-count transitions = fold
+// crossings) are localized by step rejection down to the declared event
+// floor and crossed by a floor-width Euler micro-step; per-event impulses
+// are attributed by the declared region convention (edge regions to their
+// single bounding event; interior regions split equally between their two
+// bounding events). Every integrand sample is a production
+// solveDirectedRelation root row — no parallel booking path. Returns the
+// booked velocity increment plus the chart quantities for the click row.
 // ---------------------------------------------------------------------------
 export function chartWindowIntegrate({
   histories,
-  sites,
+  sites, // eslint-disable-line no-unused-vars -- call-signature stability
   i,
   t0,
   dt,
@@ -1616,26 +1737,33 @@ export function chartWindowIntegrate({
   v0,
   aFrozen, // non-chart acceleration (partner channels), frozen over the step
   kappa,
-  subSteps = DECLARED.chart.subSteps,
+  atol = DECLARED.chart.impulse.atol,
+  rtol = DECLARED.chart.impulse.rtol,
+  dsGuard = DECLARED.chart.impulse.dsGuard,
 }) {
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
   const dv = [0, 0, 0];
-  let prevIntegrand = null;
   let minChord = Infinity;
-  let mu = 0; // unfolding parameter, mu-dot = D_T
-  let prevDt = null;
-  let rootCountAtEnd = 0;
+  let mu = 0; // unfolding parameter, mu-dot = D_T (fold-branch diagnostic)
+  let prevDtSample = null;
+  let prevMuTau = null;
   const dsSamples = [];
-  const h = dt / subSteps;
-  for (let k = 0; k <= subSteps; k += 1) {
-    const tau = k * h;
+  let evals = 0;
+  // Progressive receiver state: dv is frozen over each trial step and
+  // re-frozen at every accepted step; xCur is the receiver position at the
+  // committed frontier tauCommitted under the piecewise-frozen dv.
+  let tauCommitted = 0;
+  let xCur = x0.slice();
+
+  // One integrand sample at window offset tau >= tauCommitted, receiver
+  // advanced from the committed state under the frozen dv + partner channels.
+  const sample = (tau, wantDiagnostics) => {
     const tK = t0 + tau;
-    // receiver provisionally advanced under frozen non-chart acceleration
-    // plus the chart increment booked so far
+    const da = tau - tauCommitted;
     const xK = [
-      x0[0] + (v0[0] + dv[0]) * tau + 0.5 * aFrozen[0] * tau * tau,
-      x0[1] + (v0[1] + dv[1]) * tau + 0.5 * aFrozen[1] * tau * tau,
-      x0[2] + (v0[2] + dv[2]) * tau + 0.5 * aFrozen[2] * tau * tau,
+      xCur[0] + (v0[0] + dv[0]) * da + 0.5 * aFrozen[0] * (tau * tau - tauCommitted * tauCommitted),
+      xCur[1] + (v0[1] + dv[1]) * da + 0.5 * aFrozen[1] * (tau * tau - tauCommitted * tauCommitted),
+      xCur[2] + (v0[2] + dv[2]) * da + 0.5 * aFrozen[2] * (tau * tau - tauCommitted * tauCommitted),
     ];
     const vK = [
       v0[0] + dv[0] + aFrozen[0] * tau,
@@ -1653,9 +1781,8 @@ export function chartWindowIntegrate({
       minimumDelayOverride: DECLARED.chart.windowMinDelay,
       delayCapOverride: 2.0, // same-source chart scan cap (declared)
     });
-    rootCountAtEnd = roots.length;
     const integrand = [0, 0, 0];
-    let foldBranch = null; // min-|D_s| root this substep (the fold-near branch)
+    let foldBranch = null; // min-|D_s| root this sample (the fold-near branch)
     for (const root of roots) {
       const r = root.distance;
       if (!(r > 0) || !Number.isFinite(r)) continue;
@@ -1666,29 +1793,132 @@ export function chartWindowIntegrate({
       ];
       const Ds = root.sourceNormalDenominator;
       const Dt = root.receiverNormalNumerator;
-      if (!Number.isFinite(Ds) || Math.abs(Ds) < 1e-12) continue;
-      const m = Dt / Ds; // production signedBranchOrientation, unsoftened
+      if (!Number.isFinite(Ds)) continue;
+      // unsoftened density-of-states outside the tangency guard, guard-
+      // regularized inside it (declared regulator; halved in witness reruns)
+      const m = (Dt * Ds) / (Ds * Ds + dsGuard * dsGuard);
       const w = (kappa * m) / (r * r + rc2); // sigma_self = +1
       integrand[0] += w * dir[0];
       integrand[1] += w * dir[1];
       integrand[2] += w * dir[2];
-      minChord = Math.min(minChord, r);
+      if (wantDiagnostics) minChord = Math.min(minChord, r);
       if (!foldBranch || Math.abs(Ds) < Math.abs(foldBranch.Ds)) foldBranch = { Ds, Dt };
     }
-    if (foldBranch) {
-      if (prevDt !== null) mu += 0.5 * (foldBranch.Dt + prevDt) * h;
-      dsSamples.push({ mu, Ds: foldBranch.Ds, Dt: foldBranch.Dt });
-      prevDt = foldBranch.Dt;
-    } else {
-      prevDt = null;
+    if (wantDiagnostics) {
+      if (foldBranch) {
+        if (prevDtSample !== null && prevMuTau !== null) {
+          mu += 0.5 * (foldBranch.Dt + prevDtSample) * (tau - prevMuTau);
+        }
+        dsSamples.push({ mu, Ds: foldBranch.Ds, Dt: foldBranch.Dt });
+        prevDtSample = foldBranch.Dt;
+        prevMuTau = tau;
+      } else {
+        prevDtSample = null;
+        prevMuTau = null;
+      }
     }
-    if (prevIntegrand) {
-      dv[0] += 0.5 * (integrand[0] + prevIntegrand[0]) * h;
-      dv[1] += 0.5 * (integrand[1] + prevIntegrand[1]) * h;
-      dv[2] += 0.5 * (integrand[2] + prevIntegrand[2]) * h;
+    evals += 1;
+    return { integrand, rootCount: roots.length };
+  };
+
+  // Commit an accepted step [tauCommitted, b] with impulse seg: advance the
+  // receiver position under the pre-commit frozen dv, then re-freeze.
+  let committedSegments = 0;
+  const commit = (b, seg, regionImpulse) => {
+    const a = tauCommitted;
+    const da = b - a;
+    xCur = [
+      xCur[0] + (v0[0] + dv[0]) * da + 0.5 * aFrozen[0] * (b * b - a * a),
+      xCur[1] + (v0[1] + dv[1]) * da + 0.5 * aFrozen[1] * (b * b - a * a),
+      xCur[2] + (v0[2] + dv[2]) * da + 0.5 * aFrozen[2] * (b * b - a * a),
+    ];
+    tauCommitted = b;
+    for (let c = 0; c < 3; c += 1) {
+      dv[c] += seg[c];
+      regionImpulse[c] += seg[c];
     }
-    prevIntegrand = integrand;
+    committedSegments += 1;
+  };
+
+  // Region-to-event impulse attribution (declared convention).
+  const events = [];
+  let prevEvent = null;
+  let pendingRegion = [0, 0, 0];
+  const closeRegion = (nextEvent) => {
+    if (prevEvent && nextEvent) {
+      for (let c = 0; c < 3; c += 1) {
+        prevEvent.impulse[c] += 0.5 * pendingRegion[c];
+        nextEvent.impulse[c] += 0.5 * pendingRegion[c];
+      }
+    } else if (prevEvent || nextEvent) {
+      const ev = prevEvent ?? nextEvent;
+      for (let c = 0; c < 3; c += 1) ev.impulse[c] += pendingRegion[c];
+    }
+    pendingRegion = [0, 0, 0];
+  };
+
+  // Adaptive embedded Euler/trapezoid walk with event localization.
+  const P = DECLARED.chart.impulse;
+  const hMax = dt * P.maxStepFraction;
+  const hEventFloor = dt * P.eventFloorFraction;
+  const hMin = dt * P.stepMinFraction;
+  let h = dt * P.initialStepFraction;
+  let F0 = sample(0, true);
+  let unconverged = false;
+  while (tauCommitted < dt - 1e-15) {
+    if (evals > P.maxEvalsPerWindow) {
+      unconverged = true;
+      // book the remainder in one frozen Euler stretch (flagged, witness-visible)
+      const rem = dt - tauCommitted;
+      commit(dt, F0.integrand.map((c) => c * rem), pendingRegion);
+      break;
+    }
+    h = Math.min(h, dt - tauCommitted);
+    const tauB = tauCommitted + h;
+    const F1 = sample(tauB, true);
+    if (F1.rootCount !== F0.rootCount) {
+      if (h > hEventFloor) {
+        h = 0.5 * h; // localize the event by rejection
+        continue;
+      }
+      // cross the event with a floor-width Euler micro-step (the declared
+      // sub-floor truncation of the one-sided sqrt tail)
+      commit(tauB, F0.integrand.map((c) => c * h), pendingRegion);
+      const ev = {
+        tau: tauB,
+        rootCountBefore: F0.rootCount,
+        rootCountAfter: F1.rootCount,
+        kind: F1.rootCount > F0.rootCount ? "root_birth" : "root_death",
+        impulse: [0, 0, 0],
+      };
+      closeRegion(ev);
+      events.push(ev);
+      prevEvent = ev;
+      F0 = F1;
+      h = dt * P.initialStepFraction;
+      continue;
+    }
+    const segEuler = F0.integrand.map((c) => c * h);
+    const segTrap = F0.integrand.map((c, k) => 0.5 * h * (c + F1.integrand[k]));
+    const err = Math.hypot(
+      segTrap[0] - segEuler[0],
+      segTrap[1] - segEuler[1],
+      segTrap[2] - segEuler[2]
+    );
+    const tolStep = Math.max(atol, rtol * Math.hypot(...dv));
+    if (err > tolStep && h > hMin) {
+      h = Math.max(0.5 * h, hMin);
+      continue;
+    }
+    commit(tauB, segTrap, pendingRegion);
+    // re-freeze: resample the frontier under the committed dv when the step
+    // moved the receiver appreciably; reuse F1 otherwise
+    F0 = Math.hypot(...segTrap) > 0.1 * tolStep ? sample(tauCommitted, true) : F1;
+    h = Math.min(hMax, h * (err < 0.25 * tolStep ? 2 : 1.2));
   }
+  closeRegion(null);
+  const rootCountAtEnd = F0.rootCount;
+
   // fold-curvature fit D_s^2 = 2 a mu over the sampled window (least squares
   // through the origin; only meaningful when mu grew)
   let foldCurvature = null;
@@ -1708,6 +1938,23 @@ export function chartWindowIntegrate({
     foldCurvature,
     rootCountAtEnd,
     sampleCount: dsSamples.length,
+    clickEvents: events.map((e) => ({
+      tau: e.tau,
+      time: t0 + e.tau,
+      kind: e.kind,
+      rootCountBefore: e.rootCountBefore,
+      rootCountAfter: e.rootCountAfter,
+      impulse: e.impulse,
+    })),
+    quadrature: {
+      scheme: "adaptive_embedded_euler_trapezoid_event_localized_guarded",
+      atol,
+      rtol,
+      dsGuard,
+      committedSegments,
+      evals,
+      unconverged,
+    },
   };
 }
 
@@ -2001,8 +2248,14 @@ export function runRelease({
       bookedSteps: 0,
       crossingEvents: 0,
       totalBookedTangentialImpulse: 0,
+      totalClickEvents: 0,
+      perClickTangentialImpulseSum: 0,
+      perClickTangentialImpulseSumSq: 0,
       rows: [],
     };
+    chartLedger.totalClickEvents ??= 0;
+    chartLedger.perClickTangentialImpulseSum ??= 0;
+    chartLedger.perClickTangentialImpulseSumSq ??= 0;
     railCrossings = resumeState.railCrossings;
     prevSelfCounts = resumeState.prevSelfCounts;
     prevBetaM = resumeState.prevBetaM;
@@ -2035,6 +2288,9 @@ export function runRelease({
       bookedSteps: 0,
       crossingEvents: 0,
       totalBookedTangentialImpulse: 0,
+      totalClickEvents: 0,
+      perClickTangentialImpulseSum: 0,
+      perClickTangentialImpulseSumSq: 0,
       rows: [],
     };
     railCrossings = [];
@@ -2137,6 +2393,16 @@ export function runRelease({
       const tanImpulse =
         booking.dv[0] * tHat[0] + booking.dv[1] * tHat[1] + booking.dv[2] * tHat[2];
       chartLedger.totalBookedTangentialImpulse += tanImpulse;
+      // impulse-resolved per-click booking (Sections 62/63 follow-up): every
+      // located event books its attributed impulse; the tangential projection
+      // uses the receiver's window-start direction (declared convention).
+      for (const ev of booking.clickEvents ?? []) {
+        const evTan =
+          ev.impulse[0] * tHat[0] + ev.impulse[1] * tHat[1] + ev.impulse[2] * tHat[2];
+        chartLedger.totalClickEvents += 1;
+        chartLedger.perClickTangentialImpulseSum += evTan;
+        chartLedger.perClickTangentialImpulseSumSq += evTan * evTan;
+      }
       if (booking.crossing) {
         chartLedger.crossingEvents += 1;
         if (chartLedger.rows.length < DECLARED.chart.maxClickRows) {
@@ -2152,12 +2418,22 @@ export function runRelease({
               v0: states[i].v,
               aFrozen: booking.aFrozen,
               kappa,
-              subSteps: DECLARED.chart.witnessSubSteps,
+              atol: DECLARED.chart.impulse.atol * DECLARED.chart.impulse.witnessTolFactor,
+              rtol: DECLARED.chart.impulse.rtol * DECLARED.chart.impulse.witnessTolFactor,
+              dsGuard: DECLARED.chart.impulse.dsGuard * DECLARED.chart.impulse.witnessGuardFactor,
             });
             const base = Math.hypot(...booking.dv);
             witness = {
-              subStepsBase: DECLARED.chart.subSteps,
-              subStepsWitness: DECLARED.chart.witnessSubSteps,
+              quadratureBase: {
+                atol: DECLARED.chart.impulse.atol,
+                rtol: DECLARED.chart.impulse.rtol,
+                dsGuard: DECLARED.chart.impulse.dsGuard,
+              },
+              quadratureWitness: {
+                atol: DECLARED.chart.impulse.atol * DECLARED.chart.impulse.witnessTolFactor,
+                rtol: DECLARED.chart.impulse.rtol * DECLARED.chart.impulse.witnessTolFactor,
+                dsGuard: DECLARED.chart.impulse.dsGuard * DECLARED.chart.impulse.witnessGuardFactor,
+              },
               relativeSpread:
                 base > 0 ? Math.hypot(
                   rerun.dv[0] - booking.dv[0],
@@ -2174,6 +2450,7 @@ export function runRelease({
             betaAtWindowStart: booking.beta0,
             chartImpulse: booking.dv,
             tangentialImpulse: tanImpulse,
+            clickEvents: booking.clickEvents ?? [],
             foldChordMin: booking.minChord,
             unfoldingWindowMu: booking.unfoldingWindowMu,
             foldCurvature: booking.foldCurvature,
@@ -2359,6 +2636,300 @@ export function runRelease({
 }
 
 // ---------------------------------------------------------------------------
+// Candidate Row 8: the stratum-map instrument (binding pre-release obligation).
+// One cell = a short hold/release at the V5 seed with the chart booking at a
+// declared rho_c (or the canonical soft booking as the zero-absorption
+// reference), booking the absorbed pump fraction per rotation (click-ledger
+// tangential sum / pumpDeclared, as rates — dimensionless, equal to the
+// per-rotation ratio), rail residence statistics, the substep witness spread
+// (the Row 7 coincidence-push artifact channel), and the halt row. dt-halving
+// is a second cell at dtFactor = 0.5 compared by the caller.
+// ---------------------------------------------------------------------------
+export function stratumMapCell({
+  rhoC = null, // null = canonical soft pointwise booking (zero-absorption reference)
+  kappa,
+  rotations = DECLARED.row8.holdRotations,
+  dtFactor = 1,
+  dsGuardFactor = 1, // cell-level tangency-guard halving witness (declared)
+  resumeState = null,
+  budgetMs = Infinity,
+}) {
+  const saved = {
+    rc: DECLARED.coincidenceStratum,
+    chart: DECLARED.chart.enabled,
+    dt: DECLARED.timeStep,
+    dsGuard: DECLARED.chart.impulse.dsGuard,
+  };
+  try {
+    DECLARED.chart.enabled = rhoC != null;
+    if (rhoC != null) DECLARED.coincidenceStratum = rhoC;
+    DECLARED.timeStep = saved.dt * dtFactor;
+    DECLARED.chart.impulse.dsGuard = saved.dsGuard * dsGuardFactor;
+    const run = runRelease({ rotations, kappa, recordRotations: [], resumeState, budgetMs });
+    if (!run.completed) return { pending: true, state: run.state };
+    const dt = DECLARED.timeStep;
+    const duration = run.diag.length ? run.diag[run.diag.length - 1].t + dt : 0;
+    const rotationsCompleted = duration / TWO_PI;
+    const tanSum = run.chartLedger ? run.chartLedger.totalBookedTangentialImpulse : 0;
+    // absorbed pump fraction per rotation: brake rate (negative booked
+    // tangential impulse per unit time) over the declared pump rate.
+    const absorbedPumpFractionPerRotation =
+      duration > 0 ? -tanSum / duration / DECLARED.row8.pumpDeclared : null;
+    const band = DECLARED.row8.railResidenceBand;
+    let inBand = 0;
+    let bMin = Infinity;
+    let bMax = -Infinity;
+    for (const d of run.diag) {
+      if (Math.abs(d.betaM - 1) <= band) inBand += 1;
+      bMin = Math.min(bMin, d.betaM);
+      bMax = Math.max(bMax, d.betaM);
+    }
+    const witnessRows = (run.chartLedger?.rows ?? [])
+      .map((r) => r.regularizationIndependenceWitness)
+      .filter(Boolean);
+    const betaMFinal = run.diag.length ? run.diag[run.diag.length - 1].betaM : null;
+    return {
+      rhoC,
+      booking: rhoC == null ? "canonical_soft_pointwise" : "chart_d0_stratum",
+      dt,
+      dtFactor,
+      dsGuardFactor,
+      dsGuardEffective: DECLARED.chart.impulse.dsGuard,
+      rotationsRequested: rotations,
+      rotationsCompleted,
+      halted: run.halted,
+      absorbedPumpFractionPerRotation,
+      bookedTangentialImpulseSum: tanSum,
+      bookedSteps: run.chartLedger?.bookedSteps ?? 0,
+      crossingEvents: run.chartLedger?.crossingEvents ?? 0,
+      clickTransitions: run.clickLedger.totalTransitions,
+      clicksPerRotation:
+        rotationsCompleted > 0 ? run.clickLedger.totalTransitions / rotationsCompleted : null,
+      // impulse-resolved per-click rows (Sections 62/63 follow-up): resolved
+      // event count, mean per-click tangential impulse, and its relative
+      // dispersion inside the cell (the stratum-stability witness).
+      perClick: (() => {
+        const n = run.chartLedger?.totalClickEvents ?? 0;
+        if (!(n > 0)) {
+          return { events: 0, eventsPerRotation: null, meanTangentialImpulse: null, relativeStd: null };
+        }
+        const s1 = run.chartLedger.perClickTangentialImpulseSum;
+        const s2 = run.chartLedger.perClickTangentialImpulseSumSq;
+        const mean = s1 / n;
+        const varr = Math.max(0, s2 / n - mean * mean);
+        return {
+          events: n,
+          eventsPerRotation: rotationsCompleted > 0 ? n / rotationsCompleted : null,
+          meanTangentialImpulse: mean,
+          relativeStd: Math.abs(mean) > 0 ? Math.sqrt(varr) / Math.abs(mean) : null,
+        };
+      })(),
+      railResidence: {
+        band,
+        fractionInBand: run.diag.length ? inBand / run.diag.length : null,
+        betaMMin: Number.isFinite(bMin) ? bMin : null,
+        betaMMax: Number.isFinite(bMax) ? bMax : null,
+        betaMFinal,
+        // zero-absorption reference row: the un-absorbed pump's measured climb
+        betaMClimbRatePerUnitTime: duration > 0 && betaMFinal != null ? (betaMFinal - 1) / duration : null,
+        railCrossings: run.railCrossings.length,
+      },
+      substepWitness: {
+        count: witnessRows.length,
+        maxRelativeSpread: witnessRows.length
+          ? Math.max(...witnessRows.map((w) => w.relativeSpread))
+          : null,
+      },
+      tubeLossRotations: (() => {
+        const hit = run.diag.find(
+          (d) => d.maxShapeDeviation > DECLARED.tubeRadiusForShapeQuestion
+        );
+        return hit ? hit.t / TWO_PI : null;
+      })(),
+    };
+  } finally {
+    DECLARED.coincidenceStratum = saved.rc;
+    DECLARED.chart.enabled = saved.chart;
+    DECLARED.timeStep = saved.dt;
+    DECLARED.chart.impulse.dsGuard = saved.dsGuard;
+  }
+}
+
+// Marginal-cell detection on the completed grid rows (dtFactor=1 cells,
+// ascending rho_c): the marginal stratum rho_c* is where the absorbed pump
+// fraction crosses the declared target (1) — on the Row 7 regime map the
+// fraction DECREASES with rho_c (smaller stratum = harder brake), so the
+// crossing is approached from above. Log-linear interpolation inside the
+// bracketing pair; witness cleanliness is judged by the caller on the bracket
+// plus the confirmation cell.
+export function locateMarginalStratum(gridRows, target = DECLARED.row8.marginalTarget) {
+  const rows = gridRows
+    .filter((r) => r.rhoC != null && Number.isFinite(r.absorbedPumpFractionPerRotation))
+    .sort((a, b) => a.rhoC - b.rhoC);
+  for (let k = 0; k + 1 < rows.length; k += 1) {
+    const f0 = rows[k].absorbedPumpFractionPerRotation;
+    const f1 = rows[k + 1].absorbedPumpFractionPerRotation;
+    if ((f0 - target) * (f1 - target) <= 0 && f0 !== f1) {
+      const l0 = Math.log(rows[k].rhoC);
+      const l1 = Math.log(rows[k + 1].rhoC);
+      const rhoCStar = Math.exp(l0 + ((target - f0) * (l1 - l0)) / (f1 - f0));
+      return {
+        found: true,
+        rhoCStar,
+        bracket: [rows[k].rhoC, rows[k + 1].rhoC],
+        bracketFractions: [f0, f1],
+      };
+    }
+  }
+  return {
+    found: false,
+    rhoCStar: null,
+    bracket: null,
+    bracketFractions: null,
+    note:
+      rows.length && rows.every((r) => r.absorbedPumpFractionPerRotation > target)
+        ? "all_cells_over_absorb"
+        : "no_crossing_in_declared_span",
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Escapement-under-tilt projection (spec Section 63 composition target; the
+// remaining bare-braid axis-absorber candidate). Prescribed-worldline family
+// exactly as the gyroscopicTiltAnalysisFull rate blocks (zero layer tilt and
+// constant tilt rate at each readout time, so the causal roots see the past
+// tilt = the delay-memory content), on the MIDDLE layer about x. At each
+// readout the impulse-resolved chart booking integrates the same-source click
+// channel ONLY (aFrozen = 0: the partner channels already live in the
+// measured K and D blocks of the completed pencil), and the kappa-scaled
+// transverse torque rate on the layer (both middle sites summed, cycle-
+// averaged) is differenced centrally in the tilt rate:
+//   P_click[M][M] = dT_x / d(etaDot_x)  (positive = anti-damping, the
+//   Section 63 sign convention; damping supply posts NEGATIVE).
+// Compare |P_click| against dStarIsotropic. Seed-grade instrument on
+// prescribed worldlines: flips no acceptance flag, authorizes no release.
+// ---------------------------------------------------------------------------
+export function escapementUnderTiltProjection({
+  kappa,
+  rhoC,
+  etaDot = DECLARED.row8.tiltProjection.etaDot,
+  readouts = DECLARED.row8.tiltProjection.readouts,
+  atol = DECLARED.chart.impulse.atol,
+  rtol = DECLARED.chart.impulse.rtol,
+  dsGuard = DECLARED.chart.impulse.dsGuard,
+} = {}) {
+  const saved = { rc: DECLARED.coincidenceStratum, chart: DECLARED.chart.enabled };
+  try {
+    DECLARED.coincidenceStratum = rhoC;
+    DECLARED.chart.enabled = true;
+    const sites = buildSites();
+    const dt = DECLARED.timeStep;
+    const w = DECLARED.omega;
+    const period = TWO_PI / w;
+    const tBase = DECLARED.row8.tiltProjection.tReadBase;
+    const middleIdx = sites
+      .map((s, k) => ({ s, k }))
+      .filter(({ s }) => s.layer === "M")
+      .map(({ k }) => k);
+    const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+    // one readout sample: family tilted about x with angle etaDot*(t - tRead)
+    // on the middle layer, impulse-resolved same-source booking at tRead
+    const bookOne = (iSite, tRead, rate) => {
+      const site = sites[iSite];
+      const tilted = (t) => {
+        const p0 = rigidPosition(site, t);
+        const v0 = rigidVelocity(site, t);
+        const ax = rate * (t - tRead);
+        const c = Math.cos(ax);
+        const s = Math.sin(ax);
+        const p = rotX(p0, c, s);
+        const vr = rotX(v0, c, s);
+        // d/dt [Rx(ax(t)) p0(t)] = rate * (xhat cross Rx p0) + Rx v0
+        return { p, v: [vr[0], vr[1] - rate * p[2], vr[2] + rate * p[1]] };
+      };
+      const h = new RetainedHistory(site);
+      const nS = Math.ceil((tRead + 2 * dt) / dt);
+      for (let k = 0; k <= nS; k += 1) {
+        const t = k * dt;
+        const { p, v } = tilted(t);
+        h.push(t, p, v);
+      }
+      const histories = [];
+      histories[iSite] = h;
+      const { p: xi, v: vi } = tilted(tRead);
+      const booking = chartWindowIntegrate({
+        histories,
+        sites,
+        i: iSite,
+        t0: tRead,
+        dt,
+        x0: xi,
+        v0: vi,
+        aFrozen: [0, 0, 0],
+        kappa,
+        atol,
+        rtol,
+        dsGuard,
+      });
+      // kappa-scaled transverse torque rate booked by the click channel over
+      // the window (dv already carries kappa; F = dv/dt)
+      return {
+        Tx: (xi[1] * booking.dv[2] - xi[2] * booking.dv[1]) / dt,
+        Ty: (xi[2] * booking.dv[0] - xi[0] * booking.dv[2]) / dt,
+        events: (booking.clickEvents ?? []).length,
+        tangentialImpulse:
+          (booking.dv[0] * vi[0] + booking.dv[1] * vi[1] + booking.dv[2] * vi[2]) /
+          (Math.hypot(...vi) || 1),
+      };
+    };
+    // cycle-averaged layer torque rate at a tilt rate (both middle sites)
+    const layerTorque = (rate) => {
+      let Tx = 0;
+      let Ty = 0;
+      let events = 0;
+      let tan = 0;
+      for (let q = 0; q < readouts; q += 1) {
+        const tRead = tBase + (q / readouts) * period;
+        for (const iSite of middleIdx) {
+          const row = bookOne(iSite, tRead, rate);
+          Tx += row.Tx / readouts;
+          Ty += row.Ty / readouts;
+          events += row.events;
+          tan += row.tangentialImpulse / readouts;
+        }
+      }
+      return { Tx, Ty, events, tangentialImpulse: tan };
+    };
+    const plus = layerTorque(+etaDot);
+    const minus = layerTorque(-etaDot);
+    const base = layerTorque(0);
+    const P = (plus.Tx - minus.Tx) / (2 * etaDot);
+    const Pxy = (plus.Ty - minus.Ty) / (2 * etaDot);
+    return {
+      rhoC,
+      etaDot,
+      readouts,
+      quadrature: { atol, rtol, dsGuard },
+      baselineTx: base.Tx, // transverse-torque null witness at zero rate
+      baselineTangentialImpulsePerWindow: base.tangentialImpulse,
+      clickEventsSeen: { plus: plus.events, minus: minus.events, base: base.events },
+      // the click channel's M-M diagonal tilt-rate response (kappa-scaled
+      // torque per unit tilt rate; positive = anti-damping)
+      PclickXX: P,
+      PclickYX: Pxy,
+      dStarIsotropic: DECLARED.row8.tiltProjection.dStarIsotropic,
+      dampingSupplyFractionOfDStar:
+        P < 0 ? -P / DECLARED.row8.tiltProjection.dStarIsotropic : 0,
+      convention:
+        "gyroscopicTiltAnalysisFull rate-block sign convention: positive diagonal = anti-damping; damping supply posts negative",
+    };
+  } finally {
+    DECLARED.coincidenceStratum = saved.rc;
+    DECLARED.chart.enabled = saved.chart;
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 function readCliNumber(name, fallback) {
@@ -2399,7 +2970,28 @@ if (isMain()) {
   }
   if (DECLARED.bareGate.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
     process.stderr.write(
-      "[abort] Row 7 is the BARE self-equilibrated candidate (no environment); --sea/--responsive-sea do not compose with --row=7\n"
+      "[abort] Rows 7/8 are the BARE self-equilibrated candidate (no environment); --sea/--responsive-sea do not compose with --row=7 or --row=8\n"
+    );
+    process.exit(1);
+  }
+  const stratumMapMode = process.argv.includes("--stratum-map");
+  // Impulse-resolved follow-up instruments (spec Sections 62/63 by title; NOT
+  // candidate rows — no release is authorized by either mode):
+  //  --impulse-map: the converged-booking stratum re-map over the extended
+  //    span [0.005, 0.112] (Row 8 grid + impulseSpanExtension).
+  //  --tilt-projection: the escapement-under-tilt torque response vs d*.
+  const impulseMapMode = process.argv.includes("--impulse-map");
+  const tiltProjectionMode = process.argv.includes("--tilt-projection");
+  const anyMapMode = stratumMapMode || impulseMapMode;
+  if (DECLARED.row8.enabled && !anyMapMode && !tiltProjectionMode && !DECLARED.chart.enabled) {
+    process.stderr.write(
+      "[abort] the Row 8 release is BY DEFINITION at the marginal chart-booking stratum: run --stratum-map first, then release with --chart --rc=<rho_c*>\n"
+    );
+    process.exit(1);
+  }
+  if ((anyMapMode || tiltProjectionMode) && !DECLARED.row8.enabled) {
+    process.stderr.write(
+      "[abort] --stratum-map/--impulse-map/--tilt-projection ride the Candidate Row 8 seed/gate machinery; require --row=8\n"
     );
     process.exit(1);
   }
@@ -2705,6 +3297,344 @@ if (isMain()) {
     }
   }
 
+  // ------------------------------------------------------------------------
+  // Candidate Row 8 binding pre-release obligation: the stratum map. Runs
+  // INSTEAD of a release (--stratum-map): grid cells + dt-halving witnesses +
+  // the canonical soft reference, chunked/resumable like the release phases;
+  // when all cells complete, locates the marginal cell rho_c*, runs the
+  // confirmation cell (+ dt witness) there, judges witness cleanliness, and
+  // writes the map report. Fail-closed: the map flips no acceptance flag.
+  // ------------------------------------------------------------------------
+  if (anyMapMode) {
+    const loadJson = (p) => (fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : null);
+    const mapStatePath = path.join(
+      outDir,
+      `${impulseMapMode ? "impulse-map" : "stratum-map"}-results-${tag}.json`
+    );
+    const mapState = loadJson(mapStatePath) ?? { results: {} };
+    const grid = impulseMapMode
+      ? [...DECLARED.row8.stratumGrid, ...DECLARED.row8.impulseSpanExtension]
+      : DECLARED.row8.stratumGrid;
+    const cells = [
+      { id: "soft-reference", rhoC: null, dtFactor: 1 },
+      ...grid.flatMap((rc, k) => [
+        { id: `rc${k}`, rhoC: rc, dtFactor: 1 },
+        { id: `rc${k}-dtw`, rhoC: rc, dtFactor: 0.5 },
+      ]),
+      // impulse-map only: the cell-level tangency-guard halving witness at the
+      // mid-grid stratum (crossing-row witnesses cannot fire when no rail
+      // crossing occurs, so the guard sensitivity is measured on a whole cell)
+      ...(impulseMapMode
+        ? [{ id: "rc-guard-witness", rhoC: 0.050397, dtFactor: 1, dsGuardFactor: 0.5 }]
+        : []),
+    ];
+    const runCell = (cell) => {
+      if (mapState.results[cell.id]) return true;
+      const cellStatePath = path.join(outDir, `stratum-map-cellstate-${tag}-${cell.id}.json`);
+      const remaining = budgetMs - (Date.now() - t0);
+      if (remaining < 2000) {
+        process.stderr.write(`[chunk] stratum map budget exhausted before cell ${cell.id}; rerun to resume\n`);
+        process.exit(0);
+      }
+      const res = stratumMapCell({
+        rhoC: cell.rhoC,
+        kappa: seed.kappaStar,
+        dtFactor: cell.dtFactor,
+        dsGuardFactor: cell.dsGuardFactor ?? 1,
+        resumeState: loadJson(cellStatePath),
+        budgetMs: remaining,
+      });
+      if (res.pending) {
+        fs.writeFileSync(cellStatePath, JSON.stringify(res.state));
+        process.stderr.write(`[chunk] stratum map cell ${cell.id} paused; rerun to resume\n`);
+        process.exit(0);
+      }
+      mapState.results[cell.id] = res;
+      fs.writeFileSync(mapStatePath, JSON.stringify(mapState));
+      // stale-cellstate cleanup is best-effort (some sandboxes deny unlink);
+      // a completed cell in mapState.results always wins over a state file.
+      try {
+        if (fs.existsSync(cellStatePath)) fs.rmSync(cellStatePath);
+      } catch {
+        /* completed result already persisted; stale state file is inert */
+      }
+      process.stderr.write(
+        `[map] cell ${cell.id} rhoC=${cell.rhoC ?? "soft"} dtFactor=${cell.dtFactor} ` +
+          `absorbed=${res.absorbedPumpFractionPerRotation?.toFixed(4) ?? "n/a"} ` +
+          `railX=${res.railResidence.railCrossings} inBand=${res.railResidence.fractionInBand?.toFixed(3)} ` +
+          `witnessSpread=${res.substepWitness.maxRelativeSpread?.toExponential(2) ?? "none"} halted=${res.halted ? res.halted.reason : "no"}\n`
+      );
+      return true;
+    };
+    for (const cell of cells) runCell(cell);
+    // grid complete: locate the marginal cell and run the confirmation pair
+    const gridRows = grid.map((rc, k) => mapState.results[`rc${k}`]);
+    const marginal = locateMarginalStratum(gridRows);
+    if (marginal.found) {
+      const conf = { id: "rcstar", rhoC: marginal.rhoCStar, dtFactor: 1 };
+      const confW = { id: "rcstar-dtw", rhoC: marginal.rhoCStar, dtFactor: 0.5 };
+      runCell(conf);
+      runCell(confW);
+    }
+    // No crossing inside the declared span but the top cell still over-absorbs:
+    // quantify the d0 statement with ONE out-of-span extrapolation probe at the
+    // log-slope crossing (labeled, report-only — NOT a release site; the
+    // scoped negative stands because the crossing is outside the tabled span).
+    let outOfSpanExtrapolation = null;
+    if (!marginal.found) {
+      const top = gridRows[gridRows.length - 1];
+      const prev = gridRows[gridRows.length - 2];
+      if (
+        top?.absorbedPumpFractionPerRotation > DECLARED.row8.marginalTarget &&
+        prev?.absorbedPumpFractionPerRotation > top.absorbedPumpFractionPerRotation
+      ) {
+        const slope =
+          (Math.log(top.absorbedPumpFractionPerRotation) -
+            Math.log(prev.absorbedPumpFractionPerRotation)) /
+          (Math.log(top.rhoC) - Math.log(prev.rhoC));
+        const rhoCExtrap = Math.exp(
+          Math.log(top.rhoC) +
+            (Math.log(DECLARED.row8.marginalTarget) -
+              Math.log(top.absorbedPumpFractionPerRotation)) /
+              slope
+        );
+        runCell({ id: "rcx", rhoC: rhoCExtrap, dtFactor: 1 });
+        runCell({ id: "rcx-dtw", rhoC: rhoCExtrap, dtFactor: 0.5 });
+        outOfSpanExtrapolation = { rhoCExtrapolated: rhoCExtrap, logSlopeTopPair: slope };
+      }
+    }
+    // assemble: per-cell dt-halving deltas + witness cleanliness verdict.
+    // Impulse-resolved cleanliness (Sections 62/63 follow-up) covers BOTH the
+    // absorbed fraction and the mean per-click impulse.
+    const dtDelta = (base, w) =>
+      base && w && Number.isFinite(base.absorbedPumpFractionPerRotation) && Number.isFinite(w.absorbedPumpFractionPerRotation)
+        ? Math.abs(w.absorbedPumpFractionPerRotation - base.absorbedPumpFractionPerRotation) /
+          Math.max(Math.abs(base.absorbedPumpFractionPerRotation), 1e-9)
+        : null;
+    const dtDeltaPerClick = (base, w) =>
+      base && w && Number.isFinite(base.perClick?.meanTangentialImpulse) && Number.isFinite(w.perClick?.meanTangentialImpulse)
+        ? Math.abs(w.perClick.meanTangentialImpulse - base.perClick.meanTangentialImpulse) /
+          Math.max(Math.abs(base.perClick.meanTangentialImpulse), 1e-9)
+        : null;
+    const gridBlock = grid.map((rc, k) => {
+      const base = mapState.results[`rc${k}`];
+      const w = mapState.results[`rc${k}-dtw`];
+      const dAbs = dtDelta(base, w);
+      const dClick = dtDeltaPerClick(base, w);
+      return {
+        ...base,
+        dtHalvingRelDeltaOnAbsorbedFraction: dAbs,
+        dtHalvingRelDeltaOnPerClickImpulse: dClick,
+        cellClean:
+          base != null &&
+          (base.substepWitness.maxRelativeSpread == null ||
+            base.substepWitness.maxRelativeSpread <= DECLARED.row8.witnessSpreadClean) &&
+          dAbs != null &&
+          dAbs <= DECLARED.row8.dtHalvingClean &&
+          (dClick == null || dClick <= DECLARED.row8.dtHalvingClean),
+        dtWitnessRow: w,
+      };
+    });
+    const conf = mapState.results["rcstar"] ?? null;
+    const confW = mapState.results["rcstar-dtw"] ?? null;
+    const confDelta = dtDelta(conf, confW);
+    const cleanRow = (r, delta, deltaClick) =>
+      r != null &&
+      (r.substepWitness.maxRelativeSpread == null ||
+        r.substepWitness.maxRelativeSpread <= DECLARED.row8.witnessSpreadClean) &&
+      delta != null &&
+      delta <= DECLARED.row8.dtHalvingClean &&
+      (deltaClick == null || deltaClick <= DECLARED.row8.dtHalvingClean);
+    let witnessesClean = null;
+    if (marginal.found) {
+      const bracketRows = marginal.bracket.map((rc) => {
+        const k = grid.indexOf(rc);
+        return {
+          row: mapState.results[`rc${k}`],
+          delta: dtDelta(mapState.results[`rc${k}`], mapState.results[`rc${k}-dtw`]),
+          deltaClick: dtDeltaPerClick(mapState.results[`rc${k}`], mapState.results[`rc${k}-dtw`]),
+        };
+      });
+      witnessesClean =
+        cleanRow(conf, confDelta, dtDeltaPerClick(conf, confW)) &&
+        bracketRows.every((b) => cleanRow(b.row, b.delta, b.deltaClick));
+    }
+    const mapReport = {
+      schema: SCHEMA,
+      handoffPacketRef: HANDOFF_PACKET_REF,
+      mode: impulseMapMode
+        ? "row8b_impulse_resolved_stratum_map_no_release"
+        : "row8_stratum_map_pre_release_obligation",
+      declared: DECLARED,
+      seedRecord: {
+        kappaStarNative: seed.kappaStar,
+        kappaStarFitted: seed.kappaStarFitted ?? seed.kappaStar,
+        globalRelResidualNative: seed.globalRelResidual,
+        supportRatios: seed.supportRatios,
+        bareStabilityGate: bareGateBlock,
+        candidateRow: DECLARED.candidateRow,
+      },
+      softReference: mapState.results["soft-reference"],
+      gridRows: gridBlock,
+      marginalCell: {
+        ...marginal,
+        confirmationRow: conf,
+        confirmationDtWitnessRow: confW,
+        confirmationDtHalvingRelDelta: confDelta,
+        witnessesClean,
+        witnessSpreadCleanDeclared: DECLARED.row8.witnessSpreadClean,
+        dtHalvingCleanDeclared: DECLARED.row8.dtHalvingClean,
+        scopedNegative: !marginal.found || witnessesClean === false,
+      },
+      guardWitness: impulseMapMode
+        ? (() => {
+            const base = mapState.results[`rc${grid.indexOf(0.050397)}`];
+            const gw = mapState.results["rc-guard-witness"];
+            if (!base || !gw) return null;
+            const b = base.absorbedPumpFractionPerRotation;
+            const g = gw.absorbedPumpFractionPerRotation;
+            return {
+              rhoC: 0.050397,
+              dsGuardBase: base.dsGuardEffective ?? DECLARED.chart.impulse.dsGuard,
+              dsGuardWitness: gw.dsGuardEffective,
+              absorbedBase: b,
+              absorbedGuardHalved: g,
+              relDelta:
+                Number.isFinite(b) && Number.isFinite(g)
+                  ? Math.abs(g - b) / Math.max(Math.abs(b), 1e-9)
+                  : null,
+            };
+          })()
+        : null,
+      outOfSpanExtrapolation: outOfSpanExtrapolation
+        ? {
+            ...outOfSpanExtrapolation,
+            note:
+              `report-only d0 quantification: the absorbed-fraction crossing sits OUTSIDE the declared span [${grid[0]}, ${grid[grid.length - 1]}]; NOT a release site — the scoped negative stands on the tabled span`,
+            probeRow: mapState.results["rcx"] ?? null,
+            probeDtWitnessRow: mapState.results["rcx-dtw"] ?? null,
+            probeDtHalvingRelDelta: dtDelta(mapState.results["rcx"], mapState.results["rcx-dtw"]),
+          }
+        : null,
+      failClosed: FAIL_CLOSED,
+      elapsedSeconds: (Date.now() - t0) / 1000,
+    };
+    fs.writeFileSync(path.join(outDir, outName), JSON.stringify(mapReport, null, 1));
+    process.stderr.write(
+      `[map:done] marginal found=${marginal.found} rhoCStar=${marginal.rhoCStar ?? "none"} ` +
+        `witnessesClean=${witnessesClean} scopedNegative=${mapReport.marginalCell.scopedNegative}\n`
+    );
+    process.stdout.write(
+      JSON.stringify(
+        {
+          schema: SCHEMA,
+          mode: impulseMapMode ? "row8b_impulse_resolved_stratum_map" : "row8_stratum_map",
+          marginalCell: {
+            found: marginal.found,
+            rhoCStar: marginal.rhoCStar,
+            bracket: marginal.bracket,
+            witnessesClean,
+            scopedNegative: mapReport.marginalCell.scopedNegative,
+          },
+          reportPath: path.join(outDir, outName),
+          ...FAIL_CLOSED,
+        },
+        null,
+        1
+      ) + "\n"
+    );
+    process.exit(0);
+  }
+
+  // ------------------------------------------------------------------------
+  // Escapement-under-tilt projection (--tilt-projection): the Section 63
+  // composition target. Runs INSTEAD of a release; flips no acceptance flag.
+  // Cells: declared comparison strata (CLI --tp-rc=a,b,c). Witness rows on
+  // the FIRST cell: rate step halved (linearity), readouts doubled (cycle
+  // sampling), quadrature doubled (booking independence).
+  // ------------------------------------------------------------------------
+  if (tiltProjectionMode) {
+    const loadJson = (p) => (fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, "utf8")) : null);
+    const tpStatePath = path.join(outDir, `tilt-projection-results-${tag}.json`);
+    const tpState = loadJson(tpStatePath) ?? { results: {} };
+    const rcArg = process.argv.find((a) => a.startsWith("--tp-rc="))?.slice(8);
+    const rcList = rcArg
+      ? rcArg.split(",").map(Number).filter(Number.isFinite)
+      : [0.022, 0.08, 0.112];
+    const tp = DECLARED.row8.tiltProjection;
+    const cells = [
+      ...rcList.map((rc, k) => ({ id: `tp${k}`, args: { rhoC: rc, kappa: seed.kappaStar } })),
+      {
+        id: "tp0-rate-witness",
+        args: { rhoC: rcList[0], kappa: seed.kappaStar, etaDot: tp.etaDotWitness },
+      },
+      {
+        id: "tp0-readout-witness",
+        args: { rhoC: rcList[0], kappa: seed.kappaStar, readouts: tp.readoutsWitness },
+      },
+      {
+        id: "tp0-quadrature-witness",
+        args: {
+          rhoC: rcList[0],
+          kappa: seed.kappaStar,
+          atol: DECLARED.chart.impulse.atol * DECLARED.chart.impulse.witnessTolFactor,
+          rtol: DECLARED.chart.impulse.rtol * DECLARED.chart.impulse.witnessTolFactor,
+          dsGuard: DECLARED.chart.impulse.dsGuard * DECLARED.chart.impulse.witnessGuardFactor,
+        },
+      },
+    ];
+    for (const cell of cells) {
+      if (tpState.results[cell.id]) continue;
+      if (Date.now() - t0 > budgetMs) {
+        process.stderr.write(`[chunk] tilt-projection budget exhausted before ${cell.id}; rerun to resume\n`);
+        process.exit(0);
+      }
+      const res = escapementUnderTiltProjection(cell.args);
+      tpState.results[cell.id] = res;
+      fs.writeFileSync(tpStatePath, JSON.stringify(tpState));
+      process.stderr.write(
+        `[tp] ${cell.id} rhoC=${res.rhoC} etaDot=${res.etaDot} Nt=${res.readouts} ` +
+          `PclickXX=${res.PclickXX.toExponential(4)} baselineTx=${res.baselineTx.toExponential(2)} ` +
+          `events(+/-/0)=${res.clickEventsSeen.plus}/${res.clickEventsSeen.minus}/${res.clickEventsSeen.base}\n`
+      );
+    }
+    const report = {
+      schema: SCHEMA,
+      handoffPacketRef: HANDOFF_PACKET_REF,
+      mode: "row8b_escapement_under_tilt_projection_no_release",
+      declared: { tiltProjection: tp, chartImpulse: DECLARED.chart.impulse },
+      seedRecord: {
+        kappaStarNative: seed.kappaStar,
+        bareStabilityGate: bareGateBlock,
+        candidateRow: DECLARED.candidateRow,
+      },
+      cells: tpState.results,
+      failClosed: FAIL_CLOSED,
+      elapsedSeconds: (Date.now() - t0) / 1000,
+    };
+    fs.writeFileSync(path.join(outDir, outName), JSON.stringify(report, null, 1));
+    process.stdout.write(
+      JSON.stringify(
+        {
+          schema: SCHEMA,
+          mode: "row8b_escapement_under_tilt_projection",
+          cells: Object.fromEntries(
+            Object.entries(tpState.results).map(([k, v]) => [
+              k,
+              { rhoC: v.rhoC, PclickXX: v.PclickXX, dampingSupplyFractionOfDStar: v.dampingSupplyFractionOfDStar },
+            ])
+          ),
+          dStarIsotropic: tp.dStarIsotropic,
+          reportPath: path.join(outDir, outName),
+          ...FAIL_CLOSED,
+        },
+        null,
+        1
+      ) + "\n"
+    );
+    process.exit(0);
+  }
+
   const progress = (step, steps, d) => {
     process.stderr.write(
       `[release:${tag}] step ${step}/${steps} t=${d.t.toFixed(2)} betaM=${d.betaM.toFixed(4)} ` +
@@ -2898,6 +3828,83 @@ if (isMain()) {
       omegaFit: seriesStats(omega),
     };
   })();
+  // Candidate Row 8 claim-contract blocks (packet Row 8, release protocol):
+  // separable verdict channels (dispersal clock vs flutter clock), rail
+  // residence, absorbed pump fraction along the release, h_act clicks per
+  // rotation vs the kinematic bound, and the implied-d0 row (the primary
+  // claim: rail residence by marginal absorption converts the coincidence
+  // stratum from a declared regulator into a derived persistence requirement).
+  const row8Block = (() => {
+    if (!DECLARED.row8.enabled) return null;
+    const dt = DECLARED.timeStep;
+    const duration = main.diag.length ? main.diag[main.diag.length - 1].t + dt : 0;
+    const rotationsCompleted = duration / TWO_PI;
+    const tanSum = main.chartLedger ? main.chartLedger.totalBookedTangentialImpulse : 0;
+    const band = DECLARED.row8.railResidenceBand;
+    let inBand = 0;
+    let bMin = Infinity;
+    let bMax = -Infinity;
+    for (const d of main.diag) {
+      if (Math.abs(d.betaM - 1) <= band) inBand += 1;
+      bMin = Math.min(bMin, d.betaM);
+      bMax = Math.max(bMax, d.betaM);
+    }
+    const flutterHit = main.diag.find(
+      (d) => d.axisRow && d.axisRow.axisTiltDeg >= DECLARED.row8.flutterClockDeg
+    );
+    const tiltAt = (tRef) => {
+      const row = main.diag.find((d) => d.t >= tRef && d.axisRow);
+      return row ? row.axisRow.axisTiltDeg : null;
+    };
+    const clicksPerRotation =
+      rotationsCompleted > 0 ? main.clickLedger.totalTransitions / rotationsCompleted : null;
+    const rhoCStar = DECLARED.coincidenceStratum;
+    return {
+      claimContractRef:
+        "handoff packet Candidate Row 8 (marginal-stratum release; d0-from-survival)",
+      verdictChannels: {
+        dispersalClockRotations: (() => {
+          const hit = main.diag.find(
+            (d) => d.maxShapeDeviation > DECLARED.tubeRadiusForShapeQuestion
+          );
+          return hit ? hit.t / TWO_PI : null;
+        })(),
+        flutterClockRotations: flutterHit ? flutterHit.t / TWO_PI : null,
+        flutterClockAngleDeg: DECLARED.row8.flutterClockDeg,
+        nutationAtT02Deg: tiltAt(0.2),
+        nutationAtT10Deg: tiltAt(1.0),
+        row7References: { tubeLossRotations: 0.113, nutationAtT10Deg: 7.8 },
+      },
+      absorbedPumpFractionPerRotation:
+        duration > 0 ? -tanSum / duration / DECLARED.row8.pumpDeclared : null,
+      pumpDeclared: DECLARED.row8.pumpDeclared,
+      pumpInBuildGate: bareGateBlock ? bareGateBlock.tangential.railPumpM : null,
+      railResidence: {
+        band,
+        fractionInBand: main.diag.length ? inBand / main.diag.length : null,
+        huntingBand: [Number.isFinite(bMin) ? bMin : null, Number.isFinite(bMax) ? bMax : null],
+        railCrossings: main.railCrossings.length,
+        row7OverAbsorptionReference: "rho_c=0.05 hunting band 0.78-0.99 (Section 60)",
+      },
+      hActRow: {
+        clicksPerRotation,
+        kinematicBoundPerRotation: DECLARED.row8.clickBoundPerRotation,
+        clicksOverBound:
+          clicksPerRotation != null
+            ? clicksPerRotation / DECLARED.row8.clickBoundPerRotation
+            : null,
+      },
+      impliedD0: {
+        rhoCStarReleaseBooking: rhoCStar,
+        units: "R_M = 1 release units",
+        overReqDerivedSize: bareGateBlock ? rhoCStar / bareGateBlock.ReqOverKappa : null,
+        timesKappaEq: bareGateBlock ? rhoCStar * bareGateBlock.kappaRelease : null,
+        declaredD0Note:
+          "declared d0 = R_MCB (2026-07-08 operator declaration; exact value open) — the marginal stratum is the run-derived persistence requirement to report against it",
+      },
+    };
+  })();
+
   const report = {
     schema: SCHEMA,
     handoffPacketRef: HANDOFF_PACKET_REF,
@@ -2915,7 +3922,7 @@ if (isMain()) {
       bareStabilityGate: bareGateBlock,
       candidateRow: DECLARED.candidateRow,
       prescribedEvaluatorAnchor:
-        DECLARED.candidateRow === 7
+        DECLARED.candidateRow === 7 || DECLARED.candidateRow === 8
           ? 0.4265
           : DECLARED.candidateRow === 6
             ? 0.2474
@@ -2963,6 +3970,7 @@ if (isMain()) {
       sizeMode: sizeModeBlock,
       escapement: escapementBlock,
       axisDynamics: axisBlock,
+      row8: row8Block,
     },
     stabilityRow: {
       perturbedSite: "M+",

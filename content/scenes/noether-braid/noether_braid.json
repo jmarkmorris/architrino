@@ -42,10 +42,6 @@
         "scenePath": "content/scenes/noether-braid/braid_envelope_geometry.json"
       },
       {
-        "nodeId": "noether_braid_doubling_frequency_resonance_lock",
-        "scenePath": "content/scenes/noether-braid/noether_braid_doubling_frequency_resonance_lock.json"
-      },
-      {
         "nodeId": "noether_braid_configuration_space",
         "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json"
       },
@@ -78,7 +74,7 @@
       "radius": 2.05,
       "color": "#4f6276",
       "labelTitle": "Neutral Braid",
-      "labelBadge": "family"
+      "labelBadge": "doc"
     },
     {
       "id": "braid_recovery_requirements",
@@ -118,14 +114,6 @@
       "radius": 2.05,
       "color": "#2f4f7a",
       "labelTitle": "Braid Envelope Geometry",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "noether_braid_doubling_frequency_resonance_lock",
-      "title": "Noether Braid Doubling-Frequency Resonance Lock",
-      "radius": 2.05,
-      "color": "#6c4f8d",
-      "labelTitle": "Noether Braid Doubling-Frequency Resonance Lock",
       "labelBadge": "doc"
     },
     {

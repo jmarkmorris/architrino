@@ -465,7 +465,7 @@ while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing aniso
 
 ## Relation To The Doubling-frequency Chapter
 
-[Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) studies one restricted family inside this broader configuration space. It asks whether a nested `I:M:O` frequency triplet, especially the doubling-frequency `4:2:1` candidate, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
+[Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) studies one restricted family inside this broader configuration space. It asks whether a nested `I:M:O` frequency triplet, especially the doubling-frequency `4:2:1` candidate, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior.
 
 The doubling-frequency chapter should therefore be read as a specialized search row:
 $$

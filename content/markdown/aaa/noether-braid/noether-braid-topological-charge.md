@@ -289,7 +289,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md#exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
+- [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:

@@ -47,7 +47,7 @@ It does not carry the detailed family derivations, select a frequency family, as
 | Family ladder | [Explored Braid Geometries](explored-braid-geometries.md) | The comparison population: the one-band symmetric shell family with its held-release and return-response results, and the three-band nested shell family with its closure labels and the dressing and generation hypotheses. |
 | Export | [Braid Envelope Geometry](braid-envelope-geometry.md) | The family-general envelope and observer-export interface: dynamic exclusion envelope, sea-interface diagnostic, canonical geometry variables, and the Lorentz projection. |
 | Export | [Terminal Alignment](../proof-programs/terminal-alignment.md) | The strong-field endpoint proof program: braid symmetry-breaking point, local black-hole duality target, and horizon-interface label counting. |
-| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) | The `NSH-421` candidate frequency family. |
+| Mechanism | [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) | The `NSH-421` candidate frequency family. |
 | Mechanism | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Cases where three retained angular-momentum rows may form a full internal 3D frame. |
 | Export | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Classification of retained branch charts. |
 | Bookkeeping | [Noether Braid Taxonomy](noether-braid-taxonomy.md) | Configuration axes and the compact Proof ID grammar. |

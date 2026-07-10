@@ -59,7 +59,7 @@ In the pullback notation of [Angular Momentum and Spin](../philosophy-history/th
 
 ## Bose-Einstein Regime: 2D Coherence
 
-Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell braid envelope is somewhat flattened. Ordinary Noether braids are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
+Bose-Einstein behavior corresponds to the regime where the relevant orbital support has been oblated toward an effectively two-dimensional structure. The key transition is not merely that the nested shell braid envelope is somewhat flattened. Ordinary nested shell braids are already oblate. The statistical transition occurs when oblation becomes strong enough that the active orbital support no longer behaves as a closed 3D exclusion volume.
 
 In plain terms, the channel stops acting like many separate volumetric packages and starts acting like a shared coherent support. Multiple excitations can then be counted as occupying the same effective state because the physical support is phase-compatible rather than volume-exclusive.
 

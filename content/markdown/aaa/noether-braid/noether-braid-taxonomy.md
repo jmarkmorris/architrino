@@ -51,7 +51,7 @@ It does not prove branch retention by itself. A Proof ID names a branch-configur
 | [Noether Braid Proof Map](noether-braid-proof-map.md) | Tracks current Proof IDs, work status, detailed proof records, and environment-qualified rounds. | Records proof work without redefining the configuration taxonomy. |
 | [Noether Braid Configuration Space](noether-braid-configuration-space.md) | Searches the cases where three retained angular-momentum rows may form a full internal 3D frame. | Supplies search variables and frame rows without saying every Noether braid must have exact binaries. |
 | [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics) | Tests whether nested shell braid motion can actually stay closed and stable. | Tests coupled shell dynamics without turning downstream exports into base branch IDs. |
-| [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md) | Studies the `NSH-421` candidate where the nested rows have a `4:2:1` frequency pattern. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
+| [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock) | Studies the `NSH-421` candidate where the nested rows have a `4:2:1` frequency pattern. | Studies the `4:2:1` lock without making it the default Noether braid frequency. |
 | [Noether Braid Topological Charge](noether-braid-topological-charge.md) | Adds topological labels after a retained branch chart exists. | Computes a topological label only after a same-record branch chart supplies the required rows. |
 | [Braid Envelope Geometry](braid-envelope-geometry.md) | Describes the envelope, exclusion boundary, and deformation outputs a retained branch can emit, for any braid family. | Describes exclusion, deformation, and envelope rows without certifying dynamics or metric recovery alone. |
 
@@ -217,7 +217,7 @@ The frequency-ratio family records return or winding-frequency relations. The ma
 | --- | --- |
 | iso-frequency `1:1:1` | Candidate family with common return rate across the three retained rows. The rigid uniaxial member is the **spindle braid**, the current leading candidate (see above). |
 | integer-ratio `3:2:1` | Candidate family with integer return rates but no repeated-doubling assumption. |
-| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](noether-braid-doubling-frequency-resonance-lock.md). |
+| doubling-frequency `4:2:1` | Candidate nested `I:M:O` family in which each inward row doubles the next outer row, studied in [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#noether-braid-doubling-frequency-resonance-lock). |
 
 Frequency-ratio labels are candidate-family labels until the phase-return degree, causal-root ledger, finite-memory gluing, and stability rows close on the same branch. Hinge labels require their own speed and causal-root rows; they are not frequency-ratio names.
 

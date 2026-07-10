@@ -8,7 +8,6 @@ import {
   resolveWrappedLabelFit,
 } from "../src/runtime/SceneLabelSizingRuntime.js";
 import {
-  formatCenterContextCount,
   resolveCenterContextChapterLabel,
   shouldAllowCenterContext,
 } from "../src/runtime/SceneCenterContextRuntime.js";
@@ -144,11 +143,6 @@ test("center context chapter label omits mixed top-level chapter markers", () =>
   const nodes = homeSceneLabels.map((data) => ({ data }));
 
   assert.equal(resolveCenterContextChapterLabel(nodes), "");
-});
-
-test("center context count uses section wording", () => {
-  assert.equal(formatCenterContextCount(1), "1 section");
-  assert.equal(formatCenterContextCount(13), "13 sections");
 });
 
 test("center context honors explicit ring opt-out only", () => {

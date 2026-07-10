@@ -784,6 +784,194 @@ test("Row 7 seed record: native stack validates the instrument at the release pr
   }
 });
 
+test("Row 8 marginal-stratum row: seed identical to Row 7, gate armed, stratum-map block declared, no environment", () => {
+  try {
+    selectTabledRow(8);
+    assert.equal(DECLARED.candidateRow, 8);
+    // seed IDENTICAL to Row 7 (packet Row 8): geometry aliases the Row 7 table
+    assert.equal(DECLARED.layers, TABLED_ROWS[7]);
+    assert.equal(DECLARED.bareGate.enabled, true);
+    assert.equal(DECLARED.row8.enabled, true);
+    assert.equal(DECLARED.staticPairSea.enabled, false);
+    assert.ok(Math.abs(DECLARED.omega - 1 / Math.cos(deg(16.24))) < 1e-12);
+    // the declared stratum grid spans [0.005, 0.08], log-spaced, >= 6 cells
+    const g = DECLARED.row8.stratumGrid;
+    assert.ok(g.length >= 6);
+    assert.ok(Math.abs(g[0] - 0.005) < 1e-12 && Math.abs(g[g.length - 1] - 0.08) < 1e-12);
+    for (let k = 0; k + 2 < g.length; k += 1) {
+      const r1 = g[k + 1] / g[k];
+      const r2 = g[k + 2] / g[k + 1];
+      assert.ok(Math.abs(r1 - r2) / r1 < 0.01, "grid not log-spaced");
+    }
+    // the packet pump constant and the marginal target are declared
+    assert.ok(Math.abs(DECLARED.row8.pumpDeclared - 0.2274) < 1e-12);
+    assert.equal(DECLARED.row8.marginalTarget, 1.0);
+  } finally {
+    selectTabledRow(1);
+    assert.equal(DECLARED.row8.enabled, false);
+    assert.equal(DECLARED.bareGate.enabled, false);
+  }
+});
+
+test("Row 8 stratum-map cell: soft reference books zero absorption; chart cell books the same-source channel; regulators restored", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(8);
+    const kappaEq = 0.28623; // frozen gauge-invariant release coupling (wiring test)
+    const savedRc = DECLARED.coincidenceStratum;
+    const savedChart = DECLARED.chart.enabled;
+    const savedDt = DECLARED.timeStep;
+    // canonical soft booking = the zero-absorption reference
+    const soft = m.stratumMapCell({ rhoC: null, kappa: kappaEq, rotations: 0.02 });
+    assert.equal(soft.booking, "canonical_soft_pointwise");
+    assert.equal(soft.bookedSteps, 0);
+    assert.ok(Math.abs(soft.absorbedPumpFractionPerRotation) === 0);
+    assert.ok(Number.isFinite(soft.railResidence.fractionInBand));
+    assert.ok(Number.isFinite(soft.railResidence.betaMClimbRatePerUnitTime));
+    // chart cell at a grid stratum: the same-source channel books, absorbed
+    // fraction is finite, witness rows are booked on crossing events
+    const cell = m.stratumMapCell({ rhoC: 0.050397, kappa: kappaEq, rotations: 0.02 });
+    assert.equal(cell.booking, "chart_d0_stratum");
+    assert.ok(cell.bookedSteps > 0);
+    assert.ok(Number.isFinite(cell.absorbedPumpFractionPerRotation));
+    assert.ok(Number.isFinite(cell.clicksPerRotation));
+    // regulator restoration (the cell must not leak its booking into DECLARED)
+    assert.equal(DECLARED.coincidenceStratum, savedRc);
+    assert.equal(DECLARED.chart.enabled, savedChart);
+    assert.equal(DECLARED.timeStep, savedDt);
+    // dt-halving wiring: dtFactor scales the cell's integration step
+    const half = m.stratumMapCell({ rhoC: 0.050397, kappa: kappaEq, rotations: 0.01, dtFactor: 0.5 });
+    assert.ok(Math.abs(half.dt - savedDt * 0.5) < 1e-15);
+    assert.equal(DECLARED.timeStep, savedDt);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 8 marginal-cell locator: log-interpolated crossing from above, scoped-negative bookkeeping", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  // the Row 7 regime-map shape: absorption decreases with rho_c
+  const rows = [
+    { rhoC: 0.02, absorbedPumpFractionPerRotation: 2.1 },
+    { rhoC: 0.032, absorbedPumpFractionPerRotation: 1.4 },
+    { rhoC: 0.05, absorbedPumpFractionPerRotation: 0.7 },
+  ];
+  const hit = m.locateMarginalStratum(rows, 1.0);
+  assert.equal(hit.found, true);
+  assert.ok(hit.rhoCStar > 0.032 && hit.rhoCStar < 0.05);
+  assert.deepEqual(hit.bracket, [0.032, 0.05]);
+  // log-linear interpolation: exact on the synthetic bracket
+  const [f0, f1] = hit.bracketFractions;
+  const expected = Math.exp(
+    Math.log(0.032) + ((1.0 - f0) * (Math.log(0.05) - Math.log(0.032))) / (f1 - f0)
+  );
+  assert.ok(Math.abs(hit.rhoCStar - expected) < 1e-15);
+  // no crossing in span = the scoped-negative branch (booked honestly upstream)
+  const over = m.locateMarginalStratum(
+    rows.map((r) => ({ ...r, absorbedPumpFractionPerRotation: r.absorbedPumpFractionPerRotation + 2 })),
+    1.0
+  );
+  assert.equal(over.found, false);
+  assert.equal(over.note, "all_cells_over_absorb");
+});
+
+test("impulse-resolved booking: declared regulator block, guarded kernel, poised-window ghost regression", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  // declared regulator-honesty block (Sections 62/63 follow-up instrument)
+  const P = DECLARED.chart.impulse;
+  assert.ok(P.atol > 0 && P.rtol > 0 && P.dsGuard > 0);
+  assert.ok(P.dsGuard < DECLARED.soft, "tangency guard must sit below the canonical soft");
+  assert.ok(P.witnessTolFactor < 1 && P.witnessGuardFactor < 1);
+  // extended re-map span + tilt projection anchors are declared on row8
+  const ext = DECLARED.row8.impulseSpanExtension;
+  assert.ok(ext.length >= 1 && Math.abs(ext[ext.length - 1] - 0.112) < 1e-12);
+  assert.ok(Math.abs(DECLARED.row8.tiltProjection.dStarIsotropic - 1.02) < 1e-12);
+  assert.ok(DECLARED.row8.tiltProjection.tReadBase > 2.0, "readout base must clear the same-source chart delay cap");
+  try {
+    selectTabledRow(8);
+    DECLARED.chart.enabled = true;
+    const savedRc = DECLARED.coincidenceStratum;
+    DECLARED.coincidenceStratum = 0.05;
+    const sites = buildSites();
+    const histories = sites.map((s) => ({
+      site: s,
+      ts: [0],
+      xs: [rigidPosition(s, 0)],
+      vs: [rigidVelocity(s, 0)],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => (tE <= 0 ? rigidPosition(s, tE) : rigidPosition(s, 0).map((c, k) => c + rigidVelocity(s, 0)[k] * tE)),
+      segment: (k) => ({ t: 0, x: rigidPosition(s, 0), v: rigidVelocity(s, 0) }),
+    }));
+    const i = sites.findIndex((s) => s.id === "M+");
+    const booking = m.chartWindowIntegrate({
+      histories,
+      sites,
+      i,
+      t0: 0,
+      dt: DECLARED.timeStep,
+      x0: rigidPosition(sites[i], 0),
+      v0: rigidVelocity(sites[i], 0),
+      aFrozen: [0, 0, 0],
+      kappa: 0.28623,
+      });
+    // ghost regression: the release-instant poised window books ~ZERO under
+    // the guarded kernel (the refined uniform ladder's limit), not the
+    // O(1e-2) tangency-noise artifact of unguarded event sampling
+    assert.ok(Math.hypot(...booking.dv) < 1e-8, `poised window booked ${Math.hypot(...booking.dv)}`);
+    assert.equal(booking.quadrature.unconverged, false);
+    assert.equal(booking.quadrature.scheme, "adaptive_embedded_euler_trapezoid_event_localized_guarded");
+    assert.ok(Array.isArray(booking.clickEvents));
+    // per-event rows carry time/kind/impulse
+    for (const ev of booking.clickEvents) {
+      assert.ok(["root_birth", "root_death"].includes(ev.kind));
+      assert.ok(Array.isArray(ev.impulse) && ev.impulse.length === 3);
+    }
+    DECLARED.coincidenceStratum = savedRc;
+    DECLARED.chart.enabled = false;
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("impulse-resolved stratum cell: perClick stats booked, witness carries guard metadata", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(8);
+    const cell = m.stratumMapCell({ rhoC: 0.050397, kappa: 0.28623, rotations: 0.02 });
+    assert.ok(cell.perClick != null);
+    assert.ok(Number.isFinite(cell.perClick.events));
+    if (cell.perClick.events > 0) {
+      assert.ok(Number.isFinite(cell.perClick.meanTangentialImpulse));
+      assert.ok(Number.isFinite(cell.perClick.eventsPerRotation));
+    }
+    assert.ok(Number.isFinite(cell.absorbedPumpFractionPerRotation));
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("escapement-under-tilt projection: prescribed family wired, torque response finite, conventions declared", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(8);
+    const savedRc = DECLARED.coincidenceStratum;
+    const savedChart = DECLARED.chart.enabled;
+    const row = m.escapementUnderTiltProjection({ kappa: 0.28623, rhoC: 0.05, readouts: 2 });
+    // regulator restoration
+    assert.equal(DECLARED.coincidenceStratum, savedRc);
+    assert.equal(DECLARED.chart.enabled, savedChart);
+    assert.ok(Number.isFinite(row.PclickXX));
+    assert.ok(Number.isFinite(row.baselineTx));
+    assert.ok(Math.abs(row.dStarIsotropic - 1.02) < 1e-12);
+    assert.ok(row.convention.includes("anti-damping"));
+    // damping supply fraction is only nonzero when the diagonal is negative
+    if (row.PclickXX >= 0) assert.equal(row.dampingSupplyFractionOfDStar, 0);
+    else assert.ok(row.dampingSupplyFractionOfDStar > 0);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
 test("Row 4 responsive sea at a=3.40: exact-delay seed rows land on the confining side", async () => {
   const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
   selectTabledRow(2);

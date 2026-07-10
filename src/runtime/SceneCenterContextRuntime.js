@@ -40,14 +40,6 @@ export function shouldAllowCenterContext(level) {
   return centerMode !== "none";
 }
 
-export function formatCenterContextCount(count) {
-  const numericCount = Number.isFinite(count) ? Math.max(0, Math.round(count)) : 0;
-  if (numericCount === 1) {
-    return "1 section";
-  }
-  return `${numericCount} sections`;
-}
-
 export function resolveCenterContextDescriptor(level) {
   if (!level || !Array.isArray(level.nodes)) {
     return null;
@@ -59,6 +51,5 @@ export function resolveCenterContextDescriptor(level) {
   return {
     title,
     chapterLabel: resolveCenterContextChapterLabel(level.nodes),
-    countLabel: formatCenterContextCount(level.nodes.length),
   };
 }
