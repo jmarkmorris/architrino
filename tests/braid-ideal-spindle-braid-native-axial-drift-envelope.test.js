@@ -15,6 +15,8 @@ import {
   constituentPhaseOffsets,
   driftVector,
   braidAxisRow,
+  buildCoDriftCage,
+  coDriftCageCoherenceRow,
 } from "../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs";
 import { evaluateMovingCircularSourceHistory } from "../src/solver/app/AbsoluteHistoryRootRuntime.mjs";
 import { driftSupportRatios } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
@@ -263,6 +265,108 @@ test("(e) oblique drift: driftVector generalizes the axial scalar, drift-frame s
     DECLARED.timeStep = savedDt;
     DECLARED.axialDrift = 0;
     DECLARED.driftAngle = 0;
+    selectTabledRow(1);
+  }
+});
+
+// (f) CO-DRIFT CAGE (structured-sea axis absorber). The cage is defined only
+// with drift (null at u = 0, so u = 0 stays bare); at theta = 90 it is oriented
+// with its polar pair along the drift direction (+x) and every endpoint carries
+// the co-drift velocity. Six sites (two polar, four equatorial) at radius 2.326.
+test("(f) co-drift cage: null at u=0, polar pair along d_hat, co-drift velocity, coherence row finite", () => {
+  try {
+    selectTabledRow(7);
+    const sites = buildSites();
+    // no drift => no cage (u=0 reference stays bare)
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
+    assert.equal(buildCoDriftCage(sites), null);
+
+    // theta = 90, u = 0.2: drift along +x; cage polar pair along +x
+    DECLARED.axialDrift = 0.2;
+    DECLARED.driftAngle = (90 * Math.PI) / 180;
+    const cage = buildCoDriftCage(sites);
+    assert.ok(cage && cage.coDrift === true);
+    assert.equal(cage.shell.length, 6);
+    assert.equal(cage.endpoints.length, 12);
+    assert.ok(Math.abs(cage.spacing - 1.645 * Math.SQRT2) < 1e-9);
+    const polar = cage.shell.filter((s) => s.siteClass === "polar");
+    const eq = cage.shell.filter((s) => s.siteClass === "equatorial");
+    assert.equal(polar.length, 2);
+    assert.equal(eq.length, 4);
+    // polar centers lie along +-x (the drift direction), zero y and z
+    for (const p of polar) {
+      const r = Math.hypot(...p.center);
+      assert.ok(Math.abs(Math.abs(p.center[0]) / r - 1) < 1e-9, "polar not along drift +x");
+      assert.ok(Math.abs(p.center[1]) < 1e-9 && Math.abs(p.center[2]) < 1e-9);
+    }
+    // equatorial centers lie in the plane perpendicular to +x (zero x)
+    for (const e of eq) assert.ok(Math.abs(e.center[0]) < 1e-9, "equatorial has drift-axis component");
+    // every endpoint co-drifts at the drift vector
+    const d = driftVector();
+    for (const ep of cage.endpoints) {
+      assert.ok(ep.velocity && Math.abs(ep.velocity[0] - d[0]) < 1e-12 && Math.abs(ep.velocity[2] - d[2]) < 1e-12);
+    }
+    // coherence row is finite
+    const states = sites.map((s) => ({ x: rigidPosition(s, 0), v: rigidVelocity(s, 0) }));
+    const hist = sites.map((s) => ({ xs: [rigidPosition(s, 0)], positionAt: (tE) => rigidPosition(s, tE) }));
+    const coh = coDriftCageCoherenceRow(cage, sites, hist, 0, 0.28623);
+    assert.ok(Number.isFinite(coh.meanNetPairForce) && Number.isFinite(coh.maxNetPairForce));
+    assert.ok(Number.isFinite(coh.polarMeanNetPairForce) && Number.isFinite(coh.equatorialMeanNetPairForce));
+  } finally {
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
+    DECLARED.coDriftCage.geometry = "octahedral";
+    selectTabledRow(1);
+  }
+});
+
+// (g) POLAR-PAIR-ONLY co-drift sea (axisymmetric axis absorber). Dropping the
+// four equatorial sites leaves only the two co-drifting polar sites along
+// d_hat: two shell sites, four endpoints, both polar, no equatorial structure —
+// axisymmetric about d_hat by construction. Ring variants add an N-fold ring.
+test("(g) polar-pair-only + ring variants: correct site counts, all polar along d_hat, axisymmetric", () => {
+  try {
+    selectTabledRow(7);
+    const sites = buildSites();
+    DECLARED.axialDrift = 0.2;
+    DECLARED.driftAngle = (90 * Math.PI) / 180; // drift along +x
+
+    DECLARED.coDriftCage.geometry = "polarPairOnly";
+    const pp = buildCoDriftCage(sites);
+    assert.equal(pp.geometry, "polarPairOnly");
+    assert.equal(pp.shell.length, 2);
+    assert.equal(pp.endpoints.length, 4);
+    assert.ok(pp.shell.every((s) => s.siteClass === "polar"), "non-polar site in polar-pair cage");
+    // both shell centers lie along the drift axis (+-x); zero transverse comps
+    for (const s of pp.shell) {
+      const r = Math.hypot(...s.center);
+      assert.ok(Math.abs(Math.abs(s.center[0]) / r - 1) < 1e-9);
+      assert.ok(Math.abs(s.center[1]) < 1e-9 && Math.abs(s.center[2]) < 1e-9);
+    }
+    // coherence row: equatorial subset empty => equatorialMeanNetPairForce null
+    const states = sites.map((s) => ({ x: rigidPosition(s, 0), v: rigidVelocity(s, 0) }));
+    const hist = sites.map((s) => ({ xs: [rigidPosition(s, 0)], positionAt: (tE) => rigidPosition(s, tE) }));
+    const coh = coDriftCageCoherenceRow(pp, sites, hist, 0, 0.28623);
+    assert.ok(Number.isFinite(coh.polarMeanNetPairForce));
+    assert.equal(coh.equatorialMeanNetPairForce, null);
+
+    // ring variants keep the polar pair and add an N-fold equatorial ring
+    DECLARED.coDriftCage.geometry = "ring6";
+    const r6 = buildCoDriftCage(sites);
+    assert.equal(r6.shell.length, 8); // 2 polar + 6 ring
+    assert.equal(r6.shell.filter((s) => s.siteClass === "equatorial").length, 6);
+    DECLARED.coDriftCage.geometry = "ring8";
+    const r8 = buildCoDriftCage(sites);
+    assert.equal(r8.shell.length, 10); // 2 polar + 8 ring
+    // ring equatorial sites are perpendicular to the drift axis (zero x)
+    for (const s of r8.shell.filter((x) => x.siteClass === "equatorial")) {
+      assert.ok(Math.abs(s.center[0]) < 1e-9, "ring site has drift-axis component");
+    }
+  } finally {
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
+    DECLARED.coDriftCage.geometry = "octahedral";
     selectTabledRow(1);
   }
 });

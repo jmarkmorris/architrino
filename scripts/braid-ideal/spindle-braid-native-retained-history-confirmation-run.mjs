@@ -204,6 +204,21 @@ export const DECLARED = {
   // still carried entirely by the existing centerVelocity 3-vector surface; the
   // central solver is unchanged.
   driftAngle: 0,
+  // Co-drifting structured-sea axis absorber (the dynamic co-orbital-cage route,
+  // the one surviving sea route after the held-static Rows 5/6 scoped negatives).
+  // Reuses the Row-6 octahedral cage (six sites at radius 2.326, two polar/four
+  // equatorial) but CO-MOVING with the braid drift (each cage endpoint carries
+  // centerVelocity = the braid drift vector) and re-oriented so the cage polar
+  // axis is along the drift direction d_hat (polar pair leads/trails along
+  // d_hat) — the configuration that can torque the braid spin axis toward d_hat.
+  // Axis-only intent: the braid closes its own radial ledger (bare V5), so the
+  // cage should anchor the axis without spoiling the radial basin (measured).
+  // geometry: "octahedral" (2 polar + 4 equatorial, the full Row-6 cage),
+  // "polarPairOnly" (2 co-drifting polar sites fore/aft along d_hat only —
+  // axisymmetric about d_hat, cannot inject a transverse anisotropy), or
+  // "ring6"/"ring8" (2 polar + a 6-/8-fold equatorial ring approaching
+  // axisymmetric — the higher-symmetry fallback).
+  coDriftCage: { enabled: false, spacing: 1.645 * Math.SQRT2, ntOrientation: 64, geometry: "octahedral" },
   candidateRow: 1,
   // Tabled candidate row (canonical, NOT a knob; selected via --row, default
   // Row 1 = the packet Section 1 champion). See TABLED_ROWS below.
@@ -598,9 +613,13 @@ export function buildSeaSites() {
 }
 
 function staticSeaSourceModel(seaSite) {
+  // seaSite.position is the endpoint at epoch 0; seaSite.velocity (optional) is
+  // a uniform co-drift velocity carried on the existing centerVelocity surface.
+  // Absent velocity => static (Rows 5/6 regress exactly).
+  const v = seaSite.velocity ?? [0, 0, 0];
   return {
     centerAtEpoch: { x: seaSite.position[0], y: seaSite.position[1], z: seaSite.position[2] },
-    centerVelocity: { x: 0, y: 0, z: 0 },
+    centerVelocity: { x: v[0], y: v[1], z: v[2] },
     radiusU: { x: 0, y: 0, z: 0 },
     radiusV: { x: 0, y: 0, z: 0 },
     angularVelocity: 0,
@@ -609,19 +628,23 @@ function staticSeaSourceModel(seaSite) {
   };
 }
 
-// Static held environment source: the causal root sits exactly at
-// t_e = t_H - |x_r - s|/c_f; a narrow production window around it suffices.
+// Held or co-drifting environment source: the causal root sits near t_e = t_H -
+// |x_r - s(t_H)|/c_f; a narrow production window around it suffices. For a
+// co-drifting endpoint the position at t_H is base + velocity * t_H, and the
+// production solver carries the motion through centerVelocity (staticSeaSourceModel).
 export function seaWakeContribution({ seaSites, xi, vi, receiverPol, tH }) {
   const soft = DECLARED.soft;
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
   const a = [0, 0, 0];
   let netRadial = 0;
   for (const sea of seaSites) {
-    const dist = Math.hypot(
-      xi[0] - sea.position[0],
-      xi[1] - sea.position[1],
-      xi[2] - sea.position[2]
-    );
+    const vel = sea.velocity ?? [0, 0, 0];
+    const posH = [
+      sea.position[0] + vel[0] * tH,
+      sea.position[1] + vel[1] * tH,
+      sea.position[2] + vel[2] * tH,
+    ];
+    const dist = Math.hypot(xi[0] - posH[0], xi[1] - posH[1], xi[2] - posH[2]);
     const tRoot = tH - dist / DECLARED.fieldSpeed;
     const result = solveMovingCircularSourceCausalRoots({
       source: staticSeaSourceModel(sea),
@@ -719,6 +742,171 @@ export function buildStaticPairSeaSites(sites, nt = DECLARED.staticPairSea.ntOri
     }
   }
   return { shell, endpoints, p0, spacing: a, ntUsed: nt, placement };
+}
+
+// Rotation matrix (Rodrigues) taking +z to the unit vector d. For d = +z it is
+// the identity; used to orient the octahedral cage so its polar axis is d_hat.
+function rotZtoD(d) {
+  const z = [0, 0, 1];
+  const c = z[0] * d[0] + z[1] * d[1] + z[2] * d[2]; // cos angle
+  const ax = [z[1] * d[2] - z[2] * d[1], z[2] * d[0] - z[0] * d[2], z[0] * d[1] - z[1] * d[0]];
+  const s = Math.hypot(ax[0], ax[1], ax[2]);
+  if (s < 1e-12) {
+    // parallel (d = +z) or antiparallel (d = -z)
+    return c > 0
+      ? [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+      : [[1, 0, 0], [0, 1, 0], [0, 0, -1]];
+  }
+  const k = [ax[0] / s, ax[1] / s, ax[2] / s];
+  const K = [[0, -k[2], k[1]], [k[2], 0, -k[0]], [-k[1], k[0], 0]];
+  const R = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+  for (let i = 0; i < 3; i += 1) {
+    for (let j = 0; j < 3; j += 1) {
+      let kk = 0;
+      for (let m = 0; m < 3; m += 1) kk += K[i][m] * K[m][j];
+      R[i][j] = (i === j ? 1 : 0) + s * K[i][j] + (1 - c) * kk;
+    }
+  }
+  return R;
+}
+function matVec(R, v) {
+  return [
+    R[0][0] * v[0] + R[0][1] * v[1] + R[0][2] * v[2],
+    R[1][0] * v[0] + R[1][1] * v[1] + R[1][2] * v[2],
+    R[2][0] * v[0] + R[2][1] * v[1] + R[2][2] * v[2],
+  ];
+}
+
+// Co-drifting octahedral cage (the structured-sea AXIS absorber). Same six-site
+// Row-6 cage (two polar, four equatorial at radius DECLARED.coDriftCage.spacing,
+// frozen antipodal unit-polarity pairs) but (a) rotated so the polar pair is
+// along the drift direction d_hat (leading/trailing the drift), and (b) each
+// endpoint carries velocity = the braid drift vector so the whole cage co-moves
+// with the drifting braid. Orientations are the in-build slow-limit frozen
+// pHats (same convention as Row 6). Endpoints are booked through the SAME
+// production-solver path (seaWakeContribution) with the co-drift centerVelocity.
+// Cage direction set in the cage frame (polar along +-z -> +-d_hat after
+// rotation). "octahedral" keeps the exact Row-6 4-fold equatorial set (+-x,+-y)
+// so the full-cage run regresses; "polarPairOnly" drops the equatorial sites
+// (axisymmetric); "ring6"/"ring8" replace the 4-fold set with an N-fold ring.
+function cageDirections(geometry) {
+  const polar = [
+    { dir: [0, 0, 1], cls: "polar" },
+    { dir: [0, 0, -1], cls: "polar" },
+  ];
+  if (geometry === "polarPairOnly") return polar;
+  if (geometry === "octahedral") {
+    return [
+      ...polar,
+      { dir: [1, 0, 0], cls: "equatorial" },
+      { dir: [-1, 0, 0], cls: "equatorial" },
+      { dir: [0, 1, 0], cls: "equatorial" },
+      { dir: [0, -1, 0], cls: "equatorial" },
+    ];
+  }
+  const nEq = geometry === "ring8" ? 8 : geometry === "ring6" ? 6 : 4;
+  const eq = [];
+  for (let k = 0; k < nEq; k += 1) {
+    const phi = (k * TWO_PI) / nEq;
+    eq.push({ dir: [Math.cos(phi), Math.sin(phi), 0], cls: "equatorial" });
+  }
+  return [...polar, ...eq];
+}
+
+export function buildCoDriftCage(sites, nt = DECLARED.coDriftCage.ntOrientation) {
+  const a = DECLARED.coDriftCage.spacing;
+  const p0 = braidAxialDipole(sites);
+  const period = TWO_PI / DECLARED.omega;
+  const drift = driftVector();
+  const dmag = Math.hypot(drift[0], drift[1], drift[2]);
+  // A co-drift cage is only defined with drift; at u = 0 there is no cage (the
+  // u = 0 reference cell stays bare, so the axial/rest regressions are clean).
+  if (dmag < 1e-12) return null;
+  const dHat = [drift[0] / dmag, drift[1] / dmag, drift[2] / dmag];
+  const R = rotZtoD(dHat);
+  const geometry = DECLARED.coDriftCage.geometry ?? "octahedral";
+  const cageFrameDirs = cageDirections(geometry);
+  const shell = [];
+  const endpoints = [];
+  for (let k = 0; k < cageFrameDirs.length; k += 1) {
+    const dirLab = matVec(R, cageFrameDirs[k].dir); // rotate into the lab (polar -> d_hat)
+    const center = [dirLab[0] * a, dirLab[1] * a, dirLab[2] * a];
+    // slow-limit orientation: unit(cycle-averaged bare retarded braid field) at
+    // the cage center, exact per-source retardation on the (drifting) held
+    // worldlines, averaged over nt phases, then frozen (Row 6 convention).
+    const acc = [0, 0, 0];
+    for (let q = 0; q < nt; q += 1) {
+      const E = braidRetardedFieldAt(center, sites, null, (q / nt) * period);
+      acc[0] += E[0];
+      acc[1] += E[1];
+      acc[2] += E[2];
+    }
+    const pHat = unit3(acc);
+    const siteClass = cageFrameDirs[k].cls;
+    shell.push({ id: `codrift:${k}`, center, pHat, siteClass });
+    for (const pm of [+1, -1]) {
+      endpoints.push({
+        id: `codrift:${k}:${pm > 0 ? "+" : "-"}`,
+        position: [
+          center[0] + pm * (p0 / 2) * pHat[0],
+          center[1] + pm * (p0 / 2) * pHat[1],
+          center[2] + pm * (p0 / 2) * pHat[2],
+        ],
+        velocity: drift.slice(), // co-drift on the centerVelocity surface
+        pol: pm,
+        shellIndex: k,
+        siteClass,
+      });
+    }
+  }
+  return { shell, endpoints, p0, spacing: a, ntUsed: nt, placement: `coDrift_${geometry}`, geometry, driftHat: dHat, coDrift: true };
+}
+
+// Co-drift cage coherence row (measurement 3). At each shell site (co-moving
+// center at t) the antipodal pair would feel the braid's live retarded field:
+// netForce = sum_pm pm * E(endpoint(t)). Reported as the mean/max net pair
+// force magnitude per unit kappa and the polar/equatorial split — bounded ⇒ the
+// cage can co-move coherently; growing ⇒ it would disperse. The −0.641 polar
+// reciprocity pull (Row 6, Section 55) is the held-static reference.
+export function coDriftCageCoherenceRow(cage, sites, histories, t, kappa) {
+  const drift = driftVector();
+  let sumF = 0;
+  let maxF = 0;
+  let polarF = 0;
+  let polarN = 0;
+  let eqF = 0;
+  let eqN = 0;
+  for (const site of cage.shell) {
+    const c = [
+      site.center[0] + drift[0] * t,
+      site.center[1] + drift[1] * t,
+      site.center[2] + drift[2] * t,
+    ];
+    const F = [0, 0, 0];
+    for (const pm of [+1, -1]) {
+      const X = [
+        c[0] + pm * (cage.p0 / 2) * site.pHat[0],
+        c[1] + pm * (cage.p0 / 2) * site.pHat[1],
+        c[2] + pm * (cage.p0 / 2) * site.pHat[2],
+      ];
+      const E = braidRetardedFieldAt(X, sites, histories, t);
+      F[0] += pm * E[0];
+      F[1] += pm * E[1];
+      F[2] += pm * E[2];
+    }
+    const mag = kappa * Math.hypot(F[0], F[1], F[2]);
+    sumF += mag;
+    if (mag > maxF) maxF = mag;
+    if (site.siteClass === "polar") { polarF += mag; polarN += 1; }
+    else { eqF += mag; eqN += 1; }
+  }
+  return {
+    meanNetPairForce: sumF / cage.shell.length,
+    maxNetPairForce: maxF,
+    polarMeanNetPairForce: polarN ? polarF / polarN : null,
+    equatorialMeanNetPairForce: eqN ? eqF / eqN : null,
+    heldStaticPolarReciprocityReference: -0.641,
+  };
 }
 
 // Cycle-averaged per-layer sea rows on the held braid, through the SAME
@@ -2472,9 +2660,13 @@ export function runRelease({
 } = {}) {
   const sites = buildSites();
   const seaSites = buildSeaSites();
-  // Row 5 frozen environment: deterministic from the tabled row (held rigid
-  // prehistory only), so rebuilding on resume reproduces it exactly.
-  const staticPairSea = buildStaticPairSeaSites(sites);
+  // Row 5/6 frozen environment (held-static) OR the co-drifting octahedral cage
+  // (the axis absorber): both are deterministic from the declared config, so
+  // rebuilding on resume reproduces them exactly. The co-drift cage overrides
+  // the tabled static-pair sea when enabled (they are mutually exclusive).
+  const staticPairSea = DECLARED.coDriftCage.enabled
+    ? buildCoDriftCage(sites)
+    : buildStaticPairSeaSites(sites);
   const dt = DECLARED.timeStep;
   const steps = Math.round((rotations * TWO_PI) / dt);
   let responsiveSeaState = null;
@@ -2849,6 +3041,12 @@ export function runRelease({
             axisTiltVsZDeg: axisRow.axisTiltDeg,
           };
         })(),
+        // Co-drift cage coherence (measurement 3): the net pair force each cage
+        // site would feel from the released braid (bounded => coherent co-move).
+        cageCoherence:
+          staticPairSea && staticPairSea.coDrift
+            ? coDriftCageCoherenceRow(staticPairSea, sites, histories, t, kappa)
+            : null,
       });
       nextRecordIdx += 1;
     }
@@ -3266,6 +3464,15 @@ if (isMain()) {
   // Corollary-1 sigma test; 0 = pure axial screw drift (exact regression).
   DECLARED.axialDrift = readCliNumber("axial-drift", 0);
   DECLARED.driftAngle = deg(readCliNumber("drift-angle", 0));
+  // Co-drifting octahedral cage (the structured-sea axis absorber). Enabling it
+  // routes the release through the co-moving drift-aligned cage instead of any
+  // held-static sea; requires drift (u = 0 cells stay bare).
+  DECLARED.coDriftCage.enabled = process.argv.includes("--co-drift-cage") || process.argv.includes("--polar-pair-sea");
+  // --polar-pair-sea is the axisymmetric polar-pair-only variant; otherwise
+  // --cage-geometry selects octahedral (default) | polarPairOnly | ring6 | ring8.
+  DECLARED.coDriftCage.geometry = process.argv.includes("--polar-pair-sea")
+    ? "polarPairOnly"
+    : process.argv.find((a) => a.startsWith("--cage-geometry="))?.slice("--cage-geometry=".length) ?? "octahedral";
   selectTabledRow(readCliNumber("row", 1));
   if (DECLARED.staticPairSea.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
     process.stderr.write(
@@ -3423,7 +3630,16 @@ if (isMain()) {
           transverseShape: r.transverseShape,
           driftFrameShape: r.driftFrameShape,
           phaseOffsets: r.phaseOffsets,
+          // co-drift cage channels: coherence (measurement 3) and the per-layer
+          // radial support ratio (measurement 4 — cage must not spoil the basin)
+          cageCoherence: r.cageCoherence,
+          layerSupport: r.layerRows
+            ? Object.fromEntries(
+                Object.entries(r.layerRows).map(([L, v]) => [L, v.supportRatio])
+              )
+            : null,
         })),
+        coDriftCage: DECLARED.coDriftCage.enabled,
         halted: run.halted,
         completed: run.completed,
       });
@@ -3496,6 +3712,9 @@ if (isMain()) {
             axisUnit: r.driftFrameShape.axisUnit,
             qPerp1: r.driftFrameShape.qPerp1,
             qPerp2: r.driftFrameShape.qPerp2,
+            cageMaxPairForce: r.cageCoherence ? r.cageCoherence.maxNetPairForce : null,
+            cagePolarPairForce: r.cageCoherence ? r.cageCoherence.polarMeanNetPairForce : null,
+            layerSupport: r.layerSupport ?? null,
           }));
         const first = track[0] ?? null;
         const last = track[track.length - 1] ?? null;
@@ -3543,6 +3762,8 @@ if (isMain()) {
         timeStep: DECLARED.timeStep,
         uGrid,
         driftAngleDeg: (DECLARED.driftAngle * 180) / Math.PI,
+        coDriftCage: DECLARED.coDriftCage.enabled,
+        cageGeometry: DECLARED.coDriftCage.enabled ? DECLARED.coDriftCage.geometry : null,
         kappaFrozen: prior.kappaFrozen,
         rulerLawTest: "relative_flattening_xi(u)/xi(0)_vs_1/gamma (caveat 1)",
         screwRigidReferenceUsed: false,
