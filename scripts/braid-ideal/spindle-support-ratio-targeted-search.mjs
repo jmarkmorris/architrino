@@ -1679,6 +1679,444 @@ export function seaTiltDampingEstimate({ geo = SELF_EQUILIBRATED_V5.geo, cTrans 
   return { Rsea, gamma, omega: w, kappaStar: kap, p0, results };
 }
 
+// ===========================================================================
+// DRIFTING FAMILY: THE MOVING FIXED POINT V5(u) AND THE DRIFT AXIS PENCIL
+// (Section 67 next closure goal; spec Section 68). Sections 24-29 established
+// that the spindle family closes BETTER moving than at rest, with a finite
+// preferred speed basin u* ~ 0.5-0.65 and a closure anisotropy that prefers
+// axis-parallel motion (the orientation torque). Sections 61-66 closed every
+// RESTING-frame axis absorber. The surviving hypothesis (Section 67): the
+// orientation torque is the moving family's axis restoring channel — it exists
+// ONLY at drift and is absent from every resting pencil. These instruments
+// rebuild the self-equilibrated fixed point and the gyroscopic-circulatory
+// axis pencil ON the screw-drifting family (helical worldlines, drift along the
+// spin/z axis at u, pinned cadence c = sqrt(1-u^2) = 1/gamma, frozen kappa).
+//
+// Screw discipline: at the ALIGNED fixed point (spin axis || drift || z) the
+// motion is a pure screw and single-time rigid evaluation is exact (the
+// evaluator's screwRigidity witness). Tilt perturbations break the screw
+// (translation axis != instantaneous rotation axis), so tilt torques are
+// cycle-sampled (the residualsPerp discipline), exactly as the resting pencil
+// already cycle-averages. NOT evidence; fail-closed; prescribed-worldline seed
+// grade until a native run says otherwise.
+// ---------------------------------------------------------------------------
+
+// Drift support ratios at the pinned cadence c = sqrt(1-u^2). Mirrors
+// supportRatios exactly (single-time T=0, screw-rigid) but threads u into the
+// braid so the wake sees the fore-aft-anisotropic drift geometry; at u=0 it
+// reproduces supportRatios to the digit.
+export function driftSupportRatios({ geo = SELF_EQUILIBRATED_V5.geo, u = 0, soft = 0.02 } = {}) {
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const braid = buildBraid({ u, cTrans: c, geo });
+  const w = braid.omega;
+  const res = residuals({ u, cTrans: c, geo }, { soft });
+  const kap = res.kappaStar;
+  const layers = [];
+  for (const i of [0, 2, 4]) {
+    const s = braid.sites[i];
+    const rhoCyl = s.R * Math.cos(s.alpha);
+    const rx = Math.cos(s.th), ry = Math.sin(s.th);
+    const tx = -Math.sin(s.th), ty = Math.cos(s.th);
+    const wk = wakeAccel(braid, i, 0, { soft }).a;
+    const inward = -(wk[0] * rx + wk[1] * ry);
+    const need = w * w * rhoCyl;
+    const tanRow = kap * (wk[0] * tx + wk[1] * ty);
+    layers.push({ layer: s.name, support: (kap * inward) / need, tanRow, rhoCyl, speed: w * rhoCyl });
+  }
+  return { u, cadence: c, omega: w, kappaStar: kap, closure: res.globalRelResidual,
+    ratios: Object.fromEntries(layers.map((l) => [l.layer, l.support])),
+    tanRows: Object.fromEntries(layers.map((l) => [l.layer, l.tanRow])),
+    minRatio: Math.min(...layers.map((l) => l.support)),
+    maxAbsTan: Math.max(...layers.map((l) => Math.abs(l.tanRow))),
+    objective: layers.reduce((s2, l) => s2 + (l.support - 1) ** 2, 0) };
+}
+
+// Net rail-pinned radial force per layer on the drifting braid at displaced
+// radii (dI, dM, dO), frozen kappa. The middle rides the gamma-scaled rail:
+// its transverse speed is pinned at c = sqrt(1-u^2) (so total speed = c_f), and
+// omega = c/(R_M cos alphaM) responds to R_M — the speed pin is the size pin,
+// now at drift. Single-time (screw-rigid at the aligned config).
+function driftNetForces(geo, disp, u, kap, soft) {
+  const [dI, dM, dO] = disp;
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const seed = buildBraid({ u, cTrans: c, geo });
+  const wEff = c / ((1 + dM) * Math.cos(geo.alphaM));
+  const b = { omega: wEff, u, sea: [], sites: seed.sites.map((s) => ({ ...s })) };
+  for (const s of b.sites) { if (s.name === "I") s.R = geo.qI + dI; if (s.name === "M") s.R = 1 + dM; if (s.name === "O") s.R = geo.qO + dO; }
+  const F = [];
+  for (const idx of [0, 2, 4]) {
+    const s = b.sites[idx];
+    const rhoCyl = s.R * Math.cos(s.alpha);
+    const rx = Math.cos(s.th), ry = Math.sin(s.th);
+    const wk = wakeAccel(b, idx, 0, { soft }).a;
+    const inward = -(wk[0] * rx + wk[1] * ry) * kap;
+    F.push(inward - wEff * wEff * rhoCyl);
+  }
+  return F;
+}
+
+// The moving rail-pinned radial equilibrium at drift u: 3-D Newton on
+// (r_I, r_M, r_O) at frozen kappa with the gamma-scaled rail pin. Returns the
+// contraction factor lambda = R_M/R_M(seed), the shape at equilibrium, the
+// rail-pinned radial spectrum (basin?), and the derived absolute size
+// R_M(eq)/kappa. At u=0 it reproduces railPinnedEquilibrium's fixed point.
+export function driftRailPinnedEquilibrium({ geo = SELF_EQUILIBRATED_V5.geo, u = 0, eps = 0.01, soft = 0.02, iters = 20 } = {}) {
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const kap0 = residuals({ u, cTrans: c, geo }, { soft }).kappaStar;
+  let x = [0, 0, 0], lastF = null, lastK = null;
+  for (let it = 0; it < iters; it++) {
+    const F = driftNetForces(geo, x, u, kap0, soft);
+    lastF = F;
+    if (Math.max(...F.map(Math.abs)) < 5e-5) break;
+    const K = [[0,0,0],[0,0,0],[0,0,0]];
+    for (let j = 0; j < 3; j++) {
+      const dp = x.slice(), dm = x.slice();
+      dp[j] += eps; dm[j] -= eps;
+      const Fp = driftNetForces(geo, dp, u, kap0, soft), Fm = driftNetForces(geo, dm, u, kap0, soft);
+      for (let i = 0; i < 3; i++) K[i][j] = (Fp[i] - Fm[i]) / (2 * eps);
+    }
+    lastK = K;
+    const det3 = (A) => A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1]) - A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0]) + A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+    const D = det3(K);
+    if (Math.abs(D) < 1e-14) break;
+    const col = (jj, b) => K.map((row, i) => row.map((v, kk) => (kk === jj ? b[i] : v)));
+    const dlt = [0,1,2].map((j) => det3(col(j, F.map((v) => -v))) / D);
+    const damp = Math.min(1, 0.1 / Math.max(...dlt.map(Math.abs), 1e-9));
+    for (let j = 0; j < 3; j++) x[j] += dlt[j] * damp;
+  }
+  // rail-pinned spectrum at the fixed point (symmetric part of the radial K)
+  const Kf = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const dp = x.slice(), dm = x.slice();
+    dp[j] += eps; dm[j] -= eps;
+    const Fp = driftNetForces(geo, dp, u, kap0, soft), Fm = driftNetForces(geo, dm, u, kap0, soft);
+    for (let i = 0; i < 3; i++) Kf[i][j] = (Fp[i] - Fm[i]) / (2 * eps);
+  }
+  const sym = Kf.map((row, i) => row.map((v, j) => (v + Kf[j][i]) / 2));
+  const eig = jacobiEigSym(sym);
+  const lambda = 1 + x[1];
+  const shape = { qI: (geo.qI + x[0]) / lambda, qO: (geo.qO + x[2]) / lambda };
+  return { u, cadence: c, displacement: x, lambda, shapeEq: shape,
+    residualF: lastF, railPinnedSpectrum: eig.map((e) => e.value),
+    basin: eig.every((e) => e.value < 0), kappaFrozen: kap0,
+    ReqOverKappa: lambda / kap0 };
+}
+
+// The moving self-equilibrated fixed point V5(u): alternate the drift
+// rail-pinned radial equilibrium with tangential angle-descent (drive tau_I,
+// tau_O -> 0 by coordinate descent on the misalignment angles alphaI, alphaO,
+// thetaO, thetaI; alphaM held 0, rail clean) until both the radial residual and
+// the tangential rows are small. Witnessed against the u=0 V5 export. The
+// per-u geometry is the drifting champion at seed grade (Sections 24-26 report
+// the closure-optimal angles run with u; here the objective is the ledger, not
+// closure, consistent with the arc's survival statistic).
+export function driftFixedPoint({ u = 0.2, geoStart = SELF_EQUILIBRATED_V5.geo, passes = 3, soft = 0.02 } = {}) {
+  let geo = { ...geoStart };
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const tanObj = (g) => { const r = driftSupportRatios({ geo: g, u, soft }); return r.tanRows.I * r.tanRows.I + r.tanRows.O * r.tanRows.O; };
+  const steps = { alphaI: 3 * d, alphaO: 3 * d, thetaO: 6 * d, thetaI: 6 * d };
+  let eq = null;
+  for (let pass = 0; pass < passes; pass++) {
+    // radial re-equilibration: apply the contraction to the radii/shape
+    eq = driftRailPinnedEquilibrium({ geo, u, soft });
+    geo = { ...geo, qI: eq.shapeEq.qI, qO: eq.shapeEq.qO };
+    // tangential angle-descent
+    let obj = tanObj(geo);
+    for (const k of Object.keys(steps)) {
+      for (const sgn of [+1, -1]) {
+        let improved = true;
+        while (improved) {
+          const trial = { ...geo, [k]: (geo[k] ?? 0) + sgn * steps[k] };
+          const t = tanObj(trial);
+          if (t < obj - 1e-7) { geo = trial; obj = t; } else improved = false;
+        }
+      }
+    }
+  }
+  const rows = driftSupportRatios({ geo, u, soft });
+  return { u, cadence: c, geo,
+    deg: { alphaI: (geo.alphaI ?? 0) / d, alphaO: (geo.alphaO ?? 0) / d, thetaO: (geo.thetaO ?? 0) / d, thetaI: (geo.thetaI ?? 0) / d },
+    lambda: eq.lambda, ReqOverKappa: eq.ReqOverKappa, kappaFrozen: eq.kappaFrozen,
+    residualF: eq.residualF, railPinnedSpectrum: eq.railPinnedSpectrum, basin: eq.basin,
+    support: rows.ratios, tanRows: rows.tanRows, closure: rows.closure,
+    minRatio: rows.minRatio, maxAbsTan: rows.maxAbsTan };
+}
+
+// THE DRIFTING GYROSCOPIC-CIRCULATORY AXIS PENCIL (spec Section 68). Rebuilds
+// the completed axis pencil P(lambda) = lambda^2 M + lambda (G - D) + Gamma - K
+// on the SCREW-DRIFTING family: helical worldlines (drift u along the lab z-axis
+// = the aligned spin axis), pinned cadence c = sqrt(1-u^2), tilt perturbations
+// applied to the internal circular motion with the drift held along fixed lab z
+// (so a tilt is a misalignment of the spin axis RELATIVE to the drift — exactly
+// the Sections 28-29 orientation-torque coordinate). The Sections 28-29 closure
+// anisotropy enters through the MEASURED K(u), not by hand.
+//
+// THE DRIFT NULL STRUCTURE (stated and validated before any spectrum claim).
+// At u=0 empty-space isotropy makes BOTH global tilts (global-x, global-y) exact
+// nulls of K_eff = K - Gamma: the pencil carries a double zero root (deflated).
+// At drift, tilting the spin axis away from the drift direction costs closure in
+// EVERY transverse direction equally (residual axisymmetry about the drift axis),
+// so the global-tilt subspace acquires an ISOTROPIC restoring stiffness k(u) > 0
+// — the orientation torque. The double null is BROKEN: the former zero pair lifts
+// into a global nutation/precession pair set by k(u) and the gyroscopic J. The
+// only exact symmetry left is rigid rotation about the drift axis, which acts
+// trivially on the (drift-fixed) tilt coordinates — so in these coordinates there
+// is NO residual exact tilt null; the quotient discipline becomes: count the
+// roots at numerical zero (2 at u=0, 0 once k(u) lifts them), deflate exactly
+// those, and read the verdict from the rest. k(u) and its isotropy are reported
+// as the claim-bearing validation rows.
+//
+// clickPump: the Section 66 native rate-sign-following click pump on the middle
+// (+0.3-class, anti-damping) added to the middle diagonal of the tilt-rate block
+// (the "with native click pump" verdict cell). NOT evidence; fail-closed;
+// prescribed-worldline seed grade.
+export function driftAxisPencil({ geo = SELF_EQUILIBRATED_V5.geo, u = 0, Nt = 8, soft = 0.02, eta = 0.03, etaDot = 0.02, clickPump = 0, extraDampingLayers = null, rateBlockScale = 1, pumpAbsorbed = false } = {}) {
+  const cf = 1;
+  const c = Math.sqrt(Math.max(1e-9, 1 - u * u));
+  const seed = buildBraid({ u, cTrans: c, geo });
+  const w = seed.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u, cTrans: c, geo }, { soft }).kappaStar;
+  const stretch = 1 / Math.max(0.2, 1 - Math.abs(u));
+  const dmax = Math.min(7, 4 * stretch), Nscan = Math.min(4200, Math.ceil(2400 * stretch));
+  const layerConst = [];
+  for (const i of [0, 2, 4]) {
+    const s = seed.sites[i];
+    const rho = s.R * Math.cos(s.alpha), z = s.R * Math.sin(s.alpha);
+    layerConst.push({ name: s.name, m: rho * rho + 2 * z * z, J: 2 * rho * rho * w });
+  }
+  const rotX = (v, cc, s) => [v[0], cc * v[1] - s * v[2], s * v[1] + cc * v[2]];
+  const rotY = (v, cc, s) => [cc * v[0] + s * v[2], v[1], -s * v[0] + cc * v[2]];
+  const crossX = (v) => [0, -v[2], v[1]];
+  const crossY = (v) => [v[2], 0, -v[0]];
+  // worldline family: internal circular motion p0/v0 (cadence w), tilted about
+  // x then y (static tilt + optional constant rate about the readout time tRef),
+  // THEN drifted along fixed lab z at speed u (drift is NOT rotated by the tilt).
+  const mk = (ex, ey, exDot, eyDot, tRef) => seed.sites.map((s) => {
+    const L = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
+    const p0 = (t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; };
+    const v0 = (t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; };
+    return {
+      pol: s.pol, L,
+      pos: (t) => {
+        const ax = ex[L] + exDot[L] * (t - tRef), ay = ey[L] + eyDot[L] * (t - tRef);
+        const tl = rotY(rotX(p0(t), Math.cos(ax), Math.sin(ax)), Math.cos(ay), Math.sin(ay));
+        return [tl[0], tl[1], tl[2] + u * t];
+      },
+      vel: (t) => {
+        const ax = ex[L] + exDot[L] * (t - tRef), ay = ey[L] + eyDot[L] * (t - tRef);
+        const cx = Math.cos(ax), sx = Math.sin(ax), cy = Math.cos(ay), sy = Math.sin(ay);
+        const pX = rotX(p0(t), cx, sx);
+        const term1 = crossY(rotY(pX, cy, sy)).map((v) => eyDot[L] * v);
+        const term2 = rotY(crossX(pX).map((v) => exDot[L] * v), cy, sy);
+        const term3 = rotY(rotX(v0(t), cx, sx), cy, sy);
+        return [term1[0]+term2[0]+term3[0], term1[1]+term2[1]+term3[1], term1[2]+term2[2]+term3[2] + u];
+      },
+    };
+  });
+  const torques = (ex, ey, exDot, eyDot, perSampleRef) => {
+    const Tx = [0, 0, 0], Ty = [0, 0, 0], Tz = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      const sites = mk(ex, ey, exDot, eyDot, perSampleRef ? t : 0);
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i];
+        const Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= Nscan; kk++) {
+            const te = t - dmax + dmax * (kk / Nscan);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / Nscan), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2;
+              const p = src.pos(te0);
+              const dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]];
+              const r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+                const vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft);
+                const wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        Tx[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+        Ty[rec.L] += kap * (Xi[2] * F[0] - Xi[0] * F[2]) / Nt;
+        Tz[rec.L] += kap * (Xi[0] * F[1] - Xi[1] * F[0]) / Nt;
+      }
+    }
+    return { Tx, Ty, Tz };
+  };
+  const Z = [0, 0, 0];
+  const base = torques(Z, Z, Z, Z, false);
+  const tau0 = base.Tz.slice();
+  const baselineTransverse = Math.max(...base.Tx.map(Math.abs), ...base.Ty.map(Math.abs));
+  // static stiffness blocks
+  const A = [[0,0,0],[0,0,0],[0,0,0]], B = [[0,0,0],[0,0,0],[0,0,0]];
+  const Dx = [[0,0,0],[0,0,0],[0,0,0]], E = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const ep = [0,0,0], em = [0,0,0]; ep[j] = eta; em[j] = -eta;
+    const px = torques(ep, Z, Z, Z, false), mx = torques(em, Z, Z, Z, false);
+    const py = torques(Z, ep, Z, Z, false), my = torques(Z, em, Z, Z, false);
+    for (let i = 0; i < 3; i++) {
+      A[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * eta);
+      Dx[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * eta);
+      B[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * eta);
+      E[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * eta);
+    }
+  }
+  // delay-memory tilt-rate blocks (per-sample tRef: zero tilt at readout)
+  const P = [[0,0,0],[0,0,0],[0,0,0]], Q = [[0,0,0],[0,0,0],[0,0,0]];
+  const Rl = [[0,0,0],[0,0,0],[0,0,0]], S = [[0,0,0],[0,0,0],[0,0,0]];
+  for (let j = 0; j < 3; j++) {
+    const rp = [0,0,0], rm = [0,0,0]; rp[j] = etaDot; rm[j] = -etaDot;
+    const px = torques(Z, Z, rp, Z, true), mx = torques(Z, Z, rm, Z, true);
+    const py = torques(Z, Z, Z, rp, true), my = torques(Z, Z, Z, rm, true);
+    for (let i = 0; i < 3; i++) {
+      P[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * etaDot);
+      Rl[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * etaDot);
+      Q[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * etaDot);
+      S[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * etaDot);
+    }
+  }
+  const scale = Math.max(...A.flat().map(Math.abs), ...B.flat().map(Math.abs), 1e-9);
+  const covK = Math.max(...A.map((r, i) => r.map((v, j) => Math.abs(E[i][j] - v))).flat(),
+    ...B.map((r, i) => r.map((v, j) => Math.abs(Dx[i][j] + v))).flat());
+  const covD = Math.max(...P.map((r, i) => r.map((v, j) => Math.abs(S[i][j] - v))).flat(),
+    ...Q.map((r, i) => r.map((v, j) => Math.abs(Rl[i][j] + v))).flat());
+  const crossRowSums = [0,1,2].map((i) => B[i][0] + B[i][1] + B[i][2]);
+  const pumpWitness = Math.max(...[0,1,2].map((i) => Math.abs(crossRowSums[i] - tau0[i])));
+  // orientation-torque (global-tilt) stiffness: the broken null. kGlobalX =
+  // mean restoring x-torque per unit global-x tilt = -(1/3) sum_ij A[i][j];
+  // isotropy witness compares it to the global-y stiffness from E.
+  const kGlobalX = -[0,1,2].reduce((sA, i) => sA + A[i][0] + A[i][1] + A[i][2], 0) / 3;
+  const kGlobalY = -[0,1,2].reduce((sA, i) => sA + E[i][0] + E[i][1] + E[i][2], 0) / 3;
+  const kGlobalCross = -[0,1,2].reduce((sA, i) => sA + B[i][0] + B[i][1] + B[i][2], 0) / 3;
+  // assemble the pencil
+  const m = layerConst.map((l) => l.m), J = layerConst.map((l) => l.J);
+  const tau = pumpAbsorbed ? [tau0[0], 0, tau0[2]] : tau0;
+  const K6 = [
+    ...[0,1,2].map((i) => [...A[i], ...B[i]]),
+    ...[0,1,2].map((i) => [...Dx[i], ...E[i]]),
+  ];
+  const D6t = [
+    ...[0,1,2].map((i) => [...P[i], ...Q[i]]),
+    ...[0,1,2].map((i) => [...Rl[i], ...S[i]]),
+  ];
+  // native click pump (Section 66): +clickPump anti-damping on the middle
+  // tilt-rate diagonal (both transverse components).
+  D6t[1][1] += clickPump; D6t[4][4] += clickPump;
+  const M6 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? m[i % 3] : 0)));
+  const G6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { G6[l][3 + l] = +J[l]; G6[3 + l][l] = -J[l]; }
+  const Gam6 = Array.from({ length: 6 }, () => Array(6).fill(0));
+  for (let l = 0; l < 3; l++) { Gam6[l][3 + l] = +tau[l]; Gam6[3 + l][l] = -tau[l]; }
+  const dampLayers = extraDampingLayers ?? [0, 0, 0];
+  const Cvel = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) =>
+    G6[i][j] - rateBlockScale * D6t[i][j] + (i === j ? dampLayers[i % 3] : 0)));
+  // complex determinant + Durand-Kerner
+  const cAdd = (a, b) => [a[0]+b[0], a[1]+b[1]];
+  const cSub = (a, b) => [a[0]-b[0], a[1]-b[1]];
+  const cMul = (a, b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const cDiv = (a, b) => { const d2 = b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d2, (a[1]*b[0]-a[0]*b[1])/d2]; };
+  const cAbs = (a) => Math.hypot(a[0], a[1]);
+  const detC = (Min) => {
+    const n = Min.length; const Mx = Min.map((r) => r.map((v) => [v[0], v[1]]));
+    let det = [1, 0];
+    for (let cc = 0; cc < n; cc++) {
+      let p = cc;
+      for (let r = cc + 1; r < n; r++) if (cAbs(Mx[r][cc]) > cAbs(Mx[p][cc])) p = r;
+      if (cAbs(Mx[p][cc]) < 1e-300) return [0, 0];
+      if (p !== cc) { const t = Mx[p]; Mx[p] = Mx[cc]; Mx[cc] = t; det = cMul(det, [-1, 0]); }
+      det = cMul(det, Mx[cc][cc]);
+      for (let r = cc + 1; r < n; r++) { const f = cDiv(Mx[r][cc], Mx[cc][cc]); for (let c2 = cc; c2 < n; c2++) Mx[r][c2] = cSub(Mx[r][c2], cMul(f, Mx[cc][c2])); }
+    }
+    return det;
+  };
+  const pencil = (lam) => {
+    const l2 = cMul(lam, lam); const Pm = [];
+    for (let i = 0; i < 6; i++) { Pm.push([]); for (let j = 0; j < 6; j++) Pm[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [Cvel[i][j], 0])), [Gam6[i][j] - K6[i][j], 0])); }
+    return detC(Pm);
+  };
+  const leading = m[0]*m[0]*m[1]*m[1]*m[2]*m[2];
+  const deg = 12;
+  let roots = Array.from({ length: deg }, (_, i) => { const ang = (2 * Math.PI * i) / deg + 0.4; const rad = 1.5 * Math.max(Math.sqrt(scale / Math.min(...m)), Math.max(...J) / Math.min(...m)); return [rad * Math.cos(ang), rad * Math.sin(ang)]; });
+  let dkResidual = Infinity;
+  for (let it = 0; it < 500; it++) {
+    let moved = 0;
+    for (let i = 0; i < deg; i++) {
+      let denom = [leading, 0];
+      for (let j = 0; j < deg; j++) if (j !== i) denom = cMul(denom, cSub(roots[i], roots[j]));
+      const delta = cDiv(pencil(roots[i]), denom);
+      roots[i] = cSub(roots[i], delta); moved = Math.max(moved, cAbs(delta));
+    }
+    dkResidual = moved; if (moved < 1e-13) break;
+  }
+  const rootRows = roots.map((r) => ({ re: r[0], im: r[1], mag: Math.hypot(r[0], r[1]) })).sort((x, y) => y.re - x.re);
+  // adaptive null deflation: count roots at numerical zero (2 at u=0, fewer once
+  // the orientation torque lifts them), deflate exactly those.
+  const nullTol = 5e-3;
+  const nullRoots = rootRows.filter((r) => r.mag < nullTol);
+  const nullCount = nullRoots.length;
+  const deflated = rootRows.filter((r) => r.mag >= nullTol);
+  const growing = deflated.filter((r) => r.re > 1e-6);
+  const maxGrowth = deflated.length ? deflated[0] : null;
+  return {
+    u, cadence: c, omega: w, kappaStar: kap, clickPump, pumpAbsorbed,
+    layers: layerConst, blocks: { A, B, P, Q, E }, tau0, tauUsed: tau,
+    baselineTransverse,
+    covarianceWitness: { staticBlocks: covK, rateBlocks: covD, scale },
+    orientationTorque: { kGlobalX, kGlobalY, kGlobalCross,
+      isotropy: Math.abs(kGlobalX - kGlobalY), restoring: kGlobalX > 0 && kGlobalY > 0 },
+    globalNull: { pumpWitness, ok: pumpWitness < 0.05 * Math.max(scale, 1e-9) },
+    scanParams: { stretch, dmax, Nscan },
+    dkResidual,
+    eigenvalues: rootRows,
+    nullCount, nullRoots: nullRoots.map((r) => ({ re: r.re, im: r.im })),
+    quotientEigenvalues: deflated,
+    whirl: deflated.filter((r) => Math.abs(r.im) > 1e-6).length,
+    flutter: growing.length > 0,
+    flutterModes: growing,
+    maxGrowthRate: maxGrowth ? maxGrowth.re : null,
+    maxGrowthWhirlFrequency: maxGrowth ? Math.abs(maxGrowth.im) : null,
+  };
+}
+
+// The drift verdict ladder (spec Section 68): the completed axis pencil across a
+// u grid, with and without the native click pump, reporting the orientation
+// torque k(u), the max growth rate, the whirl frequency, and the threshold u (if
+// any) where the axis sector turns restoring.
+export function driftVerdictLadder({ geo = SELF_EQUILIBRATED_V5.geo, uGrid = [0, 0.1, 0.2, 0.35, 0.5, 0.6], Nt = 8, soft = 0.02, clickPump = 0 } = {}) {
+  const rows = uGrid.map((u) => {
+    const r = driftAxisPencil({ geo, u, Nt, soft, clickPump });
+    return { u, kGlobalX: r.orientationTorque.kGlobalX, kGlobalY: r.orientationTorque.kGlobalY,
+      isotropy: r.orientationTorque.isotropy, nullCount: r.nullCount,
+      maxGrowthRate: r.maxGrowthRate, whirlFreq: r.maxGrowthWhirlFrequency,
+      flutter: r.flutter, pumpWitness: r.globalNull.pumpWitness };
+  });
+  let threshold = null;
+  for (let i = 1; i < rows.length; i++) {
+    const a = rows[i - 1], b = rows[i];
+    if (a.maxGrowthRate > 0 && b.maxGrowthRate <= 0) {
+      threshold = a.u + (b.u - a.u) * a.maxGrowthRate / (a.maxGrowthRate - b.maxGrowthRate);
+      break;
+    }
+  }
+  return { clickPump, rows, thresholdU: threshold,
+    stabilizes: rows.some((r) => r.maxGrowthRate !== null && r.maxGrowthRate <= 0) };
+}
+
 export function diagnosticReport() {
   return { schema: SCHEMA, specPacketRef: SPEC_PACKET_REF,
     championBaseline: supportRatios({}),

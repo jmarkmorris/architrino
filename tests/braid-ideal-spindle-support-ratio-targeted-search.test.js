@@ -304,6 +304,73 @@ test("SEA TILT-DAMPING estimate: band-structured in whirl frequency; inner row s
   assert.ok(g3 > g1, `more sea coupling worsens further (${g3})`);
 });
 
+// --- DRIFTING FAMILY: moving fixed point V5(u) and the drift axis pencil (spec Section 68) ---
+
+test("DRIFT FIXED POINT: at u=0 reproduces V5; at u=0.2 the moving braid has a rail-pinned radial basin", async () => {
+  const { driftFixedPoint, driftSupportRatios, supportRatios: sr, SELF_EQUILIBRATED_V5 } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  // u=0 witness: at matched geometry the drift support ratios reduce to supportRatios
+  const rest = sr({ geo: SELF_EQUILIBRATED_V5.geo });
+  const d0 = driftSupportRatios({ u: 0, geo: SELF_EQUILIBRATED_V5.geo });
+  for (const L of ["I", "M", "O"]) assert.ok(Math.abs(d0.ratios[L] - rest.ratios[L]) < 1e-9, `u=0 ${L} reduces to rest`);
+  const fp0 = driftFixedPoint({ u: 0, passes: 2 });
+  assert.ok(Math.abs(fp0.ReqOverKappa - 3.494) < 0.05, `u=0 derived size ${fp0.ReqOverKappa} reproduces V5 3.494`);
+  assert.equal(fp0.basin, true, "u=0 rail-pinned basin (V5)");
+  // u=0.2: a genuine moving fixed point with a radial basin
+  const fp2 = driftFixedPoint({ u: 0.2, passes: 3 });
+  assert.ok(Math.max(...fp2.residualF.map(Math.abs)) < 1e-3, `radial residual ${fp2.residualF}`);
+  assert.equal(fp2.basin, true, "moving rail-pinned radial basin at u=0.2");
+  assert.ok(Math.abs(fp2.tanRows.I) < 0.02 && Math.abs(fp2.tanRows.O) < 0.02, `tangential ledger closed at drift: ${fp2.tanRows.I}, ${fp2.tanRows.O}`);
+});
+
+test("DRIFT PENCIL at u=0 reproduces the resting completed pencil exactly (§63 witness), with the double null", async () => {
+  const { driftAxisPencil, gyroscopicTiltAnalysisFull } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const rest = gyroscopicTiltAnalysisFull({ Nt: 8 });
+  const d0 = driftAxisPencil({ u: 0, Nt: 8 });
+  assert.ok(Math.abs(d0.maxGrowthRate - rest.maxGrowthRate) < 1e-6, `u=0 growth ${d0.maxGrowthRate} == resting ${rest.maxGrowthRate}`);
+  assert.ok(Math.abs(d0.maxGrowthWhirlFrequency - rest.maxGrowthWhirlFrequency) < 1e-6, "u=0 whirl frequency matches resting");
+  // validation rows: z-rotation covariant, pump enters the axis sector, exact double null
+  assert.ok(d0.covarianceWitness.staticBlocks < 1e-10, `z-rotation covariant ${d0.covarianceWitness.staticBlocks}`);
+  assert.ok(d0.globalNull.pumpWitness < 5e-3, `cross-block row sums = baseline pump ${d0.globalNull.pumpWitness}`);
+  assert.equal(d0.nullCount, 2, "u=0 double global-tilt null (isotropy)");
+  assert.ok(Math.abs(d0.orientationTorque.kGlobalX) < 5e-3 && Math.abs(d0.orientationTorque.kGlobalY) < 5e-3, "no orientation torque at rest");
+  assert.ok(d0.dkResidual < 1e-10, "eigenvalue solve converged");
+});
+
+test("DRIFT NULL STRUCTURE: at drift the double null breaks and the orientation torque is restoring, near-isotropic", async () => {
+  const { driftAxisPencil } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const r = driftAxisPencil({ u: 0.35, Nt: 8 });
+  assert.equal(r.nullCount, 0, "drift breaks the double global-tilt null");
+  assert.ok(r.orientationTorque.restoring, `orientation torque restoring (kGx=${r.orientationTorque.kGlobalX}, kGy=${r.orientationTorque.kGlobalY})`);
+  assert.ok(r.orientationTorque.kGlobalX > 0.15, `orientation torque grew with u (kGx=${r.orientationTorque.kGlobalX})`);
+  assert.ok(r.orientationTorque.isotropy < 0.15 * r.orientationTorque.kGlobalX + 0.02,
+    `near-isotropic (residual axisymmetry about the drift axis): iso=${r.orientationTorque.isotropy}`);
+});
+
+test("DRIFT VERDICT: the orientation torque stiffens the GLOBAL axis mode but does NOT stabilize the internal flutter — no restoring u in the basin", async () => {
+  const { driftVerdictLadder } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const ladder = driftVerdictLadder({ uGrid: [0, 0.2, 0.35, 0.5, 0.6], Nt: 8 });
+  // orientation torque grows from 0 and peaks in the closure basin
+  const k = Object.fromEntries(ladder.rows.map((r) => [r.u, r.kGlobalX]));
+  assert.ok(k[0.2] > k[0] && k[0.5] > k[0.2], "orientation torque grows with u");
+  assert.ok(k[0.5] > 0.35, `orientation torque reaches the ~0.5 class in the basin (${k[0.5]})`);
+  // but every cell still flutters: no threshold crossing anywhere in the basin
+  assert.ok(ladder.rows.every((r) => r.maxGrowthRate > 0), "flutter persists at every u in the basin");
+  assert.equal(ladder.thresholdU, null, "no u where the axis sector turns restoring");
+  assert.equal(ladder.stabilizes, false, "drift does not stabilize the axis sector");
+});
+
+test("DRIFT PENCIL: flutter is pump-independent and worsens with the native click pump (as in the resting sector)", async () => {
+  const { driftAxisPencil } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const base = driftAxisPencil({ u: 0.35, Nt: 8 });
+  const pump = driftAxisPencil({ u: 0.35, Nt: 8, clickPump: 0.3 });
+  const absorbed = driftAxisPencil({ u: 0.35, Nt: 8, pumpAbsorbed: true });
+  assert.ok(pump.maxGrowthRate > base.maxGrowthRate, "native click pump worsens the drift flutter");
+  assert.ok(absorbed.maxGrowthRate > 0, "flutter persists with the rail pump absorbed (pump-independent, as §61)");
+  // Nt witness: the verdict does not move under cycle-sample doubling
+  const w = driftAxisPencil({ u: 0.35, Nt: 16 });
+  assert.ok(Math.abs(w.maxGrowthRate - base.maxGrowthRate) < 1.5e-2, `Nt 8/16 growth stable ${base.maxGrowthRate} vs ${w.maxGrowthRate}`);
+});
+
 test("fail-closed", () => {
   assert.equal(FAIL_CLOSED.retainedBranchClaim, false);
   assert.equal(FAIL_CLOSED.scoreMovement, "no_score_increase");
