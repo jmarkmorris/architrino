@@ -115,3 +115,36 @@ Decisive diagnostics (report regardless of outcome; deltas vs Rows 1/2/3):
 5. Sea orientation order parameter vs time (does the braid drive its bath at the in-band phase?).
 
 Failure modes to report honestly: Nt/sampling wobble in the expectations (the band edge at 3.5 is only ~2.5% at 6-shell — if the true-geometry rows come in low, the row sits nearer the fixed point than intended, not necessarily failed); orientation stiffness at gamma=2*omega; the static-position idealization; and per-layer allocation mismatch (M's raw sea radial row is negative at the seed — if the release shows M starving while O drowns, the finding is allocation dynamics, not band failure).
+
+## Candidate Row 5: Static-Sea Release of Self-Consistent Candidate V3 (executed and REJECTED 2026-07-09)
+
+Row status: `executed-candidate-rejected-2026-07-09` — run on the native machinery and REJECTED by the operator in the run thread, first blocker `corridor_gate_failed_at_in_build_credit`; run record [spec Section 53](fold-crossing-chart-spec.md#53-candidate-row-5-native-run-certificate-rejected-at-the-seed-gate--the-cap-credit-is-polar-concentrated-true-fcc-12-placement-flips-it-negative-and-no-release-occurred-2026-07-09) (owner script `--row=5` tabled selection, tests 16 passing). **NO release occurred**: binding obligation 1 fired at seed grade — the in-build cap credit at TRUE FCC-12 placement is −0.0338 (correction −0.351 vs the tabled 0.3172; Nt-witnessed, cycle-average-robust), dressed support 1.0018/1.0059/0.6434, cap row far outside the corridor. Root cause anchored: the native booking reproduces the instrument on its own 6-axial ×2 convention (0.3084 vs 0.3172), and the 6-axial credit decomposes as +0.190 on the two POLAR (on-axis) sites vs −0.036 on the equatorial-axial four — the credit is polar-concentrated and the FCC first shell has no polar sites; ×2 count scaling assumed angular uniformity and is invalid. Recoverability probe: the best axis-to-nearest-neighbor orientation recovers credit O +0.124 but dresses only to 1.0013/0.9367/0.8010 — the first shell cannot deliver at V3 in any orientation. Standing rule extended: no credit booking from count-scaled placement; the fixed-point instrument must compute credit at true angular placement (axis-declared). Release diagnostics 1–5 were not produced (no release to measure). The gate stays fail-closed. The row below is retained as the executed scope contract.
+
+Status when tabled: TABLED (operator decision (a), 2026-07-09, braid-ideal evaluator thread). Same-thread acceptance rule applies in the run thread. Motivated by the Sections 47-52 arc (cite by title): the sea response family is closed (orientation, breathing, near-field — the sea is the angular-momentum bath and cap support, not the radial scaffold), the inner tangential brake is eliminated IN GEOMETRY (Section 51), and the self-consistent cap-credit fixed-point search produced a VERIFIED closing cell (Section 52) — the first candidate in the program whose every seed ledger is inside the corridor simultaneously.
+
+Braid seed — SELF-CONSISTENT STATIC-SEA CANDIDATE V3 (exported `SELF_CONSISTENT_V3`, [spindle-support-ratio-targeted-search.mjs](../../../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs), tests 11 passing):
+- (qI, qO, alphaI, alphaM, alphaO, thetaI, thetaO) = (0.4935, 1.036, -3.65°, -29.04°, 67.5°, -12.2°, 333.5°), middle on the rail (transverse middle speed = c_f), cadence omega = 1/cos(29.04°) ≈ 1.144 (the tilted-rail constraint; all layers sub-field: speeds ≈ 0.56 / 1.00 / 0.45).
+- Bare seed rows: support 1.0035/1.0008/0.677 at the frozen bare-channel kappa*; tau_I = -0.003, tau_O = -0.009 (the Section 51 brake elimination — no sea tangential feed required); closure 0.2058.
+
+Environment — the STATIC pair-resolved sea (no dynamic knobs at all):
+- FCC first coordination shell, 12 sites, TRUE angular placement, at a = 2.453.
+- Each site realized as its declared antipodal unit-polarity pair: monopoles at +- p0(V3)/2 = +-0.436 along the site's slow-limit orientation (computed in-build as alignment with the braid's cycle-averaged retarded field at the site, then FROZEN).
+- Positions and orientations static for the whole release. Exact causal delays are trivial (static sources). No gamma, no relaxation, no orientation dynamics: the Rows 3-4 environment failure modes (orientation-wave M-tax, radial lag collapse, dynamic commensurability band) are absent by construction, not by tuning.
+
+Binding validation obligations (Sections 44/52 lessons):
+1. The cap credit MUST be re-derived in-build at true FCC-12 placement before release (the tabled 0.3172 is the 6-direction x2 count-scaled instrument row, dt-stable and convention-consistent; Section 44 found true placement favorable on the 6-axial comparison, but the in-build number is the seed anchor). If it lands materially off 0.317, re-anchor the corridor check, report the correction, and proceed only if all dressed layers remain in [0.97, 1.03].
+2. dt/Nt witnesses on all seed rows (the Section 52 proxy-aliasing trap: two sibling cells died on sampling/orientation-convention checks; no aliased shortcut anywhere).
+
+Seed expectations (evaluator, instrument-verified):
+- dressed support 1.0022 / 0.9985 / 0.9942 (I/M/O) — all in corridor; sea taxes on I and M <= 0.003;
+- tau rows ~0 on I and O with NO feed; middle rail pump handled by the escapement at the raised cadence;
+- closure 0.2058 (family record; report drift as finding, not discrepancy).
+
+Decisive diagnostics (report regardless of outcome; deltas vs Rows 1-4):
+1. Dispersal clock vs 0.83 / 0.80 / 0.855 / 0.725 — the first row with a corridor-complete seed; any survival extension is the arc's primary signal.
+2. Per-layer support rows along the release: does the corridor HOLD dynamically (O rides the static near-field at clearance ~1.2 from the M ring — watch near-field steepness on close approaches).
+3. Tangential rows along the release: does tau_I stay ~0 without any feed (first native test of the geometry-eliminated brake), and does the escapement carry the rail pump at omega x1.144.
+4. h_act click ledger and escapement behavior at the raised cadence (clicker statistics vs Rows 1-4).
+5. Sea honesty row: record the forces/torques the frozen sites WOULD feel (a static environment cannot respond; large sustained back-reaction flags the frozen-orientation idealization as the row's scope boundary).
+
+Failure modes to report honestly: near-field force steepness at the 1.2-unit clearance (static roots are trivial but gradients are steep — integrator dt sensitivity near close approach); dynamic stability of the -29° middle tilt (ledger-optimal, but the tilt-stiffness lore was measured at other geometries); the in-build credit placement correction; the frozen-orientation idealization (report, do not tune); and basin narrowness of a descent-grade point seed (the twin row carries this).

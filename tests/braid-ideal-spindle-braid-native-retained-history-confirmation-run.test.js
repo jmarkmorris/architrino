@@ -354,6 +354,161 @@ test("Row 3 responsive sea: short dressed release runs, retains sea history, no 
   }
 });
 
+test("Row 5 static pair sea: tabled V3 geometry, tilted-rail cadence, environment selected by the row", () => {
+  try {
+    selectTabledRow(5);
+    assert.equal(DECLARED.candidateRow, 5);
+    // Row 5's environment is part of the tabled row, not a separate flag
+    assert.equal(DECLARED.staticPairSea.enabled, true);
+    // tilted-rail cadence: omega = 1/cos(alpha_M), beta_M = 1 exact, all sub-field
+    assert.ok(Math.abs(DECLARED.omega - 1 / Math.cos(deg(-29.04))) < 1e-12);
+    const sites = buildSites();
+    const betas = {};
+    for (const s of sites) betas[s.layer] = Math.hypot(...rigidVelocity(s, 0));
+    assert.ok(Math.abs(betas.M - 1.0) < 1e-12);
+    assert.ok(Math.abs(betas.I - 0.5633) < 5e-4);
+    assert.ok(Math.abs(betas.O - 0.4535) < 5e-4);
+  } finally {
+    selectTabledRow(1);
+    assert.equal(DECLARED.staticPairSea.enabled, false);
+  }
+});
+
+test("Row 5 static pair sea: true FCC-12 placement, in-build frozen pairs, Nt witness", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(5);
+    const sites = buildSites();
+    const sea = m.buildStaticPairSeaSites(sites);
+    // 12 sites at the tabled spacing, TRUE FCC first-shell angular structure
+    assert.equal(sea.shell.length, 12);
+    assert.equal(sea.endpoints.length, 24);
+    assert.ok(Math.abs(sea.spacing - 2.453) < 1e-12);
+    const dirs = sea.shell.map((s) => s.center.map((c) => c / 2.453));
+    for (let a = 0; a < 12; a += 1) {
+      assert.ok(Math.abs(Math.hypot(...sea.shell[a].center) - 2.453) < 1e-9);
+      for (let b = a + 1; b < 12; b += 1) {
+        const dot = dirs[a][0] * dirs[b][0] + dirs[a][1] * dirs[b][1] + dirs[a][2] * dirs[b][2];
+        assert.ok(
+          [0.5, 0, -0.5, -1].some((v) => Math.abs(dot - v) < 1e-9),
+          `non-FCC pair angle: ${dot}`
+        );
+      }
+    }
+    // p0 is the braid's OWN axial polarity dipole (in-build, not a knob):
+    // |sum pol*z0| = |sum_layers 2 R sin alpha| ~ 0.8806 at V3
+    assert.ok(Math.abs(sea.p0 - m.braidAxialDipole(sites)) < 1e-15);
+    assert.ok(Math.abs(sea.p0 - 0.8806) < 1e-3);
+    // each site is its antipodal unit-polarity pair at +- p0/2 along pHat
+    for (let k = 0; k < 12; k += 1) {
+      const plus = sea.endpoints[2 * k];
+      const minus = sea.endpoints[2 * k + 1];
+      assert.equal(plus.pol, 1);
+      assert.equal(minus.pol, -1);
+      const sep = Math.hypot(
+        plus.position[0] - minus.position[0],
+        plus.position[1] - minus.position[1],
+        plus.position[2] - minus.position[2]
+      );
+      assert.ok(Math.abs(sep - sea.p0) < 1e-12);
+      assert.ok(Math.abs(Math.hypot(...sea.shell[k].pHat) - 1) < 1e-12);
+    }
+    // binding obligation 2 (Section 52 aliasing trap): the slow-limit
+    // orientations must be sampling-stable between declared Nt and witness Nt
+    const witness = m.buildStaticPairSeaSites(sites, DECLARED.staticPairSea.ntWitness);
+    for (let k = 0; k < 12; k += 1) {
+      const a = sea.shell[k].pHat;
+      const b = witness.shell[k].pHat;
+      const dot = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+      assert.ok((Math.acos(Math.max(-1, Math.min(1, dot))) * 180) / Math.PI < 0.5);
+    }
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 5 seed record: bare rows on the V3 evaluator anchors, kappa* fit stays bare-channel", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(5);
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const sea = m.buildStaticPairSeaSites(sites);
+    const seed = seedRecordEvaluation(sites, heldOnly, null, null, null, sea);
+    // native seed vs the tabling instrument (SELF_CONSISTENT_V3, spec Section
+    // 52 by title): kappa* 0.4539, closure 0.2058, bare support
+    // 1.0035/1.0008/0.677 — the environment must NOT move the bare anchors
+    assert.ok(Math.abs(seed.kappaStar - 0.4539) < 2e-3);
+    assert.ok(Math.abs(seed.globalRelResidual - 0.2058) < 2e-3);
+    const sup = seed.supportRatios.atFittedKappa;
+    assert.ok(Math.abs(sup.I - 1.0035) < 0.02);
+    assert.ok(Math.abs(sup.M - 1.0008) < 0.02);
+    assert.ok(Math.abs(sup.O - 0.677) < 0.02);
+    // sea rows separately booked (split channel), dressed = bare + supply
+    assert.ok(seed.seaRows);
+    for (const L of ["I", "M", "O"]) {
+      const bare = sup[L];
+      const dressed = seed.seaRows.supportRatiosDressed[L];
+      const supply = seed.seaRows.radialSupplyFraction[L];
+      assert.ok(Math.abs(dressed - (bare + supply)) < 1e-9);
+    }
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 5 in-build credit: native booking anchors to the instrument on 6-axial x2, and true FCC-12 placement flips it (the 2026-07-09 run finding)", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  const savedDirs = DECLARED.sea.fccDirections;
+  try {
+    selectTabledRow(5);
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    // anchor: the native booking on the instrument's own 6-axial convention,
+    // x2 count-scaled, reproduces the tabled credit 0.3172 (within the
+    // regularizer-grade difference of the production booking)
+    DECLARED.sea.fccDirections = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
+    const sea6 = m.buildStaticPairSeaSites(sites);
+    const seed6 = seedRecordEvaluation(sites, heldOnly, null, null, null, sea6);
+    assert.ok(Math.abs(2 * seed6.seaRows.radialSupplyFraction.O - 0.3172) < 0.012);
+    // the credit is polar-concentrated: the two on-axis sites carry it
+    DECLARED.sea.fccDirections = [[0, 0, 1], [0, 0, -1]];
+    const seaP = m.buildStaticPairSeaSites(sites);
+    const seedP = seedRecordEvaluation(sites, heldOnly, null, null, null, seaP);
+    assert.ok(seedP.seaRows.radialSupplyFraction.O > 0.15);
+    // true FCC-12 placement has NO polar sites: the in-build credit flips
+    // slightly negative and the dressed cap row leaves the corridor —
+    // the Row 5 corridor gate must fail closed (measured -0.034; dressed
+    // O ~ 0.643 vs [0.97, 1.03])
+    DECLARED.sea.fccDirections = savedDirs;
+    const sea12 = m.buildStaticPairSeaSites(sites);
+    const seed12 = seedRecordEvaluation(sites, heldOnly, null, null, null, sea12);
+    const credit = seed12.seaRows.radialSupplyFraction.O;
+    assert.ok(Math.abs(credit - -0.0338) < 0.01);
+    const dressedO = seed12.seaRows.supportRatiosDressed.O;
+    assert.ok(dressedO < DECLARED.staticPairSea.corridor[0]);
+  } finally {
+    DECLARED.sea.fccDirections = savedDirs;
+    selectTabledRow(1);
+  }
+});
+
 test("Row 4 responsive sea at a=3.40: exact-delay seed rows land on the confining side", async () => {
   const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
   selectTabledRow(2);

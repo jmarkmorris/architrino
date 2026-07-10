@@ -55,6 +55,14 @@ const deg = (d) => (d * Math.PI) / 180;
 //  Row 2: support-candidate v1 (packet "Candidate Row 2", tabled 2026-07-09;
 //         spec Sections 36-37 support-first search + sum rule). Cadence is
 //         pinned to the transverse rail: omega = c_f / (R_M cos alpha_M).
+//  Row 5: SELF-CONSISTENT STATIC-SEA CANDIDATE V3 (packet "Candidate Row 5",
+//         tabled 2026-07-09; spec Sections 51-52 by title — the tangential-
+//         closure search + self-consistent cap-credit fixed point; exported
+//         SELF_CONSISTENT_V3 in spindle-support-ratio-targeted-search.mjs).
+//         Tilted rail: alpha_M = -29.04 deg, cadence omega = 1/cos(alpha_M)
+//         ~ 1.144, all layers sub-field. Selecting Row 5 ALSO selects its
+//         environment (the static pair-resolved sea below): geometry and
+//         environment are one tabled row, not separate knobs.
 // ---------------------------------------------------------------------------
 export const TABLED_ROWS = Object.freeze({
   1: Object.freeze([
@@ -67,6 +75,11 @@ export const TABLED_ROWS = Object.freeze({
     Object.freeze({ name: "M", R: 1.0, alpha: deg(-2.67), theta: deg(120) }),
     Object.freeze({ name: "O", R: 1.236, alpha: deg(84.0), theta: deg(337.04) }),
   ]),
+  5: Object.freeze([
+    Object.freeze({ name: "I", R: 0.4935, alpha: deg(-3.65), theta: deg(-12.2) }),
+    Object.freeze({ name: "M", R: 1.0, alpha: deg(-29.04), theta: deg(120) }),
+    Object.freeze({ name: "O", R: 1.036, alpha: deg(67.5), theta: deg(333.5) }),
+  ]),
 });
 
 export function selectTabledRow(row) {
@@ -76,6 +89,8 @@ export function selectTabledRow(row) {
   DECLARED.layers = layers;
   const aM = layers.find((L) => L.name === "M").alpha;
   DECLARED.omega = 1 / Math.cos(aM); // beta_M = omega R_M cos(alpha_M) = 1 (rail)
+  // Row 5's environment is part of the tabled row (packet Candidate Row 5).
+  DECLARED.staticPairSea.enabled = row === 5;
 }
 
 // ---------------------------------------------------------------------------
@@ -212,6 +227,40 @@ export const DECLARED = {
     settleRotations: 3, // held-prehistory settle window before release (declared)
     orientationInit: "delayed_field_direction_at_settle_start", // declared
   },
+  // Static pair-resolved sea (Candidate Row 5; selected BY --row=5, not a
+  // separate flag — the environment is part of the tabled row). Packet block
+  // "Candidate Row 5: Static-Sea Release of Self-Consistent Candidate V3";
+  // design record spec Sections 51-52 (by title). NO dynamic sea knobs:
+  //  - FCC first coordination shell, 12 sites, TRUE angular placement, at the
+  //    tabled a = 2.453 (SELF_CONSISTENT_V3.aSea; not a knob).
+  //  - Each site realized as its declared antipodal unit-polarity pair:
+  //    monopoles of polarity +-1 at +- p0/2 along the site's slow-limit
+  //    orientation, p0 = the braid's own axial polarity dipole
+  //    |sum_sites pol * z0| (= |sum_layers 2 R sin alpha|; not a knob).
+  //  - Slow-limit orientation computed IN-BUILD: unit(cycle-averaged bare
+  //    retarded braid field at the site center), the gamma->0 selection —
+  //    exact per-source retardation iteration on the held rigid worldlines,
+  //    averaged over ntOrientation phases of the braid cycle — then FROZEN.
+  //    Sampling witness at ntWitness (the Section 52 proxy-aliasing trap:
+  //    binding obligation 2, no aliased shortcut anywhere).
+  //  - Positions and orientations static for the whole release: exact causal
+  //    delays are trivial; every endpoint is a zero-radius static production
+  //    source booked through the SAME native path as the braid (production
+  //    solver roots, canonical m_reg force law) — unlike the Rows 3-4
+  //    analytic-kernel dipoles, this environment channel is production-grade.
+  //  - Channel split: the sea books into the dressed wake AND separately into
+  //    aSea, so the kappa* fit stays on the bare braid channel (Rows 1-4
+  //    protocol) and the cap credit is re-derived in-build at true placement
+  //    (binding obligation 1; tabled instrument value 0.3172 at x2-scaled
+  //    6-direction placement is the comparison anchor, not the seed anchor).
+  staticPairSea: {
+    enabled: false, // set by selectTabledRow(5)
+    spacing: 2.453, // SELF_CONSISTENT_V3.aSea (tabled, not a knob)
+    ntOrientation: 64, // in-build slow-limit cycle average (dt-stable grade)
+    ntWitness: 32, // sampling witness resolution (must agree; obligation 2)
+    tabledInstrumentCredit: 0.3172, // Section 52 x2-count-scaled anchor (report row)
+    corridor: [0.97, 1.03], // dressed-support release gate (binding obligation 1)
+  },
   chart: {
     enabled: false,
     foldJacobianThreshold: 0.02, // |D_s| below this = fold-flagged, substep-integrate
@@ -343,6 +392,105 @@ export function seaWakeContribution({ seaSites, xi, vi, receiverPol, tH }) {
 }
 
 // ---------------------------------------------------------------------------
+// Static pair-resolved sea (Candidate Row 5). Build is deterministic from the
+// tabled row: true FCC-12 placement at the tabled spacing, in-build slow-limit
+// orientations on the held rigid worldlines, frozen antipodal unit-polarity
+// pair endpoints. Endpoints are plain static sites ({position, pol}), booked
+// through seaWakeContribution's production-solver path.
+// ---------------------------------------------------------------------------
+export function braidAxialDipole(sites) {
+  let pz = 0;
+  for (const s of sites) pz += s.pol * s.z0; // = sum_layers 2 R sin(alpha)
+  return Math.abs(pz);
+}
+
+export function buildStaticPairSeaSites(sites, nt = DECLARED.staticPairSea.ntOrientation) {
+  if (!DECLARED.staticPairSea.enabled) return null;
+  const a = DECLARED.staticPairSea.spacing;
+  const p0 = braidAxialDipole(sites);
+  const period = TWO_PI / DECLARED.omega;
+  const shell = [];
+  const endpoints = [];
+  for (let k = 0; k < DECLARED.sea.fccDirections.length; k += 1) {
+    const dir = DECLARED.sea.fccDirections[k];
+    const n = Math.hypot(dir[0], dir[1], dir[2]);
+    const center = [(dir[0] / n) * a, (dir[1] / n) * a, (dir[2] / n) * a];
+    // slow-limit orientation: unit(cycle-averaged bare retarded braid field),
+    // exact per-source retardation on the held rigid worldlines (histories
+    // null => rigid), averaged over nt phases of the braid cycle, then FROZEN.
+    const acc = [0, 0, 0];
+    for (let q = 0; q < nt; q += 1) {
+      const E = braidRetardedFieldAt(center, sites, null, (q / nt) * period);
+      acc[0] += E[0];
+      acc[1] += E[1];
+      acc[2] += E[2];
+    }
+    const pHat = unit3(acc);
+    shell.push({ id: `spsea:${k}`, center, pHat });
+    for (const pm of [+1, -1]) {
+      endpoints.push({
+        id: `spsea:${k}:${pm > 0 ? "+" : "-"}`,
+        position: [
+          center[0] + pm * (p0 / 2) * pHat[0],
+          center[1] + pm * (p0 / 2) * pHat[1],
+          center[2] + pm * (p0 / 2) * pHat[2],
+        ],
+        pol: pm,
+      });
+    }
+  }
+  return { shell, endpoints, p0, spacing: a, ntUsed: nt };
+}
+
+// Frozen-sea back-reaction honesty row (Row 5 diagnostic 5): a static
+// environment cannot respond, so record what the frozen sites WOULD feel —
+// the misalignment of the braid's live retarded field against each frozen
+// orientation, and the net force each pair would carry (per unit kappa).
+// Large sustained values flag the frozen-orientation idealization as the
+// row's scope boundary; this row reports, it does not tune.
+export function frozenSeaBackReactionRow(staticPairSea, sites, histories, t) {
+  let sumAngle = 0;
+  let maxAngle = 0;
+  let sumForce = 0;
+  let netRadial = 0;
+  const n = staticPairSea.shell.length;
+  for (let k = 0; k < n; k += 1) {
+    const site = staticPairSea.shell[k];
+    const E = braidRetardedFieldAt(site.center, sites, histories, t);
+    const eHat = unit3(E);
+    const dot = Math.max(-1, Math.min(1,
+      eHat[0] * site.pHat[0] + eHat[1] * site.pHat[1] + eHat[2] * site.pHat[2]));
+    const ang = Math.acos(dot);
+    sumAngle += ang / n;
+    if (ang > maxAngle) maxAngle = ang;
+    // net pair force per unit kappa: F = sum_pm pm * E(endpoint)
+    const F = [0, 0, 0];
+    for (const pm of [+1, -1]) {
+      const X = [
+        site.center[0] + pm * (staticPairSea.p0 / 2) * site.pHat[0],
+        site.center[1] + pm * (staticPairSea.p0 / 2) * site.pHat[1],
+        site.center[2] + pm * (staticPairSea.p0 / 2) * site.pHat[2],
+      ];
+      const Ee = braidRetardedFieldAt(X, sites, histories, t);
+      F[0] += pm * Ee[0];
+      F[1] += pm * Ee[1];
+      F[2] += pm * Ee[2];
+    }
+    sumForce += Math.hypot(F[0], F[1], F[2]) / n;
+    const rC = Math.hypot(site.center[0], site.center[1], site.center[2]);
+    netRadial +=
+      (F[0] * site.center[0] + F[1] * site.center[1] + F[2] * site.center[2]) / rC / n;
+  }
+  return {
+    t,
+    meanMisalignmentDeg: (sumAngle * 180) / Math.PI,
+    maxMisalignmentDeg: (maxAngle * 180) / Math.PI,
+    meanPairNetForcePerKappa: sumForce,
+    meanPairNetOutwardRadialPerKappa: netRadial,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Responsive sea (Candidate Row 3): 12 saturable orientational dipoles on the
 // FCC first coordination shell, orientation-only dynamics (positions static),
 // first-order relaxation toward the local retarded braid field at
@@ -385,7 +533,7 @@ export function braidRetardedFieldAt(X, sites, histories, t) {
   for (let i = 0; i < sites.length; i += 1) {
     const posAt = (tE) =>
       histories && tE > 0 ? histories[i].positionAt(tE) : rigidPosition(sites[i], tE);
-    let tE = t - DECLARED.responsiveSea.spacing / c;
+    let tE = t - Math.hypot(X[0], X[1], X[2]) / c;
     for (let it = 0; it < 60; it += 1) {
       const p = posAt(tE);
       const r = Math.hypot(X[0] - p[0], X[1] - p[1], X[2] - p[2]);
@@ -757,7 +905,7 @@ export function solveDirectedRelation({ histories, i, j, tH, xi, vi, sameSource,
 // a_i = kappa * sum sigma_i sigma_j * m_reg / (r^2 + rho_c^2) * r_hat,
 // m_reg = D_T D_s / (D_s^2 + soft^2), all row fields read from the runtime).
 // ---------------------------------------------------------------------------
-export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false, seaSites = null, responsiveSeaState = null }) {
+export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = null, splitSelf = false, seaSites = null, responsiveSeaState = null, staticPairSea = null }) {
   const soft = DECLARED.soft;
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
   const a = [0, 0, 0];
@@ -851,6 +999,38 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
     }
   }
   const aSea = [0, 0, 0];
+  if (staticPairSea) {
+    // Row 5 environment: every frozen pair endpoint is a static production
+    // source, solved and booked through the same native path as the braid
+    // (seaWakeContribution: production roots, canonical m_reg force law).
+    // Booked into the dressed wake AND split into aSea so the kappa* fit
+    // stays on the bare braid channel (Rows 1-4 protocol).
+    const sea = seaWakeContribution({
+      seaSites: staticPairSea.endpoints,
+      xi,
+      vi,
+      receiverPol: sites[i].pol,
+      tH,
+    });
+    aSea[0] += sea.a[0];
+    aSea[1] += sea.a[1];
+    aSea[2] += sea.a[2];
+    a[0] += sea.a[0];
+    a[1] += sea.a[1];
+    a[2] += sea.a[2];
+    if (ledger) {
+      ledger.push({
+        receiver: sites[i].id,
+        source: "spsea:FCC-12-true-placement-frozen-pairs",
+        relation: "environment-static-pair-production-roots",
+        activeRootCount: staticPairSea.endpoints.length,
+        seaAcceleration: sea.a,
+        seaNetRadial: sea.netRadial,
+        roots: [],
+        inactiveGap: null,
+      });
+    }
+  }
   if (responsiveSeaState) {
     const sea = responsiveSeaAcceleration(responsiveSeaState, xi, vi, sites[i].pol, tH);
     aSea[0] = sea[0];
@@ -989,7 +1169,8 @@ export function chartWindowIntegrate({
 // ---------------------------------------------------------------------------
 // Seed-record native evaluation (t = 0-, all held): anchor + native kappa* fit.
 // ---------------------------------------------------------------------------
-export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKappa = null, responsiveSeaState = null) {
+export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKappa = null, responsiveSeaState = null, staticPairSea = null) {
+  const anySplitSea = Boolean(responsiveSeaState || staticPairSea);
   const samples = [];
   for (let i = 0; i < sites.length; i += 1) {
     const xi = rigidPosition(sites[i], 0);
@@ -1001,7 +1182,7 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
     const wH = sites[i].omegaHeld ?? DECLARED.omega;
     const kinHeld = [-wH * wH * xi[0], -wH * wH * xi[1], 0];
     const ledger = [];
-    const { a, aSea } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites, responsiveSeaState });
+    const { a, aSea } = wakeAcceleration({ histories, sites, i, tH: 0, xi, vi, ledger, seaSites, responsiveSeaState, staticPairSea });
     // Kappa* fit discipline (Rows 1-3 protocol): the coupling is fitted on the
     // BRAID channel only (identical to the bare Rows 1-2 seed record, so the
     // frozen kappa* is comparable across rows); sea rows are reported AT that
@@ -1062,7 +1243,7 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
   const kappaStar = fitKappa("kin");
   const circFitted = residuals("kin", kappaStar);
   // Dressed-record residual (braid + sea at the same kappa; diagnostics only).
-  const dressedGlobalRelResidual = responsiveSeaState
+  const dressedGlobalRelResidual = anySplitSea
     ? residuals("kin", kappaStar, "wake").globalRelResidual
     : null;
   // Both seed-record conventions per variant (epicyclic-hunt-handoff.md,
@@ -1100,11 +1281,13 @@ export function seedRecordEvaluation(sites, histories, seaSites = null, frozenKa
     atFittedKappa: supportAt(kappaStar),
     atFrozenKappa: frozenKappa != null ? supportAt(frozenKappa) : null,
   };
-  // Seed sea rows (Row 3 diagnostics 3-4): per-layer radial supply fraction
-  // and tangential row from the responsive sea, at the fitted (frozen-grade)
-  // kappa — the metabolism-ledger seed anchor.
+  // Seed sea rows (Row 3 diagnostics 3-4; Row 5 cap-credit re-derivation):
+  // per-layer radial supply fraction and tangential row from the split sea
+  // channel, at the fitted (frozen-grade) kappa — the metabolism-ledger /
+  // credit seed anchor. For Row 5, radialSupplyFraction.O IS the in-build
+  // cap credit at true FCC-12 placement (binding obligation 1).
   let seaRows = null;
-  if (responsiveSeaState) {
+  if (anySplitSea) {
     const kap = frozenKappa != null ? frozenKappa : kappaStar;
     const tanAcc = {};
     for (const s of samples) {
@@ -1213,6 +1396,9 @@ export function runRelease({
 } = {}) {
   const sites = buildSites();
   const seaSites = buildSeaSites();
+  // Row 5 frozen environment: deterministic from the tabled row (held rigid
+  // prehistory only), so rebuilding on resume reproduces it exactly.
+  const staticPairSea = buildStaticPairSeaSites(sites);
   const dt = DECLARED.timeStep;
   const steps = Math.round((rotations * TWO_PI) / dt);
   let responsiveSeaState = null;
@@ -1326,6 +1512,7 @@ export function runRelease({
         splitSelf: DECLARED.chart.enabled,
         seaSites,
         responsiveSeaState,
+        staticPairSea,
       });
       seaAccs.push(aSea);
       let booking = null;
@@ -1458,9 +1645,9 @@ export function runRelease({
     const layerRows = layerProjections(sites, states, wakes, kappa);
     let seaRows = null;
     let seaOrder = null;
-    if (responsiveSeaState) {
+    if (responsiveSeaState || staticPairSea) {
       seaRows = seaLayerProjections(sites, states, seaAccs, kappa);
-      seaOrder = seaOrderParameter(responsiveSeaState);
+      if (responsiveSeaState) seaOrder = seaOrderParameter(responsiveSeaState);
     }
     const shapeDev = sites.map((s, i) => {
       const rp = rigidPosition(s, t);
@@ -1496,6 +1683,11 @@ export function runRelease({
         layerRows,
         seaRows,
         seaOrder,
+        // frozen-sea back-reaction honesty row (Row 5 diagnostic 5): what the
+        // static environment WOULD feel from the released braid
+        frozenSeaBackReaction: staticPairSea
+          ? frozenSeaBackReactionRow(staticPairSea, sites, histories, t)
+          : null,
         betaM,
       });
       nextRecordIdx += 1;
@@ -1551,6 +1743,7 @@ export function runRelease({
     halted,
     completed,
     responsiveSeaState,
+    staticPairSea,
     state: {
       step,
       steps,
@@ -1614,6 +1807,12 @@ if (isMain()) {
   DECLARED.responsiveSea.enabled = process.argv.includes("--responsive-sea");
   DECLARED.responsiveSea.spacing = readCliNumber("rsea-spacing", DECLARED.responsiveSea.spacing);
   selectTabledRow(readCliNumber("row", 1));
+  if (DECLARED.staticPairSea.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
+    process.stderr.write(
+      "[abort] Row 5's environment IS the static pair-resolved sea; --sea/--responsive-sea do not compose with --row=5\n"
+    );
+    process.exit(1);
+  }
   DECLARED.epicycle.I = readCliNumber("ei", 0);
   DECLARED.epicycle.M = readCliNumber("em", 0);
   DECLARED.epicycle.O = readCliNumber("eo", 0);
@@ -1643,12 +1842,40 @@ if (isMain()) {
   const seedSeaState = DECLARED.responsiveSea.enabled
     ? settleResponsiveSea(buildResponsiveSeaState(), sites, 0)
     : null;
+  // Row 5 in-build environment + binding obligation 2 (dt/Nt witnesses on all
+  // seed rows): the frozen sea is built at the declared Nt AND at the witness
+  // Nt; orientations and every credit-bearing seed row must agree.
+  const staticPairSea = buildStaticPairSeaSites(sites);
+  const staticPairSeaWitness = DECLARED.staticPairSea.enabled
+    ? buildStaticPairSeaSites(sites, DECLARED.staticPairSea.ntWitness)
+    : null;
+  let seaBuildWitness = null;
+  if (staticPairSea) {
+    let maxAngle = 0;
+    for (let k = 0; k < staticPairSea.shell.length; k += 1) {
+      const a = staticPairSea.shell[k].pHat;
+      const b = staticPairSeaWitness.shell[k].pHat;
+      const dot = Math.max(-1, Math.min(1, a[0] * b[0] + a[1] * b[1] + a[2] * b[2]));
+      maxAngle = Math.max(maxAngle, (Math.acos(dot) * 180) / Math.PI);
+    }
+    seaBuildWitness = {
+      ntBase: staticPairSea.ntUsed,
+      ntWitness: staticPairSeaWitness.ntUsed,
+      maxOrientationDeviationDeg: maxAngle,
+    };
+    process.stderr.write(
+      `[spsea] p0=${staticPairSea.p0.toFixed(6)} a=${staticPairSea.spacing} ` +
+        `orientation witness Nt=${seaBuildWitness.ntBase}/${seaBuildWitness.ntWitness} ` +
+        `maxDev=${maxAngle.toExponential(3)} deg\n`
+    );
+  }
   const seed = seedRecordEvaluation(
     sites,
     seedHistories,
     buildSeaSites(),
     Number.isFinite(kappaOverride) ? kappaOverride : null,
-    seedSeaState
+    seedSeaState,
+    staticPairSea
   );
   if (Number.isFinite(kappaOverride)) {
     // frozen coupling for cross-variant comparability (declared, no refit)
@@ -1679,6 +1906,78 @@ if (isMain()) {
         `tanRow(I/M/O)=${sr.tangentialRowPerLayer.I.toFixed(4)}/${sr.tangentialRowPerLayer.M.toFixed(4)}/${sr.tangentialRowPerLayer.O.toFixed(4)} ` +
         `netTorqueZ=${sr.netSeaTorqueZ.toFixed(4)}\n`
     );
+  }
+
+  // Row 5 binding obligations (packet Candidate Row 5; spec Section 52 rules):
+  //  1. cap credit re-derived in-build at true FCC-12 placement, corridor
+  //     re-anchored on the in-build rows; release ONLY if all dressed layers
+  //     are inside [0.97, 1.03];
+  //  2. Nt witness on every credit-bearing seed row (full witness seed record
+  //     at the witness-Nt orientations; no aliased sampling anywhere).
+  let staticPairSeaSeedBlock = null;
+  if (staticPairSea) {
+    const seedWitness = seedRecordEvaluation(
+      sites,
+      seedHistories,
+      null,
+      Number.isFinite(kappaOverride) ? kappaOverride : null,
+      null,
+      staticPairSeaWitness
+    );
+    const creditInBuild = seed.seaRows.radialSupplyFraction.O;
+    const creditWitness = seedWitness.seaRows.radialSupplyFraction.O;
+    const dressed = seed.seaRows.supportRatiosDressed;
+    const [cLo, cHi] = DECLARED.staticPairSea.corridor;
+    const corridorHolds = ["I", "M", "O"].every(
+      (L) => dressed[L] >= cLo && dressed[L] <= cHi
+    );
+    staticPairSeaSeedBlock = {
+      p0: staticPairSea.p0,
+      spacing: staticPairSea.spacing,
+      shellOrientations: staticPairSea.shell.map((s) => ({ id: s.id, center: s.center, pHat: s.pHat })),
+      orientationWitness: seaBuildWitness,
+      capCreditInBuildTruePlacement: creditInBuild,
+      capCreditWitnessNt: creditWitness,
+      capCreditTabledInstrument: DECLARED.staticPairSea.tabledInstrumentCredit,
+      capCreditCorrection: creditInBuild - DECLARED.staticPairSea.tabledInstrumentCredit,
+      dressedSupport: dressed,
+      dressedSupportWitness: seedWitness.seaRows.supportRatiosDressed,
+      corridor: DECLARED.staticPairSea.corridor,
+      corridorHolds,
+      seaTaxes: { I: seed.seaRows.radialSupplyFraction.I, M: seed.seaRows.radialSupplyFraction.M },
+    };
+    process.stderr.write(
+      `[spsea] in-build cap credit (true FCC-12) = ${creditInBuild.toFixed(4)} ` +
+        `(witness Nt: ${creditWitness.toFixed(4)}; tabled instrument 0.3172; ` +
+        `correction ${(creditInBuild - 0.3172 >= 0 ? "+" : "")}${(creditInBuild - 0.3172).toFixed(4)})\n`
+    );
+    process.stderr.write(
+      `[spsea] dressed support (I/M/O) = ${dressed.I.toFixed(4)}/${dressed.M.toFixed(4)}/${dressed.O.toFixed(4)} ` +
+        `corridor [${cLo}, ${cHi}] holds=${corridorHolds}\n`
+    );
+    if (!corridorHolds) {
+      // Fail-closed corridor gate: report the seed block, do not release.
+      const gateReport = {
+        schema: SCHEMA,
+        handoffPacketRef: HANDOFF_PACKET_REF,
+        declared: DECLARED,
+        firstBlocker: "corridor_gate_failed_at_in_build_credit",
+        seedRecord: {
+          kappaStarNative: seed.kappaStar,
+          globalRelResidualNative: seed.globalRelResidual,
+          supportRatios: seed.supportRatios,
+          seaRows: seed.seaRows,
+          staticPairSea: staticPairSeaSeedBlock,
+          candidateRow: DECLARED.candidateRow,
+        },
+        failClosed: FAIL_CLOSED,
+      };
+      fs.writeFileSync(path.join(outDir, outName), JSON.stringify(gateReport, null, 1));
+      process.stderr.write(
+        "[abort] corridor gate failed at the in-build credit; seed-only report written, no release (fail-closed)\n"
+      );
+      process.exit(0);
+    }
   }
 
   const progress = (step, steps, d) => {
@@ -1795,13 +2094,23 @@ if (isMain()) {
       conventionPair: seed.conventionPair,
       supportRatios: seed.supportRatios,
       seaRows: seed.seaRows,
+      staticPairSea: staticPairSeaSeedBlock,
       candidateRow: DECLARED.candidateRow,
-      prescribedEvaluatorAnchor: DECLARED.candidateRow === 2 ? 0.3240 : 0.4721,
+      prescribedEvaluatorAnchor:
+        DECLARED.candidateRow === 5 ? 0.2058 : DECLARED.candidateRow === 2 ? 0.3240 : 0.4721,
       seedRootLedger: seed.samples.map((s) => ({ site: s.site, ledger: s.ledger })),
     },
     release: {
       rotationsRequested: rotations,
       halted: main.halted,
+      // dispersal clock (rotations of 2*pi time, Rows 1-4 convention): first
+      // crossing of the declared tube radius by any site
+      tubeLossTime: (() => {
+        const hit = main.diag.find(
+          (d) => d.maxShapeDeviation > DECLARED.tubeRadiusForShapeQuestion
+        );
+        return hit ? hit.t / TWO_PI : null;
+      })(),
       records: main.records,
       clickLedger: main.clickLedger,
       chartLedger: main.chartLedger ?? null,
@@ -1822,6 +2131,7 @@ if (isMain()) {
       })),
       responsiveSeaMode: DECLARED.responsiveSea.enabled,
       responsiveSeaClampedLookups: main.state?.responsiveSea?.clampedLookups ?? null,
+      staticPairSeaMode: DECLARED.staticPairSea.enabled,
     },
     stabilityRow: {
       perturbation: DECLARED.twinPerturbation,
