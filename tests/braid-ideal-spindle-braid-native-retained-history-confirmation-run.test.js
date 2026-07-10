@@ -678,6 +678,112 @@ test("Row 6 cage rows: honesty row reproduces the Section 55 strain, steric and 
   }
 });
 
+test("Row 7 bare V5: tabled geometry, tilted-rail cadence, NO environment, gate armed", () => {
+  try {
+    selectTabledRow(7);
+    assert.equal(DECLARED.candidateRow, 7);
+    // Row 7 is the bare self-equilibrated candidate: no environment of any kind
+    assert.equal(DECLARED.staticPairSea.enabled, false);
+    assert.equal(DECLARED.bareGate.enabled, true);
+    // tilted-rail cadence: omega = 1/cos(alpha_M) ~ 1.0415, beta_M = 1 exact
+    assert.ok(Math.abs(DECLARED.omega - 1 / Math.cos(deg(16.24))) < 1e-12);
+    assert.ok(Math.abs(DECLARED.omega - 1.0415) < 1e-3);
+    const sites = buildSites();
+    const betas = {};
+    for (const s of sites) betas[s.layer] = Math.hypot(...rigidVelocity(s, 0));
+    assert.ok(Math.abs(betas.M - 1.0) < 1e-12);
+    // all layers sub-field: speeds ~ 0.51 / 1.00 / 0.34 (packet Row 7)
+    assert.ok(Math.abs(betas.I - 0.51) < 5e-3);
+    assert.ok(Math.abs(betas.O - 0.34) < 5e-3);
+  } finally {
+    selectTabledRow(1);
+    assert.equal(DECLARED.bareGate.enabled, false);
+  }
+});
+
+test("Row 7 in-build stability gate: full Sections 57-59 gate re-derived, all checks pass, gauge-invariant release coupling", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(7);
+    const gate = m.bareStabilityGateInBuild();
+    assert.ok(gate.pass, `gate failed: ${JSON.stringify(gate.checks)}`);
+    for (const [k, v] of Object.entries(gate.checks)) assert.ok(v, `gate check failed: ${k}`);
+    // binding obligation 2 (frozen-kappa discipline): the release coupling is
+    // the gauge-invariant equilibrium value kappa_eq = kappa_fit/lambda =
+    // 1/R_M(eq); R_M(eq) ~ 3.494 kappa*eps^2/c_f^2 (Section 58 Result 3;
+    // consistent with the certificate gauge 0.4615 x 1.6125 orbit)
+    assert.ok(Math.abs(gate.ReqOverKappa - 3.494) < 0.01, `ReqOverKappa: ${gate.ReqOverKappa}`);
+    assert.ok(Math.abs(gate.kappaRelease - 1 / gate.ReqOverKappa) < 1e-12);
+    assert.ok(Math.abs(gate.kappaRelease - 0.2862) < 1e-3);
+    // radial basin at the release gauge (certificate spectrum scales as
+    // lambda^2: 0.674 x (-0.63, -2.00, -6.27) ~ (-0.43, -1.36, -4.27))
+    const spec = gate.equilibrium.railPinnedSpectrum;
+    assert.ok(spec.every((v) => v < 0));
+    assert.ok(Math.abs(spec[0] - -0.429) < 0.02 && Math.abs(spec[2] - -4.269) < 0.15);
+    // tangential ledger at the re-derived equilibrium (anchors 0.0006/0.0004;
+    // the middle's +0.227 rail pump is the escapement's, reported not gated)
+    assert.ok(Math.abs(gate.tangential.tauI) < 0.002);
+    assert.ok(Math.abs(gate.tangential.tauO) < 0.002);
+    assert.ok(Math.abs(gate.tangential.railPumpM - 0.227) < 0.01);
+    // tilt block: exact global null, restoring quotient spectrum (anchors
+    // -0.1247/-0.7485 at the tabled shape; small shift at the re-derived shape)
+    assert.ok(gate.tilt.globalModeResidual < 1e-9);
+    assert.ok(gate.tilt.relativeEigen.every((e) => e.re < 0 && e.im === 0));
+    assert.ok(Math.abs(gate.tilt.relativeEigen[0].re - -0.123) < 0.02);
+    // the re-derived equilibrium shape is the tabled shape to <1% (correction
+    // reported: the export rounds to 0.55/0.75)
+    assert.ok(Math.abs(gate.equilibrium.shapeCorrectionVsTabled.qI) < 0.01);
+    assert.ok(Math.abs(gate.equilibrium.shapeCorrectionVsTabled.qO) < 0.01);
+    // closure metric openly disagrees with the ledgers (Section 58: ~0.425)
+    assert.ok(Math.abs(gate.closureAtEquilibrium - 0.425) < 5e-3);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
+test("Row 7 seed record: native stack validates the instrument at the release protocol (support = 1 by self-adjustment)", async () => {
+  const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
+  try {
+    selectTabledRow(7);
+    const gate = m.bareStabilityGateInBuild();
+    // release-only-from-the-re-derived-equilibrium: radii re-anchored in place
+    DECLARED.layers = DECLARED.layers.map((L) =>
+      L.name === "I"
+        ? { ...L, R: gate.equilibrium.geo.qI }
+        : L.name === "O"
+          ? { ...L, R: gate.equilibrium.geo.qO }
+          : { ...L }
+    );
+    const sites = buildSites();
+    const heldOnly = sites.map((s) => ({
+      site: s,
+      ts: [],
+      xs: [],
+      vs: [],
+      maxRadiusSeen: Math.hypot(s.rho, s.z0),
+      positionAt: (tE) => rigidPosition(s, tE),
+      segment: () => null,
+    }));
+    const seed = seedRecordEvaluation(sites, heldOnly, null, gate.kappaRelease);
+    // native bare-channel fit agrees with the instrument fit (validation anchor)
+    assert.ok(Math.abs(seed.kappaStar - gate.kappaFitBareChannel) < 2e-3);
+    assert.ok(Math.abs(seed.globalRelResidual - 0.4248) < 2e-3);
+    // at the frozen release coupling the seed IS the equilibrium: support = 1
+    // on every layer BY SELF-ADJUSTMENT (Section 58 Result 1, native stack)
+    const sup = seed.supportRatios.atFrozenKappa;
+    for (const L of ["I", "M", "O"]) {
+      assert.ok(Math.abs(sup[L] - 1) < 5e-3, `support ${L} off equilibrium: ${sup[L]}`);
+    }
+    // at the fitted kappa the deficit is the pure dilation gauge (uniform ~lambda)
+    const supF = seed.supportRatios.atFittedKappa;
+    const vals = ["I", "M", "O"].map((L) => supF[L]);
+    assert.ok(Math.max(...vals) - Math.min(...vals) < 5e-3, "dilation deficit not uniform");
+    assert.ok(Math.abs(vals[1] - gate.lambda) < 0.01);
+  } finally {
+    selectTabledRow(1);
+  }
+});
+
 test("Row 4 responsive sea at a=3.40: exact-delay seed rows land on the confining side", async () => {
   const m = await import("../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs");
   selectTabledRow(2);

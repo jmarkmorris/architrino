@@ -33,7 +33,7 @@ The planar and axial alternatives studied elsewhere in the braid stack are there
 
 ## Why Rigidity: The Harmonic-Matching Principle
 
-The family was not guessed; it was selected by a structural principle that the configuration-space comparisons uncovered. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the wake field in the co-rotating frame can supply it. Rigid co-rotation puts all wake power into exactly that part. Any relative layer motion — frequency locks between layers, counter-rotation, speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
+The family was not guessed; it was selected by a structural principle that the configuration-space comparisons uncovered. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the received causal wake in the co-rotating frame can supply it. Rigid co-rotation puts all wake power into exactly that part. Any relative layer motion — frequency locks between layers, counter-rotation, speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
 
 Causal delay is what makes this principle decisive rather than a soft preference. During one antipodal wake transit at near-field speed the pair rotates through roughly a third of a turn, so static-binding intuition — including the naive Kepler-third-law scaling for frequency-locked nested layers — does not transfer to the delayed dynamics. On the unified closure metric (below), every family that breaks rigid co-rotation scores near total failure, while nesting *within* rigid co-rotation produces the single largest closure gain measured: cross-layer delayed-wake geometry cancels most of the tangential pump internally. Claim level: measured comparison on prescribed worldlines plus the structural derivation just stated.
 
@@ -49,7 +49,7 @@ $$
 \frac{\|\mathbf a_{\mathrm{kin},a}-\kappa^*\,\mathbf a_{\mathrm{wake},a}\|}{\|\mathbf a_{\mathrm{kin},a}\|}
 $$
 
-— the fraction of each layer's kinematic requirement that the delayed wake field fails to supply. A perfect self-consistent configuration drives all residuals to zero.
+— the fraction of each layer's kinematic requirement that the delayed causal wake fails to supply. A perfect self-consistent configuration drives all residuals to zero.
 
 Measured against that metric, the search descended a ladder. Every family that breaks rigid co-rotation scores near total failure; nesting inside rigid co-rotation produces the single largest gain; and each subsequent gain is traceable to a named geometric mechanism rather than to fitting freedom:
 

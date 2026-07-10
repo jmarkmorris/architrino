@@ -32,6 +32,13 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { solveMovingCircularSourceCausalRoots } from "../../src/solver/app/AbsoluteHistoryRootRuntime.mjs";
+import {
+  railPinnedEquilibrium,
+  radialStabilityMatrix,
+  tiltStiffness,
+  supportRatios as instrumentSupportRatios,
+  SELF_EQUILIBRATED_V5,
+} from "./spindle-support-ratio-targeted-search.mjs";
 
 export const SCHEMA = "spindle_braid_native_retained_history_confirmation_run.v0";
 export const HANDOFF_PACKET_REF =
@@ -77,6 +84,25 @@ const deg = (d) => (d * Math.PI) / 180;
 //         complex; the declared cage strain (Section 55: polar -0.641 of the
 //         corridor force scale inward, equatorial +0.09..0.15, torques ~0)
 //         is a seed row, not a tunable.
+//  Row 7: SELF-EQUILIBRATED CANDIDATE V5 (packet "Candidate Row 7", tabled
+//         2026-07-09; spec Sections 57-59 by title — the seed-grade radial
+//         stability matrix, the absolute-scale instrument, and the tilt
+//         block; exported SELF_EQUILIBRATED_V5 in
+//         spindle-support-ratio-targeted-search.mjs). NO ENVIRONMENT: bare
+//         braid. Tilted rail: alpha_M = +16.24 deg, cadence
+//         omega = 1/cos(alpha_M) ~ 1.0415, all layers sub-field
+//         (speeds ~ 0.51 / 1.00 / 0.34). Binding obligations (packet Row 7):
+//         (1) the FULL stability gate is re-derived IN-BUILD before release
+//         (radial equilibrium residual + rail-pinned basin spectrum, tau
+//         rows, tilt block with exact global null and quotient relative-tilt
+//         spectrum), witnessed, and the release seeds from the RE-DERIVED
+//         equilibrium; (2) frozen-kappa discipline — the release coupling is
+//         the gauge-invariant equilibrium value kappa_eq = kappa_fit/lambda
+//         (= c_f^2 R_M(eq)^-1 in kappa units, Section 58 Result 3: the
+//         per-configuration kappa refit is a gauge that hides the size mode,
+//         so kappa is fitted ONCE on the bare channel and frozen; the
+//         equilibrium coupling is invariant under where along the gauge
+//         orbit the single fit is taken).
 // ---------------------------------------------------------------------------
 export const TABLED_ROWS = Object.freeze({
   1: Object.freeze([
@@ -98,6 +124,11 @@ export const TABLED_ROWS = Object.freeze({
     Object.freeze({ name: "I", R: 0.4935, alpha: deg(2.85), theta: deg(-4.2) }),
     Object.freeze({ name: "M", R: 1.0, alpha: deg(-30.16), theta: deg(120) }),
     Object.freeze({ name: "O", R: 1.106, alpha: deg(67.5), theta: deg(333.5) }),
+  ]),
+  7: Object.freeze([
+    Object.freeze({ name: "I", R: 0.55, alpha: deg(-27.15), theta: deg(-16.2) }),
+    Object.freeze({ name: "M", R: 1.0, alpha: deg(16.24), theta: deg(120) }),
+    Object.freeze({ name: "O", R: 0.75, alpha: deg(64.5), theta: deg(339.5) }),
   ]),
 });
 
@@ -126,6 +157,9 @@ export function selectTabledRow(row) {
     sp.tabledSeaRows = { I: 0.0013, M: -0.01, O: 0.4178 };
     sp.tabledTotals = { I: 1.0006, M: 0.9961, O: 0.9937 };
   }
+  // Row 7 is the BARE self-equilibrated candidate: no environment of any kind,
+  // and the in-build stability gate (binding obligation 1) is armed.
+  DECLARED.bareGate.enabled = row === 7;
 }
 
 // ---------------------------------------------------------------------------
@@ -322,6 +356,40 @@ export const DECLARED = {
     },
     cageHonestyNt: 24, // Section 55 cycle-average resolution (Nt=24/48 identical)
     stericClearanceDeclared: 0.8, // endpoint-to-cap reach (Section 54 caveat)
+  },
+  // Row 7 in-build bare stability gate (binding obligation 1; spec Sections
+  // 57-59 by title). All anchors are the TABLED gate-certificate rows
+  // (comparison anchors, not tunables); all tolerances are declared here.
+  bareGate: {
+    enabled: false, // set by selectTabledRow(7)
+    // Tabled anchors (packet Row 7 gate certificate). kappaCertificate is the
+    // certificate's fit gauge (fitted at the V4-shape start of the Section 58
+    // descent and frozen); the in-build fit lands on a different point of the
+    // same gauge orbit — the invariant rows are kappa_eq = kappa_fit/lambda
+    // and R_M(eq) = lambda/kappa_fit (Section 58 Result 3).
+    anchors: {
+      kappaCertificate: 0.4615,
+      ReqOverKappa: 3.494, // R_M(eq) in units kappa*eps^2/c_f^2 (gauge-invariant)
+      radialSpectrum: [-0.63, -2.0, -6.27], // certificate gauge (scales as lambda^2)
+      tauI: 0.0006,
+      tauO: 0.0004,
+      railPumpM: 0.227, // the escapement's, as always (excluded from the gate)
+      tiltRelativeEigen: [-0.1247, -0.7485],
+      closure: 0.425, // Section 58: closure and ledger metrics disagree openly
+    },
+    // Declared gate tolerances (release only if every row passes):
+    maxEquilibriumResidual: 5e-5, // max |net radial force| at the release seed
+    maxAbsTau: 0.005, // |tau_I|, |tau_O| at the re-derived equilibrium
+    maxShapeCorrection: 0.02, // |qI,qO re-derived - tabled| (report, gate loose)
+    epsWitness: 0.005, // radial-matrix displacement witness (base eps 0.01)
+    spectrumWitnessRelTol: 0.05,
+    tiltNt: 8,
+    tiltNtWitness: 16, // Section 59: Nt=8/16 identical
+    tiltWitnessRelTol: 0.05,
+    // Basin-width instrument (Row 7 decisive diagnostic 1): twin rows at
+    // SEVERAL kick sizes; the declared returning-classification is
+    // maxSep < tubeRadius AND final separation < 0.9 * peak (turned around).
+    twinKicks: [0.001, 0.003, 0.01, 0.03],
   },
   chart: {
     enabled: false,
@@ -840,6 +908,130 @@ export function braidAxisRow(states) {
     axisTiltDeg: (Math.acos(Math.max(-1, Math.min(1, w[2] / n))) * 180) / Math.PI,
     axisAzimuthDeg: (Math.atan2(w[1], w[0]) * 180) / Math.PI,
     omegaFit: n,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Row 7 in-build bare stability gate (binding obligation 1). Re-derives the
+// FULL Sections 57-59 gate on the owner instruments at the tabled geometry:
+//  1. rail-pinned radial equilibrium (Newton at frozen kappa, omega live on
+//     the rail) -> lambda, equilibrium shape, and the gauge-invariant release
+//     coupling kappa_eq = kappa_fit/lambda (frozen-kappa discipline, binding
+//     obligation 2: one fit on the bare channel, then frozen; the equilibrium
+//     coupling is invariant under the fit gauge, witnessed via ReqOverKappa);
+//  2. equilibrium verification AT the release gauge (the seed the release
+//     actually uses): residual floor + rail-pinned basin spectrum, with a
+//     displacement-eps witness;
+//  3. tangential rows at the re-derived equilibrium (tau_I, tau_O ~ 0; the
+//     middle's rail pump is the escapement's, reported not gated);
+//  4. the tilt block: exact global-null witness + quotient relative-tilt
+//     spectrum (restoring required; complex would be whirl), Nt-witnessed.
+// Returns the gate block; gate.pass gates the release (fail-closed).
+// ---------------------------------------------------------------------------
+export function bareStabilityGateInBuild() {
+  const g = DECLARED.bareGate;
+  const L = Object.fromEntries(DECLARED.layers.map((x) => [x.name, x]));
+  const geoTabled = {
+    qI: L.I.R,
+    qO: L.O.R,
+    alphaI: L.I.alpha,
+    alphaM: L.M.alpha,
+    alphaO: L.O.alpha,
+    thetaI: L.I.theta,
+    thetaM: L.M.theta,
+    thetaO: L.O.theta,
+  };
+  // 0. tabled-row / exported-candidate consistency (guards against drift
+  // between the run's TABLED_ROWS block and the instrument's export)
+  const exp = SELF_EQUILIBRATED_V5.geo;
+  const exportConsistent = ["qI", "qO", "alphaI", "alphaM", "alphaO", "thetaI", "thetaO"]
+    .every((k) => Math.abs(geoTabled[k] - exp[k]) < 1e-9);
+  // 1. rail-pinned Newton at the single frozen bare-channel fit
+  const eq = railPinnedEquilibrium({ geo: geoTabled });
+  const kappaRelease = eq.kappaFrozen / eq.lambda;
+  const ReqOverKappa = eq.lambda / eq.kappaFrozen;
+  const geoEq = { ...geoTabled, qI: eq.shapeEq.qI, qO: eq.shapeEq.qO };
+  const shapeCorrection = {
+    qI: geoEq.qI - geoTabled.qI,
+    qO: geoEq.qO - geoTabled.qO,
+  };
+  // 2. equilibrium verification at the release gauge (+ eps witness)
+  const ver = radialStabilityMatrix({
+    geo: geoEq, withCage: false, railPinned: true, kapFixed: kappaRelease,
+  });
+  const verWitness = radialStabilityMatrix({
+    geo: geoEq, withCage: false, railPinned: true, kapFixed: kappaRelease,
+    eps: g.epsWitness,
+  });
+  const residualMax = Math.max(...ver.seedNetForces.slice(0, 3).map(Math.abs));
+  const spectrum = ver.symEigen.map((e) => e.value);
+  const spectrumWitness = verWitness.symEigen.map((e) => e.value);
+  const spectrumWitnessOk = spectrum.every(
+    (v, k) => Math.abs(v - spectrumWitness[k]) <= g.spectrumWitnessRelTol * Math.abs(v)
+  );
+  // 3. tangential rows at the re-derived equilibrium (gauge-robust zeros)
+  const rows = instrumentSupportRatios({ geo: geoEq });
+  const tauI = rows.tanRows.I;
+  const tauO = rows.tanRows.O;
+  const railPumpM = rows.tanRows.M;
+  // 4. tilt block (+ Nt witness)
+  const tilt = tiltStiffness({ geo: geoEq, Nt: g.tiltNt });
+  const tiltWitness = tiltStiffness({ geo: geoEq, Nt: g.tiltNtWitness });
+  const tiltEig = tilt.relativeEigen;
+  const tiltEigW = tiltWitness.relativeEigen;
+  const tiltWitnessOk = tiltEig.every(
+    (e, k) =>
+      Math.abs(e.re - tiltEigW[k].re) <= g.tiltWitnessRelTol * Math.abs(e.re) &&
+      Math.abs(e.im - tiltEigW[k].im) <= g.tiltWitnessRelTol * Math.max(Math.abs(e.re), 1e-9)
+  );
+  const checks = {
+    exportConsistent,
+    newtonConverged: Math.max(...eq.residualF.map(Math.abs)) < g.maxEquilibriumResidual,
+    equilibriumResidualOk: residualMax < g.maxEquilibriumResidual,
+    basin: ver.basin,
+    spectrumWitnessOk,
+    tauOk: Math.abs(tauI) <= g.maxAbsTau && Math.abs(tauO) <= g.maxAbsTau,
+    shapeCorrectionOk:
+      Math.abs(shapeCorrection.qI) <= g.maxShapeCorrection &&
+      Math.abs(shapeCorrection.qO) <= g.maxShapeCorrection,
+    tiltGlobalNullOk: tilt.globalNullOk,
+    tiltRestoring: tilt.restoringRelative,
+    tiltWitnessOk,
+  };
+  const pass = Object.values(checks).every(Boolean);
+  return {
+    pass,
+    checks,
+    tabledGeoRef: "SELF_EQUILIBRATED_V5 (spindle-support-ratio-targeted-search.mjs)",
+    kappaFitBareChannel: eq.kappaFrozen,
+    lambda: eq.lambda,
+    kappaRelease,
+    ReqOverKappa,
+    ReqOverKappaAnchor: g.anchors.ReqOverKappa,
+    kappaCertificateGaugeNote:
+      "certificate kappa* 0.4615 and in-build fit lie on one gauge orbit; kappa_eq = kappa_fit/lambda and R_M(eq) = lambda/kappa_fit are the invariants",
+    equilibrium: {
+      geo: geoEq,
+      shapeCorrectionVsTabled: shapeCorrection,
+      newtonResidualF: eq.residualF,
+      residualMaxAtReleaseGauge: residualMax,
+      netForcesAtReleaseGauge: ver.seedNetForces.slice(0, 3),
+      railPinnedSpectrum: spectrum,
+      railPinnedSpectrumEpsWitness: spectrumWitness,
+      spectrumCertificateGauge: eq.railPinnedSpectrum,
+      anchorsSpectrum: g.anchors.radialSpectrum,
+    },
+    tangential: { tauI, tauO, railPumpM, anchors: { tauI: g.anchors.tauI, tauO: g.anchors.tauO, railPumpM: g.anchors.railPumpM } },
+    closureAtEquilibrium: rows.closure,
+    closureAnchor: g.anchors.closure,
+    tilt: {
+      globalModeResidual: tilt.globalModeResidual,
+      relativeEigen: tiltEig,
+      relativeEigenNtWitness: tiltEigW,
+      anchors: g.anchors.tiltRelativeEigen,
+      ntBase: g.tiltNt,
+      ntWitness: g.tiltNtWitness,
+    },
   };
 }
 
@@ -1731,6 +1923,30 @@ function layerProjections(sites, states, wakes, kappa) {
     const w2 = DECLARED.omega * DECLARED.omega;
     rows[L].supportRatio = -rows[L].radial / (w2 * rows[L].cylRadius);
   }
+  // Instantaneous self-adjusted support (Row 7 decisive diagnostic 5: the
+  // corridor should hold BY SELF-ADJUSTMENT, not by initial placement): the
+  // same inward wake row against the LIVE centripetal need v_t^2/rho of the
+  // released orbit, instead of the seed cadence's omega^2*rho. At the seed
+  // the two coincide; along a self-adjusting release the instant row is the
+  // claim-bearing one and the seed-cadence row is the drift indicator.
+  const inst = {};
+  for (let i = 0; i < sites.length; i += 1) {
+    const { x, v } = states[i];
+    const rho = Math.hypot(x[0], x[1]);
+    if (rho < 1e-12) continue;
+    const tHat = [-x[1] / rho, x[0] / rho];
+    const vt = v[0] * tHat[0] + v[1] * tHat[1];
+    const rHat = [x[0] / rho, x[1] / rho];
+    const inward = -kappa * (wakes[i][0] * rHat[0] + wakes[i][1] * rHat[1]);
+    const need = (vt * vt) / rho;
+    const L = sites[i].layer;
+    if (!inst[L]) inst[L] = { sum: 0, n: 0 };
+    inst[L].sum += need > 1e-12 ? inward / need : 0;
+    inst[L].n += 1;
+  }
+  for (const L of Object.keys(inst)) {
+    if (rows[L]) rows[L].supportRatioInstant = inst[L].sum / inst[L].n;
+  }
   return rows;
 }
 
@@ -2010,9 +2226,10 @@ export function runRelease({
         states[i].x[2] - rp[2]
       );
     });
-    // Row 6 axis-wobble watch + steric clearance (cheap; both diagnostics
-    // are packet rows, reported every step for the released braid)
-    const axisRow = staticPairSea ? braidAxisRow(states) : null;
+    // Axis-wobble watch (Row 6 diagnostic 6; Row 7 decisive diagnostic 2 —
+    // the tilt block predicts bounded/decaying nutation, growth = flutter)
+    // + steric clearance (Row 6). Both cheap; axis row reported every step.
+    const axisRow = braidAxisRow(states);
     const cageClearance = staticPairSea ? minCageClearance(staticPairSea, states) : null;
     diag.push({
       t,
@@ -2180,6 +2397,12 @@ if (isMain()) {
     );
     process.exit(1);
   }
+  if (DECLARED.bareGate.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
+    process.stderr.write(
+      "[abort] Row 7 is the BARE self-equilibrated candidate (no environment); --sea/--responsive-sea do not compose with --row=7\n"
+    );
+    process.exit(1);
+  }
   DECLARED.epicycle.I = readCliNumber("ei", 0);
   DECLARED.epicycle.M = readCliNumber("em", 0);
   DECLARED.epicycle.O = readCliNumber("eo", 0);
@@ -2199,9 +2422,60 @@ if (isMain()) {
   DECLARED.apsisStart.I = readStart("i");
   DECLARED.apsisStart.M = readStart("m");
   DECLARED.apsisStart.O = readStart("o");
-  const kappaOverride = readCliNumber("kappa", NaN);
+  let kappaOverride = readCliNumber("kappa", NaN);
   const outName = process.argv.find((a) => a.startsWith("--out="))?.slice(6) ?? "report.json";
   const t0 = Date.now();
+
+  // Row 7 binding obligation 1: the FULL stability gate re-derived IN-BUILD
+  // before anything else; release only from the re-derived equilibrium, at
+  // the gauge-invariant frozen release coupling (binding obligation 2).
+  let bareGateBlock = null;
+  if (DECLARED.bareGate.enabled) {
+    bareGateBlock = bareStabilityGateInBuild();
+    process.stderr.write(
+      `[gate] pass=${bareGateBlock.pass} kappaFit=${bareGateBlock.kappaFitBareChannel.toFixed(6)} ` +
+        `lambda=${bareGateBlock.lambda.toFixed(6)} kappaRelease=${bareGateBlock.kappaRelease.toFixed(6)} ` +
+        `R_M(eq)/kappa=${bareGateBlock.ReqOverKappa.toFixed(4)} (anchor ${bareGateBlock.ReqOverKappaAnchor})\n`
+    );
+    process.stderr.write(
+      `[gate] radial spectrum (release gauge) ${bareGateBlock.equilibrium.railPinnedSpectrum.map((v) => v.toFixed(4)).join("/")} ` +
+        `residualMax=${bareGateBlock.equilibrium.residualMaxAtReleaseGauge.toExponential(2)} ` +
+        `tau I/O=${bareGateBlock.tangential.tauI.toFixed(5)}/${bareGateBlock.tangential.tauO.toFixed(5)} ` +
+        `railPump=${bareGateBlock.tangential.railPumpM.toFixed(4)}\n`
+    );
+    process.stderr.write(
+      `[gate] tilt globalNullResidual=${bareGateBlock.tilt.globalModeResidual.toExponential(2)} ` +
+        `relativeEigen=${bareGateBlock.tilt.relativeEigen.map((e) => `${e.re.toFixed(4)}${e.im ? `+-${Math.abs(e.im).toFixed(4)}i` : ""}`).join("/")} ` +
+        `(anchors ${bareGateBlock.tilt.anchors.join("/")})\n`
+    );
+    if (!bareGateBlock.pass) {
+      const gateReport = {
+        schema: SCHEMA,
+        handoffPacketRef: HANDOFF_PACKET_REF,
+        declared: DECLARED,
+        firstBlocker: "stability_gate_failed_in_build",
+        bareStabilityGate: bareGateBlock,
+        failClosed: FAIL_CLOSED,
+      };
+      fs.writeFileSync(path.join(outDir, outName), JSON.stringify(gateReport, null, 1));
+      process.stderr.write(
+        "[abort] in-build stability gate failed; gate-only report written, no release (fail-closed)\n"
+      );
+      process.exit(0);
+    }
+    // Release only from the re-derived equilibrium: the layer radii are the
+    // gate's equilibrium shape (M stays the R_M = 1 unit; angles tabled).
+    DECLARED.layers = DECLARED.layers.map((L) =>
+      L.name === "I"
+        ? { ...L, R: bareGateBlock.equilibrium.geo.qI }
+        : L.name === "O"
+          ? { ...L, R: bareGateBlock.equilibrium.geo.qO }
+          : { ...L }
+    );
+    // Frozen-kappa discipline: the release runs at kappa_eq (an explicit
+    // operator --kappa still wins, reported as an override).
+    if (!Number.isFinite(kappaOverride)) kappaOverride = bareGateBlock.kappaRelease;
+  }
 
   // Seed record: native production-runtime evaluation at t = 0 (all held).
   const sites = buildSites();
@@ -2483,41 +2757,25 @@ if (isMain()) {
     main.histories = main.state.histories;
   }
 
-  // Stability row: perturbed twin over the shared window.
-  const twinPrior = loadState(twinStatePath);
-  let twin = null;
-  if (twinRotations > 0 && (!twinPrior || (twinPrior.step < twinPrior.steps && !twinPrior.halted))) {
-    twin = runRelease({
-      rotations: twinRotations,
-      kappa: seed.kappaStar,
-      perturb: { siteIndex: 2, tangentialKick: DECLARED.twinPerturbation },
-      recordRotations: [],
-      resumeState: twinPrior,
-      budgetMs: Math.max(1000, budgetMs - (Date.now() - t0)),
-    });
-    fs.writeFileSync(twinStatePath, JSON.stringify(twin.state));
-    if (!twin.completed) {
-      process.stderr.write(
-        `[chunk] twin phase paused at step ${twin.state.step}/${twin.state.steps}; rerun to resume\n`
-      );
-      process.exit(0);
-    }
-    twin = { histories: twin.state.histories, diag: twin.state.diag, halted: twin.state.halted };
-  } else if (twinPrior) {
-    twin = { histories: twinPrior.histories, diag: twinPrior.diag, halted: twinPrior.halted };
-  }
-
-  const twinSep = [];
-  if (twin) {
-    const nTwin = Math.min(
-      twin.histories[0].xs.length,
-      main.histories[0].xs.length
-    );
+  // Stability row: perturbed twin(s) over the shared window. Rows 1-6 book a
+  // single kick at the declared twinPerturbation; Row 7 is the basin-width
+  // instrument (decisive diagnostic 1): SEVERAL kick sizes, each classified
+  // by the declared returning rule, largest returning kick reported.
+  const thinArr = (arr, n) => arr.filter((_, k) => k % n === 0);
+  const twinKicksCli = process.argv.find((a) => a.startsWith("--twin-kicks="))?.slice(13);
+  const twinKicks = twinKicksCli
+    ? twinKicksCli.split(",").map(Number).filter((v) => Number.isFinite(v) && v > 0)
+    : DECLARED.bareGate.enabled
+      ? DECLARED.bareGate.twinKicks
+      : [DECLARED.twinPerturbation];
+  const computeSeparation = (twinHistories) => {
+    const sepSeries = [];
+    const nTwin = Math.min(twinHistories[0].xs.length, main.histories[0].xs.length);
     for (let k = 0; k < nTwin; k += 1) {
       let sep = 0;
       for (let i = 0; i < 6; i += 1) {
         const a = main.histories[i];
-        const b = twin.histories[i];
+        const b = twinHistories[i];
         sep = Math.max(
           sep,
           Math.hypot(
@@ -2527,11 +2785,119 @@ if (isMain()) {
           )
         );
       }
-      twinSep.push({ t: k * DECLARED.timeStep, separation: sep });
+      sepSeries.push({ t: k * DECLARED.timeStep, separation: sep });
     }
+    return sepSeries;
+  };
+  const twinRows = [];
+  for (let ki = 0; ki < twinKicks.length && twinRotations > 0; ki += 1) {
+    const kick = twinKicks[ki];
+    const kickStatePath =
+      twinKicks.length === 1 && !DECLARED.bareGate.enabled
+        ? twinStatePath
+        : path.join(outDir, `state-${tag}-twin-k${ki}.json`);
+    let prior = loadState(kickStatePath);
+    let twinState = null;
+    if (!prior || (prior.step < prior.steps && !prior.halted)) {
+      const t = runRelease({
+        rotations: twinRotations,
+        kappa: seed.kappaStar,
+        perturb: { siteIndex: 2, tangentialKick: kick },
+        recordRotations: [],
+        resumeState: prior,
+        budgetMs: Math.max(1000, budgetMs - (Date.now() - t0)),
+      });
+      fs.writeFileSync(kickStatePath, JSON.stringify(t.state));
+      if (!t.completed) {
+        process.stderr.write(
+          `[chunk] twin kick=${kick} paused at step ${t.state.step}/${t.state.steps}; rerun to resume\n`
+        );
+        process.exit(0);
+      }
+      twinState = t.state;
+    } else {
+      twinState = prior;
+    }
+    const series = computeSeparation(twinState.histories);
+    const maxSep = series.reduce((m, s) => Math.max(m, s.separation), 0);
+    const finalSep = series.length ? series[series.length - 1].separation : null;
+    // Declared returning rule (basin prediction: bounded, returning):
+    // bounded inside the tube AND turned around by the window's end.
+    const returning =
+      maxSep < DECLARED.tubeRadiusForShapeQuestion && finalSep < 0.9 * maxSep;
+    twinRows.push({
+      kick,
+      halted: twinState.halted,
+      maxSeparation: maxSep,
+      finalSeparation: finalSep,
+      returning,
+      separationThinned: thinArr(series, 10),
+    });
+    process.stderr.write(
+      `[twin] kick=${kick} maxSep=${maxSep.toExponential(3)} finalSep=${finalSep?.toExponential(3)} returning=${returning}\n`
+    );
   }
+  const returningKicks = twinRows.filter((r) => r.returning).map((r) => r.kick);
+  const largestReturningKick = returningKicks.length ? Math.max(...returningKicks) : null;
 
-  const thin = (arr, n) => arr.filter((_, k) => k % n === 0);
+  const thin = thinArr;
+  // Row 7 report blocks computed from the released record (no extra cost):
+  //  - size mode (decisive diagnostic 3): R_M(t) about its equilibrium (the
+  //    seed radius is the re-derived equilibrium, so equilibrium = 1) — the
+  //    first native test of the size pin;
+  //  - escapement statistics (diagnostic 4) at the tabled cadence;
+  //  - axis dynamics (diagnostic 2): nutation series summary.
+  const seriesStats = (vals) => {
+    if (!vals.length) return null;
+    let mn = Infinity, mx = -Infinity, sum = 0;
+    for (const v of vals) { mn = Math.min(mn, v); mx = Math.max(mx, v); sum += v; }
+    const mean = sum / vals.length;
+    let var2 = 0;
+    for (const v of vals) var2 += (v - mean) * (v - mean);
+    return { mean, min: mn, max: mx, std: Math.sqrt(var2 / vals.length) };
+  };
+  const sizeModeBlock = (() => {
+    const rM = main.diag.map((d) => d.layerRadii.M);
+    const rI = main.diag.map((d) => d.layerRadii.I);
+    const rO = main.diag.map((d) => d.layerRadii.O);
+    let crossings = 0;
+    for (let k = 1; k < rM.length; k += 1) {
+      if ((rM[k - 1] - 1) * (rM[k] - 1) < 0) crossings += 1;
+    }
+    const half = Math.floor(rM.length / 2);
+    const meanOf = (a, lo, hi) => a.slice(lo, hi).reduce((s, v) => s + v, 0) / Math.max(1, hi - lo);
+    return {
+      equilibriumRM: 1,
+      rM: seriesStats(rM),
+      rI: seriesStats(rI),
+      rO: seriesStats(rO),
+      rMEquilibriumCrossings: crossings,
+      rMDriftFirstToSecondHalf: rM.length > 3 ? meanOf(rM, half, rM.length) - meanOf(rM, 0, half) : null,
+    };
+  })();
+  const escapementBlock = (() => {
+    const bM = main.diag.map((d) => d.betaM);
+    const above = bM.filter((b) => b > 1).length;
+    return {
+      omegaDeclared: DECLARED.omega,
+      betaM: seriesStats(bM),
+      fractionAboveRail: bM.length ? above / bM.length : null,
+      railCrossingTotal: main.railCrossings.length,
+      clickTransitions: main.clickLedger.totalTransitions,
+    };
+  })();
+  const axisBlock = (() => {
+    const rows = main.diag.filter((d) => d.axisRow && d.axisRow.axisTiltDeg != null);
+    if (!rows.length) return null;
+    const tilt = rows.map((d) => d.axisRow.axisTiltDeg);
+    const omega = rows.map((d) => d.axisRow.omegaFit);
+    const last = rows[rows.length - 1];
+    return {
+      axisTiltDeg: seriesStats(tilt),
+      axisTiltFinalDeg: last.axisRow.axisTiltDeg,
+      omegaFit: seriesStats(omega),
+    };
+  })();
   const report = {
     schema: SCHEMA,
     handoffPacketRef: HANDOFF_PACKET_REF,
@@ -2546,15 +2912,18 @@ if (isMain()) {
       supportRatios: seed.supportRatios,
       seaRows: seed.seaRows,
       staticPairSea: staticPairSeaSeedBlock,
+      bareStabilityGate: bareGateBlock,
       candidateRow: DECLARED.candidateRow,
       prescribedEvaluatorAnchor:
-        DECLARED.candidateRow === 6
-          ? 0.2474
-          : DECLARED.candidateRow === 5
-            ? 0.2058
-            : DECLARED.candidateRow === 2
-              ? 0.3240
-              : 0.4721,
+        DECLARED.candidateRow === 7
+          ? 0.4265
+          : DECLARED.candidateRow === 6
+            ? 0.2474
+            : DECLARED.candidateRow === 5
+              ? 0.2058
+              : DECLARED.candidateRow === 2
+                ? 0.3240
+                : 0.4721,
       seedRootLedger: seed.samples.map((s) => ({ site: s.site, ledger: s.ledger })),
     },
     release: {
@@ -2591,11 +2960,17 @@ if (isMain()) {
       responsiveSeaMode: DECLARED.responsiveSea.enabled,
       responsiveSeaClampedLookups: main.state?.responsiveSea?.clampedLookups ?? null,
       staticPairSeaMode: DECLARED.staticPairSea.enabled,
+      sizeMode: sizeModeBlock,
+      escapement: escapementBlock,
+      axisDynamics: axisBlock,
     },
     stabilityRow: {
-      perturbation: DECLARED.twinPerturbation,
       perturbedSite: "M+",
-      separationThinned: thin(twinSep, 10),
+      kicks: twinKicks,
+      returningRule:
+        "maxSeparation < tubeRadiusForShapeQuestion AND finalSeparation < 0.9*maxSeparation",
+      twinRows,
+      largestReturningKick,
     },
     failClosed: FAIL_CLOSED,
     elapsedSeconds: (Date.now() - t0) / 1000,

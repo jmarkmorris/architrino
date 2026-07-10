@@ -4,7 +4,7 @@ This chapter collects the braid families that the configuration-space program ex
 
 Demotion to this collection is a standing decision, not a rejection theorem. Each family below retains its definition, its scoped results, and its re-entry condition: if the spindle route is decisively rejected, these families re-enter the search as live candidates. The status discipline of the braid stack binds throughout — no family on this page is a retained branch, and the retained-branch certificate target of [Neutral Braid](neutral-braid.md) remains open for every realization named here.
 
-Two neighboring chapters remain the active homes of machinery first developed on these families. [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics) carries the coupled-band mechanism targets and the terminal-alignment program; [Nested Shell Braid Geometry](braid-envelope-geometry.md) carries the exclusion-envelope and observer-export interface consumed by the spacetime and nuclear-atomic chapters. Those interfaces are stated family-generally where possible and are expected to be re-hosted onto whichever family is eventually retained.
+Two neighboring chapters remain the active homes of machinery first developed on these families. [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics) carries the coupled-band mechanism targets and the terminal-alignment program; [Braid Envelope Geometry](braid-envelope-geometry.md) carries the exclusion-envelope and observer-export interface consumed by the spacetime and nuclear-atomic chapters. Those interfaces are stated family-generally where possible and are expected to be re-hosted onto whichever family is eventually retained.
 
 ## Symmetric Shell Braid
 
