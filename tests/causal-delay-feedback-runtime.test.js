@@ -3388,6 +3388,62 @@ test("causal delay feedback pointer drag on path line updates the path preview",
   assert.equal(readout.hidden, false);
 });
 
+test("causal delay feedback can start another path drag while the prior solver rerun is pending", async () => {
+  let resolveReplay;
+  const replayPending = new Promise((resolve) => {
+    resolveReplay = resolve;
+  });
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: {
+      async createReplayAsync() {
+        return replayPending;
+      },
+    },
+    autoLoadReplay: false,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+      setPointerCapture() {},
+    },
+    readout: new FakeElement(),
+    replayStatus: new FakeElement(),
+  };
+  runtime.render = () => {};
+  const firstAnchor = runtime.dataset.paths.positrino[60];
+  runtime.applyPathLineDrag("positrino", firstAnchor.t, { x: 0, y: -20 });
+  runtime.dragState = { type: "path-line", kind: "positrino", anchorT: firstAnchor.t, didEdit: true };
+  const firstRerun = runtime.finishDrag();
+  assert.equal(runtime.replayLoadState, "loading");
+
+  const secondAnchor = runtime.dataset.paths.positrino[80];
+  const secondScreen = runtime.worldToScreen(secondAnchor);
+  runtime.handleCanvasPointerDown({
+    pointerId: 9,
+    pointerType: "mouse",
+    clientX: secondScreen.x,
+    clientY: secondScreen.y,
+    preventDefault() {},
+  });
+  runtime.handleCanvasPointerMove({
+    pointerId: 9,
+    pointerType: "mouse",
+    clientX: secondScreen.x,
+    clientY: secondScreen.y - 25,
+    preventDefault() {},
+  });
+
+  assert.equal(runtime.dragState.type, "path-line");
+  assert.equal(runtime.dragState.didEdit, true);
+  assert.equal(runtime.replayLoadState, "draft");
+  resolveReplay(createMockCausalDelayReplayDataset(runtime.presetId));
+  await firstRerun;
+  assert.equal(runtime.dragState.type, "path-line");
+  assert.equal(runtime.dragState.didEdit, true);
+});
+
 test("causal delay feedback pointer drag on endpoint handle moves the endpoint", () => {
   const readout = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({

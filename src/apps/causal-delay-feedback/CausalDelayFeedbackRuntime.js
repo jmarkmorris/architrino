@@ -2764,6 +2764,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   handleCanvasPointerDown(event) {
+    this.cancelPendingReplayForDirectManipulation();
     const screen = this.canvasScreenPointFromEvent(event);
     const hit = this.findNearestHit(screen, { includeWakes: true, includePaths: true });
     if (!hit) {
@@ -2786,6 +2787,18 @@ class CausalDelayFeedbackRuntime {
       this.startPathLineDrag(event, hit);
     }
     this.render();
+  }
+
+  cancelPendingReplayForDirectManipulation() {
+    if (this.replayLoadState !== "loading") {
+      return false;
+    }
+    this.replayLoadSequence += 1;
+    if (this.dataset?.datasetSource === DIRECT_MANIPULATION_DRAFT_PREVIEW) {
+      this.replayLoadState = "draft";
+      this.updateReplayStatus();
+    }
+    return true;
   }
 
   handleCanvasWheel(event) {
