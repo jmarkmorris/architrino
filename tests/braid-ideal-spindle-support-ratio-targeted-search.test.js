@@ -8,6 +8,9 @@ import {
   brokenSymmetryTransportGate, internalDeformationPencil,
   globalDrainShortfall, seaTiltDampingEstimate, coOrbitalCageSink,
   nativeSaturatedCageDrain, selfTorqueMemoryDepth, farFieldAngularMomentumFlux,
+  boundInternalBalance, magneticAnalogFarFieldFlux,
+  integrateMagneticAngularMomentumFlux, outgoingHelicalMagneticPositiveControl,
+  wholeBraidNetSelfTorque,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -590,6 +593,60 @@ test("far-field flux: the light-cylinder verdict — bound field, pin holds, the
   const g = farFieldAngularMomentumFlux({ radii: [16, 32, 64, 128, 256], Ntheta: 10, Nphi: 20, Nt: 10 });
   assert.equal(g.fluxVanishesAtFarField, true);
   assert.equal(g.verdict, "far_field_angular_momentum_flux_vanishes_bound_field_light_cylinder_pin_holds_residual_reactive_S1S2_closes");
+});
+
+// --- §79: the bound-field internal angular-momentum balance (S1/S2 closure) ---
+
+test("internal balance: the reactive-vs-drive dichotomy — the §66 near-field DRIVE runs away (Row-7), the §78 REACTIVE residual + §57 basin is bounded", () => {
+  const g = boundInternalBalance({});
+  assert.equal(g.driveBranch_row7_nearFieldTruncation.bounded, false, "residual as a real secular drive → Row-7 runaway");
+  assert.equal(g.reactiveBranch_s78_boundField.bounded, true, "residual reactive (§78) + §57 basin → bounded");
+});
+
+test("internal balance (§81 CORRECTED): the net self-torque selects the DRIVE branch — S1/S2 does NOT close; the §79 reactive-closure reading is withdrawn", () => {
+  const g = boundInternalBalance({});
+  assert.equal(g.dichotomyClean, true, "the reactive-vs-drive dichotomy is clean (reactive bounded, drive runaway)");
+  assert.equal(g.branchSelectedByNetSelfTorque, "drive", "§81: the nonzero net self-torque puts the residual in the drive branch");
+  assert.equal(g.s1s2Closes, false, "§79 closure withdrawn — the residual is a real radiated/driving torque");
+});
+
+// --- §80: ceiling (i) — the magnetic-analog far-field-flux test ---
+
+test("magnetic-analog flux: the history-generated A_wake reconstruction reports a resolved far-field scaling verdict", () => {
+  const g = magneticAnalogFarFieldFlux({ radii: [16, 32, 64, 128, 256] });
+  assert.equal(g.claimLevel, "seed_grade_far_field_measurement_declared_effective_reconstruction");
+  assert.equal(g.stressTensorChoice, "magnetic_type_Maxwell_Tij_BiBj_minus_one_half_deltaij_B2");
+  assert.ok(Number.isFinite(g.magneticFluxEndpointSlope));
+  assert.equal(g.magneticFluxIsRadiative, true);
+  assert.ok(Math.abs(g.magneticFluxEndpointSlope) < 0.1);
+  assert.ok(g.magneticFluxRadialSpreadFraction < 0.1);
+  assert.equal(g.verdict, "history_generated_magnetic_analog_carries_constant_far_field_flux_radiation_reaction_channel_exists");
+});
+
+test("magnetic-analog flux: the embedded outgoing-helical m=1 positive control carries radius-independent angular momentum flux", () => {
+  const g = magneticAnalogFarFieldFlux({ radii: [16, 32, 64, 128, 256] });
+  assert.equal(g.positiveControl.passesConstantFlux, true);
+  assert.ok(Math.abs(g.positiveControl.endpointSlope) < 0.05);
+});
+
+test("magnetic-flux integrator positive control independently resolves constant Phi_mag", () => {
+  const radii = [16, 32, 64, 128, 256], omega = 1.1;
+  const g = integrateMagneticAngularMomentumFlux({
+    radii, Ntheta: 10, Nphi: 20, Nt: 10, period: 2 * Math.PI / omega,
+    magneticFieldAt: outgoingHelicalMagneticPositiveControl({ omega }),
+  });
+  assert.ok(Math.abs(g.endpointSlope) < 0.05, `control slope ${g.endpointSlope} ≈ 0`);
+});
+
+// --- §81: whole-braid net self-torque — the conservation check that refutes §79/§80 ---
+
+test("net self-torque: the whole-braid net secular z-torque is NONZERO (the middle pump) — the residual is a REAL drive, not reactive; refutes the §79/§80 closure", () => {
+  const g = wholeBraidNetSelfTorque({});
+  assert.ok(Math.abs(g.netWithSelfHitBrake) > 0.05, `net self-torque ${g.netWithSelfHitBrake} is nonzero (~+0.14)`);
+  assert.equal(g.netIsZero, false);
+  assert.equal(g.verdict, "net_self_torque_NONZERO_residual_is_a_real_drive_refutes_s79_s80_reactive_closure_inconsistent_with_s78_vanishing_flux");
+  // the net is carried by the middle layer (the rail pump); inner/outer ~0
+  assert.ok(Math.abs(g.perLayerZTorque.M) > 0.3 && Math.abs(g.perLayerZTorque.I) < 0.05, "net z-torque concentrated on the middle rail");
 });
 
 test("fail-closed", () => {

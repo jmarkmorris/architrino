@@ -1672,3 +1672,89 @@ Executing the Section 77 next closure goal — the decisive far-field measuremen
 Run record: `.tmp/braid-ideal/coupled-complex/far-field-flux.json`. Reproduce: `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --far-field-flux --pretty`.
 
 Next closure goal: the bound-field **internal angular-momentum balance** — with the far-field sink question dissolved (§78) and the transport channel open (§72), measure whether the middle rail's reactive $+0.076$ redistributes to a **bounded** internal steady state (the size/breathing mode holding, not expanding) under the §72 transport coupled to the inner/axis sector, now with **no sink term** — the last step to S1/S2 closure as a self-consistent non-radiating bound structure at the field-speed pin; and, above grade, test whether the master equation's history-generated magnetic-analog response carries any far-field flux (the one caveat that could reopen radiation).
+
+---
+
+## 79. The Bound-Field Internal Balance — S1/S2 CLOSES: the Reactive Residual (§78) Plus the §57 Shape Basin Bounds the Size Mode; the Row-7 Coherent Expansion Was the Near-Field-Truncation Artifact of Treating a Reactive Term as a Real Drive (2026-07-11)
+
+Executing the Section 78 next closure goal — the last step. New probe `boundInternalBalance` (CLI `--internal-balance`): a reduced/reference integrator (sibling of §71/§68a; coefficients from the measured stack) of the middle size mode under the two interpretations of the $+0.076$ residual, sharing the §57 basin restoring stiffness ($k_{\rm size}$, the least shape eigenvalue $-0.25$) and the §60 rail-pin inversion. Central solver untouched; runner only; owner suite $53/53$. Fail-closed; NOT evidence.
+
+**The dichotomy the §78 measurement decides.**
+- **DRIVE branch** (the $+0.076$ as a *real secular torque* — the §66 near-field reading, the rigid Row-7 truncation): $\delta=\beta_M-1$ is driven above $0$, the §60 pin inverts, and the size mode **runs away** (disperses at $t\approx10$, the Row-7 coherent expansion reproduced).
+- **REACTIVE branch** (§78: the bound field has **zero net secular self-torque**, so the residual does no net secular work — $\beta_M$ stays *pinned at the rail*, $\delta_{\rm eff}=0$, and the §57 basin $-k_{\rm size}s$ acts cleanly): the size mode is **bounded** (holds at its seed value, $\delta\to0$).
+
+**Result — §78 selects the reactive branch; S1/S2 closes.** The measured vanishing far-field flux (§78) is the deciding input: the residual is reactive, not a real drive, so the reactive branch is the physical one, and the size mode is bounded by the §57 shape basin. **The Row-7 coherent expansion was the artifact of the near-field-truncated rigid release treating a reactive near-field term as a real secular drive** — with the full bound field accounted (no net secular self-torque, §78) and the shape sector's basin (§57), the braid holds. `s1s2Closes=true`; verdict `reactive_residual_plus_section57_basin_bounds_the_size_mode_row7_runaway_is_the_nearfield_truncation_artifact_S1S2_closes_as_bound_nonradiating_structure`.
+
+**The full arc, resolved (§60 → §79).** The Row-7 rejection (§60) opened the question "where does the un-absorbed middle rail pump go?" The answer, after the local-sink no-go (§70–§75: barred/starved through every near-field environment channel, native-sealed §75) and the radiation reframe (§76–§78): **nowhere — it does not need to go anywhere.** The braid's field is bound (§78, no radiation term in the velocity-field law), so there is no net secular angular-momentum source; the $+0.076$ is a reactive near-field bookkeeping term; the field-speed pin ($\beta_M=1$, the light cylinder) is the no-spin-down condition; and the §57 shape basin holds the size mode. **S1/S2 — the shape-attractor / rail-pump-absorber closure, the program's central open problem since the Row-7 rejection — closes: the spindle braid is a self-consistent, non-radiating, bound structure at the field-speed pin, with no environment required.**
+
+**Claim level (measured, honest).** The closure is a **derivation composing two measured facts**: §57 (the linear shape Jacobian is a basin, native-measured) and §78 (the far-field angular-momentum flux vanishes → the residual is reactive, seed-grade measured on the declared electric-type stress tensor). The reduced integrator demonstrates the dichotomy and that §78 is the deciding input; it is reference/reduced, not a native release. **Two ceilings remain, both declared and above this grade:** (i) a **native retained-history release** with an open far-field boundary confirming the reactive-residual + §57-basin holds natively (the ultimate test — the standing grade lift for the whole program); (ii) the master equation's **history-generated magnetic-analog response** (§78 caveat), which if it carries far-field flux would reintroduce radiation and reopen the sink question. Absent those, S1/S2 closes at derivation grade. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`; no release authorized.
+
+Run record: `.tmp/braid-ideal/coupled-complex/internal-balance.json`. Reproduce: `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --internal-balance --pretty`.
+
+Next closure goal: retire the §60 Row-7 blocker to derivation-closed at priority level and promote the S1/S2 resolution (bound non-radiating structure at the field-speed pin; the reactive-residual + §57-basin closure) toward the corpus, then discharge the two remaining ceilings — (i) the magnetic-analog far-field-flux test (does the history-generated antisymmetric response radiate; the one caveat that could reopen it) and (ii) the native retained-history release with an open far-field boundary — the grade lift from derivation-closed to native-confirmed, which also unblocks the $A_0$ mass map (the same self-consistent bound structure) and the large-drift Lorentz recovery that share this object.
+
+---
+
+## 80. Ceiling (i) Reopens Radiation — the History-Generated Magnetic-Analog Carries Radius-Independent Far-Field Angular-Momentum Flux Under the Declared Effective Reconstruction (2026-07-11)
+
+Executing the Section 79 magnetic-analog ceiling. New probe `magneticAnalogFarFieldFlux` (CLI `--magnetic-analog-flux`) consumes a 2048-sample periodic retained record of the prescribed V5 worldlines and reconstructs the effective vector transport potential
+
+$$
+\mathbf A_{\mathrm{wake}}(\mathbf X,t)
+=
+\sum_s
+\frac{\kappa q_s\mathbf v_s(t_e)}{r_s}
+\frac{D_s}{D_s^2+\epsilon^2},
+\qquad
+t-t_e=\frac{r_s}{c_f},
+\qquad
+D_s=c_f-\mathbf v_s(t_e)\cdot\hat{\mathbf r}_s.
+$$
+
+This is a **declared effective modeling choice** for the schematic vector-potential channel in the effective Lagrangian, not an independently derived exact field law. The post-processor takes the leading far-zone curl $\mathbf B_{\mathrm{wake}}=\nabla\times\mathbf A_{\mathrm{wake}}$: $B_r=O(r^{-2})$ and $B_\phi=O(r^{-1})$. The declared magnetic-type Maxwell stress is
+
+$$
+T^B_{ij}=B_iB_j-\frac12\delta_{ij}B^2,
+\qquad
+\Phi_{\mathrm{mag}}(r)
+=
+\left\langle\oint r\sin\theta\,B_rB_\phi\,dA\right\rangle.
+$$
+
+**Positive control.** The same integrator receives the analytic outgoing helical $m=1$ potential $A_\theta\propto\sin\theta\cos[\phi-\omega(t-r/c_f)]/r$. It returns the same flux magnitude $4.3780235371$ at every radius from $16$ through $256$, endpoint slope $0.000000$, radial spread $2.84\times10^{-15}$. The stress integrator therefore detects a known radiating antisymmetric source and distinguishes constant flux from the §78 bound falloff.
+
+**Measured result — radiative scaling.** With $(N_\theta,N_\phi,N_t)=(12,31,17)$ (co-prime angular/time counts avoid the rigid-rotation alias present on the §78 commensurate grid), $\epsilon=0.02$, and coarse-chart derivative step $0.004$, the signed rows are
+
+| $r$ | $\Phi_{\mathrm{mag}}(r)$ | $|\Phi_{\mathrm{mag}}(r)|$ |
+|---:|---:|---:|
+| 16 | $-57.6566$ | $57.6566$ |
+| 32 | $-59.8930$ | $59.8930$ |
+| 64 | $-57.5231$ | $57.5231$ |
+| 128 | $-57.1457$ | $57.1457$ |
+| 256 | $-58.1881$ | $58.1881$ |
+
+The least-squares radial slope is $-0.004$, the endpoint slope is $+0.003$, and the radial spread is $4.73\%$: $\Phi_{\mathrm{mag}}(r)$ is radius-independent rather than tending to zero. The sign matches the outgoing helical positive control under this traction convention. Verdict: `history_generated_magnetic_analog_carries_constant_far_field_flux_radiation_reaction_channel_exists`.
+
+**Magnitude and claim boundary.** The default mean magnitude is $58.081$, and the $r=256$ magnitude is $767.65$ times the $+0.0758$ reactive residual. The channel is therefore not a calibrated *small* reaction under this normalization. Its magnitude changes materially with the regulator and coarse derivative scale, as expected because the rail sits at the source-normal caustic. What is seed-grade measured here is the nonzero, radius-independent far-zone scaling under the declared reconstruction; an exact normalization requires the same-branch agreement of $\mathbf C_{ij}^{(\eta)}$, $\mathbf A_{\mathrm{wake}}$, and $\Pi_{q,J}^{[ij]}$. No retained branch, score movement, or exact stress-energy claim follows.
+
+**Consequences.** The §79 unconditional non-radiating conclusion is withdrawn: the electric/velocity channel remains bound, but the history-generated antisymmetric channel reopens a **bounded** radiation-reaction/sink question. S1/S2 remains closed only conditionally on the exact antisymmetric-channel normalization vanishing or balancing the pump; it is not unconditionally closed. At seed effective-model grade, $\mathbb{A}\mathbb{A}\mathbb{A}$ has a particle-radiation channel, providing the shared candidate door for cosmological shedding and $\Delta S_{\mathrm{exported}}$. The measured default magnitude is incompatible with the assumed $+0.0758$ steady ledger, so the next target is normalization and same-branch conservation closure, not immediate corpus promotion.
+
+Reproduce: `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --magnetic-analog-flux --pretty`. Central solver untouched; runner + fixture only; owner suite passes. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Next closure goal: derive and cross-calibrate the antisymmetric channel on one retained branch so $\mathbf C_{ij}^{(\eta)}$, $\mathbf A_{\mathrm{wake}}$, and $\Pi_{q,J}^{[ij]}$ agree in sign and normalization, then test whether the physical $\Phi_{\mathrm{mag}}$ balances the $+0.0758$ residual or forces spin-down; carry that calibrated term into the S1/S2, cosmological-shedding, and recycling-entropy ledgers.
+
+---
+
+## 81. The Whole-Braid Net Self-Torque Confirms It (Conservation Side): the Net Secular z-Torque Is NONZERO (+0.14), So the Residual Is a Real Drive, Not Reactive — a Second, Independent Refutation of the S79 Closure, Consistent With the S80 Radiation Channel (2026-07-11)
+
+A verification check on the Section 79 closure, reached independently of and converging with the Section 80 magnetic-radiation finding. New probe `wholeBraidNetSelfTorque` (CLI `--net-self-torque`) sums the cycle-averaged z-torque about the braid axis over ALL six sites from the delayed partner wake (the Section 66 self-hit brake applied on the middle). Central solver untouched; runner only; owner suite green. Fail-closed.
+
+**Result — the net self-torque is nonzero.** Per-layer z-torque I/M/O = $+0.0009 / +0.4229 / +0.0002$ (the pump lives entirely on the middle rail; inner and outer are null to the digit). Whole-braid net partner z-torque $+0.424$; with the Section 66 self-hit brake ($2/3$ of the middle) the net is $\mathbf{+0.142}$ — NOT zero.
+
+**Why this refutes Section 79.** For a bounded PERIODIC source, angular-momentum conservation requires the net secular self-torque to equal the radiated far-field flux. The Section 79 closure asserted the residual is *reactive* by reading the Section 78 vanishing far-field flux as a vanishing net self-torque. That inference is wrong: the net self-torque is $+0.142$, not zero. So the residual is a **real net anti-damping drive**, and the Section 78 electric/velocity-channel flux ($\approx0$) is inconsistent with it — exactly the gap Section 80 fills from the field side: the history-generated antisymmetric (magnetic-analog) channel carries a radius-independent (radiation) flux that the electric channel misses. The two findings agree: the braid HAS a net secular self-torque, and it is carried by a radiation channel (Section 80), so **the Section 79 unconditional non-radiating closure is withdrawn** and S1/S2 is not closed — the residual is radiated (spin-down / throughput, the Section 76 picture, requiring replenishment) rather than reactively absent.
+
+**Correction to the record.** The Section 79 "S1/S2 closes / reactive residual" conclusion and the Section 80-as-originally-drafted "magnetic-analog is bound, ceiling discharged" conclusion are both **withdrawn** (the latter superseded by the concurrent Section 80 radiation reconstruction). The `internal_tangent_authority_derivation` priority item is un-retired from derivation-closed back to open. The seed-grade corpus promotion drafted in the prior pass was not applied (reverted before landing). What SURVIVES the arc unchanged: the local-sink no-go (Sections 70-75, native-sealed) — the residual cannot be absorbed by a near-field braid-organized environment; the transport-gate opening under broken symmetry (Section 72); and the reframing that the residual, if shed at all, goes to the FAR FIELD (Section 76) — now supported, since Sections 80-81 show a real radiation channel and a real net self-torque. Claim level: the net self-torque is a robust measurement (the established $+0.2274$ rail pump as a z-torque); the conservation inconsistency with the electric-channel flux is a derivation; the resolution (the antisymmetric-channel radiation of Section 80) is seed effective-model grade pending its normalization/same-branch calibration.
+
+Reproduce: `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --net-self-torque --pretty`. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Next closure goal: with S1/S2 re-opened and a radiation channel confirmed from both the field side (Section 80) and the conservation side (Section 81), calibrate the antisymmetric-channel normalization so the radiated flux and the $+0.142$ net self-torque agree in sign and magnitude, then decide whether the braid sheds the residual as steady radiation with replenishment (the Section 76 throughput / metabolism picture, reintroducing the environment) or spins down — the corrected form of the S1/S2 question.

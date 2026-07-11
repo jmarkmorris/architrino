@@ -3131,7 +3131,10 @@ export function boundInternalBalance({
       const [s, sd, delta] = Y;
       // δ dynamics: DRIVE keeps a secular +residual source; REACTIVE has none (net-zero, §78)
       const ddelta = (mode === "drive" ? residualNearField : 0) - kBasin * delta;
-      const Fs = delta > 0 ? (kSize * s + gPin * delta) : (-kSize * s); // §60 inversion above rail / §57 basin below
+      // §78 REACTIVE: no net secular self-torque keeps β_M pinned AT the rail (δ_eff=0),
+      // so the §57 basin (−kSize·s) acts cleanly. §66 DRIVE: β_M climbs, the §60 pin inverts.
+      const effDelta = mode === "reactive" ? 0 : delta;
+      const Fs = effDelta > 0 ? (kSize * s + gPin * effDelta) : (-kSize * s);
       return [sd, (Fs - damp * sd) / mRad, ddelta];
     };
     for (let k = 0; k < n; k++) {
@@ -3145,15 +3148,300 @@ export function boundInternalBalance({
     return { bounded, dispersalTime: disp, sMax: +sMax.toFixed(4), finalDelta: +y[2].toFixed(4), finalS: +y[0].toFixed(4) };
   };
   const drive = run("drive"), reactive = run("reactive");
+  // §81 CORRECTION: the whole-braid net self-torque is NONZERO (+0.14, wholeBraidNetSelfTorque),
+  // so the residual is in the DRIVE branch (a real net torque), NOT the reactive branch — and §80
+  // (concurrent) shows the antisymmetric channel radiates it. The §79 "§78 selects reactive → S1/S2
+  // closes" reading is WITHDRAWN. This function still demonstrates the dichotomy (reactive→bounded,
+  // drive→runaway), but the physical selection is DRIVE (radiated / spin-down), not reactive.
   return {
     kSize, kBasin, residualNearField,
-    driveBranch_row7_nearFieldTruncation: drive,   // residual as real secular drive → runaway
-    reactiveBranch_s78_boundField: reactive,        // residual reactive (§78) + §57 basin → bounded
-    dichotomyDecidedBy: "section_78_far_field_flux_vanishes_selects_reactive_branch",
-    s1s2Closes: reactive.bounded && !drive.bounded,
-    verdict: (reactive.bounded && !drive.bounded)
-      ? "reactive_residual_plus_section57_basin_bounds_the_size_mode_row7_runaway_is_the_nearfield_truncation_artifact_S1S2_closes_as_bound_nonradiating_structure"
-      : "dichotomy_not_cleanly_resolved_at_reduced_grade",
+    driveBranch_row7_nearFieldTruncation: drive,   // residual as real secular drive → runaway (§81: this is the physical branch)
+    reactiveBranch_s78_boundField: reactive,        // reduced-model reactive branch → bounded (NOT selected; §79 withdrawn)
+    dichotomyClean: reactive.bounded && !drive.bounded,
+    branchSelectedByNetSelfTorque: "drive",         // §81: net z-torque +0.14 nonzero ⟹ drive branch
+    s1s2Closes: false,                              // §81/§80: withdrawn — residual is a real radiated/driving torque
+    verdict: "dichotomy_valid_but_net_self_torque_selects_DRIVE_branch_s79_reactive_closure_withdrawn_see_section_81",
+    ...FAIL_CLOSED,
+  };
+}
+
+// §80: the history-generated magnetic-analog far-field-flux test. This is a
+// seed-grade EFFECTIVE reconstruction, not a new substrate law. The retained
+// periodic source record is coarse-grained into the declared retarded-current
+// vector-potential choice
+//
+//   A_wake(X,t) = Σ_s κ q_s v_s(t_e) [D_s/(D_s²+ε²)] / r_s,
+//   t-t_e = r_s/c_f,  D_s = c_f-v_s(t_e)·r̂_s,
+//
+// and B_wake = curl A_wake is reconstructed from the leading far-zone curl
+// coefficients (centered angular and retarded-time differences). This preserves
+// the master-equation source-normal cadence factor and makes the history
+// dependence load-bearing: the 1/r curl term comes from the retarded emission
+// record. The magnetic-type Maxwell-stress modeling choice is
+// T^B_ij = B_i B_j - 1/2 δ_ij B², hence the z-angular-momentum flux is
+// Φ_mag(R)=<∮ R sinθ B_r B_φ dA>. Central solver untouched; post-processor only.
+
+function periodicRetainedWakeHistories(seed, omega, sampleCount = 2048) {
+  const period = 2 * Math.PI / omega;
+  const dt = period / sampleCount;
+  const exact = (s, t) => {
+    const a = omega * t + s.th, ca = Math.cos(s.alpha);
+    const x = [
+      s.sgn * s.R * ca * Math.cos(a),
+      s.sgn * s.R * ca * Math.sin(a),
+      s.sgn * s.R * Math.sin(s.alpha),
+    ];
+    const speed = s.sgn * s.R * ca * omega;
+    return { x, v: [-speed * Math.sin(a), speed * Math.cos(a), 0] };
+  };
+  return seed.sites.map((site) => {
+    const xs = [], vs = [];
+    for (let k = 0; k < sampleCount; k++) {
+      const row = exact(site, k * dt); xs.push(row.x); vs.push(row.v);
+    }
+    const locate = (t) => {
+      const tw = ((t % period) + period) % period;
+      const q = tw / dt, k0 = Math.floor(q) % sampleCount;
+      return { k0, k1: (k0 + 1) % sampleCount, u: q - Math.floor(q) };
+    };
+    // Periodic cubic-Hermite reconstruction: the stored positions and velocities
+    // are the ontic prescribed-history record consumed by the post-processor.
+    const stateAt = (t) => {
+      const { k0, k1, u } = locate(t), u2 = u * u, u3 = u2 * u;
+      const h00 = 2*u3 - 3*u2 + 1, h10 = u3 - 2*u2 + u;
+      const h01 = -2*u3 + 3*u2, h11 = u3 - u2;
+      const dh00 = (6*u2 - 6*u) / dt, dh10 = 3*u2 - 4*u + 1;
+      const dh01 = (-6*u2 + 6*u) / dt, dh11 = 3*u2 - 2*u;
+      const x = [0, 0, 0], v = [0, 0, 0];
+      for (let c = 0; c < 3; c++) {
+        x[c] = h00*xs[k0][c] + h10*dt*vs[k0][c] + h01*xs[k1][c] + h11*dt*vs[k1][c];
+        v[c] = dh00*xs[k0][c] + dh10*vs[k0][c] + dh01*xs[k1][c] + dh11*vs[k1][c];
+      }
+      return { x, v };
+    };
+    return { site, period, sampleCount, dt, stateAt };
+  });
+}
+
+// Leading far-zone curl of A_wake=a(n,u)/R+O(R^-2), u=t-R/c_f.
+// B_r=(curl_S a)_r/R² and B_phi=-(partial_u a_theta)/(c_f R)+O(R^-2).
+// Their Maxwell-stress product is the only magnetic term that can leave an
+// R-independent angular-momentum flux. Extracting these coefficients directly
+// avoids subtracting nearly equal finite-R samples at the rail caustic.
+function asymptoticWakePotentialCoefficient(n, u, histories, kappa, soft, cf = 1) {
+  const a = [0, 0, 0];
+  for (const h of histories) {
+    const extent = Math.max(1, h.site.R) + 2;
+    let lo = u - extent / cf, hi = u + extent / cf;
+    const residual = (te) => {
+      const { x } = h.stateAt(te);
+      return u - te + (n[0]*x[0] + n[1]*x[1] + n[2]*x[2]) / cf;
+    };
+    for (let it = 0; it < 80; it++) {
+      const mid = 0.5 * (lo + hi);
+      if (residual(mid) > 0) lo = mid; else hi = mid;
+    }
+    const { v } = h.stateAt(0.5 * (lo + hi));
+    const Ds = cf - (v[0]*n[0] + v[1]*n[1] + v[2]*n[2]);
+    const coeff = kappa * h.site.pol * Ds / (Ds*Ds + soft*soft);
+    for (let c = 0; c < 3; c++) a[c] += coeff * v[c];
+  }
+  return a;
+}
+
+function asymptoticRadiativeMagneticField(X, t, histories, kappa, soft, derivativeStep, cf = 1) {
+  const R = Math.hypot(X[0], X[1], X[2]), theta = Math.acos(X[2] / R), phi = Math.atan2(X[1], X[0]);
+  const u = t - R / cf;
+  const basis = (th, ph) => {
+    const st = Math.sin(th), ct = Math.cos(th), cp = Math.cos(ph), sp = Math.sin(ph);
+    return {
+      n: [st*cp, st*sp, ct], thetaHat: [ct*cp, ct*sp, -st], phiHat: [-sp, cp, 0], st,
+    };
+  };
+  const component = (th, ph, uu, which) => {
+    const b = basis(th, ph), a = asymptoticWakePotentialCoefficient(b.n, uu, histories, kappa, soft, cf);
+    const e = which === "theta" ? b.thetaHat : b.phiHat;
+    return a[0]*e[0] + a[1]*e[1] + a[2]*e[2];
+  };
+  const h = derivativeStep, b0 = basis(theta, phi);
+  const dSinAphiDtheta = (
+    Math.sin(theta+h)*component(theta+h, phi, u, "phi") -
+    Math.sin(theta-h)*component(theta-h, phi, u, "phi")
+  ) / (2*h);
+  const dAthetaDphi = (component(theta, phi+h, u, "theta") - component(theta, phi-h, u, "theta")) / (2*h);
+  const brCoefficient = (dSinAphiDtheta - dAthetaDphi) / b0.st;
+  const dAthetaDu = (component(theta, phi, u+h, "theta") - component(theta, phi, u-h, "theta")) / (2*h);
+  const Br = brCoefficient / (R*R), Bphi = -dAthetaDu / (cf*R);
+  return b0.n.map((x, i) => Br*x + Bphi*b0.phiHat[i]);
+}
+
+export function integrateMagneticAngularMomentumFlux({ radii, Ntheta, Nphi, Nt, period, magneticFieldAt }) {
+  const rows = radii.map((R) => {
+    let flux = 0;
+    for (let it = 0; it < Ntheta; it++) {
+      const ct = -1 + (2 * (it + 0.5)) / Ntheta, st = Math.sqrt(Math.max(0, 1 - ct*ct));
+      const dOmega = (2 / Ntheta) * (2 * Math.PI / Nphi);
+      for (let ip = 0; ip < Nphi; ip++) {
+        const ph = (2 * Math.PI * (ip + 0.5)) / Nphi;
+        const rHat = [st*Math.cos(ph), st*Math.sin(ph), ct], phiHat = [-Math.sin(ph), Math.cos(ph), 0];
+        const X = rHat.map((x) => R * x);
+        let cyclic = 0;
+        for (let k = 0; k < Nt; k++) {
+          const B = magneticFieldAt(X, (k / Nt) * period);
+          const Br = B[0]*rHat[0] + B[1]*rHat[1] + B[2]*rHat[2];
+          const Bphi = B[0]*phiHat[0] + B[1]*phiHat[1] + B[2]*phiHat[2];
+          cyclic += Br * Bphi;
+        }
+        flux += R*R*R * st * (cyclic / Nt) * dOmega;
+      }
+    }
+    return { R, flux: +flux.toExponential(10), fluxAbs: Math.abs(flux) };
+  });
+  const valid = rows.filter((r) => r.fluxAbs > 1e-24);
+  const xs = valid.map((r) => Math.log(r.R)), ys = valid.map((r) => Math.log(r.fluxAbs));
+  let slope = null;
+  if (valid.length >= 2) {
+    const mx = xs.reduce((a,b)=>a+b,0)/xs.length, my = ys.reduce((a,b)=>a+b,0)/ys.length;
+    let sxy = 0, sxx = 0;
+    for (let i = 0; i < xs.length; i++) { sxy += (xs[i]-mx)*(ys[i]-my); sxx += (xs[i]-mx)**2; }
+    slope = sxy / sxx;
+  }
+  const first = valid[0], last = valid[valid.length - 1];
+  const endpointSlope = valid.length >= 2 ? Math.log(last.fluxAbs/first.fluxAbs)/Math.log(last.R/first.R) : null;
+  return { rows, slopeLSQ: slope, endpointSlope };
+}
+
+export function outgoingHelicalMagneticPositiveControl({ amplitude = 1, omega = 1, cf = 1 } = {}) {
+  return (X, t) => {
+    const R = Math.hypot(X[0], X[1], X[2]), ph = Math.atan2(X[1], X[0]);
+    const st = Math.hypot(X[0], X[1]) / R;
+    const rHat = [X[0]/R, X[1]/R, X[2]/R], phiHat = [-Math.sin(ph), Math.cos(ph), 0];
+    const phase = ph - omega * (t - R / cf), s = Math.sin(phase);
+    // curl of A_theta = amplitude sin(theta) cos(phase) / R
+    const Br = amplitude * s / (R*R);
+    const Bphi = -(amplitude * omega / cf) * st * s / R;
+    return rHat.map((x, i) => Br*x + Bphi*phiHat[i]);
+  };
+}
+
+export function magneticAnalogFarFieldFlux({
+  geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, radii = [16, 32, 64, 128, 256],
+  Nt = 17, Ntheta = 12, Nphi = 31, residual = 0.0758, soft = 0.02,
+  derivativeStep = 0.004, historySamplesPerPeriod = 2048,
+} = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, cf = 1, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft: 0.02 }).kappaStar;
+  const histories = periodicRetainedWakeHistories(seed, w, historySamplesPerPeriod);
+  const measured = integrateMagneticAngularMomentumFlux({
+    radii, Ntheta, Nphi, Nt, period,
+    magneticFieldAt: (X, t) => asymptoticRadiativeMagneticField(X, t, histories, kap, soft, derivativeStep, cf),
+  });
+  const control = integrateMagneticAngularMomentumFlux({
+    radii, Ntheta, Nphi, Nt, period,
+    magneticFieldAt: outgoingHelicalMagneticPositiveControl({ amplitude: 1, omega: w, cf }),
+  });
+  const outer = measured.rows[measured.rows.length - 1];
+  const measuredFluxes = measured.rows.map((r) => r.fluxAbs);
+  const measuredMean = measuredFluxes.reduce((a, b) => a + b, 0) / measuredFluxes.length;
+  const measuredSpread = (Math.max(...measuredFluxes)-Math.min(...measuredFluxes)) / measuredMean;
+  const controlFluxes = control.rows.map((r) => r.fluxAbs);
+  const controlSpread = (Math.max(...controlFluxes)-Math.min(...controlFluxes)) / Math.max(...controlFluxes);
+  const bound = measured.endpointSlope != null && measured.endpointSlope < -1 && outer.fluxAbs / residual < 1e-2;
+  const radiative = measured.endpointSlope != null && Math.abs(measured.endpointSlope) < 0.1 && measuredSpread < 0.1;
+  return {
+    claimLevel: "seed_grade_far_field_measurement_declared_effective_reconstruction",
+    stressTensorChoice: "magnetic_type_Maxwell_Tij_BiBj_minus_one_half_deltaij_B2",
+    vectorPotentialChoice: "retarded_current_Awake_sum_kappa_q_v_Ds_over_Ds2_plus_soft2_over_r",
+    extractionChoice: "leading_far_zone_curl_coefficients_Br_order_r_minus_2_and_Bphi_order_r_minus_1",
+    historyRecord: { kind: "periodic_prescribed_ontic_history", samplesPerPeriod: historySamplesPerPeriod },
+    omega: w, kappaStar: kap, residual, soft, derivativeStep, rows: measured.rows,
+    magneticFluxSlopeLSQ: measured.slopeLSQ != null ? +measured.slopeLSQ.toFixed(3) : null,
+    magneticFluxEndpointSlope: measured.endpointSlope != null ? +measured.endpointSlope.toFixed(3) : null,
+    magneticFluxRadialSpreadFraction: +measuredSpread.toExponential(3),
+    magneticFluxMeanAbs: +measuredMean.toExponential(4),
+    outermostMagneticFluxAbs: +outer.fluxAbs.toExponential(4),
+    magneticFluxOverResidual: +(outer.fluxAbs / residual).toExponential(4),
+    positiveControl: {
+      kind: "outgoing_helical_m1_vector_potential_A_theta_proportional_sin_theta_cos_phase_over_r",
+      rows: control.rows,
+      slopeLSQ: control.slopeLSQ != null ? +control.slopeLSQ.toFixed(6) : null,
+      endpointSlope: control.endpointSlope != null ? +control.endpointSlope.toFixed(6) : null,
+      radialSpreadFraction: +controlSpread.toExponential(3),
+      passesConstantFlux: Math.abs(control.endpointSlope ?? Infinity) < 0.05 && controlSpread < 0.02,
+    },
+    magneticFluxVanishesAtFarField: bound,
+    magneticFluxIsRadiative: radiative,
+    verdict: bound
+      ? "history_generated_magnetic_analog_flux_vanishes_bound_full_nonradiating_S1S2_unconditional"
+      : radiative
+        ? "history_generated_magnetic_analog_carries_constant_far_field_flux_radiation_reaction_channel_exists"
+        : "magnetic_far_field_scaling_unresolved_under_declared_reconstruction",
+    ...FAIL_CLOSED,
+  };
+}
+
+// §81: the whole-braid NET SELF-TORQUE conservation check (the verification that
+// REFUTES the §79/§80 "reactive residual" closure). Sums the cycle-averaged
+// z-torque (about the braid axis) on ALL sites from all partners (delayed force
+// law; the §66 native self-hit brake applied on the middle via brakeFracMax).
+// For a bounded PERIODIC source, angular-momentum conservation requires the net
+// self-torque to equal the radiated far-field flux. If the net is NONZERO, the
+// residual is a REAL net drive — not reactive — and §78's "far-field flux
+// vanishes" is inconsistent with it (the net self-torque is the more robust,
+// being the established +0.2274 rail pump as a z-torque). This is the check
+// §79/§80 lacked. Central solver untouched; runner only. Fail-closed.
+export function wholeBraidNetSelfTorque({
+  geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 16, soft = 0.02, dmax = 2.5,
+  brakeFracMax = 0.667,
+} = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, cf = 1, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const sites = seed.sites.map((s) => ({ pol: s.pol, name: s.name,
+    pos: (t) => { const a = w*t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; },
+    vel: (t) => { const a = w*t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; } }));
+  const Tz = sites.map(() => 0);
+  for (let k = 0; k < Nt; k++) {
+    const t = (k / Nt) * period;
+    for (let i = 0; i < sites.length; i++) {
+      const rec = sites[i], Xi = rec.pos(t), vi = rec.vel(t);
+      for (let j = 0; j < sites.length; j++) {
+        if (j === i) continue;
+        const src = sites[j];
+        const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+        const N = 1500; let g0 = g(t - dmax);
+        for (let kk = 1; kk <= N; kk++) {
+          const te = t - dmax + dmax * (kk / N); if (te >= t - 1e-9) break;
+          const g1 = g(te);
+          if ((g0 < 0) !== (g1 < 0)) {
+            let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+            for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+            const te0 = (lo + hi) / 2, p = src.pos(te0), dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]], r = Math.hypot(dx[0], dx[1], dx[2]);
+            if (r > 1e-6) {
+              const rh = [dx[0]/r, dx[1]/r, dx[2]/r], vs = src.vel(te0);
+              const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]), Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+              const m = (Dt * Ds) / (Ds * Ds + soft * soft), wgt = kap * (rec.pol * src.pol) * m / (r * r);
+              Tz[i] += (Xi[0] * (wgt*rh[1]) - Xi[1] * (wgt*rh[0])) / Nt;
+            }
+          }
+          g0 = g1;
+        }
+      }
+    }
+  }
+  const byLayer = { I: 0, M: 0, O: 0 };
+  sites.forEach((s, i) => { byLayer[s.name] += Tz[i]; });
+  const netPartner = Tz.reduce((a, b) => a + b, 0);
+  const netWithSelfHit = netPartner - brakeFracMax * byLayer.M; // §66 self-hit brake on the middle
+  return {
+    omega: w, kappaStar: kap,
+    perLayerZTorque: { I: +byLayer.I.toFixed(4), M: +byLayer.M.toFixed(4), O: +byLayer.O.toFixed(4) },
+    netPartnerZTorque: +netPartner.toFixed(4), netWithSelfHitBrake: +netWithSelfHit.toFixed(4),
+    netIsZero: Math.abs(netWithSelfHit) < 0.02,
+    verdict: Math.abs(netWithSelfHit) < 0.02
+      ? "net_self_torque_zero_consistent_with_reactive_residual"
+      : "net_self_torque_NONZERO_residual_is_a_real_drive_refutes_s79_s80_reactive_closure_inconsistent_with_s78_vanishing_flux",
     ...FAIL_CLOSED,
   };
 }
@@ -3222,6 +3510,10 @@ if (isMain()) {
     out = farFieldAngularMomentumFlux({});
   } else if (flag("--internal-balance")) {
     out = boundInternalBalance({});
+  } else if (flag("--magnetic-analog-flux")) {
+    out = magneticAnalogFarFieldFlux({});
+  } else if (flag("--net-self-torque")) {
+    out = wholeBraidNetSelfTorque({});
   } else if (flag("--coupled-complex")) {
     out = coupledComplexFixedPoint({
       driftU: parseFloat(val("--drift-u", "0.2")),
