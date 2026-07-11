@@ -415,6 +415,24 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline.
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
 
+At the comparison-law level, the unification is derivation-grade exact algebra. A Lorentz boost is the full one-way causal-leg ledger of the moving assembly. The sum of the fore and aft legs,
+$$
+t_++t_-
+=
+\frac{R_\parallel}{c_\star-v}
++
+\frac{R_\parallel}{c_\star+v}
+=
+\frac{2R_\parallel}{c_\star}\gamma_\star^2
+$$
+supplies the closed-return period whose longitudinal-transverse phase matching gives ruler contraction and clock dilation. Their difference supplies the simultaneity row: when the result is referred to the assembly's dilated clock and rest separation $x'$, it gives
+$$
+\delta\tau
+=
+\frac{v}{c_\star^2}\,x'
+$$
+Thus length, duration, and synchronization are three readings of one fore-and-aft causal ledger, not independently fitted effects. Momentum and energy belong to that same boost map, so the exact special-relativistic accounting admits one common factor $\gamma_\star$ across clock, ruler, momentum, and energy rather than four unrelated corrections. [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md#simultaneity-from-the-leg-difference) gives the full sum-and-difference derivation. The native closure burden remains to show that one retained Noether braid branch exports this exact unified ledger into all four response channels.
+
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,

@@ -145,13 +145,15 @@ c_1[\theta_O,\theta_M,\theta_I]
 \right)
 =(m,n)
 $$
-records this phase-return degree data. The doubling-frequency candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+records this phase-return degree data. The `NSH-421` doubling-frequency candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
 
 The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the outer phase circle. Such bundles over $S^1_O$ are topologically trivial because $H^2(S^1_O;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$
 (m,n)\in[S^1_O,S^1]\times[S^1_O,S^1]\cong\mathbb{Z}^2,
 $$
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
+
+The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated `NSH-421` comparison family. They are not generic Noether braid data. In particular, the [spindle braid](spindle-braid.md) is iso-frequency on one shared-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A spindle branch may still report the partial charge $(N_s,M_p)$; a spindle-native lower-rank return invariant would require a separate definition and certificate.
 
 The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
 $$
@@ -256,7 +258,7 @@ together with its stability margins, energy/wake ledger, and gluing status.
 The intended use is constrained:
 
 - $(N_s,M_p)$ records the binding-channel census: self-hit channels, partner-hit channels, and their signed degrees.
-- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted Noether braid branch.
+- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted rank-three branch; $(2,4)$ is the `NSH-421` doubling-frequency candidate, not a family-general value.
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
@@ -289,7 +291,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
+- [Noether Braid Doubling-Frequency Resonance Lock](explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the `NSH-421` integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; the iso-frequency spindle does not inherit that rank-three entry.
 - [Effective Lagrangian](../dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:

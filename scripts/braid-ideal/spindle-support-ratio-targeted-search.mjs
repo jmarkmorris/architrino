@@ -2919,6 +2919,245 @@ export function nativeSaturatedCageDrain({
   };
 }
 
+// §77: the (b) feasibility proxy — net self-torque vs MEMORY DEPTH. The braid's
+// self-interaction (all pairwise delayed roots) is range-limited to delay
+// Δ ≲ 2R/c_f (a bounded source's light cone outruns it), so this sweeps Δ_max
+// over that window and reads whether the net cycle-averaged TANGENTIAL self-torque
+// on the middle rail turns from the +0.076 near-field anti-damping toward a far-
+// emission BRAKE as the deepest (farthest-emission) roots — the outgoing-wave-
+// launching part — are added. A sign turn re-opens S1/S2 closure via radiation
+// within the existing ontology; persistence hands to the field-momentum-flux build
+// (radiation-reaction-outgoing-wake-ledger-spec.md). Uses the same softened causal-
+// root branch weight as internalDeformationPencil. Central solver untouched; runner
+// only; §66 near-field regression. Fail-closed; seed grade.
+export function selfTorqueMemoryDepth({
+  geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 16, soft = 0.02,
+  depthList = [0.5, 1.0, 1.5, 2.0, 2.5, 3.0], pump = 0.2274,
+} = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, cf = 1, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const sites = seed.sites.map((s) => ({
+    pol: s.pol, name: s.name, R: s.R, alpha: s.alpha, sgn: s.sgn, th: s.th,
+    pos: (t) => { const a = w*t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; },
+    vel: (t) => { const a = w*t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; },
+  }));
+  const Rmax = Math.max(...sites.map((s) => s.R));
+  const midIdx = sites.map((s, i) => (s.name === "M" ? i : -1)).filter((i) => i >= 0);
+  // net cycle-averaged tangential force on the middle rail from roots with delay < dmax,
+  // split into partner (cross-source) and self (same-source) contributions.
+  const measure = (dmax) => {
+    let tanP = 0, tanS = 0, n = 0;
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (const i of midIdx) {
+        const rec = sites[i], Xi = rec.pos(t), vi = rec.vel(t);
+        const vn = Math.hypot(vi[0], vi[1], vi[2]) || 1; // along-velocity (true tangential) direction, sign-correct per site
+        const tHat = [vi[0] / vn, vi[1] / vn, vi[2] / vn];
+        for (let j = 0; j < sites.length; j++) {
+          const src = sites[j], same = (j === i);
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          const N = Math.max(400, Math.round(600 * dmax));
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= N; kk++) {
+            const te = t - dmax + dmax * (kk / N); if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2, p = src.pos(te0), dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]], r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-6 && (!same || (t - te0) > 1e-6)) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r], vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const m = (Dt * Ds) / (Ds * Ds + soft * soft), wgt = (rec.pol * src.pol) * m / (r * r);
+                const ftan = kap * wgt * (rh[0]*tHat[0] + rh[1]*tHat[1] + rh[2]*tHat[2]);
+                if (same) tanS += ftan; else tanP += ftan;
+              }
+            }
+            g0 = g1;
+          }
+        }
+      }
+      n++;
+    }
+    return { partner: tanP / n / midIdx.length, self: tanS / n / midIdx.length };
+  };
+  const rows = depthList.map((dmax) => { const r = measure(dmax); const net = r.partner + r.self; return { dmax, partner: +r.partner.toFixed(4), self: +r.self.toFixed(4), net: +net.toFixed(4) }; });
+  const deepest = rows[rows.length - 1], shallowest = rows[0];
+  const deepIncrement = deepest.net - shallowest.net; // far-emission contribution
+  // convergence: does net settle (persistence) or keep turning?
+  const converged = rows.length >= 3 && Math.abs(rows[rows.length - 1].net - rows[rows.length - 2].net) < 0.01;
+  const turnsToBrake = deepest.net < shallowest.net - 0.02; // net moved toward a brake with depth
+  const signChange = deepest.net < 0 && shallowest.net > 0;
+  return {
+    omega: w, kappaStar: kap, RmaxOverCf: +(Rmax / cf).toFixed(3), maxCausalDelayApprox: +(2 * Rmax / cf).toFixed(3),
+    rows, deepIncrement: +deepIncrement.toFixed(4), converged, turnsToBrake, signChange,
+    verdict: signChange
+      ? "self_torque_turns_to_brake_with_depth_radiation_reopens_S1S2_within_ontology"
+      : (turnsToBrake
+        ? "self_torque_moves_toward_brake_with_depth_but_no_sign_change"
+        : "self_torque_persists_anti_damping_bounded_self_interaction_no_far_field_brake_hands_to_field_flux_build"),
+    ...FAIL_CLOSED,
+  };
+}
+
+// §78: the field-momentum-flux build (radiation-reaction packet measurable 1) —
+// the DECISIVE far-field test. Computes the braid's retarded field E(X,t) (the
+// master-equation VELOCITY field: acceleration a static test charge feels,
+// Σ_s κ q_s (1/D_s) r̂/r²; D_s=c_f−v_s·r̂, source-normal; NO acceleration/1/r
+// radiation term exists in the force law) on spheres of increasing radius, and
+// integrates the Maxwell-stress angular-momentum flux Φ_∞(r)=⟨∮ r E_φ E_r dA⟩
+// cycle-averaged. The r-SCALING is the light-cylinder test: →0 (bound field, the
+// field-speed pin is the no-spin-down condition, +0.076 is reactive bookkeeping,
+// S1/S2 closes as a self-consistent NON-radiating structure) vs r-independent
+// (genuine radiation, spin-down). Secular guard = the cycle-average (DC) is the
+// secular flux. Central solver untouched; a far-field post-processor on the
+// emitted field; runner only. Declared choice: electric-type (scalar-potential-
+// gradient) field stress tensor T_ij=E_iE_j−½δ_ij E². Fail-closed; seed grade.
+export function farFieldAngularMomentumFlux({
+  geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, radii = [16, 32, 64, 128, 256],
+  Nt = 12, Ntheta = 12, Nphi = 24, residual = 0.0758,
+} = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega, cf = 1, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft: 0.02 }).kappaStar;
+  const pos = (s, t) => { const a = w*t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; };
+  const vel = (s, t) => { const a = w*t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(a), v*Math.cos(a), 0]; };
+  // retarded velocity-field E at point X, time t (source-normal branch weight 1/D_s)
+  const fieldAt = (X, t) => {
+    const E = [0, 0, 0];
+    for (const s of seed.sites) {
+      let te = t - Math.hypot(X[0], X[1], X[2]) - 1;
+      for (let it = 0; it < 60; it++) { const p = pos(s, te); te = t - Math.hypot(X[0]-p[0], X[1]-p[1], X[2]-p[2]); }
+      const p = pos(s, te), dx = [X[0]-p[0], X[1]-p[1], X[2]-p[2]], r = Math.hypot(dx[0], dx[1], dx[2]);
+      if (r < 1e-9) continue;
+      const rh = [dx[0]/r, dx[1]/r, dx[2]/r], v = vel(s, te);
+      const Ds = cf - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+      const c = kap * s.pol / (Ds * r * r);
+      E[0] += c*rh[0]; E[1] += c*rh[1]; E[2] += c*rh[2];
+    }
+    return E;
+  };
+  // sphere quadrature (Gauss-legendre-ish uniform in cosθ, uniform in φ)
+  const rows = radii.map((R) => {
+    let flux = 0, wsum = 0;
+    for (let it = 0; it < Ntheta; it++) {
+      const ct = -1 + (2 * (it + 0.5)) / Ntheta, st = Math.sqrt(Math.max(0, 1 - ct*ct));
+      const dOmega = (2 / Ntheta) * (2 * Math.PI / Nphi);
+      for (let ip = 0; ip < Nphi; ip++) {
+        const ph = (2 * Math.PI * (ip + 0.5)) / Nphi;
+        const X = [R*st*Math.cos(ph), R*st*Math.sin(ph), R*ct];
+        const rHat = [st*Math.cos(ph), st*Math.sin(ph), ct];
+        const phiHat = [-Math.sin(ph), Math.cos(ph), 0]; // azimuthal
+        // cycle-average E_phi*E_r at this point
+        let avg = 0;
+        for (let k = 0; k < Nt; k++) {
+          const t = (k / Nt) * period, E = fieldAt(X, t);
+          const Er = E[0]*rHat[0] + E[1]*rHat[1] + E[2]*rHat[2];
+          const Ephi = E[0]*phiHat[0] + E[1]*phiHat[1] + E[2]*phiHat[2];
+          avg += Er * Ephi;
+        }
+        avg /= Nt;
+        // z-angular-momentum flux integrand: r * (phi-r stress) * dA, dA=R² dΩ
+        flux += R * avg * (R * R * dOmega);
+        wsum += R * R * dOmega;
+      }
+    }
+    return { R, flux: +flux.toFixed(6), fluxAbs: Math.abs(flux) };
+  });
+  // r-scaling: least-squares log-log slope of |flux| vs R over ALL radii
+  // (radiation → slope ~0, r-independent flux; bound field → slope ≤ −1, flux→0)
+  const far = rows.filter((r) => r.fluxAbs > 1e-16);
+  let slope = null;
+  if (far.length >= 2) {
+    const xs = far.map((r) => Math.log(r.R)), ys = far.map((r) => Math.log(r.fluxAbs));
+    const n = xs.length, mx = xs.reduce((a, b) => a + b) / n, my = ys.reduce((a, b) => a + b) / n;
+    let sxy = 0, sxx = 0; for (let i = 0; i < n; i++) { sxy += (xs[i] - mx) * (ys[i] - my); sxx += (xs[i] - mx) ** 2; }
+    slope = sxy / sxx;
+  }
+  const outermost = rows[rows.length - 1], innermost = far[0];
+  // robust endpoint slope over the far span (avoids the cancellation-prone
+  // intermediate-r point noise); radiation → ~0, bound velocity field → ~−2.
+  const endpointSlope = far.length >= 2 ? Math.log(outermost.fluxAbs / innermost.fluxAbs) / Math.log(outermost.R / innermost.R) : null;
+  const fluxOverResidual = outermost.fluxAbs / residual;
+  // BOUND (no radiation) iff BOTH robust signs hold: the magnitude falls steeply
+  // (endpoint slope ≤ −1.5) AND the far flux is orders below the residual a
+  // radiation sink would carry constantly (≪ 1% of residual).
+  const bound = fluxOverResidual < 1e-2 && ((endpointSlope != null && endpointSlope < -1.5) || (slope != null && slope < -1.5));
+  return {
+    omega: w, kappaStar: kap, residual, rows,
+    farScalingSlopeLSQ: slope != null ? +slope.toFixed(2) : null,   // ~0 radiation, ~−2 bound
+    endpointSlope: endpointSlope != null ? +endpointSlope.toFixed(2) : null, // robust; ~−2 bound
+    outermostFluxAbs: +outermost.fluxAbs.toExponential(2),
+    fluxOverResidual: +fluxOverResidual.toExponential(2),          // ≪1: no radiation sink; ~1 would be radiation carrying the residual
+    fluxVanishesAtFarField: bound,
+    verdict: bound
+      ? "far_field_angular_momentum_flux_vanishes_bound_field_light_cylinder_pin_holds_residual_reactive_S1S2_closes"
+      : "far_field_flux_persists_genuine_radiation_spin_down_fork",
+    ...FAIL_CLOSED,
+  };
+}
+
+// §79: the bound-field INTERNAL angular-momentum balance (the last step to S1/S2
+// closure). §78 dissolved the sink: the +0.076 residual is reactive (a bound field
+// has zero net secular self-torque), and §57 shows the linear shape sector is a
+// strong basin (eigenvalues −0.25…−3.6, restoring). The ONLY destabilizer is the
+// nonlinear rail-pin inversion (§60) when β_M climbs above 1. This integrates the
+// size mode in the §57 basin with the reactive residual redistributed via the §72
+// transport (ctrRel≈0.59) to a CONSERVATIVE inner/outer reservoir (the §57 basin
+// back-pressure), NO SINK — and reads whether the size mode holds bounded (S1/S2
+// closes) or the retained residual still drives β_M into the inversion. Reference/
+// reduced integrator (sibling of §71/§68a), coefficients from the measured stack;
+// central solver untouched. Fail-closed; NOT evidence; authorizes no acceptance.
+export function boundInternalBalance({
+  kSize = 0.25, kBasin = 1.85, gPin = 1.0, mRad = 2, damp = 0.1,
+  residualNearField = 0.0758, dt = 0.005, T = 120, dispersalS = 3,
+  s0 = 0.05, sd0 = 0, delta0 = 0.05,
+} = {}) {
+  // The dichotomy the §78 far-field result decides. Both branches share the §57
+  // basin restoring stiffness (kSize>0) and the §60 rail-pin inversion above β_M=1.
+  //  - DRIVE branch: the +0.076 is a REAL secular torque on the middle (the §66
+  //    NEAR-FIELD reading, the rigid Row-7 truncation). It pushes δ=β_M−1 above 0,
+  //    inverts the pin, and the size mode runs away — the Row-7 coherent expansion.
+  //  - REACTIVE branch: §78 (bound field, zero NET secular self-torque) — the
+  //    residual does no net secular work, so δ relaxes to the rail (δ→0) under the
+  //    §57 basin and the size mode holds. This is the branch the MEASURED bound
+  //    field (§78) selects.
+  const run = (mode) => {
+    let y = [s0, sd0, delta0];
+    const n = Math.round(T / dt); let sMax = -Infinity, sMin = Infinity, disp = null;
+    const deriv = (Y) => {
+      const [s, sd, delta] = Y;
+      // δ dynamics: DRIVE keeps a secular +residual source; REACTIVE has none (net-zero, §78)
+      const ddelta = (mode === "drive" ? residualNearField : 0) - kBasin * delta;
+      const Fs = delta > 0 ? (kSize * s + gPin * delta) : (-kSize * s); // §60 inversion above rail / §57 basin below
+      return [sd, (Fs - damp * sd) / mRad, ddelta];
+    };
+    for (let k = 0; k < n; k++) {
+      const k1 = deriv(y), k2 = deriv(y.map((v, i) => v + 0.5 * dt * k1[i])), k3 = deriv(y.map((v, i) => v + 0.5 * dt * k2[i])), k4 = deriv(y.map((v, i) => v + dt * k3[i]));
+      y = y.map((v, i) => v + (dt / 6) * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
+      sMax = Math.max(sMax, y[0]); sMin = Math.min(sMin, y[0]);
+      if (disp == null && Math.abs(y[0]) > dispersalS) disp = (k + 1) * dt;
+      if (!isFinite(y[0]) || Math.abs(y[0]) > 1e6) { disp = disp ?? (k + 1) * dt; break; }
+    }
+    const bounded = disp == null && Math.abs(sMax) < dispersalS;
+    return { bounded, dispersalTime: disp, sMax: +sMax.toFixed(4), finalDelta: +y[2].toFixed(4), finalS: +y[0].toFixed(4) };
+  };
+  const drive = run("drive"), reactive = run("reactive");
+  return {
+    kSize, kBasin, residualNearField,
+    driveBranch_row7_nearFieldTruncation: drive,   // residual as real secular drive → runaway
+    reactiveBranch_s78_boundField: reactive,        // residual reactive (§78) + §57 basin → bounded
+    dichotomyDecidedBy: "section_78_far_field_flux_vanishes_selects_reactive_branch",
+    s1s2Closes: reactive.bounded && !drive.bounded,
+    verdict: (reactive.bounded && !drive.bounded)
+      ? "reactive_residual_plus_section57_basin_bounds_the_size_mode_row7_runaway_is_the_nearfield_truncation_artifact_S1S2_closes_as_bound_nonradiating_structure"
+      : "dichotomy_not_cleanly_resolved_at_reduced_grade",
+    ...FAIL_CLOSED,
+  };
+}
+
 export function coupledComplexFixedPoint({
   geo = SELF_EQUILIBRATED_V5.geo, driftU = 0.2, Nt = 8, soft = 0.02,
   pump = 0.2274, brakeFracMax = 0.667, Rsea = 3.4, gamma = 1.0, coupling = "all",
@@ -2977,6 +3216,12 @@ if (isMain()) {
     out = coOrbitalCageSink({});
   } else if (flag("--native-drain-gate")) {
     out = nativeSaturatedCageDrain({ baseTilt: parseFloat(val("--base-tilt", "30")) * (Math.PI / 180) });
+  } else if (flag("--self-torque-memory")) {
+    out = selfTorqueMemoryDepth({});
+  } else if (flag("--far-field-flux")) {
+    out = farFieldAngularMomentumFlux({});
+  } else if (flag("--internal-balance")) {
+    out = boundInternalBalance({});
   } else if (flag("--coupled-complex")) {
     out = coupledComplexFixedPoint({
       driftU: parseFloat(val("--drift-u", "0.2")),

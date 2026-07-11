@@ -18,13 +18,13 @@ The answer must not erase substrate identity. Individual architrinos remain prov
 
 ## Noether Braid Geometry Basis
 
-The relevant object is the Noether braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md).
+The relevant object is the Noether braid described in [Noether Braid](../noether-braid/noether-braid.md). Its geometric footprint is the dynamic exclusion envelope described in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md). Packing consumes the channel-specific interface $D_{a,\mathrm{packing}}$ from that chapter rather than treating a visual surface as a universal hard boundary.
 
-In the low-apparent-energy matter regime, the nested shell braid support rows maintain separated orbital scales and a three-dimensional orientation structure. The outer binary sets the leading equatorial boundary of an oblate spheroidal exclusion envelope, while the inner and middle binaries provide high-frequency stabilizing wake structure.
+The family flag must remain explicit. A spindle-family matter candidate presents a fusiform envelope; a nested-family candidate presents an oblate spheroidal envelope. Either form can remain genuinely three-dimensional and volume-excluding. The statistics hypothesis therefore consumes a retained family-declared envelope and its packing interface, not the oblate sign $\xi<1$ as a universal Noether braid property.
 
-This is already a flattened object, but it remains genuinely three-dimensional. The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion: another same-channel assembly cannot be inserted into the same effective state without disturbing the retained branch.
+The orbital support still occupies a volume. Its exclusion envelope has thickness, principal axes, and a dynamically maintained interior. That 3D envelope is the candidate substrate basis for fermionic exclusion: another same-channel assembly cannot be inserted into the same effective state without disturbing the retained branch.
 
-The good news for the pressure story is that this is not an alien mechanism. Electron degeneracy already teaches the observer-level lesson: when a population carries an exclusion rule, compression does not merely make the objects closer together; it changes the available state volume and produces a pressure response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same logic is pushed down one level. Noether braids have oblate spheroidal exclusion envelopes, so dense packing should produce an effective packing pressure before the language of a smooth continuum equation of state is introduced.
+The good news for the pressure story is that this is not an alien mechanism. Electron degeneracy already teaches the observer-level lesson: when a population carries an exclusion rule, compression does not merely make the objects closer together; it changes the available state volume and produces a pressure response. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same logic is pushed down one level. Retained Noether braid families have finite exclusion envelopes, so dense packing should produce an effective packing pressure before the language of a smooth continuum equation of state is introduced.
 
 That statement has a controlled burden. The exclusion envelope can supply the geometric source of pressure-like resistance, but the full Fermi-Dirac pressure law also needs the exchange-sign and state-counting recovery described below. The pressure analogy is therefore a bridge, not a shortcut: Noether braid packing explains why overlap is dynamically costly, while spin-statistics closure must still explain why the observer-level electron gas obeys the familiar fermionic counting law.
 
@@ -181,7 +181,7 @@ For the fermionic branch, $\mathcal{R}_{\mathrm{ex}}$ is admissible only on reco
 
 This chapter depends on:
 
-- [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) for the oblate spheroidal exclusion envelope,
+- [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md) for family-declared fusiform and oblate spheroidal exclusion envelopes and the packing-interface diagnostic,
 - [Noether Braid](../noether-braid/noether-braid.md) for the braid taxonomy and nested shell braid scaffold,
 - [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) for the delayed-dynamics regime map,
 - [Wavefunction Ontology](./wavefunction-ontology.md) for the effective probability bookkeeping seen by physical observers,

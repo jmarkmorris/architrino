@@ -51,7 +51,7 @@ $$
 
 Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
 
-This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the oblate spheroidal exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
+This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the family-declared exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. A spindle-family consumer therefore uses the fusiform envelope, while a nested-family consumer uses the oblate spheroidal envelope. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
 
 ## Assembly-Noether Sea Interface Diagnostic
 
@@ -468,7 +468,7 @@ $$
 \frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}
 $$
 
-Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous nested shell braid for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration.
+Here each $\Delta\ln$ term is measured relative to the declared same-family branch reference for the channel: the retained rest branch of the family under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous nested shell braid is one nested-family calibration branch; it is not the reference for a spindle-family calculation.
 
 For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
 
@@ -661,7 +661,7 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ## Envelope Forms
 
-The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](spindle-braid.md) — the leading candidate family — sweeps a **fusiform envelope** at rest: slow near-polar caps and the widest working ring at the equator, set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The canonical geometry variables and the Lorentz projection below are stated for any envelope with a declared parallel axis and apply to both forms.
+The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](spindle-braid.md) — the leading candidate family — sweeps a **fusiform envelope** at rest, elongated along its shared axis and widest in its working equatorial ring, as set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The semiaxis variables below apply to both forms, but the rest-shape sign of their ratio is family data: fusiform means $R_{\parallel}>R_{\perp}$, while oblate means $R_{\parallel}<R_{\perp}$. The moving Lorentz-projection target is a separate branch response and must not be inferred from either rest-shape sign.
 
 ### Oblate Spheroidal Form (Nested Family)
 
@@ -679,11 +679,11 @@ In low-energy prose, "nested shell braid shape" should usually mean this effecti
 
 ## Canonical Geometry Variables
 
-For the oblate spheroidal exclusion envelope, use $R_{\parallel}$ for the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
+For either family, use $R_{\parallel}$ for the semiaxis along the declared family axis or moving-branch drift axis and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
-so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis.
+so $\xi=1$ denotes a spherical envelope, $\xi>1$ denotes a fusiform envelope elongated along the parallel axis, and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis. A family label must accompany any rest-envelope value of $\xi$.
 
 Use
 $$
@@ -695,13 +695,13 @@ Observer clock behavior is a downstream readout, not the definition of either ge
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
-but this is a closure target linking the clock channel to the oblate spheroidal envelope. It should not be used to define $\xi$.
+but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not reclassify the spindle family's fusiform rest envelope as oblate.
 
 ## Lorentz Projection Role
 
-For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable all-layer nested shell braid branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state.
+For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state. The equations in this section state the family-general moving-envelope target; the nested-family instantiation begins in [Retuning Projection to Envelope Variables](#retuning-projection-to-envelope-variables), while the spindle-family projection remains open.
 
-The hidden branch state contains the inner, middle, and outer layer radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. The outer binary controls the leading boundary because it has the largest radius and weakest shielding. Therefore the observed ruler factor is extracted through the outer envelope,
+The hidden branch state contains the family-specific layer radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. In the nested family, the outer binary controls the leading boundary because it has the largest radius and weakest shielding; in the spindle family, the leading surface must instead be projected from the six tilted co-rotating paths. Therefore the observed ruler factor is extracted through the declared family envelope,
 $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 \equiv
@@ -816,7 +816,7 @@ $$
 
 This approximation is a projection estimate, not a branch proof. It fails when middle-layer hinge motion, inner self-hit history, axis precession, or neighbor-induced strain contributes at the same order as the outer binary. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
-## Deformability of the Envelope
+## Nested-Family Envelope Deformability
 
 The oblate spheroidal envelope is deformable because it is generated by orbit paths, not by a rigid shell. Those paths depend on the superposition of:
 
@@ -841,17 +841,19 @@ For the special-relativity-facing comparison of this deformation channel, see [t
 
 For local assembly modeling, use this page as the geometric source for:
 
-- an oblate spheroidal envelope boundary,
-- principal axes set by nested shell braid orientation,
-- deformation of the outer-binary envelope under local gradients,
+- a family-declared fusiform or oblate spheroidal envelope boundary,
+- principal axes set by the retained family's orientation,
+- deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For dynamics modeling, use [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
+For nested-family dynamics modeling, use [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics), where the oblate causal envelope is treated as a delay-geometry input and a simulation target. For the spindle-family definition and measured moving states, use [Spindle Braid](spindle-braid.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 
 ## Summary Commitment
 
 > **Nested Shell Braid Geometry Commitment:** A nested shell braid has an oblate spheroidal exclusion envelope generated by the path history of its shell binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
+
+> **Family-Scoping Commitment:** The spindle family is fusiform at rest with $\xi>1$; the nested family is oblate at rest with $\xi<1$. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each family.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.

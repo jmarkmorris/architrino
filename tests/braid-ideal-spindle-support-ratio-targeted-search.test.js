@@ -7,7 +7,7 @@ import {
   angularMomentumFlowLedger, complexEscapementReduced, coupledComplexFixedPoint,
   brokenSymmetryTransportGate, internalDeformationPencil,
   globalDrainShortfall, seaTiltDampingEstimate, coOrbitalCageSink,
-  nativeSaturatedCageDrain,
+  nativeSaturatedCageDrain, selfTorqueMemoryDepth, farFieldAngularMomentumFlux,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -560,6 +560,36 @@ test("native drain gate: the conservative guard confirms the drain is DISSIPATIV
   const g = nativeSaturatedCageDrain({});
   const peak = Math.max(...g.cells.map((c) => c.dNl));
   assert.ok(g.conservativeGuardDrain < peak / 2, `gamma->inf drain ${g.conservativeGuardDrain} collapses vs peak ${peak} (dissipative, not conservative)`);
+});
+
+// --- §77: the (b) feasibility proxy — net self-torque vs memory depth ---
+
+test("self-torque memory proxy reproduces the §60 near-field pump (+0.227) as the partner roots enter the causal window", () => {
+  const g = selfTorqueMemoryDepth({});
+  const atDepth1 = g.rows.find((r) => r.dmax >= 1.0);
+  assert.ok(Math.abs(atDepth1.net - 0.2274) < 0.02, `pump reproduced ${atDepth1.net} vs +0.2274 (§60 regression)`);
+});
+
+test("self-torque memory proxy: the bounded self-interaction CONVERGES flat within ~2R/c_f — NO far-field brake emerges with depth (persistence, hands to the field-flux build)", () => {
+  const g = selfTorqueMemoryDepth({});
+  assert.equal(g.converged, true, "net self-torque converges");
+  assert.equal(g.signChange, false, "no sign change to a brake");
+  assert.equal(g.turnsToBrake, false, "does not move toward a brake with depth");
+  assert.equal(g.verdict, "self_torque_persists_anti_damping_bounded_self_interaction_no_far_field_brake_hands_to_field_flux_build");
+});
+
+// --- §78: the field-momentum-flux build — Φ_∞(r) + the light-cylinder test ---
+
+test("far-field flux: the outgoing-wake angular-momentum flux VANISHES with radius (bound velocity field), it is NOT r-independent radiation", () => {
+  const g = farFieldAngularMomentumFlux({ radii: [16, 32, 64, 128, 256], Ntheta: 10, Nphi: 20, Nt: 10 });
+  assert.ok(g.endpointSlope < -1.5, `endpoint slope ${g.endpointSlope} ≤ −1.5 (bound; radiation would be ~0)`);
+  assert.ok(g.fluxOverResidual < 1e-2, `far flux ${g.fluxOverResidual} ≪ residual — no radiation sink`);
+});
+
+test("far-field flux: the light-cylinder verdict — bound field, pin holds, the +0.076 residual is reactive (no far-field sink because no net source)", () => {
+  const g = farFieldAngularMomentumFlux({ radii: [16, 32, 64, 128, 256], Ntheta: 10, Nphi: 20, Nt: 10 });
+  assert.equal(g.fluxVanishesAtFarField, true);
+  assert.equal(g.verdict, "far_field_angular_momentum_flux_vanishes_bound_field_light_cylinder_pin_holds_residual_reactive_S1S2_closes");
 });
 
 test("fail-closed", () => {
