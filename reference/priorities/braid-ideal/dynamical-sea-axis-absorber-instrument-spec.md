@@ -212,6 +212,21 @@ oblique release ($0.60\to0.24$–$0.48$), but never settles it, and the reductio
 is uncorrelated with the anchor. So settling $\sigma$ is a separate shape-sector
 obligation, not something the axis torque delivers.
 
+### Result — the dynamical sea is axis-only; it does NOT absorb the rail pump (S1/S2)
+
+Tested whether the dynamical sea incidentally supplies the radial / rail-pump
+absorption S1/S2 needs, at **axial** drift ($\theta=0$, $u=0.2$, where the axis
+does not tumble): bare vs frozen-octahedral, co-orbital, and reorienting-polar-
+pair cages. The coherent-expansion track $R_\perp(t)$ is **identical to bare to
+three digits** for every variant ($0.96\to2.37$ over 0.5 rot; frozen-cage differs
+by $<1.5\%$, co-orbit/reorient by $<0.3\%$), and the middle-layer support stays
+starved ($\approx0.00$) throughout regardless of the cage. So the dynamical sea —
+like every prior sea configuration — is **axis-only**: it does not absorb the
+rail pump and does not slow the coherent expansion. This rules the dynamical-sea
+route out for S1/S2 and confirms the shape-attractor closure is a genuinely
+separate obligation (the Group-A tangential rail-pump absorber), not reachable
+through the axis-sector sea.
+
 ### Verdict and decision-tree placement
 
 The dynamical reorienting-dipole sea is the **first structured-sea configuration
