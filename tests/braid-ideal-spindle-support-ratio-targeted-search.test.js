@@ -7,6 +7,7 @@ import {
   angularMomentumFlowLedger, complexEscapementReduced, coupledComplexFixedPoint,
   brokenSymmetryTransportGate, internalDeformationPencil,
   globalDrainShortfall, seaTiltDampingEstimate, coOrbitalCageSink,
+  nativeSaturatedCageDrain,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -537,6 +538,28 @@ test("co-orbital sink: co-orbital motion does NOT open a secular tangential sink
   assert.equal(g.reachesTransportedResidual, false, "does not reach the ~0.044 transported residual");
   assert.ok(g.maxSecularTangentialFracOfPump < 0.10, `max secular tangential ${g.maxSecularTangentialFracOfPump} < 0.10`);
   assert.equal(g.verdict, "co_orbital_cage_secular_tangential_stays_within_static_corollary_s_bound_no_conservative_sink");
+});
+
+// --- §75: door (a) native gate — nonlinear/saturable cage back-reaction chi'' ---
+
+test("native drain gate: the nonlinear/saturable orientational response does NOT beat the linear chi'' by ~10x — the multiple is ~1 (saturation caps a bounded rotator)", () => {
+  const g = nativeSaturatedCageDrain({});
+  assert.ok(g.maxNonlinearMultiple < 1.5, `nonlinear multiple ${g.maxNonlinearMultiple} is O(1), not the ~10x needed`);
+  assert.ok(g.maxNonlinearMultiple > 0.5, "and is a genuine response (not degenerate)");
+});
+
+test("native drain gate: fails the shortfall even with the BEST-CASE linear anchor, R_perp still runs away — local-sink no-go sealed at native grade", () => {
+  const g = nativeSaturatedCageDrain({});
+  assert.equal(g.clearsShortfall, false, "native drain below the transported deficit");
+  assert.ok(g.nativeDrain < g.transportedTarget, `native drain ${g.nativeDrain} < target ${g.transportedTarget}`);
+  assert.equal(g.RperpFlattens, false, "R_perp still expands (S1/S2 does not close)");
+  assert.equal(g.verdict, "native_saturated_chi_below_shortfall_local_sink_nogo_sealed_at_native_grade");
+});
+
+test("native drain gate: the conservative guard confirms the drain is DISSIPATIVE — gamma->inf (no lag) collapses the drain (§74 lesson)", () => {
+  const g = nativeSaturatedCageDrain({});
+  const peak = Math.max(...g.cells.map((c) => c.dNl));
+  assert.ok(g.conservativeGuardDrain < peak / 2, `gamma->inf drain ${g.conservativeGuardDrain} collapses vs peak ${peak} (dissipative, not conservative)`);
 });
 
 test("fail-closed", () => {

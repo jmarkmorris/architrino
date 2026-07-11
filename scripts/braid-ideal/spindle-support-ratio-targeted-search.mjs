@@ -2803,6 +2803,122 @@ export function coOrbitalCageSink({
   };
 }
 
+// §75: door (a) — the NATIVE fail-closed gate. Lifts the §73 drain estimate off
+// its LINEAR, prescribed-worldline χ'' basis: the cage member's orientational
+// response is integrated as a SATURABLE nonlinear unit-dipole ROTATOR tracking
+// the FULL delayed braid field (causal roots, full branch weight) at the anchored-
+// oblique complex (§72 baseTilt, where the transport gate is open), rather than a
+// prescribed γ/(γ+iω) susceptibility. Measures whether saturation/nonlinearity
+// enhances the secular DISSIPATIVE drain by the ~10x the §73/§74 shortfall needs.
+// The dipole is a bounded unit vector (|p̂|=1 IS the saturation): dp̂/dt =
+// γ_eff [f̂ − (f̂·p̂)p̂], γ_eff = γ·ω·|field|·driveScale. Drain ∝ ⟨γ_eff sin²δ⟩
+// (lag δ). Guards: γ→∞ (instantaneous, no lag) must give drain→0 (secular transfer
+// is dissipative, not conservative — the §74 lesson). Central solver untouched;
+// this is the seed→native grade lift the arc named; the braid worldline is still
+// prescribed, so this is native-grade nonlinear DISSIPATIVE response, below a full
+// retained-history release. Fail-closed.
+export function nativeSaturatedCageDrain({
+  geo = SELF_EQUILIBRATED_V5.geo, aLattice = OCTAHEDRAL_CAGE_V4.aLattice,
+  baseTilt = 30 * d, cTrans = 1.0, Nt = 24, soft = 0.02,
+  gammaFracs = [0.25, 0.5, 1.0, 2.0, 4.0], driveScales = [1, 3, 10],
+  linearDrain73 = null, Rsea = 3.4, pump = 0.2274, brakeFracMax = 0.667,
+} = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo });
+  const w = braid.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const cf = 1;
+  const residual = pump * (1 - brakeFracMax);
+  const transported = 0.587 * residual; // §72 anchored-oblique transport fraction
+  const rotXv = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const gbc = Math.cos(baseTilt), gbs = Math.sin(baseTilt);
+  const pos = (s, t) => { const a = w * t + s.th, ca = Math.cos(s.alpha); let p = [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)]; return baseTilt !== 0 ? rotXv(p, gbc, gbs) : p; };
+  const vel = (s, t) => { const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; let p = [-v*Math.sin(a), v*Math.cos(a), 0]; return baseTilt !== 0 ? rotXv(p, gbc, gbs) : p; };
+  const R = aLattice * Math.SQRT2;
+  // one representative INNER-latitude member (the §67/§73 starved channel): an
+  // equatorial cage site, which at the tilted braid sees the deepest field.
+  const memberX = [R, 0, 0];
+  // precompute the delayed field direction f̂(t) and magnitude |field|(t) at the member
+  const fHat = [], fMag = [];
+  for (let k = 0; k < Nt; k++) {
+    const t = (k / Nt) * period;
+    const F = [0, 0, 0];
+    for (const s of braid.sites) {
+      let te = t - Math.hypot(...memberX) - 1;
+      for (let it = 0; it < 40; it++) { const p = pos(s, te); te = t - Math.hypot(memberX[0]-p[0], memberX[1]-p[1], memberX[2]-p[2]); }
+      const p = pos(s, te), dx = [memberX[0]-p[0], memberX[1]-p[1], memberX[2]-p[2]], r = Math.hypot(dx[0], dx[1], dx[2]);
+      const rh = [dx[0]/r, dx[1]/r, dx[2]/r], v = vel(s, te);
+      const Ds = cf - (v[0]*rh[0] + v[1]*rh[1] + v[2]*rh[2]);
+      const c = s.pol / (Ds * r * r);
+      F[0] += c*rh[0]; F[1] += c*rh[1]; F[2] += c*rh[2];
+    }
+    const n = Math.hypot(F[0], F[1], F[2]) || 1e-300;
+    fHat.push([F[0]/n, F[1]/n, F[2]/n]); fMag.push(n);
+  }
+  // linear-interpolate the field direction between samples (for substepping)
+  const fAt = (tt) => { const x = (tt / period) * Nt; const k0 = ((Math.floor(x) % Nt) + Nt) % Nt, k1 = (k0 + 1) % Nt, fr = x - Math.floor(x);
+    const a = fHat[k0], b = fHat[k1]; const v = [a[0]+(b[0]-a[0])*fr, a[1]+(b[1]-a[1])*fr, a[2]+(b[2]-a[2])*fr]; const n = Math.hypot(...v) || 1; return [v[0]/n, v[1]/n, v[2]/n]; };
+  // Integrate BOTH responses to the SAME delayed field, substepped for stability:
+  //  - NONLINEAR: a saturable UNIT dipole (|p̂|=1 is the saturation), dp̂/dt =
+  //    γ[f̂−(f̂·p̂)p̂]; drain ∝ γ⟨sin²δ⟩, sinδ=|perp|, bounded ≤1.
+  //  - LINEAR (Debye): an UN-normalized tracker dq/dt=γ(f̂−q); drain ∝ γ⟨|f̂−q|²⟩
+  //    = the χ″ single-pole γω²/(γ²+ω²), the §67 linear-response basis.
+  // multiple = D_nl/D_lin isolates whether saturation/nonlinearity ENHANCES the
+  // drain (>1) or caps it (≤1). Both use the identical coupling, so it cancels.
+  const runBoth = (gamma) => {
+    const Nsub = Math.max(12, Math.ceil(gamma * period / Nt / 0.1)); // adaptive: keep γ·dts < 0.1 (Euler-stable)
+    const dts = period / (Nt * Nsub);
+    let p = [...fHat[0]], q = [...fHat[0]];
+    let sn = 0, sl = 0, cnt = 0;
+    for (let cyc = 0; cyc < 8; cyc++) {
+      for (let k = 0; k < Nt * Nsub; k++) {
+        const tt = (k / (Nt * Nsub)) * period, f = fAt(tt);
+        const dfp = f[0]*p[0] + f[1]*p[1] + f[2]*p[2];
+        const perp = [f[0]-dfp*p[0], f[1]-dfp*p[1], f[2]-dfp*p[2]];
+        p = [p[0]+gamma*perp[0]*dts, p[1]+gamma*perp[1]*dts, p[2]+gamma*perp[2]*dts];
+        const pn = Math.hypot(...p); p = [p[0]/pn, p[1]/pn, p[2]/pn];
+        const el = [f[0]-q[0], f[1]-q[1], f[2]-q[2]];
+        q = [q[0]+gamma*el[0]*dts, q[1]+gamma*el[1]*dts, q[2]+gamma*el[2]*dts];
+        if (cyc >= 4) { sn += perp[0]*perp[0]+perp[1]*perp[1]+perp[2]*perp[2]; sl += el[0]*el[0]+el[1]*el[1]+el[2]*el[2]; cnt++; }
+      }
+    }
+    const dNl = gamma * (sn / cnt), dLin = gamma * (sl / cnt);
+    return { dNl, dLin, multiple: dLin > 1e-12 ? dNl / dLin : 0 };
+  };
+  const cells = [];
+  for (const gf of gammaFracs) { const r = runBoth(gf * w); cells.push({ gammaFrac: gf, dNl: +r.dNl.toFixed(4), dLin: +r.dLin.toFixed(4), multiple: +r.multiple.toFixed(3) }); }
+  const maxMultiple = Math.max(...cells.map((c) => c.multiple));
+  // conservative guard: γ→∞ (instantaneous tracking) → no lag → drain→0 (dissipative, not conservative)
+  const guard = runBoth(200 * w);
+  // anchor to §73's BEST-CASE linear inner drain (untilted §67, the strongest the
+  // sea offers anywhere) so the pass/fail is maximally FAIR to the sea: even the
+  // best linear drain x the nonlinear multiple must clear the target. (At the
+  // anchored complex the tilted drain is smaller, §73 — so this over-credits the sea.)
+  const dLin73 = linearDrain73 ?? (() => {
+    const est = seaTiltDampingEstimate({ geo, Rsea, Nt: 8, soft, baseTilt: 0 });
+    const band = est.results.filter((r) => r.dampingDiagonal);
+    const cell = (band.length ? band : est.results).reduce((a, b) => (Math.abs(b.diag[0]) > Math.abs(a.diag[0]) ? b : a));
+    return Math.abs(cell.diag[0]);
+  })();
+  const nativeDrain = dLin73 * maxMultiple;
+  const clearsShortfall = nativeDrain >= transported;
+  // R_perp track via the reduced complex escapement, wired with the NATIVE drain
+  const esc = complexEscapementReduced({ transportDC: 0.587, drainRate: nativeDrain, pump, brakeFracMax });
+  return {
+    baseTilt: +(baseTilt / d).toFixed(1), kappaStar: kap, residual: +residual.toFixed(4), transportedTarget: +transported.toFixed(4),
+    linearDrain73: +dLin73.toFixed(4), maxNonlinearMultiple: +maxMultiple.toFixed(3),
+    nativeDrain: +nativeDrain.toFixed(4), nativeOverLinear: +maxMultiple.toFixed(3),
+    conservativeGuardDrain: +guard.dNl.toFixed(5), // γ→∞: drain→0 (secular transfer IS dissipative, §74 lesson)
+    cells,
+    clearsShortfall,
+    RperpFlattens: esc.bounded,       // S1/S2 witness: does the size mode bound with the native drain
+    RperpTrack: esc.bounded ? "bounded" : `runaway_disperse_t${esc.dispersalTime}`,
+    verdict: (clearsShortfall && esc.bounded)
+      ? "native_saturated_chi_clears_shortfall_S1S2_closes_in_existing_ontology"
+      : "native_saturated_chi_below_shortfall_local_sink_nogo_sealed_at_native_grade",
+    ...FAIL_CLOSED,
+  };
+}
+
 export function coupledComplexFixedPoint({
   geo = SELF_EQUILIBRATED_V5.geo, driftU = 0.2, Nt = 8, soft = 0.02,
   pump = 0.2274, brakeFracMax = 0.667, Rsea = 3.4, gamma = 1.0, coupling = "all",
@@ -2859,6 +2975,8 @@ if (isMain()) {
     out = globalDrainShortfall({});
   } else if (flag("--co-orbital-sink")) {
     out = coOrbitalCageSink({});
+  } else if (flag("--native-drain-gate")) {
+    out = nativeSaturatedCageDrain({ baseTilt: parseFloat(val("--base-tilt", "30")) * (Math.PI / 180) });
   } else if (flag("--coupled-complex")) {
     out = coupledComplexFixedPoint({
       driftU: parseFloat(val("--drift-u", "0.2")),
