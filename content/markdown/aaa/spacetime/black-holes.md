@@ -697,7 +697,7 @@ As a heuristic geometric picture, the horizon can also be described as a **dimen
 $$
 \text{3D sphere} \to \text{2D horizon disk} \to \text{3D interior reopening}
 $$
-This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space.
+This is not yet a derived strong-field theorem. It is a compact way of expressing why the horizon is treated as an information-compression layer rather than as a literal ontic edge of space. The planar-disk stage $\xi\to0$ is the same envelope endpoint that appears as the light-speed limit of the Lorentz axis ratio in [Lorentz Kinematics](lorentz-kinematics.md) and as the coherent-boson limit in [Fermi-Dirac and Bose-Einstein Statistics](../quantum/fermi-dirac-and-bose-einstein-statistics.md): the horizon pinch, the null limit, and the boson limit are one geometric endpoint reached from strong-field geometry, kinematics, and statistics.
 
 ## Cosmological Embedding and Horizon Regularity
 
