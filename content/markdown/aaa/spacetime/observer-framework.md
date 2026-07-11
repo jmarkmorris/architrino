@@ -367,7 +367,7 @@ The ontology contains absolute time, a Euclidean void, and a real medium. Theref
 
 The requirement is:
 
-> Physical Observer clocks, rulers, and signal transport must hide the absolute frame below current experimental bounds in validated low-energy and weak-field regimes.
+> Physical Observer clocks, rulers, and signal transport must keep preferred-frame signatures below current experimental bounds in validated low-energy and weak-field regimes.
 
 This is not an optional rhetorical claim. It is a closure burden distributed across:
 

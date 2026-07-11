@@ -221,9 +221,9 @@ $$
 \frac{v}{c_\star^2}\,x' ,
 $$
 
-the relativity-of-simultaneity tilt: two events the assembly synchronizes by its own wake exchange are offset by $(v/c_\star^2)\,x'$ in the void frame. It vanishes at rest and grows with drift.
+the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with drift.
 
-The three pillars are therefore one accounting. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, the **difference** delivers relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
+The three pillars are therefore one accounting once that identification closes. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, while the **difference** supplies the offset required for relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
 
 ## Quantized Realization
 

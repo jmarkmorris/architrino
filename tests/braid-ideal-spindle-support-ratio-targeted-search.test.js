@@ -14,6 +14,7 @@ import {
   certifiedCausalRoots, stressAngularMomentumFluxQuadrature,
   analyticOutgoingRadiatorB, analyticBoundNearFieldB,
   correctedRadiationInstrument, honestNetSelfTorque,
+  canonicalMagneticFarFieldFlux,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -606,11 +607,14 @@ test("internal balance: the reactive-vs-drive dichotomy — the §66 near-field 
   assert.equal(g.reactiveBranch_s78_boundField.bounded, true, "residual reactive (§78) + §57 basin → bounded");
 });
 
-test("internal balance (§81 CORRECTED): the net self-torque selects the DRIVE branch — S1/S2 does NOT close; the §79 reactive-closure reading is withdrawn", () => {
+test("internal balance (§82 REPAIRED): dichotomy valid, but branch selection is UNDETERMINED (held-seed); kSize is the LIVE §57 rail-pinned least eigenvalue, not the stale 0.25", () => {
   const g = boundInternalBalance({});
   assert.equal(g.dichotomyClean, true, "the reactive-vs-drive dichotomy is clean (reactive bounded, drive runaway)");
-  assert.equal(g.branchSelectedByNetSelfTorque, "drive", "§81: the nonzero net self-torque puts the residual in the drive branch");
-  assert.equal(g.s1s2Closes, false, "§79 closure withdrawn — the residual is a real radiated/driving torque");
+  assert.equal(g.branchSelectedByNetSelfTorque, "undetermined_held_seed", "§82: +0.424 is a held-seed diagnostic, not a free-particle drive; field bound on both channels");
+  assert.equal(g.s1s2Closes, false, "S1/S2 not closed at this grade");
+  // (Defect 7) §57 correction made executable: kSize is the |least rail-pinned eigenvalue| ≈ 0.638, NOT 0.25
+  assert.ok(Math.abs(g.kSize - 0.638) < 0.02, `kSize ${g.kSize} is the live §57 rail-pinned least eigenvalue magnitude ≈ 0.638`);
+  assert.ok(Math.abs(g.section57LeastEigenvalue + 0.638) < 0.02, `§57 least eigenvalue ${g.section57LeastEigenvalue} ≈ −0.638 (recomputed; −0.635 was a rounding)`);
 });
 
 // --- §80: ceiling (i) — the magnetic-analog far-field-flux test ---
@@ -661,10 +665,32 @@ test("net self-torque: the whole-braid net secular z-torque is NONZERO (the midd
 test("certified causal roots: bracketed bisection asserts a residual tolerance (throws if a root is not converged)", () => {
   const omega = 1.04;
   const posC = (te) => [Math.cos(omega * te), Math.sin(omega * te), 0];
-  const { roots, maxResidual } = certifiedCausalRoots([100, 0, 0], posC, 0, { extent: 3, tol: 1e-9 });
-  assert.ok(roots.length >= 1, "at least one causal root for a far field point");
-  assert.ok(maxResidual < 1e-9, `root residual ${maxResidual} within asserted tolerance`);
-  assert.ok(roots.every((r) => r < 0), "all roots are causal (emission before reception)");
+  const r = certifiedCausalRoots([100, 0, 0], posC, 0, { extent: 3, tol: 1e-9 });
+  assert.ok(r.roots.length >= 1, "at least one causal root for a far field point");
+  assert.ok(r.maxResidual < 1e-9, `root residual ${r.maxResidual} within asserted tolerance`);
+  assert.ok(r.roots.every((x) => x < 0), "all roots are causal (emission before reception)");
+  assert.equal(r.rootCountStable, true, "root count is stable under scan refinement");
+});
+
+// (Defect 2) COMPLETENESS regressions: the repaired certifier detects a TANGENT
+// (double) root that a sign-change-only scan misses, and exposes a near-tangent as
+// an inactive-root gap (a Jacobian floor), so 'zero residual' can no longer mean
+// 'no root detected'.
+test("certified roots COMPLETENESS: a TANGENT/double root (g touches 0 without crossing) is detected, not silently dropped", () => {
+  // g(te) = (te+1.5)^2 : |pos| = 1.25+(te+1)^2 with X=0, cf=1, t=0 -> g never crosses 0, touches at te=-1.5
+  const posT = (te) => [1.25 + (te + 1) ** 2, 0, 0];
+  const r = certifiedCausalRoots([0, 0, 0], posT, 0, { extent: 3, tol: 1e-6, jacobianFloor: 1e-2 });
+  assert.equal(r.tangentRoots.length, 1, "the double/tangent root is found via g′ bracketing");
+  assert.ok(Math.abs(r.tangentRoots[0] + 1.5) < 1e-3, `tangent root at te≈−1.5 (got ${r.tangentRoots[0]})`);
+  assert.equal(r.rootCount, 1, "the tangent root is counted (a sign-change-only scan would report 0)");
+});
+
+test("certified roots COMPLETENESS: a NEAR-tangent is exposed as an inactive-root gap (Jacobian floor), not a false zero", () => {
+  const posN = (te) => [1.25 + 1e-3 + (te + 1) ** 2, 0, 0]; // min |g| ≈ 1e-3 > tol → grazes, no root
+  const r = certifiedCausalRoots([0, 0, 0], posN, 0, { extent: 3, tol: 1e-9, jacobianFloor: 1e-2 });
+  assert.equal(r.rootCount, 0, "no transverse root");
+  assert.equal(r.tangentRoots.length, 0, "no tangent root within tol");
+  assert.ok(r.inactiveRootGaps.length >= 1, "the near-tangent is reported as an inactive-root gap");
 });
 
 test("stress quadrature CONTROLS: a known outgoing radiator gives slope ≈ 0, a known bound field gives slope ≈ −1 (SAME integrator)", () => {
@@ -676,19 +702,37 @@ test("stress quadrature CONTROLS: a known outgoing radiator gives slope ≈ 0, a
   assert.ok(Math.abs(bnd.endpointSlope + 1) < 0.05, `bound slope ${bnd.endpointSlope} ≈ −1`);
 });
 
-test("corrected instrument: controls pass, the ELECTRIC/velocity channel is BOUND, and the MAGNETIC B=curl(A_wake) channel is UNMEASURED (non-convergent)", () => {
+test("corrected instrument (repaired): the full-pipeline control passes, the ELECTRIC channel is BOUND as an interval, and the MAGNETIC channel from the canonical W^rec force is BOUND", () => {
   const g = correctedRadiationInstrument({
     radii: [16, 32, 64], softSweep: [0.02, 0.08], hcSweep: [0.02, 0.04],
-    magRadii: [16, 32, 64], magNt: 6, magNtheta: 6, magNphi: 10, Nt: 8, Ntheta: 8, Nphi: 16,
+    magRadii: [16, 32, 64], magNt: 6, magNtheta: 6, magNphi: 12, Nt: 8, Ntheta: 8, Nphi: 16,
   });
-  assert.equal(g.controls.controlsPass, true, "instrument controls validated (curl op, radiator, bound)");
-  assert.equal(g.electricChannel.boundAcrossRegulator, true, "electric/velocity field falls ~1/r^2 across the regulator sweep");
-  assert.equal(g.magneticChannel.converged, false, "magnetic B=curl(A_wake) does NOT converge (regulator/step dependent at the rail caustic)");
-  assert.ok(g.magneticChannel.slopeRangeAcrossKnobs > 0.4 || g.magneticChannel.fluxMagnitudeSwingFactor > 2, "non-convergence is evident in slope range or magnitude swing");
-  assert.equal(g.verdict, "electric_channel_BOUND_measured_magnetic_analog_channel_UNMEASURED_nonconvergent_radiation_undecided");
+  // (Defect 1) controlsPass now requires BOTH the quadrature controls AND a full-pipeline control
+  assert.equal(g.controls.quadratureControls.pass, true, "quadrature+curl controls pass");
+  assert.equal(g.controls.fullPipelineControl.pass, true, "full-pipeline control passes (roots+reg+quadrature end-to-end)");
+  assert.ok(g.controls.fullPipelineControl.fieldReconstructionMaxRelErr < 1e-2, "reconstructed field matches the exact canonical Coulomb-from-causal-delay field");
+  assert.equal(g.controls.controlsPass, true, "instrument is trustworthy before it touches braid data");
+  // (Defect 3) electric channel bound as an interval / stable vanishing flux
+  assert.equal(g.electricChannel.boundAcrossRegulator, true, "electric/branch field is a bound stable-vanishing-flux channel");
+  assert.ok(Array.isArray(g.electricChannel.slopeInterval) && g.electricChannel.slopeInterval.length === 2, "electric bound reported as a slope interval");
+  assert.ok(g.electricChannel.aggregateSlopeInterval[1] < -0.8, "robust aggregate slopes clearly steeper than radiation");
+  // (Defect 4) magnetic channel from the canonical W^rec force is measured BOUND
+  assert.equal(g.magneticChannel.primary_canonicalWrec.magneticBound, true, "canonical-W^rec antisymmetric channel is bound");
+  assert.equal(g.magneticChannel.surrogate_Awake_curl_comparison.nonConvergent, true, "the A_wake curl surrogate is non-convergent (a curl artifact, not the law)");
+  assert.equal(g.verdict, "both_channels_bound_canonical_Wrec_field_is_1_over_r2_no_far_field_radiation_rigid_circular_braid_does_not_radiate");
+  assert.ok(g.maxRootResidual < 1e-9, `roots certified (max residual ${g.maxRootResidual})`);
 });
 
-test("honest self-torque: the whole-braid net secular z-torque is +0.424 (held-seed), the reconstructed self-hit is ~0, and the §81 +0.142 was a fabricated 2/3-brake subtraction", () => {
+test("canonical magnetic channel: E_anti = E_full − E_static from the W^rec force is BOUND (soft-extrapolated, caustic-resolution-converged) — the rigid-circular braid does not radiate", () => {
+  const g = canonicalMagneticFarFieldFlux({ radii: [16, 32, 64], softSweep: [0.08, 0.04, 0.02], Nt: 8, Ntheta: 10, Nphi: 20 });
+  assert.equal(g.magneticBound, true, "antisymmetric channel bound");
+  assert.equal(g.fluxVanishes, true, "far flux vanishes (≪ residual) across the regulator");
+  assert.ok(g.sweep.every((r) => r.endpointSlope < -0.6), "every regulator slope is clearly bound (not radiation ≈ 0)");
+  assert.equal(g.causticResolutionScaling.converges, true, "the near-D_s=0 caustic contribution converges under grid refinement");
+  assert.ok(g.maxRootResidual < 1e-9, "roots certified");
+});
+
+test("honest self-torque: net +0.424 (held-seed), self-hit ≈0, complete-root certifier, β=1±δ onset ξ0≈√(6μ), honest torque labels", () => {
   const g = honestNetSelfTorque({ NtList: [8, 16], softList: [0.02, 0.08] });
   assert.ok(Math.abs(g.netSecularZTorque - 0.424) < 0.01, `net secular z-torque ${g.netSecularZTorque} ≈ +0.424`);
   assert.equal(g.selfHitIsCoincidenceOnly, true, "reconstructed self-hit ≈ 0 at β_M=1 (coincidence-only, §77)");
@@ -696,6 +740,17 @@ test("honest self-torque: the whole-braid net secular z-torque is +0.424 (held-s
   assert.equal(g.softStable, true, "soft-robust");
   assert.ok(g.maxRootResidual < 1e-7, `roots certified (max residual ${g.maxRootResidual})`);
   assert.ok(Math.abs(g.section81FabricatedValue - 0.142) < 0.02, `§81's +0.142 reproduced as the fabricated netPartner − (2/3)·M value (${g.section81FabricatedValue})`);
+  // (Defect 6) honest labels
+  assert.ok(Math.abs(g.internalPartnerTorqueOnHeldRigidSeed - 0.424) < 0.01, "internal partner torque on the held rigid seed = +0.424");
+  assert.ok(Math.abs(g.externalHoldingTorqueRequired + 0.424) < 0.01, "external holding torque required = −0.424");
+  assert.equal(g.rootCompletenessTested, true, "root completeness (not just residual) is tested");
+  assert.equal(g.rootCompleteness.rootCountStableEverywhere, true, "per-hit root counts stable under refinement");
+  // (Defect 5) self-hit label + β=1±δ branch-birth onset
+  assert.equal(g.selfHitLabel, "analyticNoPositiveDelaySelfHitAtExactBetaOne_sin_xi_equals_xi_over_beta");
+  assert.equal(g.noPositiveDelayAtOrBelowBetaOne, true, "no positive-delay self root at β≤1");
+  assert.equal(g.branchBornAboveBetaOne, true, "a self-hit branch is born for β=1+μ");
+  const born = g.selfHitOnset.find((r) => r.mu === 0.05);
+  assert.ok(Math.abs(born.xi0Measured - born.xi0Predicted) < 0.05, `branch born at ξ0≈√(6μ) (measured ${born.xi0Measured} vs ${born.xi0Predicted})`);
   assert.equal(g.conservationIdentity.canClose, false, "the ⟨τ_mech⟩+⟨Φ_out⟩=0 identity cannot be closed in a common normalization at this grade");
 });
 

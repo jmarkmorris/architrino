@@ -425,13 +425,21 @@ t_++t_-
 =
 \frac{2R_\parallel}{c_\star}\gamma_\star^2
 $$
-supplies the closed-return period whose longitudinal-transverse phase matching gives ruler contraction and clock dilation. Their difference supplies the simultaneity row: when the result is referred to the assembly's dilated clock and rest separation $x'$, it gives
+supplies the closed-return period whose longitudinal-transverse phase matching gives ruler contraction and clock dilation. The half-difference of the same legs is exactly
+$$
+\tfrac12\left(t_+-t_-\right)
+=
+\frac{R_\parallel v}{c_\star^2-v^2}
+=
+\frac{R_\parallel v}{c_\star^2}\gamma_\star^2
+$$
+and, when referred to the assembly's dilated clock and rest separation $x'$, gives the exact offset
 $$
 \delta\tau
 =
 \frac{v}{c_\star^2}\,x'
 $$
-Thus length, duration, and synchronization are three readings of one fore-and-aft causal ledger, not independently fitted effects. Momentum and energy belong to that same boost map, so the exact special-relativistic accounting admits one common factor $\gamma_\star$ across clock, ruler, momentum, and energy rather than four unrelated corrections. [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md#simultaneity-from-the-leg-difference) gives the full sum-and-difference derivation. The native closure burden remains to show that one retained Noether braid branch exports this exact unified ledger into all four response channels.
+The sum-and-difference identities are exact. Identifying $\delta\tau$ with observer relativity of simultaneity is a derivation target: it requires the observer-synchrony construction to show that physical clock exchange selects this offset, rather than the leg algebra alone being treated as a completed Lorentz-recovery proof. Subject to that identification, length, duration, and synchronization are three readings of one fore-and-aft causal ledger, not independently fitted effects. Momentum and energy belong to the same comparison-law boost map, so the exact special-relativistic accounting admits one common factor $\gamma_\star$ across clock, ruler, momentum, and energy rather than four unrelated corrections. [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md#simultaneity-from-the-leg-difference) gives the full sum-and-difference derivation. The native closure burden remains to show that one retained Noether braid branch exports this exact unified ledger into all four response channels and closes the observer-synchrony identification.
 
 The proposed common source is:
 

@@ -286,7 +286,7 @@ A Tier 1 packet supports a proof or validation claim only when the branch residu
 ## Run Protocol: Absolute-Frame + $\mathbb{U}_{\text{now}}$ Logging
 
 ### Absolute frame rule
-All simulations integrate dynamics in the absolute Euclidean frame:
+All simulations integrate dynamics in the absolute frame:
 - Fixed Cartesian coordinates (x,y,z) in a chosen scaffold representing the Euclidean void
 - Global absolute time $t$ with step $\Delta t$
 - No relativistic time dilation applied to the integration clock (proper time is derived only in post-processing)
