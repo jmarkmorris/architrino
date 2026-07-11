@@ -11,6 +11,9 @@ import {
   boundInternalBalance, magneticAnalogFarFieldFlux,
   integrateMagneticAngularMomentumFlux, outgoingHelicalMagneticPositiveControl,
   wholeBraidNetSelfTorque,
+  certifiedCausalRoots, stressAngularMomentumFluxQuadrature,
+  analyticOutgoingRadiatorB, analyticBoundNearFieldB,
+  correctedRadiationInstrument, honestNetSelfTorque,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -647,6 +650,53 @@ test("net self-torque: the whole-braid net secular z-torque is NONZERO (the midd
   assert.equal(g.verdict, "net_self_torque_NONZERO_residual_is_a_real_drive_refutes_s79_s80_reactive_closure_inconsistent_with_s78_vanishing_flux");
   // the net is carried by the middle layer (the rail pump); inner/outer ~0
   assert.ok(Math.abs(g.perLayerZTorque.M) > 0.3 && Math.abs(g.perLayerZTorque.I) < 0.05, "net z-torque concentrated on the middle rail");
+});
+
+// --- §82: the CORRECTED radiation / self-torque instrument (audit rebuild). ---
+// NOTE: the §78-81 tests above assert the SELF-REPORTED verdicts of the ORIGINAL
+// probes, whose physical conclusions were WITHDRAWN by the adversarial audit
+// (circular §80, unconverged §78, fabricated §81 self-torque). Those functions
+// are retained for reproducibility; the corrected measurement is §82 below.
+
+test("certified causal roots: bracketed bisection asserts a residual tolerance (throws if a root is not converged)", () => {
+  const omega = 1.04;
+  const posC = (te) => [Math.cos(omega * te), Math.sin(omega * te), 0];
+  const { roots, maxResidual } = certifiedCausalRoots([100, 0, 0], posC, 0, { extent: 3, tol: 1e-9 });
+  assert.ok(roots.length >= 1, "at least one causal root for a far field point");
+  assert.ok(maxResidual < 1e-9, `root residual ${maxResidual} within asserted tolerance`);
+  assert.ok(roots.every((r) => r < 0), "all roots are causal (emission before reception)");
+});
+
+test("stress quadrature CONTROLS: a known outgoing radiator gives slope ≈ 0, a known bound field gives slope ≈ −1 (SAME integrator)", () => {
+  const omega = 1.04, radii = [16, 32, 64, 128, 256], period = 2 * Math.PI / omega;
+  const rad = stressAngularMomentumFluxQuadrature({ radii, fieldAt: analyticOutgoingRadiatorB({ omega }), period });
+  const bnd = stressAngularMomentumFluxQuadrature({ radii, fieldAt: analyticBoundNearFieldB({ omega }), period });
+  assert.ok(Math.abs(rad.endpointSlope) < 0.02, `radiator slope ${rad.endpointSlope} ≈ 0 (radius-independent flux)`);
+  assert.ok(rad.spread < 0.02, `radiator flux radius-independent (spread ${rad.spread})`);
+  assert.ok(Math.abs(bnd.endpointSlope + 1) < 0.05, `bound slope ${bnd.endpointSlope} ≈ −1`);
+});
+
+test("corrected instrument: controls pass, the ELECTRIC/velocity channel is BOUND, and the MAGNETIC B=curl(A_wake) channel is UNMEASURED (non-convergent)", () => {
+  const g = correctedRadiationInstrument({
+    radii: [16, 32, 64], softSweep: [0.02, 0.08], hcSweep: [0.02, 0.04],
+    magRadii: [16, 32, 64], magNt: 6, magNtheta: 6, magNphi: 10, Nt: 8, Ntheta: 8, Nphi: 16,
+  });
+  assert.equal(g.controls.controlsPass, true, "instrument controls validated (curl op, radiator, bound)");
+  assert.equal(g.electricChannel.boundAcrossRegulator, true, "electric/velocity field falls ~1/r^2 across the regulator sweep");
+  assert.equal(g.magneticChannel.converged, false, "magnetic B=curl(A_wake) does NOT converge (regulator/step dependent at the rail caustic)");
+  assert.ok(g.magneticChannel.slopeRangeAcrossKnobs > 0.4 || g.magneticChannel.fluxMagnitudeSwingFactor > 2, "non-convergence is evident in slope range or magnitude swing");
+  assert.equal(g.verdict, "electric_channel_BOUND_measured_magnetic_analog_channel_UNMEASURED_nonconvergent_radiation_undecided");
+});
+
+test("honest self-torque: the whole-braid net secular z-torque is +0.424 (held-seed), the reconstructed self-hit is ~0, and the §81 +0.142 was a fabricated 2/3-brake subtraction", () => {
+  const g = honestNetSelfTorque({ NtList: [8, 16], softList: [0.02, 0.08] });
+  assert.ok(Math.abs(g.netSecularZTorque - 0.424) < 0.01, `net secular z-torque ${g.netSecularZTorque} ≈ +0.424`);
+  assert.equal(g.selfHitIsCoincidenceOnly, true, "reconstructed self-hit ≈ 0 at β_M=1 (coincidence-only, §77)");
+  assert.equal(g.ntConverged, true, "Nt-converged");
+  assert.equal(g.softStable, true, "soft-robust");
+  assert.ok(g.maxRootResidual < 1e-7, `roots certified (max residual ${g.maxRootResidual})`);
+  assert.ok(Math.abs(g.section81FabricatedValue - 0.142) < 0.02, `§81's +0.142 reproduced as the fabricated netPartner − (2/3)·M value (${g.section81FabricatedValue})`);
+  assert.equal(g.conservationIdentity.canClose, false, "the ⟨τ_mech⟩+⟨Φ_out⟩=0 identity cannot be closed in a common normalization at this grade");
 });
 
 test("fail-closed", () => {
