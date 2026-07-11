@@ -1436,6 +1436,7 @@ export function internalDeformationPencil({
   geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02,
   eps = 0.01, eta = 0.03, railPinned = true, kapFixed = null,
   coupling = "all", pumpAbsorbed = false, mRad = 2, parametric = false,
+  u = 0, driftAngle = 0, baseTilt = 0,
 } = {}) {
   const seed = buildBraid({ u: 0, cTrans, geo });
   const w = seed.omega;
@@ -1453,6 +1454,15 @@ export function internalDeformationPencil({
   const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
   const rotY = (v, c, s) => [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
   const li = (nm) => (nm === "I" ? 0 : nm === "M" ? 1 : 2);
+  // Broken-symmetry knobs (§71 next probe; defaults 0 reproduce the axisymmetric
+  // rest pencil EXACTLY): drift vector u*d_hat (d_hat at driftAngle theta to the
+  // spin axis; oblique drift azimuthally modulates the branch weights) plus a
+  // GLOBAL base-tilt baseTilt that anchors the spin axis off the geometric z-axis
+  // (the anchored-oblique complex, coplanar with the drift). Both break the
+  // axisymmetry/reflection that nulls C_rt, C_tr at rest.
+  const dvec = [u * Math.sin(driftAngle), 0, u * Math.cos(driftAngle)];
+  const gbc = Math.cos(baseTilt), gbs = Math.sin(baseTilt);
+  const gtilt = (v) => rotX(v, gbc, gbs); // global anchor tilt about x (coplanar with the oblique drift)
   const uFT = (dRad, ex, ey) => {
     const wEff = railPinned ? cTrans / ((1 + dRad[1]) * Math.cos(geo.alphaM)) : w;
     const period = 2 * Math.PI / wEff;
@@ -1461,9 +1471,9 @@ export function internalDeformationPencil({
       const cx = Math.cos(ex[L]), sx = Math.sin(ex[L]), cy = Math.cos(ey[L]), sy = Math.sin(ey[L]);
       return {
         pol: s.pol, L, alpha: s.alpha, R,
-        pos: (t) => { const a = wEff * t + s.th, ca = Math.cos(s.alpha); return rotY(rotX([s.sgn*R*ca*Math.cos(a), s.sgn*R*ca*Math.sin(a), s.sgn*R*Math.sin(s.alpha)], cx, sx), cy, sy); },
-        vel: (t) => { const a = wEff * t + s.th, v = s.sgn*R*Math.cos(s.alpha)*wEff; return rotY(rotX([-v*Math.sin(a), v*Math.cos(a), 0], cx, sx), cy, sy); },
-        radHat: (t) => { const a = wEff * t + s.th; return [Math.cos(a), Math.sin(a), 0]; },
+        pos: (t) => { const a = wEff * t + s.th, ca = Math.cos(s.alpha); const p = gtilt(rotY(rotX([s.sgn*R*ca*Math.cos(a), s.sgn*R*ca*Math.sin(a), s.sgn*R*Math.sin(s.alpha)], cx, sx), cy, sy)); return [p[0]+dvec[0]*t, p[1]+dvec[1]*t, p[2]+dvec[2]*t]; },
+        vel: (t) => { const a = wEff * t + s.th, v = s.sgn*R*Math.cos(s.alpha)*wEff; const vv = gtilt(rotY(rotX([-v*Math.sin(a), v*Math.cos(a), 0], cx, sx), cy, sy)); return [vv[0]+dvec[0], vv[1]+dvec[1], vv[2]+dvec[2]]; },
+        radHat: (t) => { const a = wEff * t + s.th; return gtilt([Math.cos(a), Math.sin(a), 0]); },
       };
     });
     const Tx = [0, 0, 0], Ty = [0, 0, 0], Frad = [0, 0, 0];
@@ -1850,26 +1860,32 @@ export function clickOffDiagonalEstimate({ geo = SELF_EQUILIBRATED_V5.geo, cTran
 // (small-angle) orientational response; slow-limit baseline alignment;
 // single-frequency evaluation (no self-consistent mode iteration).
 // NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
-export function seaTiltDampingEstimate({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Rsea = 3.4, gamma = 1.0, omegaList = [0.06, 0.28, 0.46, 1.16, 2.41], Nt = 8, soft = 0.02, eta = 0.03 } = {}) {
+export function seaTiltDampingEstimate({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Rsea = 3.4, gamma = 1.0, omegaList = [0.06, 0.28, 0.46, 1.16, 2.41], Nt = 8, soft = 0.02, eta = 0.03, baseTilt = 0 } = {}) {
   const seed = buildBraid({ u: 0, cTrans, geo });
   const w = seed.omega, period = 2 * Math.PI / w;
   const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
   const cf = 1;
   const p0 = braidDipole(geo);
   const rotXv = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  // §73: a GLOBAL baseTilt anchors the whole braid off the geometric z-axis, so
+  // the (fixed, bulk) sea sees a TILTED braid -- the anchored-oblique complex,
+  // unlike §67's axisymmetric measurement. Default 0 reproduces §67 exactly.
+  const gbc = Math.cos(baseTilt), gbs = Math.sin(baseTilt);
   const members = FCC2_DIRS.map((d) => ({ dir: d, X: [d[0] * Rsea, d[1] * Rsea, d[2] * Rsea] }));
-  // braid site worldlines with layer L tilted by etaX about x
+  // braid site worldlines with layer L tilted by etaX about x, then the global anchor tilt
   const posOf = (s, t, L, etaX) => {
     const SL = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
     const a = w * t + s.th, ca = Math.cos(s.alpha);
-    const p = [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)];
-    return SL === L && etaX !== 0 ? rotXv(p, Math.cos(etaX), Math.sin(etaX)) : p;
+    let p = [s.sgn*s.R*ca*Math.cos(a), s.sgn*s.R*ca*Math.sin(a), s.sgn*s.R*Math.sin(s.alpha)];
+    if (SL === L && etaX !== 0) p = rotXv(p, Math.cos(etaX), Math.sin(etaX));
+    return baseTilt !== 0 ? rotXv(p, gbc, gbs) : p;
   };
   const velOf = (s, t, L, etaX) => {
     const SL = s.name === "I" ? 0 : s.name === "M" ? 1 : 2;
     const a = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w;
-    const p = [-v*Math.sin(a), v*Math.cos(a), 0];
-    return SL === L && etaX !== 0 ? rotXv(p, Math.cos(etaX), Math.sin(etaX)) : p;
+    let p = [-v*Math.sin(a), v*Math.cos(a), 0];
+    if (SL === L && etaX !== 0) p = rotXv(p, Math.cos(etaX), Math.sin(etaX));
+    return baseTilt !== 0 ? rotXv(p, gbc, gbs) : p;
   };
   // LINK A: per-member field rows. For each member: baseline field b (real)
   // and, per source layer, the per-sample sensitivity entries {dvec, tau}.
@@ -2435,6 +2451,392 @@ export function driftVerdictLadder({ geo = SELF_EQUILIBRATED_V5.geo, uGrid = [0,
     stabilizes: rows.some((r) => r.maxGrowthRate !== null && r.maxGrowthRate <= 0) };
 }
 
+// ============================================================================
+// COUPLED BRAID+SEA COMPLEX FIXED-POINT INSTRUMENT (Section 70 reframe;
+// build spec: coupled-braid-sea-complex-fixed-point-instrument-spec.md).
+// The Section 70 Tangential-Sea No-Go bars a LOCAL equatorial-rail sea brake.
+// The reframe: the "+0.076 deficit" is a local quantity manufactured by freezing
+// beta_M, the deformation coordinate, and the sea. The open question is whether
+// the middle rail-pump angular momentum TRANSPORTS off the equator (via the §69
+// internal-deformation coordinate) into the off-equatorial/axis sector where the
+// sea CAN drain it (Row-4 +0.117 inner; §68 k(u) axis) -- a GLOBAL angular-
+// momentum balance, not a local brake. This instrument books that global flow.
+// REFERENCE/SEED grade; central solver untouched; consumes internalDeformationPencil
+// (transport), seaTiltDampingEstimate (drain), driftFixedPoint (radial/axis) read-only.
+// NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
+// ============================================================================
+
+// Gate 1 (declared) + Gate 2 (measured native) + Gate 3 (measured §69) +
+// Gate 4 (measured §67): the four-gate cycle-averaged angular-momentum-flow book.
+export function angularMomentumFlowLedger({
+  geo = SELF_EQUILIBRATED_V5.geo, pump = 0.2274, brakeFracMax = 0.667,
+  Nt = 8, soft = 0.02, Rsea = 3.4, gamma = 1.0, coupling = "all",
+  u = 0, driftAngle = 0, baseTilt = 0, parametric = true,
+} = {}) {
+  // Gate 1 -- rail-pump injection at the middle equator (§60 declared).
+  const pumpInject = pump;
+  // Gate 2 -- LOCAL self-hit brake on the rail (§66 native ceiling, ALLOWED: it
+  // is the braid's own same-source channel, not a sea force). Caps at 2/3.
+  const selfHitBrake = brakeFracMax * pump;
+  const railResidual = pumpInject - selfHitBrake; // the 1/3-pump deficit on the rail
+  // Gate 3 -- transport off the equator through the §69 internal-deformation
+  // cross-blocks. DC/linear channel = the stiffness cross-blocks C_rt, C_tr
+  // (move a STEADY rail deficit into the tilt/axis sector). Parametric channel =
+  // the spin-transport G_rt (dJds) + the -0.48 size->flutter modulation (acts on
+  // the breathing RATE, oscillatory; carried to the reduced escapement below).
+  const pen = coupling === "none"
+    ? { crossBlocks: { crtNorm: 0, ctrNorm: 0, crtNormRel: 0, ctrNormRel: 0 }, parametricCoupling: { dFlutter_dSize: 0, dJds: [0, 0, 0] }, scale: 1 }
+    : internalDeformationPencil({ geo, coupling: "all", parametric, Nt, soft, u, driftAngle, baseTilt });
+  // The DC transport authority is the DIMENSIONLESS coupling fraction of a rail/
+  // breathing perturbation that the stiffness cross-blocks move into the tilt/
+  // axis sector. C_tr = dT/ds (breathing -> tilt torque) is the transport-off-
+  // equator channel; C_rt = dF_rad/deta the reciprocal. §71: both ≈0 at the
+  // axisymmetric rest fixed point; broken symmetry (drift/anchored axis) opens them.
+  const transportDC = Math.max(pen.crossBlocks.crtNormRel, pen.crossBlocks.ctrNormRel); // fraction moved off-equator
+  const transportDCFracOfDeficit = transportDC;
+  const transportParam = pen.parametricCoupling ? pen.parametricCoupling.dFlutter_dSize : 0; // -0.48 class, RATE/oscillatory
+  const spinTransportGrt = pen.parametricCoupling ? pen.parametricCoupling.dJds : [0, 0, 0];
+  // Gate 4 -- off-equatorial sea drain (§67; the ONE channel the No-Go leaves
+  // open). Read the sea tilt-damping estimate and take the best damping-band
+  // cell's INNER diagonal (the No-Go-permitted off-equatorial channel) as the
+  // drain rate. §67 Result 2: the sea starves the inner tilt sector (<=0.02).
+  let seaInnerDrain = 0, seaMiddleDiag = 0, seaBandOmega = null, seaCirculatory = null;
+  if (coupling !== "none") {
+    const est = seaTiltDampingEstimate({ geo, Rsea, gamma, Nt, soft });
+    const band = est.results.filter((r) => r.dampingDiagonal);
+    const cell = band.length ? band.reduce((a, b) => (Math.abs(b.diag[1]) > Math.abs(a.diag[1]) ? b : a)) : est.results[0];
+    seaInnerDrain = Math.abs(cell.diag[0]); // inner tilt-sector damping RATE (off-equatorial)
+    seaMiddleDiag = Math.abs(cell.diag[1]);
+    seaBandOmega = cell.omega;
+    // circulatory dominance witness (§67 Result 3): off-diagonals dwarf diagonals
+    const offMax = Math.max(Math.abs(cell.dSea[0][1]), Math.abs(cell.dSea[1][0]), Math.abs(cell.dSea[1][2]), Math.abs(cell.dSea[2][1]));
+    seaCirculatory = offMax / (seaMiddleDiag + 1e-9);
+  }
+  // The ESCAPE residual: the DC deficit that leaves neither via the transport
+  // gate nor (gated behind it) the sea drain. The transport gate is the
+  // bottleneck -- nothing reaches the off-equatorial drain if transportDC=0.
+  const drainReached = Math.min(railResidual * transportDCFracOfDeficit, seaInnerDrain); // what actually drains
+  const escapeResidual = railResidual - drainReached;
+  const closes = escapeResidual <= 1e-4 && transportDC > 0;
+  return {
+    gates: {
+      pumpInject: +pumpInject.toFixed(4),
+      selfHitBrake: +selfHitBrake.toFixed(4),
+      transportOffEquatorDC: +transportDC.toFixed(5),
+      seaDrainOffEquatorInner: +seaInnerDrain.toFixed(5),
+      escapeResidual: +escapeResidual.toFixed(4),
+    },
+    railResidual: +railResidual.toFixed(4),
+    brokenSymmetry: { u, driftAngle, baseTilt },
+    crtNormRel: +pen.crossBlocks.crtNormRel.toFixed(4), ctrNormRel: +pen.crossBlocks.ctrNormRel.toFixed(4),
+    transportDCFracOfDeficit: +transportDCFracOfDeficit.toFixed(4),
+    transportParam: +Number(transportParam).toFixed(4),
+    spinTransportGrt: spinTransportGrt.map((x) => +x.toFixed(3)),
+    seaBandOmega, seaMiddleDiag: +seaMiddleDiag.toFixed(4), seaCirculatoryRatio: seaCirculatory ? +seaCirculatory.toFixed(2) : null,
+    // the decisive readout
+    globalDrainCloses: closes,
+    escapeFractionOfPump: +(escapeResidual / pump).toFixed(4),
+    bottleneck: transportDC <= 1e-4 ? "transport_off_equator_axisymmetry_forbidden"
+      : (seaInnerDrain < railResidual ? "sea_drain_inner_starved" : "closes"),
+    ...FAIL_CLOSED,
+  };
+}
+
+// Deliverable 2 -- the reduced complex-escapement integrator (REFERENCE/REDUCED,
+// explicitly NOT native; sibling of breathingEscapementReduced and the §12 pin
+// integrator). Extends breathingEscapementReduced with an OFF-EQUATORIAL angular-
+// momentum reservoir Joff: the size mode is driven by the pump through the rail
+// pin; the deformation transport moves pump excess into Joff (DC via transportDC,
+// parametric via |sd|*|transportParam|); the sea DRAINS Joff at drainRate (the
+// §67 inner authority) -- NOT a local rail brake. Reads whether routing through
+// the off-equatorial reservoir bounds the size mode (global closure) or the size
+// still runs away (escape). drainRate and transportDC default to MEASURED values.
+export function complexEscapementReduced({
+  pump = 0.2274, brakeFracMax = 0.667, gamma0 = 0.18277, dGammaDs = -0.4769,
+  kSize = 0.25, mRad = 2, gPin = 1.0, dt = 0.005, T = 80,
+  transportDC = 0.0, transportParam = 0.4769, drainRate = 0.014,
+  s0 = 0, sd0 = 0, delta0 = 0.001, aFlut0 = 0, Joff0 = 0, dispersalS = 3,
+} = {}) {
+  const deriv = (y) => {
+    const [s, sd, delta, aFlut, Joff] = y;
+    // rail residual after the local self-hit brake, minus what transport removes
+    const brakeFrac = delta > 0 ? brakeFracMax : 0;
+    const railInjection = pump * (1 - brakeFrac); // rate beta_M climbs (residual after the local self-hit)
+    // transport OUT of the rail sector: DC = coupling fraction of the injection
+    // moved off-equator (dimensionless transportDC), plus a parametric piece
+    // active only while breathing (~|sd|). The deformation coupling operates
+    // regardless of the rail sign, so it can keep beta_M from ever climbing.
+    const transportOut = transportDC * railInjection + transportParam * Math.abs(sd) * railInjection;
+    const ddelta = railInjection - transportOut; // net tangential drive on beta_M
+    const dJoff = transportOut - drainRate * Joff; // reservoir fills from transport, drains to sea
+    const Fs = delta > 0 ? (kSize * s + gPin * delta) : (-kSize * s);
+    const sdd = (Fs) / mRad;
+    const daFlut = gamma0 + dGammaDs * s;
+    return [sd, sdd, ddelta, daFlut, dJoff];
+  };
+  let y = [s0, sd0, delta0, aFlut0, Joff0];
+  const n = Math.round(T / dt);
+  let sMax = -Infinity, sMin = Infinity, dispersalTime = null, JoffMax = 0;
+  for (let k = 0; k < n; k++) {
+    const k1 = deriv(y);
+    const k2 = deriv(y.map((v, i) => v + 0.5 * dt * k1[i]));
+    const k3 = deriv(y.map((v, i) => v + 0.5 * dt * k2[i]));
+    const k4 = deriv(y.map((v, i) => v + dt * k3[i]));
+    y = y.map((v, i) => v + (dt / 6) * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
+    const [s, , , , Joff] = y;
+    sMax = Math.max(sMax, s); sMin = Math.min(sMin, s); JoffMax = Math.max(JoffMax, Math.abs(Joff));
+    if (dispersalTime == null && Math.abs(s) > dispersalS) dispersalTime = (k + 1) * dt;
+    if (!isFinite(s) || Math.abs(s) > 1e6) { dispersalTime = dispersalTime ?? (k + 1) * dt; break; }
+  }
+  const bounded = dispersalTime == null && isFinite(sMax) && Math.abs(sMax) < dispersalS && Math.abs(sMin) < dispersalS;
+  return {
+    pump, brakeFracMax, transportDC, transportParam, drainRate,
+    bounded, dispersalTime, sMax: +sMax.toFixed(4), sMin: +sMin.toFixed(4),
+    JoffMax: +JoffMax.toFixed(4), finalDelta: +y[2].toFixed(4), finalS: +y[0].toFixed(4),
+    // the deficit the drain must exceed to bound the size mode (1/3 pump)
+    drainNeededToBound: +((1 - brakeFracMax) * pump).toFixed(4),
+    globalCloses: bounded, ...FAIL_CLOSED,
+  };
+}
+
+// The orchestrator: composes the joint radial/axis fixed point (§68 driftFixedPoint,
+// reused) + the four-gate ledger + the reduced complex escapement, and emits the
+// Deliverable-1 global-drain verdict. driftU selects the moving fixed point (§68
+// found a genuine one at u=0.2). Central solver untouched; all sub-evaluators reused.
+// §72 probe: the drift / broken-symmetry cross-block scan. Measures C_rt, C_tr at
+// (u, driftAngle, baseTilt) -- oblique drift + the axis anchored off the geometric
+// axis -- to decide whether breaking axisymmetry OPENS the transport-off-equator
+// gate that is exactly zero at the axisymmetric rest fixed point (§71). Reports
+// crtNormRel/ctrNormRel per config and whether the opened transport reaches the
+// 1/3-pump deficit fraction (0.333). parametric:false (only the cross-blocks are
+// needed, and the diagonal blocks are not re-measured at the tilted base, so the
+// SPECTRUM is not claimed here -- only the cross-block gate). Fail-closed.
+export function brokenSymmetryTransportGate({
+  configs = [
+    { u: 0, driftAngle: 0, baseTilt: 0 },        // regression: axisymmetric rest
+    { u: 0.2, driftAngle: 90, baseTilt: 0 },      // oblique drift only
+    { u: 0.2, driftAngle: 0, baseTilt: 20 },      // anchored off-axis only
+    { u: 0.2, driftAngle: 90, baseTilt: 20 },     // both
+    { u: 0.35, driftAngle: 90, baseTilt: 30 },    // stronger
+    { u: 0.5, driftAngle: 90, baseTilt: 30 },
+  ], geo = SELF_EQUILIBRATED_V5.geo, Nt = 8, soft = 0.02, deficitFrac = 0.333,
+} = {}) {
+  const d = Math.PI / 180;
+  const rows = configs.map((c) => {
+    const p = internalDeformationPencil({ geo, coupling: "all", parametric: false, Nt, soft, u: c.u, driftAngle: c.driftAngle * d, baseTilt: c.baseTilt * d });
+    const crtRel = p.crossBlocks.crtNormRel, ctrRel = p.crossBlocks.ctrNormRel;
+    const transportFrac = Math.max(crtRel, ctrRel);
+    return { ...c, crtNorm: +p.crossBlocks.crtNorm.toFixed(4), ctrNorm: +p.crossBlocks.ctrNorm.toFixed(4),
+      crtNormRel: +crtRel.toFixed(4), ctrNormRel: +ctrRel.toFixed(4),
+      transportFrac: +transportFrac.toFixed(4), reachesDeficit: transportFrac >= deficitFrac };
+  });
+  const rest = rows[0];
+  const gateOpens = rows.some((r) => (r.u > 0 || r.baseTilt > 0) && r.transportFrac > 1e-3);
+  const reachesDeficit = rows.some((r) => r.reachesDeficit);
+  return {
+    rows, deficitFrac,
+    restGateClosed: rest.transportFrac < 1e-4,           // §71 regression: rest is null
+    gateOpensUnderBrokenSymmetry: gateOpens,             // the decisive answer
+    transportReachesDeficitFraction: reachesDeficit,     // does it clear the 1/3 deficit
+    verdict: gateOpens
+      ? (reachesDeficit ? "broken_symmetry_opens_transport_gate_past_deficit_bottleneck_moves_to_sea_drain"
+                        : "broken_symmetry_opens_transport_gate_but_below_deficit")
+      : "transport_gate_stays_closed_reframe_falsified",
+    ...FAIL_CLOSED,
+  };
+}
+
+// §73: the global drain-shortfall probe (the last gate). At each anchored-oblique
+// config it composes the OPENED transport (§72, C_tr) with the sea's off-equatorial
+// DISSIPATIVE drain measured at the TILTED braid (seaTiltDampingEstimate baseTilt --
+// the sea sees a tilted braid, unlike §67's axisymmetric measurement, so the inner-
+// starvation could lift). Reports whether the drain reaches the transported deficit,
+// and whether the §68 anchoring stiffness makes the anchored angle self-consistent.
+// Fail-closed; seed grade.
+export function globalDrainShortfall({
+  configs = [
+    { u: 0.2, driftAngle: 90, baseTilt: 15 },
+    { u: 0.2, driftAngle: 90, baseTilt: 20 },
+    { u: 0.35, driftAngle: 90, baseTilt: 30 },
+    { u: 0.5, driftAngle: 90, baseTilt: 45 },
+  ], geo = SELF_EQUILIBRATED_V5.geo, pump = 0.2274, brakeFracMax = 0.667,
+  Nt = 8, soft = 0.02, Rsea = 3.4, gamma = 1.0,
+} = {}) {
+  const d = Math.PI / 180;
+  const railResidual = pump * (1 - brakeFracMax);
+  const rows = configs.map((c) => {
+    // OPENED transport (§72): the breathing->tilt coupling fraction C_tr
+    const pen = internalDeformationPencil({ geo, coupling: "all", parametric: false, Nt, soft, u: c.u, driftAngle: c.driftAngle * d, baseTilt: c.baseTilt * d });
+    const transportFrac = Math.max(pen.crossBlocks.crtNormRel, pen.crossBlocks.ctrNormRel);
+    const transported = railResidual * transportFrac;
+    // DISSIPATIVE drain at the TILTED braid: best damping-band inner diagonal
+    const est = seaTiltDampingEstimate({ geo, Rsea, gamma, Nt, soft, baseTilt: c.baseTilt * d });
+    const band = est.results.filter((r) => r.dampingDiagonal);
+    const cells = band.length ? band : est.results;
+    const cell = cells.reduce((a, b) => (Math.abs(b.diag[0]) > Math.abs(a.diag[0]) ? b : a));
+    const drain = Math.abs(cell.diag[0]);            // off-equatorial (inner) dissipative rate
+    const midDrain = Math.abs(cell.diag[1]);         // equatorial (barred for the rail) drain
+    const drained = Math.min(transported, drain);
+    const escape = railResidual - drained;
+    // §68 anchoring stiffness for the self-consistent-angle context (Piece 2)
+    const kAnchor = driftAxisPencil({ geo, u: c.u, Nt, soft }).orientationTorque.kGlobalX;
+    return { ...c, transportFrac: +transportFrac.toFixed(3), transported: +transported.toFixed(4),
+      drain: +drain.toFixed(4), midDrain: +midDrain.toFixed(3), drainOmega: cell.omega,
+      escape: +escape.toFixed(4), escapeFracOfPump: +(escape / pump).toFixed(3),
+      kAnchor: +kAnchor.toFixed(3), closes: escape <= 1e-3 };
+  });
+  const anyCloses = rows.some((r) => r.closes);
+  const drainRange = [Math.min(...rows.map((r) => r.drain)), Math.max(...rows.map((r) => r.drain))];
+  return {
+    railResidual: +railResidual.toFixed(4), rows,
+    drainStarvedRobustly: drainRange[1] <= 0.02,    // <= §67 inner-starvation across ALL anchored angles
+    drainRangeInner: drainRange.map((x) => +x.toFixed(4)),
+    globalDrainCloses: anyCloses,
+    verdict: anyCloses
+      ? "global_drain_closes_complex_self_consistent"
+      : "drain_starved_at_anchored_complex_transport_opens_but_dissipative_drain_short_reframe_blocked_on_the_drain",
+    // Piece 2: the anchoring is restoring (k>0) so an anchored angle EXISTS, but the
+    // drain is starved across the whole anchored-angle range, so the exact self-
+    // consistent angle does not rescue it -- the shortfall is angle-robust.
+    anchoringRestoringAllConfigs: rows.every((r) => r.kAnchor > 0),
+    ...FAIL_CLOSED,
+  };
+}
+
+// §74: the co-orbital-cage angular-momentum-sink probe (the one surviving route).
+// The §55 octahedral cage is made to CO-ORBIT about the braid axis at rate
+// omegaOrbit (members MOVING, not the static §55/§73 declaration). The question:
+// does co-orbital motion open a SECULAR (cycle-averaged) tangential force on the
+// middle equatorial rail -- the angular-momentum-transfer channel that could
+// absorb the ~0.044 residual into the cage's orbit CONSERVATIVELY -- beyond the
+// static Corollary-S bound (<=10% of the pump)? Decisive test of whether a
+// conservative co-orbital sink sidesteps the dissipative chi'' the No-Go bounds.
+// Also reads the self-consistent "molecule rotates" orbit (§55: the -0.641 polar
+// pull as centripetal support). Central solver untouched; seed grade; fail-closed.
+export function coOrbitalCageSink({
+  geo = OCTAHEDRAL_CAGE_V4.geo, aLattice = OCTAHEDRAL_CAGE_V4.aLattice,
+  omegaOrbitFracs = [0, 0.25, 0.5, 1.0, 1.5], cTrans = 1.0, Nper = 6, Nt = 12, soft = 0.02,
+  pump = 0.2274, brakeFracMax = 0.667,
+} = {}) {
+  const braid = buildBraid({ u: 0, cTrans, geo });
+  const w = braid.omega, period = 2 * Math.PI / w;
+  const kap = residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  const p0 = braidDipole(geo);
+  const cf = 1;
+  const residual = pump * (1 - brakeFracMax); // ~0.076 (1/3 pump); transported ~0.58x = ~0.044
+  const pos = (s, t) => { const ang = w * t + s.th, ca = Math.cos(s.alpha); return [s.sgn*s.R*ca*Math.cos(ang), s.sgn*s.R*ca*Math.sin(ang), s.sgn*s.R*Math.sin(s.alpha)]; };
+  const vel = (s, t) => { const ang = w * t + s.th, v = s.sgn*s.R*Math.cos(s.alpha)*w; return [-v*Math.sin(ang), v*Math.cos(ang), 0]; };
+  const rotZ = (v, th) => { const c = Math.cos(th), s = Math.sin(th); return [c*v[0]-s*v[1], s*v[0]+c*v[1], v[2]]; };
+  // cage: six octahedral sites at siteRadius, slow-limit orientations along the
+  // braid's cycle-mean field direction (reuse the §55 declaration, static ph).
+  const R = aLattice * Math.SQRT2;
+  const dirs = [[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  const cage = dirs.map((dv) => ({ dir: dv, X0: [dv[0]*R, dv[1]*R, dv[2]*R], ph: [dv[0], dv[1], dv[2]] }));
+  // middle-rail representative receivers (the two middle sites)
+  const railSites = braid.sites.filter((s) => s.name === "M");
+  const rows = omegaOrbitFracs.map((frac) => {
+    const Om = frac * w;
+    // time-average the TANGENTIAL force on the middle rail from the ORBITING cage
+    let tanForce = 0, radForce = 0, nSamp = 0;
+    // self-consistent orbit witness: cycle-mean inward radial pull on a polar member
+    let polarPull = 0, polarN = 0;
+    for (let k = 0; k < Nper * Nt; k++) {
+      const t = (k / Nt) * period;
+      // cage endpoint positions/velocities at time t (orbiting about z)
+      const cageEnds = [];
+      for (const cg of cage) {
+        const Xc = rotZ(cg.X0, Om * t);
+        const phc = rotZ(cg.ph, Om * t);
+        const vOrb = [-Om * Xc[1], Om * Xc[0], 0]; // Omega z-hat x X
+        for (const pm of [+1, -1]) {
+          const Xe = [Xc[0]+pm*(p0/2)*phc[0], Xc[1]+pm*(p0/2)*phc[1], Xc[2]+pm*(p0/2)*phc[2]];
+          cageEnds.push({ Xe, v: vOrb, pol: pm, dir: cg.dir, Xc });
+        }
+      }
+      // tangential/radial force on each rail site from the cage endpoints (delayed)
+      for (const rs of railSites) {
+        const Xi = pos(rs, t);
+        const th = w * t + rs.th;
+        const tHat = [-Math.sin(th), Math.cos(th), 0];
+        const rHat = [Math.cos(th), Math.sin(th), 0];
+        for (const ce of cageEnds) {
+          // causal root: cage endpoint moving at constant vOrb (linear over the short delay)
+          let te = t - Math.hypot(Xi[0]-ce.Xe[0], Xi[1]-ce.Xe[1], Xi[2]-ce.Xe[2]);
+          for (let it = 0; it < 20; it++) {
+            const Xsrc = [ce.Xe[0]+ce.v[0]*(te-t), ce.Xe[1]+ce.v[1]*(te-t), ce.Xe[2]+ce.v[2]*(te-t)];
+            te = t - Math.hypot(Xi[0]-Xsrc[0], Xi[1]-Xsrc[1], Xi[2]-Xsrc[2]);
+          }
+          const Xsrc = [ce.Xe[0]+ce.v[0]*(te-t), ce.Xe[1]+ce.v[1]*(te-t), ce.Xe[2]+ce.v[2]*(te-t)];
+          const dx = [Xi[0]-Xsrc[0], Xi[1]-Xsrc[1], Xi[2]-Xsrc[2]];
+          const r = Math.hypot(dx[0], dx[1], dx[2]); if (r < 1e-6) continue;
+          const rh = [dx[0]/r, dx[1]/r, dx[2]/r];
+          const Ds = cf - (ce.v[0]*rh[0] + ce.v[1]*rh[1] + ce.v[2]*rh[2]); // source-normal (moving cage)
+          const m = Ds / (Ds * Ds + soft * soft);
+          const f = kap * (rs.pol * ce.pol) * m / (r * r);
+          tanForce += f * (rh[0]*tHat[0] + rh[1]*tHat[1] + rh[2]*tHat[2]);
+          radForce += f * (rh[0]*rHat[0] + rh[1]*rHat[1] + rh[2]*rHat[2]);
+        }
+      }
+      nSamp++;
+    }
+    const tanAvg = tanForce / nSamp / railSites.length; // per rail site, secular tangential force
+    const radAvg = radForce / nSamp / railSites.length;
+    return { omegaOrbitFrac: frac, secularTangential: +tanAvg.toFixed(5),
+      secularRadial: +radAvg.toFixed(5),
+      tanFracOfResidual: +(Math.abs(tanAvg) / residual).toFixed(4),
+      tanFracOfPump: +(Math.abs(tanAvg) / pump).toFixed(4) };
+  });
+  const maxTanFrac = Math.max(...rows.map((r) => r.tanFracOfPump));
+  const beatsStaticBound = maxTanFrac > 0.10; // does co-orbital motion beat the static Corollary-S <=10%?
+  const reachesResidual = Math.max(...rows.map((r) => r.tanFracOfResidual)) >= 0.58; // 0.044/0.076
+  return {
+    kappaStar: kap, p0, residual: +residual.toFixed(4), rows,
+    maxSecularTangentialFracOfPump: +maxTanFrac.toFixed(4),
+    beatsStaticCorollaryS_10pct: beatsStaticBound,
+    reachesTransportedResidual: reachesResidual,
+    verdict: reachesResidual
+      ? "co_orbital_cage_opens_conservative_sink_reaches_residual"
+      : (beatsStaticBound
+        ? "co_orbital_motion_opens_tangential_channel_but_below_residual"
+        : "co_orbital_cage_secular_tangential_stays_within_static_corollary_s_bound_no_conservative_sink"),
+    ...FAIL_CLOSED,
+  };
+}
+
+export function coupledComplexFixedPoint({
+  geo = SELF_EQUILIBRATED_V5.geo, driftU = 0.2, Nt = 8, soft = 0.02,
+  pump = 0.2274, brakeFracMax = 0.667, Rsea = 3.4, gamma = 1.0, coupling = "all",
+  ledgerU = 0, driftAngle = 0, baseTilt = 0,
+} = {}) {
+  // Leg 1+3 (radial/size + axis): the joint moving fixed point (§68, reused).
+  const fp = driftFixedPoint({ u: driftU, geoStart: geo, soft });
+  // The four-gate global angular-momentum-flow book. ledgerU/driftAngle/baseTilt
+  // select the cross-block configuration: 0 = the axisymmetric rest gate (§71,
+  // forbidden); nonzero = the §72 broken-symmetry gate (oblique drift + anchored
+  // axis). Default 0 reproduces the §71 verdict exactly.
+  const ledger = angularMomentumFlowLedger({ geo, pump, brakeFracMax, Nt, soft, Rsea, gamma, coupling, u: ledgerU, driftAngle, baseTilt });
+  // Deliverable 2: the reduced complex escapement, wired with the MEASURED
+  // transport (from the ledger) and drain authorities.
+  const escapement = complexEscapementReduced({
+    pump, brakeFracMax,
+    transportDC: ledger.gates.transportOffEquatorDC,
+    transportParam: Math.abs(ledger.transportParam) || 0.4769,
+    drainRate: ledger.gates.seaDrainOffEquatorInner || 0.014,
+  });
+  const verdict = ledger.globalDrainCloses && escapement.globalCloses
+    ? "global_drain_closes_complex_self_consistent"
+    : "global_drain_does_not_close_coherent_expansion_survives";
+  return {
+    driftU,
+    fixedPoint: { radialResidualF: fp.residualF, basin: fp.basin, support: fp.support, closure: fp.closure, ReqOverKappa: fp.ReqOverKappa },
+    ledger, escapement,
+    verdict,
+    bottleneck: ledger.bottleneck,
+    escapeFractionOfPump: ledger.escapeFractionOfPump,
+    ...FAIL_CLOSED,
+  };
+}
+
 export function diagnosticReport() {
   return { schema: SCHEMA, specPacketRef: SPEC_PACKET_REF,
     championBaseline: supportRatios({}),
@@ -2446,5 +2848,41 @@ export function diagnosticReport() {
 
 function isMain() { return process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]; }
 if (isMain()) {
-  process.stdout.write(JSON.stringify(diagnosticReport(), null, process.argv.includes("--pretty") ? 2 : 0) + "\n");
+  const argv = process.argv.slice(2);
+  const flag = (name) => argv.includes(name);
+  const val = (name, dflt) => { const i = argv.indexOf(name); return i >= 0 && i + 1 < argv.length ? argv[i + 1] : dflt; };
+  const pretty = flag("--pretty") ? 2 : 0;
+  let out;
+  if (flag("--broken-symmetry")) {
+    out = brokenSymmetryTransportGate({});
+  } else if (flag("--drain-shortfall")) {
+    out = globalDrainShortfall({});
+  } else if (flag("--co-orbital-sink")) {
+    out = coOrbitalCageSink({});
+  } else if (flag("--coupled-complex")) {
+    out = coupledComplexFixedPoint({
+      driftU: parseFloat(val("--drift-u", "0.2")),
+      ledgerU: parseFloat(val("--ledger-u", "0")),
+      driftAngle: parseFloat(val("--drift-angle", "0")) * (Math.PI / 180),
+      baseTilt: parseFloat(val("--base-tilt", "0")) * (Math.PI / 180),
+      pump: parseFloat(val("--pump", "0.2274")),
+      coupling: val("--coupling", "all"),
+    });
+  } else if (flag("--am-ledger")) {
+    out = angularMomentumFlowLedger({
+      pump: parseFloat(val("--pump", "0.2274")), coupling: val("--coupling", "all"),
+      u: parseFloat(val("--ledger-u", "0")),
+      driftAngle: parseFloat(val("--drift-angle", "0")) * (Math.PI / 180),
+      baseTilt: parseFloat(val("--base-tilt", "0")) * (Math.PI / 180),
+    });
+  } else if (flag("--reduced-complex-escapement")) {
+    out = complexEscapementReduced({
+      pump: parseFloat(val("--pump", "0.2274")),
+      transportDC: parseFloat(val("--transport-dc", "0")),
+      drainRate: parseFloat(val("--drain-rate", "0.014")),
+    });
+  } else {
+    out = diagnosticReport();
+  }
+  process.stdout.write(JSON.stringify(out, null, pretty) + "\n");
 }

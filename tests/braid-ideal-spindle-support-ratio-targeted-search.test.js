@@ -4,6 +4,9 @@ import {
   supportRatios, tangentialLedger, searchTangentialClosure, capCreditProxy,
   seaRowsTruePlacement, cageReciprocity, TANGENTIAL_CLOSURE_V2, SELF_CONSISTENT_V3,
   OCTAHEDRAL_CAGE_V4, SEA_BOOKING_S50, FAIL_CLOSED,
+  angularMomentumFlowLedger, complexEscapementReduced, coupledComplexFixedPoint,
+  brokenSymmetryTransportGate, internalDeformationPencil,
+  globalDrainShortfall, seaTiltDampingEstimate, coOrbitalCageSink,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -411,6 +414,129 @@ test("BREATHING-ESCAPEMENT (Deliverable 2): the bare braid runs away and no boun
   assert.equal(env.bounded, true, "environment (rho>1) bounds the size");
   assert.ok(env.meanS < env.meanSizeNeededForDamp, `mean size ${env.meanS.toFixed(3)} below the ${env.meanSizeNeededForDamp.toFixed(3)} damping threshold`);
   assert.equal(env.fluttrNetDamped, false, "no bounded breathing cycle net-damps the flutter");
+});
+
+// --- Coupled braid+sea complex fixed-point instrument (Section 70 reframe) ---
+
+test("am-ledger: the transport-off-equator gate is axisymmetry-forbidden (crtNorm=ctrNorm=0), so the full 1/3-pump deficit escapes", () => {
+  const L = angularMomentumFlowLedger({});
+  assert.ok(L.gates.transportOffEquatorDC < 1e-4, `transport DC ${L.gates.transportOffEquatorDC} is ~0 (§68a axisymmetry-forbidden)`);
+  // pump - self-hit(2/3) = the 1/3 deficit, and none of it leaves the equator
+  assert.ok(Math.abs(L.gates.escapeResidual - (1 - 0.667) * 0.2274) < 2e-3, `escape residual ${L.gates.escapeResidual} = the 1/3-pump deficit`);
+  assert.ok(Math.abs(L.escapeFractionOfPump - 0.333) < 0.01, `escape fraction ${L.escapeFractionOfPump} ≈ 1/3`);
+  assert.equal(L.globalDrainCloses, false, "global drain does not close");
+  assert.equal(L.bottleneck, "transport_off_equator_axisymmetry_forbidden");
+});
+
+test("am-ledger: the off-equatorial sea drain is inner-starved (<=0.02) and circulatory-dominated (§67)", () => {
+  const L = angularMomentumFlowLedger({});
+  assert.ok(L.gates.seaDrainOffEquatorInner <= 0.02, `sea inner drain ${L.gates.seaDrainOffEquatorInner} starves the inner (§67 Result 2)`);
+  assert.ok(L.seaCirculatoryRatio > 1, `sea block circulatory-dominated (ratio ${L.seaCirculatoryRatio} > 1, §67 Result 3)`);
+});
+
+test("am-ledger block-diagonal control (coupling=none) reproduces the same escape residual — the composition is transparent", () => {
+  const L = angularMomentumFlowLedger({ coupling: "all" });
+  const none = angularMomentumFlowLedger({ coupling: "none" });
+  assert.ok(Math.abs(L.gates.escapeResidual - none.gates.escapeResidual) < 1e-6, "coupling on/off give the same escape (transport gate is null either way)");
+  assert.equal(none.bottleneck, "transport_off_equator_axisymmetry_forbidden");
+});
+
+test("complex-escapement: at MEASURED transport/drain the size mode runs away (Row-7 coherent expansion reproduced)", () => {
+  const e = complexEscapementReduced({ transportDC: 0, drainRate: 0.014 });
+  assert.equal(e.bounded, false, "measured (transportDC=0, starved drain) → runaway");
+  assert.ok(e.dispersalTime != null && e.dispersalTime < 40, `disperses at t≈${e.dispersalTime}`);
+  assert.ok(e.drainRate < e.drainNeededToBound, `drain ${e.drainRate} below the ${e.drainNeededToBound} (1/3-pump) needed to bound`);
+});
+
+test("complex-escapement POSITIVE control: a hypothetical transport+drain exceeding 1/3 pump DOES bound — the integrator is not rigged", () => {
+  // if the transport moved the deficit off-equator AND the drain exceeded it,
+  // the size mode would bound. It doesn't in reality (measured values above),
+  // but the integrator must be able to bound when the authorities suffice.
+  const e = complexEscapementReduced({ transportDC: 1.2, drainRate: 0.5 });
+  assert.equal(e.bounded, true, "sufficient transport (fraction>1) + drain bounds the size mode");
+});
+
+test("coupledComplexFixedPoint Deliverable 1: global drain does NOT close; coherent expansion survives; bottleneck is the transport gate", () => {
+  const r = coupledComplexFixedPoint({ driftU: 0.2 });
+  assert.equal(r.verdict, "global_drain_does_not_close_coherent_expansion_survives");
+  assert.equal(r.bottleneck, "transport_off_equator_axisymmetry_forbidden");
+  assert.ok(Math.abs(r.escapeFractionOfPump - 0.333) < 0.01, `escape fraction ${r.escapeFractionOfPump} ≈ 1/3 of the pump`);
+  assert.equal(r.escapement.bounded, false, "the reduced complex escapement runs away");
+  assert.equal(r.retainedBranchClaim, false);
+});
+
+// --- §72: drift / broken-symmetry cross-block probe (does breaking axisymmetry open the transport gate?) ---
+
+test("broken-symmetry regression: the axisymmetric rest cross-blocks are EXACTLY zero (defaults preserve §68a/§71)", () => {
+  const p = internalDeformationPencil({ coupling: "all" }); // u=0, driftAngle=0, baseTilt=0
+  assert.ok(p.crossBlocks.crtNorm < 1e-9, `crtNorm ${p.crossBlocks.crtNorm} ~ 0 at rest`);
+  assert.ok(p.crossBlocks.ctrNorm < 1e-9, `ctrNorm ${p.crossBlocks.ctrNorm} ~ 0 at rest`);
+});
+
+test("broken symmetry OPENS the transport-off-equator gate: oblique drift + anchored axis give nonzero C_rt/C_tr", () => {
+  const d = Math.PI / 180;
+  const oblique = internalDeformationPencil({ coupling: "all", u: 0.2, driftAngle: 90 * d, baseTilt: 0 });
+  assert.ok(oblique.crossBlocks.crtNorm > 0.05, `oblique drift opens C_rt (${oblique.crossBlocks.crtNorm})`);
+  const anchored = internalDeformationPencil({ coupling: "all", u: 0.2, driftAngle: 90 * d, baseTilt: 30 * d });
+  assert.ok(anchored.crossBlocks.ctrNormRel > 0.3, `anchored-oblique opens C_tr past 0.3 (${anchored.crossBlocks.ctrNormRel})`);
+});
+
+test("brokenSymmetryTransportGate: rest closed, broken symmetry opens the gate PAST the 1/3-pump deficit — reframe re-opened", () => {
+  const g = brokenSymmetryTransportGate({});
+  assert.equal(g.restGateClosed, true, "rest gate closed (§71)");
+  assert.equal(g.gateOpensUnderBrokenSymmetry, true, "broken symmetry opens the transport gate");
+  assert.equal(g.transportReachesDeficitFraction, true, "the opened transport reaches the 1/3-pump deficit fraction");
+  assert.equal(g.verdict, "broken_symmetry_opens_transport_gate_past_deficit_bottleneck_moves_to_sea_drain");
+});
+
+test("broken-symmetry ledger: with the gate open the bottleneck MOVES from transport to the inner-starved sea drain", () => {
+  const d = Math.PI / 180;
+  const L = angularMomentumFlowLedger({ u: 0.35, driftAngle: 90 * d, baseTilt: 30 * d, parametric: false });
+  assert.ok(L.gates.transportOffEquatorDC > 0.05, `transport gate open (${L.gates.transportOffEquatorDC})`);
+  assert.equal(L.bottleneck, "sea_drain_inner_starved", "bottleneck moved to the drain");
+  assert.ok(L.gates.escapeResidual < (1 - 0.667) * 0.2274, "escape residual drops below the full deficit (transport now removes some)");
+});
+
+// --- §73: the global drain-shortfall probe (the last gate) ---
+
+test("sea drain regression: baseTilt=0 reproduces the §67 inner-starved damping-band cell", () => {
+  const s = seaTiltDampingEstimate({}); // baseTilt=0
+  const band = s.results.filter((r) => r.dampingDiagonal);
+  const cell = band.reduce((a, b) => (Math.abs(b.diag[0]) > Math.abs(a.diag[0]) ? b : a));
+  assert.ok(Math.abs(cell.diag[0]) <= 0.02, `§67 inner starved ${cell.diag[0]}`);
+});
+
+test("sea drain does NOT lift when the braid is tilted: the inner-starvation persists (even worsens) at the anchored complex", () => {
+  const d = Math.PI / 180;
+  const flat = seaTiltDampingEstimate({});
+  const tilted = seaTiltDampingEstimate({ baseTilt: 30 * d });
+  const innerBand = (s) => { const b = s.results.filter((r) => r.dampingDiagonal); const c = (b.length ? b : s.results).reduce((a, x) => (Math.abs(x.diag[0]) > Math.abs(a.diag[0]) ? x : a)); return Math.abs(c.diag[0]); };
+  assert.ok(innerBand(tilted) <= 0.02, `tilted inner drain still starved ${innerBand(tilted)}`);
+});
+
+test("globalDrainShortfall: transport opens but the dissipative drain is starved across ALL anchored angles — the complex does NOT close (angle-robust)", () => {
+  const g = globalDrainShortfall({});
+  assert.equal(g.globalDrainCloses, false, "the global drain does not close");
+  assert.equal(g.drainStarvedRobustly, true, "the drain is <=0.02 across every anchored angle");
+  assert.equal(g.anchoringRestoringAllConfigs, true, "the §68 anchoring is restoring (an anchored angle exists) — but it does not rescue the drain");
+  assert.equal(g.verdict, "drain_starved_at_anchored_complex_transport_opens_but_dissipative_drain_short_reframe_blocked_on_the_drain");
+  // every row: transport delivers more than the starved drain can remove
+  for (const r of g.rows) assert.ok(r.transported > r.drain, `transport ${r.transported} exceeds drain ${r.drain} at baseTilt ${r.baseTilt}`);
+});
+
+// --- §74: the co-orbital-cage angular-momentum-sink probe (the one surviving route) ---
+
+test("co-orbital sink: the STATIC cage (Omega=0) transfers zero secular tangential force (Corollary S c0 cancellation anchor)", () => {
+  const g = coOrbitalCageSink({ omegaOrbitFracs: [0], Nper: 4 });
+  assert.ok(Math.abs(g.rows[0].secularTangential) < 1e-3, `static secular tangential ~0 (${g.rows[0].secularTangential})`);
+});
+
+test("co-orbital sink: co-orbital motion does NOT open a secular tangential sink — stays within the static Corollary-S <=10% bound, far below the residual", () => {
+  const g = coOrbitalCageSink({});
+  assert.equal(g.beatsStaticCorollaryS_10pct, false, "co-orbital secular tangential stays within the static <=10% bound");
+  assert.equal(g.reachesTransportedResidual, false, "does not reach the ~0.044 transported residual");
+  assert.ok(g.maxSecularTangentialFracOfPump < 0.10, `max secular tangential ${g.maxSecularTangentialFracOfPump} < 0.10`);
+  assert.equal(g.verdict, "co_orbital_cage_secular_tangential_stays_within_static_corollary_s_bound_no_conservative_sink");
 });
 
 test("fail-closed", () => {
