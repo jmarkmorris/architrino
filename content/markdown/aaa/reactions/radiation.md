@@ -8,6 +8,14 @@ The detailed channel pages remain [Bremsstrahlung](bremsstrahlung.md), [Synchrot
 
 This page is a foundation-up overview. It states the shared mechanism and the closure targets that individual channel pages must specialize. It does not by itself prove blackbody radiation, photon spin, atomic spectra, or QED cross sections.
 
+## Radiation Versus The Always-On Wake
+
+Every architrino emits its wake at all times. The causal-isochron record that carries the potential is broadcast continuously by every source — moving or still, bound or free — and mediating force through that record is the ordinary business of the substrate. This constant emission is *not* radiation. Radiation is the narrower event defined above: a *routed closure residual*, in which a driven, non-adiabatically disturbed assembly sheds part of that residual into an outgoing carrier — a planar-mode photon assembly, or a reaction-product assembly such as an alpha, beta electron, neutron, or neutrino (see [Radioactivity Naming](#radioactivity-naming)). If no residual is routed, nothing is radiated, even though the wake never stops.
+
+The always-on wake is therefore the emission of the potential, and it should keep the name **wake**. The word `transmission` is reserved in this chapter for the material row where a photon passes through a medium (reflection, transmission, absorption); it must not be reused for the substrate wake, or the two meanings collide.
+
+A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet radiates nothing: the field falls off as a bound $1/r^2$ near-field rather than a radiative $1/r$ tail, so over a return cycle the far-field transport of energy, momentum, and angular momentum nets to zero. This is not a cancellation arranged among many charges — a single source cannot cancel its own field. It follows from the force law itself: the $\mathbb{A}\mathbb{A}\mathbb{A}$ master-equation integrand carries retarded line-of-action velocities with no separate acceleration term, so a source in steady motion has no $1/r$ radiative component to shed. The substrate reason stable matter does not radiate is thus the same reason a ground-state atom does not spiral in — a bound return map leaves no routed residual. Radiation reappears only when transport changes fast enough to leave a closure residual (the driven and accelerated sector), which is where the Larmor/Lienard and synchrotron recoveries below live.
+
 ## Forms At A Glance
 
 In ordinary physics language, radiation can mean electromagnetic light, emitted particles, thermal emission, scattering-shifted photons, or gravitational waves. In $\mathbb{A}\mathbb{A}\mathbb{A}$ those are not one ontology. The first split is between the carrier that leaves or perturbs the event and the source mechanism that produced the outgoing record.

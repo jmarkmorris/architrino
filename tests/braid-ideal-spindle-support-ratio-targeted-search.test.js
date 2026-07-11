@@ -15,6 +15,11 @@ import {
   analyticOutgoingRadiatorB, analyticBoundNearFieldB,
   correctedRadiationInstrument, honestNetSelfTorque,
   canonicalMagneticFarFieldFlux,
+  braidNetZTorque, freeBraidTorqueNullSearch,
+  braidPerOmegaEvaluate, braidClosureRigidity, perLayerOmegaTorqueNullSearch,
+  globalDrainDynamicalSea,
+  gyroscopicTiltAnalysisFull, interleavedFlutterPoint, interleavingFlutterSweep, fourPiReturnProbe,
+  sameRecordWakeAngularMomentumWard, balancedCellTransportKernel,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
 
@@ -586,14 +591,20 @@ test("self-torque memory proxy: the bounded self-interaction CONVERGES flat with
 });
 
 // --- §78: the field-momentum-flux build — Φ_∞(r) + the light-cylinder test ---
+// REPRODUCIBILITY-ONLY: these two tests pin the §78 probe's SELF-REPORTED numbers so
+// the withdrawn code stays runnable and diffable. The §78 PHYSICS verdict ("vanishing
+// flux ⇒ reactive residual ⇒ S1/S2 closes") is WITHDRAWN by the §82 audit — the
+// electric integrator omits the R·sinθ lever and is unconverged. The load-bearing
+// measurement is the §82 `correctedRadiationInstrument` / `canonicalMagneticFarFieldFlux`
+// tests below. Do not treat a green here as support for the §78 conclusion.
 
-test("far-field flux: the outgoing-wake angular-momentum flux VANISHES with radius (bound velocity field), it is NOT r-independent radiation", () => {
+test("[reproducibility-only; §78 verdict withdrawn by §82] far-field flux: the outgoing-wake angular-momentum flux VANISHES with radius (bound velocity field), it is NOT r-independent radiation", () => {
   const g = farFieldAngularMomentumFlux({ radii: [16, 32, 64, 128, 256], Ntheta: 10, Nphi: 20, Nt: 10 });
   assert.ok(g.endpointSlope < -1.5, `endpoint slope ${g.endpointSlope} ≤ −1.5 (bound; radiation would be ~0)`);
   assert.ok(g.fluxOverResidual < 1e-2, `far flux ${g.fluxOverResidual} ≪ residual — no radiation sink`);
 });
 
-test("far-field flux: the light-cylinder verdict — bound field, pin holds, the +0.076 residual is reactive (no far-field sink because no net source)", () => {
+test("[reproducibility-only; §78 verdict withdrawn by §82] far-field flux: the light-cylinder verdict — bound field, pin holds, the +0.076 residual is reactive (no far-field sink because no net source)", () => {
   const g = farFieldAngularMomentumFlux({ radii: [16, 32, 64, 128, 256], Ntheta: 10, Nphi: 20, Nt: 10 });
   assert.equal(g.fluxVanishesAtFarField, true);
   assert.equal(g.verdict, "far_field_angular_momentum_flux_vanishes_bound_field_light_cylinder_pin_holds_residual_reactive_S1S2_closes");
@@ -646,8 +657,14 @@ test("magnetic-flux integrator positive control independently resolves constant 
 });
 
 // --- §81: whole-braid net self-torque — the conservation check that refutes §79/§80 ---
+// REPRODUCIBILITY-ONLY: this test pins the §81 probe's self-reported "+0.14" so the
+// withdrawn code stays runnable. The §82 audit showed that value is FABRICATED — it is
+// the held-seed partner torque (+0.424) minus the §66 MAXIMUM brake applied
+// algebraically (0.667·0.4229), not a measured self-torque. The honest, transient-free,
+// complete-certifier measurement is +0.424 (a HELD-SEED diagnostic), asserted by the
+// §82 `honestNetSelfTorque` test below. Do not treat this as a free-particle drive.
 
-test("net self-torque: the whole-braid net secular z-torque is NONZERO (the middle pump) — the residual is a REAL drive, not reactive; refutes the §79/§80 closure", () => {
+test("[reproducibility-only; §81 value fabricated, withdrawn by §82] net self-torque: the whole-braid net secular z-torque is NONZERO (the middle pump) — the residual is a REAL drive, not reactive; refutes the §79/§80 closure", () => {
   const g = wholeBraidNetSelfTorque({});
   assert.ok(Math.abs(g.netWithSelfHitBrake) > 0.05, `net self-torque ${g.netWithSelfHitBrake} is nonzero (~+0.14)`);
   assert.equal(g.netIsZero, false);
@@ -711,6 +728,10 @@ test("corrected instrument (repaired): the full-pipeline control passes, the ELE
   assert.equal(g.controls.quadratureControls.pass, true, "quadrature+curl controls pass");
   assert.equal(g.controls.fullPipelineControl.pass, true, "full-pipeline control passes (roots+reg+quadrature end-to-end)");
   assert.ok(g.controls.fullPipelineControl.fieldReconstructionMaxRelErr < 1e-2, "reconstructed field matches the exact canonical Coulomb-from-causal-delay field");
+  // (D1) end-to-end, not compositional: the SAME pipeline must FLAG an injected 1/r tail
+  assert.equal(g.controls.fullPipelineControl.radiativeDetected, true, "radiative positive control: an injected 1/r tail is flagged (flux slope ≈ 0), so controlsPass is end-to-end not bound-only");
+  assert.ok(Math.abs(g.controls.fullPipelineControl.radiativeFluxEndpointSlope) < 0.3, "radiative control flux is radius-independent (slope ≈ 0)");
+  assert.ok(g.controls.fullPipelineControl.radiativeFluxEndpointSlope > g.controls.fullPipelineControl.fluxEndpointSlope + 0.5, "the pipeline discriminates the radiating source from the bound source");
   assert.equal(g.controls.controlsPass, true, "instrument is trustworthy before it touches braid data");
   // (Defect 3) electric channel bound as an interval / stable vanishing flux
   assert.equal(g.electricChannel.boundAcrossRegulator, true, "electric/branch field is a bound stable-vanishing-flux channel");
@@ -752,6 +773,225 @@ test("honest self-torque: net +0.424 (held-seed), self-hit ≈0, complete-root c
   const born = g.selfHitOnset.find((r) => r.mu === 0.05);
   assert.ok(Math.abs(born.xi0Measured - born.xi0Predicted) < 0.05, `branch born at ξ0≈√(6μ) (measured ${born.xi0Measured} vs ${born.xi0Predicted})`);
   assert.equal(g.conservationIdentity.canClose, false, "the ⟨τ_mech⟩+⟨Φ_out⟩=0 identity cannot be closed in a common normalization at this grade");
+});
+
+// --- §83: the bounded non-rigid force-free search (the §60 dispersal successor). ---
+
+test("braidNetZTorque reproduces the honest +0.424 net secular z-torque at the pin (M-carried, I/O≈0)", () => {
+  const g = braidNetZTorque({ Nt: 16 });
+  assert.ok(Math.abs(g.net - 0.424) < 0.01, `net z-torque ${g.net} ≈ +0.424`);
+  assert.ok(Math.abs(g.byLayer.M - 0.423) < 0.01 && Math.abs(g.byLayer.I) < 0.02 && Math.abs(g.byLayer.O) < 0.02, "concentrated on the middle rail pump");
+  assert.ok(g.maxRootResidual < 1e-9, "roots certified");
+});
+
+test("bounded torque-null search: NO torque-free AND radially-supported config exists near V5 — the net z-torque is sign-definite positive across the whole bounded family; a free stable braid needs an environment", () => {
+  const g = freeBraidTorqueNullSearch({ Nt: 12, betaList: [0.5, 0.7, 0.9, 1.0, 1.1], tiltDeltaDegList: [-12, -6, 0, 6, 12] });
+  // the rail pump is sign-definite: net secular z-torque > 0 everywhere in the window
+  assert.ok(g.speedScan.every((r) => r.net > 0), "net z-torque never crosses zero along the speed axis");
+  assert.ok(g.tiltScan.every((r) => r.net > 0), "net z-torque never crosses zero along the middle-tilt axis");
+  assert.equal(g.speedTorqueZero, null, "no torque-null in the bounded speed window");
+  assert.equal(g.tiltTorqueZero, null, "no torque-null in the bounded tilt window");
+  // the best force-free residual anywhere is far above a genuinely force-free orbit
+  assert.ok(g.minForceFreeResidual > g.residualSmallThreshold, `min force-free residual ${g.minForceFreeResidual} ≫ ${g.residualSmallThreshold}`);
+  assert.equal(g.torqueFreeAndSupported, false, "the two conditions are incompatible in the bare rigid family");
+  assert.match(g.verdict, /no_free_stable_braid_at_this_scale_without_an_environment/);
+});
+
+// --- §84: the per-layer-independent-omega torque-null landscape (the §83 differential extension). ---
+
+test("braidPerOmegaEvaluate iso-frequency (mult 1,1,1) reproduces the §83/jh9 +0.424 net secular z-torque exactly", () => {
+  const iso = braidPerOmegaEvaluate({ Nt: 16, omegaMult: { I: 1, M: 1, O: 1 } });
+  const base = braidNetZTorque({ Nt: 16 });
+  assert.ok(Math.abs(iso.net - 0.424) < 0.01, `iso net ${iso.net} ≈ +0.424`);
+  assert.ok(Math.abs(iso.net - base.net) < 1e-3, `iso path matches braidNetZTorque (${iso.net} vs ${base.net})`);
+  assert.ok(Math.abs(iso.byLayer.M - 0.423) < 0.01 && Math.abs(iso.byLayer.I) < 0.02 && Math.abs(iso.byLayer.O) < 0.02,
+    "net concentrated on the middle rail pump (I/O ≈ 0)");
+  assert.ok(Math.abs(iso.forceFreeResidual - 0.427) < 0.01, `iso force-free residual ${iso.forceFreeResidual} ≈ §83 pin 0.427`);
+  assert.equal(iso.compositeCycles, 1, "iso-frequency has a single-period (K=1) composite");
+  assert.ok(iso.maxRootResidual < 1e-7, "roots certified");
+});
+
+test("braidClosureRigidity: iso-frequency is a representable rigid closed braid; differential and counter-rotation are NOT", () => {
+  const iso = braidClosureRigidity({ omegaMult: { I: 1, M: 1, O: 1 } });
+  assert.ok(iso.rigidityResidual < 1e-9, `iso rigid in the co-rotating frame (${iso.rigidityResidual})`);
+  assert.equal(iso.representable, true, "iso-frequency is a representable closed braid");
+  const diff = braidClosureRigidity({ omegaMult: { I: 2, M: 1, O: 1 } });
+  assert.ok(diff.rigidityResidual > 0.1, `differential inner sweeps the frame (${diff.rigidityResidual})`);
+  assert.equal(diff.representable, false, "differential-omega is not a single closed braid");
+  const ctr = braidClosureRigidity({ omegaMult: { I: 1, M: 1, O: -1 } });
+  assert.ok(ctr.rigidityResidual > 0.1, `counter-rotating outer sweeps the frame (${ctr.rigidityResidual})`);
+  assert.equal(ctr.representable, false, "counter-rotation is not a single closed braid");
+});
+
+test("per-layer-omega search: the pump is sign-definite on the representable locus, and every differential/counter torque-null fails closure AND radial support — no bare braid is a free particle (rigid + differential)", () => {
+  const r = perLayerOmegaTorqueNullSearch({
+    multI: [-1, 1], multM: [1], multO: [-1, 0.5, 1, 2],
+    isoMultList: [0.5, 1.0, 1.2], Nt: 8,
+  });
+  // (1) the iso-frequency (representable) locus reproduces §83: sign-definite positive pump
+  assert.ok(r.isoScan.every((x) => x.net > 0), "net z-torque sign-definite positive across the representable iso-frequency family");
+  const pin = r.isoScan.find((x) => Math.abs(x.omegaMult.I - 1) < 1e-9);
+  assert.ok(Math.abs(pin.net - 0.424) < 0.01, `iso pin reproduces +0.424 (${pin.net})`);
+  assert.equal(r.representableSignDefinite, true, "every representable row has net > 0");
+  // (2) differential/counter CAN null the pump — but only off the representable locus
+  assert.equal(r.anyTorqueNull, true, "counter-rotating the inner layer drives the net z-torque through zero");
+  assert.equal(r.torqueNullsAllNonRepresentable, true, "every torque-null point fails the closure gate (independently spinning layers)");
+  assert.equal(r.torqueNullsAllUnsupported, true, "every torque-null point fails radial support (residual ≫ 0.05, harmonic-matching)");
+  // (3) the decisive existence test: no representable, radially-supported, torque-free point anywhere
+  assert.equal(r.representableTorqueFreeSupportedExists, false, "no bare per-layer-omega orbit is torque-free AND supported AND a closed braid");
+  assert.ok(r.minForceFreeResidualAny > r.residualSmallThreshold,
+    `min force-free residual anywhere ${r.minForceFreeResidualAny} ≫ ${r.residualSmallThreshold}`);
+  assert.match(r.verdict, /no_bare_braid_is_a_free_particle_rigid_plus_differential/);
+  assert.equal(r.retainedBranchClaim, false);
+});
+
+// §85 — the first global-drain dynamical-sea instrument (coarse pilot).
+test("global-drain sea BARE regression: no sea reproduces the sign-definite pump and the bare flutter exactly (zero L-export/reaction/sea-pump)", () => {
+  const r = globalDrainDynamicalSea({ withSea: false, Nt: 8, Nper: 3 });
+  assert.equal(r.withSea, false);
+  // pump target reproduced verbatim from braidNetZTorque
+  assert.ok(Math.abs(r.pumpTarget.net - 0.424) < 0.01, `pump ${r.pumpTarget.net}`);
+  // every z-torque channel is exactly zero with no sea
+  for (const row of r.coOrbitalRows) {
+    assert.equal(row.Lexport, 0, "no braid->sea L-export without a sea");
+    assert.equal(row.braidReaction, 0, "no sea->braid reaction without a sea");
+    assert.equal(row.seaOwnPump, 0, "no sea internal pump without a sea");
+  }
+  // the bare whirl growth reproduces the §61/§68 +0.199, and the dressed sweep is the bare pencil
+  assert.ok(Math.abs(r.bareGrowth - 0.199) < 0.01, `bare whirl growth ${r.bareGrowth}`);
+  assert.ok(r.flutterSweep.every((c) => Math.abs(c.maxGrowthRate - r.bareGrowth) < 1e-9), "no-sea dressed flutter == bare pencil");
+  assert.equal(r.dissipativeReorientChannel, null);
+  assert.match(r.verdict, /bare_regression_no_sea/);
+});
+
+test("global-drain sea COARSE PILOT: the conservative co-orbital cage exports ≈0 secular L_z (does not drain the pump) but acquires its OWN secular z-torque — the drain relocates the pump into the sea", () => {
+  const r = globalDrainDynamicalSea({ withSea: true, omegaOrbitFracs: [0, 0.5], Nt: 8, Nper: 3 });
+  // the +0.424 pump is the target
+  assert.ok(Math.abs(r.pumpTarget.net - 0.424) < 0.01, `pump ${r.pumpTarget.net}`);
+  // conservative co-orbital channel drains essentially nothing (§74 as an L_z book)
+  assert.ok(r.maxLexportFracOfPump < 0.1, `L-export ${r.maxLexportFracOfPump} of pump — no conservative drain`);
+  assert.equal(r.drainReachesPump, false, "conservative co-orbit + capped saturable χ'' do not reach the pump");
+  // but the co-orbiting sea develops its own secular z-torque (relocation, not dissipation)
+  assert.equal(r.seaAcquiresOwnPump, true, "the sea acquires its own un-nulled secular z-torque");
+  assert.match(r.verdict, /hands_back_to_codex/);
+  assert.equal(r.drainsSelfConsistently, false);
+  assert.equal(r.retainedBranchClaim, false);
+});
+
+test("global-drain sea COARSE PILOT: the flutter is un-quieted — the whirl needs a velocity-block damping of order the growth rate, far above the sea's measured off-equatorial authority (§67)", () => {
+  const r = globalDrainDynamicalSea({ withSea: true, omegaOrbitFracs: [0], Nt: 8, Nper: 2 });
+  assert.ok(r.bareGrowth > 0.15, `bare whirl grows (+${r.bareGrowth})`);
+  assert.ok(r.dRequiredToQuiet != null && r.dRequiredToQuiet >= 0.8, `quieting needs damping ~O(growth) (${r.dRequiredToQuiet})`);
+  assert.ok(r.seaDampingAuthority < 0.05, `measured sea authority is tiny (${r.seaDampingAuthority})`);
+  assert.equal(r.flutterQuietsWithMeasuredSea, false, "the measured sea does not quiet the whirl");
+  assert.ok(r.flutterDampingShortfall > 10, `flutter damping shortfall ${r.flutterDampingShortfall}x`);
+});
+
+// --- §86: the spin-interleaving flutter sweep (is the axis-sector flutter spin-1/2
+// precession read in the wrong inter-layer interleaving?). ---
+
+test("§86 regression: interleaving defaults reproduce the known +0.199-class growing flutter EXACTLY", () => {
+  const base = gyroscopicTiltAnalysisFull({});
+  const withDefaults = gyroscopicTiltAnalysisFull({ dTheta: { I: 0, M: 0, O: 0 }, sense: { I: 1, M: 1, O: 1 } });
+  assert.equal(withDefaults.maxGrowthRate, base.maxGrowthRate, "explicit interleaving defaults are bit-identical");
+  assert.ok(Math.abs(base.maxGrowthRate - 0.19886) < 2e-3, `leading Re λ ${base.maxGrowthRate} ≈ +0.199 flutter`);
+  assert.ok(base.maxGrowthRate > 0, "the baseline interleaving is a growing flutter (Re λ > 0)");
+  assert.ok(Math.abs(base.maxGrowthWhirlFrequency - 2.4125) < 2e-2, `whirl frequency ${base.maxGrowthWhirlFrequency} ≈ 2.41`);
+});
+
+test("§86 azimuthal covariance: a GLOBAL precession-phase shift is a symmetry (flutter invariant); a RELATIVE phase is not", () => {
+  const base = gyroscopicTiltAnalysisFull({});
+  const uniform = gyroscopicTiltAnalysisFull({ dTheta: { I: 0.4, M: 0.4, O: 0.4 } });
+  assert.ok(Math.abs(uniform.maxGrowthRate - base.maxGrowthRate) < 1e-3, "uniform azimuthal shift leaves the flutter invariant");
+  const relative = gyroscopicTiltAnalysisFull({ dTheta: { I: 0, M: Math.PI / 2, O: 0 } });
+  assert.ok(Math.abs(relative.maxGrowthRate - base.maxGrowthRate) > 0.05, "a relative rephasing moves the flutter (not a symmetry)");
+});
+
+test("§86 opposite-sense (alternating) branch REOPENS closure and radial/tangential support — it does not count", () => {
+  const alt = interleavedFlutterPoint({ Nt: 5, sense: { I: 1, M: -1, O: 1 } });
+  assert.equal(alt.gate.closed, false, "middle-counter-rotating is not a representable closed braid");
+  assert.ok(alt.gate.forceFreeResidual > 0.5, `force-free residual ${alt.gate.forceFreeResidual} well above the ~0.43 iso floor`);
+  assert.equal(alt.gate.gateClosed, false, "the gate is open on the opposite-sense branch");
+});
+
+test("§86 sweep VERDICT: no admissible interleaving is marginal — the axis-sector flutter is a genuine instability, not mis-read spin precession", () => {
+  const r = interleavingFlutterSweep({ Nt: 4, gridN: 3, chiN: 3, probeSteps: 3 });
+  assert.equal(r.regressionBaseline.reproducesKnownFlutter, true, "sweep anchors on the known baseline flutter");
+  assert.equal(r.covariance.uniformShiftInvariant, true, "global azimuthal shift invariant");
+  assert.equal(r.landscape.allAdmissibleGrowing, true, "every gate-closed interleaving keeps Re λ > 0");
+  assert.equal(r.landscape.marginalAdmissibleExists, false, "no admissible interleaving is marginal (Re λ → 0)");
+  assert.ok(r.landscape.minAbsReAdmissible > 0.05, `admissible min |Re λ| ${r.landscape.minAbsReAdmissible} bounded away from 0`);
+  assert.ok(r.senseBranches.every((s) => !s.gate.gateClosed), "every opposite-sense branch reopens a sector");
+  assert.equal(r.spinHalfCheck.reached, false, "the 4π spin-1/2 check is not reached (no marginal mode to test)");
+  assert.equal(r.decision, "flutter_is_a_genuine_instability_independent_of_interleaving_axis_sector_stays_closed");
+});
+
+test("§86 4π probe: the informative winding of the growing leading mode over a 2π precession loop is integer (no clean double-cover; candidate-only anyway)", () => {
+  const p = fourPiReturnProbe({ Nt: 4, steps: 6 });
+  assert.ok(Number.isFinite(p.accumulatedWindingTurns), "winding is measured");
+  assert.equal(p.doubleCoverSignature, false, "no half-integer (4π) signature on the growing mode");
+});
+
+// §87 (jh13) — the same-record wake angular-momentum Ward completion (Phase 1) and
+// the balanced-cell transport decider (Phase 2). Small grids for CI; the physical
+// verdict is regulator/resolution-robust at the CLI defaults.
+
+test("§87 Phase 1 BARE regression: the braid-only wake L-flux CONVERGES and reproduces the §82 bound-field result exactly — vanishing far-field export, reactively stored, zero cage contribution", () => {
+  const r = sameRecordWakeAngularMomentumWard({ withSea: false, radii: [8, 16, 32], softSweep: [0.02, 0.01], Nt: 4, Ntheta: 6, Nphi: 10, resolutionScale: 2 });
+  assert.equal(r.withSea, false);
+  // the machinery converges on the non-superluminal bare braid (root residual certified)
+  assert.equal(r.convergenceGuard.converges, true, "bare braid wake completion converges");
+  assert.ok(r.convergenceGuard.maxRootResidual < 1e-8, `roots certified (${r.convergenceGuard.maxRootResidual})`);
+  // §82 regression: E_anti/E_full far-field flux is BOUND (steeply negative slope) and VANISHES
+  assert.equal(r.wakeChannels.antisymmetric.slopesBound, true, "1/r^2 field -> Phi ~ 1/R bound falloff");
+  assert.equal(r.wakeChannels.antisymmetric.fluxVanishes, true, "far-field wake L-flux vanishes (a vanishing fraction of the pump)");
+  assert.equal(r.mechanicalAnchors.seaOwnPump, 0, "no sea -> zero sea-own pump");
+  // the Ward defect does NOT disappear via a flux: it is reactively stored (the +0.424 pump stays enclosed)
+  assert.ok(Math.abs(r.wardClosure.wardDefectAfterWake - r.mechanicalAnchors.pump) < 0.01, "far-field wake carries ~none of the pump out; the defect is reactively stored");
+  assert.equal(r.classification, "reactively_stored_pinned_gapped_KL_zero_zero_equals_zero_BARRED_leaning");
+  assert.match(r.verdict, /reproduces_the_s82_bound_field_result/);
+  assert.equal(r.retainedBranchClaim, false);
+});
+
+test("§87 Phase 1 co-orbiting cage record: reproduces the jh11 −0.6545 seaOwnPump; the cage endpoints are SUPERLUMINAL and the same-record wake completion is REGULATOR NON-CONVERGENT at the D_s=0 caustic (route a) — the −0.65 cannot be certified as a transportable current", () => {
+  const r = sameRecordWakeAngularMomentumWard({ withSea: true, frac: 0.5, radii: [8, 16, 32, 64], softSweep: [0.08, 0.04, 0.02, 0.01], Nt: 4, Ntheta: 8, Nphi: 14, resolutionScale: 2, NtMech: 8, Nper: 3 });
+  // exact same-record mechanical anchor: the jh11 seaOwnPump at frac 1/2
+  assert.ok(Math.abs(r.mechanicalAnchors.seaOwnPump - (-0.6545)) < 0.01, `seaOwnPump ${r.mechanicalAnchors.seaOwnPump} ≈ −0.6545 (jh11 record)`);
+  assert.ok(Math.abs(r.mechanicalAnchors.pairDefect_qABz) < 0.01, "q_{AB,z}=Lexport+braidReaction ≈ 0 on the conservative co-orbit");
+  // the record is superluminal (the source of the caustic)
+  assert.equal(r.superluminalDiagnostic.superluminalCage, true, "co-orbiting cage endpoints exceed c_f");
+  assert.ok(r.superluminalDiagnostic.maxEndpointSpeed > 1, `max endpoint speed ${r.superluminalDiagnostic.maxEndpointSpeed} > c_f`);
+  // the wake magnitude does NOT settle under the regulator sweep (route a)
+  assert.equal(r.convergenceGuard.converges, false, "wake completion regulator non-convergent at the superluminal caustic");
+  assert.ok(r.wakeChannels.antisymmetric.outerRatioAcrossSoft > 3, `flux magnitude scales with the regulator (ratio ${r.wakeChannels.antisymmetric.outerRatioAcrossSoft})`);
+  assert.match(r.classification, /route_a_BARRED/);
+  assert.match(r.verdict, /SUPERLUMINAL/);
+  assert.equal(r.retainedBranchClaim, false);
+});
+
+test("§87 Phase 2 balanced-cell decider: the two-sublattice pro/anti cell is INTRINSICALLY PUMPED — the cross-hit relay absorbs only ~2% of the sign-definite pump, so local boundedness fails; not an admissible retained sea (BARRED route b, held to proof); the transport kernel is uncertified (moot)", () => {
+  const r = balancedCellTransportKernel({ aCell: 4.0, Nt: 8, twistEps: 0.05, driveOmegaFracs: [0.3], soft: 0.02 });
+  // intrinsic pumps p_+ = +0.424, p_- = -0.424 (coarse sum zero — NOT sufficient)
+  assert.ok(Math.abs(r.intrinsicPumps.pPlus - 0.424) < 0.01 && Math.abs(r.intrinsicPumps.pMinus + 0.424) < 0.01, "intrinsic pumps ±0.424");
+  assert.equal(r.intrinsicPumps.coarseSumIsZero, true, "coarse p_+ + p_- = 0");
+  // the cross-hit relay is tiny (~1-2% of the pump) — the §14 ejective relay
+  assert.ok(r.crossTorques.crossHitRelayFracOfPump < 0.05, `cross-hit relay ${r.crossTorques.crossHitRelayFracOfPump} ≪ pump`);
+  assert.ok(r.crossTorques.maxRootResidual < 1e-9, "cross-torque roots certified");
+  // local boundedness FAILS: p + T_{+<-} + W_+ ≈ the full pump, not zero
+  assert.equal(r.localBoundedness.localRowsClose, false, "local boundedness fails");
+  assert.ok(Math.abs(r.localBoundedness.rowPlus - 0.424) < 0.05, `rowPlus ${r.localBoundedness.rowPlus} ≈ +pump (un-cancelled)`);
+  assert.equal(r.outcome, "intrinsically_pumped_local_row_fails_not_an_admissible_retained_homogeneous_sea");
+  // the transport kernel is not licensed on an inadmissible cell
+  assert.equal(r.transportKernel.certified, false, "kernel uncertified — cell fails admissibility");
+  assert.match(r.verdict, /INTRINSICALLY_PUMPED.*BARRED_route_b/);
+  assert.equal(r.retainedBranchClaim, false);
+});
+
+test("§87 Phase 2 gate-off: when Phase 1 does not construct a convergent completion, Phase 2 is gated off and no cell verdict is claimed", () => {
+  const r = balancedCellTransportKernel({ gatedConvergent: false });
+  assert.equal(r.gatedConvergent, false);
+  assert.match(r.verdict, /GATED_OFF|not_run/);
+  assert.equal(r.retainedBranchClaim, false);
 });
 
 test("fail-closed", () => {

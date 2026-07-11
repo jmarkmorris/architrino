@@ -318,6 +318,8 @@ The morphology term requires the candidate track to match the predicted energy-d
 
 **Characteristic scale.** The MOND acceleration $a_0^{\mathrm{MOND}} \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to horizon-scale accelerations such as $c_0 H_0/(2\pi)$ and, in some entropic-gravity comparisons, $c_0 H_0/6$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those coefficients are comparison pressure rather than imported doctrine. The native question is whether the same Noether sea response law that supplies the effective Hubble history also yields the galaxy-scale transition acceleration.
 
+Conformal-gravity comparisons sharpen the same pressure without being imported as ontology. Their galaxy-rotation route makes the missing low-acceleration term depend on a large-scale contribution tied to the cosmological background, rather than only on additional local halo substance. The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is that a galaxy-scale acceleration residual may depend on the same Noether sea state record that supplies the effective Hubble history. A branch still fails if it fits rotation curves with that shared scale while changing records for CMB loading, cluster offsets, lensing, BAO, supernova, or growth.
+
 A compact cross-scale target is
 
 $$
