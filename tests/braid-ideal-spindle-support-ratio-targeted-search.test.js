@@ -371,6 +371,48 @@ test("DRIFT PENCIL: flutter is pump-independent and worsens with the native clic
   assert.ok(Math.abs(w.maxGrowthRate - base.maxGrowthRate) < 1.5e-2, `Nt 8/16 growth stable ${base.maxGrowthRate} vs ${w.maxGrowthRate}`);
 });
 
+// --- Section 68 route (a): the coupled breathing-flutter pencil ---
+
+test("INTERNAL-DEFORMATION PENCIL: the block-diagonal control reproduces the Section 61 flutter and the Section 57 basin", async () => {
+  const { internalDeformationPencil, gyroscopicTiltAnalysis } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const none = internalDeformationPencil({ Nt: 8, coupling: "none" });
+  const g = gyroscopicTiltAnalysis({ Nt: 8 });
+  // coupling=none block-diagonalizes: the tilt sector must be identical to §61
+  assert.ok(Math.abs(none.maxGrowthRate - g.maxGrowthRate) < 1e-6, `decoupled flutter ${none.maxGrowthRate} vs §61 ${g.maxGrowthRate}`);
+  assert.ok(Math.abs(none.maxGrowthRate - 0.183) < 0.02, `flutter reproduces §61 (${none.maxGrowthRate})`);
+  // the radial sector is the §57 bare basin (all restoring)
+  assert.equal(none.radialBasin, true, "radial sector is a basin (§57)");
+  assert.ok(none.radialEigen.every((e) => e.value < 0), "all radial eigenvalues restoring");
+  assert.ok(none.dkResidual < 1e-10, `degree-18 DK converged (${none.dkResidual})`);
+});
+
+test("INTERNAL-DEFORMATION PENCIL: linear cross-blocks vanish by axisymmetry — coupling does NOT flip the flutter (the coupling is parametric)", async () => {
+  const { internalDeformationPencil } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  const all = internalDeformationPencil({ Nt: 8, coupling: "all" });
+  // selection rule: scalar radial force carries no linear vector-tilt term, and
+  // vector tilt-torque no linear scalar-breath term -> both cross-blocks null.
+  assert.ok(all.crossBlocks.crtNormRel < 1e-9, `C_rt at the null level (${all.crossBlocks.crtNormRel})`);
+  assert.ok(all.crossBlocks.ctrNormRel < 1e-9, `C_tr at the null level (${all.crossBlocks.ctrNormRel})`);
+  // so the coupled flutter is the §61 flutter, unshifted, and does NOT flip
+  assert.ok(Math.abs(all.flutterShift) < 1e-6, `no linear flutter shift (${all.flutterShift})`);
+  assert.equal(all.flip, false, "linear coupling does not turn the flutter restoring");
+});
+
+test("BREATHING-ESCAPEMENT (Deliverable 2): the bare braid runs away and no bounded cycle net-damps the flutter", async () => {
+  const { breathingEscapementReduced } = await import("../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs");
+  // bare measured 2/3 brake: the deficit is un-absorbed -> Row 7 coherent expansion
+  const bare = breathingEscapementReduced({});
+  assert.equal(bare.bounded, false, "bare braid is not bounded (Row 7 runaway)");
+  assert.ok(bare.dispersalTime > 0 && bare.dispersalTime < 40, `disperses (${bare.dispersalTime})`);
+  // a bounded state needs an ENVIRONMENT that lifts the brake above the pump
+  // (the structured sea) — but even then the flutter is NOT net-damped, because
+  // the bounded mean size falls short of gamma0/|dGammaDs|
+  const env = breathingEscapementReduced({ speedPinRatio: 2.0, kInv: 0.05 });
+  assert.equal(env.bounded, true, "environment (rho>1) bounds the size");
+  assert.ok(env.meanS < env.meanSizeNeededForDamp, `mean size ${env.meanS.toFixed(3)} below the ${env.meanSizeNeededForDamp.toFixed(3)} damping threshold`);
+  assert.equal(env.fluttrNetDamped, false, "no bounded breathing cycle net-damps the flutter");
+});
+
 test("fail-closed", () => {
   assert.equal(FAIL_CLOSED.retainedBranchClaim, false);
   assert.equal(FAIL_CLOSED.scoreMovement, "no_score_increase");

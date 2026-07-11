@@ -1406,6 +1406,324 @@ export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTr
   };
 }
 
+// COUPLED BREATHING-FLUTTER PENCIL (Section 68 route (a); the non-rigid axis /
+// internal-deformation instrument; build spec
+// nonrigid-axis-internal-deformation-instrument-spec.md). Every prior axis
+// pencil (Sections 61/63/68) holds the layer RADII frozen (rigid layers), and
+// every radial-stability instrument (Sections 57/58) holds the TILTS frozen.
+// This is the first pencil that carries BOTH: the internal radial-deformation
+// (breathing) coordinate s_L = dR_L AND the tilt coordinates eta_L, coupled.
+// Coordinates q = (s_I,s_M,s_O, eta^x_I,eta^x_M,eta^x_O, eta^y_I,eta^y_M,eta^y_O).
+//   P(lambda) = lambda^2 M9 + lambda G9 + Gamma9 - K9,
+//   K9 = [[ K_rad , C_rt ],[ C_tr , K_tilt ]],  G9 = blockdiag(0, G_tilt),
+//   Gamma9 = blockdiag(0, Gamma_tilt),  M9 = diag(mRad*I3, M_tilt).
+// The DIAGONAL blocks are taken from the canonical functions (radialStabilityMatrix
+// bare/rail-pinned = Section 57 K_rad; gyroscopicTiltAnalysis = Section 61 K_tilt,
+// G_tilt, Gamma_tilt), so coupling="none" reproduces both baselines to the digit.
+// The CROSS-blocks C_rt = d F^rad / d eta and C_tr = d T / d s are measured by a
+// unified full-causal-root cycle-averaged evaluator (same torquesXY body as
+// Section 61, plus the in-plane radial projection of Section 57). About the
+// axisymmetric cycle-averaged fixed point a SELECTION RULE applies: a scalar
+// radial force cannot carry a linear term in the transverse-vector tilt, and a
+// transverse-vector torque cannot carry a linear term in the scalar breath, so
+// both cross-blocks are expected at the covariance-null level and the linear
+// pencil DECOUPLES. The operative breathing-flutter coupling is therefore
+// parametric (d K_tilt / d s, reported when parametric:true) -- the finite-
+// amplitude channel by which the Row 7 expansion accelerates the flutter
+// (Section 61). Central solver untouched; consumes buildBraid/wakeAccel/residuals
+// read-only. NOT evidence; names no retained branch; authorizes no acceptance.
+export function internalDeformationPencil({
+  geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02,
+  eps = 0.01, eta = 0.03, railPinned = true, kapFixed = null,
+  coupling = "all", pumpAbsorbed = false, mRad = 2, parametric = false,
+} = {}) {
+  const seed = buildBraid({ u: 0, cTrans, geo });
+  const w = seed.omega;
+  const cf = 1;
+  const kap = kapFixed ?? residuals({ u: 0, cTrans, geo }, { soft }).kappaStar;
+  // diagonal sectors from the canonical functions (exact Section 57 / Section 61)
+  const tilt = gyroscopicTiltAnalysis({ geo, cTrans, Nt, soft, eta, pumpAbsorbed });
+  const rad = radialStabilityMatrix({ geo, withCage: false, eps, Nt, soft, cTrans, railPinned, kapFixed: kap, displace: [0, 0, 0] });
+  const Krad = rad.K.map((r) => r.slice(0, 3)).slice(0, 3);
+  const K6 = tilt.K6, mT = tilt.M, J = tilt.Jspin;
+  const tau = pumpAbsorbed ? [tilt.tau0[0], 0, tilt.tau0[2]] : tilt.tau0;
+  // unified full-causal-root cycle-averaged evaluator: per-layer transverse
+  // torques (Tx,Ty as gyroscopicTiltAnalysis) and in-plane radial generalized
+  // force (net-inward as radialStabilityMatrix), at joint radius + tilt.
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const rotY = (v, c, s) => [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
+  const li = (nm) => (nm === "I" ? 0 : nm === "M" ? 1 : 2);
+  const uFT = (dRad, ex, ey) => {
+    const wEff = railPinned ? cTrans / ((1 + dRad[1]) * Math.cos(geo.alphaM)) : w;
+    const period = 2 * Math.PI / wEff;
+    const sites = seed.sites.map((s) => {
+      const L = li(s.name), R = s.R + dRad[L];
+      const cx = Math.cos(ex[L]), sx = Math.sin(ex[L]), cy = Math.cos(ey[L]), sy = Math.sin(ey[L]);
+      return {
+        pol: s.pol, L, alpha: s.alpha, R,
+        pos: (t) => { const a = wEff * t + s.th, ca = Math.cos(s.alpha); return rotY(rotX([s.sgn*R*ca*Math.cos(a), s.sgn*R*ca*Math.sin(a), s.sgn*R*Math.sin(s.alpha)], cx, sx), cy, sy); },
+        vel: (t) => { const a = wEff * t + s.th, v = s.sgn*R*Math.cos(s.alpha)*wEff; return rotY(rotX([-v*Math.sin(a), v*Math.cos(a), 0], cx, sx), cy, sy); },
+        radHat: (t) => { const a = wEff * t + s.th; return [Math.cos(a), Math.sin(a), 0]; },
+      };
+    });
+    const Tx = [0, 0, 0], Ty = [0, 0, 0], Frad = [0, 0, 0];
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      for (let i = 0; i < sites.length; i++) {
+        const rec = sites[i], Xi = rec.pos(t), vi = rec.vel(t);
+        const F = [0, 0, 0];
+        for (let j = 0; j < sites.length; j++) {
+          if (j === i) continue;
+          const src = sites[j];
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]) - cf * (t - te); };
+          const dmax = 4, N = 2400; let g0 = g(t - dmax);
+          for (let kk = 1; kk <= N; kk++) {
+            const te = t - dmax + dmax * (kk / N); if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / N), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2, p = src.pos(te0), dx = [Xi[0]-p[0], Xi[1]-p[1], Xi[2]-p[2]], r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0]/r, dx[1]/r, dx[2]/r], vs = src.vel(te0);
+                const Ds = cf - (vs[0]*rh[0] + vs[1]*rh[1] + vs[2]*rh[2]);
+                const Dt = cf - (vi[0]*rh[0] + vi[1]*rh[1] + vi[2]*rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft), wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        Tx[rec.L] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+        Ty[rec.L] += kap * (Xi[2] * F[0] - Xi[0] * F[2]) / Nt;
+        const rh0 = rec.radHat(t), rho = rec.R * Math.cos(rec.alpha);
+        // net-inward radial generalized force (Section 57 convention): inward
+        // wake radial minus the centripetal need omega^2 rho (0 = balance).
+        Frad[rec.L] += (-kap * (F[0]*rh0[0] + F[1]*rh0[1] + F[2]*rh0[2]) - wEff*wEff*rho) / Nt;
+      }
+    }
+    return { Tx, Ty, Frad: Frad.map((f) => f / 2) }; // two antipodal sites per layer
+  };
+  // cross-blocks by central difference (measured; expected at the null level)
+  const Crt = [[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]; // 3x6  d F^rad_i / d eta_j
+  const Ctr = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]; // 6x3  d T_i / d s_j
+  if (coupling === "all" || coupling === "ctr") {
+    for (let j = 0; j < 3; j++) {
+      const dp = [0,0,0], dm = [0,0,0]; dp[j] = eps; dm[j] = -eps;
+      const up = uFT(dp, [0,0,0], [0,0,0]), dn = uFT(dm, [0,0,0], [0,0,0]);
+      for (let i = 0; i < 3; i++) { Ctr[i][j] = (up.Tx[i] - dn.Tx[i]) / (2*eps); Ctr[3+i][j] = (up.Ty[i] - dn.Ty[i]) / (2*eps); }
+    }
+  }
+  if (coupling === "all" || coupling === "crt") {
+    for (let jc = 0; jc < 6; jc++) {
+      const ax = jc < 3 ? "x" : "y", l = jc % 3;
+      const exP = [0,0,0], eyP = [0,0,0], exM = [0,0,0], eyM = [0,0,0];
+      if (ax === "x") { exP[l] = eta; exM[l] = -eta; } else { eyP[l] = eta; eyM[l] = -eta; }
+      const up = uFT([0,0,0], exP, eyP), dn = uFT([0,0,0], exM, eyM);
+      for (let i = 0; i < 3; i++) Crt[i][jc] = (up.Frad[i] - dn.Frad[i]) / (2*eta);
+    }
+  }
+  const scale = Math.max(...K6.flat().map(Math.abs), ...Krad.flat().map(Math.abs), 1e-9);
+  const crtNorm = Math.max(...Crt.flat().map(Math.abs));
+  const ctrNorm = Math.max(...Ctr.flat().map(Math.abs));
+  // assemble the 9x9 blocks
+  const M9 = Array.from({ length: 9 }, (_, i) => Array.from({ length: 9 }, (_, j) => (i === j ? (i < 3 ? mRad : mT[(i - 3) % 3]) : 0)));
+  const G9 = Array.from({ length: 9 }, () => Array(9).fill(0));
+  for (let l = 0; l < 3; l++) { G9[3 + l][6 + l] = +J[l]; G9[6 + l][3 + l] = -J[l]; }
+  const Gam9 = Array.from({ length: 9 }, () => Array(9).fill(0));
+  for (let l = 0; l < 3; l++) { Gam9[3 + l][6 + l] = +tau[l]; Gam9[6 + l][3 + l] = -tau[l]; }
+  const K9 = Array.from({ length: 9 }, () => Array(9).fill(0));
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) K9[i][j] = Krad[i][j];
+  for (let i = 0; i < 3; i++) for (let j = 0; j < 6; j++) K9[i][3 + j] = Crt[i][j];
+  for (let i = 0; i < 6; i++) for (let j = 0; j < 3; j++) K9[3 + i][j] = Ctr[i][j];
+  for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) K9[3 + i][3 + j] = K6[i][j];
+  // complex helpers + degree-18 Durand-Kerner (as gyroscopicTiltAnalysis)
+  const cAdd = (a, b) => [a[0]+b[0], a[1]+b[1]];
+  const cSub = (a, b) => [a[0]-b[0], a[1]-b[1]];
+  const cMul = (a, b) => [a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0]];
+  const cDiv = (a, b) => { const d2 = b[0]*b[0]+b[1]*b[1]; return [(a[0]*b[0]+a[1]*b[1])/d2, (a[1]*b[0]-a[0]*b[1])/d2]; };
+  const cAbs = (a) => Math.hypot(a[0], a[1]);
+  const detC = (Min) => {
+    const n = Min.length, Mx = Min.map((r) => r.map((v) => [v[0], v[1]])); let det = [1, 0];
+    for (let c = 0; c < n; c++) {
+      let p = c; for (let r = c + 1; r < n; r++) if (cAbs(Mx[r][c]) > cAbs(Mx[p][c])) p = r;
+      if (cAbs(Mx[p][c]) < 1e-300) return [0, 0];
+      if (p !== c) { const t = Mx[p]; Mx[p] = Mx[c]; Mx[c] = t; det = cMul(det, [-1, 0]); }
+      det = cMul(det, Mx[c][c]);
+      for (let r = c + 1; r < n; r++) { const f = cDiv(Mx[r][c], Mx[c][c]); for (let cc = c; cc < n; cc++) Mx[r][cc] = cSub(Mx[r][cc], cMul(f, Mx[c][cc])); }
+    }
+    return det;
+  };
+  const pencil = (lam) => {
+    const l2 = cMul(lam, lam), P = [];
+    for (let i = 0; i < 9; i++) { P.push([]); for (let j = 0; j < 9; j++) P[i].push(cAdd(cAdd(cMul(l2, [M9[i][j], 0]), cMul(lam, [G9[i][j], 0])), [Gam9[i][j] - K9[i][j], 0])); }
+    return detC(P);
+  };
+  let leading = 1; for (let i = 0; i < 9; i++) leading *= M9[i][i];
+  const deg = 18, rad0 = 1.5 * Math.max(Math.sqrt(scale / Math.min(mRad, ...mT)), Math.max(...J) / Math.min(mRad, ...mT), 1);
+  let roots = Array.from({ length: deg }, (_, i) => { const ang = (2 * Math.PI * i) / deg + 0.4; return [rad0 * Math.cos(ang), rad0 * Math.sin(ang)]; });
+  let dkResidual = Infinity;
+  for (let it = 0; it < 600; it++) {
+    let moved = 0;
+    for (let i = 0; i < deg; i++) {
+      let denom = [leading, 0];
+      for (let j = 0; j < deg; j++) if (j !== i) denom = cMul(denom, cSub(roots[i], roots[j]));
+      const delta = cDiv(pencil(roots[i]), denom);
+      roots[i] = cSub(roots[i], delta); moved = Math.max(moved, cAbs(delta));
+    }
+    dkResidual = moved; if (moved < 1e-13) break;
+  }
+  const rootRows = roots.map((r) => ({ re: r[0], im: r[1], pencilResidual: cAbs(pencil(r)) })).sort((x, y) => y.re - x.re);
+  // deflate the global-tilt double zero (Section 61 discipline: two smallest |lambda|)
+  const byMag = [...rootRows].sort((x, y) => Math.hypot(x.re, x.im) - Math.hypot(y.re, y.im));
+  const globalPair = byMag.slice(0, 2);
+  const deflated = rootRows.filter((r) => !globalPair.includes(r));
+  const growing = deflated.filter((r) => r.re > 1e-6);
+  const maxGrowth = deflated.length ? deflated[0] : null;
+  // parametric coupling (the operative channel): d(flutter growth)/d(uniform
+  // breath) under the rail pin -- built from the unified evaluator's tilt block
+  // at +/- a uniform radial breath, central-differenced (opt-in; heavier).
+  let parametricCoupling = null;
+  if (parametric) {
+    const flutterAtBreath = (ds) => {
+      const dR = [ds, ds, ds];
+      const Ab = [[0,0,0],[0,0,0],[0,0,0]], Bb = [[0,0,0],[0,0,0],[0,0,0]], Db = [[0,0,0],[0,0,0],[0,0,0]], Eb = [[0,0,0],[0,0,0],[0,0,0]];
+      for (let j = 0; j < 3; j++) {
+        const ep = [0,0,0], em = [0,0,0]; ep[j] = eta; em[j] = -eta;
+        const px = uFT(dR, ep, [0,0,0]), mx = uFT(dR, em, [0,0,0]), py = uFT(dR, [0,0,0], ep), my = uFT(dR, [0,0,0], em);
+        for (let i = 0; i < 3; i++) { Ab[i][j] = (px.Tx[i]-mx.Tx[i])/(2*eta); Db[i][j] = (px.Ty[i]-mx.Ty[i])/(2*eta); Bb[i][j] = (py.Tx[i]-my.Tx[i])/(2*eta); Eb[i][j] = (py.Ty[i]-my.Ty[i])/(2*eta); }
+      }
+      const base = uFT(dR, [0,0,0], [0,0,0]); const tau0b = [base.Tx, base.Ty]; // transverse ~0
+      const wEff = railPinned ? cTrans / ((1 + ds) * Math.cos(geo.alphaM)) : w;
+      const layerC = [];
+      for (const i of [0,2,4]) { const s = seed.sites[i]; const rho = (s.R+ds)*Math.cos(s.alpha), z = (s.R+ds)*Math.sin(s.alpha); layerC.push({ m: rho*rho+2*z*z, J: 2*rho*rho*wEff }); }
+      const mb = layerC.map((l) => l.m), Jb = layerC.map((l) => l.J);
+      // tau_z at breath: reuse the measured pump scaled by (rho^2 wEff) proxy is avoided; use z-torque baseline
+      const K6b = [
+        [Ab[0][0],Ab[0][1],Ab[0][2],Bb[0][0],Bb[0][1],Bb[0][2]],
+        [Ab[1][0],Ab[1][1],Ab[1][2],Bb[1][0],Bb[1][1],Bb[1][2]],
+        [Ab[2][0],Ab[2][1],Ab[2][2],Bb[2][0],Bb[2][1],Bb[2][2]],
+        [Db[0][0],Db[0][1],Db[0][2],Eb[0][0],Eb[0][1],Eb[0][2]],
+        [Db[1][0],Db[1][1],Db[1][2],Eb[1][0],Eb[1][1],Eb[1][2]],
+        [Db[2][0],Db[2][1],Db[2][2],Eb[2][0],Eb[2][1],Eb[2][2]],
+      ];
+      // reuse the pump (z-torque) baseline from the unperturbed tilt sector
+      const M6b = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? mb[i % 3] : 0)));
+      const G6b = Array.from({ length: 6 }, () => Array(6).fill(0)); for (let l = 0; l < 3; l++) { G6b[l][3+l] = +Jb[l]; G6b[3+l][l] = -Jb[l]; }
+      const Gam6b = Array.from({ length: 6 }, () => Array(6).fill(0)); for (let l = 0; l < 3; l++) { Gam6b[l][3+l] = +tau[l]; Gam6b[3+l][l] = -tau[l]; }
+      const pen6 = (lam) => { const l2 = cMul(lam, lam), P = []; for (let i = 0; i < 6; i++) { P.push([]); for (let j = 0; j < 6; j++) P[i].push(cAdd(cAdd(cMul(l2, [M6b[i][j],0]), cMul(lam, [G6b[i][j],0])), [Gam6b[i][j]-K6b[i][j],0])); } return detC(P); };
+      let lead6 = mb[0]*mb[0]*mb[1]*mb[1]*mb[2]*mb[2]; const d6 = 12;
+      let rr = Array.from({ length: d6 }, (_, i) => { const ang = (2*Math.PI*i)/d6 + 0.4, rd = 1.5*Math.max(Math.sqrt(scale/Math.min(...mb)), Math.max(...Jb)/Math.min(...mb)); return [rd*Math.cos(ang), rd*Math.sin(ang)]; });
+      for (let it = 0; it < 400; it++) { let mv = 0; for (let i = 0; i < d6; i++) { let den = [lead6,0]; for (let j = 0; j < d6; j++) if (j !== i) den = cMul(den, cSub(rr[i], rr[j])); const dl = cDiv(pen6(rr[i]), den); rr[i] = cSub(rr[i], dl); mv = Math.max(mv, cAbs(dl)); } if (mv < 1e-13) break; }
+      const rw = rr.map((r) => ({ re: r[0], im: r[1] })).sort((x, y) => y.re - x.re);
+      const bm = [...rw].sort((x, y) => Math.hypot(x.re, x.im) - Math.hypot(y.re, y.im));
+      const gp = bm.slice(0, 2); const df = rw.filter((r) => !gp.includes(r));
+      return df.length ? df[0].re : null;
+    };
+    const ds = 0.02, gp = flutterAtBreath(ds), gm = flutterAtBreath(-ds), g0 = tilt.maxGrowthRate;
+    // analytic spin-transport coefficient dJ_L/ds_L (the J-dot n-hat parametric term)
+    const dJds = seed.sites.filter((s, i) => [0,2,4].includes(i)).map((s) => {
+      const rho = s.R * Math.cos(s.alpha);
+      const dwds = railPinned && s.name === "M" ? -w : 0; // omega responds only to R_M under the rail pin
+      return 4 * rho * Math.cos(s.alpha) * w + 2 * rho * rho * dwds;
+    });
+    parametricCoupling = { dFlutter_dSize: (gp - gm) / (2 * ds), flutterAtPlusBreath: gp, flutterAtMinusBreath: gm, flutterAtRest: g0, dJds };
+  }
+  return {
+    omega: w, kappaStar: kap, coupling, pumpAbsorbed, railPinned,
+    scale, crossBlocks: { Crt, Ctr, crtNorm, ctrNorm, crtNormRel: crtNorm / scale, ctrNormRel: ctrNorm / scale },
+    Krad, radialEigen: rad.symEigen, radialBasin: rad.basin,
+    dkResidual, eigenvalues: rootRows,
+    globalPairDeflated: globalPair.map((r) => ({ re: r.re, im: r.im })),
+    quotientEigenvalues: deflated,
+    flutter: growing.length > 0, flutterModes: growing,
+    maxGrowthRate: maxGrowth ? maxGrowth.re : null,
+    maxGrowthWhirlFrequency: maxGrowth ? Math.abs(maxGrowth.im) : null,
+    flutterUncoupled: tilt.maxGrowthRate,
+    flutterShift: maxGrowth ? maxGrowth.re - tilt.maxGrowthRate : null,
+    flip: maxGrowth ? maxGrowth.re < 0 : null,
+    parametricCoupling,
+  };
+}
+
+// BREATHING-ESCAPEMENT REDUCED INTEGRATOR (Section 68 route (a), Deliverable 2;
+// the parametric / Mathieu gate). REFERENCE/REDUCED code -- explicitly NOT the
+// native solver and not a production solver, the sibling of the Section 12
+// field-speed-pin 1-D integrator. It integrates the low-dimensional normal form
+// the linear pencil (internalDeformationPencil) cannot reach, to decide whether
+// a BOUNDED breathing limit cycle can net-stabilize the flutter while absorbing
+// the rail-pump deficit. Coordinates: s (size = R_M - 1), sd (size rate),
+// delta (beta_M - 1, the rail detachment), aFlut (flutter log-amplitude).
+// Declared coefficients from the measured stack:
+//   pump = +0.2274 (Section 60 DECLARED.row8.pumpDeclared),
+//   brakeFracMax = 0.667 (Section 66 native self-hit brake ceiling),
+//   gamma0 = 0.18277, dGammaDs = -0.48 (internalDeformationPencil parametric),
+//   kSize (Section 57 size-mode stiffness), the RAIL-PIN SIGN INVERSION
+//   (Section 60: below the rail the size pin is restoring, above beta_M=1 it
+//   inverts into an outward spiral). speedPinRatio rho>1 emulates an ENVIRONMENT
+//   that lifts the brake above the pump (Sections 11/12 two-sided attractor);
+//   pumpScaleExp lets the pump weaken with radius. The gate reads: bounded cycle
+//   vs runaway; mean size <s> and mean flutter rate <gamma>; net flutter growth;
+//   pump absorbed fraction. NOT evidence; names no retained branch; authorizes
+//   no acceptance. Fail-closed.
+export function breathingEscapementReduced({
+  pump = 0.2274, brakeFracMax = 0.667, gamma0 = 0.18277, dGammaDs = -0.48,
+  kSize = 0.25, mRad = 2, gPin = 1.0, kInv = null, speedPinRatio = null,
+  pumpScaleExp = 0, sizeDamp = 0, dt = 0.005, T = 80,
+  s0 = 0, sd0 = 0, delta0 = 0.001, aFlut0 = 0, dispersalS = 3,
+} = {}) {
+  const kUp = kInv ?? kSize;
+  const deriv = (y) => {
+    const [s, sd, delta, aFlut] = y;
+    const pumpEff = pump / Math.pow(1 + Math.max(s, -0.9), pumpScaleExp);
+    const brakeFrac = delta > 0 ? (speedPinRatio != null ? speedPinRatio : brakeFracMax) : 0;
+    const ddelta = pumpEff * (1 - brakeFrac); // net tangential drive on beta_M
+    // radial: below rail (delta<=0) restoring -kSize*s; above rail the pin
+    // inverts (+kUp*s) and the super-field speed pushes outward (+gPin*delta)
+    const Fs = delta > 0 ? (kUp * s + gPin * delta) : (-kSize * s);
+    const sdd = (Fs - sizeDamp * sd) / mRad;
+    const daFlut = gamma0 + dGammaDs * s; // d(log flutter amplitude)/dt
+    return [sd, sdd, ddelta, daFlut];
+  };
+  let y = [s0, sd0, delta0, aFlut0];
+  const n = Math.round(T / dt);
+  let sMax = -Infinity, sMin = Infinity, dispersalTime = null;
+  let sSum = 0, gammaSum = 0, brakeSum = 0, brakeCount = 0, cnt = 0;
+  const half = Math.floor(n / 2); // late-window averages (skip transient)
+  const deltaTrack = [];
+  for (let k = 0; k < n; k++) {
+    const k1 = deriv(y);
+    const k2 = deriv(y.map((v, i) => v + 0.5 * dt * k1[i]));
+    const k3 = deriv(y.map((v, i) => v + 0.5 * dt * k2[i]));
+    const k4 = deriv(y.map((v, i) => v + dt * k3[i]));
+    y = y.map((v, i) => v + (dt / 6) * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
+    const [s, , delta] = y;
+    sMax = Math.max(sMax, s); sMin = Math.min(sMin, s);
+    if (dispersalTime == null && Math.abs(s) > dispersalS) dispersalTime = (k + 1) * dt;
+    if (k >= half) { sSum += s; gammaSum += gamma0 + dGammaDs * s; cnt++; if (delta > 0) { brakeSum += (speedPinRatio != null ? speedPinRatio : brakeFracMax); brakeCount++; } }
+    if (k % Math.max(1, Math.floor(n / 200)) === 0) deltaTrack.push({ t: (k + 1) * dt, s, delta });
+    if (!isFinite(s) || Math.abs(s) > 1e6) { dispersalTime = dispersalTime ?? (k + 1) * dt; break; }
+  }
+  const meanS = cnt ? sSum / cnt : null;
+  const meanGamma = cnt ? gammaSum / cnt : null;
+  const absorbedFraction = brakeCount ? brakeSum / brakeCount : 0;
+  const bounded = dispersalTime == null && isFinite(sMax) && Math.abs(sMax) < dispersalS && Math.abs(sMin) < dispersalS;
+  const netFlutterGrowth = y[3] - aFlut0; // >0 grew, <0 net-damped
+  return {
+    pump, brakeFracMax, speedPinRatio, gamma0, dGammaDs, kSize, gPin, pumpScaleExp,
+    bounded, dispersalTime, sMax, sMin, meanS, meanGamma,
+    // the flutter is net-damped only if the mean size holds beyond gamma0/|dGammaDs|
+    meanSizeNeededForDamp: gamma0 / Math.abs(dGammaDs),
+    // a real flutter damping requires a BOUNDED trajectory whose mean size holds
+    // the parametric coupling past gamma0/|dGammaDs|; unbounded "damping" is the
+    // dispersal artifact (s -> infinity), not an absorber.
+    fluttrNetDamped: bounded && meanGamma != null && meanGamma < 0,
+    netFlutterGrowth, finalDelta: y[2], finalS: y[0], absorbedFraction,
+    deltaTrack: deltaTrack.slice(-6),
+  };
+}
+
 // OFF-DIAGONAL CLICK RESPONSE, PHASE-RESOLVED PUMP MODULATION (Section 64
 // route (a): the last bare-braid axis-absorber route). A click on the middle
 // exerts torque on the middle only, so click-mediated damping of ANOTHER
