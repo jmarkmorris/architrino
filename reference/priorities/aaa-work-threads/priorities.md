@@ -62,6 +62,19 @@ Keep task queue lines in one compact sentence form:
 
 This keeps the files readable in plain Markdown, diff-friendly in git, and structurally consistent without requiring a separate machine-control file.
 
+## Operator Discussion Queue
+
+This queue is the canonical cross-workstream surface for decisions that require operator judgment before implementation, delegation, or corpus promotion. The owning tracker carries the durable task; this table makes unresolved decisions visible. Surface one unresolved row in later substantive theory closeouts until the operator accepts, rejects, or explicitly defers it.
+
+| Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | `DF-02` | Decide whether the dressed-electron native program is the next object for testing whether charged axial payload dressing changes the bare neutral scaffold's flutter and global angular-momentum-drain conclusions. | [`master-equation-closure:dressed_electron_global_drain_scope_decision`](../master-equation-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 2 | `DF-03` | Decide whether intrinsic drift/precession and spin interleaving form one theorem/simulation program or remain separate speculative families. | [`braid-ideal:intrinsic_drift_precession_synthesis_decision`](../braid-ideal/priorities.md#group-b---proof-consolidation-and-operator-decisions) | `discussion-scoped` | 2026-07-11 |
+| 3 | `DF-05` | Separate terminal-barrel, horizon-alignment, 4:2:1, and dark-sector photon-like release ideas into defensible theorem targets or rejected speculation without merging horizon and light-ring conditions. | [`strong-field-closure:terminal_barrel_horizon_release_decision`](../strong-field-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 4 | `DF-04` | Decide whether shedding plus ordered-core recycling deserves a formal cosmology theorem target after free-steady-particle radiative shedding was ruled out. | [`cosmology-closure:ordered_core_recycling_decision`](../cosmology-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 5 | `DF-06` | Decide whether pair-provenance statistics may enter a local Noether sea compliance tensor or whether the ER=EPR-adjacent analogy should be rejected. | [`quantum-closure:provenance_compliance_bridge`](../quantum-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 6 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines:terminology_and_corpus_boundary`](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
+
 ## Unified Priority Table
 
 This single table is the canonical rollup for ranked priority workstreams, restored live priority projects, and high-leverage shared theorem packets. Use it to maintain ranking, notice category mistakes, and decide which directories or packet-level queues deserve active attention. `MinDelta` is the strongest current negative closure-scorecard pressure the row is expected to improve; it is a prioritization signal, not a claim that the row owns the entire scorecard category.

@@ -22,6 +22,7 @@
 9. `hard_em_constitutive_ceiling` — Test whether finite radius, Noether sea effective permittivity/permeability, and maximum-curvature regularity combine into a bounded electromagnetic constitutive response. Status: `priority-only`. Depends on: `embedded_boundary_conditions`.
 10. `ingress_conserved_ledger_deposition` — Route infalling conserved ledgers into horizon-interface, packed-core, Noether sea, defect, or release rows before making any assimilation or information claim. Status: `priority-only`. Depends on: `horizon_entropy_packet`, `release_channel_selection`.
 11. `quasar_wind_mechanical_benchmark` — Use high-power quasar winds as a mechanical outflow benchmark for release-channel selection and galaxy-scale feedback. Status: `priority-only`. Depends on: `release_channel_selection`, `high_energy_source_sink_taxonomy`.
+12. `terminal_barrel_horizon_release_decision` — Decide the separate dispositions of the all-rail terminal barrel, horizon-interface alignment, 4:2:1 hypothesis, and dark-sector photon-like release without identifying the horizon with the light ring by assumption. The discussion must assign each claim a theorem target, watchlist status, or rejection and name the required boundary equations or retained records. Status: `discussion-scoped`. Depends on: none for the decision; implementation routes through `embedded_boundary_conditions`, `release_channel_selection`, and `hypothesis_bank_review`.
 
 ## Scope
 

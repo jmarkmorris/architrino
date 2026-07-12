@@ -19,6 +19,7 @@ The compact cross-agent startup map is generated at [../../../op/agent-startup-o
 | [priority-lane-resume.md](priority-lane-resume.md) | Resume an existing `reference/priorities/` workstream from live state and make the next scoped progress step. |
 | [corpus-promotion.md](corpus-promotion.md) | Aggressive-but-honest promotion pass: un-sequester high-quality priority/brainstorming/memory material into the corpus at honest claim grade, anticipating closure without claiming it. |
 | [brainstorming.md](brainstorming.md) | Capture-first cross-lane brainstorming session: engage each idea at its strongest defensible claim level and capture every insight to the priority lane or memory. |
+| [adjudication.md](adjudication.md) | Decision-hub session: judge finished work from parallel builder/analyst threads, hold claim levels honest, decide and parallelize next steps, and summarize for the operator in plain language. |
 
 ## Prompt-Like Files To Consider Consolidating
 

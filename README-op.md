@@ -33,6 +33,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 
 ## Clarity
 
+- [ ] Treat an unresolved `discussion-scoped` priority as requiring an explicit accept, reject, or defer response when the agent resurfaces it; do not assume silence authorizes implementation.
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.
 - [ ] For frequency triplet work, state raw `B_1:B_2:B_3` search order up front and attach `I:M:O` only as a retained role map.
 - [ ] For solver geometry reports, state the retained physical model separately from the reduced executable chart.

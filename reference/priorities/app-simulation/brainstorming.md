@@ -20,14 +20,7 @@ This section collects the main open simulation-side questions that remain after 
 
 ### Simulation Scope Envelope
 
-Each simulation campaign should declare a bounded scope envelope before any result is interpreted. The envelope includes the Euclidean-void domain, absolute-time span, entity inventory, assembly inventory, Noether sea initialization, path-history depth, spatial and temporal resolution ladder, $\mathbb{U}_{\text{now}}$ logging channels, detector-synthetic channels, feedback/intervention mode, and runtime-rate or cost budget. This is not another promotion gate; it is the pre-run declaration that makes the existing campaign packet auditable.
-
-The durable target is to separate four questions that are often conflated:
-
-- What portion of $S(T)$ is being integrated?
-- What portion of $S(T)$ is being logged?
-- What observer-level quantity is being reconstructed from those logs?
-- Which perturbations or interventions are allowed during the run?
+→ promoted to `content/markdown/aaa/validation/simulations/README.md` (2026-07-11), grade effective simulation-method standard.
 
 Threshold-sensitive events should be reported as deterministic basin-boundary questions, not as substrate randomness. For an event region $\Omega_E$ in the declared state coordinates and unresolved perturbation scale $\|\delta S_t\|_{\mathrm{unres}}$, a useful diagnostic margin is
 
@@ -40,16 +33,11 @@ $$
 
 Rows with $m_E(t)\le 1$ are threshold-sensitive. They can guide reruns, perturbation sweeps, and detector-synthetic caution flags, but they do not promote one branch, reaction, or record outcome without the ordinary root-ledger, residual, convergence, and provenance rows.
 
+Residual target: decide whether the normalized margin $m_E$ belongs in the simulation guide as a stable shared diagnostic after at least one live campaign demonstrates that its distance and unresolved-perturbation norms can be defined without per-run retuning.
+
 ### Provenance-Scale Simulation Utility
 
-A provenance-rich simulation is valuable only when retained path histories answer a question that a coarse field, aggregate ledger, or detector-synthetic export cannot. The working question is: for which domains does all-entity provenance reduce replay ambiguity enough to justify path-history storage and query cost?
-
-Candidate utility classes:
-
-- reaction balancing: trace incoming and outgoing architrino, Noether-braid, wake, and Noether sea inventory through one event;
-- branch replay: recover which source history and causal-root branch generated a retained hit;
-- process demographics: count source classes, routing classes, and retained products through outflows, thermalization, jets, or radiation cascades over a declared domain;
-- visualization and debugging: show path trails and expanding causal wakes as display-only projections while preserving authoritative segment records separately.
+→ promoted to `content/markdown/aaa/validation/simulations/README.md` (2026-07-11), grade effective simulation-method standard.
 
 The smallest quantitative object is a provenance-value heuristic:
 
@@ -66,6 +54,8 @@ C_{\mathrm{store}}(E)+C_{\mathrm{query}}(E)+\varepsilon_0
 $$
 
 Here $Q$ is the scientific question, $E$ is the declared simulation envelope, $N_{\mathrm{amb}}^{\mathrm{coarse}}$ is the admissible replay or explanation count after coarse summaries, $N_{\mathrm{amb}}^{\mathrm{prov}}$ is the count after retained provenance, and $C_{\mathrm{store}}+C_{\mathrm{query}}$ is the storage/query cost. This is a priority heuristic for simulation design, not a promotion gate.
+
+Residual target: retain $R_{\mathrm{prov,value}}$ as a priority heuristic until one campaign supplies operational ambiguity counts and storage/query costs.
 
 ### Direct Nucleon Assembly Monte Carlo
 

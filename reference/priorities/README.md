@@ -29,3 +29,13 @@ The current preferred style for live priority docs is:
 - rerank based on real code state, not stale historical intent;
 - if a task is done, remove it and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.
+
+## Discuss-First Handling
+
+`Discuss-first` is a live priority status, not a report-only disposition. When an agent identifies a theory leap, terminology decision, broad ontology claim, or other item that requires operator judgment before implementation:
+
+- add or update a compact task in the owning workstream's `priorities.md` with status `discussion-scoped`;
+- add it to the canonical [Operator Discussion Queue](aaa-work-threads/priorities.md#operator-discussion-queue) when the decision crosses workstreams or is easy to miss;
+- surface one unresolved discussion item directly to the operator in later substantive theory closeouts until it is accepted, rejected, or explicitly deferred with a revisit condition;
+- do not launch implementation agents or promote the claim while its status remains `discussion-scoped`;
+- after the operator decides, record the decision in the owning tracker, remove the row from the cross-workstream discussion queue, and renumber any following queue items when applicable.
