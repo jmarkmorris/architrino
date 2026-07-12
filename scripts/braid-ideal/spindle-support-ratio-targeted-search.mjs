@@ -15,6 +15,10 @@
 
 import { fileURLToPath } from "node:url";
 import { buildBraid, wakeAccel, residuals, CHAMPION } from "./spindle-braid-screw-drift-evaluator.mjs";
+import {
+  NONLINEAR_FLUTTER_FIXTURE, matVec, buildCubicTensors,
+  hopfLandauCoefficient, integrateCubic,
+} from "./nonlinear-flutter-saturation-fixture.mjs";
 
 export const SCHEMA = "spindle_support_ratio_targeted_search.v0";
 export const SPEC_PACKET_REF = "reference/priorities/braid-ideal/fold-crossing-chart-spec.md";
@@ -1172,7 +1176,7 @@ export function gyroscopicTiltAnalysis({ geo = SELF_EQUILIBRATED_V5.geo, cTrans 
 // restoring); rateBlockScale scales the measured D block (0 reproduces the
 // Section 61 kinematic-transport-only pencil).
 // NOT evidence; names no retained branch; authorizes no acceptance. Fail-closed.
-export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02, eta = 0.03, etaDot = 0.02, extraDamping = 0, extraDampingLayers = null, velocityBlockAdd = null, rateBlockScale = 1, pumpAbsorbed = false, dTheta = { I: 0, M: 0, O: 0 }, sense = { I: 1, M: 1, O: 1 } } = {}) {
+export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTrans = 1.0, Nt = 8, soft = 0.02, eta = 0.03, etaDot = 0.02, extraDamping = 0, extraDampingLayers = null, velocityBlockAdd = null, rateBlockScale = 1, pumpAbsorbed = false, dTheta = { I: 0, M: 0, O: 0 }, sense = { I: 1, M: 1, O: 1 }, includeReducedEvaluator = false } = {}) {
   // INTERLEAVING PARAMETERS (Section 86). dTheta[L] is layer L's precession
   // phase phi_L about the common axis (an azimuthal offset added to the baseline
   // orbital phase theta_L); sense[L] in {+1,-1} is the layer's precession sense
@@ -1396,6 +1400,7 @@ export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTr
   const deflated = rootRows.filter((r) => !globalPair.includes(r));
   const growing = deflated.filter((r) => r.re > 1e-6);
   const maxGrowth = deflated.length ? deflated[0] : null;
+  const S0 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => Gam6[i][j] - K6[i][j]));
   // leading deflated-mode shape zeta_L = eta^x_L + i eta^y_L (null vector of
   // P(lambda) at the leading root; used by the interleaving 4*pi winding check).
   let leadingModeShape = null;
@@ -1418,6 +1423,11 @@ export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTr
     layers: layerConst, omega: w, kappaStar: kap, tau0, pumpAbsorbed,
     dTheta, sense, leadingModeShape,
     blocks: { A, B, P, Q },
+    // Runner-facing axis-pencil snapshot.  This is a readout of the already
+    // measured pencil, not a second dynamics implementation; estimate-grade
+    // forcing studies can transform the coefficients without re-entering the
+    // central solver or repeating the causal-root measurement.
+    pencilMatrices: { mass: M6, velocity: Cvel, stiffness: S0 },
     rateBlock: D6t, rateBlockScale, extraDamping,
     covarianceWitness: { staticBlocks: covK, rateBlocks: covD, scale },
     globalNull: { A: rowSum(A), pumpWitness,
@@ -1431,6 +1441,9 @@ export function gyroscopicTiltAnalysisFull({ geo = SELF_EQUILIBRATED_V5.geo, cTr
     flutterModes: growing,
     maxGrowthRate: maxGrowth ? maxGrowth.re : null,
     maxGrowthWhirlFrequency: maxGrowth ? Math.abs(maxGrowth.im) : null,
+    ...(includeReducedEvaluator ? { reducedEvaluator: {
+      torques, baselineTorque: base, M6, G6, Gam6, K6, D6t, Cvel, dampLayers,
+    } } : {}),
   };
 }
 
@@ -1465,7 +1478,7 @@ export function internalDeformationPencil({
   eps = 0.01, eta = 0.03, railPinned = true, kapFixed = null,
   coupling = "all", pumpAbsorbed = false, mRad = 2, parametric = false,
   u = 0, driftAngle = 0, baseTilt = 0,
-} = {}) {
+  } = {}) {
   const seed = buildBraid({ u: 0, cTrans, geo });
   const w = seed.omega;
   const cf = 1;
@@ -4754,6 +4767,153 @@ export function interleavingFlutterSweep({
   };
 }
 
+// WEAKLY-NONLINEAR FLUTTER SATURATION (Section 90). The existing completed
+// axis pencil supplies the exact linear blocks. This continuation keeps the
+// same six local tilt coordinates but evaluates the finite-rotation,
+// constant-rate causal-history torque closure through cubic order. The two
+// global orientation coordinates are removed in the local slice eta_O=0;
+// the four shape coordinates are (eta_I-eta_O, eta_M-eta_O) in x and y.
+//
+// The Hopf point is located with the existing isotropic-damping continuation,
+// then the first Lyapunov/Landau coefficient is evaluated from the full cubic
+// Taylor tensors of the eight-state slice. A separate RK4 integration evolves
+// that eight-state cubic vector field at the undamped base cell. This is a
+// seed-grade reduced-axis calculation, not a central-solver or native release.
+export function nonlinearFlutterSaturationAnalysis({
+  Nt = 8, soft = 0.02,
+  derivativeStep = NONLINEAR_FLUTTER_FIXTURE.derivativeStep,
+  seedAmplitudeRad = NONLINEAR_FLUTTER_FIXTURE.seedAmplitudeRad,
+  integrationDt = NONLINEAR_FLUTTER_FIXTURE.integrationDt,
+  integrationTime = NONLINEAR_FLUTTER_FIXTURE.integrationTime,
+} = {}) {
+  const cache = new Map();
+  const pencilAt = (damp, includeReducedEvaluator = false) => {
+    const key = `${damp.toFixed(12)}:${includeReducedEvaluator}`;
+    if (!cache.has(key)) cache.set(key, gyroscopicTiltAnalysisFull({ Nt, soft, extraDamping: damp, includeReducedEvaluator }));
+    return cache.get(key);
+  };
+  const base = pencilAt(0);
+  const trackedMode = (pen) => pen.quotientEigenvalues
+    .filter((z) => z.im > 0)
+    .reduce((best, z) => !best || Math.abs(z.im - base.maxGrowthWhirlFrequency) < Math.abs(best.im - base.maxGrowthWhirlFrequency) ? z : best, null);
+  let lo = 0, hi = 0.25;
+  while (trackedMode(pencilAt(hi)).re > 0 && hi < 16) hi *= 2;
+  if (trackedMode(pencilAt(hi)).re > 0) throw new Error("nonlinearFlutterSaturationAnalysis: tracked 2.41246-frequency Hopf onset not bracketed");
+  for (let k = 0; k < 18; k++) {
+    const mid = (lo + hi) / 2;
+    if (trackedMode(pencilAt(mid)).re > 0) lo = mid; else hi = mid;
+  }
+  const onsetDamping = (lo + hi) / 2;
+  const onset = pencilAt(onsetDamping, true);
+  const onsetTrackedMode = trackedMode(onset);
+  const red = onset.reducedEvaluator;
+  const U = [
+    [1,0,0,0], [0,1,0,0], [0,0,0,0],
+    [0,0,1,0], [0,0,0,1], [0,0,0,0],
+  ];
+  const lift = (r) => U.map((row) => row.reduce((s, v, j) => s + v * r[j], 0));
+  const quotient = (a) => [a[0] - a[2], a[1] - a[2], a[3] - a[5], a[4] - a[5]];
+  const exactField = (x, damping) => {
+    const r = x.slice(0, 4), v = x.slice(4, 8);
+    const q6 = lift(r), v6 = lift(v);
+    const tq = red.torques(q6.slice(0, 3), q6.slice(3), v6.slice(0, 3), v6.slice(3), true);
+    const T = [...tq.Tx.map((z, i) => z - red.baselineTorque.Tx[i]), ...tq.Ty.map((z, i) => z - red.baselineTorque.Ty[i])];
+    const acc = Array(6).fill(0);
+    for (let i = 0; i < 6; i++) {
+      let rhs = T[i] - damping * v6[i];
+      for (let j = 0; j < 6; j++) rhs -= red.G6[i][j] * v6[j] + red.Gam6[i][j] * q6[j];
+      acc[i] = rhs / red.M6[i][i];
+    }
+    return [...v, ...quotient(acc)];
+  };
+  const linearMatrix = (damping) => {
+    const H = red.Gam6.map((row, i) => row.map((v, j) => v - red.K6[i][j]));
+    const C = red.G6.map((row, i) => row.map((v, j) => v - red.D6t[i][j] + (i === j ? damping : 0)));
+    const apply = (x) => {
+      const q6 = lift(x.slice(0, 4)), v6 = lift(x.slice(4));
+      const acc = Array(6).fill(0);
+      for (let i = 0; i < 6; i++) {
+        let rhs = 0;
+        for (let j = 0; j < 6; j++) rhs -= H[i][j] * q6[j] + C[i][j] * v6[j];
+        acc[i] = rhs / red.M6[i][i];
+      }
+      return [...x.slice(4), ...quotient(acc)];
+    };
+    return Array.from({ length: 8 }, (_, i) => {
+      const e = Array(8).fill(0); e[i] = 1; return apply(e);
+    }).reduce((A, col, j) => { for (let i = 0; i < 8; i++) A[i][j] = col[i]; return A; }, Array.from({ length: 8 }, () => Array(8).fill(0)));
+  };
+  const Aon = linearMatrix(onsetDamping);
+  const A0 = linearMatrix(0);
+  const remainder = (x) => {
+    const f = exactField(x, onsetDamping), lin = matVec(Aon, x);
+    return f.map((v, i) => v - lin[i]);
+  };
+  const tensors = buildCubicTensors({ nonlinearRemainder: remainder, dimension: 8, step: derivativeStep });
+  const omegaHopf = Math.abs(onsetTrackedMode.im);
+  const normal = hopfLandauCoefficient({ A: Aon, omega: omegaHopf, B: tensors.B, C: tensors.C });
+
+  // For x = z q + conjugate(z q), convert the complex modal amplitude |z|
+  // to the maximum gauge-fixed relative layer tilt over one whirl.
+  let modalPhysicalScale = 0, scalePhase = 0;
+  for (let k = 0; k < 720; k++) {
+    const ph = 2 * Math.PI * k / 720, c = Math.cos(ph), s = Math.sin(ph);
+    const xp = normal.q.slice(0, 4).map((z) => 2 * (z[0] * c - z[1] * s));
+    const a = Math.max(Math.hypot(xp[0], xp[2]), Math.hypot(xp[1], xp[3]));
+    if (a > modalPhysicalScale) { modalPhysicalScale = a; scalePhase = ph; }
+  }
+  const landauRealPhysical = normal.landauComplex[0] / (modalPhysicalScale ** 2);
+  const predictedSaturatedAmplitude = landauRealPhysical < 0
+    ? Math.sqrt(-base.maxGrowthRate / landauRealPhysical) : null;
+  const z0 = seedAmplitudeRad / modalPhysicalScale;
+  const initial = normal.q.map((z) => 2 * z0 * (z[0] * Math.cos(scalePhase) - z[1] * Math.sin(scalePhase)));
+  const physicalAmplitude = (x) => Math.max(Math.hypot(x[0], x[2]), Math.hypot(x[1], x[3]));
+  const integ = integrateCubic({ A: A0, B: tensors.B, C: tensors.C, initial,
+    dt: integrationDt, tMax: integrationTime, amplitude: physicalAmplitude,
+    divergenceAmplitude: NONLINEAR_FLUTTER_FIXTURE.divergenceAmplitudeRad });
+  const traceStride = Math.max(1, Math.floor(integ.samples.length / 16));
+  const amplitudeTrace = integ.samples.filter((_, i) => i % traceStride === 0 || i === integ.samples.length - 1)
+    .map((a, i) => ({ sample: i * traceStride * 10, amplitudeRad: +a.toPrecision(8) }));
+  const supercritical = normal.firstLyapunov < 0;
+  const directBounded = integ.bounded && !integ.diverged;
+  return {
+    schema: NONLINEAR_FLUTTER_FIXTURE.schema,
+    seed: "SELF_EQUILIBRATED_V5",
+    linearRegression: {
+      leadingRe: base.maxGrowthRate, leadingIm: base.maxGrowthWhirlFrequency,
+      expectedRe: NONLINEAR_FLUTTER_FIXTURE.linearGrowth,
+      expectedIm: NONLINEAR_FLUTTER_FIXTURE.linearFrequency,
+      exact: base.maxGrowthRate === NONLINEAR_FLUTTER_FIXTURE.linearGrowth && base.maxGrowthWhirlFrequency === NONLINEAR_FLUTTER_FIXTURE.linearFrequency,
+    },
+    hopfOnset: { extraDamping: onsetDamping, trackedRe: onsetTrackedMode.re, trackedIm: omegaHopf,
+      transverseMaxGrowth: onset.maxGrowthRate, transverseWhirlFrequency: onset.maxGrowthWhirlFrequency },
+    cubicFit: { derivativeStep, tensorSamples: tensors.sampleCount },
+    landau: {
+      G21: { re: normal.G21[0], im: normal.G21[1] },
+      firstLyapunov: normal.firstLyapunov,
+      coefficientPhysical: landauRealPhysical,
+      amplitudeDefinition: "maximum relative layer tilt in the eta_O=0 slice, radians",
+      classification: supercritical ? "supercritical" : "subcritical",
+    },
+    directIntegration: {
+      seedAmplitudeRad, dt: integrationDt, tMax: integrationTime,
+      bounded: directBounded, diverged: integ.diverged,
+      saturatedAmplitudeRad: directBounded ? integ.saturatedAmplitude : null,
+      tailSpreadRad: integ.tailSpread ?? null,
+      amplitudeTrace,
+    },
+    predictedSaturatedAmplitudeRad: predictedSaturatedAmplitude,
+    decision: supercritical && directBounded
+      ? "supercritical_bounded_limit_cycle_seed_grade_flutter_saturates"
+      : "subcritical_or_directly_divergent_seed_grade_flutter_is_fatal_at_cubic_order",
+    interpretation: supercritical && directBounded
+      ? "The reduced cubic axis sector has a stable nearby whirl cycle. The prior quiet-void results bound the isolated linear problem; they are not a nonlinear divergence verdict. Native confirmation remains required."
+      : "The reduced cubic axis sector supplies no stable nearby whirl cycle, or its direct cubic integration diverges. The flutter remains fatal at this order.",
+    claimLevel: "seed_grade_weakly_nonlinear_reduced_axis_sector_not_a_native_release_no_release_authorized",
+    ...FAIL_CLOSED,
+  };
+}
+
 // 4*pi-RETURN (SPIN-1/2) PROBE. Advance a co-cyclic relative precession phase phi
 // around a full 2*pi loop (phi_M = phi, phi_O = 2*phi — the corotating winding)
 // and continuously track the leading deflated eigenvector zeta_L = eta^x_L +
@@ -5537,6 +5697,13 @@ if (isMain()) {
       Nt: parseInt(val("--nt", "6"), 10),
       gridN: parseInt(val("--grid-n", "8"), 10),
       chiN: parseInt(val("--chi-n", "11"), 10),
+    });
+  } else if (flag("--nonlinear-flutter")) {
+    out = nonlinearFlutterSaturationAnalysis({
+      Nt: parseInt(val("--nt", "8"), 10),
+      derivativeStep: parseFloat(val("--derivative-step", String(NONLINEAR_FLUTTER_FIXTURE.derivativeStep))),
+      integrationDt: parseFloat(val("--integration-dt", String(NONLINEAR_FLUTTER_FIXTURE.integrationDt))),
+      integrationTime: parseFloat(val("--integration-time", String(NONLINEAR_FLUTTER_FIXTURE.integrationTime))),
     });
   } else if (flag("--global-drain-sea")) {
     out = globalDrainDynamicalSea({

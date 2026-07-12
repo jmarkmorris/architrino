@@ -68,12 +68,9 @@ This queue is the canonical cross-workstream surface for decisions that require 
 
 | Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `DF-02` | Decide whether the dressed-electron native program is the next object for testing whether charged axial payload dressing changes the bare neutral scaffold's flutter and global angular-momentum-drain conclusions. | [`master-equation-closure:dressed_electron_global_drain_scope_decision`](../master-equation-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
-| 2 | `DF-03` | Decide whether intrinsic drift/precession and spin interleaving form one theorem/simulation program or remain separate speculative families. | [`braid-ideal:intrinsic_drift_precession_synthesis_decision`](../braid-ideal/priorities.md#group-b---proof-consolidation-and-operator-decisions) | `discussion-scoped` | 2026-07-11 |
-| 3 | `DF-05` | Separate terminal-barrel, horizon-alignment, 4:2:1, and dark-sector photon-like release ideas into defensible theorem targets or rejected speculation without merging horizon and light-ring conditions. | [`strong-field-closure:terminal_barrel_horizon_release_decision`](../strong-field-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
-| 4 | `DF-04` | Decide whether shedding plus ordered-core recycling deserves a formal cosmology theorem target after free-steady-particle radiative shedding was ruled out. | [`cosmology-closure:ordered_core_recycling_decision`](../cosmology-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
-| 5 | `DF-06` | Decide whether pair-provenance statistics may enter a local Noether sea compliance tensor or whether the ER=EPR-adjacent analogy should be rejected. | [`quantum-closure:provenance_compliance_bridge`](../quantum-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
-| 6 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines:terminology_and_corpus_boundary`](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
+| 1 | `DF-04` | Decide whether shedding plus ordered-core recycling deserves a formal cosmology theorem target after free-steady-particle radiative shedding was ruled out. | [`cosmology-closure:ordered_core_recycling_decision`](../cosmology-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 2 | `DF-06` | Decide whether pair-provenance statistics may enter a local Noether sea compliance tensor or whether the ER=EPR-adjacent analogy should be rejected. | [`quantum-closure:provenance_compliance_bridge`](../quantum-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 3 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines:terminology_and_corpus_boundary`](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
 
 ## Unified Priority Table
 

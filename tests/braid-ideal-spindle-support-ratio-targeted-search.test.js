@@ -19,6 +19,7 @@ import {
   braidPerOmegaEvaluate, braidClosureRigidity, perLayerOmegaTorqueNullSearch,
   globalDrainDynamicalSea,
   gyroscopicTiltAnalysisFull, interleavedFlutterPoint, interleavingFlutterSweep, fourPiReturnProbe,
+  nonlinearFlutterSaturationAnalysis,
   sameRecordWakeAngularMomentumWard, balancedCellTransportKernel,
 } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
 import { nearFieldReadout } from "../scripts/braid-ideal/positional-sea-breathing-margin-instrument.mjs";
@@ -930,6 +931,30 @@ test("§86 4π probe: the informative winding of the growing leading mode over a
   const p = fourPiReturnProbe({ Nt: 4, steps: 6 });
   assert.ok(Number.isFinite(p.accumulatedWindingTurns), "winding is measured");
   assert.equal(p.doubleCoverSignature, false, "no half-integer (4π) signature on the growing mode");
+});
+
+// --- §90: weakly-nonlinear continuation of the tracked 2.41246-frequency
+// flutter branch. This is deliberately one owner test because the cubic tensor
+// stencil reuses the full causal-root torque evaluator.
+
+test("§90 nonlinear flutter: positive Landau coefficient is SUBCRITICAL and the direct cubic axis integration diverges without a bounded jitter cycle", () => {
+  const r = nonlinearFlutterSaturationAnalysis({ integrationTime: 60 });
+  assert.equal(r.linearRegression.exact, true, "linearization is bit-exact against the §86 base pencil");
+  assert.equal(r.linearRegression.leadingRe, 0.19885688497216406);
+  assert.equal(r.linearRegression.leadingIm, 2.41245971901678);
+  assert.ok(Math.abs(r.hopfOnset.extraDamping - 0.171914) < 2e-5, `tracked Hopf damping ${r.hopfOnset.extraDamping}`);
+  assert.ok(Math.abs(r.hopfOnset.trackedIm - 2.43282) < 2e-4, `tracked Hopf frequency ${r.hopfOnset.trackedIm}`);
+  assert.ok(r.hopfOnset.transverseMaxGrowth > 0.15, "the lower-frequency transverse pair is still unstable at the tracked Hopf point");
+  assert.equal(r.landau.classification, "subcritical");
+  assert.ok(r.landau.firstLyapunov > 0.035 && r.landau.firstLyapunov < 0.05, `l1 ${r.landau.firstLyapunov} > 0`);
+  assert.ok(r.landau.coefficientPhysical > 0.3, `physical cubic coefficient ${r.landau.coefficientPhysical} > 0`);
+  assert.equal(r.directIntegration.bounded, false);
+  assert.equal(r.directIntegration.diverged, true);
+  assert.equal(r.directIntegration.saturatedAmplitudeRad, null);
+  assert.equal(r.predictedSaturatedAmplitudeRad, null);
+  assert.equal(r.decision, "subcritical_or_directly_divergent_seed_grade_flutter_is_fatal_at_cubic_order");
+  assert.equal(r.retainedBranchClaim, false);
+  assert.equal(r.scoreMovement, "no_score_increase");
 });
 
 // §87 (jh13) — the same-record wake angular-momentum Ward completion (Phase 1) and

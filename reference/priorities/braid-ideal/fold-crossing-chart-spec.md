@@ -1900,3 +1900,97 @@ Executing the deciding memo [retained-sea-angular-momentum-ward-identity-and-tra
 Reproduce: `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --wake-ward --pretty` (bare control: add `--no-sea`; `--frac` sets the orbit fraction) and `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --balanced-cell --pretty` (`--a-cell` sets the lattice spacing).
 
 Next closure goal: hand the Phase-1 Ward-closure numbers ($\texttt{seaOwnPump}=-0.6545$, $q_{AB,z}\approx0$, bound-but-regulator-non-convergent wake flux at the superluminal caustic) and the Phase-2 intrinsically-pumped cell verdict to codex for an independent audit against the memo's decision rule; if codex accepts route a plus the admissibility bar as a theorem-level global BARRED, record the global no-go and return $A_0$'s $E_{\mathrm{internal}}$ to the far-field radiation-with-replenishment route (§76) as the sole surviving sink; if a sub-luminal balanced cell (orbit fraction below the $D_s=0$ threshold, or a non-orbiting axis-reversed lattice) is required to complete the decider, build that convergent cell and re-run the local-boundedness and twist-response gate before any localized-pump solve.
+
+## 90. Nonlinear Saturation of the Axis-Sector Flutter: the Tracked $2.41246$ Whirl Is SUBCRITICAL, the Cubic Landau Term Reinforces Growth, and Direct Reduced-Axis Integration Finds No Bounded Jitter Cycle (2026-07-11)
+
+The linear pencil establishes onset but cannot decide whether the growing whirl saturates. This section continues the same `gyroscopicTiltAnalysisFull` axis sector through cubic order using the runner's finite-rotation, constant-rate causal-history torque closure. The central solver is untouched. The two exact global-orientation directions are removed with the local slice $eta_O=0$, leaving four relative tilt coordinates and their four rates. This is a seed-grade reduced-axis model, not a native release.
+
+**Exact linear regression and tracked onset.** At zero added damping the reduced model reproduces the source pencil bit for bit:
+
+$$
+\operatorname{Re}\lambda=0.19885688497216406,
+\qquad
+\operatorname{Im}\lambda=2.41245971901678.
+$$
+
+The continuation follows this high-frequency pair, rather than switching to the nearby low-frequency growing pair. It crosses the imaginary axis at added isotropic damping $d_H=0.1719136$, with $lambda_H\approx-3.7\times10^{-7}+2.4328197i$. The lower-frequency pair is still unstable there, with growth $+0.17096$ at frequency $0.31232$; therefore even a stable cycle on the tracked branch would not by itself close the full axis sector.
+
+**Cubic normal form.** Let $A$ be the eight-state slice Jacobian at $d_H$, let $q,p$ be the normalized right and adjoint Hopf eigenvectors, and let $B,C$ be the quadratic and cubic derivative tensors of the measured reduced vector field. The standard Hopf contraction gives
+
+$$
+G_{21}
+=
+\left\langle p,
+C(q,q,\bar q)
+B\!\left(\bar q,(2i\omega_HI-A)^{-1}B(q,q)\right)
+-2B\!\left(q,A^{-1}B(q,\bar q)\right)
+\right\rangle,
+\qquad
+l_1=\frac{\operatorname{Re}G_{21}}{2\omega_H}.
+$$
+
+The measured values are $G_{21}=0.19963-0.59936i$ and
+
+$$
+l_1=+0.04103.
+$$
+
+With amplitude defined as the maximum relative layer tilt in the $eta_O=0$ slice, the real Landau cubic coefficient in $\dot a=\mu a+c_3a^3+O(a^5)$ is $c_3=+0.38572$ in inverse-time per radian squared. The sign is positive: the Hopf bifurcation is **subcritical**, so the cubic term reinforces the growing side and supplies no nearby stable small-amplitude limit cycle. The finite-difference step change $0.035\to0.030$ moves $l_1$ only from $+0.041029$ to $+0.041074$ and preserves the classification.
+
+**Direct cubic integration.** An independent RK4 evolution of the full eight-state cubic Taylor system at the undamped base cell, seeded at $10^{-4}$ radians on the tracked mode, grows past the declared one-radian weak-tilt validity boundary near $t=51$. No amplitude plateau appears, `bounded=false`, and `saturatedAmplitudeRad=null`. This is not a claim of a literal infinite-amplitude trajectory outside the cubic chart; it is the fail-closed result that no bounded jitter exists within the weakly nonlinear neighborhood tested here.
+
+**Verdict.** `subcritical_or_directly_divergent_seed_grade_flutter_is_fatal_at_cubic_order`. The Landau sign is positive and there is no saturated amplitude to report. The quiet-void no-go arc is therefore not reframed as an isolated-linear artifact: its fatal axis-sector reading survives the cubic extension. A native confirmation gate may reproduce or supersede this reduced result, but the present seed does not justify handing forward a benign zitterbewegung candidate. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Reproduce: `node scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs --nonlinear-flutter --pretty`. Owner test: `node --test --test-name-pattern="§90 nonlinear flutter" tests/braid-ideal-spindle-support-ratio-targeted-search.test.js`.
+
+Next closure goal: run a native force-free retained-history confirmation of the subcritical axis-sector verdict and require the native amplitude envelope either to remain unbounded through the weak-tilt chart or to exhibit a bounded cycle that falsifies the reduced cubic result.
+
+---
+
+## 91. Kapitza Dynamic Stabilization of the Flutter: Does Buffeting Quiet It? — No; the Averaged Restoring Term Raises the Whirl Frequency but Never Quenches the Positive Growth Rate (2026-07-11)
+
+Testing whether the §61/§63 quiet-void flutter is the wrong frame: rapid external buffeting can stabilize a negative-stiffness mode through the Kapitza mechanism, so the sea's continual agitation might be the missing stabilizer rather than an added threat. Runner + fixtures only: [kapitza-flutter-stabilization.mjs](../../../scripts/braid-ideal/kapitza-flutter-stabilization.mjs) reads the already-measured coefficient matrices exposed by `gyroscopicTiltAnalysisFull`; the central solver remains untouched. The drive is a seed-grade stand-in for the sea, not a derived sea response. No native force-free release is authorized or run.
+
+**Declared drive and averaging.** The measured deflated axis pencil is
+
+$$
+M\ddot q+C\dot q+S_0q=0,
+\qquad
+S_0=\Gamma-K,
+$$
+
+with the two exact global-tilt directions removed from the readout. A zero-mean additive force cannot change the eigenvalues of a linear pencil, so the only Kapitza-capable stand-in is a multiplicative axis-stiffness drive. In mass-normalized coordinates let $P_{\mathrm{rel}}$ project out the two global-tilt directions and define $H=M^{1/2}P_{\mathrm{rel}}M^{1/2}$. The coherent model is
+
+$$
+M\ddot q+C\dot q+\left[S_0+a\cos(\Omega t)H\right]q=0.
+$$
+
+Writing $q=Q+\xi$ and eliminating the fast response through order $\Omega^{-2}$ gives
+
+$$
+S_{\mathrm{eff}}=S_0+\frac{a^2}{2\Omega^2}H.
+$$
+
+For the broadband seeded stochastic model, $a\cos(\Omega t)$ is replaced by 64 random-phase spectral components across a one-octave band, with fixed seed `91091`; after normalization to total RMS amplitude $a_{\mathrm{rms}}$, the averaged correction is
+
+$$
+\Delta S_{\mathrm{stoch}}
+=a_{\mathrm{rms}}^2\left(\sum_j\frac{w_j}{\Omega_j^2}\right)H,
+\qquad \sum_jw_j=1.
+$$
+
+Thus both models test the same positive-semidefinite restoring direction but weight the fast spectrum differently. This is the method-of-averaging result; it does not assume that the sea actually couples through $H$.
+
+**Regression.** With the drive off, the transformed runner reproduces the source pencil bit for bit: $\operatorname{Re}\lambda=0.19885688497216406$ and $\operatorname{Im}\lambda=2.41245971901678$. The fixture pins these values to $10^{-12}$ and independently reconstructs the spectrum from the exposed $M,C,S_0$ matrices.
+
+**Threshold map — no crossing exists.** The coherent sweep uses $\Omega/\operatorname{Im}\lambda\in\{4,6,8,12,16\}$, safely above the whirl. For every frequency, increasing $a$ from zero through the declared search ceiling produces no $\operatorname{Re}\lambda\le0$ crossing: `thresholdPeakAmplitude=null`. Because the averaged spectrum depends only on $c_K=a^2/(2\Omega^2)$, the frequency rows collapse onto one coefficient map. A logarithmic sweep over $c_K\in[10^{-8},10^6]$ at $0.1$-decade spacing has its minimum growth at the unforced point itself, $\operatorname{Re}\lambda=+0.1988569$; the growth increases immediately with restoring strength and approaches about $+0.267$ while the whirl frequency rises without bound. The one-octave stochastic row, centered at $8\operatorname{Im}\lambda$ with effective frequency $17.98$, gives the same no-crossing verdict: `thresholdRmsAmplitude=null`. Therefore there is no amplitude-frequency quench curve to report inside the averaged model; the threshold set is empty.
+
+**Why Kapitza fails here.** The bare relative-tilt block is already statically restoring. The instability is carried by the non-self-adjoint gyroscopic/circulatory velocity and torque structure, not by a negative stiffness that the Kapitza term can reverse. Adding $\Delta S\succeq0$ makes the mode oscillate faster but does not remove its positive energy-transfer rate. This is the multidimensional circulatory-flutter failure mode of the inverted-pendulum analogy: restoring stiffness alone does not supply damping or cancel the non-conservative circulation.
+
+**Rough sea-scale comparison.** The already-declared local sea scales give $c_f/a\sim1/3.4\approx0.29$ for neighbor transit and at most the named fast-alignment scale $2\omega_{\mathrm{braid}}\approx2.08$. These are only $0.12$–$0.86$ of the flutter frequency, whereas the averaging map begins at $4\operatorname{Im}\lambda\approx9.65$. The known seed scales therefore do not enter the high-frequency regime, and no sea buffeting amplitude has been derived. This frequency mismatch is secondary, however: even granting arbitrarily large high-frequency multiplicative forcing in the favorable relative-tilt direction does not quench the averaged flutter.
+
+**Verdict.** `negative_no_averaged_restoring_threshold_flutter_not_quenched`. Neither coherent periodic forcing nor broadband stochastic forcing dynamically stabilizes this axis mode under the seed-grade averaged Kapitza stand-in. A physically plausible buffeting threshold is not merely unsupported; no formal threshold exists in the declared favorable restoring family. The bobber intuition is not confirmed for this flutter, and the quiet-void no-go remains the correct seed-grade reading. Claim boundary: this closes the effective-averaged multiplicative-stiffness hypothesis only. A native sea-coupled record could still alter the circulatory or velocity block, but that would be a different mechanism, not Kapitza stabilization by fast restoring modulation. Fail-closed: `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Reproduce: `node scripts/braid-ideal/kapitza-flutter-stabilization.mjs --pretty`; owner fixtures: `node --test tests/braid-ideal-kapitza-flutter-stabilization.test.js`.
+
+Next closure goal: derive the native sea fluctuation spectrum and its full axis-sector coupling tensor on one self-consistent sea-coupled record, then test whether the measured forcing changes the circulatory/velocity block; do not revisit pure fast restoring modulation unless that native tensor contains a qualitatively different coupling direction.
