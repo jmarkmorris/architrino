@@ -542,6 +542,28 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Inertial and gravitational mass share one shielded-energy response map. | Priority target constrained by equivalence-principle tests. |
 | The Higgs sector is recovered as an effective matching layer. | Open comparison target. |
 
+### The Substrate Mass Unit and Size Anchor
+
+Claim level: a dimensional anchor plus a native size measurement; the extraction of an actual particle mass from it is gated on a retained free object and remains open.
+
+The substrate carries no mass dimension of its own: its three constants — the coupling $\kappa$, the polarity unit $\varepsilon$, and the field speed $c_f$ — span only length, time, and charge. A mass scale enters only with the action quantum $\hbar_{\mathrm{act}}$ of the fold-crossing ledger, and dimensional analysis then fixes the natural mass unit uniquely:
+
+$$
+M_0 \sim \frac{\hbar_{\mathrm{act}}\,c_f}{\kappa\,\varepsilon^2}.
+$$
+
+Every emergent inertial mass in this chapter is a pure number times this unit; the roadmap formula $M_0(A)c_{\mathrm{eff}}^2\sim\zeta(A)E_{\mathrm{internal}}(A)$ is the statement that the number is set by the shielded internal energy of the retained branch.
+
+The same constants fix an absolute size. The self-equilibrated spindle configuration has a native rail radius
+
+$$
+R_M^{\mathrm{eq}} = 3.4937\,\frac{\kappa\varepsilon^2}{c_f^2},
+\qquad
+\kappa_{\mathrm{eq}} = 1/R_M^{\mathrm{eq}} = 0.28623,
+$$
+
+a gauge-invariant number measured on the native family and sitting well above the near-field floor, so the arrest is coupling-scale self-support rather than a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
+
 ### Mass-Channel Categories
 
 The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).

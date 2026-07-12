@@ -626,6 +626,14 @@ f_{\mathrm{early}}
 $$
 not proof that an external random draw selected the universe.
 
+## Heat Death and Its Escapes
+
+Claim level: the three escapes are standard physics observations stated at effective grade; the cyclic or recycling cosmology that would use them is an open target, not a claim of this chapter.
+
+A pure relaxation to maximum entropy — classical heat death — is not forced in this framework, and three independent openings keep the arrow from having to terminate. First, the substrate law is reversible and information-preserving: the fine-grained entropy is constant ($dS_{\mathrm{fine}}=0$ by Liouville) and only the coarse-grained observer-window entropy rises, so at the substrate level there is no absolute maximum to saturate; a globally reversible cosmic history is permitted while every finite observer still measures $dS_{\mathrm{coarse}}\ge0$. Second, self-gravitating systems have negative heat capacity and no equilibrium maximum-entropy state — the horizon-labelled records keep growing, as the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ above already shows — so the premise that every gradient equilibrates and all shedding stops may simply be false. Third, a cosmological de Sitter-like horizon carries an entropy that grows with its area, so the accessible ceiling $S_{\max}(T)$ can recede at least as fast as $S(T)$ climbs; the record chases a moving bound rather than reaching a fixed one.
+
+These are openings, not a mechanism. Any concrete cyclic or recycling cosmology that would exploit them must still close a global entropy ledger — every local decrease over-paid by disorder exported elsewhere — and that accounting, together with a named substrate driver, remains open work rather than a result asserted here.
+
 Boltzmann-brain pressure exposes the same rule in extreme form. A retained observer record cannot certify the low-entropy history that is then used to certify the retained observer record. The packet must separate the internal consistency of a memory record from the boundary-condition claim that the record descends from a shared low-defect universe path history. Let $\Gamma_{\mathrm{hist}}$ denote compatible complete histories in which observer records, cosmological traces, and low-defect boundary data descend from one shared path-history record. Let $\Gamma_{\mathrm{BB}}$ denote compatible complete histories in which an observer record is an isolated high-entropy fluctuation with no shared supporting cosmological record. The corresponding fluctuation residual is
 
 $$

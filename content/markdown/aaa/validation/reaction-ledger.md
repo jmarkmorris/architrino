@@ -67,6 +67,34 @@ $$
 
 where the first set ranges over the resolved incoming assemblies and the second set ranges over resolved outgoing or remnant assemblies. This is not a new conservation law. It is a collision-specific refinement of the same event record: shielding loss, shielding gain, dissociation, association, recoil, photon output, medium excitation, Noether sea update, detector-facing products, and any re-shielded remnant must all be named inside the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}(\mathsf e)$ balance. If the calculation exposes internal energy from an incoming assembly without routing it to one of those named terms, the reaction remains a provisional map rather than a closed provenance record.
 
+### Hadronization Spin-Correlation Records
+
+High-energy collision records that claim to recover nonperturbative strong-sector behavior must preserve spin and provenance through hadronization, not only through charge and energy balance. The $\Lambda\bar{\Lambda}$ spin-correlation measurement is a useful template because the inferred record passes through several layers: a short-distance $s\bar{s}$ source, confinement into color-singlet hyperons, feed-down from higher-mass states, weak decay of each hyperon, detector reconstruction of daughter tracks, and a correlation comparison against long-range pairs and scalar-control channels.
+
+A native record for such a channel should therefore add a spin-correlation readout to the collision event:
+
+$$
+\mathsf e_{\Lambda\bar{\Lambda}}
+=
+\left(
+X_{\mathrm{coll}},
+I_{\mathrm{had}},
+Y_{\Lambda\bar{\Lambda}},
+\Theta_{\mathrm{decay}},
+P_{\Lambda\bar{\Lambda}}(\Delta R)
+\right)
+$$
+
+where $X_{\mathrm{coll}}$ includes the incoming beam and local Noether sea state, $I_{\mathrm{had}}$ is the selected hadronization route, $Y_{\Lambda\bar{\Lambda}}$ names the outgoing hyperon pair and any feed-down or remnant rows, and $\Theta_{\mathrm{decay}}$ records the weak-decay analyser geometry. The comparison residual is not just whether two hyperons are produced. It is whether the same event record recovers
+
+$$
+P_{\Lambda\bar{\Lambda}}(\Delta R\ \mathrm{short})>0,
+\qquad
+P_{\Lambda\bar{\Lambda}}(\Delta R\ \mathrm{long})\approx0,
+$$
+
+without changing the source, hadronization, or detector-response record between the two bins. If the short-range signal is matched only by assigning an independent spin label after hadronization, the strong-sector map has fit a detector statistic while failing provenance closure.
+
 ## Residual-Routing Event-Ledger Contract
 
 Residual-routing material enters this ledger only as a theorem-target contract. It does not by itself prove that any weak, radiative, pair-production, nuclear, or cosmology-facing reaction channel has closed. The common target is:

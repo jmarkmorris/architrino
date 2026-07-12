@@ -2355,6 +2355,8 @@ $$
 
 The Noether braid burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
 
+The silver-atom Stern-Gerlach experiment is the clean recovery contrast. Classically, a randomly oriented magnetic moment in a field gradient would smear across detector positions. An orbital quantum-number account alone also does not give the observed two records: neutral silver's active outer electron is in a $5s$ state with $\ell=0$, while hypothetical $p$ or $d$ orbital contributions would give $2\ell+1=3$ or $5$ chosen-axis projections, not two. The target is therefore sharper than "some angular momentum is quantized." The same model must keep atomic orbital angular momentum distinct from internal spin, couple the magnetic moment to the apparatus gradient, and produce exactly the two spin-$\tfrac{1}{2}$ record channels without treating a literal rotating electron as the mechanism.
+
 ## Orbital Angular Momentum
 
 Observer-level orbital angular momentum $\mathbf{L}$ belongs to spatial motion around a center or to an orbital degree of freedom in an effective wave description. It should not be conflated with internal binary action inside a particle assembly.

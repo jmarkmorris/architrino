@@ -114,6 +114,8 @@ The large-scale Noether sea is modeled as a balanced population of complementary
 
 This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the braid level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
 
+Transparency has a candidate mechanism at the level of a single transiting assembly, offered here at effective grade. A propagating assembly is sub-field-speed, so its wake runs ahead of it and reaches the medium before the body does; the sea assemblies do not move aside like obstacles but re-phase — reorient in response to that advance field, then relax. Transparency is then *elastic parting*: the medium opens ahead through advance-field polarization and closes behind, leaving no net excitation, so no energy or momentum is deposited and the transit is lossless. The field-level statement is that the transiting and ambient wakes simply superpose, while the assembly-level statement is that the medium's response is reversible. Imperfect closure — a residual excitation left downstream — is the microscopic content of the loss, scattering, and preferred-frame-visibility terms the selection residual above bounds: a fully transparent class is one whose parting is elastic to the required tolerance.
+
 The detailed pro/anti basis, density split, imbalance stability, local coupling law, and candidate cluster motifs belong in [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md). This page only fixes the Noether sea ontology those assembly hypotheses serve.
 
 ## Local Branches in the Medium
