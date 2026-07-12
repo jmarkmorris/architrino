@@ -68,9 +68,8 @@ This queue is the canonical cross-workstream surface for decisions that require 
 
 | Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | `DF-04` | Decide whether shedding plus ordered-core recycling deserves a formal cosmology theorem target after free-steady-particle radiative shedding was ruled out. | [`cosmology-closure:ordered_core_recycling_decision`](../cosmology-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
-| 2 | `DF-06` | Decide whether pair-provenance statistics may enter a local Noether sea compliance tensor or whether the ER=EPR-adjacent analogy should be rejected. | [`quantum-closure:provenance_compliance_bridge`](../quantum-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
-| 3 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines:terminology_and_corpus_boundary`](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
+| 1 | `DF-06` | Decide whether pair-provenance statistics may enter a local Noether sea compliance tensor or whether the ER=EPR-adjacent analogy should be rejected. | [`quantum-closure:provenance_compliance_bridge`](../quantum-closure/priorities.md#task-queue) | `discussion-scoped` | 2026-07-11 |
+| 2 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines:terminology_and_corpus_boundary`](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
 
 ## Unified Priority Table
 
