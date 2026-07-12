@@ -7,6 +7,8 @@ Claim level: priority-only analytical obstruction. No retained balanced Noether 
 Parent audit: [Independent Audit of the Section 87 Global-Drain Verdict](jh13-section-87-global-drain-verdict-audit-2026-07-11.md).  
 Decision rule: [Retained-Sea Angular-Momentum Ward Identity and Transport Kernel](retained-sea-angular-momentum-ward-identity-and-transport-kernel.md).
 
+Successor decision: [Same-Action Wake Noether Pullback — Local Storage/Current Decision](same-action-wake-noether-pullback-decision-2026-07-12.md) shows that the present bilocal action candidate supplies conditional global Noether charges but does not uniquely localize them into wake storage and periodic-face current.
+
 ## Result in One Line
 
 On a resolved sub-luminal periodic balanced cell, the canonical retained-root ledger uniquely determines every directed mechanical torque and power row, but it does **not** determine either wake storage or wake face current. The Ward equations determine only their sum. Therefore the same mechanical record admits both a secular-storage completion and a bounded-current completion unless a same-action Noether pullback or an independently resolved boundary-event ledger fixes the split. Neither theorem-level **BARRED** nor **OPEN** follows from the stipulated calculation.

@@ -2856,6 +2856,7 @@ export function runRelease({
   rotations = DECLARED.runRotations,
   kappa,
   perturb = null,
+  tiltPerturbation = null,
   recordRotations = [0.25, 0.5, 1, 1.5, 2, 2.5, 3],
   onStep = null,
   maxClickLogEntries = 400,
@@ -2936,6 +2937,27 @@ export function runRelease({
       const rho = Math.hypot(st.x[0], st.x[1]);
       st.v[0] += (-st.x[1] / rho) * tangentialKick;
       st.v[1] += (st.x[0] / rho) * tangentialKick;
+    }
+    // Relative tilt-sector seed for native flutter runs. Each selected layer's
+    // released position and velocity are rotated about the declared transverse
+    // axis while the held prehistory remains on the untilted analytic circle.
+    // A map such as {I:-eps/2,M:eps,O:-eps/2} removes the global-orientation
+    // component and seeds only relative layer nutation. Default null preserves
+    // every existing candidate-row run bit-for-bit.
+    if (tiltPerturbation) {
+      const axis = tiltPerturbation.axis ?? "x";
+      const angles = tiltPerturbation.layerAngles ?? {};
+      const rotate = (v, angle) => {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        if (axis === "y") return [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
+        return [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+      };
+      for (let i = 0; i < sites.length; i += 1) {
+        const angle = angles[sites[i].layer] ?? 0;
+        if (angle === 0) continue;
+        states[i].x = rotate(states[i].x, angle);
+        states[i].v = rotate(states[i].v, angle);
+      }
     }
     // R3 shear-mode seed: a traceless transverse (drift-perpendicular)
     // quadrupole on the whole braid (positions AND velocities), so the released

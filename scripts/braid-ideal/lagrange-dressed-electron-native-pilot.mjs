@@ -439,7 +439,21 @@ export function dressedAxialPump({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock = LAG
 // This reuses the exact torque/stiffness conventions of gyroscopicTiltAnalysisFull
 // (untouched) but sums the causal wake over the full 12-site inventory.
 // ===========================================================================
-export function twelveSiteTiltPencil({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock = LAGRANGE_DOCK_V5, dockScale = 1.0, Nt = 8, soft = SOFT, dmax = 4, Ngrid = 2400, eta = 0.03, etaDot = 0.02, drop = false } = {}) {
+export function twelveSiteTiltPencil({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock = LAGRANGE_DOCK_V5, dockScale = 1.0, Nt = 8, soft = SOFT, dmax = 4, Ngrid = 2400, eta = 0.03, etaDot = 0.02, drop = false, dampScale = 1, circScale = 1, symK = false, flywheelSpin = 0, flywheelInertia = 0, flywheelLayers = null } = {}) {
+  // dampScale/circScale: backward-compatible DIAGNOSTIC knobs (default 1 = exact
+  // shipped behavior). dampScale multiplies the velocity-derivative torque matrix
+  // D6t (the wake's rate-dependent, damping-flavored response); circScale
+  // multiplies the steady follower-torque circulatory term Gam6 (tau0). Setting
+  // dampScale -> 0 tests the Ziegler destabilization paradox directly (does an
+  // infinitesimal amount of non-conservative velocity coupling discontinuously
+  // raise maxRe above its undamped value?); circScale -> 0 tests whether the
+  // steady follower-force circulatory torque is the flutter driver.
+  // flywheelSpin (signed): a docked axial rigid-rotor spin added to each layer's
+  // gyroscopic block of G6 (thread 38(b): counter-rotating flywheel = negative
+  // flywheelSpin, opposing the layers' co-rotating +J). flywheelInertia adds the
+  // rotor's transverse tilt inertia to M6 (default 0 = massless-gyro idealization).
+  // flywheelLayers: array subset of ["I","M","O"] to dock to (default all three).
+  // Tests Bottema/Bolotin gyroscopic stabilization of the circulatory K6 flutter.
   const dressed = buildLagrangeDressedElectron({ geo, dock, dockScale, drop });
   const seed = buildBraid({ u: 0, geo });
   const w = seed.omega, period = 2 * Math.PI / w;
@@ -556,14 +570,24 @@ export function twelveSiteTiltPencil({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock =
     }
   }
   // assemble the 6x6 pencil (same layout as gyroscopicTiltAnalysisFull)
-  const K6 = [...[0, 1, 2].map((i) => [...A[i], ...B[i]]), ...[0, 1, 2].map((i) => [...Dx[i], ...E[i]])];
+  let K6 = [...[0, 1, 2].map((i) => [...A[i], ...B[i]]), ...[0, 1, 2].map((i) => [...Dx[i], ...E[i]])];
+  // symK: backward-compatible DIAGNOSTIC knob (default false = exact shipped
+  // behavior). When true, replace K6 by its symmetric part (K+K^T)/2, removing
+  // the circulatory (non-conservative) content carried by the ASYMMETRY of the
+  // positional tilt-stiffness Jacobian. If the flutter vanishes under symK, the
+  // instability is driven by the stiffness asymmetry (a follower/circulatory
+  // effect baked into the delayed-wake tilt coupling), not by a statically
+  // unstable conservative stiffness.
+  if (symK) K6 = K6.map((row, i) => row.map((v, j) => 0.5 * (v + K6[j][i])));
   const D6t = [...[0, 1, 2].map((i) => [...P[i], ...Q[i]]), ...[0, 1, 2].map((i) => [...Rl[i], ...S[i]])];
-  const M6 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? m[i % 3] : 0)));
+  // flywheel dock mask: which layers carry the added rotor spin/inertia
+  const flyMask = [0, 1, 2].map((l) => (flywheelLayers ? (flywheelLayers.includes(["I", "M", "O"][l]) ? 1 : 0) : 1));
+  const M6 = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => (i === j ? m[i % 3] + flywheelInertia * flyMask[i % 3] : 0)));
   const G6 = Array.from({ length: 6 }, () => Array(6).fill(0));
-  for (let l = 0; l < 3; l++) { G6[l][3 + l] = +J[l]; G6[3 + l][l] = -J[l]; }
+  for (let l = 0; l < 3; l++) { const Jl = J[l] + flywheelSpin * flyMask[l]; G6[l][3 + l] = +Jl; G6[3 + l][l] = -Jl; }
   const Gam6 = Array.from({ length: 6 }, () => Array(6).fill(0));
   for (let l = 0; l < 3; l++) { Gam6[l][3 + l] = +tau0[l]; Gam6[3 + l][l] = -tau0[l]; }
-  const Cvel = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => G6[i][j] - D6t[i][j]));
+  const Cvel = Array.from({ length: 6 }, (_, i) => Array.from({ length: 6 }, (_, j) => G6[i][j] - dampScale * D6t[i][j]));
   // Durand-Kerner on det P(lambda), degree 12
   const detC = (Min) => {
     const n = Min.length, Mx = Min.map((r) => r.map((v) => [v[0], v[1]]));
@@ -579,13 +603,15 @@ export function twelveSiteTiltPencil({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock =
   };
   const pencil = (lam) => {
     const l2 = cMul(lam, lam), Pm = [];
-    for (let i = 0; i < 6; i++) { Pm.push([]); for (let j = 0; j < 6; j++) Pm[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [Cvel[i][j], 0])), [Gam6[i][j] - K6[i][j], 0])); }
+    for (let i = 0; i < 6; i++) { Pm.push([]); for (let j = 0; j < 6; j++) Pm[i].push(cAdd(cAdd(cMul(l2, [M6[i][j], 0]), cMul(lam, [Cvel[i][j], 0])), [circScale * Gam6[i][j] - K6[i][j], 0])); }
     return detC(Pm);
   };
-  const leading = m[0] * m[0] * m[1] * m[1] * m[2] * m[2];
+  const leading = M6[0][0] * M6[1][1] * M6[2][2] * M6[3][3] * M6[4][4] * M6[5][5];
   const deg2 = 12;
   const scale = Math.max(...A.flat().map(Math.abs), ...B.flat().map(Math.abs));
-  let roots = Array.from({ length: deg2 }, (_, i) => { const ang = 2 * Math.PI * i / deg2 + 0.4; const rad = 1.5 * Math.max(Math.sqrt(scale / Math.min(...m)), Math.max(...J) / Math.min(...m)); return [rad * Math.cos(ang), rad * Math.sin(ang)]; });
+  const Jaug = [0, 1, 2].map((l) => Math.abs(J[l] + flywheelSpin * flyMask[l]));
+  const mDiag = [0, 1, 2].map((l) => m[l] + flywheelInertia * flyMask[l]);
+  let roots = Array.from({ length: deg2 }, (_, i) => { const ang = 2 * Math.PI * i / deg2 + 0.4; const rad = 1.5 * Math.max(Math.sqrt(scale / Math.min(...mDiag)), Math.max(...Jaug) / Math.min(...mDiag)); return [rad * Math.cos(ang), rad * Math.sin(ang)]; });
   let dkResidual = Infinity;
   for (let it = 0; it < 400; it++) {
     let moved = 0;
@@ -596,6 +622,14 @@ export function twelveSiteTiltPencil({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock =
     }
     dkResidual = moved; if (moved < 1e-13) break;
   }
+  // K6 asymmetry diagnostic: Frobenius norms of the symmetric and antisymmetric
+  // parts of the (possibly symK-processed) tilt-stiffness. k6AsymNorm > 0 measures
+  // the circulatory (non-conservative) content carried by K6's asymmetry.
+  let k6SymSq = 0, k6AsymSq = 0;
+  for (let i = 0; i < 6; i++) for (let j = 0; j < 6; j++) {
+    const sPart = 0.5 * (K6[i][j] + K6[j][i]), aPart = 0.5 * (K6[i][j] - K6[j][i]);
+    k6SymSq += sPart * sPart; k6AsymSq += aPart * aPart;
+  }
   const rootRows = roots.map((r) => ({ re: r[0], im: r[1] })).sort((x, y) => y.re - x.re);
   const byMag = [...rootRows].sort((x, y) => Math.hypot(x.re, x.im) - Math.hypot(y.re, y.im));
   const globalPair = byMag.slice(0, 2);
@@ -605,11 +639,179 @@ export function twelveSiteTiltPencil({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock =
   return {
     perLayerInertia: m.map((v) => +v.toFixed(4)), perLayerSpinJ: J.map((v) => +v.toFixed(4)),
     tau0: tau0.map((v) => +v.toFixed(4)), kappaStar: +kap.toFixed(6), dkResidual: +dkResidual.toExponential(2),
+    k6SymNorm: +Math.sqrt(k6SymSq).toFixed(4), k6AsymNorm: +Math.sqrt(k6AsymSq).toFixed(4),
+    k6AsymFraction: k6SymSq + k6AsymSq > 0 ? +Math.sqrt(k6AsymSq / (k6SymSq + k6AsymSq)).toFixed(4) : 0,
     eigenvalues: rootRows.map((r) => ({ re: +r.re.toFixed(4), im: +r.im.toFixed(4) })),
     flutter: growing.length > 0,
     maxGrowthRate: maxGrowth ? +maxGrowth.re.toFixed(5) : null,
     maxGrowthWhirlFrequency: maxGrowth ? +Math.abs(maxGrowth.im).toFixed(5) : null,
   };
+}
+
+// ===========================================================================
+// PER-SITE tilt pencil (thread 38(b) escalation to per-site internal-deformation
+// freedom, 2026-07-12). Generalizes twelveSiteTiltPencil's 6 per-LAYER tilt DOF
+// to per-SITE tilt DOF: each of the bare braid's 6 architrinos tilts its OWN
+// orbital plane independently (2 axes each -> 12 DOF). The rigid-layer pencil is
+// the Galerkin restriction onto the subspace where each +/- pair tilts together
+// (T-projection below); comparing the FULL per-site maxRe to that RESTRICTED
+// maxRe tests whether freeing the internal (layer-deformation) DOF relaxes the
+// follower-force K asymmetry that the rigid family leaves standing.
+//
+// Convention: HALF-WEIGHT per-site inertia/spin (m_i=0.5(rho^2+2z^2),
+// J_i=0.5*2 rho^2 w) with FULL-WEIGHT per-site torques, so the pair-sum
+// (rigid restriction) reproduces twelveSiteTiltPencil's representative-weighted
+// m[L]/J[L] and full torques EXACTLY -- the restricted maxRe is a bit-exact
+// validation against 0.19886 (champion). The full-vs-restricted comparison is
+// convention-independent.
+export function perSiteTiltPencil({ geo = SELF_EQUILIBRATED_V5.geo, Nt = 8, soft = SOFT, dmax = 4, Ngrid = 2400, eta = 0.03, etaDot = 0.02, dampScale = 1, circScale = 1 } = {}) {
+  const braid = buildLagrangeDressedElectron({ geo, drop: true }); // 6 bare sites
+  const sites0 = braid.sites;
+  const seed = buildBraid({ u: 0, geo });
+  const w = seed.omega, period = 2 * Math.PI / w, cf = 1;
+  const kap = dressedKappa(braid, soft);
+  const n = sites0.length; // 6
+  const m = sites0.map((s) => 0.5 * ((s.R * Math.cos(s.alpha)) ** 2 + 2 * (s.R * Math.sin(s.alpha)) ** 2));
+  const J = sites0.map((s) => 0.5 * (2 * (s.R * Math.cos(s.alpha)) ** 2 * w));
+  const rotX = (v, c, s) => [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+  const rotY = (v, c, s) => [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
+  const crossX = (v) => [0, -v[2], v[1]];
+  const crossY = (v) => [v[2], 0, -v[0]];
+  // per-site tilt worldlines: site i tilted by (ex_i, ey_i) about x then y.
+  const mk = (ex, ey, exDot, eyDot, tRef) => sites0.map((s, i) => {
+    const p0 = (t) => posAt(s, w, t), v0 = (t) => velAt(s, w, t);
+    return {
+      pol: s.pol, i,
+      pos: (t) => { const ax = ex[i] + exDot[i] * (t - tRef), ay = ey[i] + eyDot[i] * (t - tRef); return rotY(rotX(p0(t), Math.cos(ax), Math.sin(ax)), Math.cos(ay), Math.sin(ay)); },
+      vel: (t) => {
+        const ax = ex[i] + exDot[i] * (t - tRef), ay = ey[i] + eyDot[i] * (t - tRef);
+        const cx = Math.cos(ax), sx = Math.sin(ax), cy = Math.cos(ay), sy = Math.sin(ay);
+        const pX = rotX(p0(t), cx, sx);
+        const t1 = crossY(rotY(pX, cy, sy)).map((v) => eyDot[i] * v);
+        const t2 = rotY(crossX(pX).map((v) => exDot[i] * v), cy, sy);
+        const t3 = rotY(rotX(v0(t), cx, sx), cy, sy);
+        return [t1[0] + t2[0] + t3[0], t1[1] + t2[1] + t3[1], t1[2] + t2[2] + t3[2]];
+      },
+    };
+  });
+  const torques = (ex, ey, exDot, eyDot, perSampleRef) => {
+    const Tx = new Array(n).fill(0), Ty = new Array(n).fill(0), Tz = new Array(n).fill(0);
+    for (let k = 0; k < Nt; k++) {
+      const t = (k / Nt) * period;
+      const S = mk(ex, ey, exDot, eyDot, perSampleRef ? t : 0);
+      for (let i = 0; i < S.length; i++) {
+        const rec = S[i], Xi = rec.pos(t), vi = rec.vel(t), F = [0, 0, 0];
+        for (let j = 0; j < S.length; j++) {
+          if (j === i) continue;
+          const src = S[j];
+          const g = (te) => { const p = src.pos(te); return Math.hypot(Xi[0] - p[0], Xi[1] - p[1], Xi[2] - p[2]) - cf * (t - te); };
+          let g0 = g(t - dmax);
+          for (let kk = 1; kk <= Ngrid; kk++) {
+            const te = t - dmax + dmax * (kk / Ngrid);
+            if (te >= t - 1e-9) break;
+            const g1 = g(te);
+            if ((g0 < 0) !== (g1 < 0)) {
+              let lo = t - dmax + dmax * ((kk - 1) / Ngrid), hi = te; const gl = g(lo);
+              for (let b = 0; b < 50; b++) { const mid = (lo + hi) / 2; if ((gl < 0) === (g(mid) < 0)) lo = mid; else hi = mid; }
+              const te0 = (lo + hi) / 2, p = src.pos(te0);
+              const dx = [Xi[0] - p[0], Xi[1] - p[1], Xi[2] - p[2]], r = Math.hypot(dx[0], dx[1], dx[2]);
+              if (r > 1e-9) {
+                const rh = [dx[0] / r, dx[1] / r, dx[2] / r], vs = src.vel(te0);
+                const Ds = cf - (vs[0] * rh[0] + vs[1] * rh[1] + vs[2] * rh[2]);
+                const Dt = cf - (vi[0] * rh[0] + vi[1] * rh[1] + vi[2] * rh[2]);
+                const mfac = (Dt * Ds) / (Ds * Ds + soft * soft), wgt = (rec.pol * src.pol) * mfac / (r * r);
+                F[0] += wgt * rh[0]; F[1] += wgt * rh[1]; F[2] += wgt * rh[2];
+              }
+            }
+            g0 = g1;
+          }
+        }
+        Tx[i] += kap * (Xi[1] * F[2] - Xi[2] * F[1]) / Nt;
+        Ty[i] += kap * (Xi[2] * F[0] - Xi[0] * F[2]) / Nt;
+        Tz[i] += kap * (Xi[0] * F[1] - Xi[1] * F[0]) / Nt;
+      }
+    }
+    return { Tx, Ty, Tz };
+  };
+  const Z = new Array(n).fill(0);
+  const base = torques(Z, Z, Z, Z, false);
+  const tau0 = base.Tz.slice();
+  const A = [], B = [], Dx = [], E = [], Pp = [], Qp = [], Rp = [], Sp = [];
+  for (let i = 0; i < n; i++) { A.push(new Array(n).fill(0)); B.push(new Array(n).fill(0)); Dx.push(new Array(n).fill(0)); E.push(new Array(n).fill(0)); Pp.push(new Array(n).fill(0)); Qp.push(new Array(n).fill(0)); Rp.push(new Array(n).fill(0)); Sp.push(new Array(n).fill(0)); }
+  for (let j = 0; j < n; j++) {
+    const ep = Z.slice(), em = Z.slice(); ep[j] = eta; em[j] = -eta;
+    const px = torques(ep, Z, Z, Z, false), mx = torques(em, Z, Z, Z, false);
+    const py = torques(Z, ep, Z, Z, false), my = torques(Z, em, Z, Z, false);
+    for (let i = 0; i < n; i++) { A[i][j] = (px.Tx[i] - mx.Tx[i]) / (2 * eta); Dx[i][j] = (px.Ty[i] - mx.Ty[i]) / (2 * eta); B[i][j] = (py.Tx[i] - my.Tx[i]) / (2 * eta); E[i][j] = (py.Ty[i] - my.Ty[i]) / (2 * eta); }
+    const rp = Z.slice(), rm = Z.slice(); rp[j] = etaDot; rm[j] = -etaDot;
+    const rpx = torques(Z, Z, rp, Z, true), rmx = torques(Z, Z, rm, Z, true);
+    const rpy = torques(Z, Z, Z, rp, true), rmy = torques(Z, Z, Z, rm, true);
+    for (let i = 0; i < n; i++) { Pp[i][j] = (rpx.Tx[i] - rmx.Tx[i]) / (2 * etaDot); Rp[i][j] = (rpx.Ty[i] - rmx.Ty[i]) / (2 * etaDot); Qp[i][j] = (rpy.Tx[i] - rmy.Tx[i]) / (2 * etaDot); Sp[i][j] = (rpy.Ty[i] - rmy.Ty[i]) / (2 * etaDot); }
+  }
+  // assemble 12x12 (2n) matrices: DOF order [ex_0..ex_5, ey_0..ey_5]
+  const N2 = 2 * n;
+  const M2 = Array.from({ length: N2 }, (_, i) => Array.from({ length: N2 }, (_, j) => (i === j ? m[i % n] : 0)));
+  const G2 = Array.from({ length: N2 }, () => new Array(N2).fill(0));
+  for (let i = 0; i < n; i++) { G2[i][n + i] = +J[i]; G2[n + i][i] = -J[i]; }
+  const Gam2 = Array.from({ length: N2 }, () => new Array(N2).fill(0));
+  for (let i = 0; i < n; i++) { Gam2[i][n + i] = +tau0[i]; Gam2[n + i][i] = -tau0[i]; }
+  const K2 = Array.from({ length: N2 }, () => new Array(N2).fill(0));
+  const D2 = Array.from({ length: N2 }, () => new Array(N2).fill(0));
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
+    K2[i][j] = A[i][j]; K2[i][n + j] = B[i][j]; K2[n + i][j] = Dx[i][j]; K2[n + i][n + j] = E[i][j];
+    D2[i][j] = Pp[i][j]; D2[i][n + j] = Qp[i][j]; D2[n + i][j] = Rp[i][j]; D2[n + i][n + j] = Sp[i][j];
+  }
+  const Cvel = Array.from({ length: N2 }, (_, i) => Array.from({ length: N2 }, (_, j) => G2[i][j] - dampScale * D2[i][j]));
+  const Kdyn = Array.from({ length: N2 }, (_, i) => Array.from({ length: N2 }, (_, j) => circScale * Gam2[i][j] - K2[i][j]));
+  // rigid-pair restriction matrix T (12x6): pairs (0,1),(2,3),(4,5) for ex and ey.
+  const nDofR = n; // 6
+  const T = Array.from({ length: N2 }, () => new Array(nDofR).fill(0));
+  for (let L = 0; L < 3; L++) { T[2 * L][L] = 1; T[2 * L + 1][L] = 1; T[n + 2 * L][3 + L] = 1; T[n + 2 * L + 1][3 + L] = 1; }
+  const TtAT = (Mm) => { const AT = Array.from({ length: N2 }, () => new Array(nDofR).fill(0)); for (let i = 0; i < N2; i++) for (let c = 0; c < nDofR; c++) { let s = 0; for (let k = 0; k < N2; k++) s += Mm[i][k] * T[k][c]; AT[i][c] = s; } const R = Array.from({ length: nDofR }, () => new Array(nDofR).fill(0)); for (let r = 0; r < nDofR; r++) for (let c = 0; c < nDofR; c++) { let s = 0; for (let k = 0; k < N2; k++) s += T[k][r] * AT[k][c]; R[r][c] = s; } return R; };
+  const asymFrac = (Mm) => { let sS = 0, aS = 0; const dd = Mm.length; for (let i = 0; i < dd; i++) for (let j = 0; j < dd; j++) { const sp = 0.5 * (Mm[i][j] + Mm[j][i]), ap = 0.5 * (Mm[i][j] - Mm[j][i]); sS += sp * sp; aS += ap * ap; } return sS + aS > 0 ? Math.sqrt(aS / (sS + aS)) : 0; };
+  const full = solvePencilMaxRe(M2, Cvel, Kdyn, N2);
+  const rigid = solvePencilMaxRe(TtAT(M2), TtAT(Cvel), TtAT(Kdyn), nDofR);
+  return {
+    omega: +w.toFixed(5), kappaStar: +kap.toFixed(6),
+    rigidRestrictedMaxRe: rigid.maxRe, rigidWhirl: rigid.whirl, rigidDk: rigid.dk,
+    fullPerSiteMaxRe: full.maxRe, fullWhirl: full.whirl, fullDk: full.dk,
+    k6AsymFraction_rigid: +asymFrac(TtAT(K2)).toFixed(4),
+    k12AsymFraction_full: +asymFrac(K2).toFixed(4),
+    internalDofRelaxesFlutter: full.maxRe !== null && rigid.maxRe !== null && full.maxRe < rigid.maxRe - 1e-4,
+    fullStabilized: full.maxRe !== null && full.maxRe <= 1e-4,
+    note: "per-site tilt pencil (12 DOF); rigid restriction (T-projection onto +/- pair subspace) validates against twelveSiteTiltPencil; full = each pair's internal tilt freed.",
+  };
+}
+
+// det(lam^2 M + lam C + K) = 0 via Durand-Kerner on the determinant; returns the
+// deflated (2 global-rotation zero modes removed) max real part.
+function solvePencilMaxRe(Mm, Cm, Km, dof) {
+  const detC = (Min) => {
+    const nn = Min.length, Mx = Min.map((r) => r.map((v) => [v[0], v[1]]));
+    let det = [1, 0];
+    for (let c = 0; c < nn; c++) {
+      let p = c; for (let r = c + 1; r < nn; r++) if (cAbs(Mx[r][c]) > cAbs(Mx[p][c])) p = r;
+      if (cAbs(Mx[p][c]) < 1e-300) return [0, 0];
+      if (p !== c) { const t = Mx[p]; Mx[p] = Mx[c]; Mx[c] = t; det = cMul(det, [-1, 0]); }
+      det = cMul(det, Mx[c][c]);
+      for (let r = c + 1; r < nn; r++) { const f = cDiv(Mx[r][c], Mx[c][c]); for (let cc = c; cc < nn; cc++) Mx[r][cc] = cSub(Mx[r][cc], cMul(f, Mx[c][cc])); }
+    }
+    return det;
+  };
+  const pen = (lam) => { const l2 = cMul(lam, lam), Pm = []; for (let i = 0; i < dof; i++) { Pm.push([]); for (let j = 0; j < dof; j++) Pm[i].push(cAdd(cAdd(cMul(l2, [Mm[i][j], 0]), cMul(lam, [Cm[i][j], 0])), [Km[i][j], 0])); } return detC(Pm); };
+  let leading = 1; for (let i = 0; i < dof; i++) leading *= Mm[i][i];
+  const deg = 2 * dof;
+  const scale = Math.max(1e-6, ...Km.flat().map(Math.abs));
+  const mMin = Math.min(...Mm.map((r, i) => r[i]));
+  let roots = Array.from({ length: deg }, (_, i) => { const ang = 2 * Math.PI * i / deg + 0.4; const rad = 1.5 * Math.max(Math.sqrt(scale / mMin), 1); return [rad * Math.cos(ang), rad * Math.sin(ang)]; });
+  let dk = Infinity;
+  for (let it = 0; it < 600; it++) { let mv = 0; for (let i = 0; i < deg; i++) { let den = [leading, 0]; for (let j = 0; j < deg; j++) if (j !== i) den = cMul(den, cSub(roots[i], roots[j])); const dl = cDiv(pen(roots[i]), den); roots[i] = cSub(roots[i], dl); mv = Math.max(mv, cAbs(dl)); } dk = mv; if (mv < 1e-13) break; }
+  const rr = roots.map((r) => ({ re: r[0], im: r[1] })).sort((x, y) => y.re - x.re);
+  const byMag = [...rr].sort((x, y) => Math.hypot(x.re, x.im) - Math.hypot(y.re, y.im));
+  const gp = byMag.slice(0, 2);
+  const defl = rr.filter((r) => !gp.includes(r));
+  const mg = defl.length ? defl[0] : null;
+  return { maxRe: mg ? +mg.re.toFixed(5) : null, whirl: mg ? +Math.abs(mg.im).toFixed(5) : null, dk: +dk.toExponential(2) };
 }
 
 export function lagrangeTiltFlutter({ geo = LAGRANGE_DRESSED_ANSATZ.geo, dock = LAGRANGE_DOCK_V5, dockScale = 1.0, Nt = 8, Ngrid = 2400, soft = SOFT, validate = true } = {}) {

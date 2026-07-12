@@ -2050,3 +2050,144 @@ Thus the opposite handed terms do not drive the leading growth to marginal or st
 Reproduce: `node scripts/braid-ideal/contra-rotating-pro-anti-pair-instrument.mjs --pretty`. Owner test: `node --test --test-name-pattern="§92" tests/braid-ideal-contra-rotating-pro-anti-pair-instrument.test.js`.
 
 Next closure goal: derive the same-record cross-braid retained-history force, torque, phase-lock, and axial-separation rows for the declared coaxial ansatz, then rebuild the joint pencil from those measured cross blocks; authorize a native release only if that measured pair both locks and drives the complete quotient spectrum marginal or stable while preserving the zero net axial pump.
+
+---
+
+## 93. Contra-Rotating Pair Cross-Coupling Completion (2026-07-12)
+
+Executing the §92 next closure goal. Runner + fixture only: [contra-rotating-pro-anti-cross-coupling.mjs](../../../scripts/braid-ideal/contra-rotating-pro-anti-cross-coupling.mjs) measures both directed cross-braid force and torque rows through the production root API, and [contra-rotating-pro-anti-cross-coupling-fixture.mjs](../../../scripts/braid-ideal/contra-rotating-pro-anti-cross-coupling-fixture.mjs) declares the separation/phase grid, derivative steps, and tolerances. Static rows use exact moving-circular production roots. Tilt-rate rows use the production retained-history linear-segment policy: local sampling only brackets a segment, and every retained root is returned by the central solver on that segment. The central solver remains untouched.
+
+**Regression.** Removing the partner recovers the single-braid axial pump $+0.4240300292341333$ and the single-braid leading flutter growth $\operatorname{Re}\lambda=0.19885688497216406$. The §92 non-interacting pair anchors also reproduce exactly: free-pair growth $0.19885688497216406$ and imposed hard-lock growth $0.19629953398461314$.
+
+**Measured geometry search.** The shared-record scan covers 96 cells: eight axial separations $\Delta z\in\{0.5,0.75,1,1.25,1.5,2,2.5,3\}$ and twelve relative phases over $[0,2\pi)$. Each static cell books all 72 directed cross-braid relations over four cycle samples. The selected refined cell has 288 retained roots, maximum root residual $9.97\times10^{-13}$, and minimum source-receiver distance $0.3288$, above the declared collision floor.
+
+The coarse grid shows that the cross torque can pass through the magnitude required to cancel the intrinsic pump, but no coarse cell simultaneously closes the pump and axial rows. A two-variable Newton continuation then solves the individual pro-braid pump row and the relative axial-force row together. It converges in two corrections to
+
+$$
+\Delta z=1.419842173795055,
+\qquad
+\Delta\phi=3.8435815410366416.
+$$
+
+At that cell the cross torque transfers the intrinsic pump between the two braids rather than leaving it as ansatz bookkeeping:
+
+$$
+\dot L_{z,+}^{\mathrm{total}}=-1.27754\times10^{-4},
+\qquad
+\dot L_{z,-}^{\mathrm{total}}=+1.27754\times10^{-4}.
+$$
+
+The relative axial-force residual is $-5.42047\times10^{-4}$ and the common axial force is $-3.64\times10^{-16}$. Thus the cross-torque-completed pair genuinely closes the seed-grade axial pump and force ledgers at one non-colliding geometry. This is a pump/force equilibrium row, not yet a bound object.
+
+**Native locking test — saddle, not lock.** Linearizing the relative phase torque and relative axial force about the equilibrium gives
+
+$$
+J_{\phi z}
+=
+\begin{pmatrix}
+-2.93502462 & -2.18991851\\
+-2.16016883 & 12.10340682
+\end{pmatrix},
+$$
+
+with eigenvalues
+
+$$
+\mu_1=+12.41165549,
+\qquad
+\mu_2=-3.24327329.
+$$
+
+One direction restores and one direction expels. The measured equilibrium is a saddle, so the two braids do not lock into one coherent co-moving object. The pump can self-sink at the equilibrium point, but the geometry cannot hold that point without an imposed constraint.
+
+**Measured joint axis pencil.** Static cross-torque derivatives and delayed tilt-rate derivatives produce full $12\times12$ cross blocks. Their largest absolute entries are $17.0299$ and $1.57850$, respectively. Inserting these measured blocks into the two-braid gyroscopic-circulatory pencil does not leave the original flutter unchanged and does not quiet it. The decomposition is
+
+$$
+\operatorname{Re}\lambda_{\mathrm{static\ cross}}=+5.43033398,
+\qquad
+\operatorname{Re}\lambda_{\mathrm{rate\ cross}}=+3.97325485,
+$$
+
+and the completed pencil has
+
+$$
+\operatorname{Re}\lambda_{\mathrm{joint}}=+5.30422826,
+\qquad
+\lvert\operatorname{Im}\lambda_{\mathrm{joint}}\rvert\approx0.
+$$
+
+The shift from the isolated-braid growth is $+5.10537138$. Cross coupling therefore touches the axis sector strongly, but in the wrong direction: it converts the original growing whirl into a much faster real divergence. Pairing neither cancels nor merely leaves the flutter alone; it adds a stronger cross-geometry instability. The separate non-rigid internal-axis route remains necessary if a stable pair channel is to exist.
+
+**Verdict.** `measured_cross_pair_fails_native_lock_no_release`. The pair passes the cross-torque-completed pump gate but fails both the native lock gate and the complete quotient-spectrum gate. No native retained-history release is authorized. Claim level: seed-grade same-record cross-braid production-root measurement; `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Reproduce: `node scripts/braid-ideal/contra-rotating-pro-anti-cross-coupling.mjs --pretty`. Owner test: `node --test --test-name-pattern="§93" tests/braid-ideal-contra-rotating-pro-anti-cross-coupling.test.js`.
+
+Next closure goal: carry the measured §93 pump-closing geometry into the non-rigid internal-axis model and search whether internal phase/separation flexibility can turn the $J_{\phi z}$ saddle and the real joint divergence into a restoring, marginal-or-stable branch without reopening the completed pump row.
+
+---
+
+## 94. Flutter Radiative-Shedding Native Run: the All-Rail Barrel Loses Shape, the Tilt-Isolated Canonical Far Field Vanishes With Radius, and No Radiative Limit Cycle Exists (2026-07-12)
+
+This is the native retained-history test of whether the §86/§90 flutter and an outgoing far-field angular-momentum current are one throughput. Runner [flutter-radiative-shedding-native-run.mjs](../../../scripts/braid-ideal/flutter-radiative-shedding-native-run.mjs) reuses the production `runRelease` retained-history evolution and the §82 canonical antisymmetric reconstruction
+
+$$
+\mathbf E_{\mathrm{anti}}=\mathbf E_{\mathrm{full}}-\mathbf E_{\mathrm{static}}.
+$$
+
+The release function's shared `tiltPerturbation` surface rotates released positions and velocities while leaving the held prehistory unchanged. The central solver is untouched. Fail-closed; priority-only native diagnostic; no retained branch or score movement.
+
+**Seed and control.** The height-preserving all-rail barrel is obtained from `SELF_EQUILIBRATED_V5` by setting every cylindrical radius to
+
+$$
+\rho_\ast=\cos\alpha_M=0.9600986791,
+\qquad
+\omega=\rho_\ast^{-1}=1.041559604,
+$$
+
+while retaining each layer's signed height and phase. Hence every layer satisfies $\omega R_L\cos\alpha_L=1$. The best-fit held-family coupling is $\kappa_\ast=0.03192843$. A release-instant relative tilt of $+0.1^\circ$ on I and $-0.1^\circ$ on M seeds the nutation sector; O is unchanged. An otherwise identical unperturbed barrel supplies the pump/radial control.
+
+**Amplitude trajectory — no bounded cycle.** The tilt-seeded run starts at $0.0502^\circ$, reaches $7.57^\circ$ at $t=0.5$, $21.11^\circ$ at $t=1.0$, and a maximum $34.729^\circ$ near $t=3.0$. The later decrease is not saturation: the fitted spin collapses from $1.0415$ to $0.01554$, the maximum shape deviation grows to $11.07$, and the native run halts at
+
+$$
+t=7.5075\quad(1.195\ \text{initial rotations})
+$$
+
+on `shape_loss_radius_runaway` when M+ reaches radius $12.00019$. The tilt perturbation aggravates the failure: its maximum layer speed is about $1.606$, whereas the unperturbed control stays near $1.050$ but also loses shape at $t=11.495$. Neither trajectory is a bounded periodic object, and the apparent tilt rollover is the collapse of organized rotation during dispersal, not a limit cycle.
+
+The time-step witness at $dt=0.00125$ preserves the qualitative verdict. The tilt reaches $33.75^\circ$, the fitted spin again collapses to $0.0121$, and M+ again triggers `shape_loss_radius_runaway`, now at $t=9.175$ ($1.460$ initial rotations). The halt clock shifts because the exact all-rail seed sits on the regulator-sensitive source-normal boundary, but halving $dt$ does not produce a returning orbit, a steady spin, or a bounded cycle.
+
+**Tilt-sector isolation.** On each retarded source-time slice, write $\mathbf E=\mathbf E_0+\delta\mathbf E$, where $\mathbf E_0$ is the unperturbed barrel field. The angular-momentum flux vector is evaluated as
+
+$$
+\boldsymbol\Phi(R,t)=\oint_{S_R}\mathbf r\times\left[E_r\mathbf E\right]dA,
+$$
+
+and decomposed exactly into baseline, cross, and pure-tilt pieces. The isolated nutation contribution is $\boldsymbol\Phi_{\mathrm{nut}}=\boldsymbol\Phi_{\mathrm{total}}-\boldsymbol\Phi_0=\boldsymbol\Phi_{\mathrm{cross}}+\boldsymbol\Phi_{\mathrm{tilt}}$. This matched-control subtraction removes the common pump/radial channel without treating the quadratic cross term as zero.
+
+**Far-field result — bound, not outgoing.** Retarded observation times $t_{\mathrm{obs}}=R+t_{\mathrm{source}}$ ensure that spheres $R\in\{12,16,24,32\}$ see the release rather than only its held prehistory. Across regulator values $\mathrm{soft}\in\{0.08,0.04,0.02\}$, the isolated transverse-flux slopes are
+
+| source time | transverse slope range |
+|---:|---:|
+| $1.5015$ | $-2.47$ to $-2.15$ |
+| $3.75375$ | $-0.864$ to $-0.836$ |
+| $6.006$ | $-2.40$ to $-2.34$ |
+
+Every row decays with radius; none approaches the radius-independent slope $0$ required for a nonzero $\Phi_\infty$. At the last source slice and tightest regulator, the isolated flux at $R=32$ is
+
+$$
+\boldsymbol\Phi_{\mathrm{nut}}(32)=(9.57\times10^{-7},\,-3.51\times10^{-7},\,5.87\times10^{-6}),
+$$
+
+with transverse magnitude $1.02\times10^{-6}$ and total norm $5.95\times10^{-6}$. Its norm falls with slope $-1.56$, so the measured asymptotic result is
+
+$$
+\boldsymbol\Phi_{\infty,\mathrm{nut}}=\mathbf0
+$$
+
+under the §82 canonical stress reconstruction. The outer-surface regulator ratios improve from $1.26$ to $1.13$ to $1.03$ across the three time slices. Certified root counts are stable under doubled scan density, maximum root residual is $1.42\times10^{-14}$, and no tangent roots or inactive-root gaps appear. Doubling the final outer-surface angular grid from $(N_\theta,N_\phi)=(6,12)$ to $(12,24)$ changes the isolated-flux norm by a factor $0.901$; the small vector's direction remains cancellation-sensitive, but its vanishing magnitude and non-radiative radial scaling survive.
+
+**Decision.** `NO_NATIVE_BARREL_RELEASE_DIVERGES_OR_FAILS_TO_SETTLE_radiative_equilibrium_not_observed`. The growing nutation does not drive a steady convergent outgoing $\Phi_\infty$, and radiation does not bound the barrel into a limit cycle. The §86 flutter and entry-35 outgoing radiation-reaction channel are therefore **not identified as one throughput by the canonical native measurement**. The make-or-break answer is NO at this seed and claim level. Because the unperturbed all-rail barrel is itself not a force-free bound orbit, this does not prove a theorem against every possible non-rigid retained branch; it does close the specific radiatively-settled barrel hypothesis tested here. Claim level: native retained-history release plus canonical §82 post-processing, priority-only; `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Reproduce: `node scripts/braid-ideal/flutter-radiative-shedding-native-run.mjs --rotations=3 --ntheta=6 --nphi=12 --scan-n=96 --summary --pretty`. Owner tests: `node --test tests/braid-ideal-flutter-radiative-shedding-native-run.test.js`.
+
+Next closure goal: treat the bare all-rail barrel's radiative-settling route as closed at native seed grade; if the flutter program continues, require a different force-free non-rigid retained branch or a derived external angular-momentum sink before another release, and carry the §94 zero-$\Phi_\infty$ result into the braid-ideal adjudication without score movement.

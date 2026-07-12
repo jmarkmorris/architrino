@@ -6,6 +6,8 @@ Claim level: priority-only analytical derivation and modeled-cell specification.
 
 Parent decision memo: [Global Angular-Momentum Drain — Adversarial Feasibility Memo](global-angular-momentum-drain-adversarial-feasibility-memo.md).
 
+Successor decision: [Same-Action Wake Noether Pullback — Local Storage/Current Decision](same-action-wake-noether-pullback-decision-2026-07-12.md) proves that the action candidate fixes only global time-cut history charges, not a unique spatial wake density/current representative; the named missing input is a local wake-carrier localization and coupling rule.
+
 ## Result in One Line
 
 The canonical delayed pair law admits an exact mechanical exchange-current partition, but its directed pair torques leave a generally nonzero Ward defect. A true conservation identity therefore requires a same-record wake angular-momentum density and current that the present retained-sea model does not yet supply. Consequently the zero-frequency transport coefficient cannot be inferred from the finite cage, and the global-drain verdict remains **UNDECIDED**.

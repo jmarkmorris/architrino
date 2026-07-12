@@ -50,9 +50,12 @@ test("§93 remains fail-closed unless lock, pump, and spectrum all close", () =>
   assert.equal(r.gates.gatesClose, r.gates.pairLocks && r.gates.pumpCloses && r.gates.spectrumCloses);
   assert.equal(r.geometryScan.anyCoarseCellClosesPump, false);
   assert.equal(r.geometryScan.anyCoarseCellClosesForceRows, false);
+  assert.equal(r.equilibriumRefinement.converged, true);
   assert.equal(r.gates.pairLocks, false);
-  assert.equal(r.gates.pumpCloses, false);
+  assert.equal(r.gates.pumpCloses, true);
   assert.equal(r.gates.spectrumCloses, false);
+  assert.ok(r.phaseAndAxialLock.eigen.some((row) => row.re > 0));
+  assert.ok(r.jointSpectrum.leadingRe > r.regression.singleFlutterGrowth);
   assert.equal(r.gates.nativeRetainedHistoryReleaseAuthorized, false);
   assert.equal(r.decision, "measured_cross_pair_fails_native_lock_no_release");
   assert.equal(r.retainedBranchClaim, false);
