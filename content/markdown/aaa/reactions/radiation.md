@@ -24,6 +24,8 @@ The same reading explains *why* acceleration is the trigger. A sub-field-speed s
 
 This yields a concrete derivation target for the relativistic scaling. The forward-lead distance shrinks as the source speed approaches $c_f$ — the advance field piles up close ahead, a bow-wave near the field-speed edge — so a fixed trajectory curvature produces a larger preparation mismatch at higher $\gamma$. Recovering the observed steep growth of radiated power with speed, the Larmor/Liénard and synchrotron scaling, from lead-distance compression times path curvature is the specific accelerated-sector closure target, to be checked against the standard $P_{\mathrm{syn}}\propto\gamma^4$ limit.
 
+This sharpens into a two-way principle at the quantum level: an action quantum is transferred only in an acceleration event, and every acceleration event is an action-quantum transfer. A steadily drifting free assembly, unaccelerated, neither emits nor absorbs — the same statement as its bound, non-radiating steady state — while any exchange of a quantum, in or out, is accompanied by a change of motion. The classical limit is the familiar rule that accelerating charges radiate; the two-way, quantum-level form is the substrate statement. Claim level: principle — the classical half is standard, the two-way quantum form is the $\mathbb{A}\mathbb{A}\mathbb{A}$ sharpening.
+
 ## Forms At A Glance
 
 In ordinary physics language, radiation can mean electromagnetic light, emitted particles, thermal emission, scattering-shifted photons, or gravitational waves. In $\mathbb{A}\mathbb{A}\mathbb{A}$ those are not one ontology. The first split is between the carrier that leaves or perturbs the event and the source mechanism that produced the outgoing record.

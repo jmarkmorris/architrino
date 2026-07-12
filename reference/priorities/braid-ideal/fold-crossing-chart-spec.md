@@ -1994,3 +1994,59 @@ Thus both models test the same positive-semidefinite restoring direction but wei
 Reproduce: `node scripts/braid-ideal/kapitza-flutter-stabilization.mjs --pretty`; owner fixtures: `node --test tests/braid-ideal-kapitza-flutter-stabilization.test.js`.
 
 Next closure goal: derive the native sea fluctuation spectrum and its full axis-sector coupling tensor on one self-consistent sea-coupled record, then test whether the measured forcing changes the circulatory/velocity block; do not revisit pure fast restoring modulation unless that native tensor contains a qualitatively different coupling direction.
+
+---
+
+## 92. Contra-Rotating Pro/Anti Pair Native Self-Sinking Instrument (2026-07-12)
+
+Testing the one pairing that attacks the two measured single-braid mechanisms with their own signs. Runner + fixture only: [contra-rotating-pro-anti-pair-instrument.mjs](../../../scripts/braid-ideal/contra-rotating-pro-anti-pair-instrument.mjs) consumes the existing exact-causal-root single-braid pump and completed six-coordinate axis pencil; [contra-rotating-pro-anti-pair-fixture.mjs](../../../scripts/braid-ideal/contra-rotating-pro-anti-pair-fixture.mjs) declares the pair geometry and scan. The central solver remains untouched. No native retained-history release is authorized or run because the pair fails the linear gates before release.
+
+**Declared ansatz.** The primary geometry is an axially stacked coaxial pair on the shared axis $\hat{\mathbf z}$, with axial separation $\Delta z=1$ in middle-radius units and relative phase $\Delta\phi=\pi$. The comparison geometry is coincident-coaxial, $\Delta z=0$, with the same relative phase. The pro copy has rotation sense $s=+1$; the anti copy has $s=-1$ and sitewise polarity conjugation. These are explicit pairing hypotheses, not derived bound geometries. The current linear instrument does not consume $\Delta z$ or $\Delta\phi$ because no same-record cross-braid retained-history force and torque rows exist yet; that omission is carried into the locking verdict rather than hidden.
+
+**Single-braid regressions.** Removing either partner recovers the source runner exactly. In a common sign convention,
+
+$$
+\dot L_{z,+}=+0.4240300292341333,
+\qquad
+\dot L_{z,-}=-0.4240300292341333,
+$$
+
+and each isolated copy has
+
+$$
+\operatorname{Re}\lambda=0.19885688497216406,
+\qquad
+\lvert\operatorname{Im}\lambda\rvert=2.41245971901678.
+$$
+
+The anti pencil is the axis-reflected similarity conjugate of the pro pencil. This reverses the handed cross-axis circulatory blocks while preserving the isolated spectrum, so the second braid is a conjugate copy rather than a non-representable reversal of the three layers inside one braid.
+
+**Pump result — algebraic cancellation only.** The intrinsic pair-boundary ledger sums to zero to machine precision. This is the intended sign attack, but it is not yet a genuine self-sinking result: the missing cross-braid interaction could add a secular torque or transfer the same defect into the relative coordinate. Accordingly, `crossPairContributionMeasured=false` and `genuinelySelfSinkingEstablished=false`. The pump gate passes only at the declared two-copy boundary.
+
+**Joint flutter result — cancellation does not quiet the pair.** The free pair is the analytic union of the two isolated spectra, so its leading growth remains $+0.19885688497216406$. A finite relative-lock scan adds equal-and-opposite coupling to the two copies. For lock stiffness $k_{\mathrm{lock}}\in\{0.01,0.1,1,10,100\}$ with a small declared splitting regularizer $d_{\mathrm{lock}}=0.001$, the leading growth rates are respectively
+
+$$
+0.19925865,
+\ 0.22035117,
+\ 0.25017605,
+\ 0.19853142,
+\ 0.19641689.
+$$
+
+Every row grows. The hard-lock counterfactual is more decisive: its handed velocity-circulatory cross-block cancels exactly, yet the common pair mode still has
+
+$$
+\operatorname{Re}\lambda=+0.19629953398461314,
+\qquad
+\lvert\operatorname{Im}\lambda\rvert=0.38230688156911646.
+$$
+
+Thus the opposite handed terms do not drive the leading growth to marginal or stable. They reorganize the unstable spectrum into a slower whirl without removing its positive growth. This is not a cleanly stable neutral object.
+
+**Locking and $\xi\to0$ continuation.** No finite native cross-pair locking mechanism has been derived, and every declared lock row remains linearly unstable. The pair therefore does not qualify as one coherent co-moving object at this grade. With no locked, linearly closed branch, the $\xi\to0$ luminal continuation is not reached and no near-lock residue can be assigned to the neutrino channel. Neither photon-channel nor neutrino-channel status follows from this seed.
+
+**Verdict.** `pump_cancels_only_at_the_declared_boundary_but_flutter_survives_and_no_native_lock_exists_no_release`. The ansatz cancels one ledger entry but does not close the actual object: joint flutter survives even in the hard-lock limit, and native representability is absent. The problem is therefore relocated into the pair's common/relative axis dynamics rather than resolved. Fail-closed: `nativeRetainedHistoryReleaseAuthorized=false`, `retainedBranchClaim=false`, `scoreMovement=no_score_increase`.
+
+Reproduce: `node scripts/braid-ideal/contra-rotating-pro-anti-pair-instrument.mjs --pretty`. Owner test: `node --test --test-name-pattern="§92" tests/braid-ideal-contra-rotating-pro-anti-pair-instrument.test.js`.
+
+Next closure goal: derive the same-record cross-braid retained-history force, torque, phase-lock, and axial-separation rows for the declared coaxial ansatz, then rebuild the joint pencil from those measured cross blocks; authorize a native release only if that measured pair both locks and drives the complete quotient spectrum marginal or stable while preserving the zero net axial pump.
