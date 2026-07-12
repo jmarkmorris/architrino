@@ -1,7 +1,7 @@
 # Ordered-Core Recycling And Entropy-Ledger Scope Decision
 
-**Decision:** retain ordered-core recycling as speculation and formalize only its entropy-ledger feasibility target (operator option (a), 2026-07-12).  
-**Claim level:** thermodynamic closure target plus speculative mechanism.  
+**Decision:** retain ordered-core recycling as speculation and formalize only its entropy-ledger feasibility target (operator option (a), 2026-07-12).
+**Claim level:** thermodynamic closure target plus speculative mechanism.
 **Authority boundary:** this decision does not establish an ordered low-entropy core, a recycling cycle, a cosmological source term, an entropy decrease, or a redshift mechanism. It authorizes no simulation, corpus promotion, or new validation infrastructure.
 
 ## Retired Route

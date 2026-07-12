@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 183,
-      "sections": 1482
+      "sections": 1489
     }
   },
   "tocRoot": {
@@ -1530,6 +1530,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Heat Death and Its Escapes",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Heat Death and Its Escapes",
+                "sectionKey": "heat death and its escapes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Measurement and Computation",
                 "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
                 "markdownSection": "Measurement and Computation",
@@ -2760,10 +2768,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Deformability of the Envelope",
+                "title": "Nested-Family Envelope Deformability",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
-                "markdownSection": "Deformability of the Envelope",
-                "sectionKey": "deformability of the envelope",
+                "markdownSection": "Nested-Family Envelope Deformability",
+                "sectionKey": "nested family envelope deformability",
                 "headingLevel": 2
               },
               {
@@ -4766,6 +4774,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Handedness: Why the Observed Neutrino Is Left-Handed",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
+                    "markdownSection": "Handedness: Why the Observed Neutrino Is Left-Handed",
+                    "sectionKey": "handedness why the observed neutrino is left handed",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Conversion and Reaction-Provenance Questions",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
                     "markdownSection": "Conversion and Reaction-Provenance Questions",
@@ -4950,6 +4966,14 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
                     "markdownSection": "Coupling rules to gluons",
                     "sectionKey": "coupling rules to gluons",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Hadronization Spin-Correlation Benchmark",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
+                    "markdownSection": "Hadronization Spin-Correlation Benchmark",
+                    "sectionKey": "hadronization spin correlation benchmark",
                     "headingLevel": 2
                   },
                   {
@@ -5553,6 +5577,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Radioisotope Metastability",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Radioisotope Metastability",
+                "sectionKey": "radioisotope metastability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Beta Stability Interface",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Beta Stability Interface",
@@ -5832,6 +5864,22 @@
             "scenePath": "content/scenes/reactions/radiation.json",
             "markdownPath": "content/markdown/aaa/reactions/radiation.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Radiation Versus The Always-On Wake",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Radiation Versus The Always-On Wake",
+                "sectionKey": "radiation versus the always on wake",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Radiation as the Cost of an Unprepared Path",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Radiation as the Cost of an Unprepared Path",
+                "sectionKey": "radiation as the cost of an unprepared path",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Forms At A Glance",
@@ -11994,6 +12042,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
                         "markdownSection": "Oblate Spheroidal Envelope Projection",
                         "sectionKey": "oblate spheroidal envelope projection",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Simultaneity From the Leg Difference",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md",
+                        "markdownSection": "Simultaneity From the Leg Difference",
+                        "sectionKey": "simultaneity from the leg difference",
                         "headingLevel": 2
                       },
                       {

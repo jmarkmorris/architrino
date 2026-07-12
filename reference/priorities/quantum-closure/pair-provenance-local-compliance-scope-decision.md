@@ -1,7 +1,7 @@
 # Pair-Provenance Local Compliance Scope Decision
 
-**Decision:** reject the ER=EPR ontology analogy and retain only a tightly local provenance-compliance coarse-graining target (operator option (a), 2026-07-12).  
-**Claim level:** priority-only constitutive probe.  
+**Decision:** reject the ER=EPR ontology analogy and retain only a tightly local provenance-compliance coarse-graining target (operator option (a), 2026-07-12).
+**Claim level:** priority-only constitutive probe.
 **Authority boundary:** this decision does not establish provenance-dependent Noether sea compliance, modify the Bell program, create a wormhole or nonlocal bridge, authorize implementation, or promote the idea into corpus prose.
 
 ## Rejected Interpretation
@@ -156,4 +156,3 @@ Rejection of this bridge does not reject pair provenance as a quantum source led
 - **Potential medium-response destination:** Noether sea or mass-response prose only after a retained local probe derives a non-redundant response coefficient.
 - **Potential quantum destination:** none from compliance alone; Bell claims remain governed by the source-measure and detector-response gates.
 - **No present promotion:** this decision permits a bounded probe but establishes no mechanism.
-

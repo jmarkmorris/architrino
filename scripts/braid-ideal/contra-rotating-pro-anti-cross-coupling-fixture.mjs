@@ -19,4 +19,3 @@ export const CONTRA_ROTATING_CROSS_COUPLING_FIXTURE = Object.freeze({
   marginalGrowthTolerance: 1e-6,
   collisionFloor: 0.05,
 });
-

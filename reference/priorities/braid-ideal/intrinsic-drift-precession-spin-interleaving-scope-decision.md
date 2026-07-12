@@ -1,7 +1,7 @@
 # Intrinsic Drift / Precession And Spin-Interleaving Scope Decision
 
-**Decision:** keep the two programs separate (operator option (a), 2026-07-11).  
-**Claim level:** priority-only derivation and simulation targets.  
+**Decision:** keep the two programs separate (operator option (a), 2026-07-11).
+**Claim level:** priority-only derivation and simulation targets.
 **Authority boundary:** this decision separates proof burdens. It does not authorize a new simulation, identify flutter with spin, establish a retained branch, or promote either claim into corpus prose.
 
 ## Why The Programs Separate
@@ -109,4 +109,3 @@ Until such an invariant is populated, the dynamics program cannot claim spin clo
 - **Dynamics destination after retained evidence:** the spindle-braid stability treatment, at measured or derived grade appropriate to the record.
 - **Spinor destination after retained evidence:** the angular-momentum-and-spin bridge, with the $2\pi/4\pi$ table and effective symmetry / measurement obligations intact.
 - **No present promotion:** the current decision changes scope, not theory status.
-

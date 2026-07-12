@@ -1422,6 +1422,8 @@ $$
 
 This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
 
+The same distinction blocks a common relativity confusion. A substrate slice $\Sigma_T$ is a real element of the ontology, but it is not an observer-readable global present. Physical Observers recover simultaneity through clock phases, ruler records, photon channels, and local Noether sea state; those channels may hide the preferred frame well enough to reproduce special-relativistic no-global-present behavior. Cosmological records such as the CMB rest frame can supply an approximate effective foliation, but that foliation is an inferred observer chart, not the substrate slice itself.
+
 Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
 $$
 S(T)

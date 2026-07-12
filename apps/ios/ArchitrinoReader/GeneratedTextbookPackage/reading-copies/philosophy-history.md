@@ -10439,7 +10439,7 @@ $$
 
 and, in the primary iso-frequency chart, the same total allocated through the spindle scaffold's partition map (radii, tilts, rail-pinned cadence, wake) at the single energy price $\Delta E_{\text{core}}=\omega\,\Delta I_{\text{core}}$ — in either chart only after choosing the relevant projected action-angle channel. That scalar statement should not be mistaken for the full vector conservation law.
 
-The constancy of the transacted unit itself is a measured, open question on the spindle family. At frozen geometry the stored action per click dilates exactly as $1/\gamma$ under drift, while the transacted wake angular impulse per click runs, $J_z(u)/J_z(0)=1\pm0.236\,|u|-1.28\,u^2$ — helicity-odd at first order, quadratic run-down helicity-averaged. Because nearby family members transact more and less than the rest value at the same drift, a transaction-conserving trajectory through the configuration space exists; whether it coincides with the closure-optimal trajectory is the named computation on which derived Planck-constant constancy rests. Coincidence derives $h$-constancy from the same closure principle as the rest of the family; divergence converts observed constancy into a selection constraint on which family members can be dressed into matter. Claim level: measurement for the two ledgers on the prescribed family; the coincidence question is open.
+The constancy of the transacted unit has been tested on the prescribed spindle family. At frozen geometry the stored action per click dilates exactly as $1/\gamma$ under drift, while the transacted wake angular impulse per click runs, $J_z(u)/J_z(0)=1\pm0.236\,|u|-1.28\,u^2$ — helicity-odd at first order, quadratic run-down helicity-averaged. Composing the closure-optimal geometry with the transaction ledger does not remove that running: $J_z(u)/J_z(0)$ rises by about $9\%$–$14\%$ at small drift and falls by about $28\%$–$45\%$ by $u=0.6$, well above the approximately $1.5\%$ optimizer-granularity floor. Re-optimization does not flatten the trajectory. The $J_z$-conserving and closure-optimal paths therefore diverge at prescribed-family numerical grade, with a coarse-grid caveat near $u=0.5$–$0.6$. This negative result does not exclude a larger dressed family with an invariant transaction, but it does exclude deriving $h$-constancy from closure optimality on the present spindle family. In this route, observed constancy becomes a selection constraint on which closure-optimal members can be dressed into matter.
 
 ##### Foundation-Up Closure Route
 
@@ -10647,6 +10647,8 @@ m_s=\pm\frac{1}{2}
 $$
 
 The Noether braid burden is to supply the effective spinor coordinate whose apparatus projection gives the two Stern-Gerlach records $+\hbar/2$ and $-\hbar/2$. Those records should be basin outcomes of the full angular-momentum ledger, not evidence for a tiny pre-existing arrow inside the target.
+
+The silver-atom Stern-Gerlach experiment is the clean recovery contrast. Classically, a randomly oriented magnetic moment in a field gradient would smear across detector positions. An orbital quantum-number account alone also does not give the observed two records: neutral silver's active outer electron is in a $5s$ state with $\ell=0$, while hypothetical $p$ or $d$ orbital contributions would give $2\ell+1=3$ or $5$ chosen-axis projections, not two. The target is therefore sharper than "some angular momentum is quantized." The same model must keep atomic orbital angular momentum distinct from internal spin, couple the magnetic moment to the apparatus gradient, and produce exactly the two spin-$\tfrac{1}{2}$ record channels without treating a literal rotating electron as the mechanism.
 
 ##### Orbital Angular Momentum
 
@@ -14044,6 +14046,8 @@ This chapter does not own:
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
 | Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
 
+This table uses $c$ only as the inherited observer constant. Maxwell's electromagnetic wave speed made light the first clean historical route to that constant, but the bridge must not let the historical name turn photons into the ontology of the constant. In the observer record, $c$ functions as the conversion scale that lets clocks, rulers, null propagation, energy, and momentum share one Lorentzian bookkeeping system. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms the recovery target is therefore $c_0$ or $c_{\text{eff}}$ for a declared channel: the weak homogeneous limit in which photon synchronization, material clock cadence, ruler response, and energy-momentum response collapse to the same measured scale. The primitive wake speed $c_f$ supplies the native causal ledger, but it becomes the measured Lorentz constant only through that common-channel export.
+
 ##### Observer-Level Minkowski Export
 
 The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For drift speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
@@ -14418,6 +14422,32 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline.
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
 
+At the comparison-law level, the unification is derivation-grade exact algebra. A Lorentz boost is the full one-way causal-leg ledger of the moving assembly. The sum of the fore and aft legs,
+$$
+t_++t_-
+=
+\frac{R_\parallel}{c_\star-v}
++
+\frac{R_\parallel}{c_\star+v}
+=
+\frac{2R_\parallel}{c_\star}\gamma_\star^2
+$$
+supplies the closed-return period whose longitudinal-transverse phase matching gives ruler contraction and clock dilation. The half-difference of the same legs is exactly
+$$
+\tfrac12\left(t_+-t_-\right)
+=
+\frac{R_\parallel v}{c_\star^2-v^2}
+=
+\frac{R_\parallel v}{c_\star^2}\gamma_\star^2
+$$
+and, when referred to the assembly's dilated clock and rest separation $x'$, gives the exact offset
+$$
+\delta\tau
+=
+\frac{v}{c_\star^2}\,x'
+$$
+The sum-and-difference identities are exact. Identifying $\delta\tau$ with observer relativity of simultaneity is a derivation target: it requires the observer-synchrony construction to show that physical clock exchange selects this offset, rather than the leg algebra alone being treated as a completed Lorentz-recovery proof. Subject to that identification, length, duration, and synchronization are three readings of one fore-and-aft causal ledger, not independently fitted effects. Momentum and energy belong to the same comparison-law boost map, so the exact special-relativistic accounting admits one common factor $\gamma_\star$ across clock, ruler, momentum, and energy rather than four unrelated corrections. [Return-Cycle Lorentz Quantization](../../../../markdown/aaa/philosophy-history/theory-bridges/return-cycle-lorentz-quantization.md#simultaneity-from-the-leg-difference) gives the full sum-and-difference derivation. The native closure burden remains to show that one retained Noether braid branch exports this exact unified ledger into all four response channels and closes the observer-synchrony identification.
+
 The proposed common source is:
 
 1. finite field speed for causal wake transfer,
@@ -14664,6 +14694,30 @@ so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the clos
 
 The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
 
+##### Simultaneity From the Leg Difference
+
+The closed-return derivation used only the *sum* of the two one-way legs: the forward leg $t_+=R_\parallel/(c_\star-v)$ and the backward leg $t_-=R_\parallel/(c_\star+v)$ add to the round-trip period, and equating longitudinal with transverse closure fixes the ruler contraction $\xi=1/\gamma_\star$ and the clock dilation $T=\gamma_\star T_0$. The *difference* of the same two legs is not discarded structure; it is the third Lorentz pillar. For two sites of the moving assembly separated by rest longitudinal distance $x'$, the fore-and-aft asymmetry of the one-way legs is
+
+$$
+\tfrac12\left(t_+-t_-\right)
+=
+\frac{R_\parallel\,v}{c_\star^2-v^2}
+=
+\frac{R_\parallel\,v}{c_\star^2}\,\gamma_\star^2 .
+$$
+
+Referred to the assembly's own dilated clock ($d\tau=dT/\gamma_\star$) and its rest separation ($R_\parallel=x'/\gamma_\star$), this is the offset
+
+$$
+\delta\tau
+=
+\frac{v}{c_\star^2}\,x' ,
+$$
+
+the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with drift.
+
+The three pillars are therefore one accounting once that identification closes. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, while the **difference** supplies the offset required for relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
+
 ##### Quantized Realization
 
 Return-Cycle Lorentz Quantization can now be stated as a branch map. For a stable branch class $q$, define
@@ -14813,6 +14867,8 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 ##### Status
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
+
+A seed-grade release of a translating rigid family gives partial confirmation of that step at small drift. The moving envelope's relative flattening tracks the ruler law, $\xi(v)/\xi(0)\to1/\gamma_\star$, agreeing within about two parts in a thousand at $v=0.2\,c_\star$; the internal cadence dilates as $\omega(v)=\omega_0/\gamma_\star$; and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. The open remainder is confirmation across the full drift range together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.
 
@@ -19509,6 +19565,8 @@ The mechanics available for that bridge was already richer than orbit drawing. D
 Optical dispersion supplied the same lesson from the line-strength side. Lorentz-Drude dispersion treated each absorption line as if a population of resonating electrons with an experimentally inferred density produced the observed refractive response. Ladenburg and Loria made that coefficient a laboratory data product through anomalous-dispersion measurements, but Bohr's quantum jumps made the literal resonating-electron story untenable. Ladenburg's 1921 bridge was to equate the classical current-density expression with an Einstein-transition-probability expression, guided by the observed equality between resonance frequencies and spectral-line frequencies. The safe lesson is not that the old oscillator ontology was right. It is that measured line strengths, absorption, dispersion, and transition probabilities were already asking to be recovered as different projections of one event record and rate target.
 
 Zeeman splitting supplied a magnetic-field version of the same transition-record pressure. Faraday's 1862 null search for magnetic changes in spectral lines did not close the question; it marked an instrumentation limit. Zeeman's higher-resolution 1896 repetition turned magnetic line broadening, splitting, polarization, and field scaling into a data product. Lorentz's classical charged-oscillator model then recovered the normal triplet/doublet geometry and the charge-to-mass scale later recognized as electronic, but sodium's anomalous Zeeman patterns exposed that orbital oscillator bookkeeping was incomplete. Preston's 1897-1899 work made the pressure sharper. In the same magnetic-field context where Lorentz's normal triplet succeeded, sodium's $D_1$ and $D_2$ lines gave quartet and sextet patterns, and Cornu's and Michelson's confirmations found line families with still more components. Preston's useful phrase was that the effect depended on a hidden "character" of the line: a line-specific datum that the single charged-oscillator model did not possess. Preston's rule then grouped elements by splitting pattern rather than by wavelength alone. The historical sequence is normal-effect success -> anomalous multiplet data product -> missing line-specific response variable -> later spin, exclusion, fine-structure, and quantum-angular-momentum recovery targets -> operational lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the target is not to import Lorentz's oscillator ontology or intrinsic spin as a primitive, but to recover magnetic splitting, polarization selection, and anomalous multiplets from one atomic envelope, magnetic-state map, photon-channel event record, and downstream angular-momentum/spinor ledger.
+
+Stern-Gerlach turned the same magnetic response problem into a direct measurement-channel data product. A randomly oriented classical magnetic moment in a field gradient should smear across a detector. Standard orbital quantization alone also misses the silver-atom result: the active outer electron sits in a $5s$ orbital with $\ell=0$, while a hypothetical $p$ or $d$ orbital contribution would give $2\ell+1=3$ or $5$ projection channels, not two. The later spin-$\tfrac{1}{2}$ label correctly recovered the two records, and rotated analyzer sequences correctly exposed noncommuting measurement channels. The near-miss is that this became an operator-and-eigenvalue lock-in before the field had a physical account of how apparatus gradient, magnetic moment, angular-momentum exchange, and record formation produce the two stable outcomes. The historical packet is therefore magnetic-deflection data product -> classical smear failure -> orbital-recovery mismatch -> spin-$\tfrac{1}{2}$ recovery label -> noncommuting analyzer evidence -> later operational lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the recovery target is to keep Bohr-Sommerfeld orbital quantization, electron spin, and Stern-Gerlach record formation as separate levels until one branch record derives their shared angular-momentum and measurement-response ledger.
 
 The solar sequel sharpened that sequence by moving the same effect from the
 laboratory into an astronomical source record. Lockyer, Young, Cortie, and other

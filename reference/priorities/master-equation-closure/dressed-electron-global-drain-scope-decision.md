@@ -1,7 +1,7 @@
 # Dressed-Electron Global Angular-Momentum Drain Scope Decision
 
-**Decision:** authorized for focused planning on 2026-07-11.  
-**Claim level:** derivation / simulation target with seed-grade null controls.  
+**Decision:** authorized for focused planning on 2026-07-11.
+**Claim level:** derivation / simulation target with seed-grade null controls.
 **Authority boundary:** this decision fixes the comparison object and retained-record contract. It does not authorize a new solver, a native release, branch retention, corpus promotion, or selection of a new payload geometry.
 
 ## Closure Question
@@ -114,4 +114,3 @@ Failure at any gate rejects that realization; it does not reject the 12-architri
 ## Next Authorized Step
 
 Prepare a read-only central-solver contract audit and retained-run specification against this output contract. The audit may identify missing native fields and propose the smallest central-solver extension, but it may not implement that extension, run a native release, select a sense-split / counter-rotating ontology, or promote a dressed-electron claim without a separate operator decision.
-

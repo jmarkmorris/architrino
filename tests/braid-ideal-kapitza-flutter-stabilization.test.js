@@ -61,4 +61,3 @@ test("claim boundary remains seed-grade and fail-closed", () => {
   assert.equal(result.retainedBranchClaim, false);
   assert.equal(result.scoreMovement, "no_score_increase");
 });
-

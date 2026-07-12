@@ -1,7 +1,7 @@
 # Retained-Sea Angular-Momentum Ward Identity and Transport Kernel
 
-Date: 2026-07-11  
-Verdict: **UNDECIDED**  
+Date: 2026-07-11
+Verdict: **UNDECIDED**
 Claim level: priority-only analytical derivation and modeled-cell specification. No retained homogeneous sea state is claimed, no global drain is exhibited or barred, no corpus promotion is authorized, and no score movement follows.
 
 Parent decision memo: [Global Angular-Momentum Drain — Adversarial Feasibility Memo](global-angular-momentum-drain-adversarial-feasibility-memo.md).

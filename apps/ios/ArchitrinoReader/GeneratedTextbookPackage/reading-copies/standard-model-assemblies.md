@@ -1379,6 +1379,36 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Inertial and gravitational mass share one shielded-energy response map. | Priority target constrained by equivalence-principle tests. |
 | The Higgs sector is recovered as an effective matching layer. | Open comparison target. |
 
+#### The Substrate Mass Unit and Size Anchor
+
+Claim level: a dimensional anchor plus a native size measurement; the extraction of an actual particle mass from it is gated on a retained free object and remains open.
+
+The substrate carries no mass dimension of its own: its three constants — the coupling $\kappa$, the polarity unit $\varepsilon$, and the field speed $c_f$ — span only length, time, and charge. A mass scale enters only with the action quantum $\hbar_{\mathrm{act}}$ of the fold-crossing ledger, and dimensional analysis then fixes the natural mass unit uniquely:
+
+$$
+M_0 \sim \frac{\hbar_{\mathrm{act}}\,c_f}{\kappa\,\varepsilon^2}.
+$$
+
+Every emergent inertial mass in this chapter is a pure number times this unit; the roadmap formula $M_0(A)c_{\mathrm{eff}}^2\sim\zeta(A)E_{\mathrm{internal}}(A)$ is the statement that the number is set by the shielded internal energy of the retained branch.
+
+The same constants fix an absolute size. The self-equilibrated spindle configuration has a native rail radius
+
+$$
+R_M^{\mathrm{eq}} = 3.4937\,\frac{\kappa\varepsilon^2}{c_f^2},
+\qquad
+\kappa_{\mathrm{eq}} = 1/R_M^{\mathrm{eq}} = 0.28623,
+$$
+
+a gauge-invariant number measured on the native family and sitting well above the near-field floor, so the arrest is coupling-scale self-support rather than a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
+
+#### The Action Ladder
+
+Claim level: interpretation and derivation target; assigning specific rungs to specific particles is the open mass-map work, not asserted here.
+
+Because the family is iso-frequency — one shared internal cadence — an added or removed quantum of action cannot land on one layer as a private frequency change. It re-settles the whole rigid structure by one integer rung: all three layer radii co-move and the three tilts re-settle together, so the middle layer stays on the field-speed rail and the internal force ledger stays balanced. The layers' shares are therefore not free; they are fixed by the same force balance that fixes the rest geometry, anchored by the rail relation $\omega=c_f/(R_M\cos\alpha_M)$.
+
+Read as a spectrum, this is the substrate origin of energy quantization. Each rung is a discrete allowed state; the spacing is one action quantum; a rung-to-rung transition is the emission or absorption of a quantum. The ladder carries the form $E=n\,h\,f$, tying the level index, the action quantum, and the internal cadence in one relation. Through the rail, a higher cadence forces a smaller envelope, so climbing the ladder makes the object smaller and its observed inertial response larger — the emergent-mass counterpart of the observed mass–Compton-length relation. One geometric family, climbable through a very large (near-Planck) number of integer rungs, thus spans a whole spectrum from the lightest retained states up to the Planck-scale top ($\xi\to0$, the [singularity-resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md) limit). Which rung corresponds to which observed particle is the open extraction the mass map owns; the structure — an integer action ladder whose rungs are the allowed states — is the promotable statement.
+
 #### Mass-Channel Categories
 
 The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
@@ -2492,6 +2522,20 @@ $$
 Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
 
 Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
+
+#### Handedness: Why the Observed Neutrino Is Left-Handed
+
+Claim level: derivation from the braid chirality invariant, conditional on the near-photon geometry above; the status of a right-handed or sterile branch stays under the [empirical gate](#empirical-decision-gates) below, not asserted as doctrine.
+
+The near-photon geometry fixes the neutrino's handedness through the same chiral invariant that organizes every braid's discrete symmetry. A neutral braid carries the pseudoscalar $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ built from its polarity dipole $\mathbf p$ and spin $\mathbf S$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/spindle-braid.md#discrete-symmetry-structure)), and the weak-flavored transaction channels are exactly the channels that read $\chi$ maximally. Two properties of the neutrino then force its observed one-handedness.
+
+First, the neutrino is near-luminal. At the luminal limit helicity and chirality coincide and become frame-fixed — there is no rest frame in which to overtake the state and reverse its apparent handedness — so $\chi$ is very nearly an invariant label rather than a frame-dependent projection. This is the same limit that makes the fully locked photon a strictly two-helicity object.
+
+Second, the neutrino couples through the weak channel and through no other: it is neutral (no electromagnetic channel) and colorless (no strong channel), so the maximally $\chi$-reading weak corridor is its only handle on the rest of physics. Because that corridor reads $\chi$ maximally it couples to only one sign of $\chi$. The $\chi$-matching neutrino participates, and its $CP$ partner — the opposite-polarity, opposite-handedness antineutrino — accompanies it, since $CP$ preserves $\chi$ and is exact at this order. The parity images — a neutrino of the opposite handedness and an antineutrino of the opposite handedness — carry the reversed $\chi$ and are not read by the weak corridor at all.
+
+This is why the effect presents as an absolute selection rule rather than a mere bias. A neutrino decoupled from the weak channel has no remaining channel through which to be produced or detected, so a wrong-handed neutrino is not merely rare but invisible to every interaction the theory presently exposes. The observed pairing of a left-handed neutrino with a right-handed antineutrino is therefore the $CP$-locked pair the chirality invariant predicts, and the "missing" right-handed neutrino and left-handed antineutrino are the parity enantiomers the weak corridor cannot address.
+
+Two caveats keep this at the honest grade. The locking is exact only in the strict luminal limit; the neutrino's small observer-facing mass — the residue of its incomplete photon lock — admits a suppressed wrong-helicity admixture scaling as $m/E$, so one-handedness is near-exact rather than perfect, exactly as for a light Dirac fermion. And whether the parity-enantiomer states exist as decoupled (sterile) assemblies is a structural expectation of this picture, not a settled claim: it is governed by the right-handed or sterile branch gate below and must satisfy every consistency condition there before being read as more than a candidate.
 
 #### Conversion and Reaction-Provenance Questions
 
@@ -4028,6 +4072,40 @@ The catalog uses the following working rules:
 - **No strong flavor change:** gluons do not turn $u$ into $d$, $c$ into $s$, or $t$ into $b$.
 - **No strong generation change:** gluons do not by themselves add or remove shielding binaries.
 - **Confinement rule:** open color sectors carry an energy cost that grows approximately linearly with separation, so isolated quarks are excluded and flux tubes close only in mesonic or baryonic singlets.
+
+#### Hadronization Spin-Correlation Benchmark
+
+The quark catalog also has to recover not only static charge, color, and generation bookkeeping, but the way quark-level records survive into detector-facing hadrons. A useful current benchmark comes from short-range $\Lambda\bar{\Lambda}$ production in high-energy proton-proton collisions. In the standard reading, a correlated $s\bar{s}$ pair can be liberated from the QCD condensate, hadronize into a Lambda hyperon and anti-Lambda hyperon, and leave a measurable spin-correlation record in the decay products.
+
+The observer-level extraction uses the self-analysing weak decays of the hyperons. In comparison notation the decay-product opening-angle distribution is
+
+$$
+\frac{1}{N}\frac{dN}{d\cos\theta^*}
+=
+\frac{1}{2}
+\left[
+1+\alpha_1\alpha_2P_{\Lambda_1\Lambda_2}\cos\theta^*
+\right]
+$$
+
+where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an import of QCD vacuum ontology or a claim that "nothing" creates particles. The native branch must connect, in one event record, the strong-collision work input, the local Noether sea participation, the quark-level axial and color records, the confinement or hadronization route into color-singlet hyperons, feed-down and remnant rows, and the final weak-decay detector readout. In schematic form the benchmark asks for
+
+$$
+P_{\Lambda\bar{\Lambda}}^{\mathrm{obs}}(\Delta R)
+=
+\mathcal{P}_{\mathrm{had}}
+\left(
+\Gamma_{\mathrm{coll}},
+I_{\mathrm{had}},
+\mathcal{L}_{E\mathbf p\mathbf J},
+\Theta_{\mathrm{decay}},
+\Delta R
+\right),
+$$
+
+where $I_{\mathrm{had}}$ is the selected hadronization route. The readout $P_{\Lambda\bar{\Lambda}}^{\mathrm{obs}}$ should be large in the short-range bin and tend to zero when the pair separation is large enough for decoherence, dilution, or unrelated production histories to dominate. A quark-sector closure that reproduces hadron spectra while losing this spin-correlation provenance would still be incomplete.
 
 #### What is fixed and what remains open
 

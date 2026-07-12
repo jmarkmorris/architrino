@@ -188,4 +188,3 @@ export function integrateCubic({ A, B, C, initial, dt, tMax, amplitude, divergen
   return { bounded: Number.isFinite(mean) && spread < 0.15 * Math.max(mean, 1e-12), diverged: false,
     saturatedAmplitude: mean, tailSpread: spread, finalAmplitude: amps.at(-1), samples: amps };
 }
-

@@ -1,10 +1,10 @@
 # Sub-Luminal Balanced-Cell Same-Record Ward Decider — Analytical Result
 
-Date: 2026-07-11  
-Verdict: **UNDECIDED — the requested decider is not identifiable from the canonical retained-root force ledger**  
+Date: 2026-07-11
+Verdict: **UNDECIDED — the requested decider is not identifiable from the canonical retained-root force ledger**
 Claim level: priority-only analytical obstruction. No retained balanced Noether sea state is claimed, no global drain is exhibited or barred, no transport coefficient is extracted, no corpus promotion is authorized, and no score movement follows.
 
-Parent audit: [Independent Audit of the Section 87 Global-Drain Verdict](jh13-section-87-global-drain-verdict-audit-2026-07-11.md).  
+Parent audit: [Independent Audit of the Section 87 Global-Drain Verdict](jh13-section-87-global-drain-verdict-audit-2026-07-11.md).
 Decision rule: [Retained-Sea Angular-Momentum Ward Identity and Transport Kernel](retained-sea-angular-momentum-ward-identity-and-transport-kernel.md).
 
 Successor decision: [Same-Action Wake Noether Pullback — Local Storage/Current Decision](same-action-wake-noether-pullback-decision-2026-07-12.md) shows that the present bilocal action candidate supplies conditional global Noether charges but does not uniquely localize them into wake storage and periodic-face current.

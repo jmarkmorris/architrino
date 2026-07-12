@@ -1,7 +1,7 @@
 # Independent Audit of the Section 87 Global-Drain Verdict
 
-Date: 2026-07-11  
-Verdict: **BARRED-pending-one-clean-cell**  
+Date: 2026-07-11
+Verdict: **BARRED-pending-one-clean-cell**
 Claim level: priority-only adversarial audit. Section 87 rejects the tested jh11 cage record and the tested prescribed two-sublattice cell, but it does not prove a theorem-level global **BARRED** result. No retained homogeneous Noether sea state is claimed, no global drain is exhibited, no corpus promotion is authorized, and no score movement follows.
 
 Deciding rule: [Retained-Sea Angular-Momentum Ward Identity and Transport Kernel](retained-sea-angular-momentum-ward-identity-and-transport-kernel.md). Parent rule: [Global Angular-Momentum Drain — Adversarial Feasibility Memo](global-angular-momentum-drain-adversarial-feasibility-memo.md).

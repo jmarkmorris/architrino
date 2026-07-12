@@ -1,7 +1,7 @@
 # Global Angular-Momentum Drain — Adversarial Feasibility Memo
 
-Date: 2026-07-11  
-Verdict: **UNDECIDED**  
+Date: 2026-07-11
+Verdict: **UNDECIDED**
 Claim level: priority-only conservation analysis and deciding-calculation specification. No retained-branch claim, no sea-drain existence claim, no corpus promotion, and no score movement.
 
 ## Executive Verdict

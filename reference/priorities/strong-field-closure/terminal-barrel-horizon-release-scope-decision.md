@@ -1,7 +1,7 @@
 # Terminal Barrel, Horizon Alignment, And Release Scope Decision
 
-**Decision:** split the four claims by evidence (operator option (a), 2026-07-11).  
-**Claim level:** one conditional kinematic theorem target, one horizon boundary-condition theorem target, and two speculation watchlists.  
+**Decision:** split the four claims by evidence (operator option (a), 2026-07-11).
+**Claim level:** one conditional kinematic theorem target, one horizon boundary-condition theorem target, and two speculation watchlists.
 **Authority boundary:** this decision fixes dispositions and proof boundaries. It does not identify the terminal barrel with a physical horizon, identify a horizon with a light ring, establish a `4:2:1` law, create a dark-sector ontology, authorize a new build, or promote any of these claims into corpus prose.
 
 ## Dispositions
@@ -119,4 +119,3 @@ Without those rows, high-redshift compact red sources and CMB-adjacent ideas rem
 - **Potential horizon destination:** black-hole and singularity-resolution chapters, only after the boundary and observer recovery rows close.
 - **Potential release destination:** radiation, dark-sector, cosmology, or black-hole prose only after one discriminating same-event ledger exists.
 - **No present promotion:** this decision changes disposition, not evidential grade.
-

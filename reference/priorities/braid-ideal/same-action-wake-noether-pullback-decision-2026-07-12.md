@@ -1,7 +1,7 @@
 # Same-Action Wake Noether Pullback — Local Storage/Current Decision
 
-Date: 2026-07-12  
-Decision: **NON-UNIQUE WITH NAMED MISSING INPUT**  
+Date: 2026-07-12
+Decision: **NON-UNIQUE WITH NAMED MISSING INPUT**
 Claim level: priority-only structural derivation. No retained balanced Noether sea state is claimed, no global drain is exhibited or barred, no layer receives a derived share of $\hbar$, no corpus promotion is authorized, and no score movement follows.
 
 Parent packets:
