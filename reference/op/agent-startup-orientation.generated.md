@@ -71,19 +71,19 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 215 | `3fccf22464843ccf` |
+| [AGENTS.md](../../AGENTS.md) | 215 | `045d350cfddd1cf5` |
 | [README.md](../../README.md) | 229 | `9edea65d550f36ce` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 26 | `15ba33ec6351c320` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 8 | `a7c833e57b9fced6` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 87 | `c4d4d71c71e7b1a0` |
-| [reference/op/README.md](README.md) | 27 | `d31ad2e0cbac42a5` |
+| [reference/op/README.md](README.md) | 28 | `28671b225e029ae3` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 197 | `00a79efd8882c06f` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 97 | `d15ca9c97840ca90` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 42 | `012f825a77cb3b5a` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 495 | `a0613465356e98a5` |
 | [reference/op/codex-pr-branch.md](codex-pr-branch.md) | 669 | `7cfad788ce838e51` |
-| [reference/priorities/README.md](../priorities/README.md) | 32 | `e2638d1896df95c1` |
-| [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 39 | `b7b2dfad9cf20b7d` |
+| [reference/priorities/README.md](../priorities/README.md) | 42 | `d5716324f0e54b71` |
+| [reference/entourage/archie/prompts/README.md](../entourage/archie/prompts/README.md) | 42 | `6261a43d434131e8` |
 | [reference/entourage/archie/prompts/corpus-advancement-pass.md](../entourage/archie/prompts/corpus-advancement-pass.md) | 637 | `e9d69e1ce209a6eb` |
 | [reference/entourage/archie/prompts/corpus-reviewer.md](../entourage/archie/prompts/corpus-reviewer.md) | 110 | `84c14fd56a711ba2` |
 | [reference/entourage/archie/prompts/integrator-reviewer.md](../entourage/archie/prompts/integrator-reviewer.md) | 123 | `b66dcb069b27c7ee` |
@@ -95,4 +95,4 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 301 | `4e66491ed7ce5f88` |
 | [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 136 | `543376d5bdc3012a` |
 | [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 443 | `f4bf2d94da47e53e` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 161 | `01364612183b0f7a` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 161 | `c6c43a51b8f9b41a` |

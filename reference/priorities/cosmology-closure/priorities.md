@@ -24,6 +24,7 @@
 11. `dark_sector_apparentness_residual` — Separate shielded energy, neutral assemblies, Noether sea stress, projection effects, and catalogue residuals before interpreting a missing component as dark matter or dark energy. Status: `deferred`. Depends on: `deep_space_inventory_benchmark`.
 12. `horizon_computation_benchmark` — Treat finite accessible energy, horizon temperature floor, and finite computation counts as observer-horizon comparison pressure rather than information ontology. Status: `priority-only`. Depends on: `component_interfaces`, `age_clock_convergence`.
 13. `missing_baryon_inventory_guardrail` — Keep observer-level baryon inventory separate from primitive architrino and Noether sea inventories before claiming missing-baryon closure. Status: `priority-only`. Depends on: `deep_space_inventory_benchmark`, `component_interfaces`.
+14. `ordered_core_recycling_entropy_ledger_feasibility` — Apply the [scope decision](ordered-core-recycling-entropy-scope-decision.md): keep ordered-core recycling speculative, permanently exclude free-steady radiative shedding as its source, and test only the same-record coarse-grained entropy-ledger feasibility of an explicitly accelerated, gravitational, reaction, or medium-relaxation event. Status: `priority-only entropy target; mechanism-watchlist` (2026-07-12). Depends on: `noether_sea_source_relaxation_balance`, `distributed_release_rate_residual`, and a populated strong-field event record; no implementation authorized.
 
 ## Scope
 

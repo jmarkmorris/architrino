@@ -1047,9 +1047,9 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 #### Geometry Focus
 
-##### A) High Group Velocity Geometry (Oblate Spheroidal Envelope)
+##### A) High Group Velocity Geometry (Nested-Family Oblate Spheroidal Envelope)
 
-**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$ on the primitive branch chart.
+**Nested-family assumption (testable):** The outer binary of a moving nested shell braid generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$ on the primitive branch chart. This law is not the spindle family's rest-envelope law: the spindle is fusiform at rest, and its moving-envelope projection remains an explicit open obligation in [Braid Envelope Geometry](braid-envelope-geometry.md#retuning-projection-to-envelope-variables).
 
 **Geometry:** Let the motion define the $z$-axis. Model the envelope as an oblate spheroidal envelope
 $$
@@ -1289,66 +1289,19 @@ For the strong-field continuation of that story, see [Black Holes](../spacetime/
 
 ## Noether Braid Doubling-Frequency Resonance Lock
 
-This section hosts the doubling-frequency `4:2:1` lock study, consolidated here from its former standalone chapter. It is comparison-family material: the `NSH-421` candidate is definitionally frequency-separated, so the study is retained under the spindle-native re-derivation gate rather than generalized — the spindle's iso-frequency structure has no doubling ladder to lock. The internal assumption package, propositions, and diagnostics carry unchanged at their stated claim levels.
-This chapter studies resonance lock for the nested inner, middle, and outer binaries as a restricted family inside the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
+This section hosts the specialized `NSH-421` doubling-frequency `4:2:1` lock study inside the broader [Noether Braid Configuration Space](noether-braid-configuration-space.md). It is comparison-family material: the candidate is definitionally frequency-separated and tests a nested `I:M:O` chart under explicit support, hinge, phase-return, and stability assumptions. It does not make doubling frequency the default Noether braid frequency, certify nested dynamics from kinematics, or generalize to the spindle: the spindle's iso-frequency shared-axis structure has no doubling ladder to lock.
 
 It should be read together with [Binary Dynamics](../dynamics/binary-dynamics.md), [Nested Shell Braid](explored-braid-geometries.md#nested-shell-braid), [Nested Shell Braid Dynamics](explored-braid-geometries.md#nested-shell-braid-dynamics), and [Mapping the Planck Scale](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), which provide the assembly scaffold, geometry, and scale-setting context for the lock relations derived here.
 
-The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
+The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. As a derivation target, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
-This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
+The analysis keeps the field speed $c_f$ explicit rather than setting it to one. Branch labels $k\in\{I,M,O\}$ are used only after the retained branch supplies that role assignment. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
-### Document Role
-
-This chapter is the specialized `NSH-421` candidate-family chapter. It owns the `4:2:1` frequency-lock analysis when a nested shell braid chart declares `I:M:O` roles and tests a doubling-frequency branch under explicit support, hinge, phase-return, and stability assumptions.
-
-It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
-
-### General Rank-Three Branch State
-
-Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, the rank-three search branch is represented by three retained rows. The general search program is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
-$$
-\mathcal{T}_{3B}
-=
-\left\{
-\left(
-f_a,\,
-r_a,\,
-E_a,\,
-s_a,\,
-\phi_a,\,
-\hat{\mathbf n}_a,\,
-\mathcal{L}_a
-\right)
-\right\}_{a=1}^{3}.
-$$
-Here $f_a$ is the layer frequency, $r_a$ the characteristic radius or retained lever arm, $E_a$ the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ the scalar tangential speed, $\phi_a$ the phase origin or offset, $\hat{\mathbf n}_a$ the orbital-plane normal, and $\mathcal{L}_a$ the active causal-root ledger data for that layer. On a circular layer chart the kinematic identity is
-$$
-s_a=2\pi f_a r_a.
-$$
-This identity is only a constraint among three variables. It does not by itself select the frequency ratios, energy placement, radii, speeds, or phase offsets.
-
-The branch-search objective is therefore
-$$
-\text{find retained, stable } \mathcal{T}_{3B}
-\text{ over }
-(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal{L}_a),
-$$
-then compare the energy differentials
-$$
-\Delta E_{ab}=E_a-E_b
-$$
-and their ledger decomposition on the same retained row set. A doubling-frequency candidate, a field-speed hinge-occupancy candidate, and an iso-frequency candidate are special conditions on this same state space. In particular, the iso-frequency condition
-$$
-f_1=f_2=f_3
-$$
-still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
-
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader rank-three branch state; it is not the default assumption for all stable branch configurations.
+The general unordered state $\mathcal T_{3B}$, its $S_3$ relabeling action, and the iso-frequency and integer-ratio subfamilies are defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md#unordered-layer-semantics). The `NSH-421` specialization adds a certified `I:M:O` role assignment, the exact ring identity $v_k=2\pi f_k r_k$, integer phase-return data, and the finite-$\eta$ selection and stability rows.
 
 ### Status and Assumptions
 
-The logic of the chapter is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
+The lock analysis is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
 
 #### Exact Kinematic Identity
 
@@ -1408,7 +1361,7 @@ $$
 $$
 rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
-This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
+This is the main regime assumption of the `NSH-421` analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
 It is not a claim that every Noether braid regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
 
 #### Assumption 2 (Exact Integer Phase Closure)
@@ -1606,14 +1559,14 @@ among non-identity integer towers. This is why the doubling-frequency family is 
 
 #### Non-Assumptions
 
-This chapter does **not** assume:
+The `NSH-421` analysis does **not** assume:
 
 - common-speed closure $v_O=v_M=v_I$,
 - self-similar radii $r_M=r_O/s$, $r_I=r_O/s^2$,
 - or the specific frequency lock $1:2:4$ at the outset.
 
 Those are possible special cases or later outcomes, not starting axioms here.
-This chapter studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
+Only exact integer closure is studied here. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
 
 ### Immediate Consequences
 

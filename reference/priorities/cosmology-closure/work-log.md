@@ -6,4 +6,4 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+- 2026-07-12: The operator accepted option (a) for `ordered_core_recycling_decision`. The [scope decision](ordered-core-recycling-entropy-scope-decision.md) retains the mechanism as speculation, retires free-steady radiative shedding as its source, and formalizes only the same-record coarse-grained entropy inequality for explicitly accelerated, gravitational, reaction, or medium-relaxation events. No implementation or corpus promotion was authorized. `DF-04` was removed from the Operator Discussion Queue and the remaining rows were reranked.

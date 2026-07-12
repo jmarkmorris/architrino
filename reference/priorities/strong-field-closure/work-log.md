@@ -6,4 +6,4 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+- 2026-07-11: The operator accepted option (a) for `terminal_barrel_horizon_release_decision`. The [scope decision](terminal-barrel-horizon-release-scope-decision.md) records the all-rail barrel as a conditional common-cadence theorem target, horizon-interface alignment as a separate boundary-condition target, and `4:2:1` plus dark-sector photon-like release as watchlists. Horizon and light-ring rows remain distinct unless one declared branch derives coincidence. No build or corpus promotion was authorized. `DF-05` was removed from the Operator Discussion Queue and the remaining rows were reranked.

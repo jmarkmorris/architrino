@@ -89,3 +89,22 @@ To test whether an axisymmetric absorber could anchor $\hat n\to\hat d$ *without
 **The equatorial ring supplies anchoring and shear together, and both fall off with symmetry order** ($\theta=90°$, axis-vs-drift low point / $\sigma$ endpoint): 4-fold $\to$ **$9°$ / $\sigma\,0.74$** (strong anchor, strong shear); ring6 $\to\sim30°$ (late) / $\sigma\,0.46$; ring8 $\to\sim30°$ (late) / $\sigma\,0.43$; polar-pair (axisymmetric) $\to$ bare $63$–$88°$ / $\sigma\,0.60$. As the ring approaches axisymmetric, the transverse shear **and** the orientation torque vanish *together*.
 
 **Conclusion (a conclusive negative that narrows the search).** No member of the frozen-orientation co-drift multipole-cage family simultaneously anchors $\hat n\to\hat d$ and settles $\sigma\to0$: the orientation torque and the transverse shear are the **same anisotropic multipole** of the cage, so they cannot be separated by tuning ring symmetry — anisotropic cages anchor but shear, axisymmetric cages (polar-pair, high rings) neither anchor nor shear. This rules out the entire frozen-orientation co-drift cage family for the joint requirement and sharpens what the shared axis absorber must be: its anchoring torque must be **axisymmetric about $\hat d$**, which a static multipole cannot provide — it must come from the sea's **dynamical response** (co-orbital motion / reorienting dipoles whose torque tracks $\hat d$ without a frozen transverse structure). Corollary 1, large-drift Lorentz recovery, and the $A_0$ axis absorber remain open, but the frozen-cage sub-route is closed. Reproduce: `--drift-envelope --polar-pair-sea` and `--co-drift-cage --cage-geometry=ring6|ring8` (same drift flags).
+
+## Dynamical-sea extension — reorienting dipoles / co-orbital ring (2026-07-10)
+
+The frozen-cage closure above hands off to the **dynamical** sea sub-program.
+The co-drift machinery was extended (build spec + full results:
+[dynamical-sea-axis-absorber-instrument-spec.md](dynamical-sea-axis-absorber-instrument-spec.md))
+with two default-off knobs on `coDriftCage` — a **reorienting dipole** whose
+orientation tracks $\hat d$ or the braid's instantaneous axis $\hat n(t)$, and a
+**co-orbital ring** spinning about $\hat d$ — both carried through the same
+production `centerVelocity` surface by a per-emission-time tangent
+reconstruction (central solver untouched; suite 37/37). Result: a
+**saturated** reorienting dipole on the axisymmetric-position (polar-pair) sea
+produces the **first no-go-escaping axis anchor** ($66°\to38°$ at $\theta=90°$,
+$u=0.2$; the static-along-$\hat d$ and lagged controls anchor nothing), so the
+$\dot{\hat n}$-driven axisymmetric torque is a real mechanism — but it is
+sub-critical (weak, absent at $\theta=30°$, $\sigma$ unsettled), and the
+co-orbital ring reduces $\sigma$ only by anti-anchoring (the lemma, dynamically).
+The joint anchor-and-settle requirement stays open; see the dynamical-sea packet
+for the decision-tree placement.

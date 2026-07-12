@@ -250,6 +250,32 @@ Here $\nu_{\mathrm{hit}}$ is the effective barrier-sampling frequency of the bou
 
 Polonium-212 is a compact numerical check: the standard comparison channel is ${}^{212}\mathrm{Po}\to{}^{208}\mathrm{Pb}+\alpha$, with outgoing alpha energy near $8.78\,\mathrm{MeV}$ and observed half-life near $0.3\,\mu\mathrm{s}$. A single rectangular-barrier approximation can miss the half-life by many orders of magnitude, while resolving the Coulomb barrier into multiple segments already moves the estimate close to the observed value. The lesson for the nuclear branch is that barrier shape, turning points, and attempt rate are not disposable fitting details; they are the effective observables that a native nuclear assembly model must recover.
 
+## Radioisotope Metastability
+
+At effective grade, a radioactive material is a material whose isotope inventory contains metastable nuclear assembly branches. A parent isotope can remain in a locally retained basin while one or more lower-energy daughter-and-product routes have nonzero escape rates. The radioactivity belongs first to that nuclear branch structure, not to bulk temperature or ordinary molecular vibration.
+
+Heat, lattice vibration, recoil, and medium excitation are usually outputs or environmental couplings of the nuclear reaction. They become causes only when a worked case shows that they materially change the nuclear route. Likewise, the action ledger enters through cycle bookkeeping, photon-frequency rows, and branch-transition accounting; radioactivity is not caused by a scalar stockpile of action units. The physical cause is an admissible route from the parent nuclear assembly ledger to a cheaper daughter-and-product ledger.
+
+A route-level record can be organized as
+
+$$
+\Theta_{\mathrm{iso}}
+=
+\left(
+\mathcal I_{\mathrm{iso}},
+\mathcal B_{\mathrm{meta}},
+\mathcal C_{\mathrm{route}},
+\lambda_{\mathrm{route}},
+\mathcal Y_{\mathrm{emit}},
+\mathcal R_{\mathrm{recoil}},
+\mathcal H_{\mathrm{heat}},
+\mathcal L_{E\mathbf p\mathbf J},
+\Delta\theta_{\mathrm{sea}}
+\right)
+$$
+
+Here $\mathcal I_{\mathrm{iso}}$ is the isotope inventory, $\mathcal B_{\mathrm{meta}}$ is the retained metastable nuclear branch record, $\mathcal C_{\mathrm{route}}$ names the alpha, beta/lepton, neutron, gamma/photon, neutrino, or non-radiative route family, and $\lambda_{\mathrm{route}}$ is the observer-level rate or half-life extracted from the retained route. A quantitative recovery requires one parent/daughter/product event ledger that names emitted products, recoil, heat, photon rows when present, the Noether sea update, path-history provenance, and the shielded-energy boundary without hidden loss. Until such a record is supplied, the metastability account is an effective organizing statement and a derivation target, not a native half-life derivation.
+
 ## Beta Stability Interface
 
 Nuclear binding is tied to weak stability because a nucleus can trade between proton and neutron count through weak channels. At coarse level, beta stability is the condition that the total nuclear energy cannot be lowered by the neutron-side channel

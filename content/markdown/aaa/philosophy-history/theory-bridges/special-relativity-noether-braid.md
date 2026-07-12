@@ -41,6 +41,8 @@ This chapter does not own:
 | The invariant speed $c$ is a postulate of the observer-level theory. | The observed signal speed is the effective propagation speed $c_{\text{eff}}$ of photon-like and clock-synchronization channels in the local Noether sea, approaching $c_f$ in the homogeneous weak-field limit. |
 | Lorentz symmetry is a spacetime symmetry. | Lorentz symmetry is an emergent operational symmetry of assemblies whose clocks, rulers, and signal channels are all built from the same finite-speed delayed closure dynamics. |
 
+This table uses $c$ only as the inherited observer constant. Maxwell's electromagnetic wave speed made light the first clean historical route to that constant, but the bridge must not let the historical name turn photons into the ontology of the constant. In the observer record, $c$ functions as the conversion scale that lets clocks, rulers, null propagation, energy, and momentum share one Lorentzian bookkeeping system. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms the recovery target is therefore $c_0$ or $c_{\text{eff}}$ for a declared channel: the weak homogeneous limit in which photon synchronization, material clock cadence, ruler response, and energy-momentum response collapse to the same measured scale. The primitive wake speed $c_f$ supplies the native causal ledger, but it becomes the measured Lorentz constant only through that common-channel export.
+
 ## Observer-Level Minkowski Export
 
 The Minkowski diagram is useful here because it shows exactly what the bridge must export, and also what it must not promote to substrate ontology. In the inherited observer-level geometry, equal interval from an event is a hyperbola rather than a Euclidean circle, null directions are the zero-interval boundaries, and a Lorentz boost is a hyperbolic rotation that preserves the interval. For drift speed $\|\mathbf{w}\|$ through a homogeneous Noether sea cell, define the effective rapidity
@@ -414,6 +416,32 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline.
 ## Why The Same Factor Appears
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
+
+At the comparison-law level, the unification is derivation-grade exact algebra. A Lorentz boost is the full one-way causal-leg ledger of the moving assembly. The sum of the fore and aft legs,
+$$
+t_++t_-
+=
+\frac{R_\parallel}{c_\star-v}
++
+\frac{R_\parallel}{c_\star+v}
+=
+\frac{2R_\parallel}{c_\star}\gamma_\star^2
+$$
+supplies the closed-return period whose longitudinal-transverse phase matching gives ruler contraction and clock dilation. The half-difference of the same legs is exactly
+$$
+\tfrac12\left(t_+-t_-\right)
+=
+\frac{R_\parallel v}{c_\star^2-v^2}
+=
+\frac{R_\parallel v}{c_\star^2}\gamma_\star^2
+$$
+and, when referred to the assembly's dilated clock and rest separation $x'$, gives the exact offset
+$$
+\delta\tau
+=
+\frac{v}{c_\star^2}\,x'
+$$
+The sum-and-difference identities are exact. Identifying $\delta\tau$ with observer relativity of simultaneity is a derivation target: it requires the observer-synchrony construction to show that physical clock exchange selects this offset, rather than the leg algebra alone being treated as a completed Lorentz-recovery proof. Subject to that identification, length, duration, and synchronization are three readings of one fore-and-aft causal ledger, not independently fitted effects. Momentum and energy belong to the same comparison-law boost map, so the exact special-relativistic accounting admits one common factor $\gamma_\star$ across clock, ruler, momentum, and energy rather than four unrelated corrections. [Return-Cycle Lorentz Quantization](./return-cycle-lorentz-quantization.md#simultaneity-from-the-leg-difference) gives the full sum-and-difference derivation. The native closure burden remains to show that one retained Noether braid branch exports this exact unified ledger into all four response channels and closes the observer-synchrony identification.
 
 The proposed common source is:
 

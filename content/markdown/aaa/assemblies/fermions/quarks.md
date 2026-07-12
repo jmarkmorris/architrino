@@ -457,6 +457,40 @@ The catalog uses the following working rules:
 - **No strong generation change:** gluons do not by themselves add or remove shielding binaries.
 - **Confinement rule:** open color sectors carry an energy cost that grows approximately linearly with separation, so isolated quarks are excluded and flux tubes close only in mesonic or baryonic singlets.
 
+## Hadronization Spin-Correlation Benchmark
+
+The quark catalog also has to recover not only static charge, color, and generation bookkeeping, but the way quark-level records survive into detector-facing hadrons. A useful current benchmark comes from short-range $\Lambda\bar{\Lambda}$ production in high-energy proton-proton collisions. In the standard reading, a correlated $s\bar{s}$ pair can be liberated from the QCD condensate, hadronize into a Lambda hyperon and anti-Lambda hyperon, and leave a measurable spin-correlation record in the decay products.
+
+The observer-level extraction uses the self-analysing weak decays of the hyperons. In comparison notation the decay-product opening-angle distribution is
+
+$$
+\frac{1}{N}\frac{dN}{d\cos\theta^*}
+=
+\frac{1}{2}
+\left[
+1+\alpha_1\alpha_2P_{\Lambda_1\Lambda_2}\cos\theta^*
+\right]
+$$
+
+where $P_{\Lambda_1\Lambda_2}$ is the hyperon-pair spin-correlation signal and $\alpha_1,\alpha_2$ are the weak-decay analysing parameters. The observed pattern is not merely a hadron-counting fact: short-range $\Lambda\bar{\Lambda}$ pairs show a positive correlation, while long-range pairs and scalar-control channels are consistent with zero correlation.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an import of QCD vacuum ontology or a claim that "nothing" creates particles. The native branch must connect, in one event record, the strong-collision work input, the local Noether sea participation, the quark-level axial and color records, the confinement or hadronization route into color-singlet hyperons, feed-down and remnant rows, and the final weak-decay detector readout. In schematic form the benchmark asks for
+
+$$
+P_{\Lambda\bar{\Lambda}}^{\mathrm{obs}}(\Delta R)
+=
+\mathcal{P}_{\mathrm{had}}
+\left(
+\Gamma_{\mathrm{coll}},
+I_{\mathrm{had}},
+\mathcal{L}_{E\mathbf p\mathbf J},
+\Theta_{\mathrm{decay}},
+\Delta R
+\right),
+$$
+
+where $I_{\mathrm{had}}$ is the selected hadronization route. The readout $P_{\Lambda\bar{\Lambda}}^{\mathrm{obs}}$ should be large in the short-range bin and tend to zero when the pair separation is large enough for decoherence, dilution, or unrelated production histories to dominate. A quark-sector closure that reproduces hadron spectra while losing this spin-correlation provenance would still be incomplete.
+
 ## What is fixed and what remains open
 
 ### Fixed by the Architecture

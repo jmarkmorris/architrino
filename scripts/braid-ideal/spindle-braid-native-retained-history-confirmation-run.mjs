@@ -218,7 +218,44 @@ export const DECLARED = {
   // axisymmetric about d_hat, cannot inject a transverse anisotropy), or
   // "ring6"/"ring8" (2 polar + a 6-/8-fold equatorial ring approaching
   // axisymmetric — the higher-symmetry fallback).
-  coDriftCage: { enabled: false, spacing: 1.645 * Math.SQRT2, ntOrientation: 64, geometry: "octahedral" },
+  coDriftCage: {
+    enabled: false,
+    spacing: 1.645 * Math.SQRT2,
+    ntOrientation: 64,
+    geometry: "octahedral",
+    // Dynamical extension (dynamical-sea-axis-absorber-instrument-spec.md): the
+    // minimal escape from the frozen-orientation multipole no-go. Both default
+    // OFF, so the frozen-cage runs regress to the digit; both null at u = 0.
+    //
+    // reorient: each cage dipole orientation pHat_k(t) continuously TRACKS a
+    // target axis instead of being the frozen slow-limit field direction.
+    //  - target "braidAxis": pHat_k(t) = n_hat(t), the braid's instantaneous
+    //    spin axis (braidAxisRow(states).axisUnit), read live each step; the
+    //    reorientation velocity d(pHat)/dt = d(n_hat)/dt enters the branch
+    //    factor D_s of every endpoint (the dynamical torque). This is the
+    //    saturated-orientational-response sea.
+    //  - target "driftHat": pHat_k(t) = d_hat (fixed); a static-orientation
+    //    reference (all dipoles along the drift), d(pHat)/dt = 0.
+    //  - rate: Infinity = saturated (pHat = target each step, d(pHat)/dt from the
+    //    step-to-step target change); finite gamma = first-order lag
+    //    d(pHat)/dt = gamma (target - pHat)_perp carried as cage state.
+    reorient: { enabled: false, target: "braidAxis", rate: Infinity },
+    // orbit: the equatorial ring centers rotate in azimuth about d_hat at rate
+    // Omega = rate * omega (polar sites on d_hat are invariant), so the
+    // time-averaged ring is an axisymmetric annulus about d_hat — the direct
+    // route to averaging away the frozen 4-fold transverse structure. Endpoint
+    // velocity picks up the orbital term Omega * (d_hat x c).
+    orbit: { enabled: false, rate: 0 },
+    // Gain diagnostics (dynamical-sea-axis-absorber-instrument-spec.md, gain
+    // sweep): dipoleGain scales the cage dipole length p0 (the reorientation
+    // authority ~ p0 * d(pHat)/dt), spacingOverride sets the cage radius (closer
+    // = stronger field coupling). Both are DIAGNOSTIC probes of whether the
+    // confirmed axisymmetric anchoring lever can be pushed to n_hat -> d_hat;
+    // p0 is otherwise the braid's own axial dipole (not a free ontology knob).
+    // dipoleGain = 1 and spacingOverride = null regress exactly.
+    dipoleGain: 1,
+    spacingOverride: null,
+  },
   candidateRow: 1,
   // Tabled candidate row (canonical, NOT a knob; selected via --row, default
   // Row 1 = the packet Section 1 champion). See TABLED_ROWS below.
@@ -243,6 +280,16 @@ export const DECLARED = {
   runRotations: 3,
   twinRotations: 1,
   twinPerturbation: 1e-3, // tangential kick on the middle + site (stability row)
+  // R3 shear-mode probe (return-cycle-relaxation-sigma-attractor-theorem-target.md,
+  // step R3): seed a small TRACELESS transverse (drift-perpendicular) quadrupole
+  // on the whole braid — scale the e1-transverse component of every site's x AND
+  // v by (1+eps), the e2 component by (1-eps) — i.e. make the circular orbits
+  // elliptical, a pure m=2 shear that sets sigma ~ eps at release. Watching
+  // sigma(t) decay (shear-mode eigenvalue < 0 => sigma=0 attractor, R3 holds) or
+  // grow (marginal/anti-damped) is the direct native witness of R3. 0 = off
+  // (exact regression). The frame is the drift-perpendicular plane (perpBasis of
+  // d_hat; +z at u=0), so the seed is the same mode sigma is read in.
+  shearSeed: 0,
   causalSlack: 0.8, // additive slack on the causal delay bound per pair
   haltMaxRadius: 12,
   haltMaxSpeed: 6,
@@ -632,22 +679,88 @@ function staticSeaSourceModel(seaSite) {
 // |x_r - s(t_H)|/c_f; a narrow production window around it suffices. For a
 // co-drifting endpoint the position at t_H is base + velocity * t_H, and the
 // production solver carries the motion through centerVelocity (staticSeaSourceModel).
-export function seaWakeContribution({ seaSites, xi, vi, receiverPol, tH }) {
+// Instantaneous position/velocity of a dynamical (reorienting and/or orbiting)
+// cage endpoint at time t. pHat(t) is the tracked dipole orientation (same for
+// every site), dpHat its rate; the equatorial ring optionally rotates about
+// d_hat at Omega (polar sites invariant). Returns the true endpoint worldline
+// point and its velocity — the tangent source is reconstructed from these.
+function dynamicalEndpointState(sea, cage, t) {
+  const drift = cage.drift;
+  const dHat = cage.driftHat;
+  const p0 = cage.p0;
+  // dipole orientation
+  let pHat;
+  let dpHat;
+  if (cage.reorient?.enabled && cage.liveAxis) {
+    pHat = cage.liveAxis;
+    dpHat = cage.liveAxisRate ?? [0, 0, 0];
+  } else {
+    pHat = sea.frozenPHat;
+    dpHat = [0, 0, 0];
+  }
+  // (co-moving, optionally orbiting) center
+  let rc = sea.baseCenter;
+  let cVel = drift;
+  if (cage.orbit?.enabled && sea.siteClass === "equatorial" && cage.orbit.rate) {
+    const Omega = cage.orbit.rate * cage.omega;
+    rc = rotateAboutAxis(sea.baseCenter, dHat, Omega * t);
+    const orb = [dHat[1] * rc[2] - dHat[2] * rc[1], dHat[2] * rc[0] - dHat[0] * rc[2], dHat[0] * rc[1] - dHat[1] * rc[0]];
+    cVel = [drift[0] + Omega * orb[0], drift[1] + Omega * orb[1], drift[2] + Omega * orb[2]];
+  }
+  const center = [rc[0] + drift[0] * t, rc[1] + drift[1] * t, rc[2] + drift[2] * t];
+  const pm = sea.pm;
+  const P = [
+    center[0] + pm * (p0 / 2) * pHat[0],
+    center[1] + pm * (p0 / 2) * pHat[1],
+    center[2] + pm * (p0 / 2) * pHat[2],
+  ];
+  const V = [
+    cVel[0] + pm * (p0 / 2) * dpHat[0],
+    cVel[1] + pm * (p0 / 2) * dpHat[1],
+    cVel[2] + pm * (p0 / 2) * dpHat[2],
+  ];
+  return { P, V };
+}
+
+export function seaWakeContribution({ seaSites, xi, vi, receiverPol, tH, cage = null }) {
   const soft = DECLARED.soft;
   const rc2 = DECLARED.coincidenceStratum * DECLARED.coincidenceStratum;
+  const dynamical = !!(cage && (cage.reorient?.enabled || cage.orbit?.enabled));
   const a = [0, 0, 0];
   let netRadial = 0;
   for (const sea of seaSites) {
-    const vel = sea.velocity ?? [0, 0, 0];
-    const posH = [
-      sea.position[0] + vel[0] * tH,
-      sea.position[1] + vel[1] * tH,
-      sea.position[2] + vel[2] * tH,
-    ];
+    let posH;
+    let sourceModel;
+    if (dynamical) {
+      // tangent reconstruction at the emission-time estimate: evaluate the true
+      // reorienting/orbiting endpoint worldline at tRoot and set the production
+      // source to the uniform line tangent there (carries d(pHat)/dt into D_s).
+      const atH = dynamicalEndpointState(sea, cage, tH);
+      posH = atH.P;
+      const distEst = Math.hypot(xi[0] - posH[0], xi[1] - posH[1], xi[2] - posH[2]);
+      const tRootEst = tH - distEst / DECLARED.fieldSpeed;
+      const atRoot = dynamicalEndpointState(sea, cage, tRootEst);
+      sourceModel = staticSeaSourceModel({
+        position: [
+          atRoot.P[0] - atRoot.V[0] * tRootEst,
+          atRoot.P[1] - atRoot.V[1] * tRootEst,
+          atRoot.P[2] - atRoot.V[2] * tRootEst,
+        ],
+        velocity: atRoot.V,
+      });
+    } else {
+      const vel = sea.velocity ?? [0, 0, 0];
+      posH = [
+        sea.position[0] + vel[0] * tH,
+        sea.position[1] + vel[1] * tH,
+        sea.position[2] + vel[2] * tH,
+      ];
+      sourceModel = staticSeaSourceModel(sea);
+    }
     const dist = Math.hypot(xi[0] - posH[0], xi[1] - posH[1], xi[2] - posH[2]);
     const tRoot = tH - dist / DECLARED.fieldSpeed;
     const result = solveMovingCircularSourceCausalRoots({
-      source: staticSeaSourceModel(sea),
+      source: sourceModel,
       receiver: {
         startTime: tH,
         positionAtStart: { x: xi[0], y: xi[1], z: xi[2] },
@@ -777,6 +890,21 @@ function matVec(R, v) {
   ];
 }
 
+// Rodrigues rotation of vector v about unit axis k by angle ang. Used for the
+// co-orbital ring (rotate equatorial centers about d_hat) and for the finite
+// tangent reconstruction of reorienting/orbiting endpoints.
+function rotateAboutAxis(v, k, ang) {
+  const c = Math.cos(ang);
+  const s = Math.sin(ang);
+  const kv = k[0] * v[0] + k[1] * v[1] + k[2] * v[2];
+  const kx = [k[1] * v[2] - k[2] * v[1], k[2] * v[0] - k[0] * v[2], k[0] * v[1] - k[1] * v[0]];
+  return [
+    v[0] * c + kx[0] * s + k[0] * kv * (1 - c),
+    v[1] * c + kx[1] * s + k[1] * kv * (1 - c),
+    v[2] * c + kx[2] * s + k[2] * kv * (1 - c),
+  ];
+}
+
 // Co-drifting octahedral cage (the structured-sea AXIS absorber). Same six-site
 // Row-6 cage (two polar, four equatorial at radius DECLARED.coDriftCage.spacing,
 // frozen antipodal unit-polarity pairs) but (a) rotated so the polar pair is
@@ -814,8 +942,8 @@ function cageDirections(geometry) {
 }
 
 export function buildCoDriftCage(sites, nt = DECLARED.coDriftCage.ntOrientation) {
-  const a = DECLARED.coDriftCage.spacing;
-  const p0 = braidAxialDipole(sites);
+  const a = DECLARED.coDriftCage.spacingOverride ?? DECLARED.coDriftCage.spacing;
+  const p0 = braidAxialDipole(sites) * (DECLARED.coDriftCage.dipoleGain ?? 1);
   const period = TWO_PI / DECLARED.omega;
   const drift = driftVector();
   const dmag = Math.hypot(drift[0], drift[1], drift[2]);
@@ -843,7 +971,7 @@ export function buildCoDriftCage(sites, nt = DECLARED.coDriftCage.ntOrientation)
     }
     const pHat = unit3(acc);
     const siteClass = cageFrameDirs[k].cls;
-    shell.push({ id: `codrift:${k}`, center, pHat, siteClass });
+    shell.push({ id: `codrift:${k}`, center, pHat, siteClass, shellIndex: k });
     for (const pm of [+1, -1]) {
       endpoints.push({
         id: `codrift:${k}:${pm > 0 ? "+" : "-"}`,
@@ -856,10 +984,81 @@ export function buildCoDriftCage(sites, nt = DECLARED.coDriftCage.ntOrientation)
         pol: pm,
         shellIndex: k,
         siteClass,
+        // dynamical-extension metadata (used only when reorient/orbit are on;
+        // the frozen path books position/velocity above unchanged):
+        baseCenter: center.slice(), // co-moving epoch-0 center (pre-orbit)
+        frozenPHat: pHat.slice(), // slow-limit frozen dipole orientation
+        pm,
       });
     }
   }
-  return { shell, endpoints, p0, spacing: a, ntUsed: nt, placement: `coDrift_${geometry}`, geometry, driftHat: dHat, coDrift: true };
+  const reorient = { ...DECLARED.coDriftCage.reorient };
+  const orbit = { ...DECLARED.coDriftCage.orbit };
+  return {
+    shell,
+    endpoints,
+    p0,
+    spacing: a,
+    ntUsed: nt,
+    placement: `coDrift_${geometry}`,
+    geometry,
+    driftHat: dHat,
+    drift: drift.slice(),
+    coDrift: true,
+    reorient,
+    orbit,
+    omega: DECLARED.omega,
+    // live orientation state, set per step by runRelease when the cage
+    // reorients: liveAxis = tracked target axis pHat(t) (same for every site),
+    // liveAxisRate = d(pHat)/dt. Defaults (frozen) leave these null.
+    liveAxis: null,
+    liveAxisRate: [0, 0, 0],
+  };
+}
+
+// Per-step live dipole orientation for a reorienting cage (dynamical-sea
+// extension). Sets cage.liveAxis = tracked target pHat(t) (shared by all sites)
+// and cage.liveAxisRate = d(pHat)/dt. target "braidAxis" follows the braid's
+// instantaneous spin axis n_hat(t) (braidAxisRow), "driftHat" is fixed d_hat.
+// rate = Infinity is saturated tracking (rate from the step-to-step target
+// finite difference); a finite gamma is a first-order relaxation lag carried in
+// cage._pHatLag. No-op unless the cage reorients (orbit-only uses frozen pHat).
+export function updateCageLiveOrientation(cage, states, t, dt) {
+  if (!cage || !cage.coDrift || !cage.reorient?.enabled) return;
+  let target =
+    cage.reorient.target === "driftHat"
+      ? cage.driftHat.slice()
+      : (braidAxisRow(states).axisUnit ?? cage.driftHat).slice();
+  // the spin axis is a line: sign-align to the previous target to avoid the
+  // +z-hemisphere convention flipping d(pHat)/dt spuriously as it tumbles.
+  if (cage._prevTarget) {
+    const d = target[0] * cage._prevTarget[0] + target[1] * cage._prevTarget[1] + target[2] * cage._prevTarget[2];
+    if (d < 0) target = target.map((v) => -v);
+  }
+  const rate = cage.reorient.rate;
+  if (!Number.isFinite(rate)) {
+    cage.liveAxis = target;
+    cage.liveAxisRate =
+      cage._prevTarget && dt > 0
+        ? [
+            (target[0] - cage._prevTarget[0]) / dt,
+            (target[1] - cage._prevTarget[1]) / dt,
+            (target[2] - cage._prevTarget[2]) / dt,
+          ]
+        : [0, 0, 0];
+  } else {
+    if (!cage._pHatLag) cage._pHatLag = target.slice();
+    const p = cage._pHatLag;
+    const dotp = target[0] * p[0] + target[1] * p[1] + target[2] * p[2];
+    const dp = [rate * (target[0] - dotp * p[0]), rate * (target[1] - dotp * p[1]), rate * (target[2] - dotp * p[2])];
+    let np = [p[0] + dp[0] * dt, p[1] + dp[1] * dt, p[2] + dp[2] * dt];
+    const nn = Math.hypot(np[0], np[1], np[2]) || 1;
+    np = [np[0] / nn, np[1] / nn, np[2] / nn];
+    cage._pHatLag = np;
+    cage.liveAxis = np;
+    cage.liveAxisRate = dp;
+  }
+  cage._prevTarget = target;
 }
 
 // Co-drift cage coherence row (measurement 3). At each shell site (co-moving
@@ -876,18 +1075,22 @@ export function coDriftCageCoherenceRow(cage, sites, histories, t, kappa) {
   let polarN = 0;
   let eqF = 0;
   let eqN = 0;
+  const pHatLive =
+    cage.reorient?.enabled && cage.liveAxis ? cage.liveAxis : null;
   for (const site of cage.shell) {
-    const c = [
-      site.center[0] + drift[0] * t,
-      site.center[1] + drift[1] * t,
-      site.center[2] + drift[2] * t,
-    ];
+    // orbited (co-orbital ring) or plain co-moving center
+    let rc = site.center;
+    if (cage.orbit?.enabled && site.siteClass === "equatorial" && cage.orbit.rate) {
+      rc = rotateAboutAxis(site.center, cage.driftHat, cage.orbit.rate * cage.omega * t);
+    }
+    const c = [rc[0] + drift[0] * t, rc[1] + drift[1] * t, rc[2] + drift[2] * t];
+    const pHat = pHatLive ?? site.pHat;
     const F = [0, 0, 0];
     for (const pm of [+1, -1]) {
       const X = [
-        c[0] + pm * (cage.p0 / 2) * site.pHat[0],
-        c[1] + pm * (cage.p0 / 2) * site.pHat[1],
-        c[2] + pm * (cage.p0 / 2) * site.pHat[2],
+        c[0] + pm * (cage.p0 / 2) * pHat[0],
+        c[1] + pm * (cage.p0 / 2) * pHat[1],
+        c[2] + pm * (cage.p0 / 2) * pHat[2],
       ];
       const E = braidRetardedFieldAt(X, sites, histories, t);
       F[0] += pm * E[0];
@@ -1913,6 +2116,7 @@ export function wakeAcceleration({ histories, sites, i, tH, xi, vi, ledger = nul
       vi,
       receiverPol: sites[i].pol,
       tH,
+      cage: staticPairSea.coDrift ? staticPairSea : null,
     });
     aSea[0] += sea.a[0];
     aSea[1] += sea.a[1];
@@ -2652,6 +2856,7 @@ export function runRelease({
   rotations = DECLARED.runRotations,
   kappa,
   perturb = null,
+  tiltPerturbation = null,
   recordRotations = [0.25, 0.5, 1, 1.5, 2, 2.5, 3],
   onStep = null,
   maxClickLogEntries = 400,
@@ -2733,6 +2938,51 @@ export function runRelease({
       st.v[0] += (-st.x[1] / rho) * tangentialKick;
       st.v[1] += (st.x[0] / rho) * tangentialKick;
     }
+    // Relative tilt-sector seed for native flutter runs. Each selected layer's
+    // released position and velocity are rotated about the declared transverse
+    // axis while the held prehistory remains on the untilted analytic circle.
+    // A map such as {I:-eps/2,M:eps,O:-eps/2} removes the global-orientation
+    // component and seeds only relative layer nutation. Default null preserves
+    // every existing candidate-row run bit-for-bit.
+    if (tiltPerturbation) {
+      const axis = tiltPerturbation.axis ?? "x";
+      const angles = tiltPerturbation.layerAngles ?? {};
+      const rotate = (v, angle) => {
+        const c = Math.cos(angle), s = Math.sin(angle);
+        if (axis === "y") return [c * v[0] + s * v[2], v[1], -s * v[0] + c * v[2]];
+        return [v[0], c * v[1] - s * v[2], s * v[1] + c * v[2]];
+      };
+      for (let i = 0; i < sites.length; i += 1) {
+        const angle = angles[sites[i].layer] ?? 0;
+        if (angle === 0) continue;
+        states[i].x = rotate(states[i].x, angle);
+        states[i].v = rotate(states[i].v, angle);
+      }
+    }
+    // R3 shear-mode seed: a traceless transverse (drift-perpendicular)
+    // quadrupole on the whole braid (positions AND velocities), so the released
+    // sigma(t) is the shear-mode linear response. Applied to the seed states
+    // only; the held prehistory (rigidPosition) is unchanged, so this is a
+    // release-instant perturbation whose decay/growth reads the eigenvalue sign.
+    if (DECLARED.shearSeed) {
+      const dvec = driftVector();
+      const dm = Math.hypot(dvec[0], dvec[1], dvec[2]);
+      const nrm = dm > 1e-12 ? [dvec[0] / dm, dvec[1] / dm, dvec[2] / dm] : [0, 0, 1];
+      const { e1, e2 } = perpBasis(nrm);
+      const eps = DECLARED.shearSeed;
+      for (const st of states) {
+        for (const key of ["x", "v"]) {
+          const c = st[key];
+          const p1 = c[0] * e1[0] + c[1] * e1[1] + c[2] * e1[2];
+          const p2 = c[0] * e2[0] + c[1] * e2[1] + c[2] * e2[2];
+          st[key] = [
+            c[0] + eps * (p1 * e1[0] - p2 * e2[0]),
+            c[1] + eps * (p1 * e1[1] - p2 * e2[1]),
+            c[2] + eps * (p1 * e1[2] - p2 * e2[2]),
+          ];
+        }
+      }
+    }
     diag = [];
     records = [];
     clickLedger = { totalTransitions: 0, entries: [] };
@@ -2767,6 +3017,12 @@ export function runRelease({
     const t = step * dt;
     // retain the record BEFORE stepping (samples at t)
     for (let i = 0; i < sites.length; i += 1) histories[i].push(t, states[i].x, states[i].v);
+
+    // dynamical-sea reorienting cage: update the live dipole orientation from
+    // the braid's instantaneous axis before this step's force accumulation.
+    if (staticPairSea && staticPairSea.coDrift && staticPairSea.reorient?.enabled) {
+      updateCageLiveOrientation(staticPairSea, states, t, dt);
+    }
 
     const wantRecord =
       nextRecordIdx < recordTimes.length && t + dt / 2 >= recordTimes[nextRecordIdx];
@@ -3453,6 +3709,7 @@ if (isMain()) {
   DECLARED.coincidenceStratum = readCliNumber("rc", DECLARED.coincidenceStratum);
   DECLARED.sameSourceMinimumDelay = readCliNumber("dmin", DECLARED.sameSourceMinimumDelay);
   DECLARED.soft = readCliNumber("soft", DECLARED.soft);
+  DECLARED.shearSeed = readCliNumber("shear-seed", 0); // R3 shear-mode probe amplitude
   DECLARED.chart.enabled = process.argv.includes("--chart");
   DECLARED.sea.enabled = process.argv.includes("--sea");
   DECLARED.sea.spacing = readCliNumber("sea-spacing", DECLARED.sea.spacing);
@@ -3473,6 +3730,25 @@ if (isMain()) {
   DECLARED.coDriftCage.geometry = process.argv.includes("--polar-pair-sea")
     ? "polarPairOnly"
     : process.argv.find((a) => a.startsWith("--cage-geometry="))?.slice("--cage-geometry=".length) ?? "octahedral";
+  // Dynamical-sea extension (dynamical-sea-axis-absorber-instrument-spec.md):
+  //  --reorient: cage dipoles reorient to track an axis instead of frozen;
+  //    --reorient-target=braidAxis (default) | driftHat;
+  //    --reorient-rate=<num|inf> (inf = saturated tracking; default inf).
+  //  --co-orbit: equatorial ring spins about d_hat; --orbit-rate=<num> (x omega).
+  DECLARED.coDriftCage.reorient.enabled = process.argv.includes("--reorient");
+  DECLARED.coDriftCage.reorient.target =
+    process.argv.find((a) => a.startsWith("--reorient-target="))?.slice("--reorient-target=".length) ?? "braidAxis";
+  {
+    const raw = process.argv.find((a) => a.startsWith("--reorient-rate="))?.slice("--reorient-rate=".length);
+    DECLARED.coDriftCage.reorient.rate = raw && raw !== "inf" && Number.isFinite(Number(raw)) ? Number(raw) : Infinity;
+  }
+  DECLARED.coDriftCage.orbit.enabled = process.argv.includes("--co-orbit");
+  DECLARED.coDriftCage.orbit.rate = readCliNumber("orbit-rate", DECLARED.coDriftCage.orbit.rate);
+  DECLARED.coDriftCage.dipoleGain = readCliNumber("dipole-gain", DECLARED.coDriftCage.dipoleGain);
+  {
+    const s = process.argv.find((a) => a.startsWith("--cage-spacing="))?.slice("--cage-spacing=".length);
+    DECLARED.coDriftCage.spacingOverride = s && Number.isFinite(Number(s)) ? Number(s) : null;
+  }
   selectTabledRow(readCliNumber("row", 1));
   if (DECLARED.staticPairSea.enabled && (DECLARED.sea.enabled || DECLARED.responsiveSea.enabled)) {
     process.stderr.write(
@@ -3764,6 +4040,15 @@ if (isMain()) {
         driftAngleDeg: (DECLARED.driftAngle * 180) / Math.PI,
         coDriftCage: DECLARED.coDriftCage.enabled,
         cageGeometry: DECLARED.coDriftCage.enabled ? DECLARED.coDriftCage.geometry : null,
+        cageReorient: DECLARED.coDriftCage.enabled && DECLARED.coDriftCage.reorient.enabled
+          ? { target: DECLARED.coDriftCage.reorient.target, rate: DECLARED.coDriftCage.reorient.rate === Infinity ? "inf" : DECLARED.coDriftCage.reorient.rate }
+          : null,
+        cageOrbit: DECLARED.coDriftCage.enabled && DECLARED.coDriftCage.orbit.enabled
+          ? { rate: DECLARED.coDriftCage.orbit.rate }
+          : null,
+        cageGain: DECLARED.coDriftCage.enabled
+          ? { dipoleGain: DECLARED.coDriftCage.dipoleGain, spacing: DECLARED.coDriftCage.spacingOverride ?? DECLARED.coDriftCage.spacing }
+          : null,
         kappaFrozen: prior.kappaFrozen,
         rulerLawTest: "relative_flattening_xi(u)/xi(0)_vs_1/gamma (caveat 1)",
         screwRigidReferenceUsed: false,

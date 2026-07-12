@@ -82,7 +82,7 @@ $$
 \sum_{i=1}^{6}\sigma_i=0
 $$
 
-Equivalently, the compact polarity inventory is $3\epsilon_+ + 3\epsilon_-$. This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repulsive channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repulsive channels to negatives. That $3+2$ channel count is part of the neutral braid bookkeeping even when no binary partition has been certified.
+Equivalently, the compact polarity inventory is $3\epsilon_+ + 3\epsilon_-$. This polarity-neutral ledger is imposed before any binary partition, shell ordering, or near-antipodal matching is assumed. Each positive-polarity architrino has three attractive channels to negative-polarity architrinos and two repulsive channels to the other positive-polarity architrinos. Each negative-polarity architrino has the polarity-reversed version of the same count: three attractive channels to positives and two repulsive channels to negatives. That $3+2$ channel count is part of the neutral braid bookkeeping even when no binary partition has been certified. On the face-opposite symmetry channel, the same count becomes the [drum-lacing geometry](../../../../markdown/aaa/noether-braid/braid-mathematics.md#drum-geometry): same-polarity repulsion spaces the two rings, opposite-polarity attraction laces them together, and rotation winds those ties into a braid.
 
 Every more specific braid family adds structure to this base case, and the current leading candidate realization — the [**spindle braid**](../../../../markdown/aaa/noether-braid/spindle-braid.md), the rigid uniaxial iso-frequency family — is a neutral braid in exactly this sense: three tilted antipodal binaries sharing one axis and one frequency, with the retained-branch certificate target of this chapter still the open burden.
 
@@ -493,7 +493,7 @@ $$
 v_t(u)=\sqrt{\beta_\ast^2c_f^2-u^2}
 $$
 
-so the internal cadence of a faster-translating branch slows by exactly the square-root factor familiar from the light-clock argument. On this channel the Lorentz-style clock relation is not imported; it is the arithmetic of a fixed speed budget split between getting somewhere and going around. The pinning of $\beta_\ast$ is a branch hypothesis that the retention program must earn; the quadrature itself is exact channel kinematics. At the $u\to\beta_\ast c_f$ endpoint the tangential budget vanishes and the internal cycle freezes, which is the channel's own statement of the terminal boundary: a branch cannot both translate at its full speed budget and keep an internal clock running.
+so the internal cadence of a faster-translating branch slows by exactly the square-root factor familiar from the light-clock argument. On this channel the Lorentz-style clock relation is not imported; it is the arithmetic of a fixed speed budget split between getting somewhere and going around. The [spindle-family pin](../../../../markdown/aaa/noether-braid/spindle-braid.md#the-field-speed-pin-and-the-escapement) realizes this arithmetic as $\omega^{\mathrm{pin}}(u)=\omega_0/\gamma$ on the prescribed drifting family. The pinning of $\beta_\ast$ is a branch hypothesis that the retention program must earn; the quadrature itself is exact channel kinematics. At the $u\to\beta_\ast c_f$ endpoint the tangential budget vanishes and the internal cycle freezes, which is the channel's own statement of the terminal boundary: a branch cannot both translate at its full speed budget and keep an internal clock running.
 
 This is the same pinned-speed hypothesis that already drives the rest-level scaling chart of the [nested shell braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid): there, a branch that holds its layer speed fixed while accepting action transactions is forced onto the $R_\ell f_\ell\approx\text{constant}$ product law. The speed budget extends that one hypothesis to transport: a single pinned $\beta_\ast$ simultaneously fixes how the radius-frequency product retunes at rest and how the internal clock slows under translation, so the rest-level scaling branch and the moving clock export are two projections of one branch commitment rather than two independent assumptions.
 
@@ -815,7 +815,7 @@ $$
 \gamma=\frac{1}{\sqrt{1-u^2/c_f^2}}
 $$
 
-**Clock dilation — and, through cadence-paced transactions, decay-rate dilation — is derived from the closure landscape plus the pin**, rather than postulated. Claim level: derivation plus measurement on the prescribed family; the native retained-history version is hypothesis pending a confined realization.
+**Clock dilation — and, through cadence-paced transactions, reaction-rate dilation — is derived from the closure landscape plus the pin**, rather than postulated. The arithmetic source is the exact speed-budget split in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#the-exact-speed-budget): axial drift consumes part of a fixed site-speed budget, leaving the internal transverse cadence with the factor $\sqrt{1-u^2/c_f^2}$. Claim level: derivation plus measurement on the prescribed family; the native retained-history version is hypothesis pending a confined realization.
 
 ### Motion, Inertia, and Isotropy
 
@@ -849,7 +849,7 @@ f_\perp-f_{\mathrm{rest}}=+2.01\,u^2,
 f_\parallel-f_{\mathrm{rest}}=-0.102\,|u|+0.39\,u^2.
 $$
 
-The two parallel quadratics are not the same number because they are not the same channel: the helicity-*averaged* coefficient ($+0.42$) averages the two helicity branches, whose quadratic coefficients differ, while the leader-*selected* law ($+0.39$) follows the branch the linear term prefers — both are sourced from the same scaling record. A helicity-averaged (unpolarized) orientation comparison — which is what a Michelson-Morley-flavored experiment performs — uses the averaged value and is therefore purely second order, $\Delta f_{\mathrm{avg}}=(2.01-0.42)\,u^2=1.59\,u^2$, with no first-order component at all: structurally parallel to the real second-order null. The only first-order piece lives in the helicity-selected channel, $-0.102\,|u|$ — a chiral braid whose handedness locks to its drift carries a linear closure difference, a spin-anisotropy (Hughes-Drever-class) exposure rather than an orientation one. Both coefficients are regulator- and sampling-robust; mapping the residual to laboratory bounds requires the closure-to-energy map, which remains open.
+The two parallel quadratics are not the same number because they are not the same channel: the helicity-*averaged* coefficient ($+0.42$) averages the two helicity branches, whose quadratic coefficients differ, while the leader-*selected* law ($+0.39$) follows the branch the linear term prefers — both are sourced from the same scaling record. A helicity-averaged (unpolarized) orientation comparison — which is what a Michelson-Morley-flavored experiment performs — uses the averaged value and is therefore purely second order, $\Delta f_{\mathrm{avg}}=(2.01-0.42)\,u^2=1.59\,u^2$, with no first-order component at all: structurally parallel to the real second-order null. The only first-order piece lives in the helicity-selected channel, $-0.102\,|u|$ — a chiral braid whose handedness locks to its drift carries a linear closure difference, a spin-anisotropy (Hughes-Drever-class) exposure rather than an orientation one. The complementary rank-three theorem target separates non-orthogonal-frame leakage from spectral-weight anisotropy in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy). The spindle coefficients are measured family data, not a proof of that theorem, and mapping either residual to laboratory bounds requires the closure-to-energy map, which remains open.
 
 **Action bookkeeping under drift splits into two ledgers.** The stored internal action per click dilates exactly as $1/\gamma$ at frozen geometry — the pinned-cadence restatement of time dilation. The transacted wake angular impulse per click is not invariant at frozen geometry:
 
@@ -859,17 +859,37 @@ $$
 1\;\pm\;0.236\,|u|\;-\;1.28\,u^2,
 $$
 
-helicity-odd at first order (the preferred leader transacts more per click) and running down quadratically helicity-averaged, roughly $2.6\times$ faster than $1/\gamma$. Because nearby family members transact more and less than the rest value at the same drift, a transaction-conserving trajectory through the configuration space exists; whether it coincides with the closure-optimal trajectory is a named open computation. If the two coincide, Planck-constant constancy is derived from the same principle as everything else in this family; if they diverge, observed constancy becomes a selection constraint on which family members can be dressed into matter. Claim level: measurement for the two ledgers on the prescribed family; the coincidence question is hypothesis, discovery-grade if it closes.
+helicity-odd at first order (the preferred leader transacts more per click) and running down quadratically helicity-averaged, roughly $2.6\times$ faster than $1/\gamma$. A prescribed-family comparison has now tested the remaining coincidence question: composing the closure-optimal geometry with the transaction ledger makes $J_z(u)/J_z(0)$ rise by about $9\%$–$14\%$ at small drift and fall by about $28\%$–$45\%$ by $u=0.6$. Those departures exceed the approximately $1.5\%$ optimizer-granularity floor, and re-optimization does not flatten them. Thus the $J_z$-conserving and closure-optimal trajectories diverge on this sampled family. The conclusion is numerical and family-limited, with a coarse-grid caveat near $u=0.5$–$0.6$; it does not prove that no larger dressed family can supply an invariant transaction. It does show that Planck-constant constancy is not a corollary of closure optimality on the present spindle family. Within this route, observed constancy is therefore a selection constraint on which closure-optimal members can dress into matter. Claim level: prescribed-family numerical result plus conditional selection consequence.
 
 ### Discrete-Symmetry Structure
 
-Claim level: derivation sketch on prescribed-worldline closure results; not a retained-branch theorem. The spindle braid carries a definite discrete-symmetry structure that any retained realization would inherit, and it is worth stating because it reproduces the observed hierarchy of symmetry-violation sizes.
+Claim level: **analytical (derivation grade) for the discrete-symmetry algebra, conditional on a retained chiral object; measured for the magnitude of the locking; the existence of the object is the separate retention burden** — the [confinement problem](#the-confinement-problem) below, whose bare-neutral-scaffold results scope the search rather than settle the dressed realization. The point of this section is that the symmetry structure is fixed by the interaction law alone, independently of which geometry ultimately closes: it is a theorem about the law that any retained chiral braid must inherit.
 
-The pairwise causal-wake law is even under polarity conjugation (C: every electrino$\leftrightarrow$positrino, since only polarity products enter) and even under parity (P: the law is radial with no primitive handedness). An isolated anti-braid — the C-conjugate polarity arrangement on the same geometry — is therefore exactly degenerate with its braid, and a true mirror image (geometry and rotation sense both reflected) is an exactly degenerate enantiomer. The braid itself, however, is a chiral object: its ground-state geometry locks the relative orientation of three oriented structures — the spin axis, the cap polarity dipole, and the cap azimuthal offset — so each realized braid is one glove of a degenerate pair, with handedness summarized by the pseudoscalar pairing of dipole and spin.
+**The law's evenness.** The pairwise causal-wake law is even under polarity conjugation $C$ (every electrino $\leftrightarrow$ positrino: only the polarity product $\sigma_a\sigma_b$ enters, invariant under a global sign flip of every polarity) and even under parity $P$ (the force is radial along the delayed line of action, $\propto\hat{\mathbf r}/r^2$, with no primitive handedness). Two exact degeneracies follow at once, as theorems about the law rather than observations about a solution: the $C$-image of any closed configuration — the anti-braid, the same geometry with every polarity reversed — is a degenerate solution, and the $P$-image — the mirror geometry with rotation sense reflected — is a degenerate enantiomer.
 
-Prescribed-worldline closure measurements on the drifting spindle braid find this locking maximal: closure strongly prefers motion anti-parallel to the cap polarity dipole (one polarity cap leads), with the preference growing with drift speed, and the C-conjugate braid forced to lead with the opposite polarity. Three consequences follow at the stated claim level. Channels that do not read the internal glove — bulk wake exchange and the electromagnetic-flavored interactions built from it — inherit the law's parity evenness, so parity conservation there is structural. Channels that reorganize the braid's internal locking — the weak-flavored transaction channels — read the glove directly, and because the lock is maximal, parity violation in exactly those channels is maximal rather than partial. And because the lock correlates handedness *with* polarity, the combined CP operation (left-braid$\leftrightarrow$right-anti-braid) restores degeneracy: CP is exact at this order, with any observed small CP violation necessarily arising from next-order structure — candidate sources are Noether-sea polarity/chirality texture (absolute time supplies the arrow) and interference between transaction paths at different values of the drift-dependent internal angles.
+**The chiral invariant.** A neutral braid is nonetheless chiral, because its ground state locks the mutual orientation of a polar vector and an axial vector: the cap polarity dipole $\mathbf p$ (polar, reversed by both $C$ and $P$) and the spin $\mathbf S$ (axial, invariant under both $C$ and $P$), with the cap azimuthal offset the third locked structure that renders the ground state geometrically chiral. Their product is a pseudoscalar,
 
-This is the observed pattern of nature's discrete symmetries — parity maximally violated in a specific sector, CP nearly but not exactly conserved — produced with the observed hierarchy of sizes by one structural mechanism: a parity-even law populated by chiral objects whose handedness is maximally locked to their polarity.
+$$
+\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S),
+$$
+
+the single chiral invariant of the braid. Its transformation law is forced by the vector characters above:
+
+| operation | $\mathbf p$ | $\mathbf S$ | $\chi$ |
+| --- | --- | --- | --- |
+| $C$ (polarity conjugation) | $-\mathbf p$ | $+\mathbf S$ | $-\chi$ |
+| $P$ (parity) | $-\mathbf p$ | $+\mathbf S$ | $-\chi$ |
+| $CP$ | $+\mathbf p$ | $+\mathbf S$ | $+\chi$ |
+
+So $C$ and $P$ each reverse the handedness while $CP$ preserves it. The $CP$-image (left-braid $\leftrightarrow$ right-anti-braid) is therefore degenerate with the original at this order, which is the structural origin of exact $CP$ alongside separately reversible $C$ and $P$.
+
+**The leading-cap rule is $C$-covariant, not a $C$-violation.** Under drift the fore–aft symmetry is broken and closure selects the drift anti-parallel to $\mathbf p$ (one polarity cap leads). This selection is locked to $\chi$, not to an absolute polarity: it is the *same* rule applied to a given handedness, so the $C$-image obeys it with $\mathbf p$ reversed. A matter braid therefore leads with its electrino cap and the positron — its $C$-image — leads with its positrino cap; the two are exactly degenerate and neither leading orientation is unstable. What is disfavored is a braid driven *against* its lock (drift parallel to $\mathbf p$), which is not a distinct particle but a non-equilibrium orientation the measured orientation stiffness restores. That closure prefers the aligned orientation *maximally*, increasingly with speed, is a measured property of the family; that the preference must lock to $\chi$ rather than to an absolute polarity — so that no matter/antimatter asymmetry enters at the level of the law — is the analytical statement.
+
+**The crossing order is the observable face of $\chi$.** An observer stationed on the incoming drift axis, watching the three binary axes cross the meridian as the braid spins, records a fixed cyclic order — inner:middle:outer or inner:outer:middle — whose sign is $\chi$; the two orders are the $P$-image enantiomers. For a rigid iso-frequency braid this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the layers lap and the order scramble — the same non-representability the rigid-versus-differential analysis meets in [The Angular-Momentum Pump Has No Internal Null](#the-angular-momentum-pump-has-no-internal-null).
+
+**Which channels read the glove.** Channels that do not resolve the internal lock — bulk wake exchange and the electromagnetic-flavored interactions built from it — inherit the law's parity evenness, so parity conservation there is structural. Channels that reorganize the internal lock — the weak-flavored transaction channels — read $\chi$ directly, and because the lock is maximal, parity violation in exactly those channels is maximal rather than partial. Because the lock correlates handedness with polarity, $CP$ is exact at this order; any small observed $CP$ violation must arise from next-order structure — candidate sources are Noether-sea polarity/chirality texture, with absolute time supplying the arrow, and interference between transaction paths at different drift-dependent internal angles. The combined $CPT$ benchmark is carried in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+
+This reproduces the observed pattern of nature's discrete symmetries — parity maximally violated in a specific sector, $CP$ nearly but not exactly conserved — from one structural mechanism: a parity-even, polarity-even law populated by chiral objects whose handedness is maximally locked to their polarity. The derivation is *conditional*: it fixes the symmetry algebra any retained chiral braid must carry, but does not by itself establish that such a braid is a stable free object. That existence burden is the confinement problem below, whose bare-neutral-scaffold results scope the search rather than settle the dressed realization.
 
 ### The Confinement Problem
 
@@ -931,13 +951,25 @@ Two consequences carry beyond the search. The braid's absolute size becomes a de
 
 The stability gate was then extended to the axis sector — the mode class that killed the held-cage release. For a bare braid a global tilt is a symmetry of the isotropic law, and the tilt stiffness block carries that as a built-in validation: the global mode is an exact numerical null. The block is asymmetric, and the asymmetry is physics rather than error — in a causal-delay theory internal torques need not cancel instantaneously, because the field in flight carries angular momentum — so the claim-bearing readout is the quotient spectrum with the null deflated. At the self-equilibrated fixed point the relative-tilt modes are **restoring** (both eigenvalues real and negative), with the strongest single coupling — inner tilt to middle torque — exactly the pathway the held-cage nutation followed, here carrying a net restoring response. The pre-tabling gate therefore now covers every mode class that has killed a native release: the rail-pinned radial basin, the closed tangential ledger, and the tilt block; the self-equilibrated configuration passes all three, and no prior candidate would have. The declared remaining caveat is dynamical, and it is now resolved against the family: the layers carry spin angular momentum, so the true linearized problem is gyroscopic-circulatory, and its verdict is **flutter** — the restoring static tilt block does not survive the spin and circulatory terms, a growing internal whirl appears, and it is independent of the rail pump. The whirl/flutter treatment and the spindle-native spin scaffold it belongs to live with the angular-momentum bridge in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spindle-braid-spin-scaffold). Every axis-sector absorber the bare resting braid owns has been measured or bounded and fails, so the flutter is a real obstruction, not an instrument artifact.
 
+#### The Angular-Momentum Pump Has No Internal Null
+
+The self-equilibrated fixed point leaves exactly one booking open — the middle binary's rail pump — and that residue is an *angular-momentum* pump: the middle layer's net secular contribution to the braid's axial torque does not vanish. The radial and tangential ledgers and the static tilt block all close on the bare braid, but the pump's angular-momentum surplus has no home inside it, and a dedicated search now shows this is structural rather than a gap in the rigid family. The net secular axial torque is **sign-definite and non-vanishing across the entire rigid co-rotating family** — swept over overall cadence and layer tilts, it never crosses zero — while the force-free radial-support residual moves the opposite way. The rail pump and torque-freedom are the same degree of freedom pulling against each other: the pump cannot be tuned away while the braid stays radially supported.
+
+Relaxing the rigid constraint opens no escape. Allowing each layer its own rotation rate — differential rotation, including **counter-rotation**, where one nested binary circulates about the shared spin axis in the sense opposite to the others — *can* drive the net axial torque through zero, since counter-spinning the inner layer against the middle cancels the middle's surplus. But every such torque-null configuration fails two independent tests at once. It is **not a closed braid**: independently-rated layers share no common co-rotating frame in which the knot sits rigid, so the object shears apart rather than returning to one repeatable relationship. And it is **not radially supported**, losing the harmonic-matching that holds the shape. A free particle must be a representable closed braid *and* radially supported *and* torque-free together; the differential freedom that buys the third destroys the first two. No bare braid — rigid or differential — is all three.
+
+The result is a necessity statement rather than an existence one: **a free braid cannot balance its own angular-momentum pump internally, so a retained realization requires an external angular-momentum sink.** This is established for steady per-layer cadences; a time-varying internal cadence $\omega(t)$ is the one internal degree of freedom not yet mapped, and remains a named residual freedom. Claim level: native seed-grade landscape measurement across the rigid and per-layer-cadence families, with a closed-braid representability test applied to every candidate null.
+
+Where that sink can come from is constrained from the other side by [The Sea as Bath, Not Scaffold](#the-sea-as-bath-not-scaffold): the ambient Noether sea is barred from acting as a *local* equatorial brake, because an axially organized environment cannot push on the braid's equatorial ring. The pump therefore cannot be absorbed by a local dressing. The surviving route is a **global angular-momentum drain** — the braid running as an open system that exports its pumped axial angular momentum to the medium at large through the demonstrated inner-feed metabolism, a shared braid-plus-sea complex rather than a particle in isolation. That the sea can actually close this drain self-consistently — supplying the sink at the required rate while also quieting the axis flutter — is **not established**; it is the open construction target, and the inner-feed loop has not been closed self-consistently. The no-go fixes what must be true, an external global sink; it does not by itself prove the sea provides it.
+
 #### Where the Search Stands
 
-The isolated braid's *fitted-gauge* release routes are measured and closed: circular, chart-booked, epicyclic, and statically dressed releases all expand or capture. The held-static environment scope is closed from both sides — the sea cannot statically scaffold the braid, and the braid-selected cage is not self-supporting. The frontier now leads with the **self-equilibrated bare braid**: the rail-pinned fixed point above, radially restoring with its tangential ledger closed, its static tilt block restoring, and no environment — the first candidate in the program's history to pass the full quasi-static seed-grade stability gate. Its one open mode is the gyroscopic-circulatory flutter, and that mode is now the binding obstruction: the axis sector is unstable at seed grade, every absorber the bare braid owns fails to close it, and the natural reframing — that stability might belong to the *moving* family, since the orientation torque exists only under drift — was tested and rejected. The drift-orientation torque anchors the braid's *global* axis orientation to its line of motion but does not reach the *internal* whirl: the flutter persists at every drift speed in the preferred basin, in both drift senses, with the same growth class as at rest. The axis sector is therefore closed at seed grade in both the resting and the moving frame. What a surviving realization needs is a channel no rigid-layer analysis can supply: either **non-rigid axis dynamics** — an internal deformation coordinate coupling to the whirl — or a structured environment that grips the deep layers. Behind that, still live: the **co-orbital cage** (members trading the credit's inward pull against their own centripetal need), a **saturated-orientation sea absorber** at the confining band, **bulk-boundary equilibrium** in a genuinely populated medium, and sea self-structure beyond driven response — a standing-phonon reading whose burden is formation history rather than response calculation. The durable positives that any route inherits: the field-speed pin as a native speed attractor — now understood to pin size along with speed — the escapement's coherence, the geometric elimination of the tangential brake, the sea's demonstrated inner feed, the stability-matrix pre-tabling gate, and the basin principle. And one theme recurs at every scale — escapement click phasing, sea spacing bands, reorientation rates, drift cadence — the delayed dynamics rewards commensurability: harmonic matching is the selection principle of this family from its geometry up through its medium.
+The isolated braid's *fitted-gauge* release routes are measured and closed: circular, chart-booked, epicyclic, and statically dressed releases all expand or capture. The held-static environment scope is closed from both sides — the sea cannot statically scaffold the braid, and the braid-selected cage is not self-supporting. The frontier now leads with the **self-equilibrated bare braid**: the rail-pinned fixed point above, radially restoring with its tangential ledger closed, its static tilt block restoring, and no environment — the first candidate in the program's history to pass the full quasi-static seed-grade stability gate. Its one open mode is the gyroscopic-circulatory flutter, and that mode is now the binding obstruction: the axis sector is unstable at seed grade, every absorber the bare braid owns fails to close it, and the natural reframing — that stability might belong to the *moving* family, since the orientation torque exists only under drift — was tested and rejected. The drift-orientation torque anchors the braid's *global* axis orientation to its line of motion but does not reach the *internal* whirl: the flutter persists at every drift speed in the preferred basin, in both drift senses, with the same growth class as at rest. The axis sector is therefore closed at seed grade in both the resting and the moving frame. What a surviving realization needs is a channel no rigid-layer analysis can supply: either **non-rigid axis dynamics** — an internal deformation coordinate coupling to the whirl — or a structured environment that grips the deep layers; and, independently of the flutter, an external angular-momentum sink for the rail pump, which [no internal degree of freedom can null](#the-angular-momentum-pump-has-no-internal-null). Behind that, still live: the **co-orbital cage** (members trading the credit's inward pull against their own centripetal need), a **saturated-orientation sea absorber** at the confining band, **bulk-boundary equilibrium** in a genuinely populated medium, and sea self-structure beyond driven response — a standing-phonon reading whose burden is formation history rather than response calculation. The durable positives that any route inherits: the field-speed pin as a native speed attractor — now understood to pin size along with speed — the escapement's coherence, the geometric elimination of the tangential brake, the sea's demonstrated inner feed, the stability-matrix pre-tabling gate, and the basin principle. And one theme recurs at every scale — escapement click phasing, sea spacing bands, reorientation rates, drift cadence — the delayed dynamics rewards commensurability: harmonic matching is the selection principle of this family from its geometry up through its medium.
 
 ### Candidate Status and Open Burden
 
 The spindle braid is a named candidate family, not a retained branch. Its rest-state realizations do not self-support under native release, and its statically dressed realizations close their seed ledgers without possessing a basin. The family's definition, geometry, and symmetry structure survive every one of those results unchanged — each rejection has sharpened the search's knowledge of what a surviving realization must supply, and the open work is the confinement mechanism, not the family.
+
+The rejections now point in a consistent direction worth stating plainly. The bare neutral scaffold fails to be a free particle on two independent fronts — it cannot shed its axial angular-momentum pump ([The Angular-Momentum Pump Has No Internal Null](#the-angular-momentum-pump-has-no-internal-null)) and its axis sector flutters — and neither a static nor a co-orbiting environment closes the gap without acquiring the same debt. Read together these are less a failure of the family than a statement about what a free object is: a lone neutral scaffold is not one. The stable free objects the theory then expects are either *bound pairs*, in which a contra-rotating partner supplies internally the angular-momentum sink a single braid lacks — the working reading of the neutral boson and near-photon channels — or *dressed* assemblies, in which a charged, spin-carrying payload does the same while opening the electromagnetic channel, the working reading of the charged fermions. The scaffold results scope those two routes rather than closing the particle question; which route a given observed particle takes is the open construction the assembly chapters pursue. Claim level: reading of the measured confinement results plus a candidate direction, not a retention claim.
 
 Whatever realization is proposed, the retention contract is the one stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md) and the certificate target of [Neutral Braid](../../../../markdown/aaa/noether-braid/neutral-braid.md): the required rows must close on one ledger identity, and a favorable geometry, symmetry, or comparison diagnostic cannot rescue an open dynamics, action, or stability row. The alternative families collected in [Explored Braid Geometries](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md) remain the comparison population that gives this candidacy its meaning, and any of them re-enters if the spindle route is decisively rejected.
 
@@ -1989,9 +2021,9 @@ The dynamics chapter contributes the stable pieces needed by the larger theorem 
 
 ##### Geometry Focus
 
-###### A) High Group Velocity Geometry (Oblate Spheroidal Envelope)
+###### A) High Group Velocity Geometry (Nested-Family Oblate Spheroidal Envelope)
 
-**Assumption (testable):** The outer binary moving at translational speed $v_{\text{trans}}$ generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$ on the primitive branch chart.
+**Nested-family assumption (testable):** The outer binary of a moving nested shell braid generates a causal interaction envelope that is oblate and flattens along the direction of motion as $v_{\text{trans}} \to c_f$ on the primitive branch chart. This law is not the spindle family's rest-envelope law: the spindle is fusiform at rest, and its moving-envelope projection remains an explicit open obligation in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#retuning-projection-to-envelope-variables).
 
 **Geometry:** Let the motion define the $z$-axis. Model the envelope as an oblate spheroidal envelope
 $$
@@ -2231,66 +2263,19 @@ For the strong-field continuation of that story, see [Black Holes](../../../../m
 
 ### Noether Braid Doubling-Frequency Resonance Lock
 
-This section hosts the doubling-frequency `4:2:1` lock study, consolidated here from its former standalone chapter. It is comparison-family material: the `NSH-421` candidate is definitionally frequency-separated, so the study is retained under the spindle-native re-derivation gate rather than generalized — the spindle's iso-frequency structure has no doubling ladder to lock. The internal assumption package, propositions, and diagnostics carry unchanged at their stated claim levels.
-This chapter studies resonance lock for the nested inner, middle, and outer binaries as a restricted family inside the broader [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md). Its immediate goal is specific: identify the relationship between frequency, scalar tangential speed, and radius in a reduced branch where the middle binary caustic-grazes the field-speed hinge and the three rings form an exact integer phase-locked cycle.
+This section hosts the specialized `NSH-421` doubling-frequency `4:2:1` lock study inside the broader [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md). It is comparison-family material: the candidate is definitionally frequency-separated and tests a nested `I:M:O` chart under explicit support, hinge, phase-return, and stability assumptions. It does not make doubling frequency the default Noether braid frequency, certify nested dynamics from kinematics, or generalize to the spindle: the spindle's iso-frequency shared-axis structure has no doubling ladder to lock.
 
 It should be read together with [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md), [Nested Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid), [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), and [Mapping the Planck Scale](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md), which provide the assembly scaffold, geometry, and scale-setting context for the lock relations derived here.
 
-The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. Inferentially, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
+The level distinctions matter throughout. Ontologically, the inner, middle, and outer binaries are assembly layers built from architrino constituents. Dynamically, the reduced model replaces their full delayed causal-wake history by a finite-$\eta$ branch chart. Effectively, low-order multipoles and potentials are comparison summaries of that branch behavior. As a derivation target, an integer lock is selected only after the phase-return degree/holonomy, cancellation score, and stability gap all favor the same branch.
 
-This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
+The analysis keeps the field speed $c_f$ explicit rather than setting it to one. Branch labels $k\in\{I,M,O\}$ are used only after the retained branch supplies that role assignment. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{V}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
-#### Document Role
-
-This chapter is the specialized `NSH-421` candidate-family chapter. It owns the `4:2:1` frequency-lock analysis when a nested shell braid chart declares `I:M:O` roles and tests a doubling-frequency branch under explicit support, hinge, phase-return, and stability assumptions.
-
-It does not make doubling-frequency the default Noether braid frequency, certify the nested shell braid by kinematics alone, or replace the general integer-ratio, iso-frequency, and field-speed hinge rows in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md). The `I:M:O` role map used here remains part of the same-record branch proof unless the local record has already supplied it.
-
-#### General Rank-Three Branch State
-
-Before a doubling-frequency, iso-frequency, integer-ratio, or field-speed hinge-occupancy condition is selected, the rank-three search branch is represented by three retained rows. The general search program is defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md); this section records the variables needed locally for the doubling-frequency specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
-$$
-\mathcal{T}_{3B}
-=
-\left\{
-\left(
-f_a,\,
-r_a,\,
-E_a,\,
-s_a,\,
-\phi_a,\,
-\hat{\mathbf n}_a,\,
-\mathcal{L}_a
-\right)
-\right\}_{a=1}^{3}.
-$$
-Here $f_a$ is the layer frequency, $r_a$ the characteristic radius or retained lever arm, $E_a$ the retained branch-energy row, $s_a=\|\mathbf{V}_a\|$ the scalar tangential speed, $\phi_a$ the phase origin or offset, $\hat{\mathbf n}_a$ the orbital-plane normal, and $\mathcal{L}_a$ the active causal-root ledger data for that layer. On a circular layer chart the kinematic identity is
-$$
-s_a=2\pi f_a r_a.
-$$
-This identity is only a constraint among three variables. It does not by itself select the frequency ratios, energy placement, radii, speeds, or phase offsets.
-
-The branch-search objective is therefore
-$$
-\text{find retained, stable } \mathcal{T}_{3B}
-\text{ over }
-(f_a,r_a,E_a,s_a,\phi_a,\hat{\mathbf n}_a,\mathcal{L}_a),
-$$
-then compare the energy differentials
-$$
-\Delta E_{ab}=E_a-E_b
-$$
-and their ledger decomposition on the same retained row set. A doubling-frequency candidate, a field-speed hinge-occupancy candidate, and an iso-frequency candidate are special conditions on this same state space. In particular, the iso-frequency condition
-$$
-f_1=f_2=f_3
-$$
-still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
-
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later doubling-frequency lock discussion studies one restricted family inside this broader rank-three branch state; it is not the default assumption for all stable branch configurations.
+The general unordered state $\mathcal T_{3B}$, its $S_3$ relabeling action, and the iso-frequency and integer-ratio subfamilies are defined in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#unordered-layer-semantics). The `NSH-421` specialization adds a certified `I:M:O` role assignment, the exact ring identity $v_k=2\pi f_k r_k$, integer phase-return data, and the finite-$\eta$ selection and stability rows.
 
 #### Status and Assumptions
 
-The logic of the chapter is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
+The lock analysis is organized around one exact identity and four explicit assumptions. This separation prevents a kinematic formula from being mistaken for a dynamical selection principle.
 
 ##### Exact Kinematic Identity
 
@@ -2350,7 +2335,7 @@ $$
 $$
 rather than an infinite-force constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note).
 
-This is the main regime assumption of the chapter. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
+This is the main regime assumption of the `NSH-421` analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric.
 It is not a claim that every Noether braid regime has the middle binary exactly at $c_f$; ordinary weak-stress operation may keep the middle layer only near the hinge scale, while the caustic-grazing carrier belongs to the reduced exterior/horizon-transition branch.
 
 ##### Assumption 2 (Exact Integer Phase Closure)
@@ -2548,14 +2533,14 @@ among non-identity integer towers. This is why the doubling-frequency family is 
 
 ##### Non-Assumptions
 
-This chapter does **not** assume:
+The `NSH-421` analysis does **not** assume:
 
 - common-speed closure $v_O=v_M=v_I$,
 - self-similar radii $r_M=r_O/s$, $r_I=r_O/s^2$,
 - or the specific frequency lock $1:2:4$ at the outset.
 
 Those are possible special cases or later outcomes, not starting axioms here.
-This chapter studies exact integer closure. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
+Only exact integer closure is studied here. Rational or self-similar locks can be compared only after clearing denominators or constructing a separate branch map.
 
 #### Immediate Consequences
 
@@ -2941,7 +2926,7 @@ $$
 
 Here $S_{\mathrm{excl}}$ is the coarse-grained tensor assembled from the local entries $\mathcal{S}_{j,\mathrm{excl}}^{ab}$ in the packing projector below. The factor $1/3$ extracts the isotropic pressure component in three spatial dimensions; anisotropic residuals remain in the stress tensor and must not be hidden when the local packing is directionally biased.
 
-This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the oblate spheroidal exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
+This is the Noether braid analogue of the familiar lesson from electron degeneracy: excluded state volume can become macroscopic pressure. The analogy is limited but useful. In ordinary electron matter, the observer-level pressure law also depends on the recovered fermionic exchange sign and momentum-state filling. In the Noether braid substrate, the corresponding pressure channel must be derived from the family-declared exclusion envelope, causal-wake disruption, and the same retained branch ledger that later recovers the fermionic exchange rule. A spindle-family consumer therefore uses the fusiform envelope, while a nested-family consumer uses the oblate spheroidal envelope. Exclusion geometry can explain why closer packing becomes dynamically costly; spin-statistics closure is still required before the full electron pressure law has been recovered.
 
 ### Assembly-Noether Sea Interface Diagnostic
 
@@ -3358,7 +3343,7 @@ $$
 \frac{\left(\Delta\ln\xi_j\right)^2}{\epsilon_\xi^2}
 $$
 
-Here each $\Delta\ln$ term is measured relative to the declared branch reference for the channel: the weak homogeneous nested shell braid for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration.
+Here each $\Delta\ln$ term is measured relative to the declared same-family branch reference for the channel: the retained rest branch of the family under test for clock/ruler calibration, the candidate neighboring braid for packing, or the pre-entry path branch for penetration. A weak homogeneous nested shell braid is one nested-family calibration branch; it is not the reference for a spindle-family calculation.
 
 For penetration along $\hat{\mathbf u}$, decompose the signed branch acceleration into tangent and transverse parts,
 
@@ -3551,7 +3536,7 @@ Clock-coupling can be sensitive to weak locked-wake tails. A reaction corridor n
 
 ### Envelope Forms
 
-The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) — the leading candidate family — sweeps a **fusiform envelope** at rest: slow near-polar caps and the widest working ring at the equator, set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The canonical geometry variables and the Lorentz projection below are stated for any envelope with a declared parallel axis and apply to both forms.
+The envelope form is family data: the union of the swept constituent paths, together with any precession, sets the time-averaged boundary that neighbors and the Noether sea read. Two named forms are in use. The [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) — the leading candidate family — sweeps a **fusiform envelope** at rest, elongated along its shared axis and widest in its working equatorial ring, as set by the rigid uniaxial co-rotation of its tilted antipodal binaries. The nested shell braid family sweeps the **oblate spheroidal envelope** described next. The semiaxis variables below apply to both forms, but the rest-shape sign of their ratio is family data: fusiform means $R_{\parallel}>R_{\perp}$, while oblate means $R_{\parallel}<R_{\perp}$. The moving Lorentz-projection target is a separate branch response and must not be inferred from either rest-shape sign.
 
 #### Oblate Spheroidal Form (Nested Family)
 
@@ -3569,11 +3554,11 @@ In low-energy prose, "nested shell braid shape" should usually mean this effecti
 
 ### Canonical Geometry Variables
 
-For the oblate spheroidal exclusion envelope, use $R_{\parallel}$ for the semiaxis along the contraction or drift-aligned direction and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
+For either family, use $R_{\parallel}$ for the semiaxis along the declared family axis or moving-branch drift axis and $R_{\perp}$ for the transverse semiaxis. The canonical shape ratio is
 $$
 \xi\equiv\frac{R_{\parallel}}{R_{\perp}}
 $$
-so $\xi=1$ denotes a spherical envelope and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis.
+so $\xi=1$ denotes a spherical envelope, $\xi>1$ denotes a fusiform envelope elongated along the parallel axis, and $\xi<1$ denotes an oblate spheroidal envelope compressed along the parallel axis. A family label must accompany any rest-envelope value of $\xi$.
 
 Use
 $$
@@ -3585,13 +3570,13 @@ Observer clock behavior is a downstream readout, not the definition of either ge
 $$
 \frac{\omega_{\text{clk}}}{\omega_0}=\frac{d\tau}{dt_{\mathrm{eff}}}\to\xi\to\frac{1}{\gamma}
 $$
-but this is a closure target linking the clock channel to the oblate spheroidal envelope. It should not be used to define $\xi$.
+but this is a moving-branch closure target linking the clock channel to the envelope projection. It should not be used to define $\xi$, and it does not reclassify the spindle family's fusiform rest envelope as oblate.
 
 ### Lorentz Projection Role
 
-For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable all-layer nested shell braid branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state.
+For branch-quantized Lorentz response, the envelope variables $(\xi,\lambda)$ are projection variables. They expose the geometry of a stable branch to external clocks, rulers, and nearby assemblies, but they do not by themselves contain the full branch state. The equations in this section state the family-general moving-envelope target; the nested-family instantiation begins in [Retuning Projection to Envelope Variables](#retuning-projection-to-envelope-variables), while the spindle-family projection remains open.
 
-The hidden branch state contains the inner, middle, and outer layer radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. The outer binary controls the leading boundary because it has the largest radius and weakest shielding. Therefore the observed ruler factor is extracted through the outer envelope,
+The hidden branch state contains the family-specific layer radii, frequencies, speeds, axes, active causal-root ledger, and wake exchange. In the nested family, the outer binary controls the leading boundary because it has the largest radius and weakest shielding; in the spindle family, the leading surface must instead be projected from the six tilted co-rotating paths. Therefore the observed ruler factor is extracted through the declared family envelope,
 $$
 \gamma_{\mathrm{rul}}^{(q)}(v)
 \equiv
@@ -3706,7 +3691,7 @@ $$
 
 This approximation is a projection estimate, not a branch proof. It fails when middle-layer hinge motion, inner self-hit history, axis precession, or neighbor-induced strain contributes at the same order as the outer binary. Those failures are informative: they identify which hidden ledger entries must be retained before the retuning map can be used for clock, ruler, or Noether sea transport calculations.
 
-### Deformability of the Envelope
+### Nested-Family Envelope Deformability
 
 The oblate spheroidal envelope is deformable because it is generated by orbit paths, not by a rigid shell. Those paths depend on the superposition of:
 
@@ -3731,18 +3716,20 @@ For the special-relativity-facing comparison of this deformation channel, see [t
 
 For local assembly modeling, use this page as the geometric source for:
 
-- an oblate spheroidal envelope boundary,
-- principal axes set by nested shell braid orientation,
-- deformation of the outer-binary envelope under local gradients,
+- a family-declared fusiform or oblate spheroidal envelope boundary,
+- principal axes set by the retained family's orientation,
+- deformation of the family-leading envelope paths under local gradients,
 - and exclusion-volume changes relevant to packing, shielding, and collision channels.
 
-For dynamics modeling, use [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), where the oblate causal envelope is treated as a delay-geometry input and a simulation target.
+For nested-family dynamics modeling, use [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics), where the oblate causal envelope is treated as a delay-geometry input and a simulation target. For the spindle-family definition and measured moving states, use [Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md); its moving-envelope projection remains open.
 
 For Noether sea modeling, use [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) and [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), where many Noether braids become a coupled medium rather than isolated assembly envelopes.
 
 ### Summary Commitment
 
 > **Nested Shell Braid Geometry Commitment:** A nested shell braid has an oblate spheroidal exclusion envelope generated by the path history of its shell binaries. The envelope is dynamic and deformable, not a rigid surface. Its deformation is an assembly-level input to Noether sea state variables, while metric and gravity-language reconstruction belongs to the spacetime branch.
+
+> **Family-Scoping Commitment:** The spindle family is fusiform at rest with $\xi>1$; the nested family is oblate at rest with $\xi<1$. The moving Lorentz-projection target $\xi\to1/\gamma$ is a branch-response statement and must be derived separately for each family.
 
 > **Lorentz Projection Commitment:** In Lorentz closure, the outer-binary envelope supplies the leading observable ruler projection, while the accepted branch state remains a retained causal-root ledger. The geometry chapter records $\xi$ and $\lambda$ as projection variables; it does not reduce clock, mass, or action-ledger closure to outer-envelope shape alone.
 
@@ -3978,7 +3965,7 @@ J_a\,\hat n_a^i\hat n_a^j,
 $$
 with $J_a$ supplied by the retained branch-angular-momentum or action row. A promoted rank-three Noether braid branch should show that this tensor has three nonzero eigenvalues and that its eigenframe agrees with the retained normal frame up to the allowed $S_3$ relabeling and sign conventions. This is an orthogonality-sensitive test: when the normals are not mutually orthogonal, the eigenvectors of $\mathsf{J}_{\mathfrak B}^{ij}$ need not coincide with $\{\hat{\mathbf n}_a\}$ even if the retained weights are nonzero. If two $J_a$ are equal within tolerance, the certificate must use an eigenvalue-gap condition or a subspace-match criterion rather than a unique eigenvector match. If diagonalizing $\mathsf{J}_{\mathfrak B}^{ij}$ produces a different frame, then $\mathcal{R}_{J\mathrm{-axis}}$ is not a mere visualization error: the three retained rows are not a faithful decomposition of the conserved angular-momentum ledger.
 
-The oblate spheroidal envelope is the coarse geometry associated with this decomposition. In the rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz-closure asks whether the envelope deforms with a longitudinal-to-transverse ratio
+The retained angular-momentum decomposition does not select one coarse envelope family. In a rest branch, $\mathbf{P}_{\mathfrak B}=\mathbf 0$, so the internal angular-momentum axes and plane determinant describe the retained three-dimensional support, while the swept constituent paths separately determine whether the envelope is fusiform, oblate spheroidal, or another certified form. In a moving branch, $\hat{\mathbf e}_{P}$ marks the drift direction relative to the Noether sea, and Lorentz closure asks whether the family-declared envelope deforms with a longitudinal-to-transverse ratio
 $$
 \xi
 =
@@ -3986,7 +3973,7 @@ $$
 \qquad
 R_{\parallel}\ \text{measured along }\hat{\mathbf e}_{P},
 $$
-while the same internal angular-momentum ledger remains retained. Thus the retained-row picture is also a disciplined way to visualize an oblate spheroidal Noether braid: the three retained rows decompose the internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis.
+while the same internal angular-momentum ledger remains retained. Thus the retained rows decompose internal angular momentum into principal directions, while group velocity and total momentum select the moving-envelope axis. They do not turn the leading [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) into a nested-family oblate envelope; the spindle's fusiform rest geometry and its moving-envelope projection are separate family rows in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#envelope-forms).
 
 ### Unordered Layer Semantics
 
@@ -4208,7 +4195,7 @@ $$
 \quad\Longrightarrow\quad
 \|Q_A\|\to0
 $$
-while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. This chapter does not prove that result; it defines the configuration-space objects on which that proof can be attempted.
+while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. The measured spindle-family split between a second-order helicity-averaged orientation channel and a first-order helicity-selected spin channel is the nearest live comparison ([Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md#motion-inertia-and-isotropy)); it does not prove the rank-three theorem target, because the spindle uses a shared-axis iso-frequency chart rather than this independent three-normal frame.
 
 ### Relation To The Doubling-frequency Chapter
 
@@ -4375,13 +4362,15 @@ c_1[\theta_O,\theta_M,\theta_I]
 \right)
 =(m,n)
 $$
-records this phase-return degree data. The doubling-frequency candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
+records this phase-return degree data. The `NSH-421` doubling-frequency candidate is the outer-normalized case $(m,n)=(2,4)$, equivalently canonical `I:M:O` frequency order $4:2:1$.
 
 The symbol $c_1$ is retained as the established phase-entry notation, but it should not be read here as a literal first Chern class of principal circle bundles over the outer phase circle. Such bundles over $S^1_O$ are topologically trivial because $H^2(S^1_O;\mathbb{Z})=0$. The claim is the degree-pair claim
 $$
 (m,n)\in[S^1_O,S^1]\times[S^1_O,S^1]\cong\mathbb{Z}^2,
 $$
 with flat relative-phase recurrence on the retained return chart. If a later chart supplies a genuine two-torus curvature form, its first Chern number can be compared with this degree pair. Until then, $c_1=(m,n)$ means return-map degree data, not a curvature integral.
+
+The doubling-frequency data $(m,n)=(2,4)$ belong specifically to the frequency-separated `NSH-421` comparison family. They are not generic Noether braid data. In particular, the [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) is iso-frequency on one shared-axis phase chart: its three path families do not supply three independent orbital-plane normals, so the rank-three phase entry defined here is suspended rather than assigned $(1,1)$ or $(2,4)$. A spindle branch may still report the partial charge $(N_s,M_p)$; a spindle-native lower-rank return invariant would require a separate definition and certificate.
 
 The phase entry is also conditional on the three support-row planes remaining independent. If $\hat{\mathbf n}_O,\hat{\mathbf n}_M,\hat{\mathbf n}_I$ are the retained orbital-plane normals, define
 $$
@@ -4486,7 +4475,7 @@ together with its stability margins, energy/wake ledger, and gluing status.
 The intended use is constrained:
 
 - $(N_s,M_p)$ records the binding-channel census: self-hit channels, partner-hit channels, and their signed degrees.
-- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted Noether braid branch.
+- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted rank-three branch; $(2,4)$ is the `NSH-421` doubling-frequency candidate, not a family-general value.
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
@@ -4519,7 +4508,7 @@ The established pieces are local:
 - The delay-map theorem pack in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized) proves signed degree invariance on regular families and the generic opposite-sign fold-pair law.
 - The signed causal-root complex in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) supplies the local chain-complex reading of active roots.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock) supplies the self-hit and partner-hit ledger notation used by $(N_s,M_p)$.
-- [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$.
+- [Noether Braid Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#assumption-2-exact-integer-phase-closure) supplies the `NSH-421` integer phase-closure data whose return-map degree pair is recorded as $c_1=(m,n)$; the iso-frequency spindle does not inherit that rank-three entry.
 - [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability) uses the same topological sector in the action and mass-gap theorem target.
 
 The open proof burden is global:
@@ -4618,7 +4607,7 @@ These obligations close in layers. A rest branch can be retained before moving e
 
 ### Leading Candidate: The Spindle Braid
 
-The search currently has a leading candidate family, and a reader who wants one configuration to hold in mind while reading the axes below should hold this one. The **spindle braid** ([Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md)) is the rigid uniaxial iso-frequency family: all six architrinos co-rotate at one common frequency about a single axis, each binary a tilted antipodal pair, with the tilt angles decoupling each layer's speed from its nesting radius. On the prescribed-worldline unified-closure comparisons run to date it closes markedly better than every alternative family measured against the same metric — planar tri-binary states, counter-rotating and frequency-locked nested arrangements, and common-sphere shell states — and it contains the planar tri-binary and the axial-dipole configurations as its flat and full-tilt limits, so those are best read as boundary members of the spindle family rather than rivals.
+The search currently has a leading candidate family, and a reader who wants one configuration to hold in mind while reading the axes below should hold this one. The **spindle braid** ([Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md)) is the rigid uniaxial iso-frequency family: all six architrinos co-rotate at one common frequency about a single axis, each binary a tilted antipodal pair, with the tilt angles decoupling each layer's speed from its nesting radius. Its name is literal dynamics, not only appearance: the opposite-polarity attraction channels form the staggered [drum lacing](../../../../markdown/aaa/noether-braid/braid-mathematics.md#drum-geometry), and rotation winds that lacing into helices, so the static drum picture and the spacetime braid are the same channel viewed at two levels. On the prescribed-worldline unified-closure comparisons run to date it closes markedly better than every alternative family measured against the same metric — planar tri-binary states, counter-rotating and frequency-locked nested arrangements, and common-sphere shell states — and it contains the planar tri-binary and the axial-dipole configurations as its flat and full-tilt limits, so those are best read as boundary members of the spindle family rather than rivals.
 
 The status discipline still binds. The spindle braid is a named candidate family, not a retained branch: the first tabled rest-state realization, released on the native retained-history solver at declared regulators, did not self-support — the wake forces at the fitted coupling under-supplied the required centripetal support and the configuration dispersed — so the family currently frames the search for a realization whose confinement rows close (same-source booking, sea embedding, and non-rigid same-level variants are the open routes). The alternative families below remain the search's bookkeeping: they are the comparison population that gives the leading candidate its meaning, and any of them re-enters if the spindle route is decisively rejected.
 

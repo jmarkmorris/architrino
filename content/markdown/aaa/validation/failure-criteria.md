@@ -301,7 +301,7 @@ The witness empties the target gate when $\mathcal{C}_T\!\mid c=\varnothing$. It
 
 ## Critical Stop Conditions
 
-- **$c_f$ variance:** If field speed varies in the true void, the theory fails.
+- **$c_f$ variance:** If field speed varies in the Euclidean void, the theory fails.
 - **Noether sea drag:** If the Noether sea causes orbital decay or secular kinetic-energy loss through ordinary dissipative drag, rather than a reversible medium-dressed inertial response, the theory fails.
 - **Lorentz leakage:** If absolute motion affects atomic spectra above $10^{-17}$, the theory fails.
 - **Empty shared intersection:** If quantitative development makes $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}=\varnothing$, the implementation is rejected even if individual sector chapters remain locally suggestive.

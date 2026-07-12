@@ -49,6 +49,8 @@ c_0\,\partial_R Z_{\mathrm{prop},X}^{E}(R,\hat{\mathbf{k}}).
 $$
 Here $E$ denotes the source, host, line-of-sight, and observer-environment class after catalogue corrections. A local ladder can be promoted to a universal $H_0$ coefficient only after the residual scatter in $H_{\mathrm{eff},X}^{E}$ is either bounded or derived from the same Noether sea density, delay, flow, and calibration record used by CMB, BAO, and growth.
 
+Gravitational-wave standard sirens add an independent distance channel, but not an ontology shortcut. A GWTC-style $H_0$ estimate combines luminosity distances inferred from calibrated strain with redshift information inferred from host association, an electromagnetic counterpart, or population features such as the mass spectrum. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is valuable because photon-ladder calibration is not the only distance route. The comparison still belongs to the same corrected transfer problem: gravitational-wave propagation, detector calibration, host or population redshift inference, photon redshift correction, and the Noether sea state must be carried together before a discrepancy is read as physical $H_0$ structure.
+
 For diagnostic use, raw measured redshift should first be converted into the propagation residual
 
 $$

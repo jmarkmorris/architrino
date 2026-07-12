@@ -276,31 +276,11 @@ The object remains incomplete until $\mathcal{Y}_{\mathrm{emit}}$ separates alph
 
 ### Radioactive Waste Metastability Capsule
 
-Radioactive waste should be treated first as a material whose isotope inventory contains metastable nuclear assembly branches, not as a bulk-temperature state or ordinary molecular vibration. The instability question belongs to the nuclear branch: a parent isotope sits in a locally retained basin while one or more lower-energy daughter/product routes remain open with nonzero rate. Heat, lattice vibration, recoil, and medium excitation are downstream output or environmental channels unless a worked example shows they perturb the nuclear route itself.
+→ promoted to `content/markdown/aaa/nuclear-atomic/nuclear-binding.md` (2026-07-11), grade effective summary plus derivation target.
 
-The useful draft corpus distinction is: radioactive waste is radioactive because its isotope inventory has nonzero escape rates from metastable nuclear branch basins; heat and vibration are usually consequences or side channels, not the root cause. The $h$ ledger enters through action/cycle bookkeeping, photon-frequency rows, and branch-transition accounting, but the cause is not a scalar pile of extra $h$ units. The cause is an allowed route from the current nuclear assembly ledger to a cheaper daughter/product ledger.
+Residual open sub-question: supply one source-bound parent/daughter/product event ledger that derives an observer-level route rate or half-life while closing emitted-product, recoil, heat, photon, Noether sea, path-history, and shielded-energy rows without hidden loss.
 
-A candidate radioisotope route object is
-
-$$
-\Theta_{\mathrm{rw}}
-=
-\left(
-\mathcal{I}_{\mathrm{iso}},
-\mathcal{B}_{\mathrm{meta}},
-\mathcal{C}_{\mathrm{route}},
-\lambda_{\mathrm{route}},
-\mathcal{Y}_{\mathrm{emit}},
-\mathcal{R}_{\mathrm{recoil}},
-\mathcal{H}_{\mathrm{heat}},
-\mathcal{L}_{E\mathbf{p}\mathbf{J}},
-\Delta\theta_{\mathrm{sea}}
-\right).
-$$
-
-Here $\mathcal{I}_{\mathrm{iso}}$ is the isotope inventory, $\mathcal{B}_{\mathrm{meta}}$ is the retained metastable nuclear branch record, $\mathcal{C}_{\mathrm{route}}$ names the alpha, beta/lepton, neutron, gamma/photon, neutrino, or non-radiative route family, and $\lambda_{\mathrm{route}}$ is the observer-level rate or half-life target derived from the retained route. Promotion requires one worked parent/daughter/product event ledger that names emitted products, recoil, heat, photon rows when present, Noether sea update, path-history provenance, and the shielded-energy boundary without hidden loss.
-
-Focused packet: [radioisotope-worked-example-pu-238.md](radioisotope-worked-example-pu-238.md) now carries the first Pu-238 alpha heat ledger. This capsule remains the conceptual bridge; the packet is the current home for the parent/daughter/product row, observed half-life target, recoil estimate, gamma/converted-electron rows, Noether sea update, path-history provenance, and shielded-energy boundary.
+Focused packet: [radioisotope-worked-example-pu-238.md](radioisotope-worked-example-pu-238.md) carries the first Pu-238 alpha heat ledger and remains the priority home for the parent/daughter/product row, observed half-life target, recoil estimate, gamma/converted-electron rows, Noether sea update, path-history provenance, and shielded-energy boundary.
 
 ## Atomic Orbitals And Periodic Structure
 

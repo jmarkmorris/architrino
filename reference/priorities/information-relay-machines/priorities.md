@@ -18,10 +18,11 @@ Develop at least one paper and a reusable mapping method for how selected inform
 
 ## Queue
 
-1. Draft the first paper outline from [paper-communication-as-record-handoff.md](paper-communication-as-record-handoff.md), using the phone-call route as the worked example.
-2. Build a reusable mapping table format with columns for record, carrier, encoding, transduction, preserved variables, discarded detail, error correction, latency, loss, and reconstruction.
-3. List follow-on paper candidates: industrial process maps, AI/human partnership workflows, institutional records, biological signaling, and software/network stacks.
-4. Stage a Rube-Goldberg-style comic series concept in [brainstorming.md](brainstorming.md), then route selected production-ready entries into the media-comics lane.
+1. `terminology_and_corpus_boundary` — Decide whether `Information Relay Machines`, `record-preserving transduction chains`, and the record/carrier/encoding/transduction vocabulary should become controlled reader-facing terminology, remain paper-local language, or be rejected. Status: `discussion-scoped`. Depends on: none.
+2. Draft the first paper outline from [paper-communication-as-record-handoff.md](paper-communication-as-record-handoff.md), using the phone-call route as the worked example.
+3. Build a reusable mapping table format with columns for record, carrier, encoding, transduction, preserved variables, discarded detail, error correction, latency, loss, and reconstruction.
+4. List follow-on paper candidates: industrial process maps, AI/human partnership workflows, institutional records, biological signaling, and software/network stacks.
+5. Stage a Rube-Goldberg-style comic series concept in [brainstorming.md](brainstorming.md), then route selected production-ready entries into the media-comics lane.
 
 ## Claim-Level Boundary
 

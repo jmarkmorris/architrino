@@ -17,6 +17,7 @@ import {
   braidAxisRow,
   buildCoDriftCage,
   coDriftCageCoherenceRow,
+  updateCageLiveOrientation,
 } from "../scripts/braid-ideal/spindle-braid-native-retained-history-confirmation-run.mjs";
 import { evaluateMovingCircularSourceHistory } from "../src/solver/app/AbsoluteHistoryRootRuntime.mjs";
 import { driftSupportRatios } from "../scripts/braid-ideal/spindle-support-ratio-targeted-search.mjs";
@@ -317,6 +318,127 @@ test("(f) co-drift cage: null at u=0, polar pair along d_hat, co-drift velocity,
     DECLARED.axialDrift = 0;
     DECLARED.driftAngle = 0;
     DECLARED.coDriftCage.geometry = "octahedral";
+    selectTabledRow(1);
+  }
+});
+
+// (h) DYNAMICAL REORIENTING/ORBITING CAGE (dynamical-sea-axis-absorber-
+// instrument-spec.md). Escapes the frozen-orientation multipole no-go: the cage
+// dipoles reorient to track an axis, and/or the equatorial ring orbits about
+// d_hat. reorient/orbit disabled => exact frozen regression; null at u=0;
+// target=driftHat aligns the live dipole to d_hat; a short dynamical release
+// runs finite.
+test("(h) reorienting/orbiting cage: disabled=frozen regression, live dipole tracks target, short release finite", () => {
+  const savedDt = DECLARED.timeStep;
+  const savedReorient = { ...DECLARED.coDriftCage.reorient };
+  const savedOrbit = { ...DECLARED.coDriftCage.orbit };
+  try {
+    selectTabledRow(7);
+    const sites = buildSites();
+    DECLARED.axialDrift = 0.2;
+    DECLARED.driftAngle = (90 * Math.PI) / 180; // drift along +x
+
+    // disabled by default: cage carries the dynamical config OFF and the live
+    // orientation stays null (frozen path) => updateCageLiveOrientation is a no-op
+    DECLARED.coDriftCage.geometry = "octahedral";
+    DECLARED.coDriftCage.reorient.enabled = false;
+    DECLARED.coDriftCage.orbit.enabled = false;
+    const frozen = buildCoDriftCage(sites);
+    assert.equal(frozen.reorient.enabled, false);
+    assert.equal(frozen.orbit.enabled, false);
+    assert.equal(frozen.liveAxis, null);
+    // endpoints still carry the frozen production fields plus the new metadata
+    for (const ep of frozen.endpoints) {
+      assert.ok(ep.position.length === 3 && ep.velocity.length === 3);
+      assert.ok(ep.baseCenter && ep.frozenPHat && Number.isFinite(ep.pm));
+    }
+    const seedStates = sites.map((s) => ({ x: rigidPosition(s, 0), v: rigidVelocity(s, 0) }));
+    updateCageLiveOrientation(frozen, seedStates, 0, 0.01);
+    assert.equal(frozen.liveAxis, null, "disabled cage must not set a live axis");
+
+    // null at u=0 regardless of dynamical flags
+    DECLARED.coDriftCage.reorient.enabled = true;
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
+    assert.equal(buildCoDriftCage(sites), null);
+
+    // target=braidAxis at the seed: live dipole tracks the seed spin axis (+z),
+    // rate ~0 on the first update (no previous target)
+    DECLARED.axialDrift = 0.2;
+    DECLARED.driftAngle = (90 * Math.PI) / 180;
+    DECLARED.coDriftCage.reorient.target = "braidAxis";
+    DECLARED.coDriftCage.reorient.rate = Infinity;
+    const cageBA = buildCoDriftCage(sites);
+    updateCageLiveOrientation(cageBA, seedStates, 0, 0.01);
+    assert.ok(cageBA.liveAxis && Math.abs(Math.hypot(...cageBA.liveAxis) - 1) < 1e-9);
+    assert.ok(Math.abs(Math.abs(cageBA.liveAxis[2]) - 1) < 1e-6, "seed live axis not +z");
+    assert.ok(Math.hypot(...cageBA.liveAxisRate) < 1e-9, "first-step rate not ~0");
+
+    // target=driftHat: live dipole is d_hat (+x here), fixed (rate 0)
+    DECLARED.coDriftCage.reorient.target = "driftHat";
+    const cageDH = buildCoDriftCage(sites);
+    updateCageLiveOrientation(cageDH, seedStates, 0, 0.01);
+    updateCageLiveOrientation(cageDH, seedStates, 0.01, 0.01);
+    assert.ok(Math.abs(cageDH.liveAxis[0] - 1) < 1e-9, "driftHat live axis not +x");
+    assert.ok(Math.hypot(...cageDH.liveAxisRate) < 1e-9, "driftHat rate not 0");
+
+    // a short dynamical release runs and stays finite (reorient braidAxis)
+    DECLARED.timeStep = 0.02;
+    DECLARED.coDriftCage.reorient.target = "braidAxis";
+    selectTabledRow(7);
+    const runR = runRelease({ rotations: 0.05, kappa: 0.28623, recordRotations: [0.04] });
+    assert.ok(runR.completed || runR.states.every((st) => st.x.every(Number.isFinite)));
+    const axisR = braidAxisRow(runR.states);
+    assert.ok(axisR.axisUnit && axisR.axisUnit.every(Number.isFinite));
+
+    // orbit-only short release also runs finite (equatorial ring spins about d_hat)
+    DECLARED.coDriftCage.reorient.enabled = false;
+    DECLARED.coDriftCage.orbit.enabled = true;
+    DECLARED.coDriftCage.orbit.rate = 1;
+    const runO = runRelease({ rotations: 0.05, kappa: 0.28623, recordRotations: [] });
+    assert.ok(runO.states.every((st) => st.x.every(Number.isFinite)));
+  } finally {
+    DECLARED.timeStep = savedDt;
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
+    DECLARED.coDriftCage.geometry = "octahedral";
+    Object.assign(DECLARED.coDriftCage.reorient, savedReorient);
+    Object.assign(DECLARED.coDriftCage.orbit, savedOrbit);
+    selectTabledRow(1);
+  }
+});
+
+// (i) R3 SHEAR-MODE SEED (return-cycle sigma-attractor probe). shearSeed = 0
+// regresses exactly; shearSeed > 0 applies a traceless transverse quadrupole to
+// the seed (x-y scaled, z / drift-axis preserved) so the released sigma(t) is
+// the shear-mode response.
+test("(i) shear-mode seed: off=regression, on=traceless transverse quadrupole (z preserved)", () => {
+  const savedSeed = DECLARED.shearSeed;
+  const savedDt = DECLARED.timeStep;
+  try {
+    selectTabledRow(7);
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
+    DECLARED.timeStep = 0.05;
+    // unseeded reference initial positions (history sample at t=0)
+    DECLARED.shearSeed = 0;
+    const run0 = runRelease({ rotations: 0.01, kappa: 0.28623, recordRotations: [] });
+    const x0 = run0.histories.map((h) => h.xs[0].slice());
+    // seeded run: transverse x-y distorted, z preserved to the digit
+    DECLARED.shearSeed = 0.05;
+    const runS = runRelease({ rotations: 0.01, kappa: 0.28623, recordRotations: [] });
+    const xS = runS.histories.map((h) => h.xs[0].slice());
+    let anyXY = false;
+    for (let i = 0; i < x0.length; i += 1) {
+      assert.ok(Math.abs(xS[i][2] - x0[i][2]) < 1e-12, "shear seed moved the axial (z) coordinate");
+      if (Math.hypot(xS[i][0] - x0[i][0], xS[i][1] - x0[i][1]) > 1e-6) anyXY = true;
+    }
+    assert.ok(anyXY, "shear seed did not distort the transverse plane");
+  } finally {
+    DECLARED.shearSeed = savedSeed;
+    DECLARED.timeStep = savedDt;
+    DECLARED.axialDrift = 0;
+    DECLARED.driftAngle = 0;
     selectTabledRow(1);
   }
 });

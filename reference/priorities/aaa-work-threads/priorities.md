@@ -62,6 +62,14 @@ Keep task queue lines in one compact sentence form:
 
 This keeps the files readable in plain Markdown, diff-friendly in git, and structurally consistent without requiring a separate machine-control file.
 
+## Operator Discussion Queue
+
+This queue is the canonical cross-workstream surface for decisions that require operator judgment before implementation, delegation, or corpus promotion. The owning tracker carries the durable task; this table makes unresolved decisions visible. Surface one unresolved row in later substantive theory closeouts until the operator accepts, rejects, or explicitly defers it.
+
+| Rank | ID | Decision | Owning tracker task | Status | Last surfaced |
+| ---: | --- | --- | --- | --- | --- |
+| 1 | `DF-01` | Decide whether Information Relay Machines and record-preserving transduction chains should become controlled reader-facing terminology. | [`information-relay-machines:terminology_and_corpus_boundary`](../information-relay-machines/priorities.md#queue) | `discussion-scoped` | 2026-07-11 |
+
 ## Unified Priority Table
 
 This single table is the canonical rollup for ranked priority workstreams, restored live priority projects, and high-leverage shared theorem packets. Use it to maintain ranking, notice category mistakes, and decide which directories or packet-level queues deserve active attention. `MinDelta` is the strongest current negative closure-scorecard pressure the row is expected to improve; it is a prioritization signal, not a claim that the row owns the entire scorecard category.

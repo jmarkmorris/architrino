@@ -201,6 +201,30 @@ so $t_+\to\infty$ as $\beta_\star\to1$. The rear leg tends to zero, but the clos
 
 The outer binary is special because it supplies the leading visible envelope. It is not sufficient by itself. A Lorentz-admissible branch must also retune the hidden inner and middle ledgers so that clock closure, action conservation, and leakage bounds are solved by the same branch.
 
+## Simultaneity From the Leg Difference
+
+The closed-return derivation used only the *sum* of the two one-way legs: the forward leg $t_+=R_\parallel/(c_\star-v)$ and the backward leg $t_-=R_\parallel/(c_\star+v)$ add to the round-trip period, and equating longitudinal with transverse closure fixes the ruler contraction $\xi=1/\gamma_\star$ and the clock dilation $T=\gamma_\star T_0$. The *difference* of the same two legs is not discarded structure; it is the third Lorentz pillar. For two sites of the moving assembly separated by rest longitudinal distance $x'$, the fore-and-aft asymmetry of the one-way legs is
+
+$$
+\tfrac12\left(t_+-t_-\right)
+=
+\frac{R_\parallel\,v}{c_\star^2-v^2}
+=
+\frac{R_\parallel\,v}{c_\star^2}\,\gamma_\star^2 .
+$$
+
+Referred to the assembly's own dilated clock ($d\tau=dT/\gamma_\star$) and its rest separation ($R_\parallel=x'/\gamma_\star$), this is the offset
+
+$$
+\delta\tau
+=
+\frac{v}{c_\star^2}\,x' ,
+$$
+
+the offset that recovers relativity of simultaneity once the observer-synchrony identification is made: two events assigned the corresponding physical-clock synchronization are offset by $(v/c_\star^2)\,x'$ in the absolute frame. It vanishes at rest and grows with drift.
+
+The three pillars are therefore one accounting once that identification closes. A Lorentz boost is the full one-way leg ledger of a moving assembly: the **sum** of the legs delivers length contraction and time dilation, while the **difference** supplies the offset required for relativity of simultaneity. Length, time, and simultaneity are not three independent postulates but three readings of the same fore-and-aft causal delay — which is why a single factor $\gamma_\star$ governs all of them.
+
 ## Quantized Realization
 
 Return-Cycle Lorentz Quantization can now be stated as a branch map. For a stable branch class $q$, define
@@ -350,5 +374,7 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 ## Status
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
+
+A seed-grade release of a translating rigid family gives partial confirmation of that step at small drift. The moving envelope's relative flattening tracks the ruler law, $\xi(v)/\xi(0)\to1/\gamma_\star$, agreeing within about two parts in a thousand at $v=0.2\,c_\star$; the internal cadence dilates as $\omega(v)=\omega_0/\gamma_\star$; and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. The open remainder is confirmation across the full drift range together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.

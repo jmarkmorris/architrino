@@ -106,6 +106,20 @@ Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record
 
 Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
+## Handedness: Why the Observed Neutrino Is Left-Handed
+
+Claim level: derivation from the braid chirality invariant, conditional on the near-photon geometry above; the status of a right-handed or sterile branch stays under the [empirical gate](#empirical-decision-gates) below, not asserted as doctrine.
+
+The near-photon geometry fixes the neutrino's handedness through the same chiral invariant that organizes every braid's discrete symmetry. A neutral braid carries the pseudoscalar $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ built from its polarity dipole $\mathbf p$ and spin $\mathbf S$ (see [Discrete-Symmetry Structure](../../noether-braid/spindle-braid.md#discrete-symmetry-structure)), and the weak-flavored transaction channels are exactly the channels that read $\chi$ maximally. Two properties of the neutrino then force its observed one-handedness.
+
+First, the neutrino is near-luminal. At the luminal limit helicity and chirality coincide and become frame-fixed — there is no rest frame in which to overtake the state and reverse its apparent handedness — so $\chi$ is very nearly an invariant label rather than a frame-dependent projection. This is the same limit that makes the fully locked photon a strictly two-helicity object.
+
+Second, the neutrino couples through the weak channel and through no other: it is neutral (no electromagnetic channel) and colorless (no strong channel), so the maximally $\chi$-reading weak corridor is its only handle on the rest of physics. Because that corridor reads $\chi$ maximally it couples to only one sign of $\chi$. The $\chi$-matching neutrino participates, and its $CP$ partner — the opposite-polarity, opposite-handedness antineutrino — accompanies it, since $CP$ preserves $\chi$ and is exact at this order. The parity images — a neutrino of the opposite handedness and an antineutrino of the opposite handedness — carry the reversed $\chi$ and are not read by the weak corridor at all.
+
+This is why the effect presents as an absolute selection rule rather than a mere bias. A neutrino decoupled from the weak channel has no remaining channel through which to be produced or detected, so a wrong-handed neutrino is not merely rare but invisible to every interaction the theory presently exposes. The observed pairing of a left-handed neutrino with a right-handed antineutrino is therefore the $CP$-locked pair the chirality invariant predicts, and the "missing" right-handed neutrino and left-handed antineutrino are the parity enantiomers the weak corridor cannot address.
+
+Two caveats keep this at the honest grade. The locking is exact only in the strict luminal limit; the neutrino's small observer-facing mass — the residue of its incomplete photon lock — admits a suppressed wrong-helicity admixture scaling as $m/E$, so one-handedness is near-exact rather than perfect, exactly as for a light Dirac fermion. And whether the parity-enantiomer states exist as decoupled (sterile) assemblies is a structural expectation of this picture, not a settled claim: it is governed by the right-handed or sterile branch gate below and must satisfy every consistency condition there before being read as more than a candidate.
+
 ## Conversion and Reaction-Provenance Questions
 
 The near-photon picture raises natural photon/neutrino conversion questions. The corpus treats these as closure questions, not as settled claims.
