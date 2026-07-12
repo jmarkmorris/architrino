@@ -11,7 +11,7 @@ This file preserves ideas and insights that are working toward promotion to an e
 ## Side Questions To Preserve
 
 - Keep alive the question of whether the missing neutrino chirality is tied to converting a pro-Noether braid.
-- Keep alive, but do not canonize, the ER=EPR-adjacent provenance-compliance question. The safe version is not that entanglement makes spacetime or that wormholes are substrate bridges. The safe version asks whether dense pair-provenance statistics can have a second local coarse-graining into Noether sea compliance, smoothness, or isotropy variables. Use $\Pi_{AB}$ for pair provenance, not bare $\lambda$, and test a local statistic of the form
+- Discussion disposition (operator option (a), 2026-07-12): reject the ER=EPR ontology analogy and retain only the [local provenance-compliance probe](pair-provenance-local-compliance-scope-decision.md). The safe target asks whether physically local, causally available pair-provenance statistics add predictive information to an independently derived Noether sea response after matched density/orientation controls. Use $\Pi_{AB}$ for pair provenance, not bare $\lambda$, and test a local statistic of the form
   $$
   C_{\Pi}^{ab}(\mathbf{x},t)
   =

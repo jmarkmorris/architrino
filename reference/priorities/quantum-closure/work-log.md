@@ -6,6 +6,8 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+- 2026-07-12: The operator accepted option (a) for `provenance_compliance_bridge`. The [scope decision](pair-provenance-local-compliance-scope-decision.md) rejects ER=EPR as substrate ontology or evidence and retains only a local, setting-independent provenance statistic whose constitutive value must be derived against matched medium-response controls. No implementation or corpus promotion was authorized. `DF-06` was removed from the Operator Discussion Queue.
+
 ### 2026-07-07 — measurement-ontology.md review integration + closure pass
 
 Integrated an external review of `content/markdown/aaa/quantum/measurement-ontology.md` and did a full closure review. In-file changes: fixed the canonical substrate symbol $\mathbb{U}_{\mathrm{now}}$ to absolute time $T$ (was lowercase $t$) and added a two-tier time-label declaration (substrate flow in $T$; reduced record-channel coordinates and bare times in the effective chart, matching `wavefunction-ontology.md`); declared the trace norm on the Lindblad-fit residual; unified the filtered-record-probability notation ($p_k^{\mathrm{rec}}(\theta)=P_\theta(k)$, with $p_k(\theta)$ the pre-filter statistic); renamed the certainty-level gap to $\delta_{\mathrm{cert}}$ and glossed it (was $\epsilon_C$, which collided across files with the apparatus-channel tolerance $\varepsilon_C$ in `wavefunction-ontology.md`); normalized headings to title case + Schrödinger umlaut; repaired a broken sentence in the observed-observer section; and fixed two mixed-symbol stragglers $\Delta_{\mathrm{div}}(t_0,t,T\to T_W;\mathcal{Q},W)$ left by the in-progress scene-wide $T_W$ window rename.
