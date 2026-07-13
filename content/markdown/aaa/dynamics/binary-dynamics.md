@@ -30,6 +30,10 @@ The Electrino's emissions govern the Positrino's symmetric response through the 
 
 In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf V\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
 
+The receiver-normal reduction makes the direction test exact. The signed pitch $p=-\dot r/(r\omega)$ is positive while the binary spirals inward and negative while it spirals outward. The [closed spiral-direction flow](master-equation.md#closed-spiral-direction-flow) computes how that sign changes from the radial and azimuthal wake contributions.
+
+The practical conclusion is narrower than “binaries spiral in” or “binaries spiral out.” A binary cannot follow an exact logarithmic spiral while simultaneously keeping a fixed spiral tightness, a fixed angular rate, and only one principal delayed partner root. Those assumptions are mutually incompatible under the receiver-normal Master Equation. An actual spiral must change its tightness or angular rate, acquire another causal root, enter the self-hit regime, or receive additional multi-body contributions. The formulas decide the direction once that evolving branch history is supplied.
+
 Standard central-force mechanics conserves angular momentum because the force at absolute time $T$ is collinear with the equal-time separation vector. The partner-hit branch does not have that geometry. Define the equal-time separation and delayed line of action by
 $$
 \mathbf{r}_{12}^{\mathrm{eq}}(T)

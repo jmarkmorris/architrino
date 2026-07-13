@@ -61,7 +61,7 @@ function conjugateMatrix(A) {
   return A.map((r, i) => r.map((v, j) => sign[i] * v * sign[j]));
 }
 
-function buildPairSites({ separation, phase, omega }) {
+export function buildPairSites({ separation, phase, omega }) {
   const sites = [];
   for (const braid of [0, 1]) {
     const sense = braid === 0 ? 1 : -1;
@@ -95,7 +95,7 @@ function unpackCoordinates(q = Array(12).fill(0)) {
   };
 }
 
-function siteState(site, t, { q = Array(12).fill(0), qDot = Array(12).fill(0), referenceTime = 0 } = {}) {
+export function siteState(site, t, { q = Array(12).fill(0), qDot = Array(12).fill(0), referenceTime = 0 } = {}) {
   const a = unpackCoordinates(q), ad = unpackCoordinates(qDot);
   const dt = t - referenceTime;
   const ax = a.x[site.braid][site.layerIndex] + ad.x[site.braid][site.layerIndex] * dt;
@@ -118,7 +118,7 @@ function siteState(site, t, { q = Array(12).fill(0), qDot = Array(12).fill(0), r
   return { position: add(center, local), velocity: add(centerVelocity, localVelocity), center };
 }
 
-function exactCircularSource(site, q) {
+export function exactCircularSource(site, q) {
   const a = unpackCoordinates(q);
   const allAx = [...a.x[0], ...a.x[1]], allAy = [...a.y[0], ...a.y[1]];
   const centerAx = allAx.reduce((s, v) => s + v, 0) / 6;
@@ -148,7 +148,7 @@ function receiverRow(state, t) {
   };
 }
 
-function exactRoots({ source, receiverState, t, fixture }) {
+export function exactRoots({ source, receiverState, t, fixture }) {
   return solveMovingCircularSourceCausalRoots({
     source,
     receiver: receiverRow(receiverState, t),
@@ -192,7 +192,7 @@ function retainedLinearRoots({ sourceSite, receiverState, t, qDot, fixture }) {
   return roots.filter((r, i) => i === 0 || Math.abs(r.emissionTime - roots[i - 1].emissionTime) > 1e-7);
 }
 
-function forceFromRoots({ roots, receiverState, receiverPolarity, sourcePolarity, soft }) {
+export function forceFromRoots({ roots, receiverState, receiverPolarity, sourcePolarity, soft }) {
   const force = [0, 0, 0];
   let minDistance = Infinity;
   let maxRootResidual = 0;
@@ -363,7 +363,7 @@ function measureCrossAxisBlocks(candidate, fixture) {
   return { stiffnessTorqueBlock: K, rateTorqueBlock: D, baseline };
 }
 
-function assembleJointPencil({ crossBlocks, includeStatic = true, includeRate = true }) {
+export function assembleJointPencil({ crossBlocks, includeStatic = true, includeRate = true }) {
   const pro = gyroscopicTiltAnalysisFull({});
   const anti = {
     mass: conjugateMatrix(pro.pencilMatrices.mass),
@@ -385,6 +385,17 @@ function assembleJointPencil({ crossBlocks, includeStatic = true, includeRate = 
     if (includeStatic) stiffness[i][j] += gammaCross[i][j] - crossBlocks.stiffnessTorqueBlock[i][j];
   }
   return { mass, velocity, stiffness };
+}
+
+export function jointPencilFromCrossCouplingReport(report, options = {}) {
+  return assembleJointPencil({
+    crossBlocks: {
+      stiffnessTorqueBlock: report.measuredCrossBlocks.stiffnessTorqueBlock,
+      rateTorqueBlock: report.measuredCrossBlocks.rateTorqueBlock,
+      baseline: { torqueByLayer: report.measuredCrossBlocks.baselineCrossTorqueByLayer },
+    },
+    ...options,
+  });
 }
 
 export function contraRotatingCrossCouplingCompletion({ fixture = CONTRA_ROTATING_CROSS_COUPLING_FIXTURE } = {}) {

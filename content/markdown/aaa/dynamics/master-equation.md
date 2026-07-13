@@ -439,16 +439,27 @@ $$
 \kappa
 \sum_j \sigma_{ij}|q_iq_j|
 \int_{T-h}^{T}
-\frac{\widehat{\mathbf r}_{ij}(T,T_{\mathrm{em}})}
-{r_{ij}^2(T,T_{\mathrm{em}})+\epsilon_c^2}\,
+\frac{\mathbf r_{ij}(T,T_{\mathrm{em}})}
+{\left(r_{ij}^2(T,T_{\mathrm{em}})+\epsilon_c^2\right)^{3/2}}
+\left|D_{T,ij}(T,T_{\mathrm{em}})\right|
 \delta_\eta\!\big(r_{ij}(T,T_{\mathrm{em}})-c_f(T-T_{\mathrm{em}})\big)\,dT_{\mathrm{em}}
 }
 $$
-with the same sign convention
+where, for $r_{ij} > 0$,
+$$
+D_{T,ij}(T,T_{\mathrm{em}})
+\equiv
+c_f-\widehat{\mathbf r}_{ij}(T,T_{\mathrm{em}})\cdot\mathbf V_i(T)
+$$
+At $\mathbf r_{ij}=\mathbf 0$, the complete vector product multiplying
+$\delta_\eta$ is defined by its continuous extension, which is $\mathbf 0$.
+The scalar $D_{T,ij}$ is not evaluated separately at that point.
+
+The sign convention remains
 $$
 \sigma_{ij}=\mathrm{sign}(q_iq_j)
 $$
-used in the exact branch law. For equal-magnitude charges
+This is the convention used in the exact branch law. For equal-magnitude charges
 $$
 |q_i|=\epsilon
 $$
@@ -469,7 +480,25 @@ selects causal surfaces with finite width, while
 $$
 \epsilon_c
 $$
-caps the near-collision inverse-square amplitude. Branch-resolved formulas with receiver-normal factors are local reductions of this equation on finite simple-root charts. They should not be used as the global definition across causal folds, caustic transit, or chart-boundary verification.
+smoothly regularizes the near-collision inverse-square amplitude. The factor
+$|D_{T,ij}|$ supplies the receiver-normal crossing rate. On a finite simple-root
+chart, collapse of the causal-surface delta function gives
+$$
+\int
+\frac{\mathbf r_{ij}}
+{\left(r_{ij}^2+\epsilon_c^2\right)^{3/2}}
+|D_{T,ij}|\,\delta(g_{ij})\,dT_{\mathrm{em}}
+=
+\sum_{T_{\mathrm{em}}\in\mathcal C_{ij}(T)}
+\frac{\mathbf r_{ij}}
+{\left(r_{ij}^2+\epsilon_c^2\right)^{3/2}}
+\left|\frac{D_{T,ij}}{D_{s,ij}}\right|
+$$
+Thus the $\epsilon_c\to0^+$ limit away from coordinate coincidence recovers
+the canonical inverse-square receiver-normal branch law. Branch-resolved
+formulas are local reductions of this equation on finite simple-root charts.
+They should not be used as the global definition across causal folds, caustic
+transit, or chart-boundary verification.
 
 The two regulators quarantine different singular loci. The width $\eta$ regularizes the causal-surface collapse, branch folds, and caustic-transit impulse; the core scale $\epsilon_c$ regularizes the coincidence or diagonal collision locus. A theorem packet may refine them together for computation, but a sharp-limit claim must state which of $\eta\to0^+$ and $\epsilon_c\to0^+$ is being taken, and why the other singular locus remains controlled during that limit.
 
@@ -2619,9 +2648,51 @@ J_{12}
 \Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big]
 $$
 The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
-For force rows the source-normal denominator is not the branch strength; use
-$W_p^{\mathrm{rec}}(\theta,\Delta)=\lvert D_{T,p}/D_{s,p}\rvert$ on the same
-retained partner root.
+
+##### Closed Receiver-Normal Spiral Branch Factors
+
+For force rows the source-normal denominator is not the branch strength. Define
+the current and source-event dimensionless tangential speeds
+$$
+b\equiv\frac{r(\theta)\dot\theta(\theta)}{c_f},
+\qquad
+b_0\equiv\frac{r(\theta)\rho\omega_0}{c_f}
+$$
+Then the source-normal and receiver-normal factors on the same retained partner
+root are available in closed form:
+$$
+\frac{D_{s,p}}{c_f}
+=
+1+
+\frac{b_0}{\Lambda_p}
+\Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big]
+$$
+$$
+\frac{D_{T,p}}{c_f}
+=
+1+
+\frac{b}{\Lambda_p}
+\Big[p(1+\rho\cos\Delta)+\rho\sin\Delta\Big]
+$$
+Hence the exact partner branch strength is
+$$
+\boxed{
+W_p^{\mathrm{rec}}(\theta,\Delta)
+=
+\left|
+\frac{
+1+\dfrac{b}{\Lambda_p}
+\big[p(1+\rho\cos\Delta)+\rho\sin\Delta\big]
+}{
+1+\dfrac{b_0}{\Lambda_p}
+\big[\sin\Delta-p_0(\cos\Delta+\rho)\big]
+}
+\right|
+}
+$$
+This expression is algebraic once a delayed root $\Delta$ is known. In the
+uniform circular limit $p=p_0=0$, $\rho=1$, and $b_0=b$, its numerator and
+denominator coincide, recovering $W_p^{\mathrm{rec}}=1$.
 
 For opposite polarities, the branch acceleration is
 $$
@@ -2679,6 +2750,44 @@ J_{11}
 $$
 Again the circular limit agrees with the uniform circular self-hit formula, $J_{11}=1-\beta\cos(\Delta/2)$.
 
+The receiver projection on the same self line of action gives the companion
+closed-form rows
+$$
+\frac{D_{s,s}}{c_f}
+=
+1-
+\frac{b_0}{\Lambda_s}
+\Big[\sin\Delta+p_0(\rho-\cos\Delta)\Big]
+$$
+$$
+\frac{D_{T,s}}{c_f}
+=
+1-
+\frac{b}{\Lambda_s}
+\Big[-p(1-\rho\cos\Delta)+\rho\sin\Delta\Big]
+$$
+and therefore
+$$
+\boxed{
+W_s^{\mathrm{rec}}(\theta,\Delta)
+=
+\left|
+\frac{
+1-\dfrac{b}{\Lambda_s}
+\big[-p(1-\rho\cos\Delta)+\rho\sin\Delta\big]
+}{
+1-\dfrac{b_0}{\Lambda_s}
+\big[\sin\Delta+p_0(\rho-\cos\Delta)\big]
+}
+\right|
+}
+$$
+The uniform circular limit again gives $D_{T,s}=D_{s,s}$ and
+$W_s^{\mathrm{rec}}=1$ away from the common null endpoint. Thus the
+receiver-normal restart does not require a new numerical ansatz for either
+spiral branch family: it requires evaluating these exact ratios on the retained
+root intervals.
+
 For self-hit, $\sigma_{11}=+1$, so
 $$
 \mathbf A_{11}
@@ -2700,6 +2809,183 @@ S_T^{s}(\theta,\Delta)
 \equiv
 -p(1-\rho\cos\Delta)+\rho\sin\Delta
 $$
+
+##### Closed Spiral-Direction Flow
+
+The physical question is whether the binary's radius is shrinking or growing.
+The delayed force does two different jobs, and they must be kept separate. Its
+radial part changes the inward or outward motion. Its azimuthal part changes the
+rotation rate and angular momentum. A forward azimuthal push can spin the binary
+up while the radius is still shrinking, so the torque sign alone does not answer
+the spiral-direction question.
+
+The geometry separates those jobs into two dimensionless sums. $B_r$ is the net
+outward-radial contribution, while $B_\theta$ is the net forward-azimuthal
+contribution. For an equal-magnitude opposite-polarity binary, let
+$q^2=|q_1q_2|=q_1^2$, and define
+$$
+B_r
+\equiv
+-\sum_{\mathrm{part}}
+\frac{W_p^{\mathrm{rec}}(1+\rho_p\cos\Delta_p)}{\Lambda_p^3}
++\sum_{\mathrm{self}}
+\frac{W_s^{\mathrm{rec}}(1-\rho_s\cos\Delta_s)}{\Lambda_s^3}
+$$
+$$
+B_\theta
+\equiv
+\sum_{\mathrm{part}}
+\frac{W_p^{\mathrm{rec}}\rho_p\sin\Delta_p}{\Lambda_p^3}
++\sum_{\mathrm{self}}
+\frac{W_s^{\mathrm{rec}}\rho_s\sin\Delta_s}{\Lambda_s^3}
+$$
+With $\omega=\dot\theta$, the exact polar equations are
+$$
+\ddot r-r\omega^2
+=
+\frac{\kappa q^2}{r^2}B_r,
+\qquad
+r\dot\omega+2\dot r\,\omega
+=
+\frac{\kappa q^2}{r^2}B_\theta
+$$
+and the angular-momentum row is
+$$
+\frac{d}{dT}(r^2\omega)
+=
+\frac{\kappa q^2}{r}B_\theta
+$$
+Thus $B_\theta>0$ means that the wakes are adding angular momentum. It does not
+mean that the binary is moving outward. Radial direction is carried separately
+by the changing radius.
+
+The signed pitch packages the direction into one number:
+$$
+p\equiv-\frac{\dot r}{r\omega},
+\qquad
+\Gamma\equiv\frac{r^3\omega^2}{\kappa q^2}>0
+$$
+for $\omega>0$. The sign convention is simple: $p>0$ means that the radius
+shrinks as the binary turns, while $p<0$ means that the radius grows. Direct
+substitution into the polar equations gives the closed receiver-normal pitch
+flow
+$$
+\boxed{
+\frac{dp}{d\theta}
+=
+-(1+p^2)-\frac{B_r+pB_\theta}{\Gamma}
+}
+$$
+$$
+\boxed{
+\frac{d}{d\theta}\log\omega
+=
+2p+\frac{B_\theta}{\Gamma}
+}
+$$
+together with $d\log r/d\theta=-p$. These identities are exact on any smooth
+retained spiral chart. The complicated path-history information is confined to
+the delayed roots inside $B_r$ and $B_\theta$. Once those roots are known, the
+equations directly evolve the spiral direction.
+
+At a radial turning point, the binary is momentarily neither moving inward nor
+outward, so $p=0$. The direction after that instant is decided by one balance:
+$$
+\left.\frac{dp}{d\theta}\right|_{p=0}
+=
+-\frac{\Gamma+B_r}{\Gamma}
+$$
+Therefore
+$$
+\Gamma+B_r>0
+\quad\Longleftrightarrow\quad
+\text{minimum radius followed by outward motion}
+$$
+while
+$$
+\Gamma+B_r<0
+\quad\Longleftrightarrow\quad
+\text{maximum radius followed by inward motion}
+$$
+In plain language, $\Gamma$ is the outward centrifugal requirement and $B_r$ is
+the signed radial wake contribution. If their sum is positive, the radius has
+reached a minimum and rebounds outward. If their sum is negative, the radius
+has reached a maximum and turns inward. The equality case is radially tangent
+and requires the next derivative. This is the closed-form in-versus-out decision
+rule.
+
+The simplest proposed spiral assumes that its tightness and angular rate never
+change. In symbols, its signed pitch is constant, $p=p_\star$, and its angular
+rate is constant. Under those assumptions, the two compatibility conditions
+reduce to
+$$
+B_r=(p_\star^2-1)\Gamma,
+\qquad
+B_\theta=-2p_\star\Gamma
+$$
+or, after eliminating the positive scale $\Gamma$,
+$$
+(p_\star^2-1)B_\theta+2p_\star B_r=0,
+\qquad
+\Gamma=-\frac{B_\theta}{2p_\star}
+$$
+for $p_\star\ne0$. The immediate conclusion is that a constant-rate inward
+spiral requires a net backward azimuthal contribution, $B_\theta<0$. The
+principal partner root instead contributes forward, with $B_\theta>0$. That
+single delayed partner wake therefore cannot produce the proposed constant-rate
+inward spiral by itself. Older signed roots, self roots, or a changing angular
+rate would have to alter the balance.
+
+The stronger result concerns three assumptions taken together:
+
+- the spiral keeps the same tightness;
+- the angular rate stays constant;
+- only the single principal partner root is active.
+
+With no active self root, constant signed pitch gives
+$$
+\rho=e^{p_\star\Delta},
+\qquad
+\Lambda_p^2=1+\rho^2+2\rho\cos\Delta,
+\qquad
+b=\frac{\Delta}{\Lambda_p}
+$$
+and the branch-strength factor cancels from the pitch-compatibility equation.
+The remaining necessary condition is
+$$
+\boxed{
+(p_\star^2-1)\rho\sin\Delta
+-2p_\star(1+\rho\cos\Delta)
+=0
+}
+$$
+For fixed $p_\star\ne0$, the left-hand side is analytic in $\Delta$ and is not
+identically zero; its continuation to $\Delta=0$ has value $-4p_\star$. Its
+zeros on a retained principal interval are therefore isolated. A continuous
+single-root history satisfying the compatibility equation must keep $\Delta$
+constant. The delay equation then keeps $b$ constant, and constant angular rate
+keeps $r$ constant, contradicting $p_\star\ne0$. Hence:
+
+> **Proposition (single-principal-partner logarithmic-spiral no-go).** No exact
+> nonzero constant-pitch, constant-angular-rate logarithmic spiral, inward or
+> outward, exists over an open interval of the strictly sub-field,
+> single-principal-partner receiver-normal chart.
+
+The proposition does not say that binaries cannot spiral. It says that the
+simple logarithmic picture is too rigid: a real spiral cannot preserve both its
+tightness and its angular rate while responding only to one delayed partner
+wake. At least one feature must evolve. The spiral can change tightness, change
+angular rate, acquire another delayed root, cross into the self-hit regime, or
+receive multi-body contributions.
+
+The Frenet tangential sum used below is the same information in a rotated basis:
+$$
+B_T
+=
+\frac{-pB_r+B_\theta}{\sqrt{1+p^2}}
+$$
+so the polar pitch flow and the Frenet obstruction are equivalent statements,
+not separate tests.
 
 The circular obstruction yields a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
 $$
