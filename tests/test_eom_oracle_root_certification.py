@@ -353,6 +353,30 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
             )
         )
 
+    def test_H0_self_identity_preserves_coincidence_under_history_enclosure(self) -> None:
+        enclosed_history = history(
+            "enclosed-static-self-history",
+            segment(
+                t_start="0",
+                t_end="3",
+                x=("0", "0", "0", "0"),
+                position_error="1e-12",
+                velocity_error="1e-12",
+            ),
+        )
+        certificate = certify_causal_roots(
+            receiver=enclosed_history,
+            source=enclosed_history,
+            reception_time="3",
+            field_speed="1",
+            search_lower="0",
+            search_upper="3",
+            root_tolerance="1e-18",
+        )
+        self.assertEqual(certificate.status, "certified_complete")
+        self.assertEqual(certificate.roots, ())
+        self.assertTrue(certificate.coincident_endpoint_excluded)
+
     def test_field_speed_rail_history_remains_unresolved(self) -> None:
         rail_history = history(
             "rail-self-history",

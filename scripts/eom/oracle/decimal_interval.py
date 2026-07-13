@@ -219,6 +219,38 @@ class DecimalInterval:
             lower = Decimal(0)
         return DecimalInterval(lower, upper, self.precision)
 
+    def exp(self) -> "DecimalInterval":
+        def guarded_exp(value: Decimal) -> Decimal:
+            with localcontext() as context:
+                context.prec = self.precision + 12
+                return value.exp(context=context)
+
+        lower_guard = guarded_exp(self.lower)
+        upper_guard = guarded_exp(self.upper)
+        with localcontext() as context:
+            context.prec = self.precision + 12
+            lower_guard = context.next_minus(lower_guard)
+            upper_guard = context.next_plus(upper_guard)
+        lower = _rounded(
+            lambda: lower_guard,
+            precision=self.precision,
+            rounding=ROUND_FLOOR,
+        )
+        upper = _rounded(
+            lambda: upper_guard,
+            precision=self.precision,
+            rounding=ROUND_CEILING,
+        )
+        return DecimalInterval(lower, upper, self.precision)
+
+    def absolute(self) -> "DecimalInterval":
+        if self.lower >= 0:
+            return self
+        if self.upper <= 0:
+            return DecimalInterval(-self.upper, -self.lower, self.precision)
+        upper = max(-self.lower, self.upper)
+        return DecimalInterval(Decimal(0), upper, self.precision)
+
     def inflate(self, radius: object) -> "DecimalInterval":
         amount = exact_decimal(radius)
         if amount < 0:

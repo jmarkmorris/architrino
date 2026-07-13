@@ -3,8 +3,9 @@
 This module intentionally imports no production solver or bridge code. The
 certified retained-history and root-completeness implementation is kept in
 ``certified_history.py`` so its exact-decimal interval arithmetic remains
-separate from this mpmath equation reference. Certified acceleration enclosure
-and coupled accepted-step evolution remain later phases.
+separate from this mpmath equation reference. Certified sharp and finite-width
+acceleration reconstruction is kept in ``certified_acceleration.py``. Coupled
+accepted-step evolution is kept in ``certified_evolution.py``.
 """
 
 from __future__ import annotations

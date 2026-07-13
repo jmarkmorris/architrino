@@ -121,3 +121,109 @@ This file holds dated decisions, implementation status, validation results, fail
 - Added an honest dense-workload boundary: if certified exclusion and controlled aggregation cannot reduce a noncompressible workload inside the declared hardware envelope, preflight returns `resource_envelope_exceeded` before publishing candidate evolution.
 - Added the $N=10^4$, $10^5$, and $10^6$ benchmark ladder, million-path certified sparse evolution, exhaustive nested parity controls, heterogeneous parity, restart/output reconstruction, and dense fail-closed validation.
 - Preserved the existing central solver, current dependencies, independent oracle, Master Equation binding, and numeric certification contract unchanged.
+
+## 2026-07-13 — Certified Acceleration Reconstruction Layer Completed
+
+- Implemented `certified_acceleration.py` as an independently authored,
+  exact-decimal interval reconstruction layer over the certified retained
+  histories and root-completeness certificates.
+- Implemented the frozen sharp-root acceleration with certified $D_s$,
+  receiver-normal strength $|D_T/D_s|$, signed charge product, and the
+  unregularized inverse-square vector law. Exact-$c_f$ receiver motion emits a
+  present but silent row, and super-$c_f$ receiver motion is not clamped.
+- Implemented the frozen finite-width pair law by adaptive interval quadrature
+  over the complete declared retained interval, including the Gaussian causal
+  mollifier, smooth radial core kernel, and complete-vector zero extension at
+  coordinate coincidence.
+- Corrected the decimal exponential enclosure to use guard digits and outward
+  endpoint expansion because decimal transcendental evaluation itself is
+  round-to-nearest rather than directed by the surrounding context.
+- Required the complete $N^2$ ordered-pair domain including self-pairs and
+  rejected missing, duplicate, extra, or internally inconsistent path inputs
+  before reconstruction.
+- Added reconstructible pair and all-path certificates with exact-decimal row
+  bounds, receiver totals, declared precision and tolerances, resource use,
+  history provenance, and input-sensitive digests. Final summed enclosures are
+  checked against their declared tolerance before certification.
+- Added sixteen controls covering analytic sharp rows, multiple roots,
+  self-pairs, exact- and super-field-speed motion, finite-width quadrature,
+  tangent routing, memory boundaries, provenance, resource exhaustion, and a
+  complete two-path matrix. The certified-acceleration controls pass.
+- Advanced the oracle to coupled retained-history evolution. The oracle remains
+  priority-only, performs explicit pair evaluation, and confers no production
+  authority; the production block-exclusion engine has not begun.
+
+## 2026-07-13 — Atomic Coupled Retained-History Evolution Implemented
+
+- Implemented `certified_evolution.py` as an independent reference method of
+  steps over continuous retained histories. It imports no current or future
+  production solver implementation.
+- Added a simultaneous cubic acceleration corrector: every path advances from
+  one immutable coupled input, and predictor histories remain confined to the
+  correction attempt.
+- Added full-step versus two-half-step local position and velocity error
+  estimates. Correction and integration tolerances are operational; exceeding
+  them rejects the complete candidate and halves the step down to the declared
+  minimum.
+- Added complete ordered-pair root and acceleration snapshots at each consumed
+  receiver time, root-topology signatures for branch-event subdivision, and
+  final recertification after the accepted error estimate is propagated into
+  the appended dense-history enclosure.
+- Added atomic publication certificates: rejected attempts return the original
+  history digests and accepted time, while successful attempts publish every
+  evolved path and its continuation-critical records together.
+- Corrected two retained-history dependencies exposed by coupled evolution.
+  Same-path identity now preserves the exact $H(0)$ endpoint coincidence under
+  interval uncertainty, and nominal continuity is evaluated from the nominal
+  polynomial rather than from an error-inflated enclosure. Polynomial
+  derivative coefficients now retain the declared decimal precision.
+- Corrected all-path evidence reconstruction to replay the declared
+  pair-grouped reduction order. Re-summing every root row in a different
+  association can produce a different outward interval even when it covers the
+  same value, so that alternate association cannot be used as an exact-equality
+  test.
+- Added ten coupled-evolution controls covering exact inertial self-history,
+  super-$c_f$ evolution, complete binary pair accounting, symmetric coupled
+  motion, operational error rejection, correction exhaustion, memory-boundary
+  failure, adaptive halving, branch-topology event subdivision, prohibited
+  future-history input, and rollback.
+- Kept every successful result at `reference` evidence status. Step doubling is
+  an operational numerical error estimate, not an analytic solution proof or
+  production-authority claim.
+- Advanced the oracle to the acceptance matrix and event-specialized controls.
+  Production block exclusion, heterogeneous execution, distributed history,
+  checkpoint storage, and migration remain unstarted.
+
+## 2026-07-13 — Independent Oracle Phase 4 Completed
+
+- Added `phase4_acceptance.py` as a reference-only layer; it imports neither
+  the current central solver nor a future production EOM implementation.
+- Added certified reception-time root tubes. Persistent identities are issued
+  only when every matched branch has a uniform nonzero source normal, strict
+  residual signs on the tube walls, disjoint tubes, and a certified root-free
+  slab complement. Root births, deaths, and lost transversality route to the
+  event control rather than inheriting an identity heuristically.
+- Added joint reception/emission interval quadrature for finite-width
+  fold/caustic impulse. It integrates the complete triangular causal domain,
+  avoids division by $D_s$, checks retained-history boundary clearance, and
+  fails closed on depth, cell, or final-width exhaustion.
+- Added exact-decimal content-hashed checkpoints containing the retained
+  histories, reconstruction errors, charges, controller step, numeric policy,
+  resource policy, accepted/rejected counts, and prefix provenance. Restore
+  verifies both per-history and whole-checkpoint digests before continuation.
+- Added coupled exact-halving refinement certificates requiring at least four
+  levels and nonincreasing endpoint position and velocity deltas.
+- Added the versioned `eom_independent_oracle_phase4_acceptance/v0` matrix. It
+  rejects missing or failed controls, empty evidence, non-reference authority,
+  and dependencies on the current central solver, a production EOM backend, or
+  prescribed future paths.
+- Added twelve Phase 4 controls covering persistent identities, root-event
+  routing, tangent-event impulse, event resource exhaustion, restart identity,
+  checkpoint tampering, sub-$c_f$ curved-history falsification, four-level
+  inertial and interacting-binary refinement, complete matrix acceptance,
+  forbidden current-solver dependency, and false canonical evidence.
+- The full independent-oracle suite now passes 64 tests. The production
+  block-exclusion engine remains unstarted, and every successful new record is
+  reference-only.
+- Removed the completed independent-oracle item from the live queue and
+  advanced `performance_architecture_survey_and_baseline` to the ready item.

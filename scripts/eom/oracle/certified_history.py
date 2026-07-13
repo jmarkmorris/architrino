@@ -32,6 +32,12 @@ def _overlaps(left: DecimalInterval, right: DecimalInterval) -> bool:
     return max(left.lower, right.lower) <= min(left.upper, right.upper)
 
 
+def _scaled_decimal(value: Decimal, multiplier: int, precision: int) -> Decimal:
+    with localcontext() as context:
+        context.prec = precision
+        return +(value * Decimal(multiplier))
+
+
 def _vector_subtract(left: IntervalVector, right: IntervalVector) -> IntervalVector:
     return interval_vector(left[index] - right[index] for index in range(3))
 
@@ -114,20 +120,20 @@ class CubicHistorySegment:
         derivative_rows: tuple[CoefficientRow, CoefficientRow, CoefficientRow] = (
             (
                 self.coefficients[0][1],
-                2 * self.coefficients[0][2],
-                3 * self.coefficients[0][3],
+                _scaled_decimal(self.coefficients[0][2], 2, self.precision),
+                _scaled_decimal(self.coefficients[0][3], 3, self.precision),
                 Decimal(0),
             ),
             (
                 self.coefficients[1][1],
-                2 * self.coefficients[1][2],
-                3 * self.coefficients[1][3],
+                _scaled_decimal(self.coefficients[1][2], 2, self.precision),
+                _scaled_decimal(self.coefficients[1][3], 3, self.precision),
                 Decimal(0),
             ),
             (
                 self.coefficients[2][1],
-                2 * self.coefficients[2][2],
-                3 * self.coefficients[2][3],
+                _scaled_decimal(self.coefficients[2][2], 2, self.precision),
+                _scaled_decimal(self.coefficients[2][3], 3, self.precision),
                 Decimal(0),
             ),
         )
@@ -138,8 +144,34 @@ class CubicHistorySegment:
 
     def nominal_state(self, time: Decimal) -> tuple[tuple[Decimal, ...], tuple[Decimal, ...]]:
         point = DecimalInterval.point(time, self.precision)
-        position = tuple(component.midpoint for component in self.position_interval(point))
-        velocity = tuple(component.midpoint for component in self.velocity_interval(point))
+        position = tuple(
+            self._polynomial_interval(row, point).midpoint
+            for row in self.coefficients
+        )
+        velocity_rows = (
+            (
+                self.coefficients[0][1],
+                _scaled_decimal(self.coefficients[0][2], 2, self.precision),
+                _scaled_decimal(self.coefficients[0][3], 3, self.precision),
+                Decimal(0),
+            ),
+            (
+                self.coefficients[1][1],
+                _scaled_decimal(self.coefficients[1][2], 2, self.precision),
+                _scaled_decimal(self.coefficients[1][3], 3, self.precision),
+                Decimal(0),
+            ),
+            (
+                self.coefficients[2][1],
+                _scaled_decimal(self.coefficients[2][2], 2, self.precision),
+                _scaled_decimal(self.coefficients[2][3], 3, self.precision),
+                Decimal(0),
+            ),
+        )
+        velocity = tuple(
+            self._polynomial_interval(row, point).midpoint
+            for row in velocity_rows
+        )
         return position, velocity
 
     def canonical_tokens(self) -> tuple[str, ...]:
@@ -392,14 +424,23 @@ def _coincident_endpoint_open_cell_reason(
     source_segment: CubicHistorySegment,
     emission_interval: DecimalInterval,
     field_speed: Decimal,
+    *,
+    coincident_endpoint_known: bool = False,
 ) -> str | None:
     """Prove the open cell before an H(0)-excluded coincident endpoint root free."""
 
-    endpoint = DecimalInterval.point(emission_interval.upper, emission_interval.precision)
-    endpoint_position = source_segment.position_interval(endpoint)
-    endpoint_displacement = _vector_subtract(receiver_position, endpoint_position)
-    if not all(component.is_exact_zero for component in endpoint_displacement):
-        return None
+    if not coincident_endpoint_known:
+        endpoint = DecimalInterval.point(
+            emission_interval.upper,
+            emission_interval.precision,
+        )
+        endpoint_position = source_segment.position_interval(endpoint)
+        endpoint_displacement = _vector_subtract(
+            receiver_position,
+            endpoint_position,
+        )
+        if not all(component.is_exact_zero for component in endpoint_displacement):
+            return None
 
     source_velocity = source_segment.velocity_interval(emission_interval)
     speed = interval_norm(source_velocity)
@@ -497,6 +538,10 @@ def certify_causal_roots(
 
     receiver_point = DecimalInterval.point(reception, precision)
     receiver_position, _ = receiver.state_interval(receiver_point)
+    same_retained_history = (
+        receiver.history_id == source.history_id
+        and receiver.digest() == source.digest()
+    )
     initial_cells = source.covered_cells(lower_bound, upper_bound)
     roots: list[RootBracket] = []
     excluded: list[CellRecord] = []
@@ -607,12 +652,15 @@ def certify_causal_roots(
         lower_sign = lower_residual.strict_sign
         upper_sign = upper_residual.strict_sign
 
-        if cell_upper == reception and upper_sign == 0:
+        if cell_upper == reception and (
+            upper_sign == 0 or same_retained_history
+        ):
             endpoint_reason = _coincident_endpoint_open_cell_reason(
                 receiver_position,
                 segment,
                 cell,
                 c_f,
+                coincident_endpoint_known=same_retained_history,
             )
             if endpoint_reason is not None:
                 coincident_endpoint_excluded = True
