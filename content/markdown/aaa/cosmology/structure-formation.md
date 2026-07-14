@@ -200,6 +200,12 @@ $$
 
 The last term is the important one. It prevents the model from behaving like CDM in the linear packet and like a separate modified-gravity theory in the nonlinear packet unless both projections come from the same Noether sea state and neutral-assembly state. This also protects the $S_8$ discussion: late-time growth suppression may be allowed, but it must not erase the linear-regime matter loading that fixes the CMB and equality-scale transfer function.
 
+### Cluster Assembly and Intracluster-Light Accounting
+
+High-redshift cluster and protocluster comparisons also need a luminous-component split. The central brightest cluster galaxy, the diffuse intracluster-light component, and the total cluster potential are different observer data products. Moving stellar mass from the central galaxy into a diffuse intracluster component can repair one BCG growth curve while creating a new obligation: the same source-history branch must predict the diffuse fraction, radial profile, concentration, surface-brightness selection, and mass-to-light conversion as functions of redshift and cluster mass.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, intracluster light is not dark matter and not Noether sea mass. It is luminous, collisionless stellar matter whose low-surface-brightness distribution can trace the cluster potential and therefore test the same effective metric and halo record used for lensing, X-ray gas, and galaxy dynamics. A cluster packet that uses BCG mass for stellar assembly history, intracluster light for diffuse stellar accounting, and lensing or dynamics for total mass must keep those rows separate until one Noether sea response record ties them together.
+
 ---
 
 ## Matter Content and the Dark Sector

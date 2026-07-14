@@ -1,0 +1,57 @@
+# EOM C++ Production Host
+
+## Status
+
+Accepted on 2026-07-13 by operator decision. Numerical and accelerator
+promotion remains evidence-gated.
+
+## Context
+
+EOM must combine native CPU threading, SIMD, explicit memory control,
+heterogeneous accelerator execution, continuous retained histories, exact
+ordered-pair accounting, and precision beyond hardware floating point. The
+independent Python oracle is deliberately too slow to be the production
+engine, while JavaScript remains suitable only for a thin application shell.
+
+The local architecture baseline established strong C++ CPU evidence but had
+not selected a host language because the prior decision rule required a second
+native-language benchmark. The operator has now selected C++ directly. That
+choice settles the host-language question without weakening any mathematical,
+precision, parity, performance, or migration gate.
+
+## Decision
+
+1. The EOM production host is C++20.
+2. Regular certified numeric work begins with outward-rounded hardware
+   binary64. Difficult rows escalate locally through MPFR/GMP directed interval
+   arithmetic, with the precision route and achieved precision recorded.
+3. The independent Python decimal-interval oracle remains separately authored
+   and must not import or become the C++ production implementation.
+4. CPU threading and SIMD live in the C++ host. Accelerator kernels may use the
+   native API required by each platform, but they return certified difficult
+   rows to the host and must preserve one mathematical and certificate schema.
+5. The new engine lives under `src/eom`. The existing central solver remains in
+   place unchanged for current dependencies.
+6. No native C ABI or application bridge is frozen until the coupled integrator
+   and streaming ownership boundaries determine the stable request, result,
+   cancellation, checkpoint, and progress contracts.
+
+## Consequences
+
+- A second host-language benchmark is no longer a prerequisite for choosing
+  C++; it may still be run as a risk or portability comparison.
+- C++ implementation work may proceed immediately, but no output has EOM
+  authority until the complete coupled evolution and acceptance gates pass.
+- MPFR and GMP are host dependencies for certified difficult-row replay.
+- Metal, CUDA, HIP, SYCL, multi-GPU, and distributed execution remain measured
+  backend decisions rather than host-language decisions.
+- The current central solver and the EOM engine coexist only because the
+  operator explicitly requires dependency preservation during migration. EOM
+  is not a hidden replacement or alternate route inside current consumers.
+
+## Re-evaluation Triggers
+
+Revisit this decision if a required target lacks a conforming C++20 and
+MPFR/GMP toolchain, if measured accelerator integration cannot preserve the
+certificate contract, or if representative end-to-end evidence shows that the
+chosen host cannot meet the accepted resource envelope.

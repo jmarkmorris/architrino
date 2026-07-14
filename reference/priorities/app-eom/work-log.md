@@ -227,3 +227,160 @@ This file holds dated decisions, implementation status, validation results, fail
   reference-only.
 - Removed the completed independent-oracle item from the live queue and
   advanced `performance_architecture_survey_and_baseline` to the ready item.
+
+## 2026-07-13 — Performance Architecture Survey And Local Baseline Executed
+
+- Added the versioned reference-only
+  `eom_performance_architecture_baseline/v0` driver, a C++20 native kernel
+  probe, a Metal bulk-bound probe, and five unit controls. None imports or
+  changes the existing central solver, and none implements production EOM.
+- Recorded an Apple M3 evidence packet with an independent 90-digit
+  decimal-interval oracle cost, NumPy binary64 kernels, C++ scalar and
+  auto-vector candidates, deterministic fixed-tree reduction, one-to-eight CPU
+  thread scaling, Metal binary32 kernel and blit timing, local immutable-chunk
+  I/O, and dense resource projections.
+- Passed complete disjoint pair coverage and exhaustive active-pair parity for
+  two stationary $N=256$ controls. The stationary block prototype uses
+  outward-rounded distance and causal-reach bounds; it is not a general
+  moving-history certificate.
+- Executed the sparse stationary population ladder through $N=10^6$. The
+  million-path row accounted for all $10^{12}$ ordered pairs, excluded
+  `999,992,340,032`, and promoted `7,659,968` to exact fallback. It found no
+  active roots in that deliberately separated control and therefore provides
+  no dense-root or branch-divergence claim.
+- Measured about `10.97` complete simple-root pair certificates per second in
+  the correctness-first oracle, about `4.15` billion C++ bulk classification
+  rows per second, and about `5.29` billion Metal binary32 rows per second at
+  the wall boundary. These operations are not mathematically equivalent; the
+  contrast establishes the required heterogeneous regular/difficult split.
+- Measured candidate auto-vector gains of `1.173x` for classification and
+  `1.424x` for interpolation across five outer process trials with seven
+  internal timings each. SIMD remains an open evidence row until compiler
+  reports or hardware counters verify it on the native retained-history/root
+  batch.
+- Measured CPU sparse-traversal speedups of `1.96x`, `3.72x`, and `4.67x` at
+  two, four, and eight threads. The result includes worker creation and is a
+  local synthetic bound, not the production scaling envelope.
+- Projected a minimum `64 TB` for one materialized 64-byte row across the dense
+  million-path ordered-pair domain. The host therefore returns
+  `resource_envelope_exceeded`; the fastest bulk-kernel time projection is
+  explicitly only an optimistic lower bound and not an EOM completion estimate.
+- Kept Rust, multi-GPU, distributed-history, representative branch-divergence,
+  and precision-escalation results unmeasured. The production language decision
+  remains pending, and the production block-exclusion engine remains unstarted.
+- Advanced the live survey item to
+  `active-local-baseline-complete` rather than completing it. The next packet is
+  the general moving-history certified block bound plus native exact-root batch,
+  difficult-row return, and cross-backend parity evidence.
+
+## 2026-07-13 — C++ Host Selected And Native Moving-History Root Layer Implemented
+
+- Accepted the operator decision selecting C++20 as the EOM production host.
+  Recorded MPFR/GMP directed interval arithmetic as the first implemented
+  difficult-row precision route while preserving the separately authored
+  Python decimal-interval oracle.
+- Added a modular `src/eom` C++ library without changing `src/solver`, its ABI,
+  or any current consumer. The new layer is executable architecture evidence,
+  not yet coupled EOM evolution or migration authority.
+- Implemented continuous piecewise-cubic retained histories with position and
+  velocity reconstruction-error enclosures, interval coverage checks, and
+  boundary continuity validation.
+- Implemented `eom_moving_history_block_certificate/v0`. It evaluates moving
+  receiver and source history hulls over declared time intervals, preserves
+  complete receiver/source membership, and either certifies every ordered pair
+  in the block root-free or sends the complete block to exact fallback.
+- Implemented `eom_native_exact_pair_certificate/v0` and a bounded-thread batch.
+  The batch isolates all regular simple roots, certifies the complement,
+  records source-normal and receiver-normal enclosures, preserves source
+  segment identity through boundary deduplication, and returns results in input
+  order independently of worker completion order.
+- Implemented local numeric escalation from outward binary64 intervals to
+  caller-bounded MPFR directed intervals. A close two-root row that cannot use
+  the binary64 tolerance path certified both roots at 128 bits. Tangent and
+  exact-field-speed rail controls exhausted the declared route and returned
+  `caustic_route_required` without publishing a complete root set.
+- Implemented the canonical coincident same-history endpoint exclusion for
+  uniformly sub-field-speed and provably super-field-speed open cells. The
+  exact-field-speed rail case remains unresolved as required. Memory-boundary
+  roots return `insufficient_history_depth` even when the searched complement
+  is otherwise complete.
+- Added six independent Python controls covering decimal-interval moving-block
+  parity, regular and difficult root count/bracket/orientation parity,
+  fail-closed event routes, self-endpoint behavior, memory and piecewise
+  boundaries, and deterministic multithreaded replay.
+- Recorded the Apple M3 packet in
+  `evidence/eom-native-history-layer-apple-m3-2026-07-13.json`. Remaining work
+  begins with C++ acceleration reconstruction and deterministic receiver
+  reduction, then coupled atomic accepted-step evolution, production
+  hierarchical block traversal, GPU difficult-row return, distributed history,
+  checkpoints, and the stable application interface.
+
+## 2026-07-13 — C++ Certified Acceleration And Deterministic Receiver Reduction Implemented
+
+- Added `eom_native_pair_acceleration_certificate/v0`. It consumes only a
+  complete exact-pair certificate covering the emission domain through the
+  reception time, re-evaluates the retained histories, intersects source and
+  receiver normal enclosures, enforces the sharp source-normal floor, and
+  emits one auditable interval-vector row per admitted root.
+- Preserved the full receiver-normal law. The exact-field-speed receiver
+  control produces a certified interval containing zero acceleration, and the
+  super-field-speed receiver control remains active with negative receiver
+  normal and nonzero branch strength; neither velocity is clamped.
+- Added `eom_native_acceleration_reconstruction_certificate/v0`. It requires
+  exactly $N^2$ ordered requests including self-pairs, reconstructs pairs on a
+  caller-bounded native thread pool, restores canonical receiver/source order,
+  and uses `fixed_pairwise_interval_tree_v0` for deterministic receiver sums.
+- Verified that a shuffled two-path request matrix accounts for all four
+  ordered pairs and yields byte-identical one-thread and four-thread totals.
+  Coincident static self-pairs remain present as certified inactive zero
+  contributions.
+- Added fail-closed controls for tangent roots, retained-memory contact,
+  tampered source-normal evidence, retained-history provenance mismatch, and an
+  acceleration enclosure wider than the declared tolerance. None publishes an
+  acceleration total.
+- Added six independent 90-decimal-digit Python-oracle parity and replay tests,
+  the native fixture, and the evidence packet
+  `evidence/eom-native-acceleration-layer-apple-m3-2026-07-13.json`.
+- Passed strict `-Werror` compilation, Release CTest, AddressSanitizer and
+  UndefinedBehaviorSanitizer fixtures, and the complete 81-test EOM family.
+- This closes the correctness-first sharp acceleration/reduction layer only.
+  Finite-width reconstruction, acceleration-stage MPFR escalation, coupled
+  trial-history extension, and atomic accepted-step publication remain open.
+
+## 2026-07-13 — C++ Coupled Retained-History Evolution Nucleus Implemented
+
+- Added a native coupled-evolution request and four certificate schemas for
+  acceleration snapshots, corrected substeps, atomic coupled steps, and
+  complete coupled evolution.
+- Implemented simultaneous cubic acceleration correction. Every predictor and
+  correction iteration reads the same immutable accepted history vector and
+  produces candidate segments for all paths together.
+- Implemented one-full-step versus two-half-step position and velocity error
+  estimates. The error limits are operational: exceeding either rejects the
+  complete coupled step, and the adaptive controller halves the attempted step
+  before retrying.
+- Inflated the fine accepted history by the measured local discrepancy and
+  reran complete root and acceleration certification on that exact history
+  before publication.
+- Implemented source-normal-sign and root-count topology comparison between
+  substep endpoints. A changed signature returns
+  `root_event_requires_subdivision` without publishing a candidate.
+- Implemented atomic in-memory publication. Accepted steps expose every path
+  together; rejected steps expose the unchanged input histories and matching
+  provenance fingerprints. No predictor, correction iterate, full-step
+  estimate, or first half-step becomes accepted state.
+- Added controls for multistep static self-history, unclamped
+  super-field-speed inertial history, a complete two-path binary, adaptive
+  halving, tight local-error rejection, memory-boundary rejection, correction
+  exhaustion, root-event subdivision, prohibited future history, and
+  deterministic replay, including byte-identical one-thread and four-thread
+  binary evolution at the published-history boundary.
+- Added five independent 80-decimal-digit oracle parity and atomicity tests and
+  recorded the evidence packet in
+  `evidence/eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json`.
+- Passed strict `-Werror` compilation, Release CTest, AddressSanitizer and
+  UndefinedBehaviorSanitizer fixtures, and the complete 86-test EOM family.
+- This is the sharp-chart, binary64, in-memory correctness nucleus. Native
+  finite-width event transit, acceleration-stage multiprecision, split
+  absolute time, durable atomic storage, and production-scale scheduling
+  remain open.

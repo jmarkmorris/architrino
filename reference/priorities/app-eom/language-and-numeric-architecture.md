@@ -2,19 +2,29 @@
 
 ## Status
 
-- Stage: `priority-design`
-- Decision status: `open-evidence-gate`
-- Production language: `not-selected`
+- Stage: `selected-host-active-backend-evidence`
+- Decision status: `C++20-host-selected-by-operator`
+- Production language: `C++20`
 - Accelerator stack: `not-selected`
-- Numeric library stack: `not-selected`
+- Numeric library stack: `outward-binary64-fast-path; MPFR-4.2.2/GMP-6.3.0-directed-interval-escalation`
 - Numeric certification contract: `frozen-v0`; source: [precision-dynamic-range-and-certification-contract.md](precision-dynamic-range-and-certification-contract.md)
 - Existing central solver: `preserved-for-current-dependencies`
 
 ## Decision Principle
 
-For EOM, language selection is part of the numerical and performance architecture. The engine must combine extremely high bulk throughput with a controlled path beyond hardware floating point for the subset of work whose condition demands it. The winning stack is the one that produces accepted, reproducible, precision-controlled evolved histories fastest across the target workload and remains maintainable across the supported hardware envelope. Every candidate must implement [eom_numeric_certification/v0](precision-dynamic-range-and-certification-contract.md); candidate limitations cannot redefine the acceptance criteria.
+The operator selected C++20 as the EOM production host on 2026-07-13. The
+decision is recorded in
+[eom-cpp-production-host.md](../../architectural-decisions/eom-cpp-production-host.md).
+The engine must combine extremely high bulk throughput with a controlled path
+beyond hardware floating point for the subset of work whose condition demands
+it. C++ selection does not relax
+[eom_numeric_certification/v0](precision-dynamic-range-and-certification-contract.md),
+and host or backend limitations cannot redefine the acceptance criteria.
 
-No candidate wins through language preference, ecosystem size, peak FLOP claims, or one regular kernel. The decision must include causal-root irregularity, branch events, multirate synchronization, many-source reductions, precision escalation, accelerator transfers, checkpoints, diagnostics, and failure behavior.
+The selected host still has to pass causal-root irregularity, branch events,
+multirate synchronization, many-source reductions, precision escalation,
+accelerator transfers, checkpoints, diagnostics, and failure behavior before
+it gains production EOM authority.
 
 ## Required Numeric Architecture
 
@@ -44,16 +54,18 @@ The initial precision ladder to prototype is:
 
 This is a capability ladder, not a requirement that every state use every representation. The preferred architecture promotes the smallest affected unit—predicate, root, interaction row, reduction, correction stage, or accepted step—while retaining a single provenance and error-budget model.
 
-## Candidate Implementation Families
+## Selected Host And Supporting Families
 
-| Candidate family | Why it enters the benchmark | Questions that must be answered |
+| Family | Disposition | Questions that must be answered |
 | --- | --- | --- |
-| Modern C++ native core | Direct memory/layout control; mature CPU, SIMD, profiling, accelerator, and multiprecision ecosystems. | Can the build remain controlled, the mathematical interfaces safe, the backends consistent, and undefined-behavior risk acceptably contained? |
-| Rust native core | Native performance with strong ownership and concurrency checks and a clear ABI boundary. | Do the required SIMD, accelerator, arbitrary-precision, interval, profiler, and target-platform paths meet the actual EOM envelope without fragile or duplicated kernels? |
-| Native host plus separately compiled accelerator kernels | May permit the strongest host precision/control stack and the strongest device toolchain. | Can one model contract and generated/shared kernel definitions prevent CPU/GPU mathematical drift? Are transfer and maintenance costs justified? |
-| Numerical reference environment | Useful for independently authored multiprecision or interval oracles and rapid integrator experiments. | Can it remain independent of production code, reproducible, and fast enough for validation envelopes without becoming an accidental production solver? |
+| C++20 native core | Selected production host; direct memory/layout control plus mature CPU, SIMD, profiling, accelerator, and multiprecision ecosystems. | Can the build remain controlled, the mathematical interfaces safe, the backends consistent, and undefined-behavior risk acceptably contained? |
+| Other native hosts | No longer a selection prerequisite; retained only for optional portability or risk comparisons. | Does a comparison expose a material correctness, portability, safety, or performance risk in the selected host? |
+| Separately compiled accelerator kernels | Required backend lane under the C++ host. | Can one model contract and shared certificate definitions prevent CPU/GPU mathematical drift? Are transfer and maintenance costs justified? |
+| Python numerical reference environment | Retained as the separately authored independent oracle and benchmark harness, never as the production solver. | Does it remain independent, reproducible, and sufficiently broad to challenge every promoted C++ or accelerator path? |
 
-The benchmark may add a candidate when it offers a credible advantage, but it must apply the same contract and scoring. JavaScript or TypeScript may serve the thin application shell used for run configuration, monitoring, and output inspection; it is not a candidate for the authoritative production numerical kernel absent extraordinary end-to-end evidence.
+JavaScript or TypeScript may serve the thin application shell used for run
+configuration, monitoring, and output inspection. It is not the authoritative
+production numerical kernel.
 
 ## Representative Benchmark Suite
 
@@ -91,9 +103,9 @@ The packet must include ordinary, adversarial, and failure cases. It must measur
 
 Correctness and precision reach are hard gates. Performance, portability, and maintainability choose among candidates that pass them; they cannot compensate for a candidate that publishes an uncertified dynamical result.
 
-## Prototype Outputs Required Before Selection
+## Evidence Required Before Production Promotion
 
-The language/runtime decision record must contain:
+The production-promotion record must contain:
 
 - the versioned benchmark packet and model contract;
 - candidate toolchain, compiler, numeric library, accelerator, and platform versions;
@@ -102,14 +114,19 @@ The language/runtime decision record must contain:
 - profiles identifying the actual runtime distribution, including precision escalation and data movement;
 - a portability and hardware-support matrix;
 - a safety, maintenance, and dependency-risk assessment;
-- the selected stack, the rejected alternatives, and the measured tradeoff for each;
+- the selected C++ stack, backend choices, and measured tradeoffs;
 - the stable native engine interface used by the thin application shell;
 - an explicit re-evaluation trigger when the target hardware envelope or numeric requirement changes materially.
 
-## Selection Boundary
+## Promotion Boundary
 
-Language selection is complete only when at least two credible native candidate families have been tested on the same representative packet, the independent precision oracle exists, and one candidate demonstrably satisfies the correctness gates while offering the best defensible end-to-end path to the required scale.
+Host-language selection is complete by operator decision. Production promotion
+is complete only when the C++ host and each promoted backend demonstrably
+satisfy the independent correctness gates and the representative end-to-end
+resource envelope.
 
-Implementation of the production integrator should not begin before this decision. Small prototypes, the independent oracle, benchmark fixtures, model-contract work, and numeric experiments are authorized because they create the evidence needed to choose correctly.
+Implementation of the C++ production integrator is authorized. Its outputs
+remain architecture evidence until coupled evolution, precision, performance,
+checkpoint, and migration gates pass.
 
 The current central solver remains untouched throughout this gate. No prototype output may be represented as EOM production evolution or used to migrate a consumer.

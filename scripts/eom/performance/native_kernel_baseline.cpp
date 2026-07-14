@@ -9,6 +9,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <numeric>
 #include <stdexcept>
 #include <string>
 #include <thread>
@@ -97,6 +98,15 @@ double elapsed_seconds(Clock::time_point start) {
   return std::chrono::duration<double>(Clock::now() - start).count();
 }
 
+double median_seconds(std::vector<double> values) {
+  std::sort(values.begin(), values.end());
+  const auto middle = values.size() / 2;
+  if (values.size() % 2 == 1) {
+    return values[middle];
+  }
+  return (values[middle - 1] + values[middle]) / 2.0;
+}
+
 Counts traverse_stationary_blocks(const std::vector<double> &positions,
                                   std::uint64_t receiver_begin,
                                   std::uint64_t receiver_end,
@@ -169,8 +179,8 @@ Counts traverse_stationary_blocks(const std::vector<double> &positions,
   return counts;
 }
 
-std::pair<Counts, double> benchmark_blocks(const Config &config,
-                                           const std::vector<double> &positions) {
+std::pair<Counts, double> run_blocks_once(const Config &config,
+                                         const std::vector<double> &positions) {
   std::vector<Counts> partial(config.threads);
   std::vector<std::thread> workers;
   workers.reserve(config.threads);
@@ -194,6 +204,27 @@ std::pair<Counts, double> benchmark_blocks(const Config &config,
   return {total, seconds};
 }
 
+std::pair<Counts, double> benchmark_blocks(const Config &config,
+                                           const std::vector<double> &positions) {
+  constexpr int repeats = 7;
+  Counts reference;
+  std::vector<double> timings;
+  timings.reserve(repeats);
+  for (int repeat = 0; repeat < repeats; ++repeat) {
+    const auto [counts, seconds] = run_blocks_once(config, positions);
+    if (repeat == 0) {
+      reference = counts;
+    } else if (counts.visited_nodes != reference.visited_nodes ||
+               counts.excluded_pairs != reference.excluded_pairs ||
+               counts.exact_fallback_pairs != reference.exact_fallback_pairs ||
+               counts.active_root_pairs != reference.active_root_pairs) {
+      throw std::runtime_error("nondeterministic block traversal counts");
+    }
+    timings.push_back(seconds);
+  }
+  return {reference, median_seconds(timings)};
+}
+
 struct BulkResult {
   std::uint64_t rows;
   std::uint64_t excluded;
@@ -208,14 +239,26 @@ BulkResult benchmark_pair_classification(std::uint64_t samples) {
     receiver[index] = static_cast<double>(index % 4096) * 0.125;
     source[index] = static_cast<double>((index * 104729 + 17) % 4096) * 0.125;
   }
-  std::uint64_t excluded = 0;
-  const auto start = Clock::now();
-  for (std::uint64_t index = 0; index < samples; ++index) {
-    excluded += static_cast<std::uint64_t>(
-        std::abs(receiver[index] - source[index]) > 1.0);
+  constexpr int repeats = 7;
+  std::uint64_t reference_excluded = 0;
+  std::vector<double> timings;
+  timings.reserve(repeats);
+  for (int repeat = 0; repeat < repeats; ++repeat) {
+    std::uint64_t excluded = 0;
+    const auto start = Clock::now();
+    for (std::uint64_t index = 0; index < samples; ++index) {
+      excluded += static_cast<std::uint64_t>(
+          std::abs(receiver[index] - source[index]) > 1.0);
+    }
+    timings.push_back(elapsed_seconds(start));
+    if (repeat == 0) {
+      reference_excluded = excluded;
+    } else if (excluded != reference_excluded) {
+      throw std::runtime_error("nondeterministic pair classification count");
+    }
   }
-  const double seconds = elapsed_seconds(start);
-  return {samples, excluded, seconds, samples / seconds};
+  const double seconds = median_seconds(timings);
+  return {samples, reference_excluded, seconds, samples / seconds};
 }
 
 BulkResult benchmark_interpolation(std::uint64_t samples) {
@@ -224,12 +267,18 @@ BulkResult benchmark_interpolation(std::uint64_t samples) {
   for (std::uint64_t index = 0; index < samples; ++index) {
     time[index] = static_cast<double>(index % 1000) / 1000.0;
   }
-  const auto start = Clock::now();
-  for (std::uint64_t index = 0; index < samples; ++index) {
-    const double t = time[index];
-    output[index] = ((0.125 * t - 0.25) * t + 0.5) * t + 1.0;
+  constexpr int repeats = 7;
+  std::vector<double> timings;
+  timings.reserve(repeats);
+  for (int repeat = 0; repeat < repeats; ++repeat) {
+    const auto start = Clock::now();
+    for (std::uint64_t index = 0; index < samples; ++index) {
+      const double t = time[index];
+      output[index] = ((0.125 * t - 0.25) * t + 0.5) * t + 1.0;
+    }
+    timings.push_back(elapsed_seconds(start));
   }
-  const double seconds = elapsed_seconds(start);
+  const double seconds = median_seconds(timings);
   volatile double witness = output[samples / 2];
   (void)witness;
   return {samples, 0, seconds, samples / seconds};
@@ -243,25 +292,38 @@ struct ReductionResult {
 };
 
 ReductionResult benchmark_fixed_pairwise_reduction(std::uint64_t size) {
-  std::vector<double> values(size);
+  std::vector<double> initial(size);
   for (std::uint64_t index = 0; index < size; ++index) {
-    values[index] = (index % 2 == 0 ? 1.0 : -1.0) /
-                    static_cast<double>((index % 1024) + 1);
+    initial[index] = (index % 2 == 0 ? 1.0 : -1.0) /
+                     static_cast<double>((index % 1024) + 1);
   }
-  const auto start = Clock::now();
-  std::uint64_t active = size;
-  while (active > 1) {
-    const std::uint64_t pairs = active / 2;
-    for (std::uint64_t index = 0; index < pairs; ++index) {
-      values[index] = values[2 * index] + values[2 * index + 1];
+  constexpr int repeats = 7;
+  std::vector<double> timings;
+  timings.reserve(repeats);
+  double sum = 0.0;
+  for (int repeat = 0; repeat < repeats; ++repeat) {
+    std::vector<double> values = initial;
+    const auto start = Clock::now();
+    std::uint64_t active = size;
+    while (active > 1) {
+      const std::uint64_t pairs = active / 2;
+      for (std::uint64_t index = 0; index < pairs; ++index) {
+        values[index] = values[2 * index] + values[2 * index + 1];
+      }
+      if (active % 2 != 0) {
+        values[pairs] = values[active - 1];
+      }
+      active = pairs + active % 2;
     }
-    if (active % 2 != 0) {
-      values[pairs] = values[active - 1];
+    timings.push_back(elapsed_seconds(start));
+    if (repeat == 0) {
+      sum = values[0];
+    } else if (values[0] != sum) {
+      throw std::runtime_error("nondeterministic fixed pairwise reduction");
     }
-    active = pairs + active % 2;
   }
-  const double seconds = elapsed_seconds(start);
-  return {size, seconds, size / seconds, values[0]};
+  const double seconds = median_seconds(timings);
+  return {size, seconds, size / seconds, sum};
 }
 
 } // namespace

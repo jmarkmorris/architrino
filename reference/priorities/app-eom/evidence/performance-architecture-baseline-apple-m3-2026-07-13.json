@@ -1,0 +1,644 @@
+{
+  "authority": "reference-benchmark-only",
+  "benchmark_mode": "full-local",
+  "benchmark_source_digests": {
+    "scripts/eom/performance/architecture_baseline.py": "d28b546172a3b2a4df38ed3a200d9d98f2fb31f74f8deab3521f0e452977e613",
+    "scripts/eom/performance/baseline_model.py": "17df4d74279c5c4a8d6fe02cdbc7105541ae156075d9fa5763b1e1fd0de9adb9",
+    "scripts/eom/performance/local_benchmarks.py": "be434959980858c434cf4e4f0acdc3c069221adc6fe05b07c6064f7c3f086857",
+    "scripts/eom/performance/metal_bound_baseline.swift": "ac495b213af2f1ba2338e9f4624702697c4e54f0e377a97ad2a25ee26e454e76",
+    "scripts/eom/performance/native_kernel_baseline.cpp": "7e544655b465368db8eff90f9068f2a493eaea41f2dfe77b013b8ca20475e83c"
+  },
+  "capabilities": {
+    "host": {
+      "logical_cpu_count": 8,
+      "machine": "arm64",
+      "memory_bytes": 25769803776,
+      "physical_cpu_count": 8,
+      "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+      "python": "3.13.2"
+    },
+    "python_runtime": {
+      "numpy": "2.2.4",
+      "psutil": "7.2.2"
+    },
+    "toolchains": {
+      "cargo": null,
+      "clang++": "/usr/bin/clang++",
+      "metal": "/usr/bin/xcrun",
+      "rustc": null,
+      "swiftc": "/usr/bin/swiftc"
+    }
+  },
+  "independent_oracle": {
+    "authority": "reference-benchmark-only",
+    "history_interpolation": {
+      "seconds": 0.0038114999188110232,
+      "states": 25,
+      "states_per_second": 6559.097607904086,
+      "witness": "2.000"
+    },
+    "limit": "Correctness-first per-pair oracle cost; not a production throughput path.",
+    "numeric_format": "decimal_interval_90_digits",
+    "root_certification": {
+      "all_complete": true,
+      "ordered_pairs": 25,
+      "pairs_per_second": 10.96548660294522,
+      "root_count_each": 1,
+      "seconds": 2.2798805839847773,
+      "visited_cells_each": 205
+    },
+    "schema": "eom_independent_oracle_cost_baseline/v0"
+  },
+  "local_storage": {
+    "authority": "reference-benchmark-only",
+    "bytes": 134217728,
+    "limit": "Local temporary storage only; no distributed history or streamed manifest test.",
+    "read_hash_bytes_per_second": 2050607473.2746336,
+    "read_hash_seconds": 0.06545266695320606,
+    "schema": "eom_local_storage_baseline/v0",
+    "sha256": "254bcc3fc4f27172636df4bf32de9f107f620d559b20d760197e452b97453917",
+    "write_bytes_per_second": 4579292415.273626,
+    "write_fsync_seconds": 0.029309708974324167
+  },
+  "metal": {
+    "authority": "reference-benchmark-only",
+    "classification_witness": 1,
+    "compile_command": [
+      "xcrun",
+      "swiftc",
+      "-O",
+      "-framework",
+      "Metal",
+      "/Users/markmorris/vibe/architrino/scripts/eom/performance/metal_bound_baseline.swift",
+      "-o",
+      "<temporary-binary>"
+    ],
+    "compiler_version": "Apple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\nTarget: arm64-apple-macosx26.0",
+    "device": "Apple M3",
+    "device_count": 1,
+    "kernel_gpu_seconds_median": 0.0011476250365376472,
+    "kernel_rows_per_second_gpu": 6970917978.69431,
+    "kernel_rows_per_second_wall": 5293049696.4436,
+    "kernel_wall_seconds_median": 0.001511416,
+    "numeric_format": "binary32",
+    "pair_rows": 8000000,
+    "promotion_limit": "binary32 bulk-bound throughput only; no root, precision, or EOM authority",
+    "repeats": 5,
+    "schema": "eom_metal_bound_baseline/v0",
+    "transfer_bytes_counted": 134217728,
+    "transfer_bytes_per_second_gpu": 40055028329.02693,
+    "transfer_bytes_per_second_wall": 35729073102.09046,
+    "transfer_gpu_seconds_median": 0.0033508334308862686,
+    "transfer_wall_seconds_median": 0.003756541,
+    "unified_memory": true
+  },
+  "native_cpp": {
+    "active_local_control": {
+      "authority": "reference-benchmark-only",
+      "block_traversal": {
+        "active_root_pairs": 79980,
+        "exact_fallback_pairs": 146600,
+        "excluded_pairs": 99853400,
+        "exclusion_ratio": 0.998534,
+        "seconds": 9.7e-05,
+        "visited_nodes": 28568
+      },
+      "fixed_pairwise_reduction": {
+        "seconds": 0.000269625,
+        "sum": 676.7275983014526,
+        "values": 1000000,
+        "values_per_second": 3708854891.052387
+      },
+      "history_interpolation": {
+        "rows": 1000000,
+        "rows_per_second": 6798882263.755838,
+        "seconds": 0.000147083
+      },
+      "leaf_size": 8,
+      "logical_ordered_pairs": 100000000,
+      "pair_classification": {
+        "excluded": 996094,
+        "rows": 1000000,
+        "rows_per_second": 5136977505.175505,
+        "seconds": 0.000194667
+      },
+      "population": 10000,
+      "schema": "eom_native_kernel_baseline/v0",
+      "spacing": 0.25,
+      "threads": 8
+    },
+    "authority": "reference-benchmark-only",
+    "auto_vector_flags": [
+      "-std=c++20",
+      "-O3",
+      "-march=native",
+      "-fno-fast-math",
+      "-pthread"
+    ],
+    "auto_vector_reference": {
+      "authority": "reference-benchmark-only",
+      "block_traversal": {
+        "active_root_pairs": 0,
+        "exact_fallback_pairs": 49040,
+        "excluded_pairs": 99950960,
+        "exclusion_ratio": 0.9995096,
+        "seconds": 7.0208e-05,
+        "visited_nodes": 12283
+      },
+      "fixed_pairwise_reduction": {
+        "seconds": 0.000601333,
+        "sum": 1353.4525521724695,
+        "values": 2000000,
+        "values_per_second": 3325944193.982369
+      },
+      "history_interpolation": {
+        "rows": 8000000,
+        "rows_per_second": 5058223311.707321,
+        "seconds": 0.001581583
+      },
+      "leaf_size": 8,
+      "logical_ordered_pairs": 100000000,
+      "outer_process_repeats": 5,
+      "pair_classification": {
+        "excluded": 7968750,
+        "rows": 8000000,
+        "rows_per_second": 4145704946.0332856,
+        "seconds": 0.001929708
+      },
+      "population": 10000,
+      "schema": "eom_native_kernel_baseline/v0",
+      "spacing": 2,
+      "threads": 1
+    },
+    "candidate_language": "C++20",
+    "candidate_vector_gain": {
+      "history_interpolation": 1.4235471676162428,
+      "limit": "Compiler auto-vector candidate gain; no instruction-counter proof of SIMD use.",
+      "pair_classification": 1.1728888515775444
+    },
+    "compiler_version": "Apple clang version 21.0.0 (clang-2100.1.1.101)\nTarget: arm64-apple-darwin25.5.0\nThread model: posix\nInstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    "control_geometry": {
+      "active_control_spacing": 0.25,
+      "emission_delay_interval": [
+        0.0,
+        1.0
+      ],
+      "field_speed": 1.0,
+      "model": "stationary one-dimensional retained histories",
+      "outward_rounding": "binary64 nextafter on lower distance and causal reach",
+      "promotion_limit": "Not valid for general moving or polynomial retained histories.",
+      "reception_time": 1.0,
+      "sparse_spacing": 2.0
+    },
+    "scalar_flags": [
+      "-std=c++20",
+      "-O3",
+      "-march=native",
+      "-fno-fast-math",
+      "-pthread",
+      "-fno-vectorize",
+      "-fno-slp-vectorize"
+    ],
+    "scalar_reference": {
+      "authority": "reference-benchmark-only",
+      "block_traversal": {
+        "active_root_pairs": 0,
+        "exact_fallback_pairs": 49040,
+        "excluded_pairs": 99950960,
+        "exclusion_ratio": 0.9995096,
+        "seconds": 6.9416e-05,
+        "visited_nodes": 12283
+      },
+      "fixed_pairwise_reduction": {
+        "seconds": 0.000597417,
+        "sum": 1353.4525521724695,
+        "values": 2000000,
+        "values_per_second": 3347745377.182102
+      },
+      "history_interpolation": {
+        "rows": 8000000,
+        "rows_per_second": 3553253047.5807233,
+        "seconds": 0.002251458
+      },
+      "leaf_size": 8,
+      "logical_ordered_pairs": 100000000,
+      "outer_process_repeats": 5,
+      "pair_classification": {
+        "excluded": 7968750,
+        "rows": 8000000,
+        "rows_per_second": 3534610240.737885,
+        "seconds": 0.002263333
+      },
+      "population": 10000,
+      "schema": "eom_native_kernel_baseline/v0",
+      "spacing": 2,
+      "threads": 1
+    },
+    "schema": "eom_native_architecture_survey/v0",
+    "sparse_population_ladder": [
+      {
+        "authority": "reference-benchmark-only",
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 49040,
+          "excluded_pairs": 99950960,
+          "exclusion_ratio": 0.9995096,
+          "seconds": 7.3042e-05,
+          "visited_nodes": 12296
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 0.000310541,
+          "sum": 676.7275983014526,
+          "values": 1000000,
+          "values_per_second": 3220186706.4252386
+        },
+        "history_interpolation": {
+          "rows": 1000000,
+          "rows_per_second": 6726442317.393907,
+          "seconds": 0.000148667
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 100000000,
+        "pair_classification": {
+          "excluded": 996094,
+          "rows": 1000000,
+          "rows_per_second": 6335810635.291733,
+          "seconds": 0.000157833
+        },
+        "population": 10000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 8
+      },
+      {
+        "authority": "reference-benchmark-only",
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 611872,
+          "excluded_pairs": 9999388128,
+          "exclusion_ratio": 0.9999388128,
+          "seconds": 0.00018725,
+          "visited_nodes": 98312
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 0.000288958,
+          "sum": 676.7275983014526,
+          "values": 1000000,
+          "values_per_second": 3460710553.09076
+        },
+        "history_interpolation": {
+          "rows": 1000000,
+          "rows_per_second": 6847392170.6917925,
+          "seconds": 0.000146041
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 10000000000,
+        "pair_classification": {
+          "excluded": 996094,
+          "rows": 1000000,
+          "rows_per_second": 5955358631.696801,
+          "seconds": 0.000167916
+        },
+        "population": 100000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 8
+      },
+      {
+        "authority": "reference-benchmark-only",
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 7659968,
+          "excluded_pairs": 999992340032,
+          "exclusion_ratio": 0.999992340032,
+          "seconds": 0.001107334,
+          "visited_nodes": 786440
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 0.00027025,
+          "sum": 676.7275983014526,
+          "values": 1000000,
+          "values_per_second": 3700277520.814061
+        },
+        "history_interpolation": {
+          "rows": 1000000,
+          "rows_per_second": 6366020727.76349,
+          "seconds": 0.000157084
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 1000000000000,
+        "pair_classification": {
+          "excluded": 996094,
+          "rows": 1000000,
+          "rows_per_second": 6629804951.138337,
+          "seconds": 0.000150834
+        },
+        "population": 1000000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 8
+      }
+    ],
+    "sparse_thread_scaling": [
+      {
+        "authority": "reference-benchmark-only",
+        "block_speedup_vs_one_thread": 1.0,
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 7659968,
+          "excluded_pairs": 999992340032,
+          "exclusion_ratio": 0.999992340032,
+          "seconds": 0.00507325,
+          "visited_nodes": 786427
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 2.7084e-05,
+          "sum": 67.88034004620297,
+          "values": 100000,
+          "values_per_second": 3692216806.9709053
+        },
+        "history_interpolation": {
+          "rows": 100000,
+          "rows_per_second": 6936255809.114241,
+          "seconds": 1.4417e-05
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 1000000000000,
+        "pair_classification": {
+          "excluded": 99609,
+          "rows": 100000,
+          "rows_per_second": 7295010213.014298,
+          "seconds": 1.3708e-05
+        },
+        "population": 1000000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 1
+      },
+      {
+        "authority": "reference-benchmark-only",
+        "block_speedup_vs_one_thread": 1.9572406619954459,
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 7659968,
+          "excluded_pairs": 999992340032,
+          "exclusion_ratio": 0.999992340032,
+          "seconds": 0.002592042,
+          "visited_nodes": 786426
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 2.7042e-05,
+          "sum": 67.88034004620297,
+          "values": 100000,
+          "values_per_second": 3697951334.960432
+        },
+        "history_interpolation": {
+          "rows": 100000,
+          "rows_per_second": 6996921354.603974,
+          "seconds": 1.4292e-05
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 1000000000000,
+        "pair_classification": {
+          "excluded": 99609,
+          "rows": 100000,
+          "rows_per_second": 7339449541.284403,
+          "seconds": 1.3625e-05
+        },
+        "population": 1000000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 2
+      },
+      {
+        "authority": "reference-benchmark-only",
+        "block_speedup_vs_one_thread": 3.723827874116891,
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 7659968,
+          "excluded_pairs": 999992340032,
+          "exclusion_ratio": 0.999992340032,
+          "seconds": 0.001362375,
+          "visited_nodes": 786428
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 2.7125e-05,
+          "sum": 67.88034004620297,
+          "values": 100000,
+          "values_per_second": 3686635944.700461
+        },
+        "history_interpolation": {
+          "rows": 100000,
+          "rows_per_second": 7017543859.649122,
+          "seconds": 1.425e-05
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 1000000000000,
+        "pair_classification": {
+          "excluded": 99609,
+          "rows": 100000,
+          "rows_per_second": 7339449541.284403,
+          "seconds": 1.3625e-05
+        },
+        "population": 1000000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 4
+      },
+      {
+        "authority": "reference-benchmark-only",
+        "block_speedup_vs_one_thread": 4.6736526946107775,
+        "block_traversal": {
+          "active_root_pairs": 0,
+          "exact_fallback_pairs": 7659968,
+          "excluded_pairs": 999992340032,
+          "exclusion_ratio": 0.999992340032,
+          "seconds": 0.0010855,
+          "visited_nodes": 786440
+        },
+        "fixed_pairwise_reduction": {
+          "seconds": 2.7334e-05,
+          "sum": 67.88034004620297,
+          "values": 100000,
+          "values_per_second": 3658447354.9425626
+        },
+        "history_interpolation": {
+          "rows": 100000,
+          "rows_per_second": 6976419701.409237,
+          "seconds": 1.4334e-05
+        },
+        "leaf_size": 8,
+        "logical_ordered_pairs": 1000000000000,
+        "pair_classification": {
+          "excluded": 99609,
+          "rows": 100000,
+          "rows_per_second": 7317430118.542368,
+          "seconds": 1.3666e-05
+        },
+        "population": 1000000,
+        "schema": "eom_native_kernel_baseline/v0",
+        "spacing": 2,
+        "threads": 8
+      }
+    ]
+  },
+  "nested_exhaustive_control": {
+    "all_pass": true,
+    "authority": "reference-benchmark-only",
+    "cases": [
+      {
+        "active_pair_parity": true,
+        "active_root_pairs": 0,
+        "complete_disjoint_coverage": true,
+        "exact_fallback_pairs": 2048,
+        "excluded_pairs": 63488,
+        "exclusion_ratio": 0.96875,
+        "exhaustive_active_root_pairs": 0,
+        "logical_pairs": 65536,
+        "population": 256,
+        "spacing": 2.0,
+        "visited_nodes": 187
+      },
+      {
+        "active_pair_parity": true,
+        "active_root_pairs": 2028,
+        "complete_disjoint_coverage": true,
+        "exact_fallback_pairs": 6016,
+        "excluded_pairs": 59520,
+        "exclusion_ratio": 0.908203125,
+        "exhaustive_active_root_pairs": 2028,
+        "logical_pairs": 65536,
+        "population": 256,
+        "spacing": 0.25,
+        "visited_nodes": 395
+      }
+    ],
+    "schema": "eom_stationary_block_exclusion_nested_control/v0"
+  },
+  "numpy": {
+    "authority": "reference-benchmark-only",
+    "history_interpolation": {
+      "rows": 4000000,
+      "rows_per_second": 587885845.2504313,
+      "seconds_median": 0.006804042030125856,
+      "witness": 1.0
+    },
+    "numeric_format": "binary64",
+    "numpy_reduction": {
+      "limit": "NumPy reduction order is not the production deterministic tree.",
+      "seconds_median": 0.0008111670613288879,
+      "sum": 2706.217789837407,
+      "values": 4000000,
+      "values_per_second": 4931166698.814215
+    },
+    "pair_classification": {
+      "estimated_stream_bytes_per_second": 17451375632.99512,
+      "excluded": 3984374,
+      "rows": 4000000,
+      "rows_per_second": 1026551507.8232425,
+      "seconds_median": 0.0038965409621596336
+    },
+    "schema": "eom_numpy_kernel_baseline/v0"
+  },
+  "result_digest": "06562cccf4b280a3aab481bae3fd54c31c88bba82da71aac2a59b4d7e6fdff8c",
+  "run_timestamp_utc": "2026-07-13T22:58:45.760723+00:00",
+  "scale_projection": {
+    "dense_pair_row_bytes_assumed": 64,
+    "measured_bulk_rows_per_second_used": 5293049696.4436,
+    "memory_budget_bytes": 19327352832,
+    "populations": [
+      {
+        "decision": "within_projection_only",
+        "hot_history_bytes_H128": 409600000,
+        "hot_history_bytes_H32": 102400000,
+        "logical_ordered_pairs": 100000000,
+        "minimum_dense_pair_row_bytes": 6400000000,
+        "one_output_segment_bytes": 3200000,
+        "optimistic_bulk_bound_seconds": 0.018892700000000002,
+        "population": 10000,
+        "projection_limit": "The time is an optimistic lower bound from a bulk classification kernel; it excludes retained-history search, root refinement, precision escalation, force evaluation, reduction, integration, and output.",
+        "reasons": []
+      },
+      {
+        "decision": "resource_envelope_exceeded",
+        "hot_history_bytes_H128": 4096000000,
+        "hot_history_bytes_H32": 1024000000,
+        "logical_ordered_pairs": 10000000000,
+        "minimum_dense_pair_row_bytes": 640000000000,
+        "one_output_segment_bytes": 32000000,
+        "optimistic_bulk_bound_seconds": 1.88927,
+        "population": 100000,
+        "projection_limit": "The time is an optimistic lower bound from a bulk classification kernel; it excludes retained-history search, root refinement, precision escalation, force evaluation, reduction, integration, and output.",
+        "reasons": [
+          "dense_pair_rows_exceed_memory_budget"
+        ]
+      },
+      {
+        "decision": "resource_envelope_exceeded",
+        "hot_history_bytes_H128": 40960000000,
+        "hot_history_bytes_H32": 10240000000,
+        "logical_ordered_pairs": 1000000000000,
+        "minimum_dense_pair_row_bytes": 64000000000000,
+        "one_output_segment_bytes": 320000000,
+        "optimistic_bulk_bound_seconds": 188.92700000000002,
+        "population": 1000000,
+        "projection_limit": "The time is an optimistic lower bound from a bulk classification kernel; it excludes retained-history search, root refinement, precision escalation, force evaluation, reduction, integration, and output.",
+        "reasons": [
+          "dense_pair_rows_exceed_memory_budget"
+        ]
+      }
+    ],
+    "retained_history_segment_bytes_assumed": 320,
+    "wall_budget_seconds": 3600.0
+  },
+  "schema": "eom_performance_architecture_baseline/v0",
+  "scope": {
+    "measured": [
+      "independent decimal-interval oracle cost",
+      "NumPy binary64 bulk kernels",
+      "local immutable-chunk write, fsync, read, and hash",
+      "stationary-control exhaustive parity"
+    ],
+    "not_implemented": [
+      "production EOM",
+      "general moving-history certified block exclusion",
+      "exact surviving-pair production root batches",
+      "representative branch-divergence and precision-escalation frequencies",
+      "distributed retained-history service",
+      "multi-GPU execution",
+      "atomic distributed accepted-window commit"
+    ],
+    "projected": [
+      "dense ordered-pair row storage",
+      "dense bulk-bound lower-limit wall time",
+      "hot retained-history storage"
+    ]
+  },
+  "survey_disposition": {
+    "existing_central_solver": "unchanged",
+    "local_baseline": "complete",
+    "next_evidence": [
+      "general moving-history certified block-bound prototype",
+      "native exact-pair root/interpolation batch with oracle parity",
+      "Rust representative kernel after toolchain availability",
+      "Metal precision-escalation and difficult-row return feasibility decision",
+      "multi-device and distributed receiver-owner benchmark envelope"
+    ],
+    "production_block_exclusion": "not_started",
+    "production_language_decision": "not_ready"
+  },
+  "unavailable_or_unmeasured": [
+    {
+      "backend": "rust",
+      "reason": "toolchain_not_installed"
+    },
+    {
+      "backend": "multi_gpu",
+      "reason": "only_one_local_Metal_device"
+    },
+    {
+      "backend": "distributed",
+      "reason": "no_distributed_test_envelope"
+    }
+  ]
+}
