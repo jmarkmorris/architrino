@@ -132,11 +132,16 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
       std::cout << step.substeps[substep_index].correction_iterations;
     }
     std::size_t event_impulse_count = 0;
+    std::size_t regulator_certificate_count = 0;
     for (const auto& substep : step.substeps) {
       event_impulse_count += substep.event_impulses.size();
+      regulator_certificate_count +=
+          substep.regulator_convergence_certificates.size();
     }
     std::cout << "]"
               << ",\"event_impulse_count\":" << event_impulse_count
+              << ",\"regulator_certificate_count\":"
+              << regulator_certificate_count
               << ",\"local_errors\":[";
     for (std::size_t error_index = 0;
          error_index < step.local_errors.size(); ++error_index) {
@@ -207,10 +212,15 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
             << ",\"substep_count\":" << certificate.substeps.size()
             << ",\"event_impulse_count\":";
   std::size_t event_impulse_count = 0;
+  std::size_t regulator_certificate_count = 0;
   for (const auto& substep : certificate.substeps) {
     event_impulse_count += substep.event_impulses.size();
+    regulator_certificate_count +=
+        substep.regulator_convergence_certificates.size();
   }
   std::cout << event_impulse_count
+            << ",\"regulator_certificate_count\":"
+            << regulator_certificate_count
             << '}';
 }
 
@@ -229,6 +239,62 @@ void print_event(
     std::cout << "null";
   }
   std::cout << '}';
+}
+
+void print_regulator(
+    const eom::NativeRegulatorConvergenceCertificate& certificate) {
+  std::cout << "{\"schema\":\"" << certificate.schema
+            << "\",\"status\":\"" << certificate.status
+            << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"required_levels\":" << certificate.required_levels
+            << ",\"series\":[";
+  for (std::size_t series_index = 0;
+       series_index < certificate.refinement_series.size(); ++series_index) {
+    if (series_index > 0) {
+      std::cout << ',';
+    }
+    const auto& series = certificate.refinement_series[series_index];
+    std::cout << "{\"control_id\":\"" << series.control_id
+              << "\",\"converged\":"
+              << (series.converged ? "true" : "false")
+              << ",\"final_impulse_delta\":";
+    if (series.final_impulse_delta.has_value()) {
+      std::cout << *series.final_impulse_delta;
+    } else {
+      std::cout << "null";
+    }
+    std::cout << ",\"maximum_ladder_impulse_delta\":";
+    if (series.maximum_ladder_impulse_delta.has_value()) {
+      std::cout << *series.maximum_ladder_impulse_delta;
+    } else {
+      std::cout << "null";
+    }
+    std::cout << ",\"levels\":[";
+    for (std::size_t level_index = 0; level_index < series.levels.size();
+         ++level_index) {
+      if (level_index > 0) {
+        std::cout << ',';
+      }
+      const auto& level = series.levels[level_index];
+      std::cout << "{\"level\":" << level.level
+                << ",\"causal_width\":\"" << level.causal_width
+                << "\",\"core_scale\":\"" << level.core_scale
+                << "\",\"status\":\"" << level.event_impulse.status
+                << "\",\"precision_route\":\""
+                << level.event_impulse.precision_route
+                << "\",\"precision_bits\":"
+                << level.event_impulse.precision_bits
+                << ",\"maximum_impulse_delta_from_previous\":";
+      if (level.maximum_impulse_delta_from_previous.has_value()) {
+        std::cout << *level.maximum_impulse_delta_from_previous;
+      } else {
+        std::cout << "null";
+      }
+      std::cout << '}';
+    }
+    std::cout << "]}";
+  }
+  std::cout << "]}";
 }
 
 void print_all() {
@@ -321,6 +387,8 @@ void print_all() {
   finite_event_request.acceleration_tolerance = "5e-3";
   finite_event_request.quadrature_tolerance = "5e-3";
   finite_event_request.event_impulse_tolerance = "0.08";
+  finite_event_request.regulator_convergence_tolerance = "0.08";
+  finite_event_request.regulator_refinement_levels = 3;
   finite_event_request.quadrature_max_depth = 28;
   finite_event_request.quadrature_max_cells = 200000;
   finite_event_request.event_max_depth = 24;
@@ -349,10 +417,25 @@ void print_all() {
   event_control_request.causal_width = "0.25";
   event_control_request.core_scale = "0.2";
   event_control_request.event_impulse_tolerance = "0.08";
+  event_control_request.regulator_convergence_tolerance = "0.08";
+  event_control_request.regulator_refinement_levels = 3;
   event_control_request.event_max_depth = 24;
   event_control_request.event_max_cells = 200000;
   const auto event_control = eom::certify_native_fold_caustic_impulse(
       event_control_request, event_receiver, event_source, "1", "1",
+      "2.99", "3.01");
+  const auto event_regulator = eom::certify_native_regulator_convergence(
+      event_control_request, event_receiver, event_source, "1", "1",
+      "2.99", "3.01");
+  auto event_mpfr_request = event_control_request;
+  event_mpfr_request.force_event_precision_escalation = true;
+  const auto event_mpfr = eom::certify_native_fold_caustic_impulse(
+      event_mpfr_request, event_receiver, event_source, "1", "1",
+      "2.99", "3.01");
+  auto event_nonconvergent_request = event_control_request;
+  event_nonconvergent_request.regulator_convergence_tolerance = "1e-12";
+  const auto event_nonconvergent = eom::certify_native_regulator_convergence(
+      event_nonconvergent_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
   auto event_resource_request = event_control_request;
   event_resource_request.event_impulse_tolerance = "1e-20";
@@ -404,6 +487,12 @@ void print_all() {
   print_atomic(finite_event_resource_step);
   std::cout << ",\"event_control\":";
   print_event(event_control);
+  std::cout << ",\"event_mpfr\":";
+  print_event(event_mpfr);
+  std::cout << ",\"event_regulator\":";
+  print_regulator(event_regulator);
+  std::cout << ",\"event_nonconvergent\":";
+  print_regulator(event_nonconvergent);
   std::cout << ",\"event_resource_failure\":";
   print_event(event_resource_failure);
   std::cout << "}\n";

@@ -421,3 +421,42 @@ This file holds dated decisions, implementation status, validation results, fail
   receiver-reduction MPFR replay, regulator-limit convergence, and split-time
   state representation. Production block traversal and heterogeneous scaling
   remain separate open work.
+
+## 2026-07-13 — MPFR Joint Event Integration And Regulator Convergence Implemented
+
+- Extended the multiprecision finite-width backend to recompute the complete
+  two-time fold/caustic impulse in directed MPFR intervals. The route includes
+  retained-history interpolation, causal triangular-domain area, separation,
+  receiver-normal magnitude, Gaussian causal surface, smooth core kernel,
+  signed coupling, adaptive quadrature, and deterministic pairwise reduction.
+- Added caller-bounded event precision escalation with recorded route and
+  achieved bits. The forced difficult-row control completes at 128 bits and
+  overlaps the independent 80-decimal-digit event oracle.
+- Added `eom_native_regulator_convergence_certificate/v0`. It evaluates
+  separate causal-width and core-scale ladders so the two regulators retain
+  their distinct roles. The three-level control uses causal widths
+  `0.25, 0.125, 0.0625` and core scales `0.2, 0.1, 0.05`.
+- Defined the executable finite-ladder acceptance rule conservatively: for
+  every component, the maximum possible difference between every pair of
+  interval enclosures must remain within the declared convergence tolerance.
+  This comparison includes quadrature uncertainty rather than relying on
+  nominal values or interval midpoints.
+- Integrated regulator convergence into atomic coupled event acceptance.
+  Every changed ordered pair must certify its regulator ladders before the
+  base-regulator event impulse may be consumed. Resource exhaustion and
+  convergence failure return `regulator_convergence_failed` without publishing
+  any candidate history.
+- Added a successful `0.08` regulator-envelope control and a deliberate
+  `1e-12` nonconvergent control. The accepted fold step carries two event and
+  two regulator certificates and remains byte-identical between one and four
+  threads.
+- Recorded the evidence packet in
+  `evidence/eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json`.
+- Passed strict `-Werror` compilation, Release CTest, AddressSanitizer and
+  UndefinedBehaviorSanitizer CTest, eight native coupled tests, and the full
+  92-test EOM family.
+- This closes the requested MPFR joint event and declared finite regulator
+  envelope layer. It does not prove an analytic sharp limit. MPFR sharp-row and
+  receiver-reduction replay, split absolute time, durable transactions,
+  representative coupled throughput, and production block traversal remain
+  open; production block traversal was not started in this packet.

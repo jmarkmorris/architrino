@@ -1,0 +1,100 @@
+{
+  "schema": "eom_native_mpfr_regulator_convergence_layer_evidence/v0",
+  "date": "2026-07-13",
+  "authority": "executable_architecture_evidence_only",
+  "host": "Apple M3",
+  "toolchain": {
+    "compiler": "Apple clang 21.0.0",
+    "target": "arm64-apple-darwin25.5.0",
+    "language": "C++20",
+    "multiprecision": "MPFR directed intervals"
+  },
+  "implemented_schemas": [
+    "eom_native_fold_caustic_impulse_certificate/v0",
+    "eom_native_regulator_convergence_certificate/v0",
+    "eom_native_corrected_substep_certificate/v0",
+    "eom_native_atomic_coupled_step_certificate/v0"
+  ],
+  "mathematical_scope": {
+    "event_integral": "full two-time finite-width Master EOM integral over the triangular reception-emission causal domain",
+    "mpfr_route": "directed MPFR interval history interpolation, geometry, receiver-normal magnitude, causal mollifier, core kernel, area, quadrature, and deterministic reduction",
+    "causal_width_refinement": [
+      "0.25",
+      "0.125",
+      "0.0625"
+    ],
+    "core_scale_refinement": [
+      "0.2",
+      "0.1",
+      "0.05"
+    ],
+    "convergence_rule": "every pair of level enclosures must have worst-case component separation no greater than the declared regulator convergence tolerance",
+    "event_acceptance": "every changed ordered pair must carry a certified regulator convergence certificate before its base-regulator impulse may be consumed",
+    "publication": "failed event integration or regulator convergence leaves every input history unchanged"
+  },
+  "controls": {
+    "forced_mpfr_joint_event": {
+      "status": "certified_complete",
+      "precision_route": "mpfr_outward_joint_quadrature",
+      "achieved_precision_bits": 128,
+      "visited_cells": 43,
+      "independent_decimal_interval_oracle_overlap": "pass"
+    },
+    "causal_width_refinement": {
+      "status": "certified_convergent",
+      "levels": 3,
+      "maximum_ladder_impulse_delta": 0.041683777516965996,
+      "declared_tolerance": 0.08
+    },
+    "core_scale_refinement": {
+      "status": "certified_convergent",
+      "levels": 3,
+      "maximum_ladder_impulse_delta": 0.043474278415838653,
+      "declared_tolerance": 0.08
+    },
+    "nonconvergent_control": {
+      "declared_tolerance": "1e-12",
+      "status": "uncertified",
+      "failure_code": "regulator_convergence_failed"
+    },
+    "coupled_fold_event": {
+      "status": "accepted",
+      "event_impulse_certificates": 2,
+      "regulator_convergence_certificates": 2,
+      "publication_atomic": true,
+      "one_thread_four_thread_replay": "byte_identical"
+    },
+    "atomic_resource_failure": {
+      "status": "rejected",
+      "failure_code": "regulator_convergence_failed",
+      "published_histories": "byte-identical input fingerprints"
+    }
+  },
+  "fixture_sha256": {
+    "acceleration": "6f6e614bfab1a6b3a2938630f462275e255304a57f997d72b11342b5ebb95fae",
+    "coupled_evolution": "96fe85d9dcbb458d0e2114b379fc0c5023b677839479757d5598b7be6a154df2"
+  },
+  "validation": [
+    "strict C++20 compile with -Wall -Wextra -Wpedantic -Werror",
+    "CMake Release build and three CTest fixtures in 1.66 seconds",
+    "AddressSanitizer and UndefinedBehaviorSanitizer CTest fixtures in 9.26 seconds",
+    "eight native coupled evolution oracle-parity, MPFR, regulator, event, atomicity, and replay tests",
+    "full 92-test EOM family"
+  ],
+  "authority_limits": [
+    "the finite three-level ladder certifies only the declared regulator envelope; it is not a proof of an analytic sharp limit",
+    "the MPFR event fixture forces the difficult-row route; production escalation frequency is not yet measured",
+    "the implementation remains complete ordered-pair correctness code and does not perform production hierarchical block traversal"
+  ],
+  "not_implemented": [
+    "MPFR replay for sharp-row acceleration and receiver reduction",
+    "split absolute time and many-orders multirate schedules",
+    "durable transactional checkpoint and streamed publication",
+    "production hierarchical traversal over million moving histories",
+    "GPU difficult-row return and distributed retained-history ownership",
+    "stable application ABI"
+  ],
+  "existing_central_solver_changed": false,
+  "production_block_traversal_started": false,
+  "migration_authorized": false
+}

@@ -37,6 +37,8 @@ struct NativeCoupledEvolutionRequest {
   std::string core_scale = "0.2";
   std::string quadrature_tolerance = "1e-8";
   std::string event_impulse_tolerance = "1e-7";
+  std::string regulator_refinement_ratio = "0.5";
+  std::string regulator_convergence_tolerance = "1e-3";
   std::string position_tolerance = "1e-8";
   std::string velocity_tolerance = "1e-8";
   std::string correction_tolerance = "1e-8";
@@ -46,8 +48,10 @@ struct NativeCoupledEvolutionRequest {
   std::size_t quadrature_max_cells = 200000;
   std::size_t event_max_depth = 24;
   std::size_t event_max_cells = 200000;
+  std::size_t regulator_refinement_levels = 3;
   unsigned initial_mpfr_bits = 128;
   unsigned maximum_mpfr_bits = 512;
+  bool force_event_precision_escalation = false;
   std::size_t max_correction_iterations = 12;
   std::size_t max_step_attempts = 10000;
   std::size_t max_rejected_steps = 1000;
@@ -67,6 +71,35 @@ struct NativeFoldCausticImpulseCertificate {
   std::size_t visited_cells;
   std::string precision_route;
   unsigned precision_bits;
+  std::string failure_code;
+};
+
+struct NativeRegulatorRefinementLevel {
+  std::size_t level;
+  std::string causal_width;
+  std::string core_scale;
+  NativeFoldCausticImpulseCertificate event_impulse;
+  std::optional<double> maximum_impulse_delta_from_previous;
+};
+
+struct NativeRegulatorRefinementSeries {
+  std::string control_id;
+  std::vector<NativeRegulatorRefinementLevel> levels;
+  std::optional<double> final_impulse_delta;
+  std::optional<double> maximum_ladder_impulse_delta;
+  bool converged;
+};
+
+struct NativeRegulatorConvergenceCertificate {
+  std::string schema;
+  std::string status;
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::size_t required_levels;
+  std::string refinement_ratio;
+  std::string convergence_tolerance;
+  NativeFoldCausticImpulseCertificate accepted_event_impulse;
+  std::vector<NativeRegulatorRefinementSeries> refinement_series;
   std::string failure_code;
 };
 
@@ -101,6 +134,8 @@ struct NativeCorrectedSubstepCertificate {
   std::optional<double> correction_error;
   std::string failure_code;
   std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
+  std::vector<NativeRegulatorConvergenceCertificate>
+      regulator_convergence_certificates;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
 };
 
@@ -161,6 +196,16 @@ certify_native_acceleration_snapshot(
 
 [[nodiscard]] NativeFoldCausticImpulseCertificate
 certify_native_fold_caustic_impulse(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& receiver_charge,
+    const std::string& source_charge,
+    const std::string& reception_lower,
+    const std::string& reception_upper);
+
+[[nodiscard]] NativeRegulatorConvergenceCertificate
+certify_native_regulator_convergence(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,

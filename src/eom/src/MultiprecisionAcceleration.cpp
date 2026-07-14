@@ -10,6 +10,7 @@
 #include <functional>
 #include <limits>
 #include <optional>
+#include <set>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -453,6 +454,101 @@ MpVector integrand(
   return scale_vector(scale, kernel);
 }
 
+MpInterval point_interval(double value, mpfr_prec_t bits) {
+  const std::string token = double_token(value);
+  return MpInterval(
+      MpNumber::decimal(token, bits, MPFR_RNDD),
+      MpNumber::decimal(token, bits, MPFR_RNDU));
+}
+
+MpInterval causal_domain_area(
+    double reception_lower,
+    double reception_upper,
+    double emission_lower,
+    double emission_upper,
+    mpfr_prec_t bits) {
+  MpInterval area = MpInterval::integer(0, bits);
+  const double ramp_lower = std::max(reception_lower, emission_lower);
+  const double ramp_upper = std::min(reception_upper, emission_upper);
+  if (ramp_lower < ramp_upper) {
+    const MpInterval lower = point_interval(ramp_lower, bits);
+    const MpInterval upper = point_interval(ramp_upper, bits);
+    const MpInterval emission = point_interval(emission_lower, bits);
+    area = area +
+        (square(upper - emission) - square(lower - emission)) /
+            MpInterval::integer(2, bits);
+  }
+  const double plateau_lower = std::max(reception_lower, emission_upper);
+  if (plateau_lower < reception_upper) {
+    area = area +
+        (point_interval(reception_upper, bits) -
+         point_interval(plateau_lower, bits)) *
+            (point_interval(emission_upper, bits) -
+             point_interval(emission_lower, bits));
+  }
+  return area;
+}
+
+MpVector event_integrand(
+    const MpfrEventImpulseRequest& request,
+    const MpInterval& reception,
+    double reception_lower,
+    double reception_upper,
+    const MpInterval& emission,
+    double emission_lower,
+    double emission_upper,
+    mpfr_prec_t bits) {
+  const auto receiver_state = history_state(
+      *request.receiver_history, reception, reception_lower, reception_upper);
+  const auto source_state = history_state(
+      *request.source_history, emission, emission_lower, emission_upper);
+  const MpVector displacement =
+      subtract_vector(receiver_state.first, source_state.first);
+  const MpInterval separation = norm_vector(displacement);
+  const MpInterval core = MpInterval::decimal(request.core_scale, bits);
+  const MpInterval radial_square = square(separation) + square(core);
+  const MpVector kernel =
+      divide_vector(displacement, radial_square * square_root(radial_square));
+  const MpInterval field_speed =
+      MpInterval::decimal(request.field_speed, bits);
+  MpInterval receiver_strength = MpInterval::integer(0, bits);
+  if (separation.contains_zero()) {
+    receiver_strength = MpInterval(
+        MpNumber::integer(0, bits),
+        add_number(
+            field_speed.upper(), norm_vector(receiver_state.second).upper(),
+            MPFR_RNDU));
+  } else {
+    receiver_strength = absolute(
+        field_speed -
+        dot_vector(
+            divide_vector(displacement, separation), receiver_state.second));
+  }
+  const MpInterval residual =
+      separation - field_speed * (reception - emission);
+  const MpInterval eta = MpInterval::decimal(request.causal_width, bits);
+  const MpInterval exponent =
+      MpInterval::integer(0, bits) -
+      square(residual) /
+          (MpInterval::integer(2, bits) * square(eta));
+  const MpInterval pi = MpInterval(
+      MpNumber::decimal(
+          "3.14159265358979323846264338327950288419716939937510",
+          bits, MPFR_RNDD),
+      MpNumber::decimal(
+          "3.14159265358979323846264338327950288419716939937511",
+          bits, MPFR_RNDU));
+  const MpInterval mollifier =
+      exponential(exponent) /
+      (square_root(MpInterval::integer(2, bits) * pi) * eta);
+  const MpInterval scale =
+      MpInterval::decimal(request.coupling, bits) *
+      MpInterval::decimal(request.receiver_charge, bits) *
+      MpInterval::decimal(request.source_charge, bits) * receiver_strength *
+      mollifier;
+  return scale_vector(scale, kernel);
+}
+
 bool width_within(const MpInterval& value, const MpNumber& budget) {
   return value.width().compare(budget) <= 0;
 }
@@ -559,6 +655,199 @@ MpfrAccelerationAttempt certify_mpfr_finite_width_acceleration(
       return result;
     }
     result.acceleration = {
+        total[0].projection(), total[1].projection(), total[2].projection()};
+    result.certified = true;
+    result.failure_code.clear();
+    return result;
+  } catch (const std::exception& error) {
+    result.failure_code = error.what();
+    return result;
+  }
+}
+
+MpfrEventImpulseAttempt certify_mpfr_event_impulse(
+    const MpfrEventImpulseRequest& request,
+    unsigned precision_bits) {
+  const mpfr_prec_t bits = static_cast<mpfr_prec_t>(precision_bits);
+  MpfrEventImpulseAttempt result{
+      .certified = false,
+      .failure_code = "numeric_event_impulse_uncertified",
+      .impulse = {Interval::point(0.0), Interval::point(0.0),
+                  Interval::point(0.0)},
+      .visited_cells = 0,
+      .precision_bits = precision_bits,
+  };
+  try {
+    if (request.receiver_history == nullptr ||
+        request.source_history == nullptr) {
+      throw std::invalid_argument("MPFR event integration requires histories");
+    }
+    const double reception_lower =
+        Interval::decimal_token(request.reception_lower).midpoint();
+    const double reception_upper =
+        Interval::decimal_token(request.reception_upper).midpoint();
+    const double search_lower =
+        Interval::decimal_token(request.search_lower).midpoint();
+    if (!(reception_upper > reception_lower) ||
+        !(search_lower < reception_lower) ||
+        !request.receiver_history->covers(
+            Interval(reception_lower, reception_upper)) ||
+        !request.source_history->covers(
+            Interval(search_lower, reception_upper))) {
+      result.failure_code = "event_impulse_history_coverage_invalid";
+      return result;
+    }
+
+    const MpInterval reception_all(
+        MpNumber::decimal(request.reception_lower, bits, MPFR_RNDD),
+        MpNumber::decimal(request.reception_upper, bits, MPFR_RNDU));
+    const MpInterval emission_boundary =
+        MpInterval::decimal(request.search_lower, bits);
+    const auto receiver_boundary = history_state(
+        *request.receiver_history, reception_all, reception_lower,
+        reception_upper);
+    const auto source_boundary = history_state(
+        *request.source_history, emission_boundary, search_lower,
+        search_lower);
+    const MpInterval boundary_residual =
+        norm_vector(subtract_vector(
+            receiver_boundary.first, source_boundary.first)) -
+        MpInterval::decimal(request.field_speed, bits) *
+            (reception_all - emission_boundary);
+    if (boundary_residual.contains_zero()) {
+      result.failure_code = "insufficient_history_depth";
+      return result;
+    }
+
+    const MpInterval tolerance =
+        MpInterval::decimal(request.impulse_tolerance, bits);
+    const MpInterval total_area = causal_domain_area(
+        reception_lower, reception_upper, search_lower, reception_upper,
+        bits);
+    const MpNumber zero = MpNumber::integer(0, bits);
+    if (total_area.lower().compare(zero) <= 0) {
+      result.failure_code = "event_impulse_domain_not_positive";
+      return result;
+    }
+
+    std::function<MpVector(
+        double, double, double, double, std::size_t)> integrate;
+    integrate = [&](double t_lower, double t_upper, double s_lower,
+                    double s_upper, std::size_t depth) {
+      ++result.visited_cells;
+      if (result.visited_cells > request.max_cells) {
+        throw std::runtime_error("event_impulse_cell_limit_exhausted");
+      }
+      const MpInterval area = causal_domain_area(
+          t_lower, t_upper, s_lower, s_upper, bits);
+      if (area.upper().compare(zero) <= 0) {
+        return MpVector{
+            MpInterval::integer(0, bits), MpInterval::integer(0, bits),
+            MpInterval::integer(0, bits)};
+      }
+      const MpInterval reception(
+          MpNumber::decimal(double_token(t_lower), bits, MPFR_RNDD),
+          MpNumber::decimal(double_token(t_upper), bits, MPFR_RNDU));
+      const MpInterval emission(
+          MpNumber::decimal(double_token(s_lower), bits, MPFR_RNDD),
+          MpNumber::decimal(double_token(s_upper), bits, MPFR_RNDU));
+      const MpVector integral = scale_vector(
+          area,
+          event_integrand(
+              request, reception, t_lower, t_upper, emission, s_lower,
+              s_upper, bits));
+      MpNumber budget(bits);
+      if (area.lower().compare(zero) <= 0) {
+        mpfr_set_zero(budget.raw(), 0);
+      } else {
+        mpfr_mul(
+            budget.raw(), tolerance.lower().raw(), area.lower().raw(),
+            MPFR_RNDD);
+        mpfr_div(
+            budget.raw(), budget.raw(), total_area.upper().raw(), MPFR_RNDD);
+      }
+      if (std::all_of(
+              integral.begin(), integral.end(),
+              [&](const MpInterval& component) {
+                return width_within(component, budget);
+              })) {
+        return integral;
+      }
+      if (depth >= request.max_depth) {
+        throw std::runtime_error("event_impulse_depth_exhausted");
+      }
+      if ((t_upper - t_lower) >= (s_upper - s_lower)) {
+        const double midpoint = t_lower + (t_upper - t_lower) * 0.5;
+        if (!(midpoint > t_lower && midpoint < t_upper)) {
+          throw std::runtime_error("event_impulse_time_resolution_exhausted");
+        }
+        return add_vector(
+            integrate(t_lower, midpoint, s_lower, s_upper, depth + 1U),
+            integrate(midpoint, t_upper, s_lower, s_upper, depth + 1U));
+      }
+      const double midpoint = s_lower + (s_upper - s_lower) * 0.5;
+      if (!(midpoint > s_lower && midpoint < s_upper)) {
+        throw std::runtime_error("event_impulse_time_resolution_exhausted");
+      }
+      return add_vector(
+          integrate(t_lower, t_upper, s_lower, midpoint, depth + 1U),
+          integrate(t_lower, t_upper, midpoint, s_upper, depth + 1U));
+    };
+
+    std::set<double> reception_points{reception_lower, reception_upper};
+    std::set<double> emission_points{search_lower, reception_upper};
+    for (const auto& segment : request.receiver_history->segments()) {
+      if (reception_lower < segment.t_start() &&
+          segment.t_start() < reception_upper) {
+        reception_points.insert(segment.t_start());
+      }
+      if (reception_lower < segment.t_end() &&
+          segment.t_end() < reception_upper) {
+        reception_points.insert(segment.t_end());
+      }
+    }
+    for (const auto& segment : request.source_history->segments()) {
+      if (search_lower < segment.t_start() &&
+          segment.t_start() < reception_upper) {
+        emission_points.insert(segment.t_start());
+      }
+      if (search_lower < segment.t_end() &&
+          segment.t_end() < reception_upper) {
+        emission_points.insert(segment.t_end());
+      }
+    }
+    std::vector<MpVector> totals;
+    for (auto t = reception_points.begin();
+         std::next(t) != reception_points.end(); ++t) {
+      for (auto s = emission_points.begin();
+           std::next(s) != emission_points.end(); ++s) {
+        totals.push_back(
+            integrate(*t, *std::next(t), *s, *std::next(s), 0));
+      }
+    }
+    if (totals.empty()) {
+      result.failure_code = "event_impulse_no_covered_cells";
+      return result;
+    }
+    while (totals.size() > 1U) {
+      std::vector<MpVector> next;
+      next.reserve((totals.size() + 1U) / 2U);
+      for (std::size_t index = 0; index < totals.size(); index += 2U) {
+        next.push_back(index + 1U < totals.size()
+            ? add_vector(totals[index], totals[index + 1U])
+            : totals[index]);
+      }
+      totals = std::move(next);
+    }
+    const MpVector& total = totals.front();
+    if (!std::all_of(
+            total.begin(), total.end(), [&](const MpInterval& component) {
+              return width_within(component, tolerance.upper());
+            })) {
+      result.failure_code = "event_impulse_enclosure_exceeds_tolerance";
+      return result;
+    }
+    result.impulse = {
         total[0].projection(), total[1].projection(), total[2].projection()};
     result.certified = true;
     result.failure_code.clear();

@@ -1,4 +1,5 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/MultiprecisionAcceleration.hpp"
 
 #include <algorithm>
 #include <array>
@@ -40,6 +41,18 @@ double scalar_token(const std::string& token) {
   return Interval::decimal_token(token).midpoint();
 }
 
+double exact_decimal_value(const std::string& token) {
+  double value = 0.0;
+  const auto result = std::from_chars(
+      token.data(), token.data() + token.size(), value,
+      std::chars_format::general);
+  if (result.ec != std::errc{} || result.ptr != token.data() + token.size() ||
+      !std::isfinite(value)) {
+    throw std::invalid_argument("invalid finite decimal token: " + token);
+  }
+  return value;
+}
+
 std::string decimal_token(double value) {
   if (!std::isfinite(value)) {
     throw std::invalid_argument("coupled evolution requires finite numeric values");
@@ -50,6 +63,20 @@ std::string decimal_token(double value) {
       std::chars_format::general, std::numeric_limits<double>::max_digits10);
   if (result.ec != std::errc{}) {
     throw std::runtime_error("failed to serialize coupled evolution decimal");
+  }
+  return std::string(buffer.data(), result.ptr);
+}
+
+std::string shortest_decimal_token(double value) {
+  if (!std::isfinite(value)) {
+    throw std::invalid_argument("regulator refinement requires finite values");
+  }
+  std::array<char, 64> buffer{};
+  const auto result = std::to_chars(
+      buffer.data(), buffer.data() + buffer.size(), value,
+      std::chars_format::general);
+  if (result.ec != std::errc{}) {
+    throw std::runtime_error("failed to serialize regulator refinement");
   }
   return std::string(buffer.data(), result.ptr);
 }
@@ -366,6 +393,7 @@ NativeCorrectedSubstepCertificate failed_substep_certificate(
       .correction_error = correction_error,
       .failure_code = failure_code,
       .event_impulses = {},
+      .regulator_convergence_certificates = {},
       .candidate_history_fingerprints =
           candidate_histories.has_value()
               ? fingerprints(*candidate_histories)
@@ -439,6 +467,8 @@ SubstepAttempt corrected_substep(
     last_snapshot = endpoint_snapshot;
     if (*correction_error <= correction_tolerance) {
       std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
+      std::vector<NativeRegulatorConvergenceCertificate>
+          regulator_convergence_certificates;
       if (topology_signature(start_snapshot) !=
           topology_signature(endpoint_snapshot)) {
         if (request.chart_policy == "sharp") {
@@ -453,24 +483,27 @@ SubstepAttempt corrected_substep(
         const double step = scalar_token(end_time) - scalar_token(start_time);
         for (const auto& [receiver_id, source_id] :
              changed_topology_pairs(start_snapshot, endpoint_snapshot)) {
-          auto event = certify_native_fold_caustic_impulse(
+          auto regulator = certify_native_regulator_convergence(
               request,
               path_history(candidate_histories, receiver_id),
               path_history(candidate_histories, source_id),
               path_charge(request, receiver_id),
               path_charge(request, source_id),
               start_time, end_time);
-          if (event.status != "certified_complete" ||
+          auto event = regulator.accepted_event_impulse;
+          if (regulator.status != "certified_convergent" ||
+              event.status != "certified_complete" ||
               !event.impulse.has_value()) {
-            const std::string failure = event.failure_code.empty()
-                ? "numeric_event_impulse_uncertified"
-                : event.failure_code;
             event_impulses.push_back(std::move(event));
+            regulator_convergence_certificates.push_back(
+                std::move(regulator));
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
-                failure, candidate_histories);
+                "regulator_convergence_failed", candidate_histories);
             failed.event_impulses = std::move(event_impulses);
+            failed.regulator_convergence_certificates =
+                std::move(regulator_convergence_certificates);
             return {std::move(failed), std::nullopt};
           }
           const auto& start_pair =
@@ -488,14 +521,20 @@ SubstepAttempt corrected_substep(
                   *end_pair.total_acceleration));
           if (!vectors_overlap(trapezoid, *event.impulse)) {
             event_impulses.push_back(std::move(event));
+            regulator_convergence_certificates.push_back(
+                std::move(regulator));
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
                 "event_impulse_requires_subdivision", candidate_histories);
             failed.event_impulses = std::move(event_impulses);
+            failed.regulator_convergence_certificates =
+                std::move(regulator_convergence_certificates);
             return {std::move(failed), std::nullopt};
           }
           event_impulses.push_back(std::move(event));
+          regulator_convergence_certificates.push_back(
+              std::move(regulator));
         }
       }
       NativeCorrectedSubstepCertificate certificate{
@@ -509,6 +548,8 @@ SubstepAttempt corrected_substep(
           .correction_error = correction_error,
           .failure_code = "",
           .event_impulses = std::move(event_impulses),
+          .regulator_convergence_certificates =
+              std::move(regulator_convergence_certificates),
           .candidate_history_fingerprints = fingerprints(candidate_histories),
       };
       return {std::move(certificate), std::move(candidate_histories)};
@@ -576,6 +617,19 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
     tolerance_value(request.core_scale, "core scale");
     tolerance_value(request.quadrature_tolerance, "quadrature tolerance");
     tolerance_value(request.event_impulse_tolerance, "event impulse tolerance");
+    const double refinement_ratio =
+        exact_decimal_value(request.regulator_refinement_ratio);
+    if (!(refinement_ratio > 0.0 && refinement_ratio < 1.0)) {
+      throw std::invalid_argument(
+          "regulator refinement ratio must be between zero and one");
+    }
+    tolerance_value(
+        request.regulator_convergence_tolerance,
+        "regulator convergence tolerance");
+    if (request.regulator_refinement_levels < 3U) {
+      throw std::invalid_argument(
+          "regulator convergence requires at least three levels");
+    }
   }
   tolerance_value(request.position_tolerance, "position tolerance");
   tolerance_value(request.velocity_tolerance, "velocity tolerance");
@@ -584,6 +638,8 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
       request.quadrature_max_depth == 0U ||
       request.quadrature_max_cells == 0U ||
       request.event_max_depth == 0U || request.event_max_cells == 0U ||
+      request.initial_mpfr_bits == 0U ||
+      request.initial_mpfr_bits > request.maximum_mpfr_bits ||
       request.max_correction_iterations == 0U ||
       request.max_step_attempts == 0U ||
       request.max_rejected_steps == 0U || request.thread_count == 0U) {
@@ -763,7 +819,8 @@ const NativePairAccelerationCertificate& snapshot_pair(
 
 }  // namespace
 
-NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
+static NativeFoldCausticImpulseCertificate
+certify_binary64_fold_caustic_impulse(
     const NativeCoupledEvolutionRequest& request,
     const NativePublishedPath& receiver,
     const NativePublishedPath& source,
@@ -910,6 +967,221 @@ NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
     certificate.failure_code = error.what();
     return certificate;
   }
+}
+
+NativeFoldCausticImpulseCertificate certify_native_fold_caustic_impulse(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& receiver_charge,
+    const std::string& source_charge,
+    const std::string& reception_lower_token,
+    const std::string& reception_upper_token) {
+  tolerance_value(request.causal_width, "causal width");
+  tolerance_value(request.core_scale, "core scale");
+  tolerance_value(request.event_impulse_tolerance, "event impulse tolerance");
+  if (request.event_max_depth == 0U || request.event_max_cells == 0U ||
+      request.initial_mpfr_bits == 0U ||
+      request.initial_mpfr_bits > request.maximum_mpfr_bits) {
+    throw std::invalid_argument("invalid event resource or precision policy");
+  }
+  NativeFoldCausticImpulseCertificate certificate =
+      certify_binary64_fold_caustic_impulse(
+          request, receiver, source, receiver_charge, source_charge,
+          reception_lower_token, reception_upper_token);
+  if (certificate.status == "certified_complete" &&
+      !request.force_event_precision_escalation) {
+    return certificate;
+  }
+  if (certificate.failure_code == "event_impulse_history_coverage_invalid" ||
+      certificate.failure_code == "insufficient_history_depth") {
+    return certificate;
+  }
+  if (!request.force_event_precision_escalation &&
+      (certificate.failure_code == "event_impulse_cell_limit_exhausted" ||
+       certificate.failure_code == "event_impulse_depth_exhausted" ||
+       certificate.failure_code == "event_impulse_time_resolution_exhausted")) {
+    return certificate;
+  }
+  unsigned bits = request.initial_mpfr_bits;
+  for (;;) {
+    const auto attempt = certify_mpfr_event_impulse(
+        {
+            .receiver_history = &receiver.history,
+            .source_history = &source.history,
+            .receiver_charge = receiver_charge,
+            .source_charge = source_charge,
+            .reception_lower = reception_lower_token,
+            .reception_upper = reception_upper_token,
+            .search_lower =
+                source.history.segments().front().t_start_token(),
+            .field_speed = request.field_speed,
+            .coupling = request.coupling,
+            .causal_width = request.causal_width,
+            .core_scale = request.core_scale,
+            .impulse_tolerance = request.event_impulse_tolerance,
+            .max_depth = request.event_max_depth,
+            .max_cells = request.event_max_cells,
+        },
+        bits);
+    certificate.visited_cells = attempt.visited_cells;
+    certificate.precision_route = "mpfr_outward_joint_quadrature";
+    certificate.precision_bits = bits;
+    certificate.failure_code = attempt.failure_code;
+    certificate.impulse = std::nullopt;
+    certificate.status = "uncertified";
+    if (attempt.certified) {
+      certificate.status = "certified_complete";
+      certificate.impulse = attempt.impulse;
+      certificate.failure_code.clear();
+      return certificate;
+    }
+    if (bits >= request.maximum_mpfr_bits) {
+      return certificate;
+    }
+    const unsigned next = bits > request.maximum_mpfr_bits / 2U
+        ? request.maximum_mpfr_bits
+        : bits * 2U;
+    if (next <= bits) {
+      return certificate;
+    }
+    bits = next;
+  }
+}
+
+NativeRegulatorConvergenceCertificate certify_native_regulator_convergence(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& receiver_charge,
+    const std::string& source_charge,
+    const std::string& reception_lower,
+    const std::string& reception_upper) {
+  const double ratio = exact_decimal_value(request.regulator_refinement_ratio);
+  const double tolerance = tolerance_value(
+      request.regulator_convergence_tolerance,
+      "regulator convergence tolerance");
+  if (!(ratio > 0.0 && ratio < 1.0) ||
+      request.regulator_refinement_levels < 3U) {
+    throw std::invalid_argument(
+        "regulator convergence requires a ratio between zero and one and "
+        "at least three levels");
+  }
+  const auto base_event = certify_native_fold_caustic_impulse(
+      request, receiver, source, receiver_charge, source_charge,
+      reception_lower, reception_upper);
+  NativeRegulatorConvergenceCertificate certificate{
+      .schema = "eom_native_regulator_convergence_certificate/v0",
+      .status = "uncertified",
+      .receiver_path_id = receiver.path_id,
+      .source_path_id = source.path_id,
+      .required_levels = request.regulator_refinement_levels,
+      .refinement_ratio = request.regulator_refinement_ratio,
+      .convergence_tolerance = request.regulator_convergence_tolerance,
+      .accepted_event_impulse = base_event,
+      .refinement_series = {},
+      .failure_code = "regulator_convergence_failed",
+  };
+  if (base_event.status != "certified_complete" ||
+      !base_event.impulse.has_value()) {
+    return certificate;
+  }
+  const double base_causal_width = exact_decimal_value(request.causal_width);
+  const double base_core_scale = exact_decimal_value(request.core_scale);
+
+  const auto maximum_delta = [](const IntervalVector& left,
+                                const IntervalVector& right) {
+    double result = 0.0;
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      result = std::max(
+          result,
+          std::max(
+              std::abs(left[axis].lower() - right[axis].upper()),
+              std::abs(left[axis].upper() - right[axis].lower())));
+    }
+    return result;
+  };
+
+  for (const std::string& control_id :
+       {std::string("causal_width_refinement"),
+        std::string("core_scale_refinement")}) {
+    NativeRegulatorRefinementSeries series{
+        .control_id = control_id,
+        .levels = {{
+            .level = 0,
+            .causal_width = request.causal_width,
+            .core_scale = request.core_scale,
+            .event_impulse = base_event,
+            .maximum_impulse_delta_from_previous = std::nullopt,
+        }},
+        .final_impulse_delta = std::nullopt,
+        .maximum_ladder_impulse_delta = std::nullopt,
+        .converged = false,
+    };
+    double scale = 1.0;
+    bool all_levels_certified = true;
+    double previous_delta = 0.0;
+    for (std::size_t level = 1;
+         level < request.regulator_refinement_levels; ++level) {
+      scale *= ratio;
+      auto refined_request = request;
+      if (control_id == "causal_width_refinement") {
+        refined_request.causal_width =
+            shortest_decimal_token(base_causal_width * scale);
+      } else {
+        refined_request.core_scale =
+            shortest_decimal_token(base_core_scale * scale);
+      }
+      auto event = certify_native_fold_caustic_impulse(
+          refined_request, receiver, source, receiver_charge, source_charge,
+          reception_lower, reception_upper);
+      std::optional<double> delta;
+      if (event.status == "certified_complete" && event.impulse.has_value()) {
+        delta = maximum_delta(
+            *series.levels.back().event_impulse.impulse, *event.impulse);
+        previous_delta = *delta;
+      } else {
+        all_levels_certified = false;
+      }
+      series.levels.push_back({
+          .level = level,
+          .causal_width = refined_request.causal_width,
+          .core_scale = refined_request.core_scale,
+          .event_impulse = std::move(event),
+          .maximum_impulse_delta_from_previous = delta,
+      });
+      if (!all_levels_certified) {
+        break;
+      }
+    }
+    if (all_levels_certified &&
+        series.levels.size() == request.regulator_refinement_levels) {
+      series.final_impulse_delta = previous_delta;
+      double maximum_ladder_delta = 0.0;
+      for (std::size_t left = 0; left < series.levels.size(); ++left) {
+        for (std::size_t right = left + 1U; right < series.levels.size();
+             ++right) {
+          maximum_ladder_delta = std::max(
+              maximum_ladder_delta,
+              maximum_delta(
+                  *series.levels[left].event_impulse.impulse,
+                  *series.levels[right].event_impulse.impulse));
+        }
+      }
+      series.maximum_ladder_impulse_delta = maximum_ladder_delta;
+      series.converged = maximum_ladder_delta <= tolerance;
+    }
+    certificate.refinement_series.push_back(std::move(series));
+  }
+  if (certificate.refinement_series.size() == 2U &&
+      std::all_of(
+          certificate.refinement_series.begin(),
+          certificate.refinement_series.end(),
+          [](const auto& series) { return series.converged; })) {
+    certificate.status = "certified_convergent";
+    certificate.failure_code.clear();
+  }
+  return certificate;
 }
 
 NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(

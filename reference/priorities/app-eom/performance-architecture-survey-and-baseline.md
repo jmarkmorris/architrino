@@ -199,12 +199,25 @@ byte-identical one-thread/four-thread accepted-event replay. Evidence is
 recorded in
 [eom-native-finite-width-event-layer-apple-m3-2026-07-13.json](evidence/eom-native-finite-width-event-layer-apple-m3-2026-07-13.json).
 
+The MPFR and regulator-convergence packet extends that same event equation,
+not a substitute model. Its difficult-row route recomputes history
+interpolation, the receiver-normal magnitude, causal residual, Gaussian
+surface, core kernel, triangular-domain area, and deterministic quadrature in
+directed MPFR intervals. The acceptance layer independently refines causal
+width and core scale through three declared levels and fails unless the
+worst-case component separation between every pair of interval enclosures is
+inside the declared convergence tolerance. The coupled accepted-event fixture
+now carries two regulator-convergence certificates; cell exhaustion rejects
+atomically. Evidence is recorded in
+[eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json](evidence/eom-native-mpfr-regulator-convergence-layer-apple-m3-2026-07-13.json).
+
 This layer is still correctness-first architecture evidence. It copies history
 vectors during correction, uses binary64 local-time controller values, and
 publishes atomically only at the in-memory API boundary. It is not yet the
 high-throughput production integrator, durable transaction/checkpoint layer,
-MPFR event integrator, regulator-limit convergence layer, or many-orders
-multirate scheduler.
+MPFR sharp-row/reduction replay, split-time representation, or many-orders
+multirate scheduler. The finite ladder certifies the declared regulator
+envelope; it does not prove an analytic sharp limit.
 
 ## Measured Local Results
 

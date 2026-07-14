@@ -262,6 +262,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(accepted["status"], "accepted")
         self.assertTrue(accepted["publication_atomic"])
         self.assertGreater(accepted["event_impulse_count"], 0)
+        self.assertGreater(accepted["regulator_certificate_count"], 0)
         exhausted = self.packet["event_atomic_resource_failure"]
         self.assertEqual(exhausted["status"], "rejected")
         self.assertTrue(exhausted["publication_atomic"])
@@ -269,7 +270,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             exhausted["input_fingerprints"],
             exhausted["published_fingerprints"],
         )
-        self.assertIn("event_impulse", exhausted["failure_code"])
+        self.assertEqual(exhausted["failure_code"], "regulator_convergence_failed")
 
     def test_native_fold_impulse_has_oracle_parity_and_fails_closed(self) -> None:
         receiver = oracle_history(
@@ -305,10 +306,56 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             native["impulse"], oracle.impulse
         ):
             assert_overlaps(self, native_component, oracle_component)
+        mpfr = self.packet["event_mpfr"]
+        self.assertEqual(mpfr["status"], "certified_complete")
+        self.assertEqual(
+            mpfr["precision_route"], "mpfr_outward_joint_quadrature"
+        )
+        self.assertGreaterEqual(mpfr["precision_bits"], 128)
+        for native_component, oracle_component in zip(
+            mpfr["impulse"], oracle.impulse
+        ):
+            assert_overlaps(self, native_component, oracle_component)
         exhausted = self.packet["event_resource_failure"]
         self.assertEqual(exhausted["status"], "uncertified")
         self.assertIsNone(exhausted["impulse"])
         self.assertIn("cell_limit_exhausted", exhausted["failure_code"])
+
+    def test_regulator_refinement_is_independent_and_fails_closed(self) -> None:
+        certificate = self.packet["event_regulator"]
+        self.assertEqual(certificate["status"], "certified_convergent")
+        self.assertEqual(certificate["required_levels"], 3)
+        series = {row["control_id"]: row for row in certificate["series"]}
+        self.assertEqual(
+            set(series), {"causal_width_refinement", "core_scale_refinement"}
+        )
+        for row in series.values():
+            self.assertTrue(row["converged"])
+            self.assertEqual(len(row["levels"]), 3)
+            self.assertLessEqual(
+                Decimal(str(row["maximum_ladder_impulse_delta"])),
+                Decimal("0.08"),
+            )
+        causal_levels = series["causal_width_refinement"]["levels"]
+        core_levels = series["core_scale_refinement"]["levels"]
+        self.assertEqual(
+            [row["causal_width"] for row in causal_levels],
+            ["0.25", "0.125", "0.0625"],
+        )
+        self.assertTrue(
+            all(row["core_scale"] == "0.2" for row in causal_levels)
+        )
+        self.assertEqual(
+            [row["core_scale"] for row in core_levels],
+            ["0.2", "0.1", "0.05"],
+        )
+        self.assertTrue(
+            all(row["causal_width"] == "0.25" for row in core_levels)
+        )
+        failed = self.packet["event_nonconvergent"]
+        self.assertEqual(failed["status"], "uncertified")
+        self.assertEqual(failed["failure_code"], "regulator_convergence_failed")
+        self.assertTrue(any(not row["converged"] for row in failed["series"]))
 
     def test_adaptive_controller_halves_rejected_step_before_publication(self) -> None:
         adaptive = self.evolution("adaptive-halving")
