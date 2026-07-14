@@ -32,6 +32,19 @@ The executable layer currently contains:
   error on the globally summed interval integral and refines the active time
   cell with the largest enclosure-width contribution, while retaining
   caller-bounded depth and cell exhaustion;
+- a provenance-gated analytic pinned-fold specialization for self-pairs whose
+  factory-certified circular-prefix speed equals $c_f$: a second-order Taylor
+  enclosure preserves the vanishing causal-residual derivative, and a
+  midpoint integral with a certified first-derivative remainder encloses the
+  unchanged finite-width master-equation integral; arbitrary histories retain
+  the generic finite-width route;
+- a provenance-gated pinned-fold temporal onset step for the same exact
+  $v=c_f$ circular endpoint: the certified sharp-chart value at the single
+  onset instant is excluded from the positive-duration acceleration integral,
+  the implicit right-endpoint acceleration advances the eligible path, and a
+  certificate binds the history fingerprint, root-free open search,
+  coincident-endpoint exclusion, memory boundary, start chart, and temporal
+  rule;
 - one auditable acceleration row per admitted root, including source normal,
   receiver normal, branch orientation, receiver strength, polarity, root
   precision route, and interval-vector contribution; and
@@ -41,15 +54,18 @@ The executable layer currently contains:
 - correctness-first coupled cubic acceleration correction in which every path
   advances from one immutable accepted-history view;
 - full-step versus two-half-step local position and velocity error estimates,
-  exact step halving after rejection, and root-topology subdivision controls;
+  with the pinned-fold onset rule applied consistently to the full step and
+  first half-step, exact step halving after rejection, and root-topology
+  subdivision controls;
   and
 - atomic in-memory publication that exposes either every recertified fine
   history or the unchanged input histories, never a partially advanced path
   set, with corrected endpoint accelerations required to lie within the
   recertified inflated-history intervals up to the declared correction
   tolerance;
-- tamper-evident checkpoint serialization, atomic durable file publication,
-  and restart continuity that reproduces uninterrupted history fingerprints;
+- tamper-evident checkpoint serialization, including factory revalidation of
+  circular-prefix certificates, atomic durable file publication, and restart
+  continuity that reproduces uninterrupted history fingerprints;
   and
 - a persistent Borg shadow worker protocol that accepts continuous cubic
   histories and returns only atomically published history extensions; and

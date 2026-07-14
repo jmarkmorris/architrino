@@ -37,10 +37,22 @@ struct UniformCircularHistoryRequest {
 
 struct UniformCircularEndpointCertificate {
   std::string schema;
+  std::string valid_start_time;
   std::string valid_reception_time;
+  std::string maximum_segment_step;
   std::string tangential_speed;
   std::string cylindrical_radius;
   std::string angular_speed;
+  std::string height;
+  std::string phase;
+  std::string tilt_x;
+  std::string tilt_y;
+};
+
+struct UniformCircularAnalyticState {
+  IntervalVector position;
+  IntervalVector velocity;
+  IntervalVector acceleration;
 };
 
 class CubicHistorySegment {
@@ -85,6 +97,11 @@ class CubicHistorySegment {
 
   [[nodiscard]] IntervalVector position_interval(const Interval& time) const;
   [[nodiscard]] IntervalVector velocity_interval(const Interval& time) const;
+  [[nodiscard]] IntervalVector nominal_position_interval(
+      const Interval& time) const;
+  [[nodiscard]] IntervalVector correlated_displacement_interval(
+      const Interval& reception,
+      const Interval& emission) const;
 
  private:
   [[nodiscard]] Interval polynomial_interval(
@@ -162,6 +179,10 @@ class RetainedHistory {
   [[nodiscard]] static RetainedHistory uniform_circular(
       std::string history_id,
       const UniformCircularHistoryRequest& request);
+  [[nodiscard]] static RetainedHistory restore_uniform_circular(
+      std::string history_id,
+      const UniformCircularHistoryRequest& request,
+      std::vector<CubicHistorySegment> segments);
 
   [[nodiscard]] const std::string& history_id() const noexcept {
     return history_id_;
@@ -180,12 +201,21 @@ class RetainedHistory {
   uniform_circular_endpoint_certificate() const noexcept {
     return uniform_circular_endpoint_certificate_;
   }
+  [[nodiscard]] std::optional<UniformCircularAnalyticState>
+  uniform_circular_analytic_state(const Interval& time) const;
   [[nodiscard]] double t_start() const noexcept;
   [[nodiscard]] double t_end() const noexcept;
   [[nodiscard]] bool covers(const Interval& time) const noexcept;
   [[nodiscard]] std::size_t segment_index_at(double time) const;
   [[nodiscard]] IntervalVector position_hull(const Interval& time) const;
   [[nodiscard]] IntervalVector velocity_hull(const Interval& time) const;
+  [[nodiscard]] std::optional<IntervalVector>
+  same_segment_correlated_displacement(
+      const Interval& reception,
+      const Interval& emission) const;
+  [[nodiscard]] std::optional<IntervalVector> correlated_self_displacement(
+      const Interval& reception,
+      const Interval& emission) const;
   [[nodiscard]] RetainedHistory appended(CubicHistorySegment segment) const;
 
  private:

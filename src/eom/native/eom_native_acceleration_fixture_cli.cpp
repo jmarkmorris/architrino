@@ -3,10 +3,13 @@
 #include "architrino/eom/History.hpp"
 
 #include <array>
+#include <cmath>
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <optional>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -15,6 +18,13 @@
 namespace eom = architrino::eom;
 
 namespace {
+
+std::string token(double value) {
+  std::ostringstream stream;
+  stream << std::setprecision(std::numeric_limits<double>::max_digits10)
+         << value;
+  return stream.str();
+}
 
 eom::CubicHistorySegment segment(
     const std::string& t_start,
@@ -131,6 +141,12 @@ void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
             << certificate.reduction_policy
             << "\",\"quadrature_visited_cells\":"
             << certificate.quadrature_visited_cells
+            << ",\"analytic_fold_visited_cells\":"
+            << certificate.analytic_fold_visited_cells
+            << ",\"correlated_self_chord_visited_cells\":"
+            << certificate.correlated_self_chord_visited_cells
+            << ",\"stable_circular_residual_visited_cells\":"
+            << certificate.stable_circular_residual_visited_cells
             << ",\"acceleration_precision_escalated\":"
             << (certificate.acceleration_precision_escalated ? "true" : "false")
             << ",\"achieved_acceleration_precision_bits\":"
@@ -216,7 +232,7 @@ void print_reconstruction(
   std::cout << "]}";
 }
 
-void print_all() {
+void print_all(bool include_pinned_fold_legacy) {
   const auto origin = history("origin", {"0", "0", "0", "0"});
   const auto static_two = history("static-two", {"2", "0", "0", "0"});
   const auto rail_receiver = history("rail-receiver", {"-3", "1", "0", "0"});
@@ -300,6 +316,154 @@ void print_all() {
           static_two, origin, stationary_roots, "1", "-1", "1e-20",
           "finite_width", false, "1e-20", 1));
 
+  constexpr double fold_reception = 0.0024;
+  constexpr double fold_emission = -0.04;
+  constexpr double fold_delay = fold_reception - fold_emission;
+  const double source_cosine = std::cos(fold_emission);
+  const double source_sine = std::sin(fold_emission);
+  const std::array<double, 3> fold_position{
+      source_cosine + fold_delay * (-source_sine),
+      source_sine + fold_delay * source_cosine,
+      0.0};
+  const std::array<double, 3> endpoint_velocity{
+      -source_sine, source_cosine, 0.0};
+  eom::CubicCoefficientTokens fold_coefficients{};
+  const std::array<double, 3> start_position{1.0, 0.0, 0.0};
+  const std::array<double, 3> start_velocity{0.0, 1.0, 0.0};
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    const double delta = fold_position[axis] - start_position[axis];
+    fold_coefficients[axis] = {
+        token(start_position[axis]),
+        token(start_velocity[axis]),
+        token(
+            3.0 * delta / (fold_reception * fold_reception) -
+            (2.0 * start_velocity[axis] + endpoint_velocity[axis]) /
+                fold_reception),
+        token(
+            -2.0 * delta /
+                (fold_reception * fold_reception * fold_reception) +
+            (start_velocity[axis] + endpoint_velocity[axis]) /
+                (fold_reception * fold_reception)),
+    };
+  }
+  auto pinned_fold_history = eom::RetainedHistory::uniform_circular(
+      "pinned-fold-history",
+      {
+          .t_start = "-1",
+          .t_end = "0",
+          .maximum_segment_step = "0.02",
+          .cylindrical_radius = "1",
+          .height = "0",
+          .angular_speed = "1",
+          .tangential_speed = "1",
+          .phase = "0",
+      });
+  pinned_fold_history = pinned_fold_history.appended(
+      eom::CubicHistorySegment(
+          "0", token(fold_reception), std::move(fold_coefficients),
+          "1e-15", "1e-15"));
+  const eom::ExactPairCertificate pinned_fold_roots{
+      .schema = "eom_native_exact_pair_certificate/v0",
+      .row_id = "pinned-fold-roots",
+      .receiver_history_id = pinned_fold_history.history_id(),
+      .source_history_id = pinned_fold_history.history_id(),
+      .receiver_history_fingerprint =
+          pinned_fold_history.provenance_fingerprint(),
+      .source_history_fingerprint =
+          pinned_fold_history.provenance_fingerprint(),
+      .reception_time = token(fold_reception),
+      .searched_lower = "-1",
+      .searched_upper = token(fold_reception),
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .status = "caustic_route_required",
+      .failure_code = "numeric_source_normal_sign_uncertified",
+      .root_free_complement = false,
+      .memory_boundary_contact = false,
+      .coincident_endpoint_excluded = true,
+      .precision_escalated = false,
+      .achieved_precision_bits = 53,
+      .visited_cells = 1,
+      .excluded_cells = 0,
+      .difficult_cells = 1,
+      .roots = {},
+  };
+  auto pinned_fold_analytic_request = acceleration_request(
+      "pinned-fold-analytic", "pinned-fold", "pinned-fold",
+      pinned_fold_history, pinned_fold_history, pinned_fold_roots, "1", "1",
+      "5e-3", "finite_width", false, "5e-3", 200000);
+  const auto pinned_fold_analytic =
+      eom::certify_pair_acceleration(pinned_fold_analytic_request);
+  std::optional<eom::NativePairAccelerationCertificate> pinned_fold_legacy;
+  if (include_pinned_fold_legacy) {
+    auto pinned_fold_legacy_request = pinned_fold_analytic_request;
+    pinned_fold_legacy_request.row_id = "pinned-fold-legacy";
+    pinned_fold_legacy_request.use_analytic_pinned_fold = false;
+    pinned_fold_legacy =
+        eom::certify_pair_acceleration(pinned_fold_legacy_request);
+  }
+
+  auto cubic_pin_history = eom::RetainedHistory::uniform_circular(
+      "cubic-pin-history",
+      {
+          .t_start = "-1",
+          .t_end = "0",
+          .maximum_segment_step = "0.02",
+          .cylindrical_radius =
+              "0.960098679139659830325203078805729831276478941731",
+          .height = "0",
+          .angular_speed = "1.0415596039524766",
+          .tangential_speed = "1",
+          .phase = "0",
+      });
+  const eom::ExactPairCertificate cubic_pin_roots{
+      .schema = "eom_native_exact_pair_certificate/v0",
+      .row_id = "cubic-pin-roots",
+      .receiver_history_id = cubic_pin_history.history_id(),
+      .source_history_id = cubic_pin_history.history_id(),
+      .receiver_history_fingerprint =
+          cubic_pin_history.provenance_fingerprint(),
+      .source_history_fingerprint =
+          cubic_pin_history.provenance_fingerprint(),
+      .reception_time = "0",
+      .searched_lower = "-1",
+      .searched_upper = "0",
+      .field_speed = "1",
+      .root_tolerance = "1e-12",
+      .status = "certified_complete",
+      .failure_code = "",
+      .root_free_complement = true,
+      .memory_boundary_contact = false,
+      .coincident_endpoint_excluded = true,
+      .precision_escalated = false,
+      .achieved_precision_bits = 53,
+      .visited_cells = 1,
+      .excluded_cells = 1,
+      .difficult_cells = 0,
+      .roots = {},
+  };
+  const auto cubic_pin_request = [&](const std::string& row_id,
+                                     bool correlated_self_chord,
+                                     bool stable_circular_residual) {
+    auto result = acceleration_request(
+        row_id, "cubic-pin", "cubic-pin", cubic_pin_history,
+        cubic_pin_history, cubic_pin_roots, "1", "1", "5e-3",
+        "finite_width", false, "5e-3", 200000);
+    result.causal_width = "0.05";
+    result.core_scale = "0.05";
+    result.use_correlated_self_chord = correlated_self_chord;
+    result.use_stable_circular_residual = stable_circular_residual;
+    return result;
+  };
+  const auto cubic_pin_independent = eom::certify_pair_acceleration(
+      cubic_pin_request("cubic-pin-independent", false, false));
+  const auto cubic_pin_correlated = eom::certify_pair_acceleration(
+      cubic_pin_request("cubic-pin-correlated", true, false));
+  const auto cubic_pin_stable = eom::certify_pair_acceleration(
+      cubic_pin_request("cubic-pin-stable", false, true));
+  const auto cubic_pin_combined = eom::certify_pair_acceleration(
+      cubic_pin_request("cubic-pin-combined", true, true));
+
   const auto path_a = history("path-a-history", {"0", "0", "0", "0"}, "3");
   const auto path_b = history("path-b-history", {"2", "0", "0", "0"}, "3");
   const auto aa_roots = roots("aa-roots", path_a, path_a, "3");
@@ -321,12 +485,17 @@ void print_all() {
             << "{\"schema\":\"eom_native_acceleration_fixture_packet/v0\","
             << "\"reduction_policy\":\""
             << eom::kDeterministicReductionPolicy << "\",\"cases\":[";
-  const std::vector<const eom::NativePairAccelerationCertificate*> cases = {
+  std::vector<const eom::NativePairAccelerationCertificate*> cases = {
       &stationary, &rail, &super, &two_root, &self, &tangent_failure,
       &memory_failure, &tampered_failure, &provenance_failure,
       &tolerance_failure, &finite_width, &finite_width_mpfr,
       &finite_width_global_budget, &tangent_finite_width,
-      &finite_width_resource_failure};
+      &finite_width_resource_failure, &pinned_fold_analytic,
+      &cubic_pin_independent, &cubic_pin_correlated, &cubic_pin_stable,
+      &cubic_pin_combined};
+  if (pinned_fold_legacy.has_value()) {
+    cases.push_back(&*pinned_fold_legacy);
+  }
   for (std::size_t index = 0; index < cases.size(); ++index) {
     if (index > 0) {
       std::cout << ',';
@@ -344,11 +513,14 @@ void print_all() {
 
 int main(int argc, char** argv) {
   try {
-    if (argc != 2 || std::string(argv[1]) != "all") {
-      std::cerr << "usage: eom_native_acceleration_fixture_cli all\n";
+    if (argc != 2 ||
+        (std::string(argv[1]) != "all" &&
+         std::string(argv[1]) != "pinned-fold-benchmark")) {
+      std::cerr << "usage: eom_native_acceleration_fixture_cli "
+                   "all|pinned-fold-benchmark\n";
       return EXIT_FAILURE;
     }
-    print_all();
+    print_all(std::string(argv[1]) == "pinned-fold-benchmark");
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {
     std::cerr << "eom native acceleration fixture failed: " << error.what()

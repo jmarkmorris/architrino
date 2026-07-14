@@ -216,6 +216,24 @@ std::array<double, 3> rotate_y(
           -sine * value[0] + cosine * value[2]};
 }
 
+IntervalVector rotate_x_interval(
+    const IntervalVector& value,
+    const Interval& angle) {
+  const Interval cosine = interval_cos(angle);
+  const Interval sine = interval_sin(angle);
+  return {value[0], cosine * value[1] - sine * value[2],
+          sine * value[1] + cosine * value[2]};
+}
+
+IntervalVector rotate_y_interval(
+    const IntervalVector& value,
+    const Interval& angle) {
+  const Interval cosine = interval_cos(angle);
+  const Interval sine = interval_sin(angle);
+  return {cosine * value[0] + sine * value[2], value[1],
+          Interval::point(0.0) - sine * value[0] + cosine * value[2]};
+}
+
 CubicCoefficientIntervals parse_coefficient_intervals(
     const CubicCoefficientTokens& tokens) {
   return {{
@@ -340,6 +358,43 @@ IntervalVector CubicHistorySegment::position_interval(
       polynomial_interval(coefficient_intervals_[0], time).inflate(position_error_),
       polynomial_interval(coefficient_intervals_[1], time).inflate(position_error_),
       polynomial_interval(coefficient_intervals_[2], time).inflate(position_error_),
+  };
+}
+
+IntervalVector CubicHistorySegment::nominal_position_interval(
+    const Interval& time) const {
+  return {
+      polynomial_interval(coefficient_intervals_[0], time),
+      polynomial_interval(coefficient_intervals_[1], time),
+      polynomial_interval(coefficient_intervals_[2], time),
+  };
+}
+
+IntervalVector CubicHistorySegment::correlated_displacement_interval(
+    const Interval& reception,
+    const Interval& emission) const {
+  require_time(reception);
+  require_time(emission);
+  if (emission.upper() > reception.lower()) {
+    throw std::invalid_argument(
+        "correlated self displacement requires emission before reception");
+  }
+  const IntervalVector nominal = subtract(
+      nominal_position_interval(reception),
+      nominal_position_interval(emission));
+  const double maximum_delay = reception.upper() - emission.lower();
+  // The reconstruction remainder is one function on this retained segment,
+  // not two independent endpoint errors.  If |e| <= eps_x and
+  // |e'| <= eps_v, then
+  //   |e(T)-e(S)| <= min(2 eps_x, eps_v |T-S|).
+  // This preserves the same-segment correlation while remaining a rigorous
+  // enclosure under the segment's published position and velocity bounds.
+  const double correlated_error = std::min(
+      2.0 * position_error_, velocity_error_ * maximum_delay);
+  return {
+      nominal[0].inflate(correlated_error),
+      nominal[1].inflate(correlated_error),
+      nominal[2].inflate(correlated_error),
   };
 }
 
@@ -599,21 +654,64 @@ RetainedHistory RetainedHistory::uniform_circular(
   RetainedHistory history(std::move(history_id), std::move(segments));
   UniformCircularEndpointCertificate certificate{
       .schema = "eom_uniform_circular_endpoint_certificate/v0",
+      .valid_start_time = request.t_start,
       .valid_reception_time = request.t_end,
+      .maximum_segment_step = request.maximum_segment_step,
       .tangential_speed = request.tangential_speed,
       .cylindrical_radius = request.cylindrical_radius,
       .angular_speed = request.angular_speed,
+      .height = request.height,
+      .phase = request.phase,
+      .tilt_x = request.tilt_x,
+      .tilt_y = request.tilt_y,
   };
   fingerprint_token(history.fingerprint_state_, certificate.schema);
+  fingerprint_token(history.fingerprint_state_, certificate.valid_start_time);
   fingerprint_token(
       history.fingerprint_state_, certificate.valid_reception_time);
+  fingerprint_token(
+      history.fingerprint_state_, certificate.maximum_segment_step);
   fingerprint_token(history.fingerprint_state_, certificate.tangential_speed);
   fingerprint_token(history.fingerprint_state_, certificate.cylindrical_radius);
   fingerprint_token(history.fingerprint_state_, certificate.angular_speed);
+  fingerprint_token(history.fingerprint_state_, certificate.height);
+  fingerprint_token(history.fingerprint_state_, certificate.phase);
+  fingerprint_token(history.fingerprint_state_, certificate.tilt_x);
+  fingerprint_token(history.fingerprint_state_, certificate.tilt_y);
   history.provenance_fingerprint_ =
       history_fingerprint(history.fingerprint_state_);
   history.uniform_circular_endpoint_certificate_ = std::move(certificate);
   return history;
+}
+
+RetainedHistory RetainedHistory::restore_uniform_circular(
+    std::string history_id,
+    const UniformCircularHistoryRequest& request,
+    std::vector<CubicHistorySegment> segments) {
+  RetainedHistory restored = uniform_circular(history_id, request);
+  if (segments.size() < restored.segments().size()) {
+    throw std::invalid_argument(
+        "restored circular history is missing certified prefix segments");
+  }
+  const auto same_segment = [](const CubicHistorySegment& left,
+                               const CubicHistorySegment& right) {
+    return left.t_start_token() == right.t_start_token() &&
+        left.t_end_token() == right.t_end_token() &&
+        left.coefficient_tokens() == right.coefficient_tokens() &&
+        left.position_error_token() == right.position_error_token() &&
+        left.velocity_error_token() == right.velocity_error_token();
+  };
+  for (std::size_t index = 0; index < restored.segments().size(); ++index) {
+    if (!same_segment(restored.segments()[index], segments[index])) {
+      throw std::invalid_argument(
+          "restored circular history prefix differs from factory construction");
+    }
+  }
+  for (std::size_t index = restored.segments().size();
+       index < segments.size(); ++index) {
+    restored = restored.appended(std::move(segments[index]));
+  }
+  return restored;
 }
 
 RetainedHistory::RetainedHistory(
@@ -640,6 +738,57 @@ RetainedHistory RetainedHistory::appended(CubicHistorySegment segment) const {
       history_id_, segments_.appended(std::move(segment)), fingerprint_state,
       hull(*full_position_hull_, position),
       uniform_circular_endpoint_certificate_);
+}
+
+std::optional<UniformCircularAnalyticState>
+RetainedHistory::uniform_circular_analytic_state(const Interval& time) const {
+  if (!uniform_circular_endpoint_certificate_.has_value()) {
+    return std::nullopt;
+  }
+  const auto& certificate = *uniform_circular_endpoint_certificate_;
+  const Interval valid_start =
+      Interval::decimal_token(certificate.valid_start_time);
+  const Interval valid_end =
+      Interval::decimal_token(certificate.valid_reception_time);
+  if (time.lower() < valid_start.lower() ||
+      time.upper() > valid_end.upper()) {
+    return std::nullopt;
+  }
+  const Interval angular_speed =
+      Interval::decimal_token(certificate.angular_speed);
+  if (angular_speed.contains_zero()) {
+    return std::nullopt;
+  }
+  const Interval radius =
+      Interval::decimal_token(certificate.tangential_speed) /
+      interval_absolute(angular_speed);
+  const Interval angle = angular_speed * time +
+      Interval::decimal_token(certificate.phase);
+  const Interval cosine = interval_cos(angle);
+  const Interval sine = interval_sin(angle);
+  const Interval zero = Interval::point(0.0);
+  const Interval height = Interval::decimal_token(certificate.height);
+  const Interval omega_square = interval_square(angular_speed);
+  IntervalVector position{radius * cosine, radius * sine, height};
+  IntervalVector velocity{
+      zero - radius * angular_speed * sine,
+      radius * angular_speed * cosine,
+      zero};
+  IntervalVector acceleration{
+      zero - radius * omega_square * cosine,
+      zero - radius * omega_square * sine,
+      zero};
+  const Interval tilt_x = Interval::decimal_token(certificate.tilt_x);
+  const Interval tilt_y = Interval::decimal_token(certificate.tilt_y);
+  position = rotate_y_interval(rotate_x_interval(position, tilt_x), tilt_y);
+  velocity = rotate_y_interval(rotate_x_interval(velocity, tilt_x), tilt_y);
+  acceleration =
+      rotate_y_interval(rotate_x_interval(acceleration, tilt_x), tilt_y);
+  return UniformCircularAnalyticState{
+      .position = position,
+      .velocity = velocity,
+      .acceleration = acceleration,
+  };
 }
 
 double RetainedHistory::t_start() const noexcept {
@@ -695,6 +844,72 @@ IntervalVector RetainedHistory::position_hull(const Interval& time) const {
 
 IntervalVector RetainedHistory::velocity_hull(const Interval& time) const {
   return segment_hull(*this, time, true);
+}
+
+std::optional<IntervalVector>
+RetainedHistory::same_segment_correlated_displacement(
+    const Interval& reception,
+    const Interval& emission) const {
+  if (emission.upper() > reception.lower()) {
+    return std::nullopt;
+  }
+  for (const auto& segment : segments_) {
+    if (emission.lower() >= segment.t_start_interval().lower() &&
+        reception.upper() <= segment.t_end_interval().upper()) {
+      return segment.correlated_displacement_interval(reception, emission);
+    }
+  }
+  return std::nullopt;
+}
+
+std::optional<IntervalVector> RetainedHistory::correlated_self_displacement(
+    const Interval& reception,
+    const Interval& emission) const {
+  if (emission.upper() > reception.lower() ||
+      !covers(emission) || !covers(reception)) {
+    return std::nullopt;
+  }
+  if (const auto same_segment =
+          same_segment_correlated_displacement(reception, emission);
+      same_segment.has_value()) {
+    return same_segment;
+  }
+
+  IntervalVector displacement{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  bool started = false;
+  for (const auto& segment : segments_) {
+    const bool contains_emission =
+        emission.lower() >= segment.t_start_interval().lower() &&
+        emission.upper() <= segment.t_end_interval().upper();
+    const bool contains_reception =
+        reception.lower() >= segment.t_start_interval().lower() &&
+        reception.upper() <= segment.t_end_interval().upper();
+    if (!started && !contains_emission) {
+      continue;
+    }
+    started = true;
+    const Interval local_lower = contains_emission
+        ? emission : segment.t_start_interval();
+    const Interval local_upper = contains_reception
+        ? reception : segment.t_end_interval();
+    if (local_lower.upper() > local_upper.lower()) {
+      return std::nullopt;
+    }
+    IntervalVector contribution = subtract(
+        segment.nominal_position_interval(local_upper),
+        segment.nominal_position_interval(local_lower));
+    const double duration = local_upper.upper() - local_lower.lower();
+    const double velocity_error = segment.velocity_error() * duration;
+    for (auto& component : contribution) {
+      component = component.inflate(velocity_error);
+    }
+    displacement = add(displacement, contribution);
+    if (contains_reception) {
+      return displacement;
+    }
+  }
+  return std::nullopt;
 }
 
 }  // namespace architrino::eom

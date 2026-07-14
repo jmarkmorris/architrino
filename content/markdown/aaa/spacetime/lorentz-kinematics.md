@@ -525,7 +525,7 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
-Native-confirmation claim level: seed-grade confirmation limited to small near-axial drift, not full Lorentz closure. A release of the drifting rigid family confirms the ruler law there as relative flattening: $\xi(u)/\xi(0)$ approaches $1/\gamma_f(u)$, reaching $0.9813$ against $1/\gamma_f=0.9798$ at $u/c_f=0.2$, a residual of $+0.0015$. This result neither confirms the full drift range nor pins a fitted slope. At $u/c_f=0.4$ and $0.6$, axis-sector flutter contaminates the shape envelope before it relaxes, so the higher-drift ruler rows remain flutter-limited and unconfirmed.
+Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed force law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$

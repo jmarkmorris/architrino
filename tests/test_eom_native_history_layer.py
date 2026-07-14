@@ -87,6 +87,47 @@ class NativeHistoryLayerTests(unittest.TestCase):
             row for row in self.packet["pairs"] if row["row_id"] == row_id
         )
 
+    def test_self_chord_preserves_correlation_across_segment_joins(self) -> None:
+        retained = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="0",
+                    t_end="1",
+                    coefficients=(
+                        ("0", "1", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-3",
+                    velocity_error="1e-12",
+                    precision=90,
+                ),
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="1",
+                    t_end="2",
+                    coefficients=(
+                        ("1", "1", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-3",
+                    velocity_error="1e-12",
+                    precision=90,
+                ),
+            ),
+            history_id="cross-segment-correlated-self-chord",
+        )
+        chord = retained.correlated_self_displacement(
+            DecimalInterval.point("1.75", 90),
+            DecimalInterval.point("0.25", 90),
+        )
+        self.assertLessEqual(chord[0].lower, Decimal("1.5"))
+        self.assertGreaterEqual(chord[0].upper, Decimal("1.5"))
+        self.assertLessEqual(chord[0].width, Decimal("3e-12"))
+        for component in chord[1:]:
+            self.assertTrue(component.contains_zero)
+            self.assertLessEqual(component.width, Decimal("3e-12"))
+
     def test_moving_history_block_enclosure_matches_decimal_interval_oracle(self) -> None:
         self.assertTrue(self.packet["discontinuous_history_rejected"])
         receivers = (
@@ -270,6 +311,190 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(tangent["status"], "caustic_route_required")
         self.assertFalse(tangent["root_free_complement"])
         self.assertEqual(tangent["roots"], [])
+
+    def test_history_error_midpoint_root_uses_tolerance_scaled_bracket(self) -> None:
+        row = self.pair("uncertain_midpoint_root")
+        receiver = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="-0.5",
+                    t_end="0.5",
+                    coefficients=(
+                        ("0.5625", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-9",
+                    precision=90,
+                ),
+            ),
+            history_id="uncertain-receiver",
+        )
+        source = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="-0.5",
+                    t_end="0.5",
+                    coefficients=(
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-9",
+                    precision=90,
+                ),
+            ),
+            history_id="uncertain-source",
+        )
+        oracle = certify_causal_roots(
+            receiver=receiver,
+            source=source,
+            reception_time="0.5",
+            field_speed="1",
+            search_lower="-0.5",
+            search_upper="0.5",
+            root_tolerance="1e-5",
+            max_depth=256,
+            max_cells=500000,
+        )
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertEqual(row["status"], oracle.status)
+        self.assertTrue(row["precision_escalated"])
+        self.assertEqual(len(row["roots"]), 1)
+        self.assertEqual(len(row["roots"]), len(oracle.roots))
+        root = row["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("-0.0625"))
+        self.assertGreaterEqual(upper, Decimal("-0.0625"))
+        self.assertLessEqual(upper - lower, Decimal("1e-5"))
+        self.assertLessEqual(lower, oracle.roots[0].upper)
+        self.assertGreaterEqual(upper, oracle.roots[0].lower)
+        self.assertEqual(root["source_normal_sign"], 1)
+
+    def test_mpfr_self_search_does_not_apply_endpoint_proof_to_older_cell(
+        self,
+    ) -> None:
+        row = self.pair("nonendpoint_subfield_self_root")
+        retained = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="0",
+                    t_end="1",
+                    coefficients=(
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-14",
+                    velocity_error="1e-14",
+                    precision=90,
+                ),
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="1",
+                    t_end="2",
+                    coefficients=(
+                        ("0", "0", "1.5", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-14",
+                    velocity_error="1e-14",
+                    precision=90,
+                ),
+            ),
+            history_id="nonendpoint-subfield-self",
+        )
+        oracle = certify_causal_roots(
+            receiver=retained,
+            source=retained,
+            reception_time="2",
+            field_speed="1",
+            search_lower="0",
+            search_upper="2",
+            root_tolerance="1e-12",
+            max_depth=256,
+            max_cells=500000,
+        )
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertEqual(row["status"], oracle.status)
+        self.assertTrue(row["precision_escalated"])
+        self.assertEqual(len(row["roots"]), 1)
+        self.assertEqual(len(oracle.roots), 1)
+        root = row["roots"][0]
+        self.assertLessEqual(Decimal(root["lower"]), Decimal("0.5"))
+        self.assertGreaterEqual(Decimal(root["upper"]), Decimal("0.5"))
+        self.assertEqual(root["source_normal_sign"], 1)
+
+    def test_enclosed_self_root_cluster_routes_to_finite_width(self) -> None:
+        row = self.pair("enclosed_self_root_cluster")
+        self.assertEqual(row["status"], "caustic_route_required")
+        self.assertEqual(
+            row["failure_code"],
+            "numeric_self_root_cluster_uncertified",
+        )
+        self.assertFalse(row["root_free_complement"])
+        self.assertEqual(row["roots"], [])
+
+    def test_history_error_segment_join_root_uses_continuous_two_segment_bracket(
+        self,
+    ) -> None:
+        row = self.pair("uncertain_segment_join_root")
+        receiver = PiecewisePolynomialHistory.from_segments(
+            (
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start="-1",
+                    t_end="1",
+                    coefficients=(
+                        ("1", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    precision=90,
+                ),
+            ),
+            history_id="uncertain-join-receiver",
+        )
+        source = PiecewisePolynomialHistory.from_segments(
+            tuple(
+                CubicHistorySegment.from_decimal_tokens(
+                    t_start=start,
+                    t_end=end,
+                    coefficients=(
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                        ("0", "0", "0", "0"),
+                    ),
+                    position_error="1e-9",
+                    precision=90,
+                )
+                for start, end in (("-1", "0"), ("0", "1"))
+            ),
+            history_id="uncertain-join-source",
+        )
+        oracle = certify_causal_roots(
+            receiver=receiver,
+            source=source,
+            reception_time="1",
+            field_speed="1",
+            search_lower="-1",
+            search_upper="0.5",
+            root_tolerance="1e-5",
+            max_depth=256,
+            max_cells=500000,
+        )
+        self.assertEqual(row["status"], "certified_complete")
+        self.assertEqual(row["status"], oracle.status)
+        self.assertEqual(len(row["roots"]), 1)
+        self.assertEqual(len(oracle.roots), 1)
+        root = row["roots"][0]
+        lower = Decimal(root["lower"])
+        upper = Decimal(root["upper"])
+        self.assertLessEqual(lower, Decimal("0"))
+        self.assertGreaterEqual(upper, Decimal("0"))
+        self.assertLessEqual(upper - lower, Decimal("1e-5"))
+        self.assertEqual(root["source_segment_indices"], [0, 1])
+        self.assertEqual(root["source_normal_sign"], 1)
 
     def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:
         self.assertTrue(self.packet["inconsistent_circular_speed_rejected"])

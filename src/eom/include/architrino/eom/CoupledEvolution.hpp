@@ -13,6 +13,8 @@
 namespace architrino::eom {
 
 inline constexpr const char* kNativeIntegrationMethod =
+    "coupled_cubic_corrector_with_pinned_fold_onset/v1";
+inline constexpr const char* kLegacyNativeIntegrationMethod =
     "coupled_cubic_corrector_with_step_doubling/v0";
 
 struct NativeCoupledPathInput {
@@ -59,6 +61,10 @@ struct NativeCoupledEvolutionRequest {
   std::size_t max_rejected_steps = 1000;
   std::size_t thread_count = 1;
   bool use_adaptive_step_growth = false;
+  bool use_analytic_pinned_fold = true;
+  bool use_correlated_self_chord = true;
+  bool use_stable_circular_residual = true;
+  bool use_pinned_fold_aware_temporal_step = true;
   bool use_certified_history_window = true;
   bool use_certified_traversal = true;
   std::uint64_t traversal_exact_tile_pair_limit = 4096;
@@ -77,6 +83,12 @@ struct NativeFoldCausticImpulseCertificate {
   std::string core_scale;
   std::optional<IntervalVector> impulse;
   std::size_t visited_cells;
+  std::size_t gaussian_tail_cells = 0;
+  std::size_t centered_emission_cells = 0;
+  std::size_t monotone_residual_cells = 0;
+  std::size_t direct_joint_cells = 0;
+  double last_maximum_component_width = 0.0;
+  double last_largest_cell_width = 0.0;
   std::string precision_route;
   unsigned precision_bits;
   std::string failure_code;
@@ -168,6 +180,39 @@ struct NativeCorrectedSubstepTiming {
   double total_wall_seconds = 0.0;
 };
 
+struct NativeEndpointRootContinuationCertificate {
+  std::string schema;
+  std::string status;
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::size_t start_root_count;
+  std::size_t end_root_count;
+  int boundary_branch_sign;
+  bool start_root_free_complement;
+  bool end_root_free_complement;
+  bool memory_boundary_clear;
+  bool coincident_endpoint_excluded;
+  std::string classification;
+  std::string failure_code;
+};
+
+struct NativePinnedFoldTemporalStepCertificate {
+  std::string schema;
+  std::string status;
+  std::string path_id;
+  std::string onset_time;
+  std::string history_fingerprint;
+  std::string tangential_speed;
+  std::string field_speed;
+  std::string start_root_status;
+  std::size_t start_root_count;
+  bool start_root_free_complement;
+  bool memory_boundary_clear;
+  bool coincident_endpoint_excluded;
+  std::string start_acceleration_chart;
+  std::string temporal_rule;
+};
+
 struct NativeCorrectedSubstepCertificate {
   std::string schema;
   std::string status;
@@ -181,6 +226,10 @@ struct NativeCorrectedSubstepCertificate {
   std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
   std::vector<NativeRegulatorConvergenceCertificate>
       regulator_convergence_certificates;
+  std::vector<NativeEndpointRootContinuationCertificate>
+      endpoint_root_continuations;
+  std::vector<NativePinnedFoldTemporalStepCertificate>
+      pinned_fold_onset_certificates;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
   NativeCorrectedSubstepTiming timing;
 };
@@ -195,6 +244,20 @@ struct NativePublishedPath {
   std::string path_id;
   RetainedHistory history;
 };
+
+[[nodiscard]] std::optional<NativeEndpointRootContinuationCertificate>
+certify_native_coincident_endpoint_root_continuation(
+    const NativeAccelerationSnapshotCertificate& start,
+    const NativeAccelerationSnapshotCertificate& end,
+    const std::string& receiver_path_id,
+    const std::string& source_path_id);
+
+[[nodiscard]] std::vector<NativePinnedFoldTemporalStepCertificate>
+certify_native_pinned_fold_temporal_onset(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const NativeAccelerationSnapshotCertificate& start_snapshot,
+    const std::string& start_time);
 
 struct NativeAtomicStepTiming {
   double corrected_substeps_wall_seconds = 0.0;

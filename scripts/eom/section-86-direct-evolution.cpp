@@ -80,6 +80,10 @@ struct Options {
   bool snapshot_only = false;
   bool skip_control = false;
   bool adaptive_step_growth = false;
+  bool analytic_pinned_fold = true;
+  bool correlated_self_chord = true;
+  bool stable_circular_residual = true;
+  bool pinned_fold_aware_temporal_step = true;
 };
 
 std::string token(double value) {
@@ -447,6 +451,14 @@ int main(int argc, char** argv) {
     options.skip_control = has_flag(argc, argv, "skip-control");
     options.adaptive_step_growth =
         has_flag(argc, argv, "adaptive-step-growth");
+    options.analytic_pinned_fold =
+        !has_flag(argc, argv, "disable-analytic-pinned-fold");
+    options.correlated_self_chord =
+        !has_flag(argc, argv, "disable-correlated-self-chord");
+    options.stable_circular_residual =
+        !has_flag(argc, argv, "disable-stable-circular-residual");
+    options.pinned_fold_aware_temporal_step =
+        !has_flag(argc, argv, "disable-pinned-fold-temporal-step");
 
     auto paths = make_paths(options);
     eom::NativeCoupledEvolutionRequest request{
@@ -485,6 +497,12 @@ int main(int argc, char** argv) {
         .max_rejected_steps = 1000,
         .thread_count = 8,
         .use_adaptive_step_growth = options.adaptive_step_growth,
+        .use_analytic_pinned_fold = options.analytic_pinned_fold,
+        .use_correlated_self_chord = options.correlated_self_chord,
+        .use_stable_circular_residual =
+            options.stable_circular_residual,
+        .use_pinned_fold_aware_temporal_step =
+            options.pinned_fold_aware_temporal_step,
     };
     std::vector<eom::NativePublishedPath> initial_histories;
     for (const auto& path : paths) {
@@ -524,6 +542,8 @@ int main(int argc, char** argv) {
                   << pair.source_path_id << " chart=" << pair.chart
                   << " status=" << pair.status
                   << " cells=" << pair.quadrature_visited_cells
+                  << " analytic_fold_cells="
+                  << pair.analytic_fold_visited_cells
                   << " precision_bits="
                   << pair.achieved_acceleration_precision_bits << '\n';
       }
@@ -562,6 +582,10 @@ int main(int argc, char** argv) {
               << " maximum_step=" << options.maximum_step
               << " adaptive_step_growth="
               << options.adaptive_step_growth
+              << " analytic_pinned_fold="
+              << options.analytic_pinned_fold
+              << " pinned_fold_aware_temporal_step="
+              << options.pinned_fold_aware_temporal_step
               << " chart=" << options.chart
               << " acceleration_tolerance="
               << options.acceleration_tolerance
@@ -599,7 +623,30 @@ int main(int argc, char** argv) {
           std::size_t caustic_routes = 0U;
           std::size_t finite_width_pairs = 0U;
           std::size_t maximum_quadrature_cells = 0U;
+          std::size_t maximum_analytic_fold_cells = 0U;
+          std::size_t maximum_correlated_self_chord_cells = 0U;
+          std::size_t maximum_stable_circular_residual_cells = 0U;
+          bool middle_endpoint_continuation = false;
+          bool middle_interior_fold = false;
+          const auto observe_snapshot_cost = [&](const auto& observed) {
+            for (const auto& pair :
+                 observed.acceleration.pair_certificates) {
+              maximum_quadrature_cells = std::max(
+                  maximum_quadrature_cells,
+                  pair.quadrature_visited_cells);
+              maximum_analytic_fold_cells = std::max(
+                  maximum_analytic_fold_cells,
+                  pair.analytic_fold_visited_cells);
+              maximum_correlated_self_chord_cells = std::max(
+                  maximum_correlated_self_chord_cells,
+                  pair.correlated_self_chord_visited_cells);
+              maximum_stable_circular_residual_cells = std::max(
+                  maximum_stable_circular_residual_cells,
+                  pair.stable_circular_residual_visited_cells);
+            }
+          };
           if (step.accepted_snapshot.has_value()) {
+            observe_snapshot_cost(*step.accepted_snapshot);
             for (const auto& row :
                  step.accepted_snapshot->root_certificates) {
               if (row.certificate.status == "caustic_route_required") {
@@ -612,14 +659,56 @@ int main(int argc, char** argv) {
                  step.accepted_snapshot->acceleration.pair_certificates) {
               if (pair.chart == "finite_width") {
                 ++finite_width_pairs;
-                maximum_quadrature_cells = std::max(
-                    maximum_quadrature_cells,
-                    pair.quadrature_visited_cells);
               }
             }
           }
+          if (step.recertification_snapshot.has_value()) {
+            observe_snapshot_cost(*step.recertification_snapshot);
+          }
           double maximum_position_error = 0.0;
           double maximum_velocity_error = 0.0;
+          std::size_t pinned_fold_onset_paths = 0U;
+          for (const auto& substep : step.substeps) {
+            observe_snapshot_cost(substep.start_snapshot);
+            if (substep.endpoint_snapshot.has_value()) {
+              observe_snapshot_cost(*substep.endpoint_snapshot);
+            }
+            pinned_fold_onset_paths = std::max(
+                pinned_fold_onset_paths,
+                substep.pinned_fold_onset_certificates.size());
+            for (const auto& onset :
+                 substep.pinned_fold_onset_certificates) {
+              if (onset.path_id == "M+" || onset.path_id == "M-") {
+                middle_endpoint_continuation = true;
+              }
+            }
+            for (const auto& continuation :
+                 substep.endpoint_root_continuations) {
+              if ((continuation.receiver_path_id == "M+" ||
+                   continuation.receiver_path_id == "M-") &&
+                  continuation.receiver_path_id ==
+                      continuation.source_path_id) {
+                middle_endpoint_continuation = true;
+              }
+            }
+            for (const auto& event : substep.event_impulses) {
+              if ((event.receiver_path_id == "M+" ||
+                   event.receiver_path_id == "M-") &&
+                  event.receiver_path_id == event.source_path_id) {
+                middle_interior_fold = true;
+              }
+            }
+          }
+          std::string middle_self_root_classification =
+              "no_root_topology_change";
+          if (middle_endpoint_continuation && middle_interior_fold) {
+            middle_self_root_classification = "mixed";
+          } else if (middle_endpoint_continuation) {
+            middle_self_root_classification =
+                "coincident_endpoint_root_continuation";
+          } else if (middle_interior_fold) {
+            middle_self_root_classification = "interior_fold";
+          }
           for (const auto& error : step.local_errors) {
             maximum_position_error = std::max(
                 maximum_position_error, error.position_error);
@@ -640,10 +729,22 @@ int main(int argc, char** argv) {
                     << " finite_width_pairs=" << finite_width_pairs
                     << " maximum_quadrature_cells="
                     << maximum_quadrature_cells
+                    << " maximum_analytic_fold_cells="
+                    << maximum_analytic_fold_cells
+                    << " maximum_correlated_self_chord_cells="
+                    << maximum_correlated_self_chord_cells
+                    << " maximum_stable_circular_residual_cells="
+                    << maximum_stable_circular_residual_cells
+                    << " step_wall_seconds="
+                    << step.timing.total_wall_seconds
+                    << " middle_self_root_classification="
+                    << middle_self_root_classification
                     << " maximum_position_error="
                     << maximum_position_error
                     << " maximum_velocity_error="
-                    << maximum_velocity_error << '\n';
+                    << maximum_velocity_error
+                    << " pinned_fold_onset_paths="
+                    << pinned_fold_onset_paths << '\n';
         } else {
           std::cerr << label << " step=" << step.step_index
                     << " status=" << step.status

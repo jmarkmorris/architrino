@@ -562,7 +562,7 @@ R_M^{\mathrm{eq}} = 3.4937\,\frac{\kappa\varepsilon^2}{c_f^2},
 \kappa_{\mathrm{eq}} = 1/R_M^{\mathrm{eq}} = 0.28623,
 $$
 
-a gauge-invariant number measured on the native family and sitting well above the near-field floor, so the arrest is coupling-scale self-support rather than a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
+a gauge-invariant number measured on the family and sitting well above the near-field floor, so the scale is set by coupling-scale self-support rather than by a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
 
 ### The Action Ladder
 

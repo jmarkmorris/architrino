@@ -2,6 +2,8 @@
 #include "section-86-direct-evolution.cpp"
 #undef main
 
+#include "architrino/eom/Checkpoint.hpp"
+
 namespace {
 
 struct TargetRing {
@@ -187,6 +189,167 @@ std::vector<eom::NativePublishedPath> published(
   return result;
 }
 
+void write_json_string(std::ostream& output, const std::string& value) {
+  output << '"';
+  for (const char character : value) {
+    switch (character) {
+      case '"': output << "\\\""; break;
+      case '\\': output << "\\\\"; break;
+      case '\n': output << "\\n"; break;
+      case '\r': output << "\\r"; break;
+      case '\t': output << "\\t"; break;
+      default: output << character; break;
+    }
+  }
+  output << '"';
+}
+
+void write_segment_json(
+    std::ostream& output, const eom::CubicHistorySegment& segment) {
+  output << "{\"t_start\":";
+  write_json_string(output, segment.t_start_token());
+  output << ",\"t_end\":";
+  write_json_string(output, segment.t_end_token());
+  output << ",\"coefficients\":[";
+  const auto& coefficients = segment.coefficient_tokens();
+  for (std::size_t axis = 0; axis < coefficients.size(); ++axis) {
+    if (axis > 0) output << ',';
+    output << '[';
+    for (std::size_t term = 0; term < coefficients[axis].size(); ++term) {
+      if (term > 0) output << ',';
+      write_json_string(output, coefficients[axis][term]);
+    }
+    output << ']';
+  }
+  output << "],\"position_error\":";
+  write_json_string(output, segment.position_error_token());
+  output << ",\"velocity_error\":";
+  write_json_string(output, segment.velocity_error_token());
+  output << '}';
+}
+
+void write_history_json(
+    std::ostream& output, const eom::NativePublishedPath& path,
+    std::size_t first_segment) {
+  output << "{\"path_id\":";
+  write_json_string(output, path.path_id);
+  output << ",\"history_id\":";
+  write_json_string(output, path.history.history_id());
+  output << ",\"segments\":[";
+  const auto& segments = path.history.segments();
+  for (std::size_t index = first_segment; index < segments.size(); ++index) {
+    if (index > first_segment) output << ',';
+    write_segment_json(output, segments[index]);
+  }
+  output << "]}";
+}
+
+void write_root_rows_json(
+    std::ostream& output,
+    const eom::NativeAccelerationSnapshotCertificate& snapshot) {
+  output << '[';
+  for (std::size_t index = 0; index < snapshot.root_certificates.size();
+       ++index) {
+    if (index > 0) output << ',';
+    const auto& row = snapshot.root_certificates[index];
+    const auto& certificate = row.certificate;
+    output << "{\"receiver_path_id\":";
+    write_json_string(output, row.receiver_path_id);
+    output << ",\"source_path_id\":";
+    write_json_string(output, row.source_path_id);
+    output << ",\"status\":";
+    write_json_string(output, certificate.status);
+    output << ",\"failure_code\":";
+    write_json_string(output, certificate.failure_code);
+    output << ",\"searched_lower\":";
+    write_json_string(output, certificate.searched_lower);
+    output << ",\"searched_upper\":";
+    write_json_string(output, certificate.searched_upper);
+    output << ",\"root_tolerance\":";
+    write_json_string(output, certificate.root_tolerance);
+    output << ",\"root_free_complement\":"
+           << (certificate.root_free_complement ? "true" : "false")
+           << ",\"memory_boundary_contact\":"
+           << (certificate.memory_boundary_contact ? "true" : "false")
+           << ",\"coincident_endpoint_excluded\":"
+           << (certificate.coincident_endpoint_excluded ? "true" : "false")
+           << ",\"roots\":[";
+    for (std::size_t root_index = 0; root_index < certificate.roots.size();
+         ++root_index) {
+      if (root_index > 0) output << ',';
+      const auto& root = certificate.roots[root_index];
+      output << "{\"lower\":";
+      write_json_string(output, root.lower);
+      output << ",\"upper\":";
+      write_json_string(output, root.upper);
+      output << ",\"source_normal_sign\":" << root.source_normal_sign
+             << '}';
+    }
+    output << "]}";
+  }
+  output << ']';
+}
+
+void write_evolved_root_parity_trace(
+    const std::string& path, const eom::NativeCoupledEvolutionRequest& request,
+    const std::vector<eom::NativePublishedPath>& initial_histories,
+    const eom::NativeAccelerationSnapshotCertificate& initial_snapshot,
+    const eom::NativeCoupledEvolutionCertificate& run) {
+  if (path.empty()) return;
+  std::ofstream output(path);
+  if (!output) {
+    throw std::runtime_error("cannot open evolved-history parity trace: " + path);
+  }
+  output << "{\"schema\":\"eom_evolved_history_root_parity_trace/v0\""
+         << ",\"run_id\":";
+  write_json_string(output, request.run_id);
+  output << ",\"field_speed\":";
+  write_json_string(output, request.field_speed);
+  output << ",\"precision_decimal_digits\":90,\"initial_histories\":[";
+  for (std::size_t index = 0; index < initial_histories.size(); ++index) {
+    if (index > 0) output << ',';
+    write_history_json(output, initial_histories[index], 0U);
+  }
+  output << "],\"snapshots\":[{\"step_index\":-1,\"reception_time\":";
+  write_json_string(output, initial_snapshot.reception_time);
+  output << ",\"appended_segments\":[],\"root_certificates\":";
+  write_root_rows_json(output, initial_snapshot);
+  output << '}';
+  std::vector<std::size_t> published_segment_counts;
+  published_segment_counts.reserve(initial_histories.size());
+  for (const auto& path : initial_histories) {
+    published_segment_counts.push_back(path.history.segments().size());
+  }
+  for (const auto& step : run.steps) {
+    if (step.status != "accepted" || !step.accepted_snapshot.has_value()) {
+      continue;
+    }
+    output << ",{\"step_index\":" << step.step_index
+           << ",\"reception_time\":";
+    write_json_string(output, step.accepted_time);
+    output << ",\"appended_segments\":[";
+    for (std::size_t index = 0; index < step.published_histories.size();
+         ++index) {
+      if (index > 0) output << ',';
+      write_history_json(
+          output, step.published_histories[index],
+          published_segment_counts[index]);
+      published_segment_counts[index] =
+          step.published_histories[index].history.segments().size();
+    }
+    output << "],\"root_certificates\":";
+    write_root_rows_json(output, *step.accepted_snapshot);
+    output << '}';
+  }
+  output << "],\"native_status\":";
+  write_json_string(output, run.status);
+  output << ",\"native_accepted_end_time\":";
+  write_json_string(output, run.accepted_end_time);
+  output << ",\"native_halt_code\":";
+  write_json_string(output, run.halt_code);
+  output << "}\n";
+}
+
 void report_step_failures(
     const char* label, const eom::NativeCoupledEvolutionCertificate& run) {
   for (const auto& step : run.steps) {
@@ -198,10 +361,108 @@ void report_step_failures(
       if (!substep.failure_code.empty()) {
         std::cerr << "  substep " << substep.start_time << "->"
                   << substep.end_time
-                  << " failure=" << substep.failure_code << '\n';
+                  << " failure=" << substep.failure_code
+                  << " correction_error="
+                  << (substep.correction_error.has_value()
+                          ? *substep.correction_error
+                          : -1.0)
+                  << " event_impulses=" << substep.event_impulses.size()
+                  << " regulator_certificates="
+                  << substep.regulator_convergence_certificates.size()
+                  << '\n';
+      }
+      for (const auto& regulator :
+           substep.regulator_convergence_certificates) {
+        std::cerr << "    regulator " << regulator.receiver_path_id << "<-"
+                  << regulator.source_path_id
+                  << " status=" << regulator.status
+                  << " failure=" << regulator.failure_code
+                  << " required_levels=" << regulator.required_levels
+                  << " base_event_status="
+                  << regulator.accepted_event_impulse.status
+                  << " base_event_failure="
+                  << regulator.accepted_event_impulse.failure_code
+                  << " base_event_precision="
+                  << regulator.accepted_event_impulse.precision_route
+                  << ':' << regulator.accepted_event_impulse.precision_bits
+                      << " base_event_cells="
+                      << regulator.accepted_event_impulse.visited_cells
+                      << " base_event_tail_cells="
+                      << regulator.accepted_event_impulse.gaussian_tail_cells
+                      << " base_event_centered_cells="
+                      << regulator.accepted_event_impulse.centered_emission_cells
+                      << " base_event_monotone_cells="
+                      << regulator.accepted_event_impulse.monotone_residual_cells
+                      << " base_event_direct_cells="
+                      << regulator.accepted_event_impulse.direct_joint_cells
+                      << " base_event_total_width="
+                      << regulator.accepted_event_impulse
+                             .last_maximum_component_width
+                      << " base_event_largest_cell_width="
+                      << regulator.accepted_event_impulse
+                             .last_largest_cell_width;
+        for (const auto& series : regulator.refinement_series) {
+          std::cerr << " series=" << series.control_id
+                    << ":converged=" << series.converged
+                    << ":final_delta="
+                    << (series.final_impulse_delta.has_value()
+                            ? *series.final_impulse_delta
+                            : -1.0)
+                    << ":maximum_delta="
+                    << (series.maximum_ladder_impulse_delta.has_value()
+                            ? *series.maximum_ladder_impulse_delta
+                            : -1.0);
+        }
+        std::cerr << '\n';
+        const auto report_event_roots = [&](const char* label,
+                                            const auto& snapshot) {
+          for (const auto& row : snapshot.root_certificates) {
+            if (row.receiver_path_id != regulator.receiver_path_id ||
+                row.source_path_id != regulator.source_path_id) {
+              continue;
+            }
+            std::cerr << "      " << label << "_roots"
+                      << " search=[" << row.certificate.searched_lower
+                      << ',' << row.certificate.searched_upper << ']'
+                      << " complement="
+                      << row.certificate.root_free_complement
+                      << " memory="
+                      << row.certificate.memory_boundary_contact
+                      << " coincident="
+                      << row.certificate.coincident_endpoint_excluded;
+            for (const auto& root : row.certificate.roots) {
+              std::cerr << " [" << root.lower << ',' << root.upper
+                        << "]:" << root.source_normal_sign;
+            }
+            std::cerr << '\n';
+          }
+        };
+        report_event_roots("start", substep.start_snapshot);
+        if (substep.endpoint_snapshot.has_value()) {
+          report_event_roots("end", *substep.endpoint_snapshot);
+        }
       }
       if (substep.endpoint_snapshot.has_value() &&
           substep.endpoint_snapshot->status != "certified_complete") {
+        std::cerr << "    endpoint_acceleration status="
+                  << substep.endpoint_snapshot->acceleration.status
+                  << " failure="
+                  << substep.endpoint_snapshot->acceleration.failure_code
+                  << '\n';
+        for (const auto& pair :
+             substep.endpoint_snapshot->acceleration.pair_certificates) {
+          if (pair.status == "uncertified" || !pair.failure_code.empty()) {
+            std::cerr << "    endpoint_acceleration_pair "
+                      << pair.receiver_path_id << "<-" << pair.source_path_id
+                      << " chart=" << pair.chart
+                      << " status=" << pair.status
+                      << " failure=" << pair.failure_code
+                      << " precision_bits="
+                      << pair.achieved_acceleration_precision_bits
+                      << " quadrature_cells="
+                      << pair.quadrature_visited_cells << '\n';
+          }
+        }
         for (const auto& row :
              substep.endpoint_snapshot->root_certificates) {
           if (row.certificate.status != "certified_complete") {
@@ -214,6 +475,11 @@ void report_step_failures(
           }
         }
       }
+    }
+    for (const auto& error : step.local_errors) {
+      std::cerr << "  local_error " << error.path_id
+                << " position=" << error.position_error
+                << " velocity=" << error.velocity_error << '\n';
     }
   }
 }
@@ -251,16 +517,46 @@ int main(int argc, char** argv) {
     options.velocity_tolerance = option_double(
         argc, argv, "velocity-tolerance", options.velocity_tolerance);
     options.output = option_string(argc, argv, "output", options.output);
+    const std::string parity_output =
+        option_string(argc, argv, "parity-output", "");
+    const std::string checkpoint_input =
+        option_string(argc, argv, "checkpoint-in", "");
+    const std::string checkpoint_output =
+        option_string(argc, argv, "checkpoint-out", "");
+    const std::string verified_legacy_checkpoint_fingerprint = option_string(
+        argc, argv, "verified-legacy-checkpoint-model-fingerprint", "");
     options.snapshot_only = has_flag(argc, argv, "snapshot-only");
-    options.skip_control = has_flag(argc, argv, "skip-control");
     options.adaptive_step_growth =
         has_flag(argc, argv, "adaptive-step-growth");
 
     const double period = target_period(target);
+    gPeriod = period;
     const double default_end = options.cycles * period;
     const double end_time = option_double(argc, argv, "end-time", default_end);
     const unsigned maximum_mpfr_bits = static_cast<unsigned>(option_double(
         argc, argv, "maximum-mpfr-bits", 512.0));
+    const std::string root_tolerance =
+        option_string(argc, argv, "root-tolerance", "1e-5");
+    const std::size_t regulator_refinement_levels =
+        static_cast<std::size_t>(option_double(
+            argc, argv, "regulator-refinement-levels", 3.0));
+    const std::size_t event_max_cells =
+        static_cast<std::size_t>(option_double(
+            argc, argv, "event-max-cells", 300000.0));
+    const std::size_t quadrature_max_cells =
+        static_cast<std::size_t>(option_double(
+            argc, argv, "quadrature-max-cells", 300000.0));
+    const std::size_t checkpoint_source_event_max_cells =
+        static_cast<std::size_t>(option_double(
+            argc, argv, "checkpoint-source-event-max-cells",
+            static_cast<double>(event_max_cells)));
+    const double checkpoint_source_minimum_step = option_double(
+        argc, argv, "checkpoint-source-minimum-step",
+        options.minimum_step);
+    const std::size_t checkpoint_source_quadrature_max_cells =
+        static_cast<std::size_t>(option_double(
+            argc, argv, "checkpoint-source-quadrature-max-cells",
+            static_cast<double>(quadrature_max_cells)));
     std::cout << "precision maximum_mpfr_bits=" << maximum_mpfr_bits << '\n';
     report_object(target, options);
     if (target.drift != 0.0) {
@@ -281,7 +577,7 @@ int main(int argc, char** argv) {
         .maximum_step = token(options.maximum_step),
         .field_speed = "1",
         .coupling = token(36.0 * target.fitted_coupling),
-        .root_tolerance = "1e-5",
+        .root_tolerance = root_tolerance,
         .source_normal_floor = "1e-24",
         .acceleration_tolerance = token(options.acceleration_tolerance),
         .chart_policy = options.chart,
@@ -296,10 +592,10 @@ int main(int argc, char** argv) {
         .root_max_depth = 192,
         .root_max_cells = 500000,
         .quadrature_max_depth = 32,
-        .quadrature_max_cells = 300000,
+        .quadrature_max_cells = quadrature_max_cells,
         .event_max_depth = 24,
-        .event_max_cells = 300000,
-        .regulator_refinement_levels = 3,
+        .event_max_cells = event_max_cells,
+        .regulator_refinement_levels = regulator_refinement_levels,
         .initial_mpfr_bits = 128,
         .maximum_mpfr_bits = maximum_mpfr_bits,
         .max_correction_iterations = 12,
@@ -307,11 +603,27 @@ int main(int argc, char** argv) {
         .max_rejected_steps = 1000,
         .thread_count = 8,
         .use_adaptive_step_growth = options.adaptive_step_growth,
+        .use_analytic_pinned_fold = false,
+        .use_pinned_fold_aware_temporal_step = false,
     };
 
-    const auto initial_histories = published(paths);
+    std::optional<eom::NativeEvolutionCheckpoint> checkpoint;
+    if (!checkpoint_input.empty()) {
+      checkpoint = eom::read_native_evolution_checkpoint(checkpoint_input);
+    }
+    std::vector<eom::NativePublishedPath> initial_histories;
+    std::string initial_reception = "0";
+    if (checkpoint.has_value()) {
+      initial_reception = checkpoint->accepted_time;
+      initial_histories.reserve(checkpoint->paths.size());
+      for (const auto& path : checkpoint->paths) {
+        initial_histories.push_back({path.path_id, path.history});
+      }
+    } else {
+      initial_histories = published(paths);
+    }
     const auto snapshot = eom::certify_native_acceleration_snapshot(
-        request, initial_histories, "0");
+        request, initial_histories, initial_reception);
     std::size_t unresolved_roots = 0U;
     for (const auto& row : snapshot.root_certificates) {
       if (row.certificate.status != "certified_complete") {
@@ -333,86 +645,94 @@ int main(int argc, char** argv) {
       return snapshot.status == "certified_complete" ? 0 : 2;
     }
 
-    Options control_options = options;
-    control_options.seed = "none";
-    control_options.amplitude = 0.0;
-    auto control_paths = target_paths(target, control_options);
-    auto control_request = request;
-    control_request.run_id = target.id + "-control";
-    control_request.paths = control_paths;
-    const auto control_initial = published(control_paths);
-    const Sample initial = measure_difference(
-        control_initial, initial_histories, "0");
-
-    std::optional<eom::NativeCoupledEvolutionCertificate> control;
-    if (!options.skip_control) {
-      control = eom::evolve_native_coupled_histories(control_request);
-    }
-    const auto perturbed = eom::evolve_native_coupled_histories(request);
-    if (control.has_value()) report_step_failures("control", *control);
-    report_step_failures("perturbed", perturbed);
-
-    std::vector<Sample> samples{initial};
-    for (const auto& step : perturbed.steps) {
-      if (step.status != "accepted" || !control.has_value()) continue;
-      const double time = std::stod(step.accepted_time);
-      if (time > std::stod(control->accepted_end_time) + 1e-12) break;
-      const auto* control_histories = histories_covering(*control, time);
-      if (control_histories != nullptr) {
-        try {
-          samples.push_back(measure_difference(
-              *control_histories, step.published_histories,
-              step.accepted_time));
-        } catch (const std::exception&) {
-          break;
-        }
+    eom::NativeCoupledEvolutionCertificate perturbed = [&]() {
+      if (!checkpoint.has_value()) {
+        return eom::evolve_native_coupled_histories(request);
       }
+      const auto resume_from_verified_checkpoint = [&]() {
+        auto resumed_request = request;
+        resumed_request.run_id = checkpoint->run_id;
+        resumed_request.start_time = checkpoint->accepted_time;
+        resumed_request.end_time = token(end_time);
+        resumed_request.initial_step = checkpoint->controller_step_size;
+        resumed_request.paths.clear();
+        resumed_request.paths.reserve(checkpoint->paths.size());
+        for (const auto& path : checkpoint->paths) {
+          resumed_request.paths.push_back(
+              {path.path_id, path.charge, path.history});
+        }
+        return eom::evolve_native_coupled_histories(resumed_request);
+      };
+      if (checkpoint_source_event_max_cells == event_max_cells &&
+          checkpoint_source_minimum_step == options.minimum_step &&
+          checkpoint_source_quadrature_max_cells == quadrature_max_cells) {
+        const std::string current_model_fingerprint =
+            eom::native_evolution_model_fingerprint(request);
+        if (current_model_fingerprint != checkpoint->model_fingerprint) {
+          std::cerr << "checkpoint_model expected="
+                    << checkpoint->model_fingerprint << " actual="
+                    << current_model_fingerprint << '\n';
+          if (verified_legacy_checkpoint_fingerprint ==
+              checkpoint->model_fingerprint) {
+            std::cerr << "checkpoint_legacy_model_verification="
+                         "explicit_exact_fingerprint_match\n";
+            return resume_from_verified_checkpoint();
+          }
+        }
+        return eom::resume_native_coupled_histories(
+            request, *checkpoint, token(end_time));
+      }
+      auto source_request = request;
+      source_request.event_max_cells = checkpoint_source_event_max_cells;
+      source_request.minimum_step = token(checkpoint_source_minimum_step);
+      source_request.quadrature_max_cells =
+          checkpoint_source_quadrature_max_cells;
+      if (eom::native_evolution_model_fingerprint(source_request) !=
+          checkpoint->model_fingerprint) {
+        throw std::invalid_argument(
+            "checkpoint differs by more than the declared numerical resource controls");
+      }
+      return resume_from_verified_checkpoint();
+    }();
+    if (!checkpoint_output.empty()) {
+      eom::write_native_evolution_checkpoint_atomic(
+          checkpoint_output,
+          eom::create_native_evolution_checkpoint(request, perturbed));
     }
-    write_samples(options.output, samples);
-    const Sample& final = samples.back();
-    const double fit_start = final.time * 0.2;
-    if (control.has_value()) {
-      std::cout << "control status=" << control->status
-                << " halt=" << control->halt_code
-                << " accepted_end=" << control->accepted_end_time
-                << " accepted_steps=" << control->accepted_step_count
-                << " rejected_steps=" << control->rejected_step_count
-                << '\n';
+    report_step_failures("engine", perturbed);
+    write_evolved_root_parity_trace(
+        parity_output, request, initial_histories, snapshot, perturbed);
+
+    double maximum_speed = 0.0;
+    double maximum_radius = 0.0;
+    for (const auto& path : perturbed.histories) {
+      const eom::Interval endpoint = eom::Interval::point(
+          eom::Interval::decimal_token(perturbed.accepted_end_time).midpoint());
+      const auto position = path.history.position_hull(endpoint);
+      const auto velocity = path.history.velocity_hull(endpoint);
+      maximum_radius = std::max(maximum_radius, eom::norm(position).upper());
+      maximum_speed = std::max(maximum_speed, eom::norm(velocity).upper());
     }
-    std::cout << "evolution status=" << perturbed.status
+    std::cout << "engine_acceptance status=" << perturbed.status
               << " halt=" << perturbed.halt_code
               << " accepted_end=" << perturbed.accepted_end_time
               << " accepted_steps=" << perturbed.accepted_step_count
               << " rejected_steps=" << perturbed.rejected_step_count
-              << " horizon_target=" << 5.0 / target.expected_growth
-              << " horizon_fraction="
-              << final.time / (5.0 / target.expected_growth)
-              << " final_time=" << final.time
-              << " final_amplitude=" << final.amplitude
-              << " amplitude_ratio="
-              << final.amplitude / initial.amplitude
-              << " max_radius=" << final.maximum_radius
-              << " max_speed=" << final.maximum_speed << '\n';
-    std::cout << "growth slope_stride_1="
-              << log_slope(samples, 1U, fit_start, 0.25)
-              << " slope_stride_2="
-              << log_slope(samples, 2U, fit_start, 0.25)
-              << " slope_stride_5="
-              << log_slope(samples, 5U, fit_start, 0.25)
-              << " slope_stride_10="
-              << log_slope(samples, 10U, fit_start, 0.25) << '\n';
-    std::cout << "timing perturbed_wall="
+              << " required_horizon=6.93"
+              << " required_horizon_reached="
+              << (std::stod(perturbed.accepted_end_time) >= 6.93)
+              << " max_radius=" << maximum_radius
+              << " max_speed=" << maximum_speed << '\n';
+    std::cout << "timing engine_wall="
               << perturbed.timing.total_wall_seconds
-              << " perturbed_wall_per_accepted_step="
+              << " engine_wall_per_accepted_step="
               << (perturbed.accepted_step_count > 0
                       ? perturbed.timing.total_wall_seconds /
                             static_cast<double>(perturbed.accepted_step_count)
                       : std::numeric_limits<double>::quiet_NaN())
-              << " control_wall="
-              << (control.has_value() ? control->timing.total_wall_seconds : 0.0)
               << '\n';
     const bool completed = perturbed.status == "completed" &&
-        (!control.has_value() || control->status == "completed");
+        std::stod(perturbed.accepted_end_time) >= 6.93;
     return completed ? 0 : 3;
   } catch (const std::exception& error) {
     std::cerr << "section-97-98-direct-evolution error: "

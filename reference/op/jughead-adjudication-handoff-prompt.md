@@ -48,7 +48,23 @@ Adjudicate the §86 direct-evolution result when it returns (`reference/prioriti
 - **The strategic conclusion survives on T1:** no bare braid / isolated triple / planar assembly **binds** — pairing closes the pump and the six-electrino payload gives clean $-1e$, but binding fails ($\epsilon_{\rm bind}\approx1.0$ vs the $0.03$ gate). The next lever is a **derived constitutive Noether sea** operator, gated on the same-record wake-action / angular-momentum Ward identity — the deepest open problem. Do **not** accept another proxy-sea sweep as evidence about the constitutive law.
 - **χ-theorem flag:** the handedness derivation $\chi=\mathrm{sign}(p\cdot S)$ uses the **cap dipole** $p$; the planar models have no caps. Don't promote handedness conclusions from cap-free models.
 - **Likeliest bug home:** the fold/caustic mollified-impulse arithmetic + regulator ladder in `src/eom` (least-read, subtlest). Also unconfirmed: multi-root completeness within a single cell (even crossings), and per-segment error-token accumulation across many steps.
-- **Sandbox reality:** you cannot build the C++ (MPFR/GMP dev headers absent, no root; `cmake` installs via pip). **But you can run the independent Python oracle** (`scripts/eom/oracle/*`, system `python3` + `mpmath`) — jughead used it to independently confirm force sign/magnitude and a coupled evolution. Use it; the heavy multi-body runs belong to Codex's native engine.
+- **Sandbox reality (corrected 2026-07-14 — the earlier "you cannot build the C++" was false and cost a session's worth of reach):** you **can** build the C++. You are not root and `apt` is blocked (the proxy 403s Ubuntu ports), but PyPI is allowlisted and the `gmpy2` wheel ships `gmp.h`, `mpfr.h`, and the shared libraries. Verified working:
+
+  ```bash
+  pip3 download gmpy2 --no-deps -d /tmp/pipprobe
+  cd /tmp && mkdir -p mp && cd mp && unzip -qo /tmp/pipprobe/*.whl
+  mkdir -p inc && cp gmpy2/*.h inc/
+  ln -sf $PWD/gmpy2.libs/libmpfr-*.so.* libmpfr.so
+  ln -sf $PWD/gmpy2.libs/libgmp-*.so.*  libgmp.so
+  c++ -std=c++20 -O2 -Iinc -I<repo>/src/eom/include \
+      <sources> -L. -lmpfr -lgmp -Wl,-rpath,$PWD/gmpy2.libs -o probe
+  ```
+
+  512-bit MPFR and `src/eom/src/Interval.cpp` both compile this way. Build into `/tmp`, never the repo's `.tmp` — that is Codex's, and it is often mid-run.
+
+  **What you still cannot do:** run Codex's binaries (they are Mach-O arm64; you are Linux aarch64), and produce comparable wall-clock. Timing on the operator's Mac is the only timing that means anything, so seconds belong to Codex. Everything **deterministic** — cell counts, root classifications, certificate statuses, interval rounding — is yours to verify independently, and per [Evidence Independence](../../AGENTS.md#evidence-independence) you should: adjudicating a report you cannot reproduce is the failure mode this role exists to prevent.
+
+  The independent Python oracle (`scripts/eom/oracle/*`, system `python3` + `mpmath`) remains the fastest route for analytic checks — jughead used it to confirm force sign/magnitude, a coupled evolution, the $D_s$ transversality bound, and the §86 cubic tangency at the pin.
 
 ## Standing operator rules
 

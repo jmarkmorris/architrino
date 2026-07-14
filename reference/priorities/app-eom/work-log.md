@@ -630,3 +630,144 @@ This file holds dated decisions, implementation status, validation results, fail
   architectural decision, the EOM tracker, and the migration plan while
   preserving all current runtime dependencies until their individual migration
   decisions are complete.
+
+## 2026-07-14 — Million-path gate moved to the long-term scale queue
+
+- Separated base EOM correctness and bounded-population consumer acceptance
+  from the optional `eom_evolution_contract/v0/amendment-1` million-path
+  conformance profile.
+- Removed million-path, GPU, multi-GPU, and distributed-history completion as
+  dependencies of the claims-triage campaign, first binary outcome, and Borg's
+  bounded 16-path migration. Each remains required before claiming the
+  corresponding large-scale or heterogeneous capability.
+- Added the claims-triage small-population long-horizon plan. Concurrent
+  §97/§98 evidence then refined its immediate targets to complete-root
+  continuation across evolving §97 precision walls and a provenance-bound
+  drifting-circular prehistory for §98. A cheap certified exact-$v=c_f$
+  pinned-fold treatment remains the parallel §86 target.
+- Prioritized persistent in-process retained histories, checkpoint/resume,
+  deterministic convergence campaigns, claim observables, split absolute time,
+  and measured CPU optimization for the actual low-tens-worldline ledger workload.
+- Claim level remains `priority-design`; no quarantined T2 or T3 claim was
+  promoted by this scheduling correction.
+
+## 2026-07-14 — Analytic pinned-fold certificate lands; §86 wall remains temporal
+
+- Added a provenance-gated analytic finite-width route for factory-certified
+  circular self-prefixes at exactly $v=c_f$. A second-order Taylor residual
+  enclosure preserves the fold cancellation, while a midpoint integral plus
+  the certified $\sup|A'|\,|I|^2/4$ remainder encloses the unchanged Gaussian
+  master-equation integral.
+- Extended circular history provenance with the complete analytic factory
+  parameters. Checkpoint schema v2 serializes them and reconstructs the prefix
+  through the factory, rejecting any segment mismatch before restoring the
+  analytic certificate.
+- Independent 90-digit quadrature is enclosed on a constructed exact fold.
+  The synthetic route falls from 21,337 to 563 cells; the exact-V5 first-fold
+  pair falls from 193,338 to 1,928 cells. The exact-V5 atomic-step wall time
+  improves from 35.72 s to 28.50 s.
+- The feasibility wall remains. Steps $10^{-3}$ and
+  $1.25\times10^{-4}$ fail the unchanged velocity budget, and a tenfold
+  tighter quadrature tolerance does not move the latter error. Exact-root and
+  temporal-correction work now dominate. No §86/§90 verdict or score movement
+  is claimed. Evidence:
+  `evidence/eom-analytic-pinned-fold-apple-m3-2026-07-14.json`.
+
+## 2026-07-14 — Pinned-fold temporal onset removes first-order step artifact
+
+- Added `coupled_cubic_corrector_with_pinned_fold_onset/v1` in central
+  `src/eom`. Eligibility is restricted to a factory-certified circular self
+  path at its certified endpoint with tangential speed exactly $c_f$, complete
+  root-free open search, coincident-endpoint exclusion, clear memory boundary,
+  sharp start chart, and enabled analytic fold route.
+- The eligible path uses its implicit right-endpoint acceleration on the first
+  positive-duration substep. The full step and first half-step use the same
+  rule, so the sharp-chart value at the measure-zero onset is not assigned
+  positive integration weight. The master equation, root topology, analytic
+  fold acceleration, atomic publication, and tolerances are unchanged.
+- Added a provenance-complete onset certificate and regression coverage. A
+  disabled control emits no onset certificate; arbitrary histories retain the
+  ordinary cubic corrector. The model fingerprint binds the temporal-route
+  flag.
+- The legacy exact-V5 velocity error has observed refinement orders $0.991$,
+  $0.996$, and $0.998$. The corrected ladder approaches second order with
+  $1.29$, $1.63$, $1.79$, and $1.89$; position error approaches third order.
+  Error reduction grows from $24.1\times$ at $10^{-3}$ to $79.9\times$ at
+  $1.25\times10^{-4}$.
+- The exact-V5 onset accepts $5\times10^{-4}$ at velocity error
+  $1.2746\times10^{-6}$, $26.5\times$ the former step. A four-step adaptive
+  probe then accepts through $t=0.0025$ with zero rejections and recovers to
+  $10^{-3}$ at velocity error $2.71095\times10^{-7}$; only the first substep
+  carries the two middle-path onset certificates.
+- The temporal collapse was dominantly an estimator artifact, but the §86
+  ladder remains cost-blocked. Post-onset steps average about 43.7 s, dominated
+  by exact-root and coupled-correction snapshots. The demonstrated
+  $10^{-3}$ step projects to about 6,032 steps and 3.05 days per cycle before
+  convergence and perturbation multipliers. §86 and §90 remain quarantined.
+  Evidence:
+  `evidence/eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json`.
+
+## 2026-07-14 — Evolved-history root path advances through cubic and self-root-cluster controls
+
+- Added a demand-driven two-segment enclosure for uncertain roots at continuous
+  retained-history joins. The actual §97 replay crossed the `0.61` emission
+  join, and the optimized two-step replay cost fell from about `80.8` to
+  `4.05` seconds without changing the root tolerance.
+- Extended exact evolved-history parity to reconstruct the identical accepted
+  retained histories in the 90-digit oracle. Its first independent divergence
+  was `I+<-I+` at `t=1.6275`: native had declared zero roots while the oracle
+  retained 89 source-normal cells.
+- Removed the unsound application of a local self-endpoint speed argument to
+  older cells. The replacement whole-interval arc-length proof requires every
+  intervening segment to be strictly sub-field; a forced-MPFR mixed-speed
+  regression prevents recurrence. The old divergent oracle row is now
+  complete with zero roots and zero unresolved cells.
+- Added enclosed self-endpoint exclusion under a strict source-normal sign and
+  an explicit near-multiple self-root-cluster finite-width route. The repaired
+  checkpoint advanced from `1.6291314697265535` to `1.63` with 19 accepted
+  steps, zero rejections, and certified acceleration. Native/oracle parity was
+  complete for all 720 ordered-pair rows in the 20 emitted snapshots.
+- Added the cubic endpoint-tangency regression using
+  `rho=0.96009867914`, `omega=1.0415596039524766`, and `c_f=1`. The 90-digit
+  oracle resolves departure roots near `0.0047035` and `0.0470287`; native
+  classifies the zero-to-one change as
+  `coincident_endpoint_root_continuation`, not an interior fold.
+- The Section 86 runner now reports `step_wall_seconds`,
+  `maximum_quadrature_cells`, and `middle_self_root_classification` together.
+  The portable cell metric is the maximum over every acceleration snapshot in
+  the accepted atomic step, including the full correction, both half-step
+  corrections, their endpoints, and final accepted-step recertification. The
+  earlier final-snapshot-only row reported `32.4315` seconds and 1,928 cells,
+  with endpoint continuation; that row is preliminary and superseded for cost
+  reporting. A clean all-stage timing repeat remains required after the
+  competing long §97 process finishes.
+- The three native suites pass 11 history-layer, 11 acceleration, and 14
+  coupled-evolution tests; the 90-digit root suite passes 23 tests. The §97
+  baseline continuation from `t=1.63` to `t=6.93` is active. Step and
+  prehistory-segment refinement remain required. No §97/§98 flutter verdict,
+  sign, slope, or growth rate is reinstated.
+
+## 2026-07-14 — §86 cubic-tangency corrections preserve correctness but not cost
+
+- Extended same-worldline chord correlation across continuous retained-history
+  segment joins in native double, native MPFR, finite-width acceleration, and
+  the independent 90-digit oracle. The chord now accumulates nominal
+  polynomial increments with integrated velocity-error bounds rather than
+  hulling two independent published positions.
+- Added a cancellation-stable exact-circle residual using the enclosed series
+  for `sin(u)-u`, plus route counters and four independently switchable §86
+  ablations. A direct regression protects the cross-segment correlation
+  mechanism independently of the V5 fixture.
+- All four atomic one-step V5 rows accepted and classified the middle self pair
+  as `coincident_endpoint_root_continuation`. Independent, correlated-only,
+  stable-only, and combined rows each reached 1,928 maximum quadrature cells.
+  Correlation was active in 1,582 cells; the exact-circle stable residual was
+  active in zero cells at the evolved-history cost maximum.
+- Concurrent-load step times were 623.540, 603.705, 543.591, and 601.144
+  seconds. They are not clean benchmarks because the §97 horizon process was
+  active. The portable result is unchanged cost: correct classification and
+  both numerical corrections still take the same finite-width route.
+- Next localize the owning pair, atomic snapshot stage, reception interval, and
+  delay cell, then test an oracle-certified delay-factored residual for evolved
+  polynomial self history. No §86 feasibility, horizon, flutter, migration, or
+  score claim advances from this negative cost result.

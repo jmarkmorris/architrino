@@ -235,11 +235,89 @@ step/$h$/sampling/direction/magnitude ladder multiplies it. The cheaper
 $0.95$ continuation is not a substitute: it removes the pinned self-fold and
 crosses a self-hit root-topology change on the way back to exact V5.
 
-The first missing accepted object is a cheap certified treatment of the
-pinned self-fold, preferably a local analytic model of fold onset from the
-closed-form circular hinge $\delta_s=2s\sin(\delta_s/2)$. The alternative is a
-certificate proving that the step collapse is controller conservatism rather
-than a genuine resolution requirement. Until one of those objects lands, no
-more multi-cycle exact-V5 ladder runs are warranted. The controller's opt-in
-step-growth recovery and accepted-snapshot reuse remain independently tested
-engine improvements, but they do not change this feasibility adjudication.
+## Analytic pinned-fold certificate
+
+The local analytic route has now landed. It is eligible only for a self-pair
+whose source interval lies in a factory-certified circular prefix and whose
+certified tangential speed equals $c_f$. Arbitrary cubic histories remain on
+the generic finite-width route. For the causal residual $F(\tau)$, a
+second-order Taylor enclosure about each cell midpoint retains the fold
+cancellation $F'(\tau_c)=0$. For the unchanged finite-width vector integrand
+$A(\tau)$, each cell is enclosed by
+
+$$
+\int_I A(\tau)\,d\tau
+=|I|A(m_I)+R_I,
+\qquad
+|R_I|\le\sup_{\tau\in I}|A'(\tau)|\frac{|I|^2}{4}.
+$$
+
+The analytic circular prefix supplies certified position, velocity, and
+acceleration intervals. Its certificate is provenance-bound, included in the
+history fingerprint, and revalidated through checkpoint serialization. The
+master equation, Gaussian causal width, core scale, root topology, and all
+declared fail-closed tolerances are unchanged.
+
+A constructed exact fold at reception $T=0.0024$ and emission
+$\tau_c=-0.04$ is contained component by component by an independently
+evaluated 90-digit quadrature. The analytic route uses 563 cells versus 21,337
+for the unchanged finite-width route. On the exact-V5 first fold-crossing
+step, the maximum pair count falls from 193,338 to 1,928 cells. Both routes
+publish the step with zero uncertified roots; their maximum velocity errors
+are $1.43755\times10^{-6}$ and $1.43607\times10^{-6}$. Wall time falls from
+35.72 s to 28.50 s, only $1.25\times$ because exact-root and correction work
+now dominate.
+
+## Pinned-fold-aware temporal certificate
+
+The remaining step collapse was dominantly a full-step/two-half-step estimator
+artifact. At the exact circular endpoint, the complete open self search is
+root-free and the sharp chart supplies the start acceleration. At every
+positive reception time after departure, the middle self-fold exists and the
+finite-width chart supplies the acceleration. The legacy trapezoidal
+corrector therefore assigned nonzero integration weight to a chart value that
+exists only at the single onset instant. Its velocity-error orders under step
+halving were $0.991$, $0.996$, and $0.998$.
+
+The central engine now certifies the onset from the factory-bound circular
+history fingerprint, exact tangential-speed equality with $c_f$, complete
+root-free open search, coincident-endpoint exclusion, clear memory boundary,
+sharp start chart, and enabled analytic fold route. For those paths only, the
+first positive-duration substep uses its implicit right-endpoint acceleration.
+The same rule is applied to the full step and the first half-step. This removes
+the measure-zero start value from the acceleration integral; it does not alter
+the master equation, root topology, analytic fold force, atomic publication,
+or any declared tolerance. Arbitrary histories and later substeps retain the
+normal cubic corrector.
+
+The corrected onset velocity error approaches second order, with observed
+orders $1.29$, $1.63$, $1.79$, and $1.89$ across
+$\Delta t=10^{-3}$ through $6.25\times10^{-5}$. Position error approaches
+third order. The exact V5 onset accepts $5\times10^{-4}$ at velocity error
+$1.2746\times10^{-6}$, $26.5\times$ the former accepted step. The
+$10^{-3}$ onset is still rejected at $3.12009\times10^{-6}$, which is the
+residual smooth-onset error rather than the former first-order chart jump.
+
+After the onset, an adaptive exact-V5 probe accepts steps through
+$t=0.0025$ with zero rejections, zero uncertified root rows, and atomic
+publication throughout. The controller recovers to $10^{-3}$; that step has
+velocity error $2.71095\times10^{-7}$ and invokes no pinned-fold temporal
+specialization. Exact-root and coupled-correction snapshots now dominate at a
+measured mean 43.7 s per accepted post-onset step.
+
+## Feasibility verdict
+
+The old $6.4\times10^5$-step-per-cycle wall was not genuine stiffness. The
+certified post-onset step is $53.0\times$ larger, reducing the fixed-step
+projection to about 6,032 steps and 3.05 days per braid cycle. That remains too
+slow for the required step/$h$/sampling/direction/magnitude ladder: a single
+$t=5$ rung projects to about 2.53 days before refinements and independent
+seeds. The separately diagnosed evolved-history root-path defect may also
+inflate this exact-snapshot cost and remains ahead of renewed ladders.
+
+The first missing accepted object is now a repaired and profiled exact-root /
+coupled-correction snapshot path that makes the multi-rung horizon practical,
+or a further certified post-onset temporal enlargement. §86 and §90 remain
+quarantined, and neither $0.199$ nor the short-window $0.60113$ is
+authoritative. Evidence:
+[eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json](../../app-eom/evidence/eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json).

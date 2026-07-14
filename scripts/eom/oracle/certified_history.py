@@ -42,6 +42,10 @@ def _vector_subtract(left: IntervalVector, right: IntervalVector) -> IntervalVec
     return interval_vector(left[index] - right[index] for index in range(3))
 
 
+def _vector_add(left: IntervalVector, right: IntervalVector) -> IntervalVector:
+    return interval_vector(left[index] + right[index] for index in range(3))
+
+
 @dataclass(frozen=True)
 class CubicHistorySegment:
     """One exact-decimal cubic dense-output segment.
@@ -113,6 +117,30 @@ class CubicHistorySegment:
     def position_interval(self, time: DecimalInterval) -> IntervalVector:
         return interval_vector(
             self._polynomial_interval(row, time).inflate(self.position_error)
+            for row in self.coefficients
+        )
+
+    def correlated_displacement_interval(
+        self,
+        reception: DecimalInterval,
+        emission: DecimalInterval,
+    ) -> IntervalVector:
+        self._require_time_interval(reception)
+        self._require_time_interval(emission)
+        if emission.upper > reception.lower:
+            raise ValueError(
+                "correlated self displacement requires emission before reception"
+            )
+        maximum_delay = reception.upper - emission.lower
+        correlated_error = min(
+            Decimal(2) * self.position_error,
+            self.velocity_error * maximum_delay,
+        )
+        return interval_vector(
+            (
+                self._polynomial_interval(row, reception)
+                - self._polynomial_interval(row, emission)
+            ).inflate(correlated_error)
             for row in self.coefficients
         )
 
@@ -213,9 +241,19 @@ class PiecewisePolynomialHistory:
                 raise ValueError("retained-history segments must be contiguous")
             prior_position, prior_velocity = prior.nominal_state(prior.t_end)
             next_position, next_velocity = segment.nominal_state(segment.t_start)
-            if prior_position != next_position:
+            position_join_error = prior.position_error + segment.position_error
+            velocity_join_error = prior.velocity_error + segment.velocity_error
+            if any(
+                abs(prior_position[axis] - next_position[axis])
+                > position_join_error
+                for axis in range(3)
+            ):
                 raise ValueError("retained-history position is discontinuous")
-            if prior_velocity != next_velocity:
+            if any(
+                abs(prior_velocity[axis] - next_velocity[axis])
+                > velocity_join_error
+                for axis in range(3)
+            ):
                 raise ValueError("retained-history velocity is discontinuous")
         return cls(materialized, history_id)
 
@@ -253,6 +291,73 @@ class PiecewisePolynomialHistory:
             lower_segment.position_interval(time),
             lower_segment.velocity_interval(time),
         )
+
+    def correlated_self_displacement(
+        self,
+        reception: DecimalInterval,
+        emission: DecimalInterval,
+    ) -> IntervalVector:
+        """Enclose one worldline chord without duplicating position error.
+
+        Across segment joins, the displacement is the sum of each nominal
+        polynomial increment.  Each increment is inflated only by its
+        velocity-error radius times the traversed duration.  This preserves
+        the correlation of endpoints published from the same continuous
+        retained history.
+        """
+
+        if (
+            reception.precision != self.precision
+            or emission.precision != self.precision
+        ):
+            raise ValueError("history and interval precision mismatch")
+        if emission.upper > reception.lower:
+            raise ValueError(
+                "correlated self displacement requires emission before reception"
+            )
+        if emission.lower < self.t_start or reception.upper > self.t_end:
+            raise ValueError("correlated self displacement lies outside history")
+
+        displacement = interval_vector(
+            DecimalInterval.point(Decimal(0), self.precision) for _ in range(3)
+        )
+        started = False
+        for segment in self.segments:
+            contains_emission = (
+                emission.lower >= segment.t_start
+                and emission.upper <= segment.t_end
+            )
+            contains_reception = (
+                reception.lower >= segment.t_start
+                and reception.upper <= segment.t_end
+            )
+            if not started and not contains_emission:
+                continue
+            started = True
+            local_lower = (
+                emission
+                if contains_emission
+                else DecimalInterval.point(segment.t_start, self.precision)
+            )
+            local_upper = (
+                reception
+                if contains_reception
+                else DecimalInterval.point(segment.t_end, self.precision)
+            )
+            if local_lower.upper > local_upper.lower:
+                raise ValueError("correlated self displacement crosses backward")
+            duration = local_upper.upper - local_lower.lower
+            contribution = interval_vector(
+                (
+                    segment._polynomial_interval(row, local_upper)
+                    - segment._polynomial_interval(row, local_lower)
+                ).inflate(segment.velocity_error * duration)
+                for row in segment.coefficients
+            )
+            displacement = _vector_add(displacement, contribution)
+            if contains_reception:
+                return displacement
+        raise ValueError("history does not cover correlated self displacement")
 
     def covered_cells(
         self,
@@ -387,13 +492,25 @@ def _residual_interval(
     reception_time: Decimal,
     emission_interval: DecimalInterval,
     field_speed: Decimal,
+    *,
+    correlated_self: bool = False,
+    correlated_displacement: IntervalVector | None = None,
 ) -> DecimalInterval:
-    source_position = source_segment.position_interval(emission_interval)
-    displacement = _vector_subtract(receiver_position, source_position)
-    separation = interval_norm(displacement)
-    delay = DecimalInterval.point(
+    reception = DecimalInterval.point(
         reception_time, emission_interval.precision
-    ) - emission_interval
+    )
+    displacement = correlated_displacement or (
+        source_segment.correlated_displacement_interval(
+            reception, emission_interval
+        )
+        if correlated_self
+        else _vector_subtract(
+            receiver_position,
+            source_segment.position_interval(emission_interval),
+        )
+    )
+    separation = interval_norm(displacement)
+    delay = reception - emission_interval
     return separation - DecimalInterval.point(
         field_speed, emission_interval.precision
     ) * delay
@@ -404,10 +521,30 @@ def _source_normal_interval(
     source_segment: CubicHistorySegment,
     emission_interval: DecimalInterval,
     field_speed: Decimal,
+    *,
+    reception_time: Decimal | None = None,
+    correlated_self: bool = False,
+    correlated_displacement: IntervalVector | None = None,
 ) -> DecimalInterval | None:
-    source_position = source_segment.position_interval(emission_interval)
     source_velocity = source_segment.velocity_interval(emission_interval)
-    displacement = _vector_subtract(receiver_position, source_position)
+    if correlated_displacement is not None:
+        displacement = correlated_displacement
+    elif correlated_self:
+        if reception_time is None:
+            raise ValueError(
+                "correlated source normal requires a reception time"
+            )
+        displacement = source_segment.correlated_displacement_interval(
+            DecimalInterval.point(
+                reception_time, emission_interval.precision
+            ),
+            emission_interval,
+        )
+    else:
+        displacement = _vector_subtract(
+            receiver_position,
+            source_segment.position_interval(emission_interval),
+        )
     separation = interval_norm(displacement)
     if separation.contains_zero:
         return None
@@ -542,12 +679,66 @@ def certify_causal_roots(
         receiver.history_id == source.history_id
         and receiver.digest() == source.digest()
     )
+
+    def residual_for(
+        segment: CubicHistorySegment,
+        emission: DecimalInterval,
+    ) -> DecimalInterval:
+        correlated_displacement = (
+            source.correlated_self_displacement(receiver_point, emission)
+            if same_retained_history
+            else None
+        )
+        return _residual_interval(
+            receiver_position,
+            segment,
+            reception,
+            emission,
+            c_f,
+            correlated_displacement=correlated_displacement,
+        )
+
+    def source_normal_for(
+        segment: CubicHistorySegment,
+        emission: DecimalInterval,
+    ) -> DecimalInterval | None:
+        correlated_displacement = (
+            source.correlated_self_displacement(receiver_point, emission)
+            if same_retained_history
+            else None
+        )
+        return _source_normal_interval(
+            receiver_position,
+            segment,
+            emission,
+            c_f,
+            reception_time=reception,
+            correlated_displacement=correlated_displacement,
+        )
     initial_cells = source.covered_cells(lower_bound, upper_bound)
     roots: list[RootBracket] = []
     excluded: list[CellRecord] = []
     unresolved: list[CellRecord] = []
     visited_cells = 0
     coincident_endpoint_excluded = False
+    subfield_suffix = [True] * (len(source.segments) + 1)
+    if same_retained_history:
+        for index in range(len(source.segments) - 1, -1, -1):
+            segment = source.segments[index]
+            segment_upper = min(segment.t_end, reception)
+            segment_subfield = True
+            if segment.t_start < segment_upper:
+                velocity = segment.velocity_interval(
+                    DecimalInterval.bounds(
+                        segment.t_start,
+                        segment_upper,
+                        precision,
+                    )
+                )
+                segment_subfield = interval_norm(velocity).upper < c_f
+            subfield_suffix[index] = (
+                segment_subfield and subfield_suffix[index + 1]
+            )
 
     def add_exact_root(
         *,
@@ -587,6 +778,187 @@ def certify_causal_roots(
             )
         )
 
+    def surround_uncertain_point(
+        *,
+        segment: CubicHistorySegment,
+        point: Decimal,
+        cell_lower: Decimal,
+        cell_upper: Decimal,
+    ) -> tuple[Decimal, Decimal] | None:
+        """Find a tolerance-width IVT bracket around an uncertain point.
+
+        Retained-history reconstruction error can make a point residual contain
+        zero even at arbitrarily high arithmetic precision.  That is not a
+        precision failure when strict signs can still be certified on both
+        sides inside the declared root tolerance.
+        """
+
+        with localcontext() as context:
+            context.prec = precision
+            radius = +(tolerance / Decimal(64))
+        for _ in range(6):
+            with localcontext() as context:
+                context.prec = precision
+                lower = max(cell_lower, +(point - radius))
+                upper = min(cell_upper, +(point + radius))
+            if lower < point < upper and upper - lower <= tolerance:
+                lower_sign = residual_for(
+                    segment,
+                    DecimalInterval.point(lower, precision),
+                ).strict_sign
+                upper_sign = residual_for(
+                    segment,
+                    DecimalInterval.point(upper, precision),
+                ).strict_sign
+                if (
+                    lower_sign in (-1, 1)
+                    and upper_sign in (-1, 1)
+                    and lower_sign != upper_sign
+                ):
+                    return lower, upper
+            with localcontext() as context:
+                context.prec = precision
+                radius = +(radius * Decimal(2))
+        return None
+
+    def surround_uncertain_segment_join(
+        *,
+        left_segment: CubicHistorySegment,
+        right_segment: CubicHistorySegment,
+        boundary: Decimal,
+        left_bound: Decimal,
+        right_bound: Decimal,
+    ) -> tuple[Decimal, Decimal, DecimalInterval] | None:
+        """Certify one continuous simple root across a segment join."""
+
+        with localcontext() as context:
+            context.prec = precision
+            radius = +(tolerance / Decimal(64))
+        for _ in range(6):
+            with localcontext() as context:
+                context.prec = precision
+                lower = max(left_bound, +(boundary - radius))
+                upper = min(right_bound, +(boundary + radius))
+            if lower < boundary < upper and upper - lower <= tolerance:
+                lower_sign = residual_for(
+                    left_segment,
+                    DecimalInterval.point(lower, precision),
+                ).strict_sign
+                upper_sign = residual_for(
+                    right_segment,
+                    DecimalInterval.point(upper, precision),
+                ).strict_sign
+                if (
+                    lower_sign in (-1, 1)
+                    and upper_sign in (-1, 1)
+                    and lower_sign != upper_sign
+                ):
+                    left_normal = source_normal_for(
+                        left_segment,
+                        DecimalInterval.bounds(lower, boundary, precision),
+                    )
+                    right_normal = source_normal_for(
+                        right_segment,
+                        DecimalInterval.bounds(boundary, upper, precision),
+                    )
+                    if left_normal is not None and right_normal is not None:
+                        source_normal = left_normal.hull(right_normal)
+                        if (
+                            source_normal.strict_sign in (-1, 1)
+                            and source_normal.strict_sign
+                            == left_normal.strict_sign
+                            == right_normal.strict_sign
+                        ):
+                            return lower, upper, source_normal
+            with localcontext() as context:
+                context.prec = precision
+                radius = +(radius * Decimal(2))
+        return None
+
+    def add_segment_join_root(
+        *,
+        segment: CubicHistorySegment,
+        segment_index: int,
+        point: Decimal,
+        cell_lower: Decimal,
+        cell_upper: Decimal,
+    ) -> bool:
+        left_index: int
+        right_index: int
+        left_segment: CubicHistorySegment
+        right_segment: CubicHistorySegment
+        if point == segment.t_end and segment_index + 1 < len(source.segments):
+            left_index = segment_index
+            right_index = segment_index + 1
+            left_segment = segment
+            right_segment = source.segments[right_index]
+        elif point == segment.t_start and segment_index > 0:
+            left_index = segment_index - 1
+            right_index = segment_index
+            left_segment = source.segments[left_index]
+            right_segment = segment
+        else:
+            return False
+        surrounded = surround_uncertain_segment_join(
+            left_segment=left_segment,
+            right_segment=right_segment,
+            boundary=point,
+            left_bound=lower_bound,
+            right_bound=upper_bound,
+        )
+        if surrounded is None:
+            return False
+        roots.append(
+            RootBracket(
+                surrounded[0],
+                surrounded[1],
+                surrounded[2],
+                (left_index, right_index),
+                False,
+            )
+        )
+        excluded.append(
+            CellRecord(
+                cell_lower,
+                cell_upper,
+                segment_index,
+                "monotone_cell_except_continuous_segment_join_root",
+            )
+        )
+        return True
+
+    def add_surrounded_root(
+        *,
+        segment: CubicHistorySegment,
+        segment_index: int,
+        lower: Decimal,
+        upper: Decimal,
+        cell_lower: Decimal,
+        cell_upper: Decimal,
+    ) -> bool:
+        bracket = DecimalInterval.bounds(lower, upper, precision)
+        source_normal = source_normal_for(segment, bracket)
+        if source_normal is None or source_normal.strict_sign not in (-1, 1):
+            return False
+        roots.append(
+            RootBracket(
+                lower,
+                upper,
+                source_normal,
+                (segment_index,),
+                False,
+            )
+        )
+        excluded.append(
+            CellRecord(
+                cell_lower,
+                cell_upper,
+                segment_index,
+                "monotone_cell_except_tolerance_bracketed_root",
+            )
+        )
+        return True
+
     def classify(
         segment_index: int,
         segment: CubicHistorySegment,
@@ -607,14 +979,31 @@ def certify_causal_roots(
             )
             return
 
+        if same_retained_history and subfield_suffix[segment_index + 1]:
+            segment_upper = min(segment.t_end, reception)
+            if cell_lower < segment_upper:
+                remaining_velocity = segment.velocity_interval(
+                    DecimalInterval.bounds(
+                        cell_lower,
+                        segment_upper,
+                        precision,
+                    )
+                )
+                if interval_norm(remaining_velocity).upper < c_f:
+                    if upper_bound == reception:
+                        coincident_endpoint_excluded = True
+                    excluded.append(
+                        CellRecord(
+                            cell_lower,
+                            cell_upper,
+                            segment_index,
+                            "self_path_uniformly_subfield_from_emission",
+                        )
+                    )
+                    return
+
         cell = DecimalInterval.bounds(cell_lower, cell_upper, precision)
-        residual = _residual_interval(
-            receiver_position,
-            segment,
-            reception,
-            cell,
-            c_f,
-        )
+        residual = residual_for(segment, cell)
         if residual.excludes_zero():
             excluded.append(
                 CellRecord(
@@ -626,31 +1015,39 @@ def certify_causal_roots(
             )
             return
 
-        source_normal = _source_normal_interval(
-            receiver_position,
-            segment,
-            cell,
-            c_f,
-        )
+        source_normal = source_normal_for(segment, cell)
         source_normal_sign = (
             source_normal.strict_sign if source_normal is not None else None
         )
-        lower_residual = _residual_interval(
-            receiver_position,
+        lower_residual = residual_for(
             segment,
-            reception,
             DecimalInterval.point(cell_lower, precision),
-            c_f,
         )
-        upper_residual = _residual_interval(
-            receiver_position,
+        upper_residual = residual_for(
             segment,
-            reception,
             DecimalInterval.point(cell_upper, precision),
-            c_f,
         )
         lower_sign = lower_residual.strict_sign
         upper_sign = upper_residual.strict_sign
+
+        if (
+            same_retained_history
+            and cell_upper == reception
+            and upper_bound == reception
+            and lower_sign in (-1, 1)
+            and upper_sign is None
+            and source_normal_sign in (-1, 1)
+        ):
+            coincident_endpoint_excluded = True
+            excluded.append(
+                CellRecord(
+                    cell_lower,
+                    cell_upper,
+                    segment_index,
+                    "monotone_cell_with_enclosed_H0_self_endpoint",
+                )
+            )
+            return
 
         if cell_upper == reception and (
             upper_sign == 0 or same_retained_history
@@ -684,6 +1081,30 @@ def certify_causal_roots(
                     cell_upper=cell_upper,
                 )
                 return
+            if lower_sign is None:
+                surrounded = surround_uncertain_point(
+                    segment=segment,
+                    point=cell_lower,
+                    cell_lower=cell_lower,
+                    cell_upper=cell_upper,
+                )
+                if surrounded is not None and add_surrounded_root(
+                    segment=segment,
+                    segment_index=segment_index,
+                    lower=surrounded[0],
+                    upper=surrounded[1],
+                    cell_lower=cell_lower,
+                    cell_upper=cell_upper,
+                ):
+                    return
+                if add_segment_join_root(
+                    segment=segment,
+                    segment_index=segment_index,
+                    point=cell_lower,
+                    cell_lower=cell_lower,
+                    cell_upper=cell_upper,
+                ):
+                    return
             if upper_sign == 0:
                 add_exact_root(
                     time=cell_upper,
@@ -693,6 +1114,30 @@ def certify_causal_roots(
                     cell_upper=cell_upper,
                 )
                 return
+            if upper_sign is None:
+                surrounded = surround_uncertain_point(
+                    segment=segment,
+                    point=cell_upper,
+                    cell_lower=cell_lower,
+                    cell_upper=cell_upper,
+                )
+                if surrounded is not None and add_surrounded_root(
+                    segment=segment,
+                    segment_index=segment_index,
+                    lower=surrounded[0],
+                    upper=surrounded[1],
+                    cell_lower=cell_lower,
+                    cell_upper=cell_upper,
+                ):
+                    return
+                if add_segment_join_root(
+                    segment=segment,
+                    segment_index=segment_index,
+                    point=cell_upper,
+                    cell_lower=cell_lower,
+                    cell_upper=cell_upper,
+                ):
+                    return
             if lower_sign in (-1, 1) and upper_sign == lower_sign:
                 excluded.append(
                     CellRecord(
@@ -721,12 +1166,9 @@ def certify_causal_roots(
                 return
 
         midpoint = _midpoint(cell_lower, cell_upper, precision)
-        midpoint_residual = _residual_interval(
-            receiver_position,
+        midpoint_residual = residual_for(
             segment,
-            reception,
             DecimalInterval.point(midpoint, precision),
-            c_f,
         )
         if source_normal_sign in (-1, 1) and midpoint_residual.strict_sign == 0:
             add_exact_root(
@@ -737,18 +1179,39 @@ def certify_causal_roots(
                 cell_upper=cell_upper,
             )
             return
+        if source_normal_sign in (-1, 1) and midpoint_residual.strict_sign is None:
+            surrounded = surround_uncertain_point(
+                segment=segment,
+                point=midpoint,
+                cell_lower=cell_lower,
+                cell_upper=cell_upper,
+            )
+            if surrounded is not None and add_surrounded_root(
+                segment=segment,
+                segment_index=segment_index,
+                lower=surrounded[0],
+                upper=surrounded[1],
+                cell_lower=cell_lower,
+                cell_upper=cell_upper,
+            ):
+                return
 
         if cell.width <= tolerance:
+            unresolved_reason = (
+                "source_normal_interval_contains_zero"
+                if source_normal_sign is None
+                else (
+                    "self_root_cluster_requires_finite_width"
+                    if same_retained_history
+                    else "root_existence_or_absence_not_certified"
+                )
+            )
             unresolved.append(
                 CellRecord(
                     cell_lower,
                     cell_upper,
                     segment_index,
-                    (
-                        "source_normal_interval_contains_zero"
-                        if source_normal_sign is None
-                        else "root_existence_or_absence_not_certified"
-                    ),
+                    unresolved_reason,
                 )
             )
             return

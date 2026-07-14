@@ -1,7 +1,7 @@
 # Dispatch Packet — §86 Flutter Re-Run on the Validated EOM Engine
 
 **Date:** 2026-07-13
-**Status:** prerequisite gate, exact field-speed start, and first fold-crossing atomic publication passed; convergence ladders in progress
+**Status:** analytic fold and pinned-fold temporal onset certified; exact-V5 feasibility wall remains in exact-root/correction snapshot cost
 **Supersedes evidentiary basis of:** the §86 linear-pencil flutter claim (Re λ = +0.199), quarantined in [claims-triage-ledger-2026-07-12.md](../app-solver/claims-triage-ledger-2026-07-12.md) as the lead T2 item.
 
 ---
@@ -150,17 +150,34 @@ across a change in self-hit root topology, not along a smooth deformation of
 one dynamical problem. **Do not accept a frequency-continued rate as the §86
 result.**
 
-**Next accepted object.** Not more steps. Either (a) a cheap certified
-treatment of the pinned self-fold — the circular hinge $\delta_s=2s\sin(\delta_s/2)$
-is closed-form, and the fold onset as the middle path departs the $v=c_f$
-circle plausibly admits a local analytic model in place of subdividing
-$1.9\times10^{5}$ cells per pair per step; or (b) a demonstration that the
-adaptive step collapse at the pin is controller conservatism rather than a
-genuine resolution requirement, which would need its own certificate. Route (a)
-is both an engine target and a physics target: the local structure of the
-self-hit at the speed pin is §86's actual content. Until one of these lands,
-extending the present ladder burns compute against a wall.
+**Pinned-fold result.** The analytic route landed without changing the master
+equation, root topology, or declared tolerances. It is gated to a self-pair
+whose factory-certified circular-prefix speed equals $c_f$, preserves the
+quadratic causal-residual cancellation by Taylor enclosure, and certifies the
+finite-width integral with a midpoint-plus-derivative remainder. The exact-V5
+fold pair falls from 193,338 to 1,928 cells. An independent 90-digit quadrature
+is enclosed on a constructed exact fold, and checkpoint restart revalidates
+the circular-prefix certificate.
 
-Closure goal (next): decide between the analytic pinned-fold route and a
-step-collapse certificate, then re-dispatch §86 with a horizon that reaches
-$t\gtrsim5$.
+**Temporal-onset adjudication.** The legacy velocity error is first order under
+step refinement because its trapezoid gives weight to the sharp-chart value at
+the single exact onset while positive reception times use the finite-width
+self-fold chart. The provenance-gated temporal onset step uses the implicit
+right-endpoint acceleration for the exact circular $v=c_f$ self paths only.
+The error approaches second order, the onset accepts $5\times10^{-4}$, and
+the post-onset controller accepts $10^{-3}$ with zero uncertified roots and
+unchanged tolerances. The former $1.885\times10^{-5}$ scale was therefore an
+estimator artifact, not genuine stiffness.
+
+**Current feasibility adjudication.** The demonstrated post-onset step reduces
+the projection to about 6,032 accepted steps and 3.05 days per braid cycle,
+still before the required convergence and perturbation multipliers. Exact-root
+and coupled-correction snapshots now dominate at about 43.7 s per accepted
+post-onset step, and the separate evolved-history root-path defect remains
+open. §86 and §90 stay quarantined; do not resume the multi-rung ladder until
+that snapshot path is repaired and reprofiled or the certified post-onset step
+is enlarged further.
+
+Closure goal (next): repair and profile the exact-root/coupled-correction
+snapshot path on the pinned-fold-aware exact V5 evolution, then determine
+whether the $t\gtrsim5$ convergence ladder is computationally reachable.

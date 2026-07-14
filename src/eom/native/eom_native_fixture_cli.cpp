@@ -18,9 +18,12 @@ eom::CubicHistorySegment segment(
     const std::string& t_end,
     const std::array<std::string, 4>& x,
     const std::array<std::string, 4>& y = {"0", "0", "0", "0"},
-    const std::array<std::string, 4>& z = {"0", "0", "0", "0"}) {
+    const std::array<std::string, 4>& z = {"0", "0", "0", "0"},
+    const std::string& position_error = "0",
+    const std::string& velocity_error = "0") {
   return eom::CubicHistorySegment(
-      t_start, t_end, eom::CubicCoefficientTokens{x, y, z});
+      t_start, t_end, eom::CubicCoefficientTokens{x, y, z},
+      position_error, velocity_error);
 }
 
 eom::RetainedHistory history(
@@ -194,12 +197,49 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
           .tilt_x = "0",
           .tilt_y = "0",
       });
+  const eom::RetainedHistory nonendpoint_subfield_self(
+      "nonendpoint-subfield-self",
+      {segment("0", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-14", "1e-14"),
+       segment("1", "2", {"0", "0", "1.5", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-14", "1e-14")});
+  const eom::RetainedHistory enclosed_self_root_cluster(
+      "enclosed-self-root-cluster",
+      {segment("0", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-6", "1e-6"),
+       segment("1", "2", {"0", "0", "1.5", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-6", "1e-6")});
   const auto memory_boundary =
       history("memory-boundary", {"3", "-2", "1", "0"});
   const eom::RetainedHistory piecewise_boundary(
       "piecewise-boundary",
       {segment("0", "3", {"2", "0", "0", "0"}),
        segment("3", "5", {"2", "0", "0", "0"})});
+  const eom::RetainedHistory uncertain_receiver(
+      "uncertain-receiver",
+      {segment("-0.5", "0.5", {"0.5625", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-9", "0")});
+  const eom::RetainedHistory uncertain_source(
+      "uncertain-source",
+      {segment("-0.5", "0.5", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-9", "0")});
+  const eom::RetainedHistory uncertain_join_receiver(
+      "uncertain-join-receiver",
+      {segment("-1", "1", {"1", "0", "0", "0"})});
+  const eom::RetainedHistory uncertain_join_source(
+      "uncertain-join-source",
+      {segment("-1", "0", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-9", "0"),
+       segment("0", "1", {"0", "0", "0", "0"},
+               {"0", "0", "0", "0"}, {"0", "0", "0", "0"},
+               "1e-9", "0")});
 
   std::vector<eom::ExactPairRequest> requests;
   auto add = [&](std::string row_id, const eom::RetainedHistory& target,
@@ -236,9 +276,17 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
   add("self_rail", self_rail, self_rail, "3", "0", "3", "1e-12", true);
   add("self_curved_rail", self_curved_rail, self_curved_rail, "3", "0",
       "3", "1e-12", true);
+  add("nonendpoint_subfield_self_root", nonendpoint_subfield_self,
+      nonendpoint_subfield_self, "2", "0", "2", "1e-12", true);
+  add("enclosed_self_root_cluster", enclosed_self_root_cluster,
+      enclosed_self_root_cluster, "2", "0", "2", "1e-8", true);
   add("memory_boundary", receiver, memory_boundary, "3", "0", "2", "1e-12");
   add("piecewise_boundary", receiver, piecewise_boundary, "5", "0", "4.5",
       "1e-12");
+  add("uncertain_midpoint_root", uncertain_receiver, uncertain_source, "0.5",
+      "-0.5", "0.5", "1e-5");
+  add("uncertain_segment_join_root", uncertain_join_receiver,
+      uncertain_join_source, "1", "-1", "0.5", "1e-5");
   return eom::certify_exact_pair_batch(requests, 4);
 }
 

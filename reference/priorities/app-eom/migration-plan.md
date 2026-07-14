@@ -37,7 +37,9 @@ four-thread output. This is a control success, not the Borg migration gate. A
 subsequent 16-history ladder failed closed at every tested step: all 240
 off-diagonal ordered pairs reported `numeric_precision_limit_exhausted`, while
 the 16 self-pairs did not appear in the root-failure set. Imported-history
-provenance and the production performance gates also remain unresolved.
+provenance and the bounded-population precision and convergence gates also
+remain unresolved. The long-term million-path, GPU, multi-GPU, and distributed-
+history gates do not block Borg's 16-path migration.
 
 ## Initial Consumer Disposition
 
@@ -80,6 +82,10 @@ provenance and the production performance gates also remain unresolved.
 - demonstrate checkpoint/restart and single-thread/multithread agreement;
 - classify unsupported envelopes and unresolved chart events fail-closed.
 
+This phase applies the base-contract validations to the consumer's declared
+population and duration. The optional million-path amendment is not a
+prerequisite for bounded-population migration.
+
 ### Phase 3 — Borg Shadow Migration
 
 - freeze one Borg input history and model contract;
@@ -117,9 +123,14 @@ A consumer may claim EOM-produced motion only when:
 - no future path, constraint, or display curve enters the EOM input;
 - its output path ids resolve to accepted EOM step and history rows;
 - the relevant convergence and first-failure evidence passes;
+- every ordered pair in the consumer's declared population is explicitly or
+  certifiably accounted for, with difficult rows resolved or failed closed;
 - the consumer displays the EOM version and run identity;
 - the run derives `evidence_status=canonical` from the exercised contract gates rather than accepting an evidence label from the caller or backend;
 - previous prescribed-path results remain distinguishable from the new EOM result.
+
+GPU, multi-GPU, distributed-history, and million-path conformance are required
+only when the consumer's declared execution envelope uses or claims them.
 
 ## Retirement Boundary For The Existing Solver
 

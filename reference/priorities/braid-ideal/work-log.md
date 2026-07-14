@@ -1762,3 +1762,84 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
   $\delta_s=2s\sin(\delta_s/2)$ the preferred route, or a certificate that the
   step collapse is controller conservatism. No more exact-V5 ladder runs are
   warranted before one of those objects lands.
+
+## 2026-07-14 — §97/§98 direct-evolution sign campaign returns horizon-blocked
+
+- Verified every requested object before evolution. The §98 branch-set floor
+  is a coarse `supra` row and is deferred. Part 2 point 73 is a settled
+  field-speed sampling artifact with two three-charge rings, a two-charge
+  ring, and a six-electrino payload, not an isolated six-worldline triple. The
+  converged sub-$c_f$ §98 `M-O-I` point has recorded common drift $u=0.156$;
+  the native provenance-bound circular factory has no drift parameter, so
+  deleting the drift was rejected as a wrong-object substitution.
+- Added `scripts/eom/section-97-98-direct-evolution.cpp`. The exact zero-drift
+  §97 finalist has six worldlines, one $+|e|/6$ and one $-|e|/6$ site per ring,
+  net charge zero, all-positive senses and polarities, positive handedness,
+  maximum site speed $0.7811697<c_f$, and native coupling
+  $36\times0.22164267233087945=7.9791362039116605$. Its native-factory start
+  certifies all 36 ordered root and acceleration rows.
+- Direct control-relative evolution is horizon-blocked. The longest common
+  measured time is $0.335$ against $t\ge5/0.721318143353=6.931754$. Step and
+  prehistory-segment refinement move the usable endpoint materially; $h=8$
+  versus 10 is stable. Both `imx`/`mox` directions and amplitudes $10^{-3}$ and
+  $5\times10^{-4}$ were attempted, but the direction/magnitude ladders do not
+  share a converged linear-response window.
+- Refined short `imx` amplitude excess remains linear in $t$ with
+  $R^2\approx0.999$ and therefore measures nothing. The longer baseline begins
+  to curve but covers only $0.238$ expected e-foldings and is not stable under
+  the step/segment ladders. No diagnostic log slope is admitted as a sign.
+- The fail-closed wall is `numeric_precision_limit_exhausted` on evolving
+  ordered pairs. Raising MPFR from 512 to 1024 bits and selecting the existing
+  finite-width fallback do not move it. A paired $t=0.1$ pilot projects only
+  about 26 s for the required horizon at fixed step, so root completeness—not
+  wall time—is the blocker.
+- Disposition: §97 horizon-blocked; §98 `M-O-I` object-blocked; supra-$c_f$
+  deferred; no growth-confirmed or bounded/returning point; T2 quarantine
+  retained; magnitudes retired; T1 non-bind negative unchanged;
+  `retainedBranchClaim=false`; `scoreMovement=no_score_increase`. Evidence:
+  `evidence/section-97-98-direct-evolution-horizon-blocker-2026-07-14.md`.
+
+## 2026-07-14 — §86 analytic pinned-fold route certified; ladder remains stopped
+
+- The exact-$v=c_f$ self-pair now has a provenance-gated analytic
+  finite-width certificate. It preserves the quadratic causal-residual
+  cancellation and encloses the same Gaussian master-equation integral by a
+  midpoint value plus a certified first-derivative remainder.
+- A constructed exact fold is enclosed by an independent 90-digit quadrature.
+  Cell cost falls $37.9\times$ there and $100.3\times$ on the exact-V5 first
+  fold. Exact-V5 atomic-step wall time falls only $1.25\times$, from 35.72 s
+  to 28.50 s, because exact roots and temporal correction now dominate.
+- The route does not remove the feasibility wall: $10^{-3}$ and
+  $1.25\times10^{-4}$ steps fail the unchanged velocity budget, and tighter
+  quadrature does not move the error. The projected refined cycle remains
+  about 211 days.
+- §86 remains T2 quarantined, §90 remains T3 quarantined, and no slope is
+  promoted. The next accepted object is a pinned-fold-aware temporal
+  integrator or a stiffness/step-collapse certificate; not more trajectory
+  steps. Evidence:
+  `evidence/section-86-direct-evolution-blocker-2026-07-14.md`.
+
+## 2026-07-14 — §86 pinned-fold temporal onset certified; snapshot cost remains
+
+- The legacy full-step/two-half-step velocity error is first order because the
+  exact circular endpoint uses the sharp chart while every positive time after
+  departure uses the finite-width middle self-fold chart. The trapezoidal
+  corrector gave that measure-zero endpoint nonzero integration weight.
+- Central `src/eom` now binds the exact $v=c_f$ circular history fingerprint,
+  root-free open search, coincident-endpoint exclusion, memory boundary, sharp
+  start chart, and analytic fold route into a pinned-fold temporal-onset
+  certificate. Eligible paths use the implicit right-endpoint acceleration on
+  the first positive-duration substep; arbitrary histories and later substeps
+  are unchanged.
+- Exact-V5 error refinement approaches second order in velocity and third
+  order in position. The onset accepts $5\times10^{-4}$, $26.5\times$ the old
+  accepted step. A zero-rejection, atomically published probe reaches
+  $t=0.0025$ and recovers to $10^{-3}$ with zero uncertified root rows.
+- The old $6.4\times10^5$-step cycle projection was an estimator artifact.
+  The current demonstrated rail is about 6,032 steps and 3.05 days per cycle,
+  still too expensive for the full step/$h$/sampling/direction/magnitude
+  ladder. Exact-root/correction snapshot cost and the separate evolved-history
+  root-path defect remain ahead of renewed trajectories.
+- §86 remains T2 quarantined, §90 remains T3 quarantined, $0.199$ remains
+  non-authoritative, and $0.60113$ remains a seed transient. Evidence:
+  `evidence/section-86-direct-evolution-blocker-2026-07-14.md`.

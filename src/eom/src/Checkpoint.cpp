@@ -19,7 +19,7 @@
 namespace architrino::eom {
 namespace {
 
-constexpr char kCheckpointMagic[] = "EOMCPV1\n";
+constexpr char kCheckpointMagic[] = "EOMCPV2\n";
 constexpr std::size_t kMaximumTokenBytes = 16U * 1024U * 1024U;
 constexpr std::uint64_t kMaximumPathCount = UINT64_C(10000000);
 constexpr std::uint64_t kMaximumSegmentCount = UINT64_C(1000000000);
@@ -123,6 +123,21 @@ void append_history(
   append_string(bytes, path.path_id);
   append_string(bytes, path.charge);
   append_string(bytes, path.history.history_id());
+  const auto& circular =
+      path.history.uniform_circular_endpoint_certificate();
+  append_u64(bytes, circular.has_value() ? 1U : 0U);
+  if (circular.has_value()) {
+    append_string(bytes, circular->valid_start_time);
+    append_string(bytes, circular->valid_reception_time);
+    append_string(bytes, circular->maximum_segment_step);
+    append_string(bytes, circular->cylindrical_radius);
+    append_string(bytes, circular->height);
+    append_string(bytes, circular->angular_speed);
+    append_string(bytes, circular->tangential_speed);
+    append_string(bytes, circular->phase);
+    append_string(bytes, circular->tilt_x);
+    append_string(bytes, circular->tilt_y);
+  }
   append_u64(bytes, static_cast<std::uint64_t>(path.history.segments().size()));
   for (const auto& segment : path.history.segments()) {
     append_string(bytes, segment.t_start_token());
@@ -144,6 +159,25 @@ NativeCheckpointPath take_history(
   std::string path_id = take_string(bytes, cursor, payload_end);
   std::string charge = take_string(bytes, cursor, payload_end);
   std::string history_id = take_string(bytes, cursor, payload_end);
+  const std::uint64_t has_circular = take_u64(bytes, cursor, payload_end);
+  if (has_circular > 1U) {
+    throw std::invalid_argument("checkpoint circular certificate flag is invalid");
+  }
+  std::optional<UniformCircularHistoryRequest> circular_request;
+  if (has_circular == 1U) {
+    circular_request = UniformCircularHistoryRequest{
+        .t_start = take_string(bytes, cursor, payload_end),
+        .t_end = take_string(bytes, cursor, payload_end),
+        .maximum_segment_step = take_string(bytes, cursor, payload_end),
+        .cylindrical_radius = take_string(bytes, cursor, payload_end),
+        .height = take_string(bytes, cursor, payload_end),
+        .angular_speed = take_string(bytes, cursor, payload_end),
+        .tangential_speed = take_string(bytes, cursor, payload_end),
+        .phase = take_string(bytes, cursor, payload_end),
+        .tilt_x = take_string(bytes, cursor, payload_end),
+        .tilt_y = take_string(bytes, cursor, payload_end),
+    };
+  }
   const std::uint64_t segment_count = take_u64(bytes, cursor, payload_end);
   if (segment_count == 0U || segment_count > kMaximumSegmentCount ||
       segment_count > static_cast<std::uint64_t>(
@@ -167,16 +201,20 @@ NativeCheckpointPath take_history(
         std::move(t_start), std::move(t_end), std::move(coefficients),
         std::move(position_error), std::move(velocity_error));
   }
+  RetainedHistory history = circular_request.has_value()
+      ? RetainedHistory::restore_uniform_circular(
+            std::move(history_id), *circular_request, std::move(segments))
+      : RetainedHistory(std::move(history_id), std::move(segments));
   return {
       .path_id = std::move(path_id),
       .charge = std::move(charge),
-      .history = RetainedHistory(std::move(history_id), std::move(segments)),
+      .history = std::move(history),
   };
 }
 
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v1" ||
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v2" ||
       checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
@@ -201,10 +239,13 @@ std::runtime_error system_failure(const std::string& operation) {
 
 }  // namespace
 
-std::string native_evolution_model_fingerprint(
-    const NativeCoupledEvolutionRequest& request) {
+namespace {
+
+std::string model_fingerprint(
+    const NativeCoupledEvolutionRequest& request,
+    bool include_pinned_fold_controls) {
   std::uint64_t state = UINT64_C(14695981039346656037);
-  const std::vector<std::string> controls = {
+  std::vector<std::string> controls = {
       request.field_speed,
       request.coupling,
       request.root_tolerance,
@@ -234,10 +275,19 @@ std::string native_evolution_model_fingerprint(
       request.force_event_precision_escalation ? "1" : "0",
       std::to_string(request.max_correction_iterations),
       request.use_adaptive_step_growth ? "1" : "0",
-      request.use_certified_history_window ? "1" : "0",
-      kNativeIntegrationMethod,
-      kDeterministicReductionPolicy,
   };
+  if (include_pinned_fold_controls) {
+    controls.push_back(request.use_analytic_pinned_fold ? "1" : "0");
+    controls.push_back(request.use_correlated_self_chord ? "1" : "0");
+    controls.push_back(request.use_stable_circular_residual ? "1" : "0");
+    controls.push_back(
+        request.use_pinned_fold_aware_temporal_step ? "1" : "0");
+  }
+  controls.push_back(request.use_certified_history_window ? "1" : "0");
+  controls.push_back(request.use_pinned_fold_aware_temporal_step
+                         ? kNativeIntegrationMethod
+                         : kLegacyNativeIntegrationMethod);
+  controls.push_back(kDeterministicReductionPolicy);
   for (const auto& control : controls) {
     hash_token(state, control);
   }
@@ -247,6 +297,24 @@ std::string native_evolution_model_fingerprint(
     hash_token(state, path.charge);
   }
   return format_hash(state);
+}
+
+bool checkpoint_model_matches(
+    const NativeCoupledEvolutionRequest& request,
+    const NativeEvolutionCheckpoint& checkpoint) {
+  if (model_fingerprint(request, true) == checkpoint.model_fingerprint) {
+    return true;
+  }
+  return !request.use_analytic_pinned_fold &&
+      !request.use_pinned_fold_aware_temporal_step &&
+      model_fingerprint(request, false) == checkpoint.model_fingerprint;
+}
+
+}  // namespace
+
+std::string native_evolution_model_fingerprint(
+    const NativeCoupledEvolutionRequest& request) {
+  return model_fingerprint(request, true);
 }
 
 NativeEvolutionCheckpoint create_native_evolution_checkpoint(
@@ -259,7 +327,7 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
         "checkpoint source is not an atomic result for the request");
   }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v1",
+      .schema = "eom_native_evolution_checkpoint/v2",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,
@@ -445,9 +513,12 @@ NativeCoupledEvolutionCertificate resume_native_coupled_histories(
     const NativeEvolutionCheckpoint& checkpoint,
     const std::string& requested_end_time) {
   require_checkpoint_consistency(checkpoint);
-  if (native_evolution_model_fingerprint(request_template) !=
-      checkpoint.model_fingerprint) {
-    throw std::invalid_argument("checkpoint model fingerprint mismatch");
+  if (!checkpoint_model_matches(request_template, checkpoint)) {
+    throw std::invalid_argument(
+        "checkpoint model fingerprint mismatch expected=" +
+        checkpoint.model_fingerprint + " current=" +
+        model_fingerprint(request_template, true) + " legacy=" +
+        model_fingerprint(request_template, false));
   }
   NativeCoupledEvolutionRequest resumed = request_template;
   resumed.run_id = checkpoint.run_id;

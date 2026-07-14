@@ -1,7 +1,7 @@
 # Dispatch Packet — §97/§98 Flutter Re-Run on the Validated EOM Engine
 
 **Date:** 2026-07-14
-**Status:** dispatched
+**Status:** returned horizon-blocked on 2026-07-14; quarantine retained
 **Re-anchors:** the §97/§98 flutter magnitudes, quarantined in
 [claims-triage-ledger-2026-07-12.md](../app-solver/claims-triage-ledger-2026-07-12.md)
 as T2 **high priority** (self-labeled unanchored — the worst-footed T2 row).
@@ -167,3 +167,75 @@ Closure goal (next): carry the same direct-evolution sign method to the
 remaining T2 flutter rows in ledger order (§99 anchored pencil, §92/§93,
 §88/§89, §57/§59), taking the cheap sub-$c_f$ rows first and leaving every
 $v=c_f$-pinned and supra-$c_f$ row queued behind the pinned-fold work.
+
+---
+
+## Adjudication — 2026-07-14 (on the horizon-blocked return)
+
+**The campaign was ill-posed, and the error is this packet's, not the run's.**
+The execution was disciplined: faithful object, no rebuilt pencil, no relaxed
+tolerances, the linear-in-$t$ check applied and honored, binding untouched,
+targets triaged against their own specs before evolving. The report should be
+read as a correct refusal, not a failure.
+
+### The §97/§98 flutter claim is void, not quarantined
+
+This packet asked for the **sign of the growth of a perturbation** about the
+§97 finalist. That question has no referent. The evolved point carries a
+recorded $\epsilon_{\rm bind}=0.118508409171$ against a gate of $0.03$: its net
+radial force is $12\%$ away from what its own circular motion requires. It is
+not an equilibrium. There is nothing to be perturbed about.
+
+The ledger's T2 definition already bars this. T2 verdicts are "valid only if
+(a) the pencil is anchored to a hand-checkable case **and (b) it linearizes
+about an actually force-balanced configuration**." Condition (b) fails for
+every §97/§98 point **by their own recorded $\epsilon_{\rm bind}$** — that is
+precisely the content of the T1 non-bind negative. §97's three fully scored
+finalists fail bind. §98's Part 1 branch minima and both Part 2 scans found
+zero binding points; point $852$ was scored at $\epsilon_{\rm bind}=0.999999995$,
+i.e. no force balance whatsoever, and still received a
+$\operatorname{Re}\lambda_{\rm lead}$.
+
+One may linearize about a non-equilibrium *trajectory* (a tangent map about the
+path actually followed). §97/§98 did not do that. They linearized about a circle
+the object does not follow, so the linearization carries a nonzero constant term
+that dominates the eigenvalue structure. The pencil describes nothing — at any
+anchoring, at any magnitude, of either sign.
+
+**Disposition: the §97/§98 flutter row is retired as void.** Not re-run, not
+re-anchored, not re-scored. Remove it from the re-run worklist.
+
+**This costs the corpus nothing.** §97/§98's load-bearing contribution is the
+T1 negative — the isolated triple does not bind — which never depended on the
+pencil. Flutter-freeness was always moot where nothing binds: a stability
+verdict on a non-existent equilibrium adds no evidence for or against the
+strategic pivot to a constitutive Noether sea. Retiring the flutter row removes
+a claim that was never carrying weight, and removes a re-run that could only
+have produced ill-posed numbers.
+
+### What the evolution did establish
+
+The run is not empty. The §97 finalist, evolved under the master equation from a
+certified start with no imposed motion, **departs its circle immediately and
+drives itself into a root-completeness wall within $0.04$ of a period.** That is
+an independent direct-evolution confirmation of the T1 non-bind negative,
+obtained on the new engine. It is worth recording as such. It says nothing about
+flutter, because flutter is undefined there.
+
+### Standing correction to the method
+
+Before any future direct-evolution stability dispatch: **confirm the target is
+force-balanced first.** A T2 stability re-run is only meaningful on a
+configuration that passes the bind gate. Where the T1 negative says nothing
+binds, the corresponding T2 flutter row is void by construction and must be
+retired rather than re-run. Apply this test to the remaining T2 tier before
+dispatching any of it — §96's flutter row sits on a recorded non-bind and is
+the next candidate for the same retirement.
+
+### The precision wall is a separate matter and is worth diagnosing
+
+The wall reported here — `numeric_precision_limit_exhausted`, unmoved from $512$
+to $1024$ MPFR bits — is not explained by precision, and it is not explained by
+this packet's ill-posedness either. It should be resolved on its own terms
+because the same class of wall gates §86 and the rest of T2. See
+[eom-root-completeness-wall-diagnostic-dispatch-packet.md](../app-solver/eom-root-completeness-wall-diagnostic-dispatch-packet.md).

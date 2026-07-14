@@ -477,12 +477,25 @@ class _SubstepAttempt:
 def _finite_width_fallback_allowed(
     certificate: RootCompletenessCertificate,
 ) -> bool:
+    reasons = {cell.reason for cell in certificate.unresolved_cells}
+    same_retained_history = (
+        certificate.receiver_history_id == certificate.source_history_id
+        and certificate.receiver_history_digest
+        == certificate.source_history_digest
+    )
     return (
         certificate.status == "uncertified"
         and bool(certificate.unresolved_cells)
-        and all(
-            cell.reason == "source_normal_interval_contains_zero"
-            for cell in certificate.unresolved_cells
+        and (
+            reasons <= {"source_normal_interval_contains_zero"}
+            or (
+                same_retained_history
+                and reasons
+                <= {
+                    "source_normal_interval_contains_zero",
+                    "self_root_cluster_requires_finite_width",
+                }
+            )
         )
     )
 

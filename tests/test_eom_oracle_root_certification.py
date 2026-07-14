@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import unittest
-from decimal import Decimal
+from decimal import Decimal, localcontext
 
 from scripts.eom.oracle.certified_history import (
     CubicHistorySegment,
@@ -102,6 +102,103 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertLessEqual(certificate.roots[0].width, Decimal("1e-30"))
         self.assertEqual(certificate.roots[0].source_normal.strict_sign, 1)
         self.assertFalse(certificate.unresolved_cells)
+
+    def test_uncertain_root_at_continuous_segment_join_is_certified(self) -> None:
+        receiver = history(
+            "join-receiver",
+            segment(t_start="-1", t_end="1", x=("1", "0", "0", "0")),
+        )
+        source = history(
+            "join-source",
+            segment(
+                t_start="-1",
+                t_end="0",
+                x=("0", "0", "0", "0"),
+                position_error="1e-9",
+            ),
+            segment(
+                t_start="0",
+                t_end="1",
+                x=("0", "0", "0", "0"),
+                position_error="1e-9",
+            ),
+        )
+        certificate = certify_causal_roots(
+            receiver=receiver,
+            source=source,
+            reception_time="1",
+            field_speed="1",
+            search_lower="-1",
+            search_upper="0.5",
+            root_tolerance="1e-5",
+        )
+        self.assertEqual(certificate.status, "certified_complete")
+        self.assertTrue(certificate.root_free_complement)
+        self.assertEqual(len(certificate.roots), 1)
+        root = certificate.roots[0]
+        self.assertLessEqual(root.lower, Decimal("0"))
+        self.assertGreaterEqual(root.upper, Decimal("0"))
+        self.assertLessEqual(root.width, Decimal("1e-5"))
+        self.assertEqual(root.segment_indices, (0, 1))
+        self.assertEqual(root.source_normal.strict_sign, 1)
+
+    def test_v5_cubic_endpoint_tangency_and_departure_root_migration(self) -> None:
+        with localcontext() as context:
+            context.prec = 90
+            omega = Decimal("1.0415596039524766")
+            rho = Decimal(1) / omega
+
+            def sine(value: Decimal) -> Decimal:
+                term = value
+                total = value
+                index = 1
+                while True:
+                    term = -(term * value * value) / Decimal(
+                        (2 * index) * (2 * index + 1)
+                    )
+                    updated = total + term
+                    if updated == total:
+                        return +updated
+                    total = updated
+                    index += 1
+
+            def residual(delay: Decimal, epsilon: Decimal) -> Decimal:
+                departure_omega = omega * (Decimal(1) + epsilon)
+                return (
+                    Decimal(2)
+                    * rho
+                    * sine(departure_omega * delay / Decimal(2))
+                    - delay
+                )
+
+            self.assertEqual(rho * omega, Decimal(1))
+            probe = Decimal("1e-4")
+            cubic_coefficient = -(rho * omega**3) / Decimal(24)
+            self.assertLess(
+                abs(residual(probe, Decimal(0)) / probe**3 - cubic_coefficient),
+                Decimal("1e-11"),
+            )
+
+            def positive_departure_root(epsilon: Decimal) -> Decimal:
+                lower = Decimal("1e-30")
+                upper = Decimal("0.1")
+                self.assertGreater(residual(lower, epsilon), 0)
+                self.assertLess(residual(upper, epsilon), 0)
+                for _ in range(320):
+                    midpoint = (lower + upper) / Decimal(2)
+                    if residual(midpoint, epsilon) > 0:
+                        lower = midpoint
+                    else:
+                        upper = midpoint
+                return (lower + upper) / Decimal(2)
+
+            root_1e6 = positive_departure_root(Decimal("1e-6"))
+            root_1e4 = positive_departure_root(Decimal("1e-4"))
+            self.assertGreater(root_1e6, Decimal("1e-3"))
+            self.assertLess(root_1e6, Decimal("1e-2"))
+            self.assertGreater(root_1e4, Decimal("1e-2"))
+            self.assertLess(root_1e4, Decimal("1e-1"))
+            self.assertGreater(root_1e4, Decimal(5) * root_1e6)
 
     def test_two_roots_are_separated_and_complement_is_excluded(self) -> None:
         # x(S) = 3-S + (S-1)(S-2) = S^2 - 4S + 5, so
@@ -238,6 +335,45 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertEqual(certificate.status, "uncertified")
         self.assertTrue(certificate.unresolved_cells)
 
+    def test_small_reconstruction_uncertainty_uses_tolerance_sign_bracket(self) -> None:
+        receiver = history(
+            "uncertain-receiver",
+            segment(
+                t_start="-0.5",
+                t_end="0.5",
+                x=("0.5625", "0", "0", "0"),
+                position_error="1e-9",
+            ),
+        )
+        source = history(
+            "uncertain-source-small",
+            segment(
+                t_start="-0.5",
+                t_end="0.5",
+                x=("0", "0", "0", "0"),
+                position_error="1e-9",
+            ),
+        )
+        certificate = certify_causal_roots(
+            receiver=receiver,
+            source=source,
+            reception_time="0.5",
+            field_speed="1",
+            search_lower="-0.5",
+            search_upper="0.5",
+            root_tolerance="1e-5",
+            max_depth=256,
+            max_cells=500000,
+        )
+        self.assertEqual(certificate.status, "certified_complete")
+        self.assertTrue(certificate.root_free_complement)
+        self.assertEqual(len(certificate.roots), 1)
+        root = certificate.roots[0]
+        self.assertLessEqual(root.lower, Decimal("-0.0625"))
+        self.assertGreaterEqual(root.upper, Decimal("-0.0625"))
+        self.assertLessEqual(root.width, Decimal("1e-5"))
+        self.assertEqual(root.source_normal.strict_sign, 1)
+
     def test_memory_boundary_root_prevents_complete_status(self) -> None:
         # x(S) = 3-S + S(S-1), so g(S)=S(S-1).
         boundary_source = history(
@@ -323,7 +459,7 @@ class CertifiedRetainedHistoryRootTests(unittest.TestCase):
         self.assertTrue(certificate.coincident_endpoint_excluded)
         self.assertTrue(
             any(
-                cell.reason == "H0_endpoint_with_uniform_subfield_speed_bound"
+                cell.reason == "self_path_uniformly_subfield_from_emission"
                 for cell in certificate.excluded_cells
             )
         )

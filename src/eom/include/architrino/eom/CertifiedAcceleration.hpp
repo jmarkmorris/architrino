@@ -34,6 +34,9 @@ struct NativePairAccelerationRequest {
   unsigned initial_mpfr_bits = 128;
   unsigned maximum_mpfr_bits = 512;
   bool force_precision_escalation = false;
+  bool use_analytic_pinned_fold = true;
+  bool use_correlated_self_chord = true;
+  bool use_stable_circular_residual = true;
 };
 
 struct NativeAccelerationRow {
@@ -74,6 +77,9 @@ struct NativePairAccelerationCertificate {
   std::string root_certificate_row_id;
   std::string reduction_policy;
   std::size_t quadrature_visited_cells;
+  std::size_t analytic_fold_visited_cells;
+  std::size_t correlated_self_chord_visited_cells = 0;
+  std::size_t stable_circular_residual_visited_cells = 0;
   bool acceleration_precision_escalated;
   unsigned achieved_acceleration_precision_bits;
   bool reconstruction_matches;

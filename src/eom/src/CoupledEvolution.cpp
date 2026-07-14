@@ -44,6 +44,13 @@ const NativePairAccelerationCertificate& snapshot_pair(
     const std::string& receiver,
     const std::string& source);
 
+const char* integration_method(
+    const NativeCoupledEvolutionRequest& request) {
+  return request.use_pinned_fold_aware_temporal_step
+      ? kNativeIntegrationMethod
+      : kLegacyNativeIntegrationMethod;
+}
+
 double scalar_token(const std::string& token) {
   return Interval::decimal_token(token).midpoint();
 }
@@ -301,12 +308,94 @@ std::vector<std::pair<std::string, std::string>> changed_topology_pairs(
   return changed;
 }
 
+std::optional<NativeEndpointRootContinuationCertificate>
+certify_coincident_endpoint_root_continuation_impl(
+    const NativeAccelerationSnapshotCertificate& start,
+    const NativeAccelerationSnapshotCertificate& end,
+    const std::string& receiver_id,
+    const std::string& source_id) {
+  if (receiver_id != source_id) return std::nullopt;
+  const auto find_row = [&](const auto& snapshot)
+      -> const NativeSnapshotRootRow* {
+    const auto found = std::find_if(
+        snapshot.root_certificates.begin(),
+        snapshot.root_certificates.end(), [&](const auto& row) {
+          return row.receiver_path_id == receiver_id &&
+              row.source_path_id == source_id;
+        });
+    return found == snapshot.root_certificates.end() ? nullptr : &*found;
+  };
+  const auto* start_row = find_row(start);
+  const auto* end_row = find_row(end);
+  if (start_row == nullptr || end_row == nullptr) return std::nullopt;
+  const auto& start_certificate = start_row->certificate;
+  const auto& end_certificate = end_row->certificate;
+  if (start_certificate.status != "certified_complete" ||
+      end_certificate.status != "certified_complete" ||
+      !start_certificate.root_free_complement ||
+      !end_certificate.root_free_complement ||
+      start_certificate.memory_boundary_contact ||
+      end_certificate.memory_boundary_contact ||
+      !start_certificate.coincident_endpoint_excluded ||
+      !end_certificate.coincident_endpoint_excluded) {
+    return std::nullopt;
+  }
+  std::vector<int> start_signs;
+  std::vector<int> end_signs;
+  for (const auto& root : start_certificate.roots) {
+    start_signs.push_back(root.source_normal_sign);
+  }
+  for (const auto& root : end_certificate.roots) {
+    end_signs.push_back(root.source_normal_sign);
+  }
+  std::sort(start_signs.begin(), start_signs.end());
+  std::sort(end_signs.begin(), end_signs.end());
+  const auto& smaller = start_signs.size() < end_signs.size()
+      ? start_signs : end_signs;
+  const auto& larger = start_signs.size() < end_signs.size()
+      ? end_signs : start_signs;
+  if (larger.size() != smaller.size() + 1U) return std::nullopt;
+  int boundary_sign = 0;
+  bool matched = false;
+  for (std::size_t omitted = 0; omitted < larger.size(); ++omitted) {
+    std::vector<int> candidate = larger;
+    boundary_sign = candidate[omitted];
+    candidate.erase(candidate.begin() + static_cast<std::ptrdiff_t>(omitted));
+    if (candidate == smaller) {
+      matched = true;
+      break;
+    }
+  }
+  if (!matched || boundary_sign == 0) return std::nullopt;
+  // Complete complements rule out a missed interior root, and the clear
+  // memory boundary rules out entry from retained-history truncation.  An
+  // interior fold creates or removes an opposite-sign pair.  The sole
+  // remaining boundary for this one-root self-pair change is the explicitly
+  // excluded coincident endpoint.
+  return NativeEndpointRootContinuationCertificate{
+      .schema = "eom_native_endpoint_root_continuation_certificate/v0",
+      .status = "certified_complete",
+      .receiver_path_id = receiver_id,
+      .source_path_id = source_id,
+      .start_root_count = start_signs.size(),
+      .end_root_count = end_signs.size(),
+      .boundary_branch_sign = boundary_sign,
+      .start_root_free_complement = true,
+      .end_root_free_complement = true,
+      .memory_boundary_clear = true,
+      .coincident_endpoint_excluded = true,
+      .classification = "coincident_endpoint_root_continuation",
+      .failure_code = "",
+  };
+}
+
 std::vector<NativePublishedPath> append_candidate_segments(
     const std::vector<NativePublishedPath>& histories,
     const std::string& start_time,
     const std::string& end_time,
     const SnapshotTotals& start_acceleration,
     const SnapshotTotals& end_acceleration,
+    const std::set<std::string>& right_endpoint_acceleration_paths,
     NativeCorrectedSubstepTiming* timing) {
   const auto timing_start = SteadyClock::now();
   const double start = scalar_token(start_time);
@@ -334,7 +423,9 @@ std::vector<NativePublishedPath> append_candidate_segments(
     CubicCoefficientTokens coefficients{};
     for (std::size_t axis = 0; axis < 3; ++axis) {
       const double acceleration_start =
-          start_found->second[axis].midpoint();
+          right_endpoint_acceleration_paths.contains(path.path_id)
+          ? end_found->second[axis].midpoint()
+          : start_found->second[axis].midpoint();
       const double acceleration_end = end_found->second[axis].midpoint();
       coefficients[axis] = {
           decimal_token(position[axis]),
@@ -436,7 +527,9 @@ NativeCorrectedSubstepCertificate failed_substep_certificate(
     std::size_t correction_iterations,
     std::optional<double> correction_error,
     const std::string& failure_code,
-    const std::optional<std::vector<NativePublishedPath>>& candidate_histories) {
+    const std::optional<std::vector<NativePublishedPath>>& candidate_histories,
+    std::vector<NativePinnedFoldTemporalStepCertificate>
+        pinned_fold_onset_certificates = {}) {
   return {
       .schema = "eom_native_corrected_substep_certificate/v0",
       .status = "rejected",
@@ -449,11 +542,74 @@ NativeCorrectedSubstepCertificate failed_substep_certificate(
       .failure_code = failure_code,
       .event_impulses = {},
       .regulator_convergence_certificates = {},
+      .endpoint_root_continuations = {},
+      .pinned_fold_onset_certificates =
+          std::move(pinned_fold_onset_certificates),
       .candidate_history_fingerprints =
           candidate_histories.has_value()
               ? fingerprints(*candidate_histories)
               : std::vector<NativeHistoryFingerprint>{},
   };
+}
+
+std::vector<NativePinnedFoldTemporalStepCertificate>
+certified_pinned_fold_onset_certificates(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const NativeAccelerationSnapshotCertificate& start_snapshot,
+    const std::string& start_time) {
+  std::vector<NativePinnedFoldTemporalStepCertificate> result;
+  if (!request.use_pinned_fold_aware_temporal_step ||
+      !request.use_analytic_pinned_fold ||
+      request.chart_policy != "sharp_with_finite_width_fallback" ||
+      start_snapshot.status != "certified_complete") {
+    return result;
+  }
+  for (const auto& path : histories) {
+    const auto& circular =
+        path.history.uniform_circular_endpoint_certificate();
+    if (!circular.has_value() ||
+        !numeric_equal(circular->valid_reception_time, start_time) ||
+        !numeric_equal(circular->tangential_speed, request.field_speed)) {
+      continue;
+    }
+    const auto root = std::find_if(
+        start_snapshot.root_certificates.begin(),
+        start_snapshot.root_certificates.end(), [&](const auto& row) {
+          return row.receiver_path_id == path.path_id &&
+              row.source_path_id == path.path_id;
+        });
+    if (root == start_snapshot.root_certificates.end() ||
+        root->certificate.status != "certified_complete" ||
+        !root->certificate.root_free_complement ||
+        root->certificate.memory_boundary_contact ||
+        !root->certificate.coincident_endpoint_excluded ||
+        !root->certificate.roots.empty() ||
+        snapshot_pair(start_snapshot, path.path_id, path.path_id).chart !=
+            "sharp") {
+      continue;
+    }
+    result.push_back({
+        .schema = "eom_native_pinned_fold_temporal_step_certificate/v0",
+        .status = "certified_complete",
+        .path_id = path.path_id,
+        .onset_time = start_time,
+        .history_fingerprint = path.history.provenance_fingerprint(),
+        .tangential_speed = circular->tangential_speed,
+        .field_speed = request.field_speed,
+        .start_root_status = root->certificate.status,
+        .start_root_count = root->certificate.roots.size(),
+        .start_root_free_complement =
+            root->certificate.root_free_complement,
+        .memory_boundary_clear = !root->certificate.memory_boundary_contact,
+        .coincident_endpoint_excluded =
+            root->certificate.coincident_endpoint_excluded,
+        .start_acceleration_chart = "sharp",
+        .temporal_rule =
+            "right_endpoint_acceleration_on_measure_zero_onset",
+    });
+  }
+  return result;
 }
 
 SubstepAttempt corrected_substep_impl(
@@ -501,9 +657,16 @@ SubstepAttempt corrected_substep_impl(
         std::nullopt,
     };
   }
+  const auto pinned_fold_onset_certificates =
+      certified_pinned_fold_onset_certificates(
+          request, histories, start_snapshot, start_time);
+  std::set<std::string> pinned_fold_onset_path_set;
+  for (const auto& certificate : pinned_fold_onset_certificates) {
+    pinned_fold_onset_path_set.insert(certificate.path_id);
+  }
   const SnapshotTotals start_totals = snapshot_totals(start_snapshot);
   auto predictor_histories = append_candidate_segments(
-      histories, start_time, end_time, start_totals, start_totals, timing);
+      histories, start_time, end_time, start_totals, start_totals, {}, timing);
   auto predictor_snapshot = certify_native_acceleration_snapshot(
       request, predictor_histories, end_time);
   if (predictor_snapshot.status != "certified_complete") {
@@ -514,7 +677,7 @@ SubstepAttempt corrected_substep_impl(
         failed_substep_certificate(
             start_time, end_time, std::move(start_snapshot),
             std::move(predictor_snapshot), 0, std::nullopt, failure,
-            predictor_histories),
+            predictor_histories, pinned_fold_onset_certificates),
         std::nullopt,
     };
   }
@@ -528,7 +691,8 @@ SubstepAttempt corrected_substep_impl(
   for (std::size_t iteration = 1;
        iteration <= request.max_correction_iterations; ++iteration) {
     auto candidate_histories = append_candidate_segments(
-        histories, start_time, end_time, start_totals, endpoint_guess, timing);
+        histories, start_time, end_time, start_totals, endpoint_guess,
+        pinned_fold_onset_path_set, timing);
     auto endpoint_snapshot = certify_native_acceleration_snapshot(
         request, candidate_histories, end_time);
     if (endpoint_snapshot.status != "certified_complete") {
@@ -539,7 +703,7 @@ SubstepAttempt corrected_substep_impl(
           failed_substep_certificate(
               start_time, end_time, std::move(start_snapshot),
               std::move(endpoint_snapshot), iteration, correction_error,
-              failure, candidate_histories),
+              failure, candidate_histories, pinned_fold_onset_certificates),
           std::nullopt,
       };
     }
@@ -551,6 +715,8 @@ SubstepAttempt corrected_substep_impl(
       std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
       std::vector<NativeRegulatorConvergenceCertificate>
           regulator_convergence_certificates;
+      std::vector<NativeEndpointRootContinuationCertificate>
+          endpoint_root_continuations;
       if (topology_signature(start_snapshot) !=
           topology_signature(endpoint_snapshot)) {
         if (request.chart_policy == "sharp") {
@@ -558,13 +724,22 @@ SubstepAttempt corrected_substep_impl(
               failed_substep_certificate(
                   start_time, end_time, std::move(start_snapshot),
                   std::move(endpoint_snapshot), iteration, correction_error,
-                  "root_event_requires_subdivision", candidate_histories),
+                  "root_event_requires_subdivision", candidate_histories,
+                  pinned_fold_onset_certificates),
               std::nullopt,
           };
         }
         const double step = scalar_token(end_time) - scalar_token(start_time);
         for (const auto& [receiver_id, source_id] :
              changed_topology_pairs(start_snapshot, endpoint_snapshot)) {
+          const auto endpoint_continuation =
+              certify_coincident_endpoint_root_continuation_impl(
+                  start_snapshot, endpoint_snapshot,
+                  receiver_id, source_id);
+          if (endpoint_continuation.has_value()) {
+            endpoint_root_continuations.push_back(*endpoint_continuation);
+            continue;
+          }
           auto regulator = certify_native_regulator_convergence(
               request,
               path_history(candidate_histories, receiver_id),
@@ -582,10 +757,13 @@ SubstepAttempt corrected_substep_impl(
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
-                "regulator_convergence_failed", candidate_histories);
+                "regulator_convergence_failed", candidate_histories,
+                pinned_fold_onset_certificates);
             failed.event_impulses = std::move(event_impulses);
             failed.regulator_convergence_certificates =
                 std::move(regulator_convergence_certificates);
+            failed.endpoint_root_continuations =
+                std::move(endpoint_root_continuations);
             return {std::move(failed), std::nullopt};
           }
           const auto& start_pair =
@@ -608,10 +786,13 @@ SubstepAttempt corrected_substep_impl(
             auto failed = failed_substep_certificate(
                 start_time, end_time, std::move(start_snapshot),
                 std::move(endpoint_snapshot), iteration, correction_error,
-                "event_impulse_requires_subdivision", candidate_histories);
+                "event_impulse_requires_subdivision", candidate_histories,
+                pinned_fold_onset_certificates);
             failed.event_impulses = std::move(event_impulses);
             failed.regulator_convergence_certificates =
                 std::move(regulator_convergence_certificates);
+            failed.endpoint_root_continuations =
+                std::move(endpoint_root_continuations);
             return {std::move(failed), std::nullopt};
           }
           event_impulses.push_back(std::move(event));
@@ -632,6 +813,9 @@ SubstepAttempt corrected_substep_impl(
           .event_impulses = std::move(event_impulses),
           .regulator_convergence_certificates =
               std::move(regulator_convergence_certificates),
+          .endpoint_root_continuations =
+              std::move(endpoint_root_continuations),
+          .pinned_fold_onset_certificates = pinned_fold_onset_certificates,
           .candidate_history_fingerprints = fingerprints(candidate_histories),
       };
       return {std::move(certificate), std::move(candidate_histories)};
@@ -642,7 +826,8 @@ SubstepAttempt corrected_substep_impl(
       failed_substep_certificate(
           start_time, end_time, std::move(start_snapshot),
           std::move(last_snapshot), request.max_correction_iterations,
-          correction_error, "coupled_correction_failed", last_histories),
+          correction_error, "coupled_correction_failed", last_histories,
+          pinned_fold_onset_certificates),
       std::nullopt,
   };
 }
@@ -818,7 +1003,7 @@ NativeAtomicStepCertificate rejected_step(
       .local_errors = std::move(local_errors),
       .failure_code = failure_code,
       .evidence_status = "failed",
-      .integration_method = kNativeIntegrationMethod,
+      .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
       .publication_atomic = same_fingerprints(
           input_fingerprints, published_fingerprints),
@@ -982,6 +1167,271 @@ IntervalVector event_integrand(
   return scale(signed_scale, kernel);
 }
 
+std::optional<IntervalVector> centered_event_rectangle_integral(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& receiver_charge,
+    const std::string& source_charge,
+    const Interval& reception,
+    const Interval& emission) {
+  const IntervalVector receiver_position =
+      receiver.history.position_hull(reception);
+  const IntervalVector receiver_velocity =
+      receiver.history.velocity_hull(reception);
+  const IntervalVector source_position =
+      source.history.position_hull(emission);
+  const IntervalVector source_velocity =
+      source.history.velocity_hull(emission);
+  const IntervalVector displacement =
+      subtract(receiver_position, source_position);
+  const Interval separation = norm(displacement);
+  if (separation.contains_zero()) return std::nullopt;
+
+  const IntervalVector direction = divide(displacement, separation);
+  const Interval source_radial_speed = dot(direction, source_velocity);
+  const Interval field_speed = Interval::decimal_token(request.field_speed);
+  const Interval residual_derivative = field_speed - source_radial_speed;
+  const IntervalVector displacement_derivative =
+      scale(Interval::point(-1.0), source_velocity);
+  const IntervalVector direction_derivative = divide(
+      add(displacement_derivative,
+          scale(source_radial_speed, direction)),
+      separation);
+  const Interval receiver_normal =
+      field_speed - dot(direction, receiver_velocity);
+  const Interval receiver_normal_derivative =
+      Interval::point(0.0) -
+      dot(direction_derivative, receiver_velocity);
+  Interval receiver_strength_derivative = receiver_normal_derivative;
+  if (receiver_normal.upper() < 0.0) {
+    receiver_strength_derivative =
+        Interval::point(0.0) - receiver_normal_derivative;
+  } else if (receiver_normal.contains_zero()) {
+    const double bound = std::max(
+        std::abs(receiver_normal_derivative.lower()),
+        std::abs(receiver_normal_derivative.upper()));
+    receiver_strength_derivative = Interval(-bound, bound);
+  }
+  const Interval receiver_strength = interval_absolute(receiver_normal);
+
+  const Interval core_scale = Interval::decimal_token(request.core_scale);
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const Interval radial_three_halves =
+      radial_square * interval_sqrt(radial_square);
+  const Interval radial_five_halves =
+      interval_square(radial_square) * interval_sqrt(radial_square);
+  const IntervalVector kernel = divide(displacement, radial_three_halves);
+  const Interval displacement_dot_derivative =
+      dot(displacement, displacement_derivative);
+  const IntervalVector kernel_derivative = add(
+      divide(displacement_derivative, radial_three_halves),
+      scale(
+          Interval::point(-3.0) * displacement_dot_derivative /
+              radial_five_halves,
+          displacement));
+
+  const Interval residual =
+      separation - field_speed * (reception - emission);
+  const Interval causal_width =
+      Interval::decimal_token(request.causal_width);
+  const Interval exponent =
+      Interval::point(0.0) -
+      interval_square(residual) /
+          (Interval::point(2.0) * interval_square(causal_width));
+  const Interval pi(3.1415926535897931, 3.1415926535897936);
+  const Interval mollifier =
+      interval_exp(exponent) /
+      (interval_sqrt(Interval::point(2.0) * pi) * causal_width);
+  const Interval mollifier_derivative =
+      mollifier *
+      (Interval::point(0.0) -
+       residual * residual_derivative / interval_square(causal_width));
+  const Interval signed_charge_scale =
+      Interval::decimal_token(request.coupling) *
+      Interval::decimal_token(receiver_charge) *
+      Interval::decimal_token(source_charge);
+  const IntervalVector derivative = scale(
+      signed_charge_scale,
+      add(
+          add(
+              scale(receiver_strength_derivative * mollifier, kernel),
+              scale(receiver_strength * mollifier, kernel_derivative)),
+          scale(receiver_strength * mollifier_derivative, kernel)));
+
+  const double midpoint = emission.midpoint();
+  IntervalVector result = scale(
+      Interval::point(emission.upper() - emission.lower()),
+      event_integrand(
+          request, receiver, source, receiver_charge, source_charge,
+          reception, Interval::point(midpoint)));
+  const double emission_width = emission.upper() - emission.lower();
+  const double remainder_scale =
+      emission_width * emission_width * 0.25;
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    const double derivative_bound = std::max(
+        std::abs(derivative[axis].lower()),
+        std::abs(derivative[axis].upper()));
+    result[axis] =
+        result[axis].inflate(derivative_bound * remainder_scale);
+  }
+  return scale(Interval::point(reception.width()), result);
+}
+
+Interval normal_cdf_interval(
+    const Interval& residual, const Interval& causal_width) {
+  const Interval argument = residual /
+      (interval_sqrt(Interval::point(2.0)) * causal_width);
+  return Interval::point(0.5) *
+      (Interval::point(1.0) + interval_erf(argument));
+}
+
+std::optional<IntervalVector> monotone_event_rectangle_integral(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& receiver_charge,
+    const std::string& source_charge,
+    const Interval& reception,
+    const Interval& emission) {
+  const IntervalVector receiver_position =
+      receiver.history.position_hull(reception);
+  const IntervalVector receiver_velocity =
+      receiver.history.velocity_hull(reception);
+  const IntervalVector source_position =
+      source.history.position_hull(emission);
+  const IntervalVector source_velocity =
+      source.history.velocity_hull(emission);
+  const IntervalVector displacement =
+      subtract(receiver_position, source_position);
+  const Interval separation = norm(displacement);
+  if (separation.contains_zero()) return std::nullopt;
+  const IntervalVector direction = divide(displacement, separation);
+  const Interval field_speed = Interval::decimal_token(request.field_speed);
+  const Interval residual_derivative =
+      field_speed - dot(direction, source_velocity);
+  if (residual_derivative.contains_zero()) return std::nullopt;
+
+  const auto endpoint_residual = [&](double time) {
+    const Interval emission_point = Interval::point(time);
+    return norm(subtract(
+               receiver_position,
+               source.history.position_hull(emission_point))) -
+        field_speed * (reception - emission_point);
+  };
+  Interval first_residual = endpoint_residual(emission.lower());
+  Interval second_residual = endpoint_residual(emission.upper());
+  if (residual_derivative.upper() < 0.0) {
+    std::swap(first_residual, second_residual);
+  }
+  const Interval causal_width =
+      Interval::decimal_token(request.causal_width);
+  const Interval first_cdf =
+      normal_cdf_interval(first_residual, causal_width);
+  const Interval second_cdf =
+      normal_cdf_interval(second_residual, causal_width);
+  const Interval raw_mass = second_cdf - first_cdf;
+  const Interval mass(
+      std::max(0.0, raw_mass.lower()),
+      std::max(0.0, raw_mass.upper()));
+  const Interval mollifier_integral =
+      mass / interval_absolute(residual_derivative);
+
+  const Interval core_scale = Interval::decimal_token(request.core_scale);
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const IntervalVector kernel = divide(
+      displacement, radial_square * interval_sqrt(radial_square));
+  const Interval receiver_strength = interval_absolute(
+      field_speed - dot(direction, receiver_velocity));
+  const Interval signed_charge_scale =
+      Interval::decimal_token(request.coupling) *
+      Interval::decimal_token(receiver_charge) *
+      Interval::decimal_token(source_charge);
+  IntervalVector result = scale(
+      Interval::point(reception.width()),
+      scale(
+          signed_charge_scale * receiver_strength * mollifier_integral,
+          kernel));
+
+  const IntervalVector displacement_derivative =
+      scale(Interval::point(-1.0), source_velocity);
+  const IntervalVector direction_derivative = divide(
+      add(displacement_derivative,
+          scale(dot(direction, source_velocity), direction)),
+      separation);
+  const Interval receiver_normal =
+      field_speed - dot(direction, receiver_velocity);
+  const Interval receiver_normal_derivative =
+      Interval::point(0.0) -
+      dot(direction_derivative, receiver_velocity);
+  Interval receiver_strength_derivative = receiver_normal_derivative;
+  if (receiver_normal.upper() < 0.0) {
+    receiver_strength_derivative =
+        Interval::point(0.0) - receiver_normal_derivative;
+  } else if (receiver_normal.contains_zero()) {
+    const double bound = std::max(
+        std::abs(receiver_normal_derivative.lower()),
+        std::abs(receiver_normal_derivative.upper()));
+    receiver_strength_derivative = Interval(-bound, bound);
+  }
+  const Interval radial_five_halves =
+      interval_square(radial_square) * interval_sqrt(radial_square);
+  const IntervalVector kernel_derivative = add(
+      divide(displacement_derivative,
+             radial_square * interval_sqrt(radial_square)),
+      scale(
+          Interval::point(-3.0) *
+              dot(displacement, displacement_derivative) /
+              radial_five_halves,
+          displacement));
+  const IntervalVector prefactor_derivative = scale(
+      signed_charge_scale,
+      add(
+          scale(receiver_strength_derivative, kernel),
+          scale(receiver_strength, kernel_derivative)));
+
+  const double midpoint = emission.midpoint();
+  const Interval midpoint_emission = Interval::point(midpoint);
+  const IntervalVector midpoint_displacement = subtract(
+      receiver_position, source.history.position_hull(midpoint_emission));
+  const Interval midpoint_separation = norm(midpoint_displacement);
+  if (!midpoint_separation.contains_zero()) {
+    const IntervalVector midpoint_direction =
+        divide(midpoint_displacement, midpoint_separation);
+    const Interval midpoint_radial_square =
+        interval_square(midpoint_separation) + interval_square(core_scale);
+    const IntervalVector midpoint_kernel = divide(
+        midpoint_displacement,
+        midpoint_radial_square * interval_sqrt(midpoint_radial_square));
+    const Interval midpoint_strength = interval_absolute(
+        field_speed - dot(midpoint_direction, receiver_velocity));
+    IntervalVector centered = scale(
+        signed_charge_scale * midpoint_strength * mollifier_integral,
+        midpoint_kernel);
+    const double remainder_scale =
+        0.5 * emission.width() * mollifier_integral.upper();
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      const double derivative_bound = std::max(
+          std::abs(prefactor_derivative[axis].lower()),
+          std::abs(prefactor_derivative[axis].upper()));
+      centered[axis] =
+          centered[axis].inflate(derivative_bound * remainder_scale);
+    }
+    centered = scale(Interval::point(reception.width()), centered);
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      const auto intersection = result[axis].intersection(centered[axis]);
+      if (!intersection.has_value()) {
+        throw std::runtime_error(
+            "event monotone prefactor enclosures disagree");
+      }
+      result[axis] = *intersection;
+    }
+  }
+  return result;
+}
+
 bool vectors_overlap(
     const IntervalVector& left, const IntervalVector& right) {
   for (std::size_t axis = 0; axis < 3; ++axis) {
@@ -1009,6 +1459,26 @@ const NativePairAccelerationCertificate& snapshot_pair(
 }
 
 }  // namespace
+
+std::optional<NativeEndpointRootContinuationCertificate>
+certify_native_coincident_endpoint_root_continuation(
+    const NativeAccelerationSnapshotCertificate& start,
+    const NativeAccelerationSnapshotCertificate& end,
+    const std::string& receiver_path_id,
+    const std::string& source_path_id) {
+  return certify_coincident_endpoint_root_continuation_impl(
+      start, end, receiver_path_id, source_path_id);
+}
+
+std::vector<NativePinnedFoldTemporalStepCertificate>
+certify_native_pinned_fold_temporal_onset(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    const NativeAccelerationSnapshotCertificate& start_snapshot,
+    const std::string& start_time) {
+  return certified_pinned_fold_onset_certificates(
+      request, histories, start_snapshot, start_time);
+}
 
 static NativeFoldCausticImpulseCertificate
 certify_binary64_fold_caustic_impulse(
@@ -1057,62 +1527,219 @@ certify_binary64_fold_caustic_impulse(
       certificate.failure_code = "insufficient_history_depth";
       return certificate;
     }
-    const Interval total_area = causal_domain_area(
-        reception_lower, reception_upper, search_lower, reception_upper);
     const double tolerance = tolerance_value(
         request.event_impulse_tolerance, "event impulse tolerance");
+    double active_search_lower = search_lower;
+    double tail_impulse_bound = 0.0;
+    const Interval field_speed = Interval::decimal_token(request.field_speed);
+    const Interval causal_width = Interval::decimal_token(request.causal_width);
+    const Interval core_scale = Interval::decimal_token(request.core_scale);
+    const IntervalVector receiver_position =
+        receiver.history.position_hull(reception_all);
+    const IntervalVector receiver_velocity =
+        receiver.history.velocity_hull(reception_all);
+    const IntervalVector source_position = source.history.full_position_hull();
+    const Interval separation =
+        norm(subtract(receiver_position, source_position));
+    const double eta = causal_width.upper();
+    double residual_margin = 6.0 * eta;
+    for (std::size_t attempt = 0; attempt < 12U; ++attempt) {
+      const double candidate = reception_lower -
+          (separation.upper() + residual_margin) / field_speed.lower();
+      if (!(candidate > search_lower && candidate < reception_lower)) {
+        residual_margin *= 1.25;
+        continue;
+      }
+      const Interval prefix_emission(search_lower, candidate);
+      const Interval prefix_residual = separation -
+          field_speed * (reception_all - prefix_emission);
+      if (!(prefix_residual.upper() < 0.0) ||
+          -prefix_residual.upper() < residual_margin) {
+        residual_margin *= 1.25;
+        continue;
+      }
+      const double normalized =
+          -prefix_residual.upper() / causal_width.upper();
+      const double pi_lower = 3.1415926535897931;
+      const double mollifier_upper =
+          std::exp(-0.5 * normalized * normalized) /
+          (std::sqrt(2.0 * pi_lower) * causal_width.lower());
+      const double kernel_component_bound =
+          1.0 / (core_scale.lower() * core_scale.lower());
+      const double receiver_strength_bound =
+          field_speed.upper() + norm(receiver_velocity).upper();
+      const double signed_scale_bound =
+          interval_absolute(Interval::decimal_token(request.coupling)).upper() *
+          interval_absolute(Interval::decimal_token(receiver_charge)).upper() *
+          interval_absolute(Interval::decimal_token(source_charge)).upper();
+      const double prefix_area = causal_domain_area(
+          reception_lower, reception_upper, search_lower, candidate).upper();
+      const double candidate_tail_bound =
+          prefix_area * signed_scale_bound * receiver_strength_bound *
+          mollifier_upper * kernel_component_bound;
+      if (2.0 * candidate_tail_bound <= tolerance * 0.5) {
+        active_search_lower = candidate;
+        tail_impulse_bound = candidate_tail_bound;
+        break;
+      }
+      residual_margin *= 1.25;
+    }
+    const double active_tolerance = tolerance - 2.0 * tail_impulse_bound;
+    if (!(active_tolerance > 0.0)) {
+      certificate.failure_code = "event_impulse_tail_bound_exceeds_tolerance";
+      return certificate;
+    }
 
-    std::function<IntervalVector(
-        double, double, double, double, std::size_t)> integrate;
-    integrate = [&](double t_lower, double t_upper, double s_lower,
-                    double s_upper, std::size_t depth) {
+    struct EventCell {
+      double t_lower;
+      double t_upper;
+      double s_lower;
+      double s_upper;
+      std::size_t depth;
+      std::size_t id;
+      IntervalVector integral;
+
+      [[nodiscard]] double score() const {
+        return std::max(
+            {integral[0].width(), integral[1].width(),
+             integral[2].width()});
+      }
+    };
+    struct EventCellOrder {
+      bool operator()(const EventCell& left, const EventCell& right) const {
+        if (left.score() != right.score()) {
+          return left.score() < right.score();
+        }
+        return left.id < right.id;
+      }
+    };
+    std::size_t next_cell_id = 0U;
+    const auto make_cell = [&](double t_lower, double t_upper,
+                               double s_lower, double s_upper,
+                               std::size_t depth) {
       ++certificate.visited_cells;
       if (certificate.visited_cells > request.event_max_cells) {
         throw std::runtime_error("event_impulse_cell_limit_exhausted");
       }
       const Interval area =
           causal_domain_area(t_lower, t_upper, s_lower, s_upper);
-      if (area.is_exact_zero()) {
-        return IntervalVector{
-            Interval::point(0.0), Interval::point(0.0),
-            Interval::point(0.0)};
+      const Interval reception_cell(t_lower, t_upper);
+      const Interval emission_cell(s_lower, s_upper);
+      const IntervalVector cell_receiver_position =
+          receiver.history.position_hull(reception_cell);
+      const IntervalVector cell_receiver_velocity =
+          receiver.history.velocity_hull(reception_cell);
+      const IntervalVector cell_source_position =
+          source.history.position_hull(emission_cell);
+      const IntervalVector cell_displacement =
+          subtract(cell_receiver_position, cell_source_position);
+      const Interval cell_separation = norm(cell_displacement);
+      const Interval cell_residual =
+          cell_separation -
+          field_speed * (reception_cell - emission_cell);
+      double residual_distance = 0.0;
+      if (cell_residual.upper() < 0.0) {
+        residual_distance = -cell_residual.upper();
+      } else if (cell_residual.lower() > 0.0) {
+        residual_distance = cell_residual.lower();
       }
-      const IntervalVector integral = scale(
-          area,
-          event_integrand(
-              request, receiver, source, receiver_charge, source_charge,
-              Interval(t_lower, t_upper), Interval(s_lower, s_upper)));
-      const double local_budget = tolerance * area.upper() / total_area.lower();
-      if (std::all_of(
-              integral.begin(), integral.end(),
-              [&](const Interval& component) {
-                return component.width() <= local_budget;
-              })) {
-        return integral;
-      }
-      if (depth >= request.event_max_depth) {
-        throw std::runtime_error("event_impulse_depth_exhausted");
-      }
-      if ((t_upper - t_lower) >= (s_upper - s_lower)) {
-        const double midpoint = t_lower + (t_upper - t_lower) * 0.5;
-        if (!(midpoint > t_lower && midpoint < t_upper)) {
-          throw std::runtime_error("event_impulse_time_resolution_exhausted");
+      IntervalVector integral{
+          Interval::point(0.0), Interval::point(0.0),
+          Interval::point(0.0)};
+      const auto centered_rectangle = s_upper <= t_lower
+          ? centered_event_rectangle_integral(
+                request, receiver, source, receiver_charge, source_charge,
+                reception_cell, emission_cell)
+          : std::nullopt;
+      const auto monotone_rectangle = s_upper <= t_lower
+          ? monotone_event_rectangle_integral(
+                request, receiver, source, receiver_charge, source_charge,
+                reception_cell, emission_cell)
+          : std::nullopt;
+      if (residual_distance > 0.0) {
+        ++certificate.gaussian_tail_cells;
+        const double normalized =
+            residual_distance / causal_width.upper();
+        const double mollifier_upper =
+            std::exp(-0.5 * normalized * normalized) /
+            (std::sqrt(2.0 * 3.1415926535897931) *
+             causal_width.lower());
+        const Interval radial_square =
+            interval_square(cell_separation) + interval_square(core_scale);
+        const double separation_aware_kernel_bound =
+            (cell_separation /
+             (radial_square * interval_sqrt(radial_square))).upper();
+        const double global_kernel_bound =
+            1.0 / (core_scale.lower() * core_scale.lower());
+        const double kernel_component_bound =
+            std::min(global_kernel_bound, separation_aware_kernel_bound);
+        double receiver_strength_bound =
+            field_speed.upper() + norm(cell_receiver_velocity).upper();
+        if (!cell_separation.contains_zero()) {
+          receiver_strength_bound = interval_absolute(
+              field_speed -
+              dot(divide(cell_displacement, cell_separation),
+                  cell_receiver_velocity)).upper();
         }
-        return add(
-            integrate(t_lower, midpoint, s_lower, s_upper, depth + 1U),
-            integrate(midpoint, t_upper, s_lower, s_upper, depth + 1U));
+        const double signed_scale_bound =
+            interval_absolute(
+                Interval::decimal_token(request.coupling)).upper() *
+            interval_absolute(
+                Interval::decimal_token(receiver_charge)).upper() *
+            interval_absolute(
+                Interval::decimal_token(source_charge)).upper();
+        const double component_bound =
+            area.upper() * signed_scale_bound * receiver_strength_bound *
+            mollifier_upper * kernel_component_bound;
+        const Interval tail(-component_bound, component_bound);
+        integral = {tail, tail, tail};
+        if (centered_rectangle.has_value()) {
+          for (std::size_t axis = 0; axis < 3; ++axis) {
+            const auto intersection =
+                integral[axis].intersection((*centered_rectangle)[axis]);
+            if (!intersection.has_value()) {
+              throw std::runtime_error(
+                  "event centered and Gaussian-tail enclosures disagree");
+            }
+            integral[axis] = *intersection;
+          }
+        }
+      } else if (centered_rectangle.has_value()) {
+        ++certificate.centered_emission_cells;
+        integral = *centered_rectangle;
+      } else {
+        ++certificate.direct_joint_cells;
+        integral = scale(
+            area,
+            event_integrand(
+                request, receiver, source, receiver_charge, source_charge,
+                reception_cell, emission_cell));
       }
-      const double midpoint = s_lower + (s_upper - s_lower) * 0.5;
-      if (!(midpoint > s_lower && midpoint < s_upper)) {
-        throw std::runtime_error("event_impulse_time_resolution_exhausted");
+      if (monotone_rectangle.has_value()) {
+        ++certificate.monotone_residual_cells;
+        for (std::size_t axis = 0; axis < 3; ++axis) {
+          const auto intersection =
+              integral[axis].intersection((*monotone_rectangle)[axis]);
+          if (!intersection.has_value()) {
+            throw std::runtime_error(
+                "event monotone-residual enclosure disagrees with direct enclosure");
+          }
+          integral[axis] = *intersection;
+        }
       }
-      return add(
-          integrate(t_lower, t_upper, s_lower, midpoint, depth + 1U),
-          integrate(t_lower, t_upper, midpoint, s_upper, depth + 1U));
+      return EventCell{
+          .t_lower = t_lower,
+          .t_upper = t_upper,
+          .s_lower = s_lower,
+          .s_upper = s_upper,
+          .depth = depth,
+          .id = next_cell_id++,
+          .integral = integral,
+      };
     };
 
     std::set<double> reception_points{reception_lower, reception_upper};
-    std::set<double> emission_points{search_lower, reception_upper};
+    std::set<double> emission_points{active_search_lower, reception_upper};
     for (const auto& segment : receiver.history.segments()) {
       if (reception_lower < segment.t_start() &&
           segment.t_start() < reception_upper) {
@@ -1124,24 +1751,116 @@ certify_binary64_fold_caustic_impulse(
       }
     }
     for (const auto& segment : source.history.segments()) {
-      if (search_lower < segment.t_start() &&
+      if (active_search_lower < segment.t_start() &&
           segment.t_start() < reception_upper) {
         emission_points.insert(segment.t_start());
       }
-      if (search_lower < segment.t_end() &&
+      if (active_search_lower < segment.t_end() &&
           segment.t_end() < reception_upper) {
         emission_points.insert(segment.t_end());
       }
     }
-    std::vector<IntervalVector> totals;
+    std::multiset<EventCell, EventCellOrder> cells;
     for (auto t = reception_points.begin(); std::next(t) != reception_points.end();
          ++t) {
       for (auto s = emission_points.begin(); std::next(s) != emission_points.end();
            ++s) {
-        totals.push_back(integrate(*t, *std::next(t), *s, *std::next(s), 0));
+        if (!causal_domain_area(
+                 *t, *std::next(t), *s, *std::next(s)).is_exact_zero()) {
+          cells.insert(make_cell(
+              *t, *std::next(t), *s, *std::next(s), 0U));
+        }
       }
     }
-    const IntervalVector total = fixed_pairwise_sum(totals);
+    if (cells.empty()) {
+      certificate.failure_code = "event_impulse_empty_causal_domain";
+      return certificate;
+    }
+    IntervalVector total{
+        Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+    while (true) {
+      std::vector<const EventCell*> chronological;
+      chronological.reserve(cells.size());
+      for (const auto& cell : cells) chronological.push_back(&cell);
+      std::sort(
+          chronological.begin(), chronological.end(),
+          [](const EventCell* left, const EventCell* right) {
+            if (left->t_lower != right->t_lower) {
+              return left->t_lower < right->t_lower;
+            }
+            if (left->s_lower != right->s_lower) {
+              return left->s_lower < right->s_lower;
+            }
+            return left->id < right->id;
+          });
+      std::vector<IntervalVector> totals;
+      totals.reserve(chronological.size());
+      for (const EventCell* cell : chronological) {
+        totals.push_back(cell->integral);
+      }
+      total = fixed_pairwise_sum(totals);
+      certificate.last_maximum_component_width = std::max(
+          {total[0].width(), total[1].width(), total[2].width()});
+      certificate.last_largest_cell_width = cells.rbegin()->score();
+      if (std::all_of(
+              total.begin(), total.end(), [&](const Interval& component) {
+                return component.width() <= active_tolerance;
+              })) {
+        break;
+      }
+      const std::size_t splits_before_reduction =
+          std::max<std::size_t>(64U, cells.size() / 16U);
+      for (std::size_t split = 0; split < splits_before_reduction; ++split) {
+        const auto found = std::prev(cells.end());
+        const EventCell parent = *found;
+        cells.erase(found);
+        if (parent.depth >= request.event_max_depth) {
+          throw std::runtime_error("event_impulse_depth_exhausted");
+        }
+        if ((parent.t_upper - parent.t_lower) >=
+            (parent.s_upper - parent.s_lower)) {
+          const double midpoint =
+              parent.t_lower + (parent.t_upper - parent.t_lower) * 0.5;
+          if (!(midpoint > parent.t_lower && midpoint < parent.t_upper)) {
+            throw std::runtime_error(
+                "event_impulse_time_resolution_exhausted");
+          }
+          for (const auto& bounds :
+               {std::pair{parent.t_lower, midpoint},
+                std::pair{midpoint, parent.t_upper}}) {
+            if (!causal_domain_area(
+                     bounds.first, bounds.second, parent.s_lower,
+                     parent.s_upper).is_exact_zero()) {
+              cells.insert(make_cell(
+                  bounds.first, bounds.second, parent.s_lower,
+                  parent.s_upper, parent.depth + 1U));
+            }
+          }
+        } else {
+          const double midpoint =
+              parent.s_lower + (parent.s_upper - parent.s_lower) * 0.5;
+          if (!(midpoint > parent.s_lower && midpoint < parent.s_upper)) {
+            throw std::runtime_error(
+                "event_impulse_time_resolution_exhausted");
+          }
+          for (const auto& bounds :
+               {std::pair{parent.s_lower, midpoint},
+                std::pair{midpoint, parent.s_upper}}) {
+            if (!causal_domain_area(
+                     parent.t_lower, parent.t_upper, bounds.first,
+                     bounds.second).is_exact_zero()) {
+              cells.insert(make_cell(
+                  parent.t_lower, parent.t_upper, bounds.first,
+                  bounds.second, parent.depth + 1U));
+            }
+          }
+        }
+      }
+    }
+    if (tail_impulse_bound > 0.0) {
+      const Interval tail(-tail_impulse_bound, tail_impulse_bound);
+      total = add(total, IntervalVector{tail, tail, tail});
+    }
     if (std::any_of(
             total.begin(), total.end(), [&](const Interval& component) {
               return component.width() > tolerance;
@@ -1618,6 +2337,16 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   for (const auto& receiver : histories) {
     for (const auto& source : histories) {
       const auto& root = root_certificates[index];
+      const Interval reception = Interval::decimal_token(reception_time);
+      const Interval receiver_speed =
+          norm(receiver.history.velocity_hull(reception));
+      const Interval field_speed =
+          Interval::decimal_token(request.field_speed);
+      const bool self_pair_on_or_above_rail =
+          receiver.path_id == source.path_id &&
+          root.coincident_endpoint_excluded &&
+          !root.roots.empty() &&
+          receiver_speed.upper() >= field_speed.lower();
       pair_requests.push_back({
           .row_id = root.row_id,
           .receiver_path_id = receiver.path_id,
@@ -1632,10 +2361,15 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
               request.chart_policy == "finite_width" ||
                       (request.chart_policy ==
                            "sharp_with_finite_width_fallback" &&
-                       root.status == "caustic_route_required" &&
-                       root.failure_code ==
-                           "numeric_source_normal_sign_uncertified" &&
-                       !root.memory_boundary_contact)
+                       ((self_pair_on_or_above_rail &&
+                         root.status == "certified_complete" &&
+                         !root.memory_boundary_contact) ||
+                        (root.status == "caustic_route_required" &&
+                         (root.failure_code ==
+                              "numeric_source_normal_sign_uncertified" ||
+                          root.failure_code ==
+                              "numeric_self_root_cluster_uncertified") &&
+                         !root.memory_boundary_contact)))
                   ? "finite_width"
                   : "sharp",
           .source_normal_floor = request.source_normal_floor,
@@ -1648,6 +2382,10 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
           .initial_mpfr_bits = request.initial_mpfr_bits,
           .maximum_mpfr_bits = request.maximum_mpfr_bits,
           .force_precision_escalation = false,
+          .use_analytic_pinned_fold = request.use_analytic_pinned_fold,
+          .use_correlated_self_chord = request.use_correlated_self_chord,
+          .use_stable_circular_residual =
+              request.use_stable_circular_residual,
       });
       root_rows.push_back({receiver.path_id, source.path_id, root});
       ++index;
@@ -1656,6 +2394,61 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
   const auto acceleration_timing_start = SteadyClock::now();
   auto acceleration = certify_acceleration_reconstruction(
       path_ids(request), pair_requests, request.thread_count);
+  if (request.chart_policy == "sharp_with_finite_width_fallback") {
+    bool retry_acceleration = false;
+    for (std::size_t pair_index = 0;
+         pair_index < acceleration.pair_certificates.size(); ++pair_index) {
+      const auto& pair = acceleration.pair_certificates[pair_index];
+      if (pair.status == "uncertified" && pair.chart == "sharp" &&
+          pair.failure_code ==
+              "sharp acceleration enclosure exceeds the declared tolerance" &&
+          !root_certificates[pair_index].memory_boundary_contact) {
+        bool refined_sharp_certified = false;
+        double refined_root_tolerance =
+            scalar_token(root_certificates[pair_index].root_tolerance);
+        for (std::size_t level = 0; level < 2U; ++level) {
+          refined_root_tolerance *= 0.1;
+          const auto refined_root = certify_exact_pair({
+              .row_id = root_certificates[pair_index].row_id +
+                  "/acceleration-refinement-" + std::to_string(level + 1U),
+              .receiver = pair_requests[pair_index].receiver_history,
+              .source = pair_requests[pair_index].source_history,
+              .reception_time = reception_time,
+              .search_lower = root_certificates[pair_index].searched_lower,
+              .search_upper = root_certificates[pair_index].searched_upper,
+              .field_speed = request.field_speed,
+              .root_tolerance = decimal_token(refined_root_tolerance),
+              .max_depth = request.root_max_depth,
+              .max_cells = request.root_max_cells,
+              .initial_mpfr_bits = request.initial_mpfr_bits,
+              .maximum_mpfr_bits = request.maximum_mpfr_bits,
+              .force_precision_escalation = false,
+          });
+          if (refined_root.status != "certified_complete" ||
+              !refined_root.root_free_complement ||
+              refined_root.memory_boundary_contact) {
+            break;
+          }
+          root_certificates[pair_index] = refined_root;
+          const auto refined_pair =
+              certify_pair_acceleration(pair_requests[pair_index]);
+          if (refined_pair.status != "uncertified") {
+            refined_sharp_certified = true;
+            break;
+          }
+        }
+        if (!refined_sharp_certified) {
+          pair_requests[pair_index].chart = "finite_width";
+        }
+        root_rows[pair_index].certificate = root_certificates[pair_index];
+        retry_acceleration = true;
+      }
+    }
+    if (retry_acceleration) {
+      acceleration = certify_acceleration_reconstruction(
+          path_ids(request), pair_requests, request.thread_count);
+    }
+  }
   timing.acceleration_wall_seconds +=
       elapsed_seconds(acceleration_timing_start);
   std::string failure_code;
@@ -1836,7 +2629,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .local_errors = std::move(local_errors),
       .failure_code = "",
       .evidence_status = "executable_architecture_evidence",
-      .integration_method = kNativeIntegrationMethod,
+      .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
       .publication_atomic = same_fingerprints(
           candidate_fingerprints, published_fingerprints),

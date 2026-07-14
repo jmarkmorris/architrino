@@ -186,6 +186,17 @@ Interval interval_exp(const Interval& value) {
   return Interval(lower, upward(upper_value));
 }
 
+Interval interval_erf(const Interval& value) {
+  const double lower_value = std::erf(value.lower());
+  const double upper_value = std::erf(value.upper());
+  if (!std::isfinite(lower_value) || !std::isfinite(upper_value)) {
+    throw std::overflow_error("interval error function is nonfinite");
+  }
+  return Interval(
+      lower_value == -1.0 ? -1.0 : downward(lower_value),
+      upper_value == 1.0 ? 1.0 : upward(upper_value));
+}
+
 Interval interval_absolute(const Interval& value) {
   if (value.lower() >= 0.0) {
     return value;
@@ -194,6 +205,57 @@ Interval interval_absolute(const Interval& value) {
     return Interval(-value.upper(), -value.lower());
   }
   return Interval(0.0, std::max(-value.lower(), value.upper()));
+}
+
+namespace {
+
+bool contains_phase(
+    const Interval& value,
+    long double phase,
+    long double period) {
+  const long double first = std::ceil(
+      (static_cast<long double>(value.lower()) - phase) / period);
+  const long double last = std::floor(
+      (static_cast<long double>(value.upper()) - phase) / period);
+  return first <= last;
+}
+
+Interval periodic_range(
+    const Interval& value,
+    double (*function)(double),
+    long double maximum_phase,
+    long double minimum_phase) {
+  constexpr long double kPi =
+      3.141592653589793238462643383279502884L;
+  constexpr long double kTwoPi = 2.0L * kPi;
+  if (static_cast<long double>(value.width()) >= kTwoPi) {
+    return Interval(-1.0, 1.0);
+  }
+  double lower = std::min(function(value.lower()), function(value.upper()));
+  double upper = std::max(function(value.lower()), function(value.upper()));
+  if (contains_phase(value, maximum_phase, kTwoPi)) {
+    upper = 1.0;
+  }
+  if (contains_phase(value, minimum_phase, kTwoPi)) {
+    lower = -1.0;
+  }
+  return Interval(
+      lower == -1.0 ? -1.0 : downward(lower),
+      upper == 1.0 ? 1.0 : upward(upper));
+}
+
+}  // namespace
+
+Interval interval_sin(const Interval& value) {
+  constexpr long double kPi =
+      3.141592653589793238462643383279502884L;
+  return periodic_range(value, std::sin, 0.5L * kPi, 1.5L * kPi);
+}
+
+Interval interval_cos(const Interval& value) {
+  constexpr long double kPi =
+      3.141592653589793238462643383279502884L;
+  return periodic_range(value, std::cos, 0.0L, kPi);
 }
 
 IntervalVector subtract(const IntervalVector& left,

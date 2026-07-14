@@ -235,6 +235,8 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
             << "\",\"accepted_time\":\"" << certificate.accepted_time
             << "\",\"publication_atomic\":"
             << (certificate.publication_atomic ? "true" : "false")
+            << ",\"integration_method\":\""
+            << certificate.integration_method << "\""
             << ",\"history_window_status\":\""
             << (history_window != nullptr ? history_window->status : "none")
             << "\",\"history_window_original_lower\":\""
@@ -280,7 +282,49 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
   std::cout << event_impulse_count
             << ",\"regulator_certificate_count\":"
             << regulator_certificate_count
-            << '}';
+            << ",\"local_errors\":[";
+  for (std::size_t index = 0; index < certificate.local_errors.size(); ++index) {
+    if (index > 0) {
+      std::cout << ',';
+    }
+    const auto& error = certificate.local_errors[index];
+    std::cout << "{\"path_id\":\"" << error.path_id
+              << "\",\"position_error\":" << error.position_error
+              << ",\"velocity_error\":" << error.velocity_error << '}';
+  }
+  std::cout << "],\"pinned_fold_temporal_certificates\":[";
+  bool first_certificate = true;
+  for (const auto& substep : certificate.substeps) {
+    for (const auto& pinned : substep.pinned_fold_onset_certificates) {
+      if (!first_certificate) {
+        std::cout << ',';
+      }
+      first_certificate = false;
+      std::cout << "{\"schema\":\"" << pinned.schema
+                << "\",\"status\":\"" << pinned.status
+                << "\",\"path_id\":\"" << pinned.path_id
+                << "\",\"onset_time\":\"" << pinned.onset_time
+                << "\",\"history_fingerprint\":\""
+                << pinned.history_fingerprint
+                << "\",\"tangential_speed\":\""
+                << pinned.tangential_speed
+                << "\",\"field_speed\":\"" << pinned.field_speed
+                << "\",\"start_root_status\":\""
+                << pinned.start_root_status
+                << "\",\"start_root_count\":" << pinned.start_root_count
+                << ",\"start_root_free_complement\":"
+                << (pinned.start_root_free_complement ? "true" : "false")
+                << ",\"memory_boundary_clear\":"
+                << (pinned.memory_boundary_clear ? "true" : "false")
+                << ",\"coincident_endpoint_excluded\":"
+                << (pinned.coincident_endpoint_excluded ? "true" : "false")
+                << ",\"start_acceleration_chart\":\""
+                << pinned.start_acceleration_chart
+                << "\",\"temporal_rule\":\"" << pinned.temporal_rule
+                << "\"}";
+    }
+  }
+  std::cout << "]}";
 }
 
 void print_event(
@@ -356,6 +400,41 @@ void print_regulator(
   std::cout << "]}";
 }
 
+void print_pinned_fold_temporal_onset(
+    const std::vector<eom::NativePinnedFoldTemporalStepCertificate>&
+        certificates) {
+  std::cout << '[';
+  for (std::size_t index = 0; index < certificates.size(); ++index) {
+    if (index > 0) {
+      std::cout << ',';
+    }
+    const auto& pinned = certificates[index];
+    std::cout << "{\"schema\":\"" << pinned.schema
+              << "\",\"status\":\"" << pinned.status
+              << "\",\"path_id\":\"" << pinned.path_id
+              << "\",\"onset_time\":\"" << pinned.onset_time
+              << "\",\"history_fingerprint\":\""
+              << pinned.history_fingerprint
+              << "\",\"tangential_speed\":\""
+              << pinned.tangential_speed
+              << "\",\"field_speed\":\"" << pinned.field_speed
+              << "\",\"start_root_status\":\""
+              << pinned.start_root_status
+              << "\",\"start_root_count\":" << pinned.start_root_count
+              << ",\"start_root_free_complement\":"
+              << (pinned.start_root_free_complement ? "true" : "false")
+              << ",\"memory_boundary_clear\":"
+              << (pinned.memory_boundary_clear ? "true" : "false")
+              << ",\"coincident_endpoint_excluded\":"
+              << (pinned.coincident_endpoint_excluded ? "true" : "false")
+              << ",\"start_acceleration_chart\":\""
+              << pinned.start_acceleration_chart
+              << "\",\"temporal_rule\":\"" << pinned.temporal_rule
+              << "\"}";
+  }
+  std::cout << ']';
+}
+
 void print_all() {
   const auto static_request = request(
       "static-multistep",
@@ -408,6 +487,83 @@ void print_all() {
   const auto checkpoint_file_roundtrip =
       eom::read_native_evolution_checkpoint(checkpoint_path.string());
   std::filesystem::remove(checkpoint_path);
+
+  const auto circular_history = eom::RetainedHistory::uniform_circular(
+      "checkpoint-circular-history",
+      {
+          .t_start = "-1",
+          .t_end = "0",
+          .maximum_segment_step = "0.02",
+          .cylindrical_radius = "1",
+          .height = "0",
+          .angular_speed = "0.9",
+          .tangential_speed = "0.9",
+          .phase = "0.2",
+          .tilt_x = "0.1",
+          .tilt_y = "-0.2",
+      });
+  const auto circular_checkpoint_request = request(
+      "circular-checkpoint-restart", {{"p", "1", circular_history}},
+      "0", "0.001", "0.001", "0.001", "1e-5", "1e-5", "1e-7");
+  const auto circular_checkpoint_result =
+      eom::evolve_native_coupled_histories(circular_checkpoint_request);
+  const auto circular_checkpoint = eom::create_native_evolution_checkpoint(
+      circular_checkpoint_request, circular_checkpoint_result);
+  const auto circular_checkpoint_roundtrip =
+      eom::deserialize_native_evolution_checkpoint(
+          eom::serialize_native_evolution_checkpoint(circular_checkpoint));
+  const auto& circular_roundtrip_certificate = circular_checkpoint_roundtrip
+      .paths.front().history.uniform_circular_endpoint_certificate();
+  const bool circular_certificate_preserved =
+      circular_roundtrip_certificate.has_value() &&
+      circular_roundtrip_certificate->valid_start_time == "-1" &&
+      circular_roundtrip_certificate->valid_reception_time == "0" &&
+      circular_checkpoint.paths.front().history.provenance_fingerprint() ==
+          circular_checkpoint_roundtrip.paths.front()
+              .history.provenance_fingerprint();
+
+  const auto pinned_temporal_history = eom::RetainedHistory::uniform_circular(
+      "pinned-temporal-history",
+      {
+          .t_start = "-1",
+          .t_end = "0",
+          .maximum_segment_step = "0.02",
+          .cylindrical_radius = "1",
+          .height = "0",
+          .angular_speed = "1",
+          .tangential_speed = "1",
+          .phase = "0",
+          .tilt_x = "0",
+          .tilt_y = "0",
+      });
+  auto pinned_temporal_request = request(
+      "pinned-fold-temporal-step", {{"p", "1", pinned_temporal_history}},
+      "0", "0.001", "0.001", "0.001", "1", "1", "2e-7");
+  pinned_temporal_request.chart_policy =
+      "sharp_with_finite_width_fallback";
+  pinned_temporal_request.root_tolerance = "1e-5";
+  pinned_temporal_request.causal_width = "0.05";
+  pinned_temporal_request.core_scale = "0.05";
+  pinned_temporal_request.acceleration_tolerance = "0.005";
+  pinned_temporal_request.quadrature_tolerance = "0.005";
+  pinned_temporal_request.quadrature_max_depth = 32;
+  pinned_temporal_request.quadrature_max_cells = 300000;
+  std::vector<eom::NativePublishedPath> pinned_temporal_histories{
+      {"p", pinned_temporal_history}};
+  const auto pinned_temporal_snapshot =
+      eom::certify_native_acceleration_snapshot(
+          pinned_temporal_request, pinned_temporal_histories, "0");
+  const auto pinned_temporal_onset =
+      eom::certify_native_pinned_fold_temporal_onset(
+          pinned_temporal_request, pinned_temporal_histories,
+          pinned_temporal_snapshot, "0");
+  auto pinned_temporal_legacy_request = pinned_temporal_request;
+  pinned_temporal_legacy_request.run_id = "pinned-fold-temporal-step-legacy";
+  pinned_temporal_legacy_request.use_pinned_fold_aware_temporal_step = false;
+  const auto pinned_temporal_disabled_onset =
+      eom::certify_native_pinned_fold_temporal_onset(
+          pinned_temporal_legacy_request, pinned_temporal_histories,
+          pinned_temporal_snapshot, "0");
 
   const auto fast_request = request(
       "fast-inertial",
@@ -563,6 +719,156 @@ void print_all() {
       event_resource_request, event_receiver, event_source, "1", "1",
       "2.99", "3.01");
 
+  const auto endpoint_continuation_request = request(
+      "coincident-endpoint-continuation",
+      {{"self", "1",
+        history("endpoint-continuation-history", "0.6",
+                {"0", "0", "1", "0"})}},
+      "0.4", "0.6", "0.2", "0.2", "1e-8", "1e-8", "1e-8",
+      "1e-30");
+  std::vector<eom::NativePublishedPath> endpoint_continuation_histories;
+  endpoint_continuation_histories.push_back({
+      "self", endpoint_continuation_request.paths.front().history});
+  const auto endpoint_continuation_start =
+      eom::certify_native_acceleration_snapshot(
+          endpoint_continuation_request,
+          endpoint_continuation_histories, "0.4");
+  const auto endpoint_continuation_end =
+      eom::certify_native_acceleration_snapshot(
+          endpoint_continuation_request,
+          endpoint_continuation_histories, "0.6");
+  const auto endpoint_continuation =
+      eom::certify_native_coincident_endpoint_root_continuation(
+          endpoint_continuation_start, endpoint_continuation_end,
+          "self", "self");
+
+  const auto cubic_tangency_history = [](
+      const std::string& angular_speed,
+      const std::string& tangential_speed) {
+    return eom::RetainedHistory::uniform_circular(
+        "cubic-tangency-history",
+        {
+            .t_start = "-0.2",
+            .t_end = "0",
+            .maximum_segment_step = "0.001",
+            .cylindrical_radius =
+                "0.960098679139659830325203078805729831276478941731",
+            .height = "0",
+            .angular_speed = angular_speed,
+            .tangential_speed = tangential_speed,
+            .phase = "0",
+            .tilt_x = "0",
+            .tilt_y = "0",
+        });
+  };
+  const auto cubic_rail_history = cubic_tangency_history(
+      "1.0415596039524766", "1");
+  const auto cubic_departure_1e6_history = cubic_tangency_history(
+      "1.0415606455120805524766", "1.000001");
+  const auto cubic_departure_1e4_history = cubic_tangency_history(
+      "1.04166375991287184766", "1.0001");
+  const auto cubic_rail_root = eom::certify_exact_pair({
+        .row_id = "cubic-tangency-rail",
+        .receiver = &cubic_rail_history,
+        .source = &cubic_rail_history,
+        .reception_time = "0",
+        .search_lower = "-0.2",
+        .search_upper = "0",
+        .field_speed = "1",
+        .root_tolerance = "1e-7",
+        .max_depth = 192,
+        .max_cells = 300000,
+        .initial_mpfr_bits = 128,
+        .maximum_mpfr_bits = 512,
+    });
+  const auto cubic_snapshot = [](
+      eom::ExactPairCertificate root) {
+    eom::NativeAccelerationSnapshotCertificate snapshot{};
+    snapshot.schema = "eom_native_acceleration_snapshot/v0";
+    snapshot.status = root.status;
+    snapshot.reception_time = "0";
+    snapshot.failure_code = root.failure_code;
+    snapshot.pair_selection_route = "analytic_uniform_circle_cubic_fixture";
+    snapshot.traversal_exact_pairs = 1;
+    snapshot.root_certificates.push_back(
+        {"self", "self", std::move(root)});
+    return snapshot;
+  };
+  const auto cubic_departure_root = [&](
+      const std::string& row_id, const eom::RetainedHistory& retained,
+      const std::string& angular_speed, const std::string& delay_lower,
+      const std::string& delay_upper, const std::string& normal_lower,
+      const std::string& normal_upper) {
+    const long double rho =
+        std::stold("0.960098679139659830325203078805729831276478941731");
+    const long double omega = std::stold(angular_speed);
+    const auto residual = [&](const std::string& delay) {
+      const long double value = std::stold(delay);
+      return 2.0L * rho * std::sin(omega * value / 2.0L) - value;
+    };
+    if (!(residual(delay_lower) > 0.0L && residual(delay_upper) < 0.0L)) {
+      throw std::runtime_error("cubic departure root bracket is invalid");
+    }
+    auto root = cubic_rail_root;
+    root.row_id = row_id;
+    root.receiver_history_id = retained.history_id();
+    root.source_history_id = retained.history_id();
+    root.receiver_history_fingerprint = retained.provenance_fingerprint();
+    root.source_history_fingerprint = retained.provenance_fingerprint();
+    root.status = "certified_complete";
+    root.failure_code.clear();
+    root.root_free_complement = true;
+    root.memory_boundary_contact = false;
+    root.coincident_endpoint_excluded = true;
+    root.precision_escalated = true;
+    root.achieved_precision_bits = 512;
+    root.roots = {{
+        .lower = "-" + delay_upper,
+        .upper = "-" + delay_lower,
+        .source_normal_lower = normal_lower,
+        .source_normal_upper = normal_upper,
+        .receiver_normal_lower = normal_lower,
+        .receiver_normal_upper = normal_upper,
+        .source_normal_sign = 1,
+        .source_segment_indices = {
+            retained.segment_index_at(-std::stod(delay_lower))},
+        .precision_route = "mpfr_analytic_uniform_circle_fixture",
+        .precision_bits = 512,
+    }};
+    return root;
+  };
+  const auto cubic_rail_snapshot = cubic_snapshot(
+      cubic_rail_root);
+  const auto cubic_departure_1e6_snapshot = cubic_snapshot(
+      cubic_departure_root(
+          "cubic-tangency-departure-1e-6", cubic_departure_1e6_history,
+          "1.0415606455120805524766", "0.00470349", "0.00470351",
+          "1e-7", "1e-5"));
+  const auto cubic_departure_1e4_snapshot = cubic_snapshot(
+      cubic_departure_root(
+          "cubic-tangency-departure-1e-4", cubic_departure_1e4_history,
+          "1.04166375991287184766", "0.04702868", "0.04702870",
+          "1e-5", "1e-3"));
+  const auto cubic_endpoint_continuation =
+      eom::certify_native_coincident_endpoint_root_continuation(
+          cubic_rail_snapshot, cubic_departure_1e6_snapshot, "self", "self");
+  const auto self_root = [](const auto& snapshot)
+      -> const eom::NativeRootBracket* {
+    const auto row = std::find_if(
+        snapshot.root_certificates.begin(),
+        snapshot.root_certificates.end(), [](const auto& candidate) {
+          return candidate.receiver_path_id == "self" &&
+              candidate.source_path_id == "self";
+        });
+    if (row == snapshot.root_certificates.end() ||
+        row->certificate.roots.size() != 1U) {
+      return nullptr;
+    }
+    return &row->certificate.roots.front();
+  };
+  const auto* cubic_root_1e6 = self_root(cubic_departure_1e6_snapshot);
+  const auto* cubic_root_1e4 = self_root(cubic_departure_1e4_snapshot);
+
   bool future_history_rejected = false;
   try {
     const auto future_request = request(
@@ -595,6 +901,8 @@ void print_all() {
             << checkpoint_file_roundtrip.checkpoint_fingerprint
             << "\",\"tamper_rejected\":"
             << (checkpoint_tamper_rejected ? "true" : "false")
+            << ",\"circular_certificate_preserved\":"
+            << (circular_certificate_preserved ? "true" : "false")
             << ",\"direct_histories\":";
   print_histories(
       checkpoint_direct.histories, checkpoint_direct.accepted_end_time);
@@ -631,6 +939,10 @@ void print_all() {
   print_atomic(finite_event_single_thread_step);
   std::cout << ",\"event_atomic_resource_failure\":";
   print_atomic(finite_event_resource_step);
+  std::cout << ",\"pinned_fold_temporal_onset\":";
+  print_pinned_fold_temporal_onset(pinned_temporal_onset);
+  std::cout << ",\"pinned_fold_temporal_onset_disabled\":";
+  print_pinned_fold_temporal_onset(pinned_temporal_disabled_onset);
   std::cout << ",\"event_control\":";
   print_event(event_control);
   std::cout << ",\"event_mpfr\":";
@@ -641,6 +953,69 @@ void print_all() {
   print_regulator(event_nonconvergent);
   std::cout << ",\"event_resource_failure\":";
   print_event(event_resource_failure);
+  std::cout << ",\"endpoint_root_continuation\":{"
+            << "\"certified\":"
+            << (endpoint_continuation.has_value() ? "true" : "false");
+  if (endpoint_continuation.has_value()) {
+    std::cout << ",\"schema\":\"" << endpoint_continuation->schema
+              << "\",\"status\":\"" << endpoint_continuation->status
+              << "\",\"classification\":\""
+              << endpoint_continuation->classification
+              << "\",\"start_root_count\":"
+              << endpoint_continuation->start_root_count
+              << ",\"end_root_count\":"
+              << endpoint_continuation->end_root_count
+              << ",\"boundary_branch_sign\":"
+              << endpoint_continuation->boundary_branch_sign;
+  }
+  std::cout << '}';
+  std::cout << ",\"cubic_endpoint_root_continuation\":{";
+  std::cout << "\"certified\":"
+            << (cubic_endpoint_continuation.has_value() ? "true" : "false")
+            << ",\"rail_status\":\"" << cubic_rail_snapshot.status
+            << "\",\"rail_failure\":\""
+            << cubic_rail_snapshot.failure_code
+            << "\",\"departure_1e_6_status\":\""
+            << cubic_departure_1e6_snapshot.status
+            << "\",\"departure_1e_6_failure\":\""
+            << cubic_departure_1e6_snapshot.failure_code
+            << "\",\"departure_1e_6_root_count\":"
+            << cubic_departure_1e6_snapshot.root_certificates.front()
+                   .certificate.roots.size()
+            << ",\"departure_1e_4_status\":\""
+            << cubic_departure_1e4_snapshot.status
+            << "\",\"departure_1e_4_failure\":\""
+            << cubic_departure_1e4_snapshot.failure_code
+            << "\",\"departure_1e_4_root_count\":"
+            << cubic_departure_1e4_snapshot.root_certificates.front()
+                   .certificate.roots.size()
+            << ",\"epsilon_1e_6_root\":"
+            << (cubic_root_1e6 != nullptr ? "true" : "false")
+            << ",\"epsilon_1e_4_root\":"
+            << (cubic_root_1e4 != nullptr ? "true" : "false");
+  if (cubic_endpoint_continuation.has_value()) {
+    std::cout << ",\"classification\":\""
+              << cubic_endpoint_continuation->classification
+              << "\",\"start_root_count\":"
+              << cubic_endpoint_continuation->start_root_count
+              << ",\"end_root_count\":"
+              << cubic_endpoint_continuation->end_root_count
+              << ",\"boundary_branch_sign\":"
+              << cubic_endpoint_continuation->boundary_branch_sign;
+  }
+  if (cubic_root_1e6 != nullptr) {
+    std::cout << ",\"epsilon_1e_6_delay_lower\":"
+              << -std::stod(cubic_root_1e6->upper)
+              << ",\"epsilon_1e_6_delay_upper\":"
+              << -std::stod(cubic_root_1e6->lower);
+  }
+  if (cubic_root_1e4 != nullptr) {
+    std::cout << ",\"epsilon_1e_4_delay_lower\":"
+              << -std::stod(cubic_root_1e4->upper)
+              << ",\"epsilon_1e_4_delay_upper\":"
+              << -std::stod(cubic_root_1e4->lower);
+  }
+  std::cout << '}';
   std::cout << "}\n";
 }
 

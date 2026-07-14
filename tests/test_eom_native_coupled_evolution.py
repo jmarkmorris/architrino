@@ -159,7 +159,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v1"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v2"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
         self.assertEqual(
@@ -171,8 +171,72 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             checkpoint["file_roundtrip_fingerprint"],
         )
         self.assertTrue(checkpoint["tamper_rejected"])
+        self.assertTrue(checkpoint["circular_certificate_preserved"])
         self.assertEqual(
             checkpoint["direct_histories"], checkpoint["resumed_histories"]
+        )
+
+    def test_self_root_entering_through_excluded_coincident_endpoint_is_not_a_fold(self) -> None:
+        certificate = self.packet["endpoint_root_continuation"]
+        self.assertTrue(certificate["certified"], certificate)
+        self.assertEqual(certificate["status"], "certified_complete")
+        self.assertEqual(
+            certificate["classification"],
+            "coincident_endpoint_root_continuation",
+        )
+        self.assertEqual(certificate["start_root_count"], 0)
+        self.assertEqual(certificate["end_root_count"], 1)
+        self.assertEqual(certificate["boundary_branch_sign"], 1)
+
+    def test_cubic_tangency_departure_is_endpoint_continuation_not_fold(
+        self,
+    ) -> None:
+        certificate = self.packet["cubic_endpoint_root_continuation"]
+        self.assertTrue(certificate["certified"], certificate)
+        self.assertEqual(
+            certificate["classification"],
+            "coincident_endpoint_root_continuation",
+        )
+        self.assertEqual(certificate["start_root_count"], 0)
+        self.assertEqual(certificate["end_root_count"], 1)
+        self.assertEqual(certificate["boundary_branch_sign"], 1)
+        self.assertTrue(certificate["epsilon_1e_6_root"])
+        self.assertTrue(certificate["epsilon_1e_4_root"])
+        delay_1e6 = 0.5 * (
+            certificate["epsilon_1e_6_delay_lower"]
+            + certificate["epsilon_1e_6_delay_upper"]
+        )
+        delay_1e4 = 0.5 * (
+            certificate["epsilon_1e_4_delay_lower"]
+            + certificate["epsilon_1e_4_delay_upper"]
+        )
+        self.assertGreater(delay_1e6, 1e-3)
+        self.assertLess(delay_1e6, 1e-2)
+        self.assertGreater(delay_1e4, 1e-2)
+        self.assertLess(delay_1e4, 1e-1)
+        self.assertGreater(delay_1e4, 5.0 * delay_1e6)
+
+    def test_pinned_fold_temporal_step_is_provenance_gated(self) -> None:
+        certificates = self.packet["pinned_fold_temporal_onset"]
+        self.assertEqual(len(certificates), 1)
+        self.assertEqual({row["path_id"] for row in certificates}, {"p"})
+        for certificate in certificates:
+            self.assertEqual(certificate["status"], "certified_complete")
+            self.assertEqual(certificate["onset_time"], "0")
+            self.assertEqual(certificate["tangential_speed"], "1")
+            self.assertEqual(certificate["field_speed"], "1")
+            self.assertEqual(certificate["start_root_status"], "certified_complete")
+            self.assertEqual(certificate["start_root_count"], 0)
+            self.assertTrue(certificate["start_root_free_complement"])
+            self.assertTrue(certificate["memory_boundary_clear"])
+            self.assertTrue(certificate["coincident_endpoint_excluded"])
+            self.assertEqual(certificate["start_acceleration_chart"], "sharp")
+            self.assertEqual(
+                certificate["temporal_rule"],
+                "right_endpoint_acceleration_on_measure_zero_onset",
+            )
+        self.assertEqual(
+            self.packet["pinned_fold_temporal_onset_disabled"], []
         )
 
     def test_static_and_superfield_inertial_histories_match_oracle(self) -> None:
@@ -467,7 +531,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertTrue(self.packet["future_history_rejected"])
         self.assertEqual(
             self.packet["integration_method"],
-            "coupled_cubic_corrector_with_step_doubling/v0",
+            "coupled_cubic_corrector_with_pinned_fold_onset/v1",
         )
         self.assertEqual(self.packet, self._run_fixture())
 
