@@ -116,5 +116,5 @@ The photon and electron charge ledgers close, and some rows cancel the net pump,
 
 This is a negative result for the declared planar geometry, explicit payload families, and proxy-sea coverage. It is not evidence that a constitutive Noether sea law has failed, and it does not establish that the constitutive law is the sole remaining lever. Promotion classification: priority-only; no reader-facing corpus claim is earned.
 
-Reproduce: `node scripts/braid-ideal/planar-assembled-free-particle.mjs --pretty`  
+Reproduce: `node scripts/braid-ideal/planar-assembled-free-particle.mjs --pretty`
 Owner test: `node --test tests/braid-ideal-planar-assembled-free-particle.test.js`

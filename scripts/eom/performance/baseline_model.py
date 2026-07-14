@@ -138,4 +138,3 @@ def dense_resource_projection(
             "force evaluation, reduction, integration, and output."
         ),
     }
-

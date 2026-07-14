@@ -1,9 +1,9 @@
 # §96 Moving Phase-Matched Stacked-Rings Braid Seed
 
-**Date:** 2026-07-12  
-**Claim level:** seed-grade production-root diagnostic; no retained-branch acceptance  
-**Runner:** `scripts/braid-ideal/moving-phase-matched-stacked-rings-braid.mjs`  
-**Fixture:** `scripts/braid-ideal/moving-phase-matched-stacked-rings-fixture.mjs`  
+**Date:** 2026-07-12
+**Claim level:** seed-grade production-root diagnostic; no retained-branch acceptance
+**Runner:** `scripts/braid-ideal/moving-phase-matched-stacked-rings-braid.mjs`
+**Fixture:** `scripts/braid-ideal/moving-phase-matched-stacked-rings-fixture.mjs`
 **Owner test:** `tests/braid-ideal-moving-phase-matched-stacked-rings-braid.test.js`
 
 ## Closure target

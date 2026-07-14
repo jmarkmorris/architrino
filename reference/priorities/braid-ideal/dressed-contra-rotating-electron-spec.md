@@ -1,9 +1,9 @@
 # §95 Dressed Contra-Rotating Electron Seed
 
-**Date:** 2026-07-12  
-**Claim level:** seed-grade shared-record diagnostic; no retained-branch acceptance  
-**Runner:** `scripts/braid-ideal/dressed-contra-rotating-electron.mjs`  
-**Fixture:** `scripts/braid-ideal/dressed-contra-rotating-electron-fixture.mjs`  
+**Date:** 2026-07-12
+**Claim level:** seed-grade shared-record diagnostic; no retained-branch acceptance
+**Runner:** `scripts/braid-ideal/dressed-contra-rotating-electron.mjs`
+**Fixture:** `scripts/braid-ideal/dressed-contra-rotating-electron-fixture.mjs`
 **Owner test:** `tests/braid-ideal-dressed-contra-rotating-electron.test.js`
 
 ## Closure target
@@ -120,7 +120,7 @@ Removing the payload recovers the §93 equilibrium, pump, saddle eigenvalues, an
 
 Decision: `dressed_pair_fails_seed_gate_no_release`. The first failed gate is `payload_equilibrium`; the conditional lock remains a saddle, the pump reopens, and the certified joint spectrum remains unstable. No native retained-history release is authorized.
 
-Reproduce: `node scripts/braid-ideal/dressed-contra-rotating-electron.mjs --pretty`  
+Reproduce: `node scripts/braid-ideal/dressed-contra-rotating-electron.mjs --pretty`
 Owner suite: `node --test --test-name-pattern="§95" tests/braid-ideal-dressed-contra-rotating-electron.test.js`
 
 Next closure goal: replace the boundary-seeking rigid pocket ansätze only if a new force-balance mechanism supplies a bounded six-electrino equilibrium; otherwise treat the present dressed-pair realization as closed negative at seed grade.

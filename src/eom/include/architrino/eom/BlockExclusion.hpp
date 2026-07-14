@@ -41,4 +41,3 @@ struct MovingHistoryBlockCertificate {
     const MovingHistoryBlockRequest& request);
 
 }  // namespace architrino::eom
-
