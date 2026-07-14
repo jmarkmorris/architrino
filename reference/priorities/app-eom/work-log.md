@@ -460,3 +460,49 @@ This file holds dated decisions, implementation status, validation results, fail
   receiver-reduction replay, split absolute time, durable transactions,
   representative coupled throughput, and production block traversal remain
   open; production block traversal was not started in this packet.
+
+## 2026-07-13 — Hierarchical Traversal, Checkpoint/Restart, And Borg Shadow Route Implemented
+
+- Added a deterministic hierarchical traversal over general moving retained
+  histories. Every terminal node is either a certified exclusion or a compact
+  exact tile; disjoint excluded plus exact coverage must equal the complete
+  ordered-pair domain. Node and exact-pair limits fail closed before exact work
+  exceeds the declared envelope.
+- Added bounded multithreaded exact fallback for the surviving tiles and
+  controls for traversal-node and exact-pair resource exhaustion. The first
+  fixture accounts for all eight ordered pairs as four exclusions and four
+  completed exact rows.
+- Added `eom_native_evolution_checkpoint/v0`: deterministic serialization,
+  content fingerprint, payload checksum, atomic temporary-file `fsync` and
+  rename publication, directory `fsync`, tamper rejection, and restart. A
+  checkpointed continuation reproduces the uninterrupted retained-history
+  fingerprint exactly.
+- Corrected Borg's false EOM provenance without removing its compatibility
+  runtime. Its fixture and dynamic central-solver runner now state
+  `canonicalEomEvidence=false` and
+  `eomEvidenceStatus=non_eom_compatibility_output`.
+- Added a separate Borg EOM shadow adapter. It imports a continuous cubic past
+  through an absolute cut time, rejects state-only input, prohibits future
+  paths, preserves imported-history contamination provenance, and derives
+  display rows only from native atomically published history extensions.
+- Added a C++ native process protocol, Node process client, same-origin local
+  HTTP endpoint, and opt-in `/borg.html?eom=shadow` route. The ordinary Borg
+  path remains unchanged unless the operator explicitly enables
+  `EOM_BORG_SHADOW=1` and requests shadow mode.
+- The first full-history 16-path attempt timed out at 180 seconds. A
+  geometry-derived causal-memory cut reduced the retained window from 300 to
+  about 60.62 time units. Tight root tolerances then failed closed because the
+  imported frames carry up to `1.5e-8` source uncertainty and one difficult
+  ordered pair, `1015<-1010`, remained unresolved through `1e-4`.
+- A 16-path interval `[300,300.01]` completed one accepted atomic step with
+  zero rejections at root tolerance `1e-3`; it published all 16 histories and
+  32 display rows in about 48.36 seconds. This is conditional executable
+  architecture evidence only: the input history came from the non-EOM
+  compatibility solver, the tolerance is coarse, no convergence ladder
+  passed, and Borg promotion remained false.
+- Recorded the complete packet in
+  `evidence/eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json`.
+  The traversal is not yet connected to coupled acceleration snapshots, and
+  persistent workers, production million-path traversal, GPU, multi-GPU,
+  distributed history, split time, multirate evolution, and canonical Borg
+  migration remain open.

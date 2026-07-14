@@ -16,7 +16,7 @@ import {
 } from "../src/apps/borg/BorgDynamicNativeRunner.js";
 
 const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
-const NEXT_MASTER_EQUATION_BURDEN = "build-native-wake-history-and-boundary-residual-fixture";
+const NEXT_MASTER_EQUATION_BURDEN = "migrate-borg-through-certified-eom-shadow-run";
 const ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES = new Set([
   "ok",
   "native_capability_missing",
@@ -33,7 +33,7 @@ const ALLOWED_MASTER_EQUATION_FAILURE_CODES = new Set([
   "native_master_equation_solver_pending",
 ]);
 
-test("Borg fixture is a native fixed-parameter master-equation run, not tuned visual pair dynamics", () => {
+test("Borg fixture preserves central-solver output with explicit non-EOM provenance", () => {
   validateBorgFixtureSnapshot({
     manifest: BORG_DATASET_MANIFEST_V1,
     surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
@@ -58,8 +58,8 @@ test("Borg fixture is a native fixed-parameter master-equation run, not tuned vi
     true,
   );
   assert.equal(source.masterEquationFallbackDecision, "native-master-equation-selected");
-  assert.equal(source.canonicalEomEvidence, true);
-  assert.equal(source.eomEvidenceStatus, "native_master_equation_fixed_parameter_evidence");
+  assert.equal(source.canonicalEomEvidence, false);
+  assert.equal(source.eomEvidenceStatus, "non_eom_compatibility_output");
   assert.equal(source.nextSolverBurden, NEXT_MASTER_EQUATION_BURDEN);
 
   const probe = manifest.nativeMasterEquationProbe;
@@ -71,6 +71,8 @@ test("Borg fixture is a native fixed-parameter master-equation run, not tuned vi
   assert.equal(probe.fallbackDecision, "native-master-equation-selected");
   assert.equal(probe.fallbackRunKind, null);
   assert.equal(probe.valueAuthority, "authoritative-solver-output");
+  assert.equal(probe.canonicalEomEvidence, false);
+  assert.equal(probe.eomEvidenceStatus, "non_eom_compatibility_output");
 });
 
 test("Borg native master-equation frame data carries non-linear path evidence", () => {
@@ -156,8 +158,15 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   assert.equal(requests[0].configVersion, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
   assert.equal(requests[0].config.appId, "borg");
   assert.equal(requests[0].config.fallbackPolicy, "fail-closed");
-  assert.equal(requests[0].config.metadata.valueAuthority, "authoritative");
-  assert.equal(requests[0].config.metadata.appBufferAuthority, "authoritative");
+  assert.equal(
+    requests[0].config.metadata.valueAuthority,
+    "central-solver-compatibility-output",
+  );
+  assert.equal(
+    requests[0].config.metadata.appBufferAuthority,
+    "central-solver-compatibility-output",
+  );
+  assert.equal(requests[0].config.metadata.provenance.canonicalEomEvidence, false);
   assert.equal(requests[0].config.masterEquationRequest.initialStates.length, 16);
   assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
   assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
@@ -249,7 +258,7 @@ test("Borg dynamic native runner applies measured target and chunk limits", asyn
   await runner.dispose();
 });
 
-test("Borg surface advertises wake-history and boundary residuals as the next build burden", () => {
+test("Borg surface advertises certified EOM shadow migration as the next build burden", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
   assert.equal(surfaceDesign.sourceManifest.solverMode, MASTER_EQUATION_SOLVER_MODE);
   assert.equal(surfaceDesign.sourceManifest.visualTuningStatus, "not-visual-tuned");

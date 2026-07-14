@@ -70,10 +70,10 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "nativeMasterEquationProbeFirstFailureCode": "none",
     "nativeMasterEquationRequiredNativeExport": "architrino_solver_integrate_master_equation_motion_f64",
     "masterEquationFallbackDecision": "native-master-equation-selected",
-    "canonicalEomEvidence": true,
-    "eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence",
-    "eomEvidenceReason": "The native ABI emitted fixed-parameter master-equation current-state frames and path-history rows from the central solver.",
-    "nextSolverBurden": "build-native-wake-history-and-boundary-residual-fixture",
+    "canonicalEomEvidence": false,
+    "eomEvidenceStatus": "non_eom_compatibility_output",
+    "eomEvidenceReason": "The central-solver compatibility ABI emitted frames without retained-history causal roots, self-pairs, receiver-normal factors, or certified EOM evolution.",
+    "nextSolverBurden": "migrate-borg-through-certified-eom-shadow-run",
     "valueAuthority": "authoritative-solver-output"
   },
   "nativeMasterEquationProbe": {
@@ -89,9 +89,9 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
     "fixedPhysicalParameterAuthority": "manifest-declared-fixed-parameter-contract",
     "masterEquationVersion": "master-equation-fixed-parameter-v1",
     "forceLawVersion": "architrino-master-equation-v1",
-    "canonicalEomEvidence": true,
-    "eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence",
-    "eomEvidenceReason": "The native ABI emitted fixed-parameter master-equation current-state frames and path-history rows from the central solver.",
+    "canonicalEomEvidence": false,
+    "eomEvidenceStatus": "non_eom_compatibility_output",
+    "eomEvidenceReason": "The central-solver compatibility ABI emitted frames without retained-history causal roots, self-pairs, receiver-normal factors, or certified EOM evolution.",
     "firstFailureCode": "none",
     "requiredNativeExport": "architrino_solver_integrate_master_equation_motion_f64",
     "fallbackDecision": "native-master-equation-selected",
@@ -432818,23 +432818,23 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
       "fixedPhysicalParameterAuthority": "manifest-declared-fixed-parameter-contract",
       "masterEquationVersion": "master-equation-fixed-parameter-v1",
       "forceLawVersion": "architrino-master-equation-v1",
-      "canonicalEomEvidence": true,
-      "eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence",
-      "eomEvidenceReason": "The native ABI emitted fixed-parameter master-equation current-state frames and path-history rows from the central solver.",
+      "canonicalEomEvidence": false,
+      "eomEvidenceStatus": "non_eom_compatibility_output",
+      "eomEvidenceReason": "The central-solver compatibility ABI emitted frames without retained-history causal roots, self-pairs, receiver-normal factors, or certified EOM evolution.",
       "firstFailureCode": "none",
       "requiredNativeExport": "architrino_solver_integrate_master_equation_motion_f64",
       "fallbackDecision": "native-master-equation-selected",
       "fallbackRunKind": null,
       "valueAuthority": "authoritative-solver-output"
     },
-    "canonicalEomEvidence": true,
-    "eomEvidenceStatus": "native_master_equation_fixed_parameter_evidence",
-    "nextSolverBurden": "build-native-wake-history-and-boundary-residual-fixture",
+    "canonicalEomEvidence": false,
+    "eomEvidenceStatus": "non_eom_compatibility_output",
+    "nextSolverBurden": "migrate-borg-through-certified-eom-shadow-run",
     "sourceClaimLevel": "developer-test"
   },
   "nativeSolverBoundary": {
-    "productionSolver": "native-central-solver",
-    "newSolverStatus": "forbidden",
+    "productionSolver": "central-solver-compatibility-output",
+    "eomMigrationStatus": "shadow-adapter-available-promotion-gated",
     "bridgeExecutionPath": "native_c_abi",
     "currentStateAuthority": "authoritative-solver-output",
     "pathHistoryAuthority": "authoritative-solver-output",
@@ -433311,7 +433311,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = deepFreeze({
     "benignNoiseAuthorityStatus": "fail-closed-missing-contract",
     "proofClaimStatus": "not-proof-evidence"
   },
-  "nextBuildBurden": "build-native-wake-history-and-boundary-residual-fixture"
+  "nextBuildBurden": "migrate-borg-through-certified-eom-shadow-run"
 });
 
 export const BORG_FAIL_CLOSED_ROWS = deepFreeze([
@@ -433510,13 +433510,19 @@ export function validateBorgFixtureSnapshot({
     failures.push("Borg native master-equation selection decision is missing");
   }
   const expectedNextSolverBurden = usesNativeMasterEquation
-    ? "build-native-wake-history-and-boundary-residual-fixture"
+    ? "migrate-borg-through-certified-eom-shadow-run"
     : "build-native-master-equation-fixed-parameter-fixture";
   if (manifest.sourceBridgeRun.nextSolverBurden !== expectedNextSolverBurden) {
     failures.push("Borg fixture next solver burden is stale");
   }
-  if (usesNativeMasterEquation && manifest.sourceBridgeRun.canonicalEomEvidence !== true) {
-    failures.push("Borg master-equation fixture does not claim native EOM evidence");
+  if (usesNativeMasterEquation && manifest.sourceBridgeRun.canonicalEomEvidence !== false) {
+    failures.push("Borg compatibility fixture incorrectly claims canonical EOM evidence");
+  }
+  if (
+    usesNativeMasterEquation &&
+    manifest.sourceBridgeRun.eomEvidenceStatus !== "non_eom_compatibility_output"
+  ) {
+    failures.push("Borg compatibility fixture lacks its non-EOM provenance status");
   }
   if (manifest.sourceBridgeRun.pairAccelerationScale != null) {
     failures.push("Borg default-motion fixture must not expose pair action scale");

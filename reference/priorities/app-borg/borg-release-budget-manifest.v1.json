@@ -11,7 +11,7 @@
   "nativeSolverContract": {
     "appId": "borg",
     "runKind": "masterEquation",
-    "motionAuthority": "native central solver",
+    "motionAuthority": "central solver compatibility output",
     "releaseBudgetAuthority": "browser runtime measurement only"
   },
   "sampleMatrix": {
@@ -96,5 +96,5 @@
     "releaseMaxTarget",
     "releaseMaxChunk"
   ],
-  "nextBuildBurden": "build-native-wake-history-and-boundary-residual-fixture"
+  "nextBuildBurden": "migrate-borg-through-certified-eom-shadow-run"
 }

@@ -12,6 +12,10 @@ import {
   mergeBorgFrameRows,
 } from "./BorgDynamicNativeRunner.js";
 import {
+  BORG_EOM_SHADOW_RUN_SOURCE,
+  createBorgEomShadowRunner,
+} from "./BorgEomShadowRunner.js";
+import {
   createMeasuredRunPresetCalibration,
   resolveMeasuredRunControlPreset,
   updateMeasuredRunPresetCalibration,
@@ -101,7 +105,12 @@ const STATUS_TONE = Object.freeze({
   "exceeded-error-budget": "bad",
   "fail-closed-value": "bad",
   "native-backed-now": "good",
-  "computed-live-native-chunks": "good",
+  "computed-central-solver-compatibility-chunks": "warn",
+  "central-solver-compatibility-output": "warn",
+  "computed-eom-shadow-chunks": "warn",
+  "eom-shadow-running": "warn",
+  "eom-shadow-output": "warn",
+  "canonical-eom-output": "good",
   "live-native-running": "good",
   "precomputed-fixture": "warn",
   "fixture-fallback": "warn",
@@ -237,6 +246,7 @@ export function mountBorgApp(options = {}) {
     sourceMode: "precomputed-fixture",
     dynamicRunnerStatus: "precomputed-fixture",
     dynamicRunnerMessage: "static native fixture loaded",
+    dynamicRunnerKind: "compatibility-fixture",
     dynamicRunner: null,
     dynamicChunkPromise: null,
     dynamicChunksComputed: 0,
@@ -441,6 +451,7 @@ export function mountBorgApp(options = {}) {
       ["Distribution", state.distributionLabel],
       ["Run budget", state.liveRunBudget.status],
       ["Live status", state.dynamicRunnerStatus],
+      ["Runner kind", state.dynamicRunnerKind],
       ["Live target", state.dynamicTargetDuration ?? "not-started"],
       ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
       ["Live chunks", state.dynamicChunksComputed],
@@ -1113,7 +1124,13 @@ export function mountBorgApp(options = {}) {
       restoreFixtureRun();
       return;
     }
-    const runnerOptions = createDefaultDynamicRunnerOptions(
+    const eomRunnerOptions = createDefaultEomShadowRunnerOptions(
+      options,
+      preset,
+      getRunInitialFrameRows(),
+      manifest,
+    );
+    const runnerOptions = eomRunnerOptions ?? createDefaultDynamicRunnerOptions(
       windowLike,
       options,
       preset,
@@ -1129,10 +1146,26 @@ export function mountBorgApp(options = {}) {
       return;
     }
     const generation = state.dynamicRunGeneration;
-    state.dynamicRunner = createBorgDynamicNativeRunner(manifest, runnerOptions);
+    try {
+      state.dynamicRunner = eomRunnerOptions
+        ? createBorgEomShadowRunner(manifest, runnerOptions)
+        : createBorgDynamicNativeRunner(manifest, runnerOptions);
+    } catch (error) {
+      restoreFixtureRun();
+      state.dynamicRunnerStatus = eomRunnerOptions ? "live-native-error" : "fixture-fallback";
+      state.dynamicRunnerMessage = error?.message ?? "live runner failed";
+      state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "compatibility-failed";
+      updateSourceStatusPresentation();
+      renderSourceFields();
+      renderDeploymentFields();
+      return;
+    }
+    state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow" : "central-solver-compatibility";
     applyMeasuredPresetLimitsToDynamicRunner();
-    state.dynamicRunnerStatus = "live-native-running";
-    state.dynamicRunnerMessage = "computing native chunks";
+    state.dynamicRunnerStatus = eomRunnerOptions ? "eom-shadow-running" : "live-native-running";
+    state.dynamicRunnerMessage = eomRunnerOptions
+      ? "computing certified EOM shadow chunks"
+      : "computing central-solver compatibility chunks";
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
@@ -1159,9 +1192,9 @@ export function mountBorgApp(options = {}) {
           return null;
         }
         state.dynamicChunksComputed += 1;
-        state.sourceMode = BORG_DYNAMIC_NATIVE_RUN_SOURCE;
+        state.sourceMode = chunk.source;
         state.dynamicRunnerStatus = state.dynamicRunner.canComputeNextChunk()
-          ? BORG_DYNAMIC_NATIVE_RUN_SOURCE
+          ? chunk.source
           : "completed-live-native-run";
         state.dynamicRunnerMessage = `chunk ${chunk.chunkIndex} ready`;
         currentFrames = replaceFixture
@@ -1204,7 +1237,9 @@ export function mountBorgApp(options = {}) {
         if (generation !== state.dynamicRunGeneration) {
           return null;
         }
-        const hadLiveFrames = state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE;
+        const hadLiveFrames =
+          state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE ||
+          state.sourceMode === BORG_EOM_SHADOW_RUN_SOURCE;
         state.dynamicRunnerStatus = hadLiveFrames ? "live-native-error" : "fixture-fallback";
         state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
         if (!hadLiveFrames) {
@@ -1373,6 +1408,7 @@ export function mountBorgApp(options = {}) {
     state.sourceMode = "precomputed-fixture";
     state.dynamicRunnerStatus = "precomputed-fixture";
     state.dynamicRunnerMessage = "static native fixture loaded";
+    state.dynamicRunnerKind = "compatibility-fixture";
     state.dynamicChunksComputed = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
@@ -1395,6 +1431,7 @@ export function mountBorgApp(options = {}) {
       : "precomputed-fixture";
     state.dynamicRunnerStatus = "live-native-running";
     state.dynamicRunnerMessage = "computing native chunks";
+    state.dynamicRunnerKind = options.eomShadowRunner ? "eom-shadow" : "central-solver-compatibility";
     state.dynamicChunksComputed = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
@@ -1560,6 +1597,42 @@ function createDefaultDynamicRunnerOptions(
     scope: windowLike,
     ...workerOptions,
     requestTimeoutMs: configured.requestTimeoutMs ?? 120000,
+  };
+}
+
+function createDefaultEomShadowRunnerOptions(
+  options = {},
+  preset = runControlPresetById(),
+  initialFrameRows = null,
+  manifest = BORG_DATASET_MANIFEST_V1,
+) {
+  if (options.eomShadowRunner === false || options.enableEomShadowRunner === false) {
+    return null;
+  }
+  const configured =
+    options.eomShadowRunner && typeof options.eomShadowRunner === "object"
+      ? options.eomShadowRunner
+      : null;
+  if (!configured?.eomClient) {
+    return null;
+  }
+  const historyEndTime = finiteBudgetNumber(
+    configured.startTime ?? options.eomHistoryEndTime ??
+      Math.max(...(manifest.currentStateFrames ?? []).map((row) => Number(row.time))),
+  );
+  const requestedTarget = configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration;
+  const targetDuration = Number.isFinite(Number(requestedTarget))
+    ? Number(requestedTarget)
+    : historyEndTime + (finiteBudgetNumber(configured.chunkDuration) ?? 20);
+  return {
+    ...configured,
+    startTime: historyEndTime,
+    targetDuration: Math.max(
+      historyEndTime + (finiteBudgetNumber(configured.sampleInterval) ?? 0.2),
+      targetDuration,
+    ),
+    chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
+    initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
   };
 }
 

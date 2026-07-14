@@ -135,6 +135,50 @@ class NativeHistoryLayerTests(unittest.TestCase):
             ["block-receiver-a", "block-receiver-b"],
         )
 
+    def test_certified_traversal_has_disjoint_full_coverage_and_exact_fallback(self) -> None:
+        traversal = self.packet["traversal"]
+        self.assertEqual(traversal["status"], "certified_complete")
+        self.assertTrue(traversal["coverage_disjoint_complete"])
+        self.assertEqual(traversal["logical_ordered_pairs"], 8)
+        self.assertEqual(traversal["excluded_pairs"], 4)
+        self.assertEqual(traversal["exact_fallback_pairs"], 4)
+        self.assertEqual(
+            traversal["excluded_pairs"] + traversal["exact_fallback_pairs"],
+            traversal["logical_ordered_pairs"],
+        )
+        self.assertEqual(
+            sorted(traversal["node_statuses"]), ["exact_tile", "excluded"]
+        )
+
+        exact = self.packet["traversal_exact_batch"]
+        self.assertEqual(exact["status"], "certified_complete")
+        self.assertTrue(exact["coverage_disjoint_complete"])
+        self.assertEqual(exact["exact_pairs_requested"], 4)
+        self.assertEqual(exact["exact_pairs_completed"], 4)
+        self.assertEqual(
+            [row["row_id"] for row in exact["rows"]],
+            [
+                "mixed-moving-history/receiver-a/near-a",
+                "mixed-moving-history/receiver-a/near-b",
+                "mixed-moving-history/receiver-b/near-a",
+                "mixed-moving-history/receiver-b/near-b",
+            ],
+        )
+        self.assertTrue(all(row["status"] == "certified_complete" for row in exact["rows"]))
+
+        traversal_failure = self.packet["traversal_resource_failure"]
+        self.assertEqual(traversal_failure["status"], "uncertified")
+        self.assertFalse(traversal_failure["coverage_disjoint_complete"])
+        self.assertEqual(
+            traversal_failure["failure_code"], "resource_envelope_exceeded"
+        )
+        exact_failure = self.packet["traversal_exact_resource_failure"]
+        self.assertEqual(exact_failure["status"], "uncertified")
+        self.assertEqual(
+            exact_failure["failure_code"], "resource_envelope_exceeded"
+        )
+        self.assertEqual(exact_failure["exact_pairs_completed"], 0)
+
     def test_native_exact_pair_roots_have_oracle_parity(self) -> None:
         receiver = history("receiver-origin", ("0", "0", "0", "0"))
         moving_receiver = history("receiver-moving", ("0", "0.2", "0", "0"))

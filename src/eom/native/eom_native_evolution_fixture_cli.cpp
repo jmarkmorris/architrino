@@ -1,13 +1,17 @@
+#include "architrino/eom/Checkpoint.hpp"
 #include "architrino/eom/CoupledEvolution.hpp"
 #include "architrino/eom/History.hpp"
 
 #include <array>
 #include <cstdlib>
+#include <filesystem>
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
+
+#include <unistd.h>
 
 namespace eom = architrino::eom;
 
@@ -305,6 +309,43 @@ void print_all() {
   const auto static_result =
       eom::evolve_native_coupled_histories(static_request);
 
+  auto checkpoint_partial_request = static_request;
+  checkpoint_partial_request.run_id = "static-checkpoint-restart";
+  checkpoint_partial_request.end_time =
+      static_result.steps.front().accepted_time;
+  const auto checkpoint_partial_result =
+      eom::evolve_native_coupled_histories(checkpoint_partial_request);
+  const auto checkpoint = eom::create_native_evolution_checkpoint(
+      checkpoint_partial_request, checkpoint_partial_result);
+  const auto checkpoint_bytes =
+      eom::serialize_native_evolution_checkpoint(checkpoint);
+  const auto checkpoint_roundtrip =
+      eom::deserialize_native_evolution_checkpoint(checkpoint_bytes);
+  const auto checkpoint_resumed = eom::resume_native_coupled_histories(
+      checkpoint_partial_request, checkpoint_roundtrip, static_request.end_time);
+  auto checkpoint_direct_request = static_request;
+  checkpoint_direct_request.run_id = checkpoint_partial_request.run_id;
+  const auto checkpoint_direct =
+      eom::evolve_native_coupled_histories(checkpoint_direct_request);
+  bool checkpoint_tamper_rejected = false;
+  auto tampered_checkpoint_bytes = checkpoint_bytes;
+  tampered_checkpoint_bytes[tampered_checkpoint_bytes.size() / 2U] ^= 1U;
+  try {
+    static_cast<void>(
+        eom::deserialize_native_evolution_checkpoint(tampered_checkpoint_bytes));
+  } catch (const std::invalid_argument&) {
+    checkpoint_tamper_rejected = true;
+  }
+  const std::filesystem::path checkpoint_path =
+      std::filesystem::temp_directory_path() /
+      ("eom-native-checkpoint-fixture-" +
+       std::to_string(static_cast<long long>(::getpid())) + ".bin");
+  eom::write_native_evolution_checkpoint_atomic(
+      checkpoint_path.string(), checkpoint);
+  const auto checkpoint_file_roundtrip =
+      eom::read_native_evolution_checkpoint(checkpoint_path.string());
+  std::filesystem::remove(checkpoint_path);
+
   const auto fast_request = request(
       "fast-inertial",
       {{"p", "1", history("fast-self-history", "2", {"0", "2", "0", "0"})}},
@@ -461,7 +502,29 @@ void print_all() {
             << "\"integration_method\":\"" << eom::kNativeIntegrationMethod
             << "\",\"future_history_rejected\":"
             << (future_history_rejected ? "true" : "false")
-            << ",\"evolutions\":[";
+            << ",\"checkpoint\":{"
+            << "\"schema\":\"" << checkpoint.schema
+            << "\",\"accepted_time\":\"" << checkpoint.accepted_time
+            << "\",\"controller_step_size\":\""
+            << checkpoint.controller_step_size
+            << "\",\"model_fingerprint\":\""
+            << checkpoint.model_fingerprint
+            << "\",\"checkpoint_fingerprint\":\""
+            << checkpoint.checkpoint_fingerprint
+            << "\",\"byte_length\":" << checkpoint_bytes.size()
+            << ",\"roundtrip_fingerprint\":\""
+            << checkpoint_roundtrip.checkpoint_fingerprint
+            << "\",\"file_roundtrip_fingerprint\":\""
+            << checkpoint_file_roundtrip.checkpoint_fingerprint
+            << "\",\"tamper_rejected\":"
+            << (checkpoint_tamper_rejected ? "true" : "false")
+            << ",\"direct_histories\":";
+  print_histories(
+      checkpoint_direct.histories, checkpoint_direct.accepted_end_time);
+  std::cout << ",\"resumed_histories\":";
+  print_histories(
+      checkpoint_resumed.histories, checkpoint_resumed.accepted_end_time);
+  std::cout << "},\"evolutions\":[";
   print_evolution(static_result);
   std::cout << ',';
   print_evolution(fast_result);

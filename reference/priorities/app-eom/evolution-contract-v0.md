@@ -5,7 +5,7 @@
 - Contract id: `eom_evolution_contract/v0`
 - Stage: `requirements-frozen`
 - Claim level: `priority-design`
-- Implementation status: `not-started`
+- Implementation status: `native-correctness-nucleus-and-borg-shadow-executable; production-conformance-open`
 - Model binding: frozen `master_eom_binding/v0`
 - Active amendments: [`eom_evolution_contract/v0/amendment-1`](evolution-contract-v0-amendment-1-million-path-scale.md)
 - Initial-data type: continuous retained history functions only

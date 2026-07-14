@@ -219,6 +219,27 @@ MPFR sharp-row/reduction replay, split-time representation, or many-orders
 multirate scheduler. The finite ladder certifies the declared regulator
 envelope; it does not prove an analytic sharp limit.
 
+## Native Traversal, Checkpoint, And Borg Shadow Measurement
+
+The next C++ packet adds hierarchical moving-history traversal, disjoint
+compact pair coverage, bounded exact fallback, and single-host atomic
+checkpoint/restart. These components pass their focused controls but are not
+yet connected: coupled acceleration snapshots still use exhaustive $N^2$
+pair reconstruction.
+
+The first native Borg shadow measurement imported all 16 continuous histories
+and evolved `[300,300.01]`. Supplying the full `[0,300]` history exceeded a
+180-second process budget. A cube-geometry causal bound reduced retained depth
+to `60.6217782649107`; the accepted coarse-tolerance shadow step then took
+`48.360968208` seconds. Tighter requests failed atomically, ultimately
+isolating ordered pair `1015<-1010` as unresolved at root tolerance `1e-4`.
+
+This measurement establishes a working end-to-end route and a concrete
+performance/numeric blocker. It does not pass convergence, interactive
+latency, production ABI, or migration gates. Detailed attempts and authority
+limits are recorded in
+[eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json](evidence/eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json).
+
 ## Measured Local Results
 
 Rates below are medians for the recorded run. They compare architecture costs,

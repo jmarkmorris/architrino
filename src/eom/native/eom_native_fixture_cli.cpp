@@ -1,4 +1,5 @@
 #include "architrino/eom/BlockExclusion.hpp"
+#include "architrino/eom/CertifiedTraversal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
 
@@ -112,6 +113,58 @@ void print_pair(const eom::ExactPairCertificate& certificate) {
   std::cout << "]}";
 }
 
+void print_traversal(
+    const eom::CertifiedTraversalCertificate& certificate) {
+  std::cout << "{\"schema\":\"" << certificate.schema
+            << "\",\"traversal_id\":\"" << certificate.traversal_id
+            << "\",\"status\":\"" << certificate.status
+            << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"logical_ordered_pairs\":"
+            << certificate.logical_ordered_pairs
+            << ",\"excluded_pairs\":" << certificate.excluded_pairs
+            << ",\"exact_fallback_pairs\":"
+            << certificate.exact_fallback_pairs
+            << ",\"visited_nodes\":" << certificate.visited_nodes
+            << ",\"coverage_disjoint_complete\":"
+            << (certificate.coverage_disjoint_complete ? "true" : "false")
+            << ",\"node_statuses\":[";
+  for (std::size_t index = 0; index < certificate.nodes.size(); ++index) {
+    if (index > 0) {
+      std::cout << ',';
+    }
+    std::cout << '"' << certificate.nodes[index].status << '"';
+  }
+  std::cout << "]}";
+}
+
+void print_traversal_exact_batch(
+    const eom::CertifiedTraversalExactBatchCertificate& certificate) {
+  std::cout << "{\"schema\":\"" << certificate.schema
+            << "\",\"status\":\"" << certificate.status
+            << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"logical_ordered_pairs\":"
+            << certificate.logical_ordered_pairs
+            << ",\"excluded_pairs\":" << certificate.excluded_pairs
+            << ",\"exact_pairs_requested\":"
+            << certificate.exact_pairs_requested
+            << ",\"exact_pairs_completed\":"
+            << certificate.exact_pairs_completed
+            << ",\"coverage_disjoint_complete\":"
+            << (certificate.coverage_disjoint_complete ? "true" : "false")
+            << ",\"rows\":[";
+  for (std::size_t index = 0;
+       index < certificate.exact_pair_certificates.size(); ++index) {
+    if (index > 0) {
+      std::cout << ',';
+    }
+    const auto& row = certificate.exact_pair_certificates[index];
+    std::cout << "{\"row_id\":\"" << row.row_id
+              << "\",\"status\":\"" << row.status
+              << "\",\"root_count\":" << row.roots.size() << '}';
+  }
+  std::cout << "]}";
+}
+
 std::vector<eom::ExactPairCertificate> pair_fixture() {
   const auto receiver = history("receiver-origin", {"0", "0", "0", "0"});
   const auto moving_receiver =
@@ -196,6 +249,49 @@ void print_all() {
       .emission = {"0", "2"},
       .field_speed = "1",
   };
+  const eom::CertifiedTraversalRequest traversal_request{
+      .traversal_id = "mixed-moving-history",
+      .receivers = {
+          {"receiver-a", &receiver_a}, {"receiver-b", &receiver_b}},
+      .sources = {
+          {"far-a", &far_source_a},
+          {"far-b", &far_source_b},
+          {"near-a", &near_source_a},
+          {"near-b", &near_source_b},
+      },
+      .reception = {"4", "4"},
+      .emission = {"0", "2"},
+      .field_speed = "1",
+      .exact_tile_pair_limit = 4,
+      .maximum_nodes = 32,
+  };
+  const auto traversal =
+      eom::certify_moving_history_traversal(traversal_request);
+  const eom::CertifiedTraversalExactBatchRequest exact_batch_request{
+      .traversal_request = &traversal_request,
+      .traversal_certificate = &traversal,
+      .reception_time = "4",
+      .search_lower = "0",
+      .search_upper = "2",
+      .root_tolerance = "1e-10",
+      .root_max_depth = 192,
+      .root_max_cells = 300000,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .maximum_exact_pairs = 16,
+      .thread_count = 4,
+  };
+  const auto exact_batch =
+      eom::certify_traversal_exact_pair_batch(exact_batch_request);
+  auto resource_request = traversal_request;
+  resource_request.traversal_id = "mixed-moving-history-resource-control";
+  resource_request.maximum_nodes = 1;
+  const auto traversal_resource_failure =
+      eom::certify_moving_history_traversal(resource_request);
+  auto exact_resource_request = exact_batch_request;
+  exact_resource_request.maximum_exact_pairs = 2;
+  const auto exact_resource_failure =
+      eom::certify_traversal_exact_pair_batch(exact_resource_request);
   bool discontinuity_rejected = false;
   try {
     const eom::RetainedHistory discontinuous(
@@ -213,7 +309,15 @@ void print_all() {
   print_block(eom::certify_moving_history_block(far));
   std::cout << ',';
   print_block(eom::certify_moving_history_block(near));
-  std::cout << "],\"pairs\":[";
+  std::cout << "],\"traversal\":";
+  print_traversal(traversal);
+  std::cout << ",\"traversal_exact_batch\":";
+  print_traversal_exact_batch(exact_batch);
+  std::cout << ",\"traversal_resource_failure\":";
+  print_traversal(traversal_resource_failure);
+  std::cout << ",\"traversal_exact_resource_failure\":";
+  print_traversal_exact_batch(exact_resource_failure);
+  std::cout << ",\"pairs\":[";
   const auto pairs = pair_fixture();
   for (std::size_t index = 0; index < pairs.size(); ++index) {
     if (index > 0) {

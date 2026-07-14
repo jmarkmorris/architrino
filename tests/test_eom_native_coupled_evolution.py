@@ -156,6 +156,25 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             if row["failure_code"] == failure_code
         )
 
+    def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
+        checkpoint = self.packet["checkpoint"]
+        self.assertEqual(
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v0"
+        )
+        self.assertGreater(checkpoint["byte_length"], 0)
+        self.assertEqual(
+            checkpoint["checkpoint_fingerprint"],
+            checkpoint["roundtrip_fingerprint"],
+        )
+        self.assertEqual(
+            checkpoint["checkpoint_fingerprint"],
+            checkpoint["file_roundtrip_fingerprint"],
+        )
+        self.assertTrue(checkpoint["tamper_rejected"])
+        self.assertEqual(
+            checkpoint["direct_histories"], checkpoint["resumed_histories"]
+        )
+
     def test_static_and_superfield_inertial_histories_match_oracle(self) -> None:
         cases = (
             (

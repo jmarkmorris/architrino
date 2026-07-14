@@ -2,10 +2,10 @@
 
 ## Status
 
-- Stage: `initial-plan`
+- Stage: `borg-shadow-executable-promotion-blocked`
 - Migration authority: `none-until-eom-validation`
 - Existing central solver: preserved for dependency compatibility
-- EOM implementation: not started
+- EOM implementation: native correctness nucleus, checkpoint layer, and Borg shadow adapter executable
 
 ## Migration Principle
 
@@ -19,6 +19,14 @@ The knowledge-tree audit must distinguish two fundamentally different outputs:
 The first category can remain useful at a limited claim level, but it is not evidence that the prescribed path occurs dynamically.
 
 The current native `architrino_solver_integrate_master_equation_motion_f64` routine is now a verified non-EOM compatibility calculation. Its successful summary reports `canonical_eom_evidence = 1` even though it consumes no retained history, computes no causal roots or receiver-normal rows, excludes self-pairs, and emits zero wake rows. The implementation remains in place for dependencies, but that field is non-authoritative. See [current-solver-failure-audit.md](current-solver-failure-audit.md).
+
+The Borg fixture and compatibility runner now record
+`canonicalEomEvidence=false` and `eomEvidenceStatus=non_eom_compatibility_output`.
+An opt-in Borg EOM shadow route imports continuous cubic history through an
+absolute cut time, rejects state-only input, invokes the native C++ coupled
+engine, and derives display frames only from atomically published extensions.
+The first 16-path shadow step completed, but only at coarse tolerances and with
+`executable_architecture_evidence`; it is not eligible for promotion.
 
 ## Initial Consumer Disposition
 
