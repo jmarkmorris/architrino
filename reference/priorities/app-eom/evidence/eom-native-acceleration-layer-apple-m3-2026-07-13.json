@@ -1,0 +1,75 @@
+{
+  "schema": "eom_native_acceleration_layer_evidence/v0",
+  "date": "2026-07-13",
+  "authority": "executable_architecture_evidence_only",
+  "host": "Apple M3",
+  "toolchain": {
+    "compiler": "Apple clang 21.0.0",
+    "target": "arm64-apple-darwin25.5.0",
+    "language": "C++20"
+  },
+  "implemented_schemas": [
+    "eom_native_pair_acceleration_certificate/v0",
+    "eom_native_acceleration_reconstruction_certificate/v0"
+  ],
+  "numeric_scope": {
+    "chart": "sharp_simple_root",
+    "arithmetic": "outward_binary64_intervals",
+    "root_inputs": "eom_native_exact_pair_certificate/v0",
+    "reduction_policy": "fixed_pairwise_interval_tree_v0"
+  },
+  "controls": {
+    "pair_rows": {
+      "count": 10,
+      "certified_active": 4,
+      "certified_inactive": 1,
+      "fail_closed": 5,
+      "python_oracle_acceleration_parity": "pass"
+    },
+    "velocity_domain": {
+      "stationary": "certified_active",
+      "receiver_at_field_speed": "certified_active_zero_enclosure",
+      "receiver_above_field_speed": "certified_active_unclamped"
+    },
+    "root_aggregation": {
+      "two_root_pair": "certified_sum_contains_minus_1_25",
+      "row_reconstruction": "pass"
+    },
+    "negative_controls": {
+      "tangent_root": "uncertified_no_total",
+      "memory_boundary": "uncertified_no_total",
+      "tampered_source_normal": "uncertified_no_total",
+      "retained_history_provenance_mismatch": "uncertified_no_total",
+      "excess_acceleration_width": "uncertified_no_total"
+    },
+    "binary_receiver_matrix": {
+      "path_count": 2,
+      "logical_ordered_pairs": 4,
+      "self_pairs_included": true,
+      "complete_domain": "pass",
+      "python_oracle_receiver_total_parity": "pass",
+      "one_thread_four_thread_replay": "byte_identical"
+    }
+  },
+  "fixture_packet_sha256": "d0a7d355a1544c216a4d84fd6f4f63d67fac0d6b991560458f0235a8817d6cc3",
+  "validation": [
+    "strict C++20 compile with -Wall -Wextra -Wpedantic -Werror",
+    "CMake release build",
+    "CTest native history and acceleration fixtures",
+    "AddressSanitizer and UndefinedBehaviorSanitizer CTest fixtures",
+    "six Python independent-oracle parity and deterministic-reduction tests",
+    "full 81-test EOM family"
+  ],
+  "not_implemented": [
+    "finite-width native acceleration reconstruction",
+    "acceleration-stage MPFR precision escalation",
+    "coupled trial-history extension and atomic accepted-step publication",
+    "production hierarchical traversal over million moving histories",
+    "GPU difficult-row return",
+    "distributed retained-history ownership",
+    "checkpoint and streamed output integration",
+    "stable application ABI"
+  ],
+  "existing_central_solver_changed": false,
+  "migration_authorized": false
+}

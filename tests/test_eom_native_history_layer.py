@@ -1,0 +1,256 @@
+from __future__ import annotations
+
+import json
+import subprocess
+import tempfile
+import unittest
+from decimal import Decimal
+from pathlib import Path
+
+from scripts.eom.oracle.certified_history import (
+    CubicHistorySegment,
+    PiecewisePolynomialHistory,
+    certify_causal_roots,
+)
+from scripts.eom.oracle.decimal_interval import DecimalInterval, interval_norm
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def segment(x: tuple[str, str, str, str], *, t_end: str = "5") -> CubicHistorySegment:
+    return CubicHistorySegment.from_decimal_tokens(
+        t_start="0",
+        t_end=t_end,
+        coefficients=(x, ("0", "0", "0", "0"), ("0", "0", "0", "0")),
+        precision=90,
+    )
+
+
+def history(
+    history_id: str,
+    x: tuple[str, str, str, str],
+    *,
+    t_end: str = "5",
+) -> PiecewisePolynomialHistory:
+    return PiecewisePolynomialHistory.from_segments(
+        (segment(x, t_end=t_end),), history_id=history_id
+    )
+
+
+class NativeHistoryLayerTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls._temporary = tempfile.TemporaryDirectory(prefix="eom-native-test-")
+        cls.build = Path(cls._temporary.name)
+        subprocess.run(
+            [
+                "cmake",
+                "-S",
+                str(ROOT / "src/eom"),
+                "-B",
+                str(cls.build),
+                "-DCMAKE_BUILD_TYPE=Release",
+            ],
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        subprocess.run(
+            ["cmake", "--build", str(cls.build), "--parallel", "4"],
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        cls.binary = cls.build / "eom_native_fixture_cli"
+        cls.packet = cls._run_fixture()
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls._temporary.cleanup()
+
+    @classmethod
+    def _run_fixture(cls) -> dict[str, object]:
+        completed = subprocess.run(
+            [str(cls.binary), "all"],
+            check=True,
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        return json.loads(completed.stdout)
+
+    def pair(self, row_id: str) -> dict[str, object]:
+        return next(
+            row for row in self.packet["pairs"] if row["row_id"] == row_id
+        )
+
+    def test_moving_history_block_enclosure_matches_decimal_interval_oracle(self) -> None:
+        self.assertTrue(self.packet["discontinuous_history_rejected"])
+        receivers = (
+            segment(("0", "0.2", "0", "0")),
+            segment(("1", "0.1", "0", "0")),
+        )
+        source_groups = (
+            (
+                segment(("20", "0.3", "0", "0")),
+                segment(("22", "-0.2", "0", "0")),
+            ),
+            (
+                segment(("2", "0.1", "0", "0")),
+                segment(("3", "-0.1", "0", "0")),
+            ),
+        )
+        reception = DecimalInterval.bounds("4", "4.1", 90)
+        emission = DecimalInterval.bounds("0", "2", 90)
+        receiver_x = receivers[0].position_interval(reception)[0]
+        for receiver in receivers[1:]:
+            receiver_x = receiver_x.hull(receiver.position_interval(reception)[0])
+
+        expected_statuses: list[str] = []
+        for sources in source_groups:
+            source_x = sources[0].position_interval(emission)[0]
+            for source in sources[1:]:
+                source_x = source_x.hull(source.position_interval(emission)[0])
+            displacement = (
+                receiver_x - source_x,
+                DecimalInterval.point("0", 90),
+                DecimalInterval.point("0", 90),
+            )
+            residual = interval_norm(displacement) - (reception - emission)
+            expected_statuses.append(
+                "exact_fallback" if residual.contains_zero else "excluded"
+            )
+
+        blocks = self.packet["blocks"]
+        self.assertEqual([row["status"] for row in blocks], expected_statuses)
+        self.assertEqual(
+            [row["excluded_pairs"] + row["exact_fallback_pairs"] for row in blocks],
+            [4, 4],
+        )
+        self.assertEqual(
+            blocks[0]["receiver_history_ids"],
+            ["block-receiver-a", "block-receiver-b"],
+        )
+
+    def test_native_exact_pair_roots_have_oracle_parity(self) -> None:
+        receiver = history("receiver-origin", ("0", "0", "0", "0"))
+        moving_receiver = history("receiver-moving", ("0", "0.2", "0", "0"))
+        cases = {
+            "one_root": (
+                receiver,
+                history("one-root", ("2", "0", "0", "0")),
+                "5",
+                "0",
+                "4.5",
+                "1e-12",
+            ),
+            "two_roots": (
+                receiver,
+                history("two-roots", ("5", "-4", "1", "0")),
+                "3",
+                "0",
+                "2.5",
+                "1e-12",
+            ),
+            "root_free": (
+                receiver,
+                history("root-free", ("10", "0", "0", "0")),
+                "3",
+                "0",
+                "2.5",
+                "1e-12",
+            ),
+            "moving_receiver": (
+                moving_receiver,
+                history("one-root", ("2", "0", "0", "0")),
+                "5",
+                "0",
+                "4.5",
+                "1e-12",
+            ),
+            "moving_source": (
+                receiver,
+                history("moving-source", ("2", "0.25", "0", "0")),
+                "5",
+                "0",
+                "4.5",
+                "1e-12",
+            ),
+            "difficult_close_roots": (
+                receiver,
+                history("close-roots", ("4.0001", "-3.0001", "1", "0")),
+                "3",
+                "0.5",
+                "1.5",
+                "1e-16",
+            ),
+        }
+        for row_id, (target, source, reception, lower, upper, tolerance) in cases.items():
+            with self.subTest(row_id=row_id):
+                oracle = certify_causal_roots(
+                    receiver=target,
+                    source=source,
+                    reception_time=reception,
+                    field_speed="1",
+                    search_lower=lower,
+                    search_upper=upper,
+                    root_tolerance=tolerance,
+                    max_depth=256,
+                    max_cells=500000,
+                )
+                native = self.pair(row_id)
+                self.assertEqual(native["status"], oracle.status)
+                self.assertTrue(native["root_free_complement"])
+                self.assertEqual(len(native["roots"]), len(oracle.roots))
+                for native_root, oracle_root in zip(native["roots"], oracle.roots):
+                    native_lower = Decimal(native_root["lower"])
+                    native_upper = Decimal(native_root["upper"])
+                    self.assertLessEqual(native_lower, oracle_root.upper)
+                    self.assertGreaterEqual(native_upper, oracle_root.lower)
+                    self.assertLessEqual(native_upper - native_lower, Decimal(tolerance))
+                    self.assertEqual(
+                        native_root["source_normal_sign"],
+                        oracle_root.source_normal.strict_sign,
+                    )
+
+    def test_difficult_rows_escalate_without_promoting_uncertified_results(self) -> None:
+        close = self.pair("difficult_close_roots")
+        self.assertEqual(close["status"], "certified_complete")
+        self.assertTrue(close["precision_escalated"])
+        self.assertGreaterEqual(close["achieved_precision_bits"], 128)
+        self.assertEqual(len(close["roots"]), 2)
+        tangent = self.pair("tangent")
+        self.assertEqual(tangent["status"], "caustic_route_required")
+        self.assertFalse(tangent["root_free_complement"])
+        self.assertEqual(tangent["roots"], [])
+
+    def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:
+        subfield = self.pair("self_subfield")
+        self.assertEqual(subfield["status"], "certified_complete")
+        self.assertTrue(subfield["coincident_endpoint_excluded"])
+        self.assertEqual(subfield["roots"], [])
+        rail = self.pair("self_rail")
+        self.assertEqual(rail["status"], "caustic_route_required")
+        self.assertFalse(rail["coincident_endpoint_excluded"])
+        self.assertFalse(rail["root_free_complement"])
+
+    def test_memory_boundary_and_piecewise_root_identity_match_oracle_rules(self) -> None:
+        memory = self.pair("memory_boundary")
+        self.assertEqual(memory["status"], "memory_boundary_contact")
+        self.assertEqual(memory["failure_code"], "insufficient_history_depth")
+        self.assertTrue(memory["root_free_complement"])
+        self.assertTrue(memory["memory_boundary_contact"])
+        piecewise = self.pair("piecewise_boundary")
+        self.assertEqual(piecewise["status"], "certified_complete")
+        self.assertEqual(len(piecewise["roots"]), 1)
+        self.assertEqual(piecewise["roots"][0]["source_segment_indices"], [0, 1])
+
+    def test_multithreaded_batch_output_is_deterministic(self) -> None:
+        self.assertEqual(self.packet, self._run_fixture())
+
+
+if __name__ == "__main__":
+    unittest.main()

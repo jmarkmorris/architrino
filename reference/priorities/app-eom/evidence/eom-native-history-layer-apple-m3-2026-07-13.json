@@ -1,0 +1,65 @@
+{
+  "schema": "eom_native_history_layer_evidence/v0",
+  "date": "2026-07-13",
+  "authority": "executable_architecture_evidence_only",
+  "host": "Apple M3",
+  "toolchain": {
+    "compiler": "Apple clang 21.0.0",
+    "target": "arm64-apple-darwin25.5.0",
+    "language": "C++20",
+    "mpfr": "4.2.2",
+    "gmp": "6.3.0"
+  },
+  "implemented_schemas": [
+    "eom_moving_history_block_certificate/v0",
+    "eom_native_exact_pair_certificate/v0"
+  ],
+  "controls": {
+    "moving_history_blocks": {
+      "count": 2,
+      "excluded": 1,
+      "exact_fallback": 1,
+      "decimal_interval_parity": "pass",
+      "complete_membership_accounting": "pass"
+    },
+    "exact_pair_rows": {
+      "count": 11,
+      "regular_binary64_certified": 6,
+      "mpfr_certified": 3,
+      "fail_closed_event_routes": 2,
+      "python_oracle_root_count_bracket_orientation_parity": "pass",
+      "multithreaded_output_order_replay": "bitwise_equal"
+    },
+    "special_rows": {
+      "discontinuous_history": "rejected_at_intake",
+      "moving_receiver": "certified_complete",
+      "moving_source": "certified_complete",
+      "two_simple_roots": "certified_complete",
+      "difficult_close_roots": "certified_complete_at_128_bits",
+      "memory_boundary": "insufficient_history_depth",
+      "piecewise_boundary_root": "deduplicated_with_both_segment_indices",
+      "subfield_self_endpoint": "coincident_endpoint_excluded",
+      "field_speed_rail_self_history": "caustic_route_required",
+      "tangent_root": "caustic_route_required"
+    }
+  },
+  "fixture_packet_sha256": "dc6e61032be9648f4a5b5e96f507170a633ad251d5a1d228bde8991f74b02c84",
+  "validation": [
+    "strict C++20 compile with -Wall -Wextra -Wpedantic -Werror",
+    "CMake release build",
+    "CTest native fixture",
+    "AddressSanitizer and UndefinedBehaviorSanitizer CTest fixture",
+    "six Python independent-oracle parity and deterministic-batch tests"
+  ],
+  "not_implemented": [
+    "coupled acceleration reconstruction and accepted-step evolution",
+    "production hierarchical traversal over million moving histories",
+    "deterministic receiver acceleration reduction",
+    "GPU difficult-row return",
+    "distributed retained-history ownership",
+    "checkpoint and streamed output integration",
+    "stable application ABI"
+  ],
+  "existing_central_solver_changed": false,
+  "migration_authorized": false
+}

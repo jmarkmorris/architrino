@@ -1,0 +1,92 @@
+{
+  "schema": "eom_native_finite_width_event_layer_evidence/v0",
+  "date": "2026-07-13",
+  "authority": "executable_architecture_evidence_only",
+  "host": "Apple M3",
+  "toolchain": {
+    "compiler": "Apple clang 21.0.0",
+    "target": "arm64-apple-darwin25.5.0",
+    "language": "C++20",
+    "multiprecision": "MPFR directed intervals"
+  },
+  "implemented_schemas": [
+    "eom_native_pair_acceleration_certificate/v0",
+    "eom_native_fold_caustic_impulse_certificate/v0",
+    "eom_native_corrected_substep_certificate/v0",
+    "eom_native_atomic_coupled_step_certificate/v0"
+  ],
+  "mathematical_scope": {
+    "finite_width_pair_law": "master_eom_binding/v0 causal-surface integral with receiver-normal magnitude",
+    "core_kernel": "r_vector/(r_squared+core_scale_squared)^(3/2)",
+    "fold_control": "joint reception-emission interval quadrature over the causal triangular domain",
+    "event_acceptance": "finite event impulse must overlap the candidate segment's endpoint-acceleration impulse",
+    "ordered_pairs": "includes self-pairs",
+    "publication": "atomic in-memory publication only"
+  },
+  "numeric_scope": {
+    "bulk_route": "binary64 outward intervals",
+    "difficult_acceleration_route": "MPFR directed interval quadrature with caller-bounded precision ladder",
+    "event_route": "binary64 outward joint quadrature",
+    "reduction_policy": "fixed_pairwise_interval_tree_v0",
+    "time_controller": "binary64 local time v0"
+  },
+  "controls": {
+    "stationary_finite_width_pair": {
+      "status": "active",
+      "binary64_visited_cells": 7553,
+      "independent_decimal_interval_oracle_overlap": "pass"
+    },
+    "forced_acceleration_precision_escalation": {
+      "status": "active",
+      "achieved_precision_bits": 128,
+      "precision_route": "mpfr_directed_interval_quadrature",
+      "binary64_certificate_overlap": "pass"
+    },
+    "tangent_sharp_failure_finite_width_recovery": {
+      "status": "active",
+      "visited_cells": 31689
+    },
+    "fold_caustic_impulse": {
+      "status": "certified_complete",
+      "visited_cells": 43,
+      "independent_decimal_interval_oracle_overlap": "pass"
+    },
+    "coupled_fold_event": {
+      "sharp_policy": "rejected_root_event_requires_subdivision",
+      "finite_width_policy": "accepted",
+      "event_impulse_certificates": 2,
+      "publication_atomic": true,
+      "one_thread_four_thread_replay": "byte_identical"
+    },
+    "negative_controls": {
+      "finite_width_cell_limit": "uncertified_without_acceleration_total",
+      "event_impulse_cell_limit": "uncertified_without_impulse",
+      "atomic_event_resource_exhaustion": "rejected_with_unchanged_input_histories",
+      "memory_boundary_contact": "insufficient_history_depth"
+    }
+  },
+  "fixture_sha256": {
+    "acceleration": "6f6e614bfab1a6b3a2938630f462275e255304a57f997d72b11342b5ebb95fae",
+    "coupled_evolution": "daa4fb7dfa546cb1ed362f866cad2b636a1f350a6d9ffb57f2b5a6ab78276a85"
+  },
+  "validation": [
+    "strict C++20 compile with -Wall -Wextra -Wpedantic -Werror",
+    "CMake Release build and three CTest fixtures",
+    "AddressSanitizer and UndefinedBehaviorSanitizer CTest fixtures",
+    "nine native acceleration parity and fail-closed tests",
+    "seven native coupled evolution parity, event, atomicity, and replay tests",
+    "full 91-test EOM family"
+  ],
+  "not_implemented": [
+    "MPFR joint fold/caustic impulse quadrature",
+    "MPFR replay for sharp-row acceleration and receiver reduction",
+    "regulator refinement and regulator-limit convergence acceptance",
+    "split absolute time and many-orders multirate schedules",
+    "durable transactional checkpoint and streamed publication",
+    "production hierarchical traversal over million moving histories",
+    "GPU difficult-row return and distributed retained-history ownership",
+    "stable application ABI"
+  ],
+  "existing_central_solver_changed": false,
+  "migration_authorized": false
+}

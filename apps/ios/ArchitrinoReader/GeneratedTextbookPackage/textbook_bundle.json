@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-12T20:43:27.844Z",
+  "generated_at": "2026-07-14T01:32:33.460Z",
   "package_version": "1.0.0-2bfbcd43",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -196,32 +196,32 @@
       "sourcePath": "__generated__/reading-copies/cosmology.html",
       "role": "chapter",
       "type": "html",
-      "size": 5258411,
-      "sha256": "de246c882fdd9c036502a382a32a48d9045d1be12229ca0b17ffa2c3689011a2"
+      "size": 5260191,
+      "sha256": "631d5beca2dc2fe58f1892a2ea0e055db3e6f7175d1b5164910cc4a0672100bf"
     },
     {
       "path": "reading-copies/cosmology.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 387544,
-      "sha256": "4e9ec624574f5b8e656f7365d418055cf74003f8abfb041d30a60c5d802974dd"
+      "size": 388769,
+      "sha256": "971354174f1068ce4a1469b2c78de03ce8a766397840f092d9f02c5f24cb907c"
     },
     {
       "path": "reading-copies/dynamics.html",
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 27077169,
-      "sha256": "4180bbe271d070df9bf945e1cf77cd74fc6874a4c23d061cf699f6018702888e"
+      "size": 27303283,
+      "sha256": "3682556fbea80cd39a5ce332a7cd8d315e1b360d05a967c0f268d6c4a874be57"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1445197,
-      "sha256": "fb821acdfd2d9f84540043ffcfc88e425c224f80fc00e52b68edf88e30fe632d"
+      "size": 1454827,
+      "sha256": "970efa247012cff39078a1e36482164be22064c49c5d04825c767ce53b031aab"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -260,16 +260,16 @@
       "sourcePath": "__generated__/reading-copies/noether-sea-and-effective-spacetime.html",
       "role": "chapter",
       "type": "html",
-      "size": 7578941,
-      "sha256": "43bcd8f542f360a133b3077e48fea76b36c7352c7cfe05672591f57f65708da8"
+      "size": 7582553,
+      "sha256": "883c716c3531a35ddb778b6881c02e3797fa7f6908ab31adf99b52cd4f77b6e4"
     },
     {
       "path": "reading-copies/noether-sea-and-effective-spacetime.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 507471,
-      "sha256": "a401b7989383e8321a7c9c34bcf67dd3b465218e5b53bd84fc993114ce195a41"
+      "size": 508095,
+      "sha256": "0a3f7483cc48db1e90edf0489a10c3f39277b0ff84a6d07edce489c849f19d72"
     },
     {
       "path": "reading-copies/philosophy-history.html",
@@ -436,8 +436,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 10325931,
-      "sha256": "c27a895c75300222e5e1b128b4682649fce9b31893c9b560db45b08d7118f2c1"
+      "size": 10337434,
+      "sha256": "34b0d9d9ea2bcdb48c13cb09fb520b0e224cc0dd03da0b97a3a88448a70d24b1"
     }
   ],
   "links": []

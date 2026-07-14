@@ -1,0 +1,80 @@
+{
+  "schema": "eom_native_coupled_evolution_layer_evidence/v0",
+  "date": "2026-07-13",
+  "authority": "executable_architecture_evidence_only",
+  "host": "Apple M3",
+  "toolchain": {
+    "compiler": "Apple clang 21.0.0",
+    "target": "arm64-apple-darwin25.5.0",
+    "language": "C++20"
+  },
+  "implemented_schemas": [
+    "eom_native_acceleration_snapshot_certificate/v0",
+    "eom_native_corrected_substep_certificate/v0",
+    "eom_native_atomic_coupled_step_certificate/v0",
+    "eom_native_coupled_evolution_certificate/v0"
+  ],
+  "integration_method": "coupled_cubic_corrector_with_step_doubling/v0",
+  "numeric_scope": {
+    "chart": "sharp_simple_root",
+    "history": "continuous_piecewise_cubic_with_error_enclosures",
+    "controller_time": "binary64_local_time_v0",
+    "acceleration": "outward_binary64_intervals",
+    "reduction_policy": "fixed_pairwise_interval_tree_v0",
+    "publication_boundary": "atomic_in_memory_return_v0"
+  },
+  "controls": {
+    "completed_evolutions": 4,
+    "evolution_attempts": {
+      "count": 10,
+      "accepted": 8,
+      "rejected_then_retried": 2
+    },
+    "direct_rejection_controls": 4,
+    "all_attempts_atomic": true,
+    "static_multistep": "completed_two_steps",
+    "super_field_speed_inertial": "completed_unclamped",
+    "binary_coupled_step": {
+      "status": "completed",
+      "logical_ordered_pairs_at_acceptance": 4,
+      "publication": "both_paths_together",
+      "python_oracle_endpoint_parity": "pass"
+    },
+    "adaptive_halving": {
+      "rejected_attempts": 2,
+      "accepted_smaller_steps": 4,
+      "status": "completed"
+    },
+    "negative_controls": {
+      "numeric_step_budget_exceeded": "unchanged_input_published",
+      "insufficient_history_depth": "unchanged_input_published",
+      "coupled_correction_failed": "unchanged_input_published",
+      "root_event_requires_subdivision": "unchanged_input_published",
+      "future_history_input": "rejected_at_request_boundary"
+    },
+    "deterministic_fixture_replay": "byte_identical",
+    "one_thread_four_thread_binary_evolution": "byte_identical"
+  },
+  "fixture_packet_sha256": "d77a26042be18cbe3f1a319ae0167d3fc51208cacf0b37db3847985fabd0a97e",
+  "validation": [
+    "strict C++20 compile with -Wall -Wextra -Wpedantic -Werror",
+    "CMake release build",
+    "CTest native history, acceleration, and evolution fixtures",
+    "AddressSanitizer and UndefinedBehaviorSanitizer CTest fixtures",
+    "five Python independent-oracle parity, atomicity, adaptivity, and deterministic-replay tests",
+    "full 86-test EOM family"
+  ],
+  "not_implemented": [
+    "native finite-width event transit and finite impulse",
+    "acceleration-stage MPFR precision escalation",
+    "split absolute time and many-orders multirate schedules",
+    "production hierarchical traversal over million moving histories",
+    "persistent worker pool, cancellation, and progress",
+    "durable transactional checkpoint and streamed publication",
+    "GPU difficult-row return",
+    "distributed retained-history ownership",
+    "stable application ABI"
+  ],
+  "existing_central_solver_changed": false,
+  "migration_authorized": false
+}
