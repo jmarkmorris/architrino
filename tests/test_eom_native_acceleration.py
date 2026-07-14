@@ -245,6 +245,69 @@ class NativeAccelerationTests(unittest.TestCase):
                 self.assertFalse(result["reconstruction_matches"])
                 self.assertTrue(result["failure_code"])
 
+    def test_native_finite_width_acceleration_has_oracle_parity(self) -> None:
+        receiver = history("static-two", ("2", "0", "0", "0"))
+        source = history("origin", ("0", "0", "0", "0"))
+        oracle = certify_pair_acceleration(
+            PairAccelerationRequest.from_decimal_tokens(
+                receiver_path_id="stationary-receiver",
+                source_path_id="stationary-source",
+                receiver_history=receiver,
+                source_history=source,
+                root_certificate=roots(receiver, source, "5"),
+                receiver_charge="1",
+                source_charge="-1",
+                coupling="1",
+                chart="finite_width",
+                source_normal_floor="1e-30",
+                causal_width="0.2",
+                core_scale="0.2",
+                acceleration_tolerance="2e-3",
+                quadrature_tolerance="2e-3",
+                quadrature_max_depth=28,
+                quadrature_max_cells=200000,
+            )
+        )
+        native = self.case("finite-width")
+        self.assertEqual(native["status"], "active")
+        self.assertEqual(native["chart"], "finite_width")
+        self.assertGreater(native["quadrature_visited_cells"], 1)
+        self.assertEqual(native["rows"][0]["chart"], "finite_width_pair")
+        for native_component, oracle_component in zip(
+            native["total_acceleration"], oracle.total_acceleration
+        ):
+            assert_overlaps(self, native_component, oracle_component)
+
+    def test_acceleration_stage_mpfr_escalation_is_recorded(self) -> None:
+        binary = self.case("finite-width")
+        escalated = self.case("finite-width-mpfr")
+        self.assertEqual(escalated["status"], "active")
+        self.assertTrue(escalated["acceleration_precision_escalated"])
+        self.assertGreaterEqual(escalated["achieved_acceleration_precision_bits"], 128)
+        self.assertEqual(
+            escalated["rows"][0]["acceleration_precision_route"],
+            "mpfr_directed_interval_quadrature",
+        )
+        for binary_component, mpfr_component in zip(
+            binary["total_acceleration"], escalated["total_acceleration"]
+        ):
+            binary_lower, binary_upper = native_interval(binary_component)
+            mpfr_lower, mpfr_upper = native_interval(mpfr_component)
+            self.assertLessEqual(binary_lower, mpfr_upper)
+            self.assertGreaterEqual(binary_upper, mpfr_lower)
+
+    def test_tangent_routes_to_finite_width_and_resources_fail_closed(self) -> None:
+        tangent = self.case("tangent-finite-width")
+        self.assertEqual(tangent["status"], "active")
+        self.assertEqual(
+            tangent["rows"][0]["acceptance_status"],
+            "consumed_certified_finite_width_pair",
+        )
+        exhausted = self.case("finite-width-resource")
+        self.assertEqual(exhausted["status"], "uncertified")
+        self.assertIsNone(exhausted["total_acceleration"])
+        self.assertIn("cell limit exhausted", exhausted["failure_code"])
+
     def test_complete_binary_matrix_has_oracle_parity_and_includes_self_pairs(self) -> None:
         path_a = history("path-a-history", ("0", "0", "0", "0"), t_end="3")
         path_b = history("path-b-history", ("2", "0", "0", "0"), t_end="3")

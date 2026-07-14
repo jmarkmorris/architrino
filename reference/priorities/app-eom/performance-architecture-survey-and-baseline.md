@@ -143,17 +143,17 @@ matrix produced byte-identical receiver totals with one and four threads. The
 matrix accounts for all four ordered pairs: inactive coincident self-endpoints
 remain explicit zero rows rather than being deleted.
 
-Six independent Python tests reproduce native sharp results with the
+The nine native acceleration tests reproduce sharp results with the
 90-decimal-digit oracle for stationary, exact-field-speed receiver,
 super-field-speed receiver, and two-root histories, then verify self-pair
 accounting, negative certification controls, complete binary receiver totals,
 and deterministic replay. Evidence is recorded in
 [eom-native-acceleration-layer-apple-m3-2026-07-13.json](evidence/eom-native-acceleration-layer-apple-m3-2026-07-13.json).
 
-This is a correctness packet, not a throughput claim. Native acceleration
-currently uses outward binary64 intervals after consuming root certificates;
-finite-width reconstruction and acceleration-stage MPFR escalation are not yet
-implemented.
+This is a correctness packet, not a throughput claim. Native acceleration now
+includes the bound finite-width causal-surface integral, a tangent recovery
+control, and caller-bounded MPFR directed-interval replay for difficult
+finite-width rows. Sharp-row and receiver-reduction MPFR replay remain open.
 
 ## Native Coupled Retained-History Evolution Packet
 
@@ -171,28 +171,39 @@ half-steps. Endpoint position and velocity disagreement is operational: a row
 outside the declared tolerance rejects the entire coupled candidate. Accepted
 fine segments are inflated by the measured discrepancy, then root and
 acceleration certification is rerun on the exact history vector to be
-published. Root-count or source-normal-sign changes return
-`root_event_requires_subdivision`. A rejection publishes copies of the input
-histories with identical provenance fingerprints; an acceptance publishes all
-paths together.
+published. Root-count or source-normal-sign changes under the sharp-only policy
+return `root_event_requires_subdivision`. Under a finite-width policy, every
+changed ordered pair must carry a certified joint reception/emission impulse
+whose enclosure overlaps the candidate segment's endpoint-acceleration
+impulse. A rejection publishes copies of the input histories with identical
+provenance fingerprints; an acceptance publishes all paths together.
 
 The fixture contains four completed evolutions: multistep static self-history,
 unclamped super-field-speed inertial self-history, a coupled two-path binary,
 and an adaptive binary that rejects twice before completing four smaller
-steps. Four direct negative controls cover error-budget rejection,
-retained-memory contact, correction exhaustion, and branch-event subdivision.
-All fourteen accepted or rejected attempt records are atomic. Five Python
-tests compare endpoint evolution to the independent 80-decimal-digit oracle,
-verify complete $N^2$ acceleration snapshots, confirm unchanged rejection
-publication, and require byte-identical one-thread/four-thread binary replay.
+steps. Direct controls cover error-budget rejection, retained-memory contact,
+correction exhaustion, sharp branch-event subdivision, finite-width event
+acceptance, and event-resource exhaustion. All sixteen accepted or rejected
+attempt records are atomic. Seven Python tests compare endpoint evolution and
+finite event impulse to the independent 80-decimal-digit oracle, verify
+complete $N^2$ acceleration snapshots, confirm unchanged rejection
+publication, and require byte-identical one-thread/four-thread replay.
 Evidence is recorded in
 [eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json](evidence/eom-native-coupled-evolution-layer-apple-m3-2026-07-13.json).
 
+The finite-width packet adds
+`eom_native_fold_caustic_impulse_certificate/v0`, binary64 outward joint
+quadrature over the causal triangular domain, MPFR finite-width acceleration
+replay, independent-oracle overlap, atomic event-resource rejection, and
+byte-identical one-thread/four-thread accepted-event replay. Evidence is
+recorded in
+[eom-native-finite-width-event-layer-apple-m3-2026-07-13.json](evidence/eom-native-finite-width-event-layer-apple-m3-2026-07-13.json).
+
 This layer is still correctness-first architecture evidence. It copies history
-vectors during correction, uses binary64 local-time controller values, supports
-only the native sharp chart, and publishes atomically only at the in-memory API
-boundary. It is not yet the high-throughput production integrator, durable
-transaction/checkpoint layer, finite-width event integrator, or many-orders
+vectors during correction, uses binary64 local-time controller values, and
+publishes atomically only at the in-memory API boundary. It is not yet the
+high-throughput production integrator, durable transaction/checkpoint layer,
+MPFR event integrator, regulator-limit convergence layer, or many-orders
 multirate scheduler.
 
 ## Measured Local Results

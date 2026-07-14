@@ -41,6 +41,7 @@ class Interval {
 [[nodiscard]] Interval operator/(const Interval& left, const Interval& right);
 [[nodiscard]] Interval interval_square(const Interval& value);
 [[nodiscard]] Interval interval_sqrt(const Interval& value);
+[[nodiscard]] Interval interval_exp(const Interval& value);
 [[nodiscard]] Interval interval_absolute(const Interval& value);
 
 using IntervalVector = std::array<Interval, 3>;

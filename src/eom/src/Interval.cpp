@@ -176,6 +176,16 @@ Interval interval_sqrt(const Interval& value) {
   return Interval(lower, upward(std::sqrt(value.upper())));
 }
 
+Interval interval_exp(const Interval& value) {
+  const double lower_value = std::exp(value.lower());
+  const double upper_value = std::exp(value.upper());
+  if (!std::isfinite(lower_value) || !std::isfinite(upper_value)) {
+    throw std::overflow_error("interval exponential is nonfinite");
+  }
+  const double lower = lower_value == 0.0 ? 0.0 : downward(lower_value);
+  return Interval(lower, upward(upper_value));
+}
+
 Interval interval_absolute(const Interval& value) {
   if (value.lower() >= 0.0) {
     return value;

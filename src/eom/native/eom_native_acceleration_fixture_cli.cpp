@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -64,7 +65,11 @@ eom::NativePairAccelerationRequest acceleration_request(
     const eom::ExactPairCertificate& certificate,
     const std::string& receiver_charge,
     const std::string& source_charge,
-    const std::string& tolerance = "1e-9") {
+    const std::string& tolerance = "1e-9",
+    const std::string& chart = "sharp",
+    bool force_precision_escalation = false,
+    const std::string& quadrature_tolerance = "2e-3",
+    std::size_t quadrature_max_cells = 200000) {
   return {
       .row_id = row_id,
       .receiver_path_id = receiver_path_id,
@@ -75,8 +80,17 @@ eom::NativePairAccelerationRequest acceleration_request(
       .receiver_charge = receiver_charge,
       .source_charge = source_charge,
       .coupling = "1",
+      .chart = chart,
       .source_normal_floor = "1e-30",
+      .causal_width = "0.2",
+      .core_scale = "0.2",
       .acceleration_tolerance = tolerance,
+      .quadrature_tolerance = quadrature_tolerance,
+      .quadrature_max_depth = 28,
+      .quadrature_max_cells = quadrature_max_cells,
+      .initial_mpfr_bits = 128,
+      .maximum_mpfr_bits = 512,
+      .force_precision_escalation = force_precision_escalation,
   };
 }
 
@@ -96,6 +110,14 @@ void print_vector(const eom::IntervalVector& vector) {
   std::cout << ']';
 }
 
+void print_optional_interval(const std::optional<eom::Interval>& interval) {
+  if (interval.has_value()) {
+    print_interval(*interval);
+  } else {
+    std::cout << "null";
+  }
+}
+
 void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
   std::cout << "{\"schema\":\"" << certificate.schema
             << "\",\"row_id\":\"" << certificate.row_id
@@ -104,9 +126,16 @@ void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
             << "\",\"source_path_id\":\"" << certificate.source_path_id
             << "\",\"status\":\"" << certificate.status
             << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"chart\":\"" << certificate.chart
             << "\",\"reduction_policy\":\""
             << certificate.reduction_policy
-            << "\",\"reconstruction_matches\":"
+            << "\",\"quadrature_visited_cells\":"
+            << certificate.quadrature_visited_cells
+            << ",\"acceleration_precision_escalated\":"
+            << (certificate.acceleration_precision_escalated ? "true" : "false")
+            << ",\"achieved_acceleration_precision_bits\":"
+            << certificate.achieved_acceleration_precision_bits
+            << ",\"reconstruction_matches\":"
             << (certificate.reconstruction_matches ? "true" : "false")
             << ",\"total_acceleration\":";
   if (certificate.total_acceleration.has_value()) {
@@ -126,18 +155,22 @@ void print_pair(const eom::NativePairAccelerationCertificate& certificate) {
               << "\",\"emission_lower\":\"" << row.emission_lower
               << "\",\"emission_upper\":\"" << row.emission_upper
               << "\",\"source_normal\":";
-    print_interval(row.source_normal);
+    print_optional_interval(row.source_normal);
     std::cout << ",\"receiver_normal\":";
-    print_interval(row.receiver_normal);
+    print_optional_interval(row.receiver_normal);
     std::cout << ",\"branch_orientation\":";
-    print_interval(row.branch_orientation);
+    print_optional_interval(row.branch_orientation);
     std::cout << ",\"receiver_strength\":";
-    print_interval(row.receiver_strength);
+    print_optional_interval(row.receiver_strength);
     std::cout << ",\"polarity\":" << row.polarity
               << ",\"acceptance_status\":\"" << row.acceptance_status
               << "\",\"root_precision_route\":\""
               << row.root_precision_route
               << "\",\"root_precision_bits\":" << row.root_precision_bits
+              << ",\"acceleration_precision_route\":\""
+              << row.acceleration_precision_route
+              << "\",\"acceleration_precision_bits\":"
+              << row.acceleration_precision_bits
               << ",\"acceleration\":";
     print_vector(row.acceleration);
     std::cout << '}';
@@ -241,6 +274,26 @@ void print_all() {
       acceleration_request("tight-tolerance", "stationary-receiver",
                            "stationary-source", static_two, origin,
                            stationary_roots, "1", "-1", "1e-30"));
+  const auto finite_width = eom::certify_pair_acceleration(
+      acceleration_request(
+          "finite-width", "stationary-receiver", "stationary-source",
+          static_two, origin, stationary_roots, "1", "-1", "2e-3",
+          "finite_width", false, "2e-3"));
+  const auto finite_width_mpfr = eom::certify_pair_acceleration(
+      acceleration_request(
+          "finite-width-mpfr", "stationary-receiver", "stationary-source",
+          static_two, origin, stationary_roots, "1", "-1", "2e-3",
+          "finite_width", true, "2e-3"));
+  const auto tangent_finite_width = eom::certify_pair_acceleration(
+      acceleration_request(
+          "tangent-finite-width", "tangent-receiver", "tangent-source",
+          origin, tangent, tangent_roots, "1", "1", "5e-3",
+          "finite_width", false, "5e-3"));
+  const auto finite_width_resource_failure = eom::certify_pair_acceleration(
+      acceleration_request(
+          "finite-width-resource", "stationary-receiver", "stationary-source",
+          static_two, origin, stationary_roots, "1", "-1", "1e-20",
+          "finite_width", false, "1e-20", 1));
 
   const auto path_a = history("path-a-history", {"0", "0", "0", "0"}, "3");
   const auto path_b = history("path-b-history", {"2", "0", "0", "0"}, "3");
@@ -266,7 +319,8 @@ void print_all() {
   const std::vector<const eom::NativePairAccelerationCertificate*> cases = {
       &stationary, &rail, &super, &two_root, &self, &tangent_failure,
       &memory_failure, &tampered_failure, &provenance_failure,
-      &tolerance_failure};
+      &tolerance_failure, &finite_width, &finite_width_mpfr,
+      &tangent_finite_width, &finite_width_resource_failure};
   for (std::size_t index = 0; index < cases.size(); ++index) {
     if (index > 0) {
       std::cout << ',';

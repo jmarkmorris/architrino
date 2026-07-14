@@ -11,6 +11,10 @@ from scripts.eom.oracle.certified_evolution import (
     CoupledEvolutionRequest,
     evolve_coupled_histories,
 )
+from scripts.eom.oracle.phase4_acceptance import (
+    EventImpulseRequest,
+    certify_fold_caustic_impulse,
+)
 from scripts.eom.oracle.certified_history import (
     CubicHistorySegment,
     PiecewisePolynomialHistory,
@@ -88,6 +92,12 @@ def assert_contains(
     lower, upper = interval_bounds(interval)
     testcase.assertLessEqual(lower, value)
     testcase.assertGreaterEqual(upper, value)
+
+
+def assert_overlaps(testcase: unittest.TestCase, native, oracle) -> None:
+    lower, upper = interval_bounds(native)
+    testcase.assertLessEqual(lower, oracle.upper)
+    testcase.assertGreaterEqual(upper, oracle.lower)
 
 
 class NativeCoupledEvolutionTests(unittest.TestCase):
@@ -243,6 +253,62 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                     rejection["input_fingerprints"],
                     rejection["published_fingerprints"],
                 )
+
+    def test_fold_event_is_accepted_only_with_certified_finite_impulse(self) -> None:
+        accepted = self.packet["event_acceptance"]
+        self.assertEqual(
+            accepted, self.packet["event_acceptance_single_thread"]
+        )
+        self.assertEqual(accepted["status"], "accepted")
+        self.assertTrue(accepted["publication_atomic"])
+        self.assertGreater(accepted["event_impulse_count"], 0)
+        exhausted = self.packet["event_atomic_resource_failure"]
+        self.assertEqual(exhausted["status"], "rejected")
+        self.assertTrue(exhausted["publication_atomic"])
+        self.assertEqual(
+            exhausted["input_fingerprints"],
+            exhausted["published_fingerprints"],
+        )
+        self.assertIn("event_impulse", exhausted["failure_code"])
+
+    def test_native_fold_impulse_has_oracle_parity_and_fails_closed(self) -> None:
+        receiver = oracle_history(
+            "event-control-receiver", "3.01", ("0", "0", "0", "0")
+        )
+        source = oracle_history(
+            "event-control-source", "3.01", ("5.25", "-4", "1", "0")
+        )
+        oracle = certify_fold_caustic_impulse(
+            EventImpulseRequest.from_decimal_tokens(
+                receiver_path_id="receiver",
+                source_path_id="source",
+                receiver_history=receiver,
+                source_history=source,
+                receiver_charge="1",
+                source_charge="1",
+                reception_lower="2.99",
+                reception_upper="3.01",
+                search_lower="0",
+                field_speed="1",
+                coupling="1",
+                causal_width="0.25",
+                core_scale="0.2",
+                impulse_tolerance="0.08",
+                max_depth=24,
+                max_cells=200000,
+            )
+        )
+        native = self.packet["event_control"]
+        self.assertEqual(native["status"], "certified_complete")
+        self.assertGreater(native["visited_cells"], 1)
+        for native_component, oracle_component in zip(
+            native["impulse"], oracle.impulse
+        ):
+            assert_overlaps(self, native_component, oracle_component)
+        exhausted = self.packet["event_resource_failure"]
+        self.assertEqual(exhausted["status"], "uncertified")
+        self.assertIsNone(exhausted["impulse"])
+        self.assertIn("cell_limit_exhausted", exhausted["failure_code"])
 
     def test_adaptive_controller_halves_rejected_step_before_publication(self) -> None:
         adaptive = self.evolution("adaptive-halving")

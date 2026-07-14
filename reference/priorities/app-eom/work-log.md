@@ -384,3 +384,40 @@ This file holds dated decisions, implementation status, validation results, fail
   finite-width event transit, acceleration-stage multiprecision, split
   absolute time, durable atomic storage, and production-scale scheduling
   remain open.
+
+## 2026-07-13 — Native Finite-Width Acceleration And Fold Event Acceptance Implemented
+
+- Implemented the bound finite-width causal-surface acceleration directly in
+  C++20: the smooth core kernel, receiver-normal magnitude, Gaussian causal
+  surface, signed charge/coupling factor, complete retained emission interval,
+  and adaptive outward interval quadrature are all consumed in one auditable
+  pair row.
+- Added a separate acceleration precision route. Difficult finite-width rows
+  replay through caller-bounded MPFR directed-interval quadrature and record
+  the achieved bits independently from the root solver's precision route.
+- Added `eom_native_fold_caustic_impulse_certificate/v0`. It integrates the
+  regulated equation jointly over reception and emission on the complete
+  causal triangular domain and fails closed on retained-memory contact,
+  quadrature depth, cell, time-resolution, or enclosure-budget exhaustion.
+- Integrated fold acceptance into corrected coupled substeps. A changed root
+  topology remains rejected under the sharp policy; under a finite-width
+  policy, every changed ordered pair must provide a certified finite impulse
+  that overlaps the candidate cubic segment's endpoint-acceleration impulse.
+- Verified that the prior sharp event control still rejects, while the same
+  coupled trial step is accepted atomically with two event-impulse records
+  under finite-width routing. One-thread and four-thread accepted-event output
+  is byte-identical.
+- Added fail-closed controls for finite-width acceleration cell exhaustion,
+  event-impulse cell exhaustion, and atomic event-resource rejection with
+  unchanged published-history fingerprints.
+- Added independent decimal-interval oracle overlap for stationary
+  finite-width acceleration and the tangent fold impulse, plus forced 128-bit
+  MPFR acceleration replay overlap with the binary64 certificate.
+- Recorded the Apple M3 evidence packet in
+  `evidence/eom-native-finite-width-event-layer-apple-m3-2026-07-13.json`.
+- Passed strict `-Werror` compilation, Release CTest, AddressSanitizer and
+  UndefinedBehaviorSanitizer CTest, and the complete 91-test EOM family.
+- Remaining numeric work is MPFR joint event quadrature, sharp-row and
+  receiver-reduction MPFR replay, regulator-limit convergence, and split-time
+  state representation. Production block traversal and heterogeneous scaling
+  remain separate open work.

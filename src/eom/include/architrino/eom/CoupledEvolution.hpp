@@ -32,17 +32,42 @@ struct NativeCoupledEvolutionRequest {
   std::string root_tolerance = "1e-12";
   std::string source_normal_floor = "1e-30";
   std::string acceleration_tolerance = "1e-9";
+  std::string chart_policy = "sharp";
+  std::string causal_width = "0.2";
+  std::string core_scale = "0.2";
+  std::string quadrature_tolerance = "1e-8";
+  std::string event_impulse_tolerance = "1e-7";
   std::string position_tolerance = "1e-8";
   std::string velocity_tolerance = "1e-8";
   std::string correction_tolerance = "1e-8";
   std::size_t root_max_depth = 256;
   std::size_t root_max_cells = 500000;
+  std::size_t quadrature_max_depth = 32;
+  std::size_t quadrature_max_cells = 200000;
+  std::size_t event_max_depth = 24;
+  std::size_t event_max_cells = 200000;
   unsigned initial_mpfr_bits = 128;
   unsigned maximum_mpfr_bits = 512;
   std::size_t max_correction_iterations = 12;
   std::size_t max_step_attempts = 10000;
   std::size_t max_rejected_steps = 1000;
   std::size_t thread_count = 1;
+};
+
+struct NativeFoldCausticImpulseCertificate {
+  std::string schema;
+  std::string status;
+  std::string receiver_path_id;
+  std::string source_path_id;
+  std::string reception_lower;
+  std::string reception_upper;
+  std::string causal_width;
+  std::string core_scale;
+  std::optional<IntervalVector> impulse;
+  std::size_t visited_cells;
+  std::string precision_route;
+  unsigned precision_bits;
+  std::string failure_code;
 };
 
 struct NativeHistoryFingerprint {
@@ -75,6 +100,7 @@ struct NativeCorrectedSubstepCertificate {
   std::size_t correction_iterations;
   std::optional<double> correction_error;
   std::string failure_code;
+  std::vector<NativeFoldCausticImpulseCertificate> event_impulses;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
 };
 
@@ -132,6 +158,16 @@ certify_native_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& reception_time);
+
+[[nodiscard]] NativeFoldCausticImpulseCertificate
+certify_native_fold_caustic_impulse(
+    const NativeCoupledEvolutionRequest& request,
+    const NativePublishedPath& receiver,
+    const NativePublishedPath& source,
+    const std::string& receiver_charge,
+    const std::string& source_charge,
+    const std::string& reception_lower,
+    const std::string& reception_upper);
 
 [[nodiscard]] NativeAtomicStepCertificate certify_native_atomic_coupled_step(
     const NativeCoupledEvolutionRequest& request,

@@ -1,9 +1,12 @@
 #include "architrino/eom/CertifiedAcceleration.hpp"
+#include "architrino/eom/MultiprecisionAcceleration.hpp"
 
 #include <algorithm>
 #include <atomic>
+#include <cmath>
 #include <cstddef>
 #include <exception>
+#include <functional>
 #include <map>
 #include <mutex>
 #include <limits>
@@ -180,8 +183,175 @@ NativeAccelerationRow reconstruct_row(
       .acceptance_status = "consumed_certified_sharp_root",
       .root_precision_route = root.precision_route,
       .root_precision_bits = root.precision_bits,
+      .acceleration_precision_route = "binary64_outward",
+      .acceleration_precision_bits = 53,
       .acceleration = acceleration,
   };
+}
+
+IntervalVector finite_width_integrand(
+    const NativePairAccelerationRequest& request,
+    const Interval& emission,
+    const Interval& receiver_charge,
+    const Interval& source_charge,
+    const Interval& coupling,
+    const Interval& causal_width,
+    const Interval& core_scale) {
+  const auto& root_certificate = *request.root_certificate;
+  const Interval reception =
+      Interval::decimal_token(root_certificate.reception_time);
+  const IntervalVector receiver_position =
+      request.receiver_history->position_hull(reception);
+  const IntervalVector receiver_velocity =
+      request.receiver_history->velocity_hull(reception);
+  const IntervalVector source_position =
+      request.source_history->position_hull(emission);
+  const IntervalVector displacement =
+      subtract(receiver_position, source_position);
+  const Interval separation = norm(displacement);
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const Interval radial_denominator =
+      radial_square * interval_sqrt(radial_square);
+  const IntervalVector kernel = divide(displacement, radial_denominator);
+  const Interval field_speed =
+      Interval::decimal_token(root_certificate.field_speed);
+  Interval receiver_strength = Interval::point(0.0);
+  if (separation.contains_zero()) {
+    receiver_strength = Interval(
+        0.0, (field_speed + norm(receiver_velocity)).upper());
+  } else {
+    const IntervalVector direction = divide(displacement, separation);
+    receiver_strength = interval_absolute(
+        field_speed - dot(direction, receiver_velocity));
+  }
+  const Interval delay = reception - emission;
+  const Interval residual = separation - field_speed * delay;
+  const Interval exponent =
+      Interval::point(0.0) -
+      interval_square(residual) /
+          (Interval::point(2.0) * interval_square(causal_width));
+  const Interval pi(
+      3.1415926535897931,
+      3.1415926535897936);
+  const Interval normalizer =
+      interval_sqrt(Interval::point(2.0) * pi) * causal_width;
+  const Interval mollifier = interval_exp(exponent) / normalizer;
+  return scale(
+      coupling * receiver_charge * source_charge * receiver_strength *
+          mollifier,
+      kernel);
+}
+
+struct FiniteWidthAttempt {
+  IntervalVector acceleration{
+      Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+  std::size_t visited_cells = 0;
+};
+
+void require_finite_width_boundary_clearance(
+    const NativePairAccelerationRequest& request) {
+  const auto& certificate = *request.root_certificate;
+  if (certificate.memory_boundary_contact) {
+    throw AccelerationCertificationError(
+        "finite-width chart has a causal root at the memory boundary");
+  }
+  const Interval lower = Interval::decimal_token(certificate.searched_lower);
+  const Interval reception =
+      Interval::decimal_token(certificate.reception_time);
+  const Interval lower_point = Interval::point(lower.midpoint());
+  const IntervalVector receiver_position =
+      request.receiver_history->position_hull(reception);
+  const IntervalVector source_boundary =
+      request.source_history->position_hull(lower_point);
+  const Interval boundary_residual =
+      norm(subtract(receiver_position, source_boundary)) -
+      Interval::decimal_token(certificate.field_speed) *
+          (reception - lower_point);
+  if (boundary_residual.contains_zero()) {
+    throw AccelerationCertificationError(
+        "finite-width memory-boundary clearance is not certified");
+  }
+}
+
+FiniteWidthAttempt reconstruct_finite_width(
+    const NativePairAccelerationRequest& request,
+    const Interval& receiver_charge,
+    const Interval& source_charge,
+    const Interval& coupling,
+    const Interval& causal_width,
+    const Interval& core_scale,
+    const Interval& quadrature_tolerance) {
+  const auto& certificate = *request.root_certificate;
+  const Interval lower = Interval::decimal_token(certificate.searched_lower);
+  const Interval reception =
+      Interval::decimal_token(certificate.reception_time);
+  const double lower_value = lower.midpoint();
+  const double reception_value = reception.midpoint();
+  const double total_span = reception_value - lower_value;
+  if (!(total_span > 0.0)) {
+    throw AccelerationCertificationError(
+        "finite-width integration requires a positive retained interval");
+  }
+
+  FiniteWidthAttempt attempt;
+  std::function<IntervalVector(double, double, std::size_t)> integrate;
+  integrate = [&](double cell_lower, double cell_upper, std::size_t depth) {
+    ++attempt.visited_cells;
+    if (attempt.visited_cells > request.quadrature_max_cells) {
+      throw AccelerationCertificationError(
+          "finite-width quadrature cell limit exhausted");
+    }
+    const Interval cell(cell_lower, cell_upper);
+    const double width = cell_upper - cell_lower;
+    const IntervalVector integral = scale(
+        Interval::point(width),
+        finite_width_integrand(
+            request, cell, receiver_charge, source_charge, coupling,
+            causal_width, core_scale));
+    const double budget =
+        quadrature_tolerance.lower() * width / total_span;
+    if (std::all_of(
+            integral.begin(), integral.end(),
+            [&](const Interval& component) { return component.width() <= budget; })) {
+      return integral;
+    }
+    if (depth >= request.quadrature_max_depth) {
+      throw AccelerationCertificationError(
+          "finite-width quadrature depth exhausted");
+    }
+    const double midpoint = cell_lower + (cell_upper - cell_lower) * 0.5;
+    if (!(midpoint > cell_lower && midpoint < cell_upper)) {
+      throw AccelerationCertificationError(
+          "finite-width quadrature time resolution exhausted");
+    }
+    return add(
+        integrate(cell_lower, midpoint, depth + 1U),
+        integrate(midpoint, cell_upper, depth + 1U));
+  };
+
+  std::vector<IntervalVector> segment_totals;
+  for (std::size_t index = 0;
+       index < request.source_history->segments().size(); ++index) {
+    const auto& segment = request.source_history->segments()[index];
+    const double cell_lower = std::max(lower_value, segment.t_start());
+    const double cell_upper = std::min(reception_value, segment.t_end());
+    if (cell_lower < cell_upper) {
+      segment_totals.push_back(integrate(cell_lower, cell_upper, 0));
+    }
+  }
+  if (segment_totals.empty()) {
+    throw AccelerationCertificationError(
+        "finite-width integration has no covered source cells");
+  }
+  attempt.acceleration = fixed_pairwise_sum(segment_totals);
+  for (const auto& component : attempt.acceleration) {
+    if (component.width() > quadrature_tolerance.lower()) {
+      throw AccelerationCertificationError(
+          "finite-width quadrature acceleration enclosure exceeds the declared tolerance");
+    }
+  }
+  return attempt;
 }
 
 void validate_pair_request(const NativePairAccelerationRequest& request) {
@@ -191,21 +361,36 @@ void validate_pair_request(const NativePairAccelerationRequest& request) {
     throw std::invalid_argument(
         "pair acceleration request requires row, path, history, and root identities");
   }
+  if (request.chart != "sharp" && request.chart != "finite_width") {
+    throw std::invalid_argument(
+        "pair acceleration chart must be sharp or finite_width");
+  }
+  if (request.initial_mpfr_bits < 64U ||
+      request.maximum_mpfr_bits < request.initial_mpfr_bits) {
+    throw std::invalid_argument("invalid acceleration MPFR precision ladder");
+  }
 }
 
 NativePairAccelerationCertificate uncertified_pair(
     const NativePairAccelerationRequest& request,
-    const std::string& failure_code) {
+    const std::string& failure_code,
+    std::size_t quadrature_visited_cells,
+    bool acceleration_precision_escalated,
+    unsigned achieved_acceleration_precision_bits) {
   return {
       .schema = "eom_native_pair_acceleration_certificate/v0",
       .row_id = request.row_id,
       .receiver_path_id = request.receiver_path_id,
       .source_path_id = request.source_path_id,
-      .chart = "sharp",
+      .chart = request.chart,
       .status = "uncertified",
       .failure_code = failure_code,
       .root_certificate_row_id = request.root_certificate->row_id,
       .reduction_policy = kDeterministicReductionPolicy,
+      .quadrature_visited_cells = quadrature_visited_cells,
+      .acceleration_precision_escalated = acceleration_precision_escalated,
+      .achieved_acceleration_precision_bits =
+          achieved_acceleration_precision_bits,
       .reconstruction_matches = false,
       .rows = {},
       .total_acceleration = std::nullopt,
@@ -218,6 +403,9 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     const NativePairAccelerationRequest& request) {
   validate_pair_request(request);
   const auto& root_certificate = *request.root_certificate;
+  std::size_t quadrature_visited_cells = 0;
+  bool acceleration_precision_escalated = false;
+  unsigned achieved_acceleration_precision_bits = 53;
   try {
     if (root_certificate.schema != "eom_native_exact_pair_certificate/v0") {
       throw AccelerationCertificationError("unsupported root certificate schema");
@@ -235,12 +423,6 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       throw AccelerationCertificationError(
           "root certificate retained-history provenance mismatch");
     }
-    if (root_certificate.status != "certified_complete" ||
-        !root_certificate.root_free_complement ||
-        root_certificate.memory_boundary_contact) {
-      throw AccelerationCertificationError(
-          "sharp acceleration requires a complete interior root certificate");
-    }
     const Interval reception =
         Interval::decimal_token(root_certificate.reception_time);
     const Interval searched_upper =
@@ -256,22 +438,129 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     const Interval coupling = Interval::decimal_token(request.coupling);
     const Interval source_normal_floor =
         Interval::decimal_token(request.source_normal_floor);
+    const Interval causal_width =
+        Interval::decimal_token(request.causal_width);
+    const Interval core_scale =
+        Interval::decimal_token(request.core_scale);
     const Interval acceleration_tolerance =
         Interval::decimal_token(request.acceleration_tolerance);
+    const Interval quadrature_tolerance =
+        Interval::decimal_token(request.quadrature_tolerance);
     require_nonzero_charge(receiver_charge, "receiver charge");
     require_nonzero_charge(source_charge, "source charge");
     require_positive(coupling, "coupling");
     require_positive(source_normal_floor, "source-normal floor");
+    require_positive(causal_width, "causal width");
+    require_positive(core_scale, "core scale");
     require_positive(acceleration_tolerance, "acceleration tolerance");
+    require_positive(quadrature_tolerance, "quadrature tolerance");
 
     std::vector<NativeAccelerationRow> rows;
-    rows.reserve(root_certificate.roots.size());
     std::vector<IntervalVector> contributions;
-    contributions.reserve(root_certificate.roots.size());
-    for (std::size_t index = 0; index < root_certificate.roots.size(); ++index) {
-      auto row = reconstruct_row(
-          request, root_certificate.roots[index], index, receiver_charge,
-          source_charge, coupling, source_normal_floor);
+    if (request.chart == "sharp") {
+      if (root_certificate.status != "certified_complete" ||
+          !root_certificate.root_free_complement ||
+          root_certificate.memory_boundary_contact) {
+        throw AccelerationCertificationError(
+            "sharp acceleration requires a complete interior root certificate");
+      }
+      rows.reserve(root_certificate.roots.size());
+      contributions.reserve(root_certificate.roots.size());
+      for (std::size_t index = 0; index < root_certificate.roots.size(); ++index) {
+        auto row = reconstruct_row(
+            request, root_certificate.roots[index], index, receiver_charge,
+            source_charge, coupling, source_normal_floor);
+        contributions.push_back(row.acceleration);
+        rows.push_back(std::move(row));
+      }
+    } else {
+      require_finite_width_boundary_clearance(request);
+      IntervalVector finite_acceleration{
+          Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
+      std::string acceleration_precision_route =
+          "binary64_outward_quadrature";
+      bool binary_certified = false;
+      std::string binary_failure;
+      if (!request.force_precision_escalation) {
+        try {
+          const auto attempt = reconstruct_finite_width(
+              request, receiver_charge, source_charge, coupling, causal_width,
+              core_scale, quadrature_tolerance);
+          finite_acceleration = attempt.acceleration;
+          quadrature_visited_cells = attempt.visited_cells;
+          binary_certified = true;
+        } catch (const AccelerationCertificationError& error) {
+          binary_failure = error.what();
+        }
+      }
+      if (!binary_certified) {
+        acceleration_precision_escalated = true;
+        std::string mpfr_failure = binary_failure;
+        unsigned bits = request.initial_mpfr_bits;
+        while (true) {
+          const auto attempt =
+              certify_mpfr_finite_width_acceleration(request, bits);
+          quadrature_visited_cells = attempt.visited_cells;
+          achieved_acceleration_precision_bits = bits;
+          if (attempt.certified) {
+            finite_acceleration = attempt.acceleration;
+            acceleration_precision_route = "mpfr_directed_interval_quadrature";
+            binary_certified = true;
+            break;
+          }
+          mpfr_failure = attempt.failure_code;
+          if (bits >= request.maximum_mpfr_bits) {
+            break;
+          }
+          bits = std::min(request.maximum_mpfr_bits, bits * 2U);
+        }
+        if (!binary_certified) {
+          throw AccelerationCertificationError(
+              mpfr_failure.empty()
+                  ? "numeric acceleration precision limit exhausted"
+                  : mpfr_failure);
+        }
+      }
+      std::vector<std::size_t> source_segment_indices;
+      for (std::size_t index = 0;
+           index < request.source_history->segments().size(); ++index) {
+        const auto& segment = request.source_history->segments()[index];
+        if (segment.t_end() >
+                Interval::decimal_token(root_certificate.searched_lower).midpoint() &&
+            segment.t_start() < reception.midpoint()) {
+          source_segment_indices.push_back(index);
+        }
+      }
+      NativeAccelerationRow row{
+          .row_id = request.row_id + "/finite-width",
+          .receiver_path_id = request.receiver_path_id,
+          .source_path_id = request.source_path_id,
+          .row_index = 0,
+          .chart = "finite_width_pair",
+          .reception_time = root_certificate.reception_time,
+          .emission_lower = root_certificate.searched_lower,
+          .emission_upper = root_certificate.reception_time,
+          .source_segment_indices = std::move(source_segment_indices),
+          .separation = std::nullopt,
+          .source_normal = std::nullopt,
+          .receiver_normal = std::nullopt,
+          .branch_orientation = std::nullopt,
+          .receiver_strength = std::nullopt,
+          .polarity = charge_polarity(receiver_charge, source_charge),
+          .charge_product_magnitude =
+              interval_absolute(receiver_charge * source_charge),
+          .coupling = coupling,
+          .accumulation_group = request.receiver_path_id,
+          .acceptance_status = "consumed_certified_finite_width_pair",
+          .root_precision_route = root_certificate.precision_escalated
+              ? "mpfr_directed_interval"
+              : "binary64_outward",
+          .root_precision_bits = root_certificate.achieved_precision_bits,
+          .acceleration_precision_route = acceleration_precision_route,
+          .acceleration_precision_bits =
+              achieved_acceleration_precision_bits,
+          .acceleration = finite_acceleration,
+      };
       contributions.push_back(row.acceleration);
       rows.push_back(std::move(row));
     }
@@ -279,7 +568,8 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     for (const auto& component : total) {
       if (component.width() > acceleration_tolerance.lower()) {
         throw AccelerationCertificationError(
-            "sharp acceleration enclosure exceeds the declared tolerance");
+          request.chart +
+          " acceleration enclosure exceeds the declared tolerance");
       }
     }
     std::vector<IntervalVector> replay;
@@ -298,17 +588,29 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         .row_id = request.row_id,
         .receiver_path_id = request.receiver_path_id,
         .source_path_id = request.source_path_id,
-        .chart = "sharp",
+        .chart = request.chart,
         .status = rows.empty() ? "inactive" : "active",
         .failure_code = "",
         .root_certificate_row_id = root_certificate.row_id,
         .reduction_policy = kDeterministicReductionPolicy,
+        .quadrature_visited_cells = quadrature_visited_cells,
+        .acceleration_precision_escalated = acceleration_precision_escalated,
+        .achieved_acceleration_precision_bits =
+            achieved_acceleration_precision_bits,
         .reconstruction_matches = true,
         .rows = std::move(rows),
         .total_acceleration = total,
     };
   } catch (const AccelerationCertificationError& error) {
-    return uncertified_pair(request, error.what());
+    return uncertified_pair(
+        request, error.what(), quadrature_visited_cells,
+        acceleration_precision_escalated,
+        achieved_acceleration_precision_bits);
+  } catch (const std::runtime_error& error) {
+    return uncertified_pair(
+        request, error.what(), quadrature_visited_cells,
+        acceleration_precision_escalated,
+        achieved_acceleration_precision_bits);
   }
 }
 

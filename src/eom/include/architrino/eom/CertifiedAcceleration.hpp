@@ -23,8 +23,17 @@ struct NativePairAccelerationRequest {
   std::string receiver_charge;
   std::string source_charge;
   std::string coupling;
+  std::string chart = "sharp";
   std::string source_normal_floor = "1e-30";
+  std::string causal_width = "0.2";
+  std::string core_scale = "0.2";
   std::string acceleration_tolerance = "1e-9";
+  std::string quadrature_tolerance = "1e-9";
+  std::size_t quadrature_max_depth = 32;
+  std::size_t quadrature_max_cells = 200000;
+  unsigned initial_mpfr_bits = 128;
+  unsigned maximum_mpfr_bits = 512;
+  bool force_precision_escalation = false;
 };
 
 struct NativeAccelerationRow {
@@ -37,11 +46,11 @@ struct NativeAccelerationRow {
   std::string emission_lower;
   std::string emission_upper;
   std::vector<std::size_t> source_segment_indices;
-  Interval separation;
-  Interval source_normal;
-  Interval receiver_normal;
-  Interval branch_orientation;
-  Interval receiver_strength;
+  std::optional<Interval> separation;
+  std::optional<Interval> source_normal;
+  std::optional<Interval> receiver_normal;
+  std::optional<Interval> branch_orientation;
+  std::optional<Interval> receiver_strength;
   int polarity;
   Interval charge_product_magnitude;
   Interval coupling;
@@ -49,6 +58,8 @@ struct NativeAccelerationRow {
   std::string acceptance_status;
   std::string root_precision_route;
   unsigned root_precision_bits;
+  std::string acceleration_precision_route;
+  unsigned acceleration_precision_bits;
   IntervalVector acceleration;
 };
 
@@ -62,6 +73,9 @@ struct NativePairAccelerationCertificate {
   std::string failure_code;
   std::string root_certificate_row_id;
   std::string reduction_policy;
+  std::size_t quadrature_visited_cells;
+  bool acceleration_precision_escalated;
+  unsigned achieved_acceleration_precision_bits;
   bool reconstruction_matches;
   std::vector<NativeAccelerationRow> rows;
   std::optional<IntervalVector> total_acceleration;

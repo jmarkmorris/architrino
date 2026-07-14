@@ -16,6 +16,7 @@ add_library(eom_native STATIC
   src/BlockExclusion.cpp
   src/ExactPairBatch.cpp
   src/CertifiedAcceleration.cpp
+  src/MultiprecisionAcceleration.cpp
   src/CoupledEvolution.cpp
 )
 target_include_directories(eom_native

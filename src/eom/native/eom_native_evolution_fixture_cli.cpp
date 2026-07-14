@@ -131,7 +131,12 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
       }
       std::cout << step.substeps[substep_index].correction_iterations;
     }
+    std::size_t event_impulse_count = 0;
+    for (const auto& substep : step.substeps) {
+      event_impulse_count += substep.event_impulses.size();
+    }
     std::cout << "]"
+              << ",\"event_impulse_count\":" << event_impulse_count
               << ",\"local_errors\":[";
     for (std::size_t error_index = 0;
          error_index < step.local_errors.size(); ++error_index) {
@@ -200,7 +205,30 @@ void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
   std::cout << "],\"candidate_fingerprint_count\":"
             << certificate.candidate_history_fingerprints.size()
             << ",\"substep_count\":" << certificate.substeps.size()
+            << ",\"event_impulse_count\":";
+  std::size_t event_impulse_count = 0;
+  for (const auto& substep : certificate.substeps) {
+    event_impulse_count += substep.event_impulses.size();
+  }
+  std::cout << event_impulse_count
             << '}';
+}
+
+void print_event(
+    const eom::NativeFoldCausticImpulseCertificate& certificate) {
+  std::cout << "{\"schema\":\"" << certificate.schema
+            << "\",\"status\":\"" << certificate.status
+            << "\",\"failure_code\":\"" << certificate.failure_code
+            << "\",\"visited_cells\":" << certificate.visited_cells
+            << ",\"precision_route\":\"" << certificate.precision_route
+            << "\",\"precision_bits\":" << certificate.precision_bits
+            << ",\"impulse\":";
+  if (certificate.impulse.has_value()) {
+    print_vector(*certificate.impulse);
+  } else {
+    std::cout << "null";
+  }
+  std::cout << '}';
 }
 
 void print_all() {
@@ -285,6 +313,55 @@ void print_all() {
   const auto event_step = eom::certify_native_atomic_coupled_step(
       event_request, event_histories, 0, "2.7", "2.8");
 
+  auto finite_event_request = event_request;
+  finite_event_request.run_id = "root-event-finite-width";
+  finite_event_request.chart_policy = "sharp_with_finite_width_fallback";
+  finite_event_request.causal_width = "0.25";
+  finite_event_request.core_scale = "0.2";
+  finite_event_request.acceleration_tolerance = "5e-3";
+  finite_event_request.quadrature_tolerance = "5e-3";
+  finite_event_request.event_impulse_tolerance = "0.08";
+  finite_event_request.quadrature_max_depth = 28;
+  finite_event_request.quadrature_max_cells = 200000;
+  finite_event_request.event_max_depth = 24;
+  finite_event_request.event_max_cells = 200000;
+  const auto finite_event_step = eom::certify_native_atomic_coupled_step(
+      finite_event_request, event_histories, 0, "2.7", "2.8");
+  auto finite_event_single_thread_request = finite_event_request;
+  finite_event_single_thread_request.thread_count = 1;
+  const auto finite_event_single_thread_step =
+      eom::certify_native_atomic_coupled_step(
+          finite_event_single_thread_request, event_histories, 0, "2.7", "2.8");
+  auto finite_event_resource_request = finite_event_request;
+  finite_event_resource_request.run_id = "root-event-resource-failure";
+  finite_event_resource_request.event_impulse_tolerance = "1e-20";
+  finite_event_resource_request.event_max_cells = 1;
+  const auto finite_event_resource_step =
+      eom::certify_native_atomic_coupled_step(
+          finite_event_resource_request, event_histories, 0, "2.7", "2.8");
+
+  const eom::NativePublishedPath event_receiver{
+      "receiver", history("event-control-receiver", "3.01", {"0", "0", "0", "0"})};
+  const eom::NativePublishedPath event_source{
+      "source", history("event-control-source", "3.01", {"5.25", "-4", "1", "0"})};
+  auto event_control_request = request(
+      "event-control", {}, "2.99", "3.01", "0.02", "0.02");
+  event_control_request.causal_width = "0.25";
+  event_control_request.core_scale = "0.2";
+  event_control_request.event_impulse_tolerance = "0.08";
+  event_control_request.event_max_depth = 24;
+  event_control_request.event_max_cells = 200000;
+  const auto event_control = eom::certify_native_fold_caustic_impulse(
+      event_control_request, event_receiver, event_source, "1", "1",
+      "2.99", "3.01");
+  auto event_resource_request = event_control_request;
+  event_resource_request.event_impulse_tolerance = "1e-20";
+  event_resource_request.event_max_depth = 4;
+  event_resource_request.event_max_cells = 4;
+  const auto event_resource_failure = eom::certify_native_fold_caustic_impulse(
+      event_resource_request, event_receiver, event_source, "1", "1",
+      "2.99", "3.01");
+
   bool future_history_rejected = false;
   try {
     const auto future_request = request(
@@ -319,7 +396,17 @@ void print_all() {
   print_atomic(correction_step);
   std::cout << ',';
   print_atomic(event_step);
-  std::cout << "]}\n";
+  std::cout << "],\"event_acceptance\":";
+  print_atomic(finite_event_step);
+  std::cout << ",\"event_acceptance_single_thread\":";
+  print_atomic(finite_event_single_thread_step);
+  std::cout << ",\"event_atomic_resource_failure\":";
+  print_atomic(finite_event_resource_step);
+  std::cout << ",\"event_control\":";
+  print_event(event_control);
+  std::cout << ",\"event_resource_failure\":";
+  print_event(event_resource_failure);
+  std::cout << "}\n";
 }
 
 }  // namespace
