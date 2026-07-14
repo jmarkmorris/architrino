@@ -129,6 +129,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-start-frame-button"/);
   assert.match(htmlSource, /id="borg-new-distribution-button"/);
   assert.match(htmlSource, /id="borg-run-duration-button"/);
+  assert.match(htmlSource, /id="borg-eom-path-count"/);
+  assert.match(htmlSource, /id="borg-eom-duration"/);
+  assert.match(htmlSource, /id="borg-eom-stop-button"/);
+  assert.match(htmlSource, /id="borg-eom-restart-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
 });

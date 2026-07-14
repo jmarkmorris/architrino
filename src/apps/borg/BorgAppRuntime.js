@@ -165,6 +165,13 @@ export function mountBorgApp(options = {}) {
     selectedTag: queryRequiredElement(documentLike, "#borg-selected-tag"),
     timelineRange: queryRequiredElement(documentLike, "#borg-time-range"),
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
+    eomControls: queryRequiredElement(documentLike, "#borg-eom-controls"),
+    eomPathCount: queryRequiredElement(documentLike, "#borg-eom-path-count"),
+    eomDuration: queryRequiredElement(documentLike, "#borg-eom-duration"),
+    eomStopButton: queryRequiredElement(documentLike, "#borg-eom-stop-button"),
+    eomRestartButton: queryRequiredElement(documentLike, "#borg-eom-restart-button"),
+    eomProgress: queryRequiredElement(documentLike, "#borg-eom-progress"),
+    eomProgressLabel: queryRequiredElement(documentLike, "#borg-eom-progress-label"),
     runDurationButton: queryRequiredElement(documentLike, "#borg-run-duration-button"),
     playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
@@ -253,6 +260,17 @@ export function mountBorgApp(options = {}) {
     dynamicTargetDuration: null,
     dynamicChunkDuration: null,
     dynamicRunGeneration: 0,
+    eomPathCount: boundedInteger(
+      options.eomShadowRunner?.pathCount,
+      manifest.population?.architrinoCount ?? 1,
+      1,
+      manifest.population?.architrinoCount ?? 1,
+    ),
+    eomRunDuration: positiveControlNumber(
+      options.eomShadowRunner?.runDuration ??
+        Number(options.eomShadowRunner?.targetDuration) - Number(options.eomShadowRunner?.startTime),
+      0.01,
+    ),
     liveRunBudget: createEmptyLiveRunBudget(),
     compactedPathHistory: Object.freeze({}),
     liveRunRetention: createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames }),
@@ -269,6 +287,7 @@ export function mountBorgApp(options = {}) {
   renderStaticPanels();
   renderLayerStrip();
   configureTimeline();
+  configureEomControls();
   resetView();
   bindEvents();
   updateLayerVisibility();
@@ -452,6 +471,8 @@ export function mountBorgApp(options = {}) {
       ["Run budget", state.liveRunBudget.status],
       ["Live status", state.dynamicRunnerStatus],
       ["Runner kind", state.dynamicRunnerKind],
+      ["EOM architrinos", options.eomShadowRunner ? state.eomPathCount : "not-applicable"],
+      ["EOM requested duration", options.eomShadowRunner ? state.eomRunDuration : "not-applicable"],
       ["Live target", state.dynamicTargetDuration ?? "not-started"],
       ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
       ["Live chunks", state.dynamicChunksComputed],
@@ -590,6 +611,66 @@ export function mountBorgApp(options = {}) {
     dom.playbackSpeed.value = state.playbackSpeedPresetId;
   }
 
+  function configureEomControls() {
+    const enabled = Boolean(options.eomShadowRunner);
+    dom.eomControls.hidden = !enabled;
+    if (!enabled) {
+      return;
+    }
+    const maximumPathCount = manifest.population?.architrinoCount ?? 1;
+    dom.eomPathCount.min = "1";
+    dom.eomPathCount.max = String(maximumPathCount);
+    dom.eomPathCount.value = String(state.eomPathCount);
+    dom.eomDuration.min = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
+    dom.eomDuration.step = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
+    dom.eomDuration.value = String(state.eomRunDuration);
+    updateEomControlPresentation();
+  }
+
+  function updateEomControlPresentation() {
+    if (!options.eomShadowRunner) {
+      return;
+    }
+    const chunkDuration = positiveControlNumber(
+      options.eomShadowRunner.chunkDuration,
+      options.eomShadowRunner.sampleInterval ?? 0.01,
+    );
+    const requestedSteps = Math.max(1, Math.ceil(state.eomRunDuration / chunkDuration));
+    const completedSteps = Math.min(requestedSteps, state.dynamicChunksComputed);
+    const displayStatus = ({
+      "eom-shadow-running": "running",
+      "computed-eom-shadow-chunks": "running",
+      "completed-live-native-run": "complete",
+      "eom-shadow-stopped": "stopped",
+      "live-native-error": "failed",
+      "fixture-fallback": "failed",
+    })[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
+    dom.eomProgress.max = String(requestedSteps);
+    dom.eomProgress.value = String(completedSteps);
+    const failureDetail = displayStatus === "failed"
+      ? ` | ${state.dynamicRunnerMessage}`
+      : "";
+    dom.eomProgressLabel.value =
+      `${completedSteps} / ${requestedSteps} chunks | ${displayStatus}${failureDetail}`;
+    dom.eomStopButton.disabled = !state.dynamicRunner && !state.dynamicChunkPromise;
+  }
+
+  function readEomControlValues() {
+    const maximumPathCount = manifest.population?.architrinoCount ?? 1;
+    state.eomPathCount = boundedInteger(
+      dom.eomPathCount.value,
+      state.eomPathCount,
+      1,
+      maximumPathCount,
+    );
+    state.eomRunDuration = positiveControlNumber(
+      dom.eomDuration.value,
+      state.eomRunDuration,
+    );
+    dom.eomPathCount.value = String(state.eomPathCount);
+    dom.eomDuration.value = String(state.eomRunDuration);
+  }
+
   function syncRunDurationButton() {
     const preset = getRunControlPreset(state.runControlPresetId);
     const label = formatRunDurationLabel(preset);
@@ -620,6 +701,8 @@ export function mountBorgApp(options = {}) {
     dom.startButton.addEventListener("click", goToStartFrame);
     dom.newDistributionButton.addEventListener("click", startNewDistributionRun);
     dom.runDurationButton.addEventListener("click", toggleRunDurationMode);
+    dom.eomStopButton.addEventListener("click", stopEomRun);
+    dom.eomRestartButton.addEventListener("click", restartEomRun);
     dom.playbackSpeed.addEventListener("change", () => {
       state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
       if (state.playing) {
@@ -699,11 +782,18 @@ export function mountBorgApp(options = {}) {
     state.activeFrameIndex = frameSet.frameIndex;
     dom.timelineRange.value = String(rangeValue);
     dom.timelineOutput.value = outputLabel;
+    particleObjects.forEach((particle) => {
+      particle.visible = false;
+    });
+    velocityLines.forEach((line) => {
+      line.visible = false;
+    });
     frameSet.frames.forEach((frame) => {
       const particle = particleObjects.get(frame.pathKey);
       if (!particle) {
         return;
       }
+      particle.visible = state.activeLayers.has("architrino-position");
       particle.position.copy(solverPositionToWorld(frame.position));
       particle.userData.frame = frame;
       updateVelocityLine(frame);
@@ -1092,7 +1182,10 @@ export function mountBorgApp(options = {}) {
   }
 
   function getRunInitialFrameRows() {
-    return state.distributionFrameRows ?? fixtureFrames;
+    const rows = state.distributionFrameRows ?? fixtureFrames;
+    return options.eomShadowRunner
+      ? selectFrameRowsByPathCount(rows, state.eomPathCount)
+      : rows;
   }
 
   function getRunControlPreset(presetId) {
@@ -1129,6 +1222,10 @@ export function mountBorgApp(options = {}) {
       preset,
       getRunInitialFrameRows(),
       manifest,
+      {
+        pathCount: state.eomPathCount,
+        runDuration: state.eomRunDuration,
+      },
     );
     const runnerOptions = eomRunnerOptions ?? createDefaultDynamicRunnerOptions(
       windowLike,
@@ -1166,6 +1263,7 @@ export function mountBorgApp(options = {}) {
     state.dynamicRunnerMessage = eomRunnerOptions
       ? "computing certified EOM shadow chunks"
       : "computing central-solver compatibility chunks";
+    updateEomControlPresentation();
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
@@ -1179,8 +1277,12 @@ export function mountBorgApp(options = {}) {
     if (!state.dynamicRunner || state.dynamicChunkPromise || !state.dynamicRunner.canComputeNextChunk()) {
       return state.dynamicChunkPromise;
     }
-    state.dynamicRunnerStatus = "live-native-running";
-    state.dynamicRunnerMessage = "computing native chunk";
+    state.dynamicRunnerStatus = options.eomShadowRunner
+      ? "eom-shadow-running"
+      : "live-native-running";
+    state.dynamicRunnerMessage = options.eomShadowRunner
+      ? "computing certified EOM shadow chunk"
+      : "computing native chunk";
     updateSourceStatusPresentation();
     renderSourceFields();
     const budgetBefore = readLiveRunBudgetSnapshot(windowLike);
@@ -1231,6 +1333,7 @@ export function mountBorgApp(options = {}) {
         updateSourceStatusPresentation();
         renderSourceFields();
         renderDeploymentFields();
+        updateEomControlPresentation();
         return chunk;
       })
       .catch((error) => {
@@ -1240,6 +1343,9 @@ export function mountBorgApp(options = {}) {
         const hadLiveFrames =
           state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE ||
           state.sourceMode === BORG_EOM_SHADOW_RUN_SOURCE;
+        const failedRunner = state.dynamicRunner;
+        state.dynamicRunner = null;
+        failedRunner?.dispose?.();
         state.dynamicRunnerStatus = hadLiveFrames ? "live-native-error" : "fixture-fallback";
         state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
         if (!hadLiveFrames) {
@@ -1256,14 +1362,48 @@ export function mountBorgApp(options = {}) {
         updateSourceStatusPresentation();
         renderSourceFields();
         renderDeploymentFields();
+        updateEomControlPresentation();
         return null;
       })
       .finally(() => {
         if (generation === state.dynamicRunGeneration) {
           state.dynamicChunkPromise = null;
+          updateEomControlPresentation();
+          if (options.eomShadowRunner && state.dynamicRunner?.canComputeNextChunk()) {
+            windowLike.setTimeout(
+              () => ensureDynamicFramesAhead({ generation }),
+              0,
+            );
+          }
         }
       });
     return state.dynamicChunkPromise;
+  }
+
+  function stopEomRun() {
+    if (!options.eomShadowRunner) {
+      return;
+    }
+    stopPlayback();
+    disposeDynamicRunner();
+    state.dynamicRunnerStatus = "eom-shadow-stopped";
+    state.dynamicRunnerMessage = "stopped by operator; no further history published";
+    updateSourceStatusPresentation();
+    renderSourceFields();
+    updateEomControlPresentation();
+  }
+
+  function restartEomRun() {
+    if (!options.eomShadowRunner) {
+      return;
+    }
+    readEomControlValues();
+    stopPlayback();
+    disposeDynamicRunner();
+    state.distributionFrameRows = null;
+    state.distributionLabel = `manifest retained-history subset (${state.eomPathCount})`;
+    resetDynamicRunState();
+    startDynamicNativeRunner();
   }
 
   function canExtendDynamicRun() {
@@ -1441,6 +1581,7 @@ export function mountBorgApp(options = {}) {
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
+    updateEomControlPresentation();
   }
 
   function startNewDistributionRun() {
@@ -1465,6 +1606,7 @@ export function mountBorgApp(options = {}) {
     const runner = state.dynamicRunner;
     state.dynamicRunner = null;
     runner?.dispose?.();
+    updateEomControlPresentation();
   }
 }
 
@@ -1605,6 +1747,7 @@ function createDefaultEomShadowRunnerOptions(
   preset = runControlPresetById(),
   initialFrameRows = null,
   manifest = BORG_DATASET_MANIFEST_V1,
+  runtimeControls = {},
 ) {
   if (options.eomShadowRunner === false || options.enableEomShadowRunner === false) {
     return null;
@@ -1624,12 +1767,20 @@ function createDefaultEomShadowRunnerOptions(
   const targetDuration = Number.isFinite(Number(requestedTarget))
     ? Number(requestedTarget)
     : historyEndTime + (finiteBudgetNumber(configured.chunkDuration) ?? 20);
+  const runDuration = positiveControlNumber(
+    runtimeControls.runDuration,
+    targetDuration - historyEndTime,
+  );
   return {
     ...configured,
     startTime: historyEndTime,
-    targetDuration: Math.max(
-      historyEndTime + (finiteBudgetNumber(configured.sampleInterval) ?? 0.2),
-      targetDuration,
+    targetDuration: historyEndTime + runDuration,
+    runDuration,
+    pathCount: boundedInteger(
+      runtimeControls.pathCount,
+      configured.pathCount ?? manifest.population?.architrinoCount ?? 1,
+      1,
+      manifest.population?.architrinoCount ?? 1,
     ),
     chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
     initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
@@ -1828,6 +1979,27 @@ function hashSeedText(seedText) {
     hash = Math.imul(hash, 16777619);
   });
   return hash >>> 0;
+}
+
+function selectFrameRowsByPathCount(frameRows, pathCount) {
+  const selectedPathKeys = [...new Set(frameRows.map((row) => Number(row.pathKey)))]
+    .filter(Number.isFinite)
+    .sort((left, right) => left - right)
+    .slice(0, pathCount);
+  const selected = new Set(selectedPathKeys);
+  return frameRows.filter((row) => selected.has(Number(row.pathKey)));
+}
+
+function boundedInteger(value, fallback, minimum, maximum) {
+  const number = Number(value);
+  return Number.isInteger(number)
+    ? Math.min(maximum, Math.max(minimum, number))
+    : fallback;
+}
+
+function positiveControlNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : fallback;
 }
 
 function finiteBudgetNumber(value) {

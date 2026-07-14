@@ -8,11 +8,17 @@ export function createBorgEomHttpClient({
   if (typeof fetchImpl !== "function") {
     throw new TypeError("Borg EOM HTTP client requires fetch.");
   }
+  const activeControllers = new Set();
   return Object.freeze({
     schema: BORG_EOM_HTTP_CLIENT_VERSION,
     async evolveRetainedHistories(request) {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), timeoutMs);
+      activeControllers.add(controller);
+      let timedOut = false;
+      const timeout = setTimeout(() => {
+        timedOut = true;
+        controller.abort();
+      }, timeoutMs);
       try {
         const response = await fetchImpl(endpoint, {
           method: "POST",
@@ -35,13 +41,21 @@ export function createBorgEomHttpClient({
         return payload;
       } catch (error) {
         if (error?.name === "AbortError") {
-          throw new Error(`Borg EOM service timed out after ${timeoutMs} ms.`);
+          throw new Error(
+            timedOut
+              ? `Borg EOM service timed out after ${timeoutMs} ms.`
+              : "Borg EOM service request was cancelled.",
+          );
         }
         throw error;
       } finally {
         clearTimeout(timeout);
+        activeControllers.delete(controller);
       }
     },
-    async dispose() {},
+    async dispose() {
+      activeControllers.forEach((controller) => controller.abort());
+      activeControllers.clear();
+    },
   });
 }

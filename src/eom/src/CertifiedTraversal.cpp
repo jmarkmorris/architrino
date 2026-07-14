@@ -121,7 +121,11 @@ CertifiedTraversalCertificate certify_moving_history_traversal(
   }
   const Interval reception = token_bounds(request.reception);
   const Interval emission = token_bounds(request.emission);
-  if (emission.upper() > reception.lower()) {
+  const double latest_emission =
+      Interval::decimal_token(request.emission.upper).midpoint();
+  const double earliest_reception =
+      Interval::decimal_token(request.reception.lower).midpoint();
+  if (latest_emission > earliest_reception) {
     throw std::invalid_argument(
         "emission traversal cannot extend beyond earliest reception");
   }

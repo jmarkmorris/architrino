@@ -180,6 +180,20 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
   const auto self_static =
       history("self-static", {"0", "0", "0", "0"}, "3");
   const auto self_rail = history("self-rail", {"0", "1", "0", "0"}, "3");
+  const auto self_curved_rail = eom::RetainedHistory::uniform_circular(
+      "self-curved-rail",
+      {
+          .t_start = "0",
+          .t_end = "3",
+          .maximum_segment_step = "0.05",
+          .cylindrical_radius = "1",
+          .height = "0",
+          .angular_speed = "1",
+          .tangential_speed = "1",
+          .phase = "0",
+          .tilt_x = "0",
+          .tilt_y = "0",
+      });
   const auto memory_boundary =
       history("memory-boundary", {"3", "-2", "1", "0"});
   const eom::RetainedHistory piecewise_boundary(
@@ -220,6 +234,8 @@ std::vector<eom::ExactPairCertificate> pair_fixture() {
   add("tangent", receiver, tangent, "3", "0", "2.5", "1e-16", true);
   add("self_subfield", self_static, self_static, "3", "0", "3", "1e-12");
   add("self_rail", self_rail, self_rail, "3", "0", "3", "1e-12", true);
+  add("self_curved_rail", self_curved_rail, self_curved_rail, "3", "0",
+      "3", "1e-12", true);
   add("memory_boundary", receiver, memory_boundary, "3", "0", "2", "1e-12");
   add("piecewise_boundary", receiver, piecewise_boundary, "5", "0", "4.5",
       "1e-12");
@@ -302,9 +318,29 @@ void print_all() {
   } catch (const std::invalid_argument&) {
     discontinuity_rejected = true;
   }
+  bool inconsistent_circular_speed_rejected = false;
+  try {
+    const auto invalid = eom::RetainedHistory::uniform_circular(
+        "inconsistent-circular-speed-control",
+        {
+            .t_start = "0",
+            .t_end = "1",
+            .maximum_segment_step = "0.1",
+            .cylindrical_radius = "1",
+            .height = "0",
+            .angular_speed = "1",
+            .tangential_speed = "0.9",
+            .phase = "0",
+        });
+    static_cast<void>(invalid);
+  } catch (const std::invalid_argument&) {
+    inconsistent_circular_speed_rejected = true;
+  }
   std::cout << "{\"schema\":\"eom_native_fixture_packet/v0\","
             << "\"discontinuous_history_rejected\":"
             << (discontinuity_rejected ? "true" : "false")
+            << ",\"inconsistent_circular_speed_rejected\":"
+            << (inconsistent_circular_speed_rejected ? "true" : "false")
             << ",\"blocks\":[";
   print_block(eom::certify_moving_history_block(far));
   std::cout << ',';

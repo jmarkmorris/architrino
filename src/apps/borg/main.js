@@ -22,13 +22,18 @@ function reportBorgBootstrapError(error, documentLike = globalThis.document, win
 try {
   const query = new URLSearchParams(window.location?.search ?? "");
   const eomShadowEnabled = query.get("eom") === "shadow";
+  const eomStartTime = 300;
+  const eomDuration = queryPositiveNumber(query.get("eomDuration"), 0.01);
+  const eomPathCount = queryBoundedInteger(query.get("eomCount"), 16, 1, 16);
   window.__BORG_APP__ = mountBorgApp(
     eomShadowEnabled
       ? {
           eomShadowRunner: {
             eomClient: createBorgEomHttpClient(),
-            startTime: 300,
-            targetDuration: 300.01,
+            startTime: eomStartTime,
+            targetDuration: eomStartTime + eomDuration,
+            runDuration: eomDuration,
+            pathCount: eomPathCount,
             chunkDuration: 0.01,
             sampleInterval: 0.01,
             initialStep: "0.01",
@@ -45,4 +50,19 @@ try {
   );
 } catch (error) {
   reportBorgBootstrapError(error);
+}
+
+function queryPositiveNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : fallback;
+}
+
+function queryBoundedInteger(value, fallback, minimum, maximum) {
+  if (value == null || String(value).trim() === "") {
+    return fallback;
+  }
+  const number = Number(value);
+  return Number.isInteger(number)
+    ? Math.min(maximum, Math.max(minimum, number))
+    : fallback;
 }

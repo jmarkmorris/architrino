@@ -7,9 +7,10 @@
 #include <cstddef>
 #include <exception>
 #include <functional>
+#include <iterator>
+#include <limits>
 #include <map>
 #include <mutex>
-#include <limits>
 #include <optional>
 #include <set>
 #include <stdexcept>
@@ -294,64 +295,117 @@ FiniteWidthAttempt reconstruct_finite_width(
         "finite-width integration requires a positive retained interval");
   }
 
+  struct Cell {
+    double lower;
+    double upper;
+    std::size_t depth;
+    std::size_t id;
+    IntervalVector integral;
+
+    [[nodiscard]] double score() const {
+      return std::max(
+          {integral[0].width(), integral[1].width(), integral[2].width()});
+    }
+  };
+  struct CellOrder {
+    bool operator()(const Cell& left, const Cell& right) const {
+      if (left.score() != right.score()) {
+        return left.score() < right.score();
+      }
+      return left.id < right.id;
+    }
+  };
+
   FiniteWidthAttempt attempt;
-  std::function<IntervalVector(double, double, std::size_t)> integrate;
-  integrate = [&](double cell_lower, double cell_upper, std::size_t depth) {
+  std::size_t next_id = 0U;
+  const auto make_cell = [&](double cell_lower, double cell_upper,
+                             std::size_t depth, std::size_t id) {
     ++attempt.visited_cells;
     if (attempt.visited_cells > request.quadrature_max_cells) {
       throw AccelerationCertificationError(
           "finite-width quadrature cell limit exhausted");
     }
     const Interval cell(cell_lower, cell_upper);
-    const double width = cell_upper - cell_lower;
-    const IntervalVector integral = scale(
-        Interval::point(width),
-        finite_width_integrand(
-            request, cell, receiver_charge, source_charge, coupling,
-            causal_width, core_scale));
-    const double budget =
-        quadrature_tolerance.lower() * width / total_span;
-    if (std::all_of(
-            integral.begin(), integral.end(),
-            [&](const Interval& component) { return component.width() <= budget; })) {
-      return integral;
-    }
-    if (depth >= request.quadrature_max_depth) {
-      throw AccelerationCertificationError(
-          "finite-width quadrature depth exhausted");
-    }
-    const double midpoint = cell_lower + (cell_upper - cell_lower) * 0.5;
-    if (!(midpoint > cell_lower && midpoint < cell_upper)) {
-      throw AccelerationCertificationError(
-          "finite-width quadrature time resolution exhausted");
-    }
-    return add(
-        integrate(cell_lower, midpoint, depth + 1U),
-        integrate(midpoint, cell_upper, depth + 1U));
+    return Cell{
+        .lower = cell_lower,
+        .upper = cell_upper,
+        .depth = depth,
+        .id = id,
+        .integral = scale(
+            Interval::point(cell_upper - cell_lower),
+            finite_width_integrand(
+                request, cell, receiver_charge, source_charge, coupling,
+                causal_width, core_scale)),
+    };
   };
 
-  std::vector<IntervalVector> segment_totals;
+  std::multiset<Cell, CellOrder> cells;
   for (std::size_t index = 0;
        index < request.source_history->segments().size(); ++index) {
     const auto& segment = request.source_history->segments()[index];
     const double cell_lower = std::max(lower_value, segment.t_start());
     const double cell_upper = std::min(reception_value, segment.t_end());
     if (cell_lower < cell_upper) {
-      segment_totals.push_back(integrate(cell_lower, cell_upper, 0));
+      cells.insert(make_cell(cell_lower, cell_upper, 0U, next_id++));
     }
   }
-  if (segment_totals.empty()) {
+  if (cells.empty()) {
     throw AccelerationCertificationError(
         "finite-width integration has no covered source cells");
   }
-  attempt.acceleration = fixed_pairwise_sum(segment_totals);
-  for (const auto& component : attempt.acceleration) {
-    if (component.width() > quadrature_tolerance.lower()) {
-      throw AccelerationCertificationError(
-          "finite-width quadrature acceleration enclosure exceeds the declared tolerance");
+
+  while (true) {
+    std::vector<const Cell*> chronological;
+    chronological.reserve(cells.size());
+    for (const auto& cell : cells) {
+      chronological.push_back(&cell);
+    }
+    std::sort(
+        chronological.begin(), chronological.end(),
+        [](const Cell* left, const Cell* right) {
+          return left->lower < right->lower ||
+              (left->lower == right->lower && left->id < right->id);
+        });
+    std::vector<IntervalVector> totals;
+    totals.reserve(chronological.size());
+    for (const Cell* cell : chronological) {
+      totals.push_back(cell->integral);
+    }
+    attempt.acceleration = fixed_pairwise_sum(totals);
+    if (std::all_of(
+            attempt.acceleration.begin(), attempt.acceleration.end(),
+            [&](const Interval& component) {
+              return component.width() <= quadrature_tolerance.lower();
+            })) {
+      return attempt;
+    }
+
+    const std::size_t splits_before_reduction =
+        std::max<std::size_t>(64U, cells.size() / 16U);
+    for (std::size_t split = 0; split < splits_before_reduction; ++split) {
+      if (cells.empty()) {
+        throw AccelerationCertificationError(
+            "finite-width integration lost its active cells");
+      }
+      const auto found = std::prev(cells.end());
+      const Cell parent = *found;
+      cells.erase(found);
+      if (parent.depth >= request.quadrature_max_depth) {
+        throw AccelerationCertificationError(
+            "finite-width quadrature depth exhausted");
+      }
+      const double midpoint =
+          parent.lower + (parent.upper - parent.lower) * 0.5;
+      if (!(midpoint > parent.lower && midpoint < parent.upper)) {
+        throw AccelerationCertificationError(
+            "finite-width quadrature time resolution exhausted");
+      }
+      cells.insert(make_cell(
+          parent.lower, midpoint, parent.depth + 1U, next_id++));
+      cells.insert(make_cell(
+          midpoint, parent.upper, parent.depth + 1U, next_id++));
     }
   }
-  return attempt;
 }
 
 void validate_pair_request(const NativePairAccelerationRequest& request) {

@@ -226,6 +226,7 @@ void run() {
       .thread_count = 1,
   };
   request.thread_count = parse_size(run[13], "thread count");
+  request.traversal_exact_tile_pair_limit = 64;
   request.paths.reserve(parsed_paths.size());
   for (const auto& path : parsed_paths) {
     request.paths.push_back({path.path_id, path.charge, path.history});
@@ -239,21 +240,59 @@ void run() {
             << "\",\"acceptedStepCount\":" << result.accepted_step_count
             << ",\"rejectedStepCount\":" << result.rejected_step_count
             << ",\"haltCode\":\"" << json_escape(result.halt_code)
-            << "\",\"stepFailures\":[";
+            << "\",\"timing\":{"
+            << "\"historyWindowWallSeconds\":"
+            << result.timing.history_window_wall_seconds
+            << ","
+            << "\"rootBatchWallSeconds\":"
+            << result.timing.exact_root_batch_wall_seconds
+            << ",\"rootBinary64CpuSeconds\":"
+            << result.timing.root_binary64_cpu_seconds
+            << ",\"rootMpfrCpuSeconds\":"
+            << result.timing.root_mpfr_cpu_seconds
+            << ",\"historyCopyHashWallSeconds\":"
+            << result.timing.history_copy_hash_wall_seconds
+            << ",\"correctionWallSeconds\":"
+            << result.timing.correction_wall_seconds
+            << ",\"reusedStartSnapshotCount\":"
+            << result.timing.reused_start_snapshot_count
+            << ",\"recertificationWallSeconds\":"
+            << result.timing.recertification_wall_seconds
+            << ",\"totalWallSeconds\":"
+            << result.timing.total_wall_seconds
+            << "}"
+            << ",\"stepFailures\":[";
   for (std::size_t step_index = 0; step_index < result.steps.size();
        ++step_index) {
     if (step_index > 0U) {
       std::cout << ',';
     }
+    const auto& step = result.steps[step_index];
+    const eom::NativeAccelerationSnapshotCertificate* diagnostic_snapshot =
+        step.accepted_snapshot.has_value()
+        ? &*step.accepted_snapshot
+        : (step.substeps.empty() ? nullptr : &step.substeps.front().start_snapshot);
     std::cout << "{\"status\":\""
-              << json_escape(result.steps[step_index].status)
+              << json_escape(step.status)
               << "\",\"failureCode\":\""
-              << json_escape(result.steps[step_index].failure_code)
+              << json_escape(step.failure_code)
               << "\",\"attemptedStart\":\""
-              << json_escape(result.steps[step_index].attempted_start)
+              << json_escape(step.attempted_start)
               << "\",\"attemptedEnd\":\""
-              << json_escape(result.steps[step_index].attempted_end)
-              << "\",\"rootFailures\":[";
+              << json_escape(step.attempted_end)
+              << "\",\"pairSelectionRoute\":\""
+              << (diagnostic_snapshot != nullptr
+                      ? json_escape(diagnostic_snapshot->pair_selection_route)
+                      : "none")
+              << "\",\"traversalExcludedPairs\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->traversal_excluded_pairs
+                      : 0U)
+              << ",\"traversalExactPairs\":"
+              << (diagnostic_snapshot != nullptr
+                      ? diagnostic_snapshot->traversal_exact_pairs
+                      : 0U)
+              << ",\"rootFailures\":[";
     bool first_root_failure = true;
     const auto print_snapshot_failures = [&](
         const eom::NativeAccelerationSnapshotCertificate& snapshot) {
@@ -280,7 +319,7 @@ void run() {
                   << '}';
       }
     };
-    for (const auto& substep : result.steps[step_index].substeps) {
+    for (const auto& substep : step.substeps) {
       print_snapshot_failures(substep.start_snapshot);
       if (substep.endpoint_snapshot.has_value()) {
         print_snapshot_failures(*substep.endpoint_snapshot);
@@ -318,11 +357,24 @@ void run() {
 
 int main(int argc, char** argv) {
   try {
-    if (argc != 2 || std::string(argv[1]) != "borg-shadow-v0") {
-      std::cerr << "usage: eom_borg_shadow_cli borg-shadow-v0\n";
+    if (argc != 2) {
+      std::cerr << "usage: eom_borg_shadow_cli "
+                   "borg-shadow-v0|borg-shadow-server-v0\n";
       return EXIT_FAILURE;
     }
-    run();
+    const std::string mode = argv[1];
+    if (mode == "borg-shadow-v0") {
+      run();
+    } else if (mode == "borg-shadow-server-v0") {
+      while (std::cin.peek() != std::char_traits<char>::eof()) {
+        run();
+        std::cout.flush();
+      }
+    } else {
+      std::cerr << "usage: eom_borg_shadow_cli "
+                   "borg-shadow-v0|borg-shadow-server-v0\n";
+      return EXIT_FAILURE;
+    }
     return EXIT_SUCCESS;
   } catch (const std::exception& error) {
     std::cerr << "eom Borg shadow native request failed: " << error.what()

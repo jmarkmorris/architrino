@@ -296,6 +296,16 @@ class NativeAccelerationTests(unittest.TestCase):
             self.assertLessEqual(binary_lower, mpfr_upper)
             self.assertGreaterEqual(binary_upper, mpfr_lower)
 
+    def test_finite_width_global_budget_avoids_uniform_over_refinement(self) -> None:
+        result = self.case("finite-width-global-budget")
+        self.assertEqual(result["status"], "active")
+        self.assertEqual(result["chart"], "finite_width")
+        self.assertLessEqual(result["quadrature_visited_cells"], 1500)
+        self.assertEqual(
+            result["rows"][0]["acceptance_status"],
+            "consumed_certified_finite_width_pair",
+        )
+
     def test_tangent_routes_to_finite_width_and_resources_fail_closed(self) -> None:
         tangent = self.case("tangent-finite-width")
         self.assertEqual(tangent["status"], "active")

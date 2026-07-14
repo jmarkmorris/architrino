@@ -19,7 +19,7 @@
 namespace architrino::eom {
 namespace {
 
-constexpr char kCheckpointMagic[] = "EOMCPV0\n";
+constexpr char kCheckpointMagic[] = "EOMCPV1\n";
 constexpr std::size_t kMaximumTokenBytes = 16U * 1024U * 1024U;
 constexpr std::uint64_t kMaximumPathCount = UINT64_C(10000000);
 constexpr std::uint64_t kMaximumSegmentCount = UINT64_C(1000000000);
@@ -176,7 +176,7 @@ NativeCheckpointPath take_history(
 
 void require_checkpoint_consistency(
     const NativeEvolutionCheckpoint& checkpoint) {
-  if (checkpoint.schema != "eom_native_evolution_checkpoint/v0" ||
+  if (checkpoint.schema != "eom_native_evolution_checkpoint/v1" ||
       checkpoint.run_id.empty() || checkpoint.paths.empty()) {
     throw std::invalid_argument("checkpoint identity or path domain is invalid");
   }
@@ -221,6 +221,7 @@ std::string native_evolution_model_fingerprint(
       request.velocity_tolerance,
       request.correction_tolerance,
       request.minimum_step,
+      request.maximum_step,
       std::to_string(request.root_max_depth),
       std::to_string(request.root_max_cells),
       std::to_string(request.quadrature_max_depth),
@@ -232,6 +233,8 @@ std::string native_evolution_model_fingerprint(
       std::to_string(request.maximum_mpfr_bits),
       request.force_event_precision_escalation ? "1" : "0",
       std::to_string(request.max_correction_iterations),
+      request.use_adaptive_step_growth ? "1" : "0",
+      request.use_certified_history_window ? "1" : "0",
       kNativeIntegrationMethod,
       kDeterministicReductionPolicy,
   };
@@ -256,7 +259,7 @@ NativeEvolutionCheckpoint create_native_evolution_checkpoint(
         "checkpoint source is not an atomic result for the request");
   }
   NativeEvolutionCheckpoint checkpoint{
-      .schema = "eom_native_evolution_checkpoint/v0",
+      .schema = "eom_native_evolution_checkpoint/v1",
       .run_id = certificate.run_id,
       .accepted_time = certificate.accepted_end_time,
       .controller_step_size = certificate.controller_step_size,

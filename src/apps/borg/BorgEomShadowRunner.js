@@ -24,6 +24,7 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
     {
       historyStartTime: config.historyStartTime,
       historyEndTime: config.startTime,
+      expectedPathCount: config.pathCount,
     },
   );
   let nextStartTime = config.startTime;
@@ -51,13 +52,12 @@ export function createBorgEomShadowRunner(manifest, options = {}) {
       return !disposed && nextStartTime < targetDuration;
     },
     setRunLimits(nextLimits = {}) {
-      const requestedTarget = Number(nextLimits.targetDuration);
-      if (Number.isFinite(requestedTarget) && requestedTarget > config.startTime) {
-        targetDuration = Math.max(nextStartTime, requestedTarget);
-      }
       const requestedChunk = Number(nextLimits.chunkDuration);
       if (Number.isFinite(requestedChunk) && requestedChunk > 0) {
-        chunkDuration = Math.max(config.sampleInterval, requestedChunk);
+        chunkDuration = Math.min(
+          config.chunkDuration,
+          Math.max(config.sampleInterval, requestedChunk),
+        );
       }
     },
     async computeNextChunk() {
@@ -138,6 +138,16 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
   if (targetDuration <= startTime) {
     throw new RangeError("Borg EOM shadow target duration must exceed its history cut time.");
   }
+  const maximumPathCount = positiveInteger(
+    manifest.population?.architrinoCount,
+    Number.MAX_SAFE_INTEGER,
+  );
+  const pathCount = positiveInteger(options.pathCount, maximumPathCount);
+  if (pathCount > maximumPathCount) {
+    throw new RangeError(
+      `Borg EOM path count ${pathCount} exceeds the ${maximumPathCount} retained histories available.`,
+    );
+  }
   const sideLength = positiveNumber(manifest.simulationEnvelope?.sideLength, 100);
   const fieldSpeed = positiveNumber(
     options.fieldSpeed,
@@ -158,6 +168,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
     startTime,
     targetDuration,
     chunkDuration,
+    pathCount,
     sampleInterval,
     fieldSpeed,
     historyStartTime: roundTime(Math.max(
@@ -199,7 +210,7 @@ export function createBorgEomShadowRunConfig(manifest, options = {}) {
 export function createBorgContinuousRetainedHistories(
   frameRows,
   manifest,
-  { historyStartTime, historyEndTime } = {},
+  { historyStartTime, historyEndTime, expectedPathCount } = {},
 ) {
   if (!Array.isArray(frameRows) || frameRows.length === 0) {
     throw new TypeError("Borg EOM migration requires retained path-history rows.");
@@ -225,8 +236,11 @@ export function createBorgContinuousRetainedHistories(
     rows.push(row);
     grouped.set(pathKey, rows);
   });
-  const expectedPathCount = manifest.population?.architrinoCount;
-  if (Number.isInteger(expectedPathCount) && grouped.size !== expectedPathCount) {
+  const requiredPathCount = positiveInteger(
+    expectedPathCount,
+    manifest.population?.architrinoCount,
+  );
+  if (Number.isInteger(requiredPathCount) && grouped.size !== requiredPathCount) {
     throw new Error("Borg EOM retained history does not cover every path identity.");
   }
   const histories = [...grouped.entries()]
@@ -365,7 +379,10 @@ function normalizeEomResponse(rawResponse, request) {
   const response = rawResponse?.response ?? rawResponse;
   if (!response || response.status !== "completed") {
     const failure = response?.haltCode ?? response?.failureCode ?? "eom_shadow_run_failed";
-    throw new Error(`Borg EOM shadow run failed closed: ${failure}.`);
+    const error = new Error(`Borg EOM shadow run failed closed: ${failure}.`);
+    error.code = failure;
+    error.eomResponse = response ?? null;
+    throw error;
   }
   const histories = response.histories ?? response.publishedHistories;
   if (!Array.isArray(histories) || histories.length !== request.histories.length) {

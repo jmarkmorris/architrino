@@ -60,6 +60,9 @@ struct ExactPairCertificate {
   std::size_t excluded_cells;
   std::size_t difficult_cells;
   std::vector<NativeRootBracket> roots;
+  double binary64_cpu_seconds = 0.0;
+  double mpfr_cpu_seconds = 0.0;
+  std::size_t mpfr_attempt_count = 0;
 };
 
 [[nodiscard]] ExactPairCertificate certify_exact_pair(

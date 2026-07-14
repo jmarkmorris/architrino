@@ -79,6 +79,42 @@ test("Borg EOM shadow runner sends retained histories and derives frames only fr
   assert.equal(chunk.histories.every((history) => history.coverageEnd === "10.2"), true);
 });
 
+test("Borg EOM shadow runner supports a deterministic retained-history population subset", async () => {
+  const requests = [];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories(request) {
+        requests.push(request);
+        return createFakeEomResponse(request, "executable_architecture_evidence");
+      },
+    },
+    pathCount: 4,
+    initialFrameRows: BORG_DATASET_MANIFEST_V1.currentStateFrames.filter(
+      (row) => Number(row.pathKey) <= 1004,
+    ),
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+  });
+  const chunk = await runner.computeNextChunk();
+  assert.equal(requests[0].histories.length, 4);
+  assert.deepEqual(requests[0].histories.map((history) => history.pathId), ["1001", "1002", "1003", "1004"]);
+  assert.equal(chunk.frames.length, 8);
+});
+
+test("Borg EOM UI duration and atomic chunk cannot be overridden by measured limits", () => {
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: { async evolveRetainedHistories() {} },
+    startTime: 10,
+    targetDuration: 10.1,
+    chunkDuration: 0.01,
+    sampleInterval: 0.01,
+  });
+  runner.setRunLimits({ targetDuration: 10.05, chunkDuration: 20 });
+  assert.equal(runner.targetDuration, 10.1);
+  assert.equal(runner.chunkDuration, 0.01);
+});
+
 test("Borg promotion remains fail-closed until both canonical evidence and the migration gate pass", async () => {
   const eomClient = {
     async evolveRetainedHistories(request) {
@@ -121,6 +157,29 @@ test("Borg EOM shadow response rejects reordered or incomplete published histori
     runner.computeNextChunk(),
     /incomplete or reordered histories/,
   );
+});
+
+test("Borg EOM fail-closed responses preserve native diagnostics", async () => {
+  const diagnostics = [{ code: "minimum_step_exhausted", rootFailureCount: 240 }];
+  const runner = createBorgEomShadowRunner(BORG_DATASET_MANIFEST_V1, {
+    eomClient: {
+      async evolveRetainedHistories() {
+        return {
+          status: "failed",
+          haltCode: "minimum_step_exhausted",
+          diagnostics,
+        };
+      },
+    },
+    startTime: 10,
+    targetDuration: 10.2,
+    chunkDuration: 0.2,
+  });
+  await assert.rejects(runner.computeNextChunk(), (error) => {
+    assert.equal(error.code, "minimum_step_exhausted");
+    assert.deepEqual(error.eomResponse.diagnostics, diagnostics);
+    return true;
+  });
 });
 
 test("Borg native process protocol carries the same continuous-history request", async () => {
@@ -166,6 +225,26 @@ test("Borg browser EOM client posts the retained-history contract to the local n
   assert.equal(calls[0].endpoint, "/api/eom/borg-shadow/v0");
   assert.equal(calls[0].init.method, "POST");
   assert.deepEqual(JSON.parse(calls[0].init.body), request);
+});
+
+test("disposing the Borg browser EOM client aborts an active native request", async () => {
+  let signal;
+  const client = createBorgEomHttpClient({
+    fetchImpl: async (_endpoint, init) => {
+      signal = init.signal;
+      return new Promise((_resolve, reject) => {
+        init.signal.addEventListener("abort", () => {
+          const error = new Error("aborted");
+          error.name = "AbortError";
+          reject(error);
+        });
+      });
+    },
+  });
+  const pending = client.evolveRetainedHistories({ histories: [] });
+  await client.dispose();
+  assert.equal(signal.aborted, true);
+  await assert.rejects(pending, /cancelled/u);
 });
 
 function createFakeEomResponse(request, evidenceStatus) {

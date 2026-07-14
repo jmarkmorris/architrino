@@ -272,6 +272,7 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(tangent["roots"], [])
 
     def test_self_pair_endpoint_rule_handles_subfield_and_rail_histories(self) -> None:
+        self.assertTrue(self.packet["inconsistent_circular_speed_rejected"])
         subfield = self.pair("self_subfield")
         self.assertEqual(subfield["status"], "certified_complete")
         self.assertTrue(subfield["coincident_endpoint_excluded"])
@@ -280,6 +281,12 @@ class NativeHistoryLayerTests(unittest.TestCase):
         self.assertEqual(rail["status"], "caustic_route_required")
         self.assertFalse(rail["coincident_endpoint_excluded"])
         self.assertFalse(rail["root_free_complement"])
+        curved_rail = self.pair("self_curved_rail")
+        self.assertEqual(curved_rail["status"], "certified_complete")
+        self.assertTrue(curved_rail["coincident_endpoint_excluded"])
+        self.assertTrue(curved_rail["root_free_complement"])
+        self.assertTrue(curved_rail["precision_escalated"])
+        self.assertEqual(curved_rail["roots"], [])
 
     def test_memory_boundary_and_piecewise_root_identity_match_oracle_rules(self) -> None:
         memory = self.pair("memory_boundary")

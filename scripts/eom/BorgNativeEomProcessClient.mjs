@@ -1,21 +1,150 @@
 import { spawn } from "node:child_process";
 
 export const BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION =
-  "borg-native-eom-process-client.v0";
+  "borg-native-eom-process-client.v1";
 
 export function createBorgNativeEomProcessClient({ binaryPath, timeoutMs = 120000 } = {}) {
   if (typeof binaryPath !== "string" || binaryPath.length === 0) {
     throw new TypeError("Borg native EOM process client requires binaryPath.");
   }
-  return Object.freeze({
+  let worker = null;
+  let workerGeneration = 0;
+  let responseBuffer = "";
+  let errorBuffer = "";
+  let activeRequest = null;
+  let requestQueue = Promise.resolve();
+  let cancellationGeneration = 0;
+
+  const client = Object.freeze({
     schema: BORG_NATIVE_EOM_PROCESS_CLIENT_VERSION,
+    get workerPid() {
+      return worker?.pid ?? null;
+    },
     async evolveRetainedHistories(request) {
       const protocol = encodeNativeRequest(request);
-      const response = await executeNativeRequest(binaryPath, protocol, timeoutMs);
+      const requestGeneration = cancellationGeneration;
+      const execute = () => {
+        if (requestGeneration !== cancellationGeneration) {
+          throw new Error("Native EOM worker request was cancelled before execution.");
+        }
+        return executePersistentRequest(protocol);
+      };
+      const responsePromise = requestQueue.then(execute, execute);
+      requestQueue = responsePromise.catch(() => undefined);
+      const response = await responsePromise;
       return mergePublishedExtensions(request, response);
     },
-    async dispose() {},
+    async dispose() {
+      cancellationGeneration += 1;
+      terminateWorker(new Error("Native EOM worker was cancelled."));
+    },
   });
+  return client;
+
+  function ensureWorker() {
+    if (worker && worker.exitCode == null && !worker.killed) {
+      return;
+    }
+    const generation = ++workerGeneration;
+    responseBuffer = "";
+    errorBuffer = "";
+    worker = spawn(binaryPath, ["borg-shadow-server-v0"], {
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+    worker.stdout.setEncoding("utf8");
+    worker.stderr.setEncoding("utf8");
+    worker.stdout.on("data", (chunk) => receiveWorkerOutput(generation, chunk));
+    worker.stderr.on("data", (chunk) => {
+      if (generation !== workerGeneration) {
+        return;
+      }
+      errorBuffer = `${errorBuffer}${chunk}`.slice(-65536);
+    });
+    worker.on("error", (error) => failWorkerGeneration(generation, error));
+    worker.on("close", (code, signal) => {
+      if (generation !== workerGeneration) {
+        return;
+      }
+      const diagnostic = errorBuffer.trim() || "no diagnostic";
+      failWorkerGeneration(
+        generation,
+        new Error(`Native EOM worker exited (${signal ?? code}): ${diagnostic}`),
+      );
+    });
+  }
+
+  function executePersistentRequest(protocol) {
+    ensureWorker();
+    return new Promise((resolve, reject) => {
+      if (activeRequest) {
+        reject(new Error("Native EOM worker already has an active request."));
+        return;
+      }
+      const timeout = setTimeout(() => {
+        terminateWorker(new Error(`Native EOM process timed out after ${timeoutMs} ms.`));
+      }, timeoutMs);
+      activeRequest = { resolve, reject, timeout };
+      worker.stdin.write(protocol, (error) => {
+        if (error && activeRequest) {
+          terminateWorker(error);
+        }
+      });
+    });
+  }
+
+  function receiveWorkerOutput(generation, chunk) {
+    if (generation !== workerGeneration) {
+      return;
+    }
+    responseBuffer += chunk;
+    const newline = responseBuffer.indexOf("\n");
+    if (newline < 0 || !activeRequest) {
+      return;
+    }
+    const line = responseBuffer.slice(0, newline);
+    responseBuffer = responseBuffer.slice(newline + 1);
+    const pending = activeRequest;
+    activeRequest = null;
+    clearTimeout(pending.timeout);
+    try {
+      pending.resolve(JSON.parse(line));
+    } catch (error) {
+      terminateWorker(
+        new Error(`Native EOM process emitted invalid JSON: ${error.message}`),
+      );
+      pending.reject(error);
+    }
+  }
+
+  function failWorkerGeneration(generation, error) {
+    if (generation !== workerGeneration) {
+      return;
+    }
+    const pending = activeRequest;
+    activeRequest = null;
+    worker = null;
+    if (pending) {
+      clearTimeout(pending.timeout);
+      pending.reject(error);
+    }
+  }
+
+  function terminateWorker(error) {
+    const pending = activeRequest;
+    activeRequest = null;
+    const current = worker;
+    worker = null;
+    ++workerGeneration;
+    responseBuffer = "";
+    errorBuffer = "";
+    if (pending) {
+      clearTimeout(pending.timeout);
+      pending.reject(error);
+    }
+    if (current && current.exitCode == null && !current.killed) {
+      current.kill("SIGKILL");
+    }
+  }
 }
 
 export function encodeNativeRequest(request) {
@@ -82,57 +211,6 @@ function tabRecord(fields) {
     }
     return value;
   }).join("\t");
-}
-
-function executeNativeRequest(binaryPath, protocol, timeoutMs) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(binaryPath, ["borg-shadow-v0"], {
-      stdio: ["pipe", "pipe", "pipe"],
-    });
-    let stdout = "";
-    let stderr = "";
-    let settled = false;
-    const timeout = setTimeout(() => {
-      child.kill("SIGKILL");
-      finish(new Error(`Native EOM process timed out after ${timeoutMs} ms.`));
-    }, timeoutMs);
-    child.stdout.setEncoding("utf8");
-    child.stderr.setEncoding("utf8");
-    child.stdout.on("data", (chunk) => {
-      stdout += chunk;
-    });
-    child.stderr.on("data", (chunk) => {
-      stderr += chunk;
-    });
-    child.on("error", finish);
-    child.on("close", (code, signal) => {
-      if (code !== 0) {
-        finish(new Error(
-          `Native EOM process failed (${signal ?? code}): ${stderr.trim() || "no diagnostic"}`,
-        ));
-        return;
-      }
-      try {
-        finish(null, JSON.parse(stdout));
-      } catch (error) {
-        finish(new Error(`Native EOM process emitted invalid JSON: ${error.message}`));
-      }
-    });
-    child.stdin.end(protocol);
-
-    function finish(error, value) {
-      if (settled) {
-        return;
-      }
-      settled = true;
-      clearTimeout(timeout);
-      if (error) {
-        reject(error);
-      } else {
-        resolve(value);
-      }
-    }
-  });
 }
 
 function mergePublishedExtensions(request, response) {

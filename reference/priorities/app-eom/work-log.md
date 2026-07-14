@@ -506,3 +506,127 @@ This file holds dated decisions, implementation status, validation results, fail
   persistent workers, production million-path traversal, GPU, multi-GPU,
   distributed history, split time, multirate evolution, and canonical Borg
   migration remain open.
+
+## 2026-07-13 — Borg Controls, Persistent Worker, Coupled Traversal, And Strict Control
+
+- Added Borg EOM controls for a deterministic 1–16 path continuous-history
+  subset, requested duration, automatic fixed `0.01` chunks, progress, native
+  Stop, and clean Restart. The population maximum is the number of retained
+  fixture histories; the surface does not manufacture state-only starts.
+- Prevented the compatibility run-preset calibration from enlarging EOM's
+  configured atomic chunk. Long requested durations now remain a sequence of
+  separately accepted or rejected chunks.
+- Replaced per-request native process creation with
+  `borg-shadow-server-v0`, a persistent C++ worker protocol. Browser
+  cancellation aborts the HTTP request and kills the active worker; Restart
+  lazily starts a clean worker. Full histories are still transported per
+  chunk, so persistent in-process history ownership remains open.
+- Connected certified moving-history traversal to every coupled acceleration
+  snapshot. A far binary fixture accounts for all four ordered pairs as two
+  certified block exclusions and two exact self-pairs before deterministic
+  receiver reduction.
+- Ran a strict one-path Borg control at root tolerance `1e-8` with steps
+  `0.01`, `0.005`, and `0.0025`. All cases accepted, maximum endpoint state
+  delta was about `2.84e-14`, one-thread and four-thread histories were byte
+  identical, and all four requests used one worker process.
+- Browser QA completed a two-chunk automatic run, stopped a requested
+  one-hundred-chunk run after three published chunks, and restarted to a clean
+  two-chunk completion.
+- Corrected a long-run absolute-time scheduling failure reproduced with two
+  paths over `0.38` solver time. At chunk four, binary64 subtraction left a
+  one-ULP remainder after `300.03999999999996`; the controller then attempted
+  a zero-width candidate segment. The controller now snaps only a
+  rounding-envelope remainder to the request's explicit decimal endpoint.
+  The exact browser case completed all 38 atomic chunks. Failed browser chunks
+  also terminate their runner instead of retrying indefinitely, and expose the
+  native failure message in the progress row.
+- Ran the same strict ladder against all 16 Borg histories. Every timestep row
+  failed closed before publication with `minimum_step_exhausted` because all
+  240 off-diagonal ordered pairs reported
+  `numeric_precision_limit_exhausted`; the 16 self-pairs were not root
+  failures. Four threads reduced the `0.0025` attempt from about `54.0`
+  seconds to `21.7` seconds without changing the certified result.
+- Recorded the packet in
+  `evidence/eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json`.
+  Borg promotion remains blocked: the full-population precision route fails
+  closed, imported history is non-EOM compatibility output, and the
+  million-path, GPU, and distributed-history gates remain open.
+
+## 2026-07-14 — Exact circular $v=c_f$ endpoint certificate and §86 fold handoff
+
+- Added a central `RetainedHistory::uniform_circular` factory. The exact
+  tangential-speed token is its kinematic datum; the supplied radius is a
+  close geometry cross-check, and the generated cubic-Hermite segments carry
+  analytic interpolation and roundoff enclosures.
+- Bound an `eom_uniform_circular_endpoint_certificate/v0` witness into the
+  retained-history provenance. At its certified reception endpoint, the
+  strict chord inequality excludes every noncoincident self-root for
+  $0<v\le c_f$ over the whole circular prehistory.
+- Preserved the fail-closed negative control: an arbitrary straight $v=c_f$
+  rail remains `caustic_route_required`. A factory-produced curved $v=c_f$
+  rail certifies zero roots under forced MPFR escalation, and inconsistent
+  circle speed/radius/frequency input is rejected.
+- The exact §86 six-worldline start now certifies all 36 root and acceleration
+  rows. Its first unconstrained candidate step develops a middle self-fold in
+  the real circular prehistory. The finite-width/regulator route reaches a
+  corrected candidate, but the final inflated-history snapshot loses root
+  completeness, so atomic publication correctly retains the time-zero
+  histories.
+- Native EOM regression result: 26 tests passed. The §86/§90 dynamical verdicts
+  remain quarantined; the next engine target is root-complete atomic
+  recertification after the first certified fold event.
+
+## 2026-07-14 — Global finite-width allocation closes §86 first-fold publication
+
+- Replaced the finite-width integrator's uniform per-cell error-density rule
+  with a global interval budget. Active cell integrals are summed in
+  chronological fixed-pairwise order, the largest enclosure-width contributor
+  is refined, and acceptance still requires the total acceleration enclosure
+  to meet the caller's unchanged quadrature tolerance.
+- Made reduction-check cadence proportional to the active-cell population.
+  This removes the quadratic repeated-summation cost without changing any
+  enclosure, resource cap, or stopping condition. A 1,500-cell regression
+  fixture now certifies the localized stationary finite-width row, while the
+  deliberately one-cell fixture still fails closed.
+- Corrected final atomic recertification to measure the gap between the
+  corrected endpoint acceleration midpoint and its recertified
+  inflated-history interval. The previous midpoint-to-midpoint comparison
+  rejected valid containment because a $5\times10^{-3}$ quadrature enclosure
+  was compared against a $2\times10^{-7}$ correction tolerance.
+- The exact §86 first fold-crossing step now publishes all six histories
+  atomically at the normal tolerances. Its accepted snapshot has zero
+  uncertified root rows, two finite-width caustic routes, maximum 193,338 of
+  300,000 quadrature cells, position error $1.36\times10^{-11}$, and velocity
+  error $1.44\times10^{-6}$ against the $2\times10^{-6}$ budget.
+- Native EOM regression result: 27 tests passed. No §86/§90 verdict is claimed;
+  multi-cycle convergence and perturbation coverage remain open.
+- A four-step refined `imx` extension publishes through
+  $3.7702986964\times10^{-5}$ with zero rejections. Its stride-1 diagnostic
+  log slope is $0.60113$; coarser strides lack enough samples, so the
+  $6.25\times10^{-6}$-cycle row is not a dynamical verdict.
+- Added opt-in accepted-step growth recovery, capped by an explicit maximum
+  step, and reused already-certified accepted endpoint snapshots as the next
+  atomic step's start snapshot. A static evolution regression verifies the
+  $0.01,0.01,0.02,0.02,0.02$ recovery sequence within decimal-token rounding,
+  zero rejections, and three reused start snapshots on each continuing step.
+  The focused native coupled-evolution suite passes 11 tests.
+- These controller improvements do not remove the exact-V5 pinned-fold
+  feasibility wall. The multi-cycle §86 ladder is stopped; the next engine
+  target is a cheap certified local treatment of the self-fold onset, or a
+  certificate that the pin-level step collapse is conservative rather than
+  physically required.
+
+## 2026-07-14 — EOM endorsed; legacy solver frozen to temporary compatibility
+
+- Recorded the operator decision that EOM is the endorsed solver and sole
+  forward production target.
+- Limited the existing central solver to temporary compatibility for current
+  dependencies. New consumers, physical capabilities, evidence claims, and
+  forward solver work may not adopt or extend it.
+- Strengthened the EOM priority queue with explicit legacy-solver containment,
+  consumer-by-consumer EOM migration, and final retirement after the production
+  dependency inventory reaches zero.
+- Aligned root contributor policy, repository orientation, the C++ host
+  architectural decision, the EOM tracker, and the migration plan while
+  preserving all current runtime dependencies until their individual migration
+  decisions are complete.

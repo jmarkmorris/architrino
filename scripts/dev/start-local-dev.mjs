@@ -129,6 +129,12 @@ async function serveEomBorgShadow(request, response) {
     return;
   }
   const body = await readJsonRequest(request);
+  let responseCompleted = false;
+  response.once("close", () => {
+    if (!responseCompleted) {
+      eomBorgClient.dispose();
+    }
+  });
   const execute = () => eomBorgClient.evolveRetainedHistories(body);
   const resultPromise = eomBorgQueue.then(execute, execute);
   eomBorgQueue = resultPromise.catch(() => undefined);
@@ -137,6 +143,7 @@ async function serveEomBorgShadow(request, response) {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store",
   });
+  responseCompleted = true;
   response.end(JSON.stringify(result));
 }
 

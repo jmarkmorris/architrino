@@ -127,6 +127,44 @@ void print_steps(const std::vector<eom::NativeAtomicStepCertificate>& steps) {
               << (step.accepted_snapshot.has_value()
                       ? step.accepted_snapshot->acceleration.logical_ordered_pairs
                       : 0U)
+              << ",\"pair_selection_route\":\""
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->pair_selection_route
+                      : "none")
+              << "\",\"traversal_excluded_pairs\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->traversal_excluded_pairs
+                      : 0U)
+              << ",\"traversal_exact_pairs\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->traversal_exact_pairs
+                      : 0U)
+              << ",\"history_window_status\":\""
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->causal_prefix_exclusion.status
+                      : "none")
+              << "\",\"history_window_original_lower\":\""
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->causal_prefix_exclusion
+                            .original_search_lower
+                      : "")
+              << "\",\"history_window_active_lower\":\""
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->causal_prefix_exclusion
+                            .active_search_lower
+                      : "")
+              << "\",\"history_window_excluded_duration\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->causal_prefix_exclusion
+                            .excluded_duration
+                      : 0.0)
+              << ",\"history_window_residual_upper\":"
+              << (step.accepted_snapshot.has_value()
+                      ? step.accepted_snapshot->causal_prefix_exclusion
+                            .residual_upper
+                      : 0.0)
+              << ",\"reused_start_snapshot_count\":"
+              << step.timing.reused_start_snapshot_count
               << ",\"correction_iterations\":[";
     for (std::size_t substep_index = 0;
          substep_index < step.substeps.size(); ++substep_index) {
@@ -185,12 +223,29 @@ void print_evolution(
 }
 
 void print_atomic(const eom::NativeAtomicStepCertificate& certificate) {
+  const eom::NativeCausalPrefixExclusionCertificate* history_window =
+      !certificate.substeps.empty()
+      ? &certificate.substeps.front().start_snapshot.causal_prefix_exclusion
+      : (certificate.accepted_snapshot.has_value()
+             ? &certificate.accepted_snapshot->causal_prefix_exclusion
+             : nullptr);
   std::cout << "{\"schema\":\"" << certificate.schema
             << "\",\"status\":\"" << certificate.status
             << "\",\"failure_code\":\"" << certificate.failure_code
             << "\",\"accepted_time\":\"" << certificate.accepted_time
             << "\",\"publication_atomic\":"
             << (certificate.publication_atomic ? "true" : "false")
+            << ",\"history_window_status\":\""
+            << (history_window != nullptr ? history_window->status : "none")
+            << "\",\"history_window_original_lower\":\""
+            << (history_window != nullptr
+                    ? history_window->original_search_lower
+                    : "")
+            << "\",\"history_window_active_lower\":\""
+            << (history_window != nullptr
+                    ? history_window->active_search_lower
+                    : "")
+            << "\""
             << ",\"input_fingerprints\":[";
   for (std::size_t index = 0;
        index < certificate.input_history_fingerprints.size(); ++index) {
@@ -308,6 +363,14 @@ void print_all() {
       "2", "2.2", "0.1", "0.1");
   const auto static_result =
       eom::evolve_native_coupled_histories(static_request);
+  auto static_growth_request = request(
+      "static-adaptive-growth",
+      {{"p", "1", history("static-growth-history", "2", {"0", "0", "0", "0"})}},
+      "2", "2.08", "0.01", "0.01");
+  static_growth_request.maximum_step = "0.04";
+  static_growth_request.use_adaptive_step_growth = true;
+  const auto static_growth_result =
+      eom::evolve_native_coupled_histories(static_growth_request);
 
   auto checkpoint_partial_request = static_request;
   checkpoint_partial_request.run_id = "static-checkpoint-restart";
@@ -359,10 +422,24 @@ void print_all() {
       "5", "5.01", "0.01", "0.01", "1e-5", "1e-5", "1e-7");
   const auto binary_result =
       eom::evolve_native_coupled_histories(binary_request);
+  auto binary_window_disabled_request = binary_request;
+  binary_window_disabled_request.run_id = "binary-history-window-disabled";
+  binary_window_disabled_request.use_certified_history_window = false;
+  const auto binary_window_disabled_result =
+      eom::evolve_native_coupled_histories(binary_window_disabled_request);
   auto binary_single_thread_request = binary_request;
   binary_single_thread_request.thread_count = 1;
   const auto binary_single_thread_result =
       eom::evolve_native_coupled_histories(binary_single_thread_request);
+
+  auto traversal_exclusion_request = request(
+      "traversal-exclusion-coupled-step",
+      {{"a", "1", history("far-a-history", "2", {"0", "0", "0", "0"})},
+       {"b", "-1", history("far-b-history", "2", {"100", "0", "0", "0"})}},
+      "2", "2.1", "0.1", "0.1");
+  traversal_exclusion_request.traversal_exact_tile_pair_limit = 1;
+  const auto traversal_exclusion_result =
+      eom::evolve_native_coupled_histories(traversal_exclusion_request);
 
   const auto adaptive_request = request(
       "adaptive-halving",
@@ -527,11 +604,17 @@ void print_all() {
   std::cout << "},\"evolutions\":[";
   print_evolution(static_result);
   std::cout << ',';
+  print_evolution(static_growth_result);
+  std::cout << ',';
   print_evolution(fast_result);
   std::cout << ',';
   print_evolution(binary_result);
   std::cout << ',';
   print_evolution(adaptive_result);
+  std::cout << ',';
+  print_evolution(traversal_exclusion_result);
+  std::cout << ',';
+  print_evolution(binary_window_disabled_result);
   std::cout << "],\"binary_single_thread\":";
   print_evolution(binary_single_thread_result);
   std::cout << ",\"rejections\":[";

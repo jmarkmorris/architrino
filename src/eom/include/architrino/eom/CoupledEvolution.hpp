@@ -1,6 +1,7 @@
 #pragma once
 
 #include "architrino/eom/CertifiedAcceleration.hpp"
+#include "architrino/eom/CertifiedTraversal.hpp"
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
 
@@ -27,6 +28,7 @@ struct NativeCoupledEvolutionRequest {
   std::string end_time;
   std::string initial_step;
   std::string minimum_step;
+  std::string maximum_step;
   std::string field_speed;
   std::string coupling;
   std::string root_tolerance = "1e-12";
@@ -56,6 +58,12 @@ struct NativeCoupledEvolutionRequest {
   std::size_t max_step_attempts = 10000;
   std::size_t max_rejected_steps = 1000;
   std::size_t thread_count = 1;
+  bool use_adaptive_step_growth = false;
+  bool use_certified_history_window = true;
+  bool use_certified_traversal = true;
+  std::uint64_t traversal_exact_tile_pair_limit = 4096;
+  std::size_t traversal_maximum_nodes = 1000000;
+  std::uint64_t traversal_maximum_exact_pairs = 10000000;
 };
 
 struct NativeFoldCausticImpulseCertificate {
@@ -114,13 +122,50 @@ struct NativeSnapshotRootRow {
   ExactPairCertificate certificate;
 };
 
+struct NativeCausalPrefixExclusionCertificate {
+  std::string schema;
+  std::string status;
+  std::string original_search_lower;
+  std::string active_search_lower;
+  std::string reception_time;
+  double excluded_duration = 0.0;
+  double separation_upper = 0.0;
+  double causal_distance_lower = 0.0;
+  double residual_upper = 0.0;
+  bool full_ordered_pair_prefix_excluded = false;
+};
+
+struct NativeSnapshotTiming {
+  double history_window_wall_seconds = 0.0;
+  double traversal_wall_seconds = 0.0;
+  double exact_root_batch_wall_seconds = 0.0;
+  // Worker CPU sums can exceed wall time when exact pairs run concurrently.
+  double root_binary64_cpu_seconds = 0.0;
+  double root_mpfr_cpu_seconds = 0.0;
+  std::size_t root_mpfr_attempt_count = 0;
+  double acceleration_wall_seconds = 0.0;
+  double total_wall_seconds = 0.0;
+};
+
 struct NativeAccelerationSnapshotCertificate {
   std::string schema;
   std::string status;
   std::string reception_time;
   std::string failure_code;
+  std::string pair_selection_route;
+  std::uint64_t traversal_excluded_pairs;
+  std::uint64_t traversal_exact_pairs;
+  std::optional<CertifiedTraversalCertificate> traversal_certificate;
+  NativeCausalPrefixExclusionCertificate causal_prefix_exclusion;
   std::vector<NativeSnapshotRootRow> root_certificates;
   NativeAccelerationReconstructionCertificate acceleration;
+  NativeSnapshotTiming timing;
+};
+
+struct NativeCorrectedSubstepTiming {
+  double history_copy_hash_wall_seconds = 0.0;
+  std::size_t reused_start_snapshot_count = 0;
+  double total_wall_seconds = 0.0;
 };
 
 struct NativeCorrectedSubstepCertificate {
@@ -137,6 +182,7 @@ struct NativeCorrectedSubstepCertificate {
   std::vector<NativeRegulatorConvergenceCertificate>
       regulator_convergence_certificates;
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
+  NativeCorrectedSubstepTiming timing;
 };
 
 struct NativePathLocalError {
@@ -148,6 +194,15 @@ struct NativePathLocalError {
 struct NativePublishedPath {
   std::string path_id;
   RetainedHistory history;
+};
+
+struct NativeAtomicStepTiming {
+  double corrected_substeps_wall_seconds = 0.0;
+  double history_copy_hash_wall_seconds = 0.0;
+  std::size_t reused_start_snapshot_count = 0;
+  double recertification_wall_seconds = 0.0;
+  double rejection_wall_seconds = 0.0;
+  double total_wall_seconds = 0.0;
 };
 
 struct NativeAtomicStepCertificate {
@@ -163,12 +218,31 @@ struct NativeAtomicStepCertificate {
   std::vector<NativeHistoryFingerprint> candidate_history_fingerprints;
   std::vector<NativeCorrectedSubstepCertificate> substeps;
   std::optional<NativeAccelerationSnapshotCertificate> accepted_snapshot;
+  std::optional<NativeAccelerationSnapshotCertificate> recertification_snapshot;
   std::vector<NativePathLocalError> local_errors;
   std::string failure_code;
   std::string evidence_status;
   std::string integration_method;
   std::string reduction_policy;
   bool publication_atomic;
+  NativeAtomicStepTiming timing;
+};
+
+struct NativeEvolutionTiming {
+  double history_window_wall_seconds = 0.0;
+  double traversal_wall_seconds = 0.0;
+  double exact_root_batch_wall_seconds = 0.0;
+  double root_binary64_cpu_seconds = 0.0;
+  double root_mpfr_cpu_seconds = 0.0;
+  std::size_t root_mpfr_attempt_count = 0;
+  double acceleration_wall_seconds = 0.0;
+  double history_copy_hash_wall_seconds = 0.0;
+  // Correction wall time includes its nested snapshot and history phases.
+  double correction_wall_seconds = 0.0;
+  std::size_t reused_start_snapshot_count = 0;
+  double recertification_wall_seconds = 0.0;
+  double rejection_wall_seconds = 0.0;
+  double total_wall_seconds = 0.0;
 };
 
 struct NativeCoupledEvolutionCertificate {
@@ -186,6 +260,7 @@ struct NativeCoupledEvolutionCertificate {
   std::string halt_code;
   std::string evidence_status;
   bool all_steps_atomic;
+  NativeEvolutionTiming timing;
 };
 
 [[nodiscard]] NativeAccelerationSnapshotCertificate
@@ -219,7 +294,9 @@ certify_native_regulator_convergence(
     const std::vector<NativePublishedPath>& histories,
     std::size_t step_index,
     const std::string& start_time,
-    const std::string& end_time);
+    const std::string& end_time,
+    const NativeAccelerationSnapshotCertificate* reusable_start_snapshot =
+        nullptr);
 
 [[nodiscard]] NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request);

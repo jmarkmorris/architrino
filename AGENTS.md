@@ -171,11 +171,13 @@ This document distinguishes three audience scopes:
 
 ### Solver Ownership
 
-- Use the native central solver as the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, T3 stepping, and solver-owned geometry. Do not create a new production solver, parallel solver stack, app-local solver, or alternate default engine.
-- Route app, T3, Animator, Photon, Ideal Braid, and future simulation work through the shared central solver bridge and existing native ABI surfaces. If a required capability is missing, extend the central solver contract, native implementation, bridge schema, and validation fixtures instead of adding a separate solver.
+- EOM under `src/eom` is the endorsed solver and the sole forward production target for architrino motion, causal roots, path histories, coupled evolution, and solver-owned geometry. EOM output acquires canonical authority only through its declared acceptance and migration gates.
+- The existing central solver under `src/solver` is a temporary compatibility implementation retained only so current dependencies continue to operate during migration. Do not add new consumers, new physical capabilities, new evidence claims, or new forward development to it. Maintenance is limited to compatibility preservation and narrowly necessary build, safety, or diagnostic corrections.
+- Route all new solver-dependent app, simulation, and research-instrument work toward EOM contracts and native interfaces. When EOM does not yet provide a required capability, keep the work blocked, quarantined, or explicitly non-authoritative; do not use the existing central solver as a substitute.
+- Migrate existing consumers individually. Do not silently redirect them, remove compatibility behavior before its dependency is migrated, or treat coexistence as permanent. Retire the old solver after the migration inventory confirms that no retained dependency requires it.
 - JavaScript-only solver code may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code. It must not be presented as the production path, promoted to default runtime behavior, or used to bypass a missing native solver capability.
 - Architrino primitives do not have physical mass. If a solver or legacy T3 row contains a `mass` or mass-like field, treat it as a numerical integration weight, comparison-kernel parameter, or legacy/toy interaction coefficient only; do not describe it as architrino ontology, and do not use it as evidence for mass-map or assembly mass claims.
-- Keep solver boundaries modular: topology, native solver/ABI, bridge request/response, interaction law, path-history storage, wake-history/event rows, output datasets, and visualization remain separate responsibilities under the central solver architecture.
+- Keep solver boundaries modular: topology, native solver/ABI, bridge request/response, interaction law, path-history storage, wake-history/event rows, output datasets, and visualization remain separate responsibilities under the EOM architecture. Keep temporary compatibility boundaries isolated from new EOM work.
 
 ### Debugging Discipline
 

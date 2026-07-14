@@ -1696,3 +1696,69 @@ MM-analog pass 1 ([spec Section 28](fold-crossing-chart-spec.md#28-mm-analog-fir
 - Photon: correct neutral charge and some pump-free rows, but best sampled binding stays near $0.99$ against the $0.03$ gate; the same near-$c_f$ branch remains a saddle with positive leading growth. Electron: correct $-1e$ and pump cancellation on the best same-branch continuation, but binding stays essentially $1.00$, the phase/pocket block remains a saddle, and the leading growth remains positive.
 - The 12-sample symmetric tilt replay prefers $\alpha=0$ for both selected rows. This is only a planarity result; there is no explicit cap coordinate, and the cap-dipole chirality relation is outside §99.
 - Decision: `neither_planar_assembly_closes_in_declared_geometry_payload_and_proxy_sea_coverage`; `nativeRetainedHistoryReleaseAuthorized=false`, `retainedBranchClaim=false`, `scoreMovement=no_score_increase`. The sea proxy does not adjudicate the constitutive Noether sea law. Promotion classification: priority-only.
+## 2026-07-14 — §86 direct evolution authorized after direction-neutral theorem gate; exact V5 start blocked at the field-speed self endpoint
+- Corrected the stale prerequisite wording across the solver dispatches: the same-sheet theorem fixes positive tangential work and departure from a held sub-$c_f$ circle, not inward radial motion. The native binary evolved outward, and the operator accepted that direction-neutral gate; curved/straight super-$c_f$ controls also pass.
+- Added `scripts/eom/section-86-direct-evolution.cpp`, a central-`src/eom` six-worldline runner with the exact V5 radii, tilts, phases, charges, coupling, and circular-arc prehistory. The physical amplitude is perturbed-minus-unperturbed layer-frame rotation with global rotation removed; a $10^{-3}$ `imx` seed measures $8.165\times10^{-4}$ at start, replacing the false absolute locked-geometry baseline.
+- EXACT START BLOCKER: M+←M+ and M−←M− are at $R_M\cos(\alpha_M)\omega=c_f$. Both exact self rows return `caustic_route_required / numeric_source_normal_sign_uncertified`; sharp acceleration cannot consume them, while the existing finite-width fallback exhausts 300,000 quadrature cells per pair at $5\times10^{-3}$. The snapshot is uncertified and zero exact-V5 steps publish.
+- Continuation only: start snapshots certify at $0.9975\,\omega_{V5}$ and below but the first corrected step loses root completeness near the rail; a $0.95\,\omega_{V5}$ paired pilot completes $0.01$ cycle and validates the instrument, not the physics verdict. No step/$h$/sampling/seed ladder was claimed.
+- Fail-closed verdict: §86 remains T2 QUARANTINED and §90 remains T3 QUARANTINED; $+0.199$ remains a non-authoritative pencil value. First missing accepted object is a central-engine certificate for the exact field-speed self-coincidence endpoint, by open-interval sharp exclusion or converged finite-width integration. Evidence: `evidence/section-86-direct-evolution-blocker-2026-07-14.md`. `retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
+
+## 2026-07-14 — §86 exact start certificate closes; first evolved fold still blocks publication
+
+- Implemented a native factory-bound uniform-circular endpoint witness. The
+  strict chord inequality certifies the complete open self-search interval at
+  exact $v=c_f$; the straight $v=c_f$ rail remains the unresolved negative
+  control. Native forced-MPFR coverage passes.
+- The exact six-worldline V5 snapshot now certifies all 36 ordered root and
+  acceleration rows. The former exact-start blocker is closed.
+- The first master-equation candidate develops a middle-layer self-fold near
+  emission $-0.03954$ for reception $0.002413$. No motion condition or radial
+  direction is imposed. Sharp evolution fails closed; the finite-width event
+  route reaches corrected candidates but final inflated-history root
+  recertification fails, so zero exact steps publish.
+- §86 remains T2 QUARANTINED and §90 remains T3 QUARANTINED. The first missing
+  accepted object is now a root-complete atomically published history after
+  the first fold event, not the time-zero endpoint certificate. Evidence:
+  `evidence/section-86-direct-evolution-blocker-2026-07-14.md`.
+  `retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
+
+## 2026-07-14 — §86 first fold publishes; initial convergence ladders begin
+
+- The native finite-width route now budgets the certified total integral
+  globally and refines the largest uncertainty contributor. Final atomic
+  recertification tests corrected-acceleration containment in the inflated
+  interval, rather than comparing two quadrature-interval midpoints.
+- At the unchanged normal tolerances, the exact V5 control and `imx` run each
+  publish the first $1.8851493482\times10^{-5}$ step atomically with zero
+  rejections. The accepted snapshot has zero uncertified root rows and two
+  handled middle self-caustic routes.
+- A common-endpoint half-step rung changes the `imx` amplitude ratio by
+  $3.16\times10^{-9}$. Increasing history depth from 8 to 10 changes it by
+  $1.4\times10^{-15}$; halving circular-prehistory segment width changes it by
+  $1.09\times10^{-8}$. The independent `mox` direction also publishes both
+  refined steps.
+- A four-step extension reaches $6.25\times10^{-6}$ braid cycles with a first
+  stride-1 diagnostic log slope of $0.60113$; coarser strides remain undefined.
+  This is not a converged slope, saturation verdict, retained-branch claim, or
+  score movement. §86 and §90 remain quarantined while the same ladders extend
+  to multi-cycle duration and perturbation-magnitude coverage. Evidence:
+  `evidence/section-86-direct-evolution-blocker-2026-07-14.md`.
+
+## 2026-07-14 — §86 multi-cycle ladder stopped at the pinned-fold feasibility wall
+
+- Adjudication supersedes the prior ladder continuation: the exact-V5 refined
+  step requires $6.4\times10^{5}$ accepted steps per braid cycle, with both
+  middle self-fold pairs consuming about $1.9\times10^{5}$ certified interval
+  cells per step. A multi-cycle, multi-rung campaign is not computationally
+  reachable on this route.
+- The cheap $0.95\,\omega_{V5}$ pilot cannot supply or anchor the §86 rate. It
+  is cheap because the self-fold is absent; continuation to the exact speed
+  pin crosses a self-hit root-topology change.
+- §86 remains T2 quarantined, §90 remains T3 quarantined, and $+0.199$ remains
+  non-authoritative. The $0.60113$ short-window slope remains a seed transient,
+  not a growth-rate result.
+- The next accepted object is a cheap certified pinned-fold treatment, with a
+  local analytic onset model from
+  $\delta_s=2s\sin(\delta_s/2)$ the preferred route, or a certificate that the
+  step collapse is controller conservatism. No more exact-V5 ladder runs are
+  warranted before one of those objects lands.

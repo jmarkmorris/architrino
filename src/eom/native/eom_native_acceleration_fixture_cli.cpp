@@ -279,6 +279,11 @@ void print_all() {
           "finite-width", "stationary-receiver", "stationary-source",
           static_two, origin, stationary_roots, "1", "-1", "2e-3",
           "finite_width", false, "2e-3"));
+  const auto finite_width_global_budget = eom::certify_pair_acceleration(
+      acceleration_request(
+          "finite-width-global-budget", "stationary-receiver",
+          "stationary-source", static_two, origin, stationary_roots, "1",
+          "-1", "2e-3", "finite_width", false, "2e-3", 1500));
   const auto finite_width_mpfr = eom::certify_pair_acceleration(
       acceleration_request(
           "finite-width-mpfr", "stationary-receiver", "stationary-source",
@@ -320,7 +325,8 @@ void print_all() {
       &stationary, &rail, &super, &two_root, &self, &tangent_failure,
       &memory_failure, &tampered_failure, &provenance_failure,
       &tolerance_failure, &finite_width, &finite_width_mpfr,
-      &tangent_finite_width, &finite_width_resource_failure};
+      &finite_width_global_budget, &tangent_finite_width,
+      &finite_width_resource_failure};
   for (std::size_t index = 0; index < cases.size(); ++index) {
     if (index > 0) {
       std::cout << ',';

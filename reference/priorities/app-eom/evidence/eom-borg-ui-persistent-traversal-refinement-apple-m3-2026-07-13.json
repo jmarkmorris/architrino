@@ -1,0 +1,85 @@
+{
+  "schema": "eom_borg_ui_persistent_traversal_refinement_evidence/v0",
+  "date": "2026-07-13",
+  "host": "Apple M3",
+  "authority": "executable_architecture_evidence_only",
+  "existing_central_solver_changed": false,
+  "borg_ui_control": {
+    "continuous_history_population_range": [1, 16],
+    "duration_control": "positive solver-time interval",
+    "atomic_chunk_duration": 0.01,
+    "automatic_multi_chunk_execution": true,
+    "stop_cancels_browser_request_and_native_worker": true,
+    "restart_rebuilds_from_selected_continuous_history_subset": true,
+    "browser_controls_verified": [
+      "two-chunk automatic completion",
+      "one-hundred-chunk run stopped after three published chunks",
+      "clean two-chunk restart completion",
+      "two-path 0.38-duration run completed all 38 atomic chunks after absolute-time scheduling-tail correction"
+    ]
+  },
+  "absolute_time_scheduling_regression": {
+    "path_count": 2,
+    "requested_duration": 0.38,
+    "atomic_chunk_duration": 0.01,
+    "pre_fix_failure_chunk": 4,
+    "pre_fix_zero_width_tokens": ["300.03999999999996", "300.03999999999996"],
+    "correction": "snap only an absolute-time rounding-envelope remainder to the explicit requested decimal endpoint",
+    "post_fix_completed_chunks": 38,
+    "post_fix_accepted_end_time": 300.38,
+    "split_absolute_time_status": "still_open"
+  },
+  "persistent_native_worker": {
+    "protocol": "borg-shadow-server-v0",
+    "requests_in_strict_ladder": 4,
+    "distinct_worker_processes": 1,
+    "kill_on_cancel": true,
+    "lazy_restart_after_cancel": true,
+    "retained_history_transport": "full request per atomic chunk"
+  },
+  "coupled_certified_traversal": {
+    "pair_selection_route": "certified_moving_history_traversal",
+    "far_binary_logical_ordered_pairs": 4,
+    "far_binary_certified_exclusions": 2,
+    "far_binary_exact_pairs": 2,
+    "deterministic_receiver_reduction": "fixed_pairwise_interval_tree_v0",
+    "million_path_compressed_reduction": "not_implemented"
+  },
+  "strict_single_path_refinement_control": {
+    "path_count": 1,
+    "full_borg_path_count": 16,
+    "absolute_interval": [300, 300.01],
+    "root_tolerance": "1e-8",
+    "steps": ["0.01", "0.005", "0.0025"],
+    "accepted_step_counts": [1, 2, 4],
+    "maximum_endpoint_state_delta": 2.842170943040401e-14,
+    "one_thread_four_thread_byte_identical": true,
+    "strict_control_passed": true,
+    "evidence_status": "executable_architecture_evidence"
+  },
+  "strict_full_population_attempt": {
+    "path_count": 16,
+    "logical_ordered_pairs_per_snapshot": 256,
+    "steps": ["0.01", "0.005", "0.0025", "0.0025-four-threads"],
+    "wall_time_ms": [53242.344, 52923.078166, 53997.081375, 21705.818958],
+    "status": ["failed_closed", "failed_closed", "failed_closed", "failed_closed"],
+    "halt_code": "minimum_step_exhausted",
+    "step_failure_code": "root_completeness_not_certified",
+    "uncertified_root_rows_per_attempt": 240,
+    "uncertified_root_failure_code": "numeric_precision_limit_exhausted",
+    "interpretation": "all 240 off-diagonal ordered pairs reached the current precision ceiling; the 16 self-pairs were not listed as root failures",
+    "persistent_native_worker": true,
+    "strict_control_passed": false
+  },
+  "borg_acceptance_gate": {
+    "schema": "eom_acceptance_gate/v0",
+    "status": "blocked",
+    "borg_migration_authorized": false,
+    "blockers": [
+      "the 16-history strict ladder failed closed because all 240 off-diagonal ordered pairs exhausted the current numeric precision route",
+      "the imported retained history is central-solver compatibility output rather than EOM-produced history",
+      "compressed million-path reduction, GPU, multi-GPU, and distributed retained histories remain open",
+      "the native response remains executable architecture evidence rather than canonical evidence"
+    ]
+  }
+}

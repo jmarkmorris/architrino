@@ -153,7 +153,13 @@ and deterministic replay. Evidence is recorded in
 This is a correctness packet, not a throughput claim. Native acceleration now
 includes the bound finite-width causal-surface integral, a tangent recovery
 control, and caller-bounded MPFR directed-interval replay for difficult
-finite-width rows. Sharp-row and receiver-reduction MPFR replay remain open.
+finite-width rows. Binary64 finite-width integration budgets uncertainty on
+the globally summed interval integral, refines the active time cell with the
+largest enclosure-width contribution, and checks the deterministic reduction
+at a population-proportional cadence. This preserves the caller's global
+tolerance and fail-closed resource caps without uniform over-refinement or
+quadratic repeated summation. Sharp-row and receiver-reduction MPFR replay
+remain open.
 
 ## Native Coupled Retained-History Evolution Packet
 
@@ -314,6 +320,30 @@ One 320-byte output segment for $10^6$ paths is 320 MB. Even when the hot
 history fits, output, checkpoints, ledgers, indices, exact fallback, and
 precision-escalation buffers cannot be treated as one inline response. The
 content-addressed streamed-manifest design remains mandatory.
+
+## Borg Production-Readiness Control
+
+The 2026-07-13 Borg control connected the moving-history traversal to coupled
+acceleration snapshots, reused one persistent native worker for four atomic
+requests, and exposed population, requested-duration, Stop, Restart, and
+progress controls in the Borg shadow surface. A strict one-path refinement
+ladder over `0.01` accepted time used steps `0.01`, `0.005`, and `0.0025` at
+root tolerance `1e-8`. Its maximum endpoint state delta was about `2.84e-14`,
+and the one-thread and four-thread `0.0025` histories were byte identical.
+
+This control is not the Borg acceptance gate. It covers one of sixteen Borg
+histories and begins from imported central-solver compatibility history. The
+follow-up 16-history attempt failed closed for steps `0.01`, `0.005`, and
+`0.0025`: all 240 off-diagonal ordered pairs reached
+`numeric_precision_limit_exhausted` on every row. The four-thread `0.0025`
+attempt reduced wall time from about `54.0` seconds to `21.7` seconds but did
+not change the certified outcome.
+Traversal exclusions are also expanded into zero-root rows for the current
+deterministic receiver reducer, so the control does not demonstrate compressed
+million-path reduction. Full-population precision closure, native history
+ownership, representative accepted-step throughput, accelerator difficult-row
+return, and distributed-history execution remain required. Evidence:
+[eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json](evidence/eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json).
 
 ## Architecture Survey Disposition
 

@@ -159,7 +159,7 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
     def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
         checkpoint = self.packet["checkpoint"]
         self.assertEqual(
-            checkpoint["schema"], "eom_native_evolution_checkpoint/v0"
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v1"
         )
         self.assertGreater(checkpoint["byte_length"], 0)
         self.assertEqual(
@@ -245,6 +245,33 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(native["accepted_step_count"], 1)
         self.assertEqual(native["steps"][0]["substep_count"], 3)
         self.assertEqual(native["steps"][0]["accepted_ordered_pairs"], 4)
+        self.assertEqual(native["steps"][0]["reused_start_snapshot_count"], 2)
+        self.assertEqual(
+            native["steps"][0]["history_window_status"], "certified_complete"
+        )
+        self.assertGreater(
+            Decimal(str(native["steps"][0]["history_window_active_lower"])),
+            Decimal(str(native["steps"][0]["history_window_original_lower"])),
+        )
+        self.assertGreater(
+            Decimal(str(native["steps"][0]["history_window_excluded_duration"])),
+            0,
+        )
+        self.assertLess(native["steps"][0]["history_window_residual_upper"], 0)
+        disabled = self.evolution("binary-history-window-disabled")
+        self.assertEqual(
+            disabled["steps"][0]["history_window_status"], "not_applied"
+        )
+        self.assertEqual(native["histories"], disabled["histories"])
+        self.assertEqual(
+            native["steps"][0]["pair_selection_route"],
+            "certified_moving_history_traversal",
+        )
+        self.assertEqual(
+            native["steps"][0]["traversal_excluded_pairs"]
+            + native["steps"][0]["traversal_exact_pairs"],
+            4,
+        )
         self.assertTrue(all(value > 0 for value in native["steps"][0]["correction_iterations"]))
         oracle_histories = dict(oracle.histories)
         native_histories = {row["path_id"]: row for row in native["histories"]}
@@ -256,6 +283,21 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             assert_contains(self, native_histories[path_id]["velocity"][0], velocity[0])
         self.assertGreater(interval_bounds(native_histories["a"]["position"][0])[1], 0)
         self.assertLess(interval_bounds(native_histories["b"]["position"][0])[0], 2)
+
+    def test_coupled_snapshot_consumes_certified_traversal_exclusions(self) -> None:
+        native = self.evolution("traversal-exclusion-coupled-step")
+        self.assertEqual(
+            native["steps"][0]["history_window_status"], "not_applied"
+        )
+        self.assertEqual(native["status"], "completed")
+        step = native["steps"][0]
+        self.assertEqual(
+            step["pair_selection_route"],
+            "certified_moving_history_traversal",
+        )
+        self.assertEqual(step["accepted_ordered_pairs"], 4)
+        self.assertEqual(step["traversal_excluded_pairs"], 2)
+        self.assertEqual(step["traversal_exact_pairs"], 2)
 
     def test_rejections_publish_exactly_the_input_histories(self) -> None:
         for failure_code in (
@@ -272,6 +314,12 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                     rejection["input_fingerprints"],
                     rejection["published_fingerprints"],
                 )
+        memory = self.rejection("insufficient_history_depth")
+        self.assertEqual(memory["history_window_status"], "not_applied")
+        self.assertEqual(
+            memory["history_window_active_lower"],
+            memory["history_window_original_lower"],
+        )
 
     def test_fold_event_is_accepted_only_with_certified_finite_impulse(self) -> None:
         accepted = self.packet["event_acceptance"]
@@ -389,6 +437,31 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             first_accepted["attempted_start"]
         )
         self.assertLess(attempted_width, Decimal("0.05"))
+
+    def test_adaptive_controller_recovers_step_and_reuses_accepted_snapshot(self) -> None:
+        growth = self.evolution("static-adaptive-growth")
+        self.assertEqual(growth["status"], "completed")
+        self.assertEqual(growth["rejected_step_count"], 0)
+        widths = [
+            Decimal(step["attempted_end"]) - Decimal(step["attempted_start"])
+            for step in growth["steps"]
+        ]
+        expected_widths = [
+            Decimal("0.01"),
+            Decimal("0.01"),
+            Decimal("0.02"),
+            Decimal("0.02"),
+            Decimal("0.02"),
+        ]
+        for actual, expected in zip(widths, expected_widths, strict=True):
+            self.assertLessEqual(abs(actual - expected), Decimal("1e-15"))
+        self.assertEqual(growth["steps"][0]["reused_start_snapshot_count"], 2)
+        self.assertTrue(
+            all(
+                step["reused_start_snapshot_count"] == 3
+                for step in growth["steps"][1:]
+            )
+        )
 
     def test_future_history_input_is_rejected_and_replay_is_deterministic(self) -> None:
         self.assertTrue(self.packet["future_history_rejected"])
