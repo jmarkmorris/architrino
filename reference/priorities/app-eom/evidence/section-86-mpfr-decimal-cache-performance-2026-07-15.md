@@ -96,4 +96,3 @@ corrector iteration counts, and endpoint time also remained identical.
   stack removal, unchanged work counts, byte-identical trajectory, and matched
   wall/CPU reductions support this inference; the performance comparison is
   not an independent proof of implementation correctness.
-

@@ -92,4 +92,3 @@ iterations are also identical.
   causal cost drivers. The profile transition, identical work counts,
   byte-identical trajectory, and matched CPU/wall reductions support the
   inference; implementation parity is not an independent physical oracle.
-

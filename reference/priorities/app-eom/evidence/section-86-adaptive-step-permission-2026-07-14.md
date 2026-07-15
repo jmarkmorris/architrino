@@ -112,4 +112,3 @@ run.
 - **Not claimed:** this same-implementation diagnostic is not an independent
   correctness oracle and does not promote any engine, migration, or theory
   claim.
-

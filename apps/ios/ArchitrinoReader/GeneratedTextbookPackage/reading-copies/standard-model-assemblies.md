@@ -1064,7 +1064,7 @@ This is the mass-map reading of the familiar nuclear and hadronic warning that a
 
 ##### Charge-Conjugate Mass Equality
 
-The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the anti-branch obtained from an accepted assembly $A$ by conjugating pro/anti orientation while preserving the shielding-coherence class, retained path-history rows, causal-root ledger, wake-history rows, branch geometry, action rows, and Noether sea response record. For a charged branch, the sector-visible polarity ledger also maps to the opposite charge row:
+The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A=C(A)$ denote the polarity-conjugate branch obtained from an accepted assembly $A$ by reversing every architrino polarity at fixed worldlines while carrying the shielding-coherence class, retained path-history rows, causal-root ledger, wake-history rows, branch geometry, action rows, and Noether sea response record through the conjugation. The pro/anti ordered orientation is unchanged. For a charged branch, the sector-visible polarity ledger also maps to the opposite charge row:
 $$
 q_a(\bar A)=-q_a(A)
 $$
@@ -1399,7 +1399,7 @@ R_M^{\mathrm{eq}} = 3.4937\,\frac{\kappa\varepsilon^2}{c_f^2},
 \kappa_{\mathrm{eq}} = 1/R_M^{\mathrm{eq}} = 0.28623,
 $$
 
-a gauge-invariant number measured on the native family and sitting well above the near-field floor, so the arrest is coupling-scale self-support rather than a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
+a gauge-invariant number measured on the family and sitting well above the near-field floor, so the scale is set by coupling-scale self-support rather than by a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
 
 #### The Action Ladder
 
@@ -1411,7 +1411,7 @@ Read as a spectrum, this is the substrate origin of energy quantization. Each ru
 
 #### Mass-Channel Categories
 
-The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating polarity-conjugate planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 #### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
@@ -1684,7 +1684,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 #### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
 2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
-3. **Why do neutrinos have mass at all?** If a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
+3. **Why do neutrinos have mass at all?** If a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon polarity-conjugate braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 #### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
@@ -1776,14 +1776,14 @@ We treat these as **different assembly states**, not ordinary dissociation produ
 
 In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Here $D_H,D_M,D_L$ denote the three polar-dyad records carried by the H, M, and L axes. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
-##### Braid orientation: matter vs antimatter
+##### Braid orientation and matter/antimatter conjugation
 
-Beyond which binaries are present, their **precession order** defines a braid orientation:
+Beyond which binaries are present, their **precession order** defines a pro/anti braid orientation:
 
-- **Matter** nested shell braid branch: precession order $H \to M \to L$ in time (one chirality).
-- **Antimatter** nested shell braid branch: precession order $H \to L \to M$ (opposite chirality).
+- **Pro orientation:** precession order $H \to M \to L$ in time.
+- **Anti orientation:** precession order $H \to L \to M$ in time.
 
-This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). This **braid chirality** underpins the distinction between particles and antiparticles across all sectors and feeds into CP-related questions. Here, we keep **color** as a vector-like degree of freedom: it does **not** depend on braid chirality.
+This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
 
 #### Colorless Fermions: Axis Uniformity
 
@@ -1820,12 +1820,12 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ##### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar polarity-conjugate Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 
 - The neutrino has no stable quark-like axial layer on which one H, M, or L axis can become exceptional.
-- Its pro/anti pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
+- Its polarity-conjugate pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
 - The balanced $3\epsilon_+,3\epsilon_-$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
 Older neutral-axis patterns such as
@@ -2238,7 +2238,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 #### Summary and Interfaces
 
 - A **nested shell braid** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
-- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
+- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two positive-polarity dyads, one mixed dyad.
   - Down‑type: either two negative-polarity dyads with one positive-polarity dyad, or two mixed dyads with one negative-polarity dyad.
@@ -2374,7 +2374,7 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 | $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
-The corresponding antileptons use anti-braid orientation and $6\epsilon_+$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
+The corresponding antileptons use the polarity-conjugate antimatter branch and $6\epsilon_+$ axial inventory. Polarity conjugation leaves the independent pro/anti ordered orientation unchanged. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 
 This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 
@@ -2419,32 +2419,43 @@ The heavier charged-lepton branch targets are shared axial inventory, shielding-
 
 This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. The simple picture is that a neutrino is almost a photon-channel pair, but not quite locked enough to become a photon. That near-lock explains why it is neutral, fast, weakly coupled, hard to detect, and still able to expose an oscillation ledger.
 
-A neutrino is modeled as a near-planar pro/anti [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to keep neutrality, weak coupling, oscillation, and detection difficulty tied to internal geometry rather than to elementary point-particle axioms.
+A neutrino is modeled as a near-planar polarity-conjugate [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to keep neutrality, weak coupling, oscillation, and detection difficulty tied to internal geometry rather than to elementary point-particle axioms.
 
-The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti braid pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
+The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a polarity-conjugate braid pair.
+
+##### Referent Status
+
+This chapter constructs the neutrino as a perturbation of the photon lock. That lock has not been exhibited, and the point is stated here rather than in a caveat because everything below inherits it.
+
+A force-balance evaluation of the declared planar polarity-conjugate pair — the photon ansatz itself, no payload — returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples. It does not approach the gate and does not improve along the $3\to6\to12\to24$ sampling ladder. On the same rows the charge ledger closes and the net pump cancels to $3.7\times10^{-16}$: binding is the row that fails, and it fails completely rather than narrowly. Claim level: **measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage**. This is the class of result that stands on its own, because it states that the configuration is not an equilibrium rather than predicting what the configuration would do — no dynamical or stability reading is involved or implied. It is not evidence against a constitutive medium law, which remains untested.
+
+Two consequences govern how the rest of this chapter reads.
+
+- **The open question is the lock's existence, not only its shape.** No configuration in the declared family holds together, so "near-photon" presently anchors to a state that no exhibited assembly occupies. "Near-photon" remains the controlled descriptor for the *intended* construction; it is not a finished derivation, and it is not yet a statement about a retained object.
+- **Every quantity defined as a residual about that lock is referent-pending.** Such quantities are not thereby wrong — they are not yet about anything, and no measurement of them can be commissioned until a lock closes. They are marked where they appear. Results that are theorems about the interaction law rather than perturbations of the lock do not carry this mark and are unaffected.
 
 #### Near-Photon Neutral-Core Pairing
 
-Definition (geometric, working): A neutrino is a near-planar pro/anti Noether braid pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
+Definition (geometric, working; referent-pending per [Referent Status](#referent-status)): A neutrino is a near-planar polarity-conjugate Noether braid pairing adjacent to the photon geometry. The photon is the **coaxial contra-rotating polarity-conjugate planar pair** in its fully locked branch — a proposed lock, not an exhibited one; the declared family does not bind. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
 
 - Core structure and shielding:
-  - The pro-braid and anti-braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
+  - The braid and polarity-conjugate braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
   - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3\epsilon_+,3\epsilon_-$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
-- Near-photon boundary:
-  - The photon state is the fully coherent coaxial contra-rotating pro/anti planar pair transport channel.
+- Near-photon boundary (referent-pending):
+  - The photon state is the proposed fully coherent coaxial contra-rotating polarity-conjugate planar pair transport channel. The coherence is the intended construction; the declared family returns no binding, so the boundary this bullet describes is a target rather than a located state.
   - The neutrino sits just off that lock: close enough to be neutral, fast, and weakly coupled, but not coherent enough to propagate as a photon train.
-  - The incomplete photon lock is the important difference. A photon hides the pro/anti planar pair inside one massless transverse transport ledger. A neutrino remains close to that boundary, so its exterior coupling is small and its propagation speed is high, but the residual internal-binary rows do not collapse into one photon-channel phase.
+  - The incomplete photon lock is the important difference. A photon hides the polarity-conjugate planar pair inside one massless transverse transport ledger. A neutrino remains close to that boundary, so its exterior coupling is small and its propagation speed is high, but the residual internal-binary rows do not collapse into one photon-channel phase.
   - This "not quite photon" status gives the neutrino a small observer-facing mass channel and a nontrivial oscillation ledger.
 
 - Propagation:
   - Trajectories are almost straight at speeds close to the effective field speed; small deflections occur only through coherent corridor couplings to nearby assemblies.
-  - Apparent inertia is dictated by the minuscule residual exposure left by the almost planar pro/anti lock.
+  - Apparent inertia is dictated by the minuscule residual exposure left by the almost planar polarity-conjugate lock.
 
 - Flavor and oscillation (revealed internal ledger):
   - "Flavor" labels which residual internal-binary energy and phase mode is exposed to the weak channel.
-  - Oscillation is the distance-dependent revealing of those internal binaries as the near-planar pro/anti pair precesses through its almost-photon geometry.
+  - Oscillation is the distance-dependent revealing of those internal binaries as the near-planar polarity-conjugate pair precesses through its almost-photon geometry.
   - The constituent-binary intuition should be read as residual internal-binary behavior, not as a new inventory of ordinary constituent particles. The same near-photon assembly is sampled through different weak-channel alignments as its internal binary phases beat against one another.
   - The beat pattern arises from residual internal phase dynamics and path-history geometry; it is not a stable six-site axial layer flipping among ordinary charged-fermion configurations.
 
@@ -2463,6 +2474,8 @@ $$
 \delta\Omega_{\mathrm{bin}}
 $$
 where $\omega_{\nu 0}\mathbf{1}$ is the large near-photon common propagation term and $\delta\Omega_{\mathrm{bin}}$ is the residual internal-binary phase operator. The common term is why the neutrino is a high-speed neutral channel. The residual term is why it can oscillate instead of becoming a photon-channel packet.
+
+**This split is referent-pending, and the mark is not a formality.** $\delta\Omega_{\mathrm{bin}}$ is defined as the departure from the photon lock, so it is well posed exactly when that lock is an equilibrium the assembly occupies. The declared family does not bind, so the split currently has no located base point to be a departure *from*. The consequence is specific and worth stating plainly: no property of $\delta\Omega_{\mathrm{bin}}$ — its magnitude, its spectrum, its symmetry character — can be measured or argued about before a lock closes, because a perturbation about a non-equilibrium has no referent at any anchoring, magnitude, or sign. The split is retained as the intended construction and as the shape the closure program targets. It is not yet a decomposition of a retained object, and it should not be used as a premise.
 
 The exposed-energy row should be kept separate from the internal energy row. For a near-photon neutrino branch,
 $$
@@ -2521,7 +2534,7 @@ E_{\nu,\mathrm{exp}}(T)
 $$
 Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
 
-Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
+Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar polarity-conjugate lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
 #### Handedness: Why the Observed Neutrino Is Left-Handed
 
@@ -2542,7 +2555,7 @@ Two caveats keep this at the honest grade. The locking is exact only in the stri
 The near-photon picture raises natural photon/neutrino conversion questions. The corpus treats these as closure questions, not as settled claims.
 
 - A free photon is not assumed to dissociate directly into neutrinos. Photon-channel energy can participate in neutrino production only if the full reaction provenance closes: energy, momentum, charge/polarity, spin/angular momentum, and medium participation must all balance.
-- A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar pro/anti pair into the fully coherent coaxial contra-rotating pro/anti planar-pair mode.
+- A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar polarity-conjugate pair into the fully coherent coaxial contra-rotating polarity-conjugate planar-pair mode.
 - The useful search target is therefore not simple dissociation, but assisted relocking: which environments, partner assemblies, or weak corridors can move a near-photon neutrino assembly into or out of the photon channel while preserving the ledgers?
 
 This keeps the strong intuition - neutrinos live close to photons in assembly space - without overclaiming an unvalidated free-particle dissociation path.
@@ -2558,7 +2571,7 @@ H_{\mathrm{geo}}=
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \varpi_3
 \end{pmatrix}
 $$
-with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
+with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar polarity-conjugate braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
 Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\varpi_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
 $$
@@ -2626,10 +2639,20 @@ Closure criterion for this chapter: one near-photon geometric phase-operator fam
 
 #### Empirical Decision Gates
 
-The neutral-lepton branch should be revised only by observable gates, not by importing a sterile-neutrino or Majorana interpretation as doctrine.
+The neutral-lepton branch is revised by observable gates, not by importing an interpretation as doctrine. Where the geometry already entails an outcome, the gate records that entailment together with the observation that would overturn it; where it does not, the gate records what evidence would decide.
 
 - **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible, through the same comparison-layer map from mass-squared response to ordinary mass language, with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
-- **Dirac/Majorana gate:** a confirmed neutrinoless double-beta signal would require a lepton-number-violating reaction provenance channel. A null result instead tightens the allowed Majorana-like coupling or sterile-branch mixing, but does not by itself prove the current Dirac-like geometry.
+- **Dirac/Majorana gate:** Claim level: derivation from the parity of the chirality invariant, conditional on that invariant being $C$-odd; the geometry that realizes it is not required, and the open joint below is named rather than deferred. **If the neutrino's handedness invariant is $C$-odd, the assembly is conjugate-distinct, the branch is Dirac-like, and the neutrino does not itself violate total lepton number.** The step is short: polarity conjugation reverses a $C$-odd invariant, $C:\chi\to-\chi$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/spindle-braid.md#discrete-symmetry-structure)), so a self-conjugate neutrino requires $\chi=-\chi$, hence $\chi=0$, hence no handedness at all — contradicting the observed one-handedness of the weak corridor. The orbit of the assembly under $\{1,C,P,CP\}$ then carries four members: the weak-coupled pair $\nu$ and $\bar\nu=CP(\nu)$ at one sign of $\chi$, and the parity enantiomers $C(\nu)$ and $P(\nu)$ at the other. Four states with two decoupled is the Dirac count, not the Majorana count of two.
+
+  This argument does not depend on the retained braid geometry. It needs only the *transformation character* of the handedness invariant, not the structure that realizes it: any $C$-odd polar quantity locked to the spin forces the same conclusion, whatever the assembly turns out to look like. The cap polarity dipole $\mathbf p$ of the spindle family is one realization and is not privileged here.
+
+  **The open joint is the character itself, and it is the whole gate.** A chiral object admits two distinct pseudoscalars, and they carry opposite $C$-parity. A polarity-type invariant $\operatorname{sign}(\mathbf p\cdot\mathbf S)$ is $C$-odd and $P$-odd, hence $CP$-even. A helicity-type invariant $\operatorname{sign}(\mathbf v\cdot\mathbf S)$ is $P$-odd but $C$-**even**. Both reproduce maximal parity violation, so the observed handedness of the weak channel does not discriminate between them and cannot settle this gate. Only the $C$-odd branch entails Dirac; a $C$-even handedness invariant leaves the neutrino free to be self-conjugate.
+
+  The route through the photon channel is closed for now, and closed at the level of posing rather than of difficulty. Framing the gate as "is $\delta\Omega_{\mathrm{bin}}$ $C$-odd?" presumes the photon lock as a base point, which makes the question referent-pending in the sense of [Referent Status](#referent-status) — there is nothing yet for the residual to be a residual of. That framing cannot be repaired by measuring harder.
+
+  The $C$-odd branch is coupled to the treatment of exact $CP$ at leading order, which turns on the same parity: $C$ and $P$ each reverse $\chi$ while $CP$ preserves it, so a $C$-even handedness invariant would be $CP$-odd. Whether that coupling *supports* the $C$-odd branch or merely restates it is open, and it turns on whether $CP$-evenness on the antipodal family is derived there or assumed as part of the symmetric-history hypothesis that selects the family. Until that is resolved, the coupling is recorded as a shared dependency rather than counted as independent evidence. The gate therefore rests on no established support in either direction.
+
+  **Prediction and falsifier.** On the $C$-odd branch the prediction is a suppressed neutrinoless double-beta rate at every accessible exposure. By the black-box argument an observed $0\nu\beta\beta$ decay implies a Majorana mass component through *any* mechanism, so a confirmed signal does not merely revise this gate: it forces the handedness invariant to be $C$-even, which simultaneously removes the structural origin of exact $CP$. Those two stand or fall together. A null result is consistent with the $C$-odd branch and bounds Majorana-like coupling from any sterile-branch mixing, but it does not by itself establish the branch, because the $C$-even alternative also predicts suppression whenever its self-conjugate coupling is small.
 - **Right-handed or sterile branch gate:** a $\nu_R$-like branch may be added only if the weak-coupling-triad exposure, anomaly bookkeeping, PMNS map, and reaction provenance all remain compatible. Such a branch must be an $SU(2)$ singlet with $Y=0$ in observer-level bookkeeping and must not become a hidden patch for unrelated dark-sector mass.
 - **Dark-sector gate:** a neutral-lepton dark-matter interpretation is admissible only if the candidate branch supplies cosmological stability, abundance, and free-streaming behavior while preserving BBN, CMB, and structure-formation constraints.
 
@@ -2639,7 +2662,7 @@ m_{\mathrm{lightest}}\to 0,
 \qquad
 \sum_i m_i \approx 0.06\,\mathrm{eV}
 $$
-paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter those values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum, incompatible neutrinoless double-beta signal, or detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry.
+paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter the mass-sum and sterile-branch values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum or a detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry. The suppressed neutrinoless double-beta rate is not a discriminator target in the same sense — it is the prediction of the Dirac/Majorana gate above on the $C$-odd branch, and a contrary signal would force revision beyond the neutral-lepton geometry, reaching the $C$-parity of the chirality invariant on which the exact-$CP$ derivation also rests.
 
 ### Quantum Number Mapping
 
@@ -2655,7 +2678,7 @@ This document establishes the canonical dictionary translating **Nested Shell Br
 The dictionary is needed because the same physical assembly is read in several languages. A Noether braid branch supplies generation and chirality, an axial inventory supplies electric bookkeeping, a weak-coupling exposure supplies weak labels, and axis exceptionality supplies color. Without a stable dictionary, later mass and reaction claims would silently change what the symbols mean.
 
 The parent charge target is a protected six-unit polarity inventory whose signed sum supplies observer-level electric bookkeeping. For charged fermions and quarks, this chapter uses the **Noether braid + axial layer** model as the working realization of that target:
-1.  **The Noether braid:** A neutral, rotating nested shell braid structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
+1.  **The Noether braid:** A neutral, rotating nested shell braid structure whose retained branch supplies generation and mass-scale candidates. Its pro/anti ordered orientation is a parity-facing label; matter/antimatter belongs instead to the whole-branch polarity-conjugation relation.
 2.  **The Axial Layer:** A candidate realization in which the six-unit polarity inventory appears as 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
 This is a charged-fermion working model, not a proof that every six-unit charge carrier must be axial or external to the braid. The six units may ultimately be internal to the Noether braid, externally coupled to it, embedded in the retained path-history, or realized by a non-axial coupled branch. The axial layer remains useful because it supplies a concrete six-site geometry on which weak-triad and color-exceptionality hypotheses can be tested.
@@ -2664,19 +2687,19 @@ The six-unit inventory has seven possible net charge sums. The table records the
 
 | Axial inventory | Net electric bookkeeping | Interpretation |
 | --- | ---: | --- |
-| $0\epsilon_+,6\epsilon_-$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
+| $0\epsilon_+,6\epsilon_-$ | $-6\epsilon=-1e$ | charged lepton row on a matter branch |
 | $1\epsilon_+,5\epsilon_-$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
 | $2\epsilon_+,4\epsilon_-$ | $-2\epsilon=-1/3e$ | down-type quark row |
 | $3\epsilon_+,3\epsilon_-$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer; see the neutrino exception below |
 | $4\epsilon_+,2\epsilon_-$ | $+2\epsilon=+1/3e$ | anti-down-type charge row when paired with the corresponding antimatter geometry |
 | $5\epsilon_+,1\epsilon_-$ | $+4\epsilon=+2/3e$ | up-type quark row |
-| $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
+| $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on the polarity-conjugate antimatter branch |
 
 This table is an inventory ledger, not a particle list. A row becomes a Standard Model assembly only after the Noether braid branch, axial-frame exposure, color-sector status, handed weak channel, and null-result exclusions are all supplied.
 
 That distinction is the main protection against over-reading the table. The seven charge sums show what the six-unit inventory can count; they do not say that every count becomes a stable low-energy particle.
 
-Neutrinos are the exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+Neutrinos are the exception to this inventory model. They are treated as near-photon neutral polarity-conjugate braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) for the mass thesis and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) for metric-level translation.
 
@@ -2697,10 +2720,8 @@ Generation-I charged leptons and quarks contain the full neutral Noether braid s
 *   **Generation-I Noether braid (nested shell braid):** Three ordered support bands (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
 *   **Higher-generation shielding branches:** Generation II keeps the inner and middle coherent supports ($2\epsilon_+,2\epsilon_-$); Generation III keeps only the inner support ($1\epsilon_+,1\epsilon_-$). These are depleted branches, not full Noether braids in the six-architrino scaffold sense.
 *   **Nested-scale picture:** The support bands should be read as a genuine radial hierarchy, not just as three items in a list. The middle support band sits inside the shielding domain of the outer support band, and the inner support band sits inside the shielding domains of both. In that sense, the higher-generation inner scaffold may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
-*   **Chirality (Matter vs. Antimatter):**
-    *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
-    *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
-    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Electrino/Positrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
+*   **Pro/anti ordered orientation:** Where a three-dimensional retained braid has an ordered high-, middle-, and low-frequency frame, pro denotes `HML` order and anti denotes `HLM` order. Parity exchanges the two orders; polarity conjugation leaves the order unchanged.
+*   **Matter/antimatter conjugation:** Matter and antimatter are whole retained branches related by polarity conjugation at fixed worldlines, including the path-history, causal-root, wake-history, action, and stability rows. In charged sectors the visible polarity inventory must also map to the conjugate charge row. Neither branch is selected by pro/anti orientation alone.
 *   **Net Charge:** Always $0$.
 
 ##### The Axial Layer
@@ -2749,19 +2770,19 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 ##### Leptons
 
 **The Electron ($e^-$)**
-*   **Braid scaffold:** Pro nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral, matter-chirality).
+*   **Braid scaffold:** Matter nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral); its pro/anti ordered orientation is a separate parity-facing label.
 *   **Axial Layer:** 6 Electrinos ($6\epsilon_-$).
 *   **Net Charge:** $0 (\text{braid}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Braid scaffold:** Anti nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral, antimatter-chirality).
+*   **Braid scaffold:** Polarity-conjugate antimatter nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral).
 *   **Axial Layer:** 6 Positrinos ($6\epsilon_+$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
-*   **Note:** The positron is not antimatter because its axial layer uses positive-polarity units. Its antimatter status belongs to the anti-braid branch record; the $6\epsilon_+$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
+*   **Note:** The positron is not antimatter because its axial layer uses positive-polarity units. Its antimatter status belongs to the polarity-conjugate retained branch; the $6\epsilon_+$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
+*   **Geometry:** Near-planar polarity-conjugate Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating polarity-conjugate planar pair but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3\epsilon_+,3\epsilon_-$ weak-coupling projection.
 *   **Net Charge:** $0$.
@@ -2770,12 +2791,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 ##### Quarks
 
 **The Up Quark ($u$)**
-*   **Braid scaffold:** Pro nested shell braid.
+*   **Braid scaffold:** Matter nested shell braid.
 *   **Axial Layer:** 1 Electrino, 5 Positrinos ($1\epsilon_-,5\epsilon_+$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-*   **Braid scaffold:** Pro nested shell braid.
+*   **Braid scaffold:** Matter nested shell braid.
 *   **Axial Layer:** 4 Electrinos, 2 Positrinos ($4\epsilon_-,2\epsilon_+$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
@@ -2783,11 +2804,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 
 | Particle | Braid scaffold | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** ($e^-$) | Pro nested shell braid | $6\epsilon_-$ | -1 | 12 |
-| **Positron** ($e^+$) | Anti nested shell braid | $6\epsilon_+$ | +1 | 12 |
-| **Neutrino** ($\nu_e$) | Near-planar pro/anti braid pair | no stable axial layer; effective $3\epsilon_+,3\epsilon_-$ weak ledger | 0 | geometry-dependent |
-| **Up Quark** ($u$) | Pro nested shell braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
-| **Down Quark** ($d$) | Pro nested shell braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
+| **Electron** ($e^-$) | Matter nested shell braid | $6\epsilon_-$ | -1 | 12 |
+| **Positron** ($e^+$) | Polarity-conjugate antimatter nested shell braid | $6\epsilon_+$ | +1 | 12 |
+| **Neutrino** ($\nu_e$) | Near-planar polarity-conjugate braid pair | no stable axial layer; effective $3\epsilon_+,3\epsilon_-$ weak ledger | 0 | geometry-dependent |
+| **Up Quark** ($u$) | Matter nested shell braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
+| **Down Quark** ($d$) | Matter nested shell braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
 
 ---
 
@@ -2815,7 +2836,7 @@ In the axial-layer realization, every charged-fermion six-unit carrier consists 
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
-For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti braid pair, not as a literal inventory of six bound axial sites.
+For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon polarity-conjugate braid pair, not as a literal inventory of six bound axial sites.
 
 **Weak-coupling exposure diagnostic (hypothesis)**
 For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
@@ -3076,7 +3097,7 @@ The geometrical interpretation is:
 - charge conjugation mirrors the pattern across the same bookkeeping plane,
 - handedness selects whether the weak-coupling triad is exposed or hidden.
 
-The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti braid pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon polarity-conjugate braid pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
 
 - no right-handed neutrino in the minimal architecture,
 - a sterile singlet branch,
@@ -3086,7 +3107,7 @@ So the rule above should currently be read as a strong charged-fermion synthesis
 
 ##### Charge quantization cross-check
 
-In the axial-layer realization, the charged-fermion six-unit carrier fills six polar sites with $\pm e/6$. The only stable net charges from the Active+Shielded split are then $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section "Quantization from Stability"). The neutrino's neutral charge is instead carried by pro/anti near-photon cancellation plus the effective weak ledger.
+In the axial-layer realization, the charged-fermion six-unit carrier fills six polar sites with $\pm e/6$. The only stable net charges from the Active+Shielded split are then $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section "Quantization from Stability"). The neutrino's neutral charge is instead carried by polarity-conjugate near-photon cancellation plus the effective weak ledger.
 
 ##### Baryon / lepton bookkeeping and anomaly cancellation
 
@@ -3100,23 +3121,23 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
   B=0,\qquad L=\pm 1
   $$
-- the sign is set by braid orientation:
+- the sign is set by the matter-versus-polarity-conjugate branch relation:
   $$
-  s_{\text{braid}}=
+  s_C=
   \begin{cases}
-  +1,& \text{pro-braid},\\
-  -1,& \text{anti-braid}.
+  +1,& \text{matter branch},\\
+  -1,& \text{polarity-conjugate antimatter branch}.
   \end{cases}
   $$
 
 If $\chi_q=1$ for a quark-like color-triplet assembly and $\chi_q=0$ for a lepton-like color-singlet assembly, then the elementary-fermion rule may be written compactly as
 $$
-B = s_{\text{braid}}\frac{\chi_q}{3},
+B = s_C\frac{\chi_q}{3},
 \qquad
-L = s_{\text{braid}}(1-\chi_q)
+L = s_C(1-\chi_q)
 $$
 
-This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti braid sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+The quark-vs-lepton sector sets whether the unit is $1/3$ or $1$, while polarity conjugation sets its sign. The pro/anti ordered orientation does not set $B$ or $L$.
 
 Using the left-chiral one-generation SM content
 $$
@@ -3207,7 +3228,7 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 - **Stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
-- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
+- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon polarity-conjugate braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
 - **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether braid shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 #### The Generation Mechanism (Mass Hierarchy)
@@ -3414,7 +3435,7 @@ Because the **Axial Layer** (which dictates charge bookkeeping and isospin for c
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
 
 *   **Proton ($uud$):**
-    *   3 Pro-Braids (Gen I).
+    *   3 matter-branch Noether braids (Gen I).
     *   Axial layers: $(5\epsilon_+,1\epsilon_-) + (5\epsilon_+,1\epsilon_-) + (2\epsilon_+,4\epsilon_-)$.
     *   Total positive-polarity units: $5+5+2 = 12$.
     *   Total negative-polarity units: $1+1+4 = 6$.
@@ -3422,7 +3443,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Axial)} = 36$.
 
 *   **Neutron ($udd$):**
-    *   3 Pro-Braids (Gen I).
+    *   3 matter-branch Noether braids (Gen I).
     *   Axial layers: $(5\epsilon_+,1\epsilon_-) + (2\epsilon_+,4\epsilon_-) + (2\epsilon_+,4\epsilon_-)$.
     *   Total positive-polarity units: $5+2+2 = 9$.
     *   Total negative-polarity units: $1+4+4 = 9$.
@@ -3442,14 +3463,14 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 | Quantum Number | Symbol | Standard Model Definition | Architrino Geometric Definition |
 | :--- | :---: | :--- | :--- |
-| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral pro/anti near-photon cancellation with an effective weak ledger. |
+| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral polarity-conjugate near-photon cancellation with an effective weak ledger. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = positive-polarity dominant, -1/2 = negative-polarity dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any braid offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which Noether braid axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell braid is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Braid Shielding Level.**<br>• **Gen I:** nested shell braid (full shielding).<br>• **Gen II:** Generation-II shielding branch (partial shielding).<br>• **Gen III:** Generation-III shielding branch (exposed Noether braid). |
-| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + braid orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-braid vs anti-braid orientation. |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + polarity-conjugate branch sign.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The matter branch has the positive sign and its polarity-conjugate antimatter branch has the negative sign; pro/anti orientation is independent. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
@@ -3488,9 +3509,10 @@ Two qualifications remain useful without adding new rows to the taxonomy:
 
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
-    *   **Mapping hypothesis:** Pro-braid versus anti-braid orientation supplies the branch label that should map to intrinsic parity after the spinor/export layer is derived.
-        *   Pro-Braid (Matter) is the candidate $+$ branch.
-        *   Anti-Braid (Antimatter) is the candidate $-$ branch.
+    *   **Mapping hypothesis:** Pro versus anti ordered orientation supplies the label that should map to intrinsic parity after the spinor/export layer is derived.
+        *   Pro orientation is the candidate $+$ branch.
+        *   Anti orientation is the candidate $-$ branch.
+    *   Polarity conjugation does not change this orientation label, so matter and antimatter are not assigned opposite intrinsic parity by this hypothesis alone.
     *   This is a parity-closure interface, not a completed derivation of the Dirac parity eigenvalue.
 
 **Verdict:**
@@ -3501,7 +3523,7 @@ The table is sufficient as a quantum-number bookkeeping dictionary. It identifie
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti braid-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon polarity-conjugate braid-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
@@ -3622,9 +3644,9 @@ This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in 
 
 The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
 
-The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch, generation tier, and matter/antimatter orientation. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
 
-At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier, and the retained polarity-conjugation record fixes its matter/antimatter relation. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 The chapter uses axis strings and tables so the catalog is explicit without depending on artwork.
 
@@ -3637,7 +3659,7 @@ The quark construction used here follows the same Noether braid-plus-axial split
 - The **Noether braid** is the neutral braid scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the braid scaffold is a **pro-braid**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the braid scaffold is a **matter branch**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame. The matter branch may carry either pro or anti ordered orientation; polarity conjugation preserves that orientation while producing the corresponding antimatter branch:
 
 - **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
 - **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
@@ -3729,7 +3751,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ##### Right-handed singlet bookkeeping
 
-The right-handed pro-braid weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The right-handed matter-branch weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -3755,7 +3777,7 @@ The same count logic is what places the right-handed quark sector on the singlet
 
 ##### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed pro-braid weak-coupling posture gives a useful implementation candidate:
+The corresponding left-handed matter-branch weak-coupling posture gives a useful implementation candidate:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then occupy the two branches of the same electroweak doublet,
@@ -3790,9 +3812,9 @@ The value of this conjecture is that it places the quark doublet in the same six
 
 That places the quark sector in the same ordered axial-inventory ledger as the lepton sector rather than in a separate lookup table. At present, the geometric continuity across that ledger should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
-##### Anti-braid mirror bookkeeping and implementation status
+##### Polarity-conjugate mirror bookkeeping and implementation status
 
-Once the pro-braid rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that anti-braid branch orientation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by pro/anti orientation plus retained path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label.
+Once the matter-branch rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that whole-branch polarity conjugation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by polarity-conjugate retained path-history, causal-root, wake-history, action, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label. Pro/anti ordered orientation is independent and remains unchanged under polarity conjugation.
 
 Start by mapping the quark axial inventories to their charged-sector conjugate rows:
 
@@ -3807,22 +3829,22 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
 
 The geometric implementation candidate then reads:
 
-- **right-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid left-handed doublets,
-- **left-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid right-handed singlets.
+- **right-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch left-handed doublets,
+- **left-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
-At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
+At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
 
 ###### Right-handed antiquark bookkeeping
 
 At the fixed comparison-bookkeeping layer:
 
-| State family | Axial count | Electric charge $Q$ | Right-handed anti-braid assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed antimatter assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
-These are exactly the charge-conjugate mirrors of the pro-braid left-handed quark doublet:
+These are exactly the charge-conjugate mirrors of the matter-branch left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right)
@@ -3830,22 +3852,22 @@ $$
 
 ###### Left-handed antiquark bookkeeping
 
-For the left-handed anti-braid branch, the same mirror logic gives:
+For the left-handed polarity-conjugate antimatter branch, the same mirror logic gives:
 
-| State family | Axial count | Electric charge $Q$ | Left-handed anti-braid assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed antimatter assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
-These are the charge-conjugate mirrors of the pro-braid right-handed singlets:
+These are the charge-conjugate mirrors of the matter-branch right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
-The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by anti-braid branch orientation, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate antimatter lookup system. Once the matter sector is specified, the polarity-conjugate antimatter sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by a polarity-conjugate retained branch, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
 
-The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the pro-braid rows are declared. The open claim is the substrate implementation: anti-braid orientation, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
+The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the matter-branch rows are declared. The open claim is the substrate implementation: a polarity-conjugate retained branch, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
 
 ##### Electroweak-plane embedding (conjectural map)
 
@@ -3975,7 +3997,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with anti-braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with the polarity-conjugate antimatter branch, giving the anti-red, anti-green, and anti-blue states. Its pro/anti ordered orientation is inherited unchanged under that conjugation.
 
 ##### Down-type color tables
 
@@ -4183,7 +4205,7 @@ We separate two structures that are often spoken about together but should not b
 The [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
 
 - generation via shielding level,
-- matter/antimatter braid orientation,
+- the retained matter-versus-polarity-conjugate branch relation,
 - the three reference axes $(H,M,L)$,
 - the geometric seat of spinor behavior.
 
@@ -4319,7 +4341,7 @@ The following are **not** rotating in this note:
 
 - the H/M/L Noether braid scaffold itself,
 - the binary nesting order that defines generation,
-- the matter/antimatter braid orientation,
+- the retained matter-versus-polarity-conjugate branch relation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
 
 This separation is important because otherwise one mixes together three different jobs:
@@ -4496,7 +4518,7 @@ Potential redundancies include:
 - reversing a principal axis together with a pole relabeling,
 - rotating by $180^\circ$ and exchanging equivalent background axes,
 - relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
-- matter/antimatter branch-record conjugation, where pro/anti orientation and retained path-history, wake-history, causal-root, and stability rows conjugate with the same scaffold, while any polarity reversal belongs to the charged-sector ledger rather than the primitive matter/antimatter label.
+- matter/antimatter branch-record conjugation, where every architrino polarity reverses at fixed worldlines and the retained path-history, wake-history, causal-root, and stability rows transform with the same scaffold. The pro/anti ordered orientation is unchanged, while a charged-sector ledger maps to its opposite effective-charge row.
 
 So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
 
@@ -4563,7 +4585,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ---
 
-### The Photon ($\gamma$): Coaxial Contra-Rotating Pro/Anti Planar Pair
+### The Photon ($\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 
 The photon is the canonical electromagnetic transport channel. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework treats the photon as a **propagating assembly of discrete action history**.
 
@@ -4572,21 +4594,21 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 *   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
 *   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
 
-#### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
+#### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
-*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
+*   **The pair:** A planar braid and its polarity-conjugate braid are stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
-*   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
+*   **Canonical description:** A photon is a **coaxial contra-rotating polarity-conjugate planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
 #### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized pro/anti Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired pro/anti balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
-The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating pro/anti planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
+The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
-This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating pro/anti planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
+This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating polarity-conjugate planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
 
 #### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
@@ -4621,9 +4643,9 @@ The photon description above is the ontology-level target. The theorem-level pro
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
-| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
+| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating polarity-conjugate planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
 Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether braid, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
@@ -4692,7 +4714,7 @@ The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homog
 
 ##### Gate B Theorem Scaffold: Polarization and Spin
 
-Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating polarity-conjugate planar pair.
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
@@ -4711,9 +4733,9 @@ The substrate closure target starts from the planar-pair amplitude rather than f
 $$
 \mathbf a_{\gamma}^{\mathrm{sub}}
 =
-\mathbf a_{\mathrm{pro}}
+\mathbf a_{\mathfrak B}
 +
-\mathbf a_{\mathrm{anti}}
+\mathbf a_{C(\mathfrak B)}
 +
 \mathbf a_{\mathrm{wake}},
 \qquad
@@ -4735,17 +4757,17 @@ $$
 =
 \frac{
 \left|
-q_{\mathrm{pro}}^{\mathrm{eff}}
+q_{\mathfrak B}^{\mathrm{eff}}
 +
-q_{\mathrm{anti}}^{\mathrm{eff}}
+q_{C(\mathfrak B)}^{\mathrm{eff}}
 \right|
 }{
 \left|
-q_{\mathrm{pro}}^{\mathrm{eff}}
+q_{\mathfrak B}^{\mathrm{eff}}
 \right|
 +
 \left|
-q_{\mathrm{anti}}^{\mathrm{eff}}
+q_{C(\mathfrak B)}^{\mathrm{eff}}
 \right|
 +
 \varepsilon_Q
@@ -4766,7 +4788,7 @@ q_{\mathrm{anti}}^{\mathrm{eff}}
 }
 $$
 
-A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
+A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating polarity-conjugate planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -4815,14 +4837,14 @@ h_{ab}C_{\rho}^{ab}=1
 $$
 A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
-The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
+The polarity-conjugate planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
 
 $$
 \mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\mathbf J_{\mathrm{pro}}
+\mathbf J_{\mathfrak B}
 +
-\mathbf J_{\mathrm{anti}}
+\mathbf J_{C(\mathfrak B)}
 +
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
@@ -4953,7 +4975,7 @@ The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\math
 
 The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat.
 
-In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
+In this framing a reflected photon is an outgoing coaxial contra-rotating polarity-conjugate planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
 
 The same return-map language distinguishes common polarization material effects without adding new photon species. A local material response maps the incoming transverse ledger to the outgoing ledger by
 $$
@@ -4971,7 +4993,7 @@ where $T_\Omega$ is the effective response of the material branch $\Omega$ and $
 | Dichroism | one transverse channel has larger capture or dephasing probability | differential $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, or $B_{\mathrm{scat}}$ routing, not a new photon ontology |
 | Optical activity | the material branch rotates the transverse ledger in the helicity or circular basis | handed phase rotation with no free longitudinal photon mode |
 
-Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating pro/anti planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
+Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating polarity-conjugate planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
 
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
@@ -5002,7 +5024,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing) due to internal instability.
 
 #### Quantum Numbers and Channels
-*   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
+*   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating polarity-conjugate planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ through the active-triad transition $3\epsilon_+ \leftrightarrow 3\epsilon_-$.
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
@@ -5064,7 +5086,7 @@ The same event record must also recover low-energy weak rates after the corridor
 
 #### Massless Photon Versus Massive Weak Corridor
 
-The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
+The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating polarity-conjugate planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
 
 A $W/Z$ corridor is a localized massive vector channel. Its longitudinal or mixed-axis structure carries a rest-like internal energy cost because the corridor is a thickened recoupling of local Noether sea structure, not a free planar-pair branch. It can therefore mediate a directed spin-$1$ transaction while appearing as a massive, short-lived channel rather than a massless photon. The derivation burden is to compute this cost from corridor closure and medium-dressed response, not to insert the Standard Model mass as a primitive parameter.
 
@@ -5161,7 +5183,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
+| **Photon** | Coaxial contra-rotating polarity-conjugate planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
 | **W Boson** | Thickened charged recoupling corridor | Charged ($\pm 6\epsilon$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Z Boson** | Thickened neutral recoupling corridor | Neutral ($3\epsilon_+ + 3\epsilon_-$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Higgs** | Radial Noether sea oscillation | N/A | Local resonance | Medium stiffness |
@@ -5187,7 +5209,7 @@ $$
 \mathcal I_{\mathrm{sea}}^{\mathrm{ret}},
 $$
 with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
-- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
+- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon polarity-conjugate braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether Pair bookkeeping relaxes back into the Noether sea.
 
 ### Closure Interface: Corridor Operators for Mixing
@@ -5463,10 +5485,10 @@ Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I Noether braid (matter chirality) and one Generation‑I antiquark Noether braid (antimatter chirality) linked by a shared flux tube.
+A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-braid and anti-braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
@@ -5582,8 +5604,8 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-braid flips signs. Meson pairs cancel most axes; nested shell braid permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter braid, −1/3 per anti-braid. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Polarity conjugation flips signs. Meson pairs cancel most axes; nested shell braid permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** +1/3 per matter braid, −1/3 per polarity-conjugate antimatter braid. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
 - **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell braids).
@@ -5613,7 +5635,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Notation**
 
-* An overbar on the quark symbol denotes an anti-braid.
+* An overbar on the quark symbol denotes the polarity-conjugate antimatter branch.
 * Constituents are concatenated with $\otimes$ to show distinct constituent braids (baryons chain three braids; mesons pair a quark with an antiquark).
 * Each matrix lists the three nested shell braid axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `-` = electrino pair, `0` = mixed electrino/positrino, `+` = positrino pair.
@@ -5634,7 +5656,7 @@ $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\b
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `-` = electrino pair, `0` = mixed pair, `+` = positrino pair. An overbar on the quark letter denotes an anti-braid.
+**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `-` = electrino pair, `0` = mixed pair, `+` = positrino pair. An overbar on the quark letter denotes the polarity-conjugate antimatter branch.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |
@@ -5646,7 +5668,7 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ supplies the strange-sector CP-asymmetry handle. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral-kaon oscillation and CP-odd asymmetry are separate closure rows. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
-| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips braid/anti-braid. |
+| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; exchanges matter and polarity-conjugate antimatter branches. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |
 | Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |

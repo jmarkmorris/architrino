@@ -1,6 +1,6 @@
 # Section 96 Flutter — Force-Balance Precondition Retirement
 
-**Date:** 2026-07-14  
+**Date:** 2026-07-14
 **Disposition:** `t2_flutter_void_non_equilibrium`; `retired_not_rerunnable`;
 `t1_force_balance_rows_survive`; `priority-only`.
 
@@ -82,4 +82,3 @@ release or score movement.
 - Remove Section 96 from the validated-integrator re-run list. A future search
   may define a new force-balanced stacked-rings candidate, but that would be a
   new row rather than a rehabilitation of this pencil.
-

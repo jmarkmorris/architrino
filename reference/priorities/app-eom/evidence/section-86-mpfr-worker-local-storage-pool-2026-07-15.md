@@ -115,4 +115,3 @@ claim.
   removed CPU and wall cost. The allocator profile collapse, matched CPU/wall
   reductions, unchanged work, and reference-binary parity support the
   inference.
-

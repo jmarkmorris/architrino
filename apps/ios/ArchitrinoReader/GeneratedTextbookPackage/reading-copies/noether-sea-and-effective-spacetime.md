@@ -114,7 +114,7 @@ The nested shell braid-centered Noether sea claim is therefore the statement tha
 
 The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
-This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the braid level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
+This pro/anti distinction is the geometric and topological ordered-orientation label, not polarity conjugation, matter/antimatter, or a net electric-charge distinction. Global polarity conjugation leaves a braid's worldlines and therefore its pro/anti orientation unchanged. Both orientations are electrically and polarity neutral at the braid level. Their coupled orientation balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response; it does not assert a matter/antimatter population balance.
 
 Transparency has a candidate mechanism at the level of a single transiting assembly, offered here at effective grade. A propagating assembly is sub-field-speed, so its wake runs ahead of it and reaches the medium before the body does; the sea assemblies do not move aside like obstacles but re-phase — reorient in response to that advance field, then relax. Transparency is then *elastic parting*: the medium opens ahead through advance-field polarization and closes behind, leaving no net excitation, so no energy or momentum is deposited and the transit is lossless. The field-level statement is that the transiting and ambient wakes simply superpose, while the assembly-level statement is that the medium's response is reversible. Imperfect closure — a residual excitation left downstream — is the microscopic content of the loss, scattering, and preferred-frame-visibility terms the selection residual above bounds: a fully transparent class is one whose parting is elastic to the required tolerance.
 
@@ -1033,7 +1033,7 @@ This page does not own:
 
 This note states a bounded working hypothesis for the Noether sea: the sea is not a passive geometric background. It is an active medium built from persistent Noether braid assemblies with internal structure and coupling rules. The fixed background remains absolute time and the Euclidean void; this chapter is about the contents that occupy that background and supply medium response. It is the assembly-hypothesis continuation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs. The distinction between this orientation label and polarity conjugation is fixed in [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation).
 
 The claim level is intentionally narrower than the Noether sea ontology page. The ontology page says what the medium is. This page asks whether complementary pro/anti orientation populations are part of how that medium stays transparent, balanced, and responsive.
 
@@ -1046,12 +1046,12 @@ The starting picture is deliberately simple. A Noether sea carrier is a Noether 
 
 For nested shell braid consumers, the working orientation convention is:
 
-- pro-Noether braid / matter branch: precession order $H \to M \to L$ in time;
-- anti-Noether braid / antimatter branch: precession order $H \to L \to M$ in time.
+- pro-Noether braid orientation: precession order $H \to M \to L$ in time;
+- anti-Noether braid orientation: precession order $H \to L \to M$ in time.
 
 This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the ordered nested shell braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md#proanti-before-planar-lock).
 
-With that convention, pro-Noether braid orientations are associated with particle assemblies, and anti-Noether braid orientations are associated with antiparticle assemblies. This sea-level balance is distinct from the visible-sector [matter-antimatter asymmetry](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to branch chirality, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is not that the two orientations are optional labels. It is that stable large-scale Noether sea behavior requires both orientations to coexist and couple, so the Noether sea remains dynamically balanced rather than drifting into a single-sign ordering.
+The orientation label does not assign matter versus antimatter. Global polarity conjugation $C$ leaves the `HML/HLM` worldline order unchanged, while parity $P$ reverses it. A matter branch and its polarity-conjugate antimatter branch may therefore each occur on either pro/anti orientation once the full retained branch and charged-sector ledgers are supplied. This sea-level orientation balance is distinct from the visible-sector [matter-antimatter asymmetry](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to polarity-conjugate branch populations, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is that stable large-scale Noether sea behavior may require both orientations to coexist and couple, so the Noether sea does not drift into one ordered-frame handedness.
 
 At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
 
@@ -1065,13 +1065,13 @@ $$
 n(\mathbf X,T)\equiv \frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
 
-The total density can stay smooth while the two orientation populations differ locally. That difference is represented by a bounded imbalance
+The total density can stay smooth while the two orientation populations differ locally. Here the subscripts $+$ and $-$ label pro/anti orientation populations, not architrino polarity and not matter/antimatter. Their difference is represented by a bounded imbalance
 
 $$
 \Delta\rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) - \rho_{-}(\mathbf X,T)
 $$
 
-where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local pro/anti bias, but not unlimited one-sign domination. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti dynamics.
+where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local orientation bias, but not unlimited domination by one ordered orientation. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti orientation dynamics.
 
 The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) page names the Noether sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
@@ -3318,7 +3318,7 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
-Native-confirmation claim level: seed-grade confirmation limited to small near-axial drift, not full Lorentz closure. A release of the drifting rigid family confirms the ruler law there as relative flattening: $\xi(u)/\xi(0)$ approaches $1/\gamma_f(u)$, reaching $0.9813$ against $1/\gamma_f=0.9798$ at $u/c_f=0.2$, a residual of $+0.0015$. This result neither confirms the full drift range nor pins a fitted slope. At $u/c_f=0.4$ and $0.6$, axis-sector flutter contaminates the shape envelope before it relaxes, so the higher-drift ruler rows remain flutter-limited and unconfirmed.
+Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed force law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -6882,7 +6882,7 @@ $$
 p+e^-\rightarrow n+\nu_e
 $$
 
-The outgoing neutrino is not just an abstract missing-energy label in this bookkeeping. In the lepton-sector canon, a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon neutral assembly: a near-planar pro/anti Noether braid pairing close to the photon channel but not fully locked into the photon mode. That explains why the neutrino channel is high-speed and weakly exposed while still carrying an internal-binary phase ledger capable of oscillation. In a collapse ledger, the neutrino row must therefore carry energy, momentum, angular momentum, weak provenance, and near-photon phase information, not merely remove scalar energy from the core.
+The outgoing neutrino is not just an abstract missing-energy label in this bookkeeping. In the lepton-sector canon, a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon neutral assembly: a near-planar polarity-conjugate Noether braid pairing close to the photon channel but not fully locked into the photon mode. That explains why the neutrino channel is high-speed and weakly exposed while still carrying an internal-binary phase ledger capable of oscillation. In a collapse ledger, the neutrino row must therefore carry energy, momentum, angular momentum, weak provenance, and near-photon phase information, not merely remove scalar energy from the core.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required observer-level channel while reclassifying the surrounding story as a change in exposed assembly response.
 
@@ -7168,7 +7168,7 @@ The alignment state also silences the assemblies geometrically, at hypothesis le
 
 The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
 
-The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating pro/anti planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
+The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating polarity-conjugate planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
 
 For a horizon-adjacent photon path $\Gamma_H$, retain the signed strong-field frequency row
 $$
@@ -8054,7 +8054,7 @@ This chapter studies one narrow theory question: how the Noether braid `pro/anti
 
 The guiding problem is simple. In ordinary low-stress conditions, the nested shell braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
-The chapter is therefore a reduction map, not a new chirality doctrine. It keeps three labels from collapsing into one another too early: the deeper 3D pro/anti branch distinction, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
+The chapter is therefore a reduction map, not a new chirality doctrine. It keeps four labels from collapsing into one another: the deeper 3D pro/anti branch orientation, polarity conjugation at fixed worldlines, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
 ### Canonical Horizon Condition
 
@@ -8072,7 +8072,7 @@ This chapter does not alter that constitutive rule. It asks what chirality infor
 
 ### Pro/Anti Before Planar Lock
 
-Away from the horizon, the project treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis), while [color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter) consumes the same convention in the fermion sector:
+Away from the horizon, the project treats `pro/anti` as an ordering property of the 3D nested shell braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
@@ -8095,6 +8095,7 @@ So the cleanest reading is:
 
 - the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
 - the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_s$, $D_T$, and $W^{\mathrm{rec}}$.
+- polarity conjugation $C$ leaves that order unchanged because it relabels polarities at fixed worldlines; parity $P$ reverses the order.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
@@ -8105,12 +8106,12 @@ This chapter should also be read against a broader guardrail from the project fr
 Several standing examples point in that direction.
 
 - **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
-- **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
+- **Photon channel:** the proposed photon assembly is a coaxial contra-rotating polarity-conjugate planar pair, or one record $\mathfrak B$ and its $C$-image $C(\mathfrak B)$. It is not an example of pro/anti orientation balance, because the precession-order carrier has ceased in the planar limit.
 - **$2+2$ pro/anti cluster hypothesis:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
 
-So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
+So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem tests whether the ordered three-dimensional orientation has any surviving planar readout. The polarity-conjugate relation is a separate row.
 
-The matter sector then becomes the special case. In this intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+Orientation-selective reaction channels then become the special case. Pro-Noether braid and anti-Noether braid orientations may meet as geometric complements and open fast reconfiguration channels, but that pairing is not automatically a particle-antiparticle reaction. A matter-antimatter event additionally requires polarity-conjugate retained branch records and conjugate charged-sector ledgers. In either case, the standard word "annihilation" is too blunt: the deeper process is a **reaction** or **reconfiguration event** in which coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -8120,7 +8121,8 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether braid chirality, tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
+| `pro/anti` | the deeper 3D Noether braid ordered orientation, tracked by structure such as `HML` versus `HLM`; $C$-even and $P$-odd | pre-planar 3D braid |
+| polarity-conjugate pair | one retained record $\mathfrak B$ and its fixed-worldline polarity-reversed image $C(\mathfrak B)$ | any regime, including the planar limit |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
@@ -8133,9 +8135,9 @@ The horizon question becomes clearer when compared against the main assembly sec
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
-| Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
+| Photon channel | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
-| Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
+| Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
 
@@ -8445,5 +8447,5 @@ That yields a disciplined provisional picture:
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics): regime map, planarity diagnostics, and alignment observables.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
-- [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
-- [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.
+- [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.
+- [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad, polarity-conjugation, and chirality language.

@@ -96,4 +96,3 @@ corrector iterations were unchanged.
   CPU and wall-time reduction. The profile transition, unchanged work counts,
   byte-identical trajectory, and matched bracket support the inference;
   implementation parity is not an independent physical oracle.
-

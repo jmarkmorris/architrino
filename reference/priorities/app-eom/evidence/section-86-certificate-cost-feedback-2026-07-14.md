@@ -105,4 +105,3 @@ library was rebuilt at `23:56:05` and the diagnostic binary was relinked at
   the work of the unavoidable MPFR crossing. The timing and MPFR telemetry
   support this interpretation, but no independent cost decomposition isolates
   the causal mechanism.
-

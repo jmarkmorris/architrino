@@ -1,6 +1,6 @@
 # Section 99 Stability And Locking — Force-Balance Precondition Retirement
 
-**Date:** 2026-07-14  
+**Date:** 2026-07-14
 **Disposition:** `t2_stability_locking_void_non_equilibrium`;
 `retired_not_rerunnable`; `t1_force_balance_and_charge_rows_survive`;
 `priority-only`.
@@ -78,4 +78,3 @@ no score movement.
 - Remove Section 99 from the validated-integrator re-run list. A newly found
   force-balanced planar assembly would create a new well-posed stability row;
   it would not rehabilitate the retired pencil results.
-
