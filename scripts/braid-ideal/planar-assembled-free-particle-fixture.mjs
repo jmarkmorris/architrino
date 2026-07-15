@@ -1,3 +1,11 @@
+// SUPERSEDED FOR PHOTON CLAIMS (2026-07-15 model audit): the (3,2,3)
+// occupancy rows below define charged 8-architrino braids, not the canonical
+// 6-architrino (3 of each polarity) braid; within-braid phases are fixed
+// constants; ring z-offsets do not flatten with drift speed. Kept unchanged
+// so the section 99 scoped negative and its anchor/controls remain
+// reproducible. Canonical-photon search:
+// reference/priorities/braid-ideal/canonical-photon-search-dispatch-packet.md
+
 const TAU = 2 * Math.PI;
 
 export const PLANAR_ASSEMBLED_FREE_PARTICLE_FIXTURE = Object.freeze({

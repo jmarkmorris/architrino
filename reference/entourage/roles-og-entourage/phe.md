@@ -59,7 +59,7 @@ Map nested shell braid axial patterns to all SM fermions:
 **A.2 Bosons (Gauge Bosons and Higgs)**
 
 - **Photon, $W^\pm$, $Z$, gluons**: Identify as closure targets:
-  - Photon ontology uses the canonical coaxial contra-rotating pro/anti planar pair, with masslessness, no rest branch, no birefringence, and no unacceptable dispersion still gated by photon closure.
+  - Photon ontology uses the canonical coaxial contra-rotating polarity-conjugate planar pair, with masslessness, no rest branch, no birefringence, and no unacceptable dispersion still gated by photon closure.
   - Other bosons require planar or corridor-like assembly mechanisms with Bose statistics derived from geometry.
   - Collective excitations in the nested shell braid medium.
   - Emergent degrees of freedom from assembly interactions.

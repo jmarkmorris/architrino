@@ -83,7 +83,7 @@
 
       .borg-panel-header {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-columns: minmax(0, 1fr);
         align-items: start;
         gap: 10px;
         margin-bottom: 12px;
@@ -108,12 +108,15 @@
       .borg-status-stack {
         display: grid;
         gap: 6px;
-        justify-items: end;
+        min-width: 0;
+        justify-items: stretch;
       }
 
       .borg-status-chip {
         display: inline-grid;
         align-items: center;
+        justify-content: start;
+        min-width: 0;
         min-height: 24px;
         max-width: 100%;
         padding: 0 8px;
@@ -124,6 +127,7 @@
         font-size: 11px;
         font-weight: 740;
         line-height: 1.1;
+        overflow-wrap: anywhere;
       }
 
       .borg-status-chip[data-tone="good"] {
@@ -380,8 +384,46 @@
       }
 
       .borg-range {
+        appearance: none;
         width: 100%;
-        accent-color: #8bd17c;
+        height: 20px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .borg-range::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: 999px;
+        background: #4d5848;
+      }
+
+      .borg-range::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        margin-top: -6px;
+        border: 2px solid #d9f0d2;
+        border-radius: 50%;
+        background: #8bd17c;
+      }
+
+      .borg-range::-moz-range-track {
+        height: 4px;
+        border-radius: 999px;
+        background: #4d5848;
+      }
+
+      .borg-range::-moz-range-progress {
+        height: 4px;
+        background: #4d5848;
+      }
+
+      .borg-range::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        border: 2px solid #d9f0d2;
+        border-radius: 50%;
+        background: #8bd17c;
       }
 
       .borg-time-output {
@@ -409,11 +451,77 @@
         cursor: pointer;
       }
 
+      .borg-eom-controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .borg-eom-controls[hidden] {
+        display: none;
+      }
+
+      .borg-eom-controls h2 {
+        grid-column: 1 / -1;
+      }
+
+      .borg-eom-control {
+        display: grid;
+        gap: 4px;
+        color: #abc09f;
+        font-size: 10px;
+        font-weight: 720;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .borg-eom-control input,
+      .borg-eom-action {
+        min-width: 0;
+        height: 34px;
+        border: 1px solid rgba(139, 164, 126, 0.34);
+        border-radius: 6px;
+        background: #171c16;
+        color: #eaf6df;
+        font: inherit;
+      }
+
+      .borg-eom-control input {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 8px;
+      }
+
+      .borg-eom-action {
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 780;
+      }
+
+      .borg-eom-action.is-stop {
+        border-color: rgba(229, 116, 99, 0.52);
+        color: #ffd0c9;
+      }
+
+      .borg-eom-progress {
+        grid-column: 1 / -1;
+        width: 100%;
+        accent-color: #8bd17c;
+      }
+
+      .borg-eom-progress-label {
+        grid-column: 1 / -1;
+        color: #c8dbbd;
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
       .borg-playback-speed {
         width: 88px;
       }
 
-      #borg-boot-error {
+      #borg-boot-error,
+      #borg-solver-banner {
         position: absolute;
         left: 16px;
         right: 16px;
@@ -428,11 +536,31 @@
         font-weight: 760;
       }
 
+      #borg-solver-banner[hidden] {
+        display: none;
+      }
+
+      #borg-solver-banner .borg-solver-banner-detail {
+        margin-top: 4px;
+        font-weight: 560;
+        font-size: 12px;
+        color: #f0bdb3;
+      }
+
       @media (max-width: 980px) {
+        html,
+        body {
+          height: auto;
+          min-height: 100%;
+          overflow: auto;
+        }
+
         #borg-app {
           grid-template-columns: 1fr;
-          grid-template-rows: minmax(0, 1fr) auto auto auto;
-          overflow: auto;
+          grid-template-rows: 360px minmax(420px, 62vh) auto 360px;
+          height: auto;
+          min-height: 100vh;
+          overflow: visible;
         }
 
         .borg-side-rail.is-left,
@@ -443,15 +571,15 @@
         }
 
         .borg-viewport {
-          grid-row: 1;
-        }
-
-        .borg-timeline {
           grid-row: 2;
         }
 
-        .borg-side-rail.is-left {
+        .borg-timeline {
           grid-row: 3;
+        }
+
+        .borg-side-rail.is-left {
+          grid-row: 1;
         }
 
         .borg-side-rail.is-right {
@@ -503,6 +631,7 @@
   </head>
   <body>
     <div id="borg-app">
+      <div id="borg-solver-banner" role="status" hidden></div>
       <aside class="borg-side-rail is-left" aria-label="Simulation envelope">
         <header class="borg-panel-header">
           <div class="borg-title">
@@ -510,10 +639,26 @@
             <p>native fixture surface</p>
           </div>
           <div class="borg-status-stack">
-            <span id="borg-native-status" class="borg-status-chip">native</span>
-            <span id="borg-manifest-status" class="borg-status-chip">manifest</span>
+            <span id="borg-native-status" class="borg-status-chip">Live compute</span>
+            <span id="borg-manifest-status" class="borg-status-chip">Developer test</span>
           </div>
         </header>
+
+        <section id="borg-eom-controls" class="borg-section borg-eom-controls" aria-label="EOM run controls" hidden>
+          <h2>EOM Run</h2>
+          <label class="borg-eom-control">
+            Architrinos
+            <input id="borg-eom-path-count" type="number" min="1" max="16" step="1" value="16" inputmode="numeric" />
+          </label>
+          <label class="borg-eom-control">
+            Duration
+            <input id="borg-eom-duration" type="number" min="0.01" step="0.01" value="0.01" inputmode="decimal" />
+          </label>
+          <button id="borg-eom-stop-button" class="borg-eom-action is-stop" type="button">Stop</button>
+          <button id="borg-eom-restart-button" class="borg-eom-action" type="button">Restart</button>
+          <progress id="borg-eom-progress" class="borg-eom-progress" max="1" value="0"></progress>
+          <output id="borg-eom-progress-label" class="borg-eom-progress-label">0 / 1 steps</output>
+        </section>
 
         <section class="borg-section" aria-label="Simulation envelope fields">
           <h2>Simulation Envelope</h2>
@@ -608,7 +753,7 @@
             <path d="M17 6l3 3-3 3"></path>
           </svg>
         </button>
-        <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" />
+        <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Keyframe" title="Buffered-frame scrubber; a Forever run has no finite completion percentage." />
         <button id="borg-run-duration-button" class="borg-run-duration-button" type="button" aria-label="Run duration: Forever" title="Toggle run duration">Forever</button>
         <select id="borg-playback-speed" class="borg-playback-speed" aria-label="Playback speed"></select>
         <output id="borg-time-output" class="borg-time-output">solver t 2 | keyframe 2</output>

@@ -31,11 +31,15 @@ test("§99 models the complete pair directly and carries every declared assembly
   assert.ok(buildSection99Payload(electron).every((site) => site.chargeUnits === -1 && site.polarity === -1));
 });
 
-test("§99 replays §92, §93, and §95 controls and keeps the central solver untouched", () => {
+test("§99 keeps its pencil controls while retiring target stability on force-balance failure", () => {
   const r = report();
   assert.equal(r.schema, PLANAR_ASSEMBLED_FREE_PARTICLE_SCHEMA);
   assert.equal(r.validation.controls.allPass, true);
-  assert.equal(r.validation.magnitudesAdjudicationEligible, true);
+  assert.equal(r.validation.pencilImplementationAnchorPasses, true);
+  assert.equal(r.validation.targetForceBalancePreconditionPasses, false);
+  assert.equal(r.validation.targetStabilityAdjudicationEligible, false);
+  assert.equal(r.validation.targetStabilityAdjudicationBlocker, "force_balance_precondition_failed");
+  assert.equal(r.validation.magnitudesAdjudicationEligible, false);
   assert.equal(r.sharedRecord.centralSolverTouched, false);
   assert.equal(r.object.isolatedTripleGate, false);
 });

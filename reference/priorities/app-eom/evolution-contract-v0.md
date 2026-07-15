@@ -5,9 +5,9 @@
 - Contract id: `eom_evolution_contract/v0`
 - Stage: `requirements-frozen`
 - Claim level: `priority-design`
-- Implementation status: `not-started`
+- Implementation status: `native-correctness-nucleus-and-borg-shadow-executable; production-conformance-open`
 - Model binding: frozen `master_eom_binding/v0`
-- Active amendments: [`eom_evolution_contract/v0/amendment-1`](evolution-contract-v0-amendment-1-million-path-scale.md)
+- Optional long-term scale amendment: [`eom_evolution_contract/v0/amendment-1`](evolution-contract-v0-amendment-1-million-path-scale.md); required only when a request or result claims the million-path profile
 - Initial-data type: continuous retained history functions only
 - Change control: revisions require an explicit contract amendment or successor version
 - Existing central solver: preserved for dependency compatibility and ineligible for this contract
@@ -247,7 +247,7 @@ No failure may publish a rejected candidate state as accepted history.
 
 ## Validation Ladder
 
-Before any consumer may use EOM motion for a critical decision, the implementation passes:
+Before any consumer may use EOM motion for a critical decision, the implementation passes the validations applicable to that consumer's declared envelope. `VAL-01` through `VAL-16` are the base correctness ladder. `VAL-17` and `VAL-18` apply only to a request or capability claim under the optional million-path amendment and do not block bounded-population canonical runs or migrations.
 
 | ID | Validation | Required result |
 | --- | --- | --- |

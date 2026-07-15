@@ -100,7 +100,7 @@ P_\gamma,
 \right),
 $$
 
-with source emission, a retained coaxial contra-rotating pro/anti planar pair packet, path-history propagation, receiver coupling, and residuals all in one record. The frequency transfer should read
+with source emission, a retained coaxial contra-rotating polarity-conjugate planar pair packet, path-history propagation, receiver coupling, and residuals all in one record. The frequency transfer should read
 
 $$
 \nu_R
@@ -140,7 +140,7 @@ $$
 
 ### Noether Braid Variables
 
-- photon branch $P_\gamma$ as a coaxial contra-rotating pro/anti planar pair;
+- photon branch $P_\gamma$ as a coaxial contra-rotating polarity-conjugate planar pair;
 - propagation axis $\hat{\mathbf e}$, pair spacing $d$, phase frequency $\omega=2\pi\nu$, and local photon-channel speed $c_\gamma$;
 - helicity ledger $\mathbf J_{\gamma}^{\mathrm{sub}}$ and transverse projector $P_\perp^{ab}=h^{ab}-\hat e^a\hat e^b$;
 - emission source depletion, recoil, wake, remnant, and handoff rows;
@@ -148,7 +148,7 @@ $$
 
 ### Constituent Motion Versus Photon-Channel Speed
 
-The photon-channel speed $c_\gamma$ is the group/transport speed of the retained coaxial contra-rotating pro/anti planar pair. It should not be identified with every constituent architrino's instantaneous internal speed. A useful priority-only decomposition for constituent $a$ is
+The photon-channel speed $c_\gamma$ is the group/transport speed of the retained coaxial contra-rotating polarity-conjugate planar pair. It should not be identified with every constituent architrino's instantaneous internal speed. A useful priority-only decomposition for constituent $a$ is
 $$
 \mathbf v_a
 =

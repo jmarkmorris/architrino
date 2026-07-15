@@ -77,7 +77,7 @@ Moved to a focused sibling file during the 2026-07-08 sort: [assembly-level-redu
 | Layer | Document | Ownership |
 | --- | --- | --- |
 | Canonical mass chapter | [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) | Reader-facing statement of the current mass thesis, definitions, and conservative explanatory path. |
-| Electroweak boson channel split | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Reader-facing distinction between massless coaxial contra-rotating pro/anti planar pair photon transport, massive $W/Z$ recoupling corridors, and the Higgs medium-mode comparison. |
+| Electroweak boson channel split | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Reader-facing distinction between massless coaxial contra-rotating polarity-conjugate planar pair photon transport, massive $W/Z$ recoupling corridors, and the Higgs medium-mode comparison. |
 | Energy ledger source | [Energy](../../../content/markdown/aaa/dynamics/energy.md) | Energy-zero convention, assembly energy bookkeeping, and the operational definition of inertial mass. |
 | Dynamics baseline | [Nested Shell Braid Dynamics](../../../content/markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics) | Noether braid roles, speed-regime conventions, delay geometry, stability diagnostics, and metric/connection reconstruction diagnostics. |
 | Reduced branch certificate | [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md) | First finite proof/simulation packet for the reduced $A_0$ branch search: carrier ansatz, root-ledger enumeration, averaging/locking/leakage lemmas, continuation gates, and promotion rules. |

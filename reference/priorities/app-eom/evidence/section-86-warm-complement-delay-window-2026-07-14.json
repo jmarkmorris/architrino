@@ -1,0 +1,97 @@
+{
+  "schema": "eom_section_86_warm_complement_delay_window/v0",
+  "date": "2026-07-14",
+  "measurement_policy": {
+    "serialized": true,
+    "control": "skipped_diagnostic_only",
+    "accepted_baseline_thread_count": 1,
+    "after_thread_count": 1,
+    "step": 0.0005,
+    "chart": "sharp_with_finite_width_fallback"
+  },
+  "change": {
+    "warm_object": "root_free_complement_cells",
+    "root_brackets_reused": false,
+    "source_segment_identity": "exact_token_identity",
+    "residual_transport": "receiver_normal_lipschitz_plus_candidate_correction",
+    "reuse_gate": "transported_residual_hull_has_strict_sign",
+    "fallback": "full_existing_cell_classifier",
+    "delay_bound": "receiver_radius_upper_plus_source_radius_upper_over_field_speed",
+    "root_tolerance_changed": false,
+    "source_normal_floor_changed": false,
+    "fail_closed_policy_changed": false,
+    "uniqueness_rule": "sign_definite_source_normal_hull"
+  },
+  "before": {
+    "step_wall_seconds": 7.153516,
+    "thread_count": 1,
+    "snapshot_count": 14,
+    "root_pair_count": 504,
+    "corrector_iterations": [4, 3, 2],
+    "rejected_steps": 0,
+    "middle_self_root_classification": "coincident_endpoint_root_continuation",
+    "root_mpfr_pair_count": 0,
+    "root_mpfr_attempt_count": 0
+  },
+  "after": {
+    "step_wall_seconds": 6.388428,
+    "thread_count": 1,
+    "snapshot_count": 14,
+    "root_pair_count": 504,
+    "root_reevaluated_cells": 168320,
+    "root_warm_excluded_cells": 39304,
+    "exact_root_batch_wall_seconds": 1.823121667,
+    "finite_width_execution_union_wall_seconds": 4.527491542,
+    "history_window_active_lower": -2.0091987601537618,
+    "history_window_excluded_duration": 5.9908,
+    "history_window_separation_upper": 2.00966,
+    "maximum_quadrature_cells": 1895,
+    "maximum_root_reevaluated_cells": 6095,
+    "maximum_root_warm_excluded_cells": 103,
+    "accepted_step_size": 0.0005,
+    "corrector_iterations": [4, 3, 2],
+    "rejected_steps": 0,
+    "middle_self_root_classification": "coincident_endpoint_root_continuation",
+    "finite_width_pairs": 2,
+    "root_mpfr_pair_count": 0,
+    "root_mpfr_attempt_count": 0
+  },
+  "same_window_warm_control": {
+    "thread_count": 8,
+    "without_warm_step_wall_seconds": 3.067462208,
+    "with_warm_step_wall_seconds": 3.163710458,
+    "without_warm_reevaluated_cells": 207234,
+    "with_warm_reevaluated_cells": 168320,
+    "reevaluated_cell_reduction_percent": 18.777806731,
+    "wall_speedup": 0.969575729,
+    "disposition": "certified_work_reduction_but_wall_clock_dud"
+  },
+  "comparison": {
+    "one_thread_step_speedup": 1.119761543841,
+    "one_thread_wall_reduction_percent": 10.695272087,
+    "projected_one_cycle_hours_at_eight_worker_measurement": 10.601,
+    "finite_width_fraction_of_one_thread_step": 0.708701975
+  },
+  "invariants": {
+    "accepted_csv_byte_identical_to_pre_window_tightening": true,
+    "native_oracle_status": "parity_complete",
+    "native_oracle_compared_snapshots": 2,
+    "native_oracle_compared_rows": 72,
+    "native_oracle_first_divergent_step_index": null,
+    "automatic_mpfr_fixture_status": "certified_complete",
+    "automatic_mpfr_fixture_precision_bits": 128
+  },
+  "suite_results": {
+    "independent_90_digit_root": {"tests": 23, "status": "pass"},
+    "native_history": {"tests": 14, "status": "pass"},
+    "native_acceleration": {"tests": 12, "status": "pass"},
+    "native_coupled_evolution": {"tests": 14, "status": "pass"},
+    "cmake_native_fixtures": {"tests": 3, "status": "pass"}
+  },
+  "stopping_rule": {
+    "rule": "three consecutive rounds below 1.5x or remaining total headroom below 2x",
+    "this_round_below_1_5x": true,
+    "consecutive_below_1_5x_rounds": 2,
+    "physics_run_launched": false
+  }
+}

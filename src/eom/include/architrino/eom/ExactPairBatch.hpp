@@ -8,6 +8,14 @@
 
 namespace architrino::eom {
 
+struct ExactPairCertificate;
+
+struct ExactPairWarmStart {
+  const ExactPairCertificate* certificate = nullptr;
+  const RetainedHistory* receiver = nullptr;
+  const RetainedHistory* source = nullptr;
+};
+
 struct ExactPairRequest {
   std::string row_id;
   const RetainedHistory* receiver;
@@ -22,6 +30,20 @@ struct ExactPairRequest {
   unsigned initial_mpfr_bits = 128;
   unsigned maximum_mpfr_bits = 512;
   bool force_precision_escalation = false;
+  // Return an uncertified advisory before entering MPFR so a cost-aware
+  // controller can adjust the receiver-time interval first.
+  bool defer_precision_escalation = false;
+  const ExactPairWarmStart* warm_start = nullptr;
+};
+
+struct NativeRootFreeCell {
+  std::size_t source_segment_index;
+  std::string lower;
+  std::string upper;
+  std::string residual_lower;
+  std::string residual_upper;
+  std::string receiver_normal_lower;
+  std::string receiver_normal_upper;
 };
 
 struct NativeRootBracket {
@@ -60,6 +82,15 @@ struct ExactPairCertificate {
   std::size_t excluded_cells;
   std::size_t difficult_cells;
   std::vector<NativeRootBracket> roots;
+  double binary64_cpu_seconds = 0.0;
+  double mpfr_cpu_seconds = 0.0;
+  std::size_t mpfr_attempt_count = 0;
+  double mpfr_escalation_cpu_seconds = 0.0;
+  std::size_t mpfr_escalation_attempt_count = 0;
+  std::size_t warm_excluded_cells = 0;
+  std::size_t reevaluated_cells = 0;
+  double warm_residual_drift_upper = 0.0;
+  std::vector<NativeRootFreeCell> root_free_cells;
 };
 
 [[nodiscard]] ExactPairCertificate certify_exact_pair(

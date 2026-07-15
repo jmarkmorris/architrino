@@ -14,10 +14,12 @@ add_library(eom_native STATIC
   src/Interval.cpp
   src/History.cpp
   src/BlockExclusion.cpp
+  src/CertifiedTraversal.cpp
   src/ExactPairBatch.cpp
   src/CertifiedAcceleration.cpp
   src/MultiprecisionAcceleration.cpp
   src/CoupledEvolution.cpp
+  src/Checkpoint.cpp
 )
 target_include_directories(eom_native
   PUBLIC include
@@ -41,6 +43,10 @@ target_compile_options(eom_native_acceleration_fixture_cli
 add_executable(eom_native_evolution_fixture_cli
   native/eom_native_evolution_fixture_cli.cpp
 )
+
+add_executable(eom_borg_shadow_cli native/eom_borg_shadow_cli.cpp)
+target_link_libraries(eom_borg_shadow_cli PRIVATE eom_native)
+target_compile_options(eom_borg_shadow_cli PRIVATE -Wall -Wextra -Wpedantic)
 target_link_libraries(eom_native_evolution_fixture_cli PRIVATE eom_native)
 target_compile_options(eom_native_evolution_fixture_cli
   PRIVATE -Wall -Wextra -Wpedantic

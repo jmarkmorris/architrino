@@ -329,7 +329,7 @@ $$
 =
 \langle\psi_{j,\text{mass}}^d,\psi_{k,\text{mass}}^d\rangle_{\mu_W^{(L)}}.
 $$
-For PMNS, use the same overlap form but replace quark shielding envelopes by mass-basis eigenmodes of the near-photon pro/anti Noether braid pair:
+For PMNS, use the same overlap form but replace quark shielding envelopes by mass-basis eigenmodes of the near-photon polarity-conjugate Noether braid pair:
 $$
 U_{\alpha k}
 =

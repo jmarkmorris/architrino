@@ -1626,7 +1626,7 @@ $$\mathbf{x}_j(t) = R_g \, \mathbf{x}_i(t + \Delta t_g)$$
 In Point 4 of your brainstorm, you noted that as the drift velocity $v_d \to c_f$, the spherical assembly collapses into a flat planar disk.
 
 A photon is the limiting case of this transition:
-*   It is a 6-architrino assembly (or a pro/anti Noether braid pair) where the 3D spherical scramble has been **permanently compressed into a 2D plane** because its macroscopic propagation speed is strictly locked to the field speed ($v_d = c_f$).
+*   It is a 6-architrino assembly (or a polarity-conjugate Noether braid pair) where the 3D spherical scramble has been **permanently compressed into a 2D plane** because its macroscopic propagation speed is strictly locked to the field speed ($v_d = c_f$).
 *   **Structure:** The architrinos execute a planar, phase-locked choreography (such as a rotating ring or a hypocycloid "rosette") in the $xy$-plane, while the entire assembly propagates along the $z$-axis at speed $c_f$.
 *   **Why it has zero rest mass:** Because all internal motion is transverse to the direction of propagation, there is no "longitudinal slack" to store rest mass. The assembly cannot be brought to rest; it must propagate at $c_f$ to maintain its planar dynamical stability.
 

@@ -10,7 +10,7 @@ The held-release spherical toy found a sharp support asymmetry:
 
 - `face-opposite` preserves center-zero, common-sphere, common-speed, and antipodal-pair residuals to roundoff scale in the tested Euclidean-void toy rows.
 - `axial-paired` uses the same six axial sites and the same $3\epsilon_+ + 3\epsilon_-$ inventory, but loses the common-sphere and antipodal-pair support window at ordinary scale.
-- The fermion mapping assigns matter/antimatter status to pro/anti Noether braid orientation carried by the whole retained branch record. Positrino/Electrino polarity remains charge and interaction bookkeeping, not the matter/antimatter label.
+- The fermion mapping assigns matter/antimatter status to pro/anti Noether braid orientation carried by the whole retained branch record. Positrino/Electrino polarity remains charge and interaction bookkeeping, not the matter/antimatter label. This mapping is now the canon-named [orientation-antimatter correspondence hypothesis](../../../content/markdown/aaa/archie/terminology-usage.md#orientation-antimatter-correspondence-hypothesis) (ratified 2026-07-15); it is a named hypothesis with a rival, and the fork section below makes this target the adjudicating instrument rather than a confirmation of its own assumption.
 
 Therefore the next target is not "which color sits on which octahedral site." The next target is whether an ordered-braid orientation reversal survives as one conjugate retained-history record across planar, oblate, and spherical projections.
 
@@ -35,6 +35,23 @@ $$
 $$
 
 must be solved as a branch-record operation. It may report the same spherical support class, a polarity-inverted charged-sector support ledger, `axial-paired`, or another projection, but the reported support section is an output diagnostic. It is not accepted as matter/antimatter evidence by itself.
+
+## The C-Image Versus CP-Image Fork and the Relative-$\chi_{\mathrm{pol}}$ Discriminator
+
+Added 2026-07-15 (operator closure goal). As originally written, this target instantiates only one conjugation map — $\mathfrak C_\chi$, which reverses ordered-braid orientation and conjugates the charged-sector ledger together, i.e. the $CP$-image relation. That is the orientation-antimatter correspondence hypothesis route. Its rival is the bare $C$-image relation: polarity conjugation at fixed worldline geometry, orientation preserved (the kernel-evenness degeneracy theorem of [spindle-braid](../../../content/markdown/aaa/noether-braid/spindle-braid.md)). A target that instantiates only one map cannot adjudicate between them; it can only confirm its own assumption. This section adds the fork and its discriminator.
+
+Candidate maps, booked on the same branch family:
+
+- $\mathfrak C_{CP} \equiv \mathfrak C_\chi$ (hypothesis route): orientation reversal plus charged-sector conjugation; predicted by sea-sourced pair production from complementary pro/anti oriented carriers.
+- $\mathfrak C_{C}$ (rival route): polarity conjugation at fixed worldlines; $o_{\mathrm{PA}}$ preserved.
+
+Discriminator booking. On each paired row, book the polarity-weighted handedness $\chi_{\mathrm{pol}}=\operatorname{sign}(\mathbf p\cdot\mathbf S)$ and report the relative sign across the pair as a new residual component $R_{\chi_{\mathrm{pol}}}$. Predictions: $\mathfrak C_{C}$ flips $\chi_{\mathrm{pol}}$ between partners; $\mathfrak C_{CP}$ preserves it. Validity conditions: the booking requires a nonzero polarity dipole and three-dimensional retained order — $\chi_{\mathrm{pol}}$ degenerates in the planar limit, so planar or dipole-degenerate charts cannot carry the discriminator and must report it `not-assignable` rather than zero.
+
+Benchmark adjudication. Which map corresponds to nature's populated antimatter is decided at the comparison layer against the weak-handedness benchmark (left-handed matter / right-handed antimatter weak exposure), through the $C_{\mathrm{eff}}$ comparison-chart obligation of [angular-momentum-and-spin](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). That chart mapping is itself an open obligation and must not be assumed. A pair-production-sourced adjudication additionally requires a validated pair channel and is integrator-gated per the 2026-07-12 solver quarantine; relative-$\chi_{\mathrm{pol}}$ chart bookings on prescribed candidate rows are definition-level readings and may run now.
+
+Schema and implementation debt. $R_{\chi_{\mathrm{pol}}}$ is a spec-level addition: the `braid_ideal_chirality_retained_history_target.v0` packet does not yet carry it. The producer extension — paired $\chi_{\mathrm{pol}}$ measurement rows ($\mathbf p$, $\mathbf S$, sign, validity flags) and the relative-sign residual, emitted for both $\mathfrak C_{C}$ and $\mathfrak C_{CP}$ rows on the same record — is named implementation debt for the owning thread. Do not report the fork adjudicated until both maps' rows exist on the same record and the validity conditions pass.
+
+Incremental value (per gate policy): this strengthens the existing $\mathcal R_\chi$ gate rather than adding a parallel instrument; it protects contact with the tested weak-handedness benchmark; and it cannot be replaced by advancing the native derivation alone, because it is the designated discriminator of a canon-named hypothesis.
 
 ## Required State Variables
 
@@ -103,6 +120,7 @@ The target fails closed under any of these outcomes:
 - The paired causal-root or wake-history ledgers differ by asymmetric pruning or missing windows.
 - The chirality record cannot be tied to the same branch identity as the support geometry.
 - Charge-conjugate mass-facing or charged-sector rows fail when the projection requires them.
+- The $C$/$CP$ fork is reported as adjudicated with only one conjugation map instantiated, or with $\chi_{\mathrm{pol}}$ booked on a planar or dipole-degenerate chart instead of reported `not-assignable`.
 
 ## Output Packet
 

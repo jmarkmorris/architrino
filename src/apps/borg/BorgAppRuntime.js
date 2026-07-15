@@ -12,6 +12,10 @@ import {
   mergeBorgFrameRows,
 } from "./BorgDynamicNativeRunner.js";
 import {
+  BORG_EOM_SHADOW_RUN_SOURCE,
+  createBorgEomShadowRunner,
+} from "./BorgEomShadowRunner.js";
+import {
   createMeasuredRunPresetCalibration,
   resolveMeasuredRunControlPreset,
   updateMeasuredRunPresetCalibration,
@@ -22,6 +26,8 @@ import {
   applyBorgLiveRunRetention,
 } from "./BorgLiveRunRetentionPolicy.js";
 import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
+import { createBorgPathTrails } from "./BorgPathTrails.js";
+import { loadBorgFixtureTrajectoryFrames } from "./BorgFixtureTrajectory.js";
 
 const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
@@ -101,10 +107,18 @@ const STATUS_TONE = Object.freeze({
   "exceeded-error-budget": "bad",
   "fail-closed-value": "bad",
   "native-backed-now": "good",
-  "computed-live-native-chunks": "good",
-  "live-native-running": "good",
+  "computed-central-solver-compatibility-chunks": "warn",
+  "central-solver-compatibility-output": "warn",
+  "computed-eom-shadow-chunks": "warn",
+  "eom-shadow-running": "warn",
+  "eom-shadow-output": "warn",
+  "canonical-eom-output": "good",
+  "live-native-running": "warn",
   "precomputed-fixture": "warn",
-  "fixture-fallback": "warn",
+  // A fallback means no solver was reachable and the app is replaying a
+  // recording. That is a failure, not a caution: read as a warning it looks
+  // like a slow live run.
+  "fixture-fallback": "bad",
   "live-native-error": "bad",
   "completed-live-native-run": "good",
   "measured-live-run-budget": "good",
@@ -113,6 +127,24 @@ const STATUS_TONE = Object.freeze({
   failed: "bad",
   passed: "good",
   "not-measured": "warn",
+});
+
+const STATUS_LABEL = Object.freeze({
+  "computed-central-solver-compatibility-chunks": "Live compute",
+  "live-native-running": "Live compute",
+  "computed-eom-shadow-chunks": "EOM compute",
+  "eom-shadow-running": "EOM compute",
+  "precomputed-fixture": "Fixture replay",
+  "fixture-fallback": "Fixture fallback",
+  "live-native-error": "Solver stopped",
+  "completed-live-native-run": "Live complete",
+});
+
+const SOLVER_FAILURE_BANNERS = Object.freeze({
+  "fixture-fallback":
+    "Not computing. No solver could be reached, so this is a replay of a saved recording.",
+  "live-native-error":
+    "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
 });
 
 const PARTICLE_POLARITY_STYLES = Object.freeze({
@@ -141,6 +173,7 @@ export function mountBorgApp(options = {}) {
 
   const dom = {
     app: queryRequiredElement(documentLike, "#borg-app"),
+    solverBanner: documentLike.querySelector?.("#borg-solver-banner") ?? null,
     canvas: queryRequiredElement(documentLike, "#borg-canvas"),
     layerStrip: queryRequiredElement(documentLike, "#borg-layer-strip"),
     envelopeFields: queryRequiredElement(documentLike, "#borg-envelope-fields"),
@@ -156,6 +189,13 @@ export function mountBorgApp(options = {}) {
     selectedTag: queryRequiredElement(documentLike, "#borg-selected-tag"),
     timelineRange: queryRequiredElement(documentLike, "#borg-time-range"),
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
+    eomControls: queryRequiredElement(documentLike, "#borg-eom-controls"),
+    eomPathCount: queryRequiredElement(documentLike, "#borg-eom-path-count"),
+    eomDuration: queryRequiredElement(documentLike, "#borg-eom-duration"),
+    eomStopButton: queryRequiredElement(documentLike, "#borg-eom-stop-button"),
+    eomRestartButton: queryRequiredElement(documentLike, "#borg-eom-restart-button"),
+    eomProgress: queryRequiredElement(documentLike, "#borg-eom-progress"),
+    eomProgressLabel: queryRequiredElement(documentLike, "#borg-eom-progress-label"),
     runDurationButton: queryRequiredElement(documentLike, "#borg-run-duration-button"),
     playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
@@ -167,7 +207,12 @@ export function mountBorgApp(options = {}) {
     focusButton: queryRequiredElement(documentLike, "#borg-focus-selected-button"),
   };
 
-  const fixtureFrames = [...manifest.currentStateFrames];
+  // Only the seed rows are parsed before the first paint. The recorded
+  // trajectory is a separate asset, fetched on demand by the two consumers
+  // that need it: the fixture fallback and the EOM shadow run.
+  let fixtureFrames = [...(options.fixtureTrajectoryFrames ?? manifest.currentStateFrames)];
+  let fixtureTrajectoryLoaded = Boolean(options.fixtureTrajectoryFrames);
+  let fixtureTrajectoryPromise = null;
   let currentFrames = [...fixtureFrames];
   let frameSets = createBorgFrameSetsFromRows(currentFrames);
   const worldUnitsPerSolverUnit =
@@ -203,10 +248,21 @@ export function mountBorgApp(options = {}) {
   const raycaster = new THREE.Raycaster();
   raycaster.params.Points.threshold = ARCHITRINO_PICK_THRESHOLD;
   const pointerNdc = new THREE.Vector2();
+  // Scratch vectors reused every frame. These conversions run once per
+  // architrino per frame; allocating here is what makes the garbage collector
+  // a visible part of the frame budget.
+  const velocityStart = new THREE.Vector3();
+  const velocityDirection = new THREE.Vector3();
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
   const particleStyles = createParticleStyles(currentFrames);
+  const pathTrails = createBorgPathTrails({
+    group: pathGroup,
+    renderOrder: PATH_RENDER_ORDER,
+    getStyle: (pathKey) => getParticleStyle(pathKey, particleStyles),
+    toWorld: writeSolverPositionToWorld,
+  });
 
   const state = {
     activeFrameIndex: frameSets[0]?.frameIndex ?? 0,
@@ -237,12 +293,24 @@ export function mountBorgApp(options = {}) {
     sourceMode: "precomputed-fixture",
     dynamicRunnerStatus: "precomputed-fixture",
     dynamicRunnerMessage: "static native fixture loaded",
+    dynamicRunnerKind: "compatibility-fixture",
     dynamicRunner: null,
     dynamicChunkPromise: null,
     dynamicChunksComputed: 0,
     dynamicTargetDuration: null,
     dynamicChunkDuration: null,
     dynamicRunGeneration: 0,
+    eomPathCount: boundedInteger(
+      options.eomShadowRunner?.pathCount,
+      manifest.population?.architrinoCount ?? 1,
+      1,
+      manifest.population?.architrinoCount ?? 1,
+    ),
+    eomRunDuration: positiveControlNumber(
+      options.eomShadowRunner?.runDuration ??
+        Number(options.eomShadowRunner?.targetDuration) - Number(options.eomShadowRunner?.startTime),
+      0.01,
+    ),
     liveRunBudget: createEmptyLiveRunBudget(),
     compactedPathHistory: Object.freeze({}),
     liveRunRetention: createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames }),
@@ -259,6 +327,7 @@ export function mountBorgApp(options = {}) {
   renderStaticPanels();
   renderLayerStrip();
   configureTimeline();
+  configureEomControls();
   resetView();
   bindEvents();
   updateLayerVisibility();
@@ -292,28 +361,7 @@ export function mountBorgApp(options = {}) {
     );
     outerCubeGroup.visible = false;
 
-    getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey, particleStyles);
-      const points = currentFrames
-        .filter((frame) => frame.pathKey === pathKey)
-        .sort((left, right) => left.frameIndex - right.frameIndex)
-        .map((frame) => solverPositionToWorld(frame.position));
-      if (points.length < 2) {
-        return;
-      }
-      const geometry = createPathSegmentGeometry(points);
-      const material = new THREE.LineBasicMaterial({
-        color: style.pathColor ?? style.velocityColor ?? style.color,
-        transparent: true,
-        opacity: 0.9,
-        depthTest: false,
-        depthWrite: false,
-      });
-      const trail = new THREE.LineSegments(geometry, material);
-      trail.visible = false;
-      trail.renderOrder = PATH_RENDER_ORDER;
-      pathGroup.add(trail);
-    });
+    rebuildPathTrails();
 
     getPathKeys().forEach((pathKey) => {
       const style = getParticleStyle(pathKey, particleStyles);
@@ -346,7 +394,11 @@ export function mountBorgApp(options = {}) {
         new THREE.Vector3(),
         new THREE.Vector3(1, 0, 0),
       ]);
+      velocityGeometry.getAttribute("position").setUsage(THREE.DynamicDrawUsage);
       const velocityLine = new THREE.Line(velocityGeometry, velocityMaterial);
+      // Endpoints are rewritten in place every frame; a cached bounding sphere
+      // would cull the line once the architrino leaves its initial bounds.
+      velocityLine.frustumCulled = false;
       velocityLine.visible = false;
       velocityGroup.add(velocityLine);
       velocityLines.set(pathKey, velocityLine);
@@ -367,7 +419,9 @@ export function mountBorgApp(options = {}) {
 
   function renderStaticPanels() {
     updateSourceStatusPresentation();
-    dom.manifestStatus.textContent = surfaceDesign.claimLevel;
+    dom.manifestStatus.textContent = "Developer test";
+    dom.manifestStatus.dataset.status = surfaceDesign.claimLevel;
+    dom.manifestStatus.title = surfaceDesign.claimLevel;
     setTone(dom.manifestStatus, "app-facing-projection");
 
     renderSourceFields();
@@ -441,6 +495,9 @@ export function mountBorgApp(options = {}) {
       ["Distribution", state.distributionLabel],
       ["Run budget", state.liveRunBudget.status],
       ["Live status", state.dynamicRunnerStatus],
+      ["Runner kind", state.dynamicRunnerKind],
+      ["EOM architrinos", options.eomShadowRunner ? state.eomPathCount : "not-applicable"],
+      ["EOM requested duration", options.eomShadowRunner ? state.eomRunDuration : "not-applicable"],
       ["Live target", state.dynamicTargetDuration ?? "not-started"],
       ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
       ["Live chunks", state.dynamicChunksComputed],
@@ -579,6 +636,66 @@ export function mountBorgApp(options = {}) {
     dom.playbackSpeed.value = state.playbackSpeedPresetId;
   }
 
+  function configureEomControls() {
+    const enabled = Boolean(options.eomShadowRunner);
+    dom.eomControls.hidden = !enabled;
+    if (!enabled) {
+      return;
+    }
+    const maximumPathCount = manifest.population?.architrinoCount ?? 1;
+    dom.eomPathCount.min = "1";
+    dom.eomPathCount.max = String(maximumPathCount);
+    dom.eomPathCount.value = String(state.eomPathCount);
+    dom.eomDuration.min = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
+    dom.eomDuration.step = String(options.eomShadowRunner?.sampleInterval ?? 0.01);
+    dom.eomDuration.value = String(state.eomRunDuration);
+    updateEomControlPresentation();
+  }
+
+  function updateEomControlPresentation() {
+    if (!options.eomShadowRunner) {
+      return;
+    }
+    const chunkDuration = positiveControlNumber(
+      options.eomShadowRunner.chunkDuration,
+      options.eomShadowRunner.sampleInterval ?? 0.01,
+    );
+    const requestedSteps = Math.max(1, Math.ceil(state.eomRunDuration / chunkDuration));
+    const completedSteps = Math.min(requestedSteps, state.dynamicChunksComputed);
+    const displayStatus = ({
+      "eom-shadow-running": "running",
+      "computed-eom-shadow-chunks": "running",
+      "completed-live-native-run": "complete",
+      "eom-shadow-stopped": "stopped",
+      "live-native-error": "failed",
+      "fixture-fallback": "failed",
+    })[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
+    dom.eomProgress.max = String(requestedSteps);
+    dom.eomProgress.value = String(completedSteps);
+    const failureDetail = displayStatus === "failed"
+      ? ` | ${state.dynamicRunnerMessage}`
+      : "";
+    dom.eomProgressLabel.value =
+      `${completedSteps} / ${requestedSteps} chunks | ${displayStatus}${failureDetail}`;
+    dom.eomStopButton.disabled = !state.dynamicRunner && !state.dynamicChunkPromise;
+  }
+
+  function readEomControlValues() {
+    const maximumPathCount = manifest.population?.architrinoCount ?? 1;
+    state.eomPathCount = boundedInteger(
+      dom.eomPathCount.value,
+      state.eomPathCount,
+      1,
+      maximumPathCount,
+    );
+    state.eomRunDuration = positiveControlNumber(
+      dom.eomDuration.value,
+      state.eomRunDuration,
+    );
+    dom.eomPathCount.value = String(state.eomPathCount);
+    dom.eomDuration.value = String(state.eomRunDuration);
+  }
+
   function syncRunDurationButton() {
     const preset = getRunControlPreset(state.runControlPresetId);
     const label = formatRunDurationLabel(preset);
@@ -593,9 +710,21 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.min = String(Math.min(...frameIndexes));
     dom.timelineRange.max = String(Math.max(...frameIndexes));
     dom.timelineRange.step = "1";
+    dom.timelineRange.dataset.mode = isForeverRunPreset(getRunControlPreset(state.runControlPresetId))
+      ? "live-buffer"
+      : "finite-run";
     dom.timelineRange.value = String(
       clamp(state.activeFrameIndex, Number(dom.timelineRange.min), Number(dom.timelineRange.max)),
     );
+  }
+
+  function formatActiveTimelineLabel(time, frameIndex) {
+    const label = formatTimelineLabel(time, frameIndex);
+    if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
+      return label;
+    }
+    const bufferedThrough = frameSets.at(-1)?.frameIndex ?? frameIndex;
+    return `${label} | buffer ${bufferedThrough}`;
   }
 
   function bindEvents() {
@@ -609,6 +738,8 @@ export function mountBorgApp(options = {}) {
     dom.startButton.addEventListener("click", goToStartFrame);
     dom.newDistributionButton.addEventListener("click", startNewDistributionRun);
     dom.runDurationButton.addEventListener("click", toggleRunDurationMode);
+    dom.eomStopButton.addEventListener("click", stopEomRun);
+    dom.eomRestartButton.addEventListener("click", restartEomRun);
     dom.playbackSpeed.addEventListener("change", () => {
       state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
       if (state.playing) {
@@ -655,13 +786,14 @@ export function mountBorgApp(options = {}) {
     cubeGroup.visible = state.activeLayers.has("simulation-window");
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
-    pathGroup.children.forEach((trail) => {
-      trail.visible = pathGroup.visible;
-    });
+    pathTrails.setVisible(pathGroup.visible);
     velocityGroup.visible = state.activeLayers.has("velocity-vectors");
     velocityLines.forEach((line) => {
       line.visible = velocityGroup.visible;
     });
+    if (velocityGroup.visible) {
+      refreshVelocityLines();
+    }
   }
 
   function syncLayerButtons() {
@@ -679,7 +811,7 @@ export function mountBorgApp(options = {}) {
       return;
     }
     applyFrameSet(frameSet, {
-      outputLabel: formatTimelineLabel(frameSet.time, frameSet.frameIndex),
+      outputLabel: formatActiveTimelineLabel(frameSet.time, frameSet.frameIndex),
       rangeValue: frameSet.frameIndex,
     });
   }
@@ -688,17 +820,42 @@ export function mountBorgApp(options = {}) {
     state.activeFrameIndex = frameSet.frameIndex;
     dom.timelineRange.value = String(rangeValue);
     dom.timelineOutput.value = outputLabel;
+    dom.timelineRange.setAttribute("aria-valuetext", outputLabel);
+    particleObjects.forEach((particle) => {
+      particle.visible = false;
+    });
+    velocityLines.forEach((line) => {
+      line.visible = false;
+    });
+    const showVelocity = state.activeLayers.has("velocity-vectors");
+    const showPoints = state.activeLayers.has("architrino-position");
     frameSet.frames.forEach((frame) => {
       const particle = particleObjects.get(frame.pathKey);
       if (!particle) {
         return;
       }
-      particle.position.copy(solverPositionToWorld(frame.position));
+      particle.visible = showPoints;
+      writeSolverPositionToWorld(frame.position, particle.position);
       particle.userData.frame = frame;
-      updateVelocityLine(frame);
+      if (showVelocity) {
+        updateVelocityLine(frame);
+      }
     });
+    // The trail is history: it ends at the architrino and never runs ahead of
+    // it. Rows are computed ahead of playback, so this bound is what keeps the
+    // future off screen.
+    pathTrails.setThroughFrameIndex(frameSet.frameIndex);
     updateSelectedTag();
     render();
+  }
+
+  function refreshVelocityLines() {
+    particleObjects.forEach((particle) => {
+      const frame = particle.userData.frame;
+      if (frame) {
+        updateVelocityLine(frame);
+      }
+    });
   }
 
   function updateVelocityLine(frame) {
@@ -706,14 +863,24 @@ export function mountBorgApp(options = {}) {
     if (!line) {
       return;
     }
-    const start = solverPositionToWorld(frame.position);
-    const velocity = new THREE.Vector3(frame.velocity.x, frame.velocity.y, frame.velocity.z);
-    const speed = velocity.length();
-    const direction = speed > 0 ? velocity.normalize() : new THREE.Vector3(1, 0, 0);
-    const end = start
-      .clone()
-      .add(direction.multiplyScalar(Math.log10(1 + speed) * 0.88));
-    line.geometry.setFromPoints([start, end]);
+    writeSolverPositionToWorld(frame.position, velocityStart);
+    velocityDirection.set(frame.velocity.x, frame.velocity.y, frame.velocity.z);
+    const speed = velocityDirection.length();
+    if (speed > 0) {
+      velocityDirection.normalize();
+    } else {
+      velocityDirection.set(1, 0, 0);
+    }
+    const length = Math.log10(1 + speed) * 0.88;
+    const positions = line.geometry.getAttribute("position");
+    positions.setXYZ(0, velocityStart.x, velocityStart.y, velocityStart.z);
+    positions.setXYZ(
+      1,
+      velocityStart.x + velocityDirection.x * length,
+      velocityStart.y + velocityDirection.y * length,
+      velocityStart.z + velocityDirection.z * length,
+    );
+    positions.needsUpdate = true;
     line.visible = state.activeLayers.has("velocity-vectors");
   }
 
@@ -848,7 +1015,7 @@ export function mountBorgApp(options = {}) {
           return;
         }
         applyFrameSet(frameSets.at(-1), {
-          outputLabel: formatTimelineLabel(frameSets.at(-1).time, frameSets.at(-1).frameIndex),
+          outputLabel: formatActiveTimelineLabel(frameSets.at(-1).time, frameSets.at(-1).frameIndex),
           rangeValue: frameSets.at(-1).frameIndex,
         });
         stopPlayback();
@@ -865,12 +1032,12 @@ export function mountBorgApp(options = {}) {
     const displayFrameSet = interpolateFrameSet(fromFrameSet, toFrameSet, progress);
     const currentFrameIndex = progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex;
     applyFrameSet(displayFrameSet, {
-      outputLabel: formatTimelineLabel(displayFrameSet.time, currentFrameIndex),
+      outputLabel: formatActiveTimelineLabel(displayFrameSet.time, currentFrameIndex),
       rangeValue: currentFrameIndex,
     });
     if (progress >= 1) {
       applyFrameSet(toFrameSet, {
-        outputLabel: formatTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
+        outputLabel: formatActiveTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
         rangeValue: toFrameSet.frameIndex,
       });
       if (state.playbackToSetIndex >= frameSets.length - 1) {
@@ -1037,14 +1204,15 @@ export function mountBorgApp(options = {}) {
     renderer.dispose();
   }
 
-  function solverPositionToWorld(position) {
+  /** Write solver coordinates into an existing {x,y,z} target; no allocation. */
+  function writeSolverPositionToWorld(position, target) {
     const center = manifest.simulationEnvelope.centralVolume.center;
-    return new THREE.Vector3(
-      (position.x - center.x) * worldUnitsPerSolverUnit,
-      (position.y - center.y) * worldUnitsPerSolverUnit,
-      (position.z - center.z) * worldUnitsPerSolverUnit,
-    );
+    target.x = (position.x - center.x) * worldUnitsPerSolverUnit;
+    target.y = (position.y - center.y) * worldUnitsPerSolverUnit;
+    target.z = (position.z - center.z) * worldUnitsPerSolverUnit;
+    return target;
   }
+
 
   function fitCameraToCentralCube(margin) {
     const worldSide = manifest.simulationEnvelope.centralVolumeSideLength * worldUnitsPerSolverUnit;
@@ -1081,7 +1249,10 @@ export function mountBorgApp(options = {}) {
   }
 
   function getRunInitialFrameRows() {
-    return state.distributionFrameRows ?? fixtureFrames;
+    const rows = state.distributionFrameRows ?? fixtureFrames;
+    return options.eomShadowRunner
+      ? selectFrameRowsByPathCount(rows, state.eomPathCount)
+      : rows;
   }
 
   function getRunControlPreset(presetId) {
@@ -1113,7 +1284,17 @@ export function mountBorgApp(options = {}) {
       restoreFixtureRun();
       return;
     }
-    const runnerOptions = createDefaultDynamicRunnerOptions(
+    const eomRunnerOptions = createDefaultEomShadowRunnerOptions(
+      options,
+      preset,
+      getRunInitialFrameRows(),
+      manifest,
+      {
+        pathCount: state.eomPathCount,
+        runDuration: state.eomRunDuration,
+      },
+    );
+    const runnerOptions = eomRunnerOptions ?? createDefaultDynamicRunnerOptions(
       windowLike,
       options,
       preset,
@@ -1129,10 +1310,27 @@ export function mountBorgApp(options = {}) {
       return;
     }
     const generation = state.dynamicRunGeneration;
-    state.dynamicRunner = createBorgDynamicNativeRunner(manifest, runnerOptions);
+    try {
+      state.dynamicRunner = eomRunnerOptions
+        ? createBorgEomShadowRunner(manifest, runnerOptions)
+        : createBorgDynamicNativeRunner(manifest, runnerOptions);
+    } catch (error) {
+      restoreFixtureRun();
+      state.dynamicRunnerStatus = eomRunnerOptions ? "live-native-error" : "fixture-fallback";
+      state.dynamicRunnerMessage = error?.message ?? "live runner failed";
+      state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "compatibility-failed";
+      updateSourceStatusPresentation();
+      renderSourceFields();
+      renderDeploymentFields();
+      return;
+    }
+    state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow" : "central-solver-compatibility";
     applyMeasuredPresetLimitsToDynamicRunner();
-    state.dynamicRunnerStatus = "live-native-running";
-    state.dynamicRunnerMessage = "computing native chunks";
+    state.dynamicRunnerStatus = eomRunnerOptions ? "eom-shadow-running" : "live-native-running";
+    state.dynamicRunnerMessage = eomRunnerOptions
+      ? "computing certified EOM shadow chunks"
+      : "computing central-solver compatibility chunks";
+    updateEomControlPresentation();
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
@@ -1146,8 +1344,12 @@ export function mountBorgApp(options = {}) {
     if (!state.dynamicRunner || state.dynamicChunkPromise || !state.dynamicRunner.canComputeNextChunk()) {
       return state.dynamicChunkPromise;
     }
-    state.dynamicRunnerStatus = "live-native-running";
-    state.dynamicRunnerMessage = "computing native chunk";
+    state.dynamicRunnerStatus = options.eomShadowRunner
+      ? "eom-shadow-running"
+      : "live-native-running";
+    state.dynamicRunnerMessage = options.eomShadowRunner
+      ? "computing certified EOM shadow chunk"
+      : "computing native chunk";
     updateSourceStatusPresentation();
     renderSourceFields();
     const budgetBefore = readLiveRunBudgetSnapshot(windowLike);
@@ -1159,9 +1361,9 @@ export function mountBorgApp(options = {}) {
           return null;
         }
         state.dynamicChunksComputed += 1;
-        state.sourceMode = BORG_DYNAMIC_NATIVE_RUN_SOURCE;
+        state.sourceMode = chunk.source;
         state.dynamicRunnerStatus = state.dynamicRunner.canComputeNextChunk()
-          ? BORG_DYNAMIC_NATIVE_RUN_SOURCE
+          ? chunk.source
           : "completed-live-native-run";
         state.dynamicRunnerMessage = `chunk ${chunk.chunkIndex} ready`;
         currentFrames = replaceFixture
@@ -1188,7 +1390,14 @@ export function mountBorgApp(options = {}) {
         );
         applyMeasuredPresetLimitsToDynamicRunner();
         syncRunDurationButton();
-        rebuildPathTrails();
+        if (replaceFixture || state.liveRunRetention?.compactedThisPass) {
+          // History changed underneath the trails: the fixture was swapped for
+          // live rows, or a retention pass moved older rows into compacted
+          // history. Otherwise the chunk is pure new history, so append it.
+          rebuildPathTrails();
+        } else {
+          appendPathTrailRows(chunk.frames);
+        }
         updateTimelineBounds();
         if (replaceFixture) {
           updateFrame(frameSets[0]?.frameIndex ?? 0);
@@ -1198,13 +1407,19 @@ export function mountBorgApp(options = {}) {
         updateSourceStatusPresentation();
         renderSourceFields();
         renderDeploymentFields();
+        updateEomControlPresentation();
         return chunk;
       })
       .catch((error) => {
         if (generation !== state.dynamicRunGeneration) {
           return null;
         }
-        const hadLiveFrames = state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE;
+        const hadLiveFrames =
+          state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE ||
+          state.sourceMode === BORG_EOM_SHADOW_RUN_SOURCE;
+        const failedRunner = state.dynamicRunner;
+        state.dynamicRunner = null;
+        failedRunner?.dispose?.();
         state.dynamicRunnerStatus = hadLiveFrames ? "live-native-error" : "fixture-fallback";
         state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
         if (!hadLiveFrames) {
@@ -1221,14 +1436,48 @@ export function mountBorgApp(options = {}) {
         updateSourceStatusPresentation();
         renderSourceFields();
         renderDeploymentFields();
+        updateEomControlPresentation();
         return null;
       })
       .finally(() => {
         if (generation === state.dynamicRunGeneration) {
           state.dynamicChunkPromise = null;
+          updateEomControlPresentation();
+          if (options.eomShadowRunner && state.dynamicRunner?.canComputeNextChunk()) {
+            windowLike.setTimeout(
+              () => ensureDynamicFramesAhead({ generation }),
+              0,
+            );
+          }
         }
       });
     return state.dynamicChunkPromise;
+  }
+
+  function stopEomRun() {
+    if (!options.eomShadowRunner) {
+      return;
+    }
+    stopPlayback();
+    disposeDynamicRunner();
+    state.dynamicRunnerStatus = "eom-shadow-stopped";
+    state.dynamicRunnerMessage = "stopped by operator; no further history published";
+    updateSourceStatusPresentation();
+    renderSourceFields();
+    updateEomControlPresentation();
+  }
+
+  function restartEomRun() {
+    if (!options.eomShadowRunner) {
+      return;
+    }
+    readEomControlValues();
+    stopPlayback();
+    disposeDynamicRunner();
+    state.distributionFrameRows = null;
+    state.distributionLabel = `manifest retained-history subset (${state.eomPathCount})`;
+    resetDynamicRunState();
+    startDynamicNativeRunner();
   }
 
   function canExtendDynamicRun() {
@@ -1269,68 +1518,63 @@ export function mountBorgApp(options = {}) {
     state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames });
   }
 
+  /**
+   * Discard every trail and rewrite it from the current rows. Only for the
+   * cases where history genuinely changed underneath us: a fixture restore, a
+   * new distribution, or a retention pass that moved rows into compacted
+   * history. Ordinary chunk arrivals append instead.
+   */
   function rebuildPathTrails() {
-    disposePathTrails();
-    renderCompactedPathTrails();
-    getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey, particleStyles);
-      const points = currentFrames
-        .filter((frame) => frame.pathKey === pathKey)
-        .sort((left, right) => left.frameIndex - right.frameIndex)
-        .map((frame) => solverPositionToWorld(frame.position));
-      if (points.length < 2) {
-        return;
-      }
-      const geometry = createPathSegmentGeometry(points);
-      const material = new THREE.LineBasicMaterial({
-        color: style.pathColor ?? style.velocityColor ?? style.color,
-        transparent: true,
-        opacity: 0.9,
-        depthTest: false,
-        depthWrite: false,
-      });
-      const trail = new THREE.LineSegments(geometry, material);
-      trail.visible = pathGroup.visible;
-      trail.renderOrder = PATH_RENDER_ORDER;
-      pathGroup.add(trail);
+    pathTrails.reset({
+      frameRows: currentFrames,
+      compactedPathHistory: state.compactedPathHistory,
     });
+    pathTrails.setThroughFrameIndex(state.activeFrameIndex);
   }
 
-  function renderCompactedPathTrails() {
-    Object.entries(state.compactedPathHistory).forEach(([pathKey, points]) => {
-      if (!Array.isArray(points) || points.length < 2) {
-        return;
-      }
-      const style = getParticleStyle(Number(pathKey), particleStyles);
-      const geometry = createPathSegmentGeometry(
-        points.map((point) => solverPositionToWorld(point.position)),
-      );
-      const material = new THREE.LineBasicMaterial({
-        color: style.pathColor ?? style.velocityColor ?? style.color,
-        transparent: true,
-        opacity: 0.42,
-        depthTest: false,
-        depthWrite: false,
-      });
-      const trail = new THREE.LineSegments(geometry, material);
-      trail.visible = pathGroup.visible;
-      trail.renderOrder = PATH_RENDER_ORDER - 1;
-      pathGroup.add(trail);
-    });
+  function appendPathTrailRows(frameRows) {
+    pathTrails.setCompactedPathHistory(state.compactedPathHistory);
+    pathTrails.appendFrameRows(frameRows);
   }
 
   function disposePathTrails() {
-    while (pathGroup.children.length > 0) {
-      const child = pathGroup.children[0];
-      pathGroup.remove(child);
-      child.geometry?.dispose?.();
-      child.material?.dispose?.();
-    }
+    pathTrails.dispose();
   }
 
   function updateSourceStatusPresentation() {
-    dom.nativeStatus.textContent = state.dynamicRunnerStatus;
+    dom.nativeStatus.textContent = STATUS_LABEL[state.dynamicRunnerStatus] ?? state.dynamicRunnerStatus;
+    dom.nativeStatus.dataset.status = state.dynamicRunnerStatus;
+    dom.nativeStatus.title = state.dynamicRunnerMessage
+      ? `${state.dynamicRunnerStatus}: ${state.dynamicRunnerMessage}`
+      : state.dynamicRunnerStatus;
     setTone(dom.nativeStatus, state.dynamicRunnerStatus);
+    updateSolverBanner();
+  }
+
+  /**
+   * Say plainly when nothing is being computed. A silent fallback to a
+   * recording is indistinguishable from a live run that is merely slow, which
+   * is the failure this banner exists to prevent.
+   */
+  function updateSolverBanner() {
+    const banner = dom.solverBanner;
+    if (!banner) {
+      return;
+    }
+    const message = SOLVER_FAILURE_BANNERS[state.dynamicRunnerStatus];
+    if (!message) {
+      banner.hidden = true;
+      banner.textContent = "";
+      return;
+    }
+    banner.textContent = "";
+    const headline = documentLike.createElement("div");
+    headline.textContent = message;
+    const detail = documentLike.createElement("div");
+    detail.className = "borg-solver-banner-detail";
+    detail.textContent = state.dynamicRunnerMessage ?? "";
+    banner.append(headline, detail);
+    banner.hidden = false;
   }
 
   function switchRunControlPreset(presetId) {
@@ -1362,10 +1606,40 @@ export function mountBorgApp(options = {}) {
     startDynamicNativeRunner();
   }
 
+  /**
+   * Fetch the recorded trajectory the first time a fixture replay needs it.
+   * Until it arrives the app shows the seed state, which is honest: that is
+   * all the history it has.
+   */
+  function ensureFixtureTrajectoryLoaded() {
+    if (fixtureTrajectoryLoaded || fixtureTrajectoryPromise) {
+      return fixtureTrajectoryPromise;
+    }
+    const load = options.loadFixtureTrajectoryFrames ?? loadBorgFixtureTrajectoryFrames;
+    fixtureTrajectoryPromise = Promise.resolve()
+      .then(() => load({ manifest }))
+      .then((frames) => {
+        fixtureTrajectoryLoaded = true;
+        fixtureFrames = [...frames];
+        if (state.sourceMode === "precomputed-fixture") {
+          restoreFixtureRun();
+        }
+        return frames;
+      })
+      .catch((error) => {
+        state.dynamicRunnerMessage = `recorded trajectory unavailable: ${error?.message ?? error}`;
+        updateSourceStatusPresentation();
+        renderSourceFields();
+        return null;
+      });
+    return fixtureTrajectoryPromise;
+  }
+
   function restoreFixtureRun() {
     disposeDynamicRunner();
     state.distributionFrameRows = null;
     state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
+    ensureFixtureTrajectoryLoaded();
     currentFrames = [...fixtureFrames];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
     resetLiveRunRetentionState();
@@ -1373,6 +1647,7 @@ export function mountBorgApp(options = {}) {
     state.sourceMode = "precomputed-fixture";
     state.dynamicRunnerStatus = "precomputed-fixture";
     state.dynamicRunnerMessage = "static native fixture loaded";
+    state.dynamicRunnerKind = "compatibility-fixture";
     state.dynamicChunksComputed = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
@@ -1395,6 +1670,7 @@ export function mountBorgApp(options = {}) {
       : "precomputed-fixture";
     state.dynamicRunnerStatus = "live-native-running";
     state.dynamicRunnerMessage = "computing native chunks";
+    state.dynamicRunnerKind = options.eomShadowRunner ? "eom-shadow" : "central-solver-compatibility";
     state.dynamicChunksComputed = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
@@ -1404,6 +1680,7 @@ export function mountBorgApp(options = {}) {
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
+    updateEomControlPresentation();
   }
 
   function startNewDistributionRun() {
@@ -1428,15 +1705,8 @@ export function mountBorgApp(options = {}) {
     const runner = state.dynamicRunner;
     state.dynamicRunner = null;
     runner?.dispose?.();
+    updateEomControlPresentation();
   }
-}
-
-function createPathSegmentGeometry(points) {
-  const segmentPoints = [];
-  for (let index = 1; index < points.length; index += 1) {
-    segmentPoints.push(points[index - 1], points[index]);
-  }
-  return new THREE.BufferGeometry().setFromPoints(segmentPoints);
 }
 
 function queryRequiredElement(documentLike, selector) {
@@ -1560,6 +1830,51 @@ function createDefaultDynamicRunnerOptions(
     scope: windowLike,
     ...workerOptions,
     requestTimeoutMs: configured.requestTimeoutMs ?? 120000,
+  };
+}
+
+function createDefaultEomShadowRunnerOptions(
+  options = {},
+  preset = runControlPresetById(),
+  initialFrameRows = null,
+  manifest = BORG_DATASET_MANIFEST_V1,
+  runtimeControls = {},
+) {
+  if (options.eomShadowRunner === false || options.enableEomShadowRunner === false) {
+    return null;
+  }
+  const configured =
+    options.eomShadowRunner && typeof options.eomShadowRunner === "object"
+      ? options.eomShadowRunner
+      : null;
+  if (!configured?.eomClient) {
+    return null;
+  }
+  const historyEndTime = finiteBudgetNumber(
+    configured.startTime ?? options.eomHistoryEndTime ??
+      manifest.trajectoryRecord?.historyEndTime,
+  );
+  const requestedTarget = configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration;
+  const targetDuration = Number.isFinite(Number(requestedTarget))
+    ? Number(requestedTarget)
+    : historyEndTime + (finiteBudgetNumber(configured.chunkDuration) ?? 20);
+  const runDuration = positiveControlNumber(
+    runtimeControls.runDuration,
+    targetDuration - historyEndTime,
+  );
+  return {
+    ...configured,
+    startTime: historyEndTime,
+    targetDuration: historyEndTime + runDuration,
+    runDuration,
+    pathCount: boundedInteger(
+      runtimeControls.pathCount,
+      configured.pathCount ?? manifest.population?.architrinoCount ?? 1,
+      1,
+      manifest.population?.architrinoCount ?? 1,
+    ),
+    chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
+    initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
   };
 }
 
@@ -1755,6 +2070,27 @@ function hashSeedText(seedText) {
     hash = Math.imul(hash, 16777619);
   });
   return hash >>> 0;
+}
+
+function selectFrameRowsByPathCount(frameRows, pathCount) {
+  const selectedPathKeys = [...new Set(frameRows.map((row) => Number(row.pathKey)))]
+    .filter(Number.isFinite)
+    .sort((left, right) => left - right)
+    .slice(0, pathCount);
+  const selected = new Set(selectedPathKeys);
+  return frameRows.filter((row) => selected.has(Number(row.pathKey)));
+}
+
+function boundedInteger(value, fallback, minimum, maximum) {
+  const number = Number(value);
+  return Number.isInteger(number)
+    ? Math.min(maximum, Math.max(minimum, number))
+    : fallback;
+}
+
+function positiveControlNumber(value, fallback) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : fallback;
 }
 
 function finiteBudgetNumber(value) {

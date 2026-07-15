@@ -1,17 +1,21 @@
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
 import { dirname, extname, join, normalize, resolve } from "node:path";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import {
   createDevServerHttpCacheHeaders,
   isFreshDevServerHttpCacheRequest,
 } from "./DevServerHttpCache.mjs";
 import { createPdgLiveArtifactRuntime } from "./PdgLiveArtifactRuntime.mjs";
+import { createBorgNativeEomProcessClient } from "../eom/BorgNativeEomProcessClient.mjs";
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(SCRIPT_DIR, "../..");
 const PORT = Number.parseInt(process.env.PORT ?? "5173", 10);
 const HOST = process.env.HOST ?? "127.0.0.1";
+const EOM_BORG_SHADOW_ENABLED = isEnabledEnvironmentFlag(process.env.EOM_BORG_SHADOW);
+const EOM_BUILD_DIR = resolve(REPO_ROOT, ".tmp/eom-native-dev");
 
 function isEnabledEnvironmentFlag(value = "") {
   return /^(1|true|yes|on)$/iu.test(String(value || "").trim());
@@ -25,6 +29,14 @@ const pdgLiveArtifactRuntime = isEnabledEnvironmentFlag(process.env.PDG_LIVE_ART
       },
     })
   : null;
+
+const eomBorgClient = EOM_BORG_SHADOW_ENABLED
+  ? createBorgNativeEomProcessClient({
+      binaryPath: prepareEomBorgNativeBinary(),
+      timeoutMs: 180000,
+    })
+  : null;
+let eomBorgQueue = Promise.resolve();
 
 const MIME_TYPES = new Map([
   [".css", "text/css; charset=utf-8"],
@@ -67,6 +79,74 @@ function sendNotFound(response) {
   response.end("Not found");
 }
 
+function prepareEomBorgNativeBinary() {
+  const configure = spawnSync(
+    "cmake",
+    ["-S", resolve(REPO_ROOT, "src/eom"), "-B", EOM_BUILD_DIR, "-DCMAKE_BUILD_TYPE=Release"],
+    { cwd: REPO_ROOT, encoding: "utf8" },
+  );
+  if (configure.status !== 0) {
+    throw new Error(`EOM configure failed: ${configure.stderr || configure.stdout}`);
+  }
+  const build = spawnSync(
+    "cmake",
+    ["--build", EOM_BUILD_DIR, "--target", "eom_borg_shadow_cli", "--parallel", "8"],
+    { cwd: REPO_ROOT, encoding: "utf8" },
+  );
+  if (build.status !== 0) {
+    throw new Error(`EOM build failed: ${build.stderr || build.stdout}`);
+  }
+  return resolve(EOM_BUILD_DIR, "eom_borg_shadow_cli");
+}
+
+function readJsonRequest(request, maximumBytes = 64 * 1024 * 1024) {
+  return new Promise((resolveBody, rejectBody) => {
+    const chunks = [];
+    let size = 0;
+    request.on("data", (chunk) => {
+      size += chunk.length;
+      if (size > maximumBytes) {
+        rejectBody(new Error("EOM request exceeds the local service body limit."));
+        request.destroy();
+        return;
+      }
+      chunks.push(chunk);
+    });
+    request.on("end", () => {
+      try {
+        resolveBody(JSON.parse(Buffer.concat(chunks).toString("utf8")));
+      } catch (error) {
+        rejectBody(new Error(`Invalid EOM request JSON: ${error.message}`));
+      }
+    });
+    request.on("error", rejectBody);
+  });
+}
+
+async function serveEomBorgShadow(request, response) {
+  if (!eomBorgClient || request.method !== "POST") {
+    sendNotFound(response);
+    return;
+  }
+  const body = await readJsonRequest(request);
+  let responseCompleted = false;
+  response.once("close", () => {
+    if (!responseCompleted) {
+      eomBorgClient.dispose();
+    }
+  });
+  const execute = () => eomBorgClient.evolveRetainedHistories(body);
+  const resultPromise = eomBorgQueue.then(execute, execute);
+  eomBorgQueue = resultPromise.catch(() => undefined);
+  const result = await resultPromise;
+  response.writeHead(200, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Cache-Control": "no-store",
+  });
+  responseCompleted = true;
+  response.end(JSON.stringify(result));
+}
+
 function serveFile(request, response) {
   const filePath = resolveRequestPath(request.url);
   const fileStats = filePath && existsSync(filePath) ? statSync(filePath) : null;
@@ -95,14 +175,24 @@ function serveFile(request, response) {
 
 const server = createServer(async (request, response) => {
   try {
+    if (new URL(request.url, `http://${HOST}:${PORT}`).pathname === "/api/eom/borg-shadow/v0") {
+      await serveEomBorgShadow(request, response);
+      return;
+    }
     await pdgLiveArtifactRuntime?.ensureFreshForRequest(request.url);
     serveFile(request, response);
   } catch (error) {
+    const isEomRequest =
+      new URL(request.url, `http://${HOST}:${PORT}`).pathname ===
+      "/api/eom/borg-shadow/v0";
     response.writeHead(500, {
-      "Content-Type": "text/plain; charset=utf-8",
+      "Content-Type": isEomRequest
+        ? "application/json; charset=utf-8"
+        : "text/plain; charset=utf-8",
       "Cache-Control": "no-store",
     });
-    response.end(String(error?.message || "Internal server error"));
+    const message = String(error?.message || "Internal server error");
+    response.end(isEomRequest ? JSON.stringify({ error: message }) : message);
   }
 });
 
@@ -111,11 +201,17 @@ server.listen(PORT, HOST, () => {
   if (!pdgLiveArtifactRuntime) {
     process.stdout.write("[pdg] live artifact refresh disabled; set PDG_LIVE_ARTIFACTS=1 to enable.\n");
   }
+  process.stdout.write(
+    eomBorgClient
+      ? "[eom] Borg native shadow endpoint enabled; open /borg.html?eom=shadow.\n"
+      : "[eom] Borg native shadow endpoint disabled; set EOM_BORG_SHADOW=1 to enable.\n",
+  );
 });
 pdgLiveArtifactRuntime?.start();
 
 function shutdown(exitCode = 0) {
   pdgLiveArtifactRuntime?.close();
+  eomBorgClient?.dispose?.();
   server.close(() => {
     process.exit(exitCode);
   });

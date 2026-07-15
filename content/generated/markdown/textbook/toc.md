@@ -628,7 +628,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
       - **Ch 5.5.9.14** [Failure Modes](../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md?section=Failure+Modes)
       - **Ch 5.5.9.15** [Working Summary](../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md?section=Working+Summary)
   - **Ch 5.6** [Electroweak Bosons](../../../scenes/assemblies/electroweak_bosons.json)
-    - **Ch 5.6.1** [The Photon (γ): Coaxial Contra-Rotating Pro/Anti Planar Pair](../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md?section=The+Photon+%28%24%5Cgamma%24%29%3A+Coaxial+Contra-Rotating+Pro%2FAnti+Planar+Pair)
+    - **Ch 5.6.1** [The Photon (γ): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair](../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md?section=The+Photon+%28%24%5Cgamma%24%29%3A+Coaxial+Contra-Rotating+Polarity-Conjugate+Planar+Pair)
     - **Ch 5.6.2** [The Weak Bosons (W±, Z⁰): Transient Recoupling Bundles](../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md?section=The+Weak+Bosons+%28%24W%5E%5Cpm%2C+Z%5E0%24%29%3A+Transient+Recoupling+Bundles)
     - **Ch 5.6.3** [The Higgs Boson (H): Scalar Noether Sea Benchmark](../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md?section=The+Higgs+Boson+%28%24H%24%29%3A+Scalar+Noether+Sea+Benchmark)
     - **Ch 5.6.4** [Summary Table](../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md?section=Summary+Table)

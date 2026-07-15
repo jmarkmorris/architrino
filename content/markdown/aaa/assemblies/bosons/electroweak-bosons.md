@@ -8,7 +8,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ---
 
-## The Photon ($\gamma$): Coaxial Contra-Rotating Pro/Anti Planar Pair
+## The Photon ($\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 
 The photon is the canonical electromagnetic transport channel. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework treats the photon as a **propagating assembly of discrete action history**.
 
@@ -17,21 +17,21 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 *   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
 *   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
 
-### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
+### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
-*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
+*   **The pair:** A planar braid and its polarity-conjugate braid are stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
-*   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
+*   **Canonical description:** A photon is a **coaxial contra-rotating polarity-conjugate planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
 ### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized pro/anti Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired pro/anti balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
-The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating pro/anti planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
+The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
-This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating pro/anti planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
+This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating polarity-conjugate planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
 
 ### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
@@ -66,9 +66,9 @@ The photon description above is the ontology-level target. The theorem-level pro
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
-| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
+| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating polarity-conjugate planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
 Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether braid, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
@@ -137,7 +137,7 @@ The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homog
 
 #### Gate B Theorem Scaffold: Polarization and Spin
 
-Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating polarity-conjugate planar pair.
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
@@ -156,9 +156,9 @@ The substrate closure target starts from the planar-pair amplitude rather than f
 $$
 \mathbf a_{\gamma}^{\mathrm{sub}}
 =
-\mathbf a_{\mathrm{pro}}
+\mathbf a_{\mathfrak B}
 +
-\mathbf a_{\mathrm{anti}}
+\mathbf a_{C(\mathfrak B)}
 +
 \mathbf a_{\mathrm{wake}},
 \qquad
@@ -180,17 +180,17 @@ $$
 =
 \frac{
 \left|
-q_{\mathrm{pro}}^{\mathrm{eff}}
+q_{\mathfrak B}^{\mathrm{eff}}
 +
-q_{\mathrm{anti}}^{\mathrm{eff}}
+q_{C(\mathfrak B)}^{\mathrm{eff}}
 \right|
 }{
 \left|
-q_{\mathrm{pro}}^{\mathrm{eff}}
+q_{\mathfrak B}^{\mathrm{eff}}
 \right|
 +
 \left|
-q_{\mathrm{anti}}^{\mathrm{eff}}
+q_{C(\mathfrak B)}^{\mathrm{eff}}
 \right|
 +
 \varepsilon_Q
@@ -211,7 +211,7 @@ q_{\mathrm{anti}}^{\mathrm{eff}}
 }
 $$
 
-A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
+A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating polarity-conjugate planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -260,14 +260,14 @@ h_{ab}C_{\rho}^{ab}=1
 $$
 A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
-The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
+The polarity-conjugate planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
 
 $$
 \mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\mathbf J_{\mathrm{pro}}
+\mathbf J_{\mathfrak B}
 +
-\mathbf J_{\mathrm{anti}}
+\mathbf J_{C(\mathfrak B)}
 +
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
@@ -398,7 +398,7 @@ The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\math
 
 The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat.
 
-In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
+In this framing a reflected photon is an outgoing coaxial contra-rotating polarity-conjugate planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
 
 The same return-map language distinguishes common polarization material effects without adding new photon species. A local material response maps the incoming transverse ledger to the outgoing ledger by
 $$
@@ -416,7 +416,7 @@ where $T_\Omega$ is the effective response of the material branch $\Omega$ and $
 | Dichroism | one transverse channel has larger capture or dephasing probability | differential $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, or $B_{\mathrm{scat}}$ routing, not a new photon ontology |
 | Optical activity | the material branch rotates the transverse ledger in the helicity or circular basis | handed phase rotation with no free longitudinal photon mode |
 
-Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating pro/anti planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
+Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating polarity-conjugate planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
 
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
@@ -447,7 +447,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing) due to internal instability.
 
 ### Quantum Numbers and Channels
-*   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
+*   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating polarity-conjugate planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ through the active-triad transition $3\epsilon_+ \leftrightarrow 3\epsilon_-$.
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
@@ -509,7 +509,7 @@ The same event record must also recover low-energy weak rates after the corridor
 
 ### Massless Photon Versus Massive Weak Corridor
 
-The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
+The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating polarity-conjugate planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
 
 A $W/Z$ corridor is a localized massive vector channel. Its longitudinal or mixed-axis structure carries a rest-like internal energy cost because the corridor is a thickened recoupling of local Noether sea structure, not a free planar-pair branch. It can therefore mediate a directed spin-$1$ transaction while appearing as a massive, short-lived channel rather than a massless photon. The derivation burden is to compute this cost from corridor closure and medium-dressed response, not to insert the Standard Model mass as a primitive parameter.
 
@@ -606,7 +606,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
+| **Photon** | Coaxial contra-rotating polarity-conjugate planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
 | **W Boson** | Thickened charged recoupling corridor | Charged ($\pm 6\epsilon$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Z Boson** | Thickened neutral recoupling corridor | Neutral ($3\epsilon_+ + 3\epsilon_-$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Higgs** | Radial Noether sea oscillation | N/A | Local resonance | Medium stiffness |
@@ -632,7 +632,7 @@ $$
 \mathcal I_{\mathrm{sea}}^{\mathrm{ret}},
 $$
 with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
-- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
+- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon polarity-conjugate braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether Pair bookkeeping relaxes back into the Noether sea.
 
 ## Closure Interface: Corridor Operators for Mixing

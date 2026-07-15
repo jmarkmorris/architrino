@@ -568,7 +568,7 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether braid sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
 - **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
-  - Photon: a coaxial contra-rotating pro/anti planar pair.
+  - Photon: a coaxial contra-rotating polarity-conjugate planar pair.
   - Noether sea: hypothesized as paired pro/anti Noether braids; a local interaction could draw neutral braid content to participate while preserving recorded provenance.
 - **Architrino budget example:** reacting with a Noether sea super-assembly (4 braids) × (6 architrinos/braid) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating braids/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
@@ -608,7 +608,7 @@ Notes:
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short photon modes modeled as coaxial contra-rotating pro/anti planar pairs while all participating identities remain in the ledger.
+  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short photon modes modeled as coaxial contra-rotating polarity-conjugate planar pairs while all participating identities remain in the ledger.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in simulations: initial separation, relative phase, and local Noether braid density. The selected dominant channel must record energy and charge routing.

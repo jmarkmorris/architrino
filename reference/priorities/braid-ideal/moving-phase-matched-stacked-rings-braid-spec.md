@@ -1,7 +1,18 @@
 # §96 Moving Phase-Matched Stacked-Rings Braid Seed
 
 **Date:** 2026-07-12
-**Claim level:** seed-grade production-root diagnostic; no retained-branch acceptance
+**Claim level:** seed-grade force-balance and geometry diagnostic; the stability
+reading is retired as void; no retained-branch acceptance
+
+## Recovery adjudication — 2026-07-14
+
+The force-balance precondition retires the Section 96 flutter row. The selected
+configuration has $\epsilon_{\rm bind}=0.04922985>0.03$, so it is not an
+equilibrium of the required circular-motion equation. Its pencil omits the
+nonzero constant force residual and therefore has no stability referent. The
+Mach phase match, force-balance residual, pump, and non-bind result survive as
+T1 diagnostics; the reported flutter magnitude is historical only and is not
+re-runnable. See the [retirement evidence](evidence/section-96-flutter-force-balance-retirement-2026-07-14.md).
 **Runner:** `scripts/braid-ideal/moving-phase-matched-stacked-rings-braid.mjs`
 **Fixture:** `scripts/braid-ideal/moving-phase-matched-stacked-rings-fixture.mjs`
 **Owner test:** `tests/braid-ideal-moving-phase-matched-stacked-rings-braid.test.js`
@@ -108,20 +119,28 @@ $$
 
 The designated transverse rays carry negligible geometric axial torque, but the remaining inter-site production roots do not preserve that cancellation.
 
-The zero-tilt pencil is unstable. Its leading quotient root is a real divergence,
+The zero-tilt pencil returned a leading quotient root and a complex root, but
+the recovery adjudication above makes both stability readings void because the
+target fails force balance. The historical quotient root was
 
 $$
 \lambda_{\rm lead}=+1.55692239,
 $$
 
-and an unstable complex row also survives,
+and the historical complex row was
 
 $$
 \lambda_{\rm flutter}=+0.73541518+0.99659531i.
 $$
 
-The relative $x/y$ tilt-stiffness asymmetry is $0.75514216$, so un-nesting did not remove the complete-record tilt asymmetry in this seed model.
+The relative $x/y$ tilt-stiffness asymmetry was $0.75514216$. It remains a
+property of the frozen diagnostic pencil, not a stability claim about an
+assembly trajectory.
 
 Decision: `single_stack_fails_seed_gate_no_pair_run_no_release`. The first failed gate is `single_stack_binding`; the pump and flutter gates also fail. Phase 2 is not run. No native retained-history release is authorized, and there is no score increase.
+
+Recovery disposition: the binding and pump failures remain T1 facts. The
+flutter gate is retired as void rather than re-run because the binding failure
+means there is no equilibrium to perturb.
 
 The velocity sweep confirms $z_{\rm gap}=ud/c_f$: the axial gaps grow linearly with $u$ at fixed transverse wake distance. This is opposite the direction required for Lorentz axial contraction, so the imposed Mach geometry exposes a kinematic tension rather than deriving the Lorentz behavior.

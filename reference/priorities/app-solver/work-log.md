@@ -5,6 +5,53 @@ This file is the chronological work log for the `app-solver` priority area. Use 
 Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use the main priority tracker in this directory for the compact current queue, blockers, promotion routing, and next action. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
 
 ## Log Entries
+
+### 2026-07-14 Section 86 endpoint-matched collapse campaign preflight
+
+- **Derived:** the radial-breath and layer-tilt seed envelopes obey
+  $E(0)=E'(0)=0$, so they change retained prehistory without changing any
+  worldline's endpoint position or velocity.
+- **Measured:** the inner/outer radial and tilt histories match the circular
+  endpoint state below $5.0\times10^{-16}$, certify with zero unresolved root
+  rows, and publish their first $5\times10^{-4}$ steps in $2.15234$ and
+  $2.12675$ seconds with zero production MPFR pairs.
+- **Measured:** changing the pinned middle-layer prehistory is a distinct cost
+  basin. Two admitted all-layer radial steps cost $475.791$ and $468.618$
+  seconds and use 42 MPFR pair certifications; warm-complement transport does
+  not remove that startup path on step 2.
+- Added the corrected prehistory seed family to the Section 86 native runner
+  and recorded the exact object, endpoint-match evidence, first-step
+  certificates, build freshness, and campaign boundary in
+  `reference/priorities/braid-ideal/evidence/section-86-v5-collapse-campaign-preflight-2026-07-14.md`.
+- The legacy $0.199$ row remains retired, while the replacement V5 collapse
+  campaign remains open. No seed reached root-ledger clearance, so no T3 row
+  lifted and no §90 conclusion changed.
+- Promotion decision: `priority-only`; no reader-facing AAA prose changed.
+
+### 2026-07-14 Claims recovery: Sections 96 and 99 retired on the force-balance precondition
+
+- **Derived:** for a frozen target with nonzero force-balance residual
+  $\mathbf r_0$, the first-order equation is inhomogeneous,
+  $M\delta\ddot{\mathbf q}=\mathbf r_0+K\delta\mathbf q+D\delta\dot{\mathbf q}$.
+  A homogeneous pencil that drops $\mathbf r_0$ has no stability referent unless
+  the target is an equilibrium or the linearization follows the actual evolved
+  trajectory.
+- **Measured:** Section 96 reports
+  $\epsilon_{\rm bind}=0.0492298548241>0.03$; Section 99 reports photon
+  $\epsilon_{\rm bind}=0.9922225625$ and electron-rest
+  $\epsilon_{\rm bind}=0.9999927135$. Their live owner suites reproduce the
+  diagnostic rows.
+- Retired the Section 96 flutter and Section 99 stability/locking rows as void,
+  removed them from the re-run geometry and validated-integrator worklist, and
+  preserved their T1 geometry, force-balance, pump, charge, and declared-coverage
+  non-bind results.
+- Added focused retirement evidence under
+  `reference/priorities/braid-ideal/evidence/` and changed both diagnostic
+  outputs so an implementation anchor can no longer be mistaken for target
+  stability authority.
+- Promotion decision: `priority-only`. Both original packets explicitly earned
+  no reader-facing claim, so no AAA prose change is warranted.
+
 ### 2026-07-02 Solver Current Note Migration
 
 Migrated current implementation, inventory, and runtime-validation status paragraphs out of `priorities.md` so the priority tracker can stay focused on requirements, decisions, and the current queue. The original status text is preserved below, grouped by the section where it appeared.

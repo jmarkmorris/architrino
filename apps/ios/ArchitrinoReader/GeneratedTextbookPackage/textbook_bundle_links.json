@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-14T01:32:33.460Z",
-  "total_links": 1925,
+  "generated_at": "2026-07-15T20:28:23.625Z",
+  "total_links": 1931,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -82,6 +82,38 @@
       "kind": "markdown",
       "status": "bundled_reference",
       "targetBundlePath": "references/mathematics-terminology.md"
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "#orientation-antimatter-correspondence-hypothesis",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "#orientation-antimatter-correspondence-hypothesis",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "#orientation-antimatter-correspondence-hypothesis",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "archie-terminology-usage",
+      "sourcePath": "content/markdown/aaa/archie/terminology-usage.md",
+      "target": "#spontaneous-assembly-and-pair-production",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
     },
     {
       "sourceChapterId": "assemblies",
@@ -854,6 +886,14 @@
     {
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "../../../../markdown/aaa/noether-braid/spindle-braid.md#discrete-symmetry-structure",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/spindle-braid.md"
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/atomic-structure.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1215,6 +1255,22 @@
       "sourceChapterId": "assemblies",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "target": "#empirical-decision-gates",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "#referent-status",
+      "kind": "anchor",
+      "status": "skip_anchor",
+      "targetBundlePath": ""
+    },
+    {
+      "sourceChapterId": "assemblies",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
+      "target": "#referent-status",
       "kind": "anchor",
       "status": "skip_anchor",
       "targetBundlePath": ""
@@ -5066,14 +5122,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md"
-    },
-    {
-      "sourceChapterId": "noether_braid",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -11366,15 +11414,15 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "target": "../../../../markdown/aaa/archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation",
       "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
+      "status": "bundled_reference",
+      "targetBundlePath": "references/terminology-usage.md"
     },
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
-      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter",
+      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"

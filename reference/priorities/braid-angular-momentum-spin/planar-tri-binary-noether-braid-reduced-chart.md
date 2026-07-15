@@ -154,7 +154,7 @@ q_{\mathrm{pro}}^{\mathrm{eff}}
 -q_{\mathrm{anti}}^{\mathrm{eff}}.
 $$
 
-This is the priority bridge to the coaxial contra-rotating pro/anti planar pair. A phase-locked planar Noether braid row can nominate photon-like transverse behavior, but Gate A and Gate B remain blocked until kinematics, no-rest branch, transverse survival, helicity, source depletion, recoil, wake, analyzer handoff, and event balance close on the same retained photon record.
+This is the priority bridge to the coaxial contra-rotating polarity-conjugate planar pair. A phase-locked planar Noether braid row can nominate photon-like transverse behavior, but Gate A and Gate B remain blocked until kinematics, no-rest branch, transverse survival, helicity, source depletion, recoil, wake, analyzer handoff, and event balance close on the same retained photon record.
 
 ## Relation To Braid Symmetry Breaking
 

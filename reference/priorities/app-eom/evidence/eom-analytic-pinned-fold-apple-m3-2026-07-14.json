@@ -1,0 +1,92 @@
+{
+  "schema": "eom_analytic_pinned_fold_benchmark/v0",
+  "date": "2026-07-14",
+  "platform": "Apple M3",
+  "status": "certified_optimization_wall_not_removed",
+  "eligibility": {
+    "same_path_self_pair": true,
+    "factory_certified_uniform_circular_prefix": true,
+    "tangential_speed_equals_field_speed": true,
+    "arbitrary_cubic_history_fallback_unchanged": true
+  },
+  "certificate": {
+    "residual_route": "second_order_taylor_enclosure_about_cell_midpoint",
+    "integral_route": "midpoint_integral_plus_first_derivative_remainder",
+    "remainder_bound": "sup_abs_derivative_times_cell_width_squared_over_4",
+    "master_equation_changed": false,
+    "root_topology_changed": false,
+    "declared_tolerances_weakened": false,
+    "checkpoint_roundtrip_preserves_factory_certificate": true
+  },
+  "synthetic_exact_fold": {
+    "reception_time": 0.0024,
+    "fold_emission_time": -0.04,
+    "oracle_precision_decimal_digits": 90,
+    "oracle_contained_in_native_interval_all_components": true,
+    "analytic_cells": 563,
+    "legacy_cells": 21337,
+    "cell_reduction_factor": 37.898756660746,
+    "analytic_acceleration_interval": [
+      [0.038761121447103287, 0.039581913685955795],
+      [0.1116446371757234, 0.11514182865901902],
+      [-6.7634338496503524e-12, 6.7634338496503524e-12]
+    ],
+    "legacy_acceleration_interval": [
+      [0.038737416572471255, 0.039602642202495937],
+      [0.11129736690083061, 0.11616105552885095],
+      [-1.4835400523037837e-10, 1.4835400523037837e-10]
+    ]
+  },
+  "exact_v5_first_fold_step": {
+    "accepted_step": 0.000018851493481915121,
+    "legacy": {
+      "status": "accepted",
+      "maximum_finite_width_cells": 193338,
+      "wall_seconds": 35.72,
+      "maximum_velocity_error": 1.43755e-6
+    },
+    "analytic": {
+      "status": "accepted",
+      "maximum_finite_width_cells": 1928,
+      "analytic_fold_cells": 1926,
+      "wall_seconds": 28.5,
+      "maximum_velocity_error": 1.43607e-6
+    },
+    "cell_reduction_factor": 100.278008298755,
+    "wall_speedup_factor": 1.253333333333,
+    "uncertified_root_rows": 0,
+    "handled_caustic_routes": 2
+  },
+  "larger_step_probes": [
+    {
+      "step": 0.001,
+      "status": "rejected",
+      "failure_code": "numeric_step_budget_exceeded",
+      "maximum_velocity_error": 0.0000753047,
+      "velocity_tolerance": 0.000002
+    },
+    {
+      "step": 0.000125,
+      "quadrature_tolerance": 0.005,
+      "status": "rejected",
+      "failure_code": "numeric_step_budget_exceeded",
+      "maximum_velocity_error": 0.00000951205,
+      "velocity_tolerance": 0.000002
+    },
+    {
+      "step": 0.000125,
+      "quadrature_tolerance": 0.0005,
+      "status": "rejected",
+      "failure_code": "numeric_step_budget_exceeded",
+      "maximum_velocity_error": 0.00000951196,
+      "velocity_tolerance": 0.000002
+    }
+  ],
+  "feasibility": {
+    "refined_steps_per_cycle": 640000,
+    "projected_days_per_cycle_at_analytic_wall_time": 211.111111111111,
+    "multi_cycle_ladder_reachable": false,
+    "limiter_after_optimization": "temporal_velocity_error_and_exact_root_cost",
+    "section_86_verdict": "still_quarantined"
+  }
+}

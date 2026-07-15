@@ -2,7 +2,60 @@
 
 **Date:** 2026-07-12
 
-**Claim level:** seed-grade full-assembly production-root screen; no retained-branch acceptance
+## Model audit — 2026-07-15: SUPERSEDED FOR PHOTON CLAIMS (non-canonical object)
+
+An operator-driven audit of the runner and fixture found that the §99 photon
+screen does not model the canonical photon and its negative must not be read
+as a canonical-photon result. Specific defects, each checkable in
+`scripts/braid-ideal/planar-assembled-free-particle.mjs` and
+`planar-assembled-free-particle-fixture.mjs`:
+
+- **Non-canonical occupancy.** Roughly half the photon rows use occupancy
+  $(3,2,3)$ — 8 architrinos per braid, 16 per assembly — and the
+  ordinal-alternating polarity assignment gives each 3-site ring net charge
+  $\pm1$ and each braid net $\pm2$; the assembly is neutral only because the
+  anti braid flips signs. The canonical braid has 6 architrinos, 3 of each
+  polarity, with each ring a $+/-$ binary; the canonical photon has 12
+  worldlines.
+- **Phasing not searched.** Within-braid per-binary phases are hard-coded
+  constants; the only phase knob is one whole-braid relative phase over four
+  values. The front/back binary-pair phasing lattice was never explored.
+- **Rotation not searched.** Rigid contra-rotation only (pro braid all
+  $+\omega$, anti all $-\omega$); no per-binary sense or frequency
+  combinations (one base $\omega$ and two scale triples).
+- **No speed-dependent geometry.** The rest-selected geometry was continued
+  frozen through every drift speed; the canonical expectation that braids
+  flatten toward planar as $u \to c_f$ is absent, and the exact $u=c_f$
+  endpoint was excluded.
+- **Thin sampling.** 12 photon configurations were strided-sampled from a
+  $\sim$1,024-point factor lattice.
+
+**Surviving scope.** The T1 non-bind/pump/charge/causal-root rows remain
+valid for the specific non-canonical screened family only. The analytic
+symmetric-pair anchor and the §92/§93/§95 control reproductions remain valid
+implementation tests. The decision string below is narrowed accordingly: it
+claims nothing about the canonical 12-worldline photon.
+
+**Successor:** the canonical-photon configuration space and search plan live
+in [canonical-photon-search-dispatch-packet.md](canonical-photon-search-dispatch-packet.md),
+gated on the validated coupled delayed-history integrator per the 2026-07-12
+quarantine worklist.
+
+**Claim level:** seed-grade force-balance, charge, geometry, and pump screen;
+the target stability and locking readings are retired as void; no
+retained-branch acceptance
+
+## Recovery adjudication — 2026-07-14
+
+The force-balance precondition retires the Section 99 target stability and
+local-locking row. The best photon replay has
+$\epsilon_{\rm bind}=0.9922225625$ and the electron rest target has
+$\epsilon_{\rm bind}=0.9999927135$, both far outside the declared $0.03$ gate.
+The analytic symmetric-pair anchor remains a strong implementation test, but an
+anchor cannot turn either screened target into an equilibrium. The non-bind,
+charge, pump, causal-root, and planarity rows survive at T1 diagnostic scope;
+the target eigenvalues and saddle readings are historical only. See the
+[retirement evidence](evidence/section-99-stability-force-balance-retirement-2026-07-14.md).
 
 **Runner:** `scripts/braid-ideal/planar-assembled-free-particle.mjs`
 
@@ -12,7 +65,7 @@
 
 ## Decision target
 
-This packet evaluates the free-particle candidate as one assembly from the start. No isolated-triple gate is present. The photon candidate is a neutral contra-rotating pro/anti planar pair with no payload. The electron candidate is the same pair plus six explicit electrino worldlines in the axial pocket, with charge
+This packet evaluates the free-particle candidate as one assembly from the start. No isolated-triple gate is present. The photon candidate is a neutral contra-rotating polarity-conjugate planar pair with no payload. The electron candidate is the same pair plus six explicit electrino worldlines in the axial pocket, with charge
 
 $$
 Q=6\left(-\frac{|e|}{6}\right)=-1e.
@@ -43,7 +96,7 @@ V(\phi)
 \right].
 $$
 
-At $R=0.75$ and $d=1.4$, the analytic Hessian is $0.5402209218336725$, the numerical integration weight is $1.125$, and the expected frequency is $0.6929620299578214$. The pencil returns $0.6929620299578213$, an error of $1.11\times10^{-16}$. The anchor passes.
+At $R=0.75$ and $d=1.4$, the analytic Hessian is $0.5402209218336725$, the numerical integration weight is $1.125$, and the expected frequency is $0.6929620299578214$. The pencil returns $0.6929620299578213$, an error of $1.11\times10^{-16}$. The anchor passes as an implementation control; it does not authorize a stability claim for a target that fails force balance.
 
 Compatibility replays also pass at $10^{-9}$:
 
@@ -80,7 +133,16 @@ The best coarse photon row has $\kappa_\star=0.09446654050233466$, pump residual
 
 The null is not near the $0.03$ binding threshold and does not improve with the sampling ladder.
 
-The same selected photon geometry was continued through every declared speed rather than re-optimized at each speed. Every row has correct neutral charge and converged causal roots, but every row fails binding, locking, and stability. At $u/c_f=0.9999$, the row has $\epsilon_{\rm bind}=0.9999005117$, a phase/pocket saddle with symmetric eigenvalues $(+0.0459749578,-0.1731764580)$, and $\operatorname{Re}\lambda_{\rm lead}=+0.8610716517$. The rest row also fails, so no forbidden stable rest photon was found; however, the near-$c_f$ continuation does not pass and therefore does not recover the photon.
+The same selected photon geometry was continued through every declared speed
+rather than re-optimized at each speed. Every row has correct neutral charge
+and converged causal roots, but every row fails binding. At $u/c_f=0.9999$, the
+row has $\epsilon_{\rm bind}=0.9999005117$. Its historical frozen-target pencil
+returned a phase/pocket saddle with symmetric eigenvalues
+$(+0.0459749578,-0.1731764580)$ and
+$\operatorname{Re}\lambda_{\rm lead}=+0.8610716517$, but those values carry no
+stability authority after the force-balance failure. The rest row also fails
+force balance, so no force-balanced rest-photon candidate was found in the
+declared coverage; the near-$c_f$ continuation does not recover the photon.
 
 ## Electron result
 
@@ -94,7 +156,14 @@ $$
 \epsilon_{\rm bind}=0.9999927135,
 $$
 
-a phase/pocket saddle with symmetric eigenvalues $(+7.12958\times10^{-4},-2.01234\times10^{-4})$, and $\operatorname{Re}\lambda_{\rm lead}=+0.8639279470$. Every boosted row retains correct charge and pump cancellation but fails binding, locking, and stability. The $3\to6\to12\to24$ replay keeps $\epsilon_{\rm bind}$ within $3.1\times10^{-7}$ of one and does not expose a coarse-sampling null.
+The historical frozen-target pencil returned a phase/pocket saddle with
+symmetric eigenvalues
+$(+7.12958\times10^{-4},-2.01234\times10^{-4})$ and
+$\operatorname{Re}\lambda_{\rm lead}=+0.8639279470$; these values are void as
+stability and locking claims. Every boosted row retains correct charge and pump
+cancellation but fails binding. The $3\to6\to12\to24$ replay keeps
+$\epsilon_{\rm bind}$ within $3.1\times10^{-7}$ of one and does not expose a
+coarse-sampling null.
 
 ## Confirmatory planarity sweep
 
@@ -112,7 +181,18 @@ This is a planarity result only. The evaluator has no explicit cap degree of fre
 
 Decision: `neither_planar_assembly_closes_in_declared_geometry_payload_and_proxy_sea_coverage`.
 
-The photon and electron charge ledgers close, and some rows cancel the net pump, but neither object reaches radial closure, a relative-coordinate well, or a stable full-assembly spectrum. No native retained-history release is authorized. `retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
+Scope narrowing (2026-07-15 model audit): "declared geometry" here includes
+non-canonical $(3,2,3)$ charged-braid rows, hard-coded within-braid phasing,
+rigid contra-rotation, and geometry frozen across speeds. This decision is a
+negative for that screened family only; it is not a negative for the
+canonical 12-worldline photon, whose search is specified in
+[canonical-photon-search-dispatch-packet.md](canonical-photon-search-dispatch-packet.md).
+
+The photon and electron charge ledgers close, and some rows cancel the net pump,
+but neither object reaches radial closure. Because the targets are not
+equilibria, their relative-coordinate and full-spectrum readings are not
+stability verdicts. No native retained-history release is authorized.
+`retainedBranchClaim=false`; `scoreMovement=no_score_increase`.
 
 This is a negative result for the declared planar geometry, explicit payload families, and proxy-sea coverage. It is not evidence that a constitutive Noether sea law has failed, and it does not establish that the constitutive law is the sole remaining lever. Promotion classification: priority-only; no reader-facing corpus claim is earned.
 

@@ -26,13 +26,15 @@ test("§96 verifies the Mach phase-match on the selected delayed roots", () => {
   assert.ok(r.phaseMatch.rows.every((row) => Math.abs(row.selectedAxialTorqueGeometry) < 1e-10));
 });
 
-test("§96 measures one-coupling binding, axial pump, and the zero-tilt spectrum", () => {
+test("§96 records the force-balance failure and retires the zero-tilt spectrum", () => {
   const r = report();
   assert.equal(r.binding.residual.length, 3);
   assert.ok(Number.isFinite(r.binding.relativeClosureResidual));
   assert.ok(Number.isFinite(r.pump.netSecularAxialTorque));
   assert.ok(Number.isFinite(r.stability.leadingRe));
   assert.equal(r.phase1.closes, r.phase1.bindingCloses && r.phase1.pumpFree && r.phase1.flutterFree);
+  assert.equal(r.recoveryAdjudication.forceBalancePreconditionPasses, false);
+  assert.equal(r.recoveryAdjudication.stabilityClaimStatus, "retired_void_non_equilibrium");
 });
 
 test("§96 velocity sweep exposes spacing growth and the declared controls", () => {
@@ -44,7 +46,7 @@ test("§96 velocity sweep exposes spacing growth and the declared controls", () 
   assert.match(r.lorentzTension, /does not reproduce Lorentz axial contraction/);
 });
 
-test("§96 remains fail-closed and gates Phase 2 on all Phase 1 gates", () => {
+test("§96 remains fail-closed and preserves the non-bind gate after stability retirement", () => {
   const r = report();
   assert.equal(r.releaseGate.nativeRetainedHistoryReleaseAuthorized, false);
   assert.equal(r.retainedBranchClaim, false);

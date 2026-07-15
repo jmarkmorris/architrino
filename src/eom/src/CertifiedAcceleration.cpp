@@ -2,14 +2,18 @@
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
 
 #include <algorithm>
+#include <array>
 #include <atomic>
+#include <chrono>
 #include <cmath>
+#include <condition_variable>
 #include <cstddef>
 #include <exception>
 #include <functional>
+#include <iterator>
+#include <limits>
 #include <map>
 #include <mutex>
-#include <limits>
 #include <optional>
 #include <set>
 #include <stdexcept>
@@ -22,9 +26,112 @@
 namespace architrino::eom {
 namespace {
 
+using SteadyClock = std::chrono::steady_clock;
+
+double wall_seconds_since(const SteadyClock::time_point& start) {
+  return std::chrono::duration<double>(SteadyClock::now() - start).count();
+}
+
 class AccelerationCertificationError : public std::runtime_error {
  public:
   using std::runtime_error::runtime_error;
+};
+
+class DeterministicParallelExecutor {
+ public:
+  explicit DeterministicParallelExecutor(std::size_t thread_count) {
+    const std::size_t helper_count = thread_count > 1U ? thread_count - 1U : 0U;
+    helpers_.reserve(helper_count);
+    for (std::size_t index = 0; index < helper_count; ++index) {
+      helpers_.emplace_back([this]() { helper_loop(); });
+    }
+  }
+
+  DeterministicParallelExecutor(const DeterministicParallelExecutor&) = delete;
+  DeterministicParallelExecutor& operator=(
+      const DeterministicParallelExecutor&) = delete;
+
+  ~DeterministicParallelExecutor() {
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      stopping_ = true;
+      ++generation_;
+    }
+    ready_.notify_all();
+    for (auto& helper : helpers_) {
+      helper.join();
+    }
+  }
+
+  void run(
+      std::size_t task_count,
+      const std::function<void(std::size_t)>& task) {
+    if (helpers_.empty() || task_count < 2U) {
+      for (std::size_t index = 0; index < task_count; ++index) {
+        task(index);
+      }
+      return;
+    }
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      task_ = task;
+      task_count_ = task_count;
+      next_task_.store(0U);
+      completed_helpers_ = 0U;
+      ++generation_;
+    }
+    ready_.notify_all();
+    consume_tasks();
+    std::unique_lock<std::mutex> lock(mutex_);
+    complete_.wait(lock, [&]() {
+      return completed_helpers_ == helpers_.size();
+    });
+    task_ = {};
+  }
+
+ private:
+  void consume_tasks() {
+    while (true) {
+      const std::size_t index = next_task_.fetch_add(1U);
+      if (index >= task_count_) {
+        return;
+      }
+      task_(index);
+    }
+  }
+
+  void helper_loop() {
+    std::size_t observed_generation = 0U;
+    while (true) {
+      {
+        std::unique_lock<std::mutex> lock(mutex_);
+        ready_.wait(lock, [&]() {
+          return stopping_ || generation_ != observed_generation;
+        });
+        if (stopping_) {
+          return;
+        }
+        observed_generation = generation_;
+      }
+      consume_tasks();
+      {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ++completed_helpers_;
+      }
+      complete_.notify_one();
+    }
+  }
+
+  std::vector<std::thread> helpers_;
+  std::mutex mutex_;
+  std::condition_variable ready_;
+  std::condition_variable complete_;
+  std::function<void(std::size_t)> task_;
+  std::atomic<std::size_t> next_task_{0U};
+  std::size_t task_count_ = 0U;
+  std::size_t completed_helpers_ = 0U;
+  std::size_t generation_ = 0U;
+  bool stopping_ = false;
 };
 
 Interval token_bounds(const std::string& lower, const std::string& upper) {
@@ -189,7 +296,200 @@ NativeAccelerationRow reconstruct_row(
   };
 }
 
-IntervalVector finite_width_integrand(
+struct FiniteWidthIntegrand {
+  IntervalVector value;
+  bool used_analytic_fold = false;
+  bool used_correlated_self_chord = false;
+  bool used_stable_circular_residual = false;
+};
+
+bool analytic_pinned_fold_eligible(
+    const NativePairAccelerationRequest& request) {
+  if (!request.use_analytic_pinned_fold ||
+      request.receiver_path_id != request.source_path_id) {
+    return false;
+  }
+  const auto& circular =
+      request.source_history->uniform_circular_endpoint_certificate();
+  return circular.has_value() &&
+      same_interval(
+          Interval::decimal_token(circular->tangential_speed),
+          Interval::decimal_token(request.root_certificate->field_speed));
+}
+
+bool same_retained_history_pair(
+    const NativePairAccelerationRequest& request) {
+  return request.receiver_path_id == request.source_path_id &&
+      request.receiver_history->history_id() ==
+          request.source_history->history_id() &&
+      request.receiver_history->provenance_fingerprint() ==
+          request.source_history->provenance_fingerprint();
+}
+
+Interval stable_sine_minus_argument(const Interval& argument) {
+  const double maximum = std::max(
+      std::abs(argument.lower()), std::abs(argument.upper()));
+  if (maximum > 0.25) {
+    return interval_sin(argument) - argument;
+  }
+  const Interval one = Interval::point(1.0);
+  const Interval argument_square = interval_square(argument);
+  const Interval cubic = argument * argument_square;
+  const Interval coefficient =
+      (Interval::point(-1.0) / Interval::point(6.0)) +
+      argument_square *
+          ((one / Interval::point(120.0)) +
+           argument_square *
+               ((Interval::point(-1.0) / Interval::point(5040.0)) +
+                argument_square *
+                    (one / Interval::point(362880.0))));
+  Interval result = cubic * coefficient;
+  const double remainder =
+      std::pow(maximum, 11) / 39916800.0;
+  return result.inflate(remainder);
+}
+
+std::optional<Interval> stable_circular_self_residual(
+    const NativePairAccelerationRequest& request,
+    const Interval& reception,
+    const Interval& emission) {
+  if (!request.use_stable_circular_residual ||
+      !analytic_pinned_fold_eligible(request)) {
+    return std::nullopt;
+  }
+  const auto& circular =
+      *request.source_history->uniform_circular_endpoint_certificate();
+  if (!request.receiver_history->uniform_circular_analytic_state(reception)
+           .has_value() ||
+      !request.source_history->uniform_circular_analytic_state(emission)
+           .has_value()) {
+    return std::nullopt;
+  }
+  const Interval angular_speed = interval_absolute(
+      Interval::decimal_token(circular.angular_speed));
+  const Interval tangential_speed =
+      Interval::decimal_token(circular.tangential_speed);
+  const Interval radius = tangential_speed / angular_speed;
+  const Interval delay = reception - emission;
+  if (delay.lower() < 0.0) {
+    return std::nullopt;
+  }
+  const Interval argument =
+      angular_speed * delay / Interval::point(2.0);
+  // At the certified v=c_f pin, c_f D = 2 rho u.  Evaluating
+  // 2 rho [sin(u)-u] retains the cubic term without subtracting two nearly
+  // equal O(D) quantities.
+  return Interval::point(2.0) * radius *
+      stable_sine_minus_argument(argument);
+}
+
+IntervalVector finite_width_displacement(
+    const NativePairAccelerationRequest& request,
+    const Interval& reception,
+    const Interval& emission,
+    const IntervalVector& receiver_position,
+    const IntervalVector& source_position) {
+  if (!request.use_correlated_self_chord ||
+      !same_retained_history_pair(request)) {
+    return subtract(receiver_position, source_position);
+  }
+  const auto analytic_receiver =
+      request.receiver_history->uniform_circular_analytic_state(reception);
+  const auto analytic_source =
+      request.source_history->uniform_circular_analytic_state(emission);
+  if (analytic_receiver.has_value() && analytic_source.has_value()) {
+    return subtract(analytic_receiver->position, analytic_source->position);
+  }
+  const auto correlated =
+      request.source_history->correlated_self_displacement(
+          reception, emission);
+  return correlated.has_value()
+      ? *correlated
+      : subtract(receiver_position, source_position);
+}
+
+bool uses_correlated_self_chord(
+    const NativePairAccelerationRequest& request,
+    const Interval& reception,
+    const Interval& emission) {
+  if (!request.use_correlated_self_chord ||
+      !same_retained_history_pair(request)) {
+    return false;
+  }
+  if (request.receiver_history->uniform_circular_analytic_state(reception)
+          .has_value() &&
+      request.source_history->uniform_circular_analytic_state(emission)
+          .has_value()) {
+    return true;
+  }
+  return request.source_history->correlated_self_displacement(
+      reception, emission).has_value();
+}
+
+std::optional<Interval> analytic_circular_taylor_residual(
+    const NativePairAccelerationRequest& request,
+    const Interval& emission,
+    const IntervalVector& receiver_position,
+    const Interval& reception,
+    const Interval& field_speed) {
+  if (!analytic_pinned_fold_eligible(request)) {
+    return std::nullopt;
+  }
+  const double midpoint = emission.midpoint();
+  const auto midpoint_state =
+      request.source_history->uniform_circular_analytic_state(
+          Interval::point(midpoint));
+  const auto cell_state =
+      request.source_history->uniform_circular_analytic_state(emission);
+  if (!midpoint_state.has_value() || !cell_state.has_value()) {
+    return std::nullopt;
+  }
+  const IntervalVector midpoint_displacement =
+      subtract(receiver_position, midpoint_state->position);
+  const Interval midpoint_separation = norm(midpoint_displacement);
+  if (midpoint_separation.contains_zero()) {
+    return std::nullopt;
+  }
+  const IntervalVector midpoint_direction =
+      divide(midpoint_displacement, midpoint_separation);
+  const Interval midpoint_time = Interval::point(midpoint);
+  const Interval residual_at_midpoint =
+      midpoint_separation - field_speed * (reception - midpoint_time);
+  const Interval residual_derivative =
+      field_speed - dot(midpoint_direction, midpoint_state->velocity);
+
+  const IntervalVector cell_displacement =
+      subtract(receiver_position, cell_state->position);
+  const Interval cell_separation = norm(cell_displacement);
+  if (cell_separation.contains_zero()) {
+    return std::nullopt;
+  }
+  const IntervalVector cell_direction =
+      divide(cell_displacement, cell_separation);
+  const Interval radial_speed = dot(cell_direction, cell_state->velocity);
+  const Interval speed_square =
+      interval_square(cell_state->velocity[0]) +
+      interval_square(cell_state->velocity[1]) +
+      interval_square(cell_state->velocity[2]);
+  const Interval transverse_speed_square =
+      speed_square - interval_square(radial_speed);
+  const Interval residual_curvature =
+      transverse_speed_square / cell_separation -
+      dot(cell_direction, cell_state->acceleration);
+  const double radius = std::max(
+      midpoint - emission.lower(), emission.upper() - midpoint);
+  const Interval displacement_from_midpoint(-radius, radius);
+  // Taylor's theorem encloses the causal residual without losing the
+  // cancellation F'(tau_c)=0 at the pinned fold.  The analytic circular
+  // factory supplies the exact prefix position, velocity, and acceleration;
+  // arbitrary cubic histories remain on the generic interval route.
+  return residual_at_midpoint +
+      residual_derivative * displacement_from_midpoint +
+      Interval::point(0.5) * residual_curvature *
+          interval_square(displacement_from_midpoint);
+}
+
+FiniteWidthIntegrand finite_width_integrand(
     const NativePairAccelerationRequest& request,
     const Interval& emission,
     const Interval& receiver_charge,
@@ -200,14 +500,25 @@ IntervalVector finite_width_integrand(
   const auto& root_certificate = *request.root_certificate;
   const Interval reception =
       Interval::decimal_token(root_certificate.reception_time);
-  const IntervalVector receiver_position =
-      request.receiver_history->position_hull(reception);
-  const IntervalVector receiver_velocity =
-      request.receiver_history->velocity_hull(reception);
-  const IntervalVector source_position =
-      request.source_history->position_hull(emission);
-  const IntervalVector displacement =
-      subtract(receiver_position, source_position);
+  const auto analytic_receiver =
+      request.use_correlated_self_chord &&
+              analytic_pinned_fold_eligible(request)
+          ? request.receiver_history->uniform_circular_analytic_state(reception)
+          : std::nullopt;
+  const IntervalVector receiver_position = analytic_receiver.has_value()
+      ? analytic_receiver->position
+      : request.receiver_history->position_hull(reception);
+  const IntervalVector receiver_velocity = analytic_receiver.has_value()
+      ? analytic_receiver->velocity
+      : request.receiver_history->velocity_hull(reception);
+  const auto analytic_state = analytic_pinned_fold_eligible(request)
+      ? request.source_history->uniform_circular_analytic_state(emission)
+      : std::nullopt;
+  const IntervalVector source_position = analytic_state.has_value()
+      ? analytic_state->position
+      : request.source_history->position_hull(emission);
+  const IntervalVector displacement = finite_width_displacement(
+      request, reception, emission, receiver_position, source_position);
   const Interval separation = norm(displacement);
   const Interval radial_square =
       interval_square(separation) + interval_square(core_scale);
@@ -226,7 +537,22 @@ IntervalVector finite_width_integrand(
         field_speed - dot(direction, receiver_velocity));
   }
   const Interval delay = reception - emission;
-  const Interval residual = separation - field_speed * delay;
+  const Interval direct_residual = separation - field_speed * delay;
+  const auto stable_residual =
+      stable_circular_self_residual(request, reception, emission);
+  const auto taylor_residual = analytic_circular_taylor_residual(
+      request, emission, receiver_position, reception, field_speed);
+  Interval residual = direct_residual;
+  const auto analytic_residual = stable_residual.has_value()
+      ? stable_residual : taylor_residual;
+  if (analytic_residual.has_value()) {
+    const auto intersection = residual.intersection(*analytic_residual);
+    if (!intersection.has_value()) {
+      throw AccelerationCertificationError(
+          "analytic pinned-fold residual disagrees with direct enclosure");
+    }
+    residual = *intersection;
+  }
   const Interval exponent =
       Interval::point(0.0) -
       interval_square(residual) /
@@ -237,16 +563,385 @@ IntervalVector finite_width_integrand(
   const Interval normalizer =
       interval_sqrt(Interval::point(2.0) * pi) * causal_width;
   const Interval mollifier = interval_exp(exponent) / normalizer;
-  return scale(
-      coupling * receiver_charge * source_charge * receiver_strength *
-          mollifier,
+  return {
+      .value = scale(
+          coupling * receiver_charge * source_charge * receiver_strength *
+              mollifier,
+          kernel),
+      .used_analytic_fold = analytic_residual.has_value(),
+      .used_correlated_self_chord = uses_correlated_self_chord(
+          request, reception, emission),
+      .used_stable_circular_residual = stable_residual.has_value(),
+  };
+}
+
+struct CenteredFiniteWidthIntegral {
+  IntervalVector value;
+  bool used_analytic_fold = false;
+  bool used_correlated_self_chord = false;
+  bool used_stable_circular_residual = false;
+};
+
+std::optional<CenteredFiniteWidthIntegral> centered_finite_width_integral(
+    const NativePairAccelerationRequest& request,
+    const Interval& emission,
+    const Interval& receiver_charge,
+    const Interval& source_charge,
+    const Interval& coupling,
+    const Interval& causal_width,
+    const Interval& core_scale) {
+  const auto source_state = analytic_pinned_fold_eligible(request)
+      ? request.source_history->uniform_circular_analytic_state(emission)
+      : std::nullopt;
+  const double midpoint = emission.midpoint();
+  const Interval midpoint_interval = Interval::point(midpoint);
+  const auto& root_certificate = *request.root_certificate;
+  const Interval reception =
+      Interval::decimal_token(root_certificate.reception_time);
+  const auto analytic_receiver =
+      request.use_correlated_self_chord &&
+              analytic_pinned_fold_eligible(request)
+          ? request.receiver_history->uniform_circular_analytic_state(reception)
+          : std::nullopt;
+  const IntervalVector receiver_position = analytic_receiver.has_value()
+      ? analytic_receiver->position
+      : request.receiver_history->position_hull(reception);
+  const IntervalVector receiver_velocity = analytic_receiver.has_value()
+      ? analytic_receiver->velocity
+      : request.receiver_history->velocity_hull(reception);
+  const IntervalVector source_position = source_state.has_value()
+      ? source_state->position
+      : request.source_history->position_hull(emission);
+  const IntervalVector source_velocity = source_state.has_value()
+      ? source_state->velocity
+      : request.source_history->velocity_hull(emission);
+  const IntervalVector displacement = finite_width_displacement(
+      request, reception, emission, receiver_position, source_position);
+  const Interval separation = norm(displacement);
+  if (separation.contains_zero()) {
+    return std::nullopt;
+  }
+  const IntervalVector direction = divide(displacement, separation);
+  const Interval field_speed =
+      Interval::decimal_token(root_certificate.field_speed);
+  const Interval source_radial_speed =
+      dot(direction, source_velocity);
+  const Interval residual_derivative =
+      field_speed - source_radial_speed;
+
+  const Interval zero = Interval::point(0.0);
+  const Interval minus_one = Interval::point(-1.0);
+  const IntervalVector displacement_derivative =
+      scale(minus_one, source_velocity);
+  const IntervalVector direction_derivative = divide(
+      add(
+          displacement_derivative,
+          scale(source_radial_speed, direction)),
+      separation);
+  const Interval receiver_normal =
+      field_speed - dot(direction, receiver_velocity);
+  const Interval receiver_normal_derivative =
+      zero - dot(direction_derivative, receiver_velocity);
+  Interval receiver_strength_derivative = receiver_normal_derivative;
+  if (receiver_normal.upper() < 0.0) {
+    receiver_strength_derivative =
+        zero - receiver_normal_derivative;
+  } else if (receiver_normal.contains_zero()) {
+    const double bound = std::max(
+        std::abs(receiver_normal_derivative.lower()),
+        std::abs(receiver_normal_derivative.upper()));
+    receiver_strength_derivative = Interval(-bound, bound);
+  }
+  const Interval receiver_strength = interval_absolute(receiver_normal);
+
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const Interval radial_three_halves =
+      radial_square * interval_sqrt(radial_square);
+  const Interval radial_five_halves =
+      interval_square(radial_square) * interval_sqrt(radial_square);
+  const IntervalVector kernel =
+      divide(displacement, radial_three_halves);
+  const Interval displacement_dot_derivative =
+      dot(displacement, displacement_derivative);
+  const IntervalVector kernel_derivative = add(
+      divide(displacement_derivative, radial_three_halves),
+      scale(
+          Interval::point(-3.0) * displacement_dot_derivative /
+              radial_five_halves,
+          displacement));
+
+  const Interval delay = reception - emission;
+  const Interval direct_residual =
+      separation - field_speed * delay;
+  const auto stable_residual =
+      stable_circular_self_residual(request, reception, emission);
+  const auto taylor_residual = analytic_circular_taylor_residual(
+      request, emission, receiver_position, reception, field_speed);
+  Interval residual = direct_residual;
+  const auto analytic_residual = stable_residual.has_value()
+      ? stable_residual : taylor_residual;
+  if (analytic_residual.has_value()) {
+    const auto intersection = residual.intersection(*analytic_residual);
+    if (!intersection.has_value()) {
+      throw AccelerationCertificationError(
+          "analytic pinned-fold derivative residual disagrees with direct enclosure");
+    }
+    residual = *intersection;
+  }
+  const Interval exponent =
+      zero - interval_square(residual) /
+          (Interval::point(2.0) * interval_square(causal_width));
+  const Interval pi(3.1415926535897931, 3.1415926535897936);
+  const Interval normalizer =
+      interval_sqrt(Interval::point(2.0) * pi) * causal_width;
+  const Interval mollifier = interval_exp(exponent) / normalizer;
+  const Interval mollifier_derivative =
+      mollifier *
+      (zero - residual * residual_derivative /
+          interval_square(causal_width));
+  const Interval signed_charge_scale =
+      coupling * receiver_charge * source_charge;
+  const IntervalVector derivative = scale(
+      signed_charge_scale,
+      add(
+          add(
+              scale(receiver_strength_derivative * mollifier, kernel),
+              scale(receiver_strength * mollifier, kernel_derivative)),
+          scale(
+              receiver_strength * mollifier_derivative,
+              kernel)));
+
+  const IntervalVector midpoint_value = finite_width_integrand(
+      request, midpoint_interval, receiver_charge, source_charge, coupling,
+      causal_width, core_scale).value;
+  const double width = emission.upper() - emission.lower();
+  IntervalVector result = scale(Interval::point(width), midpoint_value);
+  const double remainder_scale = width * width * 0.25;
+  // For every component A of the unchanged finite-width master-equation
+  // integrand,
+  //   integral_I A = |I| A(mid(I)) + R,
+  //   |R| <= sup_I |A'| integral_I |tau-mid(I)| d tau
+  //        = sup_I |A'| |I|^2 / 4.
+  // The derivative enclosure above therefore certifies the complete cell
+  // integral while avoiding the O(|I|) dependency loss of a box product.
+  for (std::size_t axis = 0; axis < 3; ++axis) {
+    const double derivative_bound = std::max(
+        std::abs(derivative[axis].lower()),
+        std::abs(derivative[axis].upper()));
+    result[axis] =
+        result[axis].inflate(derivative_bound * remainder_scale);
+  }
+  return CenteredFiniteWidthIntegral{
+      .value = result,
+      .used_analytic_fold = analytic_residual.has_value(),
+      .used_correlated_self_chord = uses_correlated_self_chord(
+          request, reception, emission),
+      .used_stable_circular_residual = stable_residual.has_value(),
+  };
+}
+
+Interval finite_width_normal_cdf(
+    const Interval& residual, const Interval& causal_width) {
+  return Interval::point(0.5) *
+      (Interval::point(1.0) +
+       interval_erf(
+           residual /
+           (interval_sqrt(Interval::point(2.0)) * causal_width)));
+}
+
+std::optional<CenteredFiniteWidthIntegral>
+monotone_finite_width_integral(
+    const NativePairAccelerationRequest& request,
+    const Interval& emission,
+    const Interval& receiver_charge,
+    const Interval& source_charge,
+    const Interval& coupling,
+    const Interval& causal_width,
+    const Interval& core_scale) {
+  const auto& certificate = *request.root_certificate;
+  const Interval reception =
+      Interval::decimal_token(certificate.reception_time);
+  const auto analytic_receiver =
+      request.use_correlated_self_chord &&
+              analytic_pinned_fold_eligible(request)
+          ? request.receiver_history->uniform_circular_analytic_state(reception)
+          : std::nullopt;
+  const IntervalVector receiver_position = analytic_receiver.has_value()
+      ? analytic_receiver->position
+      : request.receiver_history->position_hull(reception);
+  const IntervalVector receiver_velocity = analytic_receiver.has_value()
+      ? analytic_receiver->velocity
+      : request.receiver_history->velocity_hull(reception);
+  const auto analytic_source = analytic_pinned_fold_eligible(request)
+      ? request.source_history->uniform_circular_analytic_state(emission)
+      : std::nullopt;
+  const IntervalVector source_position = analytic_source.has_value()
+      ? analytic_source->position
+      : request.source_history->position_hull(emission);
+  const IntervalVector source_velocity = analytic_source.has_value()
+      ? analytic_source->velocity
+      : request.source_history->velocity_hull(emission);
+  const IntervalVector displacement = finite_width_displacement(
+      request, reception, emission, receiver_position, source_position);
+  const Interval separation = norm(displacement);
+  if (separation.contains_zero()) return std::nullopt;
+  const IntervalVector direction = divide(displacement, separation);
+  const Interval field_speed =
+      Interval::decimal_token(certificate.field_speed);
+  const Interval source_normal =
+      field_speed - dot(direction, source_velocity);
+  if (source_normal.contains_zero()) return std::nullopt;
+
+  const auto endpoint_residual = [&](double time) {
+    const Interval point = Interval::point(time);
+    const auto analytic_point = analytic_pinned_fold_eligible(request)
+        ? request.source_history->uniform_circular_analytic_state(point)
+        : std::nullopt;
+    const IntervalVector point_position = analytic_point.has_value()
+        ? analytic_point->position
+        : request.source_history->position_hull(point);
+    const Interval direct =
+        norm(finite_width_displacement(
+            request, reception, point, receiver_position, point_position)) -
+        field_speed * (reception - point);
+    const auto stable =
+        stable_circular_self_residual(request, reception, point);
+    if (!stable.has_value()) return direct;
+    const auto intersection = direct.intersection(*stable);
+    if (!intersection.has_value()) {
+      throw AccelerationCertificationError(
+          "stable circular endpoint residual disagrees with direct enclosure");
+    }
+    return *intersection;
+  };
+  Interval first_residual = endpoint_residual(emission.lower());
+  Interval second_residual = endpoint_residual(emission.upper());
+  if (source_normal.upper() < 0.0) {
+    std::swap(first_residual, second_residual);
+  }
+  const Interval raw_mass =
+      finite_width_normal_cdf(second_residual, causal_width) -
+      finite_width_normal_cdf(first_residual, causal_width);
+  const Interval mass(
+      std::max(0.0, raw_mass.lower()),
+      std::max(0.0, raw_mass.upper()));
+  const Interval mollifier_integral =
+      mass / interval_absolute(source_normal);
+
+  const Interval radial_square =
+      interval_square(separation) + interval_square(core_scale);
+  const Interval radial_three_halves =
+      radial_square * interval_sqrt(radial_square);
+  const IntervalVector kernel = divide(displacement, radial_three_halves);
+  const Interval receiver_normal =
+      field_speed - dot(direction, receiver_velocity);
+  const Interval receiver_strength = interval_absolute(receiver_normal);
+  const Interval signed_charge_scale =
+      coupling * receiver_charge * source_charge;
+  IntervalVector result = scale(
+      signed_charge_scale * receiver_strength * mollifier_integral,
       kernel);
+
+  const IntervalVector displacement_derivative =
+      scale(Interval::point(-1.0), source_velocity);
+  const IntervalVector direction_derivative = divide(
+      add(displacement_derivative,
+          scale(dot(direction, source_velocity), direction)),
+      separation);
+  const Interval receiver_normal_derivative =
+      Interval::point(0.0) -
+      dot(direction_derivative, receiver_velocity);
+  Interval receiver_strength_derivative = receiver_normal_derivative;
+  if (receiver_normal.upper() < 0.0) {
+    receiver_strength_derivative =
+        Interval::point(0.0) - receiver_normal_derivative;
+  } else if (receiver_normal.contains_zero()) {
+    const double bound = std::max(
+        std::abs(receiver_normal_derivative.lower()),
+        std::abs(receiver_normal_derivative.upper()));
+    receiver_strength_derivative = Interval(-bound, bound);
+  }
+  const Interval radial_five_halves =
+      interval_square(radial_square) * interval_sqrt(radial_square);
+  const IntervalVector kernel_derivative = add(
+      divide(displacement_derivative, radial_three_halves),
+      scale(
+          Interval::point(-3.0) *
+              dot(displacement, displacement_derivative) /
+              radial_five_halves,
+          displacement));
+  const IntervalVector prefactor_derivative = scale(
+      signed_charge_scale,
+      add(
+          scale(receiver_strength_derivative, kernel),
+          scale(receiver_strength, kernel_derivative)));
+
+  const double midpoint = emission.midpoint();
+  const Interval midpoint_emission = Interval::point(midpoint);
+  const auto midpoint_analytic = analytic_pinned_fold_eligible(request)
+      ? request.source_history->uniform_circular_analytic_state(
+            midpoint_emission)
+      : std::nullopt;
+  const IntervalVector midpoint_source = midpoint_analytic.has_value()
+      ? midpoint_analytic->position
+      : request.source_history->position_hull(midpoint_emission);
+  const IntervalVector midpoint_displacement = finite_width_displacement(
+      request, reception, midpoint_emission, receiver_position,
+      midpoint_source);
+  const Interval midpoint_separation = norm(midpoint_displacement);
+  if (!midpoint_separation.contains_zero()) {
+    const IntervalVector midpoint_direction =
+        divide(midpoint_displacement, midpoint_separation);
+    const Interval midpoint_radial_square =
+        interval_square(midpoint_separation) + interval_square(core_scale);
+    const IntervalVector midpoint_kernel = divide(
+        midpoint_displacement,
+        midpoint_radial_square * interval_sqrt(midpoint_radial_square));
+    const Interval midpoint_strength = interval_absolute(
+        field_speed - dot(midpoint_direction, receiver_velocity));
+    IntervalVector centered = scale(
+        signed_charge_scale * midpoint_strength * mollifier_integral,
+        midpoint_kernel);
+    const double remainder_scale =
+        0.5 * emission.width() * mollifier_integral.upper();
+    for (std::size_t axis = 0; axis < 3; ++axis) {
+      const double derivative_bound = std::max(
+          std::abs(prefactor_derivative[axis].lower()),
+          std::abs(prefactor_derivative[axis].upper()));
+      centered[axis] =
+          centered[axis].inflate(derivative_bound * remainder_scale);
+      const auto intersection = result[axis].intersection(centered[axis]);
+      if (!intersection.has_value()) {
+        throw AccelerationCertificationError(
+            "finite-width residual and prefactor enclosures disagree");
+      }
+      result[axis] = *intersection;
+    }
+  }
+  return CenteredFiniteWidthIntegral{
+      .value = result,
+      .used_analytic_fold = analytic_source.has_value(),
+      .used_correlated_self_chord = uses_correlated_self_chord(
+          request, reception, emission),
+      .used_stable_circular_residual =
+          stable_circular_self_residual(request, reception, emission)
+              .has_value(),
+  };
 }
 
 struct FiniteWidthAttempt {
   IntervalVector acceleration{
       Interval::point(0.0), Interval::point(0.0), Interval::point(0.0)};
   std::size_t visited_cells = 0;
+  std::size_t analytic_fold_visited_cells = 0;
+  std::size_t correlated_self_chord_visited_cells = 0;
+  std::size_t stable_circular_residual_visited_cells = 0;
+  std::size_t centered_cells = 0;
+  std::size_t monotone_cells = 0;
+  std::size_t direct_cells = 0;
+  double last_total_width = 0.0;
+  double last_largest_cell_width = 0.0;
 };
 
 void require_finite_width_boundary_clearance(
@@ -294,64 +989,255 @@ FiniteWidthAttempt reconstruct_finite_width(
         "finite-width integration requires a positive retained interval");
   }
 
+  struct Cell {
+    double lower;
+    double upper;
+    std::size_t segment_group;
+    std::size_t depth;
+    std::size_t id;
+    IntervalVector integral;
+
+    [[nodiscard]] double score() const {
+      return std::max(
+          {integral[0].width(), integral[1].width(), integral[2].width()});
+    }
+  };
+  struct CellOrder {
+    bool operator()(const Cell& left, const Cell& right) const {
+      if (left.score() != right.score()) {
+        return left.score() < right.score();
+      }
+      return left.id < right.id;
+    }
+  };
+
   FiniteWidthAttempt attempt;
-  std::function<IntervalVector(double, double, std::size_t)> integrate;
-  integrate = [&](double cell_lower, double cell_upper, std::size_t depth) {
+  DeterministicParallelExecutor quadrature_executor(
+      request.quadrature_thread_count);
+  std::size_t next_id = 0U;
+  const auto require_cell_budget = [&]() {
     ++attempt.visited_cells;
     if (attempt.visited_cells > request.quadrature_max_cells) {
       throw AccelerationCertificationError(
-          "finite-width quadrature cell limit exhausted");
+          "finite-width quadrature cell limit exhausted;centered=" +
+          std::to_string(attempt.centered_cells) + ";monotone=" +
+          std::to_string(attempt.monotone_cells) + ";direct=" +
+          std::to_string(attempt.direct_cells) + ";total_width=" +
+          std::to_string(attempt.last_total_width) +
+          ";largest_cell_width=" +
+          std::to_string(attempt.last_largest_cell_width));
     }
+  };
+  const auto assemble_cell = [&] (
+      double cell_lower, double cell_upper,
+      std::size_t segment_group, std::size_t depth, std::size_t id,
+      const std::optional<CenteredFiniteWidthIntegral>& centered_integral,
+      const std::optional<CenteredFiniteWidthIntegral>& monotone_integral) {
     const Interval cell(cell_lower, cell_upper);
-    const double width = cell_upper - cell_lower;
-    const IntervalVector integral = scale(
-        Interval::point(width),
-        finite_width_integrand(
-            request, cell, receiver_charge, source_charge, coupling,
-            causal_width, core_scale));
-    const double budget =
-        quadrature_tolerance.lower() * width / total_span;
-    if (std::all_of(
-            integral.begin(), integral.end(),
-            [&](const Interval& component) { return component.width() <= budget; })) {
-      return integral;
+    const auto integrand = centered_integral.has_value()
+        ? FiniteWidthIntegrand{
+              .value = centered_integral->value,
+              .used_analytic_fold = centered_integral->used_analytic_fold,
+              .used_correlated_self_chord =
+                  centered_integral->used_correlated_self_chord,
+              .used_stable_circular_residual =
+                  centered_integral->used_stable_circular_residual,
+          }
+        : finite_width_integrand(
+              request, cell, receiver_charge, source_charge, coupling,
+              causal_width, core_scale);
+    if (integrand.used_analytic_fold) {
+      ++attempt.analytic_fold_visited_cells;
     }
-    if (depth >= request.quadrature_max_depth) {
-      throw AccelerationCertificationError(
-          "finite-width quadrature depth exhausted");
+    if (integrand.used_correlated_self_chord) {
+      ++attempt.correlated_self_chord_visited_cells;
     }
-    const double midpoint = cell_lower + (cell_upper - cell_lower) * 0.5;
-    if (!(midpoint > cell_lower && midpoint < cell_upper)) {
-      throw AccelerationCertificationError(
-          "finite-width quadrature time resolution exhausted");
+    if (integrand.used_stable_circular_residual) {
+      ++attempt.stable_circular_residual_visited_cells;
     }
-    return add(
-        integrate(cell_lower, midpoint, depth + 1U),
-        integrate(midpoint, cell_upper, depth + 1U));
+    if (centered_integral.has_value()) {
+      ++attempt.centered_cells;
+    } else {
+      ++attempt.direct_cells;
+    }
+    if (monotone_integral.has_value()) {
+      ++attempt.monotone_cells;
+    }
+    IntervalVector cell_integral = centered_integral.has_value()
+        ? integrand.value
+        : scale(
+              Interval::point(cell_upper - cell_lower),
+              integrand.value);
+    if (monotone_integral.has_value()) {
+      for (std::size_t axis = 0; axis < 3; ++axis) {
+        const auto intersection =
+            cell_integral[axis].intersection(monotone_integral->value[axis]);
+        if (!intersection.has_value()) {
+          throw AccelerationCertificationError(
+              "finite-width monotone and direct enclosures disagree");
+        }
+        cell_integral[axis] = *intersection;
+      }
+    }
+    return Cell{
+        .lower = cell_lower,
+        .upper = cell_upper,
+        .segment_group = segment_group,
+        .depth = depth,
+        .id = id,
+        .integral = cell_integral,
+    };
+  };
+  const auto make_cell = [&](double cell_lower, double cell_upper,
+                             std::size_t segment_group,
+                             std::size_t depth, std::size_t id) {
+    require_cell_budget();
+    const Interval cell(cell_lower, cell_upper);
+    const auto centered_integral = centered_finite_width_integral(
+        request, cell, receiver_charge, source_charge, coupling,
+        causal_width, core_scale);
+    const auto monotone_integral = monotone_finite_width_integral(
+        request, cell, receiver_charge, source_charge, coupling,
+        causal_width, core_scale);
+    return assemble_cell(
+        cell_lower, cell_upper, segment_group, depth, id,
+        centered_integral, monotone_integral);
   };
 
-  std::vector<IntervalVector> segment_totals;
+  std::multiset<Cell, CellOrder> cells;
+  std::vector<IntervalVector> segment_group_enclosures;
   for (std::size_t index = 0;
        index < request.source_history->segments().size(); ++index) {
     const auto& segment = request.source_history->segments()[index];
     const double cell_lower = std::max(lower_value, segment.t_start());
     const double cell_upper = std::min(reception_value, segment.t_end());
     if (cell_lower < cell_upper) {
-      segment_totals.push_back(integrate(cell_lower, cell_upper, 0));
+      const std::size_t segment_group = segment_group_enclosures.size();
+      auto cell = make_cell(
+          cell_lower, cell_upper, segment_group, 0U, next_id++);
+      segment_group_enclosures.push_back(cell.integral);
+      cells.insert(std::move(cell));
     }
   }
-  if (segment_totals.empty()) {
+  if (cells.empty()) {
     throw AccelerationCertificationError(
         "finite-width integration has no covered source cells");
   }
-  attempt.acceleration = fixed_pairwise_sum(segment_totals);
-  for (const auto& component : attempt.acceleration) {
-    if (component.width() > quadrature_tolerance.lower()) {
-      throw AccelerationCertificationError(
-          "finite-width quadrature acceleration enclosure exceeds the declared tolerance");
+
+  while (true) {
+    std::vector<const Cell*> chronological;
+    chronological.reserve(cells.size());
+    for (const auto& cell : cells) {
+      chronological.push_back(&cell);
+    }
+    std::sort(
+        chronological.begin(), chronological.end(),
+        [](const Cell* left, const Cell* right) {
+          return left->lower < right->lower ||
+              (left->lower == right->lower && left->id < right->id);
+        });
+    std::vector<std::vector<IntervalVector>> grouped(
+        segment_group_enclosures.size());
+    for (const Cell* cell : chronological) {
+      grouped[cell->segment_group].push_back(cell->integral);
+    }
+    std::vector<IntervalVector> totals;
+    totals.reserve(grouped.size());
+    for (std::size_t group = 0; group < grouped.size(); ++group) {
+      IntervalVector refined = fixed_pairwise_sum(grouped[group]);
+      for (std::size_t axis = 0; axis < 3; ++axis) {
+        const auto intersection = refined[axis].intersection(
+            segment_group_enclosures[group][axis]);
+        if (!intersection.has_value()) {
+          throw AccelerationCertificationError(
+              "finite-width child and retained-segment enclosures disagree");
+        }
+        refined[axis] = *intersection;
+      }
+      totals.push_back(refined);
+    }
+    attempt.acceleration = fixed_pairwise_sum(totals);
+    attempt.last_total_width = std::max(
+        {attempt.acceleration[0].width(), attempt.acceleration[1].width(),
+         attempt.acceleration[2].width()});
+    attempt.last_largest_cell_width = cells.rbegin()->score();
+    if (std::all_of(
+            attempt.acceleration.begin(), attempt.acceleration.end(),
+            [&](const Interval& component) {
+              return component.width() <= quadrature_tolerance.lower();
+            })) {
+      return attempt;
+    }
+
+    const std::size_t splits_before_reduction =
+        std::max<std::size_t>(64U, cells.size() / 16U);
+    for (std::size_t split = 0; split < splits_before_reduction; ++split) {
+      if (cells.empty()) {
+        throw AccelerationCertificationError(
+            "finite-width integration lost its active cells");
+      }
+      const auto found = std::prev(cells.end());
+      const Cell parent = *found;
+      cells.erase(found);
+      if (parent.depth >= request.quadrature_max_depth) {
+        throw AccelerationCertificationError(
+            "finite-width quadrature depth exhausted");
+      }
+      const double midpoint =
+          parent.lower + (parent.upper - parent.lower) * 0.5;
+      if (!(midpoint > parent.lower && midpoint < parent.upper)) {
+        throw AccelerationCertificationError(
+            "finite-width quadrature time resolution exhausted");
+      }
+      struct ChildSpec {
+        double lower;
+        double upper;
+        std::size_t id;
+      };
+      const std::array<ChildSpec, 2> children{{
+          {parent.lower, midpoint, next_id++},
+          {midpoint, parent.upper, next_id++},
+      }};
+      require_cell_budget();
+      require_cell_budget();
+      std::array<std::optional<CenteredFiniteWidthIntegral>, 2>
+          centered_integrals;
+      std::array<std::optional<CenteredFiniteWidthIntegral>, 2>
+          monotone_integrals;
+      std::array<std::exception_ptr, 4> failures{};
+      quadrature_executor.run(4U, [&](std::size_t task_index) {
+        const std::size_t child_index = task_index / 2U;
+        const Interval child(
+            children[child_index].lower, children[child_index].upper);
+        try {
+          if (task_index % 2U == 0U) {
+            centered_integrals[child_index] = centered_finite_width_integral(
+                request, child, receiver_charge, source_charge, coupling,
+                causal_width, core_scale);
+          } else {
+            monotone_integrals[child_index] = monotone_finite_width_integral(
+                request, child, receiver_charge, source_charge, coupling,
+                causal_width, core_scale);
+          }
+        } catch (...) {
+          failures[task_index] = std::current_exception();
+        }
+      });
+      for (const auto& failure : failures) {
+        if (failure != nullptr) {
+          std::rethrow_exception(failure);
+        }
+      }
+      for (std::size_t child_index = 0; child_index < children.size();
+           ++child_index) {
+        cells.insert(assemble_cell(
+            children[child_index].lower, children[child_index].upper,
+            parent.segment_group, parent.depth + 1U,
+            children[child_index].id, centered_integrals[child_index],
+            monotone_integrals[child_index]));
+      }
     }
   }
-  return attempt;
 }
 
 void validate_pair_request(const NativePairAccelerationRequest& request) {
@@ -369,14 +1255,25 @@ void validate_pair_request(const NativePairAccelerationRequest& request) {
       request.maximum_mpfr_bits < request.initial_mpfr_bits) {
     throw std::invalid_argument("invalid acceleration MPFR precision ladder");
   }
+  if (request.quadrature_thread_count == 0U) {
+    throw std::invalid_argument(
+        "finite-width quadrature requires at least one thread");
+  }
 }
 
 NativePairAccelerationCertificate uncertified_pair(
     const NativePairAccelerationRequest& request,
     const std::string& failure_code,
     std::size_t quadrature_visited_cells,
+    std::size_t analytic_fold_visited_cells,
+    std::size_t correlated_self_chord_visited_cells,
+    std::size_t stable_circular_residual_visited_cells,
     bool acceleration_precision_escalated,
-    unsigned achieved_acceleration_precision_bits) {
+    unsigned achieved_acceleration_precision_bits,
+    double pair_wall_seconds,
+    double finite_width_wall_seconds,
+    double precision_escalation_wall_seconds,
+    std::size_t precision_escalation_attempt_count) {
   return {
       .schema = "eom_native_pair_acceleration_certificate/v0",
       .row_id = request.row_id,
@@ -388,9 +1285,20 @@ NativePairAccelerationCertificate uncertified_pair(
       .root_certificate_row_id = request.root_certificate->row_id,
       .reduction_policy = kDeterministicReductionPolicy,
       .quadrature_visited_cells = quadrature_visited_cells,
+      .analytic_fold_visited_cells = analytic_fold_visited_cells,
+      .correlated_self_chord_visited_cells =
+          correlated_self_chord_visited_cells,
+      .stable_circular_residual_visited_cells =
+          stable_circular_residual_visited_cells,
       .acceleration_precision_escalated = acceleration_precision_escalated,
       .achieved_acceleration_precision_bits =
           achieved_acceleration_precision_bits,
+      .pair_wall_seconds = pair_wall_seconds,
+      .finite_width_wall_seconds = finite_width_wall_seconds,
+      .precision_escalation_wall_seconds =
+          precision_escalation_wall_seconds,
+      .precision_escalation_attempt_count =
+          precision_escalation_attempt_count,
       .reconstruction_matches = false,
       .rows = {},
       .total_acceleration = std::nullopt,
@@ -401,11 +1309,18 @@ NativePairAccelerationCertificate uncertified_pair(
 
 NativePairAccelerationCertificate certify_pair_acceleration(
     const NativePairAccelerationRequest& request) {
+  const auto pair_timing_start = SteadyClock::now();
   validate_pair_request(request);
   const auto& root_certificate = *request.root_certificate;
   std::size_t quadrature_visited_cells = 0;
+  std::size_t analytic_fold_visited_cells = 0;
+  std::size_t correlated_self_chord_visited_cells = 0;
+  std::size_t stable_circular_residual_visited_cells = 0;
   bool acceleration_precision_escalated = false;
   unsigned achieved_acceleration_precision_bits = 53;
+  double finite_width_wall_seconds = 0.0;
+  double precision_escalation_wall_seconds = 0.0;
+  std::size_t precision_escalation_attempt_count = 0U;
   try {
     if (root_certificate.schema != "eom_native_exact_pair_certificate/v0") {
       throw AccelerationCertificationError("unsupported root certificate schema");
@@ -482,24 +1397,43 @@ NativePairAccelerationCertificate certify_pair_acceleration(
       bool binary_certified = false;
       std::string binary_failure;
       if (!request.force_precision_escalation) {
+        const auto finite_width_timing_start = SteadyClock::now();
         try {
           const auto attempt = reconstruct_finite_width(
               request, receiver_charge, source_charge, coupling, causal_width,
               core_scale, quadrature_tolerance);
           finite_acceleration = attempt.acceleration;
           quadrature_visited_cells = attempt.visited_cells;
+          analytic_fold_visited_cells =
+              attempt.analytic_fold_visited_cells;
+          correlated_self_chord_visited_cells =
+              attempt.correlated_self_chord_visited_cells;
+          stable_circular_residual_visited_cells =
+              attempt.stable_circular_residual_visited_cells;
+          if (analytic_fold_visited_cells > 0U) {
+            acceleration_precision_route =
+                "binary64_outward_analytic_pinned_fold_quadrature";
+          }
           binary_certified = true;
         } catch (const AccelerationCertificationError& error) {
           binary_failure = error.what();
         }
+        finite_width_wall_seconds +=
+            wall_seconds_since(finite_width_timing_start);
       }
       if (!binary_certified) {
         acceleration_precision_escalated = true;
         std::string mpfr_failure = binary_failure;
         unsigned bits = request.initial_mpfr_bits;
         while (true) {
+          const auto escalation_timing_start = SteadyClock::now();
           const auto attempt =
               certify_mpfr_finite_width_acceleration(request, bits);
+          const double escalation_seconds =
+              wall_seconds_since(escalation_timing_start);
+          finite_width_wall_seconds += escalation_seconds;
+          precision_escalation_wall_seconds += escalation_seconds;
+          ++precision_escalation_attempt_count;
           quadrature_visited_cells = attempt.visited_cells;
           achieved_acceleration_precision_bits = bits;
           if (attempt.certified) {
@@ -515,6 +1449,9 @@ NativePairAccelerationCertificate certify_pair_acceleration(
           bits = std::min(request.maximum_mpfr_bits, bits * 2U);
         }
         if (!binary_certified) {
+          if (!binary_failure.empty() && mpfr_failure != binary_failure) {
+            mpfr_failure += ";binary64=" + binary_failure;
+          }
           throw AccelerationCertificationError(
               mpfr_failure.empty()
                   ? "numeric acceleration precision limit exhausted"
@@ -592,11 +1529,22 @@ NativePairAccelerationCertificate certify_pair_acceleration(
         .status = rows.empty() ? "inactive" : "active",
         .failure_code = "",
         .root_certificate_row_id = root_certificate.row_id,
-        .reduction_policy = kDeterministicReductionPolicy,
-        .quadrature_visited_cells = quadrature_visited_cells,
+      .reduction_policy = kDeterministicReductionPolicy,
+      .quadrature_visited_cells = quadrature_visited_cells,
+      .analytic_fold_visited_cells = analytic_fold_visited_cells,
+      .correlated_self_chord_visited_cells =
+          correlated_self_chord_visited_cells,
+      .stable_circular_residual_visited_cells =
+          stable_circular_residual_visited_cells,
         .acceleration_precision_escalated = acceleration_precision_escalated,
         .achieved_acceleration_precision_bits =
             achieved_acceleration_precision_bits,
+        .pair_wall_seconds = wall_seconds_since(pair_timing_start),
+        .finite_width_wall_seconds = finite_width_wall_seconds,
+        .precision_escalation_wall_seconds =
+            precision_escalation_wall_seconds,
+        .precision_escalation_attempt_count =
+            precision_escalation_attempt_count,
         .reconstruction_matches = true,
         .rows = std::move(rows),
         .total_acceleration = total,
@@ -604,13 +1552,25 @@ NativePairAccelerationCertificate certify_pair_acceleration(
   } catch (const AccelerationCertificationError& error) {
     return uncertified_pair(
         request, error.what(), quadrature_visited_cells,
+        analytic_fold_visited_cells,
+        correlated_self_chord_visited_cells,
+        stable_circular_residual_visited_cells,
         acceleration_precision_escalated,
-        achieved_acceleration_precision_bits);
+        achieved_acceleration_precision_bits,
+        wall_seconds_since(pair_timing_start), finite_width_wall_seconds,
+        precision_escalation_wall_seconds,
+        precision_escalation_attempt_count);
   } catch (const std::runtime_error& error) {
     return uncertified_pair(
         request, error.what(), quadrature_visited_cells,
+        analytic_fold_visited_cells,
+        correlated_self_chord_visited_cells,
+        stable_circular_residual_visited_cells,
         acceleration_precision_escalated,
-        achieved_acceleration_precision_bits);
+        achieved_acceleration_precision_bits,
+        wall_seconds_since(pair_timing_start), finite_width_wall_seconds,
+        precision_escalation_wall_seconds,
+        precision_escalation_attempt_count);
   }
 }
 
@@ -657,6 +1617,20 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
         throw std::invalid_argument("ordered-pair acceleration domain is incomplete");
       }
       canonical_requests.push_back(pair_requests[found->second]);
+    }
+  }
+  const std::size_t finite_width_request_count = static_cast<std::size_t>(
+      std::count_if(
+          canonical_requests.begin(), canonical_requests.end(),
+          [](const auto& request) { return request.chart == "finite_width"; }));
+  const std::size_t finite_width_threads = finite_width_request_count == 0U
+      ? 1U
+      : std::max<std::size_t>(
+            1U, std::min<std::size_t>(
+                    4U, thread_count / finite_width_request_count));
+  for (auto& request : canonical_requests) {
+    if (request.chart == "finite_width") {
+      request.quadrature_thread_count = finite_width_threads;
     }
   }
 
@@ -713,6 +1687,13 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
 
   std::vector<NativePairAccelerationCertificate> pair_certificates(
       canonical_requests.size());
+  struct PairExecutionWindow {
+    SteadyClock::time_point start;
+    SteadyClock::time_point end;
+    bool finite_width = false;
+  };
+  std::vector<PairExecutionWindow> execution_windows(
+      canonical_requests.size());
   const std::size_t worker_count =
       std::min(thread_count, canonical_requests.size());
   std::atomic<std::size_t> next_index{0};
@@ -720,6 +1701,7 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
   std::mutex failure_mutex;
   std::vector<std::thread> workers;
   workers.reserve(worker_count);
+  const auto pair_batch_timing_start = SteadyClock::now();
   for (std::size_t worker = 0; worker < worker_count; ++worker) {
     workers.emplace_back([&]() {
       try {
@@ -728,8 +1710,12 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
           if (index >= canonical_requests.size()) {
             return;
           }
+          execution_windows[index].start = SteadyClock::now();
+          execution_windows[index].finite_width =
+              canonical_requests[index].chart == "finite_width";
           pair_certificates[index] =
               certify_pair_acceleration(canonical_requests[index]);
+          execution_windows[index].end = SteadyClock::now();
         }
       } catch (...) {
         std::lock_guard<std::mutex> lock(failure_mutex);
@@ -745,6 +1731,59 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
   if (failure != nullptr) {
     std::rethrow_exception(failure);
   }
+  const double pair_batch_wall_seconds =
+      wall_seconds_since(pair_batch_timing_start);
+
+  struct ExecutionEvent {
+    SteadyClock::time_point time;
+    int total_delta;
+    int finite_width_delta;
+    int sharp_delta;
+  };
+  std::vector<ExecutionEvent> events;
+  events.reserve(execution_windows.size() * 2U);
+  for (const auto& window : execution_windows) {
+    const int finite_delta = window.finite_width ? 1 : 0;
+    const int sharp_delta = window.finite_width ? 0 : 1;
+    events.push_back({window.start, 1, finite_delta, sharp_delta});
+    events.push_back({window.end, -1, -finite_delta, -sharp_delta});
+  }
+  std::sort(events.begin(), events.end(), [](const auto& left, const auto& right) {
+    if (left.time != right.time) {
+      return left.time < right.time;
+    }
+    return left.total_delta < right.total_delta;
+  });
+  double pair_execution_union_wall_seconds = 0.0;
+  double finite_width_execution_union_wall_seconds = 0.0;
+  double sharp_execution_union_wall_seconds = 0.0;
+  double finite_width_sharp_overlap_wall_seconds = 0.0;
+  int active_total = 0;
+  int active_finite_width = 0;
+  int active_sharp = 0;
+  auto prior_event_time = events.front().time;
+  for (const auto& event : events) {
+    const double duration =
+        std::chrono::duration<double>(event.time - prior_event_time).count();
+    if (active_total > 0) {
+      pair_execution_union_wall_seconds += duration;
+    }
+    if (active_finite_width > 0) {
+      finite_width_execution_union_wall_seconds += duration;
+    }
+    if (active_sharp > 0) {
+      sharp_execution_union_wall_seconds += duration;
+    }
+    if (active_finite_width > 0 && active_sharp > 0) {
+      finite_width_sharp_overlap_wall_seconds += duration;
+    }
+    active_total += event.total_delta;
+    active_finite_width += event.finite_width_delta;
+    active_sharp += event.sharp_delta;
+    prior_event_time = event.time;
+  }
+  const double worker_idle_orchestration_wall_seconds = std::max(
+      0.0, pair_batch_wall_seconds - pair_execution_union_wall_seconds);
 
   const bool all_certified = std::all_of(
       pair_certificates.begin(), pair_certificates.end(), [](const auto& pair) {
@@ -778,6 +1817,16 @@ NativeAccelerationReconstructionCertificate certify_acceleration_reconstruction(
       .logical_ordered_pairs = expected_count,
       .complete_ordered_pair_domain = true,
       .reconstruction_matches = reconstruction_matches,
+      .pair_execution_union_wall_seconds =
+          pair_execution_union_wall_seconds,
+      .finite_width_execution_union_wall_seconds =
+          finite_width_execution_union_wall_seconds,
+      .sharp_execution_union_wall_seconds =
+          sharp_execution_union_wall_seconds,
+      .finite_width_sharp_overlap_wall_seconds =
+          finite_width_sharp_overlap_wall_seconds,
+      .worker_idle_orchestration_wall_seconds =
+          worker_idle_orchestration_wall_seconds,
       .path_ids = path_ids,
       .pair_certificates = std::move(pair_certificates),
       .receiver_totals = std::move(receiver_totals),

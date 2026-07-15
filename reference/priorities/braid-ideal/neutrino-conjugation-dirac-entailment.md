@@ -1,0 +1,17 @@
+# Neutrino Conjugation — Scoped-Negative Record
+
+**Date:** 2026-07-15
+**Status:** retired gate record; do not use as a live target
+
+The authoritative conditional Dirac/Majorana gate, its open $C$-odd/$C$-even joint, and its falsifier live in [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md#empirical-decision-gates), lines 228–238. This file records only routes that must not be retried. The former `pro/anti` terminology conflict is resolved by [Pro/Anti Orientation and Polarity Conjugation](../../../content/markdown/aaa/archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation): `pro/anti` names the three-dimensional ordered orientation, while $C$ names fixed-worldline polarity conjugation and remains meaningful after planarization.
+
+## Do Not Retry
+
+1. **“Determine the $C$-parity of $\delta\Omega_{\mathrm{bin}}$.”** **Derived scoped negative: void at the level of posing.** The photon lock has not been exhibited, so there is nothing for the residual to be a residual of; measuring or decomposing it harder cannot repair the missing referent. Canon: [neutrinos.md](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md), lines 9–18, 61, and 234.
+2. **The transverse-sector route.** **Derived refutation and independently void.** The symmetric/antisymmetric decomposition assumed that $C$ swaps the pair's members. Canon defines $C$ as a pure polarity relabel at fixed positions: the $C$-image has the same geometry, and isolated trajectories are unchanged. Purely geometric perturbations are therefore $C$-even, so “transverse $=C$-odd” is backwards; the missing photon-lock referent also voids the perturbation space. Canon: [spindle-braid.md](../../../content/markdown/aaa/noether-braid/spindle-braid.md), line 183; [braid-mathematics.md](../../../content/markdown/aaa/noether-braid/braid-mathematics.md), line 95; [neutrinos.md](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md), line 234.
+3. **The sea-polarity-imbalance route.** **Derived scoped negative: void.** Its proposed “pro/anti excess” premise is absent: the Noether sea is defined as a balanced population of complementary orientations, and `pro/anti` is not a net-charge distinction. Independently, every candidate Noether braid has the fixed inventory $3\epsilon_+ + 3\epsilon_-$, so changing orientation cannot create a polarity imbalance. Canon: [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md), lines 21 and 113–115; [horizon-chirality.md](../../../content/markdown/aaa/spacetime/horizon-chirality.md), line 53; [braid-recovery-requirements.md](../../../content/markdown/aaa/noether-braid/braid-recovery-requirements.md), line 17.
+4. **The §99 charge-ledger route.** **Derived from instrument scope: silent by construction.** The evaluator certifies a monopole ledger but carries no cap degree of freedom and therefore cannot adjudicate $\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)$. This instrument limitation is not stated in canon, so it is retained here rather than cut. Source: [planar-assembled-free-particle-spec.md](planar-assembled-free-particle-spec.md), line 139.
+
+## Retained Dependency
+
+**Unchecked:** $\chi$ must be cycle-invariant rather than cycle-averaging to zero for the canonical conditional lemma to apply to a retained assembly. Canon uses a handedness invariant but does not state this cycle-level burden explicitly, so the burden is retained here. It is not a photon-residual route and is not executable until a retained chiral assembly exists.

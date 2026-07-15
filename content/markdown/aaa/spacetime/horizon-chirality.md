@@ -4,7 +4,7 @@ This chapter studies one narrow theory question: how the Noether braid `pro/anti
 
 The guiding problem is simple. In ordinary low-stress conditions, the nested shell braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
-The chapter is therefore a reduction map, not a new chirality doctrine. It keeps three labels from collapsing into one another too early: the deeper 3D pro/anti branch distinction, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
+The chapter is therefore a reduction map, not a new chirality doctrine. It keeps four labels from collapsing into one another: the deeper 3D pro/anti branch orientation, polarity conjugation at fixed worldlines, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
 ## Canonical Horizon Condition
 
@@ -22,7 +22,7 @@ This chapter does not alter that constitutive rule. It asks what chirality infor
 
 ## Pro/Anti Before Planar Lock
 
-Away from the horizon, the project treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis), while [color-charge-su3.md](../assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter) consumes the same convention in the fermion sector:
+Away from the horizon, the project treats `pro/anti` as an ordering property of the 3D nested shell braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
@@ -45,6 +45,7 @@ So the cleanest reading is:
 
 - the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
 - the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_s$, $D_T$, and $W^{\mathrm{rec}}$.
+- polarity conjugation $C$ leaves that order unchanged because it relabels polarities at fixed worldlines; parity $P$ reverses the order.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
@@ -55,12 +56,12 @@ This chapter should also be read against a broader guardrail from the project fr
 Several standing examples point in that direction.
 
 - **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
-- **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
+- **Photon channel:** the proposed photon assembly is a coaxial contra-rotating polarity-conjugate planar pair, or one record $\mathfrak B$ and its $C$-image $C(\mathfrak B)$. It is not an example of pro/anti orientation balance, because the precession-order carrier has ceased in the planar limit.
 - **$2+2$ pro/anti cluster hypothesis:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
 
-So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
+So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem tests whether the ordered three-dimensional orientation has any surviving planar readout. The polarity-conjugate relation is a separate row.
 
-The matter sector then becomes the special case. In this intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+Orientation-selective reaction channels then become the special case. Pro-Noether braid and anti-Noether braid orientations may meet as geometric complements and open fast reconfiguration channels, but that pairing is not automatically a particle-antiparticle reaction. A matter-antimatter event additionally requires polarity-conjugate retained branch records and conjugate charged-sector ledgers. In either case, the standard word "annihilation" is too blunt: the deeper process is a **reaction** or **reconfiguration event** in which coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -70,7 +71,8 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether braid chirality, tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
+| `pro/anti` | the deeper 3D Noether braid ordered orientation, tracked by structure such as `HML` versus `HLM`; $C$-even and $P$-odd | pre-planar 3D braid |
+| polarity-conjugate pair | one retained record $\mathfrak B$ and its fixed-worldline polarity-reversed image $C(\mathfrak B)$ | any regime, including the planar limit |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
@@ -83,9 +85,9 @@ The horizon question becomes clearer when compared against the main assembly sec
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
-| Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
+| Photon channel | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
-| Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
+| Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
 
@@ -395,5 +397,5 @@ That yields a disciplined provisional picture:
 - [Nested Shell Braid Dynamics](../noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics): regime map, planarity diagnostics, and alignment observables.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
-- [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
-- [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.
+- [../assemblies/fermions/color-charge-su3.md](../assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.
+- [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md): ordered-triad, polarity-conjugation, and chirality language.

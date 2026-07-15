@@ -3150,3 +3150,264 @@ Operator chose the cheap de-risk before a native run: extend the rigid 6-DOF per
 **Verdict.** Within the LINEAR treatment, the per-site internal-deformation DOF do not relax the follower-force $K$-asymmetry — they aggravate the flutter. Combined with 38(a–c), the entire LINEAR flutter-fix family is now closed: no rigid geometry (barrel), no gyroscopic authority (flywheel), no damping structure, and no per-site internal-deformation freedom drives $\mathrm{Re}\,\lambda\le0$; every linear lever leaves (or worsens) the geometry-robust circulatory asymmetry.
 
 **Pre-registered caveat and consequence.** This is a LINEAR stability result; per the escalation's stated logic, a linear null/negative cannot rule out NONLINEAR relaxation (limit-cycle capture or radiative angular-momentum shedding) that only a native retained-history integration can represent. What the per-site pencil DOES establish is that the native run's hope cannot rest on the internal DOF providing a soft LINEAR channel — that channel is actively destabilizing — so any native relaxation must be genuinely nonlinear/retention-driven. This lowers the prior on a native cure and sharpens what to look for: not a linear soft mode, but a nonlinear bounded attractor that sheds the circulatory throughput to the far field (tying back to entry 35's outgoing-wave angular-momentum flux $\Phi_\infty$ — the flutter and the radiation reframe may be the same open channel). Recommended next: if the native run is pursued, instrument it for radiative/retention shedding of the tilt-sector angular momentum, not for a linear soft mode. Reusable artifact: `perSiteTiltPencil` (validated 12-DOF pencil) + `solvePencilMaxRe`. Relationships: [[s86-spin-interleaving-flutter-nogo]], entry 38(a–c)+executed, 35 (Φ_∞ radiation reframe), §84 support no-go.
+
+---
+
+### Entry 39 — maximum-curvature binary: a sub-rail maximum exists, a global one does not, and a forbidden band separates them (2026-07-14, operator closure goal)
+
+**Claim level.** Derivation-grade on the circular family, confirmed on the independent 90-digit oracle (`scripts/eom/antipodal-binary-hinge-oracle.py`). Not a statement about general paths. Every configuration named here fails the tangential-equilibrium test ($F_\theta>0$ everywhere, T1), so none is a state the object can occupy — these are radially balanced configurations, not steady states.
+
+**Operator's proposal.** If the theory admits a *maximum-curvature* binary, it is a distinguished object: sustained maximal curvature in a plane forces a circle, one circle satisfies the balance, so every maximum-curvature binary is the *same* binary and produces one path. Prehistory-independence would then be restored by **uniqueness of the configuration** rather than by attraction — which is a genuinely different escape route from the one the [phase-collapse test](evidence/antipodal-binary-phase-collapse-2026-07-14.md) just closed negatively. The operator also named the obstruction: the isolated binary cannot reach that state on its own, so external hits must drive it there.
+
+**The logic is sound and the question is analytic.** Circular balance gives $R_\star(s)=\kappa q^2F_r(s)/(s^2c_f^2)$, so curvature along the family is
+
+$$
+C(s)=\frac{1}{R_\star(s)}=\frac{s^2c_f^2}{\kappa q^2\,F_r(s)} .
+$$
+
+Maximum curvature is minimum $R_\star$. No evolution is required — only $F_r$, which is closed-form.
+
+**Headline — there is NO maximum-curvature binary.** Curvature on the circular family is **unbounded**, and it is unbounded *above* field speed, exactly where the operator's intuition placed it. Two separate routes to infinity, neither with a maximum:
+
+- **$s\to s_R^+$, a fast divergence.** $C\kappa q^2 = 18.4$ at $s_R+10^{-1}$, $102.8$ at $+10^{-2}$, $9.46\times10^3$ at $+10^{-4}$, $9.45\times10^9$ at $+10^{-10}$ — i.e. $C\sim1/(s-s_R)$.
+- **$s\to\infty$, a slow divergence.** $C\kappa q^2 = 40.8$ at $s=10$, $85.7$ at $20$, $232$ at $50$ — roughly linear in $s$, with no zero of $F_r$ and no turnover found out to $s=50$.
+
+*(Emphasis corrected 2026-07-14, operator challenge: "you seem to be equating $v=c_f$ with the maximum curvature — I would have thought it would be well above $c_f$." The operator is right and the earlier revision of this entry buried it. The $s\to1^-$ value below is a **local** maximum of the sub-rail branch alone, and it is minuscule against the real structure: $C\kappa q^2=2.96$ at the rail versus $9.45\times10^9$ near $s_R$. Boxing $R_{\min}$ made a branch endpoint read as the answer to the question. The answer to the question is "no maximum exists.")*
+
+**Structure — three regimes.**
+
+1. **Sub-rail ($s<1$): the branch has a tightest member, unique, sitting exactly at the rail.** $R_\star$ decreases monotonically from $\infty$ to its infimum as $s\to1^-$. At $s=1$ the partner hinge $s=u/\cos u$ gives $u=\cos u$, so $u_\star$ is the fixed point of cosine (the Dottie number), and
+
+$$
+\boxed{\;
+u_\star=0.73908513321516064166,\qquad
+R_{\min}=\frac{\kappa q^2}{4u_\star}=0.33825602594988\,\kappa q^2,\qquad
+C_{\max}=\frac{4u_\star}{\kappa q^2}=\frac{2.95634053286}{\kappa q^2}
+\;}
+$$
+
+   This is the tightest sub-field-speed circular binary the theory admits — parameter-free up to the coupling, radius set by the fixed point of cosine. It is a branch infimum approached as $s\to1^-$, not attained, and **not** the maximum curvature of the object.
+
+2. **A forbidden band, $1<s<\pi/(2\sqrt2)=1.1107207345$: no circular binary exists at any radius.** $F_r<0$ there — the newborn self-repulsion beats the partner attraction — so no positive balance radius exists. This is the self-hit acting as a genuine curvature limiter, and it is the only window in which it wins. It is also the reason the sub-rail branch has a tightest member at all: the band, not any bound on curvature, is what stops the sub-rail descent.
+
+3. **Above the band: the descent resumes and never stops.** $F_r\to0^+$ as $s\to s_R^+$, so $R_\star\to0$: arbitrarily tight, arbitrarily fast-spinning circular binaries exist just above $1.11\,c_f$. The theory carries no length but $\kappa q^2/c_f^2$ and nothing forbids the descent. The scale-free structure is the point — the near-cancellation $F_r\to0$ shrinks the balance radius in proportion, so the family is self-similar all the way down.
+
+**Consequence for the proposal.** The uniqueness route needed a maximum-curvature configuration, and there is none. What survives is weaker but not nothing: the **tightest sub-field-speed** binary is a distinguished, parameter-free configuration, and $s_R=\pi/(2\sqrt2)$ is a distinguished, parameter-free speed. So the theory does select special configurations — just not by bounding curvature. And the sub-rail distinguished object lands precisely on the field-speed rail, which the [spiral-law campaign](evidence/antipodal-binary-spiral-law-2026-07-14.md) independently found to be a singular boundary where the sharp acceleration has no finite $s\to1^+$ limit. The distinguished binary and the singularity are the same point. That is either the deepest thing in the object or a warning that the circular family is the wrong chart there; it should not be read as the former without argument.
+
+**Adjudicator error, recorded (2026-07-14).** This entry first objected that "the driving record is the prehistory," so driving a binary to maximum curvature merely relocates the seed problem rather than solving it. **That is wrong, and the operator refuted it: a revolution or two on the circle is all that is required to establish a circular history.** The memory is *finite-depth*. The state of the delay system is the path over $[-h,0]$ only, where $h$ is the largest causal delay, and once the drive is older than $h$ it is not merely small — it is **absent from the state**. The error was importing an intuition of long/fading memory into a system whose memory has a hard edge, and never checking how deep that edge is. Measured:
+
+| | $s=0.25$ | $s=0.5$ | $s=0.75$ | $s=0.95$ | $s\to1$ |
+|---|---:|---:|---:|---:|---:|
+| memory depth $\varphi/2\pi$ = **revolutions to flush**, in revolutions | $0.0773$ | $0.1433$ | $0.1952$ | $0.2281$ | $0.2353$ |
+| memory depths per revolution, $2\pi/\varphi$ | $12.95$ | $6.98$ | $5.12$ | $4.39$ | $4.25$ |
+
+*(Corrected 2026-07-14: an earlier revision of this entry labelled the second row "revolutions to flush it." That is the reciprocal of the right quantity. Flushing takes exactly **one** memory depth, which is the first row — $0.235$ revolutions at the rail, not $4.25$. Operator caught it.)*
+
+The memory never exceeds **a quarter of a revolution** anywhere below field speed, with a supremum of $\varphi(1)/2\pi=u_\star/\pi=0.2353$ at the rail. One revolution is $4.25$ memory depths at the rail and $13$ at $s=0.25$, so the operator's "a revolution or two" is $4$–$26\times$ more than needed. The operator's argument is therefore correct and **the uniqueness route survives**: a binary held on the max-curvature circle for one or two turns has a state that is exactly circular, carries no trace of the hits that put it there, and is identical to every other binary prepared the same way. The circular seed is not a choice in that scenario — it is what the preparation hands you.
+
+**The real obstruction is different, and it is quantitative.** The binary cannot perform "a revolution or two" *on its own*, because the tangential pump destroys the circle in a fraction of one turn. The fractional speed change per memory depth is
+
+$$
+\boxed{\;\frac{\Delta v}{v}\bigg|_{\text{one memory depth}}=\frac{a_\theta\Delta_p}{v}=\frac{\varphi\,F_\theta(s)}{F_r(s)}\;}
+$$
+
+in which $\kappa q^2$ and $R$ cancel **exactly** on the balance family, leaving a pure number of $s$ alone:
+
+| | $s=0.25$ | $s=0.5$ | $s=0.75$ | $s=0.95$ | $s\to1$ |
+|---|---:|---:|---:|---:|---:|
+| $\Delta v/v$ per memory depth | $0.1202$ | $0.4351$ | $0.8634$ | $1.2477$ | $1.3452$ |
+| $\Delta v/v$ per revolution | $1.555$ | $3.037$ | $4.423$ | $5.471$ | $5.722$ |
+| revolutions until $v$ doubles | $0.643$ | $0.329$ | $0.226$ | $0.183$ | $0.175$ |
+
+At maximum curvature the speed changes by $135\%$ in one memory depth and the object is unrecognizable after $0.175$ of a revolution. The memory clears in $0.235$ revolutions; the object is destroyed in $0.175$. **The two timescales are comparable, and destruction is the faster one** — this ratio, $\varphi F_\theta/F_r$ exceeding $1$, is exactly the statement that an isolated binary cannot hold a circle long enough to establish a circular history of itself.
+
+So the drive is not a nudge that sets an initial condition and departs. To hold the circle it must supply $a_\theta=-(\kappa q^2/R^2)F_\theta$ continuously — the *entire* tangential interaction — for at least a memory depth. That is not a hit; it is a cage.
+
+**Where this actually lands.** The consequence is not that the operator's route fails, but that **the maximum-curvature binary is not a two-body object at all.** It is a binary held by an environment, and the environment supplies the tangential balance the binary cannot supply itself. That is precisely what a braid is, and it converts the max-curvature proposal from a binary question into a statement about what holds assemblies together — the same constitutive/sea frontier the program already carries. It also sharpens $\varphi F_\theta/F_r$ into a design number: it is the tangential authority any binding environment must supply, in units of the binary's own interaction, and it is $O(1)$ at the rail.
+
+**What would settle the uniqueness route — a driven collapse test.** Drive several materially different histories onto the same near-rail circle, hold each for $\ge2$ memory depths ($\ge0.5$ revolutions), release, and test whether the freed paths collapse. Per the operator's argument the prediction is now that they **must** collapse, because after a held revolution the four states are literally the same function on $[-h,0]$ — which makes this a test of the *holding*, not of the release. The informative version is therefore to hold for a *sub*-memory-depth and vary the approach, mapping how much held-circle time is needed before the approach is forgotten. That is a real measurement and it has a predicted answer ($t_{\rm hold}\ge h$), which is what makes it worth running.
+
+**Discipline on the driver.** Per [Evidence Independence](../../../AGENTS.md#evidence-independence), *"a model swept over its own knobs is evidence about the model."* An arbitrary external forcing term is a knob and cannot bear on this. The driver must be architrinos — a third charge, or the binary embedded in a real environment — which makes this a many-body question, not a two-body one. Expect the near-rail approach to be expensive: the self-root caustic $D_s^{\rm self}=1-s\cos(\delta/2)\to1-s\to0$ is real, unlike the §97 wall.
+
+**Status: parked (2026-07-14, operator).** The uniqueness route is closed — no maximum curvature exists — and the entry is set aside rather than continued. Three operator escape routes were raised at parking; the first two redirect to the many-body frontier and the third is settled below.
+
+**Spin-off — a co-located $+/-$ pair is silent only if it is co-moving. Neutral is not the same as silent.**
+
+*Claim level: derivation-grade, elementary, direct from the master equation; numerically confirmed. Promotion candidate — this is reader-facing physics and is not about the binary.*
+
+The operator raised, as a possible escape from the $R\to0$ collapse, that "being in the same spot is a no-op if you really are." It is not, in general. For two sources sharing a delayed position, the receiver sees a common $\hat r$, $r$, and $D_T$, so their accelerations sum to
+
+$$
+A_{\rm tot}=\kappa q_i q\,\lvert D_T\rvert\frac{\hat r}{r^2}
+\left(\frac{1}{\lvert D_s^+\rvert}-\frac{1}{\lvert D_s^-\rvert}\right),
+\qquad D_s^\pm=c_f-\hat r\cdot v_\pm .
+$$
+
+The charges cancel but the wake amplification $W^{\rm rec}=\lvert D_T/D_s\rvert$ does not, because $D_s$ carries the **source** velocity. So the pair is silent iff $\hat r\cdot v_+=\hat r\cdot v_-$ for every receiver direction — that is, iff $v_+=v_-$. Confirmed numerically: co-moving gives $\lvert A_{\rm tot}\rvert=0$ exactly; counter-moving at $v=0.5$ gives $0.0304$; at $v=0.9$, $0.0580$.
+
+**Consequence for the escape route: it fails.** The antipodal binary is counter-moving by construction ($x_2=-x_1\Rightarrow v_2=-v_1$), so a collapsed pair still emits. The $R\to0$ limit is a genuine singularity, not an annihilation.
+
+**Consequence worth more than the route:** a bound neutral pair goes dark only when rigid; **any internal relative motion makes it radiate**, and the emission is carried entirely by the $D_s$ mismatch rather than by any net charge. This is an AAA-native statement of why neutral matter emits, it is derived rather than posited, and it belongs with the radiation/photon-closure program (cf. entry 35, $\Phi_\infty$) rather than here.
+
+Relationships: [[antipodal-binary-spiral-law]], phase-collapse negative (2026-07-14), the $\varrho$ contradiction in `spindle-braid.md`, Noether sea constitutive response.
+
+## Entry 40 — the chiral lock is dipole-gated: $\chi$ degenerates in the planar limit, and that is the AAA-native reason a massless assembly has no left/right pair (2026-07-14, operator discussion capture)
+
+*Claim level: the operation algebra is **derivation-grade** (forced by the vector characters already tabled in `spindle-braid.md`). The planar-limit degeneracy of $\chi$ is **inferred** from an existing derivation-grade identity (the axial-dipole projector identity in `braid-mathematics.md`) and is **not** established, because dipole-order achirality does not imply achirality. Promotion is gated on the higher-moment check below.*
+
+**Operator's question.** A physicist's framing: massive particles carry both a left and a right form; a massless one "looks the same from the front as from the back." Operator asked whether, in the near-planar braid limit, the pro-braid viewed from the front is the anti-braid viewed from the back.
+
+**The viewing operation, stated exactly — the identification is false as posed.** "Viewed from the back" is a rotation by $\pi$ about a transverse axis. A rotation is a *proper* operation: it acts identically on polar and axial vectors, sending $\mathbf p\to-\mathbf p$ and $\mathbf S\to-\mathbf S$, so
+$$\chi=\operatorname{sign}(\mathbf p\cdot\mathbf S)\longrightarrow\operatorname{sign}((-\mathbf p)\cdot(-\mathbf S))=+\chi.$$
+Rotations preserve $\chi$ identically. $C$ reverses it (`spindle-braid.md`, Discrete-Symmetry Structure). Therefore no change of viewpoint can carry a braid onto its $C$-image: pro-from-the-back is still pro. Chirality is not a parallax effect.
+
+**What the physicist's claim actually is, in the corpus's own algebra.** The true pairing is $CP$, not $C$-plus-viewpoint: the corpus already carries *"the $CP$-image (left-braid $\leftrightarrow$ right-anti-braid) is degenerate with the original."* That **is** the standard statement that the right-handed partner of a left-handed particle is its antiparticle. The operator's intuition was pointing at $CP$ and reaching for a rotation to supply the $P$. The gap is exactly the improper factor: $P$ cannot be built from viewpoints.
+
+**The planar-limit consequence — the part worth keeping.** The chiral invariant is a *lock between two vectors of different character*: it needs a polar $\mathbf p$ and an axial $\mathbf S$, and it is defined only where $\mathbf p\neq\mathbf 0$. But `braid-mathematics.md` (Moments and the Axial Polarity Dipole) derives that the polarity-signed dipole is exactly axial and vanishes as the branch flattens toward the transverse plane: *"the flattened fast configuration is quiet at dipole order, with its first surviving structure at higher moment order."* Hence, at dipole order:
+
+- **Massive/spindle regime.** $\mathbf p\neq\mathbf 0$, $\mathbf S\neq\mathbf 0$, $\chi$ defined $\Rightarrow$ two enantiomers, $C$ and $P$ each reverse them, $CP$ pairs left-braid with right-anti-braid. Both handed forms exist. This is "a massive particle has a left and a right form."
+- **Planar/fast limit.** $\mathbf p\to\mathbf 0$ while $\mathbf S$ survives (spin is axial along $\hat{\mathbf n}$ and does not flatten away). The lock has nothing to lock: $\chi$ is undefined, $C$ has no dipole-order observable to act on, and pro and anti coincide at dipole order. The surviving orientation datum is a lone axial vector — **helicity with no chiral partner**, which is the structure a massless object is supposed to have, and is consistent with §99's photon-as-neutral-pair.
+
+**Why this is more than a restatement.** It says the loss of the left/right pair is not an extra postulate about masslessness — it is *the same flattening* the corpus already ties to wake quietness and to the mass map. One geometric parameter (branch flatness) gates chirality, dipole exposure, and the mass channel together. If it holds, "massless $\Rightarrow$ no $L$/$R$ pair" is a corollary of the dipole identity rather than an input.
+
+**The falsifier, and where to look.** $\mathbf p\to\mathbf 0$ kills the *dipole-order* pseudoscalar only. The same passage says the flattened branch retains "first surviving structure at higher moment order." If a pseudoscalar built from the surviving quadrupole (or higher) structure and $\mathbf S$ is nonzero in the planar limit, then pro and anti remain distinguishable, the braid stays chiral, and the identification above fails — the object would then be a *quiet* chiral particle, not an achiral one. **Concrete check:** in the planar limit of the tabled family, compute the polarity-signed quadrupole $\sum_\ell\sigma_\ell\mathbf X_\ell\mathbf X_\ell^{\!\top}$, extract its axial-vector-valued pseudoscalar contractions against $\mathbf S$ and the cap azimuthal offset, and test whether any survives $\mathbf p\to\mathbf 0$. This is a moment computation on prescribed geometry — it needs no integrator and is therefore **not** blocked by the solver quarantine. A single nonzero contraction kills the entry.
+
+**Second obligation (softer).** The cap azimuthal offset is named in `spindle-braid.md` as the *third* locked structure rendering the ground state geometrically chiral. It must be shown to degenerate along with $\mathbf p$ in the planar limit; if the offset survives flattening it is a candidate carrier of exactly the residual the falsifier is looking for. Check it in the same pass.
+
+**Promotion target if it survives:** `spindle-braid.md` Discrete-Symmetry Structure (as a limit subsection) and the massless/photon side of `angular-momentum-and-spin.md`, whose current text already flags that *"helicity is premature unless a propagation axis is dynamically tied to the planar sign"* — this entry is a candidate for exactly that tie.
+
+Relationships: [[spindle-braid-discrete-symmetry]], [[axial-polarity-dipole-identity]], §99 photon-as-neutral-pair, the mass map ($A_0$ continuation), entry 35 ($\Phi_\infty$).
+
+### Entry 40 executed — the closure goal named the wrong tensor rank; the correct check makes Entry 40 SURVIVE, by a stronger and cheaper argument than it proposed (2026-07-14, operator closure goal)
+
+*Instrument: `scripts/braid-ideal/planar-limit-pseudoscalar-census.mjs` (new; 9 tests green in `tests/braid-ideal-planar-limit-pseudoscalar-census.test.js`). Geometry from `buildBraid` in `rigid-tilted-nested-braid-evaluator.mjs`, unmodified. This is a **moment census on prescribed rigid geometry** — it integrates nothing, so the central-solver quarantine does not reach it, and equally it establishes **nothing about retention**.*
+
+**Plain statement first.** The check I proposed could not have worked, for a reason that had nothing to do with the physics: the quadrupole is the wrong rank to carry handedness, and for this family it is zero anyway. The right check is a two-line symmetry argument, and it kills the falsifier at *every* moment order at once rather than at one. Entry 40's mechanism survives; two of its stated reasons do not.
+
+**Correction 1 — the closure goal was ill-posed twice over (derivation-grade).**
+1. *Wrong parity.* $Q=\sum_\ell\sigma_\ell\mathbf X_\ell\mathbf X_\ell^{\!\top}$ is rank 2, so under $P$ ($\mathbf X\to-\mathbf X$) it is **even**. $\mathbf S$ is also $P$-even. No scalar built from $\{Q,\mathbf S\}$ — $\operatorname{tr}Q$, $\mathbf S\!\cdot\!Q\!\cdot\!\mathbf S$, $\mathbf S\!\cdot\!Q^2\!\cdot\!\mathbf S$ — is $P$-odd. **The quadrupole cannot be a pseudoscalar at any geometry.** Only odd-rank polarity-signed moments can be, so the first real candidate after $\mathbf p\!\cdot\!\mathbf S$ is the **octupole** $M^{(3)}(\mathbf S,\mathbf S,\mathbf S)$.
+2. *Zero anyway.* For antipodal binaries with $\mathrm{pol}=\mathrm{sgn}$, $\mathbf X\mathbf X^{\!\top}$ is even in $\mathbf X$ while the polarity is odd under the antipodal swap, so the two sites of every layer cancel exactly: **$Q\equiv0$ at every tilt**, not merely in the planar limit. Measured: `QmaxAbs = 0` for the tabled champion ($\alpha_I=0.4,\alpha_O=0.9$) and for randomized geometry.
+
+**Correction 2 — the $\sigma_h$ theorem replaces the moment-by-moment search (derivation-grade).** In the exact planar limit ($\alpha_a=0$) every architrino has $z=0$ and $v_z=0$ **for all time**, so the reflection $\sigma_h:(x,y,z)\mapsto(x,y,-z)$ fixes every position, every velocity, every polarity, and $\mathbf S$ itself — an axial vector along the mirror normal is preserved, $S_z\to\det(R)R_{zz}S_z=(-1)(-1)S_z=+S_z$. So $\sigma_h$ is an exact symmetry of the **whole planar history**, not of one snapshot; this is what lets the argument reach the retained path history and wakes rather than stopping at an instantaneous moment. $\sigma_h$ is improper, and every pseudoscalar is odd under improper operations, so every pseudoscalar equals its own negative and **vanishes — at all moment orders, for any radii, any phases, any cap azimuthal offset.** The octupole check is then unnecessary, and Entry 40's "second obligation" on the cap azimuthal offset is discharged by the same theorem.
+
+**Measured confirmation (three independent sides, per [Evidence Independence](../../../AGENTS.md#evidence-independence)).** (1) brute generic tensor contraction; (2) hand-derived closed forms $\mathbf p=2\sum_a R_a\mathbf n_a$, $M^{(3)}_{zzz}=2\sum_a R_a^3\sin^3\alpha_a$, $Q\equiv0$ — an analytic reference authored independently of the contraction code; (3) the theorem, tested adversarially. Results: sides (1)/(2) agree to $7.1\times10^{-16}$ over 200 randomized draws; over 400 randomized planar draws with **generic** cap azimuthal offsets, `maxPlanarPseudoscalar = 0` exactly. **Live-wire control:** all 400 tilted draws return a nonzero pseudoscalar (min $0.56$), so the planar zero is a real negative and not an instrument that cannot see (AGENTS.md: *absence of output is not evidence of absence when the instrument could not have produced output*).
+
+**Correction 3 — "near-planar" was wrong; only *exactly* planar is achiral (measured).** $\chi=\operatorname{sign}(\mathbf p\!\cdot\!\mathbf S)$ is $\pm1$ for **any** $\alpha\neq0$, however small: a sign does not fade. What fades is the *magnitude* of every chiral observable. Measured scaling as $\alpha\to0$: $|\mathbf p\!\cdot\!\mathbf S|\sim\alpha^{0.991}$ and $|M^{(3)}(\mathbf S,\mathbf S,\mathbf S)|\sim\alpha^{2.974}$ (fitted; analytic prediction $\alpha^1$ and $\alpha^3$), with $\operatorname{sign}\chi=+1$ unbroken all the way down to $\alpha=0.025$. **The correct statement is therefore: chiral observables vanish continuously in the planar limit while the invariant's sign stays sharp; the degeneracy is exact only at $\alpha=0$ exactly.** Entry 40's headline should read "planar," never "near-planar."
+
+**Correction 4 — Entry 40 leaned on a $\varrho$-gated identity that the tabled family does not satisfy (measured; matters beyond this entry).** Entry 40 justified $\mathbf p\to0$ by citing *"the flattened fast configuration is quiet at dipole order"* from `braid-mathematics.md`. That identity is proved for the $\varrho$-symmetric (equal-radius, balanced-phase) drum. **The tabled nested family breaks $\varrho$ — $q_I=0.5$, $q_O=1.6$ — and does not inherit it.** Measured: the planar tabled braid has $\mathbf p\!\cdot\!\mathbf S=0$ but a *rotating transverse* dipole $|\mathbf p_\perp|=1.91$; the tilted champion carries $|\mathbf p_\perp|=1.07$ against $\mathbf p\!\cdot\!\mathbf S=2.90$ — same order, not a correction. So **achirality and quietness are independent conditions**:
+
+| planar configuration | achiral? | dipole-quiet? |
+| --- | --- | --- |
+| equal radii + balanced $120^\circ$ ($\varrho$-symmetric) | yes | **yes** ($|\mathbf p|=0$) |
+| equal radii + generic stagger | yes | no ($|\mathbf p|=2.46$) |
+| tabled nested $q_I=0.5$, $q_O=1.6$ | yes | **no** ($|\mathbf p|=1.91$) |
+
+$\sigma_h$ gives achirality for free at any radii; $\mathbf p\to0$ additionally requires $\varrho$. **Consequence for the massless reading:** the planar nested braid is achiral but a *strong rotating-dipole radiator* — achiral is not photon-like. The object that is both achiral and quiet is the planar **$\varrho$-symmetric** one. Entry 40's physical target sharpens accordingly: **masslessness on this route would require flatness AND equal radii, not flatness alone.** Since the tabled nested champion is precisely the non-$\varrho$ member, this is a live tension with the geometry the braid program actually leads with, and it is the same $\varrho$ contradiction flagged against `spindle-braid.md` in the entry-39 spin-off.
+
+**Net verdict on Entry 40: SURVIVES, restated.** *Claim level: derivation-grade for the $\sigma_h$ theorem and the rank/parity algebra; measured for the scaling exponents and the achiral-vs-quiet separation; the massless identification remains **inferred** and is now additionally gated on $\varrho$-symmetry.* The surviving statement is:
+
+> The chiral invariant is a lock between a polar and an axial vector. A configuration whose entire history is coplanar with its spin axis normal to that plane admits $\sigma_h$ as an improper symmetry and is therefore achiral at every moment order, for any radii and any stagger. Flatness alone extinguishes handedness; flatness plus $\varrho$-symmetry additionally extinguishes the dipole. Both are needed for a massless-like object.
+
+**What this does NOT establish, stated plainly.** Nothing here says the planar branch is retained — the census evolves nothing. The relevant prior, §86's axial flutter ($\operatorname{Re}\lambda=+0.199$, tilt perturbations growing away from the plane), is a **linear-stability claim and is QUARANTINED** per `reference/priorities/app-solver/claims-triage-ledger-2026-07-12.md`; it can be leaned on in neither direction. So the open question is exactly whether a coplanar history is dynamically holdable, and it cannot be answered until a validated integrator exists. That is the honest falsifier now: **not a surviving pseudoscalar (there is none), but a planar branch that cannot stay planar.** An object that leaves the plane at any rate re-acquires $\chi=\pm1$ immediately at full sign strength, per Correction 3.
+
+**Promotion status:** hold. The $\sigma_h$ theorem is reader-facing-ready and belongs in `spindle-braid.md` Discrete-Symmetry Structure as a limit subsection. The massless/photon tie to `angular-momentum-and-spin.md` (*"helicity is premature unless a propagation axis is dynamically tied to the planar sign"*) stays blocked on retention, i.e. on the integrator.
+
+Relationships: [[spindle-braid-discrete-symmetry]], [[axial-polarity-dipole-identity]], the $\varrho$ contradiction (entry 39 spin-off), §99 photon-as-neutral-pair, §86 flutter (quarantined).
+
+### Entry 41 — the $\varrho$ tension: the radii were never the problem. Equal radii BEAT the tabled champion by 36%, the corpus's largest-single-gain claim is planar-scoped, and the massless reading dies anyway (2026-07-14, operator closure goal)
+
+*Instrument: `residuals`/`rigidityCheck` in `rigid-tilted-nested-braid-evaluator.mjs`, **unmodified** — a prescribed-worldline force-balance evaluator. It integrates nothing. Everything below is a **force-balance comparison among prescribed circular configurations** and is therefore untouched by the central-solver quarantine in BOTH directions: it cannot support a retention claim either.*
+*Independent reference (AGENTS.md): the **documented** spec numbers, authored in a prior session and not produced by this thread's code. Reproduced exactly — Section 22 champion $0.4721$ vs documented $0.4721$; Section 17 planar nested champion $0.6460$ vs documented $0.646$. That agreement is what licenses the new numbers below.*
+
+**Plain statement first.** I asked whether the champion's unequal radii $q_I=0.5$, $q_O=1.6$ are forced by closure or an optimizer artifact. **Neither — the question was misframed.** The radii carry no tension at all. Equal radii are not merely permitted; given the same tilt freedom the champion enjoys, they **win**, and by a wide margin. What actually blocks the massless reading is a *conjunction*, and the conjunction is closure-repelled.
+
+**Finding 1 — equal radii beat the tabled champion (measured, softening-independent, rigid).** Giving each radii choice the *same* search domain ($\alpha_I,\alpha_M,\alpha_O,\theta_O$; $\alpha_M$ free; refined grid):
+
+| configuration | best `globalRelResidual` | notes |
+| --- | --- | --- |
+| **equal radii $q_I=q_O=1$**, $\alpha=(42°,5°,-50°)$, $\theta_O=330°$ | **$0.3019$** | $\kappa^\*=0.884$, $\min|D_s|=0.657$, rigid to $8.9\times10^{-16}$ |
+| Section 22 tabled champion $q_I=0.5,q_O=1.65$ | $0.4721$ | reproduces documentation exactly |
+| Section 17 planar nested champion $q_I=0.5,q_O=1.6$ | $0.6460$ | reproduces documentation exactly |
+| **quiet+achiral point** (planar + equal radii + balanced $120°$) | $0.9655$ | the no-closure ceiling |
+| *closure* | $0$ | **nothing is close** |
+
+Equal radii improve on the tabled champion by $36\%$. **Knob check (AGENTS.md: *a model swept over its own knobs is evidence about the model*):** every score above is flat to $\le10^{-3}$ across $\mathrm{soft}\in[0.002,0.08]$ — a $40\times$ range — and every $\min|D_s|\in[0.66,0.95]$ sits far from the caustic, so the softening regularizer is not doing the work. These are force-balance numbers, not regularizer artifacts.
+
+**Finding 2 — the corpus's largest-single-gain claim is planar-scoped and does not survive tilt freedom (correction to accepted material).** `fold-crossing-chart-spec.md:466` states: *"nesting cancels the pump internally ($0.96\to0.646$ — the Section 15 mechanism, **the single largest closure gain found**)."* The $0.96$ is the **planar** hexagon (Section 19 league table, promoted to `spindle-braid.md:58`); the nested numbers it is compared against are tilt-optimized. **The comparison holds tilt fixed for one side and free for the other.** Within the planar family the claim is fair and reproduces ($0.6460$ vs $0.9655$ — nesting really does cancel the planar pump, and the Section 15 inner-layer tangential sign-reversal mechanism is real). Once tilt is freed, equal radii recover from $0.9655$ to $0.3019$ and **overtake every nested configuration on the table**. The corpus's own caution at `explored-braid-geometries.md:146` — *"absence of a symmetry is not a stability proof against the nested shell braid: less symmetric branches are harder to analyze, not thereby excluded"* — now cuts the other way: it was the *more* symmetric branch that went under-searched. Recommended scope repair: qualify the claim as **"nesting cancels the pump *within the planar family*"** and re-open the equal-radius branch as a live member.
+
+**Finding 3 — the massless reading dies anyway, on the conjunction rather than the radii (this is the closure goal's answer).** Entry 40's census established that the quiet+achiral object requires **three** conditions at once: planar ($\alpha_a=0$), equal radii, and balanced $120°$ phases. Drop any one and the object is chiral or loud or both. That exact triple point scores $0.9655$ — the worst configuration measured, indistinguishable from the *"everything that breaks rigidity scores $\sim1$"* ceiling. Worse, **every improving direction out of it breaks one of the three**: the $0.3019$ winner has equal radii but is tilt-broken ($42°/5°/-50°$) *and* phase-broken ($\theta_O=330°$, not $240°$), so it is chiral and dipole-loud. Per Entry 40 Correction 3, $\chi=\operatorname{sign}(\mathbf p\!\cdot\!\mathbf S)$ returns at **full sign strength** the instant $\alpha\neq0$ — there is no partial credit for being nearly flat. *The quiet achiral point is a closure maximum, and the closure gradient points away from it in every direction.* **The massless-as-flat reading is therefore disfavoured on prescribed-worldline force balance — but note the grade: this is a comparison among non-closing configurations, not a proof. Its falsifier: a validated integrator finding the planar balanced equal-radius point dynamically retained despite its residual.**
+
+**Correction 4 — my own Entry 40 Correction 4 carried a false-provenance defect (AGENTS.md: *never attribute a result to an instrument or capability that did not produce it*).** I labelled $(\alpha_I,\alpha_O)=(0.4,0.9)$ with $q_I=0.5,q_O=1.6$ "the tabled champion." **It is not a champion at all** — $(0.4,0.9)$ is the argument list of the `rigidityCheck` **test fixture** on line 187 of the evaluator, and it scores $\sim0.87$, nowhere near the $0.4721$ tabled row. The real tabled champion is $q_I=0.5$, $q_O=1.65$, $\alpha=(-12°,0°,84°)$, $\theta_O=330°$. The $\sigma_h$ theorem is geometry-independent so Entry 40's census verdict is **untouched**, but its Correction-4 numbers were attached to the wrong object and are superseded by the table above. The defect survived because a plausible-looking pair of tilts read as data.
+
+**Finding 4 — the evaluator's defaults are era-stamped leftovers (code hygiene, blocks nobody but misleads everybody).** `buildBraid` defaults to $q_O=1.6$ (the **Section 17 planar** optimum); `polarScore` in the *same file* defaults to $q_O=2.0$ (the Section 20/21 value); the tabled row is $q_O=1.65$ (Section 22). Three eras, one file, no comment marking any of them as historical. This is what let me mistake a fixture for a champion. Per AGENTS.md forward-only policy these should be reconciled to the current tabled row or explicitly labelled as era fixtures. **Not actioned here — flagged for the owning thread, since changing a default silently re-baselines every consumer.**
+
+**Unreconciled minor.** Section 19's documented planar hexagon is $0.960$; I measure $0.9655$ ($0.5\%$ off) while Sections 17 and 22 reproduce to four digits. Likely a `recvs`/`soft` convention difference in the original scan. Too small to affect any verdict here, logged so it is not rediscovered.
+
+**Net.** *Claim level: measured (prescribed-worldline force balance, softening-independent, independently anchored to documented values) for Findings 1–2 and the $0.9655$ ceiling; inferred for the massless verdict in Finding 3; derivation-grade only for the Entry 40 census it rests on.* The $\varrho$ tension is **resolved and dissolved**: the radii never carried it. Entry 40's massless identification is **disfavoured** but on force-balance comparison rather than proof. The unexpected yield is Finding 1 — **a $36\%$ better prescribed-worldline configuration sitting in a branch the program set aside on a planar-scoped comparison** — which is a braid-program result independent of the chirality question that started it.
+
+Relationships: [[spindle-braid-discrete-symmetry]], Entry 40 + its execution, [[s84-per-layer-omega-torque-null-nogo]] (no bare braid is a free particle — applies to the equal-radius branch equally), §86 flutter (quarantined), `fold-crossing-chart-spec.md` Sections 15/17/19/22.
+
+### Entry 42 — the equal-radius branch fails both §84 gates the same way, and the reason dissolves Entry 41's framing: the closure variable is $\rho_a=R_a\cos\alpha_a$, not $R_a$ (2026-07-14, operator closure goal)
+
+*Instruments: `braidNetZTorque` and `supportRatios` in `spindle-support-ratio-targeted-search.mjs`, **unmodified**. Per `reference/priorities/app-solver/claims-triage-ledger-2026-07-12.md` lines 62/64/84, both are **T1, NOT quarantined** — force/torque-balance evaluators with no `src/solver` dependency (import closure is three files, all under `scripts/braid-ideal/`; `certifiedCausalRoots` is local). They cannot support a retention claim in either direction.*
+
+**Plain statement first.** The equal-radius configuration fails both gates, the same way the nested branch did. But the interesting part is *why the question dissolved*: equal site radii do not give the symmetric braid Entry 41 thought they gave. They give a **tilt-stratified** braid, which is the nested braid in different coordinates.
+
+**Controls first — both reproduce documentation exactly, else nothing below counts.** `braidNetZTorque` at the V5 default: net $+0.4240$ (doc $+0.424$), middle $+0.4229$ (doc $+0.423$), $I/O\approx0$. `supportRatios` at `CHAMPION`: $(0.9014,0.7548,0.5298)$ (doc $0.90/0.76/0.53$), closure $0.4721$.
+
+**Cross-file agreement — and a trap worth recording.** The gates and Entry 41's evaluator each export a function named **`buildBraid`**, and they are *different implementations with incompatible signatures* (`{geo:{…,thetaI,thetaO}}` vs flat `{…,phases}`; `thetaO` has **no default** on the gate side, so omitting it yields silent `NaN`). Because they were authored independently and share only a name, their agreement is real evidence in the AGENTS.md sense — and they agree to machine precision on all four configurations tested ($0.301857$, $0.472089$, $0.965466$, $0.645979$). Entry 41's $0.3019$ is therefore confirmed by a second implementation.
+
+**Gate A — net secular z-torque.**
+
+| configuration | net | $I$ | $M$ | $O$ |
+| --- | --- | --- | --- | --- |
+| equal-radius $q_I=q_O=1$, $\alpha=(42°,5°,-50°)$ | $+0.0853$ | $+0.128$ | $+0.065$ | $-0.108$ |
+| Section 22 nested champion | $+0.4774$ | $-0.243$ | $+0.720$ | $0.000$ |
+
+The equal-radius net torque is **$5.6\times$ smaller** and *distributed* — the outer brakes, the inner pumps, and they nearly cancel — rather than the nested branch's middle-carries-everything picture. But $+0.0853$ is still $4\times$ over `netTol` $=0.02$: **not a null.** And the gate's second condition settles it regardless: `residualSmall` $=0.05$, while the best closure found anywhere in this branch is $0.3019$ — **$6\times$ over the support bar.** No torque-free *and* supported *and* closed configuration. **§84's "no bare braid is a free particle" holds on the equal-radius branch.**
+
+**Gate B — the support sum rule.**
+
+| configuration | $\mathrm{supp}_I$ | $\mathrm{supp}_M$ | $\mathrm{supp}_O$ | mean | $\kappa^\*$ |
+| --- | --- | --- | --- | --- | --- |
+| equal-radius $q_I=q_O=1$ | $0.9320$ | $0.8689$ | $0.9739$ | **$0.9249$** | $0.884$ |
+| Section 22 nested champion | $0.9014$ | $0.7548$ | $0.5298$ | $0.7287$ | $0.315$ |
+
+The equal-radius point is **much better supported** — mean $0.925$ vs $0.729$, min ratio $0.869$ vs $0.530$ — and lands right on the documented saturation: *"the family's mean support saturates near $94\%$"* (`spindle-braid.md:223`). **It obeys the sum rule rather than escaping it.** Nothing reaches $(1,1,1)$; the few-percent global shortfall is intact. **The sum rule is now confirmed on a branch it was never tested on** — which strengthens the corpus claim rather than weakening it. Note it is close to the documented support-first candidate $(0.96,0.88,0.98)$ at closure $0.3241$, but with *better* closure ($0.3019$) — the two are neighbours in the same allocation optimum, not rivals.
+
+**The dissolution — Entry 41's framing was wrong (derivation-grade, and it is the real result here).** At $q_I=q_O=1$ the layer speeds are
+$$\beta_a=\frac{\omega R_a\cos\alpha_a}{c_f}=\frac{\cos\alpha_a}{\cos\alpha_M},$$
+because $\omega$ is pinned by the middle rail. **Equal site radii force *all* speed stratification onto tilt**, and any layer tilted *less* than the middle is **superluminal**. The branch is therefore not free at all — it is confined to $|\alpha_I|,|\alpha_O|>|\alpha_M|$ strictly. This is why the $0.3019$ point has the tilts it has ($42°,5°,-50°$), and it exposes the real variable:
+
+> **Closure responds to the cylindrical radius $\rho_a=R_a\cos\alpha_a$, not the site radius $R_a$.** The nested branch stratifies $\rho$ with $R$; the equal-radius branch stratifies $\rho$ with $\cos\alpha$. They are the same mechanism in different coordinates.
+
+Measured $\rho$ profiles: equal-radius $(0.743,0.996,0.643)$; Section 22 champion $(0.489,1.000,0.172)$. **Same qualitative shape — caps inside, rail outside.** So Entry 41's Finding 1 ("equal radii beat the champion") is numerically correct but was **mislabelled**: it is not the symmetric branch winning, it is a $\rho$-point that the nested *parameterization* reaches awkwardly (it needs $\rho_O<\rho_I<\rho_M$, i.e. an "outer" layer that is the innermost cylinder — reachable only via $\alpha_O\to84°$). Entry 41's Finding 2 (the league table froze tilt for the equal-radii row only) **stands**; Finding 1's number stands; **Finding 1's interpretation is withdrawn.** The corpus's $\varrho$-symmetric drum requires equal radii **and** equal tilts, and no member of the tilt-stratified branch is $\varrho$-symmetric.
+
+**Consequence for Entry 40's massless reading — a genuinely interesting one.** The quiet+achiral point (planar + equal radii + balanced $120°$) has $\beta_I=\beta_M=\beta_O=1.000$ **exactly**: all three layers on the light rail simultaneously. It is not merely a bad-scoring configuration, it is the **triple-rail** point, and it is the unique member of the family where the $\varrho$ symmetry and the rail condition coincide. That is evocative for a massless object and it is *not* what killed it — its closure is $0.9655$ with $\min|D_s|=0.9517$, so the score is a real force-balance number and not a caustic artifact. **The massless candidate sits on the triple light-rail and does not close there.** Recorded as the sharpest statement of the Entry 40 negative.
+
+**Scan that did NOT complete — reported as incomplete, not as a negative.** An exhaustive torque-null scan of the equal-radius branch ($\sim2000$ configurations) was attempted twice and **hung both times** on configurations my superluminal and collision guards did not catch; it produced no output and was killed. Per AGENTS.md — *absence of output is not evidence of absence when the instrument could not have produced output* — **I make no claim about the number of torque nulls in this branch.** The Gate A verdict above rests on the two named points plus the $6\times$ support-bar margin, which is sufficient and does not depend on the scan. That the branch is caustic-dense enough to hang a guarded scan is itself consistent with the $\beta_a=\cos\alpha_a/\cos\alpha_M$ constraint, and any future scan needs a per-configuration timeout plus a $\min|D_s|$ pre-filter, not just a $\beta$ filter.
+
+**Net verdict.** *Claim level: measured (force/torque balance, controls reproducing documentation exactly, two independent implementations agreeing) for both gate results; derivation-grade for the $\beta_a=\cos\alpha_a/\cos\alpha_M$ constraint and the $\rho$ reframing; the torque-null census is **not established**.* The equal-radius branch **does not survive** — it fails §84 and the support sum rule the same way the nested branch does, and for the same reason, because it *is* the same branch in different coordinates. Entry 41's re-opening is therefore **closed**, but it paid for itself twice: the $\rho$ reframing, and the sum rule's first confirmation outside the branch it was fitted on.
+
+**Falsifier for the $\rho$ reframing:** find two configurations with identical $(\rho_I,\rho_M,\rho_O)$ and identical phases but materially different $(R_a,\alpha_a)$ splits that score *differently* on closure. The wake kernel sees full 3D positions, not just cylindrical radii, so the reframing is a claim about what closure *responds to*, not an exact reparameterization — it should break at large tilt separation, and finding where it breaks is worth more than the claim.
+
+Relationships: Entry 40 + execution, Entry 41 (Finding 1 interpretation withdrawn here), [[s84-per-layer-omega-torque-null-nogo]], [[row7-rejected-rail-pump-coherent-expansion]], `spindle-braid.md` Support Sum Rule.
+
+### Entry 43 — pair production constrains the polarity-conjugate ledger, and the sea-sourcing premise makes the orientation half decidable (2026-07-15, operator discussion capture)
+
+**Operator position (2026-07-15).** Standard physics asserts that pair production makes "a pro and an anti," and in $\mathbb{A}\mathbb{A}\mathbb{A}$ the pair would have to be furnished from sea braids; therefore keep `pro-anti` naming in the pair-production case even while the exact pro-vs-anti assignment is still being nailed down.
+
+**What the standard-physics clue actually constrains (derivation-grade, bookkeeping level).** The observer-level benchmark is: the two products carry conjugate charge rows, equal masses (CPT-facing), and conserved lepton number. In the ratified two-label scheme that is exactly the **polarity-conjugate relation** — C-image charged-sector ledgers. Standard physics carries no counterpart of the pro/anti orientation label $o_{\mathrm{PA}}$ (retained `HML` vs `HLM` order), so the clue cannot adjudicate whether the products' orientations are equal or opposite. The clue is real and sanctioned (observer-level constraint per Theory Layer Discipline); what it licenses is the conjugate-ledger half, not the orientation half.
+
+**The orientation half is a genuine open fork, and the operator's sea-sourcing premise is what makes it decidable (hypothesis, promotable as a closure target).** Two live routes:
+
+- **C-route:** products are C-images — conjugate polarities, **same** $o_{\mathrm{PA}}$ ($C$ relabels polarity at fixed worldlines; kernel-evenness degeneracy theorem, `spindle-braid.md`).
+- **CP-route:** products are CP-images — conjugate polarities, **opposite** $o_{\mathrm{PA}}$. This is what the sea-sourcing premise suggests if the Noether Pair's complementarity is the orientation complementarity of `noether-sea-pro-anti-coupling.md`: drawing one pro-oriented and one anti-oriented sea carrier hands the products opposite orientations.
+
+The routes differ in the polarity-weighted handedness ledger: $\chi_{\mathrm{pol}}=o_{\mathrm{PA}}c_{\mathrm{pol}}$, with $C$ flipping $\chi_{\mathrm{pol}}$ and $CP$ preserving it. So the produced pair's **relative handedness is the discriminator**, and the weak-sector handedness benchmarks (left-handed matter / right-handed antimatter exposure) are the natural adjudicator once the $\chi_{\mathrm{pol}}$ chart is carried onto produced branches. Claim level: definition-level bookkeeping for the fork; the sea-sourcing correspondence is hypothesis; no retained-branch result on either side. (Entry 40 caveat: $\chi_{\mathrm{pol}}$ degenerates in the planar limit, so the discriminator lives on the three-dimensional fermion products, not on photon-side records.)
+
+**Naming disposition — RATIFIED (operator, 2026-07-15, option a).** `polarity-conjugate pair` stays the load-bearing relation; the operator's premise is now canon as the named `orientation-antimatter correspondence hypothesis` (matter ↔ pro, antimatter ↔ anti, pair sourced from complementary sea populations → products are $CP$-images); `pro-anti fermion pair production` is licensed shorthand with the hypothesis attached at first use. Canon edit executed same day: `terminology-usage.md` §Pro/Anti Orientation gained the hypothesis subsection and a table row, and §Spontaneous Assembly now invokes it explicitly — the two sections no longer conflict. Follow-up sync (small, non-blocking): `comparative-glossary.md` could carry a one-row entry for the hypothesis; `mathematics-terminology.md` $o_{\mathrm{PA}}$ row's "do not use as the matter/antimatter sign" stays correct (the hypothesis correlates the labels; it does not redefine the sign).
+
+**Falsifier for the CP-route:** a derived pair-production channel whose products carry the same $o_{\mathrm{PA}}$ while the sea complementarity is orientation-based; or produced-branch handedness ledgers matching the C-route's flipped-$\chi_{\mathrm{pol}}$ prediction against the weak benchmark.
+
+Relationships: entry 6 (pro/anti Q&A 2026-07-08), Entry 40 ($\chi$ dipole-gated), `terminology-usage.md` §Pro/Anti Orientation and Polarity Conjugation vs §Spontaneous Assembly (open conflict), `noether-sea-pro-anti-coupling.md`, `quantum-number-mapping.md`, [[canonical-photon-search-dispatch-packet]].

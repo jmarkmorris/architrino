@@ -3076,7 +3076,7 @@ The recursive picture is easiest to read as a bottom-up construction ladder. The
 5. **Noether braid stabilization:** status: closure target. The nested shell braid is the first fully three-dimensional shielded Noether braid scaffold; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Its persistence must be closed through delayed phase closure, nested energy separation, and reduced external reactivity through superposition. The sharpest current evidence makes this rung's burden concrete: isolated partner-wake diagnostics across three independent charts show the delayed kernel doing net positive work on the assembly, so a persistent braid must supply an exchange or export channel for that pumped action — internal multi-frequency exchange, same-source root transitions, or medium response — rather than merely balancing static forces; see the return-response question in [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#isolated-release-and-the-return-response-question).
 6. **Fermions with axial layers:** status: working map and routing target. A nested shell braid plus a six-site axial layer is the current map for charged-fermion and quark family architecture; changing the shielding tier is the generation target, while pro/anti orientation tracks handedness within the same braid architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
 7. **Collective medium:** status: effective collective-state target. Larger balanced populations of neutral braids organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral braids rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
-8. **Bosonic channels:** status: channel-specific routing targets. Propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating pro/anti planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
+8. **Bosonic channels:** status: channel-specific routing targets. Propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating polarity-conjugate planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 9. **Composite matter and reactions:** status: effective summary after lower closure. Nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
 
 This ladder matters because it prevents category drift. Fermions, bosonic channels, and observer-level spacetime are not separate ontological species added by hand. They are different organizational levels or effective descriptions of the same underlying architrino dynamics.
@@ -34905,7 +34905,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **Candidate-packet falsification.** A rejected candidate packet may preserve useful diagnostics, such as strict subrows, fold normal forms, or range gaps, but those diagnostics do not promote the packet into a branch chart. Once a pre-ledger leaves a positive-width parent-complement overlap, a residual equality core, or an uncertified endpoint-scale gap, the same packet cannot feed the corridor, monodromy, returned-sample, topology, or Schauder rows.
 - **Compactness is conditional.** The added acceleration bound is the right first step toward precompactness in $C^1$, but a later fixed-point theorem will still need the exact topology and continuity properties of the return map to be verified rather than assumed.
 - **Continuity through the crossing.** The theorem uses a history class in which velocity is continuous through $T=0$, but the dual-mollified acceleration can still develop a very sharp gradient near the origin. Any Banach-space formulation must therefore keep enough Lipschitz-velocity, or weak acceleration, control near the boundary of the history interval that the delayed integrals remain well behaved at the crossing.
-- **The head-on collinear breather does not close, and the reason is the anti-damping monotonicity trap.** By the receiver-velocity affine form the collinear law is a polarity-signed damped oscillator: partner attraction anti-damps ($\Gamma_p<0$, a net energy source on every leg) and self-repulsion is the only sink ($\Gamma_s>0$). The decisive structural fact is that self-repulsion requires a self-hit, and a self-hit requires a non-monotone trajectory: on a monotone segment $|X(t)-X(s)|<c_f(t-s)$ for $s<t$, so no self-root exists. A head-on release from rest is globally monotone — it falls to the origin, crosses, and recedes — so the self drain never activates, while partner anti-damping injects energy throughout. Direct stiffness-free integration of the sub-field regime confirms this: the far-side return kinetic energy at the mirror radius converges to a strictly positive floor with the self-work identically zero, and the orbit coasts out (partner attraction then dies by forward-root starvation as the pair recedes near field speed). At stronger coupling the anti-damped infall reaches field speed at finite radius and goes super-field into the origin — the fail-closed field-speed head-on event — so that branch is runaway as well. A collinear breather must therefore be a **folded** history whose self-hit drain, over a period, cancels the partner anti-damping injection; the head-on family is demonstrably not one. This is the concrete reason a stabilization mechanism that breaks monotonicity — dephasing, curvature, or angular momentum — is required, and it relocates the outer-turn target from a force-floor inequality to a non-monotonicity-and-self-drain closure condition.
+- **The head-on collinear breather does not close, and the reason is the anti-damping monotonicity trap.** By the receiver-velocity affine form the collinear law is a polarity-signed damped oscillator: partner attraction anti-damps ($\Gamma_p<0$, a net energy source on every leg) and self-repulsion is the only sink ($\Gamma_s>0$). The decisive structural fact is that self-repulsion requires a self-hit, and a self-hit requires a non-monotone trajectory: on a monotone segment $|X(t)-X(s)|<c_f(t-s)$ for $s<t$, so no self-root exists. A head-on release from rest is globally monotone — it falls to the origin, crosses, and recedes — so the self drain never activates, while partner anti-damping injects energy throughout. The self-work is therefore identically zero on the whole head-on family, and no sink exists to absorb the injection. The trajectory-level consequences — the far-side return kinetic energy converging to a strictly positive floor, the orbit coasting out by forward-root starvation, and the strong-coupling branch reaching field speed at finite radius — follow from that structure and are targets for direct evolution rather than measured results. A collinear breather must therefore be a **folded** history whose self-hit drain, over a period, cancels the partner anti-damping injection; the head-on family is not one, by the monotonicity argument above rather than by any evolved run. This is the concrete reason a stabilization mechanism that breaks monotonicity — dephasing, curvature, or angular momentum — is required, and it relocates the outer-turn target from a force-floor inequality to a non-monotonicity-and-self-drain closure condition.
 
 ##### Capstone Statement
 
@@ -38590,7 +38590,7 @@ For the broader cross-axis classifier, see [Noether Braid Taxonomy](../../../../
 
 These definitions name case structure, not retained-branch existence. A neutral braid requires six-body polarity balance and causal-return bookkeeping; a shell braid adds radial support and recovery residuals; a nested shell braid adds ordered support bands. Exact binary nesting, stable all-pairs roots, and observer-export behavior are theorem targets that must be certified by the branch ledger rather than read back into the definition.
 
-Among candidate realizations of this case structure, the current leading candidate is the **spindle braid**, the rigid uniaxial iso-frequency family defined in [Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) and situated among the alternatives in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md#leading-candidate-the-spindle-braid). It leads on measured prescribed-worldline closure and on inherited discrete-symmetry structure, while remaining a named candidate rather than a retained branch — its first tabled rest-state realization did not self-support under native release, and the open work is the confinement mechanism, not the family's definition.
+Among candidate realizations of this case structure, the current leading candidate is the **spindle braid**, the rigid uniaxial iso-frequency family defined in [Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) and situated among the alternatives in [Noether Braid Taxonomy](../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md#leading-candidate-the-spindle-braid). It leads on measured prescribed-worldline closure and on inherited discrete-symmetry structure, while remaining a named candidate rather than a retained branch — its first tabled rest-state realization does not supply its own radial support, and the open work is the confinement mechanism, not the family's definition.
 
 The word **braid** names the six retained worldline strands together with their shared causal-return ledger. It does not by itself assert that the branch already carries a protected mathematical braid-group class. A protected braid, linking, framing, or chirality class is extra structure to be certified by the [assembly topological charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md) program.
 
@@ -39186,7 +39186,7 @@ A recurring obstruction shapes the whole retention program: in chart after chart
 1. **Circular partner-wake binary.** On the uniform circular benchmark, the retained circular row has an inward radial component and a forward tangential work row; the combination accelerates the orbiting motion and prevents a partner-only constant-speed circle. Any sub-field-speed contraction claim must beat this row through non-circular geometry, wake-flux export, recoil, or a later multi-root ledger. The detailed statement lives in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md).
 2. **Collinear self-hit reading.** Along a true collinear history, the same-source term is naturally read as an anti-damping or positive-work contribution on the physically relevant post-crossing outbound branch: self-interaction tends to reinforce the current radial motion rather than furnish a centrifugal-style barrier. The corrected theorem program in [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md) therefore asks whether partner attraction can recapture the motion despite that self-drive.
 3. **Frozen rigid octahedral chart.** The rigid zero-offset octahedral carrier at fixed speed carries a certified nonzero dimensionless tangential residual, rejecting the narrow fixed-speed branch chart; the interval and its overread warnings are recorded in [Neutral Braid](../../../../markdown/aaa/noether-braid/neutral-braid.md).
-4. **Held-release escape.** The face-opposite seed released on the zero-angular-momentum channel stays exactly on the channel but shows a single compression-to-expansion turn and then expands without any later inward acceleration row; the fixture record lives in [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#isolated-release-and-the-return-response-question).
+4. **Zero-angular-momentum channel invariance.** The face-opposite seed placed on the zero-angular-momentum channel stays exactly on that channel: the dynamic center holds at zero, all six radii stay equal, and antipodal partners stay exact. This is the invariant-channel theorem, not a statement of the seed's dynamical fate, which is open; the fixture record lives in [Symmetric Shell Braid](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#isolated-release-and-the-return-response-question).
 5. **Rigid rotating-wave family.** The rigid single-frequency rotating drum fails twice, independently. Axially: same-ring contributions have exactly zero axial component, while every opposite-ring contribution pulls the two rings together, and a sum of strictly one-signed terms cannot vanish — so the rigid rotating wave has no axial equilibrium at any drum aspect and any sub-field rim speed, and the rigid single-frequency family, if it existed, would be forced planar. This axial no-balance statement is a derivation. Tangentially: on the planar hexagon, a sampled screen across the sub-field rim-speed range finds the tangential residual strictly positive and growing nearly linearly with rim speed while the radial residual stays inward — the delayed kernel pumps the rotation rather than braking it. The screen is a sampled diagnostic, certifiable later by interval methods; its disposition is that no admissible rigid rotating-wave row exists in the scanned sub-field range.
 
 The reading discipline matters as much as the results. Each entry is scoped to the chart and assumptions that produced it; the agreement across charts is qualitative consilience, and no ledger quantity may be consumed across charts. None of these results rejects the neutral braid, shell braid, nested shell braid, bounded-speed, controlled self-hit, fold-layer, or medium-response programs.
@@ -39270,6 +39270,8 @@ The spindle braid carries the neutral braid inventory: three electrinos and thre
 2. **One frequency.** The rotation is iso-frequency: every site returns at the same common angular frequency $\omega$, so the family sits in the `1:1:1` frequency-ratio row of the taxonomy.
 3. **Tilted antipodal binaries.** Each binary is an antipodal pair on its own layer sphere of radius $R_a$, tilted by a cap angle $\alpha_a$ out of the equatorial plane.
 
+Antipodality is therefore a defining restriction of this candidate family. It is not derived here as a formation outcome, an attracting channel, an energetic minimum, or a retained branch. Claim level: definitional for the spindle family; derivation target for physical formation and selection.
+
 Under rigid rotation every site traces a horizontal circle about the shared axis, and the speed of layer $a$ is
 
 $$
@@ -39291,7 +39293,7 @@ The planar and axial alternatives studied elsewhere in the braid stack are there
 
 #### Why Rigidity: The Harmonic-Matching Principle
 
-The family was not guessed; it was selected by a structural principle that the configuration-space comparisons uncovered. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the received causal wake in the co-rotating frame can supply it. Rigid co-rotation puts all wake power into exactly that part. Any relative layer motion — frequency locks between layers, counter-rotation, speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
+The rigidity coordinate was selected by a structural principle that the configuration-space comparisons uncovered; that principle does not select antipodality. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the received causal wake in the co-rotating frame can supply it. Rigid co-rotation puts all wake power into exactly that part. Any relative layer motion — frequency locks between layers, counter-rotation, speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
 
 Causal delay is what makes this principle decisive rather than a soft preference. During one antipodal wake transit at near-field speed the pair rotates through roughly a third of a turn, so static-binding intuition — including the naive Kepler-third-law scaling for frequency-locked nested layers — does not transfer to the delayed dynamics. On the unified closure metric (below), every family that breaks rigid co-rotation scores near total failure, while nesting *within* rigid co-rotation produces the single largest closure gain measured: cross-layer delayed-wake geometry cancels most of the tangential pump internally. Claim level: measured comparison on prescribed worldlines plus the structural derivation just stated.
 
@@ -39363,7 +39365,12 @@ $$
 \Phi_{\mathrm{partner}}(\beta)\,\bigl[\,1-\varrho\,\Theta(\beta-1)\,\bigr],
 $$
 
-with $\varrho$ the brake-to-pump ratio and $\Theta$ the field-speed switch: below the rail the channel does not exist and the pump drives the speed up; above the rail the brake drives it back down. The field-speed edge is therefore a **two-sided dynamic attractor** — a pin — precisely when $\varrho>1$, a condition the declared coincidence stratum satisfies with wide margin ($\varrho\approx50$); the balance bounds the stratum scale from above rather than leaving it free (compare the near-field scale discussion in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md)). The pin was subsequently confirmed on the native retained-history solver: a released middle binary overshoots the rail to $\beta_M\approx1.08$, turns, and decays back toward it from above — a speed attractor, natively measured, on three independent releases. Claim level: derivation plus measurement for the sign structure and the reduced-dynamics attractor; native measurement for the speed-attractor behavior; the pin does not by itself confine radius.
+with $\varrho$ the brake-to-pump ratio and $\Theta$ the field-speed switch: below the rail the channel does not exist and the pump drives the speed up; above the rail the brake opposes it. The field-speed edge would be a **two-sided dynamic attractor** — a pin — precisely when $\varrho>1$. **That condition fails.** Every route that does not depend on a chosen short-distance scale puts $\varrho$ well below unity:
+
+- the regulator-converged, impulse-resolved booking of this chapter's own same-source channel caps its supply near two-thirds of the rail pump, $\varrho\approx0.67$ (see the ceiling below);
+- an independent closed-form route on the bare antipodal binary — the smallest object in the theory carrying both channels, with $W^{\mathrm{rec}}\equiv1$ exactly, solved without any regulator — gives $\varrho\approx0.11$ at $s=2$, rising monotonically to a ceiling near $0.33$ and never approaching $1$ through $s=60$.
+
+On that same bare object the net tangential force is forward at **every** speed measured, so no circular configuration is a tangential equilibrium at any speed, sub- or super-field. **There is therefore no same-source speed pin**: the brake exists and is real, but it never overcomes the pump, and a site crossing the rail is decelerated without being held. What survives is the switching structure and the sign of each channel, not the attractor. Claim level: derivation plus measurement for the sign structure and the switching form; **the pin is retired — its own stated condition is measured false by two independent routes, one of them this chapter's.**
 
 The fine structure of the hinge is an escapement, and its behavior depends on how the site crosses. The sustained supra-rail self-channel is a phase-sensitive valve: a steady rail-rider's own wake pushes it outward and forward (anti-confining), while an actively driven rider is braked and pulled inward — derivative feedback opposing $\dot\beta$ in both directions, superposed on a static outward bias. On the reduced driven-crossing instruments the transaction books as discrete clicks whose radial-to-tangential impulse ratio is measured, step-converged, and linear in the entry radial velocity,
 
@@ -39373,7 +39380,7 @@ $$
 0.013+1.02\,v_r,
 $$
 
-so in an eccentric orbit the crossings cluster just past periapsis where $v_r>0$ and the inward kicks are harvested — a click-synchronized radial damper. Its measured capacity is percent-scale ($\sim3\%$ of centripetal need for circular chatter, improving only to $\sim5\%$ at large click quantum): the clicker is the speed pin plus a last-percent radial trim, not a radial confinement engine. And the channel's absorptive ceiling is now measured natively, as a scoped negative that binds the search: at the regulator-converged impulse-resolved booking on the self-equilibrated seed, the same-source channel is a **continuous partial brake, not a discrete escapement** — no click train, no rail hunting at any declared coincidence stratum — and its supply caps near two-thirds of the rail pump, so no brake-equals-pump regime exists and the channel cannot hold its own rail. This is the native confirmation of the fold-geometry result of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord): the symmetric same-source click magnitude is a property of the short-distance scale $d_0$ rather than of the branch geometry, so this channel was never available as the load-bearing absorber of the pump. The escapement's action bookkeeping — one $h_{\mathrm{act}}$ click per controlled fold crossing — is the core-agnostic machinery of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#action-clicks-at-the-fold-set).
+so in an eccentric orbit the crossings cluster just past periapsis where $v_r>0$ and the inward kicks are harvested — a click-synchronized radial damper. Its measured capacity is percent-scale ($\sim3\%$ of centripetal need for circular chatter, improving only to $\sim5\%$ at large click quantum): the clicker is the speed pin plus a last-percent radial trim, not a radial confinement engine. And the channel's absorptive ceiling is measured, as a scoped negative that binds the search: at the regulator-converged impulse-resolved booking on the self-equilibrated seed, the same-source channel's supply **caps near two-thirds of the rail pump**, so no brake-equals-pump regime exists and the channel cannot hold its own rail. This ceiling is a converged force-ledger fact; whether the channel expresses itself as a continuous brake or a click train is a temporal question the ledger does not settle. The ceiling is the force-side counterpart of the fold-geometry result of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord): the symmetric same-source click magnitude is a property of the short-distance scale $d_0$ rather than of the branch geometry, so this channel was never available as the load-bearing absorber of the pump. The escapement's action bookkeeping — one $h_{\mathrm{act}}$ click per controlled fold crossing — is the core-agnostic machinery of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#action-clicks-at-the-fold-set).
 
 The pin has one consequence important enough to state on its own. For a spindle braid drifting along its axis at speed $u$, the same coincidence-birth theorem places the self-hit opening at total site speed $c_f$, which for helical motion means transverse cadence $c=\sqrt{c_f^2-u^2}$. The pump pushes the cadence up at every drift; the brake opens exactly at the $\gamma$-scaled rail; so the pinned internal cadence dilates as
 
@@ -39431,17 +39438,17 @@ helicity-odd at first order (the preferred leader transacts more per click) and 
 
 #### Discrete-Symmetry Structure
 
-Claim level: **analytical (derivation grade) for the discrete-symmetry algebra, conditional on a retained chiral object; measured for the magnitude of the locking; the existence of the object is the separate retention burden** — the [confinement problem](#the-confinement-problem) below, whose bare-neutral-scaffold results scope the search rather than settle the dressed realization. The point of this section is that the symmetry structure is fixed by the interaction law alone, independently of which geometry ultimately closes: it is a theorem about the law that any retained chiral braid must inherit.
+Claim level: **analytical (derivation grade) for the declared kernel's discrete-symmetry covariance; measured by the unified closure metric on prescribed spindle worldlines for the magnitude of the locking; derivation target for physical formation, branch retention, and weak-sector parity and $CP$ recovery.** The [confinement problem](#the-confinement-problem) below carries the separate bare-neutral-scaffold retention burden. This section distinguishes what the interaction law fixes from what the imposed fixed-channel geometry and any later effective transaction operator would still have to establish.
 
-**The law's evenness.** The pairwise causal-wake law is even under polarity conjugation $C$ (every electrino $\leftrightarrow$ positrino: only the polarity product $\sigma_a\sigma_b$ enters, invariant under a global sign flip of every polarity) and even under parity $P$ (the force is radial along the delayed line of action, $\propto\hat{\mathbf r}/r^2$, with no primitive handedness). Two exact degeneracies follow at once, as theorems about the law rather than observations about a solution: the $C$-image of any closed configuration — the anti-braid, the same geometry with every polarity reversed — is a degenerate solution, and the $P$-image — the mirror geometry with rotation sense reflected — is a degenerate enantiomer.
+**The law's evenness.** The pairwise causal-wake law is even under polarity conjugation $C$ (every electrino $\leftrightarrow$ positrino: only the polarity product $\sigma_a\sigma_b$ enters, invariant under a global sign flip of every polarity) and even under parity $P$ (the force is radial along the delayed line of action, $\propto\hat{\mathbf r}/r^2$, with no primitive handedness). Two exact degeneracies follow at once, as theorems about the law rather than observations about a solution: the $C$-image of any closed configuration — the polarity-conjugate braid, the same geometry with every polarity reversed — is a degenerate solution, and the $P$-image — the mirror geometry with rotation sense reflected — is a degenerate enantiomer. Polarity conjugation does not change the pro/anti ordered orientation because it does not move a worldline.
 
-**The chiral invariant.** A neutral braid is nonetheless chiral, because its ground state locks the mutual orientation of a polar vector and an axial vector: the cap polarity dipole $\mathbf p$ (polar, reversed by both $C$ and $P$) and the spin $\mathbf S$ (axial, invariant under both $C$ and $P$), with the cap azimuthal offset the third locked structure that renders the ground state geometrically chiral. Their product is a pseudoscalar,
+**The chiral invariant.** A prescribed spindle member is chiral when its cap polarity dipole $\mathbf p$ (polar, reversed by both $C$ and $P$) is locked to its spin $\mathbf S$ (axial, invariant under both $C$ and $P$), with the cap azimuthal offset supplying the third locked structure. Their product is a pseudoscalar,
 
 $$
 \chi=\operatorname{sign}(\mathbf p\cdot\mathbf S),
 $$
 
-the single chiral invariant of the braid. Its transformation law is forced by the vector characters above:
+the declared chiral invariant of that prescribed member. Its transformation law is forced by the vector characters above:
 
 | operation | $\mathbf p$ | $\mathbf S$ | $\chi$ |
 | --- | --- | --- | --- |
@@ -39449,19 +39456,31 @@ the single chiral invariant of the braid. Its transformation law is forced by th
 | $P$ (parity) | $-\mathbf p$ | $+\mathbf S$ | $-\chi$ |
 | $CP$ | $+\mathbf p$ | $+\mathbf S$ | $+\chi$ |
 
-So $C$ and $P$ each reverse the handedness while $CP$ preserves it. The $CP$-image (left-braid $\leftrightarrow$ right-anti-braid) is therefore degenerate with the original at this order, which is the structural origin of exact $CP$ alongside separately reversible $C$ and $P$.
+So $C$ and $P$ each reverse $\chi$, while $CP$ preserves it. For the declared polarity-product radial kernel, the $C$-, $P$-, and $CP$-transforms of any solution are degenerate transformed solutions. This is an exact covariance of the declared kernel; it does not establish formation into an $\iota$-fixed history, branch retention, or $CP$ conservation in weak reaction channels. Claim level: derivation grade for the declared kernel.
 
-**The leading-cap rule is $C$-covariant, not a $C$-violation.** Under drift the fore–aft symmetry is broken and closure selects the drift anti-parallel to $\mathbf p$ (one polarity cap leads). This selection is locked to $\chi$, not to an absolute polarity: it is the *same* rule applied to a given handedness, so the $C$-image obeys it with $\mathbf p$ reversed. A matter braid therefore leads with its electrino cap and the positron — its $C$-image — leads with its positrino cap; the two are exactly degenerate and neither leading orientation is unstable. What is disfavored is a braid driven *against* its lock (drift parallel to $\mathbf p$), which is not a distinct particle but a non-equilibrium orientation the measured orientation stiffness restores. That closure prefers the aligned orientation *maximally*, increasingly with speed, is a measured property of the family; that the preference must lock to $\chi$ rather than to an absolute polarity — so that no matter/antimatter asymmetry enters at the level of the law — is the analytical statement.
+The pro/anti ordered orientation is a separate sign. Let $o_{\mathrm{PA}}$ denote the retained `HML/HLM` order where that order exists. Because $C$ leaves worldlines fixed, $o_{\mathrm{PA}}$ is $C$-even; because $P$ mirrors the order, it is $P$-odd. The polarity-assignment sign on this chart is therefore
 
-**The crossing order is the observable face of $\chi$.** An observer stationed on the incoming drift axis, watching the three binary axes cross the meridian as the braid spins, records a fixed cyclic order — inner:middle:outer or inner:outer:middle — whose sign is $\chi$; the two orders are the $P$-image enantiomers. For a rigid iso-frequency braid this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the layers lap and the order scramble — the same non-representability the rigid-versus-differential analysis meets in [The Angular-Momentum Pump Has No Internal Null](#the-angular-momentum-pump-has-no-internal-null).
+$$
+c_{\mathrm{pol}}
+\equiv
+\chi o_{\mathrm{PA}},
+\qquad
+\chi=o_{\mathrm{PA}}c_{\mathrm{pol}}.
+$$
 
-**Which channels read the glove.** Channels that do not resolve the internal lock — bulk wake exchange and the electromagnetic-flavored interactions built from it — inherit the law's parity evenness, so parity conservation there is structural. Channels that reorganize the internal lock — the weak-flavored transaction channels — read $\chi$ directly, and because the lock is maximal, parity violation in exactly those channels is maximal rather than partial. Because the lock correlates handedness with polarity, $CP$ is exact at this order; any small observed $CP$ violation must arise from next-order structure — candidate sources are Noether-sea polarity/chirality texture, with absolute time supplying the arrow, and interference between transaction paths at different drift-dependent internal angles. The combined $CPT$ benchmark is carried in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+Thus $C$ reverses $c_{\mathrm{pol}}$ at fixed $o_{\mathrm{PA}}$, while $P$ reverses $o_{\mathrm{PA}}$ at fixed $c_{\mathrm{pol}}$. With left/right defined by the sign of $\chi$, $C$ maps a left braid to a right polarity-conjugate braid on the same pro/anti orientation; $CP$ maps it to a left polarity-conjugate braid on the mirrored orientation. This is exact covariance of the declared kernel plus definition-level sign bookkeeping. It does not establish formation, branch retention, or $CP$ conservation in weak reaction channels.
 
-This reproduces the observed pattern of nature's discrete symmetries — parity maximally violated in a specific sector, $CP$ nearly but not exactly conserved — from one structural mechanism: a parity-even, polarity-even law populated by chiral objects whose handedness is maximally locked to their polarity. The derivation is *conditional*: it fixes the symmetry algebra any retained chiral braid must carry, but does not by itself establish that such a braid is a stable free object. That existence burden is the confinement problem below, whose bare-neutral-scaffold results scope the search rather than settle the dressed realization.
+**The leading-cap rule is $C$-covariant, not a $C$-violation.** On the prescribed-worldline drift scan, the closure metric selects drift anti-parallel to $\mathbf p$ (one polarity cap leads). This selection is locked to $\chi$, not to an absolute polarity: the $C$-transformed scan obeys the same rule with $\mathbf p$ reversed. A matter braid therefore leads with its electrino cap and the positron — its $C$-image — leads with its positrino cap; the two prescribed scans are exactly degenerate under the kernel covariance. Driving a member against its lock (drift parallel to $\mathbf p$) is a displaced orientation within the prescribed family, and the seed-grade global-axis linearization reports restoring stiffness for that mode. This is not a six-body branch-retention result. Claim level: measured on prescribed spindle worldlines for the leading-cap preference and global-axis stiffness; analytical for the $C$-covariant mapping.
+
+**The crossing order is the observable face of $o_{\mathrm{PA}}$, not of $\chi$ alone.** An observer stationed on the incoming drift axis, watching the three binary axes cross the meridian as the braid spins, records a fixed cyclic order — inner:middle:outer or inner:outer:middle — whose sign is $o_{\mathrm{PA}}$; the two orders are the $P$-image enantiomers. Polarity conjugation leaves that sequence unchanged while reversing $\chi$. For a rigid iso-frequency braid this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the layers lap and the order scramble — the same non-representability the rigid-versus-differential analysis meets in [The Angular-Momentum Pump Has No Internal Null](#the-angular-momentum-pump-has-no-internal-null).
+
+**Which channels could read the glove.** Effective channels that do not resolve the internal lock are candidates to inherit the declared kernel's parity covariance. A weak-flavored transaction channel that reorganizes the internal lock is a candidate route by which the maximal spindle lock could produce maximal parity selectivity, but no weak-transaction operator has yet been derived from the retained branch record. The primitive kernel remains $CP$-covariant; reproducing the measured nonzero $CP$ asymmetries therefore requires a separate $CP$-odd effective event or branch residual. Candidate sources include Noether sea polarity/chirality texture and interference between transaction paths at different drift-dependent internal angles, but these are hypotheses rather than established next-order terms. The combined $CPT$ benchmark is carried in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+
+The spindle construction therefore supplies a conditional discrete-symmetry scaffold, not yet a recovery of the observed pattern. A retained chiral branch and a derived weak-transaction operator must still produce the observed handedness selectivity, while a separate $CP$-odd event or branch residual must reproduce the measured kaon and B-system asymmetries. Neither recovery has been established by the present spindle calculation. Claim level: derivation target for weak parity and $CP$ recovery; the primitive-kernel covariance is exact within its declared scope.
 
 #### The Confinement Problem
 
-The spindle braid leads every closure comparison, but a retained branch must survive *release*: seeded on the native retained-history solver and let go, the configuration must confine itself. It does not yet. The confinement search has produced the sharpest structural knowledge in the braid program — a set of scoped results, positive and negative, that any surviving realization must respect. Claim levels are stated per result; none of this section asserts a retained branch.
+The spindle braid leads every closure comparison, but a retained branch must confine itself: released and let go, the configuration must hold together. No realization of the family yet supplies what that requires — the force ledgers do not close on any tabled rest-state realization, which is a force-balance result and settles the question without any appeal to an evolved trajectory. The confinement search has produced the sharpest structural knowledge in the braid program — a set of scoped results, positive and negative, that any surviving realization must respect. Claim levels are stated per result; none of this section asserts a retained branch, and the family's dynamical fate on release is open pending direct evolution under the master equation.
 
 ##### The Support Sum Rule
 
@@ -39473,11 +39492,11 @@ $$
 \frac{-\,a_{\mathrm{rad},a}}{\omega^2R_a\cos\alpha_a},
 $$
 
-so a self-supported candidate needs $\mathrm{supp}_a\approx1$ on all three layers with one global coupling. Measured across the full knob set, the rigid family obeys a sum rule: **allocation is free, supply is capped.** The three layers compete for a capped wake inventory — geometry knobs can move support between layers almost freely (a frame-scaling probe lifts the middle to $0.96$ while starving the caps to $0.50$, or feeds the caps past $1.2$ while dropping the middle to $0.76$), and any single layer can be brought to full support — but the family's mean support saturates near $94\%$ of the total centripetal budget. The rest-state champion sat in a support-starved corner at $(0.90,0.76,0.53)$; the support-first search generation reached $(0.96,0.88,0.98)$; nothing in the rigid family reaches $(1,1,1)$. No rigid bare-void spindle closes its own radial budget; the residual deficit is a global few-percent shortfall, not any one layer's defect, with the escapement's radial trim worth roughly another percent on the rail layer. Claim level: measured on the prescribed family across search generations, confirmed dynamically on native releases.
+so a self-supported candidate needs $\mathrm{supp}_a\approx1$ on all three layers with one global coupling. Measured across the full knob set, the rigid family obeys a sum rule: **allocation is free, supply is capped.** The three layers compete for a capped wake inventory — geometry knobs can move support between layers almost freely (a frame-scaling probe lifts the middle to $0.96$ while starving the caps to $0.50$, or feeds the caps past $1.2$ while dropping the middle to $0.76$), and any single layer can be brought to full support — but the family's mean support saturates near $94\%$ of the total centripetal budget. The rest-state champion sat in a support-starved corner at $(0.90,0.76,0.53)$; the support-first search generation reached $(0.96,0.88,0.98)$; nothing in the rigid family reaches $(1,1,1)$. No rigid bare-void spindle closes its own radial budget; the residual deficit is a global few-percent shortfall, not any one layer's defect, with the escapement's radial trim worth roughly another percent on the rail layer. Claim level: measured force balance on the prescribed family across search generations.
 
 ##### The Tangential Transfer
 
-The nested geometry that cancels the pump does so by a conservative internal transfer: the delayed wake channel brakes the inner binary and pumps the middle, with the layer torques summing to nearly zero ($\sum_a 2q_a\tau_a\approx0$) — a tidal-flavored redistribution, not a loss. Released, that transfer is a clock: the inner binary bleeds angular momentum, contracts, and eventually scatters, and this — not the radial deficit — set the dispersal time of the first released realizations. The brake initially appeared invariant across very different geometries, but it is objective-rigid rather than knob-rigid — searches that price the tangential ledger directly eliminate it in geometry:
+The nested geometry that cancels the pump does so by a conservative internal transfer: the delayed wake channel brakes the inner binary and pumps the middle, with the layer torques summing to nearly zero ($\sum_a 2q_a\tau_a\approx0$) — a tidal-flavored redistribution, not a loss. Released, that transfer would run as a clock on the inner binary's angular momentum, and which clock governs the family's dynamical fate — this transfer or the radial deficit — is open. The brake initially appeared invariant across very different geometries, but it is objective-rigid rather than knob-rigid — searches that price the tangential ledger directly eliminate it in geometry:
 
 | Search generation | $\tau_I$ (inner tangential row, fitted-coupling units) |
 | --- | --- |
@@ -39485,39 +39504,43 @@ The nested geometry that cancels the pump does so by a conservative internal tra
 | Support-first geometry (very different knobs) | $-0.218$ — unchanged, hence the "invariant" reading |
 | Tangential-closure geometry | $\approx0$ ($+0.0006$), with the middle simultaneously at full bare support |
 
-The unlocking knob is the middle binary's own tilt (roughly $-25°$ to $-30°$) — the earlier lore that the rail layer resists tilting was an artifact of the closure-only objective. The brake-free geometry was subsequently confirmed on a native release: the inner binary holds its tangential row near zero with no external feed. Claim level: measured, cross-validated between the evaluator and native stacks.
+The unlocking knob is the middle binary's own tilt (roughly $-25°$ to $-30°$) — the earlier lore that the rail layer resists tilting was an artifact of the closure-only objective. At the brake-free geometry the inner binary's tangential row sits near zero with no external feed. Claim level: measured tangential force row on the prescribed family; that the row persists under evolution is open.
 
 ##### Released Behavior
 
-Every isolated release of the family recorded to date expands. The failure is structural — the support sum rule's few-percent global deficit converts, on release, into secular radial expansion at one global coupling — and it is regulator-complete: pointwise and chart-clean click bookings, both declared stratum scales, and every canon-named seed variant end in the same expansion. What varies is the *character* of the failure. Circular seeds disperse violently, with cap fall-in and site ejection. Seeds released from apoapsis with angular-momentum-matched speed — the escapement's natural orbit shape — survive coherently: the middle executes the predicted escapement cycle through hundreds of two-sided rail transactions, no site is ejected, and the braid expands self-similarly as one object. Release at periapsis, which places the middle above the rail at birth, is destructive; the escapement must approach its rail from below with a coherent sub-rail history. The apoapsis family's expansion rate responds to eccentricity but shallowly, with no zero crossing in reach: what the escapement buys is coherence and longevity, not confinement. Claim level: native retained-history measurements, route-complete for the isolated braid.
+What the family does once released is **open**. No evolved trajectory of the isolated braid has been computed under the master equation, so the dynamical fate — expansion, dispersal, a second turning point, or a bounded cycle — is not settled here.
+
+What the force ledger does settle is the departure itself. The support sum rule's few-percent global deficit is a force-balance fact: at every tabled rest-state realization the delivered wake force falls short of the centripetal need at one global coupling, so no such realization holds its radius at the instant of release. The deficit is a global shortfall rather than any one layer's defect, and the escapement's radial trim is worth roughly another percent on the rail layer — not enough to close it. That the configuration must begin to depart follows from the deficit; where it goes afterward does not.
+
+This is the family's first-order dynamical question, and it is the target of direct evolution: seed a tabled realization with a genuine causal prehistory, evolve every position as an output of the master equation, and measure the radial envelope over several cycles. Claim level: measured force-balance deficit and its immediate consequence for the departure; the evolved fate is open.
 
 ##### The Sea as Bath, Not Scaffold
 
 The natural reading of a few-percent global deficit is environmental: the braid was never expected to close in the Euclidean void, and the missing margin is exactly the shape of a gentle inward dressing by the ambient [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). The measured story is more structured, and more interesting.
 
-**Static environments fail actively.** A held, aligned shell of like assemblies does not merely fail to confine — at the canon-named spacings it anti-confines, pushing the caps outward, and a statically dressed release disperses faster than the isolated one.
+**Static environments fail actively.** A held, aligned shell of like assemblies does not merely fail to confine — at the canon-named spacings it anti-confines, pushing the caps outward. The static dressing therefore adds to the radial deficit rather than closing it; whether that worsens the evolved fate is open.
 
 **Responsive environments are resonant.** For a dynamically responding sea — assemblies reorienting toward the braid's causally delayed field — whether the reaction confines or loosens depends on the commensurability phase of the double causal delay of the braid-sea loop: confinement is spacing-selective, in bands, and exists *only because of* causal delay (an instantaneous dielectric response would be purely destabilizing). This is the harmonic-matching principle surfacing at the medium scale: braid and sea must be phase-matched for the sea to hold matter together. Two hard lessons about instrument discipline came with it: uniform-loop-delay estimates of sea response are structurally wrong for an object whose radius is order-one against the shell spacing (exact per-pair causal delays flip the verdict), and response credits must be computed at true angular placement (count-scaled or angle-averaged placements silently misbook polar-concentrated quantities).
 
-**The sea can feed the braid's spin but not its waist.** Natively demonstrated: a phase-matched responsive sea supplies steady forward torque to the inner binary at the full predicted rate — the tangential brake is environmental, breakable, not structural — and the sea's radial and tangential channels have different lag sensitivities, the radial one demanding reorientation at roughly twice the braid cadence. But across every response channel measured — saturated orientation, band-limited positional breathing, and the full near-field multipole resummation of finite assemblies — one structural signature persists: **the sea feeds the caps and starves the rail.** Everything a saturated-orientation environment radiates or holds is axially organized, and an axially organized environment cannot push on an equatorial ring. At response scope, the sea is the braid's angular-momentum bath and cap support; it is not the equatorial radial scaffold.
+**The sea can feed the braid's spin but not its waist.** A phase-matched responsive sea supplies forward torque to the inner binary at the full predicted rate — the tangential brake is environmental, breakable, not structural — and the sea's radial and tangential channels have different lag sensitivities, the radial one demanding reorientation at roughly twice the braid cadence. The torque is a measured force-ledger row; that the feed is sustained in time is a separate claim and is open. But across every response channel measured — saturated orientation, band-limited positional breathing, and the full near-field multipole resummation of finite assemblies — one structural signature persists: **the sea feeds the caps and starves the rail.** Everything a saturated-orientation environment radiates or holds is axially organized, and an axially organized environment cannot push on an equatorial ring. At response scope, the sea is the braid's angular-momentum bath and cap support; it is not the equatorial radial scaffold.
 
-The positive half of this is a mechanism-level picture worth stating at capture grade: a closed angular-momentum metabolism in which the sea feeds the braid, the internal wake channel transfers the feed inner-to-middle, the middle's escapement absorbs the surplus and re-emits it as wake, and the outgoing wake drives the sea's orientation order. On this picture the braid is an open system in steady state with its bath: isolated matter runs down on the tangential clock, and matter needs its medium not for decoration but for metabolism. Claim level: native demonstration for the inner feed; estimate grade for the loop; the loop has not been closed self-consistently.
+The positive half of this is a mechanism-level picture worth stating at capture grade: a closed angular-momentum metabolism in which the sea feeds the braid, the internal wake channel transfers the feed inner-to-middle, the middle's escapement absorbs the surplus and re-emits it as wake, and the outgoing wake drives the sea's orientation order. On this picture the braid is an open system in steady state with its bath: isolated matter runs down on the tangential clock, and matter needs its medium not for decoration but for metabolism. Claim level: measured force/torque rows for the inner feed; the steady state, the run-down, and the loop are estimate grade — the loop has not been closed self-consistently, and no evolved trajectory supports the steady-state reading.
 
 ##### Corridors Without Basins
 
 The search did find static configurations whose *seed* ledgers close completely. A self-consistent static dressing exists in which every layer's total radial support lands inside the declared corridor (dressed rows $1.002/0.999/0.994$), and when the artificial lattice constraint is dropped the closing environment is not a lattice at all: the braid's own deficit map selects an octahedral cage of six neighbors with polar coverage — totals $1.001/0.996/0.994$, a solvation shell, braid-selected rather than lattice-imposed. The companion negative is exact: the cap credit is a polar-site quantity (the two on-axis neighbors carry all of it, the mid-latitude neighbors tax the middle), the FCC first coordination shell has no polar sites, and no FCC occupancy closes the corridor — **a braid cannot live at a lattice site of an FCC sea.** The stable object such a cage describes is really a braid-plus-cage complex, closer to a molecule in a solvent than to a particle in a lattice, and the cage carries its own reciprocity burden: the polar members that supply the cap credit receive its Newton-pair as an unsupported inward pull of $0.64$ of the corridor force scale, so the complex needs a bulk anchor or cage dynamics of its own.
 
-Released, the strongest such configuration — corridor-complete, torque-equilibrated, polar-covering — produced the arc's cleanest negative principle. The seed corridor is **an equilibrium without a basin**: the near-field credit that closes the cap's ledger is an attraction with no restoring gradient, and the released cap falls into its own credit source an order of magnitude faster than the bare braid disperses (coherence lost at $0.09$ rotations against the bare braid's $0.83$). The same release produced the family's first upward rail loss — once the braid's axis begins to tip, the field-speed pin, defined transverse to that axis, does not recapture from above — and the first native nutation measurements on a released braid ($9.5°$ of axis tilt within one rotation). The principle generalizes and now binds candidate design: at static grade, corridor closure and dynamic confinement are not merely different questions; a force balance purchased from attractive near-fields actively purchases the capture failure mode. What a surviving realization needs is not balance but a **basin** — restoring gradients in every opened direction. Claim level: native retained-history measurements; the basin principle is the measured summary of the static-environment scope.
+The strongest such configuration — corridor-complete, torque-equilibrated, polar-covering — carries the arc's cleanest negative principle. The seed corridor is **an equilibrium without a basin**: the near-field credit that closes the cap's ledger is an attraction with no restoring gradient, so the balance holds at the seed point and nowhere around it. The principle generalizes and binds candidate design: at static grade, corridor closure and dynamic confinement are not merely different questions; a force balance purchased from attractive near-fields buys a balance point that has nothing holding the configuration to it. What a surviving realization needs is not balance but a **basin** — restoring gradients in every opened direction. Claim level: the equilibrium and the absence of a restoring gradient around it are measured force-balance facts; the basin principle is their summary. What the dressed configuration does once released, and the rate at which any failure mode develops, is open.
 
-The basin question is now an instrument, not a slogan. The seed-grade radial stability matrix — the Jacobian of net radial force with respect to the slow radial coordinates at frozen rotation, with a negative-definite symmetric part as the sufficient restoring condition (the system is non-conservative, so this is not the curvature of any energy) — reproduces the held-cage capture in seconds: the dressed cage's spectrum carries a positive escape mode along exactly the cap-out/cage direction the native release followed, and the cage member's own coordinate is anti-restoring. It is the standing pre-tabling gate: no candidate is released natively without passing it. And it produced the arc's most consequential positive result: **the bare braid's shape block is a basin** — all three shape eigenvalues restoring, the first basin in the program's history. The bare braid is not balanced in the fitted-coupling frame (the sum rule caps its mean support below one), and its residual instability is a pure **dilation mode**: a uniform inward shortfall on all layers, contraction rather than dispersal.
+The basin question is an instrument, not a slogan. The seed-grade radial stability matrix — the Jacobian of net radial force with respect to the slow radial coordinates at frozen rotation, with a negative-definite symmetric part as the sufficient restoring condition (the system is non-conservative, so this is not the curvature of any energy) — is the standing pre-tabling gate: the dressed cage's spectrum carries a positive escape mode along the cap-out/cage direction, and the cage member's own coordinate is anti-restoring, so no candidate is tabled without passing it. And it supplies the arc's most consequential positive indication: **the bare braid's shape block is restoring** at seed grade — all three shape eigenvalues restoring, the first such indication in the program's history. Like every linear-stability reading in this chapter it is a seed-grade indication about a linearization, not a dynamical result; a basin is confirmed by an evolution that returns, and no such evolution has been run. The bare braid is not balanced in the fitted-coupling frame (the sum rule caps its mean support below one), and its residual instability is a pure **dilation mode**: a uniform inward shortfall on all layers, contraction rather than dispersal.
 
 ##### The Self-Equilibrated Fixed Point and the Derived Size
 
-The dilation mode then resolved, and the resolution rewrote the confinement question. Two corrections built the honest frame. First, quasi-static size changes must run at the **rail-pinned cadence**: during contraction the middle stays on the field-speed rail — the natively confirmed attractor — so the cadence responds to the radius through $\omega=c_f/(R_M\cos\alpha_M)$, and under that pin the wake supply scales as $1/\lambda^2$ against a need scaling as $1/\lambda$: the size mode acquires a restoring feedback. **The speed pin is also the size pin — conditional on rail residence.** The restoring feedback exists exactly while the middle rides its rail; above the rail the same cadence-radius coupling inverts into an outward spiral, and both halves are natively demonstrated — the released size mode executes the predicted restoring dip ($R_M$ to $0.9855$, one equilibrium crossing) before the un-absorbed pump detaches the rail and the runaway begins. Second, the per-configuration coupling refit was a gauge that exactly absorbed the dilation gain — the mechanical content of the fitted-coupling sum rule, and the reason the size mode looked unbalanced in every earlier frame. With the coupling frozen once and the rail pin active, the bare braid has a **true radial equilibrium with a fully restoring basin**, at which every layer sits at full support by definition rather than by corridor hunt — the corridor search of the entire arc was the search for this fixed point through a gauge that hid it. The joint fixed point with the tangential ledger exists as a named self-equilibrated configuration: radial residuals at solver precision, restoring spectrum, inner and outer tangential rows at zero, the middle's $+0.227$ rail pump the one booking left open (the same-source brake, measured natively at converged regulators, supplies at most about two-thirds of it) — and **no environment at all** for the radial ledger: the sea remains the braid's angular-momentum bath and cap support, but this object does not need it for its radial ledger.
+The dilation mode then resolved, and the resolution rewrote the confinement question. Two corrections built the honest frame. First, quasi-static size changes must run at the **rail-pinned cadence**: during contraction the middle is taken to stay on the field-speed rail, so the cadence responds to the radius through $\omega=c_f/(R_M\cos\alpha_M)$, and under that pin the wake supply scales as $1/\lambda^2$ against a need scaling as $1/\lambda$: the size mode acquires a restoring feedback. **The speed pin is also the size pin — conditional on rail residence.** The restoring feedback exists exactly while the middle rides its rail; above the rail the same cadence-radius coupling inverts, so the conditional structure has two halves and the condition is rail residence. Both halves follow from the scaling; neither the restoring dip nor the rail detachment has been demonstrated on an evolved trajectory. Second, the per-configuration coupling refit was a gauge that exactly absorbed the dilation gain — the mechanical content of the fitted-coupling sum rule, and the reason the size mode looked unbalanced in every earlier frame. With the coupling frozen once and the rail pin active, the bare braid has a **true radial equilibrium**, at which every layer sits at full support by definition rather than by corridor hunt — the corridor search of the entire arc was the search for this fixed point through a gauge that hid it — and its seed-grade radial spectrum is restoring. The joint fixed point with the tangential ledger exists as a named self-equilibrated configuration: radial residuals at solver precision, inner and outer tangential rows at zero, a restoring seed-grade radial spectrum, the middle's $+0.227$ rail pump the one booking left open (the same-source brake, measured at converged regulators, supplies at most about two-thirds of it) — and **no environment at all** for the radial ledger: the sea remains the braid's angular-momentum bath and cap support, but this object does not need it for its radial ledger.
 
-Two consequences carry beyond the search. The braid's absolute size becomes a derived constant — the equilibrium rail radius lands at $R_M^{\mathrm{eq}}=3.4937$ in units of $\kappa\epsilon^2/c_f^2$, doubly witnessed through the gauge-invariant equilibrium coupling $\kappa_{\mathrm{eq}}=1/R_M^{\mathrm{eq}}=0.28623$ (the fitted-gauge values lie on one gauge orbit) — the same scale family as the declared near-field floor of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), sitting well above that floor, so the arrest is coupling-scale self-support rather than discreteness rescue — an anchor for the mass-map program. And the closure metric and the force-ledger metrics now disagree openly (the self-equilibrated cell scores worse on closure than earlier corridor cells that dispersed), with the release arc's uniform verdict that the ledgers, not the closure residual, govern survival. Claim level: seed-grade instrument for the fixed point and basin, quasi-static, single-time rigid booking; native witness for the equilibrium, the coupling row, and the conditional size pin.
+Two consequences carry beyond the search. The braid's absolute size becomes a derived constant — the equilibrium rail radius lands at $R_M^{\mathrm{eq}}=3.4937$ in units of $\kappa\epsilon^2/c_f^2$, doubly witnessed through the gauge-invariant equilibrium coupling $\kappa_{\mathrm{eq}}=1/R_M^{\mathrm{eq}}=0.28623$ (the fitted-gauge values lie on one gauge orbit) — the same scale family as the declared near-field floor of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), sitting well above that floor, so the scale is set by coupling-scale self-support rather than by a discreteness rescue — an anchor for the mass-map program. And the closure metric and the force-ledger metrics now disagree openly: the self-equilibrated cell scores worse on closure than earlier corridor cells whose ledgers were further from closing, so a favorable closure residual does not track the force ledgers, and the ledgers are the claim-bearing rows. Claim level: measured force-balance equilibrium for the fixed point, the coupling row, and the derived size; seed-grade quasi-static single-time rigid booking for the spectrum and the conditional size pin.
 
-The stability gate was then extended to the axis sector — the mode class that killed the held-cage release. For a bare braid a global tilt is a symmetry of the isotropic law, and the tilt stiffness block carries that as a built-in validation: the global mode is an exact numerical null. The block is asymmetric, and the asymmetry is physics rather than error — in a causal-delay theory internal torques need not cancel instantaneously, because the field in flight carries angular momentum — so the claim-bearing readout is the quotient spectrum with the null deflated. At the self-equilibrated fixed point the relative-tilt modes are **restoring** (both eigenvalues real and negative), with the strongest single coupling — inner tilt to middle torque — exactly the pathway the held-cage nutation followed, here carrying a net restoring response. The pre-tabling gate therefore now covers every mode class that has killed a native release: the rail-pinned radial basin, the closed tangential ledger, and the tilt block; the self-equilibrated configuration passes all three, and no prior candidate would have. The declared remaining caveat is dynamical, and it is now resolved against the family: the layers carry spin angular momentum, so the true linearized problem is gyroscopic-circulatory, and its verdict is **flutter** — the restoring static tilt block does not survive the spin and circulatory terms, a growing internal whirl appears, and it is independent of the rail pump. The whirl/flutter treatment and the spindle-native spin scaffold it belongs to live with the angular-momentum bridge in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spindle-braid-spin-scaffold). Every axis-sector absorber the bare resting braid owns has been measured or bounded and fails, so the flutter is a real obstruction, not an instrument artifact.
+The stability gate was then extended to the axis sector — the mode class the held-cage escape mode opens. For a bare braid a global tilt is a symmetry of the isotropic law, and the tilt stiffness block carries that as a built-in validation: the global mode is an exact numerical null. The block is asymmetric, and the asymmetry is physics rather than error — in a causal-delay theory internal torques need not cancel instantaneously, because the field in flight carries angular momentum — so the claim-bearing readout is the quotient spectrum with the null deflated. At the self-equilibrated fixed point the relative-tilt modes are **restoring** (both eigenvalues real and negative), with the strongest single coupling — inner tilt to middle torque — carrying a net restoring response. The pre-tabling gate therefore now covers every mode class the search has identified as dangerous: the rail-pinned radial spectrum, the closed tangential ledger, and the tilt block; the self-equilibrated configuration passes all three, and no prior candidate would have. The declared remaining caveat is dynamical, and it is not resolved: the layers carry spin angular momentum, so the true linearized problem is gyroscopic-circulatory, and that pencil indicates **flutter** — the restoring static tilt block does not survive the spin and circulatory terms, an internal whirl grows, and the growth does not depend on the rail pump. The whirl/flutter treatment and the spindle-native spin scaffold it belongs to live with the angular-momentum bridge in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#spindle-braid-spin-scaffold). Every axis-sector absorber the bare resting braid owns has been measured or bounded and fails, so no internal channel is available to close the indicated growth. Whether the growth is real is the open question: the pencil is a linearization on prescribed worldlines with no corroboration from an evolved trajectory, so it cannot yet be told from an instrument artifact. Deciding it requires evolving the fixed point directly under the master equation.
 
 ##### The Angular-Momentum Pump Has No Internal Null
 
@@ -39531,13 +39554,13 @@ Where that sink can come from is constrained from the other side by [The Sea as 
 
 ##### Where the Search Stands
 
-The isolated braid's *fitted-gauge* release routes are measured and closed: circular, chart-booked, epicyclic, and statically dressed releases all expand or capture. The held-static environment scope is closed from both sides — the sea cannot statically scaffold the braid, and the braid-selected cage is not self-supporting. The frontier now leads with the **self-equilibrated bare braid**: the rail-pinned fixed point above, radially restoring with its tangential ledger closed, its static tilt block restoring, and no environment — the first candidate in the program's history to pass the full quasi-static seed-grade stability gate. Its one open mode is the gyroscopic-circulatory flutter, and that mode is now the binding obstruction: the axis sector is unstable at seed grade, every absorber the bare braid owns fails to close it, and the natural reframing — that stability might belong to the *moving* family, since the orientation torque exists only under drift — was tested and rejected. The drift-orientation torque anchors the braid's *global* axis orientation to its line of motion but does not reach the *internal* whirl: the flutter persists at every drift speed in the preferred basin, in both drift senses, with the same growth class as at rest. The axis sector is therefore closed at seed grade in both the resting and the moving frame. What a surviving realization needs is a channel no rigid-layer analysis can supply: either **non-rigid axis dynamics** — an internal deformation coordinate coupling to the whirl — or a structured environment that grips the deep layers; and, independently of the flutter, an external angular-momentum sink for the rail pump, which [no internal degree of freedom can null](#the-angular-momentum-pump-has-no-internal-null). Behind that, still live: the **co-orbital cage** (members trading the credit's inward pull against their own centripetal need), a **saturated-orientation sea absorber** at the confining band, **bulk-boundary equilibrium** in a genuinely populated medium, and sea self-structure beyond driven response — a standing-phonon reading whose burden is formation history rather than response calculation. The durable positives that any route inherits: the field-speed pin as a native speed attractor — now understood to pin size along with speed — the escapement's coherence, the geometric elimination of the tangential brake, the sea's demonstrated inner feed, the stability-matrix pre-tabling gate, and the basin principle. And one theme recurs at every scale — escapement click phasing, sea spacing bands, reorientation rates, drift cadence — the delayed dynamics rewards commensurability: harmonic matching is the selection principle of this family from its geometry up through its medium.
+The isolated braid's *fitted-gauge* routes are closed on the force ledgers: no route supplies the radial support its own motion needs. The held-static environment scope is closed from both sides — the sea cannot statically scaffold the braid, and the braid-selected cage is not self-supporting. The frontier now leads with the **self-equilibrated bare braid**: the rail-pinned fixed point above, radially restoring with its tangential ledger closed, its static tilt block restoring, and no environment — the first candidate in the program's history to pass the full quasi-static seed-grade stability gate. Its one open mode is the gyroscopic-circulatory flutter, and that mode is the binding obstruction if it is real: the axis sector carries indicated growth at seed grade, every absorber the bare braid owns fails to close it, and the natural reframing — that stability might belong to the *moving* family, since the orientation torque exists only under drift — does not escape it. The drift-orientation torque anchors the braid's *global* axis orientation to its line of motion but does not reach the *internal* whirl: the indicated whirl persists at every drift speed in the preferred basin, in both drift senses, with the same growth class as at rest. The axis sector is therefore unresolved at seed grade in both the resting and the moving frame, and confirming or overturning the indication by direct evolution under the master equation is the family's first open question. What a surviving realization needs is a channel no rigid-layer analysis can supply: either **non-rigid axis dynamics** — an internal deformation coordinate coupling to the whirl — or a structured environment that grips the deep layers; and, independently of the flutter, an external angular-momentum sink for the rail pump, which [no internal degree of freedom can null](#the-angular-momentum-pump-has-no-internal-null). Behind that, still live: the **co-orbital cage** (members trading the credit's inward pull against their own centripetal need), a **saturated-orientation sea absorber** at the confining band, **bulk-boundary equilibrium** in a genuinely populated medium, and sea self-structure beyond driven response — a standing-phonon reading whose burden is formation history rather than response calculation. The durable positives that any route inherits: the self-equilibrated fixed point with its derived size and gauge-invariant coupling, the field-speed pin — understood through the same cadence-radius scaling to pin size along with speed — the geometric elimination of the tangential brake, the sea's measured inner feed, the stability-matrix pre-tabling gate, and the basin principle. And one theme recurs at every scale — escapement click phasing, sea spacing bands, reorientation rates, drift cadence — the delayed dynamics rewards commensurability: harmonic matching is the selection principle of this family from its geometry up through its medium.
 
 #### Candidate Status and Open Burden
 
-The spindle braid is a named candidate family, not a retained branch. Its rest-state realizations do not self-support under native release, and its statically dressed realizations close their seed ledgers without possessing a basin. The family's definition, geometry, and symmetry structure survive every one of those results unchanged — each rejection has sharpened the search's knowledge of what a surviving realization must supply, and the open work is the confinement mechanism, not the family.
+The spindle braid is a named candidate family, not a retained branch. Its rest-state realizations do not supply their own radial support, and its statically dressed realizations close their seed ledgers without possessing a basin. The family's definition, geometry, and symmetry structure survive every one of those results unchanged — each rejection has sharpened the search's knowledge of what a surviving realization must supply, and the open work is the confinement mechanism, not the family.
 
-The rejections now point in a consistent direction worth stating plainly. The bare neutral scaffold fails to be a free particle on two independent fronts — it cannot shed its axial angular-momentum pump ([The Angular-Momentum Pump Has No Internal Null](#the-angular-momentum-pump-has-no-internal-null)) and its axis sector flutters — and neither a static nor a co-orbiting environment closes the gap without acquiring the same debt. Read together these are less a failure of the family than a statement about what a free object is: a lone neutral scaffold is not one. The stable free objects the theory then expects are either *bound pairs*, in which a contra-rotating partner supplies internally the angular-momentum sink a single braid lacks — the working reading of the neutral boson and near-photon channels — or *dressed* assemblies, in which a charged, spin-carrying payload does the same while opening the electromagnetic channel, the working reading of the charged fermions. The scaffold results scope those two routes rather than closing the particle question; which route a given observed particle takes is the open construction the assembly chapters pursue. Claim level: reading of the measured confinement results plus a candidate direction, not a retention claim.
+The rejections now point in a consistent direction worth stating plainly. The bare neutral scaffold fails to be a free particle because it cannot shed its axial angular-momentum pump — no bare braid, rigid or differential, is simultaneously representable, radially supported, and torque-free, so a retained realization requires an external angular-momentum sink ([The Angular-Momentum Pump Has No Internal Null](#the-angular-momentum-pump-has-no-internal-null)). That front is a force- and torque-balance result and carries the conclusion on its own. The indicated axis-sector flutter would be a second, independent front if it survives direct evolution; the conclusion does not rest on it. And neither a static nor a co-orbiting environment closes the gap without acquiring the same debt. Read together these are less a failure of the family than a statement about what a free object is: a lone neutral scaffold is not one. The stable free objects the theory then expects are either *bound pairs*, in which a contra-rotating partner supplies internally the angular-momentum sink a single braid lacks — the working reading of the neutral boson and near-photon channels — or *dressed* assemblies, in which a charged, spin-carrying payload does the same while opening the electromagnetic channel, the working reading of the charged fermions. The scaffold results scope those two routes rather than closing the particle question; which route a given observed particle takes is the open construction the assembly chapters pursue. Claim level: reading of the measured confinement results plus a candidate direction, not a retention claim.
 
 Whatever realization is proposed, the retention contract is the one stated in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md) and the certificate target of [Neutral Braid](../../../../markdown/aaa/noether-braid/neutral-braid.md): the required rows must close on one ledger identity, and a favorable geometry, symmetry, or comparison diagnostic cannot rescue an open dynamics, action, or stability row. The alternative families collected in [Explored Braid Geometries](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md) remain the comparison population that gives this candidacy its meaning, and any of them re-enters if the spindle route is decisively rejected.
 
@@ -39611,13 +39634,13 @@ The symmetric shell braid is the maximal-symmetry member of this family: the fac
 
 ##### Isolated Release and the Return-Response Question
 
-Held-release diagnostics of the face-opposite seed on the zero-angular-momentum channel of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#invariant-channels-and-equivariant-reductions) separate two claims that must not be conflated. The symmetry claim holds to numerical precision: the released seed stays on the invariant channel, with the dynamic center at zero, all six radii equal, and antipodal partners exact. The stability claim fails in isolation: across the tested windows the reduced radius shows a single compression-to-expansion turn and then expands without any later inward acceleration row, so the isolated seed behaves as a symmetric contraction-and-release channel rather than a self-maintaining branch.
+Two claims about the face-opposite seed on the zero-angular-momentum channel of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#invariant-channels-and-equivariant-reductions) must not be conflated. The symmetry claim is established: the seed stays exactly on the invariant channel, with the dynamic center at zero, all six radii equal, and antipodal partners exact — an equivariance theorem of the channel, independent of any trajectory. The retention claim is a separate question, and the isolated seed does not answer it in the affirmative: the channel carries no centrifugal support and the void row supplies no restoring term, so nothing in the isolated construction makes it a self-maintaining branch. What the seed actually does once released is open, and is a target for direct evolution rather than a recorded result. Claim level: established equivariance theorem for the channel; the dynamical fate is open.
 
 This pairing is informative rather than damaging. A shell braid was never expected to close as a bare partner-wake problem in the Euclidean void: the candidate stabilizing ingredients — same-source self-hit rows, retained wake-energy response, shielding, angular-momentum-bearing initial data, and local Noether sea response — are exactly the ingredients the isolated diagnostic omits. The void result therefore sharpens the retention question into a return-response question: which internal or environmental term changes the reduced-radius equation from escape to a second turning point, a stable support radius, or a bounded limit cycle. The axis-neutral rotating channel of [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#invariant-channels-and-equivariant-reductions) supplies the first untested internal candidate, since the zero-angular-momentum release is a radial free-fall chart with no centrifugal support; the scoped anti-damping results collected there bound what any such candidate must overcome. The environmental candidate is the `SH-0-sea` route stated next.
 
-The void diagnostic can now be stated sharply rather than qualitatively, because the recorded escape obeys a conditional no-return certificate on the invariant channel. Two monitored conditions carry it: sub-field speed, meaning every worldline stays below the field speed $c_f$; and an opposite-polarity separation floor, meaning the closest opposite-polarity non-antipodal pair stays at least one reduced radius $R$ apart. The floor holds automatically from the channel's own geometry, and the retained causal-root count reduces to exactly one root per directed pair, so sub-field speed is the only condition that must be watched forward in time. Under the two conditions the reduced-radius acceleration satisfies a signed inverse-square lower bound $\ddot R\ge -K/R^2$, with $K$ built only from the row's coupling, its declared speed and weight caps, and the polarity structure — same-polarity partner terms cancel by an exact radial-sign argument, and the opposite-polarity terms are bounded by the floor. A short energy-integral argument then closes it: if the outward speed at a chosen certificate time clears the margin $\dot R^2>2K/R$, the reduced radius cannot turn back while the two conditions hold. This conditional statement is an established derivation on the channel, not a retained-branch claim; on every isolated row recorded so far the margin is unmet, consistent with the escape the diagnostic reports.
+The question can be stated sharply rather than qualitatively, because the invariant channel carries a conditional no-return certificate. Two monitored conditions carry it: sub-field speed, meaning every worldline stays below the field speed $c_f$; and an opposite-polarity separation floor, meaning the closest opposite-polarity non-antipodal pair stays at least one reduced radius $R$ apart. The floor holds automatically from the channel's own geometry, and the retained causal-root count reduces to exactly one root per directed pair, so sub-field speed is the only condition that must be watched forward in time. Under the two conditions the reduced-radius acceleration satisfies a signed inverse-square lower bound $\ddot R\ge -K/R^2$, with $K$ built only from the row's coupling, its declared speed and weight caps, and the polarity structure — same-polarity partner terms cancel by an exact radial-sign argument, and the opposite-polarity terms are bounded by the floor. A short energy-integral argument then closes it: if the outward speed at a chosen certificate time clears the margin $\dot R^2>2K/R$, the reduced radius cannot turn back while the two conditions hold. This conditional statement is an established derivation on the channel, not a retained-branch claim. Whether any isolated row actually clears the margin is an evolution question and is open.
 
-The consequence sharpens the return-response question to a single named target. A return turn cannot be the first event — any return must be preceded by a violation of sub-field speed or the opposite-polarity floor — so on the isolated channel the reduced radius escapes for as long as the row stays sub-field, and retention is possible only through a term that ends sub-field speed first, driving the internal speed to the field-speed hinge where the outward drive stops before the radius can turn. This is exactly why the [anti-damping pump](../../../../markdown/aaa/noether-braid/braid-mathematics.md#scoped-anti-damping-results) enters with the sign it does: it is transverse, so it feeds escape rather than return, and its only bearing on the certificate is that it pushes the speed toward $c_f$ — the very condition whose failure ends the window. The open target is therefore precise: exhibit an internal or environmental absorber that ends sub-field speed before the margin is crossed. The surviving candidate absorbers, and why the symmetric single-site self-hit is not among the load-bearing ones, are set out in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord); the environmental candidate is the `SH-0-sea` route below.
+The consequence sharpens the return-response question to a single named target. A return turn cannot be the first event — any return must be preceded by a violation of sub-field speed or the opposite-polarity floor — so once the margin is cleared on the isolated channel the reduced radius cannot turn back while the row stays sub-field, and retention is possible only through a term that ends sub-field speed first, driving the internal speed to the field-speed hinge where the outward drive stops before the radius can turn. This is exactly why the [anti-damping pump](../../../../markdown/aaa/noether-braid/braid-mathematics.md#scoped-anti-damping-results) enters with the sign it does: it is transverse, so it feeds escape rather than return, and its only bearing on the certificate is that it pushes the speed toward $c_f$ — the very condition whose failure ends the window. The open target is therefore precise: exhibit an internal or environmental absorber that ends sub-field speed before the margin is crossed. The surviving candidate absorbers, and why the symmetric single-site self-hit is not among the load-bearing ones, are set out in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md#fold-geometry-of-the-click-coincidence-versus-finite-chord); the environmental candidate is the `SH-0-sea` route below.
 
 ##### The SH-0-Sea Environment Route
 
@@ -40227,7 +40250,7 @@ This chart is a reduced proof bridge, not a replacement for the full three-dimen
 
 - the $x:y:z$ frequency-pattern search, including iso-frequency, integer-ratio, and doubling-frequency families;
 - the braid symmetry-breaking point, where the planar chart becomes the terminal-alignment slice of the nested shell braid;
-- the photon channel, where two planarized pro/anti braid records form the coaxial contra-rotating pro/anti planar pair.
+- the photon channel, where two planarized polarity-conjugate braid records form the coaxial contra-rotating polarity-conjugate planar pair.
 
 Taxonomically, this remains a chart label. It becomes `PL-NSH-0` evidence only when the local calculation is testing lower-rank nested shell retention on a declared branch record. It becomes `NSH-TERM` evidence only when the local calculation is the terminal hinge or braid symmetry-breaking boundary. In the photon-channel use, it is bridge evidence consumed by photon closure; it does not certify a Noether braid branch by itself.
 
@@ -43177,7 +43200,7 @@ These obligations close in layers. A rest branch can be retained before moving e
 
 The search currently has a leading candidate family, and a reader who wants one configuration to hold in mind while reading the axes below should hold this one. The **spindle braid** ([Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md)) is the rigid uniaxial iso-frequency family: all six architrinos co-rotate at one common frequency about a single axis, each binary a tilted antipodal pair, with the tilt angles decoupling each layer's speed from its nesting radius. Its name is literal dynamics, not only appearance: the opposite-polarity attraction channels form the staggered [drum lacing](../../../../markdown/aaa/noether-braid/braid-mathematics.md#drum-geometry), and rotation winds that lacing into helices, so the static drum picture and the spacetime braid are the same channel viewed at two levels. On the prescribed-worldline unified-closure comparisons run to date it closes markedly better than every alternative family measured against the same metric — planar tri-binary states, counter-rotating and frequency-locked nested arrangements, and common-sphere shell states — and it contains the planar tri-binary and the axial-dipole configurations as its flat and full-tilt limits, so those are best read as boundary members of the spindle family rather than rivals.
 
-The status discipline still binds. The spindle braid is a named candidate family, not a retained branch: the first tabled rest-state realization, released on the native retained-history solver at declared regulators, did not self-support — the wake forces at the fitted coupling under-supplied the required centripetal support and the configuration dispersed — so the family currently frames the search for a realization whose confinement rows close (same-source booking, sea embedding, and non-rigid same-level variants are the open routes). The alternative families below remain the search's bookkeeping: they are the comparison population that gives the leading candidate its meaning, and any of them re-enters if the spindle route is decisively rejected.
+The status discipline still binds. The spindle braid is a named candidate family, not a retained branch: at the first tabled rest-state realization the wake forces at the fitted coupling under-supply the required centripetal support, so that realization is not self-supporting — and the family currently frames the search for a realization whose confinement rows close (same-source booking, sea embedding, and non-rigid same-level variants are the open routes). Claim level: measured force-balance deficit on the prescribed family; the released dynamical fate of the realization is a separate, open question. The alternative families below remain the search's bookkeeping: they are the comparison population that gives the leading candidate its meaning, and any of them re-enters if the spindle route is decisively rejected.
 
 #### Taxonomy Axes
 
@@ -43254,7 +43277,7 @@ $$
 
 A planar lower-rank braid (`PL`) may still be dynamically meaningful, but it is not a promoted rank-three Noether braid branch until the three-row frame condition and its conditioning floor are supplied on the same retained record.
 
-The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating pro/anti planar pair. It should therefore be named as a chart, not used as a base-family name.
+The planar reduced chart is different. A reduced planar chart is a proof or simulation representation that places branch data into a common plane or near-plane so a restricted calculation can be performed. The canonical planar rank-three Noether braid reduced chart is the rank-three instance of this reduced chart usage. Such a chart may also represent a `PL` candidate, the terminal boundary of a nested shell braid, or the photon-channel bridge described by the coaxial contra-rotating polarity-conjugate planar pair. It should therefore be named as a chart, not used as a base-family name.
 
 #### Polarity Placement
 
@@ -43870,7 +43893,7 @@ The nested shell braid-centered Noether sea claim is therefore the statement tha
 
 The large-scale Noether sea is modeled as a balanced population of complementary Noether braid orientations.
 
-This pro/anti distinction is geometric and topological, not a net electric-charge distinction. Both orientations are electrically neutral at the braid level. Their coupled balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response.
+This pro/anti distinction is the geometric and topological ordered-orientation label, not polarity conjugation, matter/antimatter, or a net electric-charge distinction. Global polarity conjugation leaves a braid's worldlines and therefore its pro/anti orientation unchanged. Both orientations are electrically and polarity neutral at the braid level. Their coupled orientation balance is part of the working explanation for how the Noether sea remains comparatively transparent and non-reactive at large scales while still carrying stress and response; it does not assert a matter/antimatter population balance.
 
 Transparency has a candidate mechanism at the level of a single transiting assembly, offered here at effective grade. A propagating assembly is sub-field-speed, so its wake runs ahead of it and reaches the medium before the body does; the sea assemblies do not move aside like obstacles but re-phase — reorient in response to that advance field, then relax. Transparency is then *elastic parting*: the medium opens ahead through advance-field polarization and closes behind, leaving no net excitation, so no energy or momentum is deposited and the transit is lossless. The field-level statement is that the transiting and ambient wakes simply superpose, while the assembly-level statement is that the medium's response is reversible. Imperfect closure — a residual excitation left downstream — is the microscopic content of the loss, scattering, and preferred-frame-visibility terms the selection residual above bounds: a fully transparent class is one whose parting is elastic to the required tolerance.
 
@@ -44789,7 +44812,7 @@ This page does not own:
 
 This note states a bounded working hypothesis for the Noether sea: the sea is not a passive geometric background. It is an active medium built from persistent Noether braid assemblies with internal structure and coupling rules. The fixed background remains absolute time and the Euclidean void; this chapter is about the contents that occupy that background and supply medium response. It is the assembly-hypothesis continuation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs.
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs. The distinction between this orientation label and polarity conjugation is fixed in [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation).
 
 The claim level is intentionally narrower than the Noether sea ontology page. The ontology page says what the medium is. This page asks whether complementary pro/anti orientation populations are part of how that medium stays transparent, balanced, and responsive.
 
@@ -44802,12 +44825,12 @@ The starting picture is deliberately simple. A Noether sea carrier is a Noether 
 
 For nested shell braid consumers, the working orientation convention is:
 
-- pro-Noether braid / matter branch: precession order $H \to M \to L$ in time;
-- anti-Noether braid / antimatter branch: precession order $H \to L \to M$ in time.
+- pro-Noether braid orientation: precession order $H \to M \to L$ in time;
+- anti-Noether braid orientation: precession order $H \to L \to M$ in time.
 
 This ordered convention is the reader-facing orientation basis. The carrier for that two-valued label is not a coordinate convention. A completed pro/anti assignment must be a deformation-stable orientation row in the retained branch record, such as the ordered nested shell braid chirality and causal-writhe or framed-topology candidates discussed in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) and [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md#proanti-before-planar-lock).
 
-With that convention, pro-Noether braid orientations are associated with particle assemblies, and anti-Noether braid orientations are associated with antiparticle assemblies. This sea-level balance is distinct from the visible-sector [matter-antimatter asymmetry](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to branch chirality, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is not that the two orientations are optional labels. It is that stable large-scale Noether sea behavior requires both orientations to coexist and couple, so the Noether sea remains dynamically balanced rather than drifting into a single-sign ordering.
+The orientation label does not assign matter versus antimatter. Global polarity conjugation $C$ leaves the `HML/HLM` worldline order unchanged, while parity $P$ reverses it. A matter branch and its polarity-conjugate antimatter branch may therefore each occur on either pro/anti orientation once the full retained branch and charged-sector ledgers are supplied. This sea-level orientation balance is distinct from the visible-sector [matter-antimatter asymmetry](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to polarity-conjugate branch populations, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is that stable large-scale Noether sea behavior may require both orientations to coexist and couple, so the Noether sea does not drift into one ordered-frame handedness.
 
 At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
 
@@ -44821,13 +44844,13 @@ $$
 n(\mathbf X,T)\equiv \frac{\rho_{\text{NS}}(\mathbf X,T)}{\rho_{\text{NS},0}}
 $$
 
-The total density can stay smooth while the two orientation populations differ locally. That difference is represented by a bounded imbalance
+The total density can stay smooth while the two orientation populations differ locally. Here the subscripts $+$ and $-$ label pro/anti orientation populations, not architrino polarity and not matter/antimatter. Their difference is represented by a bounded imbalance
 
 $$
 \Delta\rho_{\text{NS}}(\mathbf X,T) = \rho_{+}(\mathbf X,T) - \rho_{-}(\mathbf X,T)
 $$
 
-where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local pro/anti bias, but not unlimited one-sign domination. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti dynamics.
+where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local orientation bias, but not unlimited domination by one ordered orientation. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti orientation dynamics.
 
 The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) page names the Noether sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
@@ -47074,7 +47097,7 @@ q
 $$
 with admissibility requiring the same causal-root ledger to close the oblate spheroidal envelope geometry, clock period, and preferred-frame leakage bounds. Thus a continuous Lorentz formula would be recovered as the common envelope of discrete Noether braid return-cycle classes only after those branch-admissibility conditions close.
 
-Native-confirmation claim level: seed-grade confirmation limited to small near-axial drift, not full Lorentz closure. A release of the drifting rigid family confirms the ruler law there as relative flattening: $\xi(u)/\xi(0)$ approaches $1/\gamma_f(u)$, reaching $0.9813$ against $1/\gamma_f=0.9798$ at $u/c_f=0.2$, a residual of $+0.0015$. This result neither confirms the full drift range nor pins a fitted slope. At $u/c_f=0.4$ and $0.6$, axis-sector flutter contaminates the shape envelope before it relaxes, so the higher-drift ruler rows remain flutter-limited and unconfirmed.
+Confirmation status: the ruler law has no confirmation from evolved dynamics at any drift speed. The kinematic content — that the drifting rigid family's shape ratio $\xi(u)/\xi(0)$ should approach $1/\gamma_f(u)$ — remains a closure target of the delayed force law, not a measured result, and confirming it requires evolving the drifting family directly under the master equation and measuring the envelope it actually settles to. Whether the contracted branch is an attracting solution of the boosted delay dynamics is the same open question stated above; it is not answered here.
 
 To keep this closure target testable, the branch should report a single Lorentz residual record rather than separate narrative successes. For a declared channel speed $c_\star$ and branch $q$, write
 $$
@@ -50638,7 +50661,7 @@ $$
 p+e^-\rightarrow n+\nu_e
 $$
 
-The outgoing neutrino is not just an abstract missing-energy label in this bookkeeping. In the lepton-sector canon, a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon neutral assembly: a near-planar pro/anti Noether braid pairing close to the photon channel but not fully locked into the photon mode. That explains why the neutrino channel is high-speed and weakly exposed while still carrying an internal-binary phase ledger capable of oscillation. In a collapse ledger, the neutrino row must therefore carry energy, momentum, angular momentum, weak provenance, and near-photon phase information, not merely remove scalar energy from the core.
+The outgoing neutrino is not just an abstract missing-energy label in this bookkeeping. In the lepton-sector canon, a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon neutral assembly: a near-planar polarity-conjugate Noether braid pairing close to the photon channel but not fully locked into the photon mode. That explains why the neutrino channel is high-speed and weakly exposed while still carrying an internal-binary phase ledger capable of oscillation. In a collapse ledger, the neutrino row must therefore carry energy, momentum, angular momentum, weak provenance, and near-photon phase information, not merely remove scalar energy from the core.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required observer-level channel while reclassifying the surrounding story as a change in exposed assembly response.
 
@@ -50924,7 +50947,7 @@ The alignment state also silences the assemblies geometrically, at hypothesis le
 
 The horizon interface is not modeled as a smooth geometric shell surrounding an otherwise empty interior. It is an active Noether sea regime in which ordinary volumetric assemblies, photon-channel packets, dark-sector photon-channel-adjacent modes, and terminally aligned Noether braid states can all be near the same symmetry-breaking threshold. The interface is therefore closer to a high-energy transport and selection layer than to a passive surface.
 
-The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating pro/anti planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
+The photon connection is especially sharp because the photon carrier is a coaxial contra-rotating polarity-conjugate planar pair. A photon is not a horizon, but it is a moving planar-pair record built from the same pro/anti flattening logic that the horizon exposes under strong-field alignment. Near a black-hole interface the question is therefore not only whether light is redshifted on escape. The stronger native question is which photon-channel or photon-channel-adjacent records enter, are blueshifted, are trapped, are converted, or are released by the same horizon-interface ledger.
 
 For a horizon-adjacent photon path $\Gamma_H$, retain the signed strong-field frequency row
 $$
@@ -51810,7 +51833,7 @@ This chapter studies one narrow theory question: how the Noether braid `pro/anti
 
 The guiding problem is simple. In ordinary low-stress conditions, the nested shell braid is a fully 3D object with ordered binary roles and precession structure. At the event horizon, the same assembly is driven toward coplanarity and alignment. The question is whether `pro/anti` remains directly visible in that planar state or whether only a reduced exterior spin pattern survives.
 
-The chapter is therefore a reduction map, not a new chirality doctrine. It keeps three labels from collapsing into one another too early: the deeper 3D pro/anti branch distinction, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
+The chapter is therefore a reduction map, not a new chirality doctrine. It keeps four labels from collapsing into one another: the deeper 3D pro/anti branch orientation, polarity conjugation at fixed worldlines, the planar clockwise/counterclockwise sign seen from an exterior normal, and any later helicity-like sign tied to a propagation or translation axis.
 
 #### Canonical Horizon Condition
 
@@ -51828,7 +51851,7 @@ This chapter does not alter that constitutive rule. It asks what chirality infor
 
 #### Pro/Anti Before Planar Lock
 
-Away from the horizon, the project treats `pro/anti` as a handedness or ordering property of the 3D nested shell braid scaffold rather than as a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis), while [color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter) consumes the same convention in the fermion sector:
+Away from the horizon, the project treats `pro/anti` as an ordering property of the 3D nested shell braid scaffold rather than as polarity conjugation, matter/antimatter, or a net-charge distinction. The orientation basis is owned by [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis):
 
 - `pro`: $H \to M \to L$ ordering in time;
 - `anti`: $H \to L \to M$ ordering in time.
@@ -51851,6 +51874,7 @@ So the cleanest reading is:
 
 - the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
 - the best formalization candidate is a topological branch label carried by the retained causal-locus and framed-topology record, with $Wr_c$ as a leading crossing statistic only when the same retained branch record also supplies $D_s$, $D_T$, and $W^{\mathrm{rec}}$.
+- polarity conjugation $C$ leaves that order unchanged because it relabels polarities at fixed worldlines; parity $P$ reverses the order.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
@@ -51861,12 +51885,12 @@ This chapter should also be read against a broader guardrail from the project fr
 Several standing examples point in that direction.
 
 - **Noether sea / spacetime medium:** the ambient Noether sea is already framed as a coupled pro/anti population rather than a single-sign sea.
-- **Photon channel:** the photon assembly is naturally read as a coaxial contra-rotating pro/anti planar pair, or equivalently one `CW` and one `CCW` planar branch in the flat state as an absolute-frame observer compares the two sides of the propagating pair.
+- **Photon channel:** the proposed photon assembly is a coaxial contra-rotating polarity-conjugate planar pair, or one record $\mathfrak B$ and its $C$-image $C(\mathfrak B)$. It is not an example of pro/anti orientation balance, because the precession-order carrier has ceased in the planar limit.
 - **$2+2$ pro/anti cluster hypothesis:** the standing cluster intuition remains a $2+2$ object, with two pro and two anti Noether braids in a three-dimensional coupled state rather than a single-sign configuration.
 
-So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
+So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem tests whether the ordered three-dimensional orientation has any surviving planar readout. The polarity-conjugate relation is a separate row.
 
-The matter sector then becomes the special case. In this intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+Orientation-selective reaction channels then become the special case. Pro-Noether braid and anti-Noether braid orientations may meet as geometric complements and open fast reconfiguration channels, but that pairing is not automatically a particle-antiparticle reaction. A matter-antimatter event additionally requires polarity-conjugate retained branch records and conjugate charged-sector ledgers. In either case, the standard word "annihilation" is too blunt: the deeper process is a **reaction** or **reconfiguration event** in which coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -51876,7 +51900,8 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether braid chirality, tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
+| `pro/anti` | the deeper 3D Noether braid ordered orientation, tracked by structure such as `HML` versus `HLM`; $C$-even and $P$-odd | pre-planar 3D braid |
+| polarity-conjugate pair | one retained record $\mathfrak B$ and its fixed-worldline polarity-reversed image $C(\mathfrak B)$ | any regime, including the planar limit |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
@@ -51889,9 +51914,9 @@ The horizon question becomes clearer when compared against the main assembly sec
 | Sector | Pro/anti organization | Dimensional character | Why it matters here |
 | --- | --- | --- | --- |
 | Noether sea | broadly balanced pro/anti medium | mainly 3D distributed medium | background reminder that $\mathbb{A}\mathbb{A}\mathbb{A}$ does not predict a large universal imbalance |
-| Photon channel | coaxial contra-rotating pro/anti planar pair | planar / propagating pair | shows that opposite branch pairing is natural in flat planar states |
+| Photon channel | coaxial contra-rotating polarity-conjugate planar pair; pro/anti orientation unassigned | planar / propagating pair | shows that polarity-conjugate pairing remains meaningful after the 3D order has collapsed |
 | $2+2$ pro/anti cluster hypothesis | `2+2` pro/anti cluster | 3D coupled cluster | shows balanced multi-braid organization without collapsing to one sign |
-| Ordinary matter reaction channels | pro/anti encounters can open rapid reconfiguration channels | mixed 3D and reaction geometry | the place where asymmetry becomes dynamically important rather than globally dominant |
+| Orientation-selective reaction channels | pro/anti encounters can open rapid reconfiguration channels without thereby being matter/antimatter events | mixed 3D and reaction geometry | tests whether ordered orientation changes reaction accessibility |
 
 This comparison helps keep the horizon problem honest. The goal is not to prove that the universe is mostly pro or mostly anti. The goal is to understand how one compressed nested shell braid advertises its branch structure when driven into the strongest alignment regime.
 
@@ -52201,8 +52226,8 @@ That yields a disciplined provisional picture:
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/explored-braid-geometries.md#nested-shell-braid-dynamics): regime map, planarity diagnostics, and alignment observables.
 - [Mapping the Planck Scale to the Nested Shell Braid Geometry](../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md): terminal planar lock and alignment-horizon interpretation.
 - [angular-momentum-and-spin.md](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md): shared proof ledger for promoting boundary-helicity proxy language into observer-level spin or helicity claims.
-- [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): matter/antimatter chirality convention.
-- [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad and chirality language.
+- [../assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md): separation of pro/anti ordered orientation from matter/antimatter polarity conjugation.
+- [../assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md): ordered-triad, polarity-conjugation, and chirality language.
 
 ## Standard Model Assemblies
 
@@ -53270,7 +53295,7 @@ This is the mass-map reading of the familiar nuclear and hadronic warning that a
 
 ###### Charge-Conjugate Mass Equality
 
-The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the anti-branch obtained from an accepted assembly $A$ by conjugating pro/anti orientation while preserving the shielding-coherence class, retained path-history rows, causal-root ledger, wake-history rows, branch geometry, action rows, and Noether sea response record. For a charged branch, the sector-visible polarity ledger also maps to the opposite charge row:
+The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A=C(A)$ denote the polarity-conjugate branch obtained from an accepted assembly $A$ by reversing every architrino polarity at fixed worldlines while carrying the shielding-coherence class, retained path-history rows, causal-root ledger, wake-history rows, branch geometry, action rows, and Noether sea response record through the conjugation. The pro/anti ordered orientation is unchanged. For a charged branch, the sector-visible polarity ledger also maps to the opposite charge row:
 $$
 q_a(\bar A)=-q_a(A)
 $$
@@ -53605,7 +53630,7 @@ R_M^{\mathrm{eq}} = 3.4937\,\frac{\kappa\varepsilon^2}{c_f^2},
 \kappa_{\mathrm{eq}} = 1/R_M^{\mathrm{eq}} = 0.28623,
 $$
 
-a gauge-invariant number measured on the native family and sitting well above the near-field floor, so the arrest is coupling-scale self-support rather than a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
+a gauge-invariant number measured on the family and sitting well above the near-field floor, so the scale is set by coupling-scale self-support rather than by a discreteness rescue. This size anchor is the length half of the mass map: it fixes the scale at which a candidate braid sits. What it does not yet supply is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_0$, can be extracted. That extraction is gated on the same retained-object question the [Noether Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md) confinement program leaves open, so the first-particle mass remains a target rather than a computed value.
 
 ##### The Action Ladder
 
@@ -53617,7 +53642,7 @@ Read as a spectrum, this is the substrate origin of energy quantization. Each ru
 
 ##### Mass-Channel Categories
 
-The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating pro/anti planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating polarity-conjugate planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), and for the spin ledger see [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 ##### Comparison to Standard Model
 In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
@@ -53890,7 +53915,7 @@ The canonical chapter should carry this interface but not the detailed simulatio
 ##### Critical Unknowns
 1. **What sets $d_0$?** The minimum binary radius is a fundamental length scale. Can it be derived from $\epsilon$, $c_f$, and $\kappa$, or is it an independent postulate?
 2. **Is the reference Noether braid density fixed?** Is $\rho_{\text{NS},0}$ universal, or does $\rho_{\text{NS}}(\mathbf X,T)$ vary with cosmological epoch, gravitational field strength, or local matter density?
-3. **Why do neutrinos have mass at all?** If a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon pro/anti braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
+3. **Why do neutrinos have mass at all?** If a [neutrino](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) is a near-photon polarity-conjugate braid pair with nearly perfect shielding ($\zeta \sim 10^{-12}$), which residual internal-binary exposure breaks exact photon-like cancellation?
 
 ##### Potential Falsifications
 - **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
@@ -53982,14 +54007,14 @@ We treat these as **different assembly states**, not ordinary dissociation produ
 
 In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, not on the count of shielding tiers that remain coherent. Here $D_H,D_M,D_L$ denote the three polar-dyad records carried by the H, M, and L axes. Higher generations inherit the same color triplet through this metastable H/M/L axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
-###### Braid orientation: matter vs antimatter
+###### Braid orientation and matter/antimatter conjugation
 
-Beyond which binaries are present, their **precession order** defines a braid orientation:
+Beyond which binaries are present, their **precession order** defines a pro/anti braid orientation:
 
-- **Matter** nested shell braid branch: precession order $H \to M \to L$ in time (one chirality).
-- **Antimatter** nested shell braid branch: precession order $H \to L \to M$ (opposite chirality).
+- **Pro orientation:** precession order $H \to M \to L$ in time.
+- **Anti orientation:** precession order $H \to L \to M$ in time.
 
-This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). This **braid chirality** underpins the distinction between particles and antiparticles across all sectors and feeds into CP-related questions. Here, we keep **color** as a vector-like degree of freedom: it does **not** depend on braid chirality.
+This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
 
 ##### Colorless Fermions: Axis Uniformity
 
@@ -54026,12 +54051,12 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ###### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar polarity-conjugate Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 
 - The neutrino has no stable quark-like axial layer on which one H, M, or L axis can become exceptional.
-- Its pro/anti pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
+- Its polarity-conjugate pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
 - The balanced $3\epsilon_+,3\epsilon_-$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
 Older neutral-axis patterns such as
@@ -54444,7 +54469,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../../../markd
 ##### Summary and Interfaces
 
 - A **nested shell braid** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
-- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
+- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two positive-polarity dyads, one mixed dyad.
   - Down‑type: either two negative-polarity dyads with one positive-polarity dyad, or two mixed dyads with one negative-polarity dyad.
@@ -54580,7 +54605,7 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 | $\mu^-$ | $(1,1,0)$ | Generation-II shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
 | $\tau^-$ | $(1,0,0)$ | Generation-III shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
-The corresponding antileptons use anti-braid orientation and $6\epsilon_+$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
+The corresponding antileptons use the polarity-conjugate antimatter branch and $6\epsilon_+$ axial inventory. Polarity conjugation leaves the independent pro/anti ordered orientation unchanged. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 
 This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 
@@ -54625,32 +54650,43 @@ The heavier charged-lepton branch targets are shared axial inventory, shielding-
 
 This chapter gives the $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly-level account of neutrinos as near-photon neutral assemblies. The simple picture is that a neutrino is almost a photon-channel pair, but not quite locked enough to become a photon. That near-lock explains why it is neutral, fast, weakly coupled, hard to detect, and still able to expose an oscillation ledger.
 
-A neutrino is modeled as a near-planar pro/anti [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to keep neutrality, weak coupling, oscillation, and detection difficulty tied to internal geometry rather than to elementary point-particle axioms.
+A neutrino is modeled as a near-planar polarity-conjugate [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) pairing pushed close to the photon channel without completing the photon lock. The goal is to keep neutrality, weak coupling, oscillation, and detection difficulty tied to internal geometry rather than to elementary point-particle axioms.
 
-The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a pro/anti braid pair. The exact locked geometry remains open; "near-photon" is the current controlled descriptor, not a finished derivation.
+The opening section states the working geometry and the plain-language interpretation. The later closure program records how PMNS-style mixing is meant to arise from residual internal-binary exposure in a polarity-conjugate braid pair.
+
+###### Referent Status
+
+This chapter constructs the neutrino as a perturbation of the photon lock. That lock has not been exhibited, and the point is stated here rather than in a caveat because everything below inherits it.
+
+A force-balance evaluation of the declared planar polarity-conjugate pair — the photon ansatz itself, no payload — returns a binding residual $\epsilon_{\rm bind}=0.9922$ against a declared $0.03$ gate at 24 cycle samples. It does not approach the gate and does not improve along the $3\to6\to12\to24$ sampling ladder. On the same rows the charge ledger closes and the net pump cancels to $3.7\times10^{-16}$: binding is the row that fails, and it fails completely rather than narrowly. Claim level: **measured force-balance negative on the declared geometry, payload families, and proxy-sea coverage**. This is the class of result that stands on its own, because it states that the configuration is not an equilibrium rather than predicting what the configuration would do — no dynamical or stability reading is involved or implied. It is not evidence against a constitutive medium law, which remains untested.
+
+Two consequences govern how the rest of this chapter reads.
+
+- **The open question is the lock's existence, not only its shape.** No configuration in the declared family holds together, so "near-photon" presently anchors to a state that no exhibited assembly occupies. "Near-photon" remains the controlled descriptor for the *intended* construction; it is not a finished derivation, and it is not yet a statement about a retained object.
+- **Every quantity defined as a residual about that lock is referent-pending.** Such quantities are not thereby wrong — they are not yet about anything, and no measurement of them can be commissioned until a lock closes. They are marked where they appear. Results that are theorems about the interaction law rather than perturbations of the lock do not carry this mark and are unaffected.
 
 ##### Near-Photon Neutral-Core Pairing
 
-Definition (geometric, working): A neutrino is a near-planar pro/anti Noether braid pairing adjacent to the photon geometry. The photon is the fully locked **coaxial contra-rotating pro/anti planar pair**. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
+Definition (geometric, working; referent-pending per [Referent Status](#referent-status)): A neutrino is a near-planar polarity-conjugate Noether braid pairing adjacent to the photon geometry. The photon is the **coaxial contra-rotating polarity-conjugate planar pair** in its fully locked branch — a proposed lock, not an exhibited one; the declared family does not bind. A neutrino is nearly snapped into that state, but keeps a residual internal-binary mismatch that prevents it from becoming the photon transport channel.
 
 - Core structure and shielding:
-  - The pro-braid and anti-braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
+  - The braid and polarity-conjugate braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
   - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3\epsilon_+,3\epsilon_-$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
-- Near-photon boundary:
-  - The photon state is the fully coherent coaxial contra-rotating pro/anti planar pair transport channel.
+- Near-photon boundary (referent-pending):
+  - The photon state is the proposed fully coherent coaxial contra-rotating polarity-conjugate planar pair transport channel. The coherence is the intended construction; the declared family returns no binding, so the boundary this bullet describes is a target rather than a located state.
   - The neutrino sits just off that lock: close enough to be neutral, fast, and weakly coupled, but not coherent enough to propagate as a photon train.
-  - The incomplete photon lock is the important difference. A photon hides the pro/anti planar pair inside one massless transverse transport ledger. A neutrino remains close to that boundary, so its exterior coupling is small and its propagation speed is high, but the residual internal-binary rows do not collapse into one photon-channel phase.
+  - The incomplete photon lock is the important difference. A photon hides the polarity-conjugate planar pair inside one massless transverse transport ledger. A neutrino remains close to that boundary, so its exterior coupling is small and its propagation speed is high, but the residual internal-binary rows do not collapse into one photon-channel phase.
   - This "not quite photon" status gives the neutrino a small observer-facing mass channel and a nontrivial oscillation ledger.
 
 - Propagation:
   - Trajectories are almost straight at speeds close to the effective field speed; small deflections occur only through coherent corridor couplings to nearby assemblies.
-  - Apparent inertia is dictated by the minuscule residual exposure left by the almost planar pro/anti lock.
+  - Apparent inertia is dictated by the minuscule residual exposure left by the almost planar polarity-conjugate lock.
 
 - Flavor and oscillation (revealed internal ledger):
   - "Flavor" labels which residual internal-binary energy and phase mode is exposed to the weak channel.
-  - Oscillation is the distance-dependent revealing of those internal binaries as the near-planar pro/anti pair precesses through its almost-photon geometry.
+  - Oscillation is the distance-dependent revealing of those internal binaries as the near-planar polarity-conjugate pair precesses through its almost-photon geometry.
   - The constituent-binary intuition should be read as residual internal-binary behavior, not as a new inventory of ordinary constituent particles. The same near-photon assembly is sampled through different weak-channel alignments as its internal binary phases beat against one another.
   - The beat pattern arises from residual internal phase dynamics and path-history geometry; it is not a stable six-site axial layer flipping among ordinary charged-fermion configurations.
 
@@ -54669,6 +54705,8 @@ $$
 \delta\Omega_{\mathrm{bin}}
 $$
 where $\omega_{\nu 0}\mathbf{1}$ is the large near-photon common propagation term and $\delta\Omega_{\mathrm{bin}}$ is the residual internal-binary phase operator. The common term is why the neutrino is a high-speed neutral channel. The residual term is why it can oscillate instead of becoming a photon-channel packet.
+
+**This split is referent-pending, and the mark is not a formality.** $\delta\Omega_{\mathrm{bin}}$ is defined as the departure from the photon lock, so it is well posed exactly when that lock is an equilibrium the assembly occupies. The declared family does not bind, so the split currently has no located base point to be a departure *from*. The consequence is specific and worth stating plainly: no property of $\delta\Omega_{\mathrm{bin}}$ — its magnitude, its spectrum, its symmetry character — can be measured or argued about before a lock closes, because a perturbation about a non-equilibrium has no referent at any anchoring, magnitude, or sign. The split is retained as the intended construction and as the shape the closure program targets. It is not yet a decomposition of a retained object, and it should not be used as a premise.
 
 The exposed-energy row should be kept separate from the internal energy row. For a near-photon neutrino branch,
 $$
@@ -54727,7 +54765,7 @@ E_{\nu,\mathrm{exp}}(T)
 $$
 Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
 
-Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
+Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar polarity-conjugate lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
 ##### Handedness: Why the Observed Neutrino Is Left-Handed
 
@@ -54748,7 +54786,7 @@ Two caveats keep this at the honest grade. The locking is exact only in the stri
 The near-photon picture raises natural photon/neutrino conversion questions. The corpus treats these as closure questions, not as settled claims.
 
 - A free photon is not assumed to dissociate directly into neutrinos. Photon-channel energy can participate in neutrino production only if the full reaction provenance closes: energy, momentum, charge/polarity, spin/angular momentum, and medium participation must all balance.
-- A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar pro/anti pair into the fully coherent coaxial contra-rotating pro/anti planar-pair mode.
+- A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar polarity-conjugate pair into the fully coherent coaxial contra-rotating polarity-conjugate planar-pair mode.
 - The useful search target is therefore not simple dissociation, but assisted relocking: which environments, partner assemblies, or weak corridors can move a near-photon neutrino assembly into or out of the photon channel while preserving the ledgers?
 
 This keeps the strong intuition - neutrinos live close to photons in assembly space - without overclaiming an unvalidated free-particle dissociation path.
@@ -54764,7 +54802,7 @@ H_{\mathrm{geo}}=
 \Omega_{13}e^{i\phi_{13}} & \Omega_{23}e^{i\phi_{23}} & \varpi_3
 \end{pmatrix}
 $$
-with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar pro/anti braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
+with $(\varpi_i,\Omega_{ij},\phi_{ij})$ derived from near-planar polarity-conjugate braid-pair geometry, residual internal-binary exposure, and Noether sea coupling.
 
 Here $H_{\mathrm{geo}}$ is the operator that supplies the relativistic propagation phase, not an ordinary energy Hamiltonian. In natural units, $\varpi_i$ and $\Omega_{ij}$ carry mass-squared-response units. Diagonalization defines the mixing matrix and the effective mass-squared-response eigenvalues:
 $$
@@ -54832,10 +54870,20 @@ Closure criterion for this chapter: one near-photon geometric phase-operator fam
 
 ##### Empirical Decision Gates
 
-The neutral-lepton branch should be revised only by observable gates, not by importing a sterile-neutrino or Majorana interpretation as doctrine.
+The neutral-lepton branch is revised by observable gates, not by importing an interpretation as doctrine. Where the geometry already entails an outcome, the gate records that entailment together with the observation that would overturn it; where it does not, the gate records what evidence would decide.
 
 - **Absolute mass gate:** the eigenvalues of $H_{\mathrm{geo}}$ must remain compatible, through the same comparison-layer map from mass-squared response to ordinary mass language, with oscillation splittings, direct kinematic bounds, and cosmological bounds on $\sum_i m_i$. If future data force the lightest neutrino mass close to zero, the near-photon phase operator should explain that as a boundary or shielding limit of the neutral core-pair spectrum rather than as an added parameter.
-- **Dirac/Majorana gate:** a confirmed neutrinoless double-beta signal would require a lepton-number-violating reaction provenance channel. A null result instead tightens the allowed Majorana-like coupling or sterile-branch mixing, but does not by itself prove the current Dirac-like geometry.
+- **Dirac/Majorana gate:** Claim level: derivation from the parity of the chirality invariant, conditional on that invariant being $C$-odd; the geometry that realizes it is not required, and the open joint below is named rather than deferred. **If the neutrino's handedness invariant is $C$-odd, the assembly is conjugate-distinct, the branch is Dirac-like, and the neutrino does not itself violate total lepton number.** The step is short: polarity conjugation reverses a $C$-odd invariant, $C:\chi\to-\chi$ (see [Discrete-Symmetry Structure](../../../../markdown/aaa/noether-braid/spindle-braid.md#discrete-symmetry-structure)), so a self-conjugate neutrino requires $\chi=-\chi$, hence $\chi=0$, hence no handedness at all — contradicting the observed one-handedness of the weak corridor. The orbit of the assembly under $\{1,C,P,CP\}$ then carries four members: the weak-coupled pair $\nu$ and $\bar\nu=CP(\nu)$ at one sign of $\chi$, and the parity enantiomers $C(\nu)$ and $P(\nu)$ at the other. Four states with two decoupled is the Dirac count, not the Majorana count of two.
+
+  This argument does not depend on the retained braid geometry. It needs only the *transformation character* of the handedness invariant, not the structure that realizes it: any $C$-odd polar quantity locked to the spin forces the same conclusion, whatever the assembly turns out to look like. The cap polarity dipole $\mathbf p$ of the spindle family is one realization and is not privileged here.
+
+  **The open joint is the character itself, and it is the whole gate.** A chiral object admits two distinct pseudoscalars, and they carry opposite $C$-parity. A polarity-type invariant $\operatorname{sign}(\mathbf p\cdot\mathbf S)$ is $C$-odd and $P$-odd, hence $CP$-even. A helicity-type invariant $\operatorname{sign}(\mathbf v\cdot\mathbf S)$ is $P$-odd but $C$-**even**. Both reproduce maximal parity violation, so the observed handedness of the weak channel does not discriminate between them and cannot settle this gate. Only the $C$-odd branch entails Dirac; a $C$-even handedness invariant leaves the neutrino free to be self-conjugate.
+
+  The route through the photon channel is closed for now, and closed at the level of posing rather than of difficulty. Framing the gate as "is $\delta\Omega_{\mathrm{bin}}$ $C$-odd?" presumes the photon lock as a base point, which makes the question referent-pending in the sense of [Referent Status](#referent-status) — there is nothing yet for the residual to be a residual of. That framing cannot be repaired by measuring harder.
+
+  The $C$-odd branch is coupled to the treatment of exact $CP$ at leading order, which turns on the same parity: $C$ and $P$ each reverse $\chi$ while $CP$ preserves it, so a $C$-even handedness invariant would be $CP$-odd. Whether that coupling *supports* the $C$-odd branch or merely restates it is open, and it turns on whether $CP$-evenness on the antipodal family is derived there or assumed as part of the symmetric-history hypothesis that selects the family. Until that is resolved, the coupling is recorded as a shared dependency rather than counted as independent evidence. The gate therefore rests on no established support in either direction.
+
+  **Prediction and falsifier.** On the $C$-odd branch the prediction is a suppressed neutrinoless double-beta rate at every accessible exposure. By the black-box argument an observed $0\nu\beta\beta$ decay implies a Majorana mass component through *any* mechanism, so a confirmed signal does not merely revise this gate: it forces the handedness invariant to be $C$-even, which simultaneously removes the structural origin of exact $CP$. Those two stand or fall together. A null result is consistent with the $C$-odd branch and bounds Majorana-like coupling from any sterile-branch mixing, but it does not by itself establish the branch, because the $C$-even alternative also predicts suppression whenever its self-conjugate coupling is small.
 - **Right-handed or sterile branch gate:** a $\nu_R$-like branch may be added only if the weak-coupling-triad exposure, anomaly bookkeeping, PMNS map, and reaction provenance all remain compatible. Such a branch must be an $SU(2)$ singlet with $Y=0$ in observer-level bookkeeping and must not become a hidden patch for unrelated dark-sector mass.
 - **Dark-sector gate:** a neutral-lepton dark-matter interpretation is admissible only if the candidate branch supplies cosmological stability, abundance, and free-streaming behavior while preserving BBN, CMB, and structure-formation constraints.
 
@@ -54845,7 +54893,7 @@ m_{\mathrm{lightest}}\to 0,
 \qquad
 \sum_i m_i \approx 0.06\,\mathrm{eV}
 $$
-paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter those values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum, incompatible neutrinoless double-beta signal, or detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry.
+paired with a suppressed neutrinoless double-beta rate and a sterile or right-handed branch only if the same branch also closes the dark-sector abundance and free-streaming gates. In this chapter the mass-sum and sterile-branch values are discriminator targets: convergence toward them would pressure the near-photon phase operator toward a boundary or shielding limit, while a measured larger mass sum or a detected sterile branch with the wrong coupling pattern would force revision of the neutral-lepton geometry. The suppressed neutrinoless double-beta rate is not a discriminator target in the same sense — it is the prediction of the Dirac/Majorana gate above on the $C$-odd branch, and a contrary signal would force revision beyond the neutral-lepton geometry, reaching the $C$-parity of the chirality invariant on which the exact-$CP$ derivation also rests.
 
 #### Quantum Number Mapping
 
@@ -54861,7 +54909,7 @@ This document establishes the canonical dictionary translating **Nested Shell Br
 The dictionary is needed because the same physical assembly is read in several languages. A Noether braid branch supplies generation and chirality, an axial inventory supplies electric bookkeeping, a weak-coupling exposure supplies weak labels, and axis exceptionality supplies color. Without a stable dictionary, later mass and reaction claims would silently change what the symbols mean.
 
 The parent charge target is a protected six-unit polarity inventory whose signed sum supplies observer-level electric bookkeeping. For charged fermions and quarks, this chapter uses the **Noether braid + axial layer** model as the working realization of that target:
-1.  **The Noether braid:** A neutral, rotating nested shell braid structure that defines the particle's generation, mass scale, and matter/antimatter chirality.
+1.  **The Noether braid:** A neutral, rotating nested shell braid structure whose retained branch supplies generation and mass-scale candidates. Its pro/anti ordered orientation is a parity-facing label; matter/antimatter belongs instead to the whole-branch polarity-conjugation relation.
 2.  **The Axial Layer:** A candidate realization in which the six-unit polarity inventory appears as 6 axial architrinos occupying polar sites on the Noether braid, defining the effective electric-charge bookkeeping, weak isospin, and color-sector pattern.
 
 This is a charged-fermion working model, not a proof that every six-unit charge carrier must be axial or external to the braid. The six units may ultimately be internal to the Noether braid, externally coupled to it, embedded in the retained path-history, or realized by a non-axial coupled branch. The axial layer remains useful because it supplies a concrete six-site geometry on which weak-triad and color-exceptionality hypotheses can be tested.
@@ -54870,19 +54918,19 @@ The six-unit inventory has seven possible net charge sums. The table records the
 
 | Axial inventory | Net electric bookkeeping | Interpretation |
 | --- | ---: | --- |
-| $0\epsilon_+,6\epsilon_-$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
+| $0\epsilon_+,6\epsilon_-$ | $-6\epsilon=-1e$ | charged lepton row on a matter branch |
 | $1\epsilon_+,5\epsilon_-$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
 | $2\epsilon_+,4\epsilon_-$ | $-2\epsilon=-1/3e$ | down-type quark row |
 | $3\epsilon_+,3\epsilon_-$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer; see the neutrino exception below |
 | $4\epsilon_+,2\epsilon_-$ | $+2\epsilon=+1/3e$ | anti-down-type charge row when paired with the corresponding antimatter geometry |
 | $5\epsilon_+,1\epsilon_-$ | $+4\epsilon=+2/3e$ | up-type quark row |
-| $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
+| $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on the polarity-conjugate antimatter branch |
 
 This table is an inventory ledger, not a particle list. A row becomes a Standard Model assembly only after the Noether braid branch, axial-frame exposure, color-sector status, handed weak channel, and null-result exclusions are all supplied.
 
 That distinction is the main protection against over-reading the table. The seven charge sums show what the six-unit inventory can count; they do not say that every count becomes a stable low-energy particle.
 
-Neutrinos are the exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+Neutrinos are the exception to this inventory model. They are treated as near-photon neutral polarity-conjugate braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) for the mass thesis and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) for metric-level translation.
 
@@ -54903,10 +54951,8 @@ Generation-I charged leptons and quarks contain the full neutral Noether braid s
 *   **Generation-I Noether braid (nested shell braid):** Three ordered support bands (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
 *   **Higher-generation shielding branches:** Generation II keeps the inner and middle coherent supports ($2\epsilon_+,2\epsilon_-$); Generation III keeps only the inner support ($1\epsilon_+,1\epsilon_-$). These are depleted branches, not full Noether braids in the six-architrino scaffold sense.
 *   **Nested-scale picture:** The support bands should be read as a genuine radial hierarchy, not just as three items in a list. The middle support band sits inside the shielding domain of the outer support band, and the inner support band sits inside the shielding domains of both. In that sense, the higher-generation inner scaffold may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
-*   **Chirality (Matter vs. Antimatter):**
-    *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
-    *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
-    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Electrino/Positrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
+*   **Pro/anti ordered orientation:** Where a three-dimensional retained braid has an ordered high-, middle-, and low-frequency frame, pro denotes `HML` order and anti denotes `HLM` order. Parity exchanges the two orders; polarity conjugation leaves the order unchanged.
+*   **Matter/antimatter conjugation:** Matter and antimatter are whole retained branches related by polarity conjugation at fixed worldlines, including the path-history, causal-root, wake-history, action, and stability rows. In charged sectors the visible polarity inventory must also map to the conjugate charge row. Neither branch is selected by pro/anti orientation alone.
 *   **Net Charge:** Always $0$.
 
 ###### The Axial Layer
@@ -54955,19 +55001,19 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 ###### Leptons
 
 **The Electron ($e^-$)**
-*   **Braid scaffold:** Pro nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral, matter-chirality).
+*   **Braid scaffold:** Matter nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral); its pro/anti ordered orientation is a separate parity-facing label.
 *   **Axial Layer:** 6 Electrinos ($6\epsilon_-$).
 *   **Net Charge:** $0 (\text{braid}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Braid scaffold:** Anti nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral, antimatter-chirality).
+*   **Braid scaffold:** Polarity-conjugate antimatter nested shell braid ($3\epsilon_+,3\epsilon_-$, neutral).
 *   **Axial Layer:** 6 Positrinos ($6\epsilon_+$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
-*   **Note:** The positron is not antimatter because its axial layer uses positive-polarity units. Its antimatter status belongs to the anti-braid branch record; the $6\epsilon_+$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
+*   **Note:** The positron is not antimatter because its axial layer uses positive-polarity units. Its antimatter status belongs to the polarity-conjugate retained branch; the $6\epsilon_+$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
 
 **The Electron Neutrino ($\nu_e$)**
-*   **Geometry:** Near-planar pro/anti Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
+*   **Geometry:** Near-planar polarity-conjugate Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating polarity-conjugate planar pair but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
 *   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3\epsilon_+,3\epsilon_-$ weak-coupling projection.
 *   **Net Charge:** $0$.
@@ -54976,12 +55022,12 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 ###### Quarks
 
 **The Up Quark ($u$)**
-*   **Braid scaffold:** Pro nested shell braid.
+*   **Braid scaffold:** Matter nested shell braid.
 *   **Axial Layer:** 1 Electrino, 5 Positrinos ($1\epsilon_-,5\epsilon_+$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
-*   **Braid scaffold:** Pro nested shell braid.
+*   **Braid scaffold:** Matter nested shell braid.
 *   **Axial Layer:** 4 Electrinos, 2 Positrinos ($4\epsilon_-,2\epsilon_+$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
@@ -54989,11 +55035,11 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid**.
 
 | Particle | Braid scaffold | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** ($e^-$) | Pro nested shell braid | $6\epsilon_-$ | -1 | 12 |
-| **Positron** ($e^+$) | Anti nested shell braid | $6\epsilon_+$ | +1 | 12 |
-| **Neutrino** ($\nu_e$) | Near-planar pro/anti braid pair | no stable axial layer; effective $3\epsilon_+,3\epsilon_-$ weak ledger | 0 | geometry-dependent |
-| **Up Quark** ($u$) | Pro nested shell braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
-| **Down Quark** ($d$) | Pro nested shell braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
+| **Electron** ($e^-$) | Matter nested shell braid | $6\epsilon_-$ | -1 | 12 |
+| **Positron** ($e^+$) | Polarity-conjugate antimatter nested shell braid | $6\epsilon_+$ | +1 | 12 |
+| **Neutrino** ($\nu_e$) | Near-planar polarity-conjugate braid pair | no stable axial layer; effective $3\epsilon_+,3\epsilon_-$ weak ledger | 0 | geometry-dependent |
+| **Up Quark** ($u$) | Matter nested shell braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
+| **Down Quark** ($d$) | Matter nested shell braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
 
 ---
 
@@ -55021,7 +55067,7 @@ In the axial-layer realization, every charged-fermion six-unit carrier consists 
 1.  **The Shielded Triad (3 sites):** Geometrically locked or obscured by the binary precession. These axial occupancies *cannot* be swapped without destroying the particle.
 2.  **The weak-coupling triad (3 sites):** Exposed to the Noether sea. These are the "switchable bits."
 
-For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon pro/anti braid pair, not as a literal inventory of six bound axial sites.
+For neutrinos, the same triad language should be read as an effective weak-channel projection of the near-photon polarity-conjugate braid pair, not as a literal inventory of six bound axial sites.
 
 **Weak-coupling exposure diagnostic (hypothesis)**
 For an assembly $A$ with propagation direction $\hat{\mathbf p}$, the exposed triad should be selected by an operator rather than by a raw verbal claim. Let $\mathcal{S}_{\mathrm{ax}}(A)$ be the six polar sites and let $w_a(A,\hat{\mathbf p})$ be the local $W$-corridor docking weight of site $a$. Define
@@ -55282,7 +55328,7 @@ The geometrical interpretation is:
 - charge conjugation mirrors the pattern across the same bookkeeping plane,
 - handedness selects whether the weak-coupling triad is exposed or hidden.
 
-The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon pro/anti braid pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
+The neutral sector is now separated from the charged-fermion inventory rule. The left-handed neutrino branch fits the electroweak doublet as an effective weak ledger, but its physical assembly is a near-photon polarity-conjugate braid pair rather than an ordinary charged-fermion axial layer. The fate of $\nu_R$, $\bar\nu_R$, and $\bar\nu_L$ still depends on whether the model ultimately selects:
 
 - no right-handed neutrino in the minimal architecture,
 - a sterile singlet branch,
@@ -55292,7 +55338,7 @@ So the rule above should currently be read as a strong charged-fermion synthesis
 
 ###### Charge quantization cross-check
 
-In the axial-layer realization, the charged-fermion six-unit carrier fills six polar sites with $\pm e/6$. The only stable net charges from the Active+Shielded split are then $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section "Quantization from Stability"). The neutrino's neutral charge is instead carried by pro/anti near-photon cancellation plus the effective weak ledger.
+In the axial-layer realization, the charged-fermion six-unit carrier fills six polar sites with $\pm e/6$. The only stable net charges from the Active+Shielded split are then $0, \pm 1/3, \pm 2/3, \pm 1$, matching the SM spectrum (see the e/6 stability table in [assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), section "Quantization from Stability"). The neutrino's neutral charge is instead carried by polarity-conjugate near-photon cancellation plus the effective weak ledger.
 
 ###### Baryon / lepton bookkeeping and anomaly cancellation
 
@@ -55306,23 +55352,23 @@ For elementary fermions, the clean geometric bookkeeping is:
   $$
   B=0,\qquad L=\pm 1
   $$
-- the sign is set by braid orientation:
+- the sign is set by the matter-versus-polarity-conjugate branch relation:
   $$
-  s_{\text{braid}}=
+  s_C=
   \begin{cases}
-  +1,& \text{pro-braid},\\
-  -1,& \text{anti-braid}.
+  +1,& \text{matter branch},\\
+  -1,& \text{polarity-conjugate antimatter branch}.
   \end{cases}
   $$
 
 If $\chi_q=1$ for a quark-like color-triplet assembly and $\chi_q=0$ for a lepton-like color-singlet assembly, then the elementary-fermion rule may be written compactly as
 $$
-B = s_{\text{braid}}\frac{\chi_q}{3},
+B = s_C\frac{\chi_q}{3},
 \qquad
-L = s_{\text{braid}}(1-\chi_q)
+L = s_C(1-\chi_q)
 $$
 
-This keeps matter/antimatter distinct from baryon/lepton labels: the pro/anti braid sets the sign, while the quark-vs-lepton sector sets whether the unit is $1/3$ or $1$.
+The quark-vs-lepton sector sets whether the unit is $1/3$ or $1$, while polarity conjugation sets its sign. The pro/anti ordered orientation does not set $B$ or $L$.
 
 Using the left-chiral one-generation SM content
 $$
@@ -55413,7 +55459,7 @@ while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restore
 - **Stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
-- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
+- **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon polarity-conjugate braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.
 - **CKM view (to be derived):** Each quark flavor sits in one of three geometric mass eigenstates (set by Noether braid shielding/exposure and axial pattern). The CKM matrix is the rotation between these mass eigenstates and the weak-interaction (weak-coupling-triad) eigenbasis. In weak transitions (e.g., $d \to u$ via $W$), the corridor couples to the weak basis; amplitudes for landing in each mass eigenstate of the outgoing/product quark are weighted by the CKM elements (reactants -> products, chemistry style). A geometric derivation of the CKM angles/phases from assembly parameters remains an open derivation problem.
 
 ##### The Generation Mechanism (Mass Hierarchy)
@@ -55620,7 +55666,7 @@ Because the **Axial Layer** (which dictates charge bookkeeping and isospin for c
 Baryons are bound states of 3 quarks held together by shared flux/gluon planar assemblies.
 
 *   **Proton ($uud$):**
-    *   3 Pro-Braids (Gen I).
+    *   3 matter-branch Noether braids (Gen I).
     *   Axial layers: $(5\epsilon_+,1\epsilon_-) + (5\epsilon_+,1\epsilon_-) + (2\epsilon_+,4\epsilon_-)$.
     *   Total positive-polarity units: $5+5+2 = 12$.
     *   Total negative-polarity units: $1+1+4 = 6$.
@@ -55628,7 +55674,7 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
     *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Axial)} = 36$.
 
 *   **Neutron ($udd$):**
-    *   3 Pro-Braids (Gen I).
+    *   3 matter-branch Noether braids (Gen I).
     *   Axial layers: $(5\epsilon_+,1\epsilon_-) + (2\epsilon_+,4\epsilon_-) + (2\epsilon_+,4\epsilon_-)$.
     *   Total positive-polarity units: $5+2+2 = 9$.
     *   Total negative-polarity units: $1+4+4 = 9$.
@@ -55648,14 +55694,14 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 | Quantum Number | Symbol | Standard Model Definition | Architrino Geometric Definition |
 | :--- | :---: | :--- | :--- |
-| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral pro/anti near-photon cancellation with an effective weak ledger. |
+| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral polarity-conjugate near-photon cancellation with an effective weak ledger. |
 | **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = positive-polarity dominant, -1/2 = negative-polarity dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any braid offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which Noether braid axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell braid is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
 | **Chirality** | $L/R$ | Handedness (projection of spin on momentum). | **Weak-coupling-triad exposure.** <br>• **Left ($L$):** The same ordered-frame spinor/exposure record exposes the weak-coupling triad to the ambient Noether sea (interaction allowed).<br>• **Right ($R$):** The same record hides the weak-coupling triad in the particle's wake or shield (interaction blocked). Spin-projection language is observer-level shorthand until the $SU(2)\to SO(3)$ lift and $\Delta_{\mathrm{WCT}}$ row pass. |
 | **Generation** | I, II, III | Mass hierarchy (Flavor). | **Noether Braid Shielding Level.**<br>• **Gen I:** nested shell braid (full shielding).<br>• **Gen II:** Generation-II shielding branch (partial shielding).<br>• **Gen III:** Generation-III shielding branch (exposed Noether braid). |
-| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + braid orientation.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The sign is set by pro-braid vs anti-braid orientation. |
+| **Baryon/Lepton No.** | $B, L$ | Global matter labels. | **Sector tag + polarity-conjugate branch sign.** For elementary fermions, quark-like color-triplet assemblies carry $B=\pm 1/3,\ L=0$; lepton-like color-singlet assemblies carry $B=0,\ L=\pm 1$. The matter branch has the positive sign and its polarity-conjugate antimatter branch has the negative sign; pro/anti orientation is independent. |
 
 For the **Elementary Fermions** (Quarks and Leptons), this table is complete at the quantum-number bookkeeping layer. The neutrino's internal geometry remains delegated to the near-photon closure program.
 
@@ -55694,9 +55740,10 @@ Two qualifications remain useful without adding new rows to the taxonomy:
 
 2.  **Intrinsic Parity ($P$):**
     *   By convention, quarks have parity $P = +1$ and antiquarks have $P = -1$.
-    *   **Mapping hypothesis:** Pro-braid versus anti-braid orientation supplies the branch label that should map to intrinsic parity after the spinor/export layer is derived.
-        *   Pro-Braid (Matter) is the candidate $+$ branch.
-        *   Anti-Braid (Antimatter) is the candidate $-$ branch.
+    *   **Mapping hypothesis:** Pro versus anti ordered orientation supplies the label that should map to intrinsic parity after the spinor/export layer is derived.
+        *   Pro orientation is the candidate $+$ branch.
+        *   Anti orientation is the candidate $-$ branch.
+    *   Polarity conjugation does not change this orientation label, so matter and antimatter are not assigned opposite intrinsic parity by this hypothesis alone.
     *   This is a parity-closure interface, not a completed derivation of the Dirac parity eigenvalue.
 
 **Verdict:**
@@ -55707,7 +55754,7 @@ The table is sufficient as a quantum-number bookkeeping dictionary. It identifie
 This chapter is a dictionary layer; the primary derivations live elsewhere. The closure interfaces are:
 
 - **Quark mixing (CKM):** weak-basis vs mass-basis overlap and holonomy closure in [theory-bridges/weak-mixing-ckm.md](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
-- **Lepton mixing (PMNS):** near-photon pro/anti braid-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+- **Lepton mixing (PMNS):** near-photon polarity-conjugate braid-pair phase operator and oscillation map in [assemblies/fermions/neutrinos.md](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 - **Topological spin/confinement closure:** bundle/topology and causal-locus invariants in [dynamics/causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md) and [assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md).
 
 The weak-sector handoff now uses one shared exposure problem. The weak-coupling triad is not only the bookkeeping source of $T_3$; it is also the domain on which three later closure tasks must agree:
@@ -55828,9 +55875,9 @@ This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in 
 
 The aim is narrower than a full QCD derivation. This page states, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state. The catalog is the bookkeeping target; confinement, running couplings, hadron spectra, and nonperturbative QCD recovery remain downstream closure problems.
 
-The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch, generation tier, and matter/antimatter orientation. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
+The useful first picture is a layered object. The Noether braid scaffold carries the neutral branch and generation tier. Whole-branch polarity conjugation distinguishes matter from antimatter, while pro/anti ordered orientation is a separate parity-facing label. The axial layer carries the exposed polarity pattern. Color appears when one H/M/L axis is exceptional relative to the other two. The quark catalog is the table of those allowed exposed patterns.
 
-At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
+At the substrate level, a quark is a Noether braid assembly with an axial layer. The braid scaffold fixes generation tier, and the retained polarity-conjugation record fixes its matter/antimatter relation. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
 The chapter uses axis strings and tables so the catalog is explicit without depending on artwork.
 
@@ -55843,7 +55890,7 @@ The quark construction used here follows the same Noether braid-plus-axial split
 - The **Noether braid** is the neutral braid scaffold.
 - The **axial layer** is the six-site organization carrying the visible charge pattern.
 
-For matter quarks, the braid scaffold is a **pro-braid**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame:
+For matter quarks, the braid scaffold is a **matter branch**. It is neutral in total charge and differs across generations by shielding-coherence level, not by changing the gauge-facing color frame. The matter branch may carry either pro or anti ordered orientation; polarity conjugation preserves that orientation while producing the corresponding antimatter branch:
 
 - **Generation I:** nested shell braid shielding branch, 6 coherent scaffold architrinos.
 - **Generation II:** Generation-II shielding branch, 4 coherent scaffold architrinos; the outer support tier is depleted on the branch lifetime window.
@@ -55935,7 +55982,7 @@ Both families satisfy the same structural rule: two axes are in one class and on
 
 ###### Right-handed singlet bookkeeping
 
-The right-handed pro-braid weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
+The right-handed matter-branch weak-coupling posture matches the bookkeeping already used elsewhere in the repo and is useful to state explicitly here.
 
 For right-handed quarks:
 
@@ -55961,7 +56008,7 @@ The same count logic is what places the right-handed quark sector on the singlet
 
 ###### Left-handed doublet bookkeeping (conjectural implementation candidate)
 
-The corresponding left-handed pro-braid weak-coupling posture gives a useful implementation candidate:
+The corresponding left-handed matter-branch weak-coupling posture gives a useful implementation candidate:
 
 - the left-handed quark states are the exposed-coupling branches of the same six-site axial inventories,
 - the up-type and down-type quarks then occupy the two branches of the same electroweak doublet,
@@ -55996,9 +56043,9 @@ The value of this conjecture is that it places the quark doublet in the same six
 
 That places the quark sector in the same ordered axial-inventory ledger as the lepton sector rather than in a separate lookup table. At present, the geometric continuity across that ledger should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
-###### Anti-braid mirror bookkeeping and implementation status
+###### Polarity-conjugate mirror bookkeeping and implementation status
 
-Once the pro-braid rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that anti-braid branch orientation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by pro/anti orientation plus retained path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label.
+Once the matter-branch rows are fixed, the Standard Model comparison layer fixes the mirror bookkeeping: right-handed antiquarks are the charge-conjugate mirrors of the left-handed quark doublets, and left-handed antiquarks are the charge-conjugate mirrors of the right-handed quark singlets. What remains conjectural is the substrate implementation claim that whole-branch polarity conjugation plus handedness-swap weak exposure realizes those rows in the branch geometry. This is branch-record bookkeeping, not a constituent relabel: matter/antimatter is carried by polarity-conjugate retained path-history, causal-root, wake-history, action, and stability rows. The axial polarity inventory supplies the charge and color bookkeeping row; it is not itself the matter/antimatter label. Pro/anti ordered orientation is independent and remains unchanged under polarity conjugation.
 
 Start by mapping the quark axial inventories to their charged-sector conjugate rows:
 
@@ -56013,22 +56060,22 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
 
 The geometric implementation candidate then reads:
 
-- **right-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid left-handed doublets,
-- **left-handed anti-braid branches** behave as the electroweak mirrors of the pro-braid right-handed singlets.
+- **right-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch left-handed doublets,
+- **left-handed polarity-conjugate antimatter branches** behave as the electroweak mirrors of the matter-branch right-handed singlets.
 
 This is structurally attractive because it matches the Standard-Model statement already used elsewhere in the repo: charged-current weak interactions act on left-handed quarks and, equivalently, on right-handed antiquarks.
-At a broader bookkeeping level, it also suggests a compact charged-fermion rule: pro-left doublets mirror anti-right doublets, while pro-right singlets mirror anti-left singlets.
+At a broader bookkeeping level, it also suggests a compact charged-fermion rule: matter-branch left doublets mirror polarity-conjugate antimatter right doublets, while matter-branch right singlets mirror polarity-conjugate antimatter left singlets.
 
 ###### Right-handed antiquark bookkeeping
 
 At the fixed comparison-bookkeeping layer:
 
-| State family | Axial count | Electric charge $Q$ | Right-handed anti-braid assignment |
+| State family | Axial count | Electric charge $Q$ | Right-handed antimatter assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^R,\bar c^R,\bar t^R$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
 | $\bar d^R,\bar s^R,\bar b^R$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
-These are exactly the charge-conjugate mirrors of the pro-braid left-handed quark doublet:
+These are exactly the charge-conjugate mirrors of the matter-branch left-handed quark doublet:
 $$
 \left(+\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(-\frac{1}{2},-\frac{1}{3}\right),\qquad
 \left(-\frac{1}{2},+\frac{1}{3}\right)\mapsto \left(+\frac{1}{2},-\frac{1}{3}\right)
@@ -56036,22 +56083,22 @@ $$
 
 ###### Left-handed antiquark bookkeeping
 
-For the left-handed anti-braid branch, the same mirror logic gives:
+For the left-handed polarity-conjugate antimatter branch, the same mirror logic gives:
 
-| State family | Axial count | Electric charge $Q$ | Left-handed anti-braid assignment |
+| State family | Axial count | Electric charge $Q$ | Left-handed antimatter assignment |
 | --- | --- | ---: | ---: |
 | $\bar u^L,\bar c^L,\bar t^L$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
 | $\bar d^L,\bar s^L,\bar b^L$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
-These are the charge-conjugate mirrors of the pro-braid right-handed singlets:
+These are the charge-conjugate mirrors of the matter-branch right-handed singlets:
 $$
 \left(0,+\frac{4}{3}\right)\mapsto \left(0,-\frac{4}{3}\right),\qquad
 \left(0,-\frac{2}{3}\right)\mapsto \left(0,+\frac{2}{3}\right)
 $$
 
-The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by anti-braid branch orientation, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
+The practical advantage of this rule is that it closes the quark-sector bookkeeping without inventing a separate antimatter lookup system. Once the matter sector is specified, the polarity-conjugate antimatter sector follows at the comparison layer by charge conjugation; at the implementation layer it must still be realized by a polarity-conjugate retained branch, the conjugate charged-sector polarity ledger, and the handedness swap in weak exposure.
 
-The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the pro-braid rows are declared. The open claim is the substrate implementation: anti-braid orientation, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
+The $(T_3,Y)$ mirror rows above are fixed Standard Model comparison bookkeeping once the matter-branch rows are declared. The open claim is the substrate implementation: a polarity-conjugate retained branch, conjugate charged-sector polarity ledger, and handedness-swap weak exposure must still be derived as one branch geometry rather than simply matched to the comparison table.
 
 ###### Electroweak-plane embedding (conjectural map)
 
@@ -56181,7 +56228,7 @@ $$
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
-The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with anti-braid orientation, giving the anti-red, anti-green, and anti-blue states.
+The corresponding antiquark is obtained by the charged-sector conjugate axial pattern together with the polarity-conjugate antimatter branch, giving the anti-red, anti-green, and anti-blue states. Its pro/anti ordered orientation is inherited unchanged under that conjugation.
 
 ###### Down-type color tables
 
@@ -56389,7 +56436,7 @@ We separate two structures that are often spoken about together but should not b
 The [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is the neutral nested shell braid scaffold. It defines:
 
 - generation via shielding level,
-- matter/antimatter braid orientation,
+- the retained matter-versus-polarity-conjugate branch relation,
 - the three reference axes $(H,M,L)$,
 - the geometric seat of spinor behavior.
 
@@ -56525,7 +56572,7 @@ The following are **not** rotating in this note:
 
 - the H/M/L Noether braid scaffold itself,
 - the binary nesting order that defines generation,
-- the matter/antimatter braid orientation,
+- the retained matter-versus-polarity-conjugate branch relation,
 - the topological structure used to motivate spin-$\tfrac{1}{2}$ behavior.
 
 This separation is important because otherwise one mixes together three different jobs:
@@ -56702,7 +56749,7 @@ Potential redundancies include:
 - reversing a principal axis together with a pole relabeling,
 - rotating by $180^\circ$ and exchanging equivalent background axes,
 - relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
-- matter/antimatter branch-record conjugation, where pro/anti orientation and retained path-history, wake-history, causal-root, and stability rows conjugate with the same scaffold, while any polarity reversal belongs to the charged-sector ledger rather than the primitive matter/antimatter label.
+- matter/antimatter branch-record conjugation, where every architrino polarity reverses at fixed worldlines and the retained path-history, wake-history, causal-root, and stability rows transform with the same scaffold. The pro/anti ordered orientation is unchanged, while a charged-sector ledger maps to its opposite effective-charge row.
 
 So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
 
@@ -56769,7 +56816,7 @@ Spin labels in this chapter are downstream mapping targets, not completed deriva
 
 ---
 
-#### The Photon ($\gamma$): Coaxial Contra-Rotating Pro/Anti Planar Pair
+#### The Photon ($\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 
 The photon is the canonical electromagnetic transport channel. Unlike Standard Model QFT, which posits a pre-existing gauge field ($A_\mu$), this framework treats the photon as a **propagating assembly of discrete action history**.
 
@@ -56778,21 +56825,21 @@ The photon is the canonical electromagnetic transport channel. Unlike Standard M
 *   **The Reality:** The effective electromagnetic field is the aggregate path-history of constituent architrinos, coarse-grained from their causal wakes.
 *   **The Assembly:** A photon is a specific, coherent bundle of these historical influences (per-hit actions) organized into a stable planar-pair mode. Emission is not the excitation of a background field; it is the release of an accepted action ledger into a photon channel.
 
-##### Geometric Unit: The Coaxial Contra-Rotating Pro/Anti Planar Pair
+##### Geometric Unit: The Coaxial Contra-Rotating Polarity-Conjugate Planar Pair
 At the finest scale, the photon unit is a composite assembly:
 *   **Planar braids:** Unlike volumetric fermion assemblies, the photon constituents are planarized Noether braid assemblies.
-*   **The pair:** Two planar braids form a pro/anti pair stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
+*   **The pair:** A planar braid and its polarity-conjugate braid are stacked **coaxially** on the propagation axis $\hat{\mathbf{k}}$.
 *   **Dynamics:** The pair is **contra-rotating** (clockwise / counter-clockwise).
-*   **Canonical description:** A photon is a **coaxial contra-rotating pro/anti planar pair**.
+*   **Canonical description:** A photon is a **coaxial contra-rotating polarity-conjugate planar pair**.
 *   **Neutrality:** The paired static charge-like exposures cancel, leaving a transverse oscillatory action signature.
 
 ##### Relation To The Symmetry-Breaking Threshold
 
-The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized pro/anti Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired pro/anti balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
+The photon carrier is therefore close to the same planar geometry that appears at the nested shell braid symmetry-breaking threshold. At a horizon interface the middle and outer nested shell braid layers are driven toward $v=c_f$ and terminal coplanarity; in the photon channel, the carrier is already a propagating pair of planarized polarity-conjugate Noether braid assemblies. The comparison is not an identity between an ordinary photon and a black-hole horizon state. It is a shared geometry: planar lock, paired polarity-conjugate balance, transverse action, and a phase ledger whose frequency can be shifted by source, path, and reception records.
 
-The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating pro/anti planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
+The reduced bridge is the planar Noether braid chart. In that chart, the same three support-row ledgers that appear in the $x:y:z$ frequency-pattern search are studied after projecting the branch into a coplanar sector with retained phase offsets, effective lever arms, circulation signs, wake rows, and angular-momentum closure. The photon channel then asks whether two such planarized records can survive as a coaxial contra-rotating polarity-conjugate planar pair. This is a simpler chart than the full three-dimensional Noether braid, but it is still a theorem target: a clean visual or phase pattern is not enough unless the same retained row set carries the kinematic, wake, polarization, helicity, and event-ledger obligations.
 
-This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating pro/anti planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
+This gives a useful interpretation of photon redshift and blueshift. A photon-channel packet does not merely carry an abstract frequency label. It carries a phase-cycle record of the coaxial contra-rotating polarity-conjugate planar pair. Redshift means that the receiver-facing phase cadence has been reduced after endpoint, launch, source-branch, and path-history terms are separated; blueshift means that the packet has gained receiver-facing phase cadence from a source, medium, or strong-field segment. In either direction the Gate A and Gate B records must survive. If the planar pair loses its kinematic or transverse ledger, the event is no longer simple frequency shift; it is absorption plus re-emission, pair production, medium excitation, or another reaction-channel record.
 
 ##### Propagation: The Planar-Pair Mode Train
 A photon manifests as a **phase-locked planar-pair mode train** of delayed actions.
@@ -56827,9 +56874,9 @@ The photon description above is the ontology-level target. The theorem-level pro
 
 | Gate | Closure target | Required recovery |
 | :--- | :--- | :--- |
-| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
+| **Gate A: kinematics and optics** | Derive the coaxial contra-rotating polarity-conjugate planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
-| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
+| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating polarity-conjugate planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
 Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether braid, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
@@ -56898,7 +56945,7 @@ The closure target is $\Delta t_{\gamma}^{\mathrm{model}}\to0$ in the weak homog
 
 ###### Gate B Theorem Scaffold: Polarization and Spin
 
-Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating pro/anti planar pair.
+Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{k}}$, photon-channel speed $c_\gamma$, phase frequency $\omega$, and null planar-pair branch. Gate B must not repair a failed kinematic branch. Its job is narrower: derive the transverse angular-momentum ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and probability rule for that already-admissible coaxial contra-rotating polarity-conjugate planar pair.
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
@@ -56917,9 +56964,9 @@ The substrate closure target starts from the planar-pair amplitude rather than f
 $$
 \mathbf a_{\gamma}^{\mathrm{sub}}
 =
-\mathbf a_{\mathrm{pro}}
+\mathbf a_{\mathfrak B}
 +
-\mathbf a_{\mathrm{anti}}
+\mathbf a_{C(\mathfrak B)}
 +
 \mathbf a_{\mathrm{wake}},
 \qquad
@@ -56941,17 +56988,17 @@ $$
 =
 \frac{
 \left|
-q_{\mathrm{pro}}^{\mathrm{eff}}
+q_{\mathfrak B}^{\mathrm{eff}}
 +
-q_{\mathrm{anti}}^{\mathrm{eff}}
+q_{C(\mathfrak B)}^{\mathrm{eff}}
 \right|
 }{
 \left|
-q_{\mathrm{pro}}^{\mathrm{eff}}
+q_{\mathfrak B}^{\mathrm{eff}}
 \right|
 +
 \left|
-q_{\mathrm{anti}}^{\mathrm{eff}}
+q_{C(\mathfrak B)}^{\mathrm{eff}}
 \right|
 +
 \varepsilon_Q
@@ -56972,7 +57019,7 @@ q_{\mathrm{anti}}^{\mathrm{eff}}
 }
 $$
 
-A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating pro/anti planar pair, not independent postulates about a photon field.
+A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating polarity-conjugate planar pair, not independent postulates about a photon field.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -57021,14 +57068,14 @@ h_{ab}C_{\rho}^{ab}=1
 $$
 A pure polarization record is rank one inside $\operatorname{im}P_{\perp}$. An unpolarized record has $C_{\rho}^{ab}=\frac12P_{\perp}^{ab}$, so no analyzer axis is preferred. A partially polarized record lies between these cases. Gate B must derive the underlying transverse ledgers, source or material averaging window, and analyzer response before these effective summaries are treated as recovered optical behavior.
 
-The pro/anti planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
+The polarity-conjugate planar pair must therefore explain both cancellation of static charge-like exposure and survival of a transverse oscillatory action signature. The surviving signature is the photon-side spin-$1$ ledger; it is not a scalar breathing mode, not an ordered-frame spinor, and not a massive-vector longitudinal mode. The helicity ledger is the residual target
 
 $$
 \mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\mathbf J_{\mathrm{pro}}
+\mathbf J_{\mathfrak B}
 +
-\mathbf J_{\mathrm{anti}}
+\mathbf J_{C(\mathfrak B)}
 +
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
@@ -57159,7 +57206,7 @@ The ideal-analyzer closure target is $(\eta_{\hat{\mathbf a}})_*d\nu_{\hat{\math
 
 The same material-projector logic should govern ordinary surfaces. A metal, absorber, dielectric, or analyzer is not a passive wall for a photon object. It supplies a material return map whose electron-envelope, nuclear-source, bonding/lattice, and Noether sea records decide whether the incoming transverse ledger is coherently re-released, captured, scattered, routed into $B_{\mathrm{heat}}$, or retained as a bound excitation. Here $B_{\mathrm{heat}}$ is a declared heating channel in which captured action thermalizes through electron-envelope, bonding/lattice, and Noether sea ensemble updates rather than disappearing into untracked heat.
 
-In this framing a reflected photon is an outgoing coaxial contra-rotating pro/anti planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
+In this framing a reflected photon is an outgoing coaxial contra-rotating polarity-conjugate planar pair with a new path-history ledger, while an absorbed photon has no remaining free planar-pair identity even though its energy, momentum, transverse angular momentum, and medium update remain in the event record. That statement covers surface capture, heating, bound excitation, and coherent re-release. It should not be read as a shortcut for pair production, photoproduction, or any other channel with different outgoing Standard Model assemblies; those channels need their own identity-routing rows. This is a Gate C surface-routing target, not a completed proof of reflectivity, opacity, or blackbody behavior.
 
 The same return-map language distinguishes common polarization material effects without adding new photon species. A local material response maps the incoming transverse ledger to the outgoing ledger by
 $$
@@ -57177,7 +57224,7 @@ where $T_\Omega$ is the effective response of the material branch $\Omega$ and $
 | Dichroism | one transverse channel has larger capture or dephasing probability | differential $B_{\mathrm{cap}}$, $B_{\mathrm{heat}}$, or $B_{\mathrm{scat}}$ routing, not a new photon ontology |
 | Optical activity | the material branch rotates the transverse ledger in the helicity or circular basis | handed phase rotation with no free longitudinal photon mode |
 
-Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating pro/anti planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
+Thus polarization optics becomes a material-response classification layered on top of Gate B. The photon ledger remains the same coaxial contra-rotating polarity-conjugate planar pair; the material decides which transverse components are phase-delayed, captured, re-released, or rotated.
 
 The polarization-pair no-signaling test is part of the same gate. For entangled photon preparations with analyzer settings $\alpha,\beta$, the completed ledger must recover setting-independent local marginals:
 
@@ -57208,7 +57255,7 @@ W and Z bosons are not fundamental particles in the sense of eternal objects; th
     *   **Free Bundle:** In high-energy events, the bundle is launched into the ambient Noether sea, propagating along its axis with corridor speed near the field speed ($v_{\mathrm{corr}}\approx c_f$) before dissociating (rupturing) due to internal instability.
 
 ##### Quantum Numbers and Channels
-*   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating pro/anti planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
+*   **Spin-$1$ (vector):** The weak corridor is a spin-$1$ vector-channel target: it has an overall interaction axis and transports angular momentum through directed phase structure. The photon is the clean massless spin-$1$ target, with only transverse helicities $\pm1$ and no physical longitudinal mode after Gate B is derived. A massive $W/Z$ corridor can also carry a longitudinal or mixed-axis component, so its internal signs and axes need not collapse into the same fully coaxial contra-rotating polarity-conjugate planar-pair geometry as the photon. What survives at the observer level is the vector directionality of the transaction.
 *   **W Boson ($W^\pm$):**
     *   **Function:** Transports net charge $\pm 6\epsilon$ through the active-triad transition $3\epsilon_+ \leftrightarrow 3\epsilon_-$.
     *   **Bookkeeping:** The corridor physically moves the "weak-coupling-triad" components.
@@ -57270,7 +57317,7 @@ The same event record must also recover low-energy weak rates after the corridor
 
 ##### Massless Photon Versus Massive Weak Corridor
 
-The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating pro/anti planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
+The photon and the weak corridors are both spin-$1$ channels at the observer level, but they solve different closure problems. A photon is the clean massless branch: its coaxial contra-rotating polarity-conjugate planar-pair closure carries phase, momentum, and transverse helicity, but it does not form a stable volumetric assembly with a proper-time cycle. In the effective relativistic limit this appears as the null relation $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$. In special-relativity language, the null channel has zero proper-time accumulation; a photon is not assigned a comoving clock because no photon rest frame exists.
 
 A $W/Z$ corridor is a localized massive vector channel. Its longitudinal or mixed-axis structure carries a rest-like internal energy cost because the corridor is a thickened recoupling of local Noether sea structure, not a free planar-pair branch. It can therefore mediate a directed spin-$1$ transaction while appearing as a massive, short-lived channel rather than a massless photon. The derivation burden is to compute this cost from corridor closure and medium-dressed response, not to insert the Standard Model mass as a primitive parameter.
 
@@ -57367,7 +57414,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
+| **Photon** | Coaxial contra-rotating polarity-conjugate planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
 | **W Boson** | Thickened charged recoupling corridor | Charged ($\pm 6\epsilon$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Z Boson** | Thickened neutral recoupling corridor | Neutral ($3\epsilon_+ + 3\epsilon_-$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Higgs** | Radial Noether sea oscillation | N/A | Local resonance | Medium stiffness |
@@ -57393,7 +57440,7 @@ $$
 \mathcal I_{\mathrm{sea}}^{\mathrm{ret}},
 $$
 with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal I_{\mathrm{sea}}^{\mathrm{ret}}=0$. Whichever row survives must also close energy, momentum, angular momentum, charge/polarity, path-history, and Noether sea recoil. If neither row closes, the channel has not explained Breit-Wheeler pair production.
-- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon pro/anti braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
+- The neutrino boundary is adjacent but not identical: a neutrino is treated as a near-photon polarity-conjugate braid pair, so photon-to-neutrino and neutrino-to-photon channels require an assisted relocking story rather than a spontaneous free-photon dissociation claim. The reaction must still close energy, momentum, charge/polarity, spin/angular momentum, and medium participation.
 - Sketch model: energy in -> pair-conversion mode forms using a neutral Noether Pair plus the required axial split -> fermion + antifermion -> the neutral Noether Pair bookkeeping relaxes back into the Noether sea.
 
 #### Closure Interface: Corridor Operators for Mixing
@@ -57669,10 +57716,10 @@ Pions are the lightest hadrons ($\sim 140$ MeV). They act as the carriers of the
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, that bosonic-statistics statement is a downstream target of [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). The pion section may use the observer-level boson label, but it does not independently derive Pauli exclusion or spin-statistics closure.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping (Geometric Structure):**
-A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I Noether braid (matter chirality) and one Generation‑I antiquark Noether braid (antimatter chirality) linked by a shared flux tube.
+A pion is a **two-braid (quark + antiquark) assembly**: one Generation‑I matter-branch Noether braid and one Generation‑I polarity-conjugate antimatter Noether braid linked by a shared flux tube. Their independent pro/anti ordered orientations are not fixed by the matter/antimatter assignment.
 
 *   **Structure:** $u\bar{d}$ ($\pi^+$), $d\bar{u}$ ($\pi^-$), or a superposition of $u\bar{u}/d\bar{d}$ ($\pi^0$).
-*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the pro-braid and anti-braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
+*   **Mass suppression:** The pion is unusually light (the pseudo-Goldstone boson of chiral symmetry breaking). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the matter braid and its polarity-conjugate antimatter braid achieve a phase-lock that sets a low-leakage trajectory through assembly phase space: the turbulent wake of the quark is destructively interfered by the antiquark, minimizing localized shear and the assembly's externally exposed inertial coupling to the Noether sea.
 
 **Dynamical Role:**
 In the nucleus, a proton ($uud$) and neutron ($udd$) do not touch directly. Instead, they exchange pions by transiently polarizing the local Noether sea between them.
@@ -57788,8 +57835,8 @@ They are "ephemeral" because they are not topological attractors in the ambient 
 - **Rho mesons:** Candidate spin-1 alignment/tight flux stores energy; rapid strong dissociation to two pions releases that flux tension.
 
 **Reading SM quantum numbers inside $\mathbb{A}\mathbb{A}\mathbb{A}$**
-- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Anti-braid flips signs. Meson pairs cancel most axes; nested shell braid permutations give $p=+1$, $n=0$.
-- **Baryon number $B$:** +1/3 per matter braid, −1/3 per anti-braid. Mesons sum to 0; baryons sum to 1.
+- **Charge $Q$:** Sum axis decorations; each axis with `+` contributes +1/3 e, `-` contributes −1/3 e, `0` contributes 0. Polarity conjugation flips signs. Meson pairs cancel most axes; nested shell braid permutations give $p=+1$, $n=0$.
+- **Baryon number $B$:** +1/3 per matter braid, −1/3 per polarity-conjugate antimatter braid. Mesons sum to 0; baryons sum to 1.
 - **Strangeness $S$ (and heavier flavors):** Observer-level flavor tags are assigned after branch selection: a selected strange shielding branch gives $S=-1$, and its anti-branch gives $S=+1$. This does not assert that every down-type axial family is an additional observed species.
 - **Isospin $I_3$:** Swap $u\leftrightarrow d$ within the shared axis ordering; each swap flips $I_3$ by 1/2. The $\pi/\rho$ triplets and $K$ doublet follow directly.
 - **Spin/parity $J^P$:** Provisional bridge from braid spin alignment + flux mode. Spin‑0 mesons = anti‑aligned braids (pseudoscalar, $0^-$); spin‑1 $\rho$ = aligned braids or tighter flux ($1^-$); $\Delta$ = all three spins parallel ($3/2^+$). Parity tracks whether the flux/axis pattern inverts (odd for these mesons, even for ground-state nested shell braids).
@@ -57819,7 +57866,7 @@ The table packs both the Standard Model quark makeup and the Architrino Assembly
 
 **Notation**
 
-* An overbar on the quark symbol denotes an anti-braid.
+* An overbar on the quark symbol denotes the polarity-conjugate antimatter branch.
 * Constituents are concatenated with $\otimes$ to show distinct constituent braids (baryons chain three braids; mesons pair a quark with an antiquark).
 * Each matrix lists the three nested shell braid axes; the ordering is arbitrary, but all constituents in the same row use the **same** ordering.
 * Axis strings are **3×1 column matrices**: $\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]$ `-` = electrino pair, `0` = mixed electrino/positrino, `+` = positrino pair.
@@ -57840,7 +57887,7 @@ $u_1:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right],\quad u_2:\left[\b
 *Meson quark–antiquark pairing*
 $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\;\;\Rightarrow\;$ axis-by-axis cancellation of flux (color neutral).
 
-**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `-` = electrino pair, `0` = mixed pair, `+` = positrino pair. An overbar on the quark letter denotes an anti-braid.
+**Matrix key:** Each bracketed column is a constituent braid's three support axes (order shared within the row). `-` = electrino pair, `0` = mixed pair, `+` = positrino pair. An overbar on the quark letter denotes the polarity-conjugate antimatter branch.
 
 | Particle | PDG symbol | SM class | SM quark content | $\mathbb{A}\mathbb{A}\mathbb{A}$ axis string per constituent | $\mathbb{A}\mathbb{A}\mathbb{A}$ highlight |
 | --- | --- | --- | --- | --- | --- |
@@ -57852,7 +57899,7 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 | Kaon + | $K^{+}$ | meson | $u\bar s$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Gen-I↔Gen-II bridge; torsion phase $\phi^{sd}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ supplies the strange-sector CP-asymmetry handle. |
 | Kaon 0 | $K^{0}$ | meson | $d\bar s$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar s\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Neutral-kaon oscillation and CP-odd asymmetry are separate closure rows. |
 | Kaon - | $K^{-}$ | meson | $\bar u s$ | $\bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Charge −1 kaon; roles swapped vs $K^+$. |
-| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; flips braid/anti-braid. |
+| $\bar{K}^0$ | $\bar K^{0}$ | meson | $\bar d s$ | $\bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]\otimes s\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]$ | Anti-neutral kaon; exchanges matter and polarity-conjugate antimatter branches. |
 | Rho + | $\rho^{+}$ | meson | $u\bar d$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
 | Rho 0 | $\rho^{0}$ | meson | $(u\bar u - d\bar d)/\sqrt{2}$ | $u\!\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ (or $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar d\!\left[\begin{smallmatrix}+&0\\+&0\\-&+\end{smallmatrix}\right]$) | Spin-$1$ mapping target for an excited neutral pion superposition; same axes, tighter flux. |
 | Rho - | $\rho^{-}$ | meson | $d\bar u$ | $d\!\left[\begin{smallmatrix}-&0\\-&0\\+&-\end{smallmatrix}\right]\otimes \bar u\!\left[\begin{smallmatrix}-\\-\\0\end{smallmatrix}\right]$ | Spin-$1$ mapping target for an excited pion mode. |
@@ -59001,7 +59048,7 @@ The nucleon picture has three structural layers.
 
 Each constituent quark carries:
 
-- one Generation-I pro-braid,
+- one Generation-I matter-branch Noether braid,
 - one six-site axial layer,
 - one color-sector assignment.
 
@@ -60829,7 +60876,7 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 - **Mode-lock event:** a discrete stability transition where a driven Noether braid/wake configuration settles into an allowed propagating or bound mode (the current leading candidate realization is the [spindle braid](../../../../markdown/aaa/noether-braid/spindle-braid.md)).
 - **Wake-strain threshold:** the local instability boundary in Noether sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
-- **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating pro/anti planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
+- **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating polarity-conjugate planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
 - **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes. The incoming photon ledgers close at the vertex; the outgoing charged-assembly identities require identity-routed substrate content rather than relabeling the photon constituents.
 
@@ -61007,7 +61054,7 @@ Observer channel: $e^\pm + Z \rightarrow e^\pm + Z + \gamma$.
 Step map:
 1. Incoming charged assembly follows a deflected trajectory in target potential.
 2. Deflection induces wake-strain concentration in local Noether sea coupling, with received forcing sharpened or diluted by receiver-normal branch strength during the scattering history.
-3. If wake-strain crosses planar-mode threshold, a photon mode nucleates as a coaxial contra-rotating pro/anti planar pair.
+3. If wake-strain crosses planar-mode threshold, a photon mode nucleates as a coaxial contra-rotating polarity-conjugate planar pair.
 4. If not crossed, energy stays in non-radiative channels (heating/collective excitation).
 5. Event closure requires recoil plus emitted-photon momentum balance at vertex level.
 6. Observer-level result must recover standard $d\sigma/dk$ with screening/form-factor corrections in the validated regime.
@@ -61074,7 +61121,7 @@ $$
 Observer channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Two photon modes, each modeled as a coaxial contra-rotating pro/anti planar pair, enter overlap geometry with center-of-momentum invariant $s$.
+1. Two photon modes, each modeled as a coaxial contra-rotating polarity-conjugate planar pair, enter overlap geometry with center-of-momentum invariant $s$.
 2. Threshold gate: channel allowed only for $s \ge 4m_e^2$.
 3. Above threshold, local substrate relock recruits Noether braid content into charged pair assemblies.
 4. Provenance ledger records conversion path from incoming photon modes plus recruited substrate pool.
@@ -61168,7 +61215,7 @@ Each reaction chapter should include three short blocks:
 
 #### Channel-Specific Terms
 
-- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating pro/anti planar-pair mode. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term. The term carries Gate A kinematic closure and Gate B transverse-ledger closure, but those closures should be tested separately.
+- **Planar-mode nucleation:** photon-channel lock-in language for forming a coaxial contra-rotating polarity-conjugate planar-pair mode. Use for electromagnetic radiation channels (for example synchrotron, bremsstrahlung) unless a chapter justifies another term. The term carries Gate A kinematic closure and Gate B transverse-ledger closure, but those closures should be tested separately.
 - **Corridor-mode nucleation:** weak-channel language reserved for $W^\pm/Z$ interaction contexts.
 - **Pair nucleation:** $\gamma\gamma \rightarrow e^+e^-$ language at ontology level; must map to standard threshold/rate constraints in validated limits.
 
@@ -61231,7 +61278,7 @@ In ordinary physics language, radiation can mean electromagnetic light, emitted 
 
 | Form | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading | Boundary discipline |
 | --- | --- | --- |
-| Photon-channel radiation | Electromagnetic bands such as radio, microwave, infrared, visible, ultraviolet, X-ray, and gamma-ray radiation are photon-channel records with different frequency, energy, source, and path-history ledgers. | The carrier is still the coaxial contra-rotating pro/anti planar pair; the band name is not a separate substrate ontology. |
+| Photon-channel radiation | Electromagnetic bands such as radio, microwave, infrared, visible, ultraviolet, X-ray, and gamma-ray radiation are photon-channel records with different frequency, energy, source, and path-history ledgers. | The carrier is still the coaxial contra-rotating polarity-conjugate planar pair; the band name is not a separate substrate ontology. |
 | Source-specific photon mechanisms | Atomic transition radiation, bremsstrahlung, synchrotron emission, thermal free-free emission, and medium relaxation are different trigger geometries for routing a closure residual into photon output. | Each mechanism must keep its source depletion, recoil, medium, remnant, polarization handoff, and benchmark recovery rows explicit. |
 | Thermal or blackbody radiation | A photon bath reaches an ensemble-level detailed-balance limit after repeated emission, capture, scattering, pair-channel exchange, and non-radiative medium exchange. | Blackbody language is stronger than photon emission; it requires ensemble temperature, thermalization depth, and Planck-occupation recovery. |
 | Frequency-exchange radiation | Compton-like and Sunyaev-Zeldovich-style processes shift an existing photon packet through a transport exchange row. | A frequency shift is not an unexplained loss or gain; target, medium, recoil, remnant, and thermalization rows must close the ledger. |
@@ -61380,7 +61427,7 @@ The thresholds in this table are names for proof targets, not asserted universal
 
 #### Planar-Mode Nucleation
 
-Photon output is modeled as the lock-in of a coaxial contra-rotating pro/anti planar pair. In the language of [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), the photon branch is a planar-mode nucleation event: shed energy, wake stress, and Noether sea state jointly cross the stability boundary for a propagating photon assembly.
+Photon output is modeled as the lock-in of a coaxial contra-rotating polarity-conjugate planar pair. In the language of [Mode Taxonomy](../../../../markdown/aaa/reactions/mode-taxonomy.md), the photon branch is a planar-mode nucleation event: shed energy, wake stress, and Noether sea state jointly cross the stability boundary for a propagating photon assembly.
 
 A minimal nucleation gate can be written as a two-condition target:
 
@@ -61837,7 +61884,7 @@ with every component required to vanish, or to be assigned to a named residual r
 
 #### Photon-Material Surface Routing
 
-A material surface interaction is the near-field Gate C version of the same event schema. It should not be pictured as a small projectile striking a hard wall. At atomic resolution the incoming photon is a coaxial contra-rotating pro/anti planar pair with Gate A and Gate B ledgers, while the material supplies an electron-envelope branch, a nuclear source envelope, a bonding or lattice branch, and a local Noether sea response record. The local event state can be written as
+A material surface interaction is the near-field Gate C version of the same event schema. It should not be pictured as a small projectile striking a hard wall. At atomic resolution the incoming photon is a coaxial contra-rotating polarity-conjugate planar pair with Gate A and Gate B ledgers, while the material supplies an electron-envelope branch, a nuclear source envelope, a bonding or lattice branch, and a local Noether sea response record. The local event state can be written as
 
 $$
 X_{\mathrm{surf}}
@@ -62231,7 +62278,7 @@ The routing skeleton above becomes useful only if each benchmark is carried as a
 
 | Target | Class | Concrete closure requirement | Validation check | Failure condition |
 | --- | --- | --- | --- | --- |
-| Radiative event ontology | ontology | A radiative event is a routed closure residual. Photon output is a planar-mode nucleation event whose photon branch is the coaxial contra-rotating pro/anti planar pair; medium excitation, recoil, residual internal energy, and reaction products remain explicit non-photon channels. | Every channel event record identifies the source assembly, trigger geometry, local Noether sea state, $\mathcal{R}_{\Theta}$, $E_{\text{exc}}$, photon or non-photon outputs, and conservation ledgers. | If radiation is treated as primitive acceleration-field output or as untracked energy loss, the ontology has been bypassed. |
+| Radiative event ontology | ontology | A radiative event is a routed closure residual. Photon output is a planar-mode nucleation event whose photon branch is the coaxial contra-rotating polarity-conjugate planar pair; medium excitation, recoil, residual internal energy, and reaction products remain explicit non-photon channels. | Every channel event record identifies the source assembly, trigger geometry, local Noether sea state, $\mathcal{R}_{\Theta}$, $E_{\text{exc}}$, photon or non-photon outputs, and conservation ledgers. | If radiation is treated as primitive acceleration-field output or as untracked energy loss, the ontology has been bypassed. |
 | Scattering/reaction event grammar | derivation target | Express every scattering, relativistic collision, pair-channel, and radiation-coupled reaction as $\mathcal{E}_{\mathrm{scat/rxn}}=(\mathfrak{L}_{\mathrm{in}},W_{\mathrm{int}},\mathfrak{T}_{\mathrm{cons}},\mathfrak{L}_{\mathrm{out}},\mathfrak{R}_{\mathrm{res}})$, with incoming ledgers, a finite interaction window, conserved transfers, outgoing ledgers, and residual checks all present. | A completed channel must drive $\mathfrak{R}_{\mathrm{res}}$ to zero within tolerance or assign every nonzero term to a named remnant, medium, recoil, wake, or benchmark-failure row. | If products are listed without incoming provenance, if the interaction window is hidden, if observer-level creation language bypasses identity routing, or if standard scattering limits are asserted without residual checks, the event grammar has failed. |
 | Larmor/Lienard recovery | derivation target | Coarse-grain repeated planar-mode nucleation from smooth weak-field charged-assembly acceleration so that the nonrelativistic power scales as $P\propto\|\mathbf{a}\|^2$ and the relativistic observer-level limit recovers the Larmor/Lienard class after clock and rate conversion. | Sweep smooth acceleration histories at fixed weak homogeneous Noether sea state and recover the standard power and angular limits before claiming channel-specific deviations. | If the low-speed limit is not quadratic in acceleration, or if the relativistic limit requires a separately fitted radiation threshold, the radiation map is not closed. |
 | Bremsstrahlung emissivity | derivation target | Integrate the charged-assembly deceleration event record over impact parameters, screening, target geometry, and ensemble distributions to recover free-free emissivity, including $\epsilon_{\nu}^{\mathrm{ff}}\propto Z^2 n_e n_i T_{\mathrm{temp}}^{-1/2}e^{-h\nu/(k_B T_{\mathrm{temp}})}g_{\mathrm{ff}}$ and $\epsilon_{\mathrm{ff}}\propto Z^2 n_e n_i T_{\mathrm{temp}}^{1/2}$ in the LTE limit. | In regimes with $\mathcal{R}_{\mathrm{LTE}}\ll 1$, recover $d\sigma/dk$, screening, form-factor, and emissivity limits from the same channel record used by [Bremsstrahlung](../../../../markdown/aaa/reactions/bremsstrahlung.md). | If cross-section and emissivity closure require different Noether sea state variables or hidden per-plasma fits, the channel fails as a derivation. |
@@ -62273,7 +62320,7 @@ Atomic transition radiation is the line-emission and line-absorption channel in 
 
 This page specializes the shared routing skeleton in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
-This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating pro/anti planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
+This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
 
 #### Basin Transition
 
@@ -62372,7 +62419,7 @@ E_\gamma
 \Delta_{\gamma}^{\mathrm{tol}}
 $$
 
-The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating pro/anti planar pair.
+The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating polarity-conjugate planar pair.
 
 #### Planar-Mode Gate
 
@@ -62473,7 +62520,7 @@ The minimum event record is:
 
 #### Absorption and Stimulated Channels
 
-Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating pro/anti planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
+Absorption is the inverse Gate C vertex: an incoming coaxial contra-rotating polarity-conjugate planar pair is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
 
 $$
 b+\gamma \to a,
@@ -62587,7 +62634,7 @@ Cosmology-facing use of any line should keep source-branch changes separate from
 
 #### Closure Status
 
-Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating pro/anti planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
+Accepted ontology: a photon emitted or captured in this channel is a coaxial contra-rotating polarity-conjugate planar pair, and atomic line radiation is a routed assembly-level transition rather than excitation of a separate fundamental electromagnetic field.
 
 Derivation targets: compute $\mathcal S_{\gamma}^{\mathrm{at}}$, recover the weak-coupling transition-rate limit, derive selection-rule basin measures, close recoil and medium ledgers, and recover detailed balance without changing the Noether sea state map between emission, absorption, and thermal ensembles.
 
@@ -62714,7 +62761,7 @@ $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the canonical Master EOM, the received interaction is shaped not only by inverse-square proximity but also by receiver-normal bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating pro/anti planar pair in the Noether sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the canonical Master EOM, the received interaction is shaped not only by inverse-square proximity but also by receiver-normal bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair in the Noether sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
 A minimal radiation-inherited event ledger starts with the projectile source depletion. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$,
 
@@ -62764,7 +62811,7 @@ $$
 \mathcal{S}_{\mathrm{wake}} \equiv A_{\mathrm{tb}} \, \bigl[\rho_{\text{NS}}(\mathbf X,T)\bigr]^{p_\rho} \left\|\frac{d\mathbf{V}_e}{dT}\right\|^{p_a}
 $$
 
-Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating pro/anti planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local Noether braid geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
+Conceptual nucleation picture for this ansatz: a photon mode modeled as a coaxial contra-rotating polarity-conjugate planar pair is treated as a stable attractor that appears only when wake-driven internal concentration exceeds a local stability barrier. The threshold scale $\mathcal{S}_*$ represents the effective bremsstrahlung proxy for $\mathcal{S}_{\gamma,*}$ and is interpreted as an effective function of Noether sea stiffness plus local Noether braid geometry. The coupling through $E_{\text{exc}}^{\mathrm{br}}/E_{\gamma,\min}$ represents available shed energy relative to minimum stable planar-mode cost. The exponential response is used as a first-pass survival-style ansatz for threshold crossing with sensitivity to local fluctuations; it is not yet claimed as unique.
 
 $$
 P_{\mathrm{nuc}} = 1 - \exp\!\left[-\left(\frac{\mathcal{S}_{\mathrm{wake}}-\mathcal{S}_*}{\mathcal{S}_*}\right)_+ \left(\frac{E_{\text{exc}}^{\mathrm{br}}}{E_{\gamma,\min}}\right)\right]
@@ -63037,7 +63084,7 @@ Per the authoring rule in [Mode Taxonomy](../../../../markdown/aaa/reactions/mod
 
 #### Photon Ontology Note
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a coaxial contra-rotating pro/anti planar pair assembly propagating through the Noether sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology, the photon is fundamentally a coaxial contra-rotating polarity-conjugate planar pair assembly propagating through the Noether sea. The language of "field quanta" and effectively continuous emission is retained as a coarse-grained description over many discrete planar-mode nucleation events. In this file, $\mathbf{p}_{\gamma}$ denotes momentum of that discrete assembly object at micro level, while standard QED field language is used for observer-level rates and spectra.
 
 Event-level provenance for cosmology-facing use is tracked in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -63256,8 +63303,8 @@ in weak homogeneous limits, with $B_{\mathrm{eff}}$ the observer-level magnetic 
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel
 
-- **Synchrotron emission channel:** curved charged-assembly transport through an anisotropic Noether sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether braid velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the canonical **coaxial contra-rotating pro/anti planar pair** description.
-- **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating pro/anti planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether sea braids $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
+- **Synchrotron emission channel:** curved charged-assembly transport through an anisotropic Noether sea state produces $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ by Noether braid velocity deformation and gradient forcing. If the inherited planar-mode threshold is crossed, the event nucleates [photon assemblies](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) from interaction energy / wake stress while conserving charged-assembly identity. The photon-side target is the canonical **coaxial contra-rotating polarity-conjugate planar pair** description.
+- **Pair channel:** two-photon overlap, with each photon treated as a coaxial contra-rotating polarity-conjugate planar pair, associates local substrate content into a charged $e^+e^-$ assembly pair; this association must strictly conserve net architrino count and charge of participating assemblies (photons + neutral Noether sea braids $\rightarrow e^+ + e^-$), with provenance and conservation bookkeeping explicit.
 - **Cascade loop:** repeated emission-pair-emission cycles are modeled as repeated mode-lock events under the same observer-level thresholds.
 
 #### Shared Photon Event Record
@@ -63409,7 +63456,7 @@ This file uses the following provisional mapping targets.
 
 - **Synchrotron emission (provisional):** a charged Noether braid assembly in curved transport through $\mathcal{V}_{\mathrm{NS}}$ develops a Noether braid velocity deformation. Gradient forcing $G_{\text{grad}}$ and receiver-normal causal-branch bunching can leave $\mathcal{R}_{\Theta}^{\mathrm{syn}}$ after ordinary adiabatic retuning fails; when the associated wake-strain state crosses the inherited planar-mode threshold, a photon assembly nucleates and carries the photon-row share of the source-depletion ledger. Recoil, medium, wake, handoff, and remnant rows close the rest. This nucleation threshold must be derivable from wake-strain eigenvalue conditions in simulations; hand-tuning the threshold to match observed $P_{\mathrm{syn}}(\gamma,B)$ or $\nu_c\propto\gamma^2B$ constitutes a fit, not a derivation. The mapping succeeds only if the threshold emerges naturally from the architrino master equation applied to curved charged-assembly trajectories in anisotropic Noether sea states.
 - **Magnetic field ontology (provisional mapping):** observer-level $B$ is treated as the effective coarse-grained directional (vector/tensor) vorticity-anisotropy state of the Noether sea, $B \leftrightarrow \mathcal{V}_{\mathrm{NS}}$, not as a separate fundamental void field. This is a mapping target, not settled ontology. Charged-assembly curvature is therefore interpreted provisionally as transport through an anisotropic Noether sea state with explicit directionality. In validated limits, this mapping must: (i) derive the effective Lorentz-force law $\mathbf{F}_{\mathrm{eff}} = q(\mathbf{v}/c) \times \mathbf{B}_{\mathrm{eff}}$ from anisotropic Noether sea transport together with the receiver-normal geometry of delayed causal flux, rather than by postulating a primitive cross-product force term; (specifically, show that vorticity-tensor gradients $\partial_i \mathcal{V}^j_{\mathrm{NS}}$ produce perpendicular deflection under boost); (ii) reproduce Maxwell-level electromagnetic-wave propagation (dispersion relation $\omega = ck$ for photon modes in uniform $\mathcal{V}_{\mathrm{NS}}$); (iii) recover synchrotron polarization geometry ($\mathbf{E}_\gamma \perp \mathbf{B}_{\mathrm{eff}}$, $\mathbf{E}_\gamma \perp \mathbf{v}$ in observer frame) from directional emission rules in the Noether sea anisotropy basis, while inheriting photon helicity and analyzer statistics from Gate B rather than deriving them locally. **Falsification criterion:** if simulations with anisotropic Noether sea states fail to produce the factor-of-$\gamma^2$ frequency scaling in $\nu_c$ (tested via swept $B$-field and $\gamma$ at fixed pitch angle), or if polarization vectors misalign with standard geometry by $> 15^\circ$ systematically, this magnetic mapping is unresolved or failed and must be replaced by a new Noether sea / assembly response map.
-- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether sea energy-density concentration triggered by overlap of two photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
+- **Pair production mapping (provisional):** $\gamma+\gamma\rightarrow e^+ + e^-$ is treated as nucleation of charged assemblies from local Noether sea energy-density concentration triggered by overlap of two photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs above threshold, not ex nihilo creation. The incoming photon assemblies supply energy, momentum, and trigger geometry, not new architrino identities; the recruited Noether sea content must supply the identity-routed inventory. The nucleation threshold must map to the standard kinematic condition $s\ge 4m_e^2$, and the effective rate must asymptotically reproduce the Breit-Wheeler cross-section in the relativistic limit used by cascade modeling. Operational constraint: pair-channel cross-section $\sigma_{\gamma\gamma}(s)$ computed from this nucleation picture must reproduce
 $$
 \sigma_{\gamma\gamma} = \frac{\pi r_e^2}{2}\left(1-\beta^2\right)\left[\left(3-\beta^4\right)\ln\left(\frac{1+\beta}{1-\beta}\right) - 2\beta(2-\beta^2)\right]
 $$
@@ -64287,7 +64334,7 @@ When an architrino intersects a causal wake surface, it receives a branch-local 
 The receiver cannot intrinsically distinguish an attractive pull toward an opposite-polarity source on one ray from a repulsive push by a same-polarity source on the opposite ray of the same line of action. If the receiver polarity flips, the source-polarity labels flip too; the invariant ambiguity is the exchange of side with attraction/repulsion. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea braids, the exact origin and path-history of any single perturbation is irretrievable. When the same hit is used in an accumulated action or wake-history ledger, the retained path must also record how the receiver worldline crosses the causal wake sequence; that receiver-normal factor is a branch-chart datum, not a fact available from one local hit alone.
 
 ##### Measurement Back-Action and the $h$-Bracket
-Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
+Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating polarity-conjugate planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.
 
 The free Gaussian wavepacket is the simplest observer-level benchmark for this claim. In standard quantum mechanics, a Gaussian packet minimizes the position-momentum uncertainty product and then disperses under free Schrödinger evolution. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is therefore not merely to state $\Delta x\,\Delta p\ge\hbar/2$, but to recover the minimal packet as an effective envelope of deterministic path-history data.
 
@@ -68695,7 +68742,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Spacetime is in a quantum-gravity regime; ordinary field theory breaks down. The Planck scale sets the limiting energy density and length scale for known physics.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the Noether braid network is maximally compressed. At the event-horizon limit, the only stable assemblies are neutral Noether braids: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating pro/anti planar pairs moving at the local effective photon speed. Noether braid assemblies populate the Noether sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether braids are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether braid couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where the universal maximum-curvature binary (MCB) cap is approached.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the Noether braid network is maximally compressed. At the event-horizon limit, the only stable assemblies are neutral Noether braids: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating polarity-conjugate planar pairs moving at the local effective photon speed. Noether braid assemblies populate the Noether sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether braids are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether braid couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where the universal maximum-curvature binary (MCB) cap is approached.
 
 #### Grand Unification Epoch ($\sim 10^{-43}$ to $10^{-36}$ s)
 - Time window: $\sim 10^{-43}$ to $10^{-36}$ s.
@@ -68761,7 +68808,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The photon-baryon fluid is optically thick; acoustic oscillations develop and imprint the future CMB power spectrum.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Photon Epoch: Nuclear Assembly Plasma):** A dense plasma of nuclear assemblies and photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs fills the Noether sea. Repeated scattering and wake interactions thermalize the radiation field. Acoustic-like standing modes arise from coupled oscillations of assemblies and coaxial contra-rotating pro/anti planar-pair excitations, seeding the eventual CMB peak structure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Photon Epoch: Nuclear Assembly Plasma):** A dense plasma of nuclear assemblies and photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs fills the Noether sea. Repeated scattering and wake interactions thermalize the radiation field. Acoustic-like standing modes arise from coupled oscillations of assemblies and coaxial contra-rotating polarity-conjugate planar-pair excitations, seeding the eventual CMB peak structure.
 
 #### Big Bang Nucleosynthesis ($\sim 3$ to $\sim 20$ minutes)
 - Time window: $\sim 3$ to $\sim 20$ minutes.
@@ -68779,7 +68826,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Acoustic oscillations in the photon-baryon fluid generate the familiar harmonic peaks. Peak positions are set by the sound horizon at recombination; relative heights encode baryon loading and radiation driving.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Nested Shell Braid Energy Ladder):** The nested shell braid system supplies three intrinsic energy scales (outer, middle, inner) that act as primary mode seeds. Coupling through the Noether sea generates a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the Noether sea coupling length, the delay response $\chi_{\text{sea}}$, and the duration of the high-optical-depth phase, while the odd/even peak pattern reflects how baryon-like assemblies load the oscillations relative to coaxial contra-rotating pro/anti planar-pair modes.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Nested Shell Braid Energy Ladder):** The nested shell braid system supplies three intrinsic energy scales (outer, middle, inner) that act as primary mode seeds. Coupling through the Noether sea generates a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the Noether sea coupling length, the delay response $\chi_{\text{sea}}$, and the duration of the high-optical-depth phase, while the odd/even peak pattern reflects how baryon-like assemblies load the oscillations relative to coaxial contra-rotating polarity-conjugate planar-pair modes.
 
 #### Recombination ($\sim 3.8\times10^5$ years)
 - Time window: $\sim 3.8\times10^5$ years.
@@ -68788,7 +68835,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electrons combine with nuclei; photons decouple, producing the CMB. The last-scattering surface is established.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Coaxial Contra-Rotating Photon Assemblies Decouple):** Electron-like assemblies lock into neutral coaxial configurations with nuclei, dramatically reducing scattering cross sections. Photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs decouple and free-stream. This defines the $\mathbb{A}\mathbb{A}\mathbb{A}$ analog of last scattering, with the CMB spectrum reflecting the thermalized Noether sea state at decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Coaxial Contra-Rotating Photon Assemblies Decouple):** Electron-like assemblies lock into neutral coaxial configurations with nuclei, dramatically reducing scattering cross sections. Photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs decouple and free-stream. This defines the $\mathbb{A}\mathbb{A}\mathbb{A}$ analog of last scattering, with the CMB spectrum reflecting the thermalized Noether sea state at decoupling.
 
 #### Dark Ages ($\sim 3.8\times10^5$ years to first light)
 - Time window: $\sim 3.8\times10^5$ years to first light.
@@ -68797,7 +68844,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The universe is neutral and dark; structure grows under gravity until the first luminous objects form.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating polarity-conjugate planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
 This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
 
@@ -68818,7 +68865,7 @@ CMB photons must remain source-and-path records. A proposed background bath has 
 
 ##### Horizon-Interface Photon Release Candidate
 
-The strong-field version of this source story should keep a specific candidate channel visible. A photon-channel packet is a coaxial contra-rotating pro/anti planar pair, while the black-hole horizon interface is the regime where nested shell braid assemblies are driven toward planar symmetry-breaking lock at $v=c_f$. The shared planar-pair geometry makes the horizon a natural candidate site for photon-channel or photon-channel-adjacent release, not merely a place where already-formed photons suffer an exterior gravitational redshift.
+The strong-field version of this source story should keep a specific candidate channel visible. A photon-channel packet is a coaxial contra-rotating polarity-conjugate planar pair, while the black-hole horizon interface is the regime where nested shell braid assemblies are driven toward planar symmetry-breaking lock at $v=c_f$. The shared planar-pair geometry makes the horizon a natural candidate site for photon-channel or photon-channel-adjacent release, not merely a place where already-formed photons suffer an exterior gravitational redshift.
 
 The same signed row can contain both sides of the process. Interior or interface segments may blueshift photon-channel packets, raising their receiver-facing phase cadence and energy relative to local exterior standards. Outward transport through the surrounding Noether sea may then redshift, thermalize, scatter, or convert those packets before they become visible to ordinary observers. The existence of such high-energy interior photon records is therefore a plausible branch of the CMB source program, but it is not a shortcut around the CMB constraints.
 
@@ -69369,7 +69416,7 @@ Massive composite assemblies (protons, atoms, stars) are Noether braid configura
 A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is characterized by two conditions:
 
 - **Gravitational coupling:** The candidate must compress the Noether sea (contribute to effective $\rho_{\text{NS}}$ and $n$ gradients) and therefore deflect light and accelerate baryonic matter.
-- **Electromagnetic transparency:** The candidate must couple negligibly to photon assemblies modeled as coaxial contra-rotating pro/anti planar pairs so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
+- **Electromagnetic transparency:** The candidate must couple negligibly to photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
 
 Two substrate-level mechanisms can satisfy these conditions, either separately or together.
 
@@ -70011,7 +70058,7 @@ The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0^{\mathrm{M
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) are recycling furnaces: baryonic and dark-sector assemblies fall in, are processed through the high-energy interior (inner nested shell braid regime, $v > c_f$), and may later re-emerge through several release channels in altered assembly configurations. Jets and radiative outflows remain plausible observer-level manifestations, but they are not the only allowed release morphology. This cycle has implications for the dark sector:
 
-- **Neutral-assembly processing:** If neutral assemblies accrete onto SMBHs, they contribute to the energy budget available for outward release. Re-emitted content may include photons (coaxial contra-rotating pro/anti planar-pair modes), neutrinos, recycled neutral assemblies, or initially dark-sector modes that later convert into visible channels.
+- **Neutral-assembly processing:** If neutral assemblies accrete onto SMBHs, they contribute to the energy budget available for outward release. Re-emitted content may include photons (coaxial contra-rotating polarity-conjugate planar-pair modes), neutrinos, recycled neutral assemblies, or initially dark-sector modes that later convert into visible channels.
 - **Dark-sector mass evolution:** Unlike pure $\Lambda\mathrm{CDM}$ where dark matter is strictly conserved and collisionless, $\mathbb{A}\mathbb{A}\mathbb{A}$ permits slow conversion between dark and visible sectors through SMBH processing. This conversion rate must be small enough to preserve $\Omega_{\mathrm{DM}}$ to within Planck-era constraints over cosmological timescales, which places an upper bound on the SMBH dark-matter accretion efficiency.
 - **Observable signature (speculative):** If SMBH recycling converts neutral assemblies into electromagnetic-channel products at non-negligible rates, this could produce a correlation between SMBH mass and local dark-matter deficit. This is a mapping target for simulation, not an asserted observational deviation.
 
@@ -71326,7 +71373,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, intracluster light is not dark matter
 
 ##### Baryonic Assemblies
 
-Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating pro/anti planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
+Baryons (protons, neutrons, and their composites) are Noether braid assemblies with specific axial patterns. Their clustering behavior is governed by the effective growth equation above, modified by pressure support (thermal motion) and radiative cooling. Before recombination, baryonic assemblies are tightly coupled to photon-channel packets carried by coaxial contra-rotating polarity-conjugate planar pairs propagating through the Noether sea, producing acoustic oscillations. After decoupling, baryons fall into potential wells already established by the dark sector.
 
 ##### Neutral Assemblies (Dark-Matter Candidates)
 
@@ -72103,7 +72150,7 @@ where $c$ is the speed of light.
 
 **Architrino Interpretation:**
 
-The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagating through the Noether sea.
+The speed of light $c$ is **not fundamental**. It is the low-gradient operational speed of photon assemblies, modeled as coaxial contra-rotating polarity-conjugate planar pairs, propagating through the Noether sea.
 
 **Key relation:**
 $$
@@ -72118,7 +72165,7 @@ c \approx c_f \quad (\text{small corrections from Noether sea refraction})
 $$
 
 **What we must show:**
-- Photons are coaxial contra-rotating pro/anti planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
+- Photons are coaxial contra-rotating polarity-conjugate planar pairs whose bosonic/statistical behavior is recovered as a downstream closure target
 - Their propagation through the Noether sea is **not instantaneous** but limited by $c_f$
 - The effective speed $c$ measured by operational observers (made of assemblies) matches $c_f$ within experimental precision (~$10^{-17}$ for Lorentz tests)
 
@@ -80121,7 +80168,7 @@ The same relocation discipline applies to the inherited four-interaction languag
 
 | Observer-level interaction | What remains valid | Relocation in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 | --- | --- | --- |
-| Electromagnetic | Charge bookkeeping, photon transport, Maxwell/QED benchmarks, and effective $U(1)$ phase behavior remain recovery targets. | The photon channel is routed through the [coaxial contra-rotating pro/anti planar pair](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while effective electromagnetic potentials are reconstructed from causal-wake/action ledgers and Noether sea response in the [gauge-structure map](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md). |
+| Electromagnetic | Charge bookkeeping, photon transport, Maxwell/QED benchmarks, and effective $U(1)$ phase behavior remain recovery targets. | The photon channel is routed through the [coaxial contra-rotating polarity-conjugate planar pair](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), while effective electromagnetic potentials are reconstructed from causal-wake/action ledgers and Noether sea response in the [gauge-structure map](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md). |
 | Weak | Chiral weak reactions, $W^\pm/Z$ corridor behavior, weak mixing, CKM/PMNS constraints, and electroweak precision data remain hard comparison targets. | Weak interaction is relocated into exposed weak-coupling-triad geometry, transient corridor provenance, and reaction-ledger accounting; the effective $SU(2)_L$ record must be recovered without treating weak bosons as primitive substrate carriers. |
 | Strong | Color confinement, gluon exchange, hadron structure, and nuclear binding phenomenology remain required recoveries. | Strong interaction is relocated into axis-exceptionality, color-corridor and flux closure, Noether sea routing of exposed axial traffic, and residual-strong coarse graining; see [Gluons and the Strong Force](../../../../markdown/aaa/assemblies/bosons/gluons.md) and [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md). |
 | Gravitational | Weak-field GR, lensing, Shapiro delay, orbital dynamics, gravitational waves, and strong-field benchmarks remain recovery targets. | Gravity is relocated into Noether sea constitutive response, clock/ruler retuning, photon and gravitational-channel propagation, and effective-metric reconstruction; the Euclidean void remains uncurved while [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) and [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) carry the recovery burden. |
@@ -80302,7 +80349,7 @@ $$
  - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}, \quad
 \text{where } D_\mu = \partial_\mu + ieA_\mu
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating pro/anti planar pairs whose mode trains mediate interaction between charged Noether braids (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The U(1) gauge symmetry encodes invariance under a global phase associated with architrino polarity and net charge routing. $A_\mu$ is the effective continuum potential generated by architrino wakes; photons are coaxial contra-rotating polarity-conjugate planar pairs whose mode trains mediate interaction between charged Noether braids (electrons/positrons). The concrete repo-side treatment lives in [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
 Historically, the Liénard-Wiechert moving-source potentials already pointed in this direction by showing that electromagnetic potentials depend on source motion and causal delay. In the present program they matter as an early effective hint that $A_\mu$ should be read as a compressed summary of source-history transport rather than as a primitive object detached from the moving charges that generate it.
 
 **What Still Works:** Quantum Electrodynamics (QED) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
@@ -80329,7 +80376,7 @@ $$
 \mathrm{SU(2)}_L \times \mathrm{U(1)}_Y \xrightarrow{\langle H\rangle\neq 0}
 \mathrm{U(1)}_{\mathrm{EM}}
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform Noether braid configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating pro/anti planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The Higgs field corresponds to an effective account of how a dense, nearly-uniform Noether braid configuration in the Noether sea contributes to local inertial response. It should not be treated as the sole origin of mass: mass is the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. Electroweak symmetry breaking is the selection of a preferred phase/orientation pattern in the Noether sea, which distinguishes the massless photon channel, described canonically as a coaxial contra-rotating polarity-conjugate planar pair, from massive vector assemblies (W, Z). See [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md), [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), and [Weak Mixing and CKM](../../../../markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).
 
 **What Still Works:** Electroweak Theory (EW) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the particles, symmetries, and couplings in this entry are treated as effective descriptors of Noether braid assemblies, axial-layer states, and medium-level interaction rules rather than primitive ontology.
@@ -80710,7 +80757,7 @@ the angular power spectrum.
 $$
 C_\ell = \langle |a_{\ell m}|^2 \rangle
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon modes described canonically as coaxial contra-rotating pro/anti planar pairs, plus baryon-like composite assemblies embedded in the Noether sea. Their spectrum encodes how the Noether sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** The acoustic peaks record standing-wave patterns of coupled assembly sectors: photon modes described canonically as coaxial contra-rotating polarity-conjugate planar pairs, plus baryon-like composite assemblies embedded in the Noether sea. Their spectrum encodes how the Noether sea and matter assemblies responded collectively to density and pressure perturbations before decoupling.
 
 **What Still Works:** CMB Acoustic Peaks remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -80767,7 +80814,7 @@ from equilibrium.
 $$
 \Delta B \neq 0,\quad \mathrm{CP}\ \text{violation},\quad \text{out of equilibrium}
 $$
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry should not be framed first as missing electrinos, missing positrinos, or a primitive imbalance in the fundamental polarity inventory. The sharper native question is why stable low-energy assembly channels favor matter-like pro/anti braid outcomes over accessible antimatter-like counterparts while the deeper architrino and Noether sea bookkeeping remains polarity-balanced. Sakharov-like conditions become constraints on allowed assembly-level processes, chiral branch stability, and CP-facing readouts in the high-energy Noether sea environment rather than a license to treat fundamental polarity imbalance as the mechanism.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Net matter–antimatter asymmetry should not be framed first as missing electrinos, missing positrinos, or a primitive imbalance in the fundamental polarity inventory. The sharper native question is why stable low-energy assembly channels favor matter branches over accessible polarity-conjugate antimatter counterparts while the deeper architrino and Noether sea bookkeeping remains polarity-balanced. Pro/anti ordered orientation is a separate parity-facing label and may still affect reaction access without defining the matter sign. Sakharov-like conditions become constraints on allowed assembly-level processes, chiral branch stability, and CP-facing readouts in the high-energy Noether sea environment rather than a license to treat fundamental polarity imbalance as the mechanism.
 
 **What Still Works:** Baryogenesis / Leptogenesis remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
@@ -87808,19 +87855,19 @@ $$
 
 with $M$ the diagonal tilt-inertia matrix, $G$ the gyroscopic (spin) block, and $\Gamma$ the spin-transport block of the baseline torques — the rail pump entering the axis sector, required for the exact global null of $K-\Gamma$ and hence for the quotient discipline. The eigenvector components pair into complex tilt amplitudes $\zeta_a=\eta_a^x+i\eta_a^y$, so each quotient eigenvalue is a whirl mode: a rotating precession pattern with growth rate $\operatorname{Re}\lambda$ and whirl frequency $\operatorname{Im}\lambda$.
 
-At the self-equilibrated fixed point, measured at seed grade with cycle-sampling witnesses, the verdict is **flutter**. After deflating the exact global pair, the quotient spectrum carries a growing whirl pair
+At the self-equilibrated fixed point, the seed-grade pencil indicates **flutter**. After deflating the exact global pair, the quotient spectrum carries a growing whirl pair
 
 $$
 \lambda=+0.18\pm0.38\,i
 $$
 
-— an e-folding time of about $0.9$ rotations with a whirl period of about $2.7$ rotations — whose mode shape is middle-dominated with strong inner participation and the caps nearly spectators: the inner-tilt-to-middle-torque coupling, the strongest single entry of the measured tilt block, is the flutter pathway. A second, weakly growing fast pair sits near the free-precession band. The restoring quasi-static tilt block does not survive the gyroscopic-circulatory coupling: with both eigenvalues of the static quotient block negative, the spin and circulatory terms still produce growth. The counterfactual with the middle's pump transport removed from $\Gamma$ still flutters, slightly faster — **the axis sector is unstable independently of the rail pump**.
+— an e-folding time of about $0.9$ rotations with a whirl period of about $2.7$ rotations — whose mode shape is middle-dominated with strong inner participation and the caps nearly spectators: the inner-tilt-to-middle-torque coupling, the strongest single entry of the measured tilt block, is the flutter pathway. A second, weakly growing fast pair sits near the free-precession band. The restoring quasi-static tilt block does not survive the gyroscopic-circulatory coupling: with both eigenvalues of the static quotient block negative, the spin and circulatory terms still produce growth. The counterfactual with the middle's pump transport removed from $\Gamma$ still flutters, slightly faster, so the indicated growth does not depend on the rail pump. The pencil is a linearization about the fixed point, and a linear indication is not a dynamical verdict: whether this growth manifests in a true evolution of the master equation is open, and until it is confirmed the axis sector is unresolved rather than closed.
 
-Completing the pencil with the measured delay-memory block strengthens the verdict rather than softening it. The causal wake also responds to tilt *rates* — the field in flight arrives from where the layer was — and that response, measured on the same evaluator, is anti-damping on every layer: the delayed torque pushes along the tilt rate, the axis-sector appearance of the same anti-damping character the delayed kernel shows in the tangential sector. With the measured block included the growth rate rises and a fast whirl pair near the free-precession band becomes the fastest-growing mode; the isotropic damping that would close the axis sector is order-one against the layer spin momenta. The axis sector therefore needs a genuine absorber, not a trim — the candidate suppliers are the escapement's click channel acting under tilt, which this cycle-averaged evaluator cannot book, and the ambient medium's angular-momentum-bath coupling.
+Completing the pencil with the measured delay-memory block strengthens the indication rather than softening it. The causal wake also responds to tilt *rates* — the field in flight arrives from where the layer was — and that response, measured on the same evaluator, is anti-damping on every layer: the delayed torque pushes along the tilt rate, the axis-sector appearance of the same anti-damping character the delayed kernel shows in the tangential sector. With the measured block included the growth rate rises and a fast whirl pair near the free-precession band becomes the fastest-growing mode; the isotropic damping that would close the axis sector is order-one against the layer spin momenta. The axis sector therefore needs a genuine absorber, not a trim — the candidate suppliers are the escapement's click channel acting under tilt, which this cycle-averaged evaluator cannot book, and the ambient medium's angular-momentum-bath coupling.
 
-The native release of the same fixed point measured exactly this mode class: nutation growing from release and preceding shape loss. The seed-grade linear rate underpredicts the native mid-window growth by a factor of a few — the released geometry was simultaneously expanding, a coupling outside the frozen-geometry pencil — but the direction, the growth character, and the layer pathway agree. Claim level: seed-grade instrument (cycle-averaged rigid-layer reduction, frozen geometry, partner-channel booking — the escapement's click channel is outside the evaluator) on prescribed worldlines, with the static and delay-memory blocks both measured on exact causal roots, corroborated in direction by native measurement; nothing here is retention evidence. The verdict binds candidate design the same way the basin principle does: a surviving realization must supply axis-sector absorption — a tilt-sector analog of the escapement — and any seed-grade stability gate must include the gyroscopic-circulatory quotient spectrum, not the quasi-static tilt block alone.
+The indication has no independent confirmation. It is a linear pencil built on prescribed worldlines, and it is not corroborated by any evolved trajectory: the pencil and its inputs come from one instrument, so its agreement with itself is not evidence. Confirming or overturning it requires evolving the fixed point directly under the master equation and measuring whether a perturbation grows, saturates to a bounded whirl, or returns — a campaign that is open. Claim level: seed-grade instrument (cycle-averaged rigid-layer reduction, frozen geometry, partner-channel booking — the escapement's click channel is outside the evaluator) on prescribed worldlines, with the static and delay-memory blocks both measured on exact causal roots; uncorroborated by direct evolution, and not retention evidence. The indication is strong enough to bind candidate design the way the basin principle does — a surviving realization should be expected to supply axis-sector absorption, a tilt-sector analog of the escapement — and any seed-grade stability gate must include the gyroscopic-circulatory quotient spectrum, not the quasi-static tilt block alone.
 
-The natural escape from this verdict is that stability might belong to the *moving* braid rather than the rest state. The spindle family closes better under drift and prefers to fly axis-first (see [Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md#motion-inertia-and-isotropy)), and that preference is a genuine orientation torque — so one asks whether the same drift that anchors the braid's speed also anchors its axis. Rebuilding the full pencil on the screw-drifting family answers it. The orientation torque is real and enters as a restoring stiffness $k(u)$ that lifts the rest state's exact global-tilt null: at rest, tilting the whole assembly is free (isotropy); under drift it costs closure, isotropically in the transverse plane, so the global axis-orientation mode acquires positive stiffness that grows with speed toward the preferred basin and is larger in the electrino-leading sense. But $k(u)$ grips only the *global* orientation — the direction the spin axis points relative to the line of motion — and the flutter lives in the *internal* whirl between the layers, orthogonal to it. Across the whole physical drift basin, in both drift senses, on both the frozen and the re-optimized moving geometry, and with or without the click pump, the growing whirl persists at the same class as at rest; no drift speed turns the axis sector restoring. The moving family is thus inertia-anchored and *globally* axis-anchored by one closure mechanism, yet still internally unstable: the axis sector is closed at seed grade in both the resting and the moving frame. Confinement of this family therefore requires a channel outside every rigid-layer pencil — non-rigid axis dynamics, in which an internal deformation coordinate couples to the whirl, or a structured environment that grips the deep layers. Claim level: seed-grade linear stability on the prescribed screw-drifting family; the reconciliation of any moving-family stability statement with the local sea state remains a stated preferred-frame burden.
+The natural escape from this indication is that stability might belong to the *moving* braid rather than the rest state. The spindle family closes better under drift and prefers to fly axis-first (see [Spindle Braid](../../../../markdown/aaa/noether-braid/spindle-braid.md#motion-inertia-and-isotropy)), and that preference is a genuine orientation torque — so one asks whether the same drift that anchors the braid's speed also anchors its axis. Rebuilding the full pencil on the screw-drifting family answers it. The orientation torque is real and enters as a restoring stiffness $k(u)$ that lifts the rest state's exact global-tilt null: at rest, tilting the whole assembly is free (isotropy); under drift it costs closure, isotropically in the transverse plane, so the global axis-orientation mode acquires positive stiffness that grows with speed toward the preferred basin and is larger in the electrino-leading sense. But $k(u)$ grips only the *global* orientation — the direction the spin axis points relative to the line of motion — and the flutter lives in the *internal* whirl between the layers, orthogonal to it. Across the whole physical drift basin, in both drift senses, on both the frozen and the re-optimized moving geometry, and with or without the click pump, the indicated whirl persists at the same class as at rest; no drift speed turns the axis sector restoring in the pencil. The moving family is thus inertia-anchored and *globally* axis-anchored by one closure mechanism, while the internal whirl is untouched by drift. The moving frame therefore offers no escape from the rest-state indication — and inherits its status: both frames are unresolved at seed grade, not closed. If the indication survives direct evolution, confinement of this family requires a channel outside every rigid-layer pencil — non-rigid axis dynamics, in which an internal deformation coordinate couples to the whirl, or a structured environment that grips the deep layers. Claim level: seed-grade linear stability on the prescribed screw-drifting family, uncorroborated by direct evolution; the reconciliation of any moving-family stability statement with the local sea state remains a stated preferred-frame burden.
 
 ###### Nested Shell Braid Spin Scaffold
 
@@ -89006,7 +89053,7 @@ $$
 
 where $\hat{\boldsymbol\jmath}$ is the spin axis (exact, from the rank-one kinematic spine), $\hat{\mathbf d}$ is the cap polarity dipole direction (exactly axial at all times, by the dipole identity), $\theta_O$ is the cap azimuthal offset supplying the transverse phase reference, and $\mathcal R$ is the same causal-root and self-hit ledger as before. The handedness label is the pseudoscalar pairing $h=\hat{\mathbf d}\cdot\hat{\boldsymbol\jmath}$ — pseudoscalar because the dipole is a polar vector and the spin axis an axial one — and the ground-state geometry locks the triple's relative orientation, with the lock measured maximal under drift. The frame the spinor target needs is therefore not assembled from three approximate normals; it is a single measured glove.
 
-The discrete-symmetry structure of the label is inherited from the spindle braid's results at their stated claim level. Polarity conjugation (C) reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: braid and anti-braid are the exactly degenerate glove pair. A true mirror reverses the rotation sense while preserving the dipole, flipping $h$ again. The combined CP operation restores $h$, which is the frame-level statement of the CP degeneracy. Consequently the gauge quotient on the spindle frame must not remove dipole reversal, rotation-sense reversal, or causal-root branch change — exactly the discipline stated for the nested chart below.
+The discrete-symmetry structure of the label is inherited from the spindle braid's results at their stated claim level. Polarity conjugation $C$ reverses $\hat{\mathbf d}$ while preserving $\hat{\boldsymbol\jmath}$, so it flips $h$: a braid and its polarity-conjugate braid are the exactly degenerate glove pair at fixed worldline order. A true mirror reverses the ordered orientation and flips $h$ again. The combined $CP$ operation restores $h$. The pro/anti ordered-orientation sign is therefore not the same object as the polarity-conjugation sign; their product supplies the polarity-weighted handedness $h$. Consequently the gauge quotient on the spindle frame must not remove polarity assignment, ordered-orientation reversal, or causal-root branch change — exactly the discipline stated for the nested chart below.
 
 The spinor question itself carries over unchanged, and gains a cleaner arena. A $2\pi$ spatial rotation about $\hat{\boldsymbol\jmath}$ returns the visible geometry of the locked triple; whether the *retained* phase-and-root history returns — or returns only after $4\pi$ — is precisely the parity test $\epsilon_r^{2\pi}$ defined below, now posed on the retained rows of a frame whose ordering is measured rather than hypothesized. The nested chart that follows is retained as the nested-comparison realization of the same target.
 
@@ -89442,7 +89489,7 @@ This is a recovery target for $\Psi_{\mathrm{env}}$, the external envelope of an
 
 The ordered-frame spinor target also carries the C/P/T burden inherited from standard fermion physics. The substrate proof does not need to import a particular representation of Dirac spinors, but it must recover the effective actions that those representations summarize. In the observer-level fermion chart:
 
-- $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping and pro/anti orientation while preserving the appropriate spin-state comparison data.
+- $C_{\mathrm{eff}}$ must map a fermion record to the corresponding charge-conjugate record by reversing the effective polarity bookkeeping while preserving the pro/anti ordered orientation and the appropriate spin-state comparison data.
 - $P_{\mathrm{eff}}$ must reverse the effective spatial orientation used by the observer chart, including helicity sign when a momentum or propagation axis is part of the record.
 - $T_{\mathrm{eff}}$ must reverse the effective motion, cycle orientation, and phase-flow record without turning the positive-energy comparison branch into an unphysical negative-energy sector.
 - $(CPT)_{\mathrm{eff}}$ must return an admissible fermion-sector record in every validated regime, even though $C$, $P$, $T$, and their pairwise combinations may be violated by weak-sector and flavor-sector data.
@@ -89953,7 +90000,7 @@ $$
 \frac{\mathbf{S}\cdot\hat{\mathbf{p}}}{\hbar}
 $$
 
-For photons, the target is strict. A free photon has no rest frame and no physical longitudinal polarization in the validated free-space regime. Its observer-level spin information appears as helicity $\pm1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ photon model must therefore show how the coaxial contra-rotating pro/anti planar pair carries exactly two transverse modes, helicity $\pm1$, Malus' law, and no unacceptable longitudinal free mode.
+For photons, the target is strict. A free photon has no rest frame and no physical longitudinal polarization in the validated free-space regime. Its observer-level spin information appears as helicity $\pm1$. The $\mathbb{A}\mathbb{A}\mathbb{A}$ photon model must therefore show how the coaxial contra-rotating polarity-conjugate planar pair carries exactly two transverse modes, helicity $\pm1$, Malus' law, and no unacceptable longitudinal free mode.
 
 The photon scaffold is a transverse ledger, not a rest-frame spin ledger. Let $\hat{\mathbf{k}}$ be the propagation axis supplied by the Gate A kinematic branch, and choose orthonormal transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ with $\hat{\mathbf{u}}\cdot\hat{\mathbf{k}}=\hat{\mathbf{v}}\cdot\hat{\mathbf{k}}=0$. The effective Gate B state can be written as
 
@@ -89979,14 +90026,14 @@ is the target bridge to helicity. A helicity eigenmode must first be stated as a
 $$
 \mathbf J_{\gamma}^{\mathrm{sub}}
 =
-\mathbf J_{\mathrm{pro}}
+\mathbf J_{\mathfrak B}
 +
-\mathbf J_{\mathrm{anti}}
+\mathbf J_{C(\mathfrak B)}
 +
 \mathbf J_{\gamma,\mathrm{wake}}
 $$
 
-where the terms are the photon-side pro/anti planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
+where the terms are the photon-side polarity-conjugate planar-pair and photon-carried wake contributions. Source remnant, recoil, material handoff, and unrelated medium rows belong to the event ledger, not inside the photon-only helicity vector. The helicity residual is
 
 $$
 \Delta_{\mathrm{hel}}^\gamma
@@ -90010,7 +90057,7 @@ P_{\perp}\mathbf J_{\gamma}^{\mathrm{sub}}
 \lambda_{\mathrm{hel}}\in\{+1,-1\}
 $$
 
-where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The generic coherent case is elliptical polarization: both transverse components are retained with a stable relative phase, with linear and circular polarization as limiting cases. Unpolarized and partially polarized light are ensemble or source-window summaries over retained transverse ledgers, not separate single-photon substrate objects. The scalar summary $\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating pro/anti planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
+where $P_{\perp}$ projects transverse to the propagation axis. Linear polarization is then a real transverse-axis state, while circular polarization is a quarter-cycle phase relation between the two transverse axes. The generic coherent case is elliptical polarization: both transverse components are retained with a stable relative phase, with linear and circular polarization as limiting cases. Unpolarized and partially polarized light are ensemble or source-window summaries over retained transverse ledgers, not separate single-photon substrate objects. The scalar summary $\hat{\mathbf k}\cdot\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar$ is allowed only after Gate A, the substrate planar-pair rows, and the event-balance rows pass. The proof burden is to show that the coaxial contra-rotating polarity-conjugate planar pair carries this spin-$1$ transverse ledger and not a scalar, spinor, or longitudinal free mode.
 
 The useful algebraic consequence is an event-window helicity projection lemma. For a finite radiative event window,
 
@@ -91299,7 +91346,7 @@ This bridge leaves several derivations open beyond the partition scaffold above.
 6. Prove or falsify the $SU(2)\to SO(3)$ spinor lift on the spindle braid's locked frame — the non-coplanar chart has no uniaxial image, so the lift question must be posed on the locked triple's retained rows — retaining the ordered non-coplanar nested version as comparison, then test whether the same lifted ordered-frame response extends to an effective $SL(2,\mathbb C)\to SO^+(1,3)$ spinor compatibility map in the recovered relativistic observer sector.
 7. Evaluate the Master-Equation apparatus branch-sum impulse rate $d\mathbf J_{C}^{\text{app}}/dT$ and record-cycle phase density $d\nu_{\text{rec}}$ for a minimal Noether braid apparatus simulation, and test when they reduce to the ideal $\Sigma_{\hat{\mathbf{m}}}^{\text{SG,red}}$ chart with uniform record phase.
 8. Derive the effective spinor coordinate and substrate preparation measures $\mu_{\alpha}$ whose pushforward into the reduced spinor-record chart gives the computed spin-$\tfrac{1}{2}$ half-angle law.
-9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating pro/anti planar pair.
+9. Recover photon helicity $\pm1$, exactly two physical transverse photon modes, the material analyzer projector, the analyzer return-map measure $d\nu_{\hat{\mathbf a}}$, the uniform pass-threshold pushforward for $\eta_{\hat{\mathbf a}}$, the sequential analyzer relocking map, Malus' law, and no-signaling polarization statistics from the coaxial contra-rotating polarity-conjugate planar pair.
 10. Separate photon helicity closure from massive vector-boson spin closure.
 11. Derive integer phase-winding closure for nested shell braid energy levels by computing the admissible ledgers $(k_I,k_M,k_O,\mathcal R)$ and their allowed changes under $\Delta A_{\text{cycle}}=h$ transactions.
 12. Derive the effective far-zone causal-wake envelope of an integer-closed nested shell braid and decompose its angular content into recovery coefficients that can be compared with spherical-harmonic orbital modes.
@@ -94079,7 +94126,7 @@ then the bridge fails. The theory must not tune the ruler, clock, momentum, and 
 
 Return-Cycle Lorentz Quantization is a derivation and simulation target, not a completed theorem. The corpus has the closed-return axis-ratio derivation, the geometry projection, and the all-layer branch ledger scaffold. The next closure step is to solve an explicit translating branch family from the master delayed law, extract $\mathcal{L}_{\mathrm{root}}^{(q)}(v)$, and verify that the same branch gives the clock factor, ruler factor, and two-way leakage bound.
 
-A seed-grade release of a translating rigid family gives partial confirmation of that step at small drift. The moving envelope's relative flattening tracks the ruler law, $\xi(v)/\xi(0)\to1/\gamma_\star$, agreeing within about two parts in a thousand at $v=0.2\,c_\star$; the internal cadence dilates as $\omega(v)=\omega_0/\gamma_\star$; and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. The open remainder is confirmation across the full drift range together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
+That step has no confirmation from evolved dynamics. What the translating rigid family supplies is exact algebra rather than a measured trajectory: the speed budget and internal cadence relation $\omega(v)=\omega_0/\gamma_\star$ follow from the family's own kinematics, and the leg-difference simultaneity offset is exactly zero at rest and grows with drift in step with the $v\gamma_\star^2$ prediction. That the moving envelope's relative flattening actually tracks the ruler law $\xi(v)/\xi(0)\to1/\gamma_\star$ is a prediction of that algebra, and remains a target: it requires the family to be evolved under the delayed force law and its settled envelope measured. The open remainder is therefore confirmation at any drift speed, then across the full drift range, together with the joint clock-ruler-leakage solve on a retained branch. At larger drift the moving assembly's axis orientation must be held by its medium rather than by the isolated assembly, a burden carried by the Noether sea response; the small-drift regime is where the assembly's own structure suffices.
 
 If that step succeeds, the result is more than a Lorentz derivation. It is a controlled bridge between special relativity, one-$h$ action increments, and Noether braid geometry.
 
@@ -95279,7 +95326,7 @@ The conjectural weak-provenance material below is an illustration of what a futu
 - **Goal:** build a ledger to track weak transmutation events, ensuring charge, shielding, corridor payload, Noether braid sourcing, and architrino counts close. Mark allowed vs. unseen channels and why.
 - **Forward axial sites:** weak-coupling triad = forward three poles (IMO by radius or H/M/L energy ordering), with pro vs anti set by precession order (HML vs HLM → matter/antimatter).
 - **Environmental partners:**
-  - Photon: a coaxial contra-rotating pro/anti planar pair.
+  - Photon: a coaxial contra-rotating polarity-conjugate planar pair.
   - Noether sea: hypothesized as paired pro/anti Noether braids; a local interaction could draw neutral braid content to participate while preserving recorded provenance.
 - **Architrino budget example:** reacting with a Noether sea super-assembly (4 braids) × (6 architrinos/braid) = 24 architrinos (12 pro, 12 anti) available transiently. This allows ephemeral W/Z corridors and other products to form while conserving counts.
 - **Capability target:** a mature reaction ledger would state the corridor provenance stance, participating braids/architrinos, candidate products, and forbidden outcomes with reasons such as shielding mismatch, insufficient flux-tube closure, or unmet charge quantization.
@@ -95319,7 +95366,7 @@ Notes:
 - Any spare axial architrinos must close through one of the following channels:
   - **Product incorporation:** absorbed into a final-state assembly while preserving charge/polarity bookkeeping.
   - **Current carriage:** carried out on charged lepton/neutrino legs as part of the weak-current flow.
-  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short photon modes modeled as coaxial contra-rotating pro/anti planar pairs while all participating identities remain in the ledger.
+  - **Immediate neutral relock:** paired with opposite-polarity architrinos drawn from the Sea, routing energy into short photon modes modeled as coaxial contra-rotating polarity-conjugate planar pairs while all participating identities remain in the ledger.
 - Practical rule for simulations: treat a true long-range "escape" channel as forbidden unless a dedicated high-resolution run demonstrates otherwise.
 
 Decision cues to log in simulations: initial separation, relative phase, and local Noether braid density. The selected dominant channel must record energy and charge routing.
@@ -100344,7 +100391,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Core non-closure.** Wave-particle language still mixes ontology with measurement vocabulary. A deeper theory must explain source, propagation, polarization, and detector response without treating the photon as a tiny classical bead or as a purely formal state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The canonical candidate ontology is a coaxial contra-rotating pro/anti planar pair, with channel details still under closure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The canonical candidate ontology is a coaxial contra-rotating polarity-conjugate planar pair, with channel details still under closure.
 
 **Resolution tests.** Use double-slit/Mach-Zehnder, single-photon detection, Malus' law, blackbody spectra, atomic spectra, synchrotron/bremsstrahlung, and QED correction benchmarks. The source mechanism must remain separate from the carrier/channel family.
 
@@ -100450,9 +100497,9 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 Standard repairs include Dirac masses with tiny Yukawas, Majorana masses with seesaw structure, radiative mass models, and sterile-neutrino extensions. These organize the parameter space, but none has decisive experimental confirmation.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Neutrinos are treated as near-photon neutral pro/anti Noether braid pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes over propagation history.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Neutrinos are treated as near-photon neutral polarity-conjugate Noether braid pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes over propagation history.
 
-**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, neutrinos are currently treated as near-photon neutral pro/anti Noether braid pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes, not as a stable six-site axial inventory flipping among charged-fermion configurations. The current architecture therefore keeps the Dirac/Majorana question open at the empirical gate: a confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel, while null results tighten that channel without proving the current Dirac-like geometry. A sterile or right-handed branch remains optional rather than part of the minimal architecture.
+**Detailed architecture route.** In $\mathbb{A}\mathbb{A}\mathbb{A}$, neutrinos are currently treated as near-photon neutral polarity-conjugate Noether braid pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes, not as a stable six-site axial inventory flipping among charged-fermion configurations. The current architecture therefore keeps the Dirac/Majorana question open at the empirical gate: a confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel, while null results tighten that channel without proving the current Dirac-like geometry. A sterile or right-handed branch remains optional rather than part of the minimal architecture.
 
 **Resolution tests.** Use solar, atmospheric, reactor, accelerator, beta-decay endpoint, neutrinoless double-beta, cosmological mass-sum, short-baseline data, and long-baseline CP searches. A confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel; null results tighten that channel without proving the current geometry.
 
@@ -100480,7 +100527,7 @@ Standard repairs include electroweak baryogenesis, leptogenesis, Affleck-Dine sc
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route is event provenance, branch chirality, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. Matter dominance should be treated as a Noether sea chiral-bias closure target, not as a primitive shortage of one architrino polarity. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent baryonic assemblies, while pro-oriented assemblies stabilize through layered neutral axes.
 
-**Detailed architecture route.** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ route treats baryon asymmetry as a Noether sea chiral-bias closure target. The required mechanism would be an orientation-dependent difference in how pro-aligned and anti-aligned Noether braid assemblies couple to the ambient Noether sea state, not a primitive shortage of one architrino polarity. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent protons or neutrons, while pro-oriented assemblies would have to stabilize through layered neutral axes. Such a mechanism could supply the effective baryon-number bias required by Sakharov's conditions only if it quantitatively reproduces the baryon-to-photon ratio and remains compatible with CP-violation, neutrino, and electric-dipole-moment bounds. The photon is treated as a coaxial contra-rotating pro/anti planar pair, which constrains whether radiation mediates net polarity leakage between clusters.
+**Detailed architecture route.** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ route treats baryon asymmetry as a Noether sea chiral-bias closure target. The required mechanism would be an orientation-dependent difference in how pro-aligned and anti-aligned Noether braid assemblies couple to the ambient Noether sea state, not a primitive shortage of one architrino polarity. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent protons or neutrons, while pro-oriented assemblies would have to stabilize through layered neutral axes. Such a mechanism could supply the effective baryon-number bias required by Sakharov's conditions only if it quantitatively reproduces the baryon-to-photon ratio and remains compatible with CP-violation, neutrino, and electric-dipole-moment bounds. The photon is treated as a coaxial contra-rotating polarity-conjugate planar pair, which constrains whether radiation mediates net polarity leakage between clusters.
 
 **Resolution tests.** Use CP violation, EDM bounds, baryon/lepton number constraints, neutrino CP phase, early-universe abundance records, and antimatter searches. The resolution standard must remain explicit about which Sakharov-style requirements are recovered, replaced, or reframed.
 

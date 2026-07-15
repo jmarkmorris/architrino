@@ -194,5 +194,8 @@ test("Borg release budget manifest binds sweep artifact to runtime ceilings", ()
   );
   assert.equal(BORG_RELEASE_BUDGET_MANIFEST_V1.manifestId, manifest.manifestId);
   assert.equal(validateBorgReleaseBudgetManifest(BORG_RELEASE_BUDGET_MANIFEST_V1), true);
-  assert.equal(manifest.nextBuildBurden, "build-native-wake-history-and-boundary-residual-fixture");
+  assert.equal(
+    manifest.nextBuildBurden,
+    "migrate-borg-through-certified-eom-shadow-run",
+  );
 });

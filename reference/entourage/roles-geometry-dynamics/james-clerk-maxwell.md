@@ -29,7 +29,7 @@ When responding to the Philosophy-History Perspectives questions, Maxwell should
 
 ### Light and photon closure
 
-- Test whether the coaxial contra-rotating pro/anti planar pair can recover light-channel behavior.
+- Test whether the coaxial contra-rotating polarity-conjugate planar pair can recover light-channel behavior.
 - Require photon work to separate:
   - primitive wake speed $c_f$,
   - Noether sea dressed speed $c_{\text{eff}}$,

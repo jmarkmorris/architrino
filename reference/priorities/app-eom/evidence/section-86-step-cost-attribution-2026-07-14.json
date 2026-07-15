@@ -1,0 +1,86 @@
+{
+  "schema": "eom_section_86_step_cost_attribution/v0",
+  "date": "2026-07-14",
+  "measurement_policy": {
+    "section_97_process": "suspended_with_sigstop_then_resumed_with_sigcont",
+    "section_86_thread_count": 1,
+    "profiler": "macOS sample",
+    "profiler_interval_ms": 10,
+    "profiler_active_worker_samples": 52510,
+    "contention_policy": "serialized_against_the_section_97_campaign"
+  },
+  "fixture": {
+    "cycles": 0.00008288467974693673,
+    "requested_step": 0.0005,
+    "minimum_step": 0.0005,
+    "maximum_step": 0.0005,
+    "chart": "sharp_with_finite_width_fallback",
+    "control": "skipped_diagnostic_only"
+  },
+  "acceptance": {
+    "status": "accepted",
+    "attempted_steps": 1,
+    "accepted_steps": 1,
+    "rejected_steps": 0,
+    "accepted_step_size": 0.0005,
+    "accepted_corrector_substeps": 3,
+    "rejected_corrector_substeps": 0,
+    "accepted_corrector_iterations": 9,
+    "rejected_corrector_iterations": 0,
+    "corrector_iterations_by_substep": [4, 3, 2],
+    "acceleration_snapshots": 14,
+    "middle_self_root_classification": "coincident_endpoint_root_continuation",
+    "maximum_quadrature_cells": 1928
+  },
+  "wall_seconds": {
+    "total": 632.31890875,
+    "all_acceleration_snapshots": 632.313634458,
+    "finite_width_execution_union": 4.500060335,
+    "exact_pair_root_batch": 627.804959666,
+    "retained_history_window": 0.000083958,
+    "retained_history_segment_traversal": 0.003449584,
+    "history_copy_and_hash": 0.004512541,
+    "corrector_inclusive": 581.400232292,
+    "corrector_snapshot_work": 581.395544916,
+    "corrector_exclusive": 0.000174835,
+    "recertification_inclusive": 50.918095417,
+    "rejection": 0.0
+  },
+  "root_cpu_seconds": {
+    "binary64": 1.650610534,
+    "mpfr": 626.152584704,
+    "additional_mpfr_precision_attempts": 445.736570498
+  },
+  "root_attempts": {
+    "mpfr_total": 80,
+    "additional_precision_attempts": 52
+  },
+  "acceleration_precision_escalation": {
+    "attempts": 0,
+    "worker_seconds": 0.0
+  },
+  "fractions_of_total_wall_percent": {
+    "finite_width_execution_union": 0.7116757498,
+    "exact_pair_root_batch": 99.2861277717,
+    "root_binary64_cpu": 0.261040831,
+    "root_mpfr_cpu": 99.0248078998,
+    "retained_history_reconstruction_and_traversal": 0.0012724723,
+    "corrector_inclusive": 91.9473108026,
+    "corrector_exclusive": 0.0000276498,
+    "additional_mpfr_precision_attempts": 70.4923677483,
+    "recertification_inclusive": 8.0525973069
+  },
+  "profiler": {
+    "sample_file": "/tmp/eom-section86-step-attribution.sample.txt",
+    "sample_file_bytes": 56999708,
+    "sample_file_sha256": "ee550805c134708cdfb2f3f39716ffccf21622e1f9d44f80d27663336c01b6bb",
+    "allocation_or_free_top_of_stack_samples": 14132,
+    "allocation_or_free_fraction_of_active_worker_percent": 26.9129689583,
+    "interpretation": "exclusive sampler attribution nested inside the MPFR exact-pair root stage"
+  },
+  "accounting_notes": [
+    "Finite-width, exact-root, retained-history, and exclusive-corrector rows form the primary wall-time attribution; their residual is 0.005667831 seconds.",
+    "Corrector, recertification, precision-escalation, and allocation fractions are nested mechanisms and must not be added to the primary stage fractions.",
+    "The maximum quadrature-cell count is retained as a deterministic-work check, not as a wall-time proxy."
+  ]
+}

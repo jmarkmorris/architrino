@@ -5,6 +5,7 @@
 - Amendment id: `eom_evolution_contract/v0/amendment-1`
 - Applies to: `eom_evolution_contract/v0`
 - Stage: `requirements-frozen`
+- Scheduling: `long-term-scale-goal`
 - Effective date: 2026-07-13
 - Claim level: `priority-design`
 - Implementation status: `not-started`
@@ -14,6 +15,12 @@ This amendment is normative whenever a request declares the million-path scale
 profile. It changes the required population and execution envelope without
 changing the Master Equation, retained-history initial-data type, ordered-pair
 domain, precision contract, or evidence rules of the base contract.
+
+This is an optional long-term conformance profile. It gates only a request,
+result, release, or public capability claim that declares million-path support.
+It does not gate canonical base-contract evolution for bounded populations,
+claims-triage adjudication, the first binary outcome, Borg migration, or another
+consumer whose declared envelope is smaller.
 
 ## Scale Requirement
 
@@ -243,3 +250,6 @@ This amendment does not modify or redirect the existing central solver. It
 does not grant authority to a prototype, prescribed-path app, approximate
 N-body method, or display surface. It raises the scale requirement that the new
 EOM architecture must satisfy before million-path capability may be claimed.
+Failure to satisfy this amendment prohibits only the million-path capability
+claim; it does not invalidate a base-contract run that passes every validation
+applicable to its smaller declared envelope.

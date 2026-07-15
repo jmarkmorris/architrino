@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import mpmath as mp
 import subprocess
 import tempfile
 import unittest
@@ -271,7 +272,9 @@ class NativeAccelerationTests(unittest.TestCase):
         native = self.case("finite-width")
         self.assertEqual(native["status"], "active")
         self.assertEqual(native["chart"], "finite_width")
-        self.assertGreater(native["quadrature_visited_cells"], 1)
+        # Residual-coordinate integration may certify a monotone source
+        # segment without recursively subdividing it.
+        self.assertGreaterEqual(native["quadrature_visited_cells"], 1)
         self.assertEqual(native["rows"][0]["chart"], "finite_width_pair")
         for native_component, oracle_component in zip(
             native["total_acceleration"], oracle.total_acceleration
@@ -295,6 +298,162 @@ class NativeAccelerationTests(unittest.TestCase):
             mpfr_lower, mpfr_upper = native_interval(mpfr_component)
             self.assertLessEqual(binary_lower, mpfr_upper)
             self.assertGreaterEqual(binary_upper, mpfr_lower)
+
+    def test_finite_width_global_budget_avoids_uniform_over_refinement(self) -> None:
+        result = self.case("finite-width-global-budget")
+        self.assertEqual(result["status"], "active")
+        self.assertEqual(result["chart"], "finite_width")
+        self.assertLessEqual(result["quadrature_visited_cells"], 1500)
+        self.assertEqual(
+            result["rows"][0]["acceptance_status"],
+            "consumed_certified_finite_width_pair",
+        )
+
+    def test_analytic_pinned_fold_contains_independent_quadrature(self) -> None:
+        result = self.case("pinned-fold-analytic")
+        self.assertEqual(result["status"], "active")
+        self.assertGreater(result["analytic_fold_visited_cells"], 0)
+        self.assertLess(result["quadrature_visited_cells"], 1000)
+        self.assertEqual(
+            result["rows"][0]["acceleration_precision_route"],
+            "binary64_outward_analytic_pinned_fold_quadrature",
+        )
+
+        with mp.workdps(PRECISION):
+            reception = mp.mpf("0.0024")
+            fold_emission = mp.mpf("-0.04")
+            delay = reception - fold_emission
+            fold_position = (
+                mp.cos(fold_emission) - delay * mp.sin(fold_emission),
+                mp.sin(fold_emission) + delay * mp.cos(fold_emission),
+                mp.mpf("0"),
+            )
+            endpoint_velocity = (
+                -mp.sin(fold_emission),
+                mp.cos(fold_emission),
+                mp.mpf("0"),
+            )
+            start_position = (mp.mpf("1"), mp.mpf("0"), mp.mpf("0"))
+            start_velocity = (mp.mpf("0"), mp.mpf("1"), mp.mpf("0"))
+            coefficients = []
+            for axis in range(3):
+                delta = fold_position[axis] - start_position[axis]
+                coefficients.append(
+                    (
+                        start_position[axis],
+                        start_velocity[axis],
+                        3 * delta / reception**2
+                        - (2 * start_velocity[axis] + endpoint_velocity[axis])
+                        / reception,
+                        -2 * delta / reception**3
+                        + (start_velocity[axis] + endpoint_velocity[axis])
+                        / reception**2,
+                    )
+                )
+
+            def source_position(emission):
+                if emission <= 0:
+                    return (mp.cos(emission), mp.sin(emission), mp.mpf("0"))
+                return tuple(
+                    row[0]
+                    + row[1] * emission
+                    + row[2] * emission**2
+                    + row[3] * emission**3
+                    for row in coefficients
+                )
+
+            eta = mp.mpf("0.2")
+            core = mp.mpf("0.2")
+
+            def component(emission, axis):
+                source = source_position(emission)
+                displacement = tuple(
+                    fold_position[index] - source[index] for index in range(3)
+                )
+                separation = mp.sqrt(sum(value * value for value in displacement))
+                direction = tuple(value / separation for value in displacement)
+                receiver_strength = abs(
+                    1
+                    - sum(
+                        direction[index] * endpoint_velocity[index]
+                        for index in range(3)
+                    )
+                )
+                residual = separation - (reception - emission)
+                mollifier = mp.exp(-(residual**2) / (2 * eta**2)) / (
+                    mp.sqrt(2 * mp.pi) * eta
+                )
+                denominator = (separation**2 + core**2) ** mp.mpf("1.5")
+                return (
+                    receiver_strength
+                    * mollifier
+                    * displacement[axis]
+                    / denominator
+                )
+
+            oracle = [
+                mp.quad(
+                    lambda emission, axis=axis: component(emission, axis),
+                    [-1, fold_emission, 0, reception],
+                )
+                for axis in range(3)
+            ]
+        for native, expected in zip(result["total_acceleration"], oracle):
+            lower, upper = native_interval(native)
+            self.assertLessEqual(lower, Decimal(str(expected)))
+            self.assertGreaterEqual(upper, Decimal(str(expected)))
+
+    def test_cubic_pin_ablation_records_correlation_and_stable_residual_routes(
+        self,
+    ) -> None:
+        independent = self.case("cubic-pin-independent")
+        correlated = self.case("cubic-pin-correlated")
+        stable = self.case("cubic-pin-stable")
+        combined = self.case("cubic-pin-combined")
+        for row in (independent, correlated, stable, combined):
+            self.assertEqual(row["status"], "active", row)
+            self.assertGreater(row["quadrature_visited_cells"], 0)
+
+        self.assertEqual(
+            independent["correlated_self_chord_visited_cells"], 0
+        )
+        self.assertEqual(
+            independent["stable_circular_residual_visited_cells"], 0
+        )
+        self.assertGreater(
+            correlated["correlated_self_chord_visited_cells"], 0
+        )
+        self.assertEqual(
+            correlated["stable_circular_residual_visited_cells"], 0
+        )
+        self.assertEqual(stable["correlated_self_chord_visited_cells"], 0)
+        self.assertGreater(
+            stable["stable_circular_residual_visited_cells"], 0
+        )
+        self.assertGreater(
+            combined["correlated_self_chord_visited_cells"], 0
+        )
+        self.assertGreater(
+            combined["stable_circular_residual_visited_cells"], 0
+        )
+        self.assertLess(
+            correlated["quadrature_visited_cells"],
+            independent["quadrature_visited_cells"],
+        )
+
+        for candidate in (correlated, stable, combined):
+            for baseline_component, candidate_component in zip(
+                independent["total_acceleration"],
+                candidate["total_acceleration"],
+            ):
+                baseline_lower, baseline_upper = native_interval(
+                    baseline_component
+                )
+                candidate_lower, candidate_upper = native_interval(
+                    candidate_component
+                )
+                self.assertLessEqual(baseline_lower, candidate_upper)
+                self.assertGreaterEqual(baseline_upper, candidate_lower)
 
     def test_tangent_routes_to_finite_width_and_resources_fail_closed(self) -> None:
         tangent = self.case("tangent-finite-width")

@@ -156,6 +156,90 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             if row["failure_code"] == failure_code
         )
 
+    def test_checkpoint_roundtrip_is_atomic_tamper_evident_and_continuous(self) -> None:
+        checkpoint = self.packet["checkpoint"]
+        self.assertEqual(
+            checkpoint["schema"], "eom_native_evolution_checkpoint/v3"
+        )
+        self.assertGreater(checkpoint["byte_length"], 0)
+        self.assertEqual(
+            checkpoint["checkpoint_fingerprint"],
+            checkpoint["roundtrip_fingerprint"],
+        )
+        self.assertEqual(
+            checkpoint["checkpoint_fingerprint"],
+            checkpoint["file_roundtrip_fingerprint"],
+        )
+        self.assertTrue(checkpoint["tamper_rejected"])
+        self.assertTrue(checkpoint["circular_certificate_preserved"])
+        self.assertEqual(checkpoint["certificate_cost_cooldown_roundtrip"], 4)
+        self.assertEqual(
+            checkpoint["direct_histories"], checkpoint["resumed_histories"]
+        )
+
+    def test_self_root_entering_through_excluded_coincident_endpoint_is_not_a_fold(self) -> None:
+        certificate = self.packet["endpoint_root_continuation"]
+        self.assertTrue(certificate["certified"], certificate)
+        self.assertEqual(certificate["status"], "certified_complete")
+        self.assertEqual(
+            certificate["classification"],
+            "coincident_endpoint_root_continuation",
+        )
+        self.assertEqual(certificate["start_root_count"], 0)
+        self.assertEqual(certificate["end_root_count"], 1)
+        self.assertEqual(certificate["boundary_branch_sign"], 1)
+
+    def test_cubic_tangency_departure_is_endpoint_continuation_not_fold(
+        self,
+    ) -> None:
+        certificate = self.packet["cubic_endpoint_root_continuation"]
+        self.assertTrue(certificate["certified"], certificate)
+        self.assertEqual(
+            certificate["classification"],
+            "coincident_endpoint_root_continuation",
+        )
+        self.assertEqual(certificate["start_root_count"], 0)
+        self.assertEqual(certificate["end_root_count"], 1)
+        self.assertEqual(certificate["boundary_branch_sign"], 1)
+        self.assertTrue(certificate["epsilon_1e_6_root"])
+        self.assertTrue(certificate["epsilon_1e_4_root"])
+        delay_1e6 = 0.5 * (
+            certificate["epsilon_1e_6_delay_lower"]
+            + certificate["epsilon_1e_6_delay_upper"]
+        )
+        delay_1e4 = 0.5 * (
+            certificate["epsilon_1e_4_delay_lower"]
+            + certificate["epsilon_1e_4_delay_upper"]
+        )
+        self.assertGreater(delay_1e6, 1e-3)
+        self.assertLess(delay_1e6, 1e-2)
+        self.assertGreater(delay_1e4, 1e-2)
+        self.assertLess(delay_1e4, 1e-1)
+        self.assertGreater(delay_1e4, 5.0 * delay_1e6)
+
+    def test_pinned_fold_temporal_step_is_provenance_gated(self) -> None:
+        certificates = self.packet["pinned_fold_temporal_onset"]
+        self.assertEqual(len(certificates), 1)
+        self.assertEqual({row["path_id"] for row in certificates}, {"p"})
+        for certificate in certificates:
+            self.assertEqual(certificate["status"], "certified_complete")
+            self.assertEqual(certificate["onset_time"], "0")
+            self.assertEqual(certificate["tangential_speed"], "1")
+            self.assertEqual(certificate["field_speed"], "1")
+            self.assertEqual(certificate["start_root_status"], "certified_complete")
+            self.assertEqual(certificate["start_root_count"], 0)
+            self.assertTrue(certificate["start_root_free_complement"])
+            self.assertTrue(certificate["memory_boundary_clear"])
+            self.assertTrue(certificate["coincident_endpoint_excluded"])
+            self.assertEqual(certificate["start_acceleration_chart"], "sharp")
+            self.assertEqual(
+                certificate["temporal_rule"],
+                "right_endpoint_acceleration_on_measure_zero_onset",
+            )
+        self.assertEqual(
+            self.packet["pinned_fold_temporal_onset_disabled"], []
+        )
+
     def test_static_and_superfield_inertial_histories_match_oracle(self) -> None:
         cases = (
             (
@@ -226,6 +310,33 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         self.assertEqual(native["accepted_step_count"], 1)
         self.assertEqual(native["steps"][0]["substep_count"], 3)
         self.assertEqual(native["steps"][0]["accepted_ordered_pairs"], 4)
+        self.assertEqual(native["steps"][0]["reused_start_snapshot_count"], 2)
+        self.assertEqual(
+            native["steps"][0]["history_window_status"], "certified_complete"
+        )
+        self.assertGreater(
+            Decimal(str(native["steps"][0]["history_window_active_lower"])),
+            Decimal(str(native["steps"][0]["history_window_original_lower"])),
+        )
+        self.assertGreater(
+            Decimal(str(native["steps"][0]["history_window_excluded_duration"])),
+            0,
+        )
+        self.assertLess(native["steps"][0]["history_window_residual_upper"], 0)
+        disabled = self.evolution("binary-history-window-disabled")
+        self.assertEqual(
+            disabled["steps"][0]["history_window_status"], "not_applied"
+        )
+        self.assertEqual(native["histories"], disabled["histories"])
+        self.assertEqual(
+            native["steps"][0]["pair_selection_route"],
+            "certified_moving_history_traversal",
+        )
+        self.assertEqual(
+            native["steps"][0]["traversal_excluded_pairs"]
+            + native["steps"][0]["traversal_exact_pairs"],
+            4,
+        )
         self.assertTrue(all(value > 0 for value in native["steps"][0]["correction_iterations"]))
         oracle_histories = dict(oracle.histories)
         native_histories = {row["path_id"]: row for row in native["histories"]}
@@ -237,6 +348,21 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
             assert_contains(self, native_histories[path_id]["velocity"][0], velocity[0])
         self.assertGreater(interval_bounds(native_histories["a"]["position"][0])[1], 0)
         self.assertLess(interval_bounds(native_histories["b"]["position"][0])[0], 2)
+
+    def test_coupled_snapshot_consumes_certified_traversal_exclusions(self) -> None:
+        native = self.evolution("traversal-exclusion-coupled-step")
+        self.assertEqual(
+            native["steps"][0]["history_window_status"], "not_applied"
+        )
+        self.assertEqual(native["status"], "completed")
+        step = native["steps"][0]
+        self.assertEqual(
+            step["pair_selection_route"],
+            "certified_moving_history_traversal",
+        )
+        self.assertEqual(step["accepted_ordered_pairs"], 4)
+        self.assertEqual(step["traversal_excluded_pairs"], 2)
+        self.assertEqual(step["traversal_exact_pairs"], 2)
 
     def test_rejections_publish_exactly_the_input_histories(self) -> None:
         for failure_code in (
@@ -253,6 +379,12 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
                     rejection["input_fingerprints"],
                     rejection["published_fingerprints"],
                 )
+        memory = self.rejection("insufficient_history_depth")
+        self.assertEqual(memory["history_window_status"], "not_applied")
+        self.assertEqual(
+            memory["history_window_active_lower"],
+            memory["history_window_original_lower"],
+        )
 
     def test_fold_event_is_accepted_only_with_certified_finite_impulse(self) -> None:
         accepted = self.packet["event_acceptance"]
@@ -371,11 +503,105 @@ class NativeCoupledEvolutionTests(unittest.TestCase):
         )
         self.assertLess(attempted_width, Decimal("0.05"))
 
+    def test_adaptive_controller_recovers_step_and_reuses_accepted_snapshot(self) -> None:
+        growth = self.evolution("static-adaptive-growth")
+        self.assertEqual(growth["status"], "completed")
+        self.assertEqual(growth["rejected_step_count"], 0)
+        widths = [
+            Decimal(step["attempted_end"]) - Decimal(step["attempted_start"])
+            for step in growth["steps"]
+        ]
+        expected_widths = [
+            Decimal("0.01"),
+            Decimal("0.01"),
+            Decimal("0.02"),
+            Decimal("0.02"),
+            Decimal("0.02"),
+        ]
+        for actual, expected in zip(widths, expected_widths, strict=True):
+            self.assertLessEqual(abs(actual - expected), Decimal("1e-15"))
+        self.assertEqual(growth["steps"][0]["reused_start_snapshot_count"], 2)
+        self.assertTrue(
+            all(
+                step["reused_start_snapshot_count"] == 3
+                for step in growth["steps"][1:]
+            )
+        )
+
+    def test_continuous_adaptive_controller_uses_bounded_error_scaled_steps(
+        self,
+    ) -> None:
+        adaptive = self.evolution("static-continuous-adaptive")
+        self.assertEqual(adaptive["status"], "completed")
+        self.assertEqual(adaptive["rejected_step_count"], 0)
+        widths = [
+            Decimal(step["attempted_end"]) - Decimal(step["attempted_start"])
+            for step in adaptive["steps"]
+        ]
+        expected_widths = [
+            Decimal("0.01"),
+            Decimal("0.02"),
+            Decimal("0.04"),
+            Decimal("0.01"),
+        ]
+        self.assertEqual(len(widths), len(expected_widths))
+        for actual, expected in zip(widths, expected_widths, strict=True):
+            self.assertLessEqual(abs(actual - expected), Decimal("1e-15"))
+        self.assertTrue(adaptive["all_steps_atomic"])
+
+    def test_synchronized_multirate_publishes_coarse_slow_path_atomically(
+        self,
+    ) -> None:
+        multirate = self.evolution("static-synchronized-multirate")
+        baseline = self.evolution("static-multistep")
+        self.assertEqual(multirate["status"], "completed")
+        self.assertEqual(multirate["rejected_step_count"], 0)
+        self.assertTrue(multirate["all_steps_atomic"])
+        self.assertTrue(
+            all(
+                step["multirate_coarse_path_count"] == 1
+                for step in multirate["steps"]
+            )
+        )
+        self.assertLess(
+            multirate["histories"][0]["segment_count"],
+            baseline["histories"][0]["segment_count"],
+        )
+
+    def test_certificate_cost_feedback_adjusts_before_mpfr_once(self) -> None:
+        evolution = self.evolution("static-certificate-cost-feedback")
+        self.assertEqual(evolution["status"], "halted")
+        self.assertEqual(
+            evolution["halt_code"], "diagnostic_accepted_step_limit_reached"
+        )
+        self.assertEqual(evolution["accepted_step_count"], 1)
+        self.assertEqual(evolution["rejected_step_count"], 1)
+        deferred, accepted = evolution["steps"]
+        self.assertEqual(deferred["status"], "rejected")
+        self.assertEqual(
+            deferred["failure_code"],
+            "root_precision_escalation_deferred_for_cost_feedback",
+        )
+        self.assertTrue(deferred["certificate_cost_probe"])
+        self.assertGreater(deferred["certificate_cost_deferred_pair_count"], 0)
+        self.assertEqual(deferred["certificate_cost_mpfr_attempt_count"], 0)
+        self.assertEqual(accepted["status"], "accepted")
+        self.assertFalse(accepted["certificate_cost_probe"])
+        self.assertGreater(accepted["certificate_cost_mpfr_attempt_count"], 0)
+        self.assertEqual(accepted["certificate_cost_cooldown_remaining"], 4)
+        self.assertEqual(
+            evolution["controller_certificate_cost_cooldown_remaining"], 4
+        )
+        accepted_width = Decimal(accepted["attempted_end"]) - Decimal(
+            accepted["attempted_start"]
+        )
+        self.assertLessEqual(abs(accepted_width - Decimal("0.005")), Decimal("1e-15"))
+
     def test_future_history_input_is_rejected_and_replay_is_deterministic(self) -> None:
         self.assertTrue(self.packet["future_history_rejected"])
         self.assertEqual(
             self.packet["integration_method"],
-            "coupled_cubic_corrector_with_step_doubling/v0",
+            "coupled_cubic_corrector_with_pinned_fold_onset/v1",
         )
         self.assertEqual(self.packet, self._run_fixture())
 

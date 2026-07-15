@@ -83,14 +83,14 @@ In this section, color is defined on the ordered axial frame $\{D_H,D_M,D_L\}$, 
 
 
 
-### Braid orientation: matter vs antimatter
+### Braid orientation and matter/antimatter conjugation
 
-Beyond which binaries are present, their **precession order** defines a braid orientation:
+Beyond which binaries are present, their **precession order** defines a pro/anti braid orientation:
 
-- **Matter** nested shell braid branch: precession order $H \to M \to L$ in time (one chirality).
-- **Antimatter** nested shell braid branch: precession order $H \to L \to M$ (opposite chirality).
+- **Pro orientation:** precession order $H \to M \to L$ in time.
+- **Anti orientation:** precession order $H \to L \to M$ in time.
 
-This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). This **braid chirality** underpins the distinction between particles and antiparticles across all sectors and feeds into CP-related questions. Here, we keep **color** as a vector-like degree of freedom: it does **not** depend on braid chirality.
+This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
 
 
 
@@ -129,12 +129,12 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar polarity-conjugate Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 
 - The neutrino has no stable quark-like axial layer on which one H, M, or L axis can become exceptional.
-- Its pro/anti pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
+- Its polarity-conjugate pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
 - The balanced $3\epsilon_+,3\epsilon_-$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
 Older neutral-axis patterns such as
@@ -558,7 +558,7 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 ## Summary and Interfaces
 
 - A **nested shell braid** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
-- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
+- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
   - Up‑type: two positive-polarity dyads, one mixed dyad.
   - Down‑type: either two negative-polarity dyads with one positive-polarity dyad, or two mixed dyads with one negative-polarity dyad.

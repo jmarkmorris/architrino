@@ -153,7 +153,13 @@ and deterministic replay. Evidence is recorded in
 This is a correctness packet, not a throughput claim. Native acceleration now
 includes the bound finite-width causal-surface integral, a tangent recovery
 control, and caller-bounded MPFR directed-interval replay for difficult
-finite-width rows. Sharp-row and receiver-reduction MPFR replay remain open.
+finite-width rows. Binary64 finite-width integration budgets uncertainty on
+the globally summed interval integral, refines the active time cell with the
+largest enclosure-width contribution, and checks the deterministic reduction
+at a population-proportional cadence. This preserves the caller's global
+tolerance and fail-closed resource caps without uniform over-refinement or
+quadratic repeated summation. Sharp-row and receiver-reduction MPFR replay
+remain open.
 
 ## Native Coupled Retained-History Evolution Packet
 
@@ -218,6 +224,27 @@ high-throughput production integrator, durable transaction/checkpoint layer,
 MPFR sharp-row/reduction replay, split-time representation, or many-orders
 multirate scheduler. The finite ladder certifies the declared regulator
 envelope; it does not prove an analytic sharp limit.
+
+## Native Traversal, Checkpoint, And Borg Shadow Measurement
+
+The next C++ packet adds hierarchical moving-history traversal, disjoint
+compact pair coverage, bounded exact fallback, and single-host atomic
+checkpoint/restart. These components pass their focused controls but are not
+yet connected: coupled acceleration snapshots still use exhaustive $N^2$
+pair reconstruction.
+
+The first native Borg shadow measurement imported all 16 continuous histories
+and evolved `[300,300.01]`. Supplying the full `[0,300]` history exceeded a
+180-second process budget. A cube-geometry causal bound reduced retained depth
+to `60.6217782649107`; the accepted coarse-tolerance shadow step then took
+`48.360968208` seconds. Tighter requests failed atomically, ultimately
+isolating ordered pair `1015<-1010` as unresolved at root tolerance `1e-4`.
+
+This measurement establishes a working end-to-end route and a concrete
+performance/numeric blocker. It does not pass convergence, interactive
+latency, production ABI, or migration gates. Detailed attempts and authority
+limits are recorded in
+[eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json](evidence/eom-native-traversal-checkpoint-borg-shadow-apple-m3-2026-07-13.json).
 
 ## Measured Local Results
 
@@ -293,6 +320,86 @@ One 320-byte output segment for $10^6$ paths is 320 MB. Even when the hot
 history fits, output, checkpoints, ledgers, indices, exact fallback, and
 precision-escalation buffers cannot be treated as one inline response. The
 content-addressed streamed-manifest design remains mandatory.
+
+## Borg Production-Readiness Control
+
+The 2026-07-13 Borg control connected the moving-history traversal to coupled
+acceleration snapshots, reused one persistent native worker for four atomic
+requests, and exposed population, requested-duration, Stop, Restart, and
+progress controls in the Borg shadow surface. A strict one-path refinement
+ladder over `0.01` accepted time used steps `0.01`, `0.005`, and `0.0025` at
+root tolerance `1e-8`. Its maximum endpoint state delta was about `2.84e-14`,
+and the one-thread and four-thread `0.0025` histories were byte identical.
+
+This control is not the Borg acceptance gate. It covers one of sixteen Borg
+histories and begins from imported central-solver compatibility history. The
+follow-up 16-history attempt failed closed for steps `0.01`, `0.005`, and
+`0.0025`: all 240 off-diagonal ordered pairs reached
+`numeric_precision_limit_exhausted` on every row. The four-thread `0.0025`
+attempt reduced wall time from about `54.0` seconds to `21.7` seconds but did
+not change the certified outcome.
+Traversal exclusions are also expanded into zero-root rows for the current
+deterministic receiver reducer, so the control does not demonstrate compressed
+million-path reduction. Full-population precision closure, native history
+ownership, representative accepted-step throughput, accelerator difficult-row
+return, and distributed-history execution remain required. Evidence:
+[eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json](evidence/eom-borg-ui-persistent-traversal-refinement-apple-m3-2026-07-13.json).
+
+## Exact-V5 Pinned-Fold Benchmark
+
+The analytic pinned-fold route certifies the same Gaussian finite-width
+master-equation integral; it does not replace the fold by a sharp root or an
+impulse. Eligibility requires a self-pair, a factory-certified circular
+prefix, and equality of the certified tangential speed with $c_f$. On each
+eligible time cell, Taylor's theorem encloses the causal residual through
+second order, preserving the cancellation at the fold, and the vector
+integral uses
+
+$$
+\int_I A(\tau)\,d\tau
+=|I|A(m_I)+R_I,
+\qquad
+|R_I|\le \sup_{\tau\in I}|A'(\tau)|\frac{|I|^2}{4}.
+$$
+
+A synthetic exact fold at $(T,\tau_c)=(0.0024,-0.04)$ is enclosed component by
+component by an independent 90-digit quadrature. It requires 563 analytic
+cells versus 21,337 on the unchanged legacy route, a $37.9\times$ reduction.
+On the exact-V5 first fold-crossing step, the maximum pair cost falls from
+193,338 to 1,928 cells, a $100.3\times$ reduction. The full atomic step falls
+from 35.72 s to 28.50 s, only a $1.25\times$ wall-time improvement because
+exact-root work and coupled correction now dominate.
+
+The analytic integral alone did not remove the §86 feasibility wall. The
+legacy full-step/two-half-step estimator sampled the sharp-chart acceleration
+at the exact onset while every positive reception time used the finite-width
+fold chart. Its velocity error therefore scaled as first order under step
+halving, with observed orders $0.991$, $0.996$, and $0.998$. Evidence:
+[eom-analytic-pinned-fold-apple-m3-2026-07-14.json](evidence/eom-analytic-pinned-fold-apple-m3-2026-07-14.json).
+
+The pinned-fold-aware temporal step removes that measure-zero endpoint from
+the positive-duration acceleration integral. Eligibility is provenance-bound
+to the exact circular $v=c_f$ self endpoint, complete root-free open search,
+coincident-endpoint exclusion, clear memory boundary, sharp start chart, and
+enabled analytic fold route. It applies an implicit right-endpoint
+acceleration only to eligible paths; arbitrary histories and all later steps
+retain the normal cubic corrector. The master equation, root topology, atomic
+publication, and tolerances are unchanged.
+
+Across $\Delta t=10^{-3}$ through $6.25\times10^{-5}$, the corrected velocity
+error approaches second order with observed orders $1.29$, $1.63$, $1.79$,
+and $1.89$; position error approaches third order. The exact V5 onset accepts
+$5\times10^{-4}$, $26.5\times$ the former accepted step. After onset the
+controller accepts $10^{-3}$ with velocity error $2.71\times10^{-7}$ and zero
+uncertified roots. The dominant collapse was therefore an estimator artifact,
+not genuine stiffness at the former $1.89\times10^{-5}$ scale.
+
+The §86 ladder is still not practical. The measured post-onset cost is about
+43.7 s per accepted step, dominated by exact-root and coupled-correction
+snapshots. Holding the demonstrated $10^{-3}$ step gives about 6,032 steps or
+3.05 days per braid cycle, before the convergence and perturbation ladders.
+Evidence:
+[eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json](evidence/eom-pinned-fold-temporal-step-apple-m3-2026-07-14.json).
 
 ## Architecture Survey Disposition
 

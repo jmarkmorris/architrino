@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 
 import {
@@ -7,6 +8,14 @@ import {
   BORG_DATASET_MANIFEST_V1,
   validateBorgFixtureSnapshot,
 } from "../src/apps/borg/BorgFixtureData.js";
+import {
+  loadBorgFixtureTrajectory,
+  loadBorgFixtureTrajectoryFrames,
+} from "../src/apps/borg/BorgFixtureTrajectory.js";
+import {
+  createBorgDefaultSolverWasmBaseUrl,
+  createBorgDefaultSolverWasmLoaderUrl,
+} from "../src/apps/borg/BorgSolverBridgeOptions.js";
 import {
   BORG_DYNAMIC_NATIVE_RUN_SOURCE,
   BORG_DYNAMIC_NATIVE_RUNNER_VERSION,
@@ -16,7 +25,7 @@ import {
 } from "../src/apps/borg/BorgDynamicNativeRunner.js";
 
 const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
-const NEXT_MASTER_EQUATION_BURDEN = "build-native-wake-history-and-boundary-residual-fixture";
+const NEXT_MASTER_EQUATION_BURDEN = "migrate-borg-through-certified-eom-shadow-run";
 const ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES = new Set([
   "ok",
   "native_capability_missing",
@@ -33,7 +42,7 @@ const ALLOWED_MASTER_EQUATION_FAILURE_CODES = new Set([
   "native_master_equation_solver_pending",
 ]);
 
-test("Borg fixture is a native fixed-parameter master-equation run, not tuned visual pair dynamics", () => {
+test("Borg fixture preserves central-solver output with explicit non-EOM provenance", () => {
   validateBorgFixtureSnapshot({
     manifest: BORG_DATASET_MANIFEST_V1,
     surfaceDesign: BORG_APP_SURFACE_DESIGN_V1,
@@ -58,8 +67,8 @@ test("Borg fixture is a native fixed-parameter master-equation run, not tuned vi
     true,
   );
   assert.equal(source.masterEquationFallbackDecision, "native-master-equation-selected");
-  assert.equal(source.canonicalEomEvidence, true);
-  assert.equal(source.eomEvidenceStatus, "native_master_equation_fixed_parameter_evidence");
+  assert.equal(source.canonicalEomEvidence, false);
+  assert.equal(source.eomEvidenceStatus, "non_eom_compatibility_output");
   assert.equal(source.nextSolverBurden, NEXT_MASTER_EQUATION_BURDEN);
 
   const probe = manifest.nativeMasterEquationProbe;
@@ -71,13 +80,112 @@ test("Borg fixture is a native fixed-parameter master-equation run, not tuned vi
   assert.equal(probe.fallbackDecision, "native-master-equation-selected");
   assert.equal(probe.fallbackRunKind, null);
   assert.equal(probe.valueAuthority, "authoritative-solver-output");
+  assert.equal(probe.canonicalEomEvidence, false);
+  assert.equal(probe.eomEvidenceStatus, "non_eom_compatibility_output");
 });
 
-test("Borg native master-equation frame data carries non-linear path evidence", () => {
-  const maxDeviation = maxNativeFrameDeviationFromPathLine(BORG_DATASET_MANIFEST_V1.currentStateFrames);
+test("Borg native master-equation frame data carries non-linear path evidence", async () => {
+  // The curvature evidence lives in the recorded trajectory asset, which the
+  // browser no longer parses on first paint. The rows are unchanged.
+  const trajectoryFrames = await loadBorgFixtureTrajectoryFrames();
+  const maxDeviation = maxNativeFrameDeviationFromPathLine(trajectoryFrames);
   assert.ok(
     maxDeviation > 1,
     `native fixed-parameter master-equation paths must show solver-owned curvature; max deviation ${maxDeviation}`,
+  );
+});
+
+test("Borg fixture trajectory record matches the manifest that describes it", async () => {
+  const trajectory = await loadBorgFixtureTrajectory();
+  const record = BORG_DATASET_MANIFEST_V1.trajectoryRecord;
+
+  assert.equal(trajectory.schema, "borg-fixture-trajectory.v1");
+  assert.equal(trajectory.currentStateFrames.length, record.frameCount);
+  assert.equal(trajectory.currentStateFrames.length, BORG_DATASET_MANIFEST_V1.sourceBridgeRun.frameCount);
+  assert.equal(trajectory.trajectoryFrameIds.length, record.trajectoryFrameIdCount);
+  assert.equal(trajectory.historyEndTime, record.historyEndTime);
+
+  // The seed rows the browser does parse must be the frameIndex-0 slice of the
+  // record, not a separately maintained copy that could drift from it.
+  assert.deepEqual(
+    BORG_DATASET_MANIFEST_V1.currentStateFrames,
+    trajectory.currentStateFrames.filter((row) => Number(row.frameIndex) === 0),
+  );
+  assert.equal(BORG_DATASET_MANIFEST_V1.currentStateFrames.length, record.seedFrameCount);
+
+  // The record carries the same evidence grade as the run that produced it.
+  // Central-solver output is not canonical EOM evidence.
+  assert.equal(trajectory.canonicalEomEvidence, false);
+  assert.equal(record.canonicalEomEvidence, false);
+  assert.equal(trajectory.eomEvidenceStatus, "non_eom_compatibility_output");
+});
+
+test("Borg first paint does not parse the recorded trajectory", () => {
+  const fixtureSource = readFileSync(
+    new URL("../src/apps/borg/BorgFixtureData.js", import.meta.url),
+    "utf8",
+  );
+  // The whole point of the split: the module the browser blocks on must stay
+  // small. It previously carried 24k inline frame rows at ~11 MB.
+  assert.ok(
+    fixtureSource.length < 512 * 1024,
+    `BorgFixtureData.js is ${fixtureSource.length} bytes; the trajectory belongs in its own asset`,
+  );
+  assert.equal(BORG_DATASET_MANIFEST_V1.currentStateAndFrameSources.trajectoryFrameIds, undefined);
+});
+
+test("Borg run-request metadata satisfies the solver-app-bridge contract enums", async () => {
+  // A fake solver client accepts whatever the app sends, so asserting the
+  // request against the app's own vocabulary proves only that the app agrees
+  // with itself. This checks the request against the published contract
+  // schema, which is authored separately from the runner.
+  const schema = JSON.parse(
+    readFileSync(
+      new URL("../src/contracts/solver-app-bridge/v1/schema.json", import.meta.url),
+      "utf8",
+    ),
+  );
+  const allowedValueAuthority = schema.$defs.valueAuthorityId.enum;
+
+  const requests = [];
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    initialFrameRows: BORG_DATASET_MANIFEST_V1.currentStateFrames,
+    targetDuration: 0.4,
+    chunkDuration: 0.4,
+    solverClient: {
+      async runSimulation(request) {
+        requests.push(request);
+        return { status: { code: "ok" }, frames: [], summary: {}, diagnostics: [] };
+      },
+    },
+  });
+  await runner.computeNextChunk().catch(() => {});
+
+  const metadata = requests[0].config.metadata;
+  assert.ok(
+    allowedValueAuthority.includes(metadata.valueAuthority),
+    `metadata.valueAuthority ${JSON.stringify(metadata.valueAuthority)} is not in the contract enum ${JSON.stringify(allowedValueAuthority)}`,
+  );
+  assert.ok(
+    allowedValueAuthority.includes(metadata.appBufferAuthority),
+    `metadata.appBufferAuthority ${JSON.stringify(metadata.appBufferAuthority)} is not in the contract enum ${JSON.stringify(allowedValueAuthority)}`,
+  );
+});
+
+test("Borg solver WASM loader points at deployed artifacts, not the build directory", () => {
+  // .tmp/ is gitignored, so a loader pointed there resolves in a local dev
+  // checkout and 404s on the published site, where the app silently falls back
+  // to replaying a recording instead of computing.
+  const loaderUrl = createBorgDefaultSolverWasmLoaderUrl();
+  const baseUrl = createBorgDefaultSolverWasmBaseUrl();
+  assert.doesNotMatch(loaderUrl, /\.tmp\//);
+  assert.doesNotMatch(baseUrl, /\.tmp\//);
+  assert.match(loaderUrl, /\/src\/solver\/wasm\/runtime\/architrino_solver_wasm_smoke\.mjs$/);
+  assert.match(baseUrl, /\/src\/solver\/wasm\/runtime\/$/);
+  assert.ok(existsSync(fileURLToPath(loaderUrl)), `deployed solver WASM loader missing at ${loaderUrl}`);
+  assert.ok(
+    existsSync(fileURLToPath(new URL("architrino_solver_wasm_smoke.wasm", baseUrl))),
+    "deployed solver WASM binary missing",
   );
 });
 
@@ -87,11 +195,19 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     "utf8",
   );
   const htmlSource = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
+  // Trail rendering moved to BorgPathTrails.js; the no-smoothing guard follows
+  // the code it guards.
+  const pathTrailsSource = readFileSync(
+    new URL("../src/apps/borg/BorgPathTrails.js", import.meta.url),
+    "utf8",
+  );
 
-  assert.match(runtimeSource, /new THREE\.LineSegments/);
-  assert.match(runtimeSource, /createPathSegmentGeometry/);
+  assert.match(pathTrailsSource, /new THREE\.LineSegments/);
+  assert.doesNotMatch(pathTrailsSource, /CatmullRomCurve3/);
+  assert.doesNotMatch(pathTrailsSource, /TubeGeometry/);
   assert.doesNotMatch(runtimeSource, /CatmullRomCurve3/);
   assert.doesNotMatch(runtimeSource, /TubeGeometry/);
+  assert.match(runtimeSource, /rebuildPathTrails/);
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
@@ -127,6 +243,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(htmlSource, /id="borg-start-frame-button"/);
   assert.match(htmlSource, /id="borg-new-distribution-button"/);
   assert.match(htmlSource, /id="borg-run-duration-button"/);
+  assert.match(htmlSource, /id="borg-eom-path-count"/);
+  assert.match(htmlSource, /id="borg-eom-duration"/);
+  assert.match(htmlSource, /id="borg-eom-stop-button"/);
+  assert.match(htmlSource, /id="borg-eom-restart-button"/);
   assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
 });
@@ -156,8 +276,16 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   assert.equal(requests[0].configVersion, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
   assert.equal(requests[0].config.appId, "borg");
   assert.equal(requests[0].config.fallbackPolicy, "fail-closed");
+  // valueAuthority is the bridge contract's numeric-authority enum, not an
+  // evidence grade. The EOM claim is carried by provenance, below, and stays
+  // downgraded.
   assert.equal(requests[0].config.metadata.valueAuthority, "authoritative");
   assert.equal(requests[0].config.metadata.appBufferAuthority, "authoritative");
+  assert.equal(requests[0].config.metadata.provenance.canonicalEomEvidence, false);
+  assert.equal(
+    requests[0].config.metadata.provenance.eomEvidenceStatus,
+    "non_eom_compatibility_output",
+  );
   assert.equal(requests[0].config.masterEquationRequest.initialStates.length, 16);
   assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
   assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
@@ -249,7 +377,35 @@ test("Borg dynamic native runner applies measured target and chunk limits", asyn
   await runner.dispose();
 });
 
-test("Borg surface advertises wake-history and boundary residuals as the next build burden", () => {
+test("Borg non-grid chunk reserves the explicit endpoint frame", async () => {
+  const solverClient = {
+    async runSimulation(request) {
+      const masterRequest = request.config.masterEquationRequest;
+      // Independent closed form: 0, 0.2, and 0.4 are grid frames, while the
+      // requested 0.5 endpoint is a fourth frame. The former floor-based cap
+      // reserved only three slots and the real bridge rejected the request.
+      assert.equal(masterRequest.startTime, 0);
+      assert.equal(masterRequest.endTime, 0.5);
+      assert.equal(masterRequest.step, 0.2);
+      assert.equal(masterRequest.maxFrames, 4);
+      return createFakeBorgDynamicRunResponse(request);
+    },
+    async dispose() {},
+  };
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    solverClient,
+    targetDuration: 0.5,
+    chunkDuration: 0.5,
+    sampleInterval: 0.2,
+  });
+
+  const chunk = await runner.computeNextChunk();
+  assert.equal(chunk.statusCode, "ok");
+
+  await runner.dispose();
+});
+
+test("Borg surface advertises certified EOM shadow migration as the next build burden", () => {
   const surfaceDesign = BORG_APP_SURFACE_DESIGN_V1;
   assert.equal(surfaceDesign.sourceManifest.solverMode, MASTER_EQUATION_SOLVER_MODE);
   assert.equal(surfaceDesign.sourceManifest.visualTuningStatus, "not-visual-tuned");

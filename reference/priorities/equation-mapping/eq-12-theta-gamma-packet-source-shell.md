@@ -48,7 +48,7 @@ where $W$ is the retained finite window, $E$ is the emission/source endpoint, an
 | Checker row | Minimum source-backed content | Current status |
 | --- | --- | --- |
 | `theta_gamma_packet` | Packet id, finite window $W$, source endpoint $E$, receiver endpoint $R$, carrier id, source path, and retained status. | blocked |
-| `photon_branch_packet` | Coaxial contra-rotating pro/anti planar pair identity, branch ledger, phase/frequency row, and packet momentum row. | blocked |
+| `photon_branch_packet` | Coaxial contra-rotating polarity-conjugate planar pair identity, branch ledger, phase/frequency row, and packet momentum row. | blocked |
 | `gate_a_kinematics_row` | $E_\gamma=h\nu$, $p=h/\lambda$, null mass shell, no rest branch, and common-limit compatibility with $c_{\mathrm{eff}}$. | blocked |
 | `gate_b_transverse_row` | Helicity ledger, exactly two transverse modes, analyzer handoff, and no accepted free longitudinal photon mode. | blocked |
 | `gate_c_event_routing_row` | Emission, absorption or scattering class, threshold/vertex routing where used, and declared out-of-window channels. | blocked |

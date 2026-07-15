@@ -362,7 +362,7 @@ The nucleon picture has three structural layers.
 
 Each constituent quark carries:
 
-- one Generation-I pro-braid,
+- one Generation-I matter-branch Noether braid,
 - one six-site axial layer,
 - one color-sector assignment.
 

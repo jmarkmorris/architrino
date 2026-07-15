@@ -1,8 +1,8 @@
 import { createSolverRunRequest } from "../../solver/app/SolverAppAdapters.mjs";
 import { resolveSolverAppBridgeClient } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 
-export const BORG_DYNAMIC_NATIVE_RUNNER_VERSION = "borg-dynamic-native-runner.v1";
-export const BORG_DYNAMIC_NATIVE_RUN_SOURCE = "computed-live-native-chunks";
+export const BORG_DYNAMIC_NATIVE_RUNNER_VERSION = "borg-central-solver-compatibility-runner.v2";
+export const BORG_DYNAMIC_NATIVE_RUN_SOURCE = "computed-central-solver-compatibility-chunks";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_TARGET_DURATION = 3000;
@@ -218,19 +218,22 @@ export function createBorgDynamicMasterEquationRunRequest({
   endTime,
   initialStates,
 }) {
-  const maxFrames = Math.floor((endTime - startTime) / config.sampleInterval) + 1;
+  // A chunk whose endpoint is not on the sample grid emits the regular grid
+  // frames plus that explicit endpoint. Ceil reserves both; floor undercounts
+  // by one and makes the bridge reject the otherwise valid request.
+  const maxFrames = Math.ceil((endTime - startTime) / config.sampleInterval) + 1;
   return createSolverRunRequest({
     requestId: `${config.requestIdPrefix}:chunk-${chunkIndex}`,
     runId: `${config.runIdPrefix}:chunk-${chunkIndex}`,
     datasetId: `${config.datasetIdPrefix}:chunk-${chunkIndex}`,
     appId: "borg",
     runKind: "masterEquation",
-    claimLevel: "developer-test",
+    claimLevel: "conditional-compatibility",
     precisionPath: "auto",
     configVersion: BORG_DYNAMIC_NATIVE_RUNNER_VERSION,
     configHash: `${BORG_DYNAMIC_NATIVE_RUNNER_VERSION}:chunked-live-native`,
     model: {
-      modelId: "aaa.central-solver",
+      modelId: "aaa.central-solver-compatibility",
       equationVersion: config.masterEquationVersion,
       forceLawVersion: config.forceLawVersion,
       constantsHash: "constants:borg-fixed-physical-parameters",
@@ -301,12 +304,20 @@ export function createBorgDynamicMasterEquationRunRequest({
         coordinateFrame: "absolute-lab-frame",
         scaleNormalization: "borg-dynamic-native-runner-units",
         interpolationRule: "native-master-equation-integration",
+        // The bridge contract's valueAuthority enum is numeric authority
+        // (authoritative | approximate | display-only | rejected), not an
+        // evidence grade. Sending Borg's own display vocabulary here made the
+        // bridge reject every run request, so the live run always fell back to
+        // replaying the fixture. The EOM claim is not laundered by this: it is
+        // carried, still downgraded, in the provenance block below.
         valueAuthority: "authoritative",
         appBufferAuthority: "authoritative",
         provenance: {
           runKind: "masterEquation",
           source: "borg-dynamic-native-runner",
           fixedPhysicalParameterSetId: config.fixedPhysicalParameterSetId,
+          canonicalEomEvidence: false,
+          eomEvidenceStatus: "non_eom_compatibility_output",
         },
       },
     },
@@ -414,7 +425,7 @@ function normalizeBorgDynamicFrame(frame, config, chunkIndex) {
     velocity: cloneVector(frame.velocity),
     dynamicChunkIndex: chunkIndex,
     runSource: BORG_DYNAMIC_NATIVE_RUN_SOURCE,
-    valueAuthority: "authoritative-solver-output",
+    valueAuthority: "central-solver-compatibility-output",
   });
 }
 

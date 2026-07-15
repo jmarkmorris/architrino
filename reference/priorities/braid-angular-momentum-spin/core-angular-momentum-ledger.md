@@ -54,7 +54,7 @@ The corpus now has enough scaffolding to move this workstream from a broad "spin
 ### Claim Map
 
 - **Ontology:** angular momentum is not an added substance; it is organized motion plus active causal-wake history in the architrino / Noether braid substrate.
-- **Derivation / closure targets:** conserved $\mathbf{L}_{\text{tot}}$ for delayed dynamics, the Noether braid partition theorem for one-$h$ closed-cycle action transactions, ordered-frame $4\pi$ spinor closure, the coaxial contra-rotating pro/anti planar pair transverse ledger, Stern-Gerlach basin-measure closure, and Bell correlations.
+- **Derivation / closure targets:** conserved $\mathbf{L}_{\text{tot}}$ for delayed dynamics, the Noether braid partition theorem for one-$h$ closed-cycle action transactions, ordered-frame $4\pi$ spinor closure, the coaxial contra-rotating polarity-conjugate planar pair transverse ledger, Stern-Gerlach basin-measure closure, and Bell correlations.
 - **Effective summaries:** standard $\mathbf{L}$, $\mathbf{S}$, $\mathbf{J}$, $h$, $\hbar$, helicity, spin labels, and Bell variables remain useful observer-level or bridge-layer notation.
 - **Speculative extensions:** weak-coupling-triad exposure by helicity, spin-statistics from 3D / 2D support transition, and Bell non-factorization from pair provenance plus contextual measurement coupling must stay marked as targets until the lower ledger is derived.
 

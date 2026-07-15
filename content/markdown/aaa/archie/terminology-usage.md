@@ -107,6 +107,52 @@ Sentence guidance:
 
 The important reframing here is that `charge` is not being denied; it is being relocated. In $\mathbb{A}\mathbb{A}\mathbb{A}$, `charge` is a higher-level bookkeeping summary of a deeper polarity-bearing substrate. Keeping `polarity` for the primitive level prevents the reader from importing the point-charge ontology too early, while keeping `charge` for effective summaries preserves continuity with standard electrodynamic and particle-physics calculations.
 
+## Pro/Anti Orientation and Polarity Conjugation
+
+`Pro/anti` and polarity conjugation are independent binary labels. Do not use either one as a synonym for the other.
+
+| When you mean... | Canonical term | Transformation rule |
+| --- | --- | --- |
+| the ordered three-dimensional Noether braid orientation, such as retained `HML` versus `HLM` order | `pro-Noether braid orientation` / `anti-Noether braid orientation`; compactly `pro/anti orientation` | $C$ leaves the orientation unchanged because it relabels polarity at fixed worldlines; $P$ reverses the orientation |
+| the same worldlines with every architrino polarity reversed | `polarity-conjugate braid`, `polarity-conjugate branch`, or $C(\mathfrak B)$ | $C$ exchanges the two polarity assignments; $P$ does not perform this exchange |
+| a particle branch and its antiparticle branch | `matter branch` and `polarity-conjugate antimatter branch` when the matter assignment is established | the whole retained branch record and the charged-sector polarity inventory must transform together |
+| the two products of a pair-production channel under the named hypothesis below | `pro-anti fermion pair` (hypothesis-attached shorthand) | polarity-conjugate and orientation-opposite — a $CP$-image pair under the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis) |
+| the proposed photon carrier after planarization | `coaxial contra-rotating polarity-conjugate planar pair` | the planar limit no longer carries the three-dimensional pro/anti ordering, but the relation between $\mathfrak B$ and $C(\mathfrak B)$ remains defined |
+
+Do not call the $C$-image an `anti-braid`. That phrase collides with `anti-Noether braid orientation`, which is the orientation label. Do not infer matter/antimatter from pro/anti orientation alone, and do not attach opposite effective-charge rows to pro/anti orientation alone. The one sanctioned bridge between the two labels is the named hypothesis below, and prose that uses it must say so.
+
+The two-label bookkeeping can be written explicitly. Let $o_{\mathrm{PA}}\in\{+1,-1\}$ denote the retained pro/anti orientation when that three-dimensional ordering exists, and let
+
+$$
+\chi_{\mathrm{pol}}
+=
+\operatorname{sign}(\mathbf p\cdot\mathbf S)
+$$
+
+denote the polarity-weighted handedness when the polarity dipole $\mathbf p$ is nonzero. Define the polarity-assignment sign on that chart by
+
+$$
+c_{\mathrm{pol}}
+\equiv
+\chi_{\mathrm{pol}}o_{\mathrm{PA}},
+\qquad
+\chi_{\mathrm{pol}}=o_{\mathrm{PA}}c_{\mathrm{pol}}.
+$$
+
+Then $C$ leaves $o_{\mathrm{PA}}$ fixed and reverses $c_{\mathrm{pol}}$; $P$ reverses $o_{\mathrm{PA}}$ and leaves $c_{\mathrm{pol}}$ fixed; both reverse $\chi_{\mathrm{pol}}$; and $CP$ preserves $\chi_{\mathrm{pol}}$. This factorization is definition-level symmetry bookkeeping on a chart where both signs exist. It is not a retained-branch theorem, and it does not manufacture either sign when the underlying orientation or dipole is absent.
+
+At the planar limit, precession order ceases and $o_{\mathrm{PA}}$ is not assigned. Use the relational notation $\mathfrak B$ and $C(\mathfrak B)$ instead. Opposite circulation signs, effective-charge rows, and other photon-pair ledgers must be derived for those two member records; they must not be smuggled in by naming the pair `pro/anti`.
+
+### Orientation-Antimatter Correspondence Hypothesis
+
+One named working hypothesis connects the two labels. The `orientation-antimatter correspondence hypothesis` holds that matter fermion branches carry the pro-Noether braid orientation, antimatter branches carry the anti-Noether braid orientation, and pair production draws its two products from complementary pro/anti oriented carriers in the Noether sea — the Noether Pair source architecture of [Spontaneous Assembly and Pair Production](#spontaneous-assembly-and-pair-production). Under this hypothesis the two products of pair production are polarity-conjugate **and** orientation-opposite: $CP$-images of one another rather than bare $C$-images.
+
+The two halves of that statement carry different grades. The polarity-conjugate half is the benchmarked half: the observer-level pair-production record — conjugate charge rows, equal masses, conserved lepton number — constrains exactly the $C$-image charged-sector ledgers. Standard physics carries no counterpart of $o_{\mathrm{PA}}$, so the orientation half is hypothesis, not recovery.
+
+The hypothesis is discriminable. The $C$-image and $CP$-image relations differ in the handedness ledger — $C$ reverses $\chi_{\mathrm{pol}}$ while $CP$ preserves it — so the produced pair's relative polarity-weighted handedness, compared against weak-sector handedness benchmarks, is the discriminating observable. The discriminator lives on three-dimensional fermion products: $\chi_{\mathrm{pol}}$ degenerates in the planar limit, so photon-side records cannot decide it.
+
+Usage license: pair-production prose may use `pro-anti fermion pair` as shorthand for this hypothesis-attached relation. At first use in a document, name or link this hypothesis so the underived half stays visible. Claim level: named hypothesis with a stated discriminator; not a retained-branch result.
+
 ## Site and Drift Usage
 
 Two frequently used kinematic terms with canonical meanings (operator-ratified 2026-07-08).
@@ -328,12 +374,12 @@ This term is important because $\mathbb{A}\mathbb{A}\mathbb{A}$ should not borro
 
 This wording is especially useful in pair-production prose. Standard quantum language often says that a strong field or unstable vacuum can produce a particle-antiparticle pair "spontaneously." In $\mathbb{A}\mathbb{A}\mathbb{A}$, that should be recast as spontaneous assembly production from a causal local source architecture rather than as uncaused emergence from nothing.
 
-The canonical local source architecture for this phenomenon is a `Noether Pair`. When the local energy and bookkeeping conditions are right, a Noether Pair can furnish the spontaneous assemblies needed for a pro-anti fermion pair. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the local Noether-pair state, ambient medium conditions, and energy transfer open the channel.
+The canonical local source architecture for this phenomenon is a `Noether Pair`. When the local energy and bookkeeping conditions are right, a Noether Pair can furnish the spontaneous assemblies needed for a pro-anti fermion pair. The `pro-anti` label here invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis): the products' polarity-conjugate relation is the benchmarked half, and their opposite pro/anti orientations — inherited from the complementary sea carriers — are the hypothesis half. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the local Noether-pair state, ambient medium conditions, and energy transfer open the channel.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
 | an auxiliary assembly entering a channel without being listed as a primary boundary input | `spontaneous assembly` | `support assembly` when the quantum-production linkage matters | "The beta-family law admits two spontaneous assemblies of Noether braid type." |
-| a particle-antiparticle creation event described in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology | `spontaneous assembly-pair production`, `spontaneous pro-anti fermion pair production` | bare `vacuum fluctuation` language as ontology | "A Noether Pair can open a spontaneous pro-anti fermion pair-production channel when sufficient energy is supplied." |
+| a particle-antiparticle creation event described in $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology | `spontaneous assembly-pair production`, `spontaneous pro-anti fermion pair production` (the `pro-anti` label invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis)) | bare `vacuum fluctuation` language as ontology | "A Noether Pair can open a spontaneous pro-anti fermion pair-production channel when sufficient energy is supplied." |
 | an observer-level description that keeps the trigger unresolved but not uncaused | `spontaneous` plus explicit causal qualification | wording that implies acausal creation from nothing | "The pair appears spontaneous at observer level, but the local Noether Pair supplies the neutral source architecture." |
 
 ## Association and Dissociation in Reactions

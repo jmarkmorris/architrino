@@ -4,6 +4,17 @@
 // is always the complete pro/anti pair, with an explicit six-electrino payload
 // for the electron and an explicitly labeled ambient-sea proxy. The central
 // causal-root runtime is imported and is never modified.
+//
+// SUPERSEDED FOR PHOTON CLAIMS (2026-07-15 model audit): the photon family
+// screened here is NON-CANONICAL — (3,2,3) rows are charged 8-architrino
+// braids (canonical braid: 6 architrinos, 3 of each polarity, ring = binary);
+// within-braid phasing is hard-coded; rotation is rigid contra-rotation only;
+// geometry is frozen across drift speeds (no flattening toward planar at
+// u -> c_f). Do not cite this runner's negative against the canonical
+// 12-worldline photon. The analytic symmetric-pair anchor and the section
+// 92/93/95 control reproductions remain valid implementation tests. See
+// reference/priorities/braid-ideal/planar-assembled-free-particle-spec.md
+// (audit banner) and canonical-photon-search-dispatch-packet.md (successor).
 
 import { fileURLToPath } from "node:url";
 
@@ -519,6 +530,7 @@ export function planarAssembledFreeParticleCompletion({ fixture = DEFAULT_FIXTUR
   const electronContinuation = selected.electron.map((config) => ({ drift: config.drift, analysis: analyzeSection99Assembly({ config, fixture }) }));
   const controlRows = includeControls ? controls(fixture) : null;
   const anchorAndControlsPass = anchor.passes && (!controlRows || controlRows.allPass);
+  const targetForceBalancePasses = [...photonContinuation, ...electronContinuation].every((r) => r.analysis.gates.bind);
   const photonRest = photonContinuation.find((r) => r.drift === 0);
   const photonNear = photonContinuation.filter((r) => r.drift > 0);
   const photonRecovered = anchorAndControlsPass && photonNear.every((r) => r.analysis.gates.fullAssemblyPass) && !photonRest.analysis.gates.fullAssemblyPass;
@@ -531,10 +543,18 @@ export function planarAssembledFreeParticleCompletion({ fixture = DEFAULT_FIXTUR
   return {
     schema: PLANAR_ASSEMBLED_FREE_PARTICLE_SCHEMA,
     spec: PLANAR_ASSEMBLED_FREE_PARTICLE_SPEC,
-    claimLevel: "seed_grade_full_assembly_production_root_screen_no_retained_branch_acceptance",
+    claimLevel: "seed_grade_force_balance_charge_geometry_pump_screen_stability_locking_void_non_equilibrium",
     object: { isolatedTripleGate: false, primaryTilt: 0, explicitCapDegreeOfFreedom: false, photon: "neutral planar contra-rotating pro/anti pair with no payload", electron: "same pair plus six explicit electrino worldlines" },
     sharedRecord: { staticRows: "AbsoluteHistoryRootRuntime moving-circular production roots", rateRows: "AbsoluteHistoryRootRuntime retained linear-segment production roots", centralSolverTouched: false, sea: "exploratory single-ring ambient proxy; not a constitutive Noether sea" },
-    validation: { instantaneousSymmetricPlanarAnchor: anchor, controls: controlRows, magnitudesAdjudicationEligible: anchorAndControlsPass },
+    validation: {
+      instantaneousSymmetricPlanarAnchor: anchor,
+      controls: controlRows,
+      pencilImplementationAnchorPasses: anchorAndControlsPass,
+      targetForceBalancePreconditionPasses: targetForceBalancePasses,
+      targetStabilityAdjudicationEligible: anchorAndControlsPass && targetForceBalancePasses,
+      targetStabilityAdjudicationBlocker: targetForceBalancePasses ? null : "force_balance_precondition_failed",
+      magnitudesAdjudicationEligible: anchorAndControlsPass && targetForceBalancePasses,
+    },
     coverage: coverage(search, fixture),
     selectedSameBranches: { photonPairIndex: selected.photonPairIndex, electronSeed: selected.electronSeed },
     photon: {

@@ -70,6 +70,27 @@ test("Borg live run retention continues compacting without unbounded trail point
   });
 });
 
+test("Borg compacted history coarsens on a stable absolute frame lattice", () => {
+  const first = applyBorgLiveRunRetention({
+    frameRows: createFrameRows({ frameSetCount: 10, pathCount: 1 }),
+    policy: TEST_POLICY,
+  });
+  const second = applyBorgLiveRunRetention({
+    frameRows: [
+      ...first.frameRows,
+      ...createFrameRows({ frameSetCount: 6, pathCount: 1, startFrameIndex: 10 }),
+    ],
+    compactedPathHistory: first.compactedPathHistory,
+    policy: TEST_POLICY,
+  });
+
+  assert.deepEqual(
+    second.compactedPathHistory[0].map((point) => point.frameIndex),
+    [0, 4, 8, 12],
+    "the capped path keeps absolute multiples of four instead of shifting samples",
+  );
+});
+
 test("Borg live run retention snapshot reports compacted display-memory state", () => {
   const snapshot = createBorgLiveRunRetentionSnapshot({
     frameRows: createFrameRows({ frameSetCount: 2, pathCount: 2 }),

@@ -391,7 +391,12 @@ export function movingPhaseMatchedStackedRingsBraid({ fixture = DEFAULT_FIXTURE 
   return {
     schema: MOVING_PHASE_MATCHED_STACKED_RINGS_SCHEMA,
     spec: MOVING_PHASE_MATCHED_STACKED_RINGS_SPEC,
-    claimLevel: "seed_grade_production_root_geometry_and_stability_diagnostic_not_a_retained_history_release",
+    claimLevel: "seed_grade_force_balance_geometry_diagnostic_stability_void_non_equilibrium",
+    recoveryAdjudication: {
+      forceBalancePreconditionPasses: bindingCloses,
+      stabilityClaimStatus: bindingCloses ? "candidate_requires_independent_dynamical_confirmation" : "retired_void_non_equilibrium",
+      survivingClaimScope: "mach_geometry_force_balance_pump_and_non_bind_only",
+    },
     sharedRecord: {
       staticRows: "AbsoluteHistoryRootRuntime moving-circular production roots",
       rateRows: "AbsoluteHistoryRootRuntime retained linear-segment production roots",

@@ -20,7 +20,7 @@ Claim discipline:
 | --- | --- | --- |
 | Moving-branch export | theorem target | retained moving branch row with drift, carrier, clock, ruler, and preferred-frame leakage diagnostics |
 | Lorentz recovery | theorem target | derivation from branch existence, carrier retuning, clock extraction, shape extraction, two-way synchronization, and leakage bounds |
-| Photon transition | branch-transition target | planar limit row matching the coaxial contra-rotating pro/anti planar pair requirement |
+| Photon transition | branch-transition target | planar limit row matching the coaxial contra-rotating polarity-conjugate planar pair requirement |
 | Mass map | theorem target | history-dressed energy, receiver-normal exposure tensor, scalar exposure quotient, and Noether sea medium-response tensor on the same branch |
 | Generation hierarchy | theorem target | branch-family rows whose mass ratios come from exposure-dressed energy, not from topological labels alone |
 | Color / $SU(3)$ | theorem target | continuous phase-bundle connection and generators; $\mathcal{S}_3$ remains a discrete scaffold |
@@ -249,7 +249,7 @@ $$
 
 if the limit exists in the retained branch topology and in the event ledger.
 
-To match the canonical free-photon requirement, the limit must resolve into a coaxial contra-rotating pro/anti planar pair. A transition packet must therefore emit
+To match the canonical free-photon requirement, the limit must resolve into a coaxial contra-rotating polarity-conjugate planar pair. A transition packet must therefore emit
 
 $$
 \mathcal{P}_{\gamma}
@@ -292,7 +292,7 @@ The entries mean:
 | $\mathcal{R}_{\mathrm{speed}}$ | photon-channel speed row passes the declared Gate A target |
 | $\mathcal{R}_{\mathrm{ledger}}$ | $E$, $\mathbf{p}$, $\mathbf{J}$, and $Q$ close through the transition |
 
-The same-level branch may supply a route into this planar row, but the photon claim fails unless the coaxial contra-rotating pro/anti planar pair is explicitly recovered.
+The same-level branch may supply a route into this planar row, but the photon claim fails unless the coaxial contra-rotating polarity-conjugate planar pair is explicitly recovered.
 
 ---
 
@@ -444,7 +444,7 @@ Reserved failure codes for this lane:
 | `clock-radius-confound` | clock ratio mixes carrier-speed change with unresolved radius or phase retuning |
 | `shape-ruler-open` | $\xi_q-\gamma^{-1}$ or $\lambda_q-1$ is not below tolerance |
 | `preferred-frame-leakage-open` | orientation, phase, or two-way signal anisotropy exceeds leakage tolerance |
-| `photon-pair-mismatch` | planar limit does not recover a coaxial contra-rotating pro/anti planar pair |
+| `photon-pair-mismatch` | planar limit does not recover a coaxial contra-rotating polarity-conjugate planar pair |
 | `photon-ledger-open` | photon transition does not close $E$, $\mathbf{p}$, $\mathbf{J}$, or $Q$ |
 | `topology-mass-shortcut` | generation mass is assigned directly to a mapping-class label without exposure-dressed energy extraction |
 | `exposure-refinement-open` | $\mathcal{Z}^{ab}$, $\zeta$, or $\mathcal{M}_{\mathrm{sea}}^{ab}$ changes under extraction or branch refinement beyond tolerance |
